@@ -33,6 +33,12 @@ Grab latest installer or portable package from [releases](https://github.com/Jos
 
 Requirements: Windows 7, 8 or 10 and [.Net 4.6](https://www.microsoft.com/en-us/download/details.aspx?id=53344)
 
+Questions, issues etc.
+---------
+If you find a bug please file an [issue](https://github.com/JosefNemec/Playnite/issues) and if relevant (crashes, broken features) please attach diagnostics package, which can be created via from "About Playnite..." menu.
+
+If you have any question related mainly to development then check out [Playnite Gitter room](https://gitter.im/Playnite/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link).
+
 Building
 ---------
 
@@ -80,12 +86,6 @@ apikeys.json example:
     "Steam" : "25SSE201224DEE54F732DDDC2BA21690C"
 }
 ```
-
-Questions, issues etc.
----------
-If you find a bug please file an [issue](https://github.com/JosefNemec/Playnite/issues) and if relevant (crashes, broken features) please attach diagnostics package, which can be created via from "About Playnite..." menu.
-
-If you have any question related mainly to development then check out [Playnite Gitter room](https://gitter.im/Playnite/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link).
 
 Contributions
 ---------
