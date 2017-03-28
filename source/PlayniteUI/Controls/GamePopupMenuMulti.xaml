@@ -1,0 +1,32 @@
+﻿<Popup x:Class="PlayniteUI.Controls.GamePopupMenuMulti"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:local="clr-namespace:PlayniteUI.Controls"
+       mc:Ignorable="d" 
+       d:DesignHeight="300" d:DesignWidth="300"
+       StaysOpen="False" Placement="MousePoint">
+
+    <Popup.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Popup.Resources>
+
+    <Border Style="{StaticResource PopUpBorder}">
+        <StackPanel Background="{StaticResource NormalBrushDark}">
+            <TextBlock Text="Hide" Style="{StaticResource TextBlockPopupItem}"
+                       MouseLeftButtonUp="Hide_MouseLeftButtonUp"
+                       Visibility="{Binding ShowHideButton, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <TextBlock Text="Show in Library" Style="{StaticResource TextBlockPopupItem}"
+                       MouseLeftButtonUp="UnHide_MouseLeftButtonUp"
+                       Visibility="{Binding ShowUnHideButton, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <TextBlock Text="Edit" Style="{StaticResource TextBlockPopupItem}"
+                       MouseLeftButtonUp="Edit_MouseLeftButtonUp"/>
+            <TextBlock Text="Set Category . . ." Style="{StaticResource TextBlockPopupItem}"
+                       MouseLeftButtonUp="Categories_MouseLeftButtonUp" />
+            <TextBlock Text="Remove" Style="{StaticResource TextBlockPopupItem}"
+                       MouseLeftButtonUp="Remove_MouseLeftButtonUp"
+                       Visibility="{Binding ShowRemoveButton, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        </StackPanel>
+    </Border>
+</Popup>

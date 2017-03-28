@@ -1,0 +1,12 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="PreparePackage">
+    <Target Name="BeforeBuild">
+        <RemoveDir Directories="$(OutputPath)" />
+        <MakeDir Directories="$(OutputPath)" />
+    </Target>
+    <Target Name="Build" DependsOnTargets="BeforeBuild">
+        <MSBuild
+            Projects="../source/PlayniteUI/PlayniteUI.csproj"
+            Targets="Build"
+            Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+    </Target>
+</Project>

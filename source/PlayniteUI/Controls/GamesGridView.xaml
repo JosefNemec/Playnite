@@ -1,0 +1,231 @@
+﻿<UserControl x:Class="PlayniteUI.Controls.GamesGridView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PlayniteUI"
+             xmlns:playniteControls="clr-namespace:PlayniteUI.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="502.764">
+    
+    <UserControl.Resources>
+        <local:ListToStringConverter x:Key="ListToStringConverter" />
+        <local:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
+        <local:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
+        <local:BoolToYesNoConverter x:Key="BoolToYesNoConverter" />
+        <local:BoolToAutoWidthConverter x:Key="BoolToAutoWidthConverter" />        
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <local:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <playniteControls:GamePopupMenu x:Name="PopupGame" />
+        <playniteControls:GamePopupMenuMulti x:Name="PopupGameMulti" />
+
+        <ListView Name="GridGames" SelectionMode="Extended" VirtualizingPanel.VirtualizationMode="Recycling">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                    <EventSetter Event="MouseRightButtonUp" Handler="Grid_MouseRightButtonUp" />
+                    <EventSetter Event="MouseDoubleClick" Handler="Grid_MouseDoubleClick" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Expander Header="{Binding Name, TargetNullValue=None}" IsExpanded="True" Margin="3">
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </ListView.GroupStyle>
+
+            <ListView.View>
+                <GridView>
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style TargetType="GridViewColumnHeader" BasedOn="{StaticResource {x:Type GridViewColumnHeader}}">
+                            <EventSetter Event="Loaded" Handler="GridViewColumnHeader_Loaded" />
+                        </Style>                        
+                    </GridView.ColumnHeaderContainerStyle>
+                    
+                    <GridView.ColumnHeaderContextMenu>
+                        <ContextMenu Name="HeaderMenu">
+                            <MenuItem Header="Icon"
+                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[Icon]}" />
+                            <MenuItem Header="Name"
+                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[Name]}" />
+                            <MenuItem Header="Developer(s)"
+                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[Developer]}" />
+                            <MenuItem Header="Publisher(s)"
+                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[Publisher]}" />
+                            <MenuItem Header="Release Date"
+                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[ReleaseDate]}" />
+                            <MenuItem Header="Genre(s)"
+                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[Genre]}" />
+                            <MenuItem Header="Last Played"
+                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[LastPlayed]}" />
+                            <MenuItem Header="Categories"
+                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[Categories]}" />
+                            <MenuItem Header="Store URL"
+                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[StoreURL]}" />
+                            <MenuItem Header="Wiki URL"
+                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[WikiURL]}" />
+                            <MenuItem Header="Forums URL"
+                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[ForumsURL]}" />
+                            <MenuItem Header="Installed"
+                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[Installed]}" />
+                            <MenuItem Header="Directory"
+                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[Directory]}" />
+                        </ContextMenu>
+                    </GridView.ColumnHeaderContextMenu>
+                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Icon], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}, ConverterParameter=Icon}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Icon" Content=" "/>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Width="20" Stretch="Uniform"
+                                       RenderOptions.BitmapScalingMode="HighQuality">
+                                    <Image.Source>
+                                        <PriorityBinding>
+                                            <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
+                                            <Binding Path="DefaultIcon" Mode="OneTime"/>
+                                        </PriorityBinding>
+                                    </Image.Source>
+                                </Image>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Name], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Name" Content="Name"/>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name, Mode=OneWay}" Padding="0,5,0,5" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Developer], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Developer" Content="Developer(s)" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Developers, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" Padding="0,5,0,5"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Publisher], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Publisher" Content="Publisher(s)" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Publishers, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" Padding="0,5,0,5"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[ReleaseDate], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="ReleaseDate" Content="Release Date" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ReleaseDate, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" Padding="0,5,0,5"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Genre], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Genre" Content="Genre(s)" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Genres, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" Padding="0,5,0,5"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[LastPlayed], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="LastPlayed" Content="Last Played" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding LastActivity, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" Padding="0,5,0,5"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Categories], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Categories" Content="Categories" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Categories, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" Padding="0,5,0,5"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[StoreURL], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="StoreURL" Content="Store URL" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StoreUrl, Mode=OneWay}" Padding="0,5,0,5"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[WikiURL], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="WikiURL" Content="Wiki URL" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding WikiUrl, Mode=OneWay}" Padding="0,5,0,5"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[ForumsURL], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="ForumsURL" Content="ForumsUrl" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CommunityHubUrl, Mode=OneWay}" Padding="0,5,0,5"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Installed], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Installed" Content="Installed" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding IsInstalled, Mode=OneWay, Converter={StaticResource BoolToYesNoConverter}}" Padding="0,5,0,5"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Directory], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Directory" Content="Directory" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding InstallDirectory, Mode=OneWay}" Padding="0,5,0,5"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

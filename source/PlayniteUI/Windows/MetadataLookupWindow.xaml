@@ -1,0 +1,53 @@
+﻿<Window x:Class="PlayniteUI.Windows.MetadataLookupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlayniteUI.Windows"
+        mc:Ignorable="d"
+        Title="Metadata search" Height="600" Width="800"
+        Background="{StaticResource NormalBrush}" Loaded="Window_Loaded" ResizeMode="CanResizeWithGrip">
+    
+    <Window.CommandBindings>
+        <CommandBinding Command="Search" Executed="Search_Executed" />
+    </Window.CommandBindings>
+    
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>     
+
+        <ListBox Grid.Row="0" Grid.Column="0"  Name="ListSearch" HorizontalAlignment="Stretch" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                 SelectionChanged="ListSearch_SelectionChanged" MouseDoubleClick="ListSearch_MouseDoubleClick">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Width="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource AncestorType=ListBox}}">
+                        <TextBlock Text="{Binding title}" DockPanel.Dock="Top" Margin="0,0,10,0" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding snippet}" DockPanel.Dock="Bottom" FontStyle="Italic" TextWrapping="Wrap"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Downloading data..." HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Name="TextDownloading"/>
+        
+        <DockPanel Grid.Row="1">
+            <Button Name="ButtonSearch" Command="Search" Content="Search" Padding="5" Margin="3" DockPanel.Dock="Left" />
+            <TextBox Name="TextSearch" Margin="3" DockPanel.Dock="Right" VerticalAlignment="Center">
+                <TextBox.InputBindings>
+                    <KeyBinding Command="Search" Key="Return" />
+                </TextBox.InputBindings>
+            </TextBox>
+        </DockPanel>
+
+        <DockPanel Margin="5" LastChildFill="False" Height="25"  Grid.Column="0" Grid.Row="2">
+            <Button Name="ButtonCancel" Content="Cancel" Width="60" DockPanel.Dock="Right" Margin="10,0,10,0"
+                    Click="ButtonCancel_Click" IsCancel="True"/>
+            <Button Name="ButtonOK" Content="OK" Width="60" DockPanel.Dock="Right" IsEnabled="False"
+                    Click="ButtonOK_Click"/>
+        </DockPanel>
+    </Grid>
+</Window>

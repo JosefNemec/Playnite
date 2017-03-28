@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="PlayniteUI.Controls.FilterSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PlayniteUI.Controls"
+             xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
+             xmlns:playniteModels="clr-namespace:Playnite.Models;assembly=Playnite"
+             mc:Ignorable="d">
+    <Grid>
+        <StackPanel>
+            <local:FilterSelectorItem Text="Installed" CountText="{Binding Path=Stats.Installed, Mode=OneWay}"
+                                      IsChecked="{Binding Settings.Installed}" Padding="5,5,5,3" />
+            <local:FilterSelectorItem Text="Hidden" CountText="{Binding Path=Stats.Hidden, Mode=OneWay}"
+                                      IsChecked="{Binding Settings.Hidden}" Padding="5,0,5,3" />
+            <Separator/>
+            <TextBlock Text="Providers" FontSize="16" Foreground="LightGray" FontStyle="Italic" Margin="5" Padding="5,0,5,3"/>
+            <StackPanel>
+                <local:FilterSelectorItem IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)Steam]}"
+                                          CountText="{Binding Path=Stats.Steam, Mode=OneWay}"
+                                          Padding="5,0,5,3" Text="Steam"/>
+                <local:FilterSelectorItem IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)GOG]}"
+                                          CountText="{Binding Path=Stats.GOG, Mode=OneWay}"
+                                          Padding="5,0,5,3" Text="GOG"/>
+                <local:FilterSelectorItem IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)Origin]}"
+                                          CountText="{Binding Path=Stats.Origin, Mode=OneWay}"
+                                          Padding="5,0,5,3" Text="Origin"/>
+                <local:FilterSelectorItem IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)Custom]}"
+                                          CountText="{Binding Path=Stats.Custom, Mode=OneWay}"
+                                          Padding="5,0,5,3" Text="Custom" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

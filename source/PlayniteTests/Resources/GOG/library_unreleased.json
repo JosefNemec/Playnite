@@ -1,0 +1,457 @@
+[
+    {
+        "isGalaxyCompatible": true,
+        "tags": [],
+        "id": 1207658695,
+        "availability": {
+            "isAvailable": true,
+            "isAvailableInAccount": true
+        },
+        "title": "Beneath a Steel Sky",
+        "image": "\/\/images-1.gog.com\/8c9562087850f4f0bc5cbb073e2207e75cb016d7b1632800db3e36c8e85d79d2",
+        "url": "\/game\/beneath_a_steel_sky",
+        "worksOn": {
+            "Windows": true,
+            "Mac": true,
+            "Linux": true
+        },
+        "category": "Adventure",
+        "rating": 43,
+        "isComingSoon": false,
+        "isMovie": false,
+        "isGame": true,
+        "slug": "beneath_a_steel_sky",
+        "updates": 1,
+        "isNew": false,
+        "dlcCount": 0,
+        "releaseDate": {
+            "date": "1994-04-11 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Nicosia"
+        },
+        "isBaseProductMissing": false,
+        "isHidingDisabled": false,
+        "isInDevelopment": false,
+        "isHidden": false
+    },
+    {
+        "isGalaxyCompatible": true,
+        "tags": [],
+        "id": 1207658927,
+        "availability": {
+            "isAvailable": true,
+            "isAvailableInAccount": true
+        },
+        "title": "Dragonsphere",
+        "image": "\/\/images-2.gog.com\/bc3757dfa649ab55df0677a47ede21308c332beeec408709ced006b28a76566b",
+        "url": "\/game\/dragonsphere",
+        "worksOn": {
+            "Windows": true,
+            "Mac": true,
+            "Linux": true
+        },
+        "category": "Adventure",
+        "rating": 37,
+        "isComingSoon": false,
+        "isMovie": false,
+        "isGame": true,
+        "slug": "dragonsphere",
+        "updates": 1,
+        "isNew": false,
+        "dlcCount": 0,
+        "releaseDate": {
+            "date": "1994-01-02 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Nicosia"
+        },
+        "isBaseProductMissing": false,
+        "isHidingDisabled": false,
+        "isInDevelopment": false,
+        "isHidden": false
+    },
+    {
+        "isGalaxyCompatible": true,
+        "tags": [],
+        "id": 2,
+        "availability": {
+            "isAvailable": false,
+            "isAvailableInAccount": true
+        },
+        "title": "Fallout 2 Classic",
+        "image": "\/\/images-2.gog.com\/e53d34bde0d96488b581a2e79fe3f9b25eabc9e51c990361443aa7b9c7660dd2",
+        "url": "",
+        "worksOn": {
+            "Windows": true,
+            "Mac": true,
+            "Linux": false
+        },
+        "category": "Role-playing",
+        "rating": 48,
+        "isComingSoon": false,
+        "isMovie": false,
+        "isGame": true,
+        "slug": "fallout_2_classic",
+        "updates": 0,
+        "isNew": false,
+        "dlcCount": 0,
+        "releaseDate": {
+            "date": "1998-09-30 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Nicosia"
+        },
+        "isBaseProductMissing": false,
+        "isHidingDisabled": false,
+        "isInDevelopment": false,
+        "isHidden": false
+    },
+    {
+        "isGalaxyCompatible": true,
+        "tags": [],
+        "id": 1,
+        "availability": {
+            "isAvailable": false,
+            "isAvailableInAccount": true
+        },
+        "title": "Fallout Classic",
+        "image": "\/\/images-1.gog.com\/0ef80c3dc9692710809e4adaf2fcd3348f9ede1f530af6182c2972c86238e71a",
+        "url": "",
+        "worksOn": {
+            "Windows": true,
+            "Mac": true,
+            "Linux": false
+        },
+        "category": "Role-playing",
+        "rating": 48,
+        "isComingSoon": false,
+        "isMovie": false,
+        "isGame": true,
+        "slug": "fallout_classic",
+        "updates": 0,
+        "isNew": false,
+        "dlcCount": 0,
+        "releaseDate": {
+            "date": "1997-09-30 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Nicosia"
+        },
+        "isBaseProductMissing": false,
+        "isHidingDisabled": false,
+        "isInDevelopment": false,
+        "isHidden": false
+    },
+    {
+        "isGalaxyCompatible": true,
+        "tags": [],
+        "id": 3,
+        "availability": {
+            "isAvailable": false,
+            "isAvailableInAccount": true
+        },
+        "title": "Fallout Tactics Classic",
+        "image": "\/\/images-4.gog.com\/4f7a5f52b7618dc9f51ac95c4106182a3321053c381e9b4015a943856edffea4",
+        "url": "",
+        "worksOn": {
+            "Windows": true,
+            "Mac": true,
+            "Linux": false
+        },
+        "category": "Role-playing",
+        "rating": 43,
+        "isComingSoon": false,
+        "isMovie": false,
+        "isGame": true,
+        "slug": "fallout_tactics_classic",
+        "updates": 0,
+        "isNew": false,
+        "dlcCount": 0,
+        "releaseDate": {
+            "date": "2001-03-15 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Nicosia"
+        },
+        "isBaseProductMissing": false,
+        "isHidingDisabled": false,
+        "isInDevelopment": false,
+        "isHidden": false
+    },
+    {
+        "isGalaxyCompatible": true,
+        "tags": [],
+        "id": 1971477531,
+        "availability": {
+            "isAvailable": false,
+            "isAvailableInAccount": true
+        },
+        "title": "GWENT: The Witcher Card Game",
+        "image": "\/\/images-3.gog.com\/002535c866db51076f9aebe7faef60619452b02cc4aca0f9e07b97ee5703f75b",
+        "url": "",
+        "worksOn": {
+            "Windows": true,
+            "Mac": false,
+            "Linux": false
+        },
+        "category": "",
+        "rating": 0,
+        "isComingSoon": false,
+        "isMovie": false,
+        "isGame": true,
+        "slug": "seawolf_new",
+        "updates": 0,
+        "isNew": true,
+        "dlcCount": 0,
+        "releaseDate": {
+            "date": "-0001-11-30 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Nicosia"
+        },
+        "isBaseProductMissing": false,
+        "isHidingDisabled": false,
+        "isInDevelopment": false,
+        "isHidden": false
+    },
+    {
+        "isGalaxyCompatible": true,
+        "tags": [],
+        "id": 1207658890,
+        "availability": {
+            "isAvailable": true,
+            "isAvailableInAccount": true
+        },
+        "title": "Neverwinter Nights Diamond",
+        "image": "\/\/images-3.gog.com\/690e76916523b140d297f86906c67e2816b27005ee1b6743b53332c9583b2654",
+        "url": "\/game\/neverwinter_nights_diamond_edition",
+        "worksOn": {
+            "Windows": true,
+            "Mac": false,
+            "Linux": false
+        },
+        "category": "Role-playing",
+        "rating": 46,
+        "isComingSoon": false,
+        "isMovie": false,
+        "isGame": true,
+        "slug": "neverwinter_nights_diamond_edition",
+        "updates": 0,
+        "isNew": true,
+        "dlcCount": 0,
+        "releaseDate": {
+            "date": "2005-11-03 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Nicosia"
+        },
+        "isBaseProductMissing": false,
+        "isHidingDisabled": false,
+        "isInDevelopment": false,
+        "isHidden": false
+    },
+    {
+        "isGalaxyCompatible": true,
+        "tags": [],
+        "id": 1207659013,
+        "availability": {
+            "isAvailable": true,
+            "isAvailableInAccount": true
+        },
+        "title": "Treasure Adventure Game",
+        "image": "\/\/images-1.gog.com\/e966b44b9f146d21bc835a2f0785693116422778e4e112020d3add98046141c9",
+        "url": "\/game\/treasure_adventure_game",
+        "worksOn": {
+            "Windows": true,
+            "Mac": false,
+            "Linux": false
+        },
+        "category": "Adventure",
+        "rating": 43,
+        "isComingSoon": false,
+        "isMovie": false,
+        "isGame": true,
+        "slug": "treasure_adventure_game",
+        "updates": 0,
+        "isNew": false,
+        "dlcCount": 0,
+        "releaseDate": {
+            "date": "2011-11-26 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Nicosia"
+        },
+        "isBaseProductMissing": false,
+        "isHidingDisabled": false,
+        "isInDevelopment": false,
+        "isHidden": false
+    },
+    {
+        "isGalaxyCompatible": true,
+        "tags": [],
+        "id": 1207658901,
+        "availability": {
+            "isAvailable": true,
+            "isAvailableInAccount": true
+        },
+        "title": "Tyrian 2000",
+        "image": "\/\/images-4.gog.com\/346da67f4079d2d4e64ab0e7c310ee81218734d4bde4d74d3a3f074510cf6fa5",
+        "url": "\/game\/tyrian_2000",
+        "worksOn": {
+            "Windows": true,
+            "Mac": true,
+            "Linux": false
+        },
+        "category": "Shooter",
+        "rating": 43,
+        "isComingSoon": false,
+        "isMovie": false,
+        "isGame": true,
+        "slug": "tyrian_2000",
+        "updates": 0,
+        "isNew": false,
+        "dlcCount": 0,
+        "releaseDate": {
+            "date": "1999-11-30 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Nicosia"
+        },
+        "isBaseProductMissing": false,
+        "isHidingDisabled": false,
+        "isInDevelopment": false,
+        "isHidden": false
+    },
+    {
+        "isGalaxyCompatible": true,
+        "tags": [],
+        "id": 1207658962,
+        "availability": {
+            "isAvailable": true,
+            "isAvailableInAccount": true
+        },
+        "title": "Ultima\u2122 4: Quest of the Avatar",
+        "image": "\/\/images-2.gog.com\/cb10216b4721fc46db91a79af4bee55dc90123c13ebcc11a50980d384ca1a4a1",
+        "url": "\/game\/ultima_4",
+        "worksOn": {
+            "Windows": true,
+            "Mac": true,
+            "Linux": false
+        },
+        "category": "Role-playing",
+        "rating": 43,
+        "isComingSoon": false,
+        "isMovie": false,
+        "isGame": true,
+        "slug": "ultima_4",
+        "updates": 0,
+        "isNew": false,
+        "dlcCount": 0,
+        "releaseDate": {
+            "date": "1985-09-16 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Nicosia"
+        },
+        "isBaseProductMissing": false,
+        "isHidingDisabled": false,
+        "isInDevelopment": false,
+        "isHidden": false
+    },
+    {
+        "isGalaxyCompatible": true,
+        "tags": [],
+        "id": 1207659121,
+        "availability": {
+            "isAvailable": true,
+            "isAvailableInAccount": true
+        },
+        "title": "Warsow",
+        "image": "\/\/images-1.gog.com\/541398e891bdb948292a8e04d08b6e29af03a30b255acd02a574c3e2256b261e",
+        "url": "\/game\/warsow",
+        "worksOn": {
+            "Windows": true,
+            "Mac": true,
+            "Linux": true
+        },
+        "category": "Shooter",
+        "rating": 38,
+        "isComingSoon": false,
+        "isMovie": false,
+        "isGame": true,
+        "slug": "warsow",
+        "updates": 1,
+        "isNew": false,
+        "dlcCount": 0,
+        "releaseDate": {
+            "date": "2012-10-08 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Nicosia"
+        },
+        "isBaseProductMissing": false,
+        "isHidingDisabled": false,
+        "isInDevelopment": false,
+        "isHidden": false
+    },
+    {
+        "isGalaxyCompatible": true,
+        "tags": [],
+        "id": 1207658924,
+        "availability": {
+            "isAvailable": true,
+            "isAvailableInAccount": true
+        },
+        "title": "Witcher: Enhanced Edition, The ",
+        "image": "\/\/images-1.gog.com\/37d4a208d1f5bb0e163da540ac894ba46a7d566ede31aaaefc74bbcd46ebd190",
+        "url": "\/game\/the_witcher",
+        "worksOn": {
+            "Windows": true,
+            "Mac": true,
+            "Linux": false
+        },
+        "category": "Role-playing",
+        "rating": 47,
+        "isComingSoon": false,
+        "isMovie": false,
+        "isGame": true,
+        "slug": "the_witcher",
+        "updates": 0,
+        "isNew": true,
+        "dlcCount": 0,
+        "releaseDate": {
+            "date": "2007-10-26 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Nicosia"
+        },
+        "isBaseProductMissing": false,
+        "isHidingDisabled": false,
+        "isInDevelopment": false,
+        "isHidden": false
+    },
+    {
+        "isGalaxyCompatible": true,
+        "tags": [],
+        "id": 1207659061,
+        "availability": {
+            "isAvailable": true,
+            "isAvailableInAccount": true
+        },
+        "title": "Worlds of Ultima\u2122 : The Savage Empire",
+        "image": "\/\/images-4.gog.com\/07c86c0a10902cd350ff5476ed7f27f5290246016bd1a3ab3d52cda5759663ce",
+        "url": "\/game\/worlds_of_ultima_the_savage_empire",
+        "worksOn": {
+            "Windows": true,
+            "Mac": true,
+            "Linux": false
+        },
+        "category": "Role-playing",
+        "rating": 41,
+        "isComingSoon": false,
+        "isMovie": false,
+        "isGame": true,
+        "slug": "worlds_of_ultima_the_savage_empire",
+        "updates": 0,
+        "isNew": false,
+        "dlcCount": 0,
+        "releaseDate": {
+            "date": "1990-12-30 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Nicosia"
+        },
+        "isBaseProductMissing": false,
+        "isHidingDisabled": false,
+        "isInDevelopment": false,
+        "isHidden": false
+    }
+]

@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="PlayniteUI.GameDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PlayniteUI"
+             xmlns:html="clr-namespace:TheArtOfDev.HtmlRenderer.WPF;assembly=HtmlRenderer.WPF"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:models="clr-namespace:Playnite.Models;assembly=Playnite"
+             xmlns:playniteControls="clr-namespace:PlayniteUI.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600" DataContextChanged="UserControl_DataContextChanged">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <local:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
+        <local:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
+        <local:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
+        <local:ImageUrlToImageSourceConverter x:Key="ImageUrlToImageSourceConverter" />
+        <sys:Boolean x:Key="True">True</sys:Boolean>
+        <sys:Boolean x:Key="False">False</sys:Boolean>
+        <local:ValueConverterGroup x:Key="EnumCompVisibilityConverterInverted">
+            <local:EnumConverter/>
+            <local:NegateConverter/>
+            <BooleanToVisibilityConverter/>
+        </local:ValueConverterGroup>
+    </UserControl.Resources>
+    
+    <Grid Visibility="{Binding ShowContent, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
+        <Grid.Background>
+            <ImageBrush Stretch="Uniform" AlignmentX="Center" AlignmentY="Top" RenderOptions.BitmapScalingMode="Fant"
+                        ImageSource="{Binding BackgroundImage, IsAsync=True, Mode=OneTime, Converter={StaticResource ImageUrlToImageSourceConverter}}" />
+        </Grid.Background>
+
+        <DockPanel Name="gameDetails" Margin="0,10,0,0">
+            <playniteControls:GamePopupMenu x:Name="PopupMore" StaysOpen="False" Placement="Relative" VerticalOffset="{Binding ActualHeight, ElementName=ButtonMore}"/>
+
+            <DockPanel DockPanel.Dock="Top">
+                <Image DockPanel.Dock="Left" Margin="20,0,0,0" Width="32" Height="32" RenderOptions.BitmapScalingMode="Fant">
+                    <Image.Source>
+                        <PriorityBinding>
+                            <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
+                            <Binding Path="DefaultIcon" Mode="OneTime"/>
+                        </PriorityBinding>
+                    </Image.Source>
+                </Image>
+                <TextBlock Text="{Binding Name, Mode=OneWay}" FontSize="20" Margin="10,10,0,10" TextWrapping="Wrap" DockPanel.Dock="Left"
+                           HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="3"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </DockPanel>
+
+            <DockPanel DockPanel.Dock="Top" Margin="20,10,0,0">
+                <WrapPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,20,5" Height="35" HorizontalAlignment="Left">
+                        <Button Style="{StaticResource PlayButton}" Name="ButtonPlay" Width="100" HorizontalAlignment="Left" Click="ButtonPlay_Click"
+                                Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}" Content="Play" />
+                        <UserControl Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}">
+                            <Button Width="100" Click="ButtonInstall_Click" Content="Install"
+                                Visibility="{Binding IsInstalled, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}" />
+                        </UserControl>
+                        <Button Name="ButtonMore" Width="100" Margin="10, 0, 0, 0" Click="ButtonMore_Click" Content="More" />
+                    </StackPanel>
+                    <StackPanel  Orientation="Horizontal">
+                        <TextBlock Margin="0,5,5,5" Background="#66000000" Padding="5" Width="75" TextAlignment="Center"
+                                   Visibility="{Binding CommunityHubUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}">                        
+                            <Hyperlink Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding CommunityHubUrl, TargetNullValue={x:Null}}"
+                                       TextDecorations="{x:Null}" RequestNavigate="Link_RequestNavigate">
+                                Forum
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5" Background="#66000000" Padding="5" Width="75" TextAlignment="Center"
+                                   Visibility="{Binding StoreUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}">  
+                            <Hyperlink Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding StoreUrl, TargetNullValue={x:Null}}"
+                                       TextDecorations="{x:Null}" RequestNavigate="Link_RequestNavigate">
+                                Store
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,0,5" Background="#66000000" Padding="5" Width="75" TextAlignment="Center"
+                                   Visibility="{Binding WikiUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}">
+                            <Hyperlink Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding WikiUrl, TargetNullValue={x:Null}}"
+                                       TextDecorations="{x:Null}" RequestNavigate="Link_RequestNavigate">
+                                Wiki
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </WrapPanel>
+            </DockPanel>            
+            <html:HtmlPanel Name="htmlPanel" Background="Transparent" Text="{Binding DescriptionView, Mode=OneWay}" Margin="10,20,0,0"/>
+        </DockPanel>
+    </Grid>    
+</UserControl>

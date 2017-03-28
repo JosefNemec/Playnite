@@ -1,0 +1,38 @@
+﻿<Window x:Class="PlayniteUI.Windows.CategoryConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlayniteUI.Windows"
+        mc:Ignorable="d"
+        Title="Assign category for the game" Height="320" Width="340"
+        Background="{StaticResource NormalBrush}"
+        WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <Grid>
+        <DockPanel>
+            <DockPanel Margin="10" LastChildFill="False" Height="25" DockPanel.Dock="Bottom">
+                <Button Name="ButtonCancel" Click="ButtonCancel_Click" Content="Cancel" Padding="15,0,15,0" DockPanel.Dock="Right" Margin="10,0,0,0"  IsCancel="True"/>
+                <Button Name="ButtonOK" Click="ButtonOK_Click" Content="OK" Padding="20,0,20,0" DockPanel.Dock="Right"/>
+            </DockPanel>
+
+            <DockPanel DockPanel.Dock="Bottom" Margin="10,5,10,5" >
+                <Button Name="ButtonAddCat" Content="Add Category" DockPanel.Dock="Left" Padding="10,0,10,0"
+                        Click="ButtonAddCat_Click"/>
+                <TextBox Name="TextNewCat" DockPanel.Dock="Left" Margin="10,0,0,0"/>
+            </DockPanel>
+
+            <ListBox Name="ListCategories" DockPanel.Dock="Top" BorderThickness="0" Margin="10">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="BorderThickness" Value="0"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox IsChecked="{Binding Enabled}" Content="{Binding Name}" IsThreeState="True" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+    </Grid>
+</Window>

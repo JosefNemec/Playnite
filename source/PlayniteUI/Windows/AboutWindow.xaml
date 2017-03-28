@@ -1,0 +1,53 @@
+﻿<Window x:Class="PlayniteUI.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlayniteUI"
+        mc:Ignorable="d"
+        Name="MainWindow" WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+        Title="About Playnite" ResizeMode="NoResize" Height="315" Width="400">
+    <Grid Background="{StaticResource NormalBrush}">
+        <DockPanel Margin="10">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <Image Source="/Images/applogo.png" Width="64" Height="64" RenderOptions.BitmapScalingMode="Fant"/>             
+
+                <StackPanel Margin="15,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Playnite " Foreground="{StaticResource TextBrush}" FontSize="20"/>
+                        <TextBlock Text="{Binding Path=Version, ElementName=MainWindow}" Width="40" Foreground="{StaticResource TextBrush}" FontSize="20"/>
+                        <TextBlock Text="Alpha " Foreground="{StaticResource TextBrush}" FontSize="20"/>
+                    </StackPanel>
+                    <TextBlock Text="by Josef Nemec" Foreground="LightGray"/>
+                    <TextBlock>
+                        <Hyperlink FontSize="12" Style="{DynamicResource DetailsHyperlink}" NavigateUri="http://www.playnite.link" TextDecorations="{x:Null}"
+                                   RequestNavigate="Hyperlink_RequestNavigate">
+                            Homepage at www.playnite.link
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock>
+                        <Hyperlink FontSize="12" Style="{DynamicResource DetailsHyperlink}" NavigateUri="https://github.com/JosefNemec/Playnite/" TextDecorations="{x:Null}"
+                                   RequestNavigate="Hyperlink_RequestNavigate">
+                            Source Code at GitHub
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+            
+            <DockPanel Margin="0,10,0,0" LastChildFill="False" DockPanel.Dock="Bottom">
+                <Button Content="Create diag. package" Padding="5" Click="DiagButton_Click"/>
+                <Button Content="Close" Padding="10,5,10,5"  DockPanel.Dock="Right" Click="CloseButton_Click" IsCancel="True"/>
+            </DockPanel>
+
+            <ScrollViewer Margin="0,5,0,0" DockPanel.Dock="Top">
+            <TextBox AcceptsReturn="True" IsReadOnly="True"  TextWrapping="Wrap" Text="MIT License&#x0a;&#x0a;Copyright (c) 2017 Josef Nemec&#x0a;&#x0a;Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:&#x0a;&#x0a;The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.&#x0a;&#x0a;THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+            "/>
+            </ScrollViewer>
+        </DockPanel>
+        
+    </Grid>
+</Window>
