@@ -53,12 +53,12 @@
                    VerticalOffset="{Binding ActualHeight, ElementName=ImageLogo}">
                 <Border Style="{StaticResource PopUpBorder}">
                     <StackPanel Background="{StaticResource NormalBrushDark}">
-                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Add Game..." MouseUp="AddNewGamePopup_MouseUp" Name="TextAddGame"/>
-                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Add Installed Game(s)..." MouseUp="AddInstalledGames_MouseUp" Name="TextAddInstalledGame"/>
+                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Add Game . . ." MouseUp="AddNewGamePopup_MouseUp" Name="TextAddGame"/>
+                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Add Installed Game(s) . . ." MouseUp="AddInstalledGames_MouseUp" Name="TextAddInstalledGame"/>
                         <Separator />
                         <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Reload Games List" MouseUp="ReloadGamesPopup_MouseUp" Name="TextReloadGames"/>
-                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Settings..." MouseUp="SettingsPopup_MouseUp"/>
-                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="About Playnite..." MouseUp="AboutPopup_Click"/>
+                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Settings . . ." MouseUp="SettingsPopup_MouseUp"/>
+                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="About Playnite . . ." MouseUp="AboutPopup_Click"/>
                         <Separator />
                         <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Exit Playnite" MouseUp="ExitappPopUp_mouseUp"/>
                     </StackPanel>
@@ -78,7 +78,7 @@
             <Popup StaysOpen="False" Name="PopupViewSettings" Placement="Relative" VerticalOffset="24">
                 <Border Style="{StaticResource PopUpBorder}">
                     <StackPanel Background="{StaticResource NormalBrushDark}">
-                        <RadioButton GroupName="order" Content="Sory by Name" Click="HidePopUp_Click"
+                        <RadioButton GroupName="order" Content="Sort by Name" Click="HidePopUp_Click"
                                      Style="{StaticResource PopupRadioItem}"
                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Name}}"/>
                         <RadioButton GroupName="order" Content="Sort by Last Activity" Click="HidePopUp_Click"       
