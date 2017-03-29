@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Playnite.Database;
 using Playnite.Models;
+using System.Collections.ObjectModel;
 
 namespace PlayniteUI.Controls
 {
@@ -33,12 +34,31 @@ namespace PlayniteUI.Controls
             set
             {
                 ListGames.ItemsSource = value;
+
+                if (value is ObservableCollection<IGame>)
+                {
+                    ((ObservableCollection<IGame>)value).CollectionChanged -= GamesGridView_CollectionChanged;
+                    ((ObservableCollection<IGame>)value).CollectionChanged += GamesGridView_CollectionChanged;
+                }
             }
         }
 
         public GamesListView()
         {
             InitializeComponent();
+        }
+
+        private void GamesGridView_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action != System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+            {
+                return;
+            }
+
+            if (e.OldItems.Contains(GameDetails.DataContext))
+            {
+                GameDetails.DataContext = null;
+            }
         }
 
         private void GamesListList_SelectionChanged(object sender, SelectionChangedEventArgs e)
