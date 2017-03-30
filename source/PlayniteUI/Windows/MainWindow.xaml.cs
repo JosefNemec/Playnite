@@ -213,9 +213,11 @@ namespace PlayniteUI
                     return;
                 }
 
+                var database = GameDatabase.Instance;
+
                 try
                 {
-                    GameDatabase.Instance.OpenDatabase(Config.DatabasePath);
+                    database.OpenDatabase(Config.DatabasePath);
                 }
                 catch (Exception exc)
                 {
@@ -226,12 +228,12 @@ namespace PlayniteUI
                     return;
                 }
 
-                BindingOperations.EnableCollectionSynchronization(GameDatabase.Instance.Games, gamesLock);
-                GameDatabase.Instance.LoadGamesFromDb(Config);
-                ListGamesView.ItemsSource = GameDatabase.Instance.Games;
-                ImagesGamesView.ItemsSource = GameDatabase.Instance.Games;
-                GridGamesView.ItemsSource = GameDatabase.Instance.Games;
-                MainCollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(GameDatabase.Instance.Games);
+                BindingOperations.EnableCollectionSynchronization(database.Games, gamesLock);
+                database.LoadGamesFromDb(Config);
+                ListGamesView.ItemsSource = database.Games;
+                ImagesGamesView.ItemsSource = database.Games;
+                GridGamesView.ItemsSource = database.Games;
+                MainCollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(database.Games);
 
                 Config_PropertyChanged(this, null);
 
@@ -246,8 +248,13 @@ namespace PlayniteUI
                     {
                         if (Config.GOGSettings.IntegrationEnabled)
                         {
-                            GameDatabase.Instance.UpdateGogInstalledGames();
+                            database.UpdateInstalledGames(Provider.GOG);
                             NotificationBar.RemoveMessage(NotificationCodes.GOGLInstalledImportError);
+
+                            if (!Config.GOGSettings.LibraryDownloadEnabled)
+                            {
+                                database.UnloadNotInstalledGames(Provider.GOG);
+                            }
                         }
                     }
                     catch (Exception e)
@@ -263,8 +270,13 @@ namespace PlayniteUI
                     {
                         if (Config.SteamSettings.IntegrationEnabled)
                         {
-                            GameDatabase.Instance.UpdateSteamInstalledGames();
+                            database.UpdateInstalledGames(Provider.Steam);
                             NotificationBar.RemoveMessage(NotificationCodes.SteamInstalledImportError);
+
+                            if (!Config.SteamSettings.LibraryDownloadEnabled)
+                            {
+                                database.UnloadNotInstalledGames(Provider.Steam);
+                            }
                         }
                     }
                     catch (Exception e)
@@ -280,8 +292,13 @@ namespace PlayniteUI
                     {
                         if (Config.OriginSettings.IntegrationEnabled)
                         {
-                            GameDatabase.Instance.UpdateOriginInstalledGames();
+                            database.UpdateInstalledGames(Provider.Origin);
                             NotificationBar.RemoveMessage(NotificationCodes.OriginInstalledImportError);
+
+                            if (!Config.OriginSettings.LibraryDownloadEnabled)
+                            {
+                                database.UnloadNotInstalledGames(Provider.Origin);
+                            }
                         }
                     }
                     catch (Exception e)
@@ -299,7 +316,7 @@ namespace PlayniteUI
                     {
                         if (Config.GOGSettings.IntegrationEnabled && Config.GOGSettings.LibraryDownloadEnabled)
                         {
-                            GameDatabase.Instance.UpdateGogLibrary();
+                            database.UpdateOwnedGames(Provider.GOG);
                             NotificationBar.RemoveMessage(NotificationCodes.GOGLibDownloadError);
                         }
                     }
@@ -318,7 +335,8 @@ namespace PlayniteUI
                     {
                         if (Config.SteamSettings.IntegrationEnabled && Config.SteamSettings.LibraryDownloadEnabled)
                         {
-                            GameDatabase.Instance.UpdateSteamLibrary(Config.SteamSettings.AccountName);
+                            database.SteamUserName = Config.SteamSettings.AccountName;
+                            database.UpdateOwnedGames(Provider.Steam);
                             NotificationBar.RemoveMessage(NotificationCodes.SteamLibDownloadError);
                         }
                     }
@@ -337,7 +355,7 @@ namespace PlayniteUI
                     {
                         if (Config.OriginSettings.IntegrationEnabled && Config.OriginSettings.LibraryDownloadEnabled)
                         {
-                            GameDatabase.Instance.UpdateOriginLibrary();
+                            database.UpdateOwnedGames(Provider.Origin);
                             NotificationBar.RemoveMessage(NotificationCodes.OriginLibDownloadError);
                         }
                     }
@@ -350,12 +368,12 @@ namespace PlayniteUI
                         }));
                     }
 
-                    gamesStats.SetGames(GameDatabase.Instance.Games);
+                    gamesStats.SetGames(database.Games);
                     ProgressControl.Text = "Downloading images and game details...";
                     ProgressControl.ProgressMin = 0;
-                    ProgressControl.ProgressMax = GameDatabase.Instance.Games.Count == 0 ? 0 : GameDatabase.Instance.Games.Count - 1;
+                    ProgressControl.ProgressMax = database.Games.Count == 0 ? 0 : database.Games.Count - 1;
 
-                    for (int i = 0; i < GameDatabase.Instance.Games.Count; i++)
+                    for (int i = 0; i < database.Games.Count; i++)
                     {
                         if (GamesLoaderHandler.CancelToken.Token.IsCancellationRequested)
                         {
@@ -364,7 +382,7 @@ namespace PlayniteUI
 
                         ProgressControl.ProgressValue = i;
 
-                        var game = GameDatabase.Instance.Games[i];
+                        var game = database.Games[i];
                         if (game.Provider == Provider.Custom || game.IsProviderDataUpdated == true)
                         {
                             continue;
@@ -372,7 +390,7 @@ namespace PlayniteUI
 
                         try
                         {
-                            GameDatabase.Instance.UpdateGameWithMetadata(game);
+                            database.UpdateGameWithMetadata(game);
                         }
                         catch (Exception e)
                         {
@@ -632,7 +650,7 @@ namespace PlayniteUI
 
             if (GamesEditor.Instance.EditGame(newGame) == true)
             {
-                GameDatabase.Instance.UpdateGame(newGame);
+                GameDatabase.Instance.UpdateGameInDatabase(newGame);
                 switch (Settings.Instance.GamesViewType)
                 {
                     case ViewType.List:

@@ -138,7 +138,7 @@ namespace PlayniteUI.Windows
 
                     if (AutoUpdateGame)
                     {
-                        GameDatabase.Instance.UpdateGame(game);
+                        GameDatabase.Instance.UpdateGameInDatabase(game);
                     }
                 }
             }
@@ -157,7 +157,7 @@ namespace PlayniteUI.Windows
 
                 if (AutoUpdateGame)
                 {
-                    GameDatabase.Instance.UpdateGame(Game);
+                    GameDatabase.Instance.UpdateGameInDatabase(Game);
                 }
             }
 

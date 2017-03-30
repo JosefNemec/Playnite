@@ -11,14 +11,16 @@ using Playnite.Models;
 using Playnite.Providers.Steam;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
+using Playnite.Database;
 
 namespace Playnite.Providers.Origin
 {
-    public class Origin
+    public class OriginLibrary : IOriginLibrary
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static string GetPathFromPlatformPath(string path)
+        public string GetPathFromPlatformPath(string path)
         {
             if (!path.StartsWith("["))
             {
@@ -67,18 +69,17 @@ namespace Playnite.Providers.Origin
             return Path.Combine(keyValue.ToString(), executable);
         }
 
-        public static System.Collections.Specialized.NameValueCollection ParseOriginManifest(string path)
+        public System.Collections.Specialized.NameValueCollection ParseOriginManifest(string path)
         {
             var text = File.ReadAllText(path);
             var data = HttpUtility.UrlDecode(text);
             return HttpUtility.ParseQueryString(data);
         }
 
-
-        public static List<Game> GetInstalledGames(bool useDataCache = false)
+        public List<IGame> GetInstalledGames(bool useDataCache = false)
         {
             var contentPath = Path.Combine(OriginPaths.DataPath, "LocalContent");
-            var games = new List<Game>();
+            var games = new List<IGame>();
 
             if (Directory.Exists(contentPath))
             {
@@ -176,7 +177,7 @@ namespace Playnite.Providers.Origin
             return games;
         }
 
-        public static List<AccountEntitlementsResponse.Entitlement> GetOwnedGames()
+        public List<IGame> GetLibraryGames()
         {
             var api = new WebApiClient();
             if (api.GetLoginRequired())
@@ -196,11 +197,22 @@ namespace Playnite.Providers.Origin
                 throw new Exception("Access error: " + info.error);
             }
 
-            var games = api.GetOwnedGames(info.pid.pidId, token);
+            var games = new List<IGame>();
+
+            foreach (var game in api.GetOwnedGames(info.pid.pidId, token).Where(a => a.offerType == "basegame"))
+            {
+                games.Add(new Game()
+                {
+                    Provider = Provider.Origin,
+                    ProviderId = game.offerId,
+                    Name = game.offerId
+                });
+            }
+
             return games;
         }
 
-        public static OriginGameMetadata DownloadGameMetadata(string id)
+        public OriginGameMetadata DownloadGameMetadata(string id)
         {
             var data = new OriginGameMetadata()
             {
@@ -210,37 +222,66 @@ namespace Playnite.Providers.Origin
             var imageUrl = data.StoreDetails.imageServer + data.StoreDetails.i18n.packArtLarge;
             var imageData = Web.DownloadData(imageUrl);
             var imageName = Guid.NewGuid() + Path.GetExtension(new Uri(imageUrl).AbsolutePath);
-            data.Image = new OriginGameMetadata.ImageData()
-            {
-                Data = imageData,
-                Name = imageName
-            };
+
+            data.Image = new FileDefinition(          
+                string.Format("images/origin/{0}/{1}", id.Replace(":", ""), imageName),
+                imageName,
+                imageData
+            );
 
             return data;
         }
+
+        public OriginGameMetadata UpdateGameWithMetadata(IGame game)
+        {
+            var metadata = DownloadGameMetadata(game.ProviderId);
+            game.Name = metadata.StoreDetails.i18n.displayName.Replace("™", "");
+            game.CommunityHubUrl = metadata.StoreDetails.i18n.gameForumURL;
+            game.StoreUrl = "https://www.origin.com/store" + metadata.StoreDetails.offerPath;
+            game.WikiUrl = @"http://pcgamingwiki.com/w/index.php?search=" + game.Name;
+            game.Description = metadata.StoreDetails.i18n.longDescription;
+            game.Developers = new List<string>() { metadata.StoreDetails.developerFacetKey };
+            game.Publishers = new List<string>() { metadata.StoreDetails.publisherFacetKey };
+            game.ReleaseDate = metadata.StoreDetails.platforms.First(a => a.platform == "PCWIN").releaseDate;
+
+            if (!string.IsNullOrEmpty(metadata.StoreDetails.i18n.gameManualURL))
+            {
+                game.OtherTasks = new ObservableCollection<GameTask>()
+                {
+                    new GameTask()
+                    {
+                        IsBuiltIn = true,
+                        Type = GameTaskType.URL,
+                        Path = metadata.StoreDetails.i18n.gameManualURL,
+                        Name = "Manual"
+                    }
+                };
+            }
+
+            // There's not icon available on Origin servers so we will load one from EXE
+            if (game.IsInstalled && string.IsNullOrEmpty(game.Icon))
+            {
+                var exeIcon = IconExtension.ExtractIconFromExe(game.PlayTask.Path, true);
+                if (exeIcon != null)
+                {
+                    var iconName = Guid.NewGuid() + ".png";
+
+                    metadata.Icon = new FileDefinition(
+                        string.Format("images/origin/{0}/{1}", game.ProviderId.Replace(":", ""), iconName),
+                        iconName,
+                        exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png)
+                    );
+                }
+            }
+
+            game.IsProviderDataUpdated = true;
+            return metadata;
+        }
     }
 
-    public class OriginGameMetadata
+    public class OriginGameMetadata : GameMetadata
     {
-        public class ImageData
-        {
-            public string Name
-            {
-                get; set;
-            }
-
-            public byte[] Data
-            {
-                get; set;
-            }
-        }
-
         public GameStoreDataResponse StoreDetails
-        {
-            get; set;
-        }
-
-        public ImageData Image
         {
             get; set;
         }

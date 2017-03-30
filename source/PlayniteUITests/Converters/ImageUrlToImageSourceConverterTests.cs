@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,16 +13,16 @@ using System.Net;
 
 namespace PlayniteUITests.Converters
 {
-    [TestClass]
+    [TestFixture]
     public class ImageUrlToImageSourceConverterTests
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context)
+        [OneTimeSetUp]
+        public void Init()
         {
             FileSystem.DeleteFolder(Paths.ImagesCachePath);
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertTest()
         {
             var convererter = new ImageUrlToImageSourceConverter();
@@ -37,12 +37,11 @@ namespace PlayniteUITests.Converters
             Assert.AreEqual(DependencyProperty.UnsetValue, convererter.Convert(@"https://steamcdn-a.akamaihd.net/steam/apps/108710/dasdasd.jpg", typeof(string), null, CultureInfo.InvariantCulture));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(WebException))]
+        [Test]
         public void ConvertInvalidTest()
         {
             var convererter = new ImageUrlToImageSourceConverter();
-            convererter.Convert(@"http://totaly.made.up.url/that/doesnt/exists.jpg", typeof(string), null, CultureInfo.InvariantCulture);
+            Assert.Throws<WebException>(() => convererter.Convert(@"http://totaly.made.up.url/that/doesnt/exists.jpg", typeof(string), null, CultureInfo.InvariantCulture));
         }
     }
 }

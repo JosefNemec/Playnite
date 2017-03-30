@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Playnite;
 
 namespace PlayniteTests
 {
-    [TestClass()]
+    [TestFixture]
     public class ProgramsTests
     {
-        [TestMethod()]
+        [Test]
         public void GetPrograms_StandardTest()
         {
             var apps = Programs.GetPrograms();

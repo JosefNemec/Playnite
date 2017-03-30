@@ -4,25 +4,29 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Playnite.Database;
 using Playnite.Models;
 using Playnite;
+using Moq;
+using Playnite.Providers.GOG;
+using Playnite.Providers.Steam;
+using Playnite.Providers.Origin;
+using NUnit.Framework;
 
 namespace PlayniteTests.Database
 {
-    [TestClass()]
+    [TestFixture]
     public class GameDatabaseTests
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context)
+        [OneTimeSetUp]
+        public void Init()
         {
             // Some test are reading resources, which cannot be access until pack:// namespace is initialized
             // http://stackoverflow.com/questions/6005398/uriformatexception-invalid-uri-invalid-port-specified
             string s = System.IO.Packaging.PackUriHelper.UriSchemePack;
         }
 
-        [TestMethod]
+        [Test]
         public void ListUpdateTest()
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "updatedb.db");
@@ -39,7 +43,7 @@ namespace PlayniteTests.Database
 
                 db.AddGame(new Game()
                 {
-                    ProviderId = "testid",
+                    ProviderId = "testid2",
                     Name = "Test Game 2"
                 });
 
@@ -51,12 +55,12 @@ namespace PlayniteTests.Database
                 Assert.AreEqual(2, db.Games.Count);
                 db.AddGame(new Game()
                 {
-                    ProviderId = "testid",
+                    ProviderId = "testid3",
                     Name = "Test Game 3"
                 });
 
                 db.Games[2].Name = "Changed Name";
-                db.UpdateGame(db.Games[2]);
+                db.UpdateGameInDatabase(db.Games[2]);
             }
 
             using (db.OpenDatabase(path, true))
@@ -72,7 +76,7 @@ namespace PlayniteTests.Database
             }
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteImageSafeTest()
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "deleteimagetest.db");
@@ -93,7 +97,7 @@ namespace PlayniteTests.Database
 
                 db.AddGame(new Game()
                 {
-                    ProviderId = "testid",
+                    ProviderId = "testid2",
                     Name = "Test Game 2",
                     Icon = "testimage"
                 });
@@ -103,13 +107,13 @@ namespace PlayniteTests.Database
 
                 // Removes image
                 db.Games[1].Icon = string.Empty;
-                db.UpdateGame(db.Games[1]);
+                db.UpdateGameInDatabase(db.Games[1]);
                 db.DeleteImageSafe("testimage", db.Games[0]);
                 Assert.AreEqual(0, db.Database.FileStorage.FindAll().Count());
             }
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteGameImageCleanupTest()
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "deleteimagecleanuptest.db");
@@ -137,9 +141,217 @@ namespace PlayniteTests.Database
             }
         }
 
+        [Test]
+        public void UnloadNotInstalledGamesTest()
+        {
+            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "unloadntoinstalled.db");
+            FileSystem.DeleteFile(path);
+
+            var db = new GameDatabase();
+            using (db.OpenDatabase(path, true))
+            {
+                db.AddGame(new Game()
+                {
+                    ProviderId = "testid",
+                    Name = "Test Game",
+                    PlayTask = new GameTask()
+                });
+
+                db.AddGame(new Game()
+                {
+                    ProviderId = "testid2",
+                    Name = "Test Game 2",
+                    PlayTask = new GameTask()
+                });
+
+                Assert.AreEqual(2, db.Games.Count);
+
+                db.Games[0].PlayTask = null;
+                db.UpdateGameInDatabase(db.Games[0]);
+                db.UnloadNotInstalledGames(Provider.Custom);
+
+                Assert.AreEqual(1, db.Games.Count);
+            }
+
+            using (db.OpenDatabase(path, true))
+            {
+                Assert.AreEqual(2, db.Games.Count);
+            }
+        }
+
+        [TestCase(Provider.GOG)]
+        [TestCase(Provider.Steam)]
+        [TestCase(Provider.Origin)]
+        public void UpdateOwnedGamesTest(Provider provider)
+        {
+            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "ownedgames.db");
+            FileSystem.DeleteFile(path);
+
+            var libraryGames = new List<IGame>()
+            {
+                new Game()
+                {
+                    ProviderId = "testid",
+                    Name = "Test Game",
+                    Provider = provider
+                },
+                new Game()
+                {
+                    ProviderId = "testid2",
+                    Name = "Test Game 2",
+                    Provider = provider
+                }
+            };
+
+            var gogLibrary = new Mock<IGogLibrary>();
+            var steamLibrary = new Mock<ISteamLibrary>();
+            var originLibrary = new Mock<IOriginLibrary>();
+            gogLibrary.Setup(oc => oc.GetLibraryGames()).Returns(libraryGames);
+            steamLibrary.Setup(oc => oc.GetLibraryGames(string.Empty)).Returns(libraryGames);
+            originLibrary.Setup(oc => oc.GetLibraryGames()).Returns(libraryGames);
+
+            var db = new GameDatabase(gogLibrary.Object, steamLibrary.Object, originLibrary.Object);
+            using (db.OpenDatabase(path, true))
+            {
+                // Games are properly imported
+                db.UpdateOwnedGames(provider);
+                Assert.AreEqual(2, db.Games.Count);
+
+                libraryGames.Add(new Game()
+                {
+                    ProviderId = "testid3",
+                    Name = "Test Game 3",
+                    Provider = provider
+                });
+
+                // New library game is added to DB
+                db.UpdateOwnedGames(provider);
+                Assert.AreEqual(3, db.Games.Count);
+
+                // Game removed from library is removed from DB
+                libraryGames.RemoveAt(0);
+                db.UpdateOwnedGames(provider);
+                Assert.AreEqual(2, db.Games.Count);
+            }
+        }
+        
+        [TestCase(Provider.GOG)]
+        [TestCase(Provider.Steam)]
+        [TestCase(Provider.Origin)]
+        public void UpdateInstalledGamesTest(Provider provider)
+        {
+            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "installedgames.db");
+            FileSystem.DeleteFile(path);
+
+            var installedGames = CreateGameList(provider);
+
+            var gogLibrary = new Mock<IGogLibrary>();
+            var steamLibrary = new Mock<ISteamLibrary>();
+            var originLibrary = new Mock<IOriginLibrary>();
+            gogLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
+            steamLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
+            originLibrary.Setup(oc => oc.GetInstalledGames(false)).Returns(installedGames);
+            originLibrary.Setup(oc => oc.GetInstalledGames(true)).Returns(installedGames);
+
+            var db = new GameDatabase(gogLibrary.Object, steamLibrary.Object, originLibrary.Object);
+            using (db.OpenDatabase(path, true))
+            {
+                // Games are imported
+                db.UpdateInstalledGames(provider);
+                Assert.AreEqual(2, db.Games.Count);
+                Assert.IsTrue(db.Games[0].IsInstalled);
+
+                // Game is no longer install and DB reflects that
+                installedGames.Clear();
+                installedGames.AddRange(CreateGameList(provider));
+                installedGames.RemoveAt(0);
+                db.UpdateInstalledGames(provider);
+                Assert.IsFalse(db.Games[0].IsInstalled);
+
+                // User tasks are not affected by import
+                installedGames.Clear();
+                installedGames.AddRange(CreateGameList(provider));
+
+                db.Games[0].OtherTasks = new System.Collections.ObjectModel.ObservableCollection<GameTask>()
+                {
+                    new GameTask()
+                    {
+                        IsBuiltIn = false,
+                        Name = "User Task"
+                    }
+                };
+
+                db.UpdateGameInDatabase(db.Games[0]);
+                db.UpdateInstalledGames(provider);
+                Assert.AreEqual(3, db.Games[0].OtherTasks.Count);
+
+                installedGames.Clear();
+                installedGames.AddRange(CreateGameList(provider));
+                installedGames.RemoveAt(0);
+                db.UpdateInstalledGames(provider);
+                Assert.AreEqual(1, db.Games[0].OtherTasks.Count);
+                Assert.AreEqual("User Task", db.Games[0].OtherTasks[0].Name);
+            }
+        }
+
+        private List<IGame> CreateGameList(Provider provider)
+        {
+            return new List<IGame>()
+            {
+                new Game()
+                {
+                    ProviderId = "testid",
+                    Name = "Test Game",
+                    Provider = provider,
+                    PlayTask = new GameTask()
+                    {
+                        IsBuiltIn = true,
+                        Type = GameTaskType.File
+                    },
+                    OtherTasks = new System.Collections.ObjectModel.ObservableCollection<GameTask>()
+                    {
+                        new GameTask()
+                        {
+                            IsBuiltIn = true,
+                            Name = "Task 1"
+                        },
+                        new GameTask()
+                        {
+                            IsBuiltIn = true,
+                            Name = "Task 2"
+                        }
+                    }
+                },
+                new Game()
+                {
+                    ProviderId = "testid2",
+                    Name = "Test Game 2",
+                    Provider = provider,
+                    PlayTask = new GameTask()
+                    {
+                        IsBuiltIn = true,
+                        Type = GameTaskType.File
+                    },
+                    OtherTasks = new System.Collections.ObjectModel.ObservableCollection<GameTask>()
+                    {
+                        new GameTask()
+                        {
+                            IsBuiltIn = true,
+                            Name = "Task 1"
+                        },
+                        new GameTask()
+                        {
+                            IsBuiltIn = true,
+                            Name = "Task 2"
+                        }
+                    }
+                }
+            };
+        }
+
         #region GOG
-        [TestMethod]
-        public void UpdateGogInstalledGames_CleanImportTest()
+        [Test]
+        public void UpdateGogInstalledGamesCleanImportTest()
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "goginstalledimportclean.db");
             FileSystem.DeleteFile(path);
@@ -147,13 +359,13 @@ namespace PlayniteTests.Database
             var db = new GameDatabase();
             using (db.OpenDatabase(path, true))
             {
-                db.UpdateGogInstalledGames();
+                db.UpdateInstalledGames(Provider.GOG);
                 Assert.AreNotEqual(0, db.Games.Count);
             }
         }
 
-        [TestMethod]
-        public void UpdateGogInstalledGames_UpdateImportTest()
+        [Test]
+        public void UpdateGogInstalledGamesUpdateImportTest()
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "goginstalledimportupdate.db");
             FileSystem.DeleteFile(path);
@@ -161,11 +373,11 @@ namespace PlayniteTests.Database
             var db = new GameDatabase();
             using (db.OpenDatabase(path, true))
             {
-                db.UpdateGogInstalledGames();
+                db.UpdateInstalledGames(Provider.GOG);
                 var game = db.Games[0];
                 game.PlayTask = null;
                 game.InstallDirectory = @"c:\nonsense\directory\";
-                db.UpdateGame(game);
+                db.UpdateGameInDatabase(game);
             }
 
             using (db.OpenDatabase(path, true))
@@ -175,7 +387,7 @@ namespace PlayniteTests.Database
                 Assert.AreEqual(@"c:\nonsense\directory\", game.InstallDirectory);
                 var gameCount = db.Games.Count;
 
-                db.UpdateGogInstalledGames();
+                db.UpdateInstalledGames(Provider.GOG);
                 Assert.AreEqual(gameCount, db.Games.Count);
 
                 game = db.Games[0];
@@ -184,7 +396,7 @@ namespace PlayniteTests.Database
             }
         }
 
-        [TestMethod]
+        [Test]
         public void UpdateGogGameWithMetadataTest()
         {
             var game = new Game()
@@ -218,11 +430,12 @@ namespace PlayniteTests.Database
                 Assert.AreEqual(2, files.Count());
             }
         }
+
         #endregion GOG
 
         #region Steam
-        [TestMethod]
-        public void UpdateSteamInstalledGames_CleanImportTest()
+        [Test]
+        public void UpdateSteamInstalledGamesCleanImportTest()
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "steaminstalledimportclean.db");
             FileSystem.DeleteFile(path);
@@ -230,13 +443,13 @@ namespace PlayniteTests.Database
             var db = new GameDatabase();
             using (db.OpenDatabase(path, true))
             {
-                db.UpdateSteamInstalledGames();
+                db.UpdateInstalledGames(Provider.Steam);
                 Assert.AreNotEqual(0, db.Games.Count);
             }
         }
 
-        [TestMethod]
-        public void UpdateSteamInstalledGames_UpdateImportTest()
+        [Test]
+        public void UpdateSteamInstalledGamesUpdateImportTest()
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "steaminstalledimportupdate.db");
             FileSystem.DeleteFile(path);
@@ -244,11 +457,11 @@ namespace PlayniteTests.Database
             var db = new GameDatabase();
             using (db.OpenDatabase(path, true))
             {
-                db.UpdateSteamInstalledGames();
+                db.UpdateInstalledGames(Provider.Steam);
                 var game = db.Games[0];
                 game.PlayTask = null;
                 game.InstallDirectory = @"c:\nonsense\directory\";
-                db.UpdateGame(game);
+                db.UpdateGameInDatabase(game);
             }
 
             using (db.OpenDatabase(path, true))
@@ -258,7 +471,7 @@ namespace PlayniteTests.Database
                 Assert.AreEqual(@"c:\nonsense\directory\", game.InstallDirectory);
                 var gameCount = db.Games.Count;
 
-                db.UpdateSteamInstalledGames();
+                db.UpdateInstalledGames(Provider.Steam);
                 Assert.AreEqual(gameCount, db.Games.Count);
 
                 game = db.Games[0];
@@ -267,7 +480,7 @@ namespace PlayniteTests.Database
             }
         }
 
-        [TestMethod]
+        [Test]
         public void UpdateSteamGameWithMetadataTest()
         {
             var game = new Game()
@@ -304,8 +517,8 @@ namespace PlayniteTests.Database
         #endregion Steam
 
         #region Origin
-        [TestMethod]
-        public void UpdateOriginInstalledGames_CleanImportTest()
+        [Test]
+        public void UpdateOriginInstalledGamesCleanImportTest()
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "origininstalledimportclean.db");
             FileSystem.DeleteFile(path);
@@ -313,12 +526,44 @@ namespace PlayniteTests.Database
             var db = new GameDatabase();
             using (db.OpenDatabase(path, true))
             {
-                db.UpdateOriginInstalledGames();
+                db.UpdateInstalledGames(Provider.Origin);
                 Assert.AreNotEqual(0, db.Games.Count);
             }
         }
 
-        [TestMethod]
+        [Test]
+        public void UpdateOriginInstalledGamesUpdateImportTest()
+        {
+            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "origininstalledimportupdate.db");
+            FileSystem.DeleteFile(path);
+
+            var db = new GameDatabase();
+            using (db.OpenDatabase(path, true))
+            {
+                db.UpdateInstalledGames(Provider.Origin);
+                var game = db.Games[0];
+                game.PlayTask = null;
+                game.InstallDirectory = @"c:\nonsense\directory\";
+                db.UpdateGameInDatabase(game);
+            }
+
+            using (db.OpenDatabase(path, true))
+            {
+                var game = db.Games[0];
+                Assert.IsNull(game.PlayTask);
+                Assert.AreEqual(@"c:\nonsense\directory\", game.InstallDirectory);
+                var gameCount = db.Games.Count;
+
+                db.UpdateInstalledGames(Provider.Origin);
+                Assert.AreEqual(gameCount, db.Games.Count);
+
+                game = db.Games[0];
+                Assert.IsNotNull(game.PlayTask);
+                Assert.AreNotEqual(@"c:\nonsense\directory\", game.InstallDirectory);
+            }
+        }
+
+        [Test]
         public void UpdateOriginGameWithMetadataTest()
         {
             var game = new Game()

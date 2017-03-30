@@ -11,9 +11,39 @@ using Playnite.Providers.GOG;
 using Playnite.Providers.Steam;
 using Playnite.Providers.Origin;
 using System.Windows;
+using Playnite.Providers;
 
 namespace Playnite.Database
 {
+    public class FileDefinition
+    {
+        public string Path
+        {
+            get; set;
+        }
+
+        public string Name
+        {
+            get; set;
+        }
+
+        public byte[] Data
+        {
+            get; set;
+        }
+
+        public FileDefinition()
+        {
+        }
+
+        public FileDefinition(string path, string name, byte[] data)
+        {
+            Path = path;
+            Name = name;
+            Data = data;
+        }
+    }
+
     public class GameDatabase
     {
         // LiteDB file storage is not thread safe, so we need to lock all file operations.        
@@ -41,7 +71,7 @@ namespace Playnite.Database
                 return database;
             }
         }
-
+        
         private LiteCollection<IGame> dbGames;
 
         private ObservableCollection<IGame> games = new ObservableCollection<IGame>();
@@ -53,13 +83,36 @@ namespace Playnite.Database
             }
         }
 
+        private IGogLibrary gogLibrary;
+        private ISteamLibrary steamLibrary;
+        private IOriginLibrary originLibrary;
+
+        public string SteamUserName
+        {
+            get; set;
+        } = string.Empty;
+
+        public GameDatabase()
+        {
+            gogLibrary = new GogLibrary();
+            steamLibrary = new SteamLibrary();
+            originLibrary = new OriginLibrary();
+        }
+
+        public GameDatabase(IGogLibrary gogLibrary, ISteamLibrary steamLibrary, IOriginLibrary originLibrary)
+        {
+            this.gogLibrary = gogLibrary;
+            this.steamLibrary = steamLibrary;
+            this.originLibrary = originLibrary;
+        }
+
         private void CheckDbState()
         {
             if (dbGames == null)
             {
                 throw new Exception("Database is not opened.");
             }
-        }
+        }        
 
         public LiteDatabase OpenDatabase(string path, bool loadGames = false)
         {
@@ -94,13 +147,25 @@ namespace Playnite.Database
                 {
                     continue;
                 }
-
-                if (game.Provider == Provider.GOG && !settings.GOGSettings.IntegrationEnabled)
+                else if (game.Provider == Provider.Steam && !game.IsInstalled && !settings.SteamSettings.LibraryDownloadEnabled)
                 {
                     continue;
                 }
 
-                if (game.Provider == Provider.Origin && !settings.OriginSettings.IntegrationEnabled)
+                if (game.Provider == Provider.GOG && !settings.OriginSettings.IntegrationEnabled)
+                {
+                    continue;
+                }
+                else if (game.Provider == Provider.GOG && !game.IsInstalled && !settings.OriginSettings.LibraryDownloadEnabled)
+                {
+                    continue;
+                }
+
+                if (game.Provider == Provider.Origin && !settings.GOGSettings.IntegrationEnabled)
+                {
+                    continue;
+                }
+                else if (game.Provider == Provider.Origin && !game.IsInstalled && !settings.GOGSettings.LibraryDownloadEnabled)
                 {
                     continue;
                 }
@@ -157,7 +222,12 @@ namespace Playnite.Database
                 dbGames.Delete(game.Id);
             }
 
-            games.Remove(game);
+            var existingGame = games.FirstOrDefault(a => a.ProviderId == game.ProviderId && a.Provider == game.Provider);
+
+            if (existingGame != null)
+            {
+                games.Remove(existingGame);
+            }
         }
 
         public void AddImage(string id, string name, byte[] data)
@@ -232,7 +302,7 @@ namespace Playnite.Database
             Database.FileStorage.Delete(id);
         }
 
-        public void UpdateGame(IGame game)
+        public void UpdateGameInDatabase(IGame game)
         {
             CheckDbState();
 
@@ -247,392 +317,162 @@ namespace Playnite.Database
             }
         }
 
+        public void UnloadNotInstalledGames(Provider provider)
+        {
+            var notInstalledGames = games.Where(a => a.Provider == provider && !a.IsInstalled).ToList();
+
+            foreach (var game in notInstalledGames)
+            {
+                games.Remove(game);
+            }
+        }
+
         public void UpdateGameWithMetadata(IGame game)
         {
+            GameMetadata metadata;
+
             switch (game.Provider)
             {
                 case Provider.Steam:
-                    UpdateSteamGameWithMetadata(game);
+                    metadata = steamLibrary.UpdateGameWithMetadata(game);
                     break;
                 case Provider.GOG:
-                    UpdateGogGameWithMetadata(game);
+                    metadata = gogLibrary.UpdateGameWithMetadata(game);
                     break;
                 case Provider.Origin:
-                    UpdateOriginGameWithMetadata(game);
+                    metadata = originLibrary.UpdateGameWithMetadata(game);
                     break;
                 case Provider.Custom:
-                    break;
+                    return;
                 default:
-                    break;
+                    return;
             }
-        }
-
-        #region Origin
-        public void UpdateOriginGameWithMetadata(IGame game)
-        {
-            var metadata = Origin.DownloadGameMetadata(game.ProviderId);
-            game.Name = metadata.StoreDetails.i18n.displayName.Replace("™", "");
-            game.CommunityHubUrl = metadata.StoreDetails.i18n.gameForumURL;
-            game.StoreUrl = "https://www.origin.com/store" + metadata.StoreDetails.offerPath;
-            game.WikiUrl = @"http://pcgamingwiki.com/w/index.php?search=" + game.Name;
-            game.Description = metadata.StoreDetails.i18n.longDescription;
-            game.Developers = new List<string>() { metadata.StoreDetails.developerFacetKey };
-            game.Publishers = new List<string>() { metadata.StoreDetails.publisherFacetKey };
-            game.ReleaseDate = metadata.StoreDetails.platforms.First(a => a.platform == "PCWIN").releaseDate;
-
-            if (!string.IsNullOrEmpty(metadata.StoreDetails.i18n.gameManualURL))
-            {
-                game.OtherTasks = new ObservableCollection<GameTask>()
-                {
-                    new GameTask()
-                    {
-                        IsBuiltIn = true,
-                        Type = GameTaskType.URL,
-                        Path = metadata.StoreDetails.i18n.gameManualURL,
-                        Name = "Manual"
-                    }
-                };
-            }
-            
-            var image = string.Format("images/origin/{0}/{1}", game.ProviderId.Replace(":", ""), metadata.Image.Name);
-            AddImage(image, metadata.Image.Name, metadata.Image.Data);
-            game.Image = image;
-
-            // There's not icon available on Origin servers so we will load one from EXE
-            if (game.IsInstalled && string.IsNullOrEmpty(game.Icon))
-            {
-                var exeIcon = IconExtension.ExtractIconFromExe(game.PlayTask.Path, true);
-                if (exeIcon != null)
-                {
-                    var iconName = Guid.NewGuid() + ".png";
-                    var iconId = string.Format("images/origin/{0}/{1}", game.ProviderId.Replace(":", ""), iconName);
-                    AddImage(iconId, iconName, exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
-                    game.Icon = iconId;
-                }
-            }
-
-            game.IsProviderDataUpdated = true;
-            UpdateGame(game);
-        }
-
-        public void UpdateOriginInstalledGames()
-        {
-            var importedGames = Origin.GetInstalledGames(true);
-
-            foreach (var game in importedGames)
-            {
-                var existingGame = Games.FirstOrDefault(a => a.ProviderId == game.ProviderId);
-
-                if (existingGame == null)
-                {
-                    AddGame(game);
-                }
-                else
-                {
-                    existingGame.PlayTask = game.PlayTask;
-                    existingGame.InstallDirectory = game.InstallDirectory;
-                    UpdateGame(existingGame);
-                }
-            }
-
-            foreach (var game in Games.Where(a => a.Provider == Provider.Origin))
-            {
-                if (importedGames.FirstOrDefault(a => a.ProviderId == game.ProviderId) == null)
-                {
-                    game.PlayTask = null;
-                    game.InstallDirectory = string.Empty;
-                    UpdateGame(game);
-                }
-            }
-        }
-
-        public void UpdateOriginLibrary()
-        {
-            var importedGames = Origin.GetOwnedGames();
-            foreach (var game in importedGames.Where(a => a.offerType == "basegame"))
-            {
-                var existingGame = Games.FirstOrDefault(a => a.ProviderId == game.offerId);
-                if (existingGame == null)
-                {
-                    AddGame(new Game()
-                    {
-                        Provider = Provider.Origin,
-                        ProviderId = game.offerId,
-                        Name = game.offerId
-                    });
-                }
-            }
-        }
-        #endregion Origin
-
-        #region GOG
-        public void UpdateGogGameWithMetadata(IGame game)
-        {
-            var metadata = Gog.DownloadGameMetadata(game.ProviderId, game.StoreUrl);
-            game.Name = metadata.GameDetails.title;
-            game.CommunityHubUrl = metadata.GameDetails.links.forum;
-            game.StoreUrl = string.IsNullOrEmpty(game.StoreUrl) ? metadata.GameDetails.links.product_card : game.StoreUrl;
-            game.WikiUrl = @"http://pcgamingwiki.com/w/index.php?search=" + metadata.GameDetails.title;
-            game.Description = metadata.GameDetails.description.full;
-
-            if (metadata.StoreDetails != null)
-            {
-                game.Genres = metadata.StoreDetails.genres.Select(a => a.name).ToList();
-                game.Developers = new List<string>() { metadata.StoreDetails.developer.name };
-                game.Publishers = new List<string>() { metadata.StoreDetails.publisher.name };
-
-                if (game.ReleaseDate == null)
-                {
-                    Int64 intDate = Convert.ToInt64(metadata.StoreDetails.releaseDate) * 1000;
-                    game.ReleaseDate = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(intDate).ToUniversalTime();
-                }
-            }
-
-            var icon = string.Format("images/gog/{0}/{1}", game.ProviderId, metadata.Icon.Name);
-            AddImage(icon, metadata.Icon.Name, metadata.Icon.Data);
-            game.Icon = icon;
-            
-            using (var imageStream = new MemoryStream())
-            {
-                using (var tempStream = new MemoryStream(metadata.Image.Data))
-                {
-                    using (var backStream = Application.GetResourceStream(new Uri("pack://application:,,,/Playnite;component/Resources/Images/gog_cover_background.png")).Stream)
-                    {
-                        CoverCreator.CreateCover(backStream, tempStream, imageStream);
-                        imageStream.Seek(0, SeekOrigin.Begin);
-                    }
-                }
-
-                var image = string.Format("images/gog/{0}/{1}", game.ProviderId, metadata.Image.Name);
-                AddImage(image, metadata.Image.Name, imageStream.ToArray());
-                game.Image = image;
-            }
-
-            if (!string.IsNullOrEmpty(metadata.BackgroundImage))
-            {
-                game.BackgroundImage = metadata.BackgroundImage;
-            }
-
-            game.IsProviderDataUpdated = true;
-            UpdateGame(game);
-        }
-
-        public void UpdateGogInstalledGames()
-        {
-            var importedGames = Gog.GetInstalledGames();
-
-            foreach (var game in importedGames)
-            {
-                var existingGame = Games.FirstOrDefault(a => a.ProviderId == game.ProviderId);
-
-                if (existingGame == null)
-                {
-                    AddGame(game);
-                }
-                else
-                {
-                    existingGame.PlayTask = game.PlayTask;
-                    existingGame.OtherTasks = game.OtherTasks;
-                    existingGame.InstallDirectory = game.InstallDirectory;
-                    UpdateGame(existingGame);
-                }
-            }
-
-            foreach (var game in Games.Where(a => a.Provider == Provider.GOG))
-            {
-                if (importedGames.FirstOrDefault(a => a.ProviderId == game.ProviderId) == null)
-                {
-                    game.PlayTask = null;
-                    game.OtherTasks = null;
-                    game.InstallDirectory = string.Empty;
-                    UpdateGame(game);
-                }
-            }
-        }
-
-        public void UpdateGogLibrary()
-        {
-            var importedGames = Gog.GetOwnedGames();
-            foreach (var game in importedGames)
-            {
-                var existingGame = Games.FirstOrDefault(a => a.ProviderId == game.id.ToString());
-                if (existingGame == null)
-                {
-                    // User library has more accurate data (like release date and url),
-                    // so we will update them during import and not impor them again during metadata update
-                    AddGame(new Game()
-                    {
-                        Provider = Provider.GOG,
-                        ProviderId = game.id.ToString(),
-                        Name = game.title,
-                        ReleaseDate = game.releaseDate.date,
-                        StoreUrl = @"https://www.gog.com" + game.url
-                    });
-                }
-            }
-        }
-        #endregion GOG
-
-        #region Steam
-
-        public void UpdateSteamGameWithMetadata(IGame game)
-        {
-            var metadata = Steam.DownloadGameMetadata(int.Parse(game.ProviderId));
-            game.Name = metadata.ProductDetails["common"]["name"].Value;
-            game.CommunityHubUrl = @"https://steamcommunity.com/app/" + game.ProviderId;
-            game.StoreUrl = @"http://store.steampowered.com/app/" + game.ProviderId;
-            game.WikiUrl = @"http://pcgamingwiki.com/api/appid.php?appid=" + game.ProviderId;
-
-            if (metadata.StoreDetails != null)
-            {
-                game.Description = metadata.StoreDetails.detailed_description;
-                game.Genres = metadata.StoreDetails.genres?.Select(a => a.description).ToList();
-                game.Developers = metadata.StoreDetails.developers;
-                game.Publishers = metadata.StoreDetails.publishers;                
-                game.ReleaseDate = metadata.StoreDetails.release_date.date;
-            }
-
-            var tasks = new ObservableCollection<GameTask>();
-            var launchList = metadata.ProductDetails["config"]["launch"].Children;
-            foreach (var task in launchList.Skip(1))
-            {
-                var properties = task["config"];
-                if (properties.Name != null)
-                {
-                    if (properties["oslist"].Name != null)
-                    {
-                        if (properties["oslist"].Value != "windows")
-                        {
-                            continue;
-                        }
-                    }
-                }
-
-                // Ignore action without name  - shoudn't be visible to end user
-                if (task["description"].Name != null)
-                {
-                    var newTask = new GameTask()
-                    {
-                        Name = task["description"].Value,
-                        Arguments = task["arguments"].Value ?? string.Empty,
-                        Path = task["executable"].Value,
-                        IsBuiltIn = true,
-                        WorkingDir = game.InstallDirectory
-                    };
-
-                    tasks.Add(newTask);
-                }
-            }
-
-            var manual = metadata.ProductDetails["extended"]["gamemanualurl"];
-            if (manual.Name != null)
-            {
-                tasks.Add((new GameTask()
-                {
-                    Name = "Manual",
-                    Type = GameTaskType.URL,
-                    Path = manual.Value,
-                    IsBuiltIn = true
-                }));
-            }
-
-            game.OtherTasks = tasks;
 
             if (metadata.Icon != null)
             {
-                var icon = string.Format("images/steam/{0}/{1}", game.ProviderId, metadata.Icon.Name);
-                AddImage(icon, metadata.Icon.Name, metadata.Icon.Data);
-                game.Icon = icon;
+                AddImage(metadata.Icon.Path, metadata.Icon.Name, metadata.Icon.Data);
+                game.Icon = metadata.Icon.Path;
             }
 
             if (metadata.Image != null)
             {
-                //var image = string.Format("images/steam/{0}/{1}", game.ProviderId, metadata.Image.Name);
-                //AddImage(image, metadata.Image.Name, metadata.Image.Data);
-                //game.Image = image;
-
-                using (var imageStream = new MemoryStream())
-                {
-                    using (var tempStream = new MemoryStream(metadata.Image.Data))
-                    {
-                        using (var backStream = Application.GetResourceStream(new Uri("pack://application:,,,/Playnite;component/Resources/Images/steam_cover_background.png")).Stream)
-                        {
-                            CoverCreator.CreateCover(backStream, tempStream, imageStream);
-                            imageStream.Seek(0, SeekOrigin.Begin);
-                        }
-                    }
-
-                    var image = string.Format("images/steam/{0}/{1}", game.ProviderId, metadata.Image.Name);
-                    AddImage(image, metadata.Image.Name, imageStream.ToArray());
-                    game.Image = image;
-                }
+                AddImage(metadata.Image.Path, metadata.Image.Name, metadata.Image.Data);
+                game.Image = metadata.Image.Path;
             }
 
-            if (!string.IsNullOrEmpty(metadata.BackgroundImage))
-            {
-                game.BackgroundImage = metadata.BackgroundImage;
-            }
-
-            game.IsProviderDataUpdated = true;
-            UpdateGame(game);
+            UpdateGameInDatabase(game);
         }
 
-        public void UpdateSteamInstalledGames()
+        public void UpdateInstalledGames(Provider provider)
         {
-            var importedGames = Steam.GetInstalledGames();
-            foreach (var game in importedGames)
+            List<IGame> installedGames = null;
+
+            switch (provider)
             {
-                var existingGame = Games.FirstOrDefault(a => a.ProviderId == game.ProviderId);
+                case Provider.Custom:
+                    return;
+                case Provider.GOG:
+                    installedGames = gogLibrary.GetInstalledGames();
+                    break;
+                case Provider.Origin:
+                    installedGames = originLibrary.GetInstalledGames(true);
+                    break;
+                case Provider.Steam:
+                    installedGames = steamLibrary.GetInstalledGames();
+                    break;
+                default:
+                    return;
+            }
+
+            foreach (var newGame in installedGames)
+            {
+                var existingGame = Games.FirstOrDefault(a => a.ProviderId == newGame.ProviderId);
 
                 if (existingGame == null)
                 {
-                    AddGame(game);
+                    AddGame(newGame);
                 }
                 else
                 {
-                    existingGame.PlayTask = game.PlayTask;
-                    existingGame.InstallDirectory = game.InstallDirectory;
+                    existingGame.PlayTask = newGame.PlayTask;
+                    existingGame.InstallDirectory = newGame.InstallDirectory;
 
-                    if (existingGame.OtherTasks != null)
+                    if (newGame.OtherTasks != null)
                     {
-                        foreach (var task in existingGame.OtherTasks.Where(a => a.Type == GameTaskType.File && a.IsBuiltIn))
+                        existingGame.OtherTasks = new ObservableCollection<GameTask>(existingGame.OtherTasks.Where(a => !a.IsBuiltIn));
+                        foreach (var task in newGame.OtherTasks.Reverse())
                         {
-                            task.WorkingDir = game.InstallDirectory;
+                            existingGame.OtherTasks.Insert(0, task);
+                        }
+
+                        if (provider == Provider.Steam)
+                        {
+                            foreach (var task in existingGame.OtherTasks.Where(a => a.Type == GameTaskType.File && a.IsBuiltIn))
+                            {
+                                task.WorkingDir = newGame.InstallDirectory;
+                            }
                         }
                     }
 
-                    UpdateGame(existingGame);
+                    UpdateGameInDatabase(existingGame);
                 }
             }
 
-            foreach (var game in Games.Where(a => a.Provider == Provider.Steam))
+            // No longer installed games must be updated
+            foreach (var game in Games.Where(a => a.Provider == provider))
             {
-                if (importedGames.FirstOrDefault(a => a.ProviderId == game.ProviderId) == null)
+                if (installedGames.FirstOrDefault(a => a.ProviderId == game.ProviderId) == null)
                 {
                     game.PlayTask = null;
                     game.InstallDirectory = string.Empty;
-                    UpdateGame(game);
+                    if (game.OtherTasks != null)
+                    {
+                        game.OtherTasks = new ObservableCollection<GameTask>(game.OtherTasks.Where(a => !a.IsBuiltIn));
+                    }
+
+                    UpdateGameInDatabase(game);
                 }
             }
         }
 
-        public void UpdateSteamLibrary(string userName)
+        public void UpdateOwnedGames(Provider provider)
         {
-            var importedGames = Steam.GetOwnedGames(userName);
+            List<IGame> importedGames = null;
+
+            switch (provider)
+            {
+                case Provider.Custom:
+                    return;
+                case Provider.GOG:
+                    importedGames = gogLibrary.GetLibraryGames();
+                    break;
+                case Provider.Origin:
+                    importedGames = originLibrary.GetLibraryGames();
+                    break;
+                case Provider.Steam:
+                    importedGames = steamLibrary.GetLibraryGames(SteamUserName);
+                    break;
+                default:
+                    return;
+            }
+
             foreach (var game in importedGames)
             {
-                var existingGame = Games.FirstOrDefault(a => a.ProviderId == game.appid.ToString());
-                if (existingGame == null)
+                var gameNotPresent = Games.FirstOrDefault(a => a.ProviderId == game.ProviderId && a.Provider == provider) == null;
+                if (gameNotPresent)
                 {
-                    AddGame(new Game()
-                    {
-                        Provider = Provider.Steam,
-                        ProviderId = game.appid.ToString(),
-                        Name = game.name
-                    });
+                    AddGame(game);
+                }
+            }
+
+            // Delete games that are no longer in library
+            foreach (IGame dbGame in dbGames.FindAll().Where(a => a.Provider == provider))
+            {
+                if (importedGames.FirstOrDefault(a => a.ProviderId == dbGame.ProviderId) == null)
+                {
+                    DeleteGame(dbGame);
                 }
             }
         }
-        #endregion Steam
     }
 }

@@ -171,7 +171,7 @@ namespace PlayniteUI.Controls
         {
             var game = (IGame)(sender as FrameworkElement).DataContext;
             game.Hidden = !game.Hidden;
-            GameDatabase.Instance.UpdateGame(game);
+            GameDatabase.Instance.UpdateGameInDatabase(game);
             IsOpen = false;
         }
     }

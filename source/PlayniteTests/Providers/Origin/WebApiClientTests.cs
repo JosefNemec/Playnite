@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Playnite.Providers.Origin;
 
 namespace PlayniteTests.Providers.Origin
 {
-    [TestClass()]
+    [TestFixture]
     public class WebApiClientTests
     {
-        [TestMethod()]
+        [Test]
         public void GetGameLocalDataTest()
         {
             var ids = new string[] { "DR:104624900", "OFB-EAST:52018" };
@@ -26,7 +26,7 @@ namespace PlayniteTests.Providers.Origin
             }            
         }
 
-        [TestMethod()]
+        [Test]
         public void GetGameStoreDataTest()
         {
             var ids = new string[] { "DR:104624900", "OFB-EAST:52018" };

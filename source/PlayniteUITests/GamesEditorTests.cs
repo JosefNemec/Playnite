@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Playnite.Models;
 using PlayniteUI;
 
 namespace PlayniteUITests
 {
-    [TestClass]
+    [TestFixture]
     public class GamesEditorTests
     {
-        [TestMethod]
+        [Test]
         public void GetMultiGameEditObject_StandardTest()
         {
             // All common

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Playnite.Providers.GOG;
 
 namespace PlayniteTests.Providers.GOG
 {
-    [TestClass()]
+    [TestFixture]
     public class WebApiClientTests
     {
-        [TestMethod()]
+        [Test]
         public void GetGameDetailsTest()
         {
             var existingDetails = WebApiClient.GetGameDetails("2");
@@ -21,7 +21,7 @@ namespace PlayniteTests.Providers.GOG
             Assert.IsNull(nonexistingDetails);
         }
 
-        [TestMethod()]
+        [Test]
         public void GetGameStoreDataTest()
         {
             var existingStore = WebApiClient.GetGameStoreData(@"https://www.gog.com/game/vampire_the_masquerade_bloodlines");

@@ -55,10 +55,24 @@ namespace PlayniteUI.Controls
                 return;
             }
 
-            if (e.OldItems.Contains(GameDetails.DataContext))
+            // Can be called from another thread if games are being loaded
+            GameDetails.Dispatcher.Invoke(() =>
             {
-                GameDetails.DataContext = null;
-            }
+                if (GameDetails.DataContext == null)
+                {
+                    return;
+                }
+
+                var game = (IGame)GameDetails.DataContext;
+                foreach (IGame removedGame in e.OldItems)
+                {
+                    if (game.Id == removedGame.Id)
+                    {
+                        GameDetails.DataContext = null;
+                        return;
+                    }
+                }
+            });
         }
 
         private void GamesListList_SelectionChanged(object sender, SelectionChangedEventArgs e)

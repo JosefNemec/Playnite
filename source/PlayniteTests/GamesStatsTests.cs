@@ -4,17 +4,17 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Playnite;
 using Playnite.Models;
 
 namespace PlayniteTests
 {
-    [TestClass]
+    [TestFixture]
     public class GamesStatsTests
     {
 
-        [TestMethod]
+        [Test]
         public void BasicTest()
         {
             var stats = new GamesStats();

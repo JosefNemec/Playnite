@@ -86,7 +86,7 @@ namespace PlayniteUI
             }
             finally
             {
-                GameDatabase.Instance.UpdateGame(game);
+                GameDatabase.Instance.UpdateGameInDatabase(game);
             }
         }
 
@@ -103,7 +103,7 @@ namespace PlayniteUI
             }
             finally
             {
-                GameDatabase.Instance.UpdateGame(game);
+                GameDatabase.Instance.UpdateGameInDatabase(game);
             }
         }
 
@@ -119,7 +119,7 @@ namespace PlayniteUI
             }
             finally
             {
-                GameDatabase.Instance.UpdateGame(game);
+                GameDatabase.Instance.UpdateGameInDatabase(game);
             }
         }
 

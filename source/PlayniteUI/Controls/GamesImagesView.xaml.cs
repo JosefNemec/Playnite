@@ -57,11 +57,25 @@ namespace PlayniteUI.Controls
                 return;
             }
 
-            if (e.OldItems.Contains(GameDetails.DataContext))
+            // Can be called from another thread if games are being loaded
+            GameDetails.Dispatcher.Invoke(() =>
             {
-                GameDetails.DataContext = null;
-                CloseDetailBorder_MouseLeftButtonDown(this, null);
-            }
+                if (GameDetails.DataContext == null)
+                {
+                    return;
+                }
+
+                var game = (IGame)GameDetails.DataContext;
+                foreach (IGame removedGame in e.OldItems)
+                {
+                    if (game.Id == removedGame.Id)
+                    {
+                        GameDetails.DataContext = null;
+                        CloseDetailBorder_MouseLeftButtonDown(this, null);
+                        return;
+                    }
+                }
+            });
         }
 
         private void CloseDetailBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
