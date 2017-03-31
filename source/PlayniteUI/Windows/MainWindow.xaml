@@ -59,6 +59,7 @@
                         <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Reload Games List" MouseUp="ReloadGamesPopup_MouseUp" Name="TextReloadGames"/>
                         <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Settings . . ." MouseUp="SettingsPopup_MouseUp"/>
                         <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="About Playnite . . ." MouseUp="AboutPopup_Click"/>
+                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Request Feature or Report Issue . . ." MouseUp="IssuePopup_MouseUp"/>
                         <Separator />
                         <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Exit Playnite" MouseUp="ExitappPopUp_mouseUp"/>
                     </StackPanel>

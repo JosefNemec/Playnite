@@ -721,6 +721,12 @@ namespace PlayniteUI
             aboutWindow.ShowDialog();
         }
 
+        private void IssuePopup_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"https://github.com/JosefNemec/Playnite/issues/new");
+            PopupMenu.IsOpen = false;
+        }
+
         private void Window_LocationChanged(object sender, EventArgs e)
         {
             if (IsLoaded)
