@@ -29,15 +29,17 @@
 
     <Border Style="{StaticResource PopUpBorder}">
         <StackPanel Background="{StaticResource NormalBrushDark}">
-            <StackPanel Visibility="{Binding RelativeSource={RelativeSource AncestorType=Popup}, Path=ShowPlayInstallButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TextBlock Text="Play" MouseUp="ListPopupPlay_MouseUp" FontWeight="Bold" Style="{StaticResource TextBlockPopupItem}"
-                           Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <UserControl Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}">
-                    <TextBlock Text="Install" MouseUp="ListPopupInstall_MouseUp" FontWeight="Bold" Style="{StaticResource TextBlockPopupItem}"
-                               Visibility="{Binding IsInstalled, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
-                </UserControl>
-                <Separator Name="SeparatorPlayInstall"/>
-            </StackPanel>            
+            <UserControl Visibility="{Binding IsSetupInProgress, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}">
+                <StackPanel Visibility="{Binding RelativeSource={RelativeSource AncestorType=Popup}, Path=ShowPlayInstallButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBlock Text="Play" MouseUp="ListPopupPlay_MouseUp" FontWeight="Bold" Style="{StaticResource TextBlockPopupItem}"
+                               Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <UserControl Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}">
+                        <TextBlock Text="Install" MouseUp="ListPopupInstall_MouseUp" FontWeight="Bold" Style="{StaticResource TextBlockPopupItem}"
+                                   Visibility="{Binding IsInstalled, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                    </UserControl>
+                    <Separator Name="SeparatorPlayInstall"/>
+                </StackPanel>
+            </UserControl>
             <ItemsControl ItemsSource="{Binding OtherTasks}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>

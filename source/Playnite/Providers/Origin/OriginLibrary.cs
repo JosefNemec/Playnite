@@ -76,6 +76,57 @@ namespace Playnite.Providers.Origin
             return HttpUtility.ParseQueryString(data);
         }
 
+        public GameLocalDataResponse GetLocalManifest(string id, string packageName = null, bool useDataCache = false)
+        {
+            var package = packageName;
+
+            if (string.IsNullOrEmpty(package))
+            {
+                package = id.Replace(":", "");
+            }
+
+            var cacheFile = Path.Combine(OriginPaths.CachePath, Path.GetFileNameWithoutExtension(package) + ".json");
+            if (useDataCache == true && File.Exists(cacheFile))
+            {
+                return JsonConvert.DeserializeObject<GameLocalDataResponse>(File.ReadAllText(cacheFile, Encoding.UTF8));
+            }
+            else if (useDataCache == true && !File.Exists(cacheFile))
+            {
+                FileSystem.CreateFolder(OriginPaths.CachePath);
+                var data =  WebApiClient.GetGameLocalData(id);
+                File.WriteAllText(cacheFile, JsonConvert.SerializeObject(data), Encoding.UTF8);
+                return data;
+            }
+            else
+            {
+                return WebApiClient.GetGameLocalData(id);
+            }
+        }
+
+        public GameTask GetGamePlayTask(GameLocalDataResponse manifest)
+        {
+            var platform = manifest.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
+            var playTask = new GameTask()
+            {
+                IsBuiltIn = true,
+                IsPrimary = true
+            };
+
+            if (platform.fulfillmentAttributes.executePathOverride.Contains(@"://"))
+            {
+                playTask.Type = GameTaskType.URL;
+                playTask.Path = platform.fulfillmentAttributes.executePathOverride;
+            }
+            else
+            {
+                var executePath = GetPathFromPlatformPath(platform.fulfillmentAttributes.executePathOverride);
+                playTask.WorkingDir = Path.GetDirectoryName(GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride));
+                playTask.Path = executePath;
+            }
+
+            return playTask;
+        }
+
         public List<IGame> GetInstalledGames(bool useDataCache = false)
         {
             var contentPath = Path.Combine(OriginPaths.DataPath, "LocalContent");
@@ -107,22 +158,7 @@ namespace Playnite.Providers.Origin
                         ProviderId = gameId
                     };
 
-                    GameLocalDataResponse localData;
-                    var cacheFile = Path.Combine(OriginPaths.CachePath, Path.GetFileNameWithoutExtension(package) + ".json");
-                    if (useDataCache == true && File.Exists(cacheFile))
-                    {
-                        localData = JsonConvert.DeserializeObject<GameLocalDataResponse>(File.ReadAllText(cacheFile, Encoding.UTF8));
-                    }
-                    else if (useDataCache == true && !File.Exists(cacheFile))
-                    {
-                        FileSystem.CreateFolder(OriginPaths.CachePath);
-                        localData = WebApiClient.GetGameLocalData(gameId);
-                        File.WriteAllText(cacheFile, JsonConvert.SerializeObject(localData), Encoding.UTF8);
-                    }
-                    else
-                    {
-                        localData = WebApiClient.GetGameLocalData(gameId);
-                    }
+                    GameLocalDataResponse localData = GetLocalManifest(gameId, package, useDataCache);
                      
                     if (localData.offerType != "Base Game")
                     {
@@ -145,31 +181,7 @@ namespace Playnite.Providers.Origin
                     }
 
                     newGame.InstallDirectory = Path.GetDirectoryName(installPath);
-
-                    var playTask = new GameTask()
-                    {
-                        IsBuiltIn = true,
-                        IsPrimary = true
-                    };
-
-                    if (platform.fulfillmentAttributes.executePathOverride.Contains(@"://"))
-                    {
-                        playTask.Type = GameTaskType.URL;
-                        playTask.Path = platform.fulfillmentAttributes.executePathOverride;
-                    }
-                    else
-                    {
-                        var executePath = GetPathFromPlatformPath(platform.fulfillmentAttributes.executePathOverride);
-                        if (string.IsNullOrEmpty(executePath))
-                        {
-                            continue;
-                        }
-
-                        playTask.WorkingDir = newGame.InstallDirectory;
-                        playTask.Path = executePath;
-                    }
-
-                    newGame.PlayTask = playTask;
+                    newGame.PlayTask = GetGamePlayTask(localData);
                     games.Add(newGame);
                 }                
             }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Playnite.Database;
 
-namespace Playnite.Providers
+namespace Playnite.Models
 {
     public class GameMetadata
     {

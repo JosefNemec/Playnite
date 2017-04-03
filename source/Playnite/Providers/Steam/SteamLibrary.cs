@@ -25,7 +25,7 @@ namespace Playnite.Providers.Steam
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
 
-        public IGame GetInstalledGamesFromFile(string path)
+        public IGame GetInstalledGameFromFile(string path)
         {
             var kv = new KeyValue();
             kv.ReadFileAsText(path);
@@ -69,7 +69,7 @@ namespace Playnite.Providers.Steam
 
             foreach (var file in Directory.GetFiles(appsFolder, @"appmanifest*"))
             {
-                var game = GetInstalledGamesFromFile(Path.Combine(appsFolder, file));
+                var game = GetInstalledGameFromFile(Path.Combine(appsFolder, file));
                 games.Add(game);
             }
 
@@ -80,12 +80,30 @@ namespace Playnite.Providers.Steam
         {
             var games = new List<IGame>();
 
-            foreach (var folder in SteamSettings.GameDatabases)
+            foreach (var folder in GetLibraryFolders())
             {
                 games.AddRange(GetInstalledGamesFromFolder(folder));
             }
 
             return games;
+        }
+
+        public List<string> GetLibraryFolders()
+        {
+            var dbs = new List<string>() { SteamSettings.InstallationPath };
+            var configPath = Path.Combine(SteamSettings.InstallationPath, "steamapps", "libraryfolders.vdf");
+            var kv = new KeyValue();
+            kv.ReadFileAsText(configPath);
+
+            foreach (var child in kv.Children)
+            {
+                if (int.TryParse(child.Name, out int test))
+                {
+                    dbs.Add(child.Value);
+                }
+            }
+
+            return dbs;
         }
 
         public List<IGame> GetLibraryGames(string userName)

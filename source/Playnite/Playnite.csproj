@@ -79,6 +79,9 @@
       <HintPath>..\packages\NLog.4.4.3\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Polly, Version=5.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Polly.5.0.6\lib\net45\Polly.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
@@ -141,7 +144,9 @@
     <Compile Include="ObservableConcurrentDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Custom\CustomGameSettings.cs" />
-    <Compile Include="Providers\GameMetadata.cs" />
+    <Compile Include="Models\GameMetadata.cs" />
+    <Compile Include="Providers\GameInstalledEventArgs.cs" />
+    <Compile Include="Providers\GOG\GogGameStateMonitor.cs" />
     <Compile Include="Providers\GOG\GogLibrary.cs" />
     <Compile Include="Providers\GOG\GogGameTaskInfo.cs" />
     <Compile Include="Providers\GOG\GogSettings.cs" />
@@ -154,13 +159,16 @@
     <Compile Include="Models\IGame.cs" />
     <Compile Include="Models\GameTask.cs" />
     <Compile Include="Models\Provider.cs" />
+    <Compile Include="Providers\IGameStateMonitor.cs" />
     <Compile Include="Providers\Origin\IOriginLibrary.cs" />
+    <Compile Include="Providers\Origin\OriginGameStateMonitor.cs" />
     <Compile Include="Providers\Origin\OriginLibrary.cs" />
     <Compile Include="Providers\Origin\OriginSettings.cs" />
     <Compile Include="Providers\Origin\OriginPaths.cs" />
     <Compile Include="Providers\Origin\WebApiClient.cs" />
     <Compile Include="Providers\Origin\WebApiTypes.cs" />
     <Compile Include="Providers\Steam\ISteamLibrary.cs" />
+    <Compile Include="Providers\Steam\SteamGameStateMonitor.cs" />
     <Compile Include="Providers\Steam\SteamLibrary.cs" />
     <Compile Include="Providers\Steam\SteamApiClient.cs" />
     <Compile Include="Providers\Steam\SteamSettings.cs" />

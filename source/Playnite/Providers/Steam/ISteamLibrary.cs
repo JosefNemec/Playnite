@@ -10,7 +10,7 @@ namespace Playnite.Providers.Steam
 {
     public interface ISteamLibrary
     {
-        IGame GetInstalledGamesFromFile(string path);
+        IGame GetInstalledGameFromFile(string path);
 
         List<IGame> GetInstalledGamesFromFolder(string path);
 
@@ -21,5 +21,7 @@ namespace Playnite.Providers.Steam
         SteamGameMetadata DownloadGameMetadata(int id);
 
         SteamGameMetadata UpdateGameWithMetadata(IGame game);
+
+        List<string> GetLibraryFolders();
     }
 }

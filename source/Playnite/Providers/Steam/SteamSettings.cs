@@ -29,54 +29,11 @@ namespace Playnite.Providers.Steam
                 {
                     if (key != null)
                     {
-                        return key.GetValue("SteamPath").ToString();
+                        return key.GetValue("SteamPath").ToString().Replace('/', '\\');
                     }
                 }
 
                 return string.Empty;
-            }
-        }
-
-        public static List<string> GameDatabases
-        {
-            get
-            {
-                var dbs = new List<string>() { InstallationPath };
-                var configPath = Path.Combine(InstallationPath, "steamapps", "libraryfolders.vdf");
-                var kv = new KeyValue();
-                kv.ReadFileAsText(configPath);
-
-                foreach (var child in kv.Children)
-                {
-                    if (int.TryParse(child.Name, out int test))
-                    {
-                        dbs.Add(child.Value);
-                    }
-                }
-
-                return dbs;
-            }
-        }
-
-        /// <summary>
-        /// By default is set to C:\ProgramData\Playnite\steam
-        /// </summary>
-        public static string DataCachePath
-        {
-            get
-            {
-                return Path.Combine(Paths.DataCachePath, "steam");
-            }
-        }
-
-        /// <summary>
-        /// By default is set to C:\ProgramData\Playnite\steam\library.json
-        /// </summary>
-        public static string LibraryCachePath
-        {
-            get
-            {
-                return Path.Combine(DataCachePath, "library.json");
             }
         }
 

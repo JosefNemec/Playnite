@@ -14,6 +14,10 @@ namespace Playnite.Providers.Origin
 
         System.Collections.Specialized.NameValueCollection ParseOriginManifest(string path);
 
+        GameLocalDataResponse GetLocalManifest(string id, string packageName = null, bool useDataCache = false);
+
+        GameTask GetGamePlayTask(GameLocalDataResponse manifest);
+
         List<IGame> GetInstalledGames(bool useDataCache = false);
 
         List<IGame> GetLibraryGames();

@@ -13,11 +13,14 @@ using Playnite.Providers.Custom;
 using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
 using Playnite.Providers.Steam;
+using Playnite.Providers;
 
 namespace Playnite.Models
 {
     public class Game : IGame
     {
+        private IGameStateMonitor stateMonitor;
+
         private string backgroundImage;
         public string BackgroundImage
         {
@@ -443,6 +446,22 @@ namespace Playnite.Models
             }
         }
 
+        private bool isSetupInProgress = false;
+        [BsonIgnore]
+        public bool IsSetupInProgress
+        {
+            get
+            {
+                return isSetupInProgress;
+            }
+
+            set
+            {
+                isSetupInProgress = value;
+                OnPropertyChanged("IsSetupInProgress");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Game()
@@ -467,12 +486,15 @@ namespace Playnite.Models
             {
                 case Provider.Steam:
                     Process.Start(@"steam://install/" + ProviderId);
+                    RegisterStateMonitor(new SteamGameStateMonitor(ProviderId, new SteamLibrary()));
                     break;
                 case Provider.GOG:
                     Process.Start(@"goggalaxy://openGameView/" + ProviderId);
+                    RegisterStateMonitor(new GogGameStateMonitor(ProviderId, InstallDirectory, new GogLibrary()));
                     break;
                 case Provider.Origin:
                     Process.Start(string.Format(@"origin2://game/launch?offerIds={0}&autoDownload=true", ProviderId));
+                    RegisterStateMonitor(new OriginGameStateMonitor(ProviderId, new OriginLibrary()));
                     break;
                 case Provider.Custom:
                     break;
@@ -505,6 +527,7 @@ namespace Playnite.Models
             {
                 case Provider.Steam:
                     Process.Start("steam://uninstall/" + ProviderId);
+                    RegisterStateMonitor(new SteamGameStateMonitor(ProviderId, new SteamLibrary()));
                     break;
                 case Provider.GOG:
                     var uninstaller = Path.Combine(InstallDirectory, "unins000.exe");
@@ -513,15 +536,71 @@ namespace Playnite.Models
                         throw new FileNotFoundException("Uninstaller not found.");
                     }
 
-                    Process.Start(uninstaller).WaitForExit();
+                    Process.Start(uninstaller);
+                    RegisterStateMonitor(new GogGameStateMonitor(ProviderId, InstallDirectory, new GogLibrary()));
                     break;
                 case Provider.Origin:
                     Process.Start("appwiz.cpl");
+                    RegisterStateMonitor(new OriginGameStateMonitor(ProviderId, new OriginLibrary()));
                     break;
                 case Provider.Custom:
                     break;
                 default:
                     break;
+            }
+        }
+
+        public void RegisterStateMonitor(IGameStateMonitor monitor)
+        {
+            if (stateMonitor != null)
+            {
+                stateMonitor.Dispose();
+            }
+
+            stateMonitor = monitor;
+            stateMonitor.GameInstalled += StateMonitor_GameInstalled;
+            stateMonitor.GameUninstalled += StateMonitor_GameUninstalled;
+            stateMonitor.StartMonitoring();
+            IsSetupInProgress = true;
+        }
+
+        public void UnregisetrStateMonitor()
+        {
+            if (stateMonitor != null)
+            {
+                stateMonitor.StopMonitoring();
+                stateMonitor.Dispose();
+            }
+
+            IsSetupInProgress = false;
+        }
+
+        private void StateMonitor_GameUninstalled(object sender, EventArgs e)
+        {
+            IsSetupInProgress = false;
+            PlayTask = null;
+            InstallDirectory = string.Empty;
+
+            if (OtherTasks != null)
+            {
+                OtherTasks = new ObservableCollection<GameTask>(OtherTasks.Where(a => !a.IsBuiltIn));
+            }
+        }
+
+        private void StateMonitor_GameInstalled(object sender, GameInstalledEventArgs e)
+        {
+            IsSetupInProgress = false;
+            var game = e.NewGame;
+            PlayTask = game.PlayTask;
+            InstallDirectory = game.InstallDirectory;
+
+            if (game.OtherTasks != null)
+            {
+                OtherTasks = new ObservableCollection<GameTask>(OtherTasks.Where(a => !a.IsBuiltIn));
+                foreach (var task in game.OtherTasks.Reverse())
+                {
+                    OtherTasks.Insert(0, task);
+                }
             }
         }
 

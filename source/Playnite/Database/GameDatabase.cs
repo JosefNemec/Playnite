@@ -152,20 +152,20 @@ namespace Playnite.Database
                     continue;
                 }
 
-                if (game.Provider == Provider.GOG && !settings.OriginSettings.IntegrationEnabled)
+                if (game.Provider == Provider.GOG && !settings.GOGSettings.IntegrationEnabled)
                 {
                     continue;
                 }
-                else if (game.Provider == Provider.GOG && !game.IsInstalled && !settings.OriginSettings.LibraryDownloadEnabled)
+                else if (game.Provider == Provider.GOG && !game.IsInstalled && !settings.GOGSettings.LibraryDownloadEnabled)
                 {
                     continue;
                 }
 
-                if (game.Provider == Provider.Origin && !settings.GOGSettings.IntegrationEnabled)
+                if (game.Provider == Provider.Origin && !settings.OriginSettings.IntegrationEnabled)
                 {
                     continue;
                 }
-                else if (game.Provider == Provider.Origin && !game.IsInstalled && !settings.GOGSettings.LibraryDownloadEnabled)
+                else if (game.Provider == Provider.Origin && !game.IsInstalled && !settings.OriginSettings.LibraryDownloadEnabled)
                 {
                     continue;
                 }
@@ -306,11 +306,6 @@ namespace Playnite.Database
         {
             CheckDbState();
 
-            if (!Games.Contains(game))
-            {
-                throw new Exception(string.Format("Trying to update game which is not loaded, id:{0}, provider:{1}", game.ProviderId, game.Provider));
-            }
-
             lock (fileLock)
             {
                 dbGames.Update(game);
@@ -385,8 +380,8 @@ namespace Playnite.Database
             }
 
             foreach (var newGame in installedGames)
-            {
-                var existingGame = Games.FirstOrDefault(a => a.ProviderId == newGame.ProviderId);
+            {                
+                var existingGame = dbGames.FindAll().FirstOrDefault(a => a.ProviderId == newGame.ProviderId && a.Provider == provider);
 
                 if (existingGame == null)
                 {
@@ -415,6 +410,13 @@ namespace Playnite.Database
                     }
 
                     UpdateGameInDatabase(existingGame);
+
+                    // Game may have been not installed prviously and may not be loaded currently
+                    var loaded = Games.FirstOrDefault(a => a.ProviderId == existingGame.ProviderId && a.Provider == existingGame.Provider) != null;
+                    if (!loaded)
+                    {
+                        Games.Add(existingGame);
+                    }
                 }
             }
 

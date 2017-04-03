@@ -77,7 +77,7 @@ namespace Playnite
 
                     if (SteamSettings.IsInstalled)
                     {
-                        foreach (var folder in SteamSettings.GameDatabases)
+                        foreach (var folder in (new SteamLibrary()).GetLibraryFolders())
                         {
                             var appsFolder = Path.Combine(folder, "steamapps");
                             addFolderToZip(archive, "Steam", appsFolder, "appmanifest*");
