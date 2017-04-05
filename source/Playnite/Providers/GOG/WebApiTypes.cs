@@ -97,7 +97,6 @@ namespace Playnite.Providers.GOG
             public bool isMovie;
             public bool isGame;
             public string slug;
-            public int updates;
             public bool isNew;
             public int dlcCount;
             public ReleaseDate releaseDate;
