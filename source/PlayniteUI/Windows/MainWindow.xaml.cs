@@ -194,6 +194,30 @@ namespace PlayniteUI
             }
         }
 
+        private void DownloadMetadata(GameDatabase database, Provider provider, ProgressControl progresser, CancellationToken token)
+        {
+            var games = database.Games.Where(a => a.Provider == provider && !a.IsProviderDataUpdated);
+
+            foreach (var game in games)
+            {
+                if (token.IsCancellationRequested)
+                {
+                    break;
+                }
+
+                ProgressControl.ProgressValue++;
+
+                try
+                {
+                    database.UpdateGameWithMetadata(game);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, string.Format("Failed to download metadata for id:{0}, provider:{1}.", game.ProviderId, game.Provider));
+                }
+            }
+        }
+
         private async void LoadGames()
         {
             if (GamesLoaderHandler.ProgressTask != null && GamesLoaderHandler.ProgressTask.Status == TaskStatus.Running)
@@ -371,32 +395,40 @@ namespace PlayniteUI
                     gamesStats.SetGames(database.Games);
                     ProgressControl.Text = "Downloading images and game details...";
                     ProgressControl.ProgressMin = 0;
-                    ProgressControl.ProgressMax = database.Games.Count == 0 ? 0 : database.Games.Count - 1;
-
-                    for (int i = 0; i < database.Games.Count; i++)
+                    
+                    var gamesCount = 0;
+                    gamesCount = database.Games.Where(a => a.Provider != Provider.Custom && !a.IsProviderDataUpdated).Count();
+                    if (gamesCount > 0)
                     {
-                        if (GamesLoaderHandler.CancelToken.Token.IsCancellationRequested)
-                        {
-                            break;
-                        }
-
-                        ProgressControl.ProgressValue = i;
-
-                        var game = database.Games[i];
-                        if (game.Provider == Provider.Custom || game.IsProviderDataUpdated == true)
-                        {
-                            continue;
-                        }
-
-                        try
-                        {
-                            database.UpdateGameWithMetadata(game);
-                        }
-                        catch (Exception e)
-                        {
-                            logger.Error(e, string.Format("Failed to download metadata for id:{0}, provider:{1}.", game.ProviderId, game.Provider));
-                        }
+                        gamesCount -= 1;
                     }
+
+                    ProgressControl.ProgressMax = gamesCount;
+
+                    var tasks = new List<Task>
+                    {
+                        // Steam metada download thread
+                        Task.Factory.StartNew(() =>
+                        {
+                            DownloadMetadata(database, Provider.Steam, ProgressControl, GamesLoaderHandler.CancelToken.Token);
+                        }, GamesLoaderHandler.CancelToken.Token),
+
+
+                        // Origin metada download thread
+                        Task.Factory.StartNew(() =>
+                        {
+                            DownloadMetadata(database, Provider.Origin, ProgressControl, GamesLoaderHandler.CancelToken.Token);
+                        }, GamesLoaderHandler.CancelToken.Token),
+
+
+                        // GOG metada download thread
+                        Task.Factory.StartNew(() =>
+                        {
+                            DownloadMetadata(database, Provider.GOG, ProgressControl, GamesLoaderHandler.CancelToken.Token);
+                        }, GamesLoaderHandler.CancelToken.Token)
+                    };
+
+                    Task.WaitAll(tasks.ToArray());
 
                     ProgressControl.Text = "Library update finished";
                     
