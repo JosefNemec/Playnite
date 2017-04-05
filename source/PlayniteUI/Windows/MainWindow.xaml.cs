@@ -196,13 +196,13 @@ namespace PlayniteUI
 
         private void DownloadMetadata(GameDatabase database, Provider provider, ProgressControl progresser, CancellationToken token)
         {
-            var games = database.Games.Where(a => a.Provider == provider && !a.IsProviderDataUpdated);
+            var games = database.Games.Where(a => a.Provider == provider && !a.IsProviderDataUpdated).ToList();
 
             foreach (var game in games)
             {
                 if (token.IsCancellationRequested)
                 {
-                    break;
+                    return;
                 }
 
                 ProgressControl.ProgressValue++;
@@ -226,8 +226,6 @@ namespace PlayniteUI
                 await GamesLoaderHandler.ProgressTask;
             }
 
-            TextAddGame.IsEnabled = false;
-            TextAddInstalledGame.IsEnabled = false;
             TextReloadGames.IsEnabled = false;
 
             try
@@ -411,21 +409,21 @@ namespace PlayniteUI
                         Task.Factory.StartNew(() =>
                         {
                             DownloadMetadata(database, Provider.Steam, ProgressControl, GamesLoaderHandler.CancelToken.Token);
-                        }, GamesLoaderHandler.CancelToken.Token),
+                        }),
 
 
                         // Origin metada download thread
                         Task.Factory.StartNew(() =>
                         {
                             DownloadMetadata(database, Provider.Origin, ProgressControl, GamesLoaderHandler.CancelToken.Token);
-                        }, GamesLoaderHandler.CancelToken.Token),
+                        }),
 
 
                         // GOG metada download thread
                         Task.Factory.StartNew(() =>
                         {
                             DownloadMetadata(database, Provider.GOG, ProgressControl, GamesLoaderHandler.CancelToken.Token);
-                        }, GamesLoaderHandler.CancelToken.Token)
+                        })
                     };
 
                     Task.WaitAll(tasks.ToArray());
@@ -434,12 +432,12 @@ namespace PlayniteUI
                     
                     Thread.Sleep(1500);
                     ProgressControl.Visible = Visibility.Collapsed;
-                }, GamesLoaderHandler.CancelToken.Token);
+                });
+
+                await GamesLoaderHandler.ProgressTask;
             }
             finally
             {
-                TextAddGame.IsEnabled = true;
-                TextAddInstalledGame.IsEnabled = true;
                 TextReloadGames.IsEnabled = true;
             }
         }

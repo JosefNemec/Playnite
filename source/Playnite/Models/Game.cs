@@ -467,12 +467,14 @@ namespace Playnite.Models
         public Game()
         {
             Provider = Provider.Custom;
+            ProviderId = Guid.NewGuid().ToString();
         }
 
         public Game(string name)
         {
             Name = name;
             Provider = Provider.Custom;
+            ProviderId = Guid.NewGuid().ToString();
         }
 
         public void OnPropertyChanged(string name)

@@ -3502,6 +3502,9 @@
                 <Setter Property="Foreground" Value="White" />
                 <Setter Property="Background" Value="Gray" />
             </Trigger>
+            <Trigger Property="IsEnabled" Value="False" >
+                <Setter Property="Foreground" Value="Gray" />                
+            </Trigger>
         </Style.Triggers>
     </Style>
 

@@ -233,7 +233,7 @@ namespace Playnite.Database
                 dbGames.Delete(game.Id);
             }
 
-            var existingGame = games.FirstOrDefault(a => a.ProviderId == game.ProviderId && a.Provider == game.Provider);
+            var existingGame = games.FirstOrDefault(a => a.Id == game.Id);
             if (existingGame != null)
             {
                 games.Remove(existingGame);
