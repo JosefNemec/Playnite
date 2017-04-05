@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using Playnite.Providers.GOG;
 using System;
 using System.Collections.Generic;
@@ -6,17 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Playnite.Providers.Steam;
 
-namespace Playnite.Providers.Steam.Tests
+namespace PlayniteTests.Providers.Steam
 {
-    [TestClass()]
-    public class SteamTests
+    [TestFixture]
+    public class SteamLibraryTests
     {
-        [TestMethod()]
+        [Test]
         [Description("Basic verification testing that installed games can be fetched from local client.")]
         public void GetInstalledGames_Basic()
         {
-            var games = Steam.GetInstalledGames();
+            var steamLib = new SteamLibrary();
+            var games = steamLib.GetInstalledGames();
             Assert.AreNotEqual(0, games.Count);
             CollectionAssert.AllItemsAreUnique(games);
 
@@ -27,15 +29,17 @@ namespace Playnite.Providers.Steam.Tests
                 Assert.IsFalse(string.IsNullOrEmpty(game.InstallDirectory));
                 Assert.IsTrue(Directory.Exists(game.InstallDirectory));
                 Assert.IsNotNull(game.PlayTask);
-                Assert.IsTrue(game.PlayTask.Type == Models.GameTaskType.URL);
+                Assert.IsTrue(game.PlayTask.Type == Playnite.Models.GameTaskType.URL);
             }
         }
 
-        [TestMethod()]
+        [Test]
         public void DownloadGameMetadataTest()
         {
+            var steamLib = new SteamLibrary();
+
             // Existing store
-            var existing = Steam.DownloadGameMetadata(107410);
+            var existing = steamLib.DownloadGameMetadata(107410);
             Assert.IsNotNull(existing.ProductDetails);
             Assert.IsNotNull(existing.StoreDetails);
             Assert.IsNotNull(existing.Icon.Data);
@@ -43,7 +47,7 @@ namespace Playnite.Providers.Steam.Tests
             Assert.IsNotNull(existing.BackgroundImage);
 
             // NonExisting store
-            var nonExisting = Steam.DownloadGameMetadata(201280);
+            var nonExisting = steamLib.DownloadGameMetadata(201280);
             Assert.IsNotNull(nonExisting.ProductDetails);
             Assert.IsNull(nonExisting.StoreDetails);
             Assert.IsNotNull(nonExisting.Icon.Data);

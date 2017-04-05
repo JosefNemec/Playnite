@@ -100,7 +100,7 @@ namespace PlayniteUI.Controls
             foreach (var game in (List<IGame>)DataContext)
             {
                 game.Hidden = true;
-                GameDatabase.Instance.UpdateGame(game);
+                GameDatabase.Instance.UpdateGameInDatabase(game);
             }
 
             IsOpen = false;
@@ -111,7 +111,7 @@ namespace PlayniteUI.Controls
             foreach (var game in (List<IGame>)DataContext)
             {
                 game.Hidden = false;
-                GameDatabase.Instance.UpdateGame(game);
+                GameDatabase.Instance.UpdateGameInDatabase(game);
             }
 
             IsOpen = false;

@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using Playnite.Providers.GOG;
 using System;
 using System.Collections.Generic;
@@ -9,14 +9,15 @@ using System.IO;
 
 namespace Playnite.Providers.GOG.Tests
 {
-    [TestClass()]
-    public class GogTests
+    [TestFixture]
+    public class GogLibraryTests
     {
-        [TestMethod()]
+        [Test()]
         [Description("Basic verification testing that installed games can be fetched from local client.")]
         public void GetInstalledGames_Basic()
         {
-            var games = Gog.GetInstalledGames();
+            var gogLib = new GogLibrary();
+            var games = gogLib.GetInstalledGames();
             Assert.AreNotEqual(0, games.Count);
             CollectionAssert.AllItemsAreUnique(games);
 
@@ -31,11 +32,13 @@ namespace Playnite.Providers.GOG.Tests
             }
         }
 
-        [TestMethod()]
+        [Test]
         public void DownloadGameMetadataTest()
         {
+            var gogLib = new GogLibrary();
+
             // Existing store page - contains all data
-            var existingStore = Gog.DownloadGameMetadata("1207658645");
+            var existingStore = gogLib.DownloadGameMetadata("1207658645");
             Assert.IsNotNull(existingStore.GameDetails);
             Assert.IsNotNull(existingStore.StoreDetails);
             Assert.IsNotNull(existingStore.Icon.Data);
@@ -43,7 +46,7 @@ namespace Playnite.Providers.GOG.Tests
             Assert.IsNotNull(existingStore.BackgroundImage);
 
             // Game with missing store link in api data
-            var customStore = Gog.DownloadGameMetadata("1207662223", "https://www.gog.com/game/commandos_2_3");
+            var customStore = gogLib.DownloadGameMetadata("1207662223", "https://www.gog.com/game/commandos_2_3");
             Assert.IsNotNull(customStore.GameDetails);
             Assert.IsNotNull(customStore.StoreDetails);
             Assert.IsNotNull(customStore.Icon.Data);
@@ -51,7 +54,7 @@ namespace Playnite.Providers.GOG.Tests
             Assert.IsNotNull(customStore.BackgroundImage);
 
             // Existing game not present on store
-            var nonStore = Gog.DownloadGameMetadata("2");
+            var nonStore = gogLib.DownloadGameMetadata("2");
             Assert.IsNotNull(nonStore.GameDetails);
             Assert.IsNull(nonStore.StoreDetails);
             Assert.IsNotNull(nonStore.Icon.Data);

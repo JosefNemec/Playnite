@@ -348,7 +348,7 @@ namespace Playnite
             var fileTarget = new FileTarget()
             {
                 FileName = Path.Combine(Paths.ConfigRootPath, "playnite.log"),
-                Layout = "${longdate}|${level:uppercase=true}|${logger}:${message}${exception:format=toString}",
+                Layout = "${longdate}|${level:uppercase=true}:${message}${exception:format=toString}",
                 KeepFileOpen = false,
                 ArchiveFileName = Path.Combine(Paths.ConfigRootPath, "playnite.{#####}.log"),
                 ArchiveAboveSize = 4096000,

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Playnite.Providers.Steam;
 
 namespace PlayniteTests.Providers.Steam
 {
-    [TestClass()]
+    [TestFixture]
     public class WebApiClientTests
     {
-        [TestMethod]
+        [Test]
         public void GetStoreAppDetailTest()
         {
             var data = WebApiClient.GetStoreAppDetail(214490);

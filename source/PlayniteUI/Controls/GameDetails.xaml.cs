@@ -58,6 +58,14 @@ namespace PlayniteUI
             PopupMore.IsOpen = true;
         }
 
+        private void ButtonSetupProgress_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is Game)
+            {
+                (DataContext as Game).UnregisetrStateMonitor();
+            }            
+        }
+
         private void Link_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
             try

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Playnite.Providers.Steam;
 
 namespace PlayniteTests.Providers.Steam
 {
-    [TestClass]
+    [TestFixture]
     public class SteamApiClientTests
     {
-        [TestMethod]
+        [Test]
         public void GetProductInfoTest()
         {
             var data = SteamApiClient.GetProductInfo(214490).GetAwaiter().GetResult();

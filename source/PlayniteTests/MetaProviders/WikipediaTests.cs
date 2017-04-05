@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Playnite.MetaProviders;
 using Playnite.Models;
 
 namespace PlayniteTests.MetaProviders
 {
-    [TestClass()]
+    [TestFixture]
     public class WikipediaTests
     {
         private void ValidateGameDate(Game game)
@@ -25,7 +25,7 @@ namespace PlayniteTests.MetaProviders
             Assert.IsTrue(!string.IsNullOrEmpty(game.Image));
         }
 
-        [TestMethod()]
+        [Test]
         public void ParseGamePage_MetadataParsingTest()
         {
             var wiki = new Wikipedia();

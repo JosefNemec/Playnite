@@ -619,12 +619,12 @@ namespace PlayniteUI
             {
                 foreach (var game in Games)
                 {
-                    GameDatabase.Instance.UpdateGame(game);
+                    GameDatabase.Instance.UpdateGameInDatabase(game);
                 }
             }
             else
             {
-                GameDatabase.Instance.UpdateGame(Game);
+                GameDatabase.Instance.UpdateGameInDatabase(Game);
             }
 
             DialogResult = true;

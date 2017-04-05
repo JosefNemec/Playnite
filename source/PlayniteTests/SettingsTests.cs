@@ -4,27 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Playnite;
 
 namespace PlayniteTests
 {
-    [TestClass()]
+    [TestFixture]
     public class SettingsTests
     {
-        [ClassInitialize()]
-        public static void ClassInit(TestContext context)
+        [OneTimeSetUp]
+        public void Init()
         {
             FileSystem.DeleteFile(Paths.UninstallerPath);
         }
 
-        [ClassCleanup()]
-        public static void ClassCleanup()
+        [OneTimeTearDown]
+        public void Cleanup()
         {
             FileSystem.DeleteFile(Paths.UninstallerPath);
         }
 
-        [TestMethod()]
+        [Test]
         public void PortablePathsTest()
         {
             Assert.IsTrue(Settings.IsPortable);

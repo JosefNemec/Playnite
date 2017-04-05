@@ -55,12 +55,17 @@
             <DockPanel DockPanel.Dock="Top" Margin="20,10,0,0">
                 <WrapPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,5,20,5" Height="35" HorizontalAlignment="Left">
-                        <Button Style="{StaticResource PlayButton}" Name="ButtonPlay" Width="100" HorizontalAlignment="Left" Click="ButtonPlay_Click"
-                                Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}" Content="Play" />
-                        <UserControl Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}">
-                            <Button Width="100" Click="ButtonInstall_Click" Content="Install"
-                                Visibility="{Binding IsInstalled, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}" />
-                        </UserControl>
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding IsSetupInProgress, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}">
+                            <Button Style="{StaticResource PlayButton}" Name="ButtonPlay" Width="100" HorizontalAlignment="Left" Click="ButtonPlay_Click"
+                                    Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}" Content="Play" />
+                            <UserControl Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}">
+                                <Button Width="100" Click="ButtonInstall_Click" Content="Install"
+                                    Visibility="{Binding IsInstalled, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}" />
+                            </UserControl>
+                        </StackPanel>
+                        <Button Name="ButtonSetupProgress" Width="100" Content="Setup Running..." Click="ButtonSetupProgress_Click"
+                                Visibility="{Binding IsSetupInProgress, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
                         <Button Name="ButtonMore" Width="100" Margin="10, 0, 0, 0" Click="ButtonMore_Click" Content="More" />
                     </StackPanel>
                     <StackPanel  Orientation="Horizontal">

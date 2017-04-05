@@ -1,41 +1,35 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using NLog;
+using Playnite.Database;
+using Playnite.Models;
+using Playnite.Providers;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Data.SQLite;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using Newtonsoft.Json;
-using NLog;
-using Playnite.Models;
+using System.Windows;
 
 namespace Playnite.Providers.GOG
 {
-    public class Gog
+    public class GogLibrary : IGogLibrary
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private Logger logger = LogManager.GetCurrentClassLogger();
         
-        public static List<GetOwnedGamesResult.Product> UserLibraryCache
-        {
-            get;
-            set;
-        }
-
-        public static void CacheGogDatabases(string targetPath, string dbfile)
+        public void CacheGogDatabases(string targetPath, string dbfile)
         {
             FileSystem.CreateFolder(targetPath);
             var source = Path.Combine(GogSettings.DBStoragePath, dbfile);
             File.Copy(source, Path.Combine(targetPath, dbfile), true);
         }
 
-        public static List<Game> GetInstalledGames()
+        public List<IGame> GetInstalledGames()
         {
             var targetIndexPath = Path.Combine(Paths.TempPath, "index.db");
             CacheGogDatabases(Paths.TempPath, "index.db");
 
-            var games = new List<Game>();
+            var games = new List<IGame>();
 
             var db = new SQLiteConnection(@"Data Source=" + targetIndexPath);
             db.Open();
@@ -116,7 +110,7 @@ namespace Playnite.Providers.GOG
             return games;
         }
 
-        public static List<GetOwnedGamesResult.Product> GetOwnedGames()
+        public List<IGame> GetLibraryGames()
         {
             var api = new WebApiClient();
             if (api.GetLoginRequired())
@@ -124,10 +118,24 @@ namespace Playnite.Providers.GOG
                 throw new Exception("User is not logged in.");
             }
 
-            return api.GetOwnedGames();
+            var games = new List<IGame>();
+
+            foreach (var game in api.GetOwnedGames())
+            {
+                games.Add(new Game()
+                {
+                    Provider = Provider.GOG,
+                    ProviderId = game.id.ToString(),
+                    Name = game.title,
+                    ReleaseDate = game.releaseDate.date,
+                    StoreUrl = @"https://www.gog.com" + game.url
+                });
+            }
+
+            return games;
         }       
 
-        public static GogGameMetadata DownloadGameMetadata(string id, string storeUrl = null)
+        public GogGameMetadata DownloadGameMetadata(string id, string storeUrl = null)
         {
             var metadata = new GogGameMetadata();
             var gameDetail = WebApiClient.GetGameDetails(id);
@@ -145,42 +153,75 @@ namespace Playnite.Providers.GOG
                 }
 
                 var icon = Web.DownloadData("http:" + gameDetail.images.icon);
+                var iconName = Path.GetFileName(new Uri(gameDetail.images.icon).AbsolutePath);
                 var image = Web.DownloadData("http:" + gameDetail.images.logo2x);
+                var imageName = Path.GetFileName(new Uri(gameDetail.images.logo2x).AbsolutePath);
 
-                metadata.Icon = new GogGameMetadata.ImageData()
-                {
-                    Name = Path.GetFileName(new Uri(gameDetail.images.icon).AbsolutePath),
-                    Data = icon
-                };
+                metadata.Icon = new FileDefinition(
+                    string.Format("images/gog/{0}/{1}", id, iconName),
+                    iconName,
+                    icon
+                );
 
-                metadata.Image = new GogGameMetadata.ImageData()
-                {
-                    Name = Path.GetFileName(new Uri(gameDetail.images.logo2x).AbsolutePath),
-                    Data = image
-                };
+                metadata.Image = new FileDefinition(
+                    string.Format("images/gog/{0}/{1}", id, imageName),
+                    imageName,
+                    image
+                );
 
                 metadata.BackgroundImage = "http:" + gameDetail.images.background;
             }
 
             return metadata;
         }
+
+        public GogGameMetadata UpdateGameWithMetadata(IGame game)
+        {
+            var metadata = DownloadGameMetadata(game.ProviderId, game.StoreUrl);
+            game.Name = metadata.GameDetails.title;
+            game.CommunityHubUrl = metadata.GameDetails.links.forum;
+            game.StoreUrl = string.IsNullOrEmpty(game.StoreUrl) ? metadata.GameDetails.links.product_card : game.StoreUrl;
+            game.WikiUrl = @"http://pcgamingwiki.com/w/index.php?search=" + metadata.GameDetails.title;
+            game.Description = metadata.GameDetails.description.full;
+
+            if (metadata.StoreDetails != null)
+            {
+                game.Genres = metadata.StoreDetails.genres.Select(a => a.name).ToList();
+                game.Developers = new List<string>() { metadata.StoreDetails.developer.name };
+                game.Publishers = new List<string>() { metadata.StoreDetails.publisher.name };
+
+                if (game.ReleaseDate == null)
+                {
+                    Int64 intDate = Convert.ToInt64(metadata.StoreDetails.releaseDate) * 1000;
+                    game.ReleaseDate = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(intDate).ToUniversalTime();
+                }
+            }
+
+            using (var imageStream = new MemoryStream())
+            {
+                using (var tempStream = new MemoryStream(metadata.Image.Data))
+                {
+                    using (var backStream = Application.GetResourceStream(new Uri("pack://application:,,,/Playnite;component/Resources/Images/gog_cover_background.png")).Stream)
+                    {
+                        CoverCreator.CreateCover(backStream, tempStream, imageStream);
+                        imageStream.Seek(0, SeekOrigin.Begin);
+                        metadata.Image.Data = imageStream.ToArray();
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(metadata.BackgroundImage))
+            {
+                game.BackgroundImage = metadata.BackgroundImage;
+            }
+
+            game.IsProviderDataUpdated = true;
+            return metadata;
+        }
     }
 
-    public class GogGameMetadata
+    public class GogGameMetadata : GameMetadata
     {
-        public class ImageData
-        {
-            public string Name
-            {
-                get;set;
-            }
-
-            public byte[] Data
-            {
-                get; set;
-            }
-        }
-
         public ProductApiDetail GameDetails
         {
             get;set;
@@ -189,21 +230,6 @@ namespace Playnite.Providers.GOG
         public StorePageResult.ProductDetails StoreDetails
         {
             get;set;
-        }
-
-        public ImageData Icon
-        {
-            get;set;
-        }
-
-        public ImageData Image
-        {
-            get;set;
-        }
-
-        public string BackgroundImage
-        {
-            get; set;
         }
     }
 }

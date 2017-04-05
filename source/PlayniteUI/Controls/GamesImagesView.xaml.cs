@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Playnite.Database;
 using Playnite.Models;
+using System.Collections.ObjectModel;
 
 namespace PlayniteUI.Controls
 {
@@ -35,12 +36,46 @@ namespace PlayniteUI.Controls
             set
             {
                 ItemsView.ItemsSource = value;
+
+                if (value is ObservableCollection<IGame>)
+                {
+                    ((ObservableCollection<IGame>)value).CollectionChanged -= GamesGridView_CollectionChanged;
+                    ((ObservableCollection<IGame>)value).CollectionChanged += GamesGridView_CollectionChanged;
+                }
             }
         }
 
         public GamesImagesView()
         {
             InitializeComponent();
+        }
+
+        private void GamesGridView_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action != System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+            {
+                return;
+            }
+
+            // Can be called from another thread if games are being loaded
+            GameDetails.Dispatcher.Invoke(() =>
+            {
+                if (GameDetails.DataContext == null)
+                {
+                    return;
+                }
+
+                var game = (IGame)GameDetails.DataContext;
+                foreach (IGame removedGame in e.OldItems)
+                {
+                    if (game.Id == removedGame.Id)
+                    {
+                        GameDetails.DataContext = null;
+                        CloseDetailBorder_MouseLeftButtonDown(this, null);
+                        return;
+                    }
+                }
+            });
         }
 
         private void CloseDetailBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
