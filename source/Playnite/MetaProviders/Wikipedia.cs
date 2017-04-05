@@ -12,11 +12,14 @@ using AngleSharp.Parser.Html;
 using Newtonsoft.Json;
 using Playnite.Models;
 using Playnite.Providers;
+using NLog;
 
 namespace Playnite.MetaProviders
 {
     public class Wikipedia
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public class Error
         {
             public string code
@@ -129,6 +132,7 @@ namespace Playnite.MetaProviders
 
         public Game ParseGamePage(WikiPage page, string gameName = "")
         {
+            logger.Info("Parsing wiki page " + page.title);
             var game = new Game();
             var parser = new HtmlParser();
             var document = parser.Parse(@"<html><head></head><body>" + page.text["*"] + @"</body></html>?");

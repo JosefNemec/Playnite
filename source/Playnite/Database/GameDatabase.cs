@@ -12,6 +12,7 @@ using Playnite.Providers.Steam;
 using Playnite.Providers.Origin;
 using System.Windows;
 using Playnite.Providers;
+using NLog;
 
 namespace Playnite.Database
 {
@@ -46,6 +47,8 @@ namespace Playnite.Database
 
     public class GameDatabase
     {
+        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
+
         // LiteDB file storage is not thread safe, so we need to lock all file operations.        
         private object fileLock = new object();
 
@@ -116,6 +119,7 @@ namespace Playnite.Database
 
         public LiteDatabase OpenDatabase(string path, bool loadGames = false)
         {
+            logger.Info("Opening db " + path);
             CloseDatabase();
             database = new LiteDatabase(path);
             dbGames = database.GetCollection<IGame>("games");
@@ -129,6 +133,7 @@ namespace Playnite.Database
 
         public void LoadGamesFromDb()
         {
+            logger.Info("Loading games from db");
             games.Clear();
 
             foreach (var game in dbGames.FindAll())
@@ -139,6 +144,11 @@ namespace Playnite.Database
 
         public void LoadGamesFromDb(Settings settings)
         {
+            logger.Info("Loading games from db with specific settings.");
+            logger.Info("Steam: " + settings.SteamSettings.ToJson());
+            logger.Info("Origin: " + settings.OriginSettings.ToJson());
+            logger.Info("GOG: " + settings.GOGSettings.ToJson());
+
             games.Clear();
 
             foreach (var game in dbGames.FindAll())
@@ -213,6 +223,7 @@ namespace Playnite.Database
                 
         public void DeleteGame(IGame game)
         {
+            logger.Info("Deleting game from database {0}, {1}", game.ProviderId, game.Provider);
             CheckDbState();
 
             lock (fileLock)
@@ -223,10 +234,13 @@ namespace Playnite.Database
             }
 
             var existingGame = games.FirstOrDefault(a => a.ProviderId == game.ProviderId && a.Provider == game.Provider);
-
             if (existingGame != null)
             {
                 games.Remove(existingGame);
+            }
+            else
+            {
+                logger.Error("Attempt to delete game not present in database.");
             }
         }
 
@@ -385,6 +399,7 @@ namespace Playnite.Database
 
                 if (existingGame == null)
                 {
+                    logger.Info("Adding new installed game {0} from {1} provider", newGame.ProviderId, newGame.Provider);
                     AddGame(newGame);
                 }
                 else
@@ -463,15 +478,17 @@ namespace Playnite.Database
                 var gameNotPresent = Games.FirstOrDefault(a => a.ProviderId == game.ProviderId && a.Provider == provider) == null;
                 if (gameNotPresent)
                 {
+                    logger.Info("Adding new game {0} into library from {1} provider", game.ProviderId, game.Provider);
                     AddGame(game);
                 }
             }
 
             // Delete games that are no longer in library
             foreach (IGame dbGame in dbGames.FindAll().Where(a => a.Provider == provider))
-            {
+            {                
                 if (importedGames.FirstOrDefault(a => a.ProviderId == dbGame.ProviderId) == null)
                 {
+                    logger.Info("Removing game {0} which is no longer in {1} library", dbGame.ProviderId, dbGame.Provider);
                     DeleteGame(dbGame);
                 }
             }
