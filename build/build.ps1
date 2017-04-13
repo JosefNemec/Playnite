@@ -8,6 +8,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+$NugetUrl = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
 
 # -------------------------------------------
 #            Compile application 
@@ -18,6 +19,16 @@ if (!$SkipBuild)
     {
         Remove-Item $OutputPath -Recurse -Force
     }
+
+    # Restore NuGet packages
+    if (-not (Test-Path "nuget.exe"))
+    {
+        Invoke-WebRequest -Uri $NugetUrl -OutFile "nuget.exe"
+    }
+
+    $nugetProc = Start-Process "nuget.exe" "restore ..\source\Playnite.sln" -PassThru -NoNewWindow
+    $handle = $nugetProc.Handle
+    $nugetProc.WaitForExit()
 
     $solutionDir = Join-Path $pwd "..\source"
     $msbuildPath = "c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe";
