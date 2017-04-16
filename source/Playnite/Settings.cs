@@ -14,6 +14,7 @@ using Playnite.Providers;
 using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
 using Playnite.Providers.Steam;
+using CefSharp;
 
 namespace Playnite
 {
@@ -362,6 +363,18 @@ namespace Playnite
             config.LoggingRules.Add(rule2);
 
             LogManager.Configuration = config;
+        }
+
+        public static void ConfigureCef()
+        {
+            FileSystem.CreateFolder(Paths.BrowserCachePath);
+            var settings = new CefSettings();
+            settings.CefCommandLineArgs.Add("disable-gpu", "1");
+            settings.CefCommandLineArgs.Add("disable-gpu-compositing", "1");
+            settings.CachePath = Paths.BrowserCachePath;
+            settings.PersistSessionCookies = true;
+            settings.LogFile = Path.Combine(Paths.ConfigRootPath, "cef.log");
+            Cef.Initialize(settings);
         }
     }
 }

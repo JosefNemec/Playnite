@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using System.IO;
 using System.ComponentModel;
 using System.Windows.Controls.Primitives;
-using Playnite.Providers;
 using System.Threading;
 using NLog;
 using Playnite;
@@ -24,8 +23,6 @@ using Playnite.Providers.Steam;
 using Playnite.Providers.Custom;
 using Playnite.Models;
 using System.Collections.ObjectModel;
-using CefSharp;
-using Playnite.MetaProviders;
 using PlayniteUI.Windows;
 using Playnite.Database;
 using Playnite.Providers.Origin;
@@ -66,14 +63,6 @@ namespace PlayniteUI
             get; set;
         }
 
-        public string WindowTitle
-        {
-            get
-            {
-                return "Playnite " + Update.GetCurrentVersion().ToString(2) + " alpha";
-            }
-        }
-
         public MainWindow()
         {
             InitializeComponent();
@@ -84,15 +73,6 @@ namespace PlayniteUI
         {
             Settings.LoadSettings();
             Config = Settings.Instance;
-
-            FileSystem.CreateFolder(Paths.BrowserCachePath);
-            var settings = new CefSettings();
-            settings.CefCommandLineArgs.Add("disable-gpu", "1");
-            settings.CefCommandLineArgs.Add("disable-gpu-compositing", "1");
-            settings.CachePath = Paths.BrowserCachePath;
-            settings.PersistSessionCookies = true;
-            settings.LogFile = System.IO.Path.Combine(Paths.ConfigRootPath, "cef.log");
-            Cef.Initialize(settings);
 
             positionManager.RestoreSizeAndLocation(Config);
 

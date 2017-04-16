@@ -25,13 +25,13 @@ namespace PlayniteUI
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public string Version
+        public string VersionInfo
         {
             get
             {
-                return Update.GetCurrentVersion().ToString(2);
+                return "Playnite " + Update.GetCurrentVersion().ToString(2) + " Alpha";
             }
-        }            
+        }
 
         public AboutWindow()
         {
