@@ -78,6 +78,11 @@
                                  DockPanel.Dock="Top" Margin="5"/>
                     <DockPanel DockPanel.Dock="Top" Margin="30,5,5,5">
                         <TextBlock Text="Account name:" />
+                        <TextBlock DockPanel.Dock="Right">           
+                            <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"  RequestNavigate="Hyperlink_RequestNavigate">
+                                What's my account name?
+                            </Hyperlink>
+                        </TextBlock>
                         <TextBox AcceptsReturn="False" Margin="10,0,10,0" IsEnabled="{Binding IsChecked, ElementName=RadioSteamImportLib}"
                                  Text="{Binding SteamAccountName, ElementName=WindowMain}"/>
                     </DockPanel>

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using Playnite.Models;
+using System.Diagnostics;
 
 namespace PlayniteUI.Windows
 {
@@ -309,6 +310,11 @@ namespace PlayniteUI.Windows
             {
                 DatabasePath = dialog.FileName;
             }
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            Process.Start(e.Uri.AbsoluteUri);
         }
     }
 }

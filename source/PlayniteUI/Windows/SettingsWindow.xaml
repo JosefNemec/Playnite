@@ -45,10 +45,15 @@
                                      IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
 
-                        <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5">
+                        <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5">
                             <TextBlock Text="Account name:" DockPanel.Dock="Left"/>
+                            <TextBlock DockPanel.Dock="Right">           
+                                <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name" RequestNavigate="Hyperlink_RequestNavigate">
+                                    What's my account name?
+                                </Hyperlink>
+                            </TextBlock>
                             <TextBox Text="{Binding SteamSettings.AccountName, UpdateSourceTrigger=Explicit}"
-                                     Name="TextSteamAccountName" DockPanel.Dock="Left" Margin="5,0,0,0" IsEnabled="{Binding IsChecked, ElementName=RadioSteamImportLib}"/>
+                                     Name="TextSteamAccountName" DockPanel.Dock="Left" Margin="10,0,10,0" IsEnabled="{Binding IsChecked, ElementName=RadioSteamImportLib}"/>
                         </DockPanel>
                     </DockPanel>
                 </TabItem>

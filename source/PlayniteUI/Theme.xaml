@@ -3549,6 +3549,15 @@
         </Setter>
     </Style>
 
+    <Style TargetType="Hyperlink">
+        <Setter Property="Foreground" Value="LightGray" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="DetailsHyperlink" TargetType="Hyperlink">
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Foreground" Value="LightGray" />        
