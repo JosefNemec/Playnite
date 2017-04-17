@@ -15,9 +15,8 @@
         Title="Playnite Alpha"
         Width="1200" Height="900"  WindowStartupLocation="CenterScreen" Icon="/Images/applogo.ico"
         Background="{StaticResource ControlBackgroundBrush}"
-        Loaded="Window_Loaded"
-        LocationChanged="Window_LocationChanged"
-        SizeChanged="Window_SizeChanged">
+        Loaded="Window_Loaded" Closed="Window_Closed"
+        LocationChanged="Window_LocationChanged" SizeChanged="Window_SizeChanged">
 
     <Window.Resources>
         <local:EnumConverter x:Key="EnumConverter" />
@@ -39,7 +38,7 @@
     </Window.Resources>
 
     <DockPanel>
-        <DockPanel LastChildFill="False" DockPanel.Dock="Top" Background="#222222">
+        <DockPanel LastChildFill="True" DockPanel.Dock="Top" Background="#222222">
             <DockPanel MouseUp="ImageLogo_MouseDown" Name="StackMenu" Cursor="Hand" Margin="10,0,5,0"
                        Opacity="{Binding IsMouseOver, Converter={StaticResource OpacityBoolConverter}, ConverterParameter={StaticResource True}, ElementName=StackMenu}">
                 <Border DockPanel.Dock="Left" Background="Transparent">
@@ -119,7 +118,7 @@
                     </StackPanel>
                 </Border>
             </Popup>
-
+            
             <StackPanel Name="FilterIndicator" Orientation="Horizontal" Cursor="Hand" MouseUp="FilterSwitch_MouseUp" DockPanel.Dock="Right" Margin="30,0,30,0">
                 <Grid>
                     <TextBlock Text="FILTER" VerticalAlignment="Center" FontWeight="Bold" FontSize="16"
@@ -131,9 +130,10 @@
                     <Image Source="/Images/dropdown.png" Width="8" Height="32" DockPanel.Dock="Left"/>
                 </Border>
             </StackPanel>
+
+            <local:ProgressControl x:Name="ProgressControl" DockPanel.Dock="Left" Margin="40,0,40,0" Height="25"/>
         </DockPanel>
-        <local:ProgressControl x:Name="ProgressControl" DockPanel.Dock="Top" Height="30" Padding="5" Visible="Collapsed"/>
-        <local:NotificationBar x:Name="NotificationBar" DockPanel.Dock="Top" Visibility="Collapsed" Margin="10,4,4,4" AutoVisible="True"/>
+        
         <DockPanel>
             <Border BorderThickness="1,0,0,0" BorderBrush="{StaticResource NormalBrush}" DockPanel.Dock="Right" >
                 <controls:FilterSelector x:Name="FilterSelector" Width="140"/>

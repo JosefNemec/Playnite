@@ -5,11 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlayniteUI"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="300">
-    <Grid Background="{StaticResource ControlBackgroundBrush}">
-        <DockPanel>
-            <TextBlock Name="TextDescription" DockPanel.Dock="Left" Text="Test" Margin="5,0,5,0" VerticalAlignment="Center"/>
-            <ProgressBar Name="ProgressBarBar" DockPanel.Dock="Left"/>
-        </DockPanel>
+             d:DesignHeight="35" d:DesignWidth="300">
+    <Grid>
+        <ProgressBar Name="ProgressBarBar" />
+        <TextBlock Name="TextDescription" Margin="10,0,0,0"
+                   VerticalAlignment="Center" HorizontalAlignment="Center" />
     </Grid>
 </UserControl>
