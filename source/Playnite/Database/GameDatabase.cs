@@ -409,7 +409,15 @@ namespace Playnite.Database
 
                     if (newGame.OtherTasks != null)
                     {
-                        existingGame.OtherTasks = new ObservableCollection<GameTask>(existingGame.OtherTasks.Where(a => !a.IsBuiltIn));
+                        if (existingGame.OtherTasks == null)
+                        {
+                            existingGame.OtherTasks = new ObservableCollection<GameTask>();
+                        }
+                        else
+                        {
+                            existingGame.OtherTasks = new ObservableCollection<GameTask>(existingGame.OtherTasks.Where(a => !a.IsBuiltIn));
+                        }
+
                         foreach (var task in newGame.OtherTasks.Reverse())
                         {
                             existingGame.OtherTasks.Insert(0, task);
