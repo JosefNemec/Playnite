@@ -13,11 +13,7 @@
                 <Image Source="/Images/applogo.png" Width="64" Height="64" RenderOptions.BitmapScalingMode="Fant"/>             
 
                 <StackPanel Margin="15,0,0,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Playnite " Foreground="{StaticResource TextBrush}" FontSize="20"/>
-                        <TextBlock Text="{Binding Path=Version, ElementName=MainWindow}" Width="40" Foreground="{StaticResource TextBrush}" FontSize="20"/>
-                        <TextBlock Text="Alpha " Foreground="{StaticResource TextBrush}" FontSize="20"/>
-                    </StackPanel>
+                    <TextBlock Text="{Binding Path=VersionInfo, ElementName=MainWindow}" Foreground="{StaticResource TextBrush}" FontSize="20"/>
                     <TextBlock Text="by Josef Nemec" Foreground="LightGray"/>
                     <TextBlock>
                         <Hyperlink FontSize="12" Style="{DynamicResource DetailsHyperlink}" NavigateUri="http://www.playnite.link" TextDecorations="{x:Null}"

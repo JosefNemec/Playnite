@@ -16,7 +16,7 @@
     <!-- Main Colors -->
 
     <Color x:Key="MainColor">#FF595959</Color>
-    <Color x:Key="MainColorDrak">#222222</Color>
+    <Color x:Key="MainColorDark">#222222</Color>
     <Color x:Key="HoverColor">#FF393939</Color>
     <Color x:Key="DefaultColor">#FF9BB1C5</Color>
     <SolidColorBrush x:Key="LightBrush" Color="#FF333333" />
@@ -30,7 +30,7 @@
 
     <SolidColorBrush x:Key="TextBrush" Color="#FFFFFFFF" />
     <SolidColorBrush x:Key="NormalBrush" Color="{StaticResource MainColor}" />
-    <SolidColorBrush x:Key="NormalBrushDark" Color="{StaticResource MainColorDrak}" />
+    <SolidColorBrush x:Key="NormalBrushDark" Color="{StaticResource MainColorDark}" />
     <SolidColorBrush x:Key="NormalBorderBrush" Color="#FF333333" />
     <SolidColorBrush x:Key="HoverBrush" Color="{StaticResource HoverColor}" />
     <SolidColorBrush x:Key="GlyphBrush" Color="#FFD1D1D1" />
@@ -1588,14 +1588,8 @@
                         <Border HorizontalAlignment="Left" x:Name="PART_Indicator" BorderBrush="{DynamicResource NormalBorderBrush}" BorderThickness="1" CornerRadius="0,0,0,0">
                             <Border.Background>
                                 <LinearGradientBrush EndPoint=".7,1" StartPoint=".7,0">
-                                    <GradientStop Color="#B2FFFFFF" Offset="0" />
-                                    <GradientStop Color="#C6FFFFFF" Offset="0.15" />
-                                    <GradientStop Color="#D1FFFFFF" Offset="0.275" />
-                                    <GradientStop Color="#C6FFFFFF" Offset="0.4" />
-                                    <GradientStop Color="#BFFFFFFF" Offset="0.65" />
-                                    <GradientStop Color="#A5FFFFFF" Offset="0.75" />
-                                    <GradientStop Color="#91FFFFFF" Offset="0.85" />
-                                    <GradientStop Color="#72FFFFFF" Offset="1" />
+                                    <GradientStop Color="DarkGray" Offset="0" />
+                                    <GradientStop Color="{StaticResource MainColor}" Offset="1" />
                                 </LinearGradientBrush>
                             </Border.Background>
                         </Border>
@@ -3488,8 +3482,7 @@
 
     <Style x:Key="PopUpBorder" TargetType="Border">
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="BorderBrush" Value="Gray" />
-        <Setter Property="Background" Value="{StaticResource NormalBrush}" />        
+        <Setter Property="BorderBrush" Value="Gray" />        
     </Style>
     
     <Style x:Key="TextBlockPopupItem" TargetType="TextBlock">
@@ -3547,6 +3540,15 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="Hyperlink">
+        <Setter Property="Foreground" Value="LightGray" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="DetailsHyperlink" TargetType="Hyperlink">

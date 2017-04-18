@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:PlayniteUI"
              StartupUri="Windows\MainWindow.xaml"
              Exit="Application_Exit"
-             Startup="Application_Startup" ShutdownMode="OnMainWindowClose">
+             Startup="Application_Startup" ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
         <ResourceDictionary Source="Theme.xaml"/>         
     </Application.Resources>

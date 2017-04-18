@@ -260,6 +260,7 @@ paket-files/
 # Visual Studio Code stuff
 .vscode/
 
+build/nuget.exe
 build/playnite.exe
 build/playnite.zip
 build/TestPackage/*

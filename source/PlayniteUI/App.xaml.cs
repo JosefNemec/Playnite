@@ -49,6 +49,7 @@ namespace PlayniteUI
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             Settings.ConfigureLogger();
+            Settings.ConfigureCef();
 
 #if !DEBUG
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;

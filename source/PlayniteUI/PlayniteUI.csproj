@@ -207,9 +207,6 @@
     <Compile Include="Controls\GameTaskView.xaml.cs">
       <DependentUpon>GameTaskView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\NotificationBar.xaml.cs">
-      <DependentUpon>NotificationBar.xaml</DependentUpon>
-    </Compile>
     <Compile Include="NotificationCodes.cs" />
     <Compile Include="Controls\ProgressControl.xaml.cs">
       <DependentUpon>ProgressControl.xaml</DependentUpon>
@@ -220,6 +217,9 @@
     </Compile>
     <Compile Include="Windows\MetadataLookupWindow.xaml.cs">
       <DependentUpon>MetadataLookupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\NotificationsWindow.xaml.cs">
+      <DependentUpon>NotificationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
@@ -301,15 +301,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Controls\NotificationBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\ProgressControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MetadataLookupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\NotificationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
