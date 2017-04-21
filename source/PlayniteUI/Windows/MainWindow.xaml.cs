@@ -69,6 +69,7 @@ namespace PlayniteUI
         {
             InitializeComponent();
             positionManager = new WindowPositionHandler(this, "Main");
+            Application.Current.MainWindow = this;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
