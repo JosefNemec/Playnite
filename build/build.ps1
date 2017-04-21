@@ -99,7 +99,7 @@ if ($Portable -and $appCompileSuccess)
 {
     Write-Host "Building portable package..." -ForegroundColor Green
 
-    $packageName = "playnite.zip"
+    $packageName = "PlaynitePortable.zip"
 
     if (Test-path $packageName)
     {

@@ -261,8 +261,8 @@ paket-files/
 .vscode/
 
 build/nuget.exe
-build/playnite.exe
-build/playnite.zip
+build/PlayniteInstaller.exe
+build/PlaynitePortable.zip
 build/TestPackage/*
 build/PlayniteServices/*
 

@@ -6,7 +6,7 @@
 
 Var /GLOBAL ProgressOnly
 Var /GLOBAL Portable
-OutFile "playnite.exe"
+OutFile "PlayniteInstaller.exe"
 Unicode true
 SetCompressor /SOLID lzma
 
