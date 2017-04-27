@@ -8,7 +8,7 @@
              d:DesignHeight="35" d:DesignWidth="300">
     <Grid>
         <ProgressBar Name="ProgressBarBar" />
-        <TextBlock Name="TextDescription" Margin="10,0,0,0"
+        <TextBlock Name="TextProgressDescription" Margin="10,0,0,0"
                    VerticalAlignment="Center" HorizontalAlignment="Center" />
     </Grid>
 </UserControl>

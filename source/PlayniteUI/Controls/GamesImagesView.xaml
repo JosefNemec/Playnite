@@ -102,9 +102,10 @@
                                     </Border.Style>
                                     
                                     <Image RenderOptions.BitmapScalingMode="Fant" Width="{Binding Path=Value, ElementName=SliderZoom}"
-                                           Name="imageImageViewImage" StretchDirection="Both"
-                                           MouseLeftButtonUp="ImageGrid_MouseLeftButtonUp">
-                                        
+                                           Name="ImageViewImage" StretchDirection="Both"
+                                           MouseLeftButtonUp="ImageGrid_MouseLeftButtonUp"
+                                           AutomationProperties.HelpText="{Binding Image}"
+                                           AutomationProperties.Name="{Binding Name}">                                        
                                         <Image.Source>
                                             <PriorityBinding>
                                                 <Binding Path="Image" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Image"/>
@@ -122,31 +123,9 @@
                 
                 <Grid DockPanel.Dock="Right" Grid.Column="2">
                     <playniteUI:GameDetails x:Name="GameDetails"/>
-                    <Grid Width="20" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10" Cursor="Hand"
-                      Background="Transparent" MouseLeftButtonUp="CloseDetailBorder_MouseLeftButtonDown">
-                        <Ellipse Fill="{DynamicResource NormalBrush}" Stroke="{DynamicResource NormalBrush}" Width="20" Height="20"/>
-                        <Path x:Name="ButtonPath" Width="10" Height="10"
-                              Stroke="{DynamicResource TextBrush}"
-                              StrokeThickness="1.5"
-                              StrokeStartLineCap="Square"
-                              StrokeEndLineCap="Square"
-                              Stretch="Uniform"
-                              VerticalAlignment="Center"
-                              HorizontalAlignment="Center">
-                            <Path.Data>
-                                <PathGeometry>
-                                    <PathGeometry.Figures>
-                                        <PathFigure StartPoint="0,0">
-                                            <LineSegment Point="25,25"/>
-                                        </PathFigure>
-                                        <PathFigure StartPoint="0,25">
-                                            <LineSegment Point="25,0"/>
-                                        </PathFigure>
-                                    </PathGeometry.Figures>
-                                </PathGeometry>
-                            </Path.Data>
-                        </Path>
-                    </Grid>
+                    <Image Name="ImageCloseDetails" Source="/Images/close.png" Width="28" Margin="10" Cursor="Hand"
+                           VerticalAlignment="Top" HorizontalAlignment="Right"
+                           MouseLeftButtonUp="CloseDetailBorder_MouseLeftButtonDown"/>
                 </Grid>
             </Grid>
         </DockPanel>

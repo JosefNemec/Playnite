@@ -20,8 +20,10 @@
 
     <Grid>
         <DockPanel>
-            <playniteControls:GamePopupMenuMulti x:Name="PopupGameMulti" />
-            <playniteControls:GamePopupMenu x:Name="PopupGame" StaysOpen="False" Placement="MousePoint"/>
+            <playniteControls:GamePopupMenuMulti x:Name="PopupGameMulti"
+                                                 AutomationProperties.AutomationId="MenuGame"/>
+            <playniteControls:GamePopupMenu x:Name="PopupGame" StaysOpen="False" Placement="MousePoint"
+                                            AutomationProperties.AutomationId="MenuGameMulti"/>
 
             <ListBox Name="ListGames" SelectionMode="Extended"
                      SelectionChanged="GamesListList_SelectionChanged"

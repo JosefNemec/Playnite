@@ -32,7 +32,7 @@
                         ImageSource="{Binding BackgroundImage, IsAsync=True, Mode=OneTime, Converter={StaticResource ImageUrlToImageSourceConverter}}" />
         </Grid.Background>
 
-        <DockPanel Name="gameDetails" Margin="0,10,0,0">
+        <DockPanel Margin="0,10,0,0">
             <playniteControls:GamePopupMenu x:Name="PopupMore" StaysOpen="False" Placement="Relative" VerticalOffset="{Binding ActualHeight, ElementName=ButtonMore}"/>
 
             <DockPanel DockPanel.Dock="Top">
@@ -60,7 +60,7 @@
                             <Button Style="{StaticResource PlayButton}" Name="ButtonPlay" Width="100" HorizontalAlignment="Left" Click="ButtonPlay_Click"
                                     Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}" Content="Play" />
                             <UserControl Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}">
-                                <Button Width="100" Click="ButtonInstall_Click" Content="Install"
+                                <Button Width="100" Click="ButtonInstall_Click" Content="Install" Name="ButtonInstall"
                                     Visibility="{Binding IsInstalled, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}" />
                             </UserControl>
                         </StackPanel>
@@ -71,21 +71,21 @@
                     <StackPanel  Orientation="Horizontal">
                         <TextBlock Margin="0,5,5,5" Background="#66000000" Padding="5" Width="75" TextAlignment="Center"
                                    Visibility="{Binding CommunityHubUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}">                        
-                            <Hyperlink Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding CommunityHubUrl, TargetNullValue={x:Null}}"
+                            <Hyperlink Name="HyperlinkForum" Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding CommunityHubUrl, TargetNullValue={x:Null}}"
                                        TextDecorations="{x:Null}" RequestNavigate="Link_RequestNavigate">
                                 Forum
                             </Hyperlink>
                         </TextBlock>
                         <TextBlock Margin="5" Background="#66000000" Padding="5" Width="75" TextAlignment="Center"
                                    Visibility="{Binding StoreUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}">  
-                            <Hyperlink Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding StoreUrl, TargetNullValue={x:Null}}"
+                            <Hyperlink Name="HyperlinkStore" Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding StoreUrl, TargetNullValue={x:Null}}"
                                        TextDecorations="{x:Null}" RequestNavigate="Link_RequestNavigate">
                                 Store
                             </Hyperlink>
                         </TextBlock>
                         <TextBlock Margin="5,5,0,5" Background="#66000000" Padding="5" Width="75" TextAlignment="Center"
                                    Visibility="{Binding WikiUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}">
-                            <Hyperlink Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding WikiUrl, TargetNullValue={x:Null}}"
+                            <Hyperlink Name="HyperlinkWiki" Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding WikiUrl, TargetNullValue={x:Null}}"
                                        TextDecorations="{x:Null}" RequestNavigate="Link_RequestNavigate">
                                 Wiki
                             </Hyperlink>
@@ -93,7 +93,7 @@
                     </StackPanel>
                 </WrapPanel>
             </DockPanel>            
-            <html:HtmlPanel Name="htmlPanel" Background="Transparent" Text="{Binding DescriptionView, Mode=OneWay}" Margin="10,20,0,0"/>
+            <html:HtmlPanel Background="Transparent" Text="{Binding DescriptionView, Mode=OneWay}" Margin="10,20,0,0"/>
         </DockPanel>
     </Grid>    
 </UserControl>

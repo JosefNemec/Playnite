@@ -262,6 +262,10 @@ namespace Playnite.Database
             CheckDbState();
 
             var file = Database.FileStorage.FindById(id);
+            if (file == null)
+            {
+                return null;
+            }
 
             lock (fileLock)
             {

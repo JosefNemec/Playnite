@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:PlayniteUI.Windows"
         mc:Ignorable="d"
         Title="Oh no, something bad happened..." Height="400" Width="600"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        AutomationProperties.AutomationId="WindowCrash">
     <Grid Background="{DynamicResource NormalBrush}">
-        <DockPanel>
-            
+        <DockPanel>            
             <DockPanel Margin="10" LastChildFill="False" Height="25" DockPanel.Dock="Bottom">
                 <Button Name="ButtonClose" Click="ButtonClose_Click" Content="Close Playnite" Padding="15,0,15,0" DockPanel.Dock="Right" Margin="10,0,0,0"/>
                 <Button Name="ButtonSaveDiag" Click="ButtonSaveDiag_Click" Content="Create diag. package" Padding="15,0,15,0" DockPanel.Dock="Right"/>

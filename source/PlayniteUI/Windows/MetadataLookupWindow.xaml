@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PlayniteUI.Windows"
         mc:Ignorable="d"
         Title="Metadata search" Height="600" Width="800"
-        Background="{StaticResource NormalBrush}" Loaded="Window_Loaded" ResizeMode="CanResizeWithGrip">
+        Background="{StaticResource NormalBrush}" Loaded="Window_Loaded" ResizeMode="CanResizeWithGrip"
+        AutomationProperties.AutomationId="WindowMetaSearch">
     
     <Window.CommandBindings>
         <CommandBinding Command="Search" Executed="Search_Executed" />
@@ -17,9 +18,9 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="35"/>
-        </Grid.RowDefinitions>     
+        </Grid.RowDefinitions>
 
-        <ListBox Grid.Row="0" Grid.Column="0"  Name="ListSearch" HorizontalAlignment="Stretch" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+        <ListBox Name="ListSearch" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                  SelectionChanged="ListSearch_SelectionChanged" MouseDoubleClick="ListSearch_MouseDoubleClick">
             <ListBox.ItemTemplate>
                 <DataTemplate>

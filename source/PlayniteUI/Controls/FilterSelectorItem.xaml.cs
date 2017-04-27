@@ -14,9 +14,89 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Playnite;
+using System.Windows.Automation.Peers;
+using System.Windows.Automation.Provider;
 
 namespace PlayniteUI.Controls
 {
+    public class FilterSelectorItemAutomationPeer : FrameworkElementAutomationPeer, IValueProvider, IToggleProvider
+    {
+        private FilterSelectorItem OwnerControl
+        {
+            get
+            {
+                return (FilterSelectorItem)Owner;
+            }
+        }
+
+        public string Value
+        {
+            get
+            {
+                return OwnerControl.CountText;
+            }
+        }
+
+        public bool IsReadOnly
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public System.Windows.Automation.ToggleState ToggleState
+        {
+            get
+            {
+                if (OwnerControl.IsChecked)
+                {
+                    return System.Windows.Automation.ToggleState.On;
+                }
+                else
+                {
+                    return System.Windows.Automation.ToggleState.Off;
+                }
+            }
+        }
+
+        public FilterSelectorItemAutomationPeer(FilterSelectorItem owner) : base(owner) { }
+
+        protected override string GetClassNameCore()
+        {
+            return "FilterSelectorItem";
+        }
+        protected override AutomationControlType GetAutomationControlTypeCore()
+        {
+            return AutomationControlType.Custom;
+        }
+
+        public override object GetPattern(PatternInterface patternInterface)
+        {
+            if (patternInterface == PatternInterface.Value)
+            {
+                return this;
+            }
+
+            if (patternInterface == PatternInterface.Toggle)
+            {
+                return this;
+            }
+
+            return base.GetPattern(patternInterface);
+        }
+
+        public void SetValue(string value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Toggle()
+        {
+            OwnerControl.IsChecked = !OwnerControl.IsChecked;
+        }
+    }
+
     /// <summary>
     /// Interaction logic for FilterSelectorItem.xaml
     /// </summary>
@@ -84,9 +164,14 @@ namespace PlayniteUI.Controls
             InitializeComponent();
         }
         
-        private void mainControl_MouseUp(object sender, MouseButtonEventArgs e)
+        private void MainControl_MouseUp(object sender, MouseButtonEventArgs e)
         {
             IsChecked = !IsChecked;
+        }
+
+        protected override AutomationPeer OnCreateAutomationPeer()
+        {
+            return new FilterSelectorItemAutomationPeer(this);
         }
     }
 }

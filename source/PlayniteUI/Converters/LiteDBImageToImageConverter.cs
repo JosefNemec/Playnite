@@ -7,11 +7,14 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using Playnite.Database;
+using NLog;
 
 namespace PlayniteUI
 {
     public class LiteDBImageToImageConverter : IValueConverter
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var imageId = (string)value;
@@ -19,9 +22,15 @@ namespace PlayniteUI
             {
                 return DependencyProperty.UnsetValue;
             }
-
+            
             using (var imageData = GameDatabase.Instance.GetFileStream(imageId))
             {
+                if (imageData == null)
+                {
+                    logger.Warn("Image not found in database: " + imageId);
+                    return DependencyProperty.UnsetValue;
+                }
+
                 var bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 bitmap.StreamSource = imageData;

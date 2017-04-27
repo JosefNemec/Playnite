@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Assign category for the game" Height="320" Width="340"
         Background="{StaticResource NormalBrush}"
-        WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+        WindowStartupLocation="CenterScreen" ShowInTaskbar="False"
+        AutomationProperties.AutomationId="WindowCategories">
     <Grid>
         <DockPanel>
             <DockPanel Margin="10" LastChildFill="False" Height="25" DockPanel.Dock="Bottom">

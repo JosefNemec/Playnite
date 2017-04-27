@@ -76,7 +76,7 @@ namespace PlayniteUI.Controls
             }
         }
 
-        private void ListPopupTask_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Task_Click(object sender, RoutedEventArgs e)
         {
             var gameTask = (GameTask)(sender as FrameworkElement).DataContext;
             try
@@ -93,40 +93,40 @@ namespace PlayniteUI.Controls
             }
         }
 
-        private void ListPopupPlay_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Play_Click(object sender, RoutedEventArgs e)
         {
             var game = (IGame)(sender as FrameworkElement).DataContext;
             GamesEditor.Instance.PlayGame(game);
             IsOpen = false;
         }
 
-        private void ListPopupInstall_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Install_Click(object sender, RoutedEventArgs e)
         {
             var game = (IGame)(sender as FrameworkElement).DataContext;
             GamesEditor.Instance.InstallGame(game);
             IsOpen = false;
         }
 
-        private void ListPopupUninstall_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Uninstall_Click(object sender, RoutedEventArgs e)
         {
             var game = (IGame)(sender as FrameworkElement).DataContext;
             GamesEditor.Instance.UnInstallGame(game);
             IsOpen = false;
         }
 
-        private void ListPopupEdit_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Edit_Click(object sender, RoutedEventArgs e)
         {
             GamesEditor.Instance.EditGame((IGame)DataContext);
             IsOpen = false;
         }
 
-        private void ListPopupCategory_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Category_Click(object sender, RoutedEventArgs e)
         {
             GamesEditor.Instance.SetGameCategories((IGame)DataContext);
             IsOpen = false;
         }
 
-        private void ListPopupDelete_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show(
                 "Are you sure you want to remove this game?",
@@ -150,7 +150,7 @@ namespace PlayniteUI.Controls
             IsOpen = false;
         }
 
-        private void ListPopupOpenLocation_MouseUp(object sender, MouseButtonEventArgs e)
+        private void OpenLocation_Click(object sender, RoutedEventArgs e)
         {
             var game = (IGame)(sender as FrameworkElement).DataContext;
             try
@@ -167,7 +167,7 @@ namespace PlayniteUI.Controls
             }
         }
 
-        private void ListPopupHide_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Hide_Click(object sender, RoutedEventArgs e)
         {
             var game = (IGame)(sender as FrameworkElement).DataContext;
             game.Hidden = !game.Hidden;

@@ -9,8 +9,8 @@
              d:DesignHeight="60" d:DesignWidth="300">
 
     <DockPanel Background="{StaticResource ControlBackgroundBrush}">
-        <Image Source="/Images/searchicon.png" DockPanel.Dock="Left" RenderOptions.BitmapScalingMode="HighQuality"/>        
-        <Image Source="/Images/clear.png" Name="ImageClear" DockPanel.Dock="Right" RenderOptions.BitmapScalingMode="HighQuality"
+        <Image Source="/Images/searchicon.png" DockPanel.Dock="Left" RenderOptions.BitmapScalingMode="Fant"/>        
+        <Image Source="/Images/clear.png" Name="ImageClear" DockPanel.Dock="Right" RenderOptions.BitmapScalingMode="Fant"
                MouseUp="clearImage_MouseUp" Margin="0,0,4,0" Visibility="Hidden"/>
         <TextBox Name="TextFilter" BorderThickness="0" VerticalContentAlignment="Center" FontSize="14"                 
                  Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"

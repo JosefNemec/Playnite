@@ -12,21 +12,14 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Popup.Resources>
 
-    <Border Style="{StaticResource PopUpBorder}">
-        <StackPanel Background="{StaticResource NormalBrushDark}">
-            <TextBlock Text="Hide" Style="{StaticResource TextBlockPopupItem}"
-                       MouseLeftButtonUp="Hide_MouseLeftButtonUp"
-                       Visibility="{Binding ShowHideButton, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <TextBlock Text="Show in Library" Style="{StaticResource TextBlockPopupItem}"
-                       MouseLeftButtonUp="UnHide_MouseLeftButtonUp"
-                       Visibility="{Binding ShowUnHideButton, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <TextBlock Text="Edit" Style="{StaticResource TextBlockPopupItem}"
-                       MouseLeftButtonUp="Edit_MouseLeftButtonUp"/>
-            <TextBlock Text="Set Category . . ." Style="{StaticResource TextBlockPopupItem}"
-                       MouseLeftButtonUp="Categories_MouseLeftButtonUp" />
-            <TextBlock Text="Remove" Style="{StaticResource TextBlockPopupItem}"
-                       MouseLeftButtonUp="Remove_MouseLeftButtonUp"
-                       Visibility="{Binding ShowRemoveButton, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        </StackPanel>
-    </Border>
+    <ItemsControl Background="{StaticResource NormalBrushDark}" BorderBrush="{StaticResource NormalBorderBrush}" BorderThickness="2">
+        <MenuItem Header="Hide" Click="Hide_Click"
+                  Visibility="{Binding ShowHideButton, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <MenuItem Header="Show in Library" Click="UnHide_Click"
+                  Visibility="{Binding ShowUnHideButton, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <MenuItem Header="Edit" Click="Edit_Click"/>
+        <MenuItem Header="Set Category..." Click="Categories_Click"/>
+        <MenuItem Header="Remove" Click="Remove_Click"
+                  Visibility="{Binding ShowRemoveButton, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+    </ItemsControl>
 </Popup>

@@ -9,7 +9,7 @@
         Background="{StaticResource NormalBrush}" WindowStartupLocation="CenterOwner"
         Title="Select games to import" Height="400" Width="700" ResizeMode="CanResizeWithGrip"
         Loaded="Window_Loaded"
-        >
+        AutomationProperties.AutomationId="WindowInstalledGames">
     <Window.Resources>
         <playniteUI:IconToImageSourceConverter x:Key="IconToImageSourceConverter" />
     </Window.Resources>
@@ -57,11 +57,11 @@
                    Name="TextDownloading"/>
         
         <DockPanel Margin="0,5,0,0" LastChildFill="False" Grid.Column="0" Grid.Row="1">
-            <Button Content="Browse..." Padding="10,0,10,0" DockPanel.Dock="Left"
+            <Button Name="ButtonBrowse" Content="Browse..." Padding="10,0,10,0" DockPanel.Dock="Left"
                     Click="buttonBrowse_Click"/>
-            <Button Content="Cancel" Padding="10,0,10,0" Margin="10,0,10,0" DockPanel.Dock="Right" IsCancel="True"
+            <Button Name="ButtonCancel" Content="Cancel" Padding="10,0,10,0" Margin="10,0,10,0" DockPanel.Dock="Right" IsCancel="True"
                     Click="buttonCancel_Click"/>
-            <Button Content="Add games" Padding="10,0,10,0" DockPanel.Dock="Right"
+            <Button Name="ButtonOK" Content="Add games" Padding="10,0,10,0" DockPanel.Dock="Right"
                     Click="buttonOK_Click"/>
         </DockPanel>
     </Grid>
