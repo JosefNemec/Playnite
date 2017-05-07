@@ -16,6 +16,10 @@
         <local:BoolToAutoWidthConverter x:Key="BoolToAutoWidthConverter" />        
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <local:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
+
+        <Style x:Key="TextItemStyle" BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,5,0,5" />
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -27,9 +31,9 @@
                 <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
                     <EventSetter Event="MouseRightButtonUp" Handler="Grid_MouseRightButtonUp" />
                     <EventSetter Event="MouseDoubleClick" Handler="Grid_MouseDoubleClick" />
+                    <Setter Property="FontSize" Value="12" />
                 </Style>
             </ListView.ItemContainerStyle>
-
             <ListView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.ContainerStyle>
@@ -37,7 +41,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate>
-                                        <Expander Header="{Binding Name, TargetNullValue=None}" IsExpanded="True" Margin="3">
+                                        <Expander Header="{Binding Name, TargetNullValue='None'}" IsExpanded="True">
                                             <ItemsPresenter />
                                         </Expander>
                                     </ControlTemplate>
@@ -55,7 +59,6 @@
                             <EventSetter Event="Loaded" Handler="GridViewColumnHeader_Loaded" />
                         </Style>                        
                     </GridView.ColumnHeaderContainerStyle>
-                    
                     <GridView.ColumnHeaderContextMenu>
                         <ContextMenu Name="HeaderMenu">
                             <MenuItem Header="Icon"
@@ -110,7 +113,7 @@
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Name, Mode=OneWay}" Padding="0,5,0,5" />
+                                <TextBlock Text="{Binding Name, Mode=OneWay}" Style="{StaticResource TextItemStyle}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -120,7 +123,7 @@
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Developers, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" Padding="0,5,0,5"/>
+                                <TextBlock Text="{Binding Developers, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -130,7 +133,7 @@
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Publishers, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" Padding="0,5,0,5"/>
+                                <TextBlock Text="{Binding Publishers, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -140,7 +143,7 @@
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding ReleaseDate, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" Padding="0,5,0,5"/>
+                                <TextBlock Text="{Binding ReleaseDate, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -150,7 +153,7 @@
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Genres, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" Padding="0,5,0,5"/>
+                                <TextBlock Text="{Binding Genres, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -160,7 +163,7 @@
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding LastActivity, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" Padding="0,5,0,5"/>
+                                <TextBlock Text="{Binding LastActivity, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -170,7 +173,7 @@
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Categories, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" Padding="0,5,0,5"/>
+                                <TextBlock Text="{Binding Categories, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -180,7 +183,7 @@
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding StoreUrl, Mode=OneWay}" Padding="0,5,0,5"/>
+                                <TextBlock Text="{Binding StoreUrl, Mode=OneWay}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -190,7 +193,7 @@
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding WikiUrl, Mode=OneWay}" Padding="0,5,0,5"/>
+                                <TextBlock Text="{Binding WikiUrl, Mode=OneWay}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -200,7 +203,7 @@
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding CommunityHubUrl, Mode=OneWay}" Padding="0,5,0,5"/>
+                                <TextBlock Text="{Binding CommunityHubUrl, Mode=OneWay}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -210,7 +213,7 @@
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding IsInstalled, Mode=OneWay, Converter={StaticResource BoolToYesNoConverter}}" Padding="0,5,0,5"/>
+                                <TextBlock Text="{Binding IsInstalled, Mode=OneWay, Converter={StaticResource BoolToYesNoConverter}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -220,7 +223,7 @@
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding InstallDirectory, Mode=OneWay}" Padding="0,5,0,5"/>
+                                <TextBlock Text="{Binding InstallDirectory, Mode=OneWay}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

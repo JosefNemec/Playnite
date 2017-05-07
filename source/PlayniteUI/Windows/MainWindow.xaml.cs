@@ -33,20 +33,40 @@ namespace PlayniteUI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public Settings Config;
+        public Settings Config
+        {
+            get; set;
+        }
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private static object gamesLock = new object();
         private WindowPositionHandler positionManager;
         private GamesStats gamesStats = new GamesStats();
         public NotificationsWindow NotificationsWin = new NotificationsWindow();
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private bool gameAdditionAllowed = true;
+        public bool GameAdditionAllowed
+        {
+            get
+            {
+                return gameAdditionAllowed;
+            }
+            set
+            {
+                gameAdditionAllowed = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("GameAdditionAllowed"));
+            }
+        }
+
         public string FilterText
         {
             get
             {
-                return textFilter.Text;
+                return SearchBoxFilter.Text;
             }
 
             set
@@ -74,7 +94,6 @@ namespace PlayniteUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Settings.LoadSettings();
             Config = Settings.Instance;
             NotificationsWin.AutoOpen = true;
 
@@ -92,11 +111,11 @@ namespace PlayniteUI
 
             Config.PropertyChanged += Config_PropertyChanged;
             Config.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
-            
-            PopupViewSettings.DataContext = Config;
-            PopupViewMode.DataContext = Config;
+
+            MenuMainMenu.DataContext = this;
+            MenuViewSettings.DataContext = Config;
             FilterSelector.DataContext = new Controls.FilterSelectorConfig(gamesStats, Config.FilterSettings);
-            FilterIndicator.DataContext = Config.FilterSettings;
+            CheckFilterView.DataContext = Config.FilterSettings;
             GridGamesView.HeaderMenu.DataContext = Config;
             
             if (!Config.FirstTimeWizardComplete)
@@ -215,7 +234,7 @@ namespace PlayniteUI
                 await GamesLoaderHandler.ProgressTask;
             }
 
-            TextReloadGames.IsEnabled = false;
+            GameAdditionAllowed = false;
 
             try
             {
@@ -232,9 +251,7 @@ namespace PlayniteUI
                 }
                 catch (Exception exc)
                 {
-                    TextAddGame.IsEnabled = false;
-                    TextAddInstalledGame.IsEnabled = false;
-                    TextReloadGames.IsEnabled = false;
+                    GameAdditionAllowed = false;
                     MessageBox.Show("Failed to open library database: " + exc.Message, "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
@@ -427,7 +444,7 @@ namespace PlayniteUI
             }
             finally
             {
-                TextReloadGames.IsEnabled = true;
+                GameAdditionAllowed = true;
             }
         }
 
@@ -481,13 +498,13 @@ namespace PlayniteUI
 
             // ------------------ Name filter
             bool textResult;
-            if (string.IsNullOrEmpty(textFilter.Text))
+            if (string.IsNullOrEmpty(SearchBoxFilter.Text))
             {
                 textResult = true;
             }
             else
             {
-                textResult = (game.Name.IndexOf(textFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                textResult = (game.Name.IndexOf(SearchBoxFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
             return installedResult && hiddenResult && textResult && providersFilter;
@@ -502,7 +519,7 @@ namespace PlayniteUI
 
             if (e != null && e.PropertyName == "GamesViewType")
             {
-                viewTabControl.SelectedIndex = (int)Config.GamesViewType;
+                //TabControlView.SelectedIndex = (int)Config.GamesViewType;
                 return;
             }
 
@@ -552,7 +569,7 @@ namespace PlayniteUI
                     MainCollectionView.LiveFilteringProperties.Add("Provider");
                     MainCollectionView.Filter = GamesFilter;
 
-                    viewTabControl.SelectedIndex = (int)Config.GamesViewType;
+                    //TabControlView.SelectedIndex = (int)Config.GamesViewType;
                 }
                 else
                 {
@@ -619,20 +636,14 @@ namespace PlayniteUI
 
         private void ImageLogo_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            PopupMenu.PlacementTarget = (UIElement)sender;
-            PopupMenu.IsOpen = true;
+            MenuMainMenu.PlacementTarget = (UIElement)sender;
+            MenuMainMenu.IsOpen = true;
         }
 
         private void ViewConfigElement_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            PopupViewSettings.PlacementTarget = (UIElement)sender;
-            PopupViewSettings.IsOpen = true;
-        }
-
-        private void ViewModeElement_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            PopupViewMode.PlacementTarget = (UIElement)sender;
-            PopupViewMode.IsOpen = true;
+            MenuViewSettings.PlacementTarget = (UIElement)sender;
+            MenuViewSettings.IsOpen = true;
         }
 
         private void ListViewSelection_MouseUp(object sender, MouseButtonEventArgs e)
@@ -650,13 +661,13 @@ namespace PlayniteUI
             Config.GamesViewType = ViewType.Grid;
         }
 
-        private void ReloadGamesPopup_MouseUp(object sender, MouseButtonEventArgs e)
+        private void ReloadGames_Click(object sender, RoutedEventArgs e)
         {
             LoadGames();
-            PopupMenu.IsOpen = false;
+            MenuMainMenu.IsOpen = false;
         }
 
-        private void AddNewGamePopup_MouseUp(object sender, MouseButtonEventArgs e)
+        private void AddNewGame_Click(object sender, RoutedEventArgs e)
         {
             var newGame = new Game()
             {
@@ -665,7 +676,7 @@ namespace PlayniteUI
             };
 
             GameDatabase.Instance.AddGame(newGame);
-            PopupMenu.IsOpen = false;
+            MenuMainMenu.IsOpen = false;
 
             if (GamesEditor.Instance.EditGame(newGame) == true)
             {
@@ -689,7 +700,7 @@ namespace PlayniteUI
             }
         }
 
-        private void AddInstalledGames_MouseUp(object sender, MouseButtonEventArgs e)
+        private void AddInstalledGames_Click(object sender, RoutedEventArgs e)
         {
             var window = new InstalledGamesWindow()
             {
@@ -704,7 +715,7 @@ namespace PlayniteUI
             }
         }
 
-        private void SettingsPopup_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Settings_Click(object sender, RoutedEventArgs e)
         {
             var configWindow = new SettingsWindow()
             {
@@ -720,17 +731,12 @@ namespace PlayniteUI
             }
         }
 
-        private void ExitappPopUp_mouseUp(object sender, MouseButtonEventArgs e)
+        private void Exitappp_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
-        private void HidePopUp_Click(object sender, RoutedEventArgs e)
-        {
-            ((((sender as Control).Parent as StackPanel).Parent as Border).Parent as Popup).IsOpen = false;
-        }
-
-        private void AboutPopup_Click(object sender, RoutedEventArgs e)
+        private void About_Click(object sender, RoutedEventArgs e)
         {
             var aboutWindow = new AboutWindow()
             {
@@ -740,10 +746,10 @@ namespace PlayniteUI
             aboutWindow.ShowDialog();
         }
 
-        private void IssuePopup_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Issue_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start(@"https://github.com/JosefNemec/Playnite/issues/new");
-            PopupMenu.IsOpen = false;
+            MenuMainMenu.IsOpen = false;
         }
 
         private void Window_LocationChanged(object sender, EventArgs e)
@@ -759,18 +765,6 @@ namespace PlayniteUI
             if (IsLoaded)
             {
                 positionManager.SaveSize(Config);
-            }
-        }
-
-        private void FilterSwitch_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (FilterSelector.Visibility == Visibility.Visible)
-            {
-                FilterSelector.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                FilterSelector.Visibility = Visibility.Visible;
             }
         }
     }

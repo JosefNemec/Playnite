@@ -24,12 +24,12 @@ namespace PlayniteUI
         {
             get
             {
-                return TextDescription.Dispatcher.Invoke(() => TextDescription.Text);
+                return TextProgressDescription.Dispatcher.Invoke(() => TextProgressDescription.Text);
             }
 
             set
             {
-                TextDescription.Dispatcher.Invoke(() => TextDescription.Text = value);
+                TextProgressDescription.Dispatcher.Invoke(() => TextProgressDescription.Text = value);
             }
         }
 

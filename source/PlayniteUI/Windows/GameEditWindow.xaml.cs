@@ -254,8 +254,8 @@ namespace PlayniteUI
 
         #endregion Dirty flags
 
-        private CheckBox checkIcon;
-        private CheckBox checkImage;
+        private CheckBox CheckIcon;
+        private CheckBox CheckImage;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -320,7 +320,7 @@ namespace PlayniteUI
                 if (Game.OtherTasks != null)
                 {
                     TempOtherTasks = Playnite.CloneObject.CloneJson<ObservableCollection<GameTask>>(Game.OtherTasks);
-                    controlOtherTasks.ItemsSource = TempOtherTasks;
+                    OtherTasksItems.ItemsSource = TempOtherTasks;
                 }
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowAddPlayAction"));
@@ -412,7 +412,7 @@ namespace PlayniteUI
                 return;
             }
 
-            if (IsNameBindingDirty && checkName.IsChecked == true)
+            if (IsNameBindingDirty && CheckName.IsChecked == true)
             {
                 BindingOperations.GetBindingExpression(TextName, TextBox.TextProperty).UpdateSource();
                 if (Games != null)
@@ -424,7 +424,7 @@ namespace PlayniteUI
                 }
             }
             
-            if (IsGenreBindingDirty && checkGenres.IsChecked == true)
+            if (IsGenreBindingDirty && CheckGenres.IsChecked == true)
             {
                 BindingOperations.GetBindingExpression(TextGenres, TextBox.TextProperty).UpdateSource();
                 if (Games != null)
@@ -436,7 +436,7 @@ namespace PlayniteUI
                 }
             }
             
-            if (IsReleaseDateBindingDirty && checkReleaseDate.IsChecked == true)
+            if (IsReleaseDateBindingDirty && CheckReleaseDate.IsChecked == true)
             {
                 BindingOperations.GetBindingExpression(TextReleaseDate, TextBox.TextProperty).UpdateSource();
                 if (Games != null)
@@ -448,7 +448,7 @@ namespace PlayniteUI
                 }
             }
             
-            if (IsDeveloperBindingDirty && checkDeveloper.IsChecked == true)
+            if (IsDeveloperBindingDirty && CheckDeveloper.IsChecked == true)
             {
                 BindingOperations.GetBindingExpression(TextDeveloper, TextBox.TextProperty).UpdateSource();
                 if (Games != null)
@@ -460,7 +460,7 @@ namespace PlayniteUI
                 }
             }
 
-            if (IsPublisherBindingDirty && checkPublisher.IsChecked == true)
+            if (IsPublisherBindingDirty && CheckPublisher.IsChecked == true)
             {
                 BindingOperations.GetBindingExpression(TextPublisher, TextBox.TextProperty).UpdateSource();
                 if (Games != null)
@@ -472,7 +472,7 @@ namespace PlayniteUI
                 }
             }
             
-            if (IsCategoriesBindingDirty && checkCategories.IsChecked == true)
+            if (IsCategoriesBindingDirty && CheckCategories.IsChecked == true)
             {
                 BindingOperations.GetBindingExpression(TextCategories, TextBox.TextProperty).UpdateSource();
                 if (Games != null)
@@ -484,7 +484,7 @@ namespace PlayniteUI
                 }
             }
 
-            if (IsStoreBindingDirty && checkStore.IsChecked == true)
+            if (IsStoreBindingDirty && CheckStore.IsChecked == true)
             {
                 BindingOperations.GetBindingExpression(TextStore, TextBox.TextProperty).UpdateSource();
                 if (Games != null)
@@ -496,7 +496,7 @@ namespace PlayniteUI
                 }
             }
 
-            if (IsWikiBindingDirty && checkWiki.IsChecked == true)
+            if (IsWikiBindingDirty && CheckWiki.IsChecked == true)
             {
                 BindingOperations.GetBindingExpression(TextWiki, TextBox.TextProperty).UpdateSource();
                 if (Games != null)
@@ -508,7 +508,7 @@ namespace PlayniteUI
                 }
             }
 
-            if (IsForumsBindingDirty && checkForums.IsChecked == true)
+            if (IsForumsBindingDirty && CheckForums.IsChecked == true)
             {
                 BindingOperations.GetBindingExpression(TextForums, TextBox.TextProperty).UpdateSource();
                 if (Games != null)
@@ -520,7 +520,7 @@ namespace PlayniteUI
                 }
             }
 
-            if (IsDescriptionBindingDirty && checkDescription.IsChecked == true)
+            if (IsDescriptionBindingDirty && CheckDescription.IsChecked == true)
             {
                 BindingOperations.GetBindingExpression(TextDescription, TextBox.TextProperty).UpdateSource();
                 if (Games != null)
@@ -532,7 +532,7 @@ namespace PlayniteUI
                 }
             }
 
-            if (IsIconBindingDirty && checkIcon.IsChecked == true)
+            if (IsIconBindingDirty && CheckIcon.IsChecked == true)
             {
                 var iconPath = HttpUtility.UrlDecode(((BitmapImage)ImageIcon.Source).UriSource.AbsolutePath);
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(iconPath);
@@ -567,7 +567,7 @@ namespace PlayniteUI
                 }
             }
 
-            if (IsImageBindingDirty && checkImage.IsChecked == true)
+            if (IsImageBindingDirty && CheckImage.IsChecked == true)
             {
                 var imagePath = HttpUtility.UrlDecode(((BitmapImage)ImageImage.Source).UriSource.AbsolutePath);
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
@@ -713,7 +713,7 @@ namespace PlayniteUI
             if (TempOtherTasks == null)
             {
                 TempOtherTasks = new ObservableCollection<GameTask>();
-                controlOtherTasks.ItemsSource = TempOtherTasks;
+                OtherTasksItems.ItemsSource = TempOtherTasks;
             }
 
             TempOtherTasks.Add(new GameTask()
@@ -766,12 +766,12 @@ namespace PlayniteUI
 
         private void CheckIcon_Loaded(object sender, RoutedEventArgs e)
         {
-            checkIcon = sender as CheckBox;
+            CheckIcon = sender as CheckBox;
         }
 
         private void CheckImage_Loaded(object sender, RoutedEventArgs e)
         {
-            checkImage = sender as CheckBox;
+            CheckImage = sender as CheckBox;
         }
 
         private void MainWindow_LocationChanged(object sender, EventArgs e)

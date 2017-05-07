@@ -51,7 +51,7 @@ namespace PlayniteUI
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
-            if (RadioSteamImportLib.IsChecked == true && string.IsNullOrEmpty(TextSteamAccountName.Text))
+            if (RadioLibrarySteam.IsChecked == true && string.IsNullOrEmpty(TextSteamAccountName.Text))
             {
                 MessageBox.Show("Steam account name cannot be empty.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -77,7 +77,7 @@ namespace PlayniteUI
                 steamEnabled.UpdateSource();
             }
 
-            var steamDownloadLib = RadioSteamImportLib.GetBindingExpression(RadioButton.IsCheckedProperty);
+            var steamDownloadLib = RadioLibrarySteam.GetBindingExpression(RadioButton.IsCheckedProperty);
             if (steamDownloadLib.IsDirty)
             {
                 providerIntegrationChanged = true;
@@ -110,7 +110,7 @@ namespace PlayniteUI
                 gogIcons.UpdateSource();
             }
 
-            var gogDownloadLib = RadioGogImportLib.GetBindingExpression(RadioButton.IsCheckedProperty);
+            var gogDownloadLib = RadioLibraryGOG.GetBindingExpression(RadioButton.IsCheckedProperty);
             if (gogDownloadLib.IsDirty)
             {
                 providerIntegrationChanged = true;
@@ -124,7 +124,7 @@ namespace PlayniteUI
                 originEnabled.UpdateSource();
             }
 
-            var originDownloadLib = RadioOriginImportLib.GetBindingExpression(RadioButton.IsCheckedProperty);
+            var originDownloadLib = RadioLibraryOrigin.GetBindingExpression(RadioButton.IsCheckedProperty);
             if (originDownloadLib.IsDirty)
             {
                 providerIntegrationChanged = true;

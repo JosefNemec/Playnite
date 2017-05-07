@@ -16,7 +16,9 @@
         Width="1200" Height="900"  WindowStartupLocation="CenterScreen" Icon="/Images/applogo.ico"
         Background="{StaticResource ControlBackgroundBrush}"
         Loaded="Window_Loaded" Closed="Window_Closed"
-        LocationChanged="Window_LocationChanged" SizeChanged="Window_SizeChanged">
+        LocationChanged="Window_LocationChanged" SizeChanged="Window_SizeChanged"
+        Name="WindowMain"
+        AutomationProperties.AutomationId="WindowMain">
 
     <Window.Resources>
         <local:EnumConverter x:Key="EnumConverter" />
@@ -24,6 +26,7 @@
         <local:NegateConverter x:Key="NegateConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <local:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
+        <local:BidirectionalEnumAndNumberConverter x:Key="BidirectionalEnumAndNumberConverter" />
         <sys:Boolean x:Key="True">True</sys:Boolean>
         <sys:Boolean x:Key="False">False</sys:Boolean>
         <local:ValueConverterGroup x:Key="EnumCompVisibilityConverter">
@@ -38,117 +41,104 @@
     </Window.Resources>
 
     <DockPanel>
-        <DockPanel LastChildFill="True" DockPanel.Dock="Top" Background="#222222">
-            <DockPanel MouseUp="ImageLogo_MouseDown" Name="StackMenu" Cursor="Hand" Margin="10,0,5,0"
-                       Opacity="{Binding IsMouseOver, Converter={StaticResource OpacityBoolConverter}, ConverterParameter={StaticResource True}, ElementName=StackMenu}">
+        <DockPanel LastChildFill="True" DockPanel.Dock="Top" Background="{StaticResource NormalBrushDark}">
+            <DockPanel MouseUp="ImageLogo_MouseDown" Cursor="Hand" Margin="10,0,5,0"
+                       Opacity="{Binding IsMouseOver, Converter={StaticResource OpacityBoolConverter}, ConverterParameter={StaticResource True}, RelativeSource={RelativeSource Self}}">
                 <Border DockPanel.Dock="Left" Background="Transparent">
                     <Image Source="/Images/applogo.png" Height="40" Name="ImageLogo" RenderOptions.BitmapScalingMode="Fant" Margin="5"/>
                 </Border>
                 <Border DockPanel.Dock="Left" Background="Transparent">
                     <Image Source="/Images/dropdown.png" Width="8" Height="32"/>
                 </Border>
+                <DockPanel.ContextMenu>
+                    <ContextMenu StaysOpen="False" Name="MenuMainMenu" Placement="Bottom">                        
+                        <MenuItem Header="Add Game..." Click="AddNewGame_Click" IsEnabled="{Binding GameAdditionAllowed}"/>
+                        <MenuItem Header="Add Installed Game(s)..." Click="AddInstalledGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
+                        <Separator Style="{DynamicResource {x:Type Separator}}" />
+                        <MenuItem Header="Reload Games List" Click="ReloadGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
+                        <MenuItem Header="Settings..." Click="Settings_Click" />
+                        <MenuItem Header="About Playnite..." Click="About_Click" />
+                        <MenuItem Header="Request Feature or Report Issue..." Click="Issue_Click" />
+                        <Separator Style="{DynamicResource {x:Type Separator}}" />
+                        <MenuItem Header="Exit Playnite" Click="Exitappp_Click" />
+                    </ContextMenu>
+                </DockPanel.ContextMenu>
             </DockPanel>
-            <Popup StaysOpen="False" Name="PopupMenu" Placement="Relative"
-                   VerticalOffset="{Binding ActualHeight, ElementName=ImageLogo}">
-                <Border Style="{StaticResource PopUpBorder}">
-                    <StackPanel Background="{StaticResource NormalBrushDark}">
-                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Add Game . . ." MouseUp="AddNewGamePopup_MouseUp" Name="TextAddGame"/>
-                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Add Installed Game(s) . . ." MouseUp="AddInstalledGames_MouseUp" Name="TextAddInstalledGame"/>
-                        <Separator />
-                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Reload Games List" MouseUp="ReloadGamesPopup_MouseUp" Name="TextReloadGames"/>
-                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Settings . . ." MouseUp="SettingsPopup_MouseUp"/>
-                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="About Playnite . . ." MouseUp="AboutPopup_Click"/>
-                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Request Feature or Report Issue . . ." MouseUp="IssuePopup_MouseUp"/>
-                        <Separator />
-                        <TextBlock Style="{StaticResource TextBlockPopupItem}" Text="Exit Playnite" MouseUp="ExitappPopUp_mouseUp"/>
-                    </StackPanel>
-                </Border>
-            </Popup>
 
-            <controls:SearchBox BorderBrush="DarkGray" Margin="5,8,5,8" DockPanel.Dock="Left" Padding="0"
-                x:Name="textFilter" Height="24" Width="235"
+            <controls:SearchBox Margin="5,8,10,8" DockPanel.Dock="Left" Padding="0"
+                x:Name="SearchBoxFilter" Height="24" Width="235"
                 Text="{Binding FilterText, RelativeSource={RelativeSource AncestorType=Window},
                 Mode=OneWayToSource, Delay=500}" />
 
-            <Border BorderBrush="DarkGray" Background="Transparent" BorderThickness="1,1,1,1" Width="30" Height="24"
-                    Cursor="Hand" MouseUp="ViewConfigElement_MouseUp">
-                <TextBlock Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"/>
+            <Border CornerRadius="3" Background="Transparent" Style="{StaticResource HighlightBorder}"
+                    BorderThickness="2" Width="35" Height="24" Cursor="Hand" MouseUp="ViewConfigElement_MouseUp">
+                <TextBlock Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
+                           Foreground="{StaticResource TextBrush}"/>
+                <Border.ContextMenu>
+                    <ContextMenu StaysOpen="False" Name="MenuViewSettings" Placement="Bottom">
+                        <MenuItem Header="Sort by Name" IsCheckable="True"
+                                  IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Name}}"/>
+                        <MenuItem Header="Sort by Last Activity" IsCheckable="True"
+                                  IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Activity}}"/>
+                        <Separator Style="{DynamicResource {x:Type Separator}}" />
+                        <MenuItem Header="Don't group" IsCheckable="True"
+                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.None}}"/>
+                        <MenuItem Header="Group by Store" IsCheckable="True"
+                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Store}}"/>
+                        <MenuItem Header="Group by Category" IsCheckable="True"
+                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Category}}"/>
+                    </ContextMenu>
+                </Border.ContextMenu>
             </Border>
 
-            <Popup StaysOpen="False" Name="PopupViewSettings" Placement="Relative" VerticalOffset="24">
-                <Border Style="{StaticResource PopUpBorder}">
-                    <StackPanel Background="{StaticResource NormalBrushDark}">
-                        <RadioButton GroupName="order" Content="Sort by Name" Click="HidePopUp_Click"
-                                     Style="{StaticResource PopupRadioItem}"
-                                     IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Name}}"/>
-                        <RadioButton GroupName="order" Content="Sort by Last Activity" Click="HidePopUp_Click"       
-                                     Style="{StaticResource PopupRadioItem}"
-                                     IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Activity}}"/>
-                        <Separator />
-                        <RadioButton GroupName="group" Content="Don't group" Click="HidePopUp_Click"
-                                     Style="{StaticResource PopupRadioItem}"
-                                     IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.None}}"/>
-                        <RadioButton GroupName="group" Content="Group by Store" Click="HidePopUp_Click"
-                                     Style="{StaticResource PopupRadioItem}"
-                                     IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Store}}"/>
-                        <RadioButton GroupName="group" Content="Group by Category" Click="HidePopUp_Click"
-                                     Style="{StaticResource PopupRadioItem}"
-                                     IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Category}}"/>
-                    </StackPanel>
-                </Border>
-            </Popup>
-
-            <Border BorderBrush="DarkGray" Background="Transparent" BorderThickness="1,1,1,1"  Height="24"
-                    Cursor="Hand" MouseUp="ViewModeElement_MouseUp" Margin="5,0,0,0">
-                <TextBlock Text="VIEW" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Padding="5"/>
-            </Border>
-
-            <Popup StaysOpen="False" Name="PopupViewMode" Placement="Relative" VerticalOffset="24">
-                <Border Style="{StaticResource PopUpBorder}">
-                    <StackPanel Background="{StaticResource NormalBrushDark}">
-                        <RadioButton GroupName="view" Content="List" Click="HidePopUp_Click"
-                                     Style="{StaticResource PopupRadioItem}"
-                                     IsChecked="{Binding Path=GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"/>
-                        <RadioButton GroupName="view" Content="Images" Click="HidePopUp_Click"
-                                     Style="{StaticResource PopupRadioItem}"
-                                     IsChecked="{Binding Path=GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.Images}}"/>
-                        <RadioButton GroupName="view" Content="Details" Click="HidePopUp_Click"
-                                     Style="{StaticResource PopupRadioItem}"
-                                     IsChecked="{Binding Path=GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.Grid}}"/>
-                    </StackPanel>
-                </Border>
-            </Popup>
-            
-            <StackPanel Name="FilterIndicator" Orientation="Horizontal" Cursor="Hand" MouseUp="FilterSwitch_MouseUp" DockPanel.Dock="Right" Margin="30,0,30,0">
-                <Grid>
-                    <TextBlock Text="FILTER" VerticalAlignment="Center" FontWeight="Bold" FontSize="16"
-                               Visibility="{Binding Active, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
-                    <TextBlock Text="FILTER" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="#FF6600"
-                               Visibility="{Binding Active, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                </Grid>
-                <Border Padding="5,0,5,0" Background="Transparent">
-                    <Image Source="/Images/dropdown.png" Width="8" Height="32" DockPanel.Dock="Left"/>
-                </Border>
-            </StackPanel>
-
+            <CheckBox Name="CheckFilterView" DockPanel.Dock="Right" Margin="30,0,30,0" IsChecked="True">
+                <CheckBox.Style>
+                    <Style TargetType="CheckBox">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                <StackPanel Orientation="Horizontal" Cursor="Hand" >
+                                    <TextBlock Text="FILTER" VerticalAlignment="Center" FontWeight="Bold" FontSize="16"/>
+                                    <Border Padding="5,0,5,0" Background="Transparent">
+                                        <Image Source="/Images/dropdown.png" Width="8" Height="32" DockPanel.Dock="Left"/>
+                                    </Border>
+                                </StackPanel>
+                            </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Active}" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource IndicatorBrush}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Active}" Value="False">
+                                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>                        
+                </CheckBox.Style>
+            </CheckBox>
             <local:ProgressControl x:Name="ProgressControl" DockPanel.Dock="Left" Margin="40,0,40,0" Height="25"/>
         </DockPanel>
-        
-        <DockPanel>
-            <Border BorderThickness="1,0,0,0" BorderBrush="{StaticResource NormalBrush}" DockPanel.Dock="Right" >
-                <controls:FilterSelector x:Name="FilterSelector" Width="140"/>
-            </Border>
-            <TabControl Name="viewTabControl" BorderThickness="0" Padding="0" DockPanel.Dock="Left">
-                <TabItem Header="List" Visibility="Collapsed">
-                    <controls:GamesListView x:Name="ListGamesView"/>
-                </TabItem>
-                <TabItem Header="Images" Visibility="Collapsed">
-                    <controls:GamesImagesView x:Name="ImagesGamesView"/>
-                </TabItem>
-                <TabItem Header="Grid" Visibility="Collapsed">
-                    <controls:GamesGridView x:Name="GridGamesView" />
-                </TabItem>
-            </TabControl>
-        </DockPanel>
+
+        <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" >
+            <DockPanel>
+                <Border BorderThickness="1,0,0,0" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Right" >
+                    <controls:FilterSelector x:Name="FilterSelector" Width="140"
+                                             Visibility="{Binding IsChecked, ElementName=CheckFilterView, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </Border>
+                <TabControl Name="TabControlView" DockPanel.Dock="Left" TabStripPlacement="Bottom"
+                            SelectedIndex="{Binding Path=GamesViewType, Source={x:Static shared:Settings.Instance}, Converter={StaticResource BidirectionalEnumAndNumberConverter}}">
+                    <TabItem Header="List" >
+                        <controls:GamesListView x:Name="ListGamesView"/>
+                    </TabItem>
+                    <TabItem Header="Covers" >
+                        <controls:GamesImagesView x:Name="ImagesGamesView"/>
+                    </TabItem>
+                    <TabItem Header="Details" >
+                        <controls:GamesGridView x:Name="GridGamesView" />
+                    </TabItem>
+                </TabControl>
+            </DockPanel>
+        </Border>
     </DockPanel>
 </Window>

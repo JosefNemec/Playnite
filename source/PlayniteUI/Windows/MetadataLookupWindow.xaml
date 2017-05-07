@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PlayniteUI.Windows"
         mc:Ignorable="d"
         Title="Metadata search" Height="600" Width="800"
-        Background="{StaticResource NormalBrush}" Loaded="Window_Loaded" ResizeMode="CanResizeWithGrip">
+        Background="{StaticResource NormalBrush}" Loaded="Window_Loaded"
+        AutomationProperties.AutomationId="WindowMetaSearch">
     
     <Window.CommandBindings>
         <CommandBinding Command="Search" Executed="Search_Executed" />
@@ -16,38 +17,43 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="35"/>
-        </Grid.RowDefinitions>     
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <ListBox Grid.Row="0" Grid.Column="0"  Name="ListSearch" HorizontalAlignment="Stretch" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+        <ListBox Name="ListSearch" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                  SelectionChanged="ListSearch_SelectionChanged" MouseDoubleClick="ListSearch_MouseDoubleClick">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel Width="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource AncestorType=ListBox}}">
-                        <TextBlock Text="{Binding title}" DockPanel.Dock="Top" Margin="0,0,10,0" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding snippet}" DockPanel.Dock="Bottom" FontStyle="Italic" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding title}" DockPanel.Dock="Top" Margin="0,0,10,0" FontWeight="Bold" Foreground="{StaticResource TextBrush}"/>
+                        <TextBlock Text="{Binding snippet}" DockPanel.Dock="Bottom" FontStyle="Italic" TextWrapping="Wrap" Foreground="{StaticResource TextBrush}"/>
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Downloading data..." HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Name="TextDownloading"/>
-        
-        <DockPanel Grid.Row="1">
-            <Button Name="ButtonSearch" Command="Search" Content="Search" Padding="5" Margin="3" DockPanel.Dock="Left" />
-            <TextBox Name="TextSearch" Margin="3" DockPanel.Dock="Right" VerticalAlignment="Center">
-                <TextBox.InputBindings>
-                    <KeyBinding Command="Search" Key="Return" />
-                </TextBox.InputBindings>
-            </TextBox>
-        </DockPanel>
+        <Label Grid.Row="0" Grid.Column="0" Content="Downloading data..." Background="Pink"
+               Name="TextDownloading" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
-        <DockPanel Margin="5" LastChildFill="False" Height="25"  Grid.Column="0" Grid.Row="2">
-            <Button Name="ButtonCancel" Content="Cancel" Width="60" DockPanel.Dock="Right" Margin="10,0,10,0"
-                    Click="ButtonCancel_Click" IsCancel="True"/>
-            <Button Name="ButtonOK" Content="OK" Width="60" DockPanel.Dock="Right" IsEnabled="False"
-                    Click="ButtonOK_Click"/>
+        <Border Padding="8" Background="{StaticResource NormalBrushDark}" DockPanel.Dock="Bottom"
+                BorderThickness="0" Grid.Row="1">
+            <DockPanel>
+                <Button Name="ButtonSearch" Command="Search" Content="Search" Padding="10,5,10,5" DockPanel.Dock="Left" />
+                <TextBox Name="TextSearch" Margin="10,0,0,0" DockPanel.Dock="Right" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="Search" Key="Return" />
+                    </TextBox.InputBindings>
+                </TextBox>
+            </DockPanel>
+        </Border>
+
+        <DockPanel Margin="-5,0,-5,-5" LastChildFill="False" Grid.Column="0" Grid.Row="2">
+            <Button Name="ButtonCancel" Content="Cancel" DockPanel.Dock="Right"
+                    Click="ButtonCancel_Click" IsCancel="True"
+                    Style="{StaticResource BottomButton}"/>
+            <Button Name="ButtonOK" Content="Download" DockPanel.Dock="Right" IsEnabled="False"
+                    Click="ButtonOK_Click"
+                    Style="{StaticResource BottomButton}"/>
         </DockPanel>
     </Grid>
 </Window>

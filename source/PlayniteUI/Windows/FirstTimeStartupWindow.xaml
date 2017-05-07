@@ -8,23 +8,24 @@
         mc:Ignorable="d"
         Title="First Time Configuration" WindowStartupLocation="CenterOwner"
         Background="{StaticResource NormalBrush}"
-        Height="330" Width="500" Name="WindowMain">
+        Height="330" Width="500" Name="WindowMain"
+        AutomationProperties.AutomationId="WindowWizard">
 
     <Window.Resources>
         <playniteUI:NegateConverter x:Key="NegateConverter" />
         <playniteUI:EnumBooleanConverter x:Key="EnumBooleanConverter" />
     </Window.Resources>
 
-    <Grid Margin="4">
+    <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TabControl DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0"
                     Name="TabMain"
                     SelectionChanged="TabControl_SelectionChanged">
-            <TabItem Header="Welcome" Visibility="Collapsed">
+            <TabItem Header="Welcome" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
                 <DockPanel LastChildFill="False" Margin="20">
                     <TextBlock Text="Welcome" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
                     <TextBlock Text="This wizard will guide you through automatic game import process and configuration of external game libraries. Playnite can automatically import games from multiple game services like Steam or GOG, and also keep your library up to date by updating it automaticaly during application startup." 
@@ -33,111 +34,110 @@
                                TextWrapping="Wrap" DockPanel.Dock="Top" Margin="0,20,0,0"/>
                 </DockPanel>                
             </TabItem>
-            <TabItem Header="Database" Visibility="Collapsed">
+            <TabItem Header="Database" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
                 <DockPanel Margin="20" LastChildFill="False">
                     <TextBlock Text="Database Location" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
                     <TextBlock Text="Choose location for library database file. Location can be also changed later via Settings menu." DockPanel.Dock="Top" Margin="5,20,5,0" TextWrapping="Wrap"/>
-                    <RadioButton Content="Default program data location for all users" GroupName="database"
+                    <RadioButton Name="RadioDbDefault" Content="Default program data location for all users" GroupName="database"
                                  IsChecked="{Binding Path=DatabaseLocation, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=ProgramData, ElementName=WindowMain}"
                                  DockPanel.Dock="Top" Margin="5,10,5,5"/>
-                    <RadioButton Content="Custom location" GroupName="database" Name="RadioCustomLocation"
+                    <RadioButton Name="RadioDbCustom" Content="Custom location" GroupName="database"
                                  IsChecked="{Binding Path=DatabaseLocation, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Custom, ElementName=WindowMain}"
                                  DockPanel.Dock="Top" Margin="5"/>
-                    <DockPanel DockPanel.Dock="Top" Margin="15,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioCustomLocation}">
-                        <Button Content=". . ." DockPanel.Dock="Right" Padding="5,0,5,0" Name="ButtonBrowserDbFile"
+                    <DockPanel DockPanel.Dock="Top" Margin="15,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioDbCustom}">
+                        <Button Content=" ... " DockPanel.Dock="Right" Padding="5,0,5,0" Name="ButtonBrowserDbFile"
                                 Click="ButtonBrowserDbFile_Click" />
                         <TextBox AcceptsReturn="False" Margin="10,0,5,0" DockPanel.Dock="Left"
-                                 Text="{Binding DatabasePath, ElementName=WindowMain}"/>
+                                 Name="TextDbFile" Text="{Binding DatabasePath, ElementName=WindowMain}"/>
                     </DockPanel>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="General" Visibility="Collapsed">                
+            <TabItem Header="General" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">                
                 <DockPanel Margin="20" LastChildFill="False">
                     <TextBlock Text="External Library Integration" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
                     <TextBlock Text="Automatically import games from following services:" DockPanel.Dock="Top" Margin="5,20,5,0"/>
                     <TextBlock Text="(newly added games will be automatically imported during application start)" DockPanel.Dock="Top" Margin="5,0,5,5"/>
                     <CheckBox Content="Steam" IsChecked="{Binding SteamEnabled, ElementName=WindowMain}"
-                              DockPanel.Dock="Top" Margin="5" />
+                              DockPanel.Dock="Top" Margin="5" Name="CheckEnableSteam" />
                     <CheckBox Content="GOG" IsChecked="{Binding GOGEnabled, ElementName=WindowMain}"
-                              DockPanel.Dock="Top" Margin="5"/>
+                              DockPanel.Dock="Top" Margin="5" Name="CheckEnableGOG"/>
                     <CheckBox Content="Origin" IsChecked="{Binding OriginEnabled, ElementName=WindowMain}"
-                              DockPanel.Dock="Top" Margin="5"/>
+                              DockPanel.Dock="Top" Margin="5" Name="CheckEnableOrigin"/>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Steam" Visibility="Collapsed">
+            <TabItem Header="Steam" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
                 <DockPanel Margin="20" LastChildFill="False">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
                         <Image Source="/Images/steamicon.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
                         <TextBlock Text="Steam Integration" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <RadioButton Content="Only import installed games" GroupName="steam"
+                    <RadioButton Name="RadioInstalledSteam" Content="Only import installed games" GroupName="steam"
                                  IsChecked="{Binding SteamImportLibrary, ElementName=WindowMain, Converter={StaticResource NegateConverter}}"
                                  DockPanel.Dock="Top" Margin="5"/>
-                    <RadioButton Content="Import complete library" GroupName="steam" Name="RadioSteamImportLib"
+                    <RadioButton Name="RadioLibrarySteam" Content="Import complete library" GroupName="steam"
                                  IsChecked="{Binding SteamImportLibrary, ElementName=WindowMain}"
                                  DockPanel.Dock="Top" Margin="5"/>
                     <DockPanel DockPanel.Dock="Top" Margin="30,5,5,5">
-                        <TextBlock Text="Account name:" />
-                        <TextBlock DockPanel.Dock="Right">           
+                        <TextBlock Text="Account name:" VerticalAlignment="Center" />
+                        <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">           
                             <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"  RequestNavigate="Hyperlink_RequestNavigate">
                                 What's my account name?
                             </Hyperlink>
                         </TextBlock>
-                        <TextBox AcceptsReturn="False" Margin="10,0,10,0" IsEnabled="{Binding IsChecked, ElementName=RadioSteamImportLib}"
-                                 Text="{Binding SteamAccountName, ElementName=WindowMain}"/>
+                        <TextBox Name="TextSteamAccount" AcceptsReturn="False" Margin="10,0,10,0" 
+                                 Text="{Binding SteamAccountName, ElementName=WindowMain}"
+                                 IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}"/>
                     </DockPanel>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="GOG" Visibility="Collapsed">
+            <TabItem Header="GOG" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
                 <DockPanel Margin="20" LastChildFill="False">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
                         <Image Source="/Images/gogicon.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
                         <TextBlock Text="GOG Integration" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <RadioButton Content="Only import installed games" GroupName="gog"
+                    <RadioButton Name="RadioInstalledGOG" Content="Only import installed games" GroupName="gog"
                                  IsChecked="{Binding GogImportLibrary, ElementName=WindowMain, Converter={StaticResource NegateConverter}}"
                                  DockPanel.Dock="Top" Margin="5"/>
-                    <RadioButton Content="Import complete library (requires authentication)"
-                                 GroupName="gog" Name="RadioGogImportLib"
-                                 IsChecked="{Binding GogImportLibrary, ElementName=WindowMain}"
-                                 DockPanel.Dock="Top" Margin="5"/>
+                    <RadioButton Name="RadioLibraryGOG" Content="Import complete library (requires authentication)"
+                                 GroupName="gog" DockPanel.Dock="Top" Margin="5"
+                                 IsChecked="{Binding GogImportLibrary, ElementName=WindowMain}" />
                     <Button Content="Authenticate" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Left" Padding="5"
-                            Name="ButtonGogAuthenticate" IsEnabled="{Binding IsChecked, ElementName=RadioGogImportLib}"
+                            Name="ButtonGogAuthenticate" IsEnabled="{Binding IsChecked, ElementName=RadioLibraryGOG}"
                             Click="ButtonGogAuthenticate_Click"/>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Origin" Visibility="Collapsed">
+            <TabItem Header="Origin" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
                 <DockPanel Margin="20" LastChildFill="False">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
                         <Image Source="/Images/originicon.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
                         <TextBlock Text="Origin Integration" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <RadioButton Content="Only import installed games" GroupName="origin"
+                    <RadioButton Name="RadioInstalledOrigin" Content="Only import installed games" GroupName="origin"
                                  IsChecked="{Binding OriginImportLibrary, ElementName=WindowMain, Converter={StaticResource NegateConverter}}"
                                  DockPanel.Dock="Top" Margin="5"/>
-                    <RadioButton Content="Import complete library (requires authentication)"
-                                 GroupName="origin" Name="RadioOriginImportLib"
-                                 IsChecked="{Binding OriginImportLibrary, ElementName=WindowMain}"
-                                 DockPanel.Dock="Top" Margin="5"/>
+                    <RadioButton Name="RadioLibraryOrigin" Content="Import complete library (requires authentication)"
+                                 GroupName="origin" DockPanel.Dock="Top" Margin="5"
+                                 IsChecked="{Binding OriginImportLibrary, ElementName=WindowMain}" />
                     <Button Content="Authenticate" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Left" Padding="5"
-                            Name="ButtonOriginAuthenticate" IsEnabled="{Binding IsChecked, ElementName=RadioOriginImportLib}"
+                            Name="ButtonOriginAuthenticate" IsEnabled="{Binding IsChecked, ElementName=RadioLibraryOrigin}"
                             Click="ButtonOriginAuthenticate_Click"/>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Custom" Visibility="Collapsed">
+            <TabItem Header="Custom" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
                 <DockPanel Margin="20" LastChildFill="False">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
                         <Image Source="/Images/applogo.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
                         <TextBlock Text="Other games" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <TextBlock Text="Click on 'Import Games' button to import other installed games or browser for them manually."
+                    <TextBlock Text="Click on the button bellow to import other installed games or browse for them manually."
                                DockPanel.Dock="Top" Padding="5" TextWrapping="Wrap"/>
-                    <Button Name="ButtonImportGames" HorizontalAlignment="Center" Content="Import Games" DockPanel.Dock="Top" Padding="5"
-                            Click="ButtonImportGames_Click"/>
+                    <Button Name="ButtonImportGames" HorizontalAlignment="Center" Content="Import Games" DockPanel.Dock="Top"
+                            Click="ButtonImportGames_Click" Margin="0,20,0,0"/>
                 </DockPanel>
             </TabItem>
 
-            <TabItem Header="Done" Visibility="Collapsed">
+            <TabItem Header="Done" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
                 <DockPanel LastChildFill="False" Margin="20">
                     <TextBlock Text="Configuration Finished" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
                     <TextBlock Text="Intial setup has been completed. Remember that you can change all settings later via 'Settings' menu." 
@@ -150,13 +150,13 @@
             </TabItem>
         </TabControl>
 
-        <DockPanel Margin="0,5,0,0" LastChildFill="False" Grid.Column="0" Grid.Row="1">
-            <Button Content="Finish" Name="ButtonFinish" Click="ButtonFinish_Click"
-                    DockPanel.Dock="Right" Margin="10,0,5,0" Width="60" />
-            <Button Content="Next" Name="ButtonNext" Click="ButtonNext_Click"
-                    DockPanel.Dock="Right" Margin="10,0,10,0" Width="60" />
-            <Button Content="Back" Name="ButtonBack" Click="ButtonBack_Click"
-                    DockPanel.Dock="Right" Width="60"/>
+        <DockPanel Margin="-5,0,-5,-5" LastChildFill="False" Grid.Column="0" Grid.Row="1">
+            <Button Content="Finish" Name="ButtonFinish" Click="ButtonFinish_Click" DockPanel.Dock="Right" 
+                    Style="{StaticResource BottomButton}" />
+            <Button Content="Next" Name="ButtonNext" Click="ButtonNext_Click" DockPanel.Dock="Right" 
+                    Style="{StaticResource BottomButton}" />
+            <Button Content="Back" Name="ButtonBack" Click="ButtonBack_Click" DockPanel.Dock="Right" 
+                    Style="{StaticResource BottomButton}" />
         </DockPanel>
     </Grid>
 </Window>

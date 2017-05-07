@@ -95,7 +95,7 @@ namespace PlayniteUI.Controls
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        private void Hide_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void Hide_Click(object sender, RoutedEventArgs e)
         {
             foreach (var game in (List<IGame>)DataContext)
             {
@@ -106,7 +106,7 @@ namespace PlayniteUI.Controls
             IsOpen = false;
         }
 
-        private void UnHide_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void UnHide_Click(object sender, RoutedEventArgs e)
         {
             foreach (var game in (List<IGame>)DataContext)
             {
@@ -117,21 +117,21 @@ namespace PlayniteUI.Controls
             IsOpen = false;
         }
 
-        private void Edit_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void Edit_Click(object sender, RoutedEventArgs e)
         {
             var games = (List<IGame>)DataContext;
             GamesEditor.Instance.EditGames(games);
             IsOpen = false;
         }
 
-        private void Categories_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void Categories_Click(object sender, RoutedEventArgs e)
         {
             var games = (List<IGame>)DataContext;
             GamesEditor.Instance.SetGamesCategories(games);
             IsOpen = false;
         }
 
-        private void Remove_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void Remove_Click(object sender, RoutedEventArgs e)
         {
             var games = (List<IGame>)DataContext;
             if (MessageBox.Show(

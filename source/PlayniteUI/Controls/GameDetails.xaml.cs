@@ -83,7 +83,25 @@ namespace PlayniteUI
             if (e.NewValue != null)
             {
                 var game = (IGame)e.NewValue;
-                this.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Theme.BackgroundColors[game.Provider]));
+
+                switch (game.Provider)
+                {
+                    case Provider.Custom:
+                        Background = FindResource("ControlBackgroundBrush") as Brush;
+                        break;
+                    case Provider.GOG:
+                        Background = FindResource("GogGameBackgroundBrush") as Brush;
+                        break;
+                    case Provider.Origin:
+                        Background = FindResource("ControlBackgroundBrush") as Brush;
+                        break;
+                    case Provider.Steam:
+                        Background = FindResource("SteamGameBackgroundBrush") as Brush;
+                        break;
+                    default:
+                        Background = FindResource("ControlBackgroundBrush") as Brush;
+                        break;
+                }
             }
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowContent"));

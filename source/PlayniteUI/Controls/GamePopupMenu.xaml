@@ -1,14 +1,14 @@
 ﻿<Popup x:Class="PlayniteUI.Controls.GamePopupMenu"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-        xmlns:local="clr-namespace:PlayniteUI.Controls"
-        xmlns:playniteUI="clr-namespace:PlayniteUI"
-        xmlns:models="clr-namespace:Playnite.Models;assembly=Playnite"
-        mc:Ignorable="d" 
-        d:DesignHeight="300" d:DesignWidth="300"
-        StaysOpen="False" Placement="MousePoint">
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:local="clr-namespace:PlayniteUI.Controls"
+       xmlns:playniteUI="clr-namespace:PlayniteUI"
+       xmlns:models="clr-namespace:Playnite.Models;assembly=Playnite"
+       mc:Ignorable="d" 
+       d:DesignHeight="300" d:DesignWidth="300"
+       StaysOpen="False" Placement="MousePoint">
 
     <Popup.Resources>
         <playniteUI:EnumConverter x:Key="EnumConverter" />
@@ -27,42 +27,40 @@
         </playniteUI:ValueConverterGroup>
     </Popup.Resources>
 
-    <Border Style="{StaticResource PopUpBorder}">
-        <StackPanel Background="{StaticResource NormalBrushDark}">
-            <UserControl Visibility="{Binding IsSetupInProgress, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}">
-                <StackPanel Visibility="{Binding RelativeSource={RelativeSource AncestorType=Popup}, Path=ShowPlayInstallButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBlock Text="Play" MouseUp="ListPopupPlay_MouseUp" FontWeight="Bold" Style="{StaticResource TextBlockPopupItem}"
-                               Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <UserControl Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}">
-                        <TextBlock Text="Install" MouseUp="ListPopupInstall_MouseUp" FontWeight="Bold" Style="{StaticResource TextBlockPopupItem}"
-                                   Visibility="{Binding IsInstalled, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
-                    </UserControl>
-                    <Separator Name="SeparatorPlayInstall"/>
-                </StackPanel>
-            </UserControl>
-            <ItemsControl ItemsSource="{Binding OtherTasks}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}" MouseUp="ListPopupTask_MouseUp" Style="{StaticResource TextBlockPopupItem}"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <Separator Name="SeparatorTasks"/>
-            
-            <TextBlock Text="Open Game Location" MouseUp="ListPopupOpenLocation_MouseUp" Style="{StaticResource TextBlockPopupItem}"
-                        Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <TextBlock Text="Hide" MouseUp="ListPopupHide_MouseUp" Style="{StaticResource TextBlockPopupItem}"
-                       Visibility="{Binding Hidden, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
-            <TextBlock Text="Show in Library" MouseUp="ListPopupHide_MouseUp" Style="{StaticResource TextBlockPopupItem}"
-                       Visibility="{Binding Hidden, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <TextBlock Text="Edit . . ." MouseUp="ListPopupEdit_MouseUp" Style="{StaticResource TextBlockPopupItem}"/>
-            <TextBlock Text="Set Category . . ." MouseUp="ListPopupCategory_MouseUp" Style="{StaticResource TextBlockPopupItem}"/>
-            <TextBlock Text="Remove" MouseUp="ListPopupDelete_MouseUp" Style="{StaticResource TextBlockPopupItem}"
-                       Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static models:Provider.Custom}}"/>
-            <UserControl Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TextBlock Text="Uninstall" MouseUp="ListPopupUninstall_MouseUp" Style="{StaticResource TextBlockPopupItem}"
-                           Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}"/>
-            </UserControl>
-        </StackPanel>
-    </Border>
+    <ItemsControl Background="{StaticResource PopupBackgroundBrush}" BorderBrush="{StaticResource PopupBorderBrush}" BorderThickness="{StaticResource PopupBorderThickness}">
+        <UserControl Visibility="{Binding IsSetupInProgress, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}">
+            <StackPanel Visibility="{Binding RelativeSource={RelativeSource AncestorType=Popup}, Path=ShowPlayInstallButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <MenuItem Header="Play" Click="Play_Click" FontWeight="Bold"
+                            Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <UserControl Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}">
+                    <MenuItem Header="Install" Click="Install_Click" FontWeight="Bold"
+                                Visibility="{Binding IsInstalled, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                </UserControl>
+                <Separator Name="SeparatorPlayInstall" Margin="0,2,0,2" />
+            </StackPanel>
+        </UserControl>
+        <ItemsControl ItemsSource="{Binding OtherTasks}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <MenuItem Header="{Binding Name}" Click="Task_Click" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Separator Name="SeparatorTasks" Margin="0,2,0,2" />
+
+        <MenuItem Header="Open Game Location" Click="OpenLocation_Click"
+                  Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <MenuItem Header="Hide" Click="Hide_Click"
+                  Visibility="{Binding Hidden, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
+        <MenuItem Header="Show in Library"
+                  Visibility="{Binding Hidden, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <MenuItem Header="Edit..."  Click="Edit_Click" />
+        <MenuItem Header="Set Category..." Click="Category_Click" />
+        <MenuItem Header="Remove" Click="Delete_Click"
+                  Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static models:Provider.Custom}}"/>
+        <UserControl Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <MenuItem Header="Uninstall" Click="Uninstall_Click"
+                      Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}"/>
+        </UserControl>
+    </ItemsControl>
 </Popup>

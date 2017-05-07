@@ -9,25 +9,24 @@
              mc:Ignorable="d">
     <Grid>
         <StackPanel>
-            <local:FilterSelectorItem Text="Installed" CountText="{Binding Path=Stats.Installed, Mode=OneWay}"
-                                      IsChecked="{Binding Settings.Installed}" Padding="5,5,5,3" />
-            <local:FilterSelectorItem Text="Hidden" CountText="{Binding Path=Stats.Hidden, Mode=OneWay}"
-                                      IsChecked="{Binding Settings.Hidden}" Padding="5,0,5,3" />
-            <Separator/>
-            <TextBlock Text="Providers" FontSize="16" Foreground="LightGray" FontStyle="Italic" Margin="5" Padding="5,0,5,3"/>
-            <StackPanel>
-                <local:FilterSelectorItem IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)Steam]}"
+            <local:FilterSelectorItem x:Name="FilterInstalled" Text="Installed" CountText="{Binding Path=Stats.Installed, Mode=OneWay}"
+                                      IsChecked="{Binding Settings.Installed}" Padding="5,5,5,3" Margin="0,5,0,0" />
+            <local:FilterSelectorItem x:Name="FilterHidden" Text="Hidden" CountText="{Binding Path=Stats.Hidden, Mode=OneWay}"
+                                      IsChecked="{Binding Settings.Hidden}" Padding="5,0,5,3" Margin="0,5,0,5"/>
+            <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}"/>            
+            <StackPanel Margin="0,3,0,0">
+                <local:FilterSelectorItem Text="Steam" x:Name="FilterSteam" IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)Steam]}"
                                           CountText="{Binding Path=Stats.Steam, Mode=OneWay}"
-                                          Padding="5,0,5,3" Text="Steam"/>
-                <local:FilterSelectorItem IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)GOG]}"
+                                          Padding="5,0,5,3" Margin="0,5,0,5"/>
+                <local:FilterSelectorItem Text="GOG" x:Name="FilterGOG" IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)GOG]}"
                                           CountText="{Binding Path=Stats.GOG, Mode=OneWay}"
-                                          Padding="5,0,5,3" Text="GOG"/>
-                <local:FilterSelectorItem IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)Origin]}"
+                                          Padding="5,0,5,3" Margin="0,0,0,5" />
+                <local:FilterSelectorItem Text="Origin" x:Name="FilterOrigin" IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)Origin]}"
                                           CountText="{Binding Path=Stats.Origin, Mode=OneWay}"
-                                          Padding="5,0,5,3" Text="Origin"/>
-                <local:FilterSelectorItem IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)Custom]}"
+                                          Padding="5,0,5,3" Margin="0,0,0,5" />
+                <local:FilterSelectorItem Text="Custom" x:Name="FilterCustom" IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)Custom]}"
                                           CountText="{Binding Path=Stats.Custom, Mode=OneWay}"
-                                          Padding="5,0,5,3" Text="Custom" />
+                                          Padding="5,0,5,3" Margin="0,0,0,5" />
             </StackPanel>
         </StackPanel>
     </Grid>
