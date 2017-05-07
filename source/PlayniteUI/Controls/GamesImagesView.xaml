@@ -32,13 +32,15 @@
         <CommandBinding Command="{x:Static commands:GenericCommands.ZoomOutCmd}" Executed="ZoomOut_Executed" />
     </UserControl.CommandBindings>
 
-    <Grid Background="#222222">
+    <Grid Background="{StaticResource NormalBrushDark}">
         <DockPanel>
-            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="4,4,25,6">
-                <Slider Name="SliderZoom" SmallChange="1" Value="180" Maximum="260" Minimum="100"
-                        IsSnapToTickEnabled="True" Width="150" DockPanel.Dock="Right" VerticalAlignment="Center"/>
-                <TextBlock Text="Zoom" DockPanel.Dock="Right" Margin="0,0,10,0"/>
-            </DockPanel>
+            <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Bottom">
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <Label Content="Zoom" DockPanel.Dock="Right" Margin="10,0,10,0"/>
+                    <Slider Name="SliderZoom" SmallChange="1" Value="180" Maximum="260" Minimum="100"
+                            IsSnapToTickEnabled="True" Width="150" DockPanel.Dock="Right" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
             <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -74,7 +76,7 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="GroupItem">
-                                                    <Expander Header="{Binding Name, TargetNullValue=None}" IsExpanded="true" Padding="5" FontSize="16" BorderThickness="0,0,0,1" BorderBrush="Gray">
+                                                    <Expander Header="{Binding Name, TargetNullValue='None'}" IsExpanded="true">
                                                         <ItemsPresenter />
                                                     </Expander>
                                                 </ControlTemplate>
@@ -95,7 +97,7 @@
                                                     <Setter Property="Border.BorderBrush" Value="Transparent"/>
                                                 </Trigger>
                                                 <Trigger Property="Border.IsMouseOver" Value="True">
-                                                    <Setter Property="Border.BorderBrush" Value="LightBlue"/>
+                                                    <Setter Property="Border.BorderBrush" Value="{StaticResource IndicatorBrush}"/>
                                                 </Trigger>
                                             </Style.Triggers>
                                         </Style>
@@ -104,7 +106,7 @@
                                     <Image RenderOptions.BitmapScalingMode="Fant" Width="{Binding Path=Value, ElementName=SliderZoom}"
                                            Name="ImageViewImage" StretchDirection="Both"
                                            MouseLeftButtonUp="ImageGrid_MouseLeftButtonUp"
-                                           AutomationProperties.HelpText="{Binding Image}"
+                                           AutomationProperties.HelpText="{Binding Image, TargetNullValue=''}"
                                            AutomationProperties.Name="{Binding Name}">                                        
                                         <Image.Source>
                                             <PriorityBinding>
@@ -119,9 +121,9 @@
                     </ItemsControl>
                 </ScrollViewer>
 
-                <GridSplitter Grid.Column="1" Width="4" HorizontalAlignment="Stretch"/>
+                <GridSplitter Grid.Column="1" Width="4" HorizontalAlignment="Stretch" Background="{StaticResource NormalBorderBrush}"/>
                 
-                <Grid DockPanel.Dock="Right" Grid.Column="2">
+                <Grid Grid.Column="2">
                     <playniteUI:GameDetails x:Name="GameDetails"/>
                     <Image Name="ImageCloseDetails" Source="/Images/close.png" Width="28" Margin="10" Cursor="Hand"
                            VerticalAlignment="Top" HorizontalAlignment="Right"

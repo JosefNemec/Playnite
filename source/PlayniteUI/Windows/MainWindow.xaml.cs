@@ -35,7 +35,11 @@ namespace PlayniteUI
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public Settings Config;
+        public Settings Config
+        {
+            get; set;
+        }
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private static object gamesLock = new object();
         private WindowPositionHandler positionManager;
@@ -90,7 +94,6 @@ namespace PlayniteUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Settings.LoadSettings();
             Config = Settings.Instance;
             NotificationsWin.AutoOpen = true;
 
@@ -111,7 +114,6 @@ namespace PlayniteUI
 
             MenuMainMenu.DataContext = this;
             MenuViewSettings.DataContext = Config;
-            MenuViewMode.DataContext = Config;
             FilterSelector.DataContext = new Controls.FilterSelectorConfig(gamesStats, Config.FilterSettings);
             CheckFilterView.DataContext = Config.FilterSettings;
             GridGamesView.HeaderMenu.DataContext = Config;
@@ -517,7 +519,7 @@ namespace PlayniteUI
 
             if (e != null && e.PropertyName == "GamesViewType")
             {
-                TabControlView.SelectedIndex = (int)Config.GamesViewType;
+                //TabControlView.SelectedIndex = (int)Config.GamesViewType;
                 return;
             }
 
@@ -567,7 +569,7 @@ namespace PlayniteUI
                     MainCollectionView.LiveFilteringProperties.Add("Provider");
                     MainCollectionView.Filter = GamesFilter;
 
-                    TabControlView.SelectedIndex = (int)Config.GamesViewType;
+                    //TabControlView.SelectedIndex = (int)Config.GamesViewType;
                 }
                 else
                 {
@@ -642,12 +644,6 @@ namespace PlayniteUI
         {
             MenuViewSettings.PlacementTarget = (UIElement)sender;
             MenuViewSettings.IsOpen = true;
-        }
-
-        private void ViewModeElement_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            MenuViewMode.PlacementTarget = (UIElement)sender;
-            MenuViewMode.IsOpen = true;
         }
 
         private void ListViewSelection_MouseUp(object sender, MouseButtonEventArgs e)

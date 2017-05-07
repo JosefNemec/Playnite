@@ -11,11 +11,6 @@ namespace PlayniteUI
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (targetType != typeof(string))
-            {
-                throw new InvalidOperationException("The target must be a String");
-            }
-
             if (value == null)
             {
                 return string.Empty;

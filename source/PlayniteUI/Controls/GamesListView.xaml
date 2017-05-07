@@ -25,9 +25,9 @@
             <playniteControls:GamePopupMenu x:Name="PopupGame" StaysOpen="False" Placement="MousePoint"
                                             AutomationProperties.AutomationId="MenuGameMulti"/>
 
-            <ListBox Name="ListGames" SelectionMode="Extended"
-                     SelectionChanged="GamesListList_SelectionChanged"
-                     DockPanel.Dock="Left" Width="310" ScrollViewer.HorizontalScrollBarVisibility="Hidden" BorderThickness="0" >
+            <ListBox Name="ListGames" SelectionMode="Extended" BorderThickness="0,0,1,0" BorderBrush="{StaticResource NormalBorderBrush}"
+                     SelectionChanged="GamesListList_SelectionChanged" Width="310"
+                     DockPanel.Dock="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                         <EventSetter Event="MouseRightButtonUp" Handler="ListItem_MouseRightButtonUp" />
@@ -41,7 +41,7 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-                                            <Expander Header="{Binding Name, TargetNullValue=None}" IsExpanded="True">
+                                            <Expander Header="{Binding Name, TargetNullValue='None'}" IsExpanded="True">
                                                 <ItemsPresenter />
                                             </Expander>
                                         </ControlTemplate>
@@ -53,22 +53,18 @@
                 </ListBox.GroupStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border Background="Transparent" Width="285">
-                            <DockPanel LastChildFill="True">
-                                <Image Height="32" DockPanel.Dock="Left" RenderOptions.BitmapScalingMode="HighQuality">
-                                    <Image.Source>
-                                        <PriorityBinding>
-                                            <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
-                                            <Binding Path="DefaultIcon" Mode="OneTime"/>
-                                        </PriorityBinding>
-                                    </Image.Source>
-                                </Image>
-                                <Border DockPanel.Dock="Left" Height="32" Margin="5,0,0,0">
-                                    <TextBlock Text="{Binding Name, Mode=OneWay}" TextTrimming="CharacterEllipsis"
-                                               TextAlignment="Left" VerticalAlignment="Center" FontSize="12"/>
-                                </Border>
-                            </DockPanel>
-                        </Border>
+                        <DockPanel Margin="3">
+                            <Image Height="32" RenderOptions.BitmapScalingMode="HighQuality" DockPanel.Dock="Left">
+                                <Image.Source>
+                                    <PriorityBinding>
+                                        <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
+                                        <Binding Path="DefaultIcon" Mode="OneTime"/>
+                                    </PriorityBinding>
+                                </Image.Source>
+                            </Image>                                
+                            <TextBlock Text="{Binding Name, Mode=OneWay}" TextTrimming="CharacterEllipsis" Foreground="{StaticResource TextBrush}"
+                                       Margin="8,0,0,0" VerticalAlignment="Center" DockPanel.Dock="Left" />
+                        </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

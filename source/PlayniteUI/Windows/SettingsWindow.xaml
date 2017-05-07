@@ -6,33 +6,39 @@
         xmlns:local="clr-namespace:PlayniteUI"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="Configuration" ResizeMode="CanResizeWithGrip" Width="500" Height="330"
-        AutomationProperties.AutomationId="WindowSettings">
+        Title="Configuration" Width="500" Height="330"
+        AutomationProperties.AutomationId="WindowSettings"
+        Background="{StaticResource NormalBrush}">
 
     <Window.Resources>
         <local:NegateConverter x:Key="NegateConverter" />
+        
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </Window.Resources>    
     
-    <Grid Background="{StaticResource NormalBrush}">
-        <DockPanel Margin="10">
-            <DockPanel Margin="0,10,0,0" LastChildFill="False" Height="25" DockPanel.Dock="Bottom">
-                <Button Name="ButtonCancel" Click="ButtonCancel_Click" Content="Cancel" Width="60" DockPanel.Dock="Right" Margin="10,0,0,0"/>
-                <Button Name="ButtonOK" Click="ButtonOK_Click" Content="OK" Width="60" DockPanel.Dock="Right"/>
+    <Grid Margin="5">
+        <DockPanel>
+            <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="-5,0,-5,-5"
+                       Background="{StaticResource NormalBrush}">
+                <Button Name="ButtonCancel" Click="ButtonCancel_Click" Content="Cancel" DockPanel.Dock="Right"
+                        Style="{StaticResource BottomButton}" />
+                <Button Name="ButtonOK" Click="ButtonOK_Click" Content="OK" DockPanel.Dock="Right"
+                        Style="{StaticResource BottomButton}" />
             </DockPanel>
             <TabControl DockPanel.Dock="Bottom">
                 <TabItem Header="General" >
-                    <DockPanel Margin="5" LastChildFill="False">
-                        <TextBlock Text="Database location:" DockPanel.Dock="Top" Margin="5"/>
+                    <DockPanel Margin="10" LastChildFill="False">
+                        <Label Content="Database location:" DockPanel.Dock="Top" Margin="5"/>
                         <DockPanel DockPanel.Dock="Top" Margin="5">
-                            <Button Name="ButtonBrowserDbFile" Content=". . ." DockPanel.Dock="Right" Padding="5,0,5,0"
+                            <Button Name="ButtonBrowserDbFile" Content="..." DockPanel.Dock="Right" Padding="5,0,5,0"
                                     Click="ButtonBrowserDbFile_Click"/>                        
                             <TextBox Name="TextDatabase" Text="{Binding DatabasePath, UpdateSourceTrigger=Explicit}"
                                      DockPanel.Dock="Left" Margin="0,0,5,0"/>
                         </DockPanel>
                     </DockPanel>
                 </TabItem>                
-                <TabItem Header="Steam" >
-                    <DockPanel Margin="5" LastChildFill="False">
+                <TabItem Header="Steam">
+                    <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding SteamSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
                                   Name="CheckSteamEnabled" Content="Import Steam Games" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                   DockPanel.Dock="Top" Margin="5"/>
@@ -47,8 +53,8 @@
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
 
                         <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5">
-                            <TextBlock Text="Account name:" DockPanel.Dock="Left"/>
-                            <TextBlock DockPanel.Dock="Right">           
+                            <Label Content="Account name:" DockPanel.Dock="Left" VerticalContentAlignment="Center"/>
+                            <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">           
                                 <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name" RequestNavigate="Hyperlink_RequestNavigate">
                                     What's my account name?
                                 </Hyperlink>
@@ -59,7 +65,7 @@
                     </DockPanel>
                 </TabItem>
                 <TabItem Header="GOG" >
-                    <DockPanel Margin="5" LastChildFill="False">
+                    <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding GOGSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
                                   Name="CheckGogEnabled" Content="Import GOG Games" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                   DockPanel.Dock="Top" Margin="5"/>
@@ -74,7 +80,7 @@
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
                                    LastChildFill="False">
-                            <Button Content="Authenticate" DockPanel.Dock="Left" Padding="5"
+                            <Button Content="Authenticate" DockPanel.Dock="Left"
                                     IsEnabled="{Binding IsChecked, ElementName=RadioLibraryGOG}"
                                     Name="ButtonGogAuth" Click="ButtonGogAuth_Click"/>
                         </DockPanel>
@@ -87,7 +93,7 @@
                     </DockPanel>
                 </TabItem>
                 <TabItem Header="Origin" >
-                    <DockPanel Margin="5" LastChildFill="False">
+                    <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding OriginSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
                                   Name="CheckOriginEnabled" Content="Import Origin Games" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                   DockPanel.Dock="Top" Margin="5"/>
@@ -102,7 +108,7 @@
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
                                    LastChildFill="False">
-                            <Button Content="Authenticate" DockPanel.Dock="Left" Padding="5"
+                            <Button Content="Authenticate" DockPanel.Dock="Left"
                                     IsEnabled="{Binding IsChecked, ElementName=RadioLibraryOrigin}"
                                     Name="ButtonOriginAuth" Click="ButtonOriginAuth_Click"/>
                         </DockPanel>

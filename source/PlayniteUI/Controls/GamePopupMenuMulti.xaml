@@ -12,7 +12,7 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Popup.Resources>
 
-    <ItemsControl Background="{StaticResource NormalBrushDark}" BorderBrush="{StaticResource NormalBorderBrush}" BorderThickness="2">
+    <ItemsControl Background="{StaticResource PopupBackgroundBrush}" BorderBrush="{StaticResource PopupBorderBrush}" BorderThickness="{StaticResource PopupBorderThickness}">
         <MenuItem Header="Hide" Click="Hide_Click"
                   Visibility="{Binding ShowHideButton, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <MenuItem Header="Show in Library" Click="UnHide_Click"

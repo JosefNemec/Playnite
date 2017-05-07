@@ -11,25 +11,26 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
 
-    <Border CornerRadius="2" MouseUp="MainControl_MouseUp" Cursor="Hand" Name="BorderMain">
+    <Border CornerRadius="3" MouseUp="MainControl_MouseUp" Cursor="Hand" Name="BorderMain"
+            BorderThickness="2" BorderBrush="{StaticResource NormalBorderBrush}">
         <Border.Style>
             <Style TargetType="Border">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="True">
-                        <Setter Property="Background" Value="{StaticResource NormalBrush}" />
+                        <Setter Property="Background" Value="{StaticResource PopupBorderBrush}" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding IsMouseOver, ElementName=BorderMain}" Value="True">
-                        <Setter Property="Background" Value="{StaticResource NormalBrush}" />
+                        <Setter Property="Background" Value="{StaticResource IndicatorBrush}" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
         </Border.Style>
 
         <DockPanel LastChildFill="True" Margin="5">
-            <TextBlock Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}}" DockPanel.Dock="Left" FontSize="16" VerticalAlignment="Center"/>
-            <TextBlock Text="(" DockPanel.Dock="Left" FontSize="16" VerticalAlignment="Center" Padding="5,0,0,0"/>
-            <TextBlock Text="{Binding CountText, RelativeSource={RelativeSource AncestorType=UserControl}}" DockPanel.Dock="Left" FontSize="16" VerticalAlignment="Center" />
-            <TextBlock Text=")" DockPanel.Dock="Left" FontSize="16" VerticalAlignment="Center" />
+            <Label Content="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}}" DockPanel.Dock="Left" FontSize="16" VerticalAlignment="Center"/>
+            <Label Content=" (" DockPanel.Dock="Left" FontSize="16" VerticalAlignment="Center" Padding="5,0,0,0"/>
+            <Label Content="{Binding CountText, RelativeSource={RelativeSource AncestorType=UserControl}}" DockPanel.Dock="Left" VerticalAlignment="Center" />
+            <Label Content=")" DockPanel.Dock="Left" FontSize="16" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" />
         </DockPanel>
     </Border>
 </UserControl>

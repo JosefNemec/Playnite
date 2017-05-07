@@ -44,7 +44,7 @@ namespace PlayniteUI.Controls
             InitializeComponent();
         }
 
-        private void clearImage_MouseUp(object sender, MouseButtonEventArgs e)
+        private void ClearImage_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Text = string.Empty;
         }

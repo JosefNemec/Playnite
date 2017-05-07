@@ -14,7 +14,7 @@
         <local:NotificationIconConverter x:Key="NotificationIconConverter" />
     </Window.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">        
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="2">        
         <ListBox Name="ListNotifications" BorderThickness="0" MouseDoubleClick="ListNotifications_MouseDoubleClick" SelectionMode="Single">
             <ListBox.Resources>
                 <Style TargetType="ListBoxItem">
@@ -26,7 +26,7 @@
                     <DockPanel DockPanel.Dock="Top" Margin="0,5,5,5">
                         <Image Source="{Binding Type, Converter={StaticResource NotificationIconConverter}}"
                                Height="20" DockPanel.Dock="Left" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" />
-                        <TextBlock Text="{Binding Text}" VerticalAlignment="Center" DockPanel.Dock="Left" Margin="5,0,0,0" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding Text}" VerticalAlignment="Center" DockPanel.Dock="Left" Margin="5,0,0,0" TextWrapping="Wrap" Foreground="{StaticResource TextBrush}"/>
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

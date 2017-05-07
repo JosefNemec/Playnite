@@ -8,7 +8,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:models="clr-namespace:Playnite.Models;assembly=Playnite"
              xmlns:playniteControls="clr-namespace:PlayniteUI.Controls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="600" DataContextChanged="UserControl_DataContextChanged">
 
     <UserControl.Resources>
@@ -25,7 +25,7 @@
             <BooleanToVisibilityConverter/>
         </local:ValueConverterGroup>
     </UserControl.Resources>
-    
+
     <Grid Visibility="{Binding ShowContent, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
         <Grid.Background>
             <ImageBrush Stretch="Uniform" AlignmentX="Center" AlignmentY="Top" RenderOptions.BitmapScalingMode="Fant"
@@ -45,7 +45,7 @@
                     </Image.Source>
                 </Image>
                 <TextBlock Text="{Binding Name, Mode=OneWay}" FontSize="20" Margin="10,10,0,10" TextWrapping="Wrap" DockPanel.Dock="Left"
-                           HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White">
+                           HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
                     <TextBlock.Effect>
                         <DropShadowEffect ShadowDepth="3"/>
                     </TextBlock.Effect>
@@ -64,36 +64,40 @@
                                     Visibility="{Binding IsInstalled, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}" />
                             </UserControl>
                         </StackPanel>
-                        <Button Name="ButtonSetupProgress" Width="100" Content="Setup Running..." Click="ButtonSetupProgress_Click"
+                        <Button Name="ButtonSetupProgress" Content="Setup Running..." Click="ButtonSetupProgress_Click"
                                 Visibility="{Binding IsSetupInProgress, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
                         <Button Name="ButtonMore" Width="100" Margin="10, 0, 0, 0" Click="ButtonMore_Click" Content="More" />
                     </StackPanel>
                     <StackPanel  Orientation="Horizontal">
-                        <TextBlock Margin="0,5,5,5" Background="#66000000" Padding="5" Width="75" TextAlignment="Center"
+                        <TextBlock Margin="0,5,5,5" Background="#66000000" Padding="7" Width="75" TextAlignment="Center" VerticalAlignment="Center"
                                    Visibility="{Binding CommunityHubUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}">                        
                             <Hyperlink Name="HyperlinkForum" Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding CommunityHubUrl, TargetNullValue={x:Null}}"
-                                       TextDecorations="{x:Null}" RequestNavigate="Link_RequestNavigate">
+                                       RequestNavigate="Link_RequestNavigate">
                                 Forum
                             </Hyperlink>
                         </TextBlock>
-                        <TextBlock Margin="5" Background="#66000000" Padding="5" Width="75" TextAlignment="Center"
+                        <TextBlock Margin="5" Background="#66000000" Padding="7" Width="75" TextAlignment="Center" VerticalAlignment="Center"
                                    Visibility="{Binding StoreUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}">  
                             <Hyperlink Name="HyperlinkStore" Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding StoreUrl, TargetNullValue={x:Null}}"
-                                       TextDecorations="{x:Null}" RequestNavigate="Link_RequestNavigate">
+                                       RequestNavigate="Link_RequestNavigate">
                                 Store
                             </Hyperlink>
                         </TextBlock>
-                        <TextBlock Margin="5,5,0,5" Background="#66000000" Padding="5" Width="75" TextAlignment="Center"
+                        <TextBlock Margin="5,5,0,5" Background="#66000000" Padding="7" Width="75" TextAlignment="Center" VerticalAlignment="Center"
                                    Visibility="{Binding WikiUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}">
                             <Hyperlink Name="HyperlinkWiki" Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding WikiUrl, TargetNullValue={x:Null}}"
-                                       TextDecorations="{x:Null}" RequestNavigate="Link_RequestNavigate">
+                                       RequestNavigate="Link_RequestNavigate">
                                 Wiki
                             </Hyperlink>
                         </TextBlock>
                     </StackPanel>
                 </WrapPanel>
-            </DockPanel>            
-            <html:HtmlPanel Background="Transparent" Text="{Binding DescriptionView, Mode=OneWay}" Margin="10,20,0,0"/>
+            </DockPanel>
+            <ScrollViewer>
+                <html:HtmlPanel Background="Transparent" Text="{Binding DescriptionView, Mode=OneWay}" Margin="10,20,0,0" BorderThickness="0"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+            </ScrollViewer>
         </DockPanel>
     </Grid>    
 </UserControl>

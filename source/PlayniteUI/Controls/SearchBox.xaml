@@ -4,16 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlayniteUI.Controls"
-             mc:Ignorable="d" 
-             BorderThickness="1"
+             mc:Ignorable="d"              
              d:DesignHeight="60" d:DesignWidth="300">
 
-    <DockPanel Background="{StaticResource ControlBackgroundBrush}">
-        <Image Source="/Images/searchicon.png" DockPanel.Dock="Left" RenderOptions.BitmapScalingMode="Fant"/>        
-        <Image Source="/Images/clear.png" Name="ImageClear" DockPanel.Dock="Right" RenderOptions.BitmapScalingMode="Fant"
-               MouseUp="clearImage_MouseUp" Margin="0,0,4,0" Visibility="Hidden"/>
-        <TextBox Name="TextFilter" BorderThickness="0" VerticalContentAlignment="Center" FontSize="14"                 
-                 Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
-                 TextChanged="TextFilter_TextChanged"/>
-    </DockPanel>
+    <Border BorderThickness="2" CornerRadius="2" Background="Transparent" Style="{StaticResource HighlightBorder}">
+        <DockPanel Background="{StaticResource ControlBackgroundBrush}" Name="dock">
+            <Image Source="/Images/searchicon.png" DockPanel.Dock="Left" RenderOptions.BitmapScalingMode="Fant"/>
+            <Image Source="/Images/clear.png" Name="ImageClear" DockPanel.Dock="Right" RenderOptions.BitmapScalingMode="Fant"
+                   MouseUp="ClearImage_MouseUp" Margin="0,0,4,0" Visibility="Hidden"/>
+            <TextBox Name="TextFilter" BorderThickness="0" VerticalContentAlignment="Center" FontSize="14"                 
+                     Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
+                     TextChanged="TextFilter_TextChanged" Foreground="{StaticResource TextBrush}"/>
+        </DockPanel>
+    </Border>
 </UserControl>

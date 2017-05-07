@@ -27,7 +27,7 @@
         </playniteUI:ValueConverterGroup>
     </Popup.Resources>
 
-    <ItemsControl Background="{StaticResource NormalBrushDark}" BorderBrush="{StaticResource NormalBorderBrush}" BorderThickness="2">
+    <ItemsControl Background="{StaticResource PopupBackgroundBrush}" BorderBrush="{StaticResource PopupBorderBrush}" BorderThickness="{StaticResource PopupBorderThickness}">
         <UserControl Visibility="{Binding IsSetupInProgress, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}">
             <StackPanel Visibility="{Binding RelativeSource={RelativeSource AncestorType=Popup}, Path=ShowPlayInstallButton, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <MenuItem Header="Play" Click="Play_Click" FontWeight="Bold"
@@ -36,7 +36,7 @@
                     <MenuItem Header="Install" Click="Install_Click" FontWeight="Bold"
                                 Visibility="{Binding IsInstalled, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
                 </UserControl>
-                <Separator Name="SeparatorPlayInstall"/>
+                <Separator Name="SeparatorPlayInstall" Margin="0,2,0,2" />
             </StackPanel>
         </UserControl>
         <ItemsControl ItemsSource="{Binding OtherTasks}">
@@ -46,7 +46,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Separator Name="SeparatorTasks"/>
+        <Separator Name="SeparatorTasks" Margin="0,2,0,2" />
 
         <MenuItem Header="Open Game Location" Click="OpenLocation_Click"
                   Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"/>

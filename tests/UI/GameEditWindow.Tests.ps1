@@ -1,3 +1,16 @@
+function CleanWindows()
+{
+    if ($windowOpenFile.Exists())
+    {
+        $windowOpenFile.Close()
+    }
+
+    if ($windowGameEdit.Exists())
+    {
+        $windowGameEdit.Close()
+    }
+}
+
 Describe "Edit Window - Basic Test" {
     BeforeAll {
         $windowMain = & (Join-Path $PSScriptRoot "..\Mapping\MainWindow.ps1")
@@ -18,6 +31,8 @@ Describe "Edit Window - Basic Test" {
             "Icon" = Join-Path $PSScriptRoot "..\TestFiles\TestIcon.png";
             "Image" = Join-Path $PSScriptRoot "..\TestFiles\TestCover.jpg";
         }
+
+        $windowMain.Focus()
     }
 
     It "Edit window can be opened" {
@@ -132,6 +147,10 @@ Describe "Edit Window - Basic Test" {
 
         $windowGameEdit.Close()
     }
+
+    AfterAll {
+        CleanWindows
+    }
 }
 
 Describe "Edit Window - Bulk editing" {
@@ -142,7 +161,8 @@ Describe "Edit Window - Categories" {
     BeforeAll {
         $windowMain = & (Join-Path $PSScriptRoot "..\Mapping\MainWindow.ps1")
         $windowGameEdit = & (Join-Path $PSScriptRoot "..\Mapping\GameEditWindow.ps1")
-        $windowCategoryConfig = & (Join-Path $PSScriptRoot "..\Mapping\CategoryConfigWindow.ps1")        
+        $windowCategoryConfig = & (Join-Path $PSScriptRoot "..\Mapping\CategoryConfigWindow.ps1")      
+        $windowMain.Focus()  
     }
 
     It "Cancel doesn't change category" { 
@@ -177,16 +197,29 @@ Describe "Edit Window - Categories" {
 
         $windowGameEdit.Close()
     }
+
+    AfterAll {
+        CleanWindows
+    }
 }
 
 Describe "Edit Window - Icon from EXE" {
 
+    AfterAll {
+        CleanWindows
+    }
 }
 
 Describe "Edit Window - Metadata Download" {
 
+    AfterAll {
+        CleanWindows
+    }
 }
 
 Describe "Edit Window - Tasks" {
 
+    AfterAll {
+        CleanWindows
+    }
 }

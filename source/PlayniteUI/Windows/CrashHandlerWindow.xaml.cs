@@ -57,10 +57,9 @@ namespace PlayniteUI.Windows
             }
         }
 
-        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        private void ButtonReportIssue_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(e.Uri.AbsoluteUri);
-            e.Handled = true;
+            Process.Start(@"https://github.com/JosefNemec/Playnite/issues");
         }
     }
 }

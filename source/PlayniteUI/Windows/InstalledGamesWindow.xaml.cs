@@ -116,13 +116,13 @@ namespace PlayniteUI.Windows
             InitializeComponent();
         }
 
-        private void buttonCancel_Click(object sender, RoutedEventArgs e)
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
             Close();
         }
 
-        private void buttonOK_Click(object sender, RoutedEventArgs e)
+        private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
             games = new List<InstalledGameMetadata>();
             foreach (var program in Programs)
@@ -175,7 +175,7 @@ namespace PlayniteUI.Windows
             Close();
         }
 
-        private void buttonBrowse_Click(object sender, RoutedEventArgs e)
+        private void ButtonBrowse_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog()
             {

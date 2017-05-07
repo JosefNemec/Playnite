@@ -1,4 +1,4 @@
-using module c:\devel\PowerShell\PSNativeAutomation\source\PSNativeAutomation\bin\Debug\PSNativeAutomation.psd1
+using module PSNativeAutomation
 
 class CategoryConfigWindow : Window
 {

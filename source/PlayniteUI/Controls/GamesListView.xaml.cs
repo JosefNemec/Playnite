@@ -113,7 +113,7 @@ namespace PlayniteUI.Controls
                 PopupGameMulti.DataContext = ListGames.SelectedItems.Cast<IGame>().ToList();
                 PopupGameMulti.IsOpen = true;
             }
-            else
+            else if (ListGames.SelectedItems.Count == 1)
             {
                 var game = ListGames.SelectedItem as IGame;
                 PopupGame.DataContext = game;
