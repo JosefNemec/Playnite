@@ -14,6 +14,8 @@
         <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="-5,0,-5,-5">
             <Button Name="ButtonClose" Click="ButtonClose_Click" Content="Close Playnite" DockPanel.Dock="Right" 
                     Style="{StaticResource BottomButton}"/>
+            <Button Name="ButtonRestart" Click="ButtonRestart_Click" Content="Restart Playnite" DockPanel.Dock="Right" 
+                    Style="{StaticResource BottomButton}"/>
             <Button Name="ButtonSaveDiag" Click="ButtonSaveDiag_Click" Content="Create diag. package" DockPanel.Dock="Left"
                     Style="{StaticResource BottomButton}"/>
             <Button Name="ButtonReportIssue" Click="ButtonReportIssue_Click" Content="Report Issue" DockPanel.Dock="Left"

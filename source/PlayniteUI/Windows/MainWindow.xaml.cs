@@ -175,6 +175,8 @@ namespace PlayniteUI
                     logger.Error(exc, "Failed to process update.");
                 }
             });
+
+            Focus();
         }
 
         private void Window_Closed(object sender, EventArgs e)
