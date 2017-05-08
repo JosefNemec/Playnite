@@ -20,6 +20,8 @@ using Microsoft.Win32;
 using Playnite;
 using Playnite.Database;
 using Playnite.Models;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using System.Threading;
 
 namespace PlayniteUI.Windows
 {
@@ -203,17 +205,45 @@ namespace PlayniteUI.Windows
             ListPrograms.ScrollIntoView(game);
         }
 
+        private void ButtonScan_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new CommonOpenFileDialog()
+            {
+                IsFolderPicker = true,
+                Title = "Select folder to scan for executables..."
+            };
+
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                ListPrograms.Visibility = Visibility.Hidden;
+                TextProgresssing.Visibility = Visibility.Visible;
+
+                Task.Factory.StartNew(() =>
+                {
+                    Programs = new ObservableCollection<ImportableProgram>(Playnite.Programs.GetExecutablesFromFolder(dialog.FileName, SearchOption.AllDirectories).Select(a => new ImportableProgram(a)).OrderBy(a => a.Name));
+
+                    ListPrograms.Dispatcher.Invoke(() =>
+                    {
+                        ListPrograms.Visibility = Visibility.Visible;
+                        TextProgresssing.Visibility = Visibility.Hidden;
+                    });
+                });
+            }
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            ListPrograms.Visibility = Visibility.Hidden;
+            TextProgresssing.Visibility = Visibility.Visible;
+
             Task.Factory.StartNew(() =>
             {
+                Programs = new ObservableCollection<ImportableProgram>(Playnite.Programs.GetInstalledPrograms().Select(a => new ImportableProgram(a)).OrderBy(a => a.Name));
+
                 ListPrograms.Dispatcher.Invoke(() =>
                 {
-                    ListPrograms.Visibility = Visibility.Hidden;
-                    TextDownloading.Visibility = Visibility.Visible;
-                    Programs = new ObservableCollection<ImportableProgram>(Playnite.Programs.GetPrograms().Select(a => new ImportableProgram(a)).OrderBy(a => a.Name));
                     ListPrograms.Visibility = Visibility.Visible;
-                    TextDownloading.Visibility = Visibility.Hidden;
+                    TextProgresssing.Visibility = Visibility.Hidden;
                 });
             });            
         }

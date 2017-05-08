@@ -799,7 +799,6 @@ namespace PlayniteUI
         {
             if (IsLoaded)
             {
-                Console.WriteLine("changed" + e.NewSize.Height);
                 positionManager.SaveSize(Settings.Instance);
             }
         }
