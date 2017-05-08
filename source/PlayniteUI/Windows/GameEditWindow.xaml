@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PlayniteUI"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
+        xmlns:models="clr-namespace:Playnite.Models;assembly=Playnite"
         mc:Ignorable="d"
         Title="Edit Game Details"
         Background="{StaticResource NormalBrush}" Height="550" Width="800"
@@ -22,7 +23,11 @@
         <local:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <local:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
-
+        <local:ValueConverterGroup x:Key="EnumCompVisibilityConverterInverted">
+            <local:EnumConverter/>
+            <local:NegateConverter/>
+            <BooleanToVisibilityConverter/>
+        </local:ValueConverterGroup>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </Window.Resources>
 
@@ -31,7 +36,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
+        
         <TabControl Name="TabControlMain" DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0">
             <TabItem Header="General">
                 <Grid Margin="5">
@@ -257,9 +262,22 @@
             </TabItem>
         </TabControl>
 
+        <Grid Name="GridDownload" Visibility="Hidden">
+            <ProgressBar IsIndeterminate="True" Width="350" Height="30" />
+            <TextBlock Text="Downloading..." HorizontalAlignment="Center" VerticalAlignment="Center"/>            
+        </Grid>
+
         <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="1" Margin="-5,0,-5,-5">
-            <Button Name="ButtonDownload" Content=" Download data from Web... " DockPanel.Dock="Left"
-                    Click="ButtonDownload_Click" Style="{StaticResource BottomButton}"/>
+            <Button Name="ButtonDownload" Content=" Download metadata from..." DockPanel.Dock="Left"
+                    Click="ButtonDownload_Click" Style="{StaticResource BottomButton}">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Wiki" Click="MenuWikiDownload_Click" />
+                        <MenuItem Header="Official Store" Click="MenuStoreDownload_Click"
+                                  Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}"/>
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
             <Button Name="ButtonCancel" Content="Cancel" DockPanel.Dock="Right" IsCancel="True"
                     Click="ButtonCancel_Click" Style="{StaticResource BottomButton}"/>
             <Button Name="ButtonOK" Content="Save" DockPanel.Dock="Right"
