@@ -156,18 +156,35 @@ namespace PlayniteUI
 
             Task.Factory.StartNew(() =>
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(1000);
+                var update = new Update();
 
                 try
                 {
-                    if (Update.IsUpdateAvailable)
+                    if (update.IsUpdateAvailable)
                     {
-                        Update.DownloadUpdate();
+                        update.DownloadUpdate();
 
-                        if (MessageBox.Show("New update found, install now?", "Update found", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        try
                         {
-                            Update.InstallUpdate();
+                            update.DownloadReleaseNotes();
                         }
+                        catch (Exception exc)
+                        {
+                            logger.Warn(exc, "Failed to download release notes.");
+                        }
+
+                        Dispatcher.Invoke(() =>
+                        {
+                            var window = new UpdateWindow()
+                            {
+                                Owner = this
+                            };
+
+                            window.SetUpdate(update);
+                            window.Show();
+                            window.Focus();
+                        });
                     }
                 }
                 catch (Exception exc)

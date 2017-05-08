@@ -1,0 +1,47 @@
+﻿<Window x:Class="PlayniteUI.Windows.UpdateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlayniteUI.Windows"
+        xmlns:html="clr-namespace:TheArtOfDev.HtmlRenderer.WPF;assembly=HtmlRenderer.WPF"
+        mc:Ignorable="d"
+        Title="Update Available" Height="500" Width="600" WindowStartupLocation="CenterOwner"
+        Background="{StaticResource NormalBrush}">
+    
+    <Grid Margin="5">        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <DockPanel Background="{StaticResource ControlBackgroundBrush}" Grid.Row="0">
+            <TextBlock Text="Changes since last update:" Style="{StaticResource BaseTextBlockStyle}"
+                       Margin="10" DockPanel.Dock="Top"/>
+            <ScrollViewer DockPanel.Dock="Top">
+                <ItemsControl Name="ItemsNotes">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel Margin="0,5,0,0">
+                                <Border BorderThickness="0,0,0,2" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Top">
+                                    <Label Content="{Binding Version}"  Margin="15,5,0,5"/>
+                                </Border>                                
+                                <html:HtmlPanel Text="{Binding Note}" Foreground="White" Margin="0,5,0,0"
+                                                Background="Transparent" DockPanel.Dock="Top"
+                                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                                HorizontalAlignment="Left"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+        <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="1" Margin="-5,0,-5,-5">
+            <Button Name="ButtonClose" Content="Close" DockPanel.Dock="Right" IsCancel="True"
+                    Click="ButtonClose_Click" Style="{StaticResource BottomButton}"/>
+            <Button Name="ButtonInstall" Content="Install Update" DockPanel.Dock="Right"
+                    Click="ButtonInstall_Click" Style="{StaticResource BottomButton}"/>
+        </DockPanel>
+    </Grid>
+</Window>

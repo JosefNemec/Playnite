@@ -1,10 +1,13 @@
 {
     "stable" : {
-        "version" : "0.60.0.0",
-        "url" : "http://localhost/build/playnite.exe"
-    },
-    "beta" : {
-        "version" : "0.20.0.0",
-        "url" : "http://localhost/build/playnite.exe"
+        "version" : "0.74",
+        "url" : "http://localhost/build/playniteinstaller.exe",
+        "notesUrlRoot" : "http://localhost/update/",
+        "releases" : [            
+            {
+                "version" : "0.74",
+                "file" : "0.74.html"
+            }
+        ]
     }
 }
