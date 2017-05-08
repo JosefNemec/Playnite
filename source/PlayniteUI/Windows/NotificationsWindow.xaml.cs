@@ -133,7 +133,11 @@ namespace PlayniteUI.Windows
 
             if (AutoOpen)
             {
-                Dispatcher.Invoke(() => Show());
+                Dispatcher.Invoke(() =>
+                {
+                    Show();
+                    Focus();
+                });
             }
         }
 

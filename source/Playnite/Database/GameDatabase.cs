@@ -122,6 +122,10 @@ namespace Playnite.Database
             logger.Info("Opening db " + path);
             CloseDatabase();
             database = new LiteDatabase(path);
+
+            // To force litedb to try to open file, should throw exceptuion if something is wrong with db file
+            database.GetCollectionNames();
+
             dbGames = database.GetCollection<IGame>("games");
             if (loadGames == true)
             {
