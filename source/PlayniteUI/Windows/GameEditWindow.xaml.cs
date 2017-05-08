@@ -716,11 +716,19 @@ namespace PlayniteUI
                 OtherTasksItems.ItemsSource = TempOtherTasks;
             }
 
-            TempOtherTasks.Add(new GameTask()
+            var newTask = new GameTask()
             {
                 Name = "New Action",
                 IsBuiltIn = false
-            });
+            };
+
+            if (TempPlayTask != null && TempPlayTask.Type == GameTaskType.File)
+            {
+                newTask.WorkingDir = TempPlayTask.WorkingDir;
+                newTask.Path = TempPlayTask.Path;
+            }
+
+            TempOtherTasks.Add(newTask);
         }
 
         private void ButtonDeleteAction_Click(object sender, RoutedEventArgs e)
