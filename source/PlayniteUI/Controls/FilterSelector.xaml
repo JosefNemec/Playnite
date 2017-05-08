@@ -10,11 +10,11 @@
     <Grid>
         <StackPanel>
             <local:FilterSelectorItem x:Name="FilterInstalled" Text="Installed" CountText="{Binding Path=Stats.Installed, Mode=OneWay}"
-                                      IsChecked="{Binding Settings.Installed}" Padding="5,5,5,3" Margin="0,5,0,0" />
+                                      IsChecked="{Binding Settings.Installed}" Padding="5,5,5,3" Margin="5,5,5,0" />
             <local:FilterSelectorItem x:Name="FilterHidden" Text="Hidden" CountText="{Binding Path=Stats.Hidden, Mode=OneWay}"
-                                      IsChecked="{Binding Settings.Hidden}" Padding="5,0,5,3" Margin="0,5,0,5"/>
+                                      IsChecked="{Binding Settings.Hidden}" Padding="5,0,5,3" Margin="5,5,5,5"/>
             <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}"/>            
-            <StackPanel Margin="0,3,0,0">
+            <StackPanel Margin="5,3,5,0">
                 <local:FilterSelectorItem Text="Steam" x:Name="FilterSteam" IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)Steam]}"
                                           CountText="{Binding Path=Stats.Steam, Mode=OneWay}"
                                           Padding="5,0,5,3" Margin="0,5,0,5"/>
