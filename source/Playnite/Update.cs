@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NLog;
+using System.Windows;
 
 namespace Playnite
 {
@@ -86,7 +87,16 @@ namespace Playnite
         {            
             var portable = Settings.IsPortable ? "/Portable 1" : "/Portable 0";
             logger.Info("Installing new update to {0}, in {1} mode", Paths.ProgramFolder, portable);
-            Process.Start(updaterPath, string.Format(@"/ProgressOnly 1 {0} /D={1}", portable, Paths.ProgramFolder));
+
+            Task.Factory.StartNew(() =>
+            {
+                Process.Start(updaterPath, string.Format(@"/ProgressOnly 1 {0} /D={1}", portable, Paths.ProgramFolder));
+            });
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Application.Current.MainWindow.Close();
+            });
         }
 
         public static Version GetCurrentVersion()
