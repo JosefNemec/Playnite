@@ -46,6 +46,11 @@ namespace PlayniteUI
                 return;
             }
 
+            if (window.Left < 0 || window.Top < 0)
+            {
+                return;
+            }
+
             if (!config.WindowPositions.ContainsKey(windowName))
             {
                 config.WindowPositions[windowName] = new Settings.WindowPosition();
