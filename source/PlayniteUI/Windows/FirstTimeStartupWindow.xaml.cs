@@ -23,6 +23,43 @@ namespace PlayniteUI.Windows
     /// </summary>
     public partial class FirstTimeStartupWindow : Window, INotifyPropertyChanged
     {
+        private string loginReuiredMessage = "Login Required";
+        private string loginOKMessage = "OK";
+
+        private Playnite.Providers.GOG.WebApiClient gogApiClient = new Playnite.Providers.GOG.WebApiClient();
+
+        public string GogLoginStatus
+        {
+            get
+            {
+                if (gogApiClient.GetLoginRequired())
+                {
+                    return loginReuiredMessage;
+                }
+                else
+                {
+                    return loginOKMessage;
+                }
+            }
+        }
+
+        private Playnite.Providers.Origin.WebApiClient originApiClient = new Playnite.Providers.Origin.WebApiClient();
+
+        public string OriginLoginStatus
+        {
+            get
+            {
+                if (originApiClient.GetLoginRequired())
+                {
+                    return loginReuiredMessage;
+                }
+                else
+                {
+                    return loginOKMessage;
+                }
+            }
+        }
+
         #region Database
         public enum DbLocation
         {
@@ -287,15 +324,15 @@ namespace PlayniteUI.Windows
         }
 
         private void ButtonGogAuthenticate_Click(object sender, RoutedEventArgs e)
-        {
-            var api = new Playnite.Providers.GOG.WebApiClient();
-            api.Login();
+        {            
+            gogApiClient.Login();
+            OnPropertyChanged("GogLoginStatus");
         }
 
         private void ButtonOriginAuthenticate_Click(object sender, RoutedEventArgs e)
         {
-            var api = new Playnite.Providers.Origin.WebApiClient();
-            api.Login();
+            originApiClient.Login();
+            OnPropertyChanged("OriginLoginStatus");
         }
 
         private void ButtonBrowserDbFile_Click(object sender, RoutedEventArgs e)

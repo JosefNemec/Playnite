@@ -95,6 +95,11 @@
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontFamily" Value="Trebuchet MS" />
         <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <SolidColorBrush x:Key="SteamGameBackgroundBrush" Color="#1B2838" />

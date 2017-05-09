@@ -13,14 +13,52 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace PlayniteUI
 {
     /// <summary>
     /// Interaction logic for Configuration.xaml
     /// </summary>
-    public partial class SettingsWindow : Window
+    public partial class SettingsWindow : Window, INotifyPropertyChanged
     {
+        private string loginReuiredMessage = "Login Required";
+        private string loginOKMessage = "OK";
+
+        private Playnite.Providers.GOG.WebApiClient gogApiClient = new Playnite.Providers.GOG.WebApiClient();
+
+        public string GogLoginStatus
+        {
+            get
+            {
+                if (gogApiClient.GetLoginRequired())
+                {
+                    return loginReuiredMessage;
+                }
+                else
+                {
+                    return loginOKMessage;
+                }
+            }
+        }
+
+        private Playnite.Providers.Origin.WebApiClient originApiClient = new Playnite.Providers.Origin.WebApiClient();
+
+        public string OriginLoginStatus
+        {
+            get
+            {
+                if (originApiClient.GetLoginRequired())
+                {
+                    return loginReuiredMessage;
+                }
+                else
+                {
+                    return loginOKMessage;
+                }
+            }
+        }
+
         private bool providerIntegrationChanged = false;
         public bool ProviderIntegrationChanged
         {
@@ -38,6 +76,8 @@ namespace PlayniteUI
                 return databaseLocationChanged;
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public SettingsWindow()
         {
@@ -137,20 +177,22 @@ namespace PlayniteUI
 
         private void ButtonGogAuth_Click(object sender, RoutedEventArgs e)
         {
-            var api = new Playnite.Providers.GOG.WebApiClient();
-            if (api.Login(this))
+            if (gogApiClient.Login(this))
             {
                 providerIntegrationChanged = true;
             }
+
+            OnPropertyChanged("GogLoginStatus");
         }
 
         private void ButtonOriginAuth_Click(object sender, RoutedEventArgs e)
         {
-            var api = new Playnite.Providers.Origin.WebApiClient();
-            if (api.Login(this))
+            if (originApiClient.Login(this))
             {
                 providerIntegrationChanged = true;
             }
+
+            OnPropertyChanged("OriginLoginStatus");
         }
 
         private void ButtonBrowserDbFile_Click(object sender, RoutedEventArgs e)
@@ -169,6 +211,11 @@ namespace PlayniteUI
         private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {
             Process.Start(e.Uri.AbsoluteUri);
+        }
+
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

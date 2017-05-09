@@ -74,15 +74,22 @@
                                      IsChecked="{Binding GOGSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <RadioButton Name="RadioLibraryGOG" Content="Import complete library"
+                        <RadioButton Name="RadioLibraryGOG" Content="Import complete library (requires authentication)"
                                      IsChecked="{Binding GOGSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
                                    LastChildFill="False">
-                            <Button Content="Authenticate" DockPanel.Dock="Left"
-                                    IsEnabled="{Binding IsChecked, ElementName=RadioLibraryGOG}"
-                                    Name="ButtonGogAuth" Click="ButtonGogAuth_Click"/>
+                            <Button Content="Authenticate" Name="ButtonGogAuth" Click="ButtonGogAuth_Click"/>
+                            <TextBlock Text="Login status:" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                            <TextBlock VerticalAlignment="Center">
+                                <TextBlock.Text>
+                                    <PriorityBinding>
+                                        <Binding Path="GogLoginStatus" IsAsync="True" Mode="OneWay" RelativeSource="{RelativeSource AncestorType=Window}" />
+                                        <Binding Source="Checking..." />
+                                    </PriorityBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
                         </DockPanel>
                         <CheckBox IsChecked="{Binding GOGSettings.UseRealIcon, UpdateSourceTrigger=Explicit}" Visibility="Collapsed"
                                   Name="CheckGogIcons" Content="Use executable icons instead of GOG icon images"
@@ -102,15 +109,22 @@
                                      IsChecked="{Binding OriginSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <RadioButton Name="RadioLibraryOrigin" Content="Import complete library"
+                        <RadioButton Name="RadioLibraryOrigin" Content="Import complete library (requires authentication)"
                                      IsChecked="{Binding OriginSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
                                    LastChildFill="False">
-                            <Button Content="Authenticate" DockPanel.Dock="Left"
-                                    IsEnabled="{Binding IsChecked, ElementName=RadioLibraryOrigin}"
-                                    Name="ButtonOriginAuth" Click="ButtonOriginAuth_Click"/>
+                            <Button Content="Authenticate" Name="ButtonOriginAuth" Click="ButtonOriginAuth_Click"/>
+                            <TextBlock Text="Login status:" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                            <TextBlock VerticalAlignment="Center">
+                                <TextBlock.Text>
+                                    <PriorityBinding>
+                                        <Binding Path="OriginLoginStatus" IsAsync="True" Mode="OneWay" RelativeSource="{RelativeSource AncestorType=Window}" />
+                                        <Binding Source="Checking..." />
+                                    </PriorityBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
                         </DockPanel>
                     </DockPanel>
                 </TabItem>
