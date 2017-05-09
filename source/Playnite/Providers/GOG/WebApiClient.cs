@@ -87,17 +87,10 @@ namespace Playnite.Providers.GOG
                 var stringData = Web.DownloadString(string.Format(baseUrl, id));
                 return JsonConvert.DeserializeObject<ProductApiDetail>(stringData);
             }
-            catch (WebException e)
+            catch (WebException exc)
             {
-                var response = (HttpWebResponse)e.Response;
-                if (response.StatusCode == HttpStatusCode.NotFound)
-                {
-                    return null;
-                }
-                else
-                {
-                    throw;
-                }
+                logger.Warn(exc, "Failed to download origin game details for " + id);
+                return null;
             }
         }
 

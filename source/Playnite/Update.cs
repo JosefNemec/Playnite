@@ -8,26 +8,60 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NLog;
+using System.Windows;
 
 namespace Playnite
 {
-    public class UpdateData
-    {
-        public string version
-        {
-            get; set;
-        }
-
-        public string url
-        {
-            get; set;
-        }
-    }
-
-    // TODO: cleanup and convert from static
     public class Update
     {
-        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
+        public class UpdateData
+        {
+            public class ReleaseNote
+            {
+                public string version
+                {
+                    get; set;
+                }
+
+                public string file
+                {
+                    get; set;
+                }
+            }
+
+            public string version
+            {
+                get; set;
+            }
+
+            public string url
+            {
+                get; set;
+            }
+
+            public string notesUrlRoot
+            {
+                get; set;
+            }
+
+            public List<ReleaseNote> releases
+            {
+                get; set;
+            }
+        }
+
+        public class ReleaseNoteData
+        {
+            public string Version
+            {
+                get; set;
+            }
+
+            public string Note
+            {
+                get; set;
+            }
+        }
 
         private static string updateDataUrl
         {
@@ -37,11 +71,31 @@ namespace Playnite
             }
         }
 
-        private static UpdateData latestData;
-        private static string updaterPath = Path.Combine(Paths.TempPath, "playnite.exe");
-        private static string downloadCompletePath = Path.Combine(Paths.TempPath, "download.done");
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private UpdateData latestData;
 
-        public static bool IsUpdateAvailable
+        private string updaterPath
+        {
+            get
+            {
+                return Path.Combine(Paths.TempPath, "update.exe");
+            }
+        }
+
+        private string downloadCompletePath
+        {
+            get
+            {
+                return Path.Combine(Paths.TempPath, "download.done");
+            }
+        }
+
+        public List<ReleaseNoteData> LatestReleaseNotes
+        {
+            get; set;
+        }
+
+        public bool IsUpdateAvailable
         {
             get
             {
@@ -49,7 +103,27 @@ namespace Playnite
             }
         }
 
-        public static void DownloadUpdate()
+        public void DownloadReleaseNotes()
+        {
+            LatestReleaseNotes = new List<ReleaseNoteData>();
+            var current = GetCurrentVersion();
+
+            foreach (var version in latestData.releases)
+            {
+                if ((new Version(version.version)).CompareTo(current) > 0)
+                {
+                    var noteUrl = latestData.notesUrlRoot + version.file;
+                    var note = Web.DownloadString(noteUrl);
+                    LatestReleaseNotes.Add(new ReleaseNoteData()
+                    {
+                        Version = version.version,
+                        Note = note
+                    });
+                }
+            }
+        }           
+
+        public void DownloadUpdate()
         {
             if (latestData == null)
             {
@@ -59,13 +133,13 @@ namespace Playnite
             DownloadUpdate(latestData.url);
         }
 
-        public static void DownloadUpdate(string url)
+        public void DownloadUpdate(string url)
         {
             logger.Info("Downloading new update from " + url);
-            FileSystem.CreateFolder(Paths.TempPath);
+            Directory.CreateDirectory(Paths.TempPath);
 
-            if (File.Exists(downloadCompletePath))
-            {
+            if (File.Exists(downloadCompletePath) && File.Exists(updaterPath))
+            {                
                 var info = FileVersionInfo.GetVersionInfo(updaterPath);
                 if (info.FileVersion == GetLatestVersion().ToString())
                 {
@@ -82,23 +156,32 @@ namespace Playnite
             File.Create(downloadCompletePath);
         }
 
-        public static void InstallUpdate()
+        public void InstallUpdate()
         {            
             var portable = Settings.IsPortable ? "/Portable 1" : "/Portable 0";
             logger.Info("Installing new update to {0}, in {1} mode", Paths.ProgramFolder, portable);
-            Process.Start(updaterPath, string.Format(@"/ProgressOnly 1 {0} /D={1}", portable, Paths.ProgramFolder));
+
+            Task.Factory.StartNew(() =>
+            {
+                Process.Start(updaterPath, string.Format(@"/ProgressOnly 1 {0} /D={1}", portable, Paths.ProgramFolder));
+            });
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Application.Current.MainWindow.Close();
+            });
+        }     
+        
+        public Version GetLatestVersion()
+        {
+            var dataString = Web.DownloadString(updateDataUrl);
+            latestData = JsonConvert.DeserializeObject<Dictionary<string, UpdateData>>(dataString)["stable"];
+            return new Version(latestData.version);
         }
 
         public static Version GetCurrentVersion()
         {
             return System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
-        }        
-        
-        public static Version GetLatestVersion()
-        {
-            var dataString = Web.DownloadString(updateDataUrl);
-            latestData = JsonConvert.DeserializeObject<Dictionary<string, UpdateData>>(dataString)["stable"];
-            return new Version(latestData.version);
         }
     }
 }

@@ -28,23 +28,26 @@ Describe "Silent install" {
         Start-Process $path
 
         Get-Process -Name "PlayniteUI" -EA 0 | Should Not BeNullOrEmpty
+        Stop-Process -Name "PlayniteUI"
     }
 }
 
 Describe "Uninstall" {
     It "Uninstall removes all files" {
+        $window = { Get-UIDesktop | Get-UIControl -ControlType "Dialog" -Name "Playnite*Uninstall" }
+        $testData = Get-TestProperties
+
         $dektop = [System.Environment]::ExpandEnvironmentVariables("%systemdrive%\users\%username%\Desktop")
-        $startMenu = [System.Environment]::ExpandEnvironmentVariables("c:\Users\crow\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Playnite\")
-        $progPath = "C:\Program Files (x86)\Playnite\"
-        Start-Process (Join-Path $progPath "uninstall.exe")
-        WaitFor { Get-UIWindow -ProcessName "Un_A" } 5000
-        Get-UIWindow -ProcessName "Un_A" | Get-UIButton -Name "Yes" | Invoke-UIClick
+        $startMenu = [System.Environment]::ExpandEnvironmentVariables("c:\Users\crow\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Playnite\")        
+        Start-Process (Join-Path $testData.InstallPath "uninstall.exe")
+        WaitFor { & $window } 5000
+        & $window | Get-UIButton -Name "Yes" | Invoke-UIClick
 
         # Windows completely reloads so we need to get new one later
-        WaitFor { Get-UIWindow -ProcessName "Un_A" | Get-UIControl -AutoId "1006" -Name "Completed"  } 30000
-        Get-UIWindow -ProcessName "Un_A" | Get-UIButton -AutoId "1" | Invoke-UIClick
+        WaitFor { & $window | Get-UIControl -AutoId "1006" -Name "Completed"  } 30000
+        & $window | Get-UIButton -AutoId "1" | Invoke-UIClick
 
-        $progPath | Should Not Exist        
+        $testData.InstallPath | Should Not Exist        
         Join-Path $dektop "Playnite.lnk" | Should Not Exist
         $startMenu | Should Not Exist
     }

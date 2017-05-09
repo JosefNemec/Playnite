@@ -14,6 +14,8 @@
     <Window.Resources>
         <playniteUI:NegateConverter x:Key="NegateConverter" />
         <playniteUI:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </Window.Resources>
 
     <Grid Margin="5">
@@ -40,7 +42,7 @@
                     <TextBlock Text="Choose location for library database file. Location can be also changed later via Settings menu." DockPanel.Dock="Top" Margin="5,20,5,0" TextWrapping="Wrap"/>
                     <RadioButton Name="RadioDbDefault" Content="Default program data location for all users" GroupName="database"
                                  IsChecked="{Binding Path=DatabaseLocation, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=ProgramData, ElementName=WindowMain}"
-                                 DockPanel.Dock="Top" Margin="5,10,5,5"/>
+                                 DockPanel.Dock="Top" Margin="5,15,5,5"/>
                     <RadioButton Name="RadioDbCustom" Content="Custom location" GroupName="database"
                                  IsChecked="{Binding Path=DatabaseLocation, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Custom, ElementName=WindowMain}"
                                  DockPanel.Dock="Top" Margin="5"/>
@@ -102,9 +104,20 @@
                     <RadioButton Name="RadioLibraryGOG" Content="Import complete library (requires authentication)"
                                  GroupName="gog" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding GogImportLibrary, ElementName=WindowMain}" />
-                    <Button Content="Authenticate" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Left" Padding="5"
-                            Name="ButtonGogAuthenticate" IsEnabled="{Binding IsChecked, ElementName=RadioLibraryGOG}"
-                            Click="ButtonGogAuthenticate_Click"/>
+
+                    <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioLibraryGOG}"
+                               LastChildFill="False">
+                        <Button Content="Authenticate" Name="ButtonGogAuthenticate" Click="ButtonGogAuthenticate_Click"/>
+                        <TextBlock Text="Login status:" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                        <TextBlock VerticalAlignment="Center">
+                            <TextBlock.Text>
+                                <PriorityBinding>
+                                    <Binding Path="GogLoginStatus" IsAsync="True" Mode="OneWay" RelativeSource="{RelativeSource AncestorType=Window}" />
+                                    <Binding Source="Checking..." />
+                                </PriorityBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DockPanel>
                 </DockPanel>
             </TabItem>
             <TabItem Header="Origin" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
@@ -119,9 +132,19 @@
                     <RadioButton Name="RadioLibraryOrigin" Content="Import complete library (requires authentication)"
                                  GroupName="origin" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding OriginImportLibrary, ElementName=WindowMain}" />
-                    <Button Content="Authenticate" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Left" Padding="5"
-                            Name="ButtonOriginAuthenticate" IsEnabled="{Binding IsChecked, ElementName=RadioLibraryOrigin}"
-                            Click="ButtonOriginAuthenticate_Click"/>
+                    <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioLibraryOrigin}"
+                               LastChildFill="False">
+                        <Button Content="Authenticate" Name="ButtonOriginAuthenticate" Click="ButtonOriginAuthenticate_Click"/>
+                        <TextBlock Text="Login status:" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                        <TextBlock VerticalAlignment="Center">
+                            <TextBlock.Text>
+                                <PriorityBinding>
+                                    <Binding Path="OriginLoginStatus" IsAsync="True" Mode="OneWay" RelativeSource="{RelativeSource AncestorType=Window}" />
+                                    <Binding Source="Checking..." />
+                                </PriorityBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DockPanel>
                 </DockPanel>
             </TabItem>
             <TabItem Header="Custom" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">

@@ -17,6 +17,14 @@ namespace Playnite
             }
         }
 
+        public static string ExecutablePath
+        {
+            get
+            {
+                return System.Reflection.Assembly.GetEntryAssembly().Location;
+            }
+        }
+
         public static string UninstallerPath
         {
             get

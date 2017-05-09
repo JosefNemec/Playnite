@@ -61,5 +61,11 @@ namespace PlayniteUI.Windows
         {
             Process.Start(@"https://github.com/JosefNemec/Playnite/issues");
         }
+
+        private void ButtonRestart_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(Paths.ExecutablePath);
+            Close();
+        }
     }
 }

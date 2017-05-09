@@ -21,6 +21,9 @@ using Playnite;
 using Playnite.Database;
 using Playnite.Models;
 using PlayniteUI.Windows;
+using Playnite.Providers.Steam;
+using Playnite.Providers.GOG;
+using Playnite.Providers.Origin;
 
 namespace PlayniteUI
 {
@@ -350,6 +353,10 @@ namespace PlayniteUI
             TextPublisher.Text = (string)listConverter.Convert(game.Publishers, typeof(string), null, null);
             TextGenres.Text = (string)listConverter.Convert(game.Genres, typeof(string), null, null);
             TextReleaseDate.Text = (string)dateConverter.Convert(game.ReleaseDate, typeof(DateTime?), null, null);
+            TextDescription.Text = string.IsNullOrEmpty(game.Description) ? TextName.Text : game.Description;
+            TextStore.Text = string.IsNullOrEmpty(game.StoreUrl) ? TextStore.Text : game.StoreUrl;
+            TextForums.Text = string.IsNullOrEmpty(game.CommunityHubUrl) ? TextForums.Text : game.CommunityHubUrl;
+            TextWiki.Text = string.IsNullOrEmpty(game.WikiUrl) ? TextWiki.Text : game.WikiUrl;
 
             if (!string.IsNullOrEmpty(game.Image))
             {
@@ -716,11 +723,19 @@ namespace PlayniteUI
                 OtherTasksItems.ItemsSource = TempOtherTasks;
             }
 
-            TempOtherTasks.Add(new GameTask()
+            var newTask = new GameTask()
             {
                 Name = "New Action",
                 IsBuiltIn = false
-            });
+            };
+
+            if (TempPlayTask != null && TempPlayTask.Type == GameTaskType.File)
+            {
+                newTask.WorkingDir = TempPlayTask.WorkingDir;
+                newTask.Path = TempPlayTask.Path;
+            }
+
+            TempOtherTasks.Add(newTask);
         }
 
         private void ButtonDeleteAction_Click(object sender, RoutedEventArgs e)
@@ -731,25 +746,11 @@ namespace PlayniteUI
 
         private void ButtonDownload_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(TextName.Text))
-            {
-                MessageBox.Show("Game name cannot be empty.", "", MessageBoxButton.OK);
-                return;
-            }
-
-            var window = new MetadataLookupWindow()
-            {
-                DataContext = Game,
-                ShowInTaskbar = false,
-                Owner = this,
-                WindowStartupLocation = WindowStartupLocation.CenterOwner
-            };
-
-            if (window.LookupData(TextName.Text) == true)
-            {
-                PreviewGameData(window.MetadataData);
-                CheckBoxesVisible = true;
-            }            
+            ButtonDownload.ContextMenu.IsEnabled = true;
+            ButtonDownload.ContextMenu.Width = ButtonDownload.ActualWidth;
+            ButtonDownload.ContextMenu.PlacementTarget = ButtonDownload;
+            ButtonDownload.ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Top;
+            ButtonDownload.ContextMenu.IsOpen = true;         
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -791,7 +792,6 @@ namespace PlayniteUI
         {
             if (IsLoaded)
             {
-                Console.WriteLine("changed" + e.NewSize.Height);
                 positionManager.SaveSize(Settings.Instance);
             }
         }
@@ -817,6 +817,82 @@ namespace PlayniteUI
             {
                 TextCategories.Text = (string)converter.Convert(dummyGame.Categories, typeof(string), null, CultureInfo.InvariantCulture);
             }
+        }
+
+        private void MenuWikiDownload_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(TextName.Text))
+            {
+                MessageBox.Show("Game name cannot be empty.", "", MessageBoxButton.OK);
+                return;
+            }
+
+            var window = new MetadataLookupWindow()
+            {
+                DataContext = Game,
+                ShowInTaskbar = false,
+                Owner = this,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
+
+            if (window.LookupData(TextName.Text) == true)
+            {
+                PreviewGameData(window.MetadataData);
+                CheckBoxesVisible = true;
+            }
+        }
+
+        private void MenuStoreDownload_Click(object sender, RoutedEventArgs e)
+        {
+            TabControlMain.IsEnabled = false;
+            TabControlMain.Opacity = 0.5;
+            GridDownload.Visibility = Visibility.Visible;
+
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    GameMetadata metadata;
+                    var tempGame = (game as Game).CloneJson();
+                    tempGame.Image = string.Empty;
+
+                    switch (tempGame.Provider)
+                    {
+                        case Provider.Steam:
+                            metadata = (new SteamLibrary()).UpdateGameWithMetadata(tempGame);
+                            break;
+                        case Provider.GOG:
+                            metadata = (new GogLibrary()).UpdateGameWithMetadata(tempGame);
+                            break;
+                        case Provider.Origin:
+                            metadata = (new OriginLibrary()).UpdateGameWithMetadata(tempGame);
+                            break;
+                        case Provider.Custom:
+                        default:
+                            return;
+                    }
+
+                    Dispatcher.Invoke(() =>
+                    {
+                        PreviewGameData(tempGame);
+                        CheckBoxesVisible = true;
+                    });
+                }
+                catch (Exception exc)
+                {
+                    logger.Error(exc, "Failed to download metadata, {0} , {1}", game.Provider, game.ProviderId);
+                    MessageBox.Show("Failed to download metadata: " + exc.Message, "Download Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                finally
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        TabControlMain.IsEnabled = true;
+                        TabControlMain.Opacity = 1;
+                        GridDownload.Visibility = Visibility.Hidden;
+                    });
+                }
+            });
         }
     }
 }

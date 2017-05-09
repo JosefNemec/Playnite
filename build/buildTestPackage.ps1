@@ -23,13 +23,14 @@ if (-not $SkipBuild)
     }
 }
 
-Copy-Item "playnite.exe" (Join-Path $OutputPath "playnite.exe")
-Copy-Item "playnite.zip" (Join-Path $OutputPath "playnite.zip")
+Copy-Item "PlayniteInstaller.exe" (Join-Path $OutputPath "PlayniteInstaller.exe")
+Copy-Item "PlaynitePortable.zip" (Join-Path $OutputPath "PlaynitePortable.zip")
 Copy-Item "..\tests\" $OutputPath -Recurse
 
 $config = @{
-    "package" = "..\playnite.exe";
-    "portablePackage" = "..\playnite.zip";
+    "Package" = "..\PlayniteInstaller.exe";
+    "PortablePackage" = "..\PlaynitePortable.zip";
+    "InstallPath" = "C:\Program Files\Playnite\"
 }
 
 $config | ConvertTo-Json | Out-File (Join-Path $OutputPath "tests\testConfig.json")

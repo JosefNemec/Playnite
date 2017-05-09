@@ -7,7 +7,7 @@
         xmlns:playniteUI="clr-namespace:PlayniteUI"
         mc:Ignorable="d"
         Background="{StaticResource NormalBrush}" WindowStartupLocation="CenterOwner"
-        Title="Select games to import" Height="400" Width="700"
+        Title="Select Games to Import" Height="500" Width="800"
         Loaded="Window_Loaded"
         AutomationProperties.AutomationId="WindowInstalledGames">
     <Window.Resources>
@@ -59,12 +59,14 @@
             </ListView.View>
         </ListView>
 
-        <Label Grid.Column="0" Grid.Row="0" Content="Searching Programs..." HorizontalAlignment="Center" VerticalAlignment="Center"
-               Name="TextDownloading"/>
+        <Label Grid.Column="0" Grid.Row="0" Content="Searching for executables..." HorizontalAlignment="Center" VerticalAlignment="Center"
+               Name="TextProgresssing"/>
 
         <DockPanel Margin="-5,0,-5,-5" LastChildFill="False" Grid.Column="0" Grid.Row="1">
             <Button Name="ButtonBrowse" Content="Browse..." DockPanel.Dock="Left"
                     Click="ButtonBrowse_Click" Style="{StaticResource BottomButton}"/>
+            <Button Name="ButtonScan" Content="Scan Folder..." DockPanel.Dock="Left"
+                    Click="ButtonScan_Click" Style="{StaticResource BottomButton}"/>
             <Button Name="ButtonCancel" Content="Cancel" DockPanel.Dock="Right" IsCancel="True"
                     Click="ButtonCancel_Click" Style="{StaticResource BottomButton}"/>
             <Button Name="ButtonOK" Content="Add games" DockPanel.Dock="Right"

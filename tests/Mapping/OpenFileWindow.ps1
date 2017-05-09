@@ -6,7 +6,7 @@ class OpenFileWindow : Window
     [UIObject]$ButtonCancel
     [UIObject]$EditFileName
 
-    OpenFileWindow() : base({Get-UIWindow -ProcessName "PlayniteUI" | Get-UIWindow -Name "Open"}, "OpenFileWindow")
+    OpenFileWindow() : base({Get-UIWindow -ProcessName "PlayniteUI" | Get-UIWindow -ControlType "Dialog" -Name "Open"}, "OpenFileWindow")
     {
         $this.ButtonOpen   = [UIObject]::New($this.GetChildReference({Get-UIButton -AutomationId "1" -First}), "ButtonOpen")
         $this.ButtonCancel = [UIObject]::New($this.GetChildReference({Get-UIButton -AutomationId "2" -First}), "ButtonCancel")

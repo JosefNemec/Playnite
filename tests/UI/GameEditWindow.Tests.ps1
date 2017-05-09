@@ -1,11 +1,11 @@
 function CleanWindows()
 {
-    if ($windowOpenFile.Exists())
+    if ($windowOpenFile -and $windowOpenFile.Exists())
     {
         $windowOpenFile.Close()
     }
 
-    if ($windowGameEdit.Exists())
+    if ($windowGameEdit -and $windowGameEdit.Exists())
     {
         $windowGameEdit.Close()
     }
@@ -35,6 +35,10 @@ Describe "Edit Window - Basic Test" {
         $windowMain.Focus()
     }
 
+    BeforeEach {
+        CleanWindows
+    }
+
     It "Edit window can be opened" {
         $windowMain.ListBoxGames.GetItems()[(Get-Random -Minimum 0 -Maximum 5)].ClickRight()
         $windowMain.PopupMenu.InvokeItem("Edit...")
@@ -62,10 +66,10 @@ Describe "Edit Window - Basic Test" {
         # images
         $windowGameEdit.ButtonSelectIcon.Invoke()
         $windowOpenFile.EditFileName.SetValue($editData.Icon)
-        $windowOpenFile.ButtonOpen.Invoke()
+        $windowOpenFile.ButtonOpen.Click()
         $windowGameEdit.ButtonSelectImage.Invoke()
         $windowOpenFile.EditFileName.SetValue($editData.Image)
-        $windowOpenFile.ButtonOpen.Invoke()
+        $windowOpenFile.ButtonOpen.Click()
         # tasks
         $windowGameEdit.TabControlMain.SelectItem("Actions")
         $windowGameEdit.TaskPlay.TextName.SetValue("TestName")
@@ -115,10 +119,10 @@ Describe "Edit Window - Basic Test" {
         # images
         $windowGameEdit.ButtonSelectIcon.Invoke()
         $windowOpenFile.EditFileName.SetValue($editData.Icon)
-        $windowOpenFile.ButtonOpen.Invoke()
+        $windowOpenFile.ButtonOpen.Click()
         $windowGameEdit.ButtonSelectImage.Invoke()
         $windowOpenFile.EditFileName.SetValue($editData.Image)
-        $windowOpenFile.ButtonOpen.Invoke()
+        $windowOpenFile.ButtonOpen.Click()
         # tasks
         $windowGameEdit.TabControlMain.SelectItem("Actions")
         $windowGameEdit.TaskPlay.TextName.SetValue("TestName")
@@ -165,6 +169,10 @@ Describe "Edit Window - Categories" {
         $windowMain.Focus()  
     }
 
+    BeforeEach {
+        CleanWindows
+    }
+
     It "Cancel doesn't change category" { 
         $itemIndex = Get-Random -Minimum 0 -Maximum 5
         $windowMain.ListBoxGames.GetItems()[$itemIndex].ClickRight()
@@ -193,7 +201,7 @@ Describe "Edit Window - Categories" {
         $windowCategoryConfig.TextNewCat.SetValue("NewCat1")
         $windowCategoryConfig.ButtonAddCat.Invoke()
         $windowCategoryConfig.ButtonOK.Invoke()
-        $windowGameEdit.TextCategories.GetValue() | Should Be "NewCat1"
+        $windowGameEdit.TextCategories.GetValue() | Should BeLike "*NewCat1*"
 
         $windowGameEdit.Close()
     }

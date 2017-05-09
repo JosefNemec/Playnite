@@ -38,7 +38,27 @@ namespace Playnite
 
     public class Programs
     {
-        public static List<Program> GetProgramsFromFolder(string path)
+
+        public static List<Program> GetExecutablesFromFolder(string path, SearchOption searchOption)
+        {
+            var execs = new List<Program>();
+            var files = Directory.GetFiles(path, "*.exe", searchOption);
+
+            foreach (var file in files)
+            {
+                execs.Add(new Program()
+                {
+                    Path = file,
+                    Icon = file,
+                    WorkDir = Path.GetDirectoryName(file),
+                    Name = new DirectoryInfo(Path.GetDirectoryName(file)).Name
+                });
+            }
+
+            return execs;
+        }
+
+        public static List<Program> GetShortcutProgramsFromFolder(string path)
         {
             var folderExceptions = new string[]
             {
@@ -116,17 +136,17 @@ namespace Playnite
             return apps;
         }
 
-        public static List<Program> GetPrograms()
+        public static List<Program> GetInstalledPrograms()
         {
             var apps = new List<Program>();
 
             // Get apps from All Users
             var allPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "Programs");
-            apps.AddRange(GetProgramsFromFolder(allPath));
+            apps.AddRange(GetShortcutProgramsFromFolder(allPath));
 
             // Get current user apps
             var userPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), "Programs");
-            apps.AddRange(GetProgramsFromFolder(userPath));
+            apps.AddRange(GetShortcutProgramsFromFolder(userPath));
 
             return apps;
         }
