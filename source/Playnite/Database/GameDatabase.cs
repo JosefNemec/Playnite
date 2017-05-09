@@ -331,6 +331,10 @@ namespace Playnite.Database
             lock (fileLock)
             {
                 dbGames.Update(game);
+
+                // Update loaded instance of a game
+                var loadedGame = Games.First(a => a.Id == game.Id);
+                game.CopyProperties(loadedGame);
             }
         }
 

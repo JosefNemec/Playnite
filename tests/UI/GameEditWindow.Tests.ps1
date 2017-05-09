@@ -1,11 +1,11 @@
 function CleanWindows()
 {
-    if ($windowOpenFile.Exists())
+    if ($windowOpenFile -and $windowOpenFile.Exists())
     {
         $windowOpenFile.Close()
     }
 
-    if ($windowGameEdit.Exists())
+    if ($windowGameEdit -and $windowGameEdit.Exists())
     {
         $windowGameEdit.Close()
     }
@@ -33,6 +33,10 @@ Describe "Edit Window - Basic Test" {
         }
 
         $windowMain.Focus()
+    }
+
+    BeforeEach {
+        CleanWindows
     }
 
     It "Edit window can be opened" {
@@ -163,6 +167,10 @@ Describe "Edit Window - Categories" {
         $windowGameEdit = & (Join-Path $PSScriptRoot "..\Mapping\GameEditWindow.ps1")
         $windowCategoryConfig = & (Join-Path $PSScriptRoot "..\Mapping\CategoryConfigWindow.ps1")      
         $windowMain.Focus()  
+    }
+
+    BeforeEach {
+        CleanWindows
     }
 
     It "Cancel doesn't change category" { 
