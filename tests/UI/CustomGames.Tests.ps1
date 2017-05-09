@@ -13,7 +13,7 @@ Describe "Custom Games - Game Creation" {
         $dialogSystem = & (Join-Path $PSScriptRoot "..\Mapping\SystemDialog.ps1")
         
         $gameName = "AA Test Game"
-        $gamePath = "C:\Windows\System32\notepad.exe"
+        $gamePath = "c:\Program Files\Windows NT\Accessories\wordpad.exe"
         $windowMain.Focus()
     }
 
@@ -37,8 +37,8 @@ Describe "Custom Games - Game Creation" {
         $windowMain.ListBoxGames.GetItemNames() -contains $gameName | Should Be $true
         $windowMain.ListBoxGames.GetItem($gameName).ClickDouble()
         Start-Sleep -Seconds 1
-        Get-Process -Name "notepad" -EA 0 | Should Not Be $null        
-        Get-Process -Name "notepad" -EA 0 | Stop-Process
+        Get-Process -Name "wordpad" -EA 0 | Should Not Be $null        
+        Get-Process -Name "wordpad" -EA 0 | Stop-Process
     }
 
     It "Custom game can be removed" {

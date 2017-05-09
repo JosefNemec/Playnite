@@ -66,10 +66,10 @@ Describe "Edit Window - Basic Test" {
         # images
         $windowGameEdit.ButtonSelectIcon.Invoke()
         $windowOpenFile.EditFileName.SetValue($editData.Icon)
-        $windowOpenFile.ButtonOpen.Invoke()
+        $windowOpenFile.ButtonOpen.Click()
         $windowGameEdit.ButtonSelectImage.Invoke()
         $windowOpenFile.EditFileName.SetValue($editData.Image)
-        $windowOpenFile.ButtonOpen.Invoke()
+        $windowOpenFile.ButtonOpen.Click()
         # tasks
         $windowGameEdit.TabControlMain.SelectItem("Actions")
         $windowGameEdit.TaskPlay.TextName.SetValue("TestName")
@@ -119,10 +119,10 @@ Describe "Edit Window - Basic Test" {
         # images
         $windowGameEdit.ButtonSelectIcon.Invoke()
         $windowOpenFile.EditFileName.SetValue($editData.Icon)
-        $windowOpenFile.ButtonOpen.Invoke()
+        $windowOpenFile.ButtonOpen.Click()
         $windowGameEdit.ButtonSelectImage.Invoke()
         $windowOpenFile.EditFileName.SetValue($editData.Image)
-        $windowOpenFile.ButtonOpen.Invoke()
+        $windowOpenFile.ButtonOpen.Click()
         # tasks
         $windowGameEdit.TabControlMain.SelectItem("Actions")
         $windowGameEdit.TaskPlay.TextName.SetValue("TestName")
@@ -201,7 +201,7 @@ Describe "Edit Window - Categories" {
         $windowCategoryConfig.TextNewCat.SetValue("NewCat1")
         $windowCategoryConfig.ButtonAddCat.Invoke()
         $windowCategoryConfig.ButtonOK.Invoke()
-        $windowGameEdit.TextCategories.GetValue() | Should Be "NewCat1"
+        $windowGameEdit.TextCategories.GetValue() | Should BeLike "*NewCat1*"
 
         $windowGameEdit.Close()
     }

@@ -1,8 +1,28 @@
+param(
+    [string]$TestName
+)
+
 $ErrorActionPreference = "Stop"
 
 Import-Module "Pester"
 Import-Module "PSNativeAutomation"
 Invoke-Expression ".\TestExtensions.ps1"
 
-Invoke-Pester -TestName $args[0]
-
+if ($TestName)
+{
+    Invoke-Pester -TestName $TestName
+}
+else
+{
+    @(
+        "Initial Startup",
+        "First Time Wizard - run through - installed only",
+        "Game import startup",
+        "Edit Window - Basic Test",
+        "Edit Window - Categories",
+        "Installed Games Window - Game import test",
+        "Custom Games - Game Creation"
+    ) | ForEach-Object {
+        Invoke-Pester -TestName $_
+    }
+}

@@ -1,4 +1,4 @@
-Describe "Run through - installed only" {
+Describe "First Time Wizard - run through - installed only" {
     BeforeAll {
         $global:WizardWindow = & (Join-Path $PSScriptRoot "..\Mapping\FirstTimeWizardWindow.ps1")
         $global:InstalledGamesWindow = & (Join-Path $PSScriptRoot "..\Mapping\InstalledGamesWindow.ps1")
