@@ -283,6 +283,18 @@ namespace Playnite.Database
             }
         }
 
+        public void SaveFile(string id, string path)
+        {
+            CheckDbState();
+
+            var file = Database.FileStorage.FindById(id);
+
+            lock (fileLock)
+            {
+                file.SaveAs(path, true);
+            }
+        }
+
         /// <summary>
         /// Deletes image from database only if it's not used by any object.
         /// </summary>

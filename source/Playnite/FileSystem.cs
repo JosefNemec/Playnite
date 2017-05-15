@@ -48,5 +48,10 @@ namespace Playnite
                 Directory.Delete(path, true);
             }
         }
+
+        public static string GetSafeFilename(string filename)
+        {
+            return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using CefSharp;
 using NLog;
@@ -21,6 +21,8 @@ namespace PlayniteUI
     public partial class App : Application
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        private string instanceMuxet = "PlayniteInstaceMutex";
+        private Mutex appMutex;
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
@@ -29,6 +31,11 @@ namespace PlayniteUI
             Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
             Cef.Shutdown();
             Settings.Instance.SaveSettings();
+
+            if (appMutex != null)
+            {
+                appMutex.ReleaseMutex();
+            }
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -51,6 +58,31 @@ namespace PlayniteUI
 #if !DEBUG
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 #endif
+
+            if (Mutex.TryOpenExisting(instanceMuxet, out var mutex))
+            {
+                var client = new PipeClient(Settings.GetAppConfigValue("PipeEndpoint"));
+
+                if (e.Args.Count() > 0 && e.Args.Contains("-command"))
+                {
+                    var commandArgs = e.Args[1].Split(new char[] { ':' });
+                    var command = commandArgs[0];
+                    var args = commandArgs.Count() > 1 ? commandArgs[1] : string.Empty;                    
+                    client.InvokeCommand(command, args);
+                }
+                else
+                {
+                    client.InvokeCommand(CmdlineCommands.Focus, string.Empty);
+                }
+
+                logger.Info("Application already running, shutting down.");
+                Shutdown();
+            }
+            else
+            {
+                appMutex = new Mutex(true, instanceMuxet);
+            }
+
             logger.Info("Application started");
         }
     }

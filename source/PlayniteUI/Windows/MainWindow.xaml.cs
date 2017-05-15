@@ -46,6 +46,9 @@ namespace PlayniteUI
         private GamesStats gamesStats = new GamesStats();
         public NotificationsWindow NotificationsWin = new NotificationsWindow();
 
+        private PipeService pipeService;
+        private PipeServer pipeServer;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private bool gameAdditionAllowed = true;
@@ -194,6 +197,51 @@ namespace PlayniteUI
             });
 
             Focus();
+
+            pipeService = new PipeService();
+            pipeService.CommandExecuted += PipeService_CommandExecuted;
+            pipeServer = new PipeServer(Settings.GetAppConfigValue("PipeEndpoint"));
+            pipeServer.StartServer(pipeService);
+
+            var args = Environment.GetCommandLineArgs();
+            if (args.Count() > 0 && args.Contains("-command"))
+            {
+                var commandArgs = args[2].Split(new char[] { ':' });
+                var command = commandArgs[0];
+                var cmdArgs = commandArgs.Count() > 1 ? commandArgs[1] : string.Empty;
+                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(command, cmdArgs));
+            }
+        }
+
+        private void PipeService_CommandExecuted(object sender, CommandExecutedEventArgs args)
+        {
+            logger.Info(@"Executing command ""{0}"" from pipe with arguments ""{1}""", args.Command, args.Args);
+
+            switch (args.Command)
+            {
+                case CmdlineCommands.Focus:
+                    SystemCommands.RestoreWindow(this);
+                    Activate();
+                    Focus();
+                    break;
+
+                case CmdlineCommands.Launch:
+                    var game = GameDatabase.Instance.Games.FirstOrDefault(a => a.Id == int.Parse(args.Args));
+                    if (game == null)
+                    {
+                        logger.Error("Cannot start game, game {0} not found.", args.Command);
+                    }
+                    else
+                    {
+                        GamesEditor.Instance.PlayGame(game);
+                    }
+
+                    break;
+
+                default:
+                    logger.Warn("Unknown command received");
+                    break;
+            }
         }
 
         private void Window_Closed(object sender, EventArgs e)

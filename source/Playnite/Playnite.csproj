@@ -115,6 +115,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -132,6 +133,7 @@
     <Compile Include="GamesStats.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Paths.cs" />
+    <Compile Include="PipeServer.cs" />
     <Compile Include="Programs.cs" />
     <Compile Include="FileSystem.cs" />
     <Compile Include="CloneObject.cs" />

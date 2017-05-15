@@ -50,6 +50,8 @@
 
         <MenuItem Header="Open Game Location" Click="OpenLocation_Click"
                   Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <MenuItem Header="Create Desktop Shortcut" Click="Shortuct_Click"
+                  Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <MenuItem Header="Hide" Click="Hide_Click"
                   Visibility="{Binding Hidden, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
         <MenuItem Header="Show in Library"
