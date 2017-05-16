@@ -75,7 +75,7 @@ namespace Playnite.Database
             }
         }
         
-        private LiteCollection<IGame> dbGames;
+        private LiteCollection<IGame> dbCollection;
 
         private ObservableCollection<IGame> games = new ObservableCollection<IGame>();
         public  ObservableCollection<IGame> Games
@@ -111,7 +111,7 @@ namespace Playnite.Database
 
         private void CheckDbState()
         {
-            if (dbGames == null)
+            if (dbCollection == null)
             {
                 throw new Exception("Database is not opened.");
             }
@@ -126,7 +126,7 @@ namespace Playnite.Database
             // To force litedb to try to open file, should throw exceptuion if something is wrong with db file
             database.GetCollectionNames();
 
-            dbGames = database.GetCollection<IGame>("games");
+            dbCollection = database.GetCollection<IGame>("games");
             if (loadGames == true)
             {
                 LoadGamesFromDb();
@@ -140,7 +140,7 @@ namespace Playnite.Database
             logger.Info("Loading games from db");
             games.Clear();
 
-            foreach (var game in dbGames.FindAll())
+            foreach (var game in dbCollection.FindAll())
             {
                 games.Add(game);
             }
@@ -155,7 +155,7 @@ namespace Playnite.Database
 
             games.Clear();
 
-            foreach (var game in dbGames.FindAll())
+            foreach (var game in dbCollection.FindAll())
             {
                 if (game.Provider == Provider.Steam && !settings.SteamSettings.IntegrationEnabled)
                 {
@@ -204,7 +204,7 @@ namespace Playnite.Database
 
             lock (fileLock)
             {
-                dbGames.Insert(game);
+                dbCollection.Insert(game);
             }
 
             games.Add(game);
@@ -234,7 +234,7 @@ namespace Playnite.Database
             {
                 DeleteImageSafe(game.Icon, game);
                 DeleteImageSafe(game.Image, game);
-                dbGames.Delete(game.Id);
+                dbCollection.Delete(game.Id);
             }
 
             var existingGame = games.FirstOrDefault(a => a.Id == game.Id);
@@ -308,9 +308,9 @@ namespace Playnite.Database
             }
 
             CheckDbState();
-            dbGames = database.GetCollection<IGame>("games");
+            dbCollection = database.GetCollection<IGame>("games");
 
-            foreach (var gm in dbGames.FindAll())
+            foreach (var gm in dbCollection.FindAll())
             {
                 if (gm.Id == game.Id)
                 {
@@ -342,7 +342,7 @@ namespace Playnite.Database
 
             lock (fileLock)
             {
-                dbGames.Update(game);
+                dbCollection.Update(game);
 
                 // Update loaded instance of a game
                 var loadedGame = Games.First(a => a.Id == game.Id);
@@ -419,7 +419,7 @@ namespace Playnite.Database
 
             foreach (var newGame in installedGames)
             {                
-                var existingGame = dbGames.FindAll().FirstOrDefault(a => a.ProviderId == newGame.ProviderId && a.Provider == provider);
+                var existingGame = dbCollection.FindAll().FirstOrDefault(a => a.ProviderId == newGame.ProviderId && a.Provider == provider);
 
                 if (existingGame == null)
                 {
@@ -456,14 +456,14 @@ namespace Playnite.Database
                         }
                     }
 
-                    UpdateGameInDatabase(existingGame);
-
                     // Game may have been not installed prviously and may not be loaded currently
                     var loaded = Games.FirstOrDefault(a => a.ProviderId == existingGame.ProviderId && a.Provider == existingGame.Provider) != null;
                     if (!loaded)
                     {
                         Games.Add(existingGame);
                     }
+
+                    UpdateGameInDatabase(existingGame);
                 }
             }
 
@@ -516,7 +516,7 @@ namespace Playnite.Database
             }
 
             // Delete games that are no longer in library
-            foreach (IGame dbGame in dbGames.FindAll().Where(a => a.Provider == provider))
+            foreach (IGame dbGame in dbCollection.FindAll().Where(a => a.Provider == provider))
             {                
                 if (importedGames.FirstOrDefault(a => a.ProviderId == dbGame.ProviderId) == null)
                 {

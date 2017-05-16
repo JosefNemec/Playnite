@@ -355,7 +355,7 @@ namespace PlayniteUI
                     catch (Exception e)
                     {
                         logger.Error(e, "Failed to import installed GOG games.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.GOGLInstalledImportError, e.Message, NotificationType.Error, () =>
+                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.GOGLInstalledImportError, "Failed to import installed GOG games:" + e.Message, NotificationType.Error, () =>
                         {
 
                         }));
@@ -377,7 +377,7 @@ namespace PlayniteUI
                     catch (Exception e)
                     {
                         logger.Error(e, "Failed to import installed Steam games.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamInstalledImportError, e.Message, NotificationType.Error, () =>
+                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamInstalledImportError, "Failed to import installed Steam games: " + e.Message, NotificationType.Error, () =>
                         {
 
                         }));
@@ -399,7 +399,7 @@ namespace PlayniteUI
                     catch (Exception e)
                     {
                         logger.Error(e, "Failed to import installed Origin games.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.OriginInstalledImportError, e.Message, NotificationType.Error, () =>
+                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.OriginInstalledImportError, "Failed to import installed Origin games: " + e.Message, NotificationType.Error, () =>
                         {
 
                         }));
