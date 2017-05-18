@@ -37,7 +37,9 @@ Questions, issues etc.
 ---------
 If you find a bug please file an [issue](https://github.com/JosefNemec/Playnite/issues) and if relevant (crashes, broken features) please attach diagnostics package, which can be created via from "About Playnite..." menu.
 
-If you have any question related mainly to development then check out [Playnite Gitter room](https://gitter.im/Playnite/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link).
+General discussion lives on [Reddit](https://www.reddit.com/r/playnite/)
+
+Development discussion at [Playnite Gitter room](https://gitter.im/Playnite/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link).
 
 Building
 ---------
