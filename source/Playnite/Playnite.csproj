@@ -146,6 +146,7 @@
     <Compile Include="Database\GameDatabase.cs" />
     <Compile Include="EmbededResources.cs" />
     <Compile Include="GamesStats.cs" />
+    <Compile Include="ListExtensions.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Paths.cs" />
     <Compile Include="PipeServer.cs" />

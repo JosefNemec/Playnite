@@ -30,10 +30,7 @@ namespace PlayniteUI.Controls
 
             set
             {
-                if (Text != value)
-                {
-                    SetValue(TextProperty, value);
-                }
+                SetValue(TextProperty, value);
             }
         }
 
@@ -46,12 +43,11 @@ namespace PlayniteUI.Controls
 
         private void ClearImage_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Text = string.Empty;
+            TextFilter.Text = string.Empty;
         }
 
         private void TextFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
-
             if (!string.IsNullOrEmpty(TextFilter.Text))
             {
                 ImageClear.Visibility = Visibility.Visible;

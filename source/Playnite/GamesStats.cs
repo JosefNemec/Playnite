@@ -84,7 +84,7 @@ namespace Playnite
 
         private ObservableCollection<IGame> games;
 
-        private void recalculate()
+        private void Recalculate()
         {
             installed = 0;
             hidden = 0;
@@ -153,7 +153,7 @@ namespace Playnite
                 game.PropertyChanged += Game_PropertyChanged;
             }
 
-            recalculate();
+            Recalculate();
         }
 
         private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -161,10 +161,10 @@ namespace Playnite
             switch (e.PropertyName)
             {
                 case "Hidden":
-                    recalculate();
+                    Recalculate();
                     break;
                 case "IsInstalled":
-                    recalculate();
+                    Recalculate();
                     break;
                 default:
                     break;
@@ -189,7 +189,7 @@ namespace Playnite
                 }
             }
 
-            recalculate();
+            Recalculate();
         }
     }
 }

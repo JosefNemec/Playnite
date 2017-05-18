@@ -21,6 +21,104 @@ namespace Playnite
             }
         }
 
+        private string name;
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+                OnPropertyChanged("Name");
+                OnPropertyChanged("Active");
+            }
+        }
+
+        private List<string> genre;
+        public List<string> Genre
+        {
+            get
+            {
+                return genre;
+            }
+
+            set
+            {
+                genre = value;
+                OnPropertyChanged("Genre");
+                OnPropertyChanged("Active");
+            }
+        }
+
+
+        private string releaseDate;
+        public string ReleaseDate
+        {
+            get
+            {
+                return releaseDate;
+            }
+
+            set
+            {
+                releaseDate = value;
+                OnPropertyChanged("ReleaseDate");
+                OnPropertyChanged("Active");
+            }
+        }
+
+
+        private List<string> publisher;
+        public List<string> Publisher
+        {
+            get
+            {
+                return publisher;
+            }
+
+            set
+            {
+                publisher = value;
+                OnPropertyChanged("Publisher");
+                OnPropertyChanged("Active");
+            }
+        }
+
+        private List<string> developer;
+        public List<string> Developer
+        {
+            get
+            {
+                return developer;
+            }
+
+            set
+            {
+                developer = value;
+                OnPropertyChanged("Developer");
+                OnPropertyChanged("Active");
+            }
+        }
+
+        private List<string> category;
+        public List<string> Category
+        {
+            get
+            {
+                return category;
+            }
+
+            set
+            {
+                category = value;
+                OnPropertyChanged("Category");
+                OnPropertyChanged("Active");
+            }
+        }
+
         private bool installed;
         public bool Installed
         {

@@ -165,9 +165,6 @@
     <Compile Include="Controls\FilterSelector.xaml.cs">
       <DependentUpon>FilterSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FilterSelectorItem.xaml.cs">
-      <DependentUpon>FilterSelectorItem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\GamePopupMenuMulti.xaml.cs">
       <DependentUpon>GamePopupMenuMulti.xaml</DependentUpon>
     </Compile>
@@ -248,10 +245,6 @@
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\FilterSelector.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\FilterSelectorItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

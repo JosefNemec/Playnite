@@ -27,6 +27,7 @@ using PlayniteUI.Windows;
 using Playnite.Database;
 using Playnite.Providers.Origin;
 using PlayniteUI.Controls;
+using System.Globalization;
 
 namespace PlayniteUI
 {
@@ -35,9 +36,19 @@ namespace PlayniteUI
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        private Settings config;
         public Settings Config
         {
-            get; set;
+            get
+            {
+                return config;
+            }
+
+            set
+            {
+                config = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Config"));
+            }
         }
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -62,24 +73,6 @@ namespace PlayniteUI
             {
                 gameAdditionAllowed = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("GameAdditionAllowed"));
-            }
-        }
-
-        public string FilterText
-        {
-            get
-            {
-                return SearchBoxFilter.Text;
-            }
-
-            set
-            {
-                if (MainCollectionView == null)
-                {
-                    return;
-                }
-
-                MainCollectionView.Refresh();
             }
         }
 
@@ -564,17 +557,109 @@ namespace PlayniteUI
             }
 
             // ------------------ Name filter
-            bool textResult;
-            if (string.IsNullOrEmpty(SearchBoxFilter.Text))
+            bool textResult = false;
+            if (string.IsNullOrEmpty(Config.FilterSettings.Name))
             {
                 textResult = true;
             }
             else
             {
-                textResult = (game.Name.IndexOf(SearchBoxFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                textResult = (game.Name.IndexOf(Config.FilterSettings.Name, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
-            return installedResult && hiddenResult && textResult && providersFilter;
+
+            // ------------------ Genre
+            bool genreResult = false;
+            if (Config.FilterSettings.Genre == null || Config.FilterSettings.Genre.Count == 0)
+            {
+                genreResult = true;
+            }
+            else
+            {
+                if (game.Genres == null)
+                {
+                    genreResult = false;
+                }
+                else
+                {
+                    genreResult = Config.FilterSettings.Genre.IntersectsPartiallyWith(game.Genres);
+                }
+            }
+
+            // ------------------ Release Date
+            bool releaseDateResult = false;
+            if (string.IsNullOrEmpty(config.FilterSettings.ReleaseDate))
+            {
+                releaseDateResult = true;
+            }
+            else
+            {
+                if (game.ReleaseDate == null)
+                {
+
+                    releaseDateResult = false;
+                }
+                else
+                {
+                    releaseDateResult = game.ReleaseDate.Value.ToString(Constants.DateUiFormat).IndexOf(Config.FilterSettings.ReleaseDate, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+            }
+
+            // ------------------ Publisher
+            bool publisherResult = false;
+            if (Config.FilterSettings.Publisher == null || Config.FilterSettings.Publisher.Count == 0)
+            {
+                publisherResult = true;
+            }
+            else
+            {
+                if (game.Publishers == null)
+                {
+                    publisherResult = false;
+                }
+                else
+                {
+                    publisherResult = Config.FilterSettings.Publisher.IntersectsPartiallyWith(game.Publishers);
+                }
+            }
+
+            // ------------------ Developer
+            bool developerResult = false;
+            if (Config.FilterSettings.Developer == null || Config.FilterSettings.Developer.Count == 0)
+            {
+                developerResult = true;
+            }
+            else
+            {
+                if (game.Developers == null)
+                {
+                    developerResult = false;
+                }
+                else
+                {
+                    developerResult = Config.FilterSettings.Developer.IntersectsPartiallyWith(game.Developers);
+                }
+            }
+
+            // ------------------ Category
+            bool categoryResult = false;
+            if (Config.FilterSettings.Category == null || Config.FilterSettings.Category.Count == 0)
+            {
+                categoryResult = true;
+            }
+            else
+            {
+                if (game.Categories == null)
+                {
+                    categoryResult = false;
+                }
+                else
+                {
+                    categoryResult = Config.FilterSettings.Category.IntersectsPartiallyWith(game.Categories);
+                }
+            }
+
+            return installedResult && hiddenResult && textResult && providersFilter && genreResult && releaseDateResult && publisherResult && developerResult && categoryResult;
         }
 
         private void Config_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -586,7 +671,6 @@ namespace PlayniteUI
 
             if (e != null && e.PropertyName == "GamesViewType")
             {
-                //TabControlView.SelectedIndex = (int)Config.GamesViewType;
                 return;
             }
 
@@ -635,8 +719,6 @@ namespace PlayniteUI
                     MainCollectionView.LiveFilteringProperties.Add("Hidden");
                     MainCollectionView.LiveFilteringProperties.Add("Provider");
                     MainCollectionView.Filter = GamesFilter;
-
-                    //TabControlView.SelectedIndex = (int)Config.GamesViewType;
                 }
                 else
                 {
@@ -692,6 +774,11 @@ namespace PlayniteUI
 
         private void FilterSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            if (e.PropertyName == "Active")
+            {
+                return;
+            }
+
             if (MainCollectionView == null)
             {
                 return;
