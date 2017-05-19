@@ -17,7 +17,17 @@ namespace Playnite
         {
             get
             {
-                return Installed || Hidden || Providers.Any(a => a.Value == true);
+                return
+                    Installed ||
+                    Hidden ||
+                    Favorite ||
+                    Providers.Any(a => a.Value == true) ||
+                    !string.IsNullOrEmpty(Name) ||
+                    !string.IsNullOrEmpty(ReleaseDate) ||
+                    (Genre != null && Genre.Count > 0) ||
+                    (Publisher != null && Publisher.Count > 0) ||
+                    (Developer != null && Developer.Count > 0) ||
+                    (Category != null && Category.Count > 0);
             }
         }
 
@@ -147,6 +157,22 @@ namespace Playnite
             {
                 hidden = value;
                 OnPropertyChanged("Hidden");
+                OnPropertyChanged("Active");
+            }
+        }
+
+        private bool favorite;
+        public bool Favorite
+        {
+            get
+            {
+                return favorite;
+            }
+
+            set
+            {
+                favorite = value;
+                OnPropertyChanged("Favorite");
                 OnPropertyChanged("Active");
             }
         }

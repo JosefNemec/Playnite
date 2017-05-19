@@ -13,6 +13,10 @@
     </Popup.Resources>
 
     <ItemsControl Background="{StaticResource PopupBackgroundBrush}" BorderBrush="{StaticResource PopupBorderBrush}" BorderThickness="{StaticResource PopupBorderThickness}">
+        <MenuItem Header="Add to Favorites" Click="AddFavorite_Click"
+                  Visibility="{Binding ShowAddFavorite, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <MenuItem Header="Remove from Favorites" Click="RemoveFavorite_Click"
+                  Visibility="{Binding ShowRemoveFavorite, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <MenuItem Header="Hide" Click="Hide_Click"
                   Visibility="{Binding ShowHideButton, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <MenuItem Header="Show in Library" Click="UnHide_Click"

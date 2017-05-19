@@ -186,6 +186,21 @@ namespace Playnite.Models
             }
         }
 
+        private bool favorite;
+        public bool Favorite
+        {
+            get
+            {
+                return favorite;
+            }
+
+            set
+            {
+                favorite = value;
+                OnPropertyChanged("Favorite");
+            }
+        }
+
         private string icon;
         public string Icon
         {

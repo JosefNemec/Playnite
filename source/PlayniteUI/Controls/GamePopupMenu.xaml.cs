@@ -181,5 +181,13 @@ namespace PlayniteUI.Controls
             GameDatabase.Instance.UpdateGameInDatabase(game);
             IsOpen = false;
         }
+
+        private void Favorite_Click(object sender, RoutedEventArgs e)
+        {
+            var game = (IGame)(sender as FrameworkElement).DataContext;
+            game.Favorite = !game.Favorite;
+            GameDatabase.Instance.UpdateGameInDatabase(game);
+            IsOpen = false;
+        }
     }
 }

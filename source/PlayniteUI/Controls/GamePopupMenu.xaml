@@ -52,9 +52,13 @@
                   Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <MenuItem Header="Create Desktop Shortcut" Click="Shortuct_Click"
                   Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <MenuItem Header="Add to Favorites" Click="Favorite_Click"
+                  Visibility="{Binding Favorite, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
+        <MenuItem Header="Remove from Favorites" Click="Favorite_Click"
+                  Visibility="{Binding Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <MenuItem Header="Hide" Click="Hide_Click"
                   Visibility="{Binding Hidden, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
-        <MenuItem Header="Show in Library"
+        <MenuItem Header="Show in Library" Click="Hide_Click"
                   Visibility="{Binding Hidden, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <MenuItem Header="Edit..."  Click="Edit_Click" />
         <MenuItem Header="Set Category..." Click="Category_Click" />

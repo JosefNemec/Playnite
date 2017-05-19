@@ -538,6 +538,17 @@ namespace PlayniteUI
                 hiddenResult = false;
             }
 
+            // ------------------ Favorite
+            bool favoriteResult = false;
+            if (Config.FilterSettings.Favorite && game.Favorite)
+            {
+                favoriteResult = true;
+            }
+            else if (!Config.FilterSettings.Favorite)
+            {
+                favoriteResult = true;
+            }
+
             // ------------------ Providers
             bool providersFilter = false;
             if (Config.FilterSettings.Providers.All(a => a.Value == false))
@@ -659,7 +670,7 @@ namespace PlayniteUI
                 }
             }
 
-            return installedResult && hiddenResult && textResult && providersFilter && genreResult && releaseDateResult && publisherResult && developerResult && categoryResult;
+            return installedResult && hiddenResult && favoriteResult && textResult && providersFilter && genreResult && releaseDateResult && publisherResult && developerResult && categoryResult;
         }
 
         private void Config_PropertyChanged(object sender, PropertyChangedEventArgs e)

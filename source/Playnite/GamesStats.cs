@@ -29,6 +29,15 @@ namespace Playnite
             }
         }
 
+        private int favorite = 0;
+        public int Favorite
+        {
+            get
+            {
+                return favorite;
+            }
+        }
+
         private int origin = 0;
         public int Origin
         {
@@ -88,6 +97,7 @@ namespace Playnite
         {
             installed = 0;
             hidden = 0;
+            favorite = 0;
             origin = 0;
             steam = 0;
             gog = 0;
@@ -103,6 +113,11 @@ namespace Playnite
                 if (game.Hidden)
                 {
                     hidden++;
+                }
+
+                if (game.Favorite)
+                {
+                    favorite++;
                 }
 
                 switch (game.Provider)
@@ -126,6 +141,7 @@ namespace Playnite
 
             OnPropertyChanged("Installed");
             OnPropertyChanged("Hidden");
+            OnPropertyChanged("Favorite");
             OnPropertyChanged("Origin");
             OnPropertyChanged("Steam");
             OnPropertyChanged("GOG");
@@ -164,6 +180,9 @@ namespace Playnite
                     Recalculate();
                     break;
                 case "IsInstalled":
+                    Recalculate();
+                    break;
+                case "Favorite":
                     Recalculate();
                     break;
                 default:

@@ -70,6 +70,36 @@ namespace PlayniteUI.Controls
             }
         }
 
+        private bool showAddFavorite = false;
+        public bool ShowAddFavorite
+        {
+            get
+            {
+                return showAddFavorite;
+            }
+
+            set
+            {
+                showAddFavorite = value;
+                OnPropertyChanged("ShowAddFavorite");
+            }
+        }
+
+        private bool showRemoveFavorite = false;
+        public bool ShowRemoveFavorite
+        {
+            get
+            {
+                return showRemoveFavorite;
+            }
+
+            set
+            {
+                showRemoveFavorite = value;
+                OnPropertyChanged("ShowRemoveFavorite");
+            }
+        }
+
         public GamePopupMenuMulti()
         {
             InitializeComponent();
@@ -86,6 +116,8 @@ namespace PlayniteUI.Controls
             ShowRemoveButton = onlyCustomGames;
             ShowUnHideButton = allHidden;
             ShowHideButton = allUnHidden;
+            ShowAddFavorite = games.Any(a => a.Favorite == false);
+            ShowRemoveFavorite = games.Any(a => a.Favorite == true);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -146,6 +178,28 @@ namespace PlayniteUI.Controls
             {
                 GameDatabase.Instance.DeleteGame(game);
             }
+        }
+
+        private void AddFavorite_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var game in (List<IGame>)DataContext)
+            {
+                game.Favorite = true;
+                GameDatabase.Instance.UpdateGameInDatabase(game);
+            }
+
+            IsOpen = false;
+        }
+
+        private void RemoveFavorite_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var game in (List<IGame>)DataContext)
+            {
+                game.Favorite = false;
+                GameDatabase.Instance.UpdateGameInDatabase(game);
+            }
+
+            IsOpen = false;
         }
     }
 }
