@@ -514,11 +514,11 @@ namespace PlayniteUI
 
             // ------------------ Installed
             bool installedResult = false;
-            if (Config.FilterSettings.Installed && game.IsInstalled)
+            if (Config.FilterSettings.IsInstalled && game.IsInstalled)
             {
                 installedResult = true;
             }
-            else if (!Config.FilterSettings.Installed)
+            else if (!Config.FilterSettings.IsInstalled)
             {
                 installedResult = true;
             }
@@ -551,13 +551,13 @@ namespace PlayniteUI
 
             // ------------------ Providers
             bool providersFilter = false;
-            if (Config.FilterSettings.Providers.All(a => a.Value == false))
+            if (Config.FilterSettings.Provider.All(a => a.Value == false))
             {
                 providersFilter = true;
             }
             else
             {
-                if (Config.FilterSettings.Providers[game.Provider] == true)
+                if (Config.FilterSettings.Provider[game.Provider] == true)
                 {
                     providersFilter = true;
                 }
@@ -581,7 +581,7 @@ namespace PlayniteUI
 
             // ------------------ Genre
             bool genreResult = false;
-            if (Config.FilterSettings.Genre == null || Config.FilterSettings.Genre.Count == 0)
+            if (Config.FilterSettings.Genres == null || Config.FilterSettings.Genres.Count == 0)
             {
                 genreResult = true;
             }
@@ -593,7 +593,7 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    genreResult = Config.FilterSettings.Genre.IntersectsPartiallyWith(game.Genres);
+                    genreResult = Config.FilterSettings.Genres.IntersectsPartiallyWith(game.Genres);
                 }
             }
 
@@ -618,7 +618,7 @@ namespace PlayniteUI
 
             // ------------------ Publisher
             bool publisherResult = false;
-            if (Config.FilterSettings.Publisher == null || Config.FilterSettings.Publisher.Count == 0)
+            if (Config.FilterSettings.Publishers == null || Config.FilterSettings.Publishers.Count == 0)
             {
                 publisherResult = true;
             }
@@ -630,13 +630,13 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    publisherResult = Config.FilterSettings.Publisher.IntersectsPartiallyWith(game.Publishers);
+                    publisherResult = Config.FilterSettings.Publishers.IntersectsPartiallyWith(game.Publishers);
                 }
             }
 
             // ------------------ Developer
             bool developerResult = false;
-            if (Config.FilterSettings.Developer == null || Config.FilterSettings.Developer.Count == 0)
+            if (Config.FilterSettings.Developers == null || Config.FilterSettings.Developers.Count == 0)
             {
                 developerResult = true;
             }
@@ -648,13 +648,13 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    developerResult = Config.FilterSettings.Developer.IntersectsPartiallyWith(game.Developers);
+                    developerResult = Config.FilterSettings.Developers.IntersectsPartiallyWith(game.Developers);
                 }
             }
 
             // ------------------ Category
             bool categoryResult = false;
-            if (Config.FilterSettings.Category == null || Config.FilterSettings.Category.Count == 0)
+            if (Config.FilterSettings.Categories == null || Config.FilterSettings.Categories.Count == 0)
             {
                 categoryResult = true;
             }
@@ -666,7 +666,7 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    categoryResult = Config.FilterSettings.Category.IntersectsPartiallyWith(game.Categories);
+                    categoryResult = Config.FilterSettings.Categories.IntersectsPartiallyWith(game.Categories);
                 }
             }
 
@@ -727,8 +727,16 @@ namespace PlayniteUI
                         MainCollectionView.LiveFilteringProperties.Clear();
                     }
 
-                    MainCollectionView.LiveFilteringProperties.Add("Hidden");
                     MainCollectionView.LiveFilteringProperties.Add("Provider");
+                    MainCollectionView.LiveFilteringProperties.Add("Name");
+                    MainCollectionView.LiveFilteringProperties.Add("Categories");
+                    MainCollectionView.LiveFilteringProperties.Add("Genres");
+                    MainCollectionView.LiveFilteringProperties.Add("ReleaseDate");
+                    MainCollectionView.LiveFilteringProperties.Add("Developers");
+                    MainCollectionView.LiveFilteringProperties.Add("Publishers");
+                    MainCollectionView.LiveFilteringProperties.Add("IsInstalled");
+                    MainCollectionView.LiveFilteringProperties.Add("Hidden");
+                    MainCollectionView.LiveFilteringProperties.Add("Favorite");
                     MainCollectionView.Filter = GamesFilter;
                 }
                 else

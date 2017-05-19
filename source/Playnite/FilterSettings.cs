@@ -18,16 +18,16 @@ namespace Playnite
             get
             {
                 return
-                    Installed ||
+                    IsInstalled ||
                     Hidden ||
                     Favorite ||
-                    Providers.Any(a => a.Value == true) ||
+                    Provider.Any(a => a.Value == true) ||
                     !string.IsNullOrEmpty(Name) ||
                     !string.IsNullOrEmpty(ReleaseDate) ||
-                    (Genre != null && Genre.Count > 0) ||
-                    (Publisher != null && Publisher.Count > 0) ||
-                    (Developer != null && Developer.Count > 0) ||
-                    (Category != null && Category.Count > 0);
+                    (Genres != null && Genres.Count > 0) ||
+                    (Publishers != null && Publishers.Count > 0) ||
+                    (Developers != null && Developers.Count > 0) ||
+                    (Categories != null && Categories.Count > 0);
             }
         }
 
@@ -47,18 +47,18 @@ namespace Playnite
             }
         }
 
-        private List<string> genre;
-        public List<string> Genre
+        private List<string> genres;
+        public List<string> Genres
         {
             get
             {
-                return genre;
+                return genres;
             }
 
             set
             {
-                genre = value;
-                OnPropertyChanged("Genre");
+                genres = value;
+                OnPropertyChanged("Genres");
                 OnPropertyChanged("Active");
             }
         }
@@ -81,66 +81,66 @@ namespace Playnite
         }
 
 
-        private List<string> publisher;
-        public List<string> Publisher
+        private List<string> publishers;
+        public List<string> Publishers
         {
             get
             {
-                return publisher;
+                return publishers;
             }
 
             set
             {
-                publisher = value;
-                OnPropertyChanged("Publisher");
+                publishers = value;
+                OnPropertyChanged("Publishers");
                 OnPropertyChanged("Active");
             }
         }
 
-        private List<string> developer;
-        public List<string> Developer
+        private List<string> developers;
+        public List<string> Developers
         {
             get
             {
-                return developer;
+                return developers;
             }
 
             set
             {
-                developer = value;
-                OnPropertyChanged("Developer");
+                developers = value;
+                OnPropertyChanged("Developers");
                 OnPropertyChanged("Active");
             }
         }
 
-        private List<string> category;
-        public List<string> Category
+        private List<string> categories;
+        public List<string> Categories
         {
             get
             {
-                return category;
+                return categories;
             }
 
             set
             {
-                category = value;
-                OnPropertyChanged("Category");
+                categories = value;
+                OnPropertyChanged("Categories");
                 OnPropertyChanged("Active");
             }
         }
 
-        private bool installed;
-        public bool Installed
+        private bool isInstalled;
+        public bool IsInstalled
         {
             get
             {
-                return installed;
+                return isInstalled;
             }
 
             set
             {
-                installed = value;
-                OnPropertyChanged("Installed");
+                isInstalled = value;
+                OnPropertyChanged("IsInstalled");
                 OnPropertyChanged("Active");
             }
         }        
@@ -177,31 +177,31 @@ namespace Playnite
             }
         }
 
-        private ObservableConcurrentDictionary<Provider, bool> providers = new ObservableConcurrentDictionary<Provider, bool>()
+        private ObservableConcurrentDictionary<Provider, bool> provider = new ObservableConcurrentDictionary<Provider, bool>()
         {
-            { Provider.Custom, false },
-            { Provider.GOG, false },
-            { Provider.Steam, false },
-            { Provider.Origin, false }
+            { Models.Provider.Custom, false },
+            { Models.Provider.GOG, false },
+            { Models.Provider.Steam, false },
+            { Models.Provider.Origin, false }
         };
 
-        public ObservableConcurrentDictionary<Provider, bool> Providers
+        public ObservableConcurrentDictionary<Provider, bool> Provider
         {
             get
             {
-                return providers;
+                return provider;
             }
 
             set
             {
-                if (providers != null)
+                if (provider != null)
                 {
-                    providers.PropertyChanged -= Providers_PropertyChanged;
+                    provider.PropertyChanged -= Providers_PropertyChanged;
                 }
 
-                providers = value;
-                providers.PropertyChanged += Providers_PropertyChanged;
-                OnPropertyChanged("Providers");
+                provider = value;
+                provider.PropertyChanged += Providers_PropertyChanged;
+                OnPropertyChanged("Provider");
                 OnPropertyChanged("Active");
             }
         }
@@ -210,7 +210,7 @@ namespace Playnite
         {
             if (e.PropertyName == "Values")
             {
-                OnPropertyChanged("Providers");
+                OnPropertyChanged("Provider");
                 OnPropertyChanged("Active");
             }
         }
@@ -219,7 +219,7 @@ namespace Playnite
 
         public FilterSettings()
         {
-            Providers.PropertyChanged += Providers_PropertyChanged;
+            Provider.PropertyChanged += Providers_PropertyChanged;
         }
 
         public void OnPropertyChanged(string name)
