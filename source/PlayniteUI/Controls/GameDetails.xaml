@@ -9,7 +9,8 @@
              xmlns:models="clr-namespace:Playnite.Models;assembly=Playnite"
              xmlns:playniteControls="clr-namespace:PlayniteUI.Controls"
              mc:Ignorable="d"
-             d:DesignHeight="600" d:DesignWidth="600" DataContextChanged="UserControl_DataContextChanged">
+             d:DesignHeight="600" d:DesignWidth="600" DataContextChanged="UserControl_DataContextChanged"
+             SizeChanged="UserControl_SizeChanged">
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -17,6 +18,9 @@
         <local:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
         <local:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
         <local:ImageUrlToImageSourceConverter x:Key="ImageUrlToImageSourceConverter" />
+        <local:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
+        <local:EnumerableNullOrEmptyToVisibilityConverter x:Key="EnumerableNullOrEmptyToVisibilityConverter" />
+        <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
         <sys:Boolean x:Key="True">True</sys:Boolean>
         <sys:Boolean x:Key="False">False</sys:Boolean>
         <local:ValueConverterGroup x:Key="EnumCompVisibilityConverterInverted">
@@ -24,6 +28,36 @@
             <local:NegateConverter/>
             <BooleanToVisibilityConverter/>
         </local:ValueConverterGroup>
+
+        <Style x:Key="ListTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="Margin" Value="0,2,5,2" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <Style x:Key="ListItems" TargetType="ItemsControl">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Style="{StaticResource ListTextBlock}">
+                            <Hyperlink NavigateUri="{Binding Mode=OneWay}" RequestNavigate="Filter_RequestNavigate" Tag="{Binding Tag, RelativeSource={RelativeSource AncestorType=ItemsControl}}">
+                                <Run Text="{Binding Mode=OneWay}" />
+                            </Hyperlink>
+                        </TextBlock>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <WrapPanel FlowDirection="LeftToRight" IsItemsHost="true" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ListLabel" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+            <Setter Property="Margin" Value="0,10,0,2" />
+        </Style>
     </UserControl.Resources>
 
     <Grid Visibility="{Binding ShowContent, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
@@ -53,51 +87,89 @@
             </DockPanel>
 
             <DockPanel DockPanel.Dock="Top" Margin="20,10,0,0">
-                <WrapPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,5,20,5" Height="35" HorizontalAlignment="Left">
-                        <StackPanel Orientation="Horizontal"
-                                    Visibility="{Binding IsSetupInProgress, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}">
-                            <Button Style="{StaticResource PlayButton}" Name="ButtonPlay" Width="100" HorizontalAlignment="Left" Click="ButtonPlay_Click"
-                                    Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}" Content="Play" />
-                            <UserControl Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}">
-                                <Button Width="100" Click="ButtonInstall_Click" Content="Install" Name="ButtonInstall"
-                                    Visibility="{Binding IsInstalled, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}" />
-                            </UserControl>
-                        </StackPanel>
-                        <Button Name="ButtonSetupProgress" Content="Setup Running..." Click="ButtonSetupProgress_Click"
-                                Visibility="{Binding IsSetupInProgress, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
-                        <Button Name="ButtonMore" Width="100" Margin="10, 0, 0, 0" Click="ButtonMore_Click" Content="More" />
+                <StackPanel Orientation="Horizontal" Margin="0,5,20,5" Height="35" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal"
+                                Visibility="{Binding IsSetupInProgress, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}">
+                        <Button Style="{StaticResource PlayButton}" Name="ButtonPlay" Width="100" HorizontalAlignment="Left" Click="ButtonPlay_Click"
+                                Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}" Content="Play" />
+                        <UserControl Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}">
+                            <Button Width="100" Click="ButtonInstall_Click" Content="Install" Name="ButtonInstall"
+                                Visibility="{Binding IsInstalled, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}" />
+                        </UserControl>
                     </StackPanel>
-                    <StackPanel  Orientation="Horizontal">
-                        <TextBlock Margin="0,5,5,5" Background="#66000000" Padding="7" Width="75" TextAlignment="Center" VerticalAlignment="Center"
-                                   Visibility="{Binding CommunityHubUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}">                        
-                            <Hyperlink Name="HyperlinkForum" Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding CommunityHubUrl, TargetNullValue={x:Null}}"
-                                       RequestNavigate="Link_RequestNavigate">
-                                Forum
-                            </Hyperlink>
-                        </TextBlock>
-                        <TextBlock Margin="5" Background="#66000000" Padding="7" Width="75" TextAlignment="Center" VerticalAlignment="Center"
-                                   Visibility="{Binding StoreUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}">  
-                            <Hyperlink Name="HyperlinkStore" Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding StoreUrl, TargetNullValue={x:Null}}"
-                                       RequestNavigate="Link_RequestNavigate">
-                                Store
-                            </Hyperlink>
-                        </TextBlock>
-                        <TextBlock Margin="5,5,0,5" Background="#66000000" Padding="7" Width="75" TextAlignment="Center" VerticalAlignment="Center"
-                                   Visibility="{Binding WikiUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}">
-                            <Hyperlink Name="HyperlinkWiki" Style="{DynamicResource DetailsHyperlink}" NavigateUri="{Binding WikiUrl, TargetNullValue={x:Null}}"
-                                       RequestNavigate="Link_RequestNavigate">
-                                Wiki
-                            </Hyperlink>
-                        </TextBlock>
-                    </StackPanel>
-                </WrapPanel>
+                    <Button Name="ButtonSetupProgress" Content="Setup Running..." Click="ButtonSetupProgress_Click"
+                            Visibility="{Binding IsSetupInProgress, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+                    <Button Name="ButtonMore" Width="100" Margin="10, 0, 0, 0" Click="ButtonMore_Click" Content="More" />
+                </StackPanel>
             </DockPanel>
-            <ScrollViewer>
-                <html:HtmlPanel Background="Transparent" Text="{Binding DescriptionView, Mode=OneWay}" Margin="10,20,0,0" BorderThickness="0"
-                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
-            </ScrollViewer>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border Grid.Column="0" Grid.Row="0" Name="BorderGameInfo" Padding="10" Margin="15,10,0,0" CornerRadius="3"
+                        Visibility="{Binding ShowInfoPanel, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Width="150">
+                        <Label Content="Genres" Visibility="{Binding Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}" />
+                        <ItemsControl ItemsSource="{Binding Genres}" Style="{StaticResource ListItems}"
+                                      Visibility="{Binding Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
+                                      Tag="Genres"/>
+
+                        <Label Content="Developed by" Style="{StaticResource ListLabel}" Visibility="{Binding Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                        <ItemsControl ItemsSource="{Binding Developers}" Style="{StaticResource ListItems}"
+                                      Visibility="{Binding Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
+                                      Tag="Developers"/>
+
+                        <Label Content="Published by" Style="{StaticResource ListLabel}" Visibility="{Binding Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                        <ItemsControl ItemsSource="{Binding Publishers}" Style="{StaticResource ListItems}"
+                                      Visibility="{Binding Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
+                                      Tag="Publishers"/>
+
+                        <Label Content="Release Date" Style="{StaticResource ListLabel}" Visibility="{Binding ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"/>
+                        <TextBlock Visibility="{Binding ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"
+                                   Style="{StaticResource ListTextBlock}">
+                            <Hyperlink NavigateUri="{Binding ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}" RequestNavigate="Filter_RequestNavigate" Tag="ReleaseDate">
+                                <Run Text="{Binding ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}" />
+                            </Hyperlink>
+                        </TextBlock>
+
+                        <Label Content="Categories" Style="{StaticResource ListLabel}" Visibility="{Binding Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                        <ItemsControl ItemsSource="{Binding Categories}" Style="{StaticResource ListItems}"
+                                      Visibility="{Binding Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
+                                      Tag="Categories"/>
+
+                        <Label Content="Links" Style="{StaticResource ListLabel}" Name="LabelLinks"/>
+                        <TextBlock Visibility="{Binding StoreUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
+                                   Style="{StaticResource ListTextBlock}">
+                            <Hyperlink NavigateUri="{Binding StoreUrl, TargetNullValue={x:Null}}" RequestNavigate="Link_RequestNavigate">
+                                <Run Text="Store" />
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Visibility="{Binding CommunityHubUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
+                                   Style="{StaticResource ListTextBlock}">
+                            <Hyperlink NavigateUri="{Binding CommunityHubUrl, TargetNullValue={x:Null}}" RequestNavigate="Link_RequestNavigate">
+                                <Run Text="Forums" />
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Visibility="{Binding WikiUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
+                                   Style="{StaticResource ListTextBlock}">
+                            <Hyperlink NavigateUri="{Binding WikiUrl, TargetNullValue={x:Null}}" RequestNavigate="Link_RequestNavigate">
+                                <Run Text="Wiki" />
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+                <ScrollViewer Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="10,10,0,0" Name="ScrollDescription" >
+                    <html:HtmlPanel Background="Transparent" Text="{Binding DescriptionView, Mode=OneWay}" BorderThickness="0"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                    ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                </ScrollViewer>
+            </Grid>
         </DockPanel>
     </Grid>    
 </UserControl>

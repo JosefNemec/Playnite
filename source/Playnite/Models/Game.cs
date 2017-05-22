@@ -120,6 +120,7 @@ namespace Playnite.Models
             {
                 description = value;
                 OnPropertyChanged("Description");
+                OnPropertyChanged("DescriptionView");
             }
         }
 

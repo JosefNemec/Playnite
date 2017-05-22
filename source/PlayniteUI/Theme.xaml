@@ -2859,10 +2859,11 @@
 
     <Style TargetType="Hyperlink">
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="Foreground" Value="LightGray" />
+        <Setter Property="Foreground" Value="{StaticResource GlyphBrush}" />
+        <Setter Property="TextDecorations" Value="{x:Null}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>
