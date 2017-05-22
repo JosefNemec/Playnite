@@ -21,8 +21,9 @@
         <Style x:Key="FilterLabel" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
             <Setter Property="Margin" Value="8,8,8,4" />
         </Style>
-        <Style x:Key="FilterTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Style x:Key="FilterTextBox" TargetType="local:SearchBox">
             <Setter Property="Margin" Value="8,0,8,8" />
+            <Setter Property="ShowImage" Value="False" />
         </Style>
 
         <playniteUI:ListToStringConverter x:Key="ListToStringConverter" />
@@ -72,7 +73,7 @@
                 </Style>
             </Label.Style>
         </Label>
-        <TextBox Name="TextFilterName" Text="{Binding Settings.Name, Delay=500, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource FilterTextBox}"/>
+        <local:SearchBox x:Name="TextFilterName" Text="{Binding Settings.Name, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
 
         <Label Content="Genre">
             <Label.Style>
@@ -85,7 +86,7 @@
                 </Style>
             </Label.Style>
         </Label>
-        <TextBox Name="TextFilterGenre" Text="{Binding Settings.Genres, Delay=500, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+        <local:SearchBox x:Name="TextFilterGenre" Text="{Binding Settings.Genres, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
         <Label Content="Release Date">
             <Label.Style>
@@ -98,7 +99,7 @@
                 </Style>
             </Label.Style>
         </Label>
-        <TextBox Name="TextFilterReleaseDate" Text="{Binding Settings.ReleaseDate, Delay=500, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource FilterTextBox}"/>
+        <local:SearchBox x:Name="TextFilterReleaseDate" Text="{Binding Settings.ReleaseDate, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
 
         <Label Content="Developer">
             <Label.Style>
@@ -111,7 +112,7 @@
                 </Style>
             </Label.Style>
         </Label>
-        <TextBox Name="TextFilterDeveloper" Text="{Binding Settings.Developers, Delay=500, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+        <local:SearchBox x:Name="TextFilterDeveloper" Text="{Binding Settings.Developers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
         <Label Content="Publisher">
             <Label.Style>
@@ -124,7 +125,7 @@
                 </Style>
             </Label.Style>
         </Label>
-        <TextBox Name="TextFilterPublisher" Text="{Binding Settings.Publishers, Delay=500, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+        <local:SearchBox x:Name="TextFilterPublisher" Text="{Binding Settings.Publishers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
         <Label Content="Category">
             <Label.Style>
@@ -137,6 +138,6 @@
                 </Style>
             </Label.Style>
         </Label>
-        <TextBox Name="TextFilterCategory" Text="{Binding Settings.Categories, Delay=500, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+        <local:SearchBox x:Name="TextFilterCategory" Text="{Binding Settings.Categories, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
     </StackPanel>
 </UserControl>

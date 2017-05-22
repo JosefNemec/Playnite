@@ -34,7 +34,21 @@ namespace PlayniteUI.Controls
             }
         }
 
+        public bool ShowImage
+        {
+            get
+            {
+                return (bool)GetValue(ShowImageProperty);
+            }
+
+            set
+            {
+                SetValue(ShowImageProperty, value);
+            }
+        }
+
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(SearchBox));
+        public static readonly DependencyProperty ShowImageProperty = DependencyProperty.Register("ShowImage", typeof(bool), typeof(SearchBox), new PropertyMetadata(true, ShowImagePropertyChangedCallback));
 
         public SearchBox()
         {
@@ -55,6 +69,20 @@ namespace PlayniteUI.Controls
             else
             {
                 ImageClear.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private static void ShowImagePropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var obj = sender as SearchBox;
+
+            if ((bool)e.NewValue == true)
+            {
+                obj.ImageImage.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                obj.ImageImage.Visibility = Visibility.Collapsed;
             }
         }
     }
