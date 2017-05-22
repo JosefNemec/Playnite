@@ -236,6 +236,21 @@ namespace PlayniteTests.Database
                 libraryGames.RemoveAt(0);
                 db.UpdateOwnedGames(provider);
                 Assert.AreEqual(2, db.Games.Count);
+
+                // Game not in library but installed is not removed from DB
+                libraryGames.Insert(0, new Game()
+                {
+                    ProviderId = "testid4",
+                    Name = "Test Game 3",
+                    Provider = provider,
+                    PlayTask = new GameTask()
+                });
+
+                db.UpdateOwnedGames(provider);
+                Assert.AreEqual(3, db.Games.Count);
+                libraryGames.RemoveAt(0);
+                db.UpdateOwnedGames(provider);
+                Assert.AreEqual(3, db.Games.Count);
             }
         }
 
