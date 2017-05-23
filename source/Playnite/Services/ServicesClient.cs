@@ -11,6 +11,11 @@ namespace Playnite.Services
 {
     public class ServicesClient
     {
+        private HttpClient httpClient = new HttpClient()
+        {
+            Timeout = new TimeSpan(0, 0, 30)
+        };
+
         public string Endpoint
         {
             get;
@@ -26,15 +31,11 @@ namespace Playnite.Services
             Endpoint = endpoint.TrimEnd('/');
         }
 
-        public List<Playnite.Providers.Steam.GetOwnedGamesResult.Game> GetSteamLibrary(string userName)
+        private T ExecuteRequest<T>(string subUrl)
         {
-            var url = Endpoint + "/api/steam/library/" + userName;
-            var httpClient = new HttpClient()
-            {
-                Timeout = new TimeSpan(0, 0, 30)
-            };
+            var url = Endpoint + subUrl;
             var strResult = httpClient.GetStringAsync(url).GetAwaiter().GetResult();
-            var result = JsonConvert.DeserializeObject<ServicesResponse<List<Providers.Steam.GetOwnedGamesResult.Game>>>(strResult);
+            var result = JsonConvert.DeserializeObject<ServicesResponse<T>>(strResult);
 
             if (!string.IsNullOrEmpty(result.Error))
             {
@@ -42,6 +43,31 @@ namespace Playnite.Services
             }
 
             return result.Data;
+        }
+
+        public List<Playnite.Providers.Steam.GetOwnedGamesResult.Game> GetSteamLibrary(string userName)
+        {
+            return ExecuteRequest<List<Playnite.Providers.Steam.GetOwnedGamesResult.Game>>("/api/steam/library/" + userName);
+        }
+
+        public List<PlayniteServices.Models.IGDB.Game> GetIGDBGames(string searchName)
+        {
+            return ExecuteRequest<List<PlayniteServices.Models.IGDB.Game>>("/api/igdb/games/" + searchName);
+        }
+
+        public PlayniteServices.Models.IGDB.Game GetIGDBGame(UInt64 id)
+        {
+            return ExecuteRequest<PlayniteServices.Models.IGDB.Game>("/api/igdb/game/" + id);
+        }
+
+        public PlayniteServices.Models.IGDB.Company GetIGDBCompany(UInt64 id)
+        {
+            return ExecuteRequest<PlayniteServices.Models.IGDB.Company>("/api/igdb/company/" + id);
+        }
+
+        public PlayniteServices.Models.IGDB.Genre GetIGDBGenre(UInt64 id)
+        {
+            return ExecuteRequest<PlayniteServices.Models.IGDB.Genre>("/api/igdb/genre/" + id);
         }
     }
 }

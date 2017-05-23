@@ -349,9 +349,22 @@ namespace PlayniteUI
             var dateConverter = new NullableDateToStringConverter();
 
             TextName.Text = string.IsNullOrEmpty(game.Name) ? TextName.Text : game.Name;
-            TextDeveloper.Text = (string)listConverter.Convert(game.Developers, typeof(string), null, null);
-            TextPublisher.Text = (string)listConverter.Convert(game.Publishers, typeof(string), null, null);
-            TextGenres.Text = (string)listConverter.Convert(game.Genres, typeof(string), null, null);
+
+            if (game.Developers != null && game.Developers.Count != 0)
+            {
+                TextDeveloper.Text = (string)listConverter.Convert(game.Developers, typeof(string), null, null);
+            }
+
+            if (game.Publishers != null && game.Publishers.Count != 0)
+            {
+                TextPublisher.Text = (string)listConverter.Convert(game.Publishers, typeof(string), null, null);
+            }
+
+            if (game.Genres != null && game.Genres.Count != 0)
+            {
+                TextGenres.Text = (string)listConverter.Convert(game.Genres, typeof(string), null, null);
+            }
+
             TextReleaseDate.Text = (string)dateConverter.Convert(game.ReleaseDate, typeof(DateTime?), null, null);
             TextDescription.Text = string.IsNullOrEmpty(game.Description) ? TextName.Text : game.Description;
             TextStore.Text = string.IsNullOrEmpty(game.StoreUrl) ? TextStore.Text : game.StoreUrl;
@@ -819,7 +832,7 @@ namespace PlayniteUI
             }
         }
 
-        private void MenuWikiDownload_Click(object sender, RoutedEventArgs e)
+        private void DoMetadataLookup(MetadataProvider provider)
         {
             if (string.IsNullOrEmpty(TextName.Text))
             {
@@ -835,11 +848,21 @@ namespace PlayniteUI
                 WindowStartupLocation = WindowStartupLocation.CenterOwner
             };
 
-            if (window.LookupData(TextName.Text) == true)
+            if (window.LookupData(TextName.Text, provider) == true)
             {
                 PreviewGameData(window.MetadataData);
                 CheckBoxesVisible = true;
             }
+        }
+
+        private void MenuWikiDownload_Click(object sender, RoutedEventArgs e)
+        {
+            DoMetadataLookup(MetadataProvider.Wiki);
+        }
+
+        private void MenuIGDBDownload_Click(object sender, RoutedEventArgs e)
+        {
+            DoMetadataLookup(MetadataProvider.IGDB);
         }
 
         private void MenuStoreDownload_Click(object sender, RoutedEventArgs e)

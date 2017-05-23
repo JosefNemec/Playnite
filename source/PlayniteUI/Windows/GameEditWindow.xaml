@@ -272,6 +272,7 @@
                     Click="ButtonDownload_Click" Style="{StaticResource BottomButton}">
                 <Button.ContextMenu>
                     <ContextMenu>
+                        <MenuItem Header="IGDB" Click="MenuIGDBDownload_Click" />
                         <MenuItem Header="Wiki" Click="MenuWikiDownload_Click" />
                         <MenuItem Header="Official Store" Click="MenuStoreDownload_Click"
                                   Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}"/>

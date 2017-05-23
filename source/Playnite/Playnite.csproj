@@ -133,11 +133,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\PlayniteServices\Models\IGDB\IGDB.cs">
+      <Link>Services\Models\IGDB\IGDB.cs</Link>
+    </Compile>
     <Compile Include="CoverCreator.cs" />
     <Compile Include="Database\GameDatabase.cs" />
     <Compile Include="EmbededResources.cs" />
     <Compile Include="GamesStats.cs" />
     <Compile Include="ListExtensions.cs" />
+    <Compile Include="MetaProviders\IGDB.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Paths.cs" />
     <Compile Include="PipeServer.cs" />

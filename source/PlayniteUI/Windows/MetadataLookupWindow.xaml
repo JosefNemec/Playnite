@@ -4,10 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlayniteUI.Windows"
+        xmlns:playniteUI="clr-namespace:PlayniteUI"
         mc:Ignorable="d"
         Title="Metadata search" Height="600" Width="800"
         Background="{StaticResource NormalBrush}" Loaded="Window_Loaded"
         AutomationProperties.AutomationId="WindowMetaSearch">
+
+    <Window.Resources>
+        <playniteUI:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
+    </Window.Resources>
     
     <Window.CommandBindings>
         <CommandBinding Command="Search" Executed="Search_Executed" />
@@ -25,8 +30,9 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel>
-                        <TextBlock Text="{Binding title}" DockPanel.Dock="Top" Margin="5" FontWeight="Bold" Foreground="{StaticResource TextBrush}"/>
-                        <TextBlock Text="{Binding snippet}" DockPanel.Dock="Top" Margin="5,0,5,5" FontStyle="Italic" TextWrapping="Wrap" Foreground="{StaticResource TextBrush}"/>
+                        <TextBlock Text="{Binding Name}" DockPanel.Dock="Top" Margin="5" FontWeight="Bold" Foreground="{StaticResource TextBrush}"/>
+                        <TextBlock Text="{Binding Description}" DockPanel.Dock="Top" Margin="5,0,5,5" FontStyle="Italic" TextWrapping="Wrap" Foreground="{StaticResource TextBrush}"
+                                   Visibility="{Binding Description, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

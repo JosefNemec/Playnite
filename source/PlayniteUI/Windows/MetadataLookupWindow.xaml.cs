@@ -17,14 +17,50 @@ using Playnite.Models;
 
 namespace PlayniteUI.Windows
 {
+    public enum MetadataProvider
+    {
+        Wiki,
+        IGDB
+    }
+
     /// <summary>
     /// Interaction logic for MetadataLookupWindow.xaml
     /// </summary>
     public partial class MetadataLookupWindow : Window
     {
+        public class SearchResult
+        {
+            public string Id
+            {
+                get; set;
+            }
+
+            public string Name
+            {
+                get; set;
+            }
+
+            public string Description
+            {
+                get; set;
+            }
+
+            public SearchResult(string id, string name, string description)
+            {
+                Id = id;
+                Name = name;
+                Description = description;
+            }
+        }
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
         
         private string searchTerm
+        {
+            get; set;
+        }
+
+        private MetadataProvider provider
         {
             get; set;
         }
@@ -47,7 +83,7 @@ namespace PlayniteUI.Windows
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
-            var title = ((Wikipedia.SearchResult)ListSearch.SelectedItem).title;
+            var id = ((SearchResult)ListSearch.SelectedItem).Id;
 
             Task.Factory.StartNew(() =>
             {
@@ -61,9 +97,18 @@ namespace PlayniteUI.Windows
 
                 try
                 {
-                    var wiki = new Wikipedia();
-                    var page = wiki.GetPage(title);
-                    MetadataData = wiki.ParseGamePage(page, searchTerm);
+                    switch (provider)
+                    {
+                        case MetadataProvider.Wiki:
+                            var wiki = new Wikipedia();
+                            var page = wiki.GetPage(id);
+                            MetadataData = wiki.ParseGamePage(page, searchTerm);
+                            break;
+                        case MetadataProvider.IGDB:
+                            var igdb = new IGDB();
+                            MetadataData = igdb.GetParsedGame(UInt64.Parse(id));
+                            break;
+                    }
                 }
                 catch (Exception exc)
                 {
@@ -126,8 +171,8 @@ namespace PlayniteUI.Windows
 
             Task.Factory.StartNew(() =>
             {
-                var wiki = new Wikipedia();
-                var search = wiki.Search(searchTerm);
+                var search = SearchGames(searchTerm, provider);
+
                 ListSearch.Dispatcher.Invoke(() =>
                 {
                     ListSearch.ItemsSource = search;
@@ -137,9 +182,38 @@ namespace PlayniteUI.Windows
             });
         }
 
-        public bool? LookupData(string gameName)
+        private List<SearchResult> SearchGames(string keyword, MetadataProvider provider)
         {
-            searchTerm = gameName;
+            var searchList = new List<SearchResult>();
+
+            switch (provider)
+            {
+                case MetadataProvider.Wiki:
+                    var wiki = new Wikipedia();
+                    foreach (var page in wiki.Search(keyword))
+                    {
+                        searchList.Add(new SearchResult(page.title, page.title, page.snippet));
+                    }
+
+                    break;
+
+                case MetadataProvider.IGDB:
+                    var igdb = new IGDB();
+                    foreach (var page in igdb.Search(keyword))
+                    {
+                        searchList.Add(new SearchResult(page.id.ToString(), page.name, string.Empty));
+                    }
+
+                    break;
+            }
+
+            return searchList;
+        }
+
+        public bool? LookupData(string gameName, MetadataProvider provider)
+        {
+            this.provider = provider;
+            this.searchTerm = gameName;
             TextSearch.Text = gameName;
             return ShowDialog();
         }

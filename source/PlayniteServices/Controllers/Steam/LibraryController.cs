@@ -53,7 +53,7 @@ namespace PlayniteServices.Controllers.Steam
         private static object dateLock = new object();
         private static object userIdLock = new object();
 
-        private void verifyApiKey()
+        private void VerifyApiKey()
         {
             if (!string.IsNullOrEmpty(apiKey))
             {
@@ -74,7 +74,7 @@ namespace PlayniteServices.Controllers.Steam
 
         // Steam API has limit one request per second, so we need to slow requests down
         // TODO: change this to something more sophisticated like proper queue
-        private void waitRequest()
+        private void WaitRequest()
         {
             lock (dateLock)
             {
@@ -85,13 +85,13 @@ namespace PlayniteServices.Controllers.Steam
                     lastRequest = DateTime.Now;
                     return;
                 }
-
+                Console.WriteLine("waiting for -----" + ((int)requestDelay - (DateTime.Now - lastRequest).Milliseconds).ToString());
                 Thread.Sleep((int)requestDelay - (DateTime.Now - lastRequest).Milliseconds);
                 lastRequest = DateTime.Now;
             }            
         }
 
-        private string getUserId(string userName)
+        private string GetUserId(string userName)
         {
 
             lock (userIdLock)
@@ -101,7 +101,7 @@ namespace PlayniteServices.Controllers.Steam
                     return userIdCache[userName];
                 }
 
-                waitRequest();
+                WaitRequest();
                 
                 var idUrl = string.Format(
                     @"http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key={0}&vanityurl={1}",
@@ -121,21 +121,18 @@ namespace PlayniteServices.Controllers.Steam
                 
         [HttpGet("{userName}")]
         public async Task<ServicesResponse<List<GetOwnedGamesResult.Game>>> Get(string userName)
-        {
-            return await Task.Run(() =>
-            {
-                verifyApiKey();
+        {            
+            VerifyApiKey();
 
-                var libraryUrl = string.Format(
-                    @"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&include_appinfo=1&format=json&steamid={1}",
-                    apiKey, getUserId(userName));
-                waitRequest();
+            var libraryUrl = string.Format(
+                @"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&include_appinfo=1&format=json&steamid={1}",
+                apiKey, GetUserId(userName));
+            WaitRequest();
 
-                var libraryStringResult = httpClient.GetStringAsync(libraryUrl).GetAwaiter().GetResult();
-                var libraryResult = JsonConvert.DeserializeObject<GetOwnedGamesResult>(libraryStringResult);
+            var libraryStringResult = await httpClient.GetStringAsync(libraryUrl);
+            var libraryResult = JsonConvert.DeserializeObject<GetOwnedGamesResult>(libraryStringResult);
 
-                return new ServicesResponse<List<GetOwnedGamesResult.Game>>(libraryResult.response.games, string.Empty);
-            });
+            return new ServicesResponse<List<GetOwnedGamesResult.Game>>(libraryResult.response.games, string.Empty);
         }
     }
 }
