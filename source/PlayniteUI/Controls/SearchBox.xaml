@@ -5,16 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlayniteUI.Controls"
              mc:Ignorable="d"              
-             d:DesignHeight="60" d:DesignWidth="300">
+             d:DesignWidth="300" Height="28">
 
-    <Border BorderThickness="2" CornerRadius="2" Background="Transparent" Style="{StaticResource HighlightBorder}">
+    <Border BorderThickness="2" CornerRadius="3" Background="Transparent" Style="{StaticResource HighlightBorder}" Padding="1">
         <DockPanel Background="{StaticResource ControlBackgroundBrush}" Name="dock">
-            <Image Source="/Images/searchicon.png" DockPanel.Dock="Left" RenderOptions.BitmapScalingMode="Fant"/>
+            <Image Source="/Images/searchicon.png" DockPanel.Dock="Left" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"/>
             <Image Source="/Images/clear.png" Name="ImageClear" DockPanel.Dock="Right" RenderOptions.BitmapScalingMode="Fant"
                    MouseUp="ClearImage_MouseUp" Margin="0,0,4,0" Visibility="Hidden"/>
             <TextBox Name="TextFilter" BorderThickness="0" VerticalContentAlignment="Center" FontSize="14"                 
                      Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
-                     TextChanged="TextFilter_TextChanged" Foreground="{StaticResource TextBrush}"/>
+                     TextChanged="TextFilter_TextChanged"/>
         </DockPanel>
     </Border>
 </UserControl>

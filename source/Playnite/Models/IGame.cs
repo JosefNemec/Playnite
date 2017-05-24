@@ -146,6 +146,11 @@ namespace Playnite.Models
             get; set;
         }
 
+        bool Favorite
+        {
+            get; set;
+        }
+
         void PlayGame();
 
         void InstallGame();

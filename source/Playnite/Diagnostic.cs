@@ -15,21 +15,21 @@ namespace Playnite
 {
     public static class Diagnostic
     {
-        private static void AddFolderToZip(ZipArchive archive, string zipRoot, string path, string filter)
+        private static void AddFolderToZip(ZipArchive archive, string zipRoot, string path, string filter, SearchOption searchOption)
         {
             IEnumerable<string> files;
 
             if (filter.Contains('|'))
             {
                 var filters = filter.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
-                files = Directory.EnumerateFiles(path, "*.*", SearchOption.AllDirectories).Where(a =>
+                files = Directory.EnumerateFiles(path, "*.*", searchOption).Where(a =>
                 {
                     return filters.Contains(Path.GetExtension(a));
                 });
             }
             else
             {
-                files = Directory.EnumerateFiles(path, filter, SearchOption.AllDirectories);
+                files = Directory.EnumerateFiles(path, filter, searchOption);
             }
 
             foreach (var file in files)
@@ -73,7 +73,7 @@ namespace Playnite
                     var originContentPath = Path.Combine(Providers.Origin.OriginPaths.DataPath, "LocalContent");
                     if (Directory.Exists(originContentPath))
                     {
-                        AddFolderToZip(archive, "Origin", originContentPath, ".dat|.mfst");
+                        AddFolderToZip(archive, "Origin", originContentPath, ".dat|.mfst", SearchOption.AllDirectories);
                     }
 
                     // GOG data
@@ -88,7 +88,7 @@ namespace Playnite
                         foreach (var folder in (new SteamLibrary()).GetLibraryFolders())
                         {
                             var appsFolder = Path.Combine(folder, "steamapps");
-                            AddFolderToZip(archive, "Steam", appsFolder, "appmanifest*");
+                            AddFolderToZip(archive, "Steam", appsFolder, "appmanifest*", SearchOption.TopDirectoryOnly);
                         }
                     }
 

@@ -20,7 +20,7 @@ namespace Playnite.Providers.Origin
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
 
-        public string GetPathFromPlatformPath(string path)
+        public string GetPathFromPlatformPath(string path, RegistryView platformView)
         {
             if (!path.StartsWith("["))
             {
@@ -40,11 +40,11 @@ namespace Playnite.Providers.Origin
             switch (root)
             {
                 case "HKEY_LOCAL_MACHINE":
-                    rootKey = Registry.LocalMachine;
+                    rootKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, platformView);
                     break;
 
                 case "HKEY_CURRENT_USER":
-                    rootKey = Registry.CurrentUser;
+                    rootKey = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, platformView);
                     break;
 
                 default:
@@ -67,6 +67,18 @@ namespace Playnite.Providers.Origin
             }
 
             return Path.Combine(keyValue.ToString(), executable);
+        }
+
+        public string GetPathFromPlatformPath(string path)
+        {
+            var resultPath = GetPathFromPlatformPath(path, RegistryView.Registry64);
+
+            if (string.IsNullOrEmpty(resultPath))
+            {
+                resultPath = GetPathFromPlatformPath(path, RegistryView.Registry32);
+            }
+
+            return resultPath;
         }
 
         public System.Collections.Specialized.NameValueCollection ParseOriginManifest(string path)

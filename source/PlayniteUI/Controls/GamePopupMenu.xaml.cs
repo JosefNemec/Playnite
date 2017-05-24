@@ -167,10 +167,25 @@ namespace PlayniteUI.Controls
             }
         }
 
+        private void Shortuct_Click(object sender, RoutedEventArgs e)
+        {
+            var game = (IGame)(sender as FrameworkElement).DataContext;
+            GamesEditor.Instance.CreateShortcut(game);
+            IsOpen = false;
+        }
+
         private void Hide_Click(object sender, RoutedEventArgs e)
         {
             var game = (IGame)(sender as FrameworkElement).DataContext;
             game.Hidden = !game.Hidden;
+            GameDatabase.Instance.UpdateGameInDatabase(game);
+            IsOpen = false;
+        }
+
+        private void Favorite_Click(object sender, RoutedEventArgs e)
+        {
+            var game = (IGame)(sender as FrameworkElement).DataContext;
+            game.Favorite = !game.Favorite;
             GameDatabase.Instance.UpdateGameInDatabase(game);
             IsOpen = false;
         }

@@ -65,13 +65,11 @@
                 </DockPanel.ContextMenu>
             </DockPanel>
 
-            <controls:SearchBox Margin="5,8,10,8" DockPanel.Dock="Left" Padding="0"
-                x:Name="SearchBoxFilter" Height="24" Width="235"
-                Text="{Binding FilterText, RelativeSource={RelativeSource AncestorType=Window},
-                Mode=OneWayToSource, Delay=500}" />
+            <controls:SearchBox x:Name="SearchBoxFilter" Margin="5,8,10,8" DockPanel.Dock="Left" Padding="0" Width="235"
+                                Text="{Binding Path=Config.FilterSettings.Name, ElementName=WindowMain, Delay=500, Mode=TwoWay}" />
 
             <Border CornerRadius="3" Background="Transparent" Style="{StaticResource HighlightBorder}"
-                    BorderThickness="2" Width="35" Height="24" Cursor="Hand" MouseUp="ViewConfigElement_MouseUp">
+                    BorderThickness="2" Width="35" Height="28" Cursor="Hand" MouseUp="ViewConfigElement_MouseUp">
                 <TextBlock Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
                            Foreground="{StaticResource TextBrush}"/>
                 <Border.ContextMenu>
@@ -123,7 +121,7 @@
         <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" >
             <DockPanel>
                 <Border BorderThickness="1,0,0,0" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Right" >
-                    <controls:FilterSelector x:Name="FilterSelector" Width="140"
+                    <controls:FilterSelector x:Name="FilterSelector" Width="160"
                                              Visibility="{Binding IsChecked, ElementName=CheckFilterView, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Border>
                 <TabControl Name="TabControlView" DockPanel.Dock="Left" TabStripPlacement="Bottom"

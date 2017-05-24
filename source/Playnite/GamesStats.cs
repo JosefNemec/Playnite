@@ -29,6 +29,15 @@ namespace Playnite
             }
         }
 
+        private int favorite = 0;
+        public int Favorite
+        {
+            get
+            {
+                return favorite;
+            }
+        }
+
         private int origin = 0;
         public int Origin
         {
@@ -84,10 +93,11 @@ namespace Playnite
 
         private ObservableCollection<IGame> games;
 
-        private void recalculate()
+        private void Recalculate()
         {
             installed = 0;
             hidden = 0;
+            favorite = 0;
             origin = 0;
             steam = 0;
             gog = 0;
@@ -103,6 +113,11 @@ namespace Playnite
                 if (game.Hidden)
                 {
                     hidden++;
+                }
+
+                if (game.Favorite)
+                {
+                    favorite++;
                 }
 
                 switch (game.Provider)
@@ -126,6 +141,7 @@ namespace Playnite
 
             OnPropertyChanged("Installed");
             OnPropertyChanged("Hidden");
+            OnPropertyChanged("Favorite");
             OnPropertyChanged("Origin");
             OnPropertyChanged("Steam");
             OnPropertyChanged("GOG");
@@ -153,7 +169,7 @@ namespace Playnite
                 game.PropertyChanged += Game_PropertyChanged;
             }
 
-            recalculate();
+            Recalculate();
         }
 
         private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -161,10 +177,13 @@ namespace Playnite
             switch (e.PropertyName)
             {
                 case "Hidden":
-                    recalculate();
+                    Recalculate();
                     break;
                 case "IsInstalled":
-                    recalculate();
+                    Recalculate();
+                    break;
+                case "Favorite":
+                    Recalculate();
                     break;
                 default:
                     break;
@@ -189,7 +208,7 @@ namespace Playnite
                 }
             }
 
-            recalculate();
+            Recalculate();
         }
     }
 }

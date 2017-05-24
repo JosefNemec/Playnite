@@ -65,12 +65,19 @@ namespace Playnite.Providers.Steam
         public List<IGame> GetInstalledGamesFromFolder(string path)
         {
             var games = new List<IGame>();
-            var appsFolder = Path.Combine(path, "steamapps");
 
-            foreach (var file in Directory.GetFiles(appsFolder, @"appmanifest*"))
+            foreach (var file in Directory.GetFiles(path, @"appmanifest*"))
             {
-                var game = GetInstalledGameFromFile(Path.Combine(appsFolder, file));
-                games.Add(game);
+                try
+                {
+                    var game = GetInstalledGameFromFile(Path.Combine(path, file));
+                    games.Add(game);
+                }
+                catch (Exception exc)
+                {
+                    // Steam can generate invalid acf file according to issue #37
+                    logger.Error(exc, "Failed to get information about installed game from {0}: ", path);
+                }                
             }
 
             return games;
@@ -82,7 +89,7 @@ namespace Playnite.Providers.Steam
 
             foreach (var folder in GetLibraryFolders())
             {
-                games.AddRange(GetInstalledGamesFromFolder(folder));
+                games.AddRange(GetInstalledGamesFromFolder(Path.Combine(folder, "steamapps")));
             }
 
             return games;

@@ -38,6 +38,16 @@ namespace Playnite
 
     public class Programs
     {
+        public static void CreateShortcut(string executablePath, string arguments, string iconPath, string shortuctPath)
+        {
+            var shell = new WshShell();
+            var link = (IWshShortcut)shell.CreateShortcut(shortuctPath);
+            link.TargetPath = executablePath;
+            link.WorkingDirectory = Path.GetDirectoryName(executablePath);
+            link.Arguments = arguments;
+            link.IconLocation = iconPath;
+            link.Save();
+        }
 
         public static List<Program> GetExecutablesFromFolder(string path, SearchOption searchOption)
         {

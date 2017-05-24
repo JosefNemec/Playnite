@@ -30,6 +30,8 @@
     <UserControl.CommandBindings>
         <CommandBinding Command="{x:Static commands:GenericCommands.ZoomInCmd}" Executed="ZoomIn_Executed" />
         <CommandBinding Command="{x:Static commands:GenericCommands.ZoomOutCmd}" Executed="ZoomOut_Executed" />
+        <CommandBinding Command="{x:Static commands:GenericCommands.PlayGameCmd}" Executed="PlayGame_Executed" />
+        <CommandBinding Command="{x:Static commands:GenericCommands.ShowDetailsCmd}" Executed="ShowDetails_Executed" />
     </UserControl.CommandBindings>
 
     <Grid Background="{StaticResource NormalBrushDark}">
@@ -105,9 +107,12 @@
                                     
                                     <Image RenderOptions.BitmapScalingMode="Fant" Width="{Binding Path=Value, ElementName=SliderZoom}"
                                            Name="ImageViewImage" StretchDirection="Both"
-                                           MouseLeftButtonUp="ImageGrid_MouseLeftButtonUp"
                                            AutomationProperties.HelpText="{Binding Image, TargetNullValue=''}"
-                                           AutomationProperties.Name="{Binding Name}">                                        
+                                           AutomationProperties.Name="{Binding Name}">
+                                        <Image.InputBindings>
+                                            <MouseBinding MouseAction="LeftDoubleClick" Command="{x:Static commands:GenericCommands.PlayGameCmd}"/>
+                                            <MouseBinding MouseAction="LeftClick" Command="{x:Static commands:GenericCommands.ShowDetailsCmd}"/>
+                                        </Image.InputBindings>
                                         <Image.Source>
                                             <PriorityBinding>
                                                 <Binding Path="Image" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Image"/>

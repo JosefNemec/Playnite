@@ -4,30 +4,140 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlayniteUI.Controls"
+             xmlns:playniteUI="clr-namespace:PlayniteUI"
              xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
              xmlns:playniteModels="clr-namespace:Playnite.Models;assembly=Playnite"
              mc:Ignorable="d">
-    <Grid>
-        <StackPanel>
-            <local:FilterSelectorItem x:Name="FilterInstalled" Text="Installed" CountText="{Binding Path=Stats.Installed, Mode=OneWay}"
-                                      IsChecked="{Binding Settings.Installed}" Padding="5,5,5,3" Margin="5,5,5,0" />
-            <local:FilterSelectorItem x:Name="FilterHidden" Text="Hidden" CountText="{Binding Path=Stats.Hidden, Mode=OneWay}"
-                                      IsChecked="{Binding Settings.Hidden}" Padding="5,0,5,3" Margin="5,5,5,5"/>
-            <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}"/>            
-            <StackPanel Margin="5,3,5,0">
-                <local:FilterSelectorItem Text="Steam" x:Name="FilterSteam" IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)Steam]}"
-                                          CountText="{Binding Path=Stats.Steam, Mode=OneWay}"
-                                          Padding="5,0,5,3" Margin="0,5,0,5"/>
-                <local:FilterSelectorItem Text="GOG" x:Name="FilterGOG" IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)GOG]}"
-                                          CountText="{Binding Path=Stats.GOG, Mode=OneWay}"
-                                          Padding="5,0,5,3" Margin="0,0,0,5" />
-                <local:FilterSelectorItem Text="Origin" x:Name="FilterOrigin" IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)Origin]}"
-                                          CountText="{Binding Path=Stats.Origin, Mode=OneWay}"
-                                          Padding="5,0,5,3" Margin="0,0,0,5" />
-                <local:FilterSelectorItem Text="Custom" x:Name="FilterCustom" IsChecked="{Binding Path=Settings.Providers[(playniteModels:Provider)Custom]}"
-                                          CountText="{Binding Path=Stats.Custom, Mode=OneWay}"
-                                          Padding="5,0,5,3" Margin="0,0,0,5" />
-            </StackPanel>
-        </StackPanel>
-    </Grid>
+
+    <UserControl.Resources>
+        <Style x:Key="FilterCheck" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+            <Setter Property="Margin" Value="8" />
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Opacity" Value="0.6" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="FilterLabel" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+            <Setter Property="Margin" Value="8,8,8,4" />
+        </Style>
+        <Style x:Key="FilterTextBox" TargetType="local:SearchBox">
+            <Setter Property="Margin" Value="8,0,8,8" />
+            <Setter Property="ShowImage" Value="False" />
+        </Style>
+
+        <playniteUI:ListToStringConverter x:Key="ListToStringConverter" />
+    </UserControl.Resources>
+
+    <StackPanel Margin="0,5,0,0">
+        <CheckBox Name="CheckFilterInstalled" IsChecked="{Binding Path=Settings.IsInstalled}" Style="{StaticResource FilterCheck}">
+            <TextBlock Text="{Binding Stats.Installed, Mode=OneWay, StringFormat=Installed ({0})}" />            
+        </CheckBox>
+        
+        <CheckBox Name="CheckFilterHidden" IsChecked="{Binding Path=Settings.Hidden}" Style="{StaticResource FilterCheck}">
+            <TextBlock Text="{Binding Stats.Hidden, Mode=OneWay, StringFormat=Hidden ({0})}" />            
+        </CheckBox>
+
+        <CheckBox Name="CheckFilterFavorite" IsChecked="{Binding Path=Settings.Favorite}" Style="{StaticResource FilterCheck}">
+            <TextBlock Text="{Binding Stats.Favorite, Mode=OneWay, StringFormat=Favorite ({0})}" />
+        </CheckBox>
+
+        <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" Margin="0,5,0,5" />
+
+        <CheckBox Name="CheckFilterSteam" IsChecked="{Binding Path=Settings.Provider[(playniteModels:Provider)Steam]}" Style="{StaticResource FilterCheck}">
+            <TextBlock Text="{Binding Stats.Steam, Mode=OneWay, StringFormat=Steam ({0})}" />
+        </CheckBox>
+
+        <CheckBox Name="CheckFilterGOG" IsChecked="{Binding Path=Settings.Provider[(playniteModels:Provider)GOG]}" Style="{StaticResource FilterCheck}">
+            <TextBlock Text="{Binding Stats.GOG, Mode=OneWay, StringFormat=GOG ({0})}" />
+        </CheckBox>
+
+        <CheckBox Name="CheckFilterOrigin" IsChecked="{Binding Path=Settings.Provider[(playniteModels:Provider)Origin]}" Style="{StaticResource FilterCheck}">
+            <TextBlock Text="{Binding Stats.Origin, Mode=OneWay, StringFormat=Origin ({0})}" />
+        </CheckBox>
+
+        <CheckBox Name="CheckFilterCustom" IsChecked="{Binding Path=Settings.Provider[(playniteModels:Provider)Custom]}" Style="{StaticResource FilterCheck}">
+            <TextBlock Text="{Binding Stats.Custom, Mode=OneWay, StringFormat=Custom ({0})}" />
+        </CheckBox>
+
+        <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" Margin="0,5,0,5"/>
+
+        <Label Content="Name">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterName}" Value="">
+                            <Setter Property="Opacity" Value="0.6"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <local:SearchBox x:Name="TextFilterName" Text="{Binding Settings.Name, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+
+        <Label Content="Genre">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterGenre}" Value="">
+                            <Setter Property="Opacity" Value="0.6"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <local:SearchBox x:Name="TextFilterGenre" Text="{Binding Settings.Genres, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+        <Label Content="Release Date">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterReleaseDate}" Value="">
+                            <Setter Property="Opacity" Value="0.6"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <local:SearchBox x:Name="TextFilterReleaseDate" Text="{Binding Settings.ReleaseDate, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+
+        <Label Content="Developer">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterDeveloper}" Value="">
+                            <Setter Property="Opacity" Value="0.6"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <local:SearchBox x:Name="TextFilterDeveloper" Text="{Binding Settings.Developers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+        <Label Content="Publisher">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterPublisher}" Value="">
+                            <Setter Property="Opacity" Value="0.6"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <local:SearchBox x:Name="TextFilterPublisher" Text="{Binding Settings.Publishers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+        <Label Content="Category">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterCategory}" Value="">
+                            <Setter Property="Opacity" Value="0.6"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <local:SearchBox x:Name="TextFilterCategory" Text="{Binding Settings.Categories, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+    </StackPanel>
 </UserControl>

@@ -4,7 +4,9 @@ param(
     [string]$OutputPath = (Join-Path $PWD $Configuration),
     [switch]$Setup = $false,
     [switch]$Portable = $false,
-    [switch]$SkipBuild = $false
+    [switch]$SkipBuild = $false,
+    [ValidateSet("x86", "x64")]
+    [string]$Platform = "x86"
 )
 
 $ErrorActionPreference = "Stop"
@@ -32,7 +34,7 @@ if (!$SkipBuild)
 
     $solutionDir = Join-Path $pwd "..\source"
     $msbuildPath = "c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe";
-    $arguments = "build.xml /p:SolutionDir=`"$solutionDir`" /p:OutputPath=`"$outputPath`";Configuration=$configuration /property:Platform=x86 /t:Build";
+    $arguments = "build.xml /p:SolutionDir=`"$solutionDir`" /p:OutputPath=`"$outputPath`";Configuration=$configuration /property:Platform=$Platform /t:Build";
     $compiler = Start-Process $msbuildPath $arguments -PassThru -NoNewWindow
     $handle = $compiler.Handle # cache proc.Handle http://stackoverflow.com/a/23797762/1479211
     $compiler.WaitForExit()

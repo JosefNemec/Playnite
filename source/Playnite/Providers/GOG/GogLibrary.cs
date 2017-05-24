@@ -192,8 +192,7 @@ namespace Playnite.Providers.GOG
 
                 if (game.ReleaseDate == null)
                 {
-                    Int64 intDate = Convert.ToInt64(metadata.StoreDetails.releaseDate) * 1000;
-                    game.ReleaseDate = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(intDate).ToUniversalTime();
+                    game.ReleaseDate = DateTimeOffset.FromUnixTimeSeconds(metadata.StoreDetails.releaseDate).DateTime;
                 }
             }
 

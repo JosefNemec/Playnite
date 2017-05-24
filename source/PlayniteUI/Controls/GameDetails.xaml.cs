@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Playnite.Database;
 using Playnite.Models;
+using Playnite;
 
 namespace PlayniteUI
 {
@@ -29,6 +30,28 @@ namespace PlayniteUI
             get
             {
                 return DataContext != null;
+            }
+        }
+
+        public bool ShowInfoPanel
+        {
+            get
+            {
+                if (DataContext == null)
+                {
+                    return false;
+                }
+
+                var game = DataContext as IGame;
+                return
+                    (game.Genres != null && game.Genres.Count > 0) ||
+                    (game.Publishers != null && game.Publishers.Count > 0) ||
+                    (game.Developers != null && game.Developers.Count > 0) ||
+                    (game.Categories != null && game.Categories.Count > 0) ||
+                    game.ReleaseDate != null ||
+                    !string.IsNullOrEmpty(game.CommunityHubUrl) ||
+                    !string.IsNullOrEmpty(game.StoreUrl) ||
+                    !string.IsNullOrEmpty(game.WikiUrl);
             }
         }
 
@@ -87,15 +110,19 @@ namespace PlayniteUI
                 switch (game.Provider)
                 {
                     case Provider.Custom:
+                        BorderGameInfo.Background = Brushes.Transparent;
                         Background = FindResource("ControlBackgroundBrush") as Brush;
                         break;
                     case Provider.GOG:
+                        BorderGameInfo.Background = FindResource("NormalBrushDark") as Brush;
                         Background = FindResource("GogGameBackgroundBrush") as Brush;
                         break;
                     case Provider.Origin:
+                        BorderGameInfo.Background = Brushes.Transparent;
                         Background = FindResource("ControlBackgroundBrush") as Brush;
                         break;
                     case Provider.Steam:
+                        BorderGameInfo.Background = Brushes.Transparent;
                         Background = FindResource("SteamGameBackgroundBrush") as Brush;
                         break;
                     default:
@@ -105,6 +132,56 @@ namespace PlayniteUI
             }
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowContent"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowInfoPanel"));
+        }
+
+        private void Filter_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            var uri = ((Hyperlink)sender).NavigateUri.OriginalString;
+            var tag = ((Hyperlink)sender).Tag as string;
+
+            switch (tag)
+            {
+                case "Genres":
+                    Settings.Instance.FilterSettings.Genres = new List<string>() { uri };
+                    break;
+                case "Developers":
+                    Settings.Instance.FilterSettings.Developers = new List<string>() { uri };
+                    break;
+                case "Publishers":
+                    Settings.Instance.FilterSettings.Publishers = new List<string>() { uri };
+                    break;
+                case "ReleaseDate":
+                    Settings.Instance.FilterSettings.ReleaseDate = uri;
+                    break;
+                case "Categories":
+                    Settings.Instance.FilterSettings.Categories = new List<string>() { uri };
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            // Sadly we can't use WrapPannel to achieve the same effect and this workaround has to be used 
+            // to move description view below other controls when control width becames too small
+            // (without streching height of all controls)
+            if (e.WidthChanged)
+            {
+                if (e.NewSize.Width < 450)
+                {
+                    Grid.SetColumn(ScrollDescription, 0);
+                    Grid.SetColumnSpan(ScrollDescription, 2);
+                    Grid.SetRow(ScrollDescription, 1);
+                }
+                else
+                {
+                    Grid.SetColumn(ScrollDescription, 1);
+                    Grid.SetColumnSpan(ScrollDescription, 1);
+                    Grid.SetRow(ScrollDescription, 0);
+                }
+            }
         }
     }
 }

@@ -87,7 +87,12 @@ namespace PlayniteUI.Windows
                     }
 
                     var index = match.Groups[2].Value;
-                    iconSource = IconExtension.ExtractIconFromExe(path, true);
+                    if (!File.Exists(path))
+                    {
+                        return null;
+                    }
+
+                    iconSource = IconExtension.ExtractIconFromExe(path ,true);
                     if (iconSource == null)
                     {
                         return null;

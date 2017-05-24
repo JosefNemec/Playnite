@@ -27,6 +27,7 @@ using PlayniteUI.Windows;
 using Playnite.Database;
 using Playnite.Providers.Origin;
 using PlayniteUI.Controls;
+using System.Globalization;
 
 namespace PlayniteUI
 {
@@ -35,9 +36,19 @@ namespace PlayniteUI
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        private Settings config;
         public Settings Config
         {
-            get; set;
+            get
+            {
+                return config;
+            }
+
+            set
+            {
+                config = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Config"));
+            }
         }
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -45,6 +56,9 @@ namespace PlayniteUI
         private WindowPositionHandler positionManager;
         private GamesStats gamesStats = new GamesStats();
         public NotificationsWindow NotificationsWin = new NotificationsWindow();
+
+        private PipeService pipeService;
+        private PipeServer pipeServer;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -59,24 +73,6 @@ namespace PlayniteUI
             {
                 gameAdditionAllowed = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("GameAdditionAllowed"));
-            }
-        }
-
-        public string FilterText
-        {
-            get
-            {
-                return SearchBoxFilter.Text;
-            }
-
-            set
-            {
-                if (MainCollectionView == null)
-                {
-                    return;
-                }
-
-                MainCollectionView.Refresh();
             }
         }
 
@@ -194,6 +190,51 @@ namespace PlayniteUI
             });
 
             Focus();
+
+            pipeService = new PipeService();
+            pipeService.CommandExecuted += PipeService_CommandExecuted;
+            pipeServer = new PipeServer(Settings.GetAppConfigValue("PipeEndpoint"));
+            pipeServer.StartServer(pipeService);
+
+            var args = Environment.GetCommandLineArgs();
+            if (args.Count() > 0 && args.Contains("-command"))
+            {
+                var commandArgs = args[2].Split(new char[] { ':' });
+                var command = commandArgs[0];
+                var cmdArgs = commandArgs.Count() > 1 ? commandArgs[1] : string.Empty;
+                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(command, cmdArgs));
+            }
+        }
+
+        private void PipeService_CommandExecuted(object sender, CommandExecutedEventArgs args)
+        {
+            logger.Info(@"Executing command ""{0}"" from pipe with arguments ""{1}""", args.Command, args.Args);
+
+            switch (args.Command)
+            {
+                case CmdlineCommands.Focus:
+                    SystemCommands.RestoreWindow(this);
+                    Activate();
+                    Focus();
+                    break;
+
+                case CmdlineCommands.Launch:
+                    var game = GameDatabase.Instance.Games.FirstOrDefault(a => a.Id == int.Parse(args.Args));
+                    if (game == null)
+                    {
+                        logger.Error("Cannot start game, game {0} not found.", args.Command);
+                    }
+                    else
+                    {
+                        GamesEditor.Instance.PlayGame(game);
+                    }
+
+                    break;
+
+                default:
+                    logger.Warn("Unknown command received");
+                    break;
+            }
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -307,7 +348,7 @@ namespace PlayniteUI
                     catch (Exception e)
                     {
                         logger.Error(e, "Failed to import installed GOG games.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.GOGLInstalledImportError, e.Message, NotificationType.Error, () =>
+                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.GOGLInstalledImportError, "Failed to import installed GOG games:" + e.Message, NotificationType.Error, () =>
                         {
 
                         }));
@@ -329,7 +370,7 @@ namespace PlayniteUI
                     catch (Exception e)
                     {
                         logger.Error(e, "Failed to import installed Steam games.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamInstalledImportError, e.Message, NotificationType.Error, () =>
+                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamInstalledImportError, "Failed to import installed Steam games: " + e.Message, NotificationType.Error, () =>
                         {
 
                         }));
@@ -351,7 +392,7 @@ namespace PlayniteUI
                     catch (Exception e)
                     {
                         logger.Error(e, "Failed to import installed Origin games.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.OriginInstalledImportError, e.Message, NotificationType.Error, () =>
+                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.OriginInstalledImportError, "Failed to import installed Origin games: " + e.Message, NotificationType.Error, () =>
                         {
 
                         }));
@@ -473,11 +514,11 @@ namespace PlayniteUI
 
             // ------------------ Installed
             bool installedResult = false;
-            if (Config.FilterSettings.Installed && game.IsInstalled)
+            if (Config.FilterSettings.IsInstalled && game.IsInstalled)
             {
                 installedResult = true;
             }
-            else if (!Config.FilterSettings.Installed)
+            else if (!Config.FilterSettings.IsInstalled)
             {
                 installedResult = true;
             }
@@ -497,15 +538,26 @@ namespace PlayniteUI
                 hiddenResult = false;
             }
 
+            // ------------------ Favorite
+            bool favoriteResult = false;
+            if (Config.FilterSettings.Favorite && game.Favorite)
+            {
+                favoriteResult = true;
+            }
+            else if (!Config.FilterSettings.Favorite)
+            {
+                favoriteResult = true;
+            }
+
             // ------------------ Providers
             bool providersFilter = false;
-            if (Config.FilterSettings.Providers.All(a => a.Value == false))
+            if (Config.FilterSettings.Provider.All(a => a.Value == false))
             {
                 providersFilter = true;
             }
             else
             {
-                if (Config.FilterSettings.Providers[game.Provider] == true)
+                if (Config.FilterSettings.Provider[game.Provider] == true)
                 {
                     providersFilter = true;
                 }
@@ -516,17 +568,109 @@ namespace PlayniteUI
             }
 
             // ------------------ Name filter
-            bool textResult;
-            if (string.IsNullOrEmpty(SearchBoxFilter.Text))
+            bool textResult = false;
+            if (string.IsNullOrEmpty(Config.FilterSettings.Name))
             {
                 textResult = true;
             }
             else
             {
-                textResult = (game.Name.IndexOf(SearchBoxFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                textResult = (game.Name.IndexOf(Config.FilterSettings.Name, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
-            return installedResult && hiddenResult && textResult && providersFilter;
+
+            // ------------------ Genre
+            bool genreResult = false;
+            if (Config.FilterSettings.Genres == null || Config.FilterSettings.Genres.Count == 0)
+            {
+                genreResult = true;
+            }
+            else
+            {
+                if (game.Genres == null)
+                {
+                    genreResult = false;
+                }
+                else
+                {
+                    genreResult = Config.FilterSettings.Genres.IntersectsPartiallyWith(game.Genres);
+                }
+            }
+
+            // ------------------ Release Date
+            bool releaseDateResult = false;
+            if (string.IsNullOrEmpty(config.FilterSettings.ReleaseDate))
+            {
+                releaseDateResult = true;
+            }
+            else
+            {
+                if (game.ReleaseDate == null)
+                {
+
+                    releaseDateResult = false;
+                }
+                else
+                {
+                    releaseDateResult = game.ReleaseDate.Value.ToString(Constants.DateUiFormat).IndexOf(Config.FilterSettings.ReleaseDate, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+            }
+
+            // ------------------ Publisher
+            bool publisherResult = false;
+            if (Config.FilterSettings.Publishers == null || Config.FilterSettings.Publishers.Count == 0)
+            {
+                publisherResult = true;
+            }
+            else
+            {
+                if (game.Publishers == null)
+                {
+                    publisherResult = false;
+                }
+                else
+                {
+                    publisherResult = Config.FilterSettings.Publishers.IntersectsPartiallyWith(game.Publishers);
+                }
+            }
+
+            // ------------------ Developer
+            bool developerResult = false;
+            if (Config.FilterSettings.Developers == null || Config.FilterSettings.Developers.Count == 0)
+            {
+                developerResult = true;
+            }
+            else
+            {
+                if (game.Developers == null)
+                {
+                    developerResult = false;
+                }
+                else
+                {
+                    developerResult = Config.FilterSettings.Developers.IntersectsPartiallyWith(game.Developers);
+                }
+            }
+
+            // ------------------ Category
+            bool categoryResult = false;
+            if (Config.FilterSettings.Categories == null || Config.FilterSettings.Categories.Count == 0)
+            {
+                categoryResult = true;
+            }
+            else
+            {
+                if (game.Categories == null)
+                {
+                    categoryResult = false;
+                }
+                else
+                {
+                    categoryResult = Config.FilterSettings.Categories.IntersectsPartiallyWith(game.Categories);
+                }
+            }
+
+            return installedResult && hiddenResult && favoriteResult && textResult && providersFilter && genreResult && releaseDateResult && publisherResult && developerResult && categoryResult;
         }
 
         private void Config_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -538,7 +682,6 @@ namespace PlayniteUI
 
             if (e != null && e.PropertyName == "GamesViewType")
             {
-                //TabControlView.SelectedIndex = (int)Config.GamesViewType;
                 return;
             }
 
@@ -584,11 +727,17 @@ namespace PlayniteUI
                         MainCollectionView.LiveFilteringProperties.Clear();
                     }
 
-                    MainCollectionView.LiveFilteringProperties.Add("Hidden");
                     MainCollectionView.LiveFilteringProperties.Add("Provider");
+                    MainCollectionView.LiveFilteringProperties.Add("Name");
+                    MainCollectionView.LiveFilteringProperties.Add("Categories");
+                    MainCollectionView.LiveFilteringProperties.Add("Genres");
+                    MainCollectionView.LiveFilteringProperties.Add("ReleaseDate");
+                    MainCollectionView.LiveFilteringProperties.Add("Developers");
+                    MainCollectionView.LiveFilteringProperties.Add("Publishers");
+                    MainCollectionView.LiveFilteringProperties.Add("IsInstalled");
+                    MainCollectionView.LiveFilteringProperties.Add("Hidden");
+                    MainCollectionView.LiveFilteringProperties.Add("Favorite");
                     MainCollectionView.Filter = GamesFilter;
-
-                    //TabControlView.SelectedIndex = (int)Config.GamesViewType;
                 }
                 else
                 {
@@ -644,6 +793,11 @@ namespace PlayniteUI
 
         private void FilterSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            if (e.PropertyName == "Active")
+            {
+                return;
+            }
+
             if (MainCollectionView == null)
             {
                 return;

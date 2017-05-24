@@ -29,7 +29,7 @@ namespace PlayniteUI
             }
             else
             {
-                return stringVal.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(a => a.Trim()).ToList();
+                return stringVal.Split(new char[] { ',' }).SkipWhile(a => string.IsNullOrEmpty(a.Trim())).Select(a => a.Trim()).ToList();
             }
         }
     }

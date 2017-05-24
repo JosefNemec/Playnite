@@ -120,6 +120,7 @@ namespace Playnite.Models
             {
                 description = value;
                 OnPropertyChanged("Description");
+                OnPropertyChanged("DescriptionView");
             }
         }
 
@@ -183,6 +184,21 @@ namespace Playnite.Models
             {
                 hidden = value;
                 OnPropertyChanged("Hidden");
+            }
+        }
+
+        private bool favorite;
+        public bool Favorite
+        {
+            get
+            {
+                return favorite;
+            }
+
+            set
+            {
+                favorite = value;
+                OnPropertyChanged("Favorite");
             }
         }
 

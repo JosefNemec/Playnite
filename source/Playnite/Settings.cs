@@ -15,6 +15,7 @@ using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
 using Playnite.Providers.Steam;
 using CefSharp;
+using System.Configuration;
 
 namespace Playnite
 {
@@ -375,6 +376,11 @@ namespace Playnite
             settings.PersistSessionCookies = true;
             settings.LogFile = Path.Combine(Paths.ConfigRootPath, "cef.log");
             Cef.Initialize(settings);
+        }
+
+        public static string GetAppConfigValue(string key)
+        {
+            return ConfigurationManager.AppSettings[key];
         }
     }
 }
