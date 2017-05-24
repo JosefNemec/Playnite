@@ -85,11 +85,6 @@ namespace PlayniteUI.Controls
             ColumnDetails.Width = new GridLength(0, GridUnitType.Pixel);
         }
 
-        private void ImageGrid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            ShowDetails(sender);
-        }
-
         private void ShowDetails(object sender)
         {
             if (ColumnDetails.Width.Value == 0)
@@ -110,6 +105,32 @@ namespace PlayniteUI.Controls
         private void ZoomOut_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             SliderZoom.Value -= 10;
+        }
+
+        private void PlayGame_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            var game = (IGame)((FrameworkElement)e.OriginalSource).DataContext;
+
+            if (game.IsInstalled)
+            {
+                GamesEditor.Instance.PlayGame(game);
+            }
+            else
+            {
+                if (game.Provider == Provider.Custom)
+                {
+                    GamesEditor.Instance.EditGame(game);
+                }
+                else
+                {
+                    GamesEditor.Instance.InstallGame(game);
+                }
+            }
+        }
+
+        private void ShowDetails_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            ShowDetails(e.OriginalSource);
         }
     }
 }
