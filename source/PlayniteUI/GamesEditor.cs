@@ -103,7 +103,14 @@ namespace PlayniteUI
 
                     if (lastGame.PlayTask.Type == GameTaskType.File)
                     {
-                        task.IconResourcePath = Path.Combine(lastGame.PlayTask.WorkingDir, lastGame.PlayTask.Path);
+                        if (string.IsNullOrEmpty(lastGame.PlayTask.WorkingDir))
+                        {
+                            task.IconResourcePath = lastGame.PlayTask.Path;
+                        }
+                        else
+                        {
+                            task.IconResourcePath = Path.Combine(lastGame.PlayTask.WorkingDir, lastGame.PlayTask.Path);
+                        }
                     }
 
                     jumpList.JumpItems.Add(task);
