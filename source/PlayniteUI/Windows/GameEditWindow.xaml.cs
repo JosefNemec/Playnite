@@ -205,31 +205,7 @@ namespace PlayniteUI
             {
                 return IsControlBindingDirty(TextCategories, TextBox.TextProperty);
             }
-        }
-
-        public bool IsStoreBindingDirty
-        {
-            get
-            {
-                return IsControlBindingDirty(TextStore, TextBox.TextProperty);
-            }
-        }
-
-        public bool IsWikiBindingDirty
-        {
-            get
-            {
-                return IsControlBindingDirty(TextWiki, TextBox.TextProperty);
-            }
-        }
-
-        public bool IsForumsBindingDirty
-        {
-            get
-            {
-                return IsControlBindingDirty(TextForums, TextBox.TextProperty);
-            }
-        }
+        }        
 
         public bool IsDescriptionBindingDirty
         {
@@ -367,9 +343,6 @@ namespace PlayniteUI
 
             TextReleaseDate.Text = (string)dateConverter.Convert(game.ReleaseDate, typeof(DateTime?), null, null);
             TextDescription.Text = string.IsNullOrEmpty(game.Description) ? TextName.Text : game.Description;
-            TextStore.Text = string.IsNullOrEmpty(game.StoreUrl) ? TextStore.Text : game.StoreUrl;
-            TextForums.Text = string.IsNullOrEmpty(game.CommunityHubUrl) ? TextForums.Text : game.CommunityHubUrl;
-            TextWiki.Text = string.IsNullOrEmpty(game.WikiUrl) ? TextWiki.Text : game.WikiUrl;
 
             if (!string.IsNullOrEmpty(game.Image))
             {
@@ -502,43 +475,7 @@ namespace PlayniteUI
                         game.Categories = Game.Categories;
                     }
                 }
-            }
-
-            if (IsStoreBindingDirty && CheckStore.IsChecked == true)
-            {
-                BindingOperations.GetBindingExpression(TextStore, TextBox.TextProperty).UpdateSource();
-                if (Games != null)
-                {
-                    foreach (var game in Games)
-                    {
-                        game.StoreUrl = Game.StoreUrl;
-                    }
-                }
-            }
-
-            if (IsWikiBindingDirty && CheckWiki.IsChecked == true)
-            {
-                BindingOperations.GetBindingExpression(TextWiki, TextBox.TextProperty).UpdateSource();
-                if (Games != null)
-                {
-                    foreach (var game in Games)
-                    {
-                        game.WikiUrl = Game.WikiUrl;
-                    }
-                }
-            }
-
-            if (IsForumsBindingDirty && CheckForums.IsChecked == true)
-            {
-                BindingOperations.GetBindingExpression(TextForums, TextBox.TextProperty).UpdateSource();
-                if (Games != null)
-                {
-                    foreach (var game in Games)
-                    {
-                        game.CommunityHubUrl = Game.CommunityHubUrl;
-                    }
-                }
-            }
+            }            
 
             if (IsDescriptionBindingDirty && CheckDescription.IsChecked == true)
             {

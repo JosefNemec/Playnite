@@ -142,6 +142,7 @@
     <Compile Include="GamesStats.cs" />
     <Compile Include="ListExtensions.cs" />
     <Compile Include="MetaProviders\IGDB.cs" />
+    <Compile Include="Models\Old\Game.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Paths.cs" />
     <Compile Include="PipeServer.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +20,8 @@ namespace PlayniteUI
             }
             else
             {
-                var val = (IEnumerable<object>)value;
-                return val.Count() == 0 ? Visibility.Collapsed : Visibility.Visible;
+                var val = (ICollection)value;
+                return val.Count == 0 ? Visibility.Collapsed : Visibility.Visible;
             }
         }
 

@@ -72,9 +72,6 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
@@ -136,36 +133,12 @@
                             <TextBox Name="TextCategories"  Text="{Binding Categories, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
                                     TextChanged="TextBox_TextChanged" Tag="IsCategoriesBindingDirty" DockPanel.Dock="Left"/>
                         </DockPanel>
-
-                        <TextBlock  Grid.Column="0" Grid.Row="7" Text="Store URL" />
-                        <CheckBox   Grid.Column="1" Grid.Row="7" Name="CheckStore"
-                                    Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    IsChecked="{Binding IsStoreBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <TextBox    Grid.Column="2" Grid.Row="7" Name="TextStore"
-                                    Text="{Binding StoreUrl, UpdateSourceTrigger=Explicit}"
-                                    TextChanged="TextBox_TextChanged" Tag="IsStoreBindingDirty"/>
-
-                        <TextBlock  Grid.Column="0" Grid.Row="8" Text="Wiki URL" />
-                        <CheckBox   Grid.Column="1" Grid.Row="8" Name="CheckWiki"
-                                    Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    IsChecked="{Binding IsWikiBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <TextBox    Grid.Column="2" Grid.Row="8" Name="TextWiki"
-                                    Text="{Binding WikiUrl, UpdateSourceTrigger=Explicit}"
-                                    TextChanged="TextBox_TextChanged" Tag="IsWikiBindingDirty"/>
-
-                        <TextBlock  Grid.Column="0" Grid.Row="9" Text="Forums URL" />
-                        <CheckBox   Grid.Column="1" Grid.Row="9" Name="CheckForums"
-                                    Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    IsChecked="{Binding IsForumsBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>                        
-                        <TextBox    Grid.Column="2" Grid.Row="9" Name="TextForums"
-                                    Text="{Binding CommunityHubUrl, UpdateSourceTrigger=Explicit}"
-                                    TextChanged="TextBox_TextChanged" Tag="IsForumsBindingDirty"/>
-
-                        <TextBlock  Grid.Column="0" Grid.Row="10" Text="Description" />
-                        <CheckBox   Grid.Column="1" Grid.Row="10" Name="CheckDescription"
+                       
+                        <TextBlock  Grid.Column="0" Grid.Row="7" Text="Description" />
+                        <CheckBox   Grid.Column="1" Grid.Row="7" Name="CheckDescription"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsDescriptionBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>                        
-                        <TextBox    Grid.Column="2" Grid.Row="10" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
+                        <TextBox    Grid.Column="2" Grid.Row="7" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                                     Text="{Binding Description, UpdateSourceTrigger=Explicit}"
                                     TextChanged="TextBox_TextChanged" Tag="IsDescriptionBindingDirty"/>
@@ -259,6 +232,9 @@
                         </GroupBox>
                     </StackPanel>
                 </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Links" Name="TabLinks">
+                
             </TabItem>
         </TabControl>
 

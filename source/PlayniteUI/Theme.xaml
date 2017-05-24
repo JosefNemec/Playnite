@@ -2926,6 +2926,8 @@
 
     <Style TargetType="ToolTip">        
         <Setter Property="Background" Value="{StaticResource NormalBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource GlyphBrush}" />
     </Style>
 
     <Style TargetType="DataGrid">

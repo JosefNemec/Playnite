@@ -13,6 +13,7 @@ using Playnite.Providers.Origin;
 using System.Windows;
 using Playnite.Providers;
 using NLog;
+using System.Collections.Concurrent;
 
 namespace Playnite.Database
 {
@@ -90,6 +91,8 @@ namespace Playnite.Database
         private ISteamLibrary steamLibrary;
         private IOriginLibrary originLibrary;
 
+        public readonly ushort DBVersion = 1;
+
         public string SteamUserName
         {
             get; set;
@@ -115,13 +118,72 @@ namespace Playnite.Database
             {
                 throw new Exception("Database is not opened.");
             }
-        }        
+        }
+
+        public void MigrateDatabase()
+        {
+            if (database == null)
+            {
+                throw new Exception("Database is not opened.");
+            }
+
+            if (database.Engine.UserVersion == DBVersion)
+            {
+                return;
+            }
+
+            // 0 to 1 migration
+            if (database.Engine.UserVersion == 0 && DBVersion == 1)
+            {
+                // Create: ObservableConcurrentDictionary<string, string>Links
+                // Migrate: CommunityHubUrl, StoreUrl, WikiUrl to Links
+                // Remove: CommunityHubUrl, StoreUrl, WikiUrl
+                logger.Info("Migrating database from 0 to 1 version.");
+
+                var collection = database.GetCollection("games");
+                var dbGames = collection.FindAll();
+                foreach (var game in dbGames)
+                {
+                    var links = new Dictionary<string, string>();
+
+                    if (game.ContainsKey("CommunityHubUrl"))
+                    {
+                        links.Add("Forum", game["CommunityHubUrl"].AsString);
+                        game.Remove("CommunityHubUrl");
+                    }
+
+                    if (game.ContainsKey("StoreUrl"))
+                    {
+                        links.Add("Store", game["StoreUrl"].AsString);
+                        game.Remove("StoreUrl");
+                    }
+
+                    if (game.ContainsKey("WikiUrl"))
+                    {
+                        links.Add("Wiki", game["WikiUrl"].AsString);
+                        game.Remove("WikiUrl");
+                    }
+
+                    if (links.Count() > 0)
+                    {
+                        game.Add("Links", new BsonValue(links));
+                    }
+
+                    collection.Update(game);
+                }
+
+                database.Engine.UserVersion = 1;
+            }
+
+                      
+        }
 
         public LiteDatabase OpenDatabase(string path, bool loadGames = false)
         {
             logger.Info("Opening db " + path);
             CloseDatabase();
             database = new LiteDatabase(path);
+            MigrateDatabase();
 
             // To force litedb to try to open file, should throw exceptuion if something is wrong with db file
             database.GetCollectionNames();

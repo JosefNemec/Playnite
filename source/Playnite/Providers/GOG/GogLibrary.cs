@@ -128,7 +128,10 @@ namespace Playnite.Providers.GOG
                     ProviderId = game.id.ToString(),
                     Name = game.title,
                     ReleaseDate = game.releaseDate.date,
-                    StoreUrl = @"https://www.gog.com" + game.url
+                    Links = new Dictionary<string, string>()
+                    {
+                        ["Store"] = @"https://www.gog.com" + game.url
+                    }
                 });
             }
 
@@ -177,12 +180,17 @@ namespace Playnite.Providers.GOG
 
         public GogGameMetadata UpdateGameWithMetadata(IGame game)
         {
-            var metadata = DownloadGameMetadata(game.ProviderId, game.StoreUrl);
+            var currentUrl = game.Links != null && game.Links.ContainsKey("Store") ? game.Links["Store"] : string.Empty;
+
+            var metadata = DownloadGameMetadata(game.ProviderId, currentUrl);
             game.Name = metadata.GameDetails.title;
-            game.CommunityHubUrl = metadata.GameDetails.links.forum;
-            game.StoreUrl = string.IsNullOrEmpty(game.StoreUrl) ? metadata.GameDetails.links.product_card : game.StoreUrl;
-            game.WikiUrl = @"http://pcgamingwiki.com/w/index.php?search=" + metadata.GameDetails.title;
             game.Description = metadata.GameDetails.description.full;
+            game.Links = new Dictionary<string, string>()
+            {
+                ["Forum"] = metadata.GameDetails.links.forum,
+                ["Store"] = string.IsNullOrEmpty(currentUrl) ? metadata.GameDetails.links.product_card : currentUrl,
+                ["Wiki"]  = @"http://pcgamingwiki.com/w/index.php?search=" + metadata.GameDetails.title
+            };
 
             if (metadata.StoreDetails != null)
             {

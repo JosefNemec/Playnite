@@ -260,9 +260,12 @@ namespace Playnite.Providers.Origin
         {
             var metadata = DownloadGameMetadata(game.ProviderId);
             game.Name = metadata.StoreDetails.i18n.displayName.Replace("™", "");
-            game.CommunityHubUrl = metadata.StoreDetails.i18n.gameForumURL;
-            game.StoreUrl = "https://www.origin.com/store" + metadata.StoreDetails.offerPath;
-            game.WikiUrl = @"http://pcgamingwiki.com/w/index.php?search=" + game.Name;
+            game.Links = new Dictionary<string, string>
+            {
+                ["Forum"] = metadata.StoreDetails.i18n.gameForumURL,
+                ["Store"] = @"https://www.origin.com/store" + metadata.StoreDetails.offerPath,
+                ["Wiki"]  = @"http://pcgamingwiki.com/w/index.php?search=" + game.Name
+            };
             game.Description = metadata.StoreDetails.i18n.longDescription;
             game.Developers = new List<string>() { metadata.StoreDetails.developerFacetKey };
             game.Publishers = new List<string>() { metadata.StoreDetails.publisherFacetKey };

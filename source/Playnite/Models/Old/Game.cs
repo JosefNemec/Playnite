@@ -1,153 +1,139 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using LiteDB;
+using Playnite.Providers.Custom;
+using Playnite.Providers.GOG;
+using Playnite.Providers.Origin;
+using Playnite.Providers.Steam;
+using Playnite.Providers;
 
-namespace Playnite.Models
+namespace Playnite.Models.Old0
 {
-    public interface IGame : INotifyPropertyChanged
+    public class Game
     {
-        int Id
+        [BsonId]
+        public int Id
         {
             get; set;
         }
 
-        string ProviderId
+        public string BackgroundImage
         {
             get; set;
         }
 
-        DateTime? LastActivity
-        {
-            get;set;
-        }
-
-        Provider Provider
+        public string Description
         {
             get; set;
         }
 
-        string Name
+        public List<string> Developers
         {
             get; set;
         }
 
-        string DefaultImage
-        {
-            get;
-        }
-
-        string Image
+        public List<string> Genres
         {
             get; set;
         }
 
-        string DefaultIcon
-        {
-            get;
-        }
-
-        string Icon
+        public bool Hidden
         {
             get; set;
         }
 
-        string DefaultBackgroundImage
-        {
-            get;
-        }
-
-        string BackgroundImage
+        public bool Favorite
         {
             get; set;
         }
 
-        Dictionary<string, string> Links
+        public string Icon
         {
             get; set;
         }
 
-        string InstallDirectory
+        public string Image
         {
             get; set;
         }
 
-        string Description
+        public string InstallDirectory
         {
             get; set;
         }
 
-        string DescriptionView
-        {
-            get;
-        }
-
-        bool IsProviderDataUpdated
+        public DateTime? LastActivity
         {
             get; set;
         }
 
-        GameTask PlayTask
+        public string Name
         {
             get; set;
         }
 
-        ObservableCollection<GameTask> OtherTasks
+        public string ProviderId
         {
             get; set;
         }
 
-        List<string> Categories
+        public ObservableCollection<GameTask> OtherTasks
         {
             get; set;
         }
 
-        List<string> Genres
+        public GameTask PlayTask
         {
             get; set;
         }
 
-        DateTime? ReleaseDate
+        public Provider Provider
         {
             get; set;
         }
 
-        List<string> Developers
+        public List<string> Publishers
         {
             get; set;
         }
 
-        List<string> Publishers
+        public DateTime? ReleaseDate
         {
             get; set;
         }
 
-        bool IsInstalled
-        {
-            get;
-        }
-
-        bool Hidden
+        public List<string> Categories
         {
             get; set;
         }
 
-        bool Favorite
+        public bool IsProviderDataUpdated
         {
             get; set;
         }
 
-        void PlayGame();
+        public string CommunityHubUrl
+        {
+            get; set;
+        }
 
-        void InstallGame();
+        public string StoreUrl
+        {
+            get; set;
+        }
 
-        void UninstallGame();
+        public string WikiUrl
+        {
+            get; set;
+        }
 
-        void OnPropertyChanged(string name);
     }
 }

@@ -12,6 +12,7 @@ using Playnite.Providers.GOG;
 using Playnite.Providers.Steam;
 using Playnite.Providers.Origin;
 using NUnit.Framework;
+using LiteDB;
 
 namespace PlayniteTests.Database
 {
@@ -517,9 +518,9 @@ namespace PlayniteTests.Database
                 Assert.IsNotNull(game.Genres);
                 Assert.IsNotNull(game.Developers);
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Description));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.CommunityHubUrl));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.StoreUrl));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.WikiUrl));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Forum"]));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Store"]));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Wiki"]));
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Icon));
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Image));
                 Assert.IsTrue(!string.IsNullOrEmpty(game.BackgroundImage));
@@ -602,9 +603,9 @@ namespace PlayniteTests.Database
                 Assert.IsNotNull(game.Genres);
                 Assert.IsNotNull(game.Developers);
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Description));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.CommunityHubUrl));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.StoreUrl));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.WikiUrl));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Forum"]));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Store"]));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Wiki"]));
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Icon));
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Image));
                 Assert.IsTrue(!string.IsNullOrEmpty(game.BackgroundImage));
@@ -685,13 +686,72 @@ namespace PlayniteTests.Database
                 Assert.IsNotNull(game.ReleaseDate);
                 Assert.IsNotNull(game.Developers);
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Description));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.CommunityHubUrl));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.StoreUrl));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.WikiUrl));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Forum"]));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Store"]));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Wiki"]));
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Image));
 
                 var files = db.Database.FileStorage.FindAll();
                 Assert.AreEqual(1, files.Count());
+            }
+        }
+
+        [Test]
+        public void Migration0toCurrentTest()
+        {
+            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "migration_0_Current.db");
+            FileSystem.DeleteFile(path);
+
+            var games = new List<Playnite.Models.Old0.Game>()
+            {
+                new Playnite.Models.Old0.Game()
+                {
+                    Provider = Provider.Custom,
+                    ProviderId = "TestId1",
+                    Name = "Test Name 1",
+                    CommunityHubUrl = @"http://communityurl.com",
+                    StoreUrl = @"http://storeurl.com",
+                    WikiUrl = @"http://wiki.com"
+                },
+                new Playnite.Models.Old0.Game()
+                {
+                    Provider = Provider.Custom,
+                    ProviderId = "TestId2",
+                    Name = "Test Name 2",
+                    CommunityHubUrl = @"http://communityurl.com"
+                },
+                new Playnite.Models.Old0.Game()
+                {
+                    Provider = Provider.Custom,
+                    ProviderId = "TestId3",
+                    Name = "Test Name 3"
+                }
+            };
+
+            using (var database = new LiteDatabase(path))
+            {
+                database.Engine.UserVersion = 0;
+                var collection = database.GetCollection<Playnite.Models.Old0.Game>("games");
+                foreach (var game in games)
+                {
+                    var id = collection.Insert(game);
+                    var genericCollection = database.GetCollection("games");
+                    var record = genericCollection.FindById(id);
+                    record.AsDocument["_type"] = "Playnite.Models.Game, Playnite";
+                    genericCollection.Update(record.AsDocument);
+                }
+            }
+
+            var db = new GameDatabase();
+            using (db.OpenDatabase(path, true))
+            {
+                Assert.IsTrue(db.Games.Count == 3);
+                Assert.AreEqual(3, db.Games[0].Links.Count);
+                Assert.IsFalse(string.IsNullOrEmpty(db.Games[0].Links["Store"]));
+                Assert.IsFalse(string.IsNullOrEmpty(db.Games[0].Links["Wiki"]));
+                Assert.IsFalse(string.IsNullOrEmpty(db.Games[0].Links["Forum"]));
+                Assert.AreEqual(1, db.Games[1].Links.Count);
+                Assert.IsNull(db.Games[2].Links);
             }
         }
 

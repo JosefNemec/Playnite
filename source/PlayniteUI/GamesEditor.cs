@@ -250,24 +250,6 @@ namespace PlayniteUI
                 dummyGame.Categories = firstTag;
             }
 
-            var firstStoreUrl = firstGame.StoreUrl;
-            if (games.All(a => a.StoreUrl == firstStoreUrl) == true)
-            {
-                dummyGame.StoreUrl = firstStoreUrl;
-            }
-
-            var firstWikiUrl = firstGame.WikiUrl;
-            if (games.All(a => a.WikiUrl == firstWikiUrl) == true)
-            {
-                dummyGame.WikiUrl = firstWikiUrl;
-            }
-
-            var firstForumsUrl = firstGame.CommunityHubUrl;
-            if (games.All(a => a.CommunityHubUrl == firstForumsUrl) == true)
-            {
-                dummyGame.CommunityHubUrl = firstForumsUrl;
-            }
-
             var firstDescription = firstGame.Description;
             if (games.All(a => a.Description == firstDescription) == true)
             {
