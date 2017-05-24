@@ -65,11 +65,11 @@
                 </DockPanel.ContextMenu>
             </DockPanel>
 
-            <controls:SearchBox x:Name="SearchBoxFilter" Margin="5,8,10,8" DockPanel.Dock="Left" Padding="0" Height="24" Width="235"
+            <controls:SearchBox x:Name="SearchBoxFilter" Margin="5,8,10,8" DockPanel.Dock="Left" Padding="0" Width="235"
                                 Text="{Binding Path=Config.FilterSettings.Name, ElementName=WindowMain, Delay=500, Mode=TwoWay}" />
 
             <Border CornerRadius="3" Background="Transparent" Style="{StaticResource HighlightBorder}"
-                    BorderThickness="2" Width="35" Height="24" Cursor="Hand" MouseUp="ViewConfigElement_MouseUp">
+                    BorderThickness="2" Width="35" Height="28" Cursor="Hand" MouseUp="ViewConfigElement_MouseUp">
                 <TextBlock Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
                            Foreground="{StaticResource TextBrush}"/>
                 <Border.ContextMenu>
