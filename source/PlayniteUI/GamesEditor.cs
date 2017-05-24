@@ -87,6 +87,20 @@ namespace PlayniteUI
             try
             {
                 game.PlayGame();
+
+            }
+            catch (Exception exc)
+            {
+                logger.Error(exc, "Cannot start game: ");
+                MessageBox.Show("Cannot start game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                GameDatabase.Instance.UpdateGameInDatabase(game);
+            }
+
+            try
+            {
                 var lastGames = GameDatabase.Instance.Games.OrderByDescending(a => a.LastActivity).Where(a => a.LastActivity != null).Take(10);
 
                 var jumpList = new JumpList();
@@ -101,7 +115,7 @@ namespace PlayniteUI
                         ApplicationPath = Paths.ExecutablePath
                     };
 
-                    if (lastGame.PlayTask.Type == GameTaskType.File)
+                    if (lastGame.PlayTask != null && lastGame.PlayTask.Type == GameTaskType.File)
                     {
                         if (string.IsNullOrEmpty(lastGame.PlayTask.WorkingDir))
                         {
@@ -122,12 +136,7 @@ namespace PlayniteUI
             }
             catch (Exception exc)
             {
-                logger.Error(exc, "Cannot start game: ");
-                MessageBox.Show("Cannot start game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                GameDatabase.Instance.UpdateGameInDatabase(game);
+                logger.Error(exc, "Failed to set jump list data: ");
             }
         }
 
