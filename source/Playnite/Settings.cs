@@ -250,6 +250,7 @@ namespace Playnite
             { "ForumsURL", false },
             { "Installed", false },
             { "Directory", false },
+            { "Categories", false }
         };
 
         public ObservableConcurrentDictionary<string, bool> GridViewHeaders
