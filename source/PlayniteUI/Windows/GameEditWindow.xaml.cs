@@ -903,5 +903,27 @@ namespace PlayniteUI
 
             TempLinks.Add(new Link("NewLink", "NewUrl"));
         }
+
+        private void ButtonMoveUpAction_Click(object sender, RoutedEventArgs e)
+        {
+            var task = (sender as Button).DataContext as GameTask;
+            var index = TempOtherTasks.IndexOf(task);
+
+            if (index != 0)
+            {
+                TempOtherTasks.Move(index, index - 1);
+            }
+        }
+
+        private void ButtonMoveDownAction_Click(object sender, RoutedEventArgs e)
+        {
+            var task = (sender as Button).DataContext as GameTask;
+            var index = TempOtherTasks.IndexOf(task);
+
+            if (index != TempOtherTasks.Count - 1)
+            {
+                TempOtherTasks.Move(index, index + 1);
+            }
+        }
     }
 }

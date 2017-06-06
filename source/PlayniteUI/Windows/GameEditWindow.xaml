@@ -254,7 +254,11 @@
                                             <Border BorderThickness="1" BorderBrush="{StaticResource NormalBrush}" CornerRadius="3" Padding="5" Margin="0,0,0,10">
                                                 <StackPanel Margin="10">
                                                     <local:GameTaskView x:Name="TaskCustom"/>
-                                                    <Button Content="Delete Action" Click="ButtonDeleteAction_Click" HorizontalAlignment="Right" Margin="0,10,0,0"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                                                        <Button Name="ButtonMoveUpAction" FontFamily="Marlett" Content="5" Margin="0,0,5,0" Click="ButtonMoveUpAction_Click"/>
+                                                        <Button Name="ButtonMoveDownAction" FontFamily="Marlett" Content="6" Margin="0,0,5,0" Click="ButtonMoveDownAction_Click"/>
+                                                        <Button Name="ButtonDeleteAction" Content="Delete Action" Click="ButtonDeleteAction_Click"/>
+                                                    </StackPanel>
                                                 </StackPanel>
                                             </Border>
                                         </DataTemplate>
