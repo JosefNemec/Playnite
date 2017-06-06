@@ -10,6 +10,43 @@ using System.Threading.Tasks;
 
 namespace Playnite.Models
 {
+    public class Link : INotifyPropertyChanged
+    {
+        private string name;
+        public string Name
+        {
+            get => name;
+            set
+            {
+                name = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+            }
+        }
+
+        private string url;
+        public string Url
+        {
+            get => url;
+            set
+            {
+                url = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Url"));
+            }
+        }        
+
+        public Link()
+        {
+        }
+
+        public Link(string name, string url)
+        {
+            Name = name;
+            Url = url;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+    }
+
     public interface IGame : INotifyPropertyChanged
     {
         int Id
@@ -67,7 +104,7 @@ namespace Playnite.Models
             get; set;
         }
 
-        Dictionary<string, string> Links
+        ObservableCollection<Link> Links
         {
             get; set;
         }

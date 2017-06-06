@@ -518,9 +518,9 @@ namespace PlayniteTests.Database
                 Assert.IsNotNull(game.Genres);
                 Assert.IsNotNull(game.Developers);
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Description));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Forum"]));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Store"]));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Wiki"]));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Forum").Url));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Store").Url));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Wiki").Url));
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Icon));
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Image));
                 Assert.IsTrue(!string.IsNullOrEmpty(game.BackgroundImage));
@@ -603,9 +603,9 @@ namespace PlayniteTests.Database
                 Assert.IsNotNull(game.Genres);
                 Assert.IsNotNull(game.Developers);
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Description));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Forum"]));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Store"]));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Wiki"]));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Forum").Url));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Store").Url));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Wiki").Url));
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Icon));
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Image));
                 Assert.IsTrue(!string.IsNullOrEmpty(game.BackgroundImage));
@@ -686,9 +686,9 @@ namespace PlayniteTests.Database
                 Assert.IsNotNull(game.ReleaseDate);
                 Assert.IsNotNull(game.Developers);
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Description));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Forum"]));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Store"]));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links["Wiki"]));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Forum").Url));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Store").Url));
+                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Wiki").Url));
                 Assert.IsTrue(!string.IsNullOrEmpty(game.Image));
 
                 var files = db.Database.FileStorage.FindAll();
@@ -747,9 +747,9 @@ namespace PlayniteTests.Database
             {
                 Assert.IsTrue(db.Games.Count == 3);
                 Assert.AreEqual(3, db.Games[0].Links.Count);
-                Assert.IsFalse(string.IsNullOrEmpty(db.Games[0].Links["Store"]));
-                Assert.IsFalse(string.IsNullOrEmpty(db.Games[0].Links["Wiki"]));
-                Assert.IsFalse(string.IsNullOrEmpty(db.Games[0].Links["Forum"]));
+                Assert.IsFalse(string.IsNullOrEmpty(db.Games[0].Links.First(a => a.Name == "Store").Url));
+                Assert.IsFalse(string.IsNullOrEmpty(db.Games[0].Links.First(a => a.Name == "Wiki").Url));
+                Assert.IsFalse(string.IsNullOrEmpty(db.Games[0].Links.First(a => a.Name == "Forum").Url));
                 Assert.AreEqual(1, db.Games[1].Links.Count);
                 Assert.IsNull(db.Games[2].Links);
             }

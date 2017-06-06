@@ -135,7 +135,7 @@ namespace Playnite.Database
             // 0 to 1 migration
             if (database.Engine.UserVersion == 0 && DBVersion == 1)
             {
-                // Create: ObservableConcurrentDictionary<string, string>Links
+                // Create: ObservableCollection<Link>Links
                 // Migrate: CommunityHubUrl, StoreUrl, WikiUrl to Links
                 // Remove: CommunityHubUrl, StoreUrl, WikiUrl
                 logger.Info("Migrating database from 0 to 1 version.");
@@ -144,29 +144,29 @@ namespace Playnite.Database
                 var dbGames = collection.FindAll();
                 foreach (var game in dbGames)
                 {
-                    var links = new Dictionary<string, string>();
+                    var links = new ObservableCollection<Link>();
 
                     if (game.ContainsKey("CommunityHubUrl"))
                     {
-                        links.Add("Forum", game["CommunityHubUrl"].AsString);
+                        links.Add(new Link("Forum", game["CommunityHubUrl"].AsString));
                         game.Remove("CommunityHubUrl");
                     }
 
                     if (game.ContainsKey("StoreUrl"))
                     {
-                        links.Add("Store", game["StoreUrl"].AsString);
+                        links.Add(new Link("Store", game["StoreUrl"].AsString));
                         game.Remove("StoreUrl");
                     }
 
                     if (game.ContainsKey("WikiUrl"))
                     {
-                        links.Add("Wiki", game["WikiUrl"].AsString);
+                        links.Add(new Link("Wiki", game["WikiUrl"].AsString));
                         game.Remove("WikiUrl");
                     }
 
                     if (links.Count() > 0)
-                    {
-                        game.Add("Links", new BsonValue(links));
+                    {                        
+                        game.Add("Links", new BsonArray(links.Select(a => BsonMapper.Global.ToDocument(a))));
                     }
 
                     collection.Update(game);

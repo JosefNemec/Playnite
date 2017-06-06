@@ -128,9 +128,9 @@ namespace Playnite.Providers.GOG
                     ProviderId = game.id.ToString(),
                     Name = game.title,
                     ReleaseDate = game.releaseDate.date,
-                    Links = new Dictionary<string, string>()
+                    Links = new ObservableCollection<Link>()
                     {
-                        ["Store"] = @"https://www.gog.com" + game.url
+                        new Link("Store", @"https://www.gog.com" + game.url)
                     }
                 });
             }
@@ -180,16 +180,28 @@ namespace Playnite.Providers.GOG
 
         public GogGameMetadata UpdateGameWithMetadata(IGame game)
         {
-            var currentUrl = game.Links != null && game.Links.ContainsKey("Store") ? game.Links["Store"] : string.Empty;
+            var currentUrl = string.Empty;
+            if (game.Links != null)
+            {
+                currentUrl = game.Links.Any(a => a.Name == "Store") ? game.Links.First( a=> a.Name == "Store").Url : string.Empty;
+            }
 
             var metadata = DownloadGameMetadata(game.ProviderId, currentUrl);
             game.Name = metadata.GameDetails.title;
             game.Description = metadata.GameDetails.description.full;
-            game.Links = new Dictionary<string, string>()
+            game.Links = new ObservableCollection<Link>()
             {
-                ["Forum"] = metadata.GameDetails.links.forum,
-                ["Store"] = string.IsNullOrEmpty(currentUrl) ? metadata.GameDetails.links.product_card : currentUrl,
-                ["Wiki"]  = @"http://pcgamingwiki.com/w/index.php?search=" + metadata.GameDetails.title
+                new Link("Wiki", @"http://pcgamingwiki.com/w/index.php?search=" + metadata.GameDetails.title)
+            };
+            
+            if (!string.IsNullOrEmpty(metadata.GameDetails.links.forum))
+            {
+                game.Links.Add(new Link("Forum", metadata.GameDetails.links.forum));
+            };
+
+            if (string.IsNullOrEmpty(currentUrl) && !string.IsNullOrEmpty(metadata.GameDetails.links.product_card))
+            {
+                game.Links.Add(new Link("Store", metadata.GameDetails.links.product_card));
             };
 
             if (metadata.StoreDetails != null)
@@ -198,9 +210,9 @@ namespace Playnite.Providers.GOG
                 game.Developers = new List<string>() { metadata.StoreDetails.developer.name };
                 game.Publishers = new List<string>() { metadata.StoreDetails.publisher.name };
 
-                if (game.ReleaseDate == null)
+                if (game.ReleaseDate == null && metadata.StoreDetails.releaseDate != null)
                 {
-                    game.ReleaseDate = DateTimeOffset.FromUnixTimeSeconds(metadata.StoreDetails.releaseDate).DateTime;
+                    game.ReleaseDate = DateTimeOffset.FromUnixTimeSeconds(metadata.StoreDetails.releaseDate.Value).DateTime;
                 }
             }
 

@@ -403,8 +403,8 @@ namespace Playnite.Models
             }
         }
 
-        private Dictionary<string, string> links;
-        public Dictionary<string, string> Links
+        private ObservableCollection<Link> links;
+        public ObservableCollection<Link> Links
         {
             get
             {

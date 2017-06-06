@@ -148,8 +148,8 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Style="{StaticResource ListTextBlock}">
-                                        <Hyperlink NavigateUri="{Binding Value, Mode=OneWay}" RequestNavigate="Link_RequestNavigate" ToolTip="{Binding Value, Mode=OneWay}">
-                                            <Run Text="{Binding Key, Mode=OneWay}" />
+                                        <Hyperlink NavigateUri="{Binding Url, Mode=OneWay}" RequestNavigate="Link_RequestNavigate" ToolTip="{Binding Url, Mode=OneWay}">
+                                            <Run Text="{Binding Name, Mode=OneWay}" />
                                         </Hyperlink>
                                     </TextBlock>
                                 </DataTemplate>

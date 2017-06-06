@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Playnite.Services;
 using System.Collections.Concurrent;
+using System.Collections.ObjectModel;
+using Playnite.Models;
 
 namespace Playnite.MetaProviders
 {
@@ -70,11 +72,11 @@ namespace Playnite.MetaProviders
 
             if (dbGame.websites != null && dbGame.websites.Count > 0)
             {
-                var links = new Dictionary<string, string>();
+                var links = new ObservableCollection<Link>();
 
                 foreach (var website in dbGame.websites)
                 {
-                    links.Add(website.category.ToString(), website.url);
+                    links.Add(new Link(website.category.ToString(), website.url));
                 }
 
                 game.Links = links;

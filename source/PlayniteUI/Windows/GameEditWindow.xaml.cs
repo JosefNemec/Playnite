@@ -111,7 +111,22 @@ namespace PlayniteUI
                 tempOtherTasks = value;
                 OnPropertyChanged("TempOtherTasks");
             }
-        }           
+        }
+
+        private ObservableCollection<Link> tempLinks;
+        public ObservableCollection<Link> TempLinks
+        {
+            get
+            {
+                return tempLinks;
+            }
+
+            set
+            {
+                tempLinks = value;
+                OnPropertyChanged("TempLinks");
+            }
+        }
 
         public bool ShowPlayActionEdit
         {
@@ -285,6 +300,7 @@ namespace PlayniteUI
                 DataContext = previewGame;
                 Game = previewGame;
                 TabActions.Visibility = Visibility.Hidden;
+                TabLinks.Visibility = Visibility.Hidden;
                 ButtonDownload.Visibility = Visibility.Hidden;
             }
             else
@@ -300,6 +316,11 @@ namespace PlayniteUI
                 {
                     TempOtherTasks = Playnite.CloneObject.CloneJson<ObservableCollection<GameTask>>(Game.OtherTasks);
                     OtherTasksItems.ItemsSource = TempOtherTasks;
+                }
+
+                if (Game.Links != null)
+                {
+                    TempLinks = Playnite.CloneObject.CloneJson<ObservableCollection<Link>>(Game.Links);
                 }
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowAddPlayAction"));
@@ -343,6 +364,12 @@ namespace PlayniteUI
 
             TextReleaseDate.Text = (string)dateConverter.Convert(game.ReleaseDate, typeof(DateTime?), null, null);
             TextDescription.Text = string.IsNullOrEmpty(game.Description) ? TextName.Text : game.Description;
+
+            if (game.Links != null)
+            {
+                TempLinks = game.Links;
+                CheckLinks.IsChecked = true;
+            }
 
             if (!string.IsNullOrEmpty(game.Image))
             {
@@ -569,6 +596,11 @@ namespace PlayniteUI
                 if (!Game.OtherTasks.IsEqualJson(TempOtherTasks))
                 {
                     Game.OtherTasks = TempOtherTasks;
+                }
+
+                if (!Game.Links.IsEqualJson(TempLinks) && CheckLinks.IsChecked == true)
+                {                    
+                    Game.Links = TempLinks;
                 }
             }
 
@@ -853,6 +885,23 @@ namespace PlayniteUI
                     });
                 }
             });
+        }
+
+        private void ButtonRemoveLink_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var link = button.DataContext as Link;
+            TempLinks.Remove(link);
+        }
+
+        private void ButtonAddLink_Click(object sender, RoutedEventArgs e)
+        {
+            if (TempLinks == null)
+            {
+                TempLinks = new ObservableCollection<Link>();
+            }
+
+            TempLinks.Add(new Link("NewLink", "NewUrl"));
         }
     }
 }
