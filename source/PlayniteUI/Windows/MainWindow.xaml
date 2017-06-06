@@ -45,11 +45,11 @@
             <DockPanel MouseUp="ImageLogo_MouseDown" Cursor="Hand" Margin="10,0,5,0"
                        Opacity="{Binding IsMouseOver, Converter={StaticResource OpacityBoolConverter}, ConverterParameter={StaticResource True}, RelativeSource={RelativeSource Self}}">
                 <Border DockPanel.Dock="Left" Background="Transparent">
-                    <Image Source="/Images/applogo.png" Height="40" Name="ImageLogo" RenderOptions.BitmapScalingMode="Fant" Margin="5"/>
-                </Border>
-                <Border DockPanel.Dock="Left" Background="Transparent">
-                    <Image Source="/Images/dropdown.png" Width="8" Height="32"/>
-                </Border>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/applogo.png" Height="40" Name="ImageLogo" RenderOptions.BitmapScalingMode="Fant" Margin="5"/>
+                        <TextBlock FontFamily="Marlett" Text="6" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="{StaticResource GlyphBrush}" />
+                    </StackPanel>
+                </Border>                
                 <DockPanel.ContextMenu>
                     <ContextMenu StaysOpen="False" Name="MenuMainMenu" Placement="Bottom">                        
                         <MenuItem Header="Add Game..." Click="AddNewGame_Click" IsEnabled="{Binding GameAdditionAllowed}"/>
@@ -96,10 +96,8 @@
                             <Setter.Value>
                                 <ControlTemplate>
                                 <StackPanel Orientation="Horizontal" Cursor="Hand" >
-                                    <TextBlock Text="FILTER" VerticalAlignment="Center" FontWeight="Bold" FontSize="16"/>
-                                    <Border Padding="5,0,5,0" Background="Transparent">
-                                        <Image Source="/Images/dropdown.png" Width="8" Height="32" DockPanel.Dock="Left"/>
-                                    </Border>
+                                    <TextBlock Text="FILTER" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Margin="0,0,3,0"/>
+                                    <TextBlock FontFamily="Marlett" Text="6" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" />
                                 </StackPanel>
                             </ControlTemplate>
                             </Setter.Value>
