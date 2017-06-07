@@ -237,9 +237,29 @@ namespace PlayniteUI
             }
         }
 
-        private void Window_Closed(object sender, EventArgs e)
+        private void WindowMain_Closed(object sender, EventArgs e)
         {
-            Application.Current.Shutdown(0);
+            if (!Config.CloseToTray || !Config.EnableTray)
+            {
+                Application.Current.Shutdown(0);
+            }
+        }
+
+        private void WindowMain_Closing(object sender, CancelEventArgs e)
+        {
+            if (Config.CloseToTray && Config.EnableTray)
+            {
+                Visibility = Visibility.Hidden;
+                e.Cancel = true;
+            }
+        }
+
+        private void WindowMain_StateChanged(object sender, EventArgs e)
+        {
+            if (WindowState == WindowState.Minimized && Config.MinimizeToTray && Config.EnableTray)
+            {
+                Visibility = Visibility.Hidden;
+            }
         }
 
         private void AddInstalledGames(List<InstalledGameMetadata> games)
@@ -504,6 +524,7 @@ namespace PlayniteUI
             }
             finally
             {
+                GamesEditor.Instance.OnPropertyChanged("LastGames");
                 GameAdditionAllowed = true;
             }
         }
@@ -939,6 +960,21 @@ namespace PlayniteUI
             {
                 positionManager.SaveSize(Config);
             }
+        }
+
+        private void TrayPlaynite_TrayMouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            Show();
+            WindowState = WindowState.Normal;
+            Focus();
+            TrayPlaynite.TrayPopupResolved.IsOpen = false;
+        }
+
+        private void MenuLastGamesGame_Click(object sender, RoutedEventArgs e)
+        {
+            var game = (sender as MenuItem).DataContext as IGame;
+            GamesEditor.Instance.PlayGame(game);
+            TrayPlaynite.TrayPopupResolved.IsOpen = false;
         }
     }
 }

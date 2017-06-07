@@ -15,10 +15,11 @@ using System.IO;
 using System.Drawing;
 using System.Windows.Media.Imaging;
 using NLog;
+using System.ComponentModel;
 
 namespace PlayniteUI
 {
-    public class GamesEditor
+    public class GamesEditor : INotifyPropertyChanged
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -34,6 +35,20 @@ namespace PlayniteUI
 
                 return instance;
             }
+        }       
+
+        public IEnumerable<IGame> LastGames
+        {
+            get
+            {
+                return GameDatabase.Instance.Games.OrderByDescending(a => a.LastActivity).Where(a => a.LastActivity != null).Take(10);
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public bool? SetGameCategories(IGame game)
@@ -87,7 +102,6 @@ namespace PlayniteUI
             try
             {
                 game.PlayGame();
-
             }
             catch (Exception exc)
             {
@@ -101,10 +115,10 @@ namespace PlayniteUI
 
             try
             {
-                var lastGames = GameDatabase.Instance.Games.OrderByDescending(a => a.LastActivity).Where(a => a.LastActivity != null).Take(10);
+                OnPropertyChanged("LastGames");
 
                 var jumpList = new JumpList();
-                foreach (var lastGame in lastGames)
+                foreach (var lastGame in LastGames)
                 {
                     JumpTask task = new JumpTask
                     {

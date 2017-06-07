@@ -27,15 +27,26 @@
             </DockPanel>
             <TabControl DockPanel.Dock="Bottom">
                 <TabItem Header="General" >
-                    <DockPanel Margin="10" LastChildFill="False">
-                        <Label Content="Database location:" DockPanel.Dock="Top" Margin="5"/>
-                        <DockPanel DockPanel.Dock="Top" Margin="5">
+                    <StackPanel Margin="10" >
+                        <Label Content="Database location:" Margin="5"/>
+                        <DockPanel Margin="5">
                             <Button Name="ButtonBrowserDbFile" Content="..." DockPanel.Dock="Right" Padding="5,0,5,0"
                                     Click="ButtonBrowserDbFile_Click"/>                        
                             <TextBox Name="TextDatabase" Text="{Binding DatabasePath, UpdateSourceTrigger=Explicit}"
                                      DockPanel.Dock="Left" Margin="0,0,5,0"/>
                         </DockPanel>
-                    </DockPanel>
+                        
+                        <Separator Style="{StaticResource {x:Type Separator}}" Margin="0,10,0,15"/>
+
+                        <CheckBox Name="CheckEnableTray" Content="Show Tray Icon"
+                                  IsChecked="{Binding EnableTray, UpdateSourceTrigger=Explicit}" />
+                        <CheckBox Name="CheckMinimizeToTray" Content="Minimize to tray" Margin="20,10,5,5"
+                                  IsChecked="{Binding MinimizeToTray, UpdateSourceTrigger=Explicit}"
+                                  IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
+                        <CheckBox Name="CheckCloseToTray" Content="Close to tray" Margin="20,5,5,5"
+                                  IsChecked="{Binding CloseToTray, UpdateSourceTrigger=Explicit}"
+                                  IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
+                    </StackPanel>
                 </TabItem>                
                 <TabItem Header="Steam">
                     <DockPanel Margin="10" LastChildFill="False">

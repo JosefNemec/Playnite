@@ -288,6 +288,51 @@ namespace Playnite
             }
         }
 
+        private bool minimizeToTray = false;
+        public bool MinimizeToTray
+        {
+            get
+            {
+                return minimizeToTray;
+            }
+
+            set
+            {
+                minimizeToTray = value;
+                OnPropertyChanged("MinimizeToTray");
+            }
+        }
+
+        private bool closeToTray = true;
+        public bool CloseToTray
+        {
+            get
+            {
+                return closeToTray;
+            }
+
+            set
+            {
+                closeToTray = value;
+                OnPropertyChanged("CloseToTray");
+            }
+        }
+
+        private bool enableTray = true;
+        public bool EnableTray
+        {
+            get
+            {
+                return enableTray;
+            }
+
+            set
+            {
+                enableTray = value;
+                OnPropertyChanged("EnableTray");
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
