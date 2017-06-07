@@ -89,7 +89,8 @@
                 </Border.ContextMenu>
             </Border>
 
-            <CheckBox Name="CheckFilterView" DockPanel.Dock="Right" Margin="30,0,30,0" IsChecked="True">
+            <CheckBox Name="CheckFilterView" DockPanel.Dock="Right" Margin="30,0,30,0"
+                      IsChecked="{Binding Path=FilterPanelVisible, Source={x:Static shared:Settings.Instance}}">
                 <CheckBox.Style>
                     <Style TargetType="CheckBox">
                         <Setter Property="Template">
@@ -119,7 +120,7 @@
         <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" >
             <DockPanel>
                 <Border BorderThickness="1,0,0,0" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Right" >
-                    <controls:FilterSelector x:Name="FilterSelector" Width="160"
+                    <controls:FilterSelector x:Name="FilterSelector" Width="180"
                                              Visibility="{Binding IsChecked, ElementName=CheckFilterView, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Border>
                 <TabControl Name="TabControlView" DockPanel.Dock="Left" TabStripPlacement="Bottom"

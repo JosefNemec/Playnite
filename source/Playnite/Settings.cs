@@ -273,6 +273,21 @@ namespace Playnite
             }
         }
 
+        private bool filterPanelVisible = true;
+        public bool FilterPanelVisible
+        {
+            get
+            {
+                return filterPanelVisible;
+            }
+
+            set
+            {
+                filterPanelVisible = value;
+                OnPropertyChanged("FilterPanelVisible");
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
