@@ -194,6 +194,7 @@
     <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Localization.cs" />
     <Compile Include="MouseWheelGesture.cs" />
     <Compile Include="WindowPositionHandler.cs" />
     <Compile Include="Windows\AboutWindow.xaml.cs">
@@ -265,6 +266,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Resource Include="Localization\english.xaml">
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Include="Localization\czech.xaml">
+      <SubType>Designer</SubType>
+    </Resource>
     <Page Include="Windows\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

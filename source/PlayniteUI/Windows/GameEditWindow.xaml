@@ -290,7 +290,7 @@
                     </ContextMenu>
                 </Button.ContextMenu>
             </Button>
-            <Button Name="ButtonCancel" Content="Cancel" DockPanel.Dock="Right" IsCancel="True"
+            <Button Name="ButtonCancel" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right" IsCancel="True"
                     Click="ButtonCancel_Click" Style="{StaticResource BottomButton}"/>
             <Button Name="ButtonOK" Content="Save" DockPanel.Dock="Right"
                     Click="ButtonOK_Click" Style="{StaticResource BottomButton}"/>

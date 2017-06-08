@@ -189,6 +189,12 @@ namespace PlayniteUI
                 trayEnable.UpdateSource();
             }
 
+            var language = ComboLanguage.GetBindingExpression(ComboBox.SelectedValueProperty);
+            if (language.IsDirty)
+            {
+                language.UpdateSource();
+            }
+
             Playnite.Settings.Instance.SaveSettings();
             Close();
         }

@@ -59,7 +59,7 @@
                         <Separator Style="{StaticResource {x:Type Separator}}"/>
                         <MenuItem Header="Open" Click="TrayPlaynite_TrayMouseDoubleClick" />
                         <Separator Style="{StaticResource {x:Type Separator}}"/>
-                        <MenuItem Header="Exit" Click="Exitappp_Click" />
+                        <MenuItem Header="{DynamicResource ExitAppLabel}" Click="Exitappp_Click" />
                     </StackPanel>
                 </Border>
             </tray:TaskbarIcon.TrayPopup>
@@ -84,7 +84,7 @@
                         <MenuItem Header="About Playnite..." Click="About_Click" />
                         <MenuItem Header="Request Feature or Report Issue..." Click="Issue_Click" />
                         <Separator Style="{DynamicResource {x:Type Separator}}" />
-                        <MenuItem Header="Exit Playnite" Click="Exitappp_Click" />
+                        <MenuItem Header="{DynamicResource ExitAppLabel}" Click="Exitappp_Click" />
                     </ContextMenu>
                 </DockPanel.ContextMenu>
             </DockPanel>
@@ -120,8 +120,8 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                <StackPanel Orientation="Horizontal" Cursor="Hand" >
-                                    <TextBlock Text="FILTER" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Margin="0,0,3,0"/>
+                                <StackPanel Orientation="Horizontal" Cursor="Hand">
+                                    <TextBlock Text="{DynamicResource FilterGeneralLabel}" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Margin="0,0,3,0"/>
                                     <TextBlock FontFamily="Marlett" Text="6" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" />
                                 </StackPanel>
                             </ControlTemplate>

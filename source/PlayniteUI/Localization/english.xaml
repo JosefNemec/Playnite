@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="LocalizationLanguage">english</sys:String>
+
+    <sys:String x:Key="LanguageSettingsLabel">Language:</sys:String>
+
+
+    <sys:String x:Key="ExitAppLabel">Exit</sys:String>
+    <sys:String x:Key="FilterGeneralLabel">FILTER</sys:String>
+
+
+
+    <sys:String x:Key="CancelLabel">Cancel</sys:String>
+    
+</ResourceDictionary>

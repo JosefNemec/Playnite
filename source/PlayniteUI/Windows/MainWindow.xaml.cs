@@ -696,6 +696,12 @@ namespace PlayniteUI
 
         private void Config_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            if (e != null && e.PropertyName == "Language")
+            {
+                Localization.SetLanguage(Config.Language);
+                return;
+            }
+
             if (e != null && !(new string[] { "SortingOrder", "GroupingOrder", "GamesViewType" }).Contains(e.PropertyName))
             {
                 return;

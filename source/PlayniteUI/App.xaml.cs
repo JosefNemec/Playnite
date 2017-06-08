@@ -51,7 +51,8 @@ namespace PlayniteUI
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            Settings.LoadSettings();
+            var config = Settings.LoadSettings();
+            Localization.SetLanguage(config.Language);
             Settings.ConfigureLogger();
             Settings.ConfigureCef();
 

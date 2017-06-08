@@ -333,6 +333,21 @@ namespace Playnite
             }
         }
 
+        private string language = "english";
+        public string Language
+        {
+            get
+            {
+                return language;
+            }
+
+            set
+            {
+                language = value;
+                OnPropertyChanged("Language");
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -376,13 +391,15 @@ namespace Playnite
             }
         }
 
-        public static void LoadSettings()
+        public static Settings LoadSettings()
         {
             if (File.Exists(Paths.ConfigFilePath))
             {
                 var settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Paths.ConfigFilePath));
                 instance = settings;
             }
+
+            return instance;
         }
 
         public void SaveSettings()

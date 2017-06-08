@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PlayniteUI"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="Configuration" Width="500" Height="330"
+        Title="Configuration" Width="500" Height="400"
         AutomationProperties.AutomationId="WindowSettings"
         Background="{StaticResource NormalBrush}">
 
@@ -28,7 +28,15 @@
             <TabControl DockPanel.Dock="Bottom">
                 <TabItem Header="General" >
                     <StackPanel Margin="10" >
-                        <Label Content="Database location:" Margin="5"/>
+                        <DockPanel>
+                            <TextBlock Text="{DynamicResource LanguageSettingsLabel}" VerticalAlignment="Center" Margin="5,0,10,0" />
+                            <ComboBox Name="ComboLanguage" SelectedValuePath="Tag" SelectedValue="{Binding Language, UpdateSourceTrigger=Explicit}">
+                                <ComboBoxItem Content="English" Tag="english" />
+                                <ComboBoxItem Content="Čeština" Tag="czech" />
+                            </ComboBox>
+                        </DockPanel>
+
+                        <Label Content="Database location:" Margin="5,20,0,5"/>
                         <DockPanel Margin="5">
                             <Button Name="ButtonBrowserDbFile" Content="..." DockPanel.Dock="Right" Padding="5,0,5,0"
                                     Click="ButtonBrowserDbFile_Click"/>                        
@@ -36,9 +44,7 @@
                                      DockPanel.Dock="Left" Margin="0,0,5,0"/>
                         </DockPanel>
                         
-                        <Separator Style="{StaticResource {x:Type Separator}}" Margin="0,10,0,15"/>
-
-                        <CheckBox Name="CheckEnableTray" Content="Show Tray Icon"
+                        <CheckBox Name="CheckEnableTray" Content="Show Tray Icon" Margin="5,20,0,0"
                                   IsChecked="{Binding EnableTray, UpdateSourceTrigger=Explicit}" />
                         <CheckBox Name="CheckMinimizeToTray" Content="Minimize to tray" Margin="20,10,5,5"
                                   IsChecked="{Binding MinimizeToTray, UpdateSourceTrigger=Explicit}"
