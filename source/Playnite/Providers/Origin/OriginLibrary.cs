@@ -187,7 +187,7 @@ namespace Playnite.Providers.Origin
                     }
 
                     var installPath = GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
-                    if (string.IsNullOrEmpty(installPath))
+                    if (string.IsNullOrEmpty(installPath) || !File.Exists(installPath))
                     {
                         continue;
                     }
