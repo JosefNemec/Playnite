@@ -63,6 +63,7 @@
                     <ItemsControl Name="ItemsView" HorizontalAlignment="Center" 
                                   VirtualizingPanel.VirtualizationMode="Standard"
                                   VirtualizingPanel.IsVirtualizing="True"
+                                  VirtualizingPanel.IsVirtualizingWhenGrouping="True"
                                   ScrollViewer.CanContentScroll="True"
                                   Margin="10">                        
                         <ItemsControl.ItemsPanel>
