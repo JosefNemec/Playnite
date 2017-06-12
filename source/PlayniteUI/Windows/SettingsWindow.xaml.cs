@@ -195,6 +195,12 @@ namespace PlayniteUI
                 language.UpdateSource();
             }
 
+            var minimizeLaunch = CheckMinimizeLaunch.GetBindingExpression(CheckBox.IsCheckedProperty);
+            if (minimizeLaunch.IsDirty)
+            {
+                minimizeLaunch.UpdateSource();
+            }
+
             Playnite.Settings.Instance.SaveSettings();
             Close();
         }

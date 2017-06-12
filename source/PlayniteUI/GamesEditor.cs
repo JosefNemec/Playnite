@@ -111,7 +111,7 @@ namespace PlayniteUI
             finally
             {
                 GameDatabase.Instance.UpdateGameInDatabase(game);
-            }
+            }            
 
             try
             {
@@ -151,6 +151,11 @@ namespace PlayniteUI
             catch (Exception exc)
             {
                 logger.Error(exc, "Failed to set jump list data: ");
+            }
+
+            if (Settings.Instance.MinimizeAfterLaunch)
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Minimized;
             }
         }
 

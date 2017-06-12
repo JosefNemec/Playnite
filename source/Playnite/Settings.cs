@@ -348,6 +348,21 @@ namespace Playnite
             }
         }
 
+        private bool minimizeAfterLaunch = true;
+        public bool MinimizeAfterLaunch
+        {
+            get
+            {
+                return minimizeAfterLaunch;
+            }
+
+            set
+            {
+                minimizeAfterLaunch = value;
+                OnPropertyChanged("MinimizeAfterLaunch");
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {

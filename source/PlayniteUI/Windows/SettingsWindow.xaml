@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PlayniteUI"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="Configuration" Width="500" Height="400"
+        Title="Configuration" Width="550" Height="360"
         AutomationProperties.AutomationId="WindowSettings"
         Background="{StaticResource NormalBrush}">
 
@@ -43,15 +43,21 @@
                             <TextBox Name="TextDatabase" Text="{Binding DatabasePath, UpdateSourceTrigger=Explicit}"
                                      DockPanel.Dock="Left" Margin="0,0,5,0"/>
                         </DockPanel>
-                        
-                        <CheckBox Name="CheckEnableTray" Content="Show Tray Icon" Margin="5,20,0,0"
-                                  IsChecked="{Binding EnableTray, UpdateSourceTrigger=Explicit}" />
-                        <CheckBox Name="CheckMinimizeToTray" Content="Minimize to tray" Margin="20,10,5,5"
-                                  IsChecked="{Binding MinimizeToTray, UpdateSourceTrigger=Explicit}"
-                                  IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
-                        <CheckBox Name="CheckCloseToTray" Content="Close to tray" Margin="20,5,5,5"
-                                  IsChecked="{Binding CloseToTray, UpdateSourceTrigger=Explicit}"
-                                  IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <StackPanel>
+                                <CheckBox Name="CheckEnableTray" Content="Show Tray Icon" Margin="5,0,0,0"
+                                          IsChecked="{Binding EnableTray, UpdateSourceTrigger=Explicit}" />
+                                <CheckBox Name="CheckMinimizeToTray" Content="Minimize to tray" Margin="20,10,5,5"
+                                          IsChecked="{Binding MinimizeToTray, UpdateSourceTrigger=Explicit}"
+                                          IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
+                                <CheckBox Name="CheckCloseToTray" Content="Close to tray" Margin="20,5,5,5"
+                                          IsChecked="{Binding CloseToTray, UpdateSourceTrigger=Explicit}"
+                                          IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
+                            </StackPanel>
+                            <CheckBox Name="CheckMinimizeLaunch" Content="Minimize after starting game" VerticalAlignment="Top" Margin="70,0,0,0"
+                                      IsChecked="{Binding MinimizeAfterLaunch, UpdateSourceTrigger=Explicit}"/>
+                        </StackPanel>
                     </StackPanel>
                 </TabItem>                
                 <TabItem Header="Steam">
