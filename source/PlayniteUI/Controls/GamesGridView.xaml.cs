@@ -58,23 +58,25 @@ namespace PlayniteUI.Controls
 
         private void Grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (GridGames.SelectedItem != null)
+            if (GridGames.SelectedItem == null)
             {
-                var game = GridGames.SelectedItem as IGame;
-                if (game.IsInstalled)
+                return;
+            }
+
+            var game = GridGames.SelectedItem as IGame;
+            if (game.IsInstalled)
+            {
+                GamesEditor.Instance.PlayGame(game);
+            }
+            else
+            {
+                if (game.Provider == Provider.Custom)
                 {
-                    GamesEditor.Instance.PlayGame(game);
+                    GamesEditor.Instance.EditGame(game);
                 }
                 else
                 {
-                    if (game.Provider == Provider.Custom)
-                    {
-                        GamesEditor.Instance.EditGame(game);
-                    }
-                    else
-                    {
-                        GamesEditor.Instance.InstallGame(game);
-                    }
+                    GamesEditor.Instance.InstallGame(game);
                 }
             }
         }
