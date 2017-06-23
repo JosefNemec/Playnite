@@ -12,20 +12,21 @@ namespace PlayniteServices.Controllers.IGDB
     [Route("api/igdb/company")]
     public class CompanyController : Controller
     {
-        private static Dictionary<UInt64, Company> companyCache = new Dictionary<UInt64, Company>();
-
         [HttpGet("{companyId}")]
         public async Task<ServicesResponse<Company>> Get(UInt64 companyId)
         {
-            if (companyCache.ContainsKey(companyId))
+            var cacheCollection = Program.DatabaseCache.GetCollection<Company>("IGBDCompaniesCache");
+            var cache = cacheCollection.FindById(companyId);
+            if (cache != null)
             {
-                return new ServicesResponse<Company>(companyCache[companyId], string.Empty);
+                return new ServicesResponse<Company>(cache, string.Empty);
             }
 
             var url = string.Format(IGDB.UrlBase + @"companies/{0}?fields=name", companyId);
             var stringResult = await IGDB.HttpClient.GetStringAsync(url);
-            companyCache.Add(companyId, JsonConvert.DeserializeObject<List<Company>>(stringResult)[0]);
-            return new ServicesResponse<Company>(companyCache[companyId], string.Empty);
+            var company = JsonConvert.DeserializeObject<List<Company>>(stringResult)[0];
+            cacheCollection.Insert(company);            
+            return new ServicesResponse<Company>(company, string.Empty);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiteDB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,13 +48,31 @@ namespace PlayniteServices.Models.IGDB
 
     public class Company
     {
-        public UInt64 id;
-        public string name;
+        [BsonId(false)]
+        [BsonIndex(true)]
+        public UInt64 id
+        {
+            get; set;
+        }
+
+        public string name
+        {
+            get; set;
+        }
     }
 
     public class Genre
     {
-        public UInt64 id;
-        public string name;
+        [BsonId(false)]
+        [BsonIndex(true)]
+        public UInt64 id
+        {
+            get; set;
+        }
+
+        public string name
+        {
+            get; set;
+        }
     }
 }
