@@ -414,7 +414,7 @@ namespace Playnite
                 instance = settings;
             }
 
-            return instance;
+            return Instance;
         }
 
         public void SaveSettings()
