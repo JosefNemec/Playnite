@@ -28,7 +28,7 @@
             <TabControl DockPanel.Dock="Bottom">
                 <TabItem Header="General" >
                     <StackPanel Margin="10" >
-                        <DockPanel>
+                        <DockPanel Visibility="Collapsed">
                             <TextBlock Text="{DynamicResource LanguageSettingsLabel}" VerticalAlignment="Center" Margin="5,0,10,0" />
                             <ComboBox Name="ComboLanguage" SelectedValuePath="Tag" SelectedValue="{Binding Language, UpdateSourceTrigger=Explicit}">
                                 <ComboBoxItem Content="English" Tag="english" />
