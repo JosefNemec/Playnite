@@ -28,6 +28,7 @@ using Playnite.Database;
 using Playnite.Providers.Origin;
 using PlayniteUI.Controls;
 using System.Globalization;
+using Playnite.Services;
 
 namespace PlayniteUI
 {
@@ -189,6 +190,19 @@ namespace PlayniteUI
                 }
             });
 
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    var client = new ServicesClient();
+                    client.PostUserUsage();
+                }
+                catch (Exception exc)
+                {
+                    logger.Error(exc, "Failed to post user usage data.");
+                }
+            });
+
             Focus();
 
             pipeService = new PipeService();
@@ -213,8 +227,8 @@ namespace PlayniteUI
             switch (args.Command)
             {
                 case CmdlineCommands.Focus:
-                    SystemCommands.RestoreWindow(this);
-                    Activate();
+                    Show();
+                    WindowState = WindowState.Normal;
                     Focus();
                     break;
 
@@ -237,9 +251,29 @@ namespace PlayniteUI
             }
         }
 
-        private void Window_Closed(object sender, EventArgs e)
+        private void WindowMain_Closed(object sender, EventArgs e)
         {
-            Application.Current.Shutdown(0);
+            if (!Config.CloseToTray || !Config.EnableTray)
+            {
+                Application.Current.Shutdown(0);
+            }
+        }
+
+        private void WindowMain_Closing(object sender, CancelEventArgs e)
+        {
+            if (Config.CloseToTray && Config.EnableTray)
+            {
+                Visibility = Visibility.Hidden;
+                e.Cancel = true;
+            }
+        }
+
+        private void WindowMain_StateChanged(object sender, EventArgs e)
+        {
+            if (WindowState == WindowState.Minimized && Config.MinimizeToTray && Config.EnableTray)
+            {
+                Visibility = Visibility.Hidden;
+            }
         }
 
         private void AddInstalledGames(List<InstalledGameMetadata> games)
@@ -504,6 +538,7 @@ namespace PlayniteUI
             }
             finally
             {
+                GamesEditor.Instance.OnPropertyChanged("LastGames");
                 GameAdditionAllowed = true;
             }
         }
@@ -675,6 +710,12 @@ namespace PlayniteUI
 
         private void Config_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            if (e != null && e.PropertyName == "Language")
+            {
+                Localization.SetLanguage(Config.Language);
+                return;
+            }
+
             if (e != null && !(new string[] { "SortingOrder", "GroupingOrder", "GamesViewType" }).Contains(e.PropertyName))
             {
                 return;
@@ -939,6 +980,21 @@ namespace PlayniteUI
             {
                 positionManager.SaveSize(Config);
             }
+        }
+
+        private void TrayPlaynite_TrayMouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            Show();
+            WindowState = WindowState.Normal;
+            Focus();
+            TrayPlaynite.TrayPopupResolved.IsOpen = false;
+        }
+
+        private void MenuLastGamesGame_Click(object sender, RoutedEventArgs e)
+        {
+            var game = (sender as MenuItem).DataContext as IGame;
+            GamesEditor.Instance.PlayGame(game);
+            TrayPlaynite.TrayPopupResolved.IsOpen = false;
         }
     }
 }

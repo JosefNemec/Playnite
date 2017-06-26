@@ -15,10 +15,11 @@ using System.IO;
 using System.Drawing;
 using System.Windows.Media.Imaging;
 using NLog;
+using System.ComponentModel;
 
 namespace PlayniteUI
 {
-    public class GamesEditor
+    public class GamesEditor : INotifyPropertyChanged
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -34,6 +35,20 @@ namespace PlayniteUI
 
                 return instance;
             }
+        }       
+
+        public IEnumerable<IGame> LastGames
+        {
+            get
+            {
+                return GameDatabase.Instance.Games.OrderByDescending(a => a.LastActivity).Where(a => a.LastActivity != null).Take(10);
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public bool? SetGameCategories(IGame game)
@@ -87,7 +102,6 @@ namespace PlayniteUI
             try
             {
                 game.PlayGame();
-
             }
             catch (Exception exc)
             {
@@ -97,14 +111,14 @@ namespace PlayniteUI
             finally
             {
                 GameDatabase.Instance.UpdateGameInDatabase(game);
-            }
+            }            
 
             try
             {
-                var lastGames = GameDatabase.Instance.Games.OrderByDescending(a => a.LastActivity).Where(a => a.LastActivity != null).Take(10);
+                OnPropertyChanged("LastGames");
 
                 var jumpList = new JumpList();
-                foreach (var lastGame in lastGames)
+                foreach (var lastGame in LastGames)
                 {
                     JumpTask task = new JumpTask
                     {
@@ -137,6 +151,11 @@ namespace PlayniteUI
             catch (Exception exc)
             {
                 logger.Error(exc, "Failed to set jump list data: ");
+            }
+
+            if (Settings.Instance.MinimizeAfterLaunch)
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Minimized;
             }
         }
 
@@ -248,24 +267,6 @@ namespace PlayniteUI
             if (games.All(a => a.Categories.IsListEqual(firstTag) == true))
             {
                 dummyGame.Categories = firstTag;
-            }
-
-            var firstStoreUrl = firstGame.StoreUrl;
-            if (games.All(a => a.StoreUrl == firstStoreUrl) == true)
-            {
-                dummyGame.StoreUrl = firstStoreUrl;
-            }
-
-            var firstWikiUrl = firstGame.WikiUrl;
-            if (games.All(a => a.WikiUrl == firstWikiUrl) == true)
-            {
-                dummyGame.WikiUrl = firstWikiUrl;
-            }
-
-            var firstForumsUrl = firstGame.CommunityHubUrl;
-            if (games.All(a => a.CommunityHubUrl == firstForumsUrl) == true)
-            {
-                dummyGame.CommunityHubUrl = firstForumsUrl;
             }
 
             var firstDescription = firstGame.Description;

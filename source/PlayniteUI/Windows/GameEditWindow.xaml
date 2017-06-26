@@ -39,7 +39,7 @@
         
         <TabControl Name="TabControlMain" DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0">
             <TabItem Header="General">
-                <Grid Margin="5">
+                <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="70*"/>
                         <ColumnDefinition Width="35*"/>
@@ -65,9 +65,6 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -136,36 +133,12 @@
                             <TextBox Name="TextCategories"  Text="{Binding Categories, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
                                     TextChanged="TextBox_TextChanged" Tag="IsCategoriesBindingDirty" DockPanel.Dock="Left"/>
                         </DockPanel>
-
-                        <TextBlock  Grid.Column="0" Grid.Row="7" Text="Store URL" />
-                        <CheckBox   Grid.Column="1" Grid.Row="7" Name="CheckStore"
-                                    Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    IsChecked="{Binding IsStoreBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <TextBox    Grid.Column="2" Grid.Row="7" Name="TextStore"
-                                    Text="{Binding StoreUrl, UpdateSourceTrigger=Explicit}"
-                                    TextChanged="TextBox_TextChanged" Tag="IsStoreBindingDirty"/>
-
-                        <TextBlock  Grid.Column="0" Grid.Row="8" Text="Wiki URL" />
-                        <CheckBox   Grid.Column="1" Grid.Row="8" Name="CheckWiki"
-                                    Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    IsChecked="{Binding IsWikiBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <TextBox    Grid.Column="2" Grid.Row="8" Name="TextWiki"
-                                    Text="{Binding WikiUrl, UpdateSourceTrigger=Explicit}"
-                                    TextChanged="TextBox_TextChanged" Tag="IsWikiBindingDirty"/>
-
-                        <TextBlock  Grid.Column="0" Grid.Row="9" Text="Forums URL" />
-                        <CheckBox   Grid.Column="1" Grid.Row="9" Name="CheckForums"
-                                    Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    IsChecked="{Binding IsForumsBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>                        
-                        <TextBox    Grid.Column="2" Grid.Row="9" Name="TextForums"
-                                    Text="{Binding CommunityHubUrl, UpdateSourceTrigger=Explicit}"
-                                    TextChanged="TextBox_TextChanged" Tag="IsForumsBindingDirty"/>
-
-                        <TextBlock  Grid.Column="0" Grid.Row="10" Text="Description" />
-                        <CheckBox   Grid.Column="1" Grid.Row="10" Name="CheckDescription"
+                       
+                        <TextBlock  Grid.Column="0" Grid.Row="7" Text="Description" />
+                        <CheckBox   Grid.Column="1" Grid.Row="7" Name="CheckDescription"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsDescriptionBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>                        
-                        <TextBox    Grid.Column="2" Grid.Row="10" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
+                        <TextBox    Grid.Column="2" Grid.Row="7" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                                     Text="{Binding Description, UpdateSourceTrigger=Explicit}"
                                     TextChanged="TextBox_TextChanged" Tag="IsDescriptionBindingDirty"/>
@@ -224,6 +197,40 @@
                 </Grid>
             </TabItem>
 
+            <TabItem Header="Links" Name="TabLinks">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10">
+                    <StackPanel>
+                        <CheckBox Name="CheckLinks" Content="Save Changes" Margin="5"
+                                  Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  IsChecked="True" />
+                        <ItemsControl Name="ItemsLinks" Grid.IsSharedSizeScope="True"
+                                      ItemsSource="{Binding TempLinks, ElementName=mainWindow, UpdateSourceTrigger=Explicit}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBox Text="{Binding Name}" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5,3,5,3" />
+                                        <TextBox Text="{Binding Url}" Grid.Column="1" Grid.Row="0" Margin="0,3,5,3" />
+                                        <Button Name="ButtonRemoveLink" Content="Remove" Grid.Column="2" Grid.Row="1"  Margin="0,3,5,3" 
+                                                Click="ButtonRemoveLink_Click"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <Button Name="ButtonAddLink" Content="Add Link" HorizontalAlignment="Left" Margin="0,10,0,0"
+                                Click="ButtonAddLink_Click"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            
             <TabItem Header="Actions" Name="TabActions">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
@@ -247,7 +254,11 @@
                                             <Border BorderThickness="1" BorderBrush="{StaticResource NormalBrush}" CornerRadius="3" Padding="5" Margin="0,0,0,10">
                                                 <StackPanel Margin="10">
                                                     <local:GameTaskView x:Name="TaskCustom"/>
-                                                    <Button Content="Delete Action" Click="ButtonDeleteAction_Click" HorizontalAlignment="Right" Margin="0,10,0,0"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                                                        <Button Name="ButtonMoveUpAction" FontFamily="Marlett" Content="5" Margin="0,0,5,0" Click="ButtonMoveUpAction_Click"/>
+                                                        <Button Name="ButtonMoveDownAction" FontFamily="Marlett" Content="6" Margin="0,0,5,0" Click="ButtonMoveDownAction_Click"/>
+                                                        <Button Name="ButtonDeleteAction" Content="Delete Action" Click="ButtonDeleteAction_Click"/>
+                                                    </StackPanel>
                                                 </StackPanel>
                                             </Border>
                                         </DataTemplate>
@@ -279,7 +290,7 @@
                     </ContextMenu>
                 </Button.ContextMenu>
             </Button>
-            <Button Name="ButtonCancel" Content="Cancel" DockPanel.Dock="Right" IsCancel="True"
+            <Button Name="ButtonCancel" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right" IsCancel="True"
                     Click="ButtonCancel_Click" Style="{StaticResource BottomButton}"/>
             <Button Name="ButtonOK" Content="Save" DockPanel.Dock="Right"
                     Click="ButtonOK_Click" Style="{StaticResource BottomButton}"/>

@@ -171,6 +171,36 @@ namespace PlayniteUI
                 originDownloadLib.UpdateSource();
             }
 
+            var trayMinimize = CheckMinimizeToTray.GetBindingExpression(CheckBox.IsCheckedProperty);
+            if (trayMinimize.IsDirty)
+            {
+                trayMinimize.UpdateSource();
+            }
+
+            var trayClose = CheckCloseToTray.GetBindingExpression(CheckBox.IsCheckedProperty);
+            if (trayClose.IsDirty)
+            {
+                trayClose.UpdateSource();
+            }
+
+            var trayEnable = CheckEnableTray.GetBindingExpression(CheckBox.IsCheckedProperty);
+            if (trayEnable.IsDirty)
+            {
+                trayEnable.UpdateSource();
+            }
+
+            var language = ComboLanguage.GetBindingExpression(ComboBox.SelectedValueProperty);
+            if (language.IsDirty)
+            {
+                language.UpdateSource();
+            }
+
+            var minimizeLaunch = CheckMinimizeLaunch.GetBindingExpression(CheckBox.IsCheckedProperty);
+            if (minimizeLaunch.IsDirty)
+            {
+                minimizeLaunch.UpdateSource();
+            }
+
             Playnite.Settings.Instance.SaveSettings();
             Close();
         }

@@ -7,8 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PlayniteServices;
-using PlayniteServices.Controllers.Steam;
-using static PlayniteServices.Controllers.Steam.LibraryController;
+using PlayniteServices.Models.Steam;
 
 namespace PlayniteServicesTests.Controllers.Steam
 {

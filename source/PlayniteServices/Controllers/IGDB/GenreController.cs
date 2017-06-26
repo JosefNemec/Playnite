@@ -12,20 +12,21 @@ namespace PlayniteServices.Controllers.IGDB
     [Route("api/igdb/genre")]
     public class GenreController : Controller
     {
-        private static Dictionary<UInt64, Genre> genreCache = new Dictionary<UInt64, Genre>();
-
         [HttpGet("{genreId}")]
         public async Task<ServicesResponse<Genre>> Get(UInt64 genreId)
         {
-            if (genreCache.ContainsKey(genreId))
+            var cacheCollection = Program.DatabaseCache.GetCollection<Genre>("IGBDGenresCache");
+            var cache = cacheCollection.FindById(genreId);
+            if (cache != null)
             {
-                return new ServicesResponse<Genre>(genreCache[genreId], string.Empty);
+                return new ServicesResponse<Genre>(cache, string.Empty);
             }
 
             var url = string.Format(IGDB.UrlBase + @"genres/{0}?fields=name", genreId);
             var stringResult = await IGDB.HttpClient.GetStringAsync(url);
-            genreCache.Add(genreId, JsonConvert.DeserializeObject<List<Genre>>(stringResult)[0]);
-            return new ServicesResponse<Genre>(genreCache[genreId], string.Empty);
+            var genre = JsonConvert.DeserializeObject<List<Genre>>(stringResult)[0];
+            cacheCollection.Insert(genre);
+            return new ServicesResponse<Genre>(genre, string.Empty);
         }
     }
 }

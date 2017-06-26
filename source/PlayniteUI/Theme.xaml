@@ -1582,6 +1582,8 @@
 
     <Style TargetType="MenuItem">
         <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuItem}">
@@ -2926,6 +2928,8 @@
 
     <Style TargetType="ToolTip">        
         <Setter Property="Background" Value="{StaticResource NormalBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource GlyphBrush}" />
     </Style>
 
     <Style TargetType="DataGrid">

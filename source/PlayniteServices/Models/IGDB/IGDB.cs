@@ -1,10 +1,27 @@
-﻿using System;
+﻿using LiteDB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace PlayniteServices.Models.IGDB
 {
+    public enum WebSiteCategory : UInt64
+    {
+        Official = 1,
+        Wikia = 2,
+        Wikipedia = 3,
+        Facebook = 4,
+        Twitter = 5,
+        Twitch = 6,
+        Instagram = 8,
+        Youtube = 9,
+        Iphone = 10,
+        Ipad = 11,
+        Android = 12,
+        Steam = 13
+    }
+
     public class Game
     {
         public class Cover
@@ -14,7 +31,7 @@ namespace PlayniteServices.Models.IGDB
 
         public class Website
         {
-            public UInt64 category;
+            public WebSiteCategory category;
             public string url;
         }
 
@@ -31,13 +48,31 @@ namespace PlayniteServices.Models.IGDB
 
     public class Company
     {
-        public UInt64 id;
-        public string name;
+        [BsonId(false)]
+        [BsonIndex(true)]
+        public UInt64 id
+        {
+            get; set;
+        }
+
+        public string name
+        {
+            get; set;
+        }
     }
 
     public class Genre
     {
-        public UInt64 id;
-        public string name;
+        [BsonId(false)]
+        [BsonIndex(true)]
+        public UInt64 id
+        {
+            get; set;
+        }
+
+        public string name
+        {
+            get; set;
+        }
     }
 }

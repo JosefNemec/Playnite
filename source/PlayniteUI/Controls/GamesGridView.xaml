@@ -26,7 +26,9 @@
         <playniteControls:GamePopupMenu x:Name="PopupGame" />
         <playniteControls:GamePopupMenuMulti x:Name="PopupGameMulti" />
 
-        <ListView Name="GridGames" SelectionMode="Extended" VirtualizingPanel.VirtualizationMode="Recycling">
+        <ListView Name="GridGames" SelectionMode="Extended"
+                  VirtualizingPanel.VirtualizationMode="Recycling"
+                  VirtualizingPanel.IsVirtualizingWhenGrouping="True">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
                     <EventSetter Event="MouseRightButtonUp" Handler="Grid_MouseRightButtonUp" />
@@ -77,12 +79,6 @@
                                       IsCheckable="True" IsChecked="{Binding GridViewHeaders[LastPlayed]}" />
                             <MenuItem Header="Categories"
                                       IsCheckable="True" IsChecked="{Binding GridViewHeaders[Categories]}" />
-                            <MenuItem Header="Store URL"
-                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[StoreURL]}" />
-                            <MenuItem Header="Wiki URL"
-                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[WikiURL]}" />
-                            <MenuItem Header="Forums URL"
-                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[ForumsURL]}" />
                             <MenuItem Header="Installed"
                                       IsCheckable="True" IsChecked="{Binding GridViewHeaders[Installed]}" />
                             <MenuItem Header="Directory"
@@ -174,36 +170,6 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Categories, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[StoreURL], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="StoreURL" Content="Store URL" />
-                        </GridViewColumn.Header>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding StoreUrl, Mode=OneWay}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[WikiURL], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="WikiURL" Content="Wiki URL" />
-                        </GridViewColumn.Header>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding WikiUrl, Mode=OneWay}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[ForumsURL], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="ForumsURL" Content="ForumsUrl" />
-                        </GridViewColumn.Header>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding CommunityHubUrl, Mode=OneWay}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

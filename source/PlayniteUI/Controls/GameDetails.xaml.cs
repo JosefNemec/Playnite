@@ -49,9 +49,7 @@ namespace PlayniteUI
                     (game.Developers != null && game.Developers.Count > 0) ||
                     (game.Categories != null && game.Categories.Count > 0) ||
                     game.ReleaseDate != null ||
-                    !string.IsNullOrEmpty(game.CommunityHubUrl) ||
-                    !string.IsNullOrEmpty(game.StoreUrl) ||
-                    !string.IsNullOrEmpty(game.WikiUrl);
+                    (game.Links != null && game.Links.Count > 0);
             }
         }
 

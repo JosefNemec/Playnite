@@ -88,6 +88,11 @@ namespace PlayniteUI.Controls
 
         private void ListItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (ListGames.SelectedItem == null)
+            {
+                return;
+            }
+
             var game = ListGames.SelectedItem as IGame;
             if (game.IsInstalled)
             {

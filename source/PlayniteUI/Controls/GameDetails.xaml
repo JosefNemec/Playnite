@@ -143,25 +143,18 @@
                                       Visibility="{Binding Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                       Tag="Categories"/>
 
-                        <Label Content="Links" Style="{StaticResource ListLabel}" Name="LabelLinks"/>
-                        <TextBlock Visibility="{Binding StoreUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
-                                   Style="{StaticResource ListTextBlock}">
-                            <Hyperlink NavigateUri="{Binding StoreUrl, TargetNullValue={x:Null}}" RequestNavigate="Link_RequestNavigate">
-                                <Run Text="Store" />
-                            </Hyperlink>
-                        </TextBlock>
-                        <TextBlock Visibility="{Binding CommunityHubUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
-                                   Style="{StaticResource ListTextBlock}">
-                            <Hyperlink NavigateUri="{Binding CommunityHubUrl, TargetNullValue={x:Null}}" RequestNavigate="Link_RequestNavigate">
-                                <Run Text="Forums" />
-                            </Hyperlink>
-                        </TextBlock>
-                        <TextBlock Visibility="{Binding WikiUrl, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
-                                   Style="{StaticResource ListTextBlock}">
-                            <Hyperlink NavigateUri="{Binding WikiUrl, TargetNullValue={x:Null}}" RequestNavigate="Link_RequestNavigate">
-                                <Run Text="Wiki" />
-                            </Hyperlink>
-                        </TextBlock>
+                        <Label Content="Links" Style="{StaticResource ListLabel}" Visibility="{Binding Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                        <ItemsControl ItemsSource="{Binding Links}" Visibility="{Binding Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Style="{StaticResource ListTextBlock}">
+                                        <Hyperlink NavigateUri="{Binding Url, Mode=OneWay}" RequestNavigate="Link_RequestNavigate" ToolTip="{Binding Url, Mode=OneWay}">
+                                            <Run Text="{Binding Name, Mode=OneWay}" />
+                                        </Hyperlink>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
                 </Border>
                 <ScrollViewer Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="10,10,0,0" Name="ScrollDescription" >

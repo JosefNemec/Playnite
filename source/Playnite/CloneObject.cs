@@ -78,7 +78,7 @@ namespace Playnite
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="destination">The destination.</param>
-        public static void CopyProperties(this object source, object destination)
+        public static void CopyProperties(this object source, object destination, bool diffOnly)
         {
             // If any this null throw an exception
             if (source == null || destination == null)
@@ -117,8 +117,12 @@ namespace Playnite
                 {
                     continue;
                 }
-                // Passed all tests, lets set the value
-                targetProperty.SetValue(destination, srcProp.GetValue(source, null), null);
+
+                var sourceValue = srcProp.GetValue(source, null);
+                if (targetProperty.GetValue(destination, null) != sourceValue || !diffOnly)
+                {
+                    targetProperty.SetValue(destination, sourceValue, null);
+                }
             }
         }
     }

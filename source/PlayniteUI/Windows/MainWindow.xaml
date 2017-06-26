@@ -6,16 +6,18 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:PlayniteUI"
         xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
+        xmlns:models ="clr-namespace:Playnite.Models;assembly=Playnite"
         xmlns:steamProvider="clr-namespace:Playnite.Providers.Steam;assembly=Playnite"
         xmlns:gogProvider="clr-namespace:Playnite.Providers.GOG;assembly=Playnite"
         xmlns:customProvider="clr-namespace:Playnite.Providers.Custom;assembly=Playnite"
         xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
+        xmlns:tray="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
         Title="Playnite Beta"
         Width="1200" Height="900"  WindowStartupLocation="CenterScreen" Icon="/Images/applogo.ico"
         Background="{StaticResource ControlBackgroundBrush}"
-        Loaded="Window_Loaded" Closed="Window_Closed"
+        Loaded="Window_Loaded" Closed="WindowMain_Closed" Closing="WindowMain_Closing" StateChanged="WindowMain_StateChanged"
         LocationChanged="Window_LocationChanged" SizeChanged="Window_SizeChanged"
         Name="WindowMain"
         AutomationProperties.AutomationId="WindowMain">
@@ -39,17 +41,39 @@
             <BooleanToVisibilityConverter/>
         </local:ValueConverterGroup>
     </Window.Resources>
-
+    
     <DockPanel>
+        <tray:TaskbarIcon x:Name="TrayPlaynite" ToolTipText="Playnite" IconSource="/Images/applogo.ico" PopupActivation="LeftOrRightClick"
+                          Visibility="{Binding Path=EnableTray, Source={x:Static shared:Settings.Instance}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          TrayMouseDoubleClick="TrayPlaynite_TrayMouseDoubleClick">
+            <tray:TaskbarIcon.TrayPopup>
+                <Border Background="{StaticResource PopupBackgroundBrush}" BorderBrush="{StaticResource PopupBorderBrush}" BorderThickness="{StaticResource PopupBorderThickness}">
+                    <StackPanel>
+                        <ItemsControl ItemsSource="{Binding Path=LastGames, Source={x:Static local:GamesEditor.Instance}}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <MenuItem Header="{Binding Name}" Click="MenuLastGamesGame_Click" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <Separator Style="{StaticResource {x:Type Separator}}"/>
+                        <MenuItem Header="Open" Click="TrayPlaynite_TrayMouseDoubleClick" />
+                        <Separator Style="{StaticResource {x:Type Separator}}"/>
+                        <MenuItem Header="{DynamicResource ExitAppLabel}" Click="Exitappp_Click" />
+                    </StackPanel>
+                </Border>
+            </tray:TaskbarIcon.TrayPopup>
+        </tray:TaskbarIcon>
+
         <DockPanel LastChildFill="True" DockPanel.Dock="Top" Background="{StaticResource NormalBrushDark}">
             <DockPanel MouseUp="ImageLogo_MouseDown" Cursor="Hand" Margin="10,0,5,0"
                        Opacity="{Binding IsMouseOver, Converter={StaticResource OpacityBoolConverter}, ConverterParameter={StaticResource True}, RelativeSource={RelativeSource Self}}">
                 <Border DockPanel.Dock="Left" Background="Transparent">
-                    <Image Source="/Images/applogo.png" Height="40" Name="ImageLogo" RenderOptions.BitmapScalingMode="Fant" Margin="5"/>
-                </Border>
-                <Border DockPanel.Dock="Left" Background="Transparent">
-                    <Image Source="/Images/dropdown.png" Width="8" Height="32"/>
-                </Border>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/applogo.png" Height="40" Name="ImageLogo" RenderOptions.BitmapScalingMode="Fant" Margin="5"/>
+                        <TextBlock FontFamily="Marlett" Text="6" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="{StaticResource GlyphBrush}" />
+                    </StackPanel>
+                </Border>                
                 <DockPanel.ContextMenu>
                     <ContextMenu StaysOpen="False" Name="MenuMainMenu" Placement="Bottom">                        
                         <MenuItem Header="Add Game..." Click="AddNewGame_Click" IsEnabled="{Binding GameAdditionAllowed}"/>
@@ -60,7 +84,7 @@
                         <MenuItem Header="About Playnite..." Click="About_Click" />
                         <MenuItem Header="Request Feature or Report Issue..." Click="Issue_Click" />
                         <Separator Style="{DynamicResource {x:Type Separator}}" />
-                        <MenuItem Header="Exit Playnite" Click="Exitappp_Click" />
+                        <MenuItem Header="{DynamicResource ExitAppLabel}" Click="Exitappp_Click" />
                     </ContextMenu>
                 </DockPanel.ContextMenu>
             </DockPanel>
@@ -89,17 +113,16 @@
                 </Border.ContextMenu>
             </Border>
 
-            <CheckBox Name="CheckFilterView" DockPanel.Dock="Right" Margin="30,0,30,0" IsChecked="True">
+            <CheckBox Name="CheckFilterView" DockPanel.Dock="Right" Margin="30,0,30,0"
+                      IsChecked="{Binding Path=FilterPanelVisible, Source={x:Static shared:Settings.Instance}}">
                 <CheckBox.Style>
                     <Style TargetType="CheckBox">
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                <StackPanel Orientation="Horizontal" Cursor="Hand" >
-                                    <TextBlock Text="FILTER" VerticalAlignment="Center" FontWeight="Bold" FontSize="16"/>
-                                    <Border Padding="5,0,5,0" Background="Transparent">
-                                        <Image Source="/Images/dropdown.png" Width="8" Height="32" DockPanel.Dock="Left"/>
-                                    </Border>
+                                <StackPanel Orientation="Horizontal" Cursor="Hand">
+                                    <TextBlock Text="{DynamicResource FilterGeneralLabel}" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Margin="0,0,3,0"/>
+                                    <TextBlock FontFamily="Marlett" Text="6" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" />
                                 </StackPanel>
                             </ControlTemplate>
                             </Setter.Value>
@@ -121,7 +144,7 @@
         <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" >
             <DockPanel>
                 <Border BorderThickness="1,0,0,0" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Right" >
-                    <controls:FilterSelector x:Name="FilterSelector" Width="160"
+                    <controls:FilterSelector x:Name="FilterSelector" Width="180"
                                              Visibility="{Binding IsChecked, ElementName=CheckFilterView, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Border>
                 <TabControl Name="TabControlView" DockPanel.Dock="Left" TabStripPlacement="Bottom"

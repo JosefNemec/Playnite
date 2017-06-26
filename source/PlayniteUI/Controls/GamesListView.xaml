@@ -27,7 +27,8 @@
 
             <ListBox Name="ListGames" SelectionMode="Extended" BorderThickness="0,0,1,0" BorderBrush="{StaticResource NormalBorderBrush}"
                      SelectionChanged="GamesListList_SelectionChanged" Width="310"
-                     DockPanel.Dock="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                     DockPanel.Dock="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                     VirtualizingPanel.IsVirtualizingWhenGrouping="True">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                         <EventSetter Event="MouseRightButtonUp" Handler="ListItem_MouseRightButtonUp" />

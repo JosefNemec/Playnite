@@ -24,9 +24,6 @@ namespace PlayniteUITests
                     Developers = new List<string>() { "Developer 1", "Developer 2", "Developer 3" },
                     Publishers = new List<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
                     Categories = new List<string>() { "Tag 1", "Tag 2", "Tag 3" },
-                    StoreUrl = "Store Url",
-                    WikiUrl = "Wiki Url",
-                    CommunityHubUrl = "Community Url",
                     Description = "Description"
 
                 },
@@ -38,9 +35,6 @@ namespace PlayniteUITests
                     Developers = new List<string>() { "Developer 1", "Developer 2", "Developer 3" },
                     Publishers = new List<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
                     Categories = new List<string>() { "Tag 1", "Tag 2", "Tag 3" },
-                    StoreUrl = "Store Url",
-                    WikiUrl = "Wiki Url",
-                    CommunityHubUrl = "Community Url",
                     Description = "Description"
                 },
                 new Game()
@@ -51,9 +45,6 @@ namespace PlayniteUITests
                     Developers = new List<string>() { "Developer 1", "Developer 2", "Developer 3" },
                     Publishers = new List<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
                     Categories = new List<string>() { "Tag 1", "Tag 2", "Tag 3" },
-                    StoreUrl = "Store Url",
-                    WikiUrl = "Wiki Url",
-                    CommunityHubUrl = "Community Url",
                     Description = "Description"
                 }
             };
@@ -66,9 +57,6 @@ namespace PlayniteUITests
             CollectionAssert.AreEqual(firstGame.Developers, gameCommon.Developers);
             CollectionAssert.AreEqual(firstGame.Publishers, gameCommon.Publishers);
             CollectionAssert.AreEqual(firstGame.Categories, gameCommon.Categories);
-            Assert.AreEqual(firstGame.StoreUrl, gameCommon.StoreUrl);
-            Assert.AreEqual(firstGame.WikiUrl, gameCommon.WikiUrl);
-            Assert.AreEqual(firstGame.CommunityHubUrl, gameCommon.CommunityHubUrl);
             Assert.AreEqual(firstGame.Description, gameCommon.Description);
 
 
@@ -83,9 +71,6 @@ namespace PlayniteUITests
                     Developers = new List<string>() { "Developer 1", "Developer 2", "Developer 3" },
                     Publishers = new List<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
                     Categories = new List<string>() { "Tag 1", "Tag 2", "Tag 3" },
-                    StoreUrl = "Store Url 1",
-                    WikiUrl = "Wiki Url 1",
-                    CommunityHubUrl = "Community Url 1",
                     Description = "Description 1"
 
                 },
@@ -97,9 +82,6 @@ namespace PlayniteUITests
                     Developers = new List<string>() { "Developer 4", "Developer 5", "Developer 6" },
                     Publishers = new List<string>() { "Publisher 4", "Publisher 5", "Publisher 6" },
                     Categories = new List<string>() { "Tag 4", "Tag 5", "Tag 6" },
-                    StoreUrl = "Store Url 2",
-                    WikiUrl = "Wiki Url 2",
-                    CommunityHubUrl = "Community Url 2",
                     Description = "Description 2"
                 },
                 new Game()
@@ -110,9 +92,6 @@ namespace PlayniteUITests
                     Developers = new List<string>() { "Developer 7", "Developer 8", "Developer 9" },
                     Publishers = new List<string>() { "Publisher 7", "Publisher 8", "Publisher 9" },
                     Categories = new List<string>() { "Tag 7", "Tag 8", "Tag 9" },
-                    StoreUrl = "Store Url 3",
-                    WikiUrl = "Wiki Url 3",
-                    CommunityHubUrl = "Community Url 3",
                     Description = "Description 3"
                 }
             };
@@ -124,9 +103,6 @@ namespace PlayniteUITests
             CollectionAssert.AreEqual(null, gameNoCommon.Developers);
             CollectionAssert.AreEqual(null, gameNoCommon.Publishers);
             CollectionAssert.AreEqual(null, gameNoCommon.Categories);
-            Assert.AreEqual(null, gameNoCommon.StoreUrl);
-            Assert.AreEqual(null, gameNoCommon.WikiUrl);
-            Assert.AreEqual(null, gameNoCommon.CommunityHubUrl);
             Assert.AreEqual(null, gameNoCommon.Description);
         }
     }

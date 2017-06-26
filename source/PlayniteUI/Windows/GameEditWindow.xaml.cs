@@ -111,7 +111,22 @@ namespace PlayniteUI
                 tempOtherTasks = value;
                 OnPropertyChanged("TempOtherTasks");
             }
-        }           
+        }
+
+        private ObservableCollection<Link> tempLinks;
+        public ObservableCollection<Link> TempLinks
+        {
+            get
+            {
+                return tempLinks;
+            }
+
+            set
+            {
+                tempLinks = value;
+                OnPropertyChanged("TempLinks");
+            }
+        }
 
         public bool ShowPlayActionEdit
         {
@@ -205,31 +220,7 @@ namespace PlayniteUI
             {
                 return IsControlBindingDirty(TextCategories, TextBox.TextProperty);
             }
-        }
-
-        public bool IsStoreBindingDirty
-        {
-            get
-            {
-                return IsControlBindingDirty(TextStore, TextBox.TextProperty);
-            }
-        }
-
-        public bool IsWikiBindingDirty
-        {
-            get
-            {
-                return IsControlBindingDirty(TextWiki, TextBox.TextProperty);
-            }
-        }
-
-        public bool IsForumsBindingDirty
-        {
-            get
-            {
-                return IsControlBindingDirty(TextForums, TextBox.TextProperty);
-            }
-        }
+        }        
 
         public bool IsDescriptionBindingDirty
         {
@@ -309,6 +300,7 @@ namespace PlayniteUI
                 DataContext = previewGame;
                 Game = previewGame;
                 TabActions.Visibility = Visibility.Hidden;
+                TabLinks.Visibility = Visibility.Hidden;
                 ButtonDownload.Visibility = Visibility.Hidden;
             }
             else
@@ -324,6 +316,11 @@ namespace PlayniteUI
                 {
                     TempOtherTasks = Playnite.CloneObject.CloneJson<ObservableCollection<GameTask>>(Game.OtherTasks);
                     OtherTasksItems.ItemsSource = TempOtherTasks;
+                }
+
+                if (Game.Links != null)
+                {
+                    TempLinks = Playnite.CloneObject.CloneJson<ObservableCollection<Link>>(Game.Links);
                 }
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowAddPlayAction"));
@@ -367,9 +364,12 @@ namespace PlayniteUI
 
             TextReleaseDate.Text = (string)dateConverter.Convert(game.ReleaseDate, typeof(DateTime?), null, null);
             TextDescription.Text = string.IsNullOrEmpty(game.Description) ? TextName.Text : game.Description;
-            TextStore.Text = string.IsNullOrEmpty(game.StoreUrl) ? TextStore.Text : game.StoreUrl;
-            TextForums.Text = string.IsNullOrEmpty(game.CommunityHubUrl) ? TextForums.Text : game.CommunityHubUrl;
-            TextWiki.Text = string.IsNullOrEmpty(game.WikiUrl) ? TextWiki.Text : game.WikiUrl;
+
+            if (game.Links != null)
+            {
+                TempLinks = game.Links;
+                CheckLinks.IsChecked = true;
+            }
 
             if (!string.IsNullOrEmpty(game.Image))
             {
@@ -502,43 +502,7 @@ namespace PlayniteUI
                         game.Categories = Game.Categories;
                     }
                 }
-            }
-
-            if (IsStoreBindingDirty && CheckStore.IsChecked == true)
-            {
-                BindingOperations.GetBindingExpression(TextStore, TextBox.TextProperty).UpdateSource();
-                if (Games != null)
-                {
-                    foreach (var game in Games)
-                    {
-                        game.StoreUrl = Game.StoreUrl;
-                    }
-                }
-            }
-
-            if (IsWikiBindingDirty && CheckWiki.IsChecked == true)
-            {
-                BindingOperations.GetBindingExpression(TextWiki, TextBox.TextProperty).UpdateSource();
-                if (Games != null)
-                {
-                    foreach (var game in Games)
-                    {
-                        game.WikiUrl = Game.WikiUrl;
-                    }
-                }
-            }
-
-            if (IsForumsBindingDirty && CheckForums.IsChecked == true)
-            {
-                BindingOperations.GetBindingExpression(TextForums, TextBox.TextProperty).UpdateSource();
-                if (Games != null)
-                {
-                    foreach (var game in Games)
-                    {
-                        game.CommunityHubUrl = Game.CommunityHubUrl;
-                    }
-                }
-            }
+            }            
 
             if (IsDescriptionBindingDirty && CheckDescription.IsChecked == true)
             {
@@ -632,6 +596,11 @@ namespace PlayniteUI
                 if (!Game.OtherTasks.IsEqualJson(TempOtherTasks))
                 {
                     Game.OtherTasks = TempOtherTasks;
+                }
+
+                if (!Game.Links.IsEqualJson(TempLinks) && CheckLinks.IsChecked == true)
+                {                    
+                    Game.Links = TempLinks;
                 }
             }
 
@@ -916,6 +885,45 @@ namespace PlayniteUI
                     });
                 }
             });
+        }
+
+        private void ButtonRemoveLink_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var link = button.DataContext as Link;
+            TempLinks.Remove(link);
+        }
+
+        private void ButtonAddLink_Click(object sender, RoutedEventArgs e)
+        {
+            if (TempLinks == null)
+            {
+                TempLinks = new ObservableCollection<Link>();
+            }
+
+            TempLinks.Add(new Link("NewLink", "NewUrl"));
+        }
+
+        private void ButtonMoveUpAction_Click(object sender, RoutedEventArgs e)
+        {
+            var task = (sender as Button).DataContext as GameTask;
+            var index = TempOtherTasks.IndexOf(task);
+
+            if (index != 0)
+            {
+                TempOtherTasks.Move(index, index - 1);
+            }
+        }
+
+        private void ButtonMoveDownAction_Click(object sender, RoutedEventArgs e)
+        {
+            var task = (sender as Button).DataContext as GameTask;
+            var index = TempOtherTasks.IndexOf(task);
+
+            if (index != TempOtherTasks.Count - 1)
+            {
+                TempOtherTasks.Move(index, index + 1);
+            }
         }
     }
 }

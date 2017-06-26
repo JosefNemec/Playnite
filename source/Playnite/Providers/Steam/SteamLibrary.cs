@@ -248,9 +248,12 @@ namespace Playnite.Providers.Steam
         {
             var metadata = DownloadGameMetadata(int.Parse(game.ProviderId));
             game.Name = metadata.ProductDetails["common"]["name"].Value;
-            game.CommunityHubUrl = @"https://steamcommunity.com/app/" + game.ProviderId;
-            game.StoreUrl = @"http://store.steampowered.com/app/" + game.ProviderId;
-            game.WikiUrl = @"http://pcgamingwiki.com/api/appid.php?appid=" + game.ProviderId;
+            game.Links = new ObservableCollection<Link>()
+            {
+                new Link("Forum", @"https://steamcommunity.com/app/" + game.ProviderId),
+                new Link("Store", @"http://store.steampowered.com/app/" + game.ProviderId),
+                new Link("Wiki", @"http://pcgamingwiki.com/api/appid.php?appid=" + game.ProviderId)
+            };
 
             if (metadata.StoreDetails != null)
             {

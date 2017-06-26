@@ -180,7 +180,7 @@ namespace Playnite.Providers.GOG
             public List<SluggedName> genres;
             public SluggedName publisher;
             public SluggedName developer;
-            public int releaseDate;
+            public int? releaseDate;
             public int id;
         }
 

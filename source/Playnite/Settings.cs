@@ -247,12 +247,10 @@ namespace Playnite
             { "ReleaseDate", true },
             { "Genre", true },
             { "LastPlayed", true },
-            { "Categories", false },
-            { "StoreURL", false },
-            { "WikiURL", false },
             { "ForumsURL", false },
             { "Installed", false },
             { "Directory", false },
+            { "Categories", false }
         };
 
         public ObservableConcurrentDictionary<string, bool> GridViewHeaders
@@ -272,6 +270,96 @@ namespace Playnite
                 gridViewHeaders = value;
                 gridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
                 OnPropertyChanged("GridViewHeaders");
+            }
+        }
+
+        private bool filterPanelVisible = true;
+        public bool FilterPanelVisible
+        {
+            get
+            {
+                return filterPanelVisible;
+            }
+
+            set
+            {
+                filterPanelVisible = value;
+                OnPropertyChanged("FilterPanelVisible");
+            }
+        }
+
+        private bool minimizeToTray = false;
+        public bool MinimizeToTray
+        {
+            get
+            {
+                return minimizeToTray;
+            }
+
+            set
+            {
+                minimizeToTray = value;
+                OnPropertyChanged("MinimizeToTray");
+            }
+        }
+
+        private bool closeToTray = true;
+        public bool CloseToTray
+        {
+            get
+            {
+                return closeToTray;
+            }
+
+            set
+            {
+                closeToTray = value;
+                OnPropertyChanged("CloseToTray");
+            }
+        }
+
+        private bool enableTray = true;
+        public bool EnableTray
+        {
+            get
+            {
+                return enableTray;
+            }
+
+            set
+            {
+                enableTray = value;
+                OnPropertyChanged("EnableTray");
+            }
+        }
+
+        private string language = "english";
+        public string Language
+        {
+            get
+            {
+                return language;
+            }
+
+            set
+            {
+                language = value;
+                OnPropertyChanged("Language");
+            }
+        }
+
+        private bool minimizeAfterLaunch = true;
+        public bool MinimizeAfterLaunch
+        {
+            get
+            {
+                return minimizeAfterLaunch;
+            }
+
+            set
+            {
+                minimizeAfterLaunch = value;
+                OnPropertyChanged("MinimizeAfterLaunch");
             }
         }
 
@@ -318,13 +406,15 @@ namespace Playnite
             }
         }
 
-        public static void LoadSettings()
+        public static Settings LoadSettings()
         {
             if (File.Exists(Paths.ConfigFilePath))
             {
                 var settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Paths.ConfigFilePath));
                 instance = settings;
             }
+
+            return Instance;
         }
 
         public void SaveSettings()

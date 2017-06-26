@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:PlayniteUI"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="About Playnite" ResizeMode="NoResize" Height="315" Width="400"
+        Title="{DynamicResource AboutWindowTitle}" ResizeMode="NoResize" Height="315" Width="400"
         AutomationProperties.AutomationId="WindowAbout"
         Background="{StaticResource NormalBrush}">   
 
     <DockPanel Margin="5">
         <DockPanel  Margin="-5,0,-5,-5" LastChildFill="False" DockPanel.Dock="Bottom">
-            <Button Name="ButtonCreatePackage" Content="Create diag. package" Click="DiagButton_Click"
+            <Button Name="ButtonCreatePackage" Content="{DynamicResource AboutCreateDiagButton}" Click="DiagButton_Click"
                     Style="{StaticResource BottomButton}"/>
-            <Button Name="ButtonClose" Content="Close" DockPanel.Dock="Right" Click="CloseButton_Click" IsCancel="True"
+            <Button Name="ButtonClose" Content="{DynamicResource CloseLabel}" DockPanel.Dock="Right" Click="CloseButton_Click" IsCancel="True"
                     Style="{StaticResource BottomButton}"/>
         </DockPanel>
             
@@ -23,18 +23,16 @@
 
             <StackPanel Margin="15,0,0,0">
                 <Label Name="TextVersionInfo" Content="{Binding VersionInfo, RelativeSource={RelativeSource AncestorType=Window}}"
-                        Foreground="{StaticResource TextBrush}" FontSize="20"/>
+                       Foreground="{StaticResource TextBrush}" FontSize="20"/>
                 <TextBlock Text="by Josef Nemec" Foreground="LightGray"/>
                 <TextBlock>
-                    <Hyperlink Name="HyperlinkHomepage" FontSize="12" NavigateUri="http://www.playnite.link"
-                                RequestNavigate="Hyperlink_RequestNavigate">
-                        Homepage at www.playnite.link
+                    <Hyperlink Name="HyperlinkHomepage" FontSize="12" NavigateUri="http://www.playnite.link" RequestNavigate="Hyperlink_RequestNavigate">
+                        <Run Text="{DynamicResource AboutHomePageLink}"/>
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock>
-                    <Hyperlink Name="HyperlinkSource" FontSize="12" NavigateUri="https://github.com/JosefNemec/Playnite/"
-                                RequestNavigate="Hyperlink_RequestNavigate">
-                        Source Code at GitHub
+                    <Hyperlink Name="HyperlinkSource" FontSize="12" NavigateUri="https://github.com/JosefNemec/Playnite/" RequestNavigate="Hyperlink_RequestNavigate">
+                        <Run Text="{DynamicResource AboutSourceLink}"/>
                     </Hyperlink>
                 </TextBlock>
             </StackPanel>

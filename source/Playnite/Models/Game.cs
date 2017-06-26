@@ -14,6 +14,7 @@ using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
 using Playnite.Providers.Steam;
 using Playnite.Providers;
+using System.Collections.Concurrent;
 
 namespace Playnite.Models
 {
@@ -33,21 +34,6 @@ namespace Playnite.Models
             {
                 backgroundImage = value;
                 OnPropertyChanged("BackgroundImage");
-            }
-        }
-
-        private string communityHubUrl;
-        public string CommunityHubUrl
-        {
-            get
-            {
-                return communityHubUrl;
-            }
-
-            set
-            {
-                communityHubUrl = value;
-                OnPropertyChanged("CommunityHubUrl");
             }
         }
 
@@ -137,7 +123,7 @@ namespace Playnite.Models
                     case Provider.Origin:
                     case Provider.Steam:
                     default:
-                        return string.IsNullOrEmpty(SteamSettings.DescriptionTemplate)? Description : SteamSettings.DescriptionTemplate.Replace("{0}", Description);
+                        return string.IsNullOrEmpty(SteamSettings.DescriptionTemplate) ? Description : SteamSettings.DescriptionTemplate.Replace("{0}", Description);
                 }
             }
         }
@@ -402,21 +388,6 @@ namespace Playnite.Models
             }
         }
 
-        private string storeUrl;
-        public string StoreUrl
-        {
-            get
-            {
-                return storeUrl;
-            }
-
-            set
-            {
-                storeUrl = value;
-                OnPropertyChanged("StoreUrl");
-            }
-        }
-
         private List<string> categories;
         public List<string> Categories
         {
@@ -432,18 +403,18 @@ namespace Playnite.Models
             }
         }
 
-        private string wikiUrl;
-        public string WikiUrl
+        private ObservableCollection<Link> links;
+        public ObservableCollection<Link> Links
         {
             get
             {
-                return wikiUrl;
+                return links;
             }
 
             set
             {
-                wikiUrl = value;
-                OnPropertyChanged("WikiUrl");
+                links = value;
+                OnPropertyChanged("Links");
             }
         }
 

@@ -4,27 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Playnite.Services;
+using System.Collections.Concurrent;
+using System.Collections.ObjectModel;
+using Playnite.Models;
 
 namespace Playnite.MetaProviders
 {
     public class IGDB
     {
-        enum WebSiteCategory : UInt64
-        {
-            Official    = 1,
-            Wikia       = 2,
-            Wikipedia   = 3,
-            Facebook    = 4,
-            Twitter     = 5,
-            Twitch      = 6,
-            Instagram   = 8,
-            Youtube     = 9,
-            Iphone      = 10,
-            Ipad        = 11,
-            Android     = 12,
-            Steam       = 13
-        }
-
         private ServicesClient client = new ServicesClient();
 
         public IGDB()
@@ -85,17 +72,14 @@ namespace Playnite.MetaProviders
 
             if (dbGame.websites != null && dbGame.websites.Count > 0)
             {
-                var wiki = dbGame.websites.FirstOrDefault(a => a.category == (UInt64)WebSiteCategory.Wikia);
-                if (wiki != null)
+                var links = new ObservableCollection<Link>();
+
+                foreach (var website in dbGame.websites)
                 {
-                    game.WikiUrl = wiki.url;
+                    links.Add(new Link(website.category.ToString(), website.url));
                 }
 
-                var store = dbGame.websites.FirstOrDefault(a => a.category == (UInt64)WebSiteCategory.Steam);
-                if (store != null)
-                {
-                    game.StoreUrl = store.url;
-                }
+                game.Links = links;
             }
 
             return game;

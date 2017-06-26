@@ -6,48 +6,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Threading;
+using PlayniteServices.Models.Steam;
 
 namespace PlayniteServices.Controllers.Steam
 {
     [Route("api/steam/library")]
     public class LibraryController : Controller
     {
-        public class ResolveVanityResult
-        {
-            public class Response
-            {
-                public int success;
-                public string steamid;
-                public string message;
-            }
-
-            public Response response;
-        }
-
-        public class GetOwnedGamesResult
-        {
-            public class Game
-            {
-                public int appid;
-                public string name;
-                public int playtime_forever;
-                public string img_icon_url;
-                public string img_logo_url;
-                public bool has_community_visible_stats;
-            }
-
-            public class Response
-            {
-                public int game_count;
-                public List<Game> games;
-            }
-
-            public Response response;
-        }
-
         private static string apiKey;
         private static HttpClient httpClient = new HttpClient();
-        private static Dictionary<string, string> userIdCache = new Dictionary<string, string>();
         private static double requestDelay = 1500;
         private static DateTime lastRequest = DateTime.Now.AddMilliseconds(-requestDelay);
         private static object dateLock = new object();
@@ -60,7 +27,7 @@ namespace PlayniteServices.Controllers.Steam
                 return;
             }
 
-            var key = Startup.Configuration.GetSection("Steam");
+            var key = Startup.Configuration.GetSection("SteamKey");
             if (key != null)
             {
                 apiKey = key.Value;
@@ -93,12 +60,13 @@ namespace PlayniteServices.Controllers.Steam
 
         private string GetUserId(string userName)
         {
-
             lock (userIdLock)
             {
-                if (userIdCache.ContainsKey(userName))
+                var cacheCollection = Program.DatabaseCache.GetCollection<SteamNameCache>("SteamUserNamesCache");
+                var cache = cacheCollection.FindById(userName);
+                if (cache != null)
                 {
-                    return userIdCache[userName];
+                    return cache.Id;
                 }
 
                 WaitRequest();
@@ -114,7 +82,13 @@ namespace PlayniteServices.Controllers.Steam
                     throw new Exception("Failed to resolve Steam user id: " + idResult.response.message);
                 }
 
-                userIdCache.Add(userName, idResult.response.steamid);
+                cacheCollection.Insert(new SteamNameCache()
+                {
+                    Id = idResult.response.steamid,
+                    Name = userName,
+                    UpdateDate = DateTime.Now
+                });
+
                 return idResult.response.steamid;
             }
         }
