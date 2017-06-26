@@ -30,7 +30,7 @@ Copy-Item "..\tests\" $OutputPath -Recurse
 $config = @{
     "Package" = "..\PlayniteInstaller.exe";
     "PortablePackage" = "..\PlaynitePortable.zip";
-    "InstallPath" = "C:\Program Files\Playnite\"
+    "InstallPath" = "C:\Program Files (x86)\Playnite\"
 }
 
 $config | ConvertTo-Json | Out-File (Join-Path $OutputPath "tests\testConfig.json")

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -68,6 +69,21 @@ namespace Playnite.Services
         public PlayniteServices.Models.IGDB.Genre GetIGDBGenre(UInt64 id)
         {
             return ExecuteRequest<PlayniteServices.Models.IGDB.Genre>("/api/igdb/genre/" + id);
+        }
+
+        public void PostUserUsage()
+        {
+            var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+            var winId = root.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", false).GetValue("ProductId").ToString();
+            var user = new PlayniteServices.Models.Playnite.User()
+            {
+                Id = winId,
+                WinVersion = Environment.OSVersion.VersionString,
+                PlayniteVersion = Update.GetCurrentVersion().ToString()
+            };
+
+            var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+            httpClient.PostAsync(Endpoint + "/api/playnite/users", content).Wait();
         }
     }
 }

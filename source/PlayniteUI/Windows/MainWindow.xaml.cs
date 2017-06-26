@@ -28,6 +28,7 @@ using Playnite.Database;
 using Playnite.Providers.Origin;
 using PlayniteUI.Controls;
 using System.Globalization;
+using Playnite.Services;
 
 namespace PlayniteUI
 {
@@ -186,6 +187,19 @@ namespace PlayniteUI
                 catch (Exception exc)
                 {
                     logger.Error(exc, "Failed to process update.");
+                }
+            });
+
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    var client = new ServicesClient();
+                    client.PostUserUsage();
+                }
+                catch (Exception exc)
+                {
+                    logger.Error(exc, "Failed to post user usage data.");
                 }
             });
 
