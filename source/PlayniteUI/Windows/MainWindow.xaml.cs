@@ -227,8 +227,8 @@ namespace PlayniteUI
             switch (args.Command)
             {
                 case CmdlineCommands.Focus:
-                    SystemCommands.RestoreWindow(this);
-                    Activate();
+                    Show();
+                    WindowState = WindowState.Normal;
                     Focus();
                     break;
 
