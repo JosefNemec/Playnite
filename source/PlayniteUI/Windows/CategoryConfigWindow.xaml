@@ -5,23 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlayniteUI.Windows"
         mc:Ignorable="d"
-        Title="Assign category for the game" Height="320" Width="340"
+        Title="{DynamicResource CategoryWindowTitle}" Height="320" Width="340"
         Background="{StaticResource NormalBrush}"
         WindowStartupLocation="CenterScreen" ShowInTaskbar="False"
         AutomationProperties.AutomationId="WindowCategories">
  
     <DockPanel Margin="5">
         <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="-5,0,-5,-5">
-            <Button Name="ButtonCancel" Click="ButtonCancel_Click" Content="Cancel" 
+            <Button Name="ButtonCancel" Click="ButtonCancel_Click" Content="{DynamicResource CancelLabel}" 
                     Style="{StaticResource BottomButton}" DockPanel.Dock="Right" IsCancel="True"/>
-            <Button Name="ButtonOK" Click="ButtonOK_Click" Content="Set Categories"
+            <Button Name="ButtonOK" Click="ButtonOK_Click" Content="{DynamicResource CategorySetButton}"
                     Style="{StaticResource BottomButton}" DockPanel.Dock="Right"/>
         </DockPanel>
 
         <Border Padding="8" Background="{StaticResource NormalBrushDark}" DockPanel.Dock="Bottom"
                 BorderThickness="0">
             <DockPanel>
-                <Button Name="ButtonAddCat" Content="Add Category" DockPanel.Dock="Left" Padding="10,5,10,5"
+                <Button Name="ButtonAddCat" Content="{DynamicResource CategoryAddCatButton}" DockPanel.Dock="Left" Padding="10,5,10,5"
                         Click="ButtonAddCat_Click"/>
                 <TextBox Name="TextNewCat" DockPanel.Dock="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
             </DockPanel>

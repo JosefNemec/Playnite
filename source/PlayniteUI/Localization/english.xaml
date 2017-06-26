@@ -10,8 +10,19 @@
     <sys:String x:Key="ExitAppLabel">Exit</sys:String>
     <sys:String x:Key="FilterGeneralLabel">FILTER</sys:String>
 
-
-
+    <sys:String x:Key="OKLabel">OK</sys:String>
+    <sys:String x:Key="CloseLabel">Close</sys:String>
     <sys:String x:Key="CancelLabel">Cancel</sys:String>
     
+
+    <sys:String x:Key="AboutHomePageLink">Homepage at www.playnite.link</sys:String>
+    <sys:String x:Key="AboutSourceLink">Source Code at GitHub</sys:String>
+    <sys:String x:Key="AboutCreateDiagButton">Create diag. package</sys:String>
+    <sys:String x:Key="AboutWindowTitle">About Playnite</sys:String>
+
+    <sys:String x:Key="CategoryWindowTitle">Assign category for the game</sys:String>
+    <sys:String x:Key="CategorySetButton">Set Categories</sys:String>
+    <sys:String x:Key="CategoryAddCatButton">Add Category</sys:String>
+
+    <sys:String x:Key="CrashWindowTitle">Oh no, something bad happened...</sys:String>
 </ResourceDictionary>

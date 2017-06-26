@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlayniteUI.Windows"
         mc:Ignorable="d"
-        Title="Oh no, something bad happened..." Height="400" Width="600"
+        Title="{DynamicResource CrashWindowTitle}" Height="400" Width="600"
         WindowStartupLocation="CenterScreen"
         AutomationProperties.AutomationId="WindowCrash"
         Background="{DynamicResource NormalBrush}">
