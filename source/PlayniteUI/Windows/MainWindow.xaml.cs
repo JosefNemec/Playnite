@@ -178,6 +178,7 @@ namespace PlayniteUI
                 case CmdlineCommands.Focus:
                     Show();
                     WindowState = WindowState.Normal;
+                    Activate();
                     Focus();
                     break;
 

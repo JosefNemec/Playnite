@@ -78,11 +78,16 @@ namespace PlayniteUI
 
                 logger.Info("Application already running, shutting down.");
                 Shutdown();
+                return;
             }
             else
             {
                 appMutex = new Mutex(true, instanceMuxet);
             }
+
+            var mainWindow = new MainWindow();
+            Current.MainWindow = MainWindow;
+            mainWindow.Show();
 
             logger.Info("Application started");
         }
