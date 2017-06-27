@@ -150,59 +150,8 @@ namespace PlayniteUI
             }
 
             LoadGames();
-
-            Task.Factory.StartNew(() =>
-            {
-                Thread.Sleep(1000);
-                var update = new Update();
-
-                try
-                {
-                    if (update.IsUpdateAvailable)
-                    {
-                        update.DownloadUpdate();
-
-                        try
-                        {
-                            update.DownloadReleaseNotes();
-                        }
-                        catch (Exception exc)
-                        {
-                            logger.Warn(exc, "Failed to download release notes.");
-                        }
-
-                        Dispatcher.Invoke(() =>
-                        {
-                            var window = new UpdateWindow()
-                            {
-                                Owner = this
-                            };
-
-                            window.SetUpdate(update);
-                            window.Show();
-                            window.Focus();
-                        });
-                    }
-                }
-                catch (Exception exc)
-                {
-                    logger.Error(exc, "Failed to process update.");
-                }
-            });
-
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    var client = new ServicesClient();
-                    client.PostUserUsage();
-                }
-                catch (Exception exc)
-                {
-                    logger.Error(exc, "Failed to post user usage data.");
-                }
-            });
-
+            CheckUpdate();
+            SendUsageData();
             Focus();
 
             pipeService = new PipeService();
@@ -995,6 +944,72 @@ namespace PlayniteUI
             var game = (sender as MenuItem).DataContext as IGame;
             GamesEditor.Instance.PlayGame(game);
             TrayPlaynite.TrayPopupResolved.IsOpen = false;
+        }
+
+        private void CheckUpdate()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                var update = new Update();
+                UpdateWindow updateWindow = null;
+
+                while (true)
+                {
+                    try
+                    {
+                        if ((updateWindow == null || !updateWindow.IsVisible) && update.IsUpdateAvailable)
+                        {
+                            if (update.IsUpdateAvailable)
+                            {
+                                update.DownloadUpdate();
+
+                                try
+                                {
+                                    update.DownloadReleaseNotes();
+                                }
+                                catch (Exception exc)
+                                {
+                                    logger.Warn(exc, "Failed to download release notes.");
+                                }
+
+                                Dispatcher.Invoke(() =>
+                                {
+                                    updateWindow = new UpdateWindow()
+                                    {
+                                        Owner = this
+                                    };
+
+                                    updateWindow.SetUpdate(update);
+                                    updateWindow.Show();
+                                    updateWindow.Focus();
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception exc)
+                    {
+                        logger.Error(exc, "Failed to process update.");
+                    }
+
+                    Thread.Sleep(4 * 60 * 60 * 1000);
+                }
+            });
+        }
+
+        private void SendUsageData()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    var client = new ServicesClient();
+                    client.PostUserUsage();
+                }
+                catch (Exception exc)
+                {
+                    logger.Error(exc, "Failed to post user usage data.");
+                }
+            });
         }
     }
 }
