@@ -480,9 +480,8 @@ namespace Playnite.Database
             }
 
             foreach (var newGame in installedGames)
-            {                
-                var existingGame = dbCollection.FindAll().FirstOrDefault(a => a.ProviderId == newGame.ProviderId && a.Provider == provider);
-
+            {
+                var existingGame = dbCollection.FindOne(Query.And(Query.EQ("ProviderId", newGame.ProviderId), Query.EQ("Provider", provider.ToString())));                
                 if (existingGame == null)
                 {
                     logger.Info("Adding new installed game {0} from {1} provider", newGame.ProviderId, newGame.Provider);
@@ -518,7 +517,7 @@ namespace Playnite.Database
                         }
                     }
 
-                    // Game may have been not installed prviously and may not be loaded currently
+                    // Game may have been not installed previously and may not be loaded currently
                     var loaded = Games.FirstOrDefault(a => a.ProviderId == existingGame.ProviderId && a.Provider == existingGame.Provider) != null;
                     if (!loaded)
                     {
@@ -578,7 +577,7 @@ namespace Playnite.Database
             }
 
             // Delete games that are no longer in library
-            foreach (IGame dbGame in dbCollection.FindAll().Where(a => a.Provider == provider))
+            foreach (IGame dbGame in dbCollection.Find(Query.EQ("Provider", provider.ToString())))
             {
                 if (importedGames.FirstOrDefault(a => a.ProviderId == dbGame.ProviderId) == null)
                 {

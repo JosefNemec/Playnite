@@ -42,7 +42,7 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-                                            <Expander Header="{Binding Name, TargetNullValue='None'}" IsExpanded="True">
+                                            <Expander Header="{Binding Mode=OneWay}" IsExpanded="True" Margin="5,0,0,0">
                                                 <ItemsPresenter />
                                             </Expander>
                                         </ControlTemplate>
@@ -59,7 +59,7 @@
                                 <Image.Source>
                                     <PriorityBinding>
                                         <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
-                                        <Binding Path="DefaultIcon" Mode="OneTime"/>
+                                        <!--<Binding Path="DefaultIcon" Mode="OneTime"/>-->
                                     </PriorityBinding>
                                 </Image.Source>
                             </Image>                                

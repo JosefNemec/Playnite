@@ -82,6 +82,11 @@ namespace PlayniteUI
             get; set;
         }
 
+        public GamesCollectionView GamesView
+        {
+            get; set;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -299,13 +304,18 @@ namespace PlayniteUI
                     MessageBox.Show("Failed to open library database: " + exc.Message, "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-
-                BindingOperations.EnableCollectionSynchronization(database.Games, gamesLock);
+                                
                 database.LoadGamesFromDb(Config);
-                ListGamesView.ItemsSource = database.Games;
-                ImagesGamesView.ItemsSource = database.Games;
-                GridGamesView.ItemsSource = database.Games;
-                MainCollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(database.Games);
+                BindingOperations.EnableCollectionSynchronization(database.Games, gamesLock);
+
+                GamesView = new GamesCollectionView(database.Games);
+                BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
+
+                MainCollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(GamesView.Items);
+                ListGamesView.ItemsSource = MainCollectionView;
+                ImagesGamesView.ItemsSource = MainCollectionView;
+                GridGamesView.ItemsSource = MainCollectionView;
+
 
                 Config_PropertyChanged(this, null);
 
@@ -495,7 +505,7 @@ namespace PlayniteUI
 
         private bool GamesFilter(object item)
         {
-            var game = (IGame)item;
+            var game = ((GameViewEntry)item).Game;
 
             // ------------------ Installed
             bool installedResult = false;
@@ -703,7 +713,8 @@ namespace PlayniteUI
                     else if (Config.GroupingOrder == GroupOrder.Category)
                     {
                         MainCollectionView.GroupDescriptions.Clear();
-                        MainCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Categories"));
+                        MainCollectionView.SortDescriptions.Insert(0, new SortDescription("Category", ListSortDirection.Ascending));
+                        MainCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Category"));
                     }
 
                     if (MainCollectionView.LiveGroupingProperties.Count > 0)
@@ -711,7 +722,7 @@ namespace PlayniteUI
                         MainCollectionView.LiveGroupingProperties.Clear();
                     }
 
-                    MainCollectionView.LiveGroupingProperties.Add("Categories");
+                    MainCollectionView.LiveGroupingProperties.Add("Category");
 
                     if (MainCollectionView.LiveFilteringProperties.Count > 0)
                     {
@@ -754,7 +765,7 @@ namespace PlayniteUI
                     {
                         MainCollectionView.GroupDescriptions.Clear();
                         var sortItem = MainCollectionView.SortDescriptions.First();
-                        if (sortItem.PropertyName == "Provider" || sortItem.PropertyName == "Categories")
+                        if (sortItem.PropertyName == "Provider" || sortItem.PropertyName == "Category")
                         {
                             MainCollectionView.SortDescriptions.Remove(sortItem);
                         }
@@ -770,7 +781,8 @@ namespace PlayniteUI
                                 break;
 
                             case GroupOrder.Category:
-                                MainCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Categories"));
+                                MainCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Category"));
+                                MainCollectionView.SortDescriptions.Insert(0, new SortDescription("Category", ListSortDirection.Ascending));
                                 break;
                         }
                     }
@@ -784,6 +796,7 @@ namespace PlayniteUI
 
         private void FilterSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            return;
             if (e.PropertyName == "Active")
             {
                 return;

@@ -82,8 +82,8 @@ namespace PlayniteUI.Controls
                 return;
             }
 
-            var game = (IGame)ListGames.SelectedItem;
-            GameDetails.DataContext = game;
+            var entry = ListGames.SelectedItem as GameViewEntry;
+            GameDetails.DataContext = entry.Game;
         }
 
         private void ListItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -93,7 +93,7 @@ namespace PlayniteUI.Controls
                 return;
             }
 
-            var game = ListGames.SelectedItem as IGame;
+            var game = (ListGames.SelectedItem as GameViewEntry).Game;
             if (game.IsInstalled)
             {
                 GamesEditor.Instance.PlayGame(game);
@@ -115,12 +115,12 @@ namespace PlayniteUI.Controls
         {
             if (ListGames.SelectedItems.Count > 1)
             {
-                PopupGameMulti.DataContext = ListGames.SelectedItems.Cast<IGame>().ToList();
+                PopupGameMulti.DataContext = ListGames.SelectedItems.Cast<GameViewEntry>().Select(a => a.Game).ToList();
                 PopupGameMulti.IsOpen = true;
             }
             else if (ListGames.SelectedItems.Count == 1)
             {
-                var game = ListGames.SelectedItem as IGame;
+                var game = (ListGames.SelectedItem as GameViewEntry).Game;
                 PopupGame.DataContext = game;
                 PopupGame.IsOpen = true;
             }
