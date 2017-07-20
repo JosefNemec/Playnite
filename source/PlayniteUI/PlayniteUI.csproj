@@ -181,6 +181,7 @@
     </Compile>
     <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />
     <Compile Include="Converters\BoolToAutoWidthConverter.cs" />
+    <Compile Include="Converters\BoolToCategoryExpander.cs" />
     <Compile Include="Converters\BoolToYesNoConverter.cs" />
     <Compile Include="Converters\EnumBooleanConverter.cs" />
     <Compile Include="Converters\EnumConverter.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="GamesCollectionView.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="MouseWheelGesture.cs" />
     <Compile Include="WindowPositionHandler.cs" />

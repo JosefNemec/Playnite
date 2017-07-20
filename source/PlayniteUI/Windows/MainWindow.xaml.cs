@@ -55,7 +55,7 @@ namespace PlayniteUI
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private static object gamesLock = new object();
         private WindowPositionHandler positionManager;
-        private GamesStats gamesStats = new GamesStats();
+        private GamesStats gamesStats;
         public NotificationsWindow NotificationsWin = new NotificationsWindow();
 
         private PipeService pipeService;
@@ -78,6 +78,11 @@ namespace PlayniteUI
         }
 
         public ListCollectionView MainCollectionView
+        {
+            get; set;
+        }
+
+        public GamesCollectionView GamesView
         {
             get; set;
         }
@@ -109,9 +114,10 @@ namespace PlayniteUI
             Config.PropertyChanged += Config_PropertyChanged;
             Config.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
 
+            gamesStats = new GamesStats(GameDatabase.Instance);
             MenuMainMenu.DataContext = this;
             MenuViewSettings.DataContext = Config;
-            FilterSelector.DataContext = new Controls.FilterSelectorConfig(gamesStats, Config.FilterSettings);
+            FilterSelector.DataContext = new FilterSelectorConfig(gamesStats, Config.FilterSettings);
             CheckFilterView.DataContext = Config.FilterSettings;
             GridGamesView.HeaderMenu.DataContext = Config;
             
@@ -142,7 +148,7 @@ namespace PlayniteUI
                         Config.DatabasePath = System.IO.Path.Combine(Paths.UserProgramDataPath, "games.db");
                     }
 
-                    GameDatabase.Instance.OpenDatabase(Config.DatabasePath, true);
+                    GameDatabase.Instance.OpenDatabase(Config.DatabasePath);
                     AddInstalledGames(window.ImportedGames);
 
                     Config.FirstTimeWizardComplete = true;
@@ -150,59 +156,8 @@ namespace PlayniteUI
             }
 
             LoadGames();
-
-            Task.Factory.StartNew(() =>
-            {
-                Thread.Sleep(1000);
-                var update = new Update();
-
-                try
-                {
-                    if (update.IsUpdateAvailable)
-                    {
-                        update.DownloadUpdate();
-
-                        try
-                        {
-                            update.DownloadReleaseNotes();
-                        }
-                        catch (Exception exc)
-                        {
-                            logger.Warn(exc, "Failed to download release notes.");
-                        }
-
-                        Dispatcher.Invoke(() =>
-                        {
-                            var window = new UpdateWindow()
-                            {
-                                Owner = this
-                            };
-
-                            window.SetUpdate(update);
-                            window.Show();
-                            window.Focus();
-                        });
-                    }
-                }
-                catch (Exception exc)
-                {
-                    logger.Error(exc, "Failed to process update.");
-                }
-            });
-
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    var client = new ServicesClient();
-                    client.PostUserUsage();
-                }
-                catch (Exception exc)
-                {
-                    logger.Error(exc, "Failed to post user usage data.");
-                }
-            });
-
+            CheckUpdate();
+            SendUsageData();
             Focus();
 
             pipeService = new PipeService();
@@ -229,14 +184,15 @@ namespace PlayniteUI
                 case CmdlineCommands.Focus:
                     Show();
                     WindowState = WindowState.Normal;
+                    Activate();
                     Focus();
                     break;
 
                 case CmdlineCommands.Launch:
-                    var game = GameDatabase.Instance.Games.FirstOrDefault(a => a.Id == int.Parse(args.Args));
+                    var game = GameDatabase.Instance.GamesCollection.FindById(int.Parse(args.Args));
                     if (game == null)
                     {
-                        logger.Error("Cannot start game, game {0} not found.", args.Command);
+                        logger.Error("Cannot start game, game {0} not found.", args.Args);
                     }
                     else
                     {
@@ -298,7 +254,7 @@ namespace PlayniteUI
 
         private void DownloadMetadata(GameDatabase database, Provider provider, ProgressControl progresser, CancellationToken token)
         {
-            var games = database.Games.Where(a => a.Provider == provider && !a.IsProviderDataUpdated).ToList();
+            var games = database.GamesCollection.Find(a => a.Provider == provider && !a.IsProviderDataUpdated);
 
             foreach (var game in games)
             {
@@ -350,12 +306,23 @@ namespace PlayniteUI
                     return;
                 }
 
-                BindingOperations.EnableCollectionSynchronization(database.Games, gamesLock);
-                database.LoadGamesFromDb(Config);
-                ListGamesView.ItemsSource = database.Games;
-                ImagesGamesView.ItemsSource = database.Games;
-                GridGamesView.ItemsSource = database.Games;
-                MainCollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(database.Games);
+                LiteDBImageToImageConverter.ClearCache();
+                GamesView = new GamesCollectionView(database);
+                BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
+
+                try
+                {
+                    GamesEditor.Instance.UpdateJumpList();
+                }
+                catch (Exception exc)
+                {
+                    logger.Error(exc, "Failed to set update JumpList data: ");
+                }
+
+                MainCollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(GamesView.Items);
+                ListGamesView.ItemsSource = MainCollectionView;
+                ImagesGamesView.ItemsSource = MainCollectionView;
+                GridGamesView.ItemsSource = MainCollectionView;
 
                 Config_PropertyChanged(this, null);
 
@@ -372,11 +339,6 @@ namespace PlayniteUI
                         {
                             database.UpdateInstalledGames(Provider.GOG);
                             NotificationsWin.RemoveMessage(NotificationCodes.GOGLInstalledImportError);
-
-                            if (!Config.GOGSettings.LibraryDownloadEnabled)
-                            {
-                                database.UnloadNotInstalledGames(Provider.GOG);
-                            }
                         }
                     }
                     catch (Exception e)
@@ -394,11 +356,6 @@ namespace PlayniteUI
                         {
                             database.UpdateInstalledGames(Provider.Steam);
                             NotificationsWin.RemoveMessage(NotificationCodes.SteamInstalledImportError);
-
-                            if (!Config.SteamSettings.LibraryDownloadEnabled)
-                            {
-                                database.UnloadNotInstalledGames(Provider.Steam);
-                            }
                         }
                     }
                     catch (Exception e)
@@ -416,11 +373,6 @@ namespace PlayniteUI
                         {
                             database.UpdateInstalledGames(Provider.Origin);
                             NotificationsWin.RemoveMessage(NotificationCodes.OriginInstalledImportError);
-
-                            if (!Config.OriginSettings.LibraryDownloadEnabled)
-                            {
-                                database.UnloadNotInstalledGames(Provider.Origin);
-                            }
                         }
                     }
                     catch (Exception e)
@@ -489,13 +441,12 @@ namespace PlayniteUI
 
                         }));
                     }
-
-                    gamesStats.SetGames(database.Games);
+                    
                     ProgressControl.Text = "Downloading images and game details...";
                     ProgressControl.ProgressMin = 0;
                     
                     var gamesCount = 0;
-                    gamesCount = database.Games.Where(a => a.Provider != Provider.Custom && !a.IsProviderDataUpdated).Count();
+                    gamesCount = database.GamesCollection.Count(a => a.Provider != Provider.Custom && !a.IsProviderDataUpdated);
                     if (gamesCount > 0)
                     {
                         gamesCount -= 1;
@@ -545,7 +496,8 @@ namespace PlayniteUI
 
         private bool GamesFilter(object item)
         {
-            var game = (IGame)item;
+            var entry = (GameViewEntry)item;
+            var game = entry.Game;
 
             // ------------------ Installed
             bool installedResult = false;
@@ -586,19 +538,38 @@ namespace PlayniteUI
 
             // ------------------ Providers
             bool providersFilter = false;
-            if (Config.FilterSettings.Provider.All(a => a.Value == false))
+            if (Config.FilterSettings.Steam == false && Config.FilterSettings.Origin == false && Config.FilterSettings.GOG == false && Config.FilterSettings.Custom == false)
             {
                 providersFilter = true;
             }
             else
             {
-                if (Config.FilterSettings.Provider[game.Provider] == true)
+                switch (game.Provider)
                 {
-                    providersFilter = true;
-                }
-                else
-                {
-                    providersFilter = false;
+                    case Provider.Custom:
+                        if (Config.FilterSettings.Custom)
+                        {
+                            providersFilter = true;
+                        }
+                        break;
+                    case Provider.GOG:
+                        if (Config.FilterSettings.GOG)
+                        {
+                            providersFilter = true;
+                        }
+                        break;
+                    case Provider.Origin:
+                        if (Config.FilterSettings.Origin)
+                        {
+                            providersFilter = true;
+                        }
+                        break;
+                    case Provider.Steam:
+                        if (Config.FilterSettings.Steam)
+                        {
+                            providersFilter = true;
+                        }
+                        break;
                 }
             }
 
@@ -701,7 +672,14 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    categoryResult = Config.FilterSettings.Categories.IntersectsPartiallyWith(game.Categories);
+                    if (GamesView.ViewType == GamesViewType.Standard)
+                    {
+                        categoryResult = Config.FilterSettings.Categories.IntersectsPartiallyWith(game.Categories);
+                    }
+                    else
+                    {
+                        categoryResult = Config.FilterSettings.Categories.Any(a => entry.Category.Category.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0);
+                    }
                 }
             }
 
@@ -726,14 +704,13 @@ namespace PlayniteUI
                 return;
             }
 
-            if (GameDatabase.Instance.Games == null)
+            if (GamesView == null)
             {
                 return;
             }
             
             using (MainCollectionView.DeferRefresh())
             {
-
                 if (e == null)
                 {
                     logger.Debug("Doing complete view refresh.");
@@ -744,16 +721,23 @@ namespace PlayniteUI
 
                     MainCollectionView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
 
-                    if (Config.GroupingOrder == GroupOrder.Store)
+                    if (config.GroupingOrder == GroupOrder.None)
                     {
+                        GamesView.ViewType = GamesViewType.Standard;
+                    }
+                    else if (Config.GroupingOrder == GroupOrder.Store)
+                    {
+                        GamesView.ViewType = GamesViewType.Standard;
                         MainCollectionView.GroupDescriptions.Clear();
                         MainCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Provider"));
                         MainCollectionView.SortDescriptions.Insert(0, new SortDescription("Provider", ListSortDirection.Ascending));
                     }
                     else if (Config.GroupingOrder == GroupOrder.Category)
                     {
+                        GamesView.ViewType = GamesViewType.CategoryGrouped;
                         MainCollectionView.GroupDescriptions.Clear();
-                        MainCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Categories"));
+                        MainCollectionView.SortDescriptions.Insert(0, new SortDescription("Category", ListSortDirection.Ascending));
+                        MainCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Category"));
                     }
 
                     if (MainCollectionView.LiveGroupingProperties.Count > 0)
@@ -761,7 +745,7 @@ namespace PlayniteUI
                         MainCollectionView.LiveGroupingProperties.Clear();
                     }
 
-                    MainCollectionView.LiveGroupingProperties.Add("Categories");
+                    MainCollectionView.LiveGroupingProperties.Add("Category");
 
                     if (MainCollectionView.LiveFilteringProperties.Count > 0)
                     {
@@ -804,7 +788,7 @@ namespace PlayniteUI
                     {
                         MainCollectionView.GroupDescriptions.Clear();
                         var sortItem = MainCollectionView.SortDescriptions.First();
-                        if (sortItem.PropertyName == "Provider" || sortItem.PropertyName == "Categories")
+                        if (sortItem.PropertyName == "Provider" || sortItem.PropertyName == "Category")
                         {
                             MainCollectionView.SortDescriptions.Remove(sortItem);
                         }
@@ -812,15 +796,19 @@ namespace PlayniteUI
                         switch (Config.GroupingOrder)
                         {
                             case GroupOrder.None:
+                                GamesView.ViewType = GamesViewType.Standard;
                                 break;
 
                             case GroupOrder.Store:
+                                GamesView.ViewType = GamesViewType.Standard;
                                 MainCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Provider"));
                                 MainCollectionView.SortDescriptions.Insert(0, new SortDescription("Provider", ListSortDirection.Ascending));
                                 break;
 
                             case GroupOrder.Category:
-                                MainCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Categories"));
+                                GamesView.ViewType = GamesViewType.CategoryGrouped;
+                                MainCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Category"));
+                                MainCollectionView.SortDescriptions.Insert(0, new SortDescription("Category", ListSortDirection.Ascending));
                                 break;
                         }
                     }
@@ -844,6 +832,24 @@ namespace PlayniteUI
                 return;
             }
 
+            //var providers = new List<string>() { "Steam", "Origin", "GOG", "Custom" };
+
+            //using (MainCollectionView.DeferRefresh())
+            //{
+            //    foreach (var item in GamesView.Items)
+            //    {
+            //        if (providers.Contains(e.PropertyName))
+            //        {
+            //            item.OnPropertyChanged("Provider");
+            //        }
+            //        else
+            //        {
+            //            item.OnPropertyChanged(e.PropertyName);
+            //        }
+            //    }
+            //}
+
+            logger.Debug("Doing complete view refresh...");
             MainCollectionView.Refresh();
             Config.SaveSettings();
         }
@@ -995,6 +1001,72 @@ namespace PlayniteUI
             var game = (sender as MenuItem).DataContext as IGame;
             GamesEditor.Instance.PlayGame(game);
             TrayPlaynite.TrayPopupResolved.IsOpen = false;
+        }
+
+        private void CheckUpdate()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                var update = new Update();
+                UpdateWindow updateWindow = null;
+
+                while (true)
+                {
+                    try
+                    {
+                        if ((updateWindow == null || !updateWindow.IsVisible) && update.IsUpdateAvailable)
+                        {
+                            if (update.IsUpdateAvailable)
+                            {
+                                update.DownloadUpdate();
+
+                                try
+                                {
+                                    update.DownloadReleaseNotes();
+                                }
+                                catch (Exception exc)
+                                {
+                                    logger.Warn(exc, "Failed to download release notes.");
+                                }
+
+                                Dispatcher.Invoke(() =>
+                                {
+                                    updateWindow = new UpdateWindow()
+                                    {
+                                        Owner = this
+                                    };
+
+                                    updateWindow.SetUpdate(update);
+                                    updateWindow.Show();
+                                    updateWindow.Focus();
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception exc)
+                    {
+                        logger.Error(exc, "Failed to process update.");
+                    }
+
+                    Thread.Sleep(4 * 60 * 60 * 1000);
+                }
+            });
+        }
+
+        private void SendUsageData()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    var client = new ServicesClient();
+                    client.PostUserUsage();
+                }
+                catch (Exception exc)
+                {
+                    logger.Error(exc, "Failed to post user usage data.");
+                }
+            });
         }
     }
 }

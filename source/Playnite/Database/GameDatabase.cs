@@ -14,9 +14,50 @@ using System.Windows;
 using Playnite.Providers;
 using NLog;
 using System.Collections.Concurrent;
+using System.Windows.Media.Imaging;
 
 namespace Playnite.Database
 {
+    public delegate void GameUpdatedEventHandler(object sender, GameUpdatedEventArgs args);
+    public class GameUpdatedEventArgs : EventArgs
+    {
+        public IGame OldData
+        {
+            get; set;
+        }
+
+        public IGame NewData
+        {
+            get; set;
+        }
+
+        public GameUpdatedEventArgs(IGame oldData, IGame newData)
+        {
+            OldData = oldData;
+            NewData = newData;
+        }
+    }
+
+    public delegate void GamesCollectionChangedEventHandler(object sender, GamesCollectionChangedEventArgs args);
+    public class GamesCollectionChangedEventArgs : EventArgs
+    {
+        public List<IGame> AddedGames
+        {
+            get; set;
+        }
+
+        public List<IGame> RemovedGames
+        {
+            get; set;
+        }
+
+        public GamesCollectionChangedEventArgs(List<IGame> addedGames, List<IGame> removedGames)
+        {
+            AddedGames = addedGames;
+            RemovedGames = removedGames;
+        }
+    }
+
     public class FileDefinition
     {
         public string Path
@@ -66,25 +107,16 @@ namespace Playnite.Database
                 return instance;
             }
         }
-
-        private LiteDatabase database;
         public LiteDatabase Database
         {
-            get
-            {
-                return database;
-            }
+            get;
+            private set;
         }
-        
-        private LiteCollection<IGame> dbCollection;
 
-        private ObservableCollection<IGame> games = new ObservableCollection<IGame>();
-        public  ObservableCollection<IGame> Games
+        public LiteCollection<IGame> GamesCollection
         {
-            get
-            {
-                return games;
-            }
+            get;
+            private set;
         }
 
         private IGogLibrary gogLibrary;
@@ -97,6 +129,10 @@ namespace Playnite.Database
         {
             get; set;
         } = string.Empty;
+        
+        public event GamesCollectionChangedEventHandler GamesCollectionChanged;
+        public event GameUpdatedEventHandler GameUpdated;
+        public event EventHandler DatabaseOpened;
 
         public GameDatabase()
         {
@@ -114,7 +150,7 @@ namespace Playnite.Database
 
         private void CheckDbState()
         {
-            if (dbCollection == null)
+            if (GamesCollection == null)
             {
                 throw new Exception("Database is not opened.");
             }
@@ -122,25 +158,25 @@ namespace Playnite.Database
 
         public void MigrateDatabase()
         {
-            if (database == null)
+            if (Database == null)
             {
                 throw new Exception("Database is not opened.");
             }
 
-            if (database.Engine.UserVersion == DBVersion)
+            if (Database.Engine.UserVersion == DBVersion)
             {
                 return;
             }
 
             // 0 to 1 migration
-            if (database.Engine.UserVersion == 0 && DBVersion == 1)
+            if (Database.Engine.UserVersion == 0 && DBVersion == 1)
             {
                 // Create: ObservableCollection<Link>Links
                 // Migrate: CommunityHubUrl, StoreUrl, WikiUrl to Links
                 // Remove: CommunityHubUrl, StoreUrl, WikiUrl
                 logger.Info("Migrating database from 0 to 1 version.");
 
-                var collection = database.GetCollection("games");
+                var collection = Database.GetCollection("games");
                 var dbGames = collection.FindAll();
                 foreach (var game in dbGames)
                 {
@@ -172,92 +208,34 @@ namespace Playnite.Database
                     collection.Update(game);
                 }
 
-                database.Engine.UserVersion = 1;
-            }
-
-                      
+                Database.Engine.UserVersion = 1;
+            }                      
         }
 
-        public LiteDatabase OpenDatabase(string path, bool loadGames = false)
+        public LiteDatabase OpenDatabase(string path)
         {
             logger.Info("Opening db " + path);
             CloseDatabase();
-            database = new LiteDatabase(path);
+            Database = new LiteDatabase(path);
             MigrateDatabase();
 
             // To force litedb to try to open file, should throw exceptuion if something is wrong with db file
-            database.GetCollectionNames();
+            Database.GetCollectionNames();
 
-            dbCollection = database.GetCollection<IGame>("games");
-            if (loadGames == true)
-            {
-                LoadGamesFromDb();
-            }
-
-            return database;
-        }
-
-        public void LoadGamesFromDb()
-        {
-            logger.Info("Loading games from db");
-            games.Clear();
-
-            foreach (var game in dbCollection.FindAll())
-            {
-                games.Add(game);
-            }
-        }
-
-        public void LoadGamesFromDb(Settings settings)
-        {
-            logger.Info("Loading games from db with specific settings.");
-            logger.Info("Steam: " + settings.SteamSettings.ToJson());
-            logger.Info("Origin: " + settings.OriginSettings.ToJson());
-            logger.Info("GOG: " + settings.GOGSettings.ToJson());
-
-            games.Clear();
-
-            foreach (var game in dbCollection.FindAll())
-            {
-                if (game.Provider == Provider.Steam && !settings.SteamSettings.IntegrationEnabled)
-                {
-                    continue;
-                }
-                else if (game.Provider == Provider.Steam && !game.IsInstalled && !settings.SteamSettings.LibraryDownloadEnabled)
-                {
-                    continue;
-                }
-
-                if (game.Provider == Provider.GOG && !settings.GOGSettings.IntegrationEnabled)
-                {
-                    continue;
-                }
-                else if (game.Provider == Provider.GOG && !game.IsInstalled && !settings.GOGSettings.LibraryDownloadEnabled)
-                {
-                    continue;
-                }
-
-                if (game.Provider == Provider.Origin && !settings.OriginSettings.IntegrationEnabled)
-                {
-                    continue;
-                }
-                else if (game.Provider == Provider.Origin && !game.IsInstalled && !settings.OriginSettings.LibraryDownloadEnabled)
-                {
-                    continue;
-                }
-
-                games.Add(game);
-            }
+            GamesCollection = Database.GetCollection<IGame>("games");
+            DatabaseOpened?.Invoke(this, null);
+            return Database;
         }
 
         public void CloseDatabase()
         {
-            if (database == null)
+            if (Database == null)
             {
                 return;
             }
 
-            database.Dispose();
+            Database.Dispose();
+            GamesCollection = null;
         }
 
         public void AddGame(IGame game)
@@ -266,10 +244,10 @@ namespace Playnite.Database
 
             lock (fileLock)
             {
-                dbCollection.Insert(game);
+                GamesCollection.Insert(game);
             }
 
-            games.Add(game);
+            GamesCollectionChanged?.Invoke(this, new GamesCollectionChangedEventArgs(new List<IGame>() { game }, new List<IGame>()));
         }
 
         public void AddGames(IEnumerable<IGame> games)
@@ -281,10 +259,15 @@ namespace Playnite.Database
                 return;
             }
 
-            foreach (var game in games)
+            lock (fileLock)
             {
-                AddGame(game);
+                foreach (var game in games)
+                {
+                    GamesCollection.Insert(game);
+                }
             }
+
+            GamesCollectionChanged?.Invoke(this, new GamesCollectionChangedEventArgs(games.ToList(), new List<IGame>()));
         }
                 
         public void DeleteGame(IGame game)
@@ -296,18 +279,10 @@ namespace Playnite.Database
             {
                 DeleteImageSafe(game.Icon, game);
                 DeleteImageSafe(game.Image, game);
-                dbCollection.Delete(game.Id);
+                GamesCollection.Delete(game.Id);
             }
 
-            var existingGame = games.FirstOrDefault(a => a.Id == game.Id);
-            if (existingGame != null)
-            {
-                games.Remove(existingGame);
-            }
-            else
-            {
-                logger.Error("Attempt to delete game not present in database.");
-            }
+            GamesCollectionChanged?.Invoke(this, new GamesCollectionChangedEventArgs(new List<IGame>(), new List<IGame>() { game }));
         }
 
         public void AddImage(string id, string name, byte[] data)
@@ -318,7 +293,7 @@ namespace Playnite.Database
             {
                 using (var stream = new MemoryStream(data))
                 {
-                    Database.FileStorage.Upload(id, name, stream);
+                    var file = Database.FileStorage.Upload(id, name, stream);
                 }
             }
         }
@@ -341,6 +316,38 @@ namespace Playnite.Database
                     fStream.CopyTo(stream);
                     stream.Seek(0, SeekOrigin.Begin);
                     return stream;
+                }
+            }
+        }
+
+        public LiteFileInfo GetFile(string id)
+        {
+            lock (fileLock)
+            {
+                return Database.FileStorage.FindById(id);
+            }
+        }
+
+        public BitmapImage GetFileImage(string id)
+        {
+            CheckDbState();
+
+            var file = Database.FileStorage.FindById(id);
+            if (file == null)
+            {
+                return null;
+            }
+
+            lock (fileLock)
+            {
+                using (var fStream = GetFileStream(id))
+                {
+                    var bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.StreamSource = fStream;
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.EndInit();
+                    return bitmap;
                 }
             }
         }
@@ -370,56 +377,27 @@ namespace Playnite.Database
             }
 
             CheckDbState();
-            dbCollection = database.GetCollection<IGame>("games");
+            GamesCollection = Database.GetCollection<IGame>("games");
 
-            foreach (var gm in dbCollection.FindAll())
+            var games = GamesCollection.Find(a => (a.Icon == id || a.Image == id || a.BackgroundImage == id) && a.Id != game.Id);
+            if (games.Count() == 0)
             {
-                if (gm.Id == game.Id)
-                {
-                    continue;
-                }
-
-                if (gm.Icon == id)
-                {
-                    return;
-                }
-
-                if (gm.Image == id)
-                {
-                    return;
-                }
-
-                if (gm.BackgroundImage == id)
-                {
-                    return;
-                }
+                Database.FileStorage.Delete(id);
             }
-
-            Database.FileStorage.Delete(id);
         }
 
         public void UpdateGameInDatabase(IGame game)
         {
             CheckDbState();
+            IGame oldData;
 
             lock (fileLock)
             {
-                dbCollection.Update(game);
-
-                // Update loaded instance of a game
-                var loadedGame = Games.First(a => a.Id == game.Id);
-                game.CopyProperties(loadedGame, true);
+                oldData = GamesCollection.FindById(game.Id);
+                GamesCollection.Update(game);
             }
-        }
 
-        public void UnloadNotInstalledGames(Provider provider)
-        {
-            var notInstalledGames = games.Where(a => a.Provider == provider && !a.IsInstalled).ToList();
-
-            foreach (var game in notInstalledGames)
-            {
-                games.Remove(game);
-            }
+            GameUpdated?.Invoke(this, new GameUpdatedEventArgs(oldData, game));
         }
 
         public void UpdateGameWithMetadata(IGame game)
@@ -480,9 +458,8 @@ namespace Playnite.Database
             }
 
             foreach (var newGame in installedGames)
-            {                
-                var existingGame = dbCollection.FindAll().FirstOrDefault(a => a.ProviderId == newGame.ProviderId && a.Provider == provider);
-
+            {
+                var existingGame = GamesCollection.FindOne(a => a.ProviderId == newGame.ProviderId && a.Provider == provider);
                 if (existingGame == null)
                 {
                     logger.Info("Adding new installed game {0} from {1} provider", newGame.ProviderId, newGame.Provider);
@@ -518,19 +495,11 @@ namespace Playnite.Database
                         }
                     }
 
-                    // Game may have been not installed prviously and may not be loaded currently
-                    var loaded = Games.FirstOrDefault(a => a.ProviderId == existingGame.ProviderId && a.Provider == existingGame.Provider) != null;
-                    if (!loaded)
-                    {
-                        Games.Add(existingGame);
-                    }
-
                     UpdateGameInDatabase(existingGame);
                 }
             }
-
-            // No longer installed games must be updated
-            foreach (var game in Games.Where(a => a.Provider == provider))
+            
+            foreach (var game in GamesCollection.Find(a => a.Provider == provider))
             {
                 if (installedGames.FirstOrDefault(a => a.ProviderId == game.ProviderId) == null)
                 {
@@ -569,8 +538,8 @@ namespace Playnite.Database
 
             foreach (var game in importedGames)
             {
-                var gameNotPresent = Games.FirstOrDefault(a => a.ProviderId == game.ProviderId && a.Provider == provider) == null;
-                if (gameNotPresent)
+                var existingGame = GamesCollection.FindOne(a => a.ProviderId == game.ProviderId && a.Provider == provider);
+                if (existingGame == null)
                 {
                     logger.Info("Adding new game {0} into library from {1} provider", game.ProviderId, game.Provider);
                     AddGame(game);
@@ -578,7 +547,7 @@ namespace Playnite.Database
             }
 
             // Delete games that are no longer in library
-            foreach (IGame dbGame in dbCollection.FindAll().Where(a => a.Provider == provider))
+            foreach (IGame dbGame in GamesCollection.Find(a => a.Provider == provider))
             {
                 if (importedGames.FirstOrDefault(a => a.ProviderId == dbGame.ProviderId) == null)
                 {

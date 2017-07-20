@@ -15,6 +15,16 @@ namespace PlayniteUI
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        public static Dictionary<string, BitmapImage> Cache
+        {
+            get; set;
+        } = new Dictionary<string, BitmapImage>();
+
+        public static void ClearCache()
+        {
+            Cache.Clear();
+        }
+
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var imageId = (string)value;
@@ -22,21 +32,24 @@ namespace PlayniteUI
             {
                 return DependencyProperty.UnsetValue;
             }
-            
-            using (var imageData = GameDatabase.Instance.GetFileStream(imageId))
+
+            if (Cache.ContainsKey(imageId))
             {
+                return Cache[imageId];
+            }
+            else
+            {
+                var imageData = GameDatabase.Instance.GetFileImage(imageId);
                 if (imageData == null)
                 {
                     logger.Warn("Image not found in database: " + imageId);
                     return DependencyProperty.UnsetValue;
                 }
-
-                var bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.StreamSource = imageData;
-                bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                bitmap.EndInit();
-                return bitmap;
+                else
+                {
+                    Cache.Add(imageId, imageData);
+                    return imageData;
+                }
             }
         }
 

@@ -21,7 +21,10 @@ namespace Playnite
                     IsInstalled ||
                     Hidden ||
                     Favorite ||
-                    Provider.Any(a => a.Value == true) ||
+                    Steam ||
+                    Origin ||
+                    GOG ||
+                    Custom ||
                     !string.IsNullOrEmpty(Name) ||
                     !string.IsNullOrEmpty(ReleaseDate) ||
                     (Genres != null && Genres.Count > 0) ||
@@ -177,31 +180,66 @@ namespace Playnite
             }
         }
 
-        private ObservableConcurrentDictionary<Provider, bool> provider = new ObservableConcurrentDictionary<Provider, bool>()
-        {
-            { Models.Provider.Custom, false },
-            { Models.Provider.GOG, false },
-            { Models.Provider.Steam, false },
-            { Models.Provider.Origin, false }
-        };
-
-        public ObservableConcurrentDictionary<Provider, bool> Provider
+        private bool steam;
+        public bool Steam
         {
             get
             {
-                return provider;
+                return steam;
             }
 
             set
             {
-                if (provider != null)
-                {
-                    provider.PropertyChanged -= Providers_PropertyChanged;
-                }
+                steam = value;
+                OnPropertyChanged("Steam");
+                OnPropertyChanged("Active");
+            }
+        }
 
-                provider = value;
-                provider.PropertyChanged += Providers_PropertyChanged;
-                OnPropertyChanged("Provider");
+        private bool origin;
+        public bool Origin
+        {
+            get
+            {
+                return origin;
+            }
+
+            set
+            {
+                origin = value;
+                OnPropertyChanged("Origin");
+                OnPropertyChanged("Active");
+            }
+        }
+
+        private bool gog;
+        public bool GOG
+        {
+            get
+            {
+                return gog;
+            }
+
+            set
+            {
+                gog = value;
+                OnPropertyChanged("GOG");
+                OnPropertyChanged("Active");
+            }
+        }
+
+        private bool custom;
+        public bool Custom
+        {
+            get
+            {
+                return custom;
+            }
+
+            set
+            {
+                custom = value;
+                OnPropertyChanged("Custom");
                 OnPropertyChanged("Active");
             }
         }
@@ -216,11 +254,6 @@ namespace Playnite
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public FilterSettings()
-        {
-            Provider.PropertyChanged += Providers_PropertyChanged;
-        }
 
         public void OnPropertyChanged(string name)
         {

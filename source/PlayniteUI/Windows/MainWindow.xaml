@@ -29,6 +29,7 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <local:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
         <local:BidirectionalEnumAndNumberConverter x:Key="BidirectionalEnumAndNumberConverter" />
+        <local:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
         <sys:Boolean x:Key="True">True</sys:Boolean>
         <sys:Boolean x:Key="False">False</sys:Boolean>
         <local:ValueConverterGroup x:Key="EnumCompVisibilityConverter">
@@ -52,7 +53,18 @@
                         <ItemsControl ItemsSource="{Binding Path=LastGames, Source={x:Static local:GamesEditor.Instance}}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <MenuItem Header="{Binding Name}" Click="MenuLastGamesGame_Click" />
+                                    <MenuItem Header="{Binding Name}" Click="MenuLastGamesGame_Click">
+                                        <MenuItem.Icon>
+                                            <Image Width="16">
+                                                <Image.Source>
+                                                    <PriorityBinding>
+                                                        <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" />
+                                                        <Binding Path="DefaultIcon" Mode="OneTime"/>
+                                                    </PriorityBinding>
+                                                </Image.Source>
+                                            </Image>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

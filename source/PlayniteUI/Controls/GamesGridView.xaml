@@ -16,6 +16,7 @@
         <local:BoolToAutoWidthConverter x:Key="BoolToAutoWidthConverter" />        
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <local:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
+        <local:BoolToCategoryExpander x:Key="BoolToCategoryExpander" />
 
         <Style x:Key="TextItemStyle" BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
             <Setter Property="Margin" Value="0,5,0,5" />
@@ -27,7 +28,7 @@
         <playniteControls:GamePopupMenuMulti x:Name="PopupGameMulti" />
 
         <ListView Name="GridGames" SelectionMode="Extended"
-                  VirtualizingPanel.VirtualizationMode="Recycling"
+                  VirtualizingPanel.VirtualizationMode="Standard"
                   VirtualizingPanel.IsVirtualizingWhenGrouping="True">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
@@ -43,7 +44,8 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate>
-                                        <Expander Header="{Binding Name, TargetNullValue='None'}" IsExpanded="True">
+                                        <Expander Header="{Binding Mode=OneWay}" Collapsed="Expander_Collapsed" Expanded="Expander_Expanded"
+                                                  IsExpanded="{Binding Path=Name, Mode=OneWay, Converter={StaticResource BoolToCategoryExpander}}">
                                             <ItemsPresenter />
                                         </Expander>
                                     </ControlTemplate>

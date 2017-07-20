@@ -192,6 +192,7 @@
     <Compile Include="Providers\Steam\WebApiClient.cs" />
     <Compile Include="Providers\Steam\VdfParser.cs" />
     <Compile Include="Providers\Steam\WebApiTypes.cs" />
+    <Compile Include="RangeObservableCollection.cs" />
     <Compile Include="Services\GenericResponse.cs" />
     <Compile Include="Services\ServicesClient.cs" />
     <Compile Include="Settings.cs" />

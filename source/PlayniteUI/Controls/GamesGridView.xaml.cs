@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Playnite.Database;
 using Playnite.Models;
+using Playnite;
 
 namespace PlayniteUI.Controls
 {
@@ -45,12 +46,12 @@ namespace PlayniteUI.Controls
         {
             if (GridGames.SelectedItems.Count > 1)
             {
-                PopupGameMulti.DataContext = GridGames.SelectedItems.Cast<IGame>().ToList();
+                PopupGameMulti.DataContext = GridGames.SelectedItems.Cast<GameViewEntry>().Select(a => a.Game).ToList();
                 PopupGameMulti.IsOpen = true;
             }
             else if (GridGames.SelectedItems.Count == 1)
             {
-                var game = GridGames.SelectedItem as IGame;
+                var game = (GridGames.SelectedItem as GameViewEntry).Game;
                 PopupGame.DataContext = game;
                 PopupGame.IsOpen = true;
             }
@@ -63,7 +64,8 @@ namespace PlayniteUI.Controls
                 return;
             }
 
-            var game = GridGames.SelectedItem as IGame;
+            var entry = (GameViewEntry)GridGames.SelectedItem;
+            var game = entry.Game;
             if (game.IsInstalled)
             {
                 GamesEditor.Instance.PlayGame(game);
@@ -100,6 +102,24 @@ namespace PlayniteUI.Controls
                 Mode = BindingMode.OneWay,
                 Converter = new BooleanToVisibilityConverter()
             });
+        }
+
+        private void Expander_Collapsed(object sender, RoutedEventArgs e)
+        {
+            var category = (CategoryView)((CollectionViewGroup)((Expander)sender).DataContext).Name;
+            if (!Settings.Instance.CollapsedCategories.Contains(category.Category))
+            {
+                Settings.Instance.CollapsedCategories.Add(category.Category);
+            }
+        }
+
+        private void Expander_Expanded(object sender, RoutedEventArgs e)
+        {
+            var category = (CategoryView)((CollectionViewGroup)((Expander)sender).DataContext).Name;
+            if (Settings.Instance.CollapsedCategories.Contains(category.Category))
+            {
+                Settings.Instance.CollapsedCategories.Remove(category.Category);
+            }
         }
     }
 }

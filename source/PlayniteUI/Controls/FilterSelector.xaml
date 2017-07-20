@@ -44,19 +44,19 @@
 
         <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" Margin="0,5,0,5" />
 
-        <CheckBox Name="CheckFilterSteam" IsChecked="{Binding Path=Settings.Provider[(playniteModels:Provider)Steam]}" Style="{StaticResource FilterCheck}">
+        <CheckBox Name="CheckFilterSteam" IsChecked="{Binding Path=Settings.Steam}" Style="{StaticResource FilterCheck}">
             <TextBlock Text="{Binding Stats.Steam, Mode=OneWay, StringFormat=Steam ({0})}" />
         </CheckBox>
 
-        <CheckBox Name="CheckFilterGOG" IsChecked="{Binding Path=Settings.Provider[(playniteModels:Provider)GOG]}" Style="{StaticResource FilterCheck}">
+        <CheckBox Name="CheckFilterGOG" IsChecked="{Binding Path=Settings.GOG}" Style="{StaticResource FilterCheck}">
             <TextBlock Text="{Binding Stats.GOG, Mode=OneWay, StringFormat=GOG ({0})}" />
         </CheckBox>
 
-        <CheckBox Name="CheckFilterOrigin" IsChecked="{Binding Path=Settings.Provider[(playniteModels:Provider)Origin]}" Style="{StaticResource FilterCheck}">
+        <CheckBox Name="CheckFilterOrigin" IsChecked="{Binding Path=Settings.Origin}" Style="{StaticResource FilterCheck}">
             <TextBlock Text="{Binding Stats.Origin, Mode=OneWay, StringFormat=Origin ({0})}" />
         </CheckBox>
 
-        <CheckBox Name="CheckFilterCustom" IsChecked="{Binding Path=Settings.Provider[(playniteModels:Provider)Custom]}" Style="{StaticResource FilterCheck}">
+        <CheckBox Name="CheckFilterCustom" IsChecked="{Binding Path=Settings.Custom}" Style="{StaticResource FilterCheck}">
             <TextBlock Text="{Binding Stats.Custom, Mode=OneWay, StringFormat=Custom ({0})}" />
         </CheckBox>
 

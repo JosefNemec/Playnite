@@ -236,13 +236,8 @@ namespace PlayniteUI.Windows
         {
             var categories = new ObservableCollection<Category>();
 
-            foreach (var game in GameDatabase.Instance.Games)
+            foreach (var game in GameDatabase.Instance.GamesCollection.Find(a => a.Categories != null))
             {
-                if (game.Categories == null)
-                {
-                    continue;
-                }
-
                 foreach (var cat in game.Categories)
                 {
                     var existingCat = categories.FirstOrDefault(a => string.Equals(a.Name, cat, StringComparison.OrdinalIgnoreCase));
