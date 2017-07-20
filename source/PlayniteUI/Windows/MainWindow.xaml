@@ -44,7 +44,7 @@
     </Window.Resources>
     
     <DockPanel>
-        <tray:TaskbarIcon x:Name="TrayPlaynite" ToolTipText="Playnite" IconSource="/Images/trayicon.ico" PopupActivation="LeftOrRightClick"
+        <tray:TaskbarIcon x:Name="TrayPlaynite" ToolTipText="Playnite" IconSource="/Images/applogo.ico" PopupActivation="LeftOrRightClick"
                           Visibility="{Binding Path=EnableTray, Source={x:Static shared:Settings.Instance}, Converter={StaticResource BooleanToVisibilityConverter}}"
                           TrayMouseDoubleClick="TrayPlaynite_TrayMouseDoubleClick">
             <tray:TaskbarIcon.TrayPopup>
