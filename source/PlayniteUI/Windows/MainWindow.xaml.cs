@@ -254,7 +254,8 @@ namespace PlayniteUI
 
         private void DownloadMetadata(GameDatabase database, Provider provider, ProgressControl progresser, CancellationToken token)
         {
-            var games = database.GamesCollection.Find(a => a.Provider == provider && !a.IsProviderDataUpdated);
+            // Convert to list to not enumerate on original DB list due to threading issues in LiteDB
+            var games = database.GamesCollection.Find(a => a.Provider == provider && !a.IsProviderDataUpdated).ToList();
 
             foreach (var game in games)
             {
@@ -462,13 +463,11 @@ namespace PlayniteUI
                             DownloadMetadata(database, Provider.Steam, ProgressControl, GamesLoaderHandler.CancelToken.Token);
                         }),
 
-
                         // Origin metada download thread
                         Task.Factory.StartNew(() =>
                         {
                             DownloadMetadata(database, Provider.Origin, ProgressControl, GamesLoaderHandler.CancelToken.Token);
                         }),
-
 
                         // GOG metada download thread
                         Task.Factory.StartNew(() =>

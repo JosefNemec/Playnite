@@ -15,6 +15,8 @@ using Playnite.Providers;
 using NLog;
 using System.Collections.Concurrent;
 using System.Windows.Media.Imaging;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace Playnite.Database
 {
@@ -332,23 +334,20 @@ namespace Playnite.Database
         {
             CheckDbState();
 
-            var file = Database.FileStorage.FindById(id);
+            var file = GetFile(id);
             if (file == null)
             {
                 return null;
             }
 
-            lock (fileLock)
+            using (var fStream = GetFileStream(id))
             {
-                using (var fStream = GetFileStream(id))
-                {
-                    var bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.StreamSource = fStream;
-                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmap.EndInit();
-                    return bitmap;
-                }
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.StreamSource = fStream;
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+                return bitmap;
             }
         }
 
@@ -387,7 +386,7 @@ namespace Playnite.Database
         }
 
         public void UpdateGameInDatabase(IGame game)
-        {
+        {            
             CheckDbState();
             IGame oldData;
 

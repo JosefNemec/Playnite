@@ -130,19 +130,25 @@ namespace PlayniteUI.Controls
 
         private void Expander_Collapsed(object sender, RoutedEventArgs e)
         {
-            var category = (CategoryView)((CollectionViewGroup)((Expander)sender).DataContext).Name;
-            if (!Settings.Instance.CollapsedCategories.Contains(category.Category))
+            var group = (CollectionViewGroup)((Expander)sender).DataContext;
+            if (group.Name is CategoryView category)
             {
-                Settings.Instance.CollapsedCategories.Add(category.Category);
+                if (!Settings.Instance.CollapsedCategories.Contains(category.Category))
+                {
+                    Settings.Instance.CollapsedCategories.Add(category.Category);
+                }
             }
         }
 
         private void Expander_Expanded(object sender, RoutedEventArgs e)
         {
-            var category = (CategoryView)((CollectionViewGroup)((Expander)sender).DataContext).Name;
-            if (Settings.Instance.CollapsedCategories.Contains(category.Category))
+            var group = (CollectionViewGroup)((Expander)sender).DataContext;
+            if (group.Name is CategoryView category)
             {
-                Settings.Instance.CollapsedCategories.Remove(category.Category);
+                if (Settings.Instance.CollapsedCategories.Contains(category.Category))
+                {
+                    Settings.Instance.CollapsedCategories.Remove(category.Category);
+                }
             }
         }
     }
