@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace PlayniteUI
@@ -12,10 +13,16 @@ namespace PlayniteUI
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var category = (CategoryView)value;
-            if (Settings.Instance.CollapsedCategories.Contains(category.Category))
+            if (value is CategoryView category)
             {
-                return false;
+                if (Settings.Instance.CollapsedCategories.Contains(category.Category))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
