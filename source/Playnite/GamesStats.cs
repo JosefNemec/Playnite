@@ -6,139 +6,114 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Playnite.Models;
+using Playnite.Database;
+using NLog;
 
 namespace Playnite
 {
     public class GamesStats : INotifyPropertyChanged
     {
-        private int installed = 0;
-        public int Installed
-        {
-            get
-            {
-                return installed;
-            }
-        }
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        private int hidden = 0;
-        public int Hidden
-        {
-            get
-            {
-                return hidden;
-            }
-        }
-
-        private int favorite = 0;
-        public int Favorite
-        {
-            get
-            {
-                return favorite;
-            }
-        }
-
-        private int origin = 0;
-        public int Origin
-        {
-            get
-            {
-                return origin;
-            }
-        }
-
-        private int steam = 0;
-        public int Steam
-        {
-            get
-            {
-                return steam;
-            }
-        }
-
-        private int gog = 0;
-        public int GOG
-        {
-            get
-            {
-                return gog;
-            }
-        }
-
-        private int custom = 0;
-        public int Custom
-        {
-            get
-            {
-                return custom;
-            }
-        }
+        public int Installed { get; private set; } = 0;
+        public int Hidden { get; private set; } = 0;
+        public int Favorite { get; private set; } = 0;
+        public int Origin { get; private set; } = 0;
+        public int Steam { get; private set; } = 0;
+        public int GOG { get; private set; } = 0;
+        public int Custom { get; private set; } = 0;
 
         public int Total
         {
             get
             {
-                if (games != null)
+                if (database == null)
                 {
-                    return games.Count;
+                    return 0;
                 }
                 else
                 {
-                    return 0;
+                    return database.GamesCollection.Count();
                 }
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;       
 
-        private ObservableCollection<IGame> games;
+        private GameDatabase database;
+
+        public GamesStats(GameDatabase database)
+        {
+            this.database = database;
+            database.GameUpdated += Database_GameUpdated;
+            database.GamesCollectionChanged += Database_GamesCollectionChanged;
+            database.DatabaseOpened += Database_DatabaseOpened;
+            Recalculate();
+        }
 
         private void Recalculate()
         {
-            installed = 0;
-            hidden = 0;
-            favorite = 0;
-            origin = 0;
-            steam = 0;
-            gog = 0;
-            custom = 0;
+            if (database.GamesCollection == null)
+            {
+                return;
+            }
 
-            foreach (var game in games)
+            logger.Info("Completely recalculating database statistics...");
+
+            Installed = 0;
+            Hidden = 0;
+            Favorite = 0;
+            Origin = 0;
+            Steam = 0;
+            GOG = 0;
+            Custom = 0;
+
+            foreach (var game in database.GamesCollection.FindAll())
             {
                 if (game.IsInstalled)
                 {
-                    installed++;
+                    Installed++;
                 }
 
                 if (game.Hidden)
                 {
-                    hidden++;
+                    Hidden++;
                 }
 
                 if (game.Favorite)
                 {
-                    favorite++;
+                    Favorite++;
                 }
 
                 switch (game.Provider)
                 {
                     case Provider.Custom:
-                        custom++;
+                        Custom++;
                         break;
                     case Provider.GOG:
-                        gog++;
+                        GOG++;
                         break;
                     case Provider.Origin:
-                        origin++;
+                        Origin++;
                         break;
                     case Provider.Steam:
-                        steam++;
+                        Steam++;
                         break;
                     default:
                         break;
                 }
             }
 
+            NotifiyAllChanged();
+        }
+
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private void NotifiyAllChanged()
+        {
             OnPropertyChanged("Installed");
             OnPropertyChanged("Hidden");
             OnPropertyChanged("Favorite");
@@ -149,66 +124,80 @@ namespace Playnite
             OnPropertyChanged("Total");
         }
 
-        public void OnPropertyChanged(string name)
+        private void Database_DatabaseOpened(object sender, EventArgs e)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        public void SetGames(ObservableCollection<IGame> gameList)
-        {
-            if (games != null)
-            {
-                games.CollectionChanged -= Games_CollectionChanged;
-            }
-
-            games = gameList;
-            games.CollectionChanged += Games_CollectionChanged;
-
-            foreach (var game in games)
-            {
-                game.PropertyChanged += Game_PropertyChanged;
-            }
-
             Recalculate();
         }
 
-        private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void Database_GamesCollectionChanged(object sender, GamesCollectionChangedEventArgs args)
         {
-            switch (e.PropertyName)
+            foreach (var game in args.RemovedGames)
             {
-                case "Hidden":
-                    Recalculate();
-                    break;
-                case "IsInstalled":
-                    Recalculate();
-                    break;
-                case "Favorite":
-                    Recalculate();
-                    break;
-                default:
-                    break;
+                IncrementalUpdate(game, -1);
             }
+
+            foreach (var game in args.AddedGames)
+            {
+                IncrementalUpdate(game, 1);
+            }
+
+            NotifiyAllChanged();
         }
 
-        private void Games_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void Database_GameUpdated(object sender, GameUpdatedEventArgs args)
         {
-            if (e.NewItems != null)
+            if (args.OldData.Hidden != args.NewData.Hidden)
             {
-                foreach (IGame newGame in e.NewItems)
-                {
-                    newGame.PropertyChanged += Game_PropertyChanged;
-                }
+                Hidden = Hidden + (1 * (args.NewData.Hidden ? 1 : -1));
             }
 
-            if (e.OldItems != null)
+            if (args.OldData.Favorite != args.NewData.Favorite)
             {
-                foreach (IGame oldGame in e.OldItems)
-                {
-                    oldGame.PropertyChanged -= Game_PropertyChanged;
-                }
+                Favorite = Favorite + (1 * (args.NewData.Favorite ? 1 : -1));
             }
 
-            Recalculate();
+            if (args.OldData.IsInstalled != args.NewData.IsInstalled)
+            {
+                Installed = Installed + (1 * (args.NewData.IsInstalled ? 1 : -1));
+            }
+
+            OnPropertyChanged("Installed");
+            OnPropertyChanged("Hidden");
+            OnPropertyChanged("Favorite");
+        }
+
+        private void IncrementalUpdate(IGame game, int modifier)
+        {
+            if (game.Hidden)
+            {
+                Hidden = Hidden + (1 * modifier);
+            }
+
+            if (game.Favorite)
+            {
+                Favorite = Favorite + (1 * modifier);
+            }
+
+            if (game.IsInstalled)
+            {
+                Installed = Installed + (1 * modifier);
+            }
+
+            switch (game.Provider)
+            {
+                case Provider.Custom:
+                    Custom = Custom + (1 * modifier);
+                    break;
+                case Provider.GOG:
+                    GOG = GOG + (1 * modifier);
+                    break;
+                case Provider.Origin:
+                    Origin = Origin + (1 * modifier);
+                    break;
+                case Provider.Steam:
+                    Steam = Steam + (1 * modifier);
+                    break;
+            }
         }
     }
 }

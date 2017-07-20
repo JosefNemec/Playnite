@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Playnite.Database;
 using Playnite.Models;
 using System.Collections.ObjectModel;
+using Playnite;
 
 namespace PlayniteUI.Controls
 {
@@ -36,11 +37,12 @@ namespace PlayniteUI.Controls
             set
             {
                 ItemsView.ItemsSource = value;
+                var list = value as ListCollectionView;
 
-                if (value is ObservableCollection<IGame>)
+                if (list.SourceCollection is RangeObservableCollection<GameViewEntry>)
                 {
-                    ((ObservableCollection<IGame>)value).CollectionChanged -= GamesGridView_CollectionChanged;
-                    ((ObservableCollection<IGame>)value).CollectionChanged += GamesGridView_CollectionChanged;
+                    ((RangeObservableCollection<GameViewEntry>)list.SourceCollection).CollectionChanged -= GamesGridView_CollectionChanged;
+                    ((RangeObservableCollection<GameViewEntry>)list.SourceCollection).CollectionChanged += GamesGridView_CollectionChanged;
                 }
             }
         }
@@ -64,11 +66,11 @@ namespace PlayniteUI.Controls
                 {
                     return;
                 }
-
+                                
                 var game = (IGame)GameDetails.DataContext;
-                foreach (IGame removedGame in e.OldItems)
+                foreach (GameViewEntry entry in e.OldItems)
                 {
-                    if (game.Id == removedGame.Id)
+                    if (game.Id == entry.Game.Id)
                     {
                         GameDetails.DataContext = null;
                         CloseDetailBorder_MouseLeftButtonDown(this, null);
@@ -93,8 +95,11 @@ namespace PlayniteUI.Controls
                 ColumnDetails.Width = lastDetailsWidht;
             }
 
-            GameDetails.DataContext = (IGame)((FrameworkElement)sender).DataContext;
-            ItemsView.ScrollIntoView(GameDetails.DataContext);
+            var entry = (GameViewEntry)((FrameworkElement)sender).DataContext;
+            var game = entry.Game;
+
+            GameDetails.DataContext = game;
+            ItemsView.ScrollIntoView(entry);
         }
 
         private void ZoomIn_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -109,7 +114,8 @@ namespace PlayniteUI.Controls
 
         private void PlayGame_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            var game = (IGame)((FrameworkElement)e.OriginalSource).DataContext;
+            var entry = (GameViewEntry)((FrameworkElement)e.OriginalSource).DataContext;
+            var game = entry.Game;
 
             if (game.IsInstalled)
             {
@@ -131,6 +137,24 @@ namespace PlayniteUI.Controls
         private void ShowDetails_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             ShowDetails(e.OriginalSource);
+        }
+
+        private void Expander_Collapsed(object sender, RoutedEventArgs e)
+        {
+            var category = (CategoryView)((CollectionViewGroup)((Expander)sender).DataContext).Name;
+            if (!Settings.Instance.CollapsedCategories.Contains(category.Category))
+            {
+                Settings.Instance.CollapsedCategories.Add(category.Category);
+            }
+        }
+
+        private void Expander_Expanded(object sender, RoutedEventArgs e)
+        {
+            var category = (CategoryView)((CollectionViewGroup)((Expander)sender).DataContext).Name;
+            if (Settings.Instance.CollapsedCategories.Contains(category.Category))
+            {
+                Settings.Instance.CollapsedCategories.Remove(category.Category);
+            }
         }
     }
 }

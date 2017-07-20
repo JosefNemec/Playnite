@@ -17,6 +17,7 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <playniteUI:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
         <playniteUI:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
+        <playniteUI:BoolToCategoryExpander x:Key="BoolToCategoryExpander" />
         <sys:Boolean x:Key="True">True</sys:Boolean>
         <sys:Boolean x:Key="False">False</sys:Boolean>
         <playniteUI:ValueConverterGroup x:Key="EnumCompVisibilityConverterInverted">
@@ -79,7 +80,8 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="GroupItem">
-                                                    <Expander Header="{Binding Name, TargetNullValue='None'}" IsExpanded="true">
+                                                    <Expander Header="{Binding Mode=OneWay}" Collapsed="Expander_Collapsed" Expanded="Expander_Expanded"
+                                                              IsExpanded="{Binding Path=Name, Mode=OneWay, Converter={StaticResource BoolToCategoryExpander}}">
                                                         <ItemsPresenter />
                                                     </Expander>
                                                 </ControlTemplate>

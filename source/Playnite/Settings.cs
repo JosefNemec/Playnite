@@ -62,6 +62,21 @@ namespace Playnite
             }
         }
 
+        private List<string> collapsedCategories = new List<string>();
+        public List<string> CollapsedCategories
+        {
+            get
+            {
+                return collapsedCategories;
+            }
+
+            set
+            {
+                collapsedCategories = value;
+                OnPropertyChanged("CollapsedCategories");
+            }
+        }
+
         private bool firstTimeWizardComplete;
         public bool FirstTimeWizardComplete
         {

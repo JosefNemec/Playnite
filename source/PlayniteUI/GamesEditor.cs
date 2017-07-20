@@ -16,12 +16,13 @@ using System.Drawing;
 using System.Windows.Media.Imaging;
 using NLog;
 using System.ComponentModel;
+using LiteDB;
 
 namespace PlayniteUI
 {
     public class GamesEditor : INotifyPropertyChanged
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
 
         private static GamesEditor instance;
         public static GamesEditor Instance
@@ -41,7 +42,7 @@ namespace PlayniteUI
         {
             get
             {
-                return GameDatabase.Instance.Games.OrderByDescending(a => a.LastActivity).Where(a => a.LastActivity != null).Take(10);
+                return GameDatabase.Instance.GamesCollection?.Find(Query.All("LastActivity", Query.Descending), limit: 10).Where(a => a.LastActivity != null);
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;

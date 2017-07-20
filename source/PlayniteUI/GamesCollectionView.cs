@@ -1,4 +1,6 @@
-﻿using Playnite.Models;
+﻿using Playnite;
+using Playnite.Database;
+using Playnite.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -146,39 +148,139 @@ namespace PlayniteUI
         }
     }
 
+    public enum GamesViewType
+    {
+        Standard,
+        CategoryGrouped
+    }
+
     public class GamesCollectionView
     {
-        public ObservableCollection<GameViewEntry> Items
+        private GameDatabase database;
+
+        private GamesViewType? viewType = null;
+        public GamesViewType? ViewType
+        {
+            get => viewType;
+            set
+            {
+                if (value == viewType)
+                {
+                    return;
+                }
+
+                SetViewType(value);
+                viewType = value;
+            }
+        }
+
+        public RangeObservableCollection<GameViewEntry> Items
         {
             get; set;
         }
 
-        public GamesCollectionView(ObservableCollection<IGame> items)
+        public GamesCollectionView(GameDatabase database)
         {
-            items.CollectionChanged += Items_CollectionChanged;
-
-            Items = new ObservableCollection<GameViewEntry>(items.SelectMany(x =>
-            {
-                if (x.Categories == null || x.Categories.Count == 0)
-                {
-                    return new List<GameViewEntry>()
-                    {
-                        new GameViewEntry(x, null)
-                    };
-                }
-                else
-                {
-                    return x.Categories.Select(c =>
-                    {
-                        return new GameViewEntry(x, c);
-                    });
-                }
-            }));
+            this.database = database;
+            database.GamesCollectionChanged += Database_GamesCollectionChanged;
+            database.GameUpdated += Database_GameUpdated;
+            Items = new RangeObservableCollection<GameViewEntry>();
         }
 
-        private void Items_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        public void SetViewType(GamesViewType? viewType)
         {
+            if (viewType == ViewType)
+            {
+                return;
+            }
+            
+            switch (viewType)
+            {
+                case GamesViewType.Standard:
+                    Items.Clear();
+                    Items.AddRange(database.GamesCollection.FindAll().Select(x => new GameViewEntry(x, string.Empty)));
 
+                    break;
+
+                case GamesViewType.CategoryGrouped:
+                    Items.Clear();
+                    Items.AddRange(database.GamesCollection.FindAll().SelectMany(x =>
+                    {
+                        if (x.Categories == null || x.Categories.Count == 0)
+                        {
+                            return new List<GameViewEntry>()
+                            {
+                                new GameViewEntry(x, null)
+                            };
+                        }
+                        else
+                        {
+                            return x.Categories.Select(c =>
+                            {
+                                return new GameViewEntry(x, c);
+                            });
+                        }
+                    }));
+
+                    break;
+            }
+
+            this.viewType = viewType;
+        }
+
+        private void Database_GameUpdated(object sender, GameUpdatedEventArgs args)
+        {
+            if (args.OldData.Categories.IsListEqual(args.NewData.Categories))
+            {
+                foreach (var item in Items)
+                {
+                    if (item.Game.Id == args.NewData.Id)
+                    {
+                        args.NewData.CopyProperties(item.Game, true);
+                    }
+                }
+            }
+            else
+            {
+                Database_GamesCollectionChanged(this, new GamesCollectionChangedEventArgs(
+                    new List<IGame>() { args.NewData },
+                    new List<IGame>() { args.NewData }));
+            }
+        }
+
+        private void Database_GamesCollectionChanged(object sender, GamesCollectionChangedEventArgs args)
+        {
+            foreach (var game in args.RemovedGames)
+            {
+                foreach (var item in Items.ToList())
+                {
+                    if (item.Game.Id == game.Id)
+                    {
+                        Items.Remove(item);
+                    }
+                }
+            }
+
+            foreach (var game in args.AddedGames)
+            {
+                switch (ViewType)
+                {
+                    case GamesViewType.Standard:
+                        Items.Add(new GameViewEntry(game, string.Empty));
+                        break;
+
+                    case GamesViewType.CategoryGrouped:
+                        if (game.Categories == null || game.Categories.Count == 0)
+                        {
+                            Items.Add(new GameViewEntry(game, string.Empty));
+                        }
+                        else
+                        {
+                            Items.AddRange(game.Categories.Select(a => new GameViewEntry(game, a)));
+                        }
+                        break;
+                }
+            }
         }
     }
 }

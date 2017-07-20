@@ -16,6 +16,7 @@
         <local:BoolToAutoWidthConverter x:Key="BoolToAutoWidthConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <local:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
+        <local:BoolToCategoryExpander x:Key="BoolToCategoryExpander" />
     </UserControl.Resources>
 
     <Grid>
@@ -28,7 +29,7 @@
             <ListBox Name="ListGames" SelectionMode="Extended" BorderThickness="0,0,1,0" BorderBrush="{StaticResource NormalBorderBrush}"
                      SelectionChanged="GamesListList_SelectionChanged" Width="310"
                      DockPanel.Dock="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                     VirtualizingPanel.IsVirtualizingWhenGrouping="True">
+                     VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Standard">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                         <EventSetter Event="MouseRightButtonUp" Handler="ListItem_MouseRightButtonUp" />
@@ -42,7 +43,8 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-                                            <Expander Header="{Binding Mode=OneWay}" IsExpanded="True" Margin="5,0,0,0">
+                                            <Expander Header="{Binding Mode=OneWay}" Margin="5,0,0,0" Collapsed="Expander_Collapsed" Expanded="Expander_Expanded"
+                                                      IsExpanded="{Binding Path=Name, Mode=OneWay, Converter={StaticResource BoolToCategoryExpander}}">
                                                 <ItemsPresenter />
                                             </Expander>
                                         </ControlTemplate>
@@ -59,7 +61,7 @@
                                 <Image.Source>
                                     <PriorityBinding>
                                         <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
-                                        <!--<Binding Path="DefaultIcon" Mode="OneTime"/>-->
+                                        <Binding Path="DefaultIcon" Mode="OneTime"/>
                                     </PriorityBinding>
                                 </Image.Source>
                             </Image>                                
