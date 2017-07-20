@@ -14,7 +14,7 @@
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         xmlns:tray="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
-        Title="Playnite Beta"
+        Title="Playnite"
         Width="1200" Height="900"  WindowStartupLocation="CenterScreen" Icon="/Images/applogo.ico"
         Background="{StaticResource ControlBackgroundBrush}"
         Loaded="Window_Loaded" Closed="WindowMain_Closed" Closing="WindowMain_Closing" StateChanged="WindowMain_StateChanged"

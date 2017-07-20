@@ -45,8 +45,8 @@ Section -openlogfile
 SectionEnd
 
 !define AppExecutable "PlayniteUI.exe"
-Name "Playnite ${VERSION} Beta"
-Caption "Playnite ${VERSION} Beta Setup"
+Name "Playnite ${VERSION}"
+Caption "Playnite ${VERSION} Setup"
 InstallDir $PROGRAMFILES\Playnite
 RequestExecutionLevel admin
 AutoCloseWindow true

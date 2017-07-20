@@ -29,7 +29,7 @@ namespace PlayniteUI
         {
             get
             {
-                return "Playnite " + Update.GetCurrentVersion().ToString(2) + " Beta";
+                return "Playnite " + Update.GetCurrentVersion().ToString(2);
             }
         }
 
