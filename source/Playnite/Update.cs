@@ -168,7 +168,7 @@ namespace Playnite
 
             Application.Current.Dispatcher.Invoke(() =>
             {
-                Application.Current.MainWindow.Close();
+                Application.Current.Shutdown();
             });
         }     
         
