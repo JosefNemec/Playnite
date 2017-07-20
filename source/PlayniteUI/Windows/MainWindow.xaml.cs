@@ -192,7 +192,7 @@ namespace PlayniteUI
                     var game = GameDatabase.Instance.GamesCollection.FindById(int.Parse(args.Args));
                     if (game == null)
                     {
-                        logger.Error("Cannot start game, game {0} not found.", args.Command);
+                        logger.Error("Cannot start game, game {0} not found.", args.Args);
                     }
                     else
                     {
@@ -309,6 +309,15 @@ namespace PlayniteUI
                 LiteDBImageToImageConverter.ClearCache();
                 GamesView = new GamesCollectionView(database);
                 BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
+
+                try
+                {
+                    GamesEditor.Instance.UpdateJumpList();
+                }
+                catch (Exception exc)
+                {
+                    logger.Error(exc, "Failed to set update JumpList data: ");
+                }
 
                 MainCollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(GamesView.Items);
                 ListGamesView.ItemsSource = MainCollectionView;
