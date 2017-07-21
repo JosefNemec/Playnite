@@ -1833,13 +1833,23 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="TabStripPlacement" Value="Left">
-                            <Setter Property="LayoutTransform" TargetName="grid">
+                            <Setter Property="LayoutTransform" TargetName="ContentSite">
                                 <Setter.Value>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1" ScaleY="1" />
                                         <SkewTransform AngleX="0" AngleY="0" />
-                                        <RotateTransform Angle="-90" />
+                                        <RotateTransform Angle="90" />
                                         <TranslateTransform X="0" Y="0" />
+                                    </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="LayoutTransform" TargetName="grid">
+                                <Setter.Value>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                        <SkewTransform AngleX="0" AngleY="0"/>
+                                        <RotateTransform Angle="270"/>
+                                        <TranslateTransform X="0" Y="0"/>
                                     </TransformGroup>
                                 </Setter.Value>
                             </Setter>
@@ -1850,7 +1860,7 @@
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1" ScaleY="1" />
                                         <SkewTransform AngleX="0" AngleY="0" />
-                                        <RotateTransform Angle="90" />
+                                        <RotateTransform Angle="0" />
                                         <TranslateTransform X="0" Y="0" />
                                     </TransformGroup>
                                 </Setter.Value>
