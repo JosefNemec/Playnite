@@ -87,7 +87,7 @@ namespace Playnite.Database
             Name = name;
             Data = data;
         }
-    }
+    }    
 
     public class GameDatabase
     {
@@ -559,6 +559,21 @@ namespace Playnite.Database
                     logger.Info("Removing game {0} which is no longer in {1} library", dbGame.ProviderId, dbGame.Provider);
                     DeleteGame(dbGame);
                 }
+            }
+        }
+
+        public void ImportCategories(List<IGame> sourceGames)
+        {
+            foreach (var game in sourceGames)
+            {
+                var dbGame = GamesCollection.FindOne(a => a.Provider == game.Provider && a.ProviderId == game.ProviderId);
+                if (dbGame == null)
+                {
+                    continue;
+                }
+
+                dbGame.Categories = game.Categories;
+                UpdateGameInDatabase(dbGame);
             }
         }
     }

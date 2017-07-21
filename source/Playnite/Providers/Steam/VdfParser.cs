@@ -121,7 +121,7 @@ namespace Playnite.Providers.Steam
     /// <summary>
     /// Parser for binary base vdf Valve files
     /// </summary>
-    [Obsolete("Do not use without further testing and fixing.", true)]
+    [Obsolete("Do not use without further testing and fixing.", false)]
     public class VdfParser
     {
         enum ValueType : byte

@@ -334,6 +334,85 @@ namespace Playnite.Providers.Steam
             game.IsProviderDataUpdated = true;
             return metadata;
         }
+
+        public List<IGame> GetCategorizedGames(ulong steamId)
+        {
+            var id = new SteamID(steamId);
+            var result = new List<IGame>();
+            var vdf = Path.Combine(SteamSettings.InstallationPath, "userdata", id.AccountID.ToString(), "7", "remote", "sharedconfig.vdf");
+            var sharedconfig = new KeyValue();
+            sharedconfig.ReadFileAsText(vdf);
+
+            var apps = sharedconfig["Software"]["Valve"]["Steam"]["apps"];
+            foreach (var app in apps.Children)
+            {
+                if (app["tags"].Children.Count == 0)
+                {
+                    continue;
+                }
+
+                var appData = new List<string>();
+                foreach (var tag in app["tags"].Children)
+                {
+                    appData.Add(tag.Value);
+                }
+
+                result.Add(new Game()
+                {
+                    Provider = Provider.Steam,
+                    ProviderId = app.Name,
+                    Categories = appData
+                });
+            }
+
+            return result;
+        }
+
+        public List<LocalSteamUser> GetSteamUsers()
+        {
+            var users = new List<LocalSteamUser>();
+            var path = Path.Combine(SteamSettings.InstallationPath, "config", "loginusers.vdf");
+            if (File.Exists(path))
+            {
+                var config = new KeyValue();
+                config.ReadFileAsText(path);
+                foreach (var user in config.Children)
+                {
+                    users.Add(new LocalSteamUser()
+                    {
+                        Id = ulong.Parse(user.Name),
+                        AccountName = user["AccountName"].Value,
+                        PersonaName = user["PersonaName"].Value,
+                        Recent = user["mostrecent"].AsBoolean()
+                    });                    
+                }
+            }
+
+            return users;
+        }
+    }
+
+    public class LocalSteamUser
+    {
+        public ulong Id
+        {
+            get; set;
+        }
+
+        public string AccountName
+        {
+            get; set;
+        }
+
+        public string PersonaName
+        {
+            get; set;
+        }
+
+        public bool Recent
+        {
+            get; set;
+        }
     }
 
     public class SteamGameMetadata : GameMetadata

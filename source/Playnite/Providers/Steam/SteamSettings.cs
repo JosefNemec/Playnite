@@ -9,6 +9,12 @@ using SteamKit2;
 
 namespace Playnite.Providers.Steam
 {
+    public enum SteamIdSource
+    {
+        Name,
+        LocalUser
+    }
+
     public class SteamSettings
     {
         public static string DefaultIcon
@@ -37,56 +43,30 @@ namespace Playnite.Providers.Steam
             }
         }
 
-        private string accountName = string.Empty;
+        public SteamIdSource IdSource
+        {
+            get; set;
+        } = SteamIdSource.LocalUser;           
+
+        public ulong AccountId
+        {
+            get; set;
+        }
+
         public string AccountName
         {
-            get
-            {
-                return accountName;
-            }
+            get; set;
+        } = string.Empty;
 
-            set
-            {
-                if (accountName != value)
-                {
-                    accountName = value;
-                }
-            }
-        }
-
-        private bool libraryDownloadEnabled = false;
         public bool LibraryDownloadEnabled
         {
-            get
-            {
-                return libraryDownloadEnabled;
-            }
-
-            set
-            {
-                if (libraryDownloadEnabled != value)
-                {
-                    libraryDownloadEnabled = value;
-                }
-            }
-        }
-
-        private bool integrationEnabled = false;
+            get; set;
+        } = false;
+                
         public bool IntegrationEnabled
         {
-            get
-            {
-                return integrationEnabled;
-            }
-
-            set
-            {
-                if (integrationEnabled != value)
-                {
-                    integrationEnabled = value;
-                }
-            }
-        }
+            get; set;
+        } = false;
 
         public static bool IsInstalled
         {

@@ -446,7 +446,7 @@
                 </DoubleAnimationUsingKeyFrames>
             </Storyboard>
         </ControlTemplate.Resources>
-        <BulletDecorator Background="Transparent" x:Name="bulletDecorator">
+        <BulletDecorator Background="Transparent" x:Name="bulletDecorator" VerticalAlignment="Center">
             <BulletDecorator.Bullet>
                 <Grid Width="18" Height="18">
                     <Ellipse Height="16" Margin="1" x:Name="Background" Width="16" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" />

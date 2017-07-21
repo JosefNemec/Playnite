@@ -52,6 +52,9 @@ namespace PlayniteUI
             }
         }
 
+        private bool importSteamCatWizard = false;
+        private ulong importSteamCatWizardId = 0;
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private static object gamesLock = new object();
         private WindowPositionHandler positionManager;
@@ -130,6 +133,8 @@ namespace PlayniteUI
 
                 if (window.ShowDialog() == true)
                 {
+                    config.SteamSettings.IdSource = window.SteamImportLibByName ? SteamIdSource.Name : SteamIdSource.LocalUser;
+                    Config.SteamSettings.AccountId = window.SteamIdLibImport;
                     Config.SteamSettings.IntegrationEnabled = window.SteamEnabled;
                     Config.SteamSettings.LibraryDownloadEnabled = window.SteamImportLibrary;
                     Config.SteamSettings.AccountName = window.SteamAccountName;
@@ -137,6 +142,8 @@ namespace PlayniteUI
                     Config.GOGSettings.LibraryDownloadEnabled = window.GogImportLibrary;
                     Config.OriginSettings.IntegrationEnabled = window.OriginEnabled;
                     Config.OriginSettings.LibraryDownloadEnabled = window.OriginImportLibrary;
+                    importSteamCatWizard = window.SteamImportCategories;
+                    importSteamCatWizardId = window.SteamIdCategoryImport;
 
                     if (window.DatabaseLocation == FirstTimeStartupWindow.DbLocation.Custom)
                     {
@@ -410,7 +417,15 @@ namespace PlayniteUI
                     {
                         if (Config.SteamSettings.IntegrationEnabled && Config.SteamSettings.LibraryDownloadEnabled)
                         {
-                            database.SteamUserName = Config.SteamSettings.AccountName;
+                            if (config.SteamSettings.IdSource == SteamIdSource.Name)
+                            {
+                                database.SteamUserName = Config.SteamSettings.AccountName;
+                            }
+                            else
+                            {
+                                database.SteamUserName = Config.SteamSettings.AccountId.ToString();
+                            }
+
                             database.UpdateOwnedGames(Provider.Steam);
                             NotificationsWin.RemoveMessage(NotificationCodes.SteamLibDownloadError);
                         }
@@ -422,6 +437,25 @@ namespace PlayniteUI
                         {
 
                         }));
+                    }
+
+                    if (importSteamCatWizard && importSteamCatWizardId != 0)
+                    {
+                        ProgressControl.Text = "Importing Steam categories...";
+
+                        try
+                        {
+                            var steamLib = new SteamLibrary();
+                            GameDatabase.Instance.ImportCategories(steamLib.GetCategorizedGames(importSteamCatWizardId));
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to import Steam categories.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamLibDownloadError, "Failed to import Steam categories: " + e.Message, NotificationType.Error, () =>
+                            {
+
+                            }));
+                        }
                     }
 
                     ProgressControl.Text = "Downloading Origin library updates...";

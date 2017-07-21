@@ -15,7 +15,7 @@ namespace PlayniteTests.Providers.Steam
     {
         [Test]
         [Description("Basic verification testing that installed games can be fetched from local client.")]
-        public void GetInstalledGames_Basic()
+        public void GetInstalledGamesTest()
         {
             var steamLib = new SteamLibrary();
             var games = steamLib.GetInstalledGames();
@@ -53,6 +53,30 @@ namespace PlayniteTests.Providers.Steam
             Assert.IsNotNull(nonExisting.Icon.Data);
             Assert.IsNotNull(nonExisting.Image.Data);
             Assert.IsNotNull(nonExisting.BackgroundImage);
+        }
+
+        [Test]
+        public void GetCategorizedGamesTest()
+        {
+            var steamLib = new SteamLibrary();
+            var user = steamLib.GetSteamUsers().First(a => a.Recent);
+            var cats = steamLib.GetCategorizedGames(user.Id);
+            var game = cats.First();
+            CollectionAssert.IsNotEmpty(cats);
+            CollectionAssert.IsNotEmpty(game.Categories);
+            Assert.IsFalse(string.IsNullOrEmpty(game.ProviderId));
+            Assert.AreEqual(game.Provider, Playnite.Models.Provider.Steam);
+        }
+
+        [Test]
+        public void GetSteamUsersTest()
+        {
+            var steamLib = new SteamLibrary();
+            var users = steamLib.GetSteamUsers();
+            CollectionAssert.IsNotEmpty(users);
+            var user = users.First();
+            Assert.IsFalse(string.IsNullOrEmpty(user.AccountName));
+            Assert.IsFalse(string.IsNullOrEmpty(user.PersonaName));
         }
     }
 }
