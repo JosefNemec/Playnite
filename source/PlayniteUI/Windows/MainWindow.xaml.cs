@@ -92,6 +92,7 @@ namespace PlayniteUI
 
         public MainWindow()
         {
+            Config = Settings.Instance;
             InitializeComponent();
             positionManager = new WindowPositionHandler(this, "Main");
             Application.Current.MainWindow = this;
@@ -99,9 +100,7 @@ namespace PlayniteUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Config = Settings.Instance;
             NotificationsWin.AutoOpen = true;
-
             positionManager.RestoreSizeAndLocation(Config);
 
             GogSettings.DefaultIcon = @"/Images/gogicon.png";
