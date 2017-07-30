@@ -90,6 +90,11 @@ namespace PlayniteUI
             get; set;
         }
 
+        public ThirdPartyToolsList ThirdPartyTools
+        {
+            get; set;
+        }
+
         public MainWindow()
         {
             Config = Settings.Instance;
@@ -113,6 +118,8 @@ namespace PlayniteUI
             CustomGameSettings.DefaultImage = @"/Images/custom_cover_background.png";
             CustomGameSettings.DefaultBackgroundImage = @"/Images/default_background.png";
 
+            LoadThirdPartyTools();
+
             Config.PropertyChanged += Config_PropertyChanged;
             Config.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
 
@@ -122,7 +129,7 @@ namespace PlayniteUI
             FilterSelector.DataContext = new FilterSelectorConfig(gamesStats, Config.FilterSettings);
             CheckFilterView.DataContext = Config.FilterSettings;
             GridGamesView.HeaderMenu.DataContext = Config;
-            
+
             if (!Config.FirstTimeWizardComplete)
             {
                 var window = new FirstTimeStartupWindow()
@@ -475,10 +482,10 @@ namespace PlayniteUI
 
                         }));
                     }
-                    
+
                     ProgressControl.Text = "Downloading images and game details...";
                     ProgressControl.ProgressMin = 0;
-                    
+
                     var gamesCount = 0;
                     gamesCount = database.GamesCollection.Count(a => a.Provider != Provider.Custom && !a.IsProviderDataUpdated);
                     if (gamesCount > 0)
@@ -512,7 +519,7 @@ namespace PlayniteUI
                     Task.WaitAll(tasks.ToArray());
 
                     ProgressControl.Text = "Library update finished";
-                    
+
                     Thread.Sleep(1500);
                     ProgressControl.Visible = Visibility.Collapsed;
                 });
@@ -740,7 +747,7 @@ namespace PlayniteUI
             {
                 return;
             }
-            
+
             using (MainCollectionView.DeferRefresh())
             {
                 if (e == null)
@@ -849,7 +856,7 @@ namespace PlayniteUI
                 MainCollectionView.IsLiveSorting = true;
                 MainCollectionView.IsLiveFiltering = true;
                 MainCollectionView.IsLiveGrouping = true;
-            }            
+            }
         }
 
         private void FilterSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -1099,6 +1106,33 @@ namespace PlayniteUI
                     logger.Error(exc, "Failed to post user usage data.");
                 }
             });
+        }
+
+        private void LoadThirdPartyTools()
+        {
+            try
+            {
+                ThirdPartyTools = new ThirdPartyToolsList();
+                ThirdPartyTools.SetTools(ThirdPartyTools.GetDefaultInstalledTools());
+            }
+            catch (Exception exc)
+            {
+                logger.Error(exc, "Failed to load 3rd party tool list.");
+            }
+}
+
+        private void ThirdPartyToolMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var item = sender as MenuItem;
+                var tool = item.DataContext as ThirdPartyTool;
+                tool.Start();
+            }
+            catch (Exception exc)
+            {
+                logger.Error(exc, "Failed to start 3rd party tool.");
+            }
         }
     }
 }

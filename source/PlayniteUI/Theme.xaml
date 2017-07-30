@@ -1608,7 +1608,7 @@
                         </Grid>
                         <Popup IsOpen="{Binding Path=IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Right" x:Name="SubMenuPopup" Focusable="false" AllowsTransparency="true" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
                             <Grid x:Name="SubMenu">
-                            <Border x:Name="SubMenuBorder" Background="{DynamicResource NormalBrushLight}" BorderBrush="{DynamicResource NormalBorderBrush}" BorderThickness="2"/>
+                                <Border x:Name="SubMenuBorder" BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}" BorderThickness="2"/>
                                 <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
                             </Grid>
                         </Popup>
