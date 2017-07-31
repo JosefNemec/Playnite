@@ -1580,88 +1580,161 @@
         </Setter>
     </Style>
 
-    <Style TargetType="MenuItem">
-        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+    <Style TargetType="Menu">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type MenuItem}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition MinWidth="17" Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIGTColumnGroup" />
-                            <ColumnDefinition Width="14" />
-                        </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0" Grid.ColumnSpan="4" Background="{DynamicResource HoverBrush}" Opacity="0" x:Name="HoverBorder" />
-                        <ContentPresenter Margin="4,0,6,0" x:Name="Icon" VerticalAlignment="Center" ContentSource="Icon" />
-                        <Grid Visibility="Hidden" Margin="8,0,6,0" x:Name="GlyphPanel" VerticalAlignment="Center">
-                            <Path x:Name="GlyphPanelpath" VerticalAlignment="Center" Fill="{TemplateBinding Foreground}" Data="M0,2 L0,4.8 L2.5,7.4 L7.1,2.8 L7.1,0 L2.5,4.6 z" FlowDirection="LeftToRight" />
-                        </Grid>
-                        <TextBlock VerticalAlignment="Center" Grid.Column="1" Padding="5" x:Name="HeaderHost" Foreground="{TemplateBinding Foreground}"
-                                    Style="{StaticResource BaseTextBlockStyle}">
-                            <ContentPresenter RecognizesAccessKey="True" ContentSource="Header"/>
-                        </TextBlock>
-                        <Grid Grid.Column="3" Margin="4,0,6,0" x:Name="ArrowPanel" VerticalAlignment="Center">
-                            <Path x:Name="ArrowPanelPath" VerticalAlignment="Center" Fill="{TemplateBinding Foreground}" Data="M0,0 L0,8 L4,4 z" />
-                        </Grid>
-                        <Popup IsOpen="{Binding Path=IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Right" x:Name="SubMenuPopup" Focusable="false" AllowsTransparency="true" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
-                            <Grid x:Name="SubMenu">
-                                <Border x:Name="SubMenuBorder" BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}" BorderThickness="2"/>
-                                <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
-                            </Grid>
-                        </Popup>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="Role" Value="TopLevelHeader">
-                            <Setter Property="Margin" Value="0,1,0,1" />
-                            <Setter Property="Padding" Value="6,3,6,3" />
-                            <Setter Property="Grid.IsSharedSizeScope" Value="true" />
-                            <Setter Property="Placement" Value="Bottom" TargetName="SubMenuPopup" />
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="ArrowPanel" />
-                        </Trigger>
-                        <Trigger Property="Role" Value="TopLevelItem">
-                            <Setter Property="Margin" Value="0,1,0,1" />
-                            <Setter Property="Padding" Value="6,3,6,3" />
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="ArrowPanel" />
-                        </Trigger>
-                        <Trigger Property="Role" Value="SubmenuHeader">
-                            <Setter Property="DockPanel.Dock" Value="Top" />
-                            <Setter Property="Padding" Value="0,2,0,2" />
-                            <Setter Property="Grid.IsSharedSizeScope" Value="true" />
-                        </Trigger>
-                        <Trigger Property="Role" Value="SubmenuItem">
-                            <Setter Property="DockPanel.Dock" Value="Top" />
-                            <Setter Property="Padding" Value="0,2,0,2" />
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="ArrowPanel" />
-                        </Trigger>
-                        <Trigger Property="IsSuspendingPopupAnimation" Value="true">
-                            <Setter Property="PopupAnimation" Value="None" TargetName="SubMenuPopup" />
-                        </Trigger>
-                        <Trigger Property="Icon" Value="{x:Null}">
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="Icon" />
-                        </Trigger>
-                        <Trigger Property="IsChecked" Value="true">
-                            <Setter Property="Visibility" Value="Visible" TargetName="GlyphPanel" />
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="Icon" />
-                        </Trigger>
-                        <Trigger Property="AllowsTransparency" SourceName="SubMenuPopup" Value="true">
-                            <Setter Property="Margin" Value="0,0,3,3" TargetName="SubMenu" />
-                            <Setter Property="SnapsToDevicePixels" Value="true" TargetName="SubMenu" />
-                            <Setter Property="BitmapEffect" Value="{DynamicResource PopupDropShadow}" TargetName="SubMenuBorder" />
-                        </Trigger>
-                        <Trigger Property="IsHighlighted" Value="true">
-                            <Setter Property="Opacity" Value="1" TargetName="HoverBorder" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="0.5" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
+                <ControlTemplate TargetType="Menu">
+                    <Border BorderThickness="0" Background="{TemplateBinding Background}">
+                        <StackPanel ClipToBounds="True" Orientation="Horizontal" IsItemsHost="True" />
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!-- TopLevelHeader -->
+    <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
+        <Border x:Name="Border">
+            <Grid>
+                <Border Background="{DynamicResource HoverBrush}" Opacity="0" x:Name="HoverBorder" />
+                <TextBlock VerticalAlignment="Center" Padding="5" x:Name="HeaderHost" Foreground="{TemplateBinding Foreground}" 
+                           Style="{StaticResource BaseTextBlockStyle}">
+                    <ContentPresenter Margin="6,3,6,3" ContentSource="Header" RecognizesAccessKey="True" />
+                </TextBlock>
+                <Popup x:Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
+                    <Border x:Name="SubmenuBorder" SnapsToDevicePixels="True" BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}" BorderThickness="2">
+                        <StackPanel Grid.IsSharedSizeScope="True" IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter Property="Opacity" Value="1" TargetName="HoverBorder" />
+                <Setter Property="Opacity" Value="1" TargetName="SubmenuBorder" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    
+    <!-- TopLevelItem -->
+    <ControlTemplate x:Key="{x:Static MenuItem.TopLevelItemTemplateKey}" TargetType="{x:Type MenuItem}">
+        <Border x:Name="Border" BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}" BorderThickness="2">
+            <Grid>
+                <ContentPresenter Margin="6,3,6,3" ContentSource="Header" RecognizesAccessKey="True" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- SubmenuHeader -->
+    <ControlTemplate x:Key="{x:Static MenuItem.SubmenuHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="16" Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
+                <ColumnDefinition Width="*" SharedSizeGroup="MenuItemIGTColumnGroup" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Grid.ColumnSpan="3" Background="{DynamicResource HoverBrush}" Opacity="0" x:Name="HoverBorder" />
+            <ContentPresenter Grid.Column="0" Margin="4,0,0,0" x:Name="Icon" VerticalAlignment="Center" ContentSource="Icon" />
+            <Grid Grid.Column="0" Visibility="Hidden" Margin="4,0,0,0" x:Name="GlyphPanel" VerticalAlignment="Center">
+                <TextBlock FontFamily="Marlett" Text="a" VerticalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}" />
+            </Grid>
+            <TextBlock VerticalAlignment="Center" Grid.Column="1" Padding="5" x:Name="HeaderHost" Foreground="{TemplateBinding Foreground}" Style="{StaticResource BaseTextBlockStyle}">
+                <ContentPresenter RecognizesAccessKey="True" ContentSource="Header"/>
+            </TextBlock>
+            <Grid Grid.Column="2" Margin="0,0,5,0" x:Name="ArrowPanel" VerticalAlignment="Center">
+                <TextBlock FontFamily="Marlett" Text="4" VerticalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}" />
+            </Grid>
+            <Popup IsOpen="{Binding Path=IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Right" x:Name="SubMenuPopup" Focusable="false" AllowsTransparency="true" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
+                <Grid x:Name="SubMenu">
+                    <Border x:Name="SubMenuBorder" BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}" BorderThickness="2"/>
+                    <StackPanel Grid.IsSharedSizeScope="True" IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                </Grid>
+            </Popup>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter Property="Visibility" Value="Collapsed" TargetName="Icon" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="true">
+                <Setter Property="Visibility" Value="Visible" TargetName="GlyphPanel" />
+                <Setter Property="Visibility" Value="Collapsed" TargetName="Icon" />
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter Property="Opacity" Value="1" TargetName="HoverBorder" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- SubmenuItem -->
+    <ControlTemplate x:Key="{x:Static MenuItem.SubmenuItemTemplateKey}" TargetType="{x:Type MenuItem}">
+        <Grid>
+            <Border Background="{DynamicResource HoverBrush}" Opacity="0" x:Name="HoverBorder" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="16" Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
+                    <ColumnDefinition Width="*" SharedSizeGroup="MenuItemIGTColumnGroup" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter Grid.Column="0" Margin="4,0,0,0" x:Name="Icon" VerticalAlignment="Center" ContentSource="Icon" />
+                <Grid Grid.Column="0" Visibility="Hidden" Margin="4,0,0,0" x:Name="GlyphPanel" VerticalAlignment="Center">
+                    <TextBlock FontFamily="Marlett" Text="a" VerticalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}" />
+                </Grid>
+                <TextBlock VerticalAlignment="Center" Grid.Column="1" Margin="0,0,5,0" Padding="5" x:Name="HeaderHost" Foreground="{TemplateBinding Foreground}" Style="{StaticResource BaseTextBlockStyle}">
+                    <ContentPresenter RecognizesAccessKey="True" ContentSource="Header"/>
+                </TextBlock>
+            </Grid>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter Property="Visibility" Value="Collapsed" TargetName="Icon" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="true">
+                <Setter Property="Visibility" Value="Visible" TargetName="GlyphPanel" />
+                <Setter Property="Visibility" Value="Collapsed" TargetName="Icon" />
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter Property="Opacity" Value="1" TargetName="HoverBorder" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="MenuItem">
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Style.Triggers>
+            <Trigger Property="Role" Value="TopLevelHeader">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.TopLevelHeaderTemplateKey}}" />
+                <Setter Property="Grid.IsSharedSizeScope" Value="true" />
+            </Trigger>
+            <Trigger Property="Role" Value="TopLevelItem">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.TopLevelItemTemplateKey}}" />
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuHeader">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.SubmenuHeaderTemplateKey}}" />
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuItem">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.SubmenuItemTemplateKey}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
     <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Template">
             <Setter.Value>
