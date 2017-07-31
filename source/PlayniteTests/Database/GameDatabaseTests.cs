@@ -280,13 +280,21 @@ namespace PlayniteTests.Database
                 games = db.GamesCollection.FindAll().ToList();
                 Assert.AreEqual(3, games[0].OtherTasks.Count);
 
+                // Changes made in built in task are preserved
+                Assert.IsTrue(games[0].OtherTasks[0].IsBuiltIn);
+                var task = games[0].OtherTasks[0].Name = "Changed name";
+                db.UpdateGameInDatabase(games[0]);
+                db.UpdateInstalledGames(provider);
+                Assert.AreEqual(games[0].OtherTasks[0].Name, "Changed name");
+
+                // Built in tasks are not removed when game is uninstalled
                 installedGames.Clear();
                 installedGames.AddRange(CreateGameList(provider));
                 installedGames.RemoveAt(0);
                 db.UpdateInstalledGames(provider);
                 games = db.GamesCollection.FindAll().ToList();
-                Assert.AreEqual(1, games[0].OtherTasks.Count);
-                Assert.AreEqual("User Task", games[0].OtherTasks[0].Name);
+                Assert.AreEqual(3, games[0].OtherTasks.Count);
+                Assert.AreEqual("Changed name", games[0].OtherTasks[0].Name);
             }
         }
 

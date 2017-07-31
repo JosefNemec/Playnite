@@ -469,7 +469,8 @@ namespace Playnite.Database
                     existingGame.PlayTask = newGame.PlayTask;
                     existingGame.InstallDirectory = newGame.InstallDirectory;
 
-                    if (newGame.OtherTasks != null)
+                    // Don't import custom action if imported already (user may changed them manually and this would overwrite it)
+                    if (existingGame.OtherTasks?.FirstOrDefault(a => a.IsBuiltIn) == null && newGame.OtherTasks != null)
                     {
                         if (existingGame.OtherTasks == null)
                         {
@@ -504,11 +505,6 @@ namespace Playnite.Database
                 {
                     game.PlayTask = null;
                     game.InstallDirectory = string.Empty;
-                    if (game.OtherTasks != null)
-                    {
-                        game.OtherTasks = new ObservableCollection<GameTask>(game.OtherTasks.Where(a => !a.IsBuiltIn));
-                    }
-
                     UpdateGameInDatabase(game);
                 }
             }
