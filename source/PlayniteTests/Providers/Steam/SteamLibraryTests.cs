@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Playnite.Providers.Steam;
+using Playnite.Models;
 
 namespace PlayniteTests.Providers.Steam
 {
@@ -53,6 +54,18 @@ namespace PlayniteTests.Providers.Steam
             Assert.IsNotNull(nonExisting.Icon.Data);
             Assert.IsNotNull(nonExisting.Image.Data);
             Assert.IsNotNull(nonExisting.BackgroundImage);
+        }
+
+        [Test]
+        public void WorkshopDetectionTest()
+        {
+            var steamLib = new SteamLibrary();
+
+            // Supports workshop
+            Assert.IsTrue(steamLib.GetGameSupportsWorkshop(289070));
+
+            // Doesn't support workshop
+            Assert.IsFalse(steamLib.GetGameSupportsWorkshop(7200));
         }
 
         [Test]

@@ -25,6 +25,11 @@ namespace Playnite.Providers.Steam
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
 
+        private string GetGameWorkshopUrl(int id)
+        {
+            return $"http://steamcommunity.com/app/{id}/workshop/";
+        }
+
         public IGame GetInstalledGameFromFile(string path)
         {
             var kv = new KeyValue();
@@ -77,7 +82,7 @@ namespace Playnite.Providers.Steam
                 {
                     // Steam can generate invalid acf file according to issue #37
                     logger.Error(exc, "Failed to get information about installed game from {0}: ", path);
-                }                
+                }
             }
 
             return games;
@@ -118,7 +123,7 @@ namespace Playnite.Providers.Steam
             if (string.IsNullOrEmpty(userName))
             {
                 throw new Exception("Steam user name cannot be empty.");
-            }           
+            }
 
             var games = new List<IGame>();
 
@@ -182,7 +187,7 @@ namespace Playnite.Providers.Steam
                 if (newIcon.Name != null)
                 {
                     iconRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
-                    iconUrl = string.Format(iconRoot, id, newIcon.Value);   
+                    iconUrl = string.Format(iconRoot, id, newIcon.Value);
                 }
             }
 
@@ -192,13 +197,13 @@ namespace Playnite.Providers.Steam
                 var iconName = Path.GetFileName(new Uri(iconUrl).AbsolutePath);
                 var iconData = Web.DownloadData(iconUrl);
                 metadata.Icon = new FileDefinition(
-                
+
                     string.Format("images/steam/{0}/{1}", id.ToString(), iconName),
                     iconName,
                     iconData
                 );
             }
-             
+
 
             // Image
             var imageRoot = @"http://cdn.akamai.steamstatic.com/steam/apps/{0}/header.jpg";
@@ -231,7 +236,7 @@ namespace Playnite.Providers.Steam
             if (imageData != null)
             {
                 var imageName = Path.GetFileName(new Uri(imageUrl).AbsolutePath);
-                metadata.Image = new FileDefinition(                
+                metadata.Image = new FileDefinition(
                     string.Format("images/steam/{0}/{1}", id.ToString(), imageName),
                     imageName,
                     imageData
@@ -244,6 +249,23 @@ namespace Playnite.Providers.Steam
             return metadata;
         }
 
+        public bool GetGameSupportsWorkshop(int id)
+        {
+            var workshopLink = GetGameWorkshopUrl(id);
+            var workshopRequest = WebRequest.Create(workshopLink) as HttpWebRequest;
+            workshopRequest.UserAgent = @"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36)";
+            workshopRequest.Timeout = 10000;
+            var response = workshopRequest.GetResponse();
+            if (response.ResponseUri.AbsoluteUri.Contains("workshop"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public SteamGameMetadata UpdateGameWithMetadata(IGame game)
         {
             var metadata = DownloadGameMetadata(int.Parse(game.ProviderId));
@@ -254,6 +276,11 @@ namespace Playnite.Providers.Steam
                 new Link("Store", @"http://store.steampowered.com/app/" + game.ProviderId),
                 new Link("Wiki", @"http://pcgamingwiki.com/api/appid.php?appid=" + game.ProviderId)
             };
+
+            if (GetGameSupportsWorkshop(int.Parse(game.ProviderId)))
+            {
+                game.Links.Add(new Link("Workshop", GetGameWorkshopUrl(int.Parse(game.ProviderId))));
+            }
 
             if (metadata.StoreDetails != null)
             {
