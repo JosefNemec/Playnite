@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using Playnite.Models;
 using System.Diagnostics;
+using Playnite.Providers.Steam;
 
 namespace PlayniteUI.Windows
 {
@@ -57,6 +58,14 @@ namespace PlayniteUI.Windows
                 {
                     return loginOKMessage;
                 }
+            }
+        }
+
+        public List<LocalSteamUser> SteamUsers
+        {
+            get
+            {
+                return new SteamLibrary().GetSteamUsers();
             }
         }
 
@@ -175,6 +184,26 @@ namespace PlayniteUI.Windows
                 OnPropertyChanged("SteamAccountName");
             }
         }
+
+        public bool SteamImportCategories
+        {
+            get; set;
+        } = true;
+
+        public bool SteamImportLibByName
+        {
+            get; set;
+        } = false;
+
+        public ulong SteamIdLibImport
+        {
+            get; set;
+        } = 0;
+
+        public ulong SteamIdCategoryImport
+        {
+            get; set;
+        } = 0;
         #endregion Steam
 
         #region GOG
@@ -220,6 +249,45 @@ namespace PlayniteUI.Windows
             }
         }
 
+        private string selectedPage
+        {
+            get
+            {
+                return (TabMain.SelectedItem as TabItem).Header.ToString();
+            }
+        }
+
+        private Dictionary<string, Func<FirstTimeStartupWindow, bool>> pageValidators = new Dictionary<string, Func<FirstTimeStartupWindow,bool>>()
+        {
+            {
+                "Steam", (window) =>
+                {
+                    if (window.SteamImportLibrary)
+                    {
+                        if (window.SteamImportLibByName && string.IsNullOrEmpty(window.SteamAccountName))
+                        {
+                            MessageBox.Show("Steam account name cannot be empty.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return false;
+                        }
+
+                        if (!window.SteamImportLibByName && window.SteamIdLibImport == 0)
+                        {
+                            MessageBox.Show("No Steam account selected for library import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return false;
+                        }
+                    }
+
+                    if (window.SteamImportCategories && window.SteamIdCategoryImport == 0)
+                    {
+                        MessageBox.Show("No Steam account selected for category import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
+        };
+
         public FirstTimeStartupWindow()
         {
             InitializeComponent();
@@ -248,19 +316,27 @@ namespace PlayniteUI.Windows
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
+            if (pageValidators.ContainsKey(selectedPage))
+            {
+                if (pageValidators[selectedPage](this) == false)
+                {
+                    return;
+                }
+            }
+
             TabMain.SelectedIndex = TabMain.SelectedIndex + 1;
             
-            if ((TabMain.SelectedItem as TabItem).Header.ToString() == "Steam" && !SteamEnabled)
+            if (selectedPage == "Steam" && !SteamEnabled)
             {
                 TabMain.SelectedIndex = TabMain.SelectedIndex + 1;
             }
 
-            if ((TabMain.SelectedItem as TabItem).Header.ToString() == "GOG" && !GOGEnabled)
+            if (selectedPage == "GOG" && !GOGEnabled)
             {
                 TabMain.SelectedIndex = TabMain.SelectedIndex + 1;
             }
 
-            if ((TabMain.SelectedItem as TabItem).Header.ToString() == "Origin" && !OriginEnabled)
+            if (selectedPage == "Origin" && !OriginEnabled)
             {
                 TabMain.SelectedIndex = TabMain.SelectedIndex + 1;
             }
@@ -270,17 +346,17 @@ namespace PlayniteUI.Windows
         {
             TabMain.SelectedIndex = TabMain.SelectedIndex - 1;
 
-            if ((TabMain.SelectedItem as TabItem).Header.ToString() == "Origin" && !OriginEnabled)
+            if (selectedPage == "Origin" && !OriginEnabled)
             {
                 TabMain.SelectedIndex = TabMain.SelectedIndex - 1;
             }
 
-            if ((TabMain.SelectedItem as TabItem).Header.ToString() == "GOG" && !GOGEnabled)
+            if (selectedPage == "GOG" && !GOGEnabled)
             {
                 TabMain.SelectedIndex = TabMain.SelectedIndex - 1;
             }
 
-            if ((TabMain.SelectedItem as TabItem).Header.ToString() == "Steam" && !SteamEnabled)
+            if (selectedPage == "Steam" && !SteamEnabled)
             {
                 TabMain.SelectedIndex = TabMain.SelectedIndex - 1;
             }

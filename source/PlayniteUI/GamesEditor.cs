@@ -42,7 +42,7 @@ namespace PlayniteUI
         {
             get
             {
-                return GameDatabase.Instance.GamesCollection?.Find(Query.All("LastActivity", Query.Descending), limit: 10).Where(a => a.LastActivity != null);
+                return GameDatabase.Instance.GamesCollection?.Find(Query.All("LastActivity", Query.Descending))?.Where(a => a.LastActivity != null && a.IsInstalled)?.Take(10);
             }
         }
 
@@ -101,19 +101,34 @@ namespace PlayniteUI
 
         public void PlayGame(IGame game)
         {
+            // Set parent for message boxes in this method
+            // because this method can be invoked from tray icon which otherwise bugs the dialog
+            if (GameDatabase.Instance.GamesCollection.FindOne(a => a.ProviderId == game.ProviderId) == null)
+            {
+                MessageBox.Show(Application.Current.MainWindow, $"Cannot start game. '{game.Name}' was not found in database.", "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);                
+                OnPropertyChanged("LastGames");
+                UpdateJumpList();
+                return;
+            }
+
             try
             {
-                game.PlayGame();
+                if (game.IsInstalled)
+                {
+                    game.PlayGame();
+                }
+                else
+                {
+                    game.InstallGame();
+                }
+
+                GameDatabase.Instance.UpdateGameInDatabase(game);
             }
             catch (Exception exc)
             {
                 logger.Error(exc, "Cannot start game: ");
-                MessageBox.Show("Cannot start game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Application.Current.MainWindow, "Cannot start game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            finally
-            {
-                GameDatabase.Instance.UpdateGameInDatabase(game);
-            }            
 
             try
             {
@@ -171,15 +186,12 @@ namespace PlayniteUI
             try
             {
                 game.InstallGame();
+                GameDatabase.Instance.UpdateGameInDatabase(game);
             }
             catch (Exception exc)
             {
                 logger.Error(exc, "Cannot install game: ");
                 MessageBox.Show("Cannot install game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                GameDatabase.Instance.UpdateGameInDatabase(game);
             }
         }
 
@@ -188,15 +200,12 @@ namespace PlayniteUI
             try
             {
                 game.UninstallGame();
+                GameDatabase.Instance.UpdateGameInDatabase(game);
             }
             catch (Exception exc)
             {
                 logger.Error(exc, "Cannot un-install game: ");
                 MessageBox.Show("Cannot un-install game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                GameDatabase.Instance.UpdateGameInDatabase(game);
             }
         }
 

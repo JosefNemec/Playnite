@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IWshRuntimeLibrary;
+using Microsoft.Win32;
 
 namespace Playnite
 {
@@ -33,6 +34,44 @@ namespace Playnite
         public override string ToString()
         {
             return Name;
+        }
+    }
+
+    public class UninstallProgram
+    {
+        public string DisplayIcon
+        {
+            get; set;
+        }
+
+        public string DisplayName
+        {
+            get; set;
+        }
+
+        public string DisplayVersion
+        {
+            get; set;
+        }
+
+        public string InstallLocation
+        {
+            get; set;
+        }
+
+        public string Publisher
+        {
+            get; set;
+        }
+
+        public string UninstallString
+        {
+            get; set;
+        }
+
+        public string URLInfoAbout
+        {
+            get; set;
         }
     }
 
@@ -159,6 +198,46 @@ namespace Playnite
             apps.AddRange(GetShortcutProgramsFromFolder(userPath));
 
             return apps;
+        }
+
+        private static List<UninstallProgram> GetUninstallProgsFromView(RegistryView view)
+        {
+            var rootString = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\";
+            var progs = new List<UninstallProgram>();
+            var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, view);
+            var keyList = root.OpenSubKey(rootString);
+
+            foreach (var key in keyList.GetSubKeyNames())
+            {
+                var prog = root.OpenSubKey(rootString + key);
+                var program = new UninstallProgram()
+                {
+                    DisplayIcon = prog.GetValue("DisplayIcon")?.ToString(),
+                    DisplayVersion = prog.GetValue("DisplayVersion")?.ToString(),
+                    DisplayName = prog.GetValue("DisplayName")?.ToString(),
+                    InstallLocation = prog.GetValue("InstallLocation")?.ToString(),
+                    Publisher = prog.GetValue("Publisher")?.ToString(),
+                    UninstallString = prog.GetValue("UninstallString")?.ToString(),
+                    URLInfoAbout = prog.GetValue("URLInfoAbout")?.ToString()
+                };
+
+                progs.Add(program);
+            }
+
+            return progs;
+        }
+
+        public static List<UninstallProgram> GetUnistallProgramsList()
+        {
+            var progs = new List<UninstallProgram>();
+
+            if (Environment.Is64BitOperatingSystem)
+            {
+                progs.AddRange(GetUninstallProgsFromView(RegistryView.Registry64));
+            }
+
+            progs.AddRange(GetUninstallProgsFromView(RegistryView.Registry32));
+            return progs;
         }
     }
 }

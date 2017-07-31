@@ -4,14 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlayniteUI"
+        xmlns:steam="clr-namespace:Playnite.Providers.Steam;assembly=Playnite"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="Configuration" Width="550" Height="360"
+        Title="Configuration" Width="580" Height="420"
         AutomationProperties.AutomationId="WindowSettings"
         Background="{StaticResource NormalBrush}">
 
     <Window.Resources>
         <local:NegateConverter x:Key="NegateConverter" />
+        <local:EnumConverter x:Key="EnumConverter" />
+        <sys:Double x:Key="IconSize">24</sys:Double>
         
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </Window.Resources>    
@@ -25,9 +29,15 @@
                 <Button Name="ButtonOK" Click="ButtonOK_Click" Content="OK" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}" />
             </DockPanel>
-            <TabControl DockPanel.Dock="Bottom">
-                <TabItem Header="General" >
-                    <StackPanel Margin="10" >
+            <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Left">                
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/applogo.png" Width="{StaticResource IconSize}" RenderOptions.BitmapScalingMode="Fant" />
+                            <TextBlock Text="General" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel Margin="10">
                         <DockPanel Visibility="Collapsed">
                             <TextBlock Text="{DynamicResource LanguageSettingsLabel}" VerticalAlignment="Center" Margin="5,0,10,0" />
                             <ComboBox Name="ComboLanguage" SelectedValuePath="Tag" SelectedValue="{Binding Language, UpdateSourceTrigger=Explicit}">
@@ -36,7 +46,7 @@
                             </ComboBox>
                         </DockPanel>
 
-                        <Label Content="Database location:" Margin="5,20,0,5"/>
+                        <Label Content="Database location:" Margin="5,5,0,5"/>
                         <DockPanel Margin="5">
                             <Button Name="ButtonBrowserDbFile" Content="..." DockPanel.Dock="Right" Padding="5,0,5,0"
                                     Click="ButtonBrowserDbFile_Click"/>                        
@@ -44,8 +54,12 @@
                                      DockPanel.Dock="Left" Margin="0,0,5,0"/>
                         </DockPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                            <StackPanel>
+                        <Grid Margin="0,20,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
                                 <CheckBox Name="CheckEnableTray" Content="Show Tray Icon" Margin="5,0,0,0"
                                           IsChecked="{Binding EnableTray, UpdateSourceTrigger=Explicit}" />
                                 <CheckBox Name="CheckMinimizeToTray" Content="Minimize to tray" Margin="20,10,5,5"
@@ -55,12 +69,18 @@
                                           IsChecked="{Binding CloseToTray, UpdateSourceTrigger=Explicit}"
                                           IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
                             </StackPanel>
-                            <CheckBox Name="CheckMinimizeLaunch" Content="Minimize after starting game" VerticalAlignment="Top" Margin="70,0,0,0"
-                                      IsChecked="{Binding MinimizeAfterLaunch, UpdateSourceTrigger=Explicit}"/>
-                        </StackPanel>
+                            <CheckBox Name="CheckMinimizeLaunch" Content="Minimize after starting game" VerticalAlignment="Top"
+                                      IsChecked="{Binding MinimizeAfterLaunch, UpdateSourceTrigger=Explicit}" Grid.Column="1"/>
+                        </Grid>
                     </StackPanel>
                 </TabItem>                
-                <TabItem Header="Steam">
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/steamicon.png" Width="{StaticResource IconSize}" RenderOptions.BitmapScalingMode="Fant" />
+                            <TextBlock Text="Steam" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </TabItem.Header>
                     <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding SteamSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
                                   Name="CheckSteamEnabled" Content="Import Steam Games" HorizontalAlignment="Left"  VerticalAlignment="Center"
@@ -73,21 +93,61 @@
                         <RadioButton Name="RadioLibrarySteam" Content="Import complete library"
                                      IsChecked="{Binding SteamSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
-                                     DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                                     DockPanel.Dock="Top" Margin="20,5,5,0"/>
 
-                        <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5">
-                            <Label Content="Account name:" DockPanel.Dock="Left" VerticalContentAlignment="Center"/>
-                            <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">           
-                                <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name" RequestNavigate="Hyperlink_RequestNavigate">
-                                    What's my account name?
-                                </Hyperlink>
-                            </TextBlock>
-                            <TextBox Text="{Binding SteamSettings.AccountName, UpdateSourceTrigger=Explicit}"
-                                     Name="TextSteamAccountName" DockPanel.Dock="Left" Margin="10,0,10,0" IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}"/>
+                        <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
+                            <TextBlock Text="Specify user library by:" DockPanel.Dock="Top" Margin="5"/>
+                            <Grid DockPanel.Dock="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <RadioButton Content="Name" Name="RadioSteamLibName" GroupName="steamsource"
+                                             IsChecked="{Binding SteamSettings.IdSource, UpdateSourceTrigger=Explicit, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.Name}}"
+                                             Grid.Column="0" Grid.Row="0" Margin="5"/>
+                                <RadioButton Content="Local User" Name="RadioSteamLibAccount" GroupName="steamsource" 
+                                             IsChecked="{Binding SteamSettings.IdSource, UpdateSourceTrigger=Explicit, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.LocalUser}}"
+                                             Grid.Column="0" Grid.Row="1" Margin="5"/>
+
+                                <DockPanel Grid.Column="1" Grid.Row="0" Margin="5">
+                                    <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">           
+                                        <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name" RequestNavigate="Hyperlink_RequestNavigate">
+                                            What's my account name?
+                                        </Hyperlink>
+                                    </TextBlock>
+                                    <TextBox Text="{Binding SteamSettings.AccountName, UpdateSourceTrigger=Explicit}"
+                                             IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}"
+                                             Name="TextSteamAccountName" DockPanel.Dock="Left" Margin="0,0,10,0" />
+                                </DockPanel>
+                                <ComboBox IsReadOnly="True" Name="ComboSteamAccount" DisplayMemberPath="AccountName"
+                                          SelectedValuePath="Id" SelectedValue="{Binding SteamSettings.AccountId, UpdateSourceTrigger=Explicit}"
+                                          ItemsSource="{Binding SteamUsers, RelativeSource={RelativeSource AncestorType=Window}}"
+                                          IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"
+                                          Grid.Column="1" Grid.Row="1" Margin="5" />
+                            </Grid>
                         </DockPanel>
+                        <TextBlock Text="Import Steam Categories:" DockPanel.Dock="Top" Margin="5,20,5,5" />
+                        <StackPanel DockPanel.Dock="Top" Margin="20,10,5,5" Orientation="Horizontal">
+                            <Button Content="Import" Name="ButtonImportSteamCategories" Click="ButtonImportSteamCategories_Click" />
+                            <TextBlock Text="from account:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <ComboBox Name="ComboSteamCatImport" IsReadOnly="True" Margin="10,0,0,0"
+                                      DisplayMemberPath="AccountName" SelectedValuePath="Id" SelectedIndex="0"
+                                      ItemsSource="{Binding SteamUsers, RelativeSource={RelativeSource AncestorType=Window}}" />
+                        </StackPanel>
                     </DockPanel>
                 </TabItem>
-                <TabItem Header="GOG" >
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/gogicon.png" Width="{StaticResource IconSize}" RenderOptions.BitmapScalingMode="Fant" />
+                            <TextBlock Text="GOG" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </TabItem.Header>
                     <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding GOGSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
                                   Name="CheckGogEnabled" Content="Import GOG Games" HorizontalAlignment="Left"  VerticalAlignment="Center"
@@ -122,7 +182,13 @@
                                   DockPanel.Dock="Top" Margin="5,15,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"/>
                     </DockPanel>
                 </TabItem>
-                <TabItem Header="Origin" >
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/originicon.png" Width="{StaticResource IconSize}" RenderOptions.BitmapScalingMode="Fant" />
+                            <TextBlock Text="Origin" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </TabItem.Header>
                     <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding OriginSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
                                   Name="CheckOriginEnabled" Content="Import Origin Games" HorizontalAlignment="Left"  VerticalAlignment="Center"

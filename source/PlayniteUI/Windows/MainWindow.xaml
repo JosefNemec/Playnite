@@ -87,12 +87,23 @@
                     </StackPanel>
                 </Border>                
                 <DockPanel.ContextMenu>
-                    <ContextMenu StaysOpen="False" Name="MenuMainMenu" Placement="Bottom">                        
+                    <ContextMenu StaysOpen="False" Name="MenuMainMenu" Placement="Bottom"
+                                 DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget.DataContext}">                        
                         <MenuItem Header="Add Game..." Click="AddNewGame_Click" IsEnabled="{Binding GameAdditionAllowed}"/>
                         <MenuItem Header="Add Installed Game(s)..." Click="AddInstalledGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
                         <Separator Style="{DynamicResource {x:Type Separator}}" />
                         <MenuItem Header="Reload Games List" Click="ReloadGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
                         <MenuItem Header="Settings..." Click="Settings_Click" />
+                        <Separator Style="{DynamicResource {x:Type Separator}}" />
+                        <MenuItem Header="Open 3rd Party Client" ItemsSource="{Binding ThirdPartyTools.Tools}">
+                            <MenuItem.ItemContainerStyle>
+                                <Style TargetType="MenuItem">
+                                    <Setter Property="Header" Value="{Binding Name}" />
+                                    <EventSetter Event="Click" Handler="ThirdPartyToolMenuItem_Click" />
+                                </Style>
+                            </MenuItem.ItemContainerStyle>
+                        </MenuItem>
+                        <Separator Style="{DynamicResource {x:Type Separator}}" />
                         <MenuItem Header="About Playnite..." Click="About_Click" />
                         <MenuItem Header="Request Feature or Report Issue..." Click="Issue_Click" />
                         <Separator Style="{DynamicResource {x:Type Separator}}" />

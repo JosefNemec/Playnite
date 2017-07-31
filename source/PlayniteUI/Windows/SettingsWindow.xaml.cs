@@ -14,6 +14,9 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.ComponentModel;
+using Playnite.Providers.Steam;
+using Playnite.Database;
+using NLog;
 
 namespace PlayniteUI
 {
@@ -22,6 +25,8 @@ namespace PlayniteUI
     /// </summary>
     public partial class SettingsWindow : Window, INotifyPropertyChanged
     {
+        private Logger logger = LogManager.GetCurrentClassLogger();
+
         private string loginReuiredMessage = "Login Required";
         private string loginOKMessage = "OK";
 
@@ -77,6 +82,14 @@ namespace PlayniteUI
             }
         }
 
+        public List<LocalSteamUser> SteamUsers
+        {
+            get
+            {
+                return new SteamLibrary().GetSteamUsers();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public SettingsWindow()
@@ -91,9 +104,15 @@ namespace PlayniteUI
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
-            if (RadioLibrarySteam.IsChecked == true && string.IsNullOrEmpty(TextSteamAccountName.Text))
+            if ((RadioLibrarySteam.IsChecked == true && RadioSteamLibName.IsChecked == true) && string.IsNullOrEmpty(TextSteamAccountName.Text))
             {
                 MessageBox.Show("Steam account name cannot be empty.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (RadioLibrarySteam.IsChecked == true && RadioSteamLibAccount.IsChecked == true && ((ulong)ComboSteamAccount.SelectedValue) == 0)
+            {
+                MessageBox.Show("No Steam account selected for library import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -122,6 +141,21 @@ namespace PlayniteUI
             {
                 providerIntegrationChanged = true;
                 steamDownloadLib.UpdateSource();
+            }
+
+            RadioButton radioSteam = RadioSteamLibName.IsChecked == true ? RadioSteamLibName : RadioSteamLibAccount;
+            var steamIdSource = radioSteam.GetBindingExpression(RadioButton.IsCheckedProperty);
+            if (steamIdSource.IsDirty)
+            {
+                providerIntegrationChanged = true;
+                steamIdSource.UpdateSource();
+            }
+
+            var steamAccount = ComboSteamAccount.GetBindingExpression(ComboBox.SelectedValueProperty);
+            if (steamAccount.IsDirty)
+            {
+                providerIntegrationChanged = true;
+                steamAccount.UpdateSource();
             }
 
             var steamAccountName = TextSteamAccountName.GetBindingExpression(TextBox.TextProperty);
@@ -246,6 +280,41 @@ namespace PlayniteUI
         public void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private void ButtonImportSteamCategories_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("This will overwrite current categories on all Steam games. Do you want to continue?",
+                "Import Categories?", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            if (ComboSteamCatImport.SelectedValue == null)
+            {
+                MessageBox.Show("Cannot import categories, account for import is not selected.", "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                var userId = (ulong)ComboSteamCatImport.SelectedValue;
+                var steamLib = new SteamLibrary();
+                var games = steamLib.GetCategorizedGames(userId);
+
+                if (GameDatabase.Instance.GamesCollection == null)
+                {
+                    throw new Exception("Playnite database is not opened.");
+                }
+
+                GameDatabase.Instance.ImportCategories(games);
+                MessageBox.Show("Import finished.", "Import Successful");
+            }
+            catch (Exception exc)
+            {
+                logger.Error(exc, "Failed to import Steam categories.");
+                MessageBox.Show("Failed to import Steam categories: " + exc.Message, "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

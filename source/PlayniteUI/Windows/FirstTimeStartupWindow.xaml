@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="First Time Configuration" WindowStartupLocation="CenterOwner"
         Background="{StaticResource NormalBrush}"
-        Height="330" Width="500" Name="WindowMain"
+        Height="370" Width="500" Name="WindowMain"
         AutomationProperties.AutomationId="WindowWizard">
 
     <Window.Resources>
@@ -58,7 +58,7 @@
                 <DockPanel Margin="20" LastChildFill="False">
                     <TextBlock Text="External Library Integration" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
                     <TextBlock Text="Automatically import games from following services:" DockPanel.Dock="Top" Margin="5,20,5,0"/>
-                    <TextBlock Text="(newly added games will be automatically imported during application start)" DockPanel.Dock="Top" Margin="5,0,5,5"/>
+                    <TextBlock Text="(newly added games will be automatically imported during application start)" DockPanel.Dock="Top" Margin="5,0,5,5" TextWrapping="Wrap"/>
                     <CheckBox Content="Steam" IsChecked="{Binding SteamEnabled, ElementName=WindowMain}"
                               DockPanel.Dock="Top" Margin="5" Name="CheckEnableSteam" />
                     <CheckBox Content="GOG" IsChecked="{Binding GOGEnabled, ElementName=WindowMain}"
@@ -79,17 +79,50 @@
                     <RadioButton Name="RadioLibrarySteam" Content="Import complete library" GroupName="steam"
                                  IsChecked="{Binding SteamImportLibrary, ElementName=WindowMain}"
                                  DockPanel.Dock="Top" Margin="5"/>
-                    <DockPanel DockPanel.Dock="Top" Margin="30,5,5,5">
-                        <TextBlock Text="Account name:" VerticalAlignment="Center" />
-                        <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">           
-                            <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"  RequestNavigate="Hyperlink_RequestNavigate">
-                                What's my account name?
-                            </Hyperlink>
-                        </TextBlock>
-                        <TextBox Name="TextSteamAccount" AcceptsReturn="False" Margin="10,0,10,0" 
-                                 Text="{Binding SteamAccountName, ElementName=WindowMain}"
-                                 IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}"/>
+
+                    <DockPanel DockPanel.Dock="Top" Margin="25,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
+                        <TextBlock Text="Specify user library by:" DockPanel.Dock="Top" Margin="5"/>
+                        <Grid DockPanel.Dock="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <RadioButton Content="Name" Name="RadioSteamLibName" GroupName="steamsource"
+                                         Grid.Column="0" Grid.Row="0" Margin="5"
+                                         IsChecked="{Binding SteamImportLibByName, ElementName=WindowMain}"/>
+                            <RadioButton Content="Local User" Name="RadioSteamLibAccount" GroupName="steamsource"
+                                         Grid.Column="0" Grid.Row="1" Margin="5"
+                                         IsChecked="{Binding SteamImportLibByName, ElementName=WindowMain, Converter={StaticResource NegateConverter}}"/>
+                            <DockPanel Grid.Column="1" Grid.Row="0" Margin="5">
+                                <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">           
+                                        <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name" RequestNavigate="Hyperlink_RequestNavigate">
+                                            What's my account name?
+                                        </Hyperlink>
+                                </TextBlock>
+                                <TextBox Text="{Binding SteamAccountName, ElementName=WindowMain}"
+                                         IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}"
+                                         Name="TextSteamAccount" DockPanel.Dock="Left" Margin="0,0,10,0" />
+                            </DockPanel>
+                            <ComboBox IsReadOnly="True" Name="ComboSteamAccount" DisplayMemberPath="AccountName" SelectedValuePath="Id" SelectedIndex="0"                                      
+                                      ItemsSource="{Binding SteamUsers, ElementName=WindowMain}"
+                                      SelectedValue="{Binding SteamIdLibImport, ElementName=WindowMain}"
+                                      IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"
+                                      Grid.Column="1" Grid.Row="1" Margin="5" />
+                        </Grid>
                     </DockPanel>
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,5,0,0">
+                        <CheckBox Name="CheckSteamImportCat" Content="Import categories from account:" DockPanel.Dock="Top" Margin="5"
+                                  IsChecked="{Binding SteamImportCategories, ElementName=WindowMain}"/>
+                        <ComboBox IsReadOnly="True" Name="ComboSteamAccountCatImport" DisplayMemberPath="AccountName" SelectedValuePath="Id" SelectedIndex="0"                                      
+                                  ItemsSource="{Binding SteamUsers, ElementName=WindowMain}"
+                                  SelectedValue="{Binding SteamIdCategoryImport, ElementName=WindowMain}"
+                                  IsEnabled="{Binding IsChecked, ElementName=CheckSteamImportCat}" />
+                    </StackPanel>                    
                 </DockPanel>
             </TabItem>
             <TabItem Header="GOG" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">

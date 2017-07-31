@@ -280,13 +280,21 @@ namespace PlayniteTests.Database
                 games = db.GamesCollection.FindAll().ToList();
                 Assert.AreEqual(3, games[0].OtherTasks.Count);
 
+                // Changes made in built in task are preserved
+                Assert.IsTrue(games[0].OtherTasks[0].IsBuiltIn);
+                var task = games[0].OtherTasks[0].Name = "Changed name";
+                db.UpdateGameInDatabase(games[0]);
+                db.UpdateInstalledGames(provider);
+                Assert.AreEqual(games[0].OtherTasks[0].Name, "Changed name");
+
+                // Built in tasks are not removed when game is uninstalled
                 installedGames.Clear();
                 installedGames.AddRange(CreateGameList(provider));
                 installedGames.RemoveAt(0);
                 db.UpdateInstalledGames(provider);
                 games = db.GamesCollection.FindAll().ToList();
-                Assert.AreEqual(1, games[0].OtherTasks.Count);
-                Assert.AreEqual("User Task", games[0].OtherTasks[0].Name);
+                Assert.AreEqual(3, games[0].OtherTasks.Count);
+                Assert.AreEqual("Changed name", games[0].OtherTasks[0].Name);
             }
         }
 
@@ -484,7 +492,7 @@ namespace PlayniteTests.Database
         {
             var game = new Game()
             {
-                ProviderId = "12150",
+                ProviderId = "289070",
                 Name = "Temp Name",
                 Provider = Provider.Steam
             };
@@ -501,13 +509,14 @@ namespace PlayniteTests.Database
                 Assert.IsNotNull(game.ReleaseDate);
                 Assert.IsNotNull(game.Genres);
                 Assert.IsNotNull(game.Developers);
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Description));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Forum").Url));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Store").Url));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Wiki").Url));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Icon));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Image));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.BackgroundImage));
+                Assert.IsFalse(string.IsNullOrEmpty(game.Description));
+                Assert.IsFalse(string.IsNullOrEmpty(game.Links.First(a => a.Name == "Forum").Url));
+                Assert.IsFalse(string.IsNullOrEmpty(game.Links.First(a => a.Name == "Store").Url));
+                Assert.IsFalse(string.IsNullOrEmpty(game.Links.First(a => a.Name == "Wiki").Url));
+                Assert.IsFalse(string.IsNullOrEmpty(game.Links.First(a => a.Name == "Workshop").Url));
+                Assert.IsFalse(string.IsNullOrEmpty(game.Icon));
+                Assert.IsFalse(string.IsNullOrEmpty(game.Image));
+                Assert.IsFalse(string.IsNullOrEmpty(game.BackgroundImage));
 
                 var files = db.Database.FileStorage.FindAll();
                 Assert.AreEqual(2, files.Count());

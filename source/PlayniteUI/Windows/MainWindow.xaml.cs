@@ -52,6 +52,9 @@ namespace PlayniteUI
             }
         }
 
+        private bool importSteamCatWizard = false;
+        private ulong importSteamCatWizardId = 0;
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private static object gamesLock = new object();
         private WindowPositionHandler positionManager;
@@ -87,8 +90,14 @@ namespace PlayniteUI
             get; set;
         }
 
+        public ThirdPartyToolsList ThirdPartyTools
+        {
+            get; set;
+        }
+
         public MainWindow()
         {
+            Config = Settings.Instance;
             InitializeComponent();
             positionManager = new WindowPositionHandler(this, "Main");
             Application.Current.MainWindow = this;
@@ -96,9 +105,7 @@ namespace PlayniteUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Config = Settings.Instance;
             NotificationsWin.AutoOpen = true;
-
             positionManager.RestoreSizeAndLocation(Config);
 
             GogSettings.DefaultIcon = @"/Images/gogicon.png";
@@ -111,6 +118,8 @@ namespace PlayniteUI
             CustomGameSettings.DefaultImage = @"/Images/custom_cover_background.png";
             CustomGameSettings.DefaultBackgroundImage = @"/Images/default_background.png";
 
+            LoadThirdPartyTools();
+
             Config.PropertyChanged += Config_PropertyChanged;
             Config.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
 
@@ -120,7 +129,7 @@ namespace PlayniteUI
             FilterSelector.DataContext = new FilterSelectorConfig(gamesStats, Config.FilterSettings);
             CheckFilterView.DataContext = Config.FilterSettings;
             GridGamesView.HeaderMenu.DataContext = Config;
-            
+
             if (!Config.FirstTimeWizardComplete)
             {
                 var window = new FirstTimeStartupWindow()
@@ -130,6 +139,8 @@ namespace PlayniteUI
 
                 if (window.ShowDialog() == true)
                 {
+                    config.SteamSettings.IdSource = window.SteamImportLibByName ? SteamIdSource.Name : SteamIdSource.LocalUser;
+                    Config.SteamSettings.AccountId = window.SteamIdLibImport;
                     Config.SteamSettings.IntegrationEnabled = window.SteamEnabled;
                     Config.SteamSettings.LibraryDownloadEnabled = window.SteamImportLibrary;
                     Config.SteamSettings.AccountName = window.SteamAccountName;
@@ -137,6 +148,8 @@ namespace PlayniteUI
                     Config.GOGSettings.LibraryDownloadEnabled = window.GogImportLibrary;
                     Config.OriginSettings.IntegrationEnabled = window.OriginEnabled;
                     Config.OriginSettings.LibraryDownloadEnabled = window.OriginImportLibrary;
+                    importSteamCatWizard = window.SteamImportCategories;
+                    importSteamCatWizardId = window.SteamIdCategoryImport;
 
                     if (window.DatabaseLocation == FirstTimeStartupWindow.DbLocation.Custom)
                     {
@@ -410,7 +423,15 @@ namespace PlayniteUI
                     {
                         if (Config.SteamSettings.IntegrationEnabled && Config.SteamSettings.LibraryDownloadEnabled)
                         {
-                            database.SteamUserName = Config.SteamSettings.AccountName;
+                            if (config.SteamSettings.IdSource == SteamIdSource.Name)
+                            {
+                                database.SteamUserName = Config.SteamSettings.AccountName;
+                            }
+                            else
+                            {
+                                database.SteamUserName = Config.SteamSettings.AccountId.ToString();
+                            }
+
                             database.UpdateOwnedGames(Provider.Steam);
                             NotificationsWin.RemoveMessage(NotificationCodes.SteamLibDownloadError);
                         }
@@ -422,6 +443,25 @@ namespace PlayniteUI
                         {
 
                         }));
+                    }
+
+                    if (importSteamCatWizard && importSteamCatWizardId != 0)
+                    {
+                        ProgressControl.Text = "Importing Steam categories...";
+
+                        try
+                        {
+                            var steamLib = new SteamLibrary();
+                            GameDatabase.Instance.ImportCategories(steamLib.GetCategorizedGames(importSteamCatWizardId));
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to import Steam categories.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamLibDownloadError, "Failed to import Steam categories: " + e.Message, NotificationType.Error, () =>
+                            {
+
+                            }));
+                        }
                     }
 
                     ProgressControl.Text = "Downloading Origin library updates...";
@@ -442,10 +482,10 @@ namespace PlayniteUI
 
                         }));
                     }
-                    
+
                     ProgressControl.Text = "Downloading images and game details...";
                     ProgressControl.ProgressMin = 0;
-                    
+
                     var gamesCount = 0;
                     gamesCount = database.GamesCollection.Count(a => a.Provider != Provider.Custom && !a.IsProviderDataUpdated);
                     if (gamesCount > 0)
@@ -479,7 +519,7 @@ namespace PlayniteUI
                     Task.WaitAll(tasks.ToArray());
 
                     ProgressControl.Text = "Library update finished";
-                    
+
                     Thread.Sleep(1500);
                     ProgressControl.Visible = Visibility.Collapsed;
                 });
@@ -707,7 +747,7 @@ namespace PlayniteUI
             {
                 return;
             }
-            
+
             using (MainCollectionView.DeferRefresh())
             {
                 if (e == null)
@@ -816,7 +856,7 @@ namespace PlayniteUI
                 MainCollectionView.IsLiveSorting = true;
                 MainCollectionView.IsLiveFiltering = true;
                 MainCollectionView.IsLiveGrouping = true;
-            }            
+            }
         }
 
         private void FilterSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -1066,6 +1106,33 @@ namespace PlayniteUI
                     logger.Error(exc, "Failed to post user usage data.");
                 }
             });
+        }
+
+        private void LoadThirdPartyTools()
+        {
+            try
+            {
+                ThirdPartyTools = new ThirdPartyToolsList();
+                ThirdPartyTools.SetTools(ThirdPartyTools.GetDefaultInstalledTools());
+            }
+            catch (Exception exc)
+            {
+                logger.Error(exc, "Failed to load 3rd party tool list.");
+            }
+}
+
+        private void ThirdPartyToolMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var item = sender as MenuItem;
+                var tool = item.DataContext as ThirdPartyTool;
+                tool.Start();
+            }
+            catch (Exception exc)
+            {
+                logger.Error(exc, "Failed to start 3rd party tool.");
+            }
         }
     }
 }
