@@ -46,7 +46,7 @@ namespace Playnite.Providers.Steam
         public SteamIdSource IdSource
         {
             get; set;
-        } = SteamIdSource.LocalUser;           
+        } = SteamIdSource.Name;           
 
         public ulong AccountId
         {
