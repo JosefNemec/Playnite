@@ -22,7 +22,7 @@ namespace Playnite.Providers.BattleNet
         {
             get
             {
-                var progs = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "Battle.net");
+                var progs = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "Battle.net" || a.DisplayName == "Blizzard App");
                 if (progs == null)
                 {
                     return string.Empty;
@@ -38,7 +38,7 @@ namespace Playnite.Providers.BattleNet
         {
             get
             {
-                var progs = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "Battle.net");
+                var progs = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "Battle.net" || a.DisplayName == "Blizzard App");
                 if (progs == null)
                 {
                     return false;
