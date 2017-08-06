@@ -90,11 +90,6 @@ namespace PlayniteUI
             get; set;
         }
 
-        public ThirdPartyToolsList ThirdPartyTools
-        {
-            get; set;
-        }
-
         public MainWindow()
         {
             Config = Settings.Instance;
@@ -117,8 +112,6 @@ namespace PlayniteUI
             CustomGameSettings.DefaultIcon = @"/Images/applogo.png";
             CustomGameSettings.DefaultImage = @"/Images/custom_cover_background.png";
             CustomGameSettings.DefaultBackgroundImage = @"/Images/default_background.png";
-
-            LoadThirdPartyTools();
 
             Config.PropertyChanged += Config_PropertyChanged;
             Config.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
@@ -1032,14 +1025,12 @@ namespace PlayniteUI
             Show();
             WindowState = WindowState.Normal;
             Focus();
-            TrayPlaynite.TrayPopupResolved.IsOpen = false;
         }
 
         private void MenuLastGamesGame_Click(object sender, RoutedEventArgs e)
         {
             var game = (sender as MenuItem).DataContext as IGame;
             GamesEditor.Instance.PlayGame(game);
-            TrayPlaynite.TrayPopupResolved.IsOpen = false;
         }
 
         private void CheckUpdate()
@@ -1108,24 +1099,11 @@ namespace PlayniteUI
             });
         }
 
-        private void LoadThirdPartyTools()
-        {
-            try
-            {
-                ThirdPartyTools = new ThirdPartyToolsList();
-                ThirdPartyTools.SetTools(ThirdPartyTools.GetDefaultInstalledTools());
-            }
-            catch (Exception exc)
-            {
-                logger.Error(exc, "Failed to load 3rd party tool list.");
-            }
-}
-
         private void ThirdPartyToolMenuItem_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var item = sender as MenuItem;
+                var item = e.OriginalSource as MenuItem;
                 var tool = item.DataContext as ThirdPartyTool;
                 tool.Start();
             }
