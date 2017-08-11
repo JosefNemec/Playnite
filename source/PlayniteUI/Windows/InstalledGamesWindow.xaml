@@ -41,7 +41,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding IconSource, Mode=OneWay, Converter={StaticResource IconToImageSourceConverter}}"
+                                    <Image Source="{Binding IconSource, Mode=OneWay}"
                                            RenderOptions.BitmapScalingMode="HighQuality" Width="18"/>
                                     <TextBlock Text="{Binding Name, Mode=OneWay}" Margin="5,0,0,0" Foreground="{StaticResource TextBrush}" />
                                 </StackPanel>
@@ -51,7 +51,7 @@
                     <GridViewColumn Header="Path">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Path, Mode=OneWay}" Padding="5" Foreground="{StaticResource TextBrush}"/>
+                                <TextBlock Text="{Binding DisplayPath, Mode=OneWay}" Padding="5" Foreground="{StaticResource TextBrush}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

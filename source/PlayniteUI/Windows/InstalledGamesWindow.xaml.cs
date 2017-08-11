@@ -31,6 +31,12 @@ namespace PlayniteUI.Windows
     /// </summary>
     public partial class InstalledGamesWindow : Window, INotifyPropertyChanged
     {
+        public enum ProgramType
+        {
+            Win32,
+            UWP
+        }
+
         private Logger logger = LogManager.GetCurrentClassLogger();
 
         private List<InstalledGameMetadata> games = new List<InstalledGameMetadata>();
@@ -58,44 +64,63 @@ namespace PlayniteUI.Windows
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Programs"));
             }
         }
-
+        
         public class ImportableProgram : Program
         {
-            private Icon iconSource;
-            public Icon IconSource
+            public ProgramType Type
+            {
+                get; set;
+            }
+
+            public string DisplayPath
+            {
+                get; set;
+            }
+
+            private ImageSource iconSource;
+            public ImageSource IconSource
             {
                 get
                 {
+                    if (string.IsNullOrEmpty(Icon))
+                    {
+                        return null;
+                    }
+
                     if (iconSource != null)
                     {
                         return iconSource;
                     }
 
-                    string path;
-                    var match = Regex.Match(Icon, @"(.*),(\d+)");
-                    if (match.Success)
+                    if (Type == ProgramType.UWP)
                     {
-                        path = match.Groups[1].Value;
-                        if (string.IsNullOrEmpty(path))
-                        {
-                            path = Path;
-                        }
+                        iconSource = BitmapExtensions.CreateSourceFromURI(new Uri(Icon));
                     }
                     else
                     {
-                        path = Icon;
-                    }
+                        string path;
+                        var match = Regex.Match(Icon, @"(.*),(\d+)");
+                        if (match.Success)
+                        {
+                            path = match.Groups[1].Value;
+                            if (string.IsNullOrEmpty(path))
+                            {
+                                path = Path;
+                            }
+                        }
+                        else
+                        {
+                            path = Icon;
+                        }
 
-                    var index = match.Groups[2].Value;
-                    if (!File.Exists(path))
-                    {
-                        return null;
-                    }
+                        var index = match.Groups[2].Value;
+                        if (!File.Exists(path))
+                        {
+                            return null;
+                        }
 
-                    iconSource = IconExtension.ExtractIconFromExe(path ,true);
-                    if (iconSource == null)
-                    {
-                        return null;
+                        var icon = IconExtension.ExtractIconFromExe(path, true);
+                        iconSource = icon.ToImageSource();
                     }
 
                     return iconSource;
@@ -112,11 +137,14 @@ namespace PlayniteUI.Windows
 
             }
 
-            public ImportableProgram(Program program)
+            public ImportableProgram(Program program, ProgramType type)
             {
+                Type = type;
                 Name = program.Name;
                 Icon = program.Icon;
                 Path = program.Path;
+                DisplayPath = type == ProgramType.Win32 ? program.Path : "Windows Store";
+                Arguments = program.Arguments;
                 WorkDir = program.WorkDir;
             }
         }            
@@ -151,6 +179,7 @@ namespace PlayniteUI.Windows
                 newGame.PlayTask = new GameTask()
                 {
                     Path = program.Path,
+                    Arguments = program.Arguments,
                     Type = GameTaskType.File,
                     WorkingDir = program.WorkDir,
                     Name = "Play"
@@ -165,11 +194,8 @@ namespace PlayniteUI.Windows
                         Name = Guid.NewGuid().ToString() + ".png"
                     };
 
-                    using (var stream = new MemoryStream())
-                    {
-                        program.IconSource.ToBitmap().Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-                        icon.Data = stream.ToArray();
-                    }
+                    var bitmap = (BitmapSource)program.IconSource;
+                    icon.Data = bitmap.ToPngArray();
                 }
 
                 var data = new InstalledGameMetadata()
@@ -230,7 +256,7 @@ namespace PlayniteUI.Windows
                 {
                     try
                     {
-                        Programs = new ObservableCollection<ImportableProgram>(Playnite.Programs.GetExecutablesFromFolder(dialog.FileName, SearchOption.AllDirectories).Select(a => new ImportableProgram(a)).OrderBy(a => a.Name));
+                        Programs = new ObservableCollection<ImportableProgram>(Playnite.Programs.GetExecutablesFromFolder(dialog.FileName, SearchOption.AllDirectories).Select(a => new ImportableProgram(a, ProgramType.Win32)).OrderBy(a => a.Name));
                     }
                     catch (Exception exc)
                     {
@@ -258,12 +284,22 @@ namespace PlayniteUI.Windows
             {
                 try
                 {
-                    Programs = new ObservableCollection<ImportableProgram>(Playnite.Programs.GetInstalledPrograms().Select(a => new ImportableProgram(a)).OrderBy(a => a.Name));
+                    var allApps = new List<ImportableProgram>();
+                    allApps.AddRange(Playnite.Programs.GetInstalledPrograms().Select(a => new ImportableProgram(a, ProgramType.Win32)));
+
+                    if (Environment.OSVersion.Version.Major == 10)
+                    {
+                        allApps.AddRange(Playnite.Programs.GetUWPApps().Select(a => new ImportableProgram(a, ProgramType.UWP)));
+                    }
+
+                    Programs = new ObservableCollection<ImportableProgram>(allApps.OrderBy(a => a.Name));
                 }
+#if !DEBUG
                 catch (Exception exc)
                 {
                     logger.Error(exc, "Failed to load list of installed apps.");
                 }
+#endif
                 finally
                 {
                     ListPrograms.Dispatcher.Invoke(() =>

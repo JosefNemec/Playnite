@@ -1,17 +1,25 @@
-﻿using System;
+﻿using IWshRuntimeLibrary;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IWshRuntimeLibrary;
-using Microsoft.Win32;
+using System.Security.Principal;
+using System.Text.RegularExpressions;
+using System.Xml;
+using Windows.ApplicationModel;
+using Windows.Management.Deployment;
 
 namespace Playnite
 {
     public class Program
     {
         public string Path
+        {
+            get; set;
+        }
+
+        public string Arguments
         {
             get; set;
         }
@@ -196,6 +204,84 @@ namespace Playnite
             // Get current user apps
             var userPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), "Programs");
             apps.AddRange(GetShortcutProgramsFromFolder(userPath));
+
+            return apps;
+        }
+
+        private static string GetUWPGameIcon(string defPath)
+        {
+            if (System.IO.File.Exists(defPath))
+            {
+                return defPath;
+            }
+
+            var folder = Path.GetDirectoryName(defPath);
+            var fileMask = Path.GetFileNameWithoutExtension(defPath) + ".scale*.png";
+            return Directory.GetFiles(folder, fileMask).Where(a => Regex.IsMatch(a, @"\.scale-\d+\.png"))?.OrderBy(a => a).Last();
+        }
+
+
+        public static List<Program> GetUWPApps()
+        {
+            var apps = new List<Program>();
+
+            var manager = new PackageManager();
+            IEnumerable<Package> packages = manager.FindPackagesForUser(WindowsIdentity.GetCurrent().User.Value);
+            foreach (var package in packages)
+            {
+                if (package.IsFramework || package.IsResourcePackage || package.SignatureKind != PackageSignatureKind.Store)
+                {
+                    continue;
+                }
+
+                string manifestPath;
+                if (package.IsBundle)
+                {
+                    manifestPath = @"AppxMetadata\AppxBundleManifest.xml";
+                }
+                else
+                {
+                    manifestPath = "AppxManifest.xml";
+                }
+
+                manifestPath = Path.Combine(package.InstalledLocation.Path, manifestPath);
+                var manifest = new XmlDocument();
+                manifest.Load(manifestPath);
+
+                var apxApp = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Applications']//*[local-name() = 'Application'][1]");
+                var appId = apxApp.Attributes["Id"].Value;
+
+
+                var visuals = apxApp.SelectSingleNode(@"//*[local-name() = 'VisualElements']");
+                var iconPath = visuals.Attributes["Square44x44Logo"]?.Value;
+                if (string.IsNullOrEmpty(iconPath))
+                {
+                    iconPath = visuals.Attributes["Logo"]?.Value;
+                }
+
+                if (!string.IsNullOrEmpty(iconPath))
+                {
+                    iconPath = Path.Combine(package.InstalledLocation.Path, iconPath);
+                    iconPath = GetUWPGameIcon(iconPath);
+                }
+
+                var name = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Properties']/*[local-name() = 'DisplayName']").InnerText;
+                if (name.StartsWith("ms-resource"))
+                {
+                    name = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Identity']").Attributes["Name"].Value;
+                }
+
+                var app = new Program()
+                {
+                    Name = name,
+                    WorkDir = string.Empty,
+                    Path = "explorer.exe",
+                    Arguments = $"shell:AppsFolder\\{package.Id.FamilyName}!{appId}",
+                    Icon = iconPath
+                };
+
+                apps.Add(app);
+            }
 
             return apps;
         }
