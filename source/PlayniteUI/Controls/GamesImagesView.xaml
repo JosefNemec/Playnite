@@ -32,7 +32,6 @@
         <CommandBinding Command="{x:Static commands:GenericCommands.ZoomInCmd}" Executed="ZoomIn_Executed" />
         <CommandBinding Command="{x:Static commands:GenericCommands.ZoomOutCmd}" Executed="ZoomOut_Executed" />
         <CommandBinding Command="{x:Static commands:GenericCommands.PlayGameCmd}" Executed="PlayGame_Executed" />
-        <CommandBinding Command="{x:Static commands:GenericCommands.ShowDetailsCmd}" Executed="ShowDetails_Executed" />
     </UserControl.CommandBindings>
 
     <Grid Background="{StaticResource NormalBrushDark}">
@@ -51,83 +50,93 @@
                     <ColumnDefinition Width="0" Name="ColumnDetails"/>
                 </Grid.ColumnDefinitions>
 
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Focusable="False" IsDeferredScrollingEnabled="True" Grid.Column="0" Name="ScrollMain">
-                    <ScrollViewer.InputBindings>
-                        <MouseBinding Gesture="{x:Static playniteUI:MouseWheelGesture.CtrlUp}"
-                                      Command="{x:Static commands:GenericCommands.ZoomInCmd}"
-                                      CommandParameter="{Binding SelectedVisualElement}" />
-                        <MouseBinding Gesture="{x:Static playniteUI:MouseWheelGesture.CtrlDown}"
-                                      Command="{x:Static commands:GenericCommands.ZoomOutCmd}"
-                                      CommandParameter="{Binding SelectedVisualElement}" />
-                    </ScrollViewer.InputBindings>
-                    
-                    <ItemsControl Name="ItemsView" HorizontalAlignment="Center" 
-                                  VirtualizingPanel.VirtualizationMode="Standard"
-                                  VirtualizingPanel.IsVirtualizing="True"
-                                  VirtualizingPanel.IsVirtualizingWhenGrouping="True"
-                                  ScrollViewer.CanContentScroll="True"
-                                  Margin="10">                        
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel FlowDirection="LeftToRight" IsItemsHost="true" Width="{Binding ActualWidth, ElementName=ScrollMain}" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="ItemsView" Grid.Column="0"
+                          VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Standard"
+                          SelectionMode="Single" SelectionChanged="ItemsView_SelectionChanged" MouseDown="ItemsView_MouseDown">                
+                    <ListView.Resources>
+                        <Style TargetType="GridViewColumnHeader">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </Style>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="OverridesDefaultStyle" Value="True" />
+                            <Setter Property="Margin" Value="5"/>                            
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">                                        
+                                        <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="3" CornerRadius="3" Background="Transparent">
+                                            <Border.InputBindings>
+                                                <MouseBinding MouseAction="LeftDoubleClick" Command="{x:Static commands:GenericCommands.PlayGameCmd}"/>
+                                            </Border.InputBindings>
+                                            <Grid>
+                                                <ContentPresenter />
+                                                <Border Background="#D8000000" x:Name="HighlightTextBorder" Opacity="0">
+                                                    <TextBlock Text="{Binding Name, Mode=OneWay}" 
+                                                               Width="{Binding Path=Value, ElementName=SliderZoom}" TextWrapping="WrapWithOverflow" Style="{StaticResource BaseTextBlockStyle}"
+                                                               HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="5" FontSize="20" TextAlignment="Center" />
+                                                </Border>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="BorderBrush" Value="{StaticResource IndicatorBrush}" TargetName="SelectionBorder"/>
+                                                <Setter Property="Opacity" Value="1" TargetName="HighlightTextBorder"/>
+                                            </Trigger>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsMouseOver" Value="True" />
+                                                    <Condition Property="Selector.IsSelected" Value="False" />
+                                                </MultiTrigger.Conditions>
+                                                <Setter Property="BorderBrush" Value="{StaticResource IndicatorBrush}" TargetName="SelectionBorder"/>
+                                                <Setter Property="Opacity" Value="1" TargetName="HighlightTextBorder"/>
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.Resources>                    
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.ContainerStyle>
+                                <Style TargetType="GroupItem">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="GroupItem">
+                                                <Expander Header="{Binding Mode=OneWay}" Collapsed="Expander_Collapsed" Expanded="Expander_Expanded" Margin="5,0,0,0"
+                                                          IsExpanded="{Binding Path=Name, Mode=OneWay, Converter={StaticResource BoolToCategoryExpander}}">
+                                                    <ItemsPresenter />
+                                                </Expander>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </GroupStyle.ContainerStyle>
+                        </GroupStyle>
+                    </ListView.GroupStyle>
 
-                        <ItemsControl.GroupStyle>
-                            <GroupStyle>
-                                <GroupStyle.ContainerStyle>
-                                    <Style TargetType="GroupItem">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="GroupItem">
-                                                    <Expander Header="{Binding Mode=OneWay}" Collapsed="Expander_Collapsed" Expanded="Expander_Expanded"
-                                                              IsExpanded="{Binding Path=Name, Mode=OneWay, Converter={StaticResource BoolToCategoryExpander}}">
-                                                        <ItemsPresenter />
-                                                    </Expander>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </GroupStyle.ContainerStyle>
-                            </GroupStyle>
-                        </ItemsControl.GroupStyle>
-                        
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border BorderThickness="3" CornerRadius="3" Background="Transparent" Margin="5">
-                                    <Border.Style>
-                                        <Style>
-                                            <Style.Triggers>
-                                                <Trigger Property="Border.IsMouseOver" Value="False">
-                                                    <Setter Property="Border.BorderBrush" Value="Transparent"/>
-                                                </Trigger>
-                                                <Trigger Property="Border.IsMouseOver" Value="True">
-                                                    <Setter Property="Border.BorderBrush" Value="{StaticResource IndicatorBrush}"/>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Border.Style>
-                                    
-                                    <Image RenderOptions.BitmapScalingMode="Fant" Width="{Binding Path=Value, ElementName=SliderZoom}"
-                                           Name="ImageViewImage" StretchDirection="Both"
-                                           AutomationProperties.HelpText="{Binding Image, TargetNullValue=''}"
-                                           AutomationProperties.Name="{Binding Name}">
-                                        <Image.InputBindings>
-                                            <MouseBinding MouseAction="LeftDoubleClick" Command="{x:Static commands:GenericCommands.PlayGameCmd}"/>
-                                            <MouseBinding MouseAction="LeftClick" Command="{x:Static commands:GenericCommands.ShowDetailsCmd}"/>
-                                        </Image.InputBindings>
-                                        <Image.Source>
-                                            <PriorityBinding>
-                                                <Binding Path="Image" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Image"/>
-                                                <Binding Path="DefaultImage" Mode="OneTime"/>
-                                            </PriorityBinding>
-                                        </Image.Source>
-                                    </Image>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <Image RenderOptions.BitmapScalingMode="Fant" Width="{Binding Path=Value, ElementName=SliderZoom}"
+                                        Name="ImageViewImage" StretchDirection="Both"
+                                        AutomationProperties.HelpText="{Binding Image, TargetNullValue=''}"
+                                        AutomationProperties.Name="{Binding Name}">
+                                    <Image.Source>
+                                        <PriorityBinding>
+                                            <Binding Path="Image" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Image"/>
+                                            <Binding Path="DefaultImage" Mode="OneTime"/>
+                                        </PriorityBinding>
+                                    </Image.Source>
+                                </Image>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
                 <GridSplitter Grid.Column="1" Width="4" HorizontalAlignment="Stretch" Background="{StaticResource NormalBorderBrush}"/>
                 
