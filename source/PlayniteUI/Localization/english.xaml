@@ -28,4 +28,13 @@
 
     <sys:String x:Key="GameRemoveAskTitle">Remove game?</sys:String>
     <sys:String x:Key="GameRemoveAskMessage">Are you sure you want to remove this game? Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
+    
+    
+    <!--Settings Window-->
+    <sys:String x:Key="SettingsImportLabel">Import changes in library automatically</sys:String>
+    <sys:String x:Key="SettingsImportInstalledLabel">Import installed games</sys:String>
+    <sys:String x:Key="SettingsImportLibraryLabel">Import all games</sys:String>
+
+    <!--First Time Wizard-->
+    <sys:String x:Key="WizardImportIntroduction" xml:space="preserve">Automatically import games from following services. Any later game changes (installation status) will be automatically updated on Playnite startup or when triggered manually. Selected settings affect initial and all subsequent imports.</sys:String>
 </ResourceDictionary>

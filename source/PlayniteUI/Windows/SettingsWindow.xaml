@@ -83,14 +83,14 @@
                     </TabItem.Header>
                     <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding SteamSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
-                                  Name="CheckSteamEnabled" Content="Import Steam Games" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                  Name="CheckSteamEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                   DockPanel.Dock="Top" Margin="5"/>
 
-                        <RadioButton Name="RadioInstalledSteam" Content="Only import installed games"
+                        <RadioButton Name="RadioInstalledSteam" Content="{DynamicResource SettingsImportInstalledLabel}"
                                      IsChecked="{Binding SteamSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <RadioButton Name="RadioLibrarySteam" Content="Import complete library"
+                        <RadioButton Name="RadioLibrarySteam" Content="{DynamicResource SettingsImportLibraryLabel}"
                                      IsChecked="{Binding SteamSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,0"/>
@@ -150,14 +150,14 @@
                     </TabItem.Header>
                     <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding GOGSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
-                                  Name="CheckGogEnabled" Content="Import GOG Games" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                  Name="CheckGogEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                   DockPanel.Dock="Top" Margin="5"/>
 
-                        <RadioButton Name="RadioInstalledGOG" Content="Only import installed games"
+                        <RadioButton Name="RadioInstalledGOG" Content="{DynamicResource SettingsImportInstalledLabel}"
                                      IsChecked="{Binding GOGSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <RadioButton Name="RadioLibraryGOG" Content="Import complete library (requires authentication)"
+                        <RadioButton Name="RadioLibraryGOG" Content="{DynamicResource SettingsImportLibraryLabel}"
                                      IsChecked="{Binding GOGSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
@@ -191,14 +191,14 @@
                     </TabItem.Header>
                     <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding OriginSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
-                                  Name="CheckOriginEnabled" Content="Import Origin Games" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                  Name="CheckOriginEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                   DockPanel.Dock="Top" Margin="5"/>
 
-                        <RadioButton Name="RadioInstalledOrigin" Content="Only import installed games"
+                        <RadioButton Name="RadioInstalledOrigin" Content="{DynamicResource SettingsImportInstalledLabel}"
                                      IsChecked="{Binding OriginSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <RadioButton Name="RadioLibraryOrigin" Content="Import complete library (requires authentication)"
+                        <RadioButton Name="RadioLibraryOrigin" Content="{DynamicResource SettingsImportLibraryLabel}"
                                      IsChecked="{Binding OriginSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
