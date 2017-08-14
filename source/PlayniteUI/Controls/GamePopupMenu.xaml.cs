@@ -128,15 +128,15 @@ namespace PlayniteUI.Controls
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show(
-                "Are you sure you want to remove this game?",
-                "Remove game?",
-                MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+            if (DataContext == null)
             {
                 return;
             }
 
-            if (DataContext == null)
+            if (MessageBox.Show(
+                FindResource("GameRemoveAskMessage") as string,
+                FindResource("GameRemoveAskTitle") as string,
+                MessageBoxButton.YesNo) != MessageBoxResult.Yes)
             {
                 return;
             }

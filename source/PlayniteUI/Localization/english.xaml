@@ -25,4 +25,7 @@
     <sys:String x:Key="CategoryAddCatButton">Add Category</sys:String>
 
     <sys:String x:Key="CrashWindowTitle">Oh no, something bad happened...</sys:String>
+
+    <sys:String x:Key="GameRemoveAskTitle">Remove game?</sys:String>
+    <sys:String x:Key="GameRemoveAskMessage">Are you sure you want to remove this game? Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
 </ResourceDictionary>
