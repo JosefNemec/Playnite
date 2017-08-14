@@ -33,7 +33,11 @@
         <CheckBox Name="CheckFilterInstalled" IsChecked="{Binding Path=Settings.IsInstalled}" Style="{StaticResource FilterCheck}">
             <TextBlock Text="{Binding Stats.Installed, Mode=OneWay, StringFormat=Installed ({0})}" />            
         </CheckBox>
-        
+
+        <CheckBox Name="CheckFilterUnInstalled" IsChecked="{Binding Path=Settings.IsUnInstalled}" Style="{StaticResource FilterCheck}">
+            <TextBlock Text="{Binding Stats.UnInstalled, Mode=OneWay, StringFormat=Uninstalled ({0})}" />
+        </CheckBox>
+
         <CheckBox Name="CheckFilterHidden" IsChecked="{Binding Path=Settings.Hidden}" Style="{StaticResource FilterCheck}">
             <TextBlock Text="{Binding Stats.Hidden, Mode=OneWay, StringFormat=Hidden ({0})}" />            
         </CheckBox>

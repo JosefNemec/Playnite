@@ -19,6 +19,7 @@ namespace Playnite
             {
                 return
                     IsInstalled ||
+                    IsUnInstalled ||
                     Hidden ||
                     Favorite ||
                     Steam ||
@@ -146,7 +147,23 @@ namespace Playnite
                 OnPropertyChanged("IsInstalled");
                 OnPropertyChanged("Active");
             }
-        }        
+        }
+
+        private bool isUnInstalled;
+        public bool IsUnInstalled
+        {
+            get
+            {
+                return isUnInstalled;
+            }
+
+            set
+            {
+                isUnInstalled = value;
+                OnPropertyChanged("IsUnInstalled");
+                OnPropertyChanged("Active");
+            }
+        }
 
         private bool hidden;
         public bool Hidden

@@ -542,6 +542,17 @@ namespace PlayniteUI
                 installedResult = true;
             }
 
+            // ------------------ UnInstalled
+            bool unInstalledResult = false;
+            if (Config.FilterSettings.IsUnInstalled && !game.IsInstalled)
+            {
+                unInstalledResult = true;
+            }
+            else if (!Config.FilterSettings.IsUnInstalled)
+            {
+                unInstalledResult = true;
+            }
+
             // ------------------ Hidden
             bool hiddenResult = true;
             if (Config.FilterSettings.Hidden && game.Hidden)
@@ -715,7 +726,7 @@ namespace PlayniteUI
                 }
             }
 
-            return installedResult && hiddenResult && favoriteResult && textResult && providersFilter && genreResult && releaseDateResult && publisherResult && developerResult && categoryResult;
+            return installedResult && unInstalledResult && hiddenResult && favoriteResult && textResult && providersFilter && genreResult && releaseDateResult && publisherResult && developerResult && categoryResult;
         }
 
         private void Config_PropertyChanged(object sender, PropertyChangedEventArgs e)

@@ -16,6 +16,7 @@ namespace Playnite
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         public int Installed { get; private set; } = 0;
+        public int UnInstalled { get; private set; } = 0;
         public int Hidden { get; private set; } = 0;
         public int Favorite { get; private set; } = 0;
         public int Origin { get; private set; } = 0;
@@ -61,6 +62,7 @@ namespace Playnite
             logger.Info("Completely recalculating database statistics...");
 
             Installed = 0;
+            UnInstalled = 0;
             Hidden = 0;
             Favorite = 0;
             Origin = 0;
@@ -74,6 +76,10 @@ namespace Playnite
                 {
                     Installed++;
                 }
+                else
+                {
+                    UnInstalled++;
+                }                
 
                 if (game.Hidden)
                 {
@@ -115,6 +121,7 @@ namespace Playnite
         private void NotifiyAllChanged()
         {
             OnPropertyChanged("Installed");
+            OnPropertyChanged("UnInstalled");
             OnPropertyChanged("Hidden");
             OnPropertyChanged("Favorite");
             OnPropertyChanged("Origin");
@@ -159,9 +166,11 @@ namespace Playnite
             if (args.OldData.IsInstalled != args.NewData.IsInstalled)
             {
                 Installed = Installed + (1 * (args.NewData.IsInstalled ? 1 : -1));
+                UnInstalled = UnInstalled + (1 * (!args.NewData.IsInstalled ? 1 : -1));
             }
 
             OnPropertyChanged("Installed");
+            OnPropertyChanged("UnInstalled");
             OnPropertyChanged("Hidden");
             OnPropertyChanged("Favorite");
         }
@@ -181,6 +190,10 @@ namespace Playnite
             if (game.IsInstalled)
             {
                 Installed = Installed + (1 * modifier);
+            }
+            else
+            {
+                UnInstalled = UnInstalled + (1 * modifier);
             }
 
             switch (game.Provider)
