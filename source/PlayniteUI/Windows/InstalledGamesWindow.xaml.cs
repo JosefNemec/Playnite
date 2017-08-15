@@ -23,13 +23,14 @@ using Playnite.Models;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Threading;
 using NLog;
+using PlayniteUI.Controls;
 
 namespace PlayniteUI.Windows
 {
     /// <summary>
     /// Interaction logic for InstalledGamesWindow.xaml
     /// </summary>
-    public partial class InstalledGamesWindow : Window, INotifyPropertyChanged
+    public partial class InstalledGamesWindow : WindowBase, INotifyPropertyChanged
     {
         public enum ProgramType
         {

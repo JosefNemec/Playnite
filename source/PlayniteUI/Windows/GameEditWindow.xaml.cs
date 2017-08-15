@@ -24,13 +24,14 @@ using PlayniteUI.Windows;
 using Playnite.Providers.Steam;
 using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
+using PlayniteUI.Controls;
 
 namespace PlayniteUI
 {
     /// <summary>
     /// Interaction logic for GameEditWindow.xaml
     /// </summary>
-    public partial class GameEditWindow : Window, INotifyPropertyChanged
+    public partial class GameEditWindow : WindowBase, INotifyPropertyChanged
     {        
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private WindowPositionHandler positionManager;

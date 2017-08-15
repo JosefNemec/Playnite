@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using NLog;
 using Playnite;
+using PlayniteUI.Controls;
 
 namespace PlayniteUI.Windows
 {
     /// <summary>
     /// Interaction logic for CrashHandlerWindow.xaml
     /// </summary>
-    public partial class CrashHandlerWindow : Window
+    public partial class CrashHandlerWindow : WindowBase
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 

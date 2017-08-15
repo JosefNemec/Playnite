@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PlayniteUI.Controls;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -80,7 +81,7 @@ namespace PlayniteUI.Windows
     /// <summary>
     /// Interaction logic for NotificationsWindow.xaml
     /// </summary>
-    public partial class NotificationsWindow : Window, INotifyPropertyChanged
+    public partial class NotificationsWindow : WindowBase, INotifyPropertyChanged
     {
         private bool autoOpen;
         public bool AutoOpen

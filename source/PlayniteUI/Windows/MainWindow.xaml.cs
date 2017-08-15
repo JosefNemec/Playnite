@@ -35,7 +35,7 @@ namespace PlayniteUI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : WindowBase, INotifyPropertyChanged
     {
         private Settings config;
         public Settings Config

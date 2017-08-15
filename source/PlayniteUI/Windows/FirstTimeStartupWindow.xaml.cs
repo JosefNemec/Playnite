@@ -16,13 +16,14 @@ using Microsoft.Win32;
 using Playnite.Models;
 using System.Diagnostics;
 using Playnite.Providers.Steam;
+using PlayniteUI.Controls;
 
 namespace PlayniteUI.Windows
 {
     /// <summary>
     /// Interaction logic for FirstTimeStartupWindow.xaml
     /// </summary>
-    public partial class FirstTimeStartupWindow : Window, INotifyPropertyChanged
+    public partial class FirstTimeStartupWindow : WindowBase, INotifyPropertyChanged
     {
         private string loginReuiredMessage = "Login Required";
         private string loginOKMessage = "OK";

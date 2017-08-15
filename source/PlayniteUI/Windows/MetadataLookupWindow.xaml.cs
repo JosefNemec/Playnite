@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using NLog;
 using Playnite.MetaProviders;
 using Playnite.Models;
+using PlayniteUI.Controls;
 
 namespace PlayniteUI.Windows
 {
@@ -26,7 +27,7 @@ namespace PlayniteUI.Windows
     /// <summary>
     /// Interaction logic for MetadataLookupWindow.xaml
     /// </summary>
-    public partial class MetadataLookupWindow : Window
+    public partial class MetadataLookupWindow : WindowBase
     {
         public class SearchResult
         {

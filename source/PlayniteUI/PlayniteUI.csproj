@@ -179,6 +179,7 @@
     <Compile Include="Controls\GamesListView.xaml.cs">
       <DependentUpon>GamesListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WindowBase.cs" />
     <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />
     <Compile Include="Converters\BoolToAutoWidthConverter.cs" />
     <Compile Include="Converters\BoolToCategoryExpander.cs" />

@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using NLog;
 using Playnite;
+using PlayniteUI.Controls;
 
 namespace PlayniteUI
 {
     /// <summary>
     /// Interaction logic for AboutWindow.xaml
     /// </summary>
-    public partial class AboutWindow : Window
+    public partial class AboutWindow : WindowBase
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 

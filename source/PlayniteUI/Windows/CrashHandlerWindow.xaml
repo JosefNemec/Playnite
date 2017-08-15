@@ -1,34 +1,36 @@
-﻿<Window x:Class="PlayniteUI.Windows.CrashHandlerWindow"
+﻿<controls:WindowBase x:Class="PlayniteUI.Windows.CrashHandlerWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlayniteUI.Windows"
+        xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
         Title="{DynamicResource CrashWindowTitle}" Height="400" Width="600"
         WindowStartupLocation="CenterScreen"
-        AutomationProperties.AutomationId="WindowCrash"
-        Background="{DynamicResource NormalBrush}">
-   
-    <DockPanel Margin="5">
-        <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="-5,0,-5,-5">
-            <Button Name="ButtonClose" Click="ButtonClose_Click" Content="Close Playnite" DockPanel.Dock="Right" 
+        AutomationProperties.AutomationId="WindowCrash">
+
+    <Border Margin="0,5,0,0" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+        <DockPanel>
+            <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Background="{StaticResource NormalBrush}">
+                <Button Name="ButtonClose" Click="ButtonClose_Click" Content="Close Playnite" DockPanel.Dock="Right" 
                     Style="{StaticResource BottomButton}"/>
-            <Button Name="ButtonRestart" Click="ButtonRestart_Click" Content="Restart Playnite" DockPanel.Dock="Right" 
+                <Button Name="ButtonRestart" Click="ButtonRestart_Click" Content="Restart Playnite" DockPanel.Dock="Right" 
                     Style="{StaticResource BottomButton}"/>
-            <Button Name="ButtonSaveDiag" Click="ButtonSaveDiag_Click" Content="Create diag. package" DockPanel.Dock="Left"
+                <Button Name="ButtonSaveDiag" Click="ButtonSaveDiag_Click" Content="Create diag. package" DockPanel.Dock="Left"
                     Style="{StaticResource BottomButton}"/>
-            <Button Name="ButtonReportIssue" Click="ButtonReportIssue_Click" Content="Report Issue" DockPanel.Dock="Left"
+                <Button Name="ButtonReportIssue" Click="ButtonReportIssue_Click" Content="Report Issue" DockPanel.Dock="Left"
                     Style="{StaticResource BottomButton}"/>
-        </DockPanel>
-        <DockPanel DockPanel.Dock="Top" Margin="10">
-            <Image Source="/Images/Icons/warn_big.png" Width="64" RenderOptions.BitmapScalingMode="Fant" />
-            <StackPanel Margin="20,10,10,10">
-                <TextBlock Text="Playnite come across problem, which cannot be solved. If you want to help us solving it, please create diagnostics package and report an issue." 
-                           FontSize="14" TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />               
-            </StackPanel>
-        </DockPanel>
-        <TextBox IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDetails"
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top" Margin="10">
+                <Image Source="/Images/Icons/warn_big.png" Width="64" RenderOptions.BitmapScalingMode="Fant" />
+                <StackPanel Margin="20,10,10,10">
+                    <TextBlock Text="Playnite come across problem, which cannot be solved. If you want to help us solving it, please create diagnostics package and report an issue." 
+                           FontSize="14" TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
+                </StackPanel>
+            </DockPanel>
+            <TextBox IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDetails"
                  DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto"/>
-    </DockPanel>
-</Window>
+        </DockPanel>
+    </Border>
+</controls:WindowBase>

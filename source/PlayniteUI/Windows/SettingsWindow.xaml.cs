@@ -17,13 +17,14 @@ using System.ComponentModel;
 using Playnite.Providers.Steam;
 using Playnite.Database;
 using NLog;
+using PlayniteUI.Controls;
 
 namespace PlayniteUI
 {
     /// <summary>
     /// Interaction logic for Configuration.xaml
     /// </summary>
-    public partial class SettingsWindow : Window, INotifyPropertyChanged
+    public partial class SettingsWindow : WindowBase, INotifyPropertyChanged
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
 

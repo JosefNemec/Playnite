@@ -3054,6 +3054,78 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="WindowBarButton" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="Margin" Value="5,0,5,0" />
+        <Setter Property="Padding" Value="3" />
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <TextBlock FontFamily="Marlett" Foreground="{TemplateBinding Foreground}" FontSize="16" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter />
+                    </TextBlock>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource GlyphBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="WindowStyle" TargetType="Window">        
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome CaptionHeight="25" CornerRadius="0" ResizeBorderThickness="4" NonClientFrameEdges ="None"
+                              UseAeroCaptionButtons="False" GlassFrameThickness="0"/>
+            </Setter.Value>
+        </Setter>        
+        <Setter Property="Template">            
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <AdornerDecorator>
+                        <Border x:Name="WindowBorder" Background="{StaticResource NormalBrushDark}" BorderBrush="{StaticResource GlyphBrush}" CornerRadius="0" BorderThickness="1">
+                            <Grid>
+                                <Rectangle VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="25">
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                            <GradientStop Color="{StaticResource MainColor}" Offset="0"/>
+                                            <GradientStop Color="{StaticResource MainColorDark}" Offset="0.7"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <ContentPresenter Margin="0,25,0,0"/>
+                                <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+                                    <DockPanel DockPanel.Dock="Top" LastChildFill="False">                                        
+                                        <TextBlock Text="{TemplateBinding Title}" DockPanel.Dock="Left" Margin="10,3,0,0" VerticalAlignment="Center"
+                                                   Opacity="0.75" Style="{StaticResource BaseTextBlockStyle}" x:Name="TextTitle" />
+                                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="0,3,5,0">
+                                            <Button Style="{StaticResource WindowBarButton}" Content="0" x:Name="ButtonMinimize"/>
+                                            <Button Style="{StaticResource WindowBarButton}" Content="1" x:Name="ButtonMaximize" />
+                                            <Button Style="{StaticResource WindowBarButton}" Content="r" x:Name="ButtonClose"/>
+                                        </StackPanel>
+                                    </DockPanel>
+                                </DockPanel>
+                            </Grid>
+                        </Border>
+                    </AdornerDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter Property="Content" Value="2" TargetName="ButtonMaximize"/>
+                        </Trigger>
+                        <Trigger Property="IsActive" Value="False">
+                            <Setter Property="BorderBrush" Value="{StaticResource NormalBorderBrush}" TargetName="WindowBorder"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>            
+        </Setter>
+    </Style>
 </ResourceDictionary>
 
 
