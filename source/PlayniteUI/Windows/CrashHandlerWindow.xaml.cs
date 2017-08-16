@@ -48,12 +48,12 @@ namespace PlayniteUI.Windows
                 try
                 {
                     Diagnostic.CreateDiagPackage(dialog.FileName);
-                    MessageBox.Show("Diagnostics package created successfully.");
+                    PlayniteMessageBox.Show("Diagnostics package created successfully.");
                 }
                 catch (Exception exc)
                 {
                     logger.Error(exc, "Faild to created diagnostics package.");
-                    MessageBox.Show("Failed to create diagnostics package.");
+                    PlayniteMessageBox.Show("Failed to create diagnostics package.");
                 }
             }
         }

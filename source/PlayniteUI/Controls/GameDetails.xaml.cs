@@ -95,7 +95,7 @@ namespace PlayniteUI
             }
             catch
             {
-                MessageBox.Show("Cannot open link. URL is not in valid Format.\nURL: " + e.Uri.ToString(), "Invalid URL", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show("Cannot open link. URL is not in valid Format.\nURL: " + e.Uri.ToString(), "Invalid URL", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

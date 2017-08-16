@@ -166,7 +166,7 @@ namespace PlayniteUI.Controls
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
             var games = (List<IGame>)DataContext;
-            if (MessageBox.Show(
+            if (PlayniteMessageBox.Show(
                 string.Format("Are you sure you want to remove {0} games?", games.Count),
                 "Remove games?",
                 MessageBoxButton.YesNo) != MessageBoxResult.Yes)

@@ -85,7 +85,7 @@ namespace PlayniteUI.Controls
             }
             catch (Exception exc)
             {
-                MessageBox.Show("Cannot start action: " + exc.Message, "Action Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show("Cannot start action: " + exc.Message, "Action Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
@@ -133,10 +133,11 @@ namespace PlayniteUI.Controls
                 return;
             }
 
-            if (MessageBox.Show(
+            if (PlayniteMessageBox.Show(
                 FindResource("GameRemoveAskMessage") as string,
                 FindResource("GameRemoveAskTitle") as string,
-                MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question) != MessageBoxResult.Yes)
             {
                 return;
             }
@@ -159,7 +160,7 @@ namespace PlayniteUI.Controls
             }
             catch (Exception exc)
             {
-                MessageBox.Show("Cannot open game location: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show("Cannot open game location: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {

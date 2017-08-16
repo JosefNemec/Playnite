@@ -267,20 +267,20 @@ namespace PlayniteUI.Windows
                     {
                         if (window.SteamImportLibByName && string.IsNullOrEmpty(window.SteamAccountName))
                         {
-                            MessageBox.Show("Steam account name cannot be empty.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                            PlayniteMessageBox.Show("Steam account name cannot be empty.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
                             return false;
                         }
 
                         if (!window.SteamImportLibByName && window.SteamIdLibImport == 0)
                         {
-                            MessageBox.Show("No Steam account selected for library import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                            PlayniteMessageBox.Show("No Steam account selected for library import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
                             return false;
                         }
                     }
 
                     if (window.SteamImportCategories && window.SteamIdCategoryImport == 0)
                     {
-                        MessageBox.Show("No Steam account selected for category import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                        PlayniteMessageBox.Show("No Steam account selected for category import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
                         return false;
                     }
 

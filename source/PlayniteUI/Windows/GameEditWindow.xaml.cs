@@ -422,14 +422,14 @@ namespace PlayniteUI
             {
                 if (string.IsNullOrWhiteSpace(TextName.Text))
                 {
-                    MessageBox.Show("Name cannot be empty.", "Invalid game data", MessageBoxButton.OK, MessageBoxImage.Error);
+                    PlayniteMessageBox.Show("Name cannot be empty.", "Invalid game data", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
             }
 
             if (!string.IsNullOrEmpty(TextReleaseDate.Text) && !DateTime.TryParseExact(TextReleaseDate.Text, Playnite.Constants.DateUiFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
             {
-                MessageBox.Show("Release date in is not valid format.", "Invalid game data", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show("Release date in is not valid format.", "Invalid game data", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -806,7 +806,7 @@ namespace PlayniteUI
         {
             if (string.IsNullOrEmpty(TextName.Text))
             {
-                MessageBox.Show("Game name cannot be empty.", "", MessageBoxButton.OK);
+                PlayniteMessageBox.Show("Game name cannot be empty.", "", MessageBoxButton.OK);
                 return;
             }
 
@@ -874,7 +874,7 @@ namespace PlayniteUI
                 catch (Exception exc)
                 {
                     logger.Error(exc, "Failed to download metadata, {0} , {1}", game.Provider, game.ProviderId);
-                    MessageBox.Show("Failed to download metadata: " + exc.Message, "Download Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    PlayniteMessageBox.Show("Failed to download metadata: " + exc.Message, "Download Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 finally
                 {

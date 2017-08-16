@@ -309,7 +309,7 @@ namespace PlayniteUI
                 catch (Exception exc)
                 {
                     GameAdditionAllowed = false;
-                    MessageBox.Show("Failed to open library database: " + exc.Message, "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    PlayniteMessageBox.Show("Failed to open library database: " + exc.Message, "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 

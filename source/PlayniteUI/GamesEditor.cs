@@ -105,7 +105,7 @@ namespace PlayniteUI
             // because this method can be invoked from tray icon which otherwise bugs the dialog
             if (GameDatabase.Instance.GamesCollection.FindOne(a => a.ProviderId == game.ProviderId) == null)
             {
-                MessageBox.Show(Application.Current.MainWindow, $"Cannot start game. '{game.Name}' was not found in database.", "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);                
+                PlayniteMessageBox.Show(Application.Current.MainWindow, $"Cannot start game. '{game.Name}' was not found in database.", "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);                
                 OnPropertyChanged("LastGames");
                 UpdateJumpList();
                 return;
@@ -127,7 +127,7 @@ namespace PlayniteUI
             catch (Exception exc)
             {
                 logger.Error(exc, "Cannot start game: ");
-                MessageBox.Show(Application.Current.MainWindow, "Cannot start game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show(Application.Current.MainWindow, "Cannot start game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             try
@@ -169,7 +169,7 @@ namespace PlayniteUI
             catch (Exception exc)
             {
                 logger.Error(exc, "Failed to create shortcut: ");
-                MessageBox.Show("Failed to create shortcut: " + exc.Message, "Shortcut Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show("Failed to create shortcut: " + exc.Message, "Shortcut Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 }
 
@@ -191,7 +191,7 @@ namespace PlayniteUI
             catch (Exception exc)
             {
                 logger.Error(exc, "Cannot install game: ");
-                MessageBox.Show("Cannot install game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show("Cannot install game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -205,7 +205,7 @@ namespace PlayniteUI
             catch (Exception exc)
             {
                 logger.Error(exc, "Cannot un-install game: ");
-                MessageBox.Show("Cannot un-install game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show("Cannot un-install game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
