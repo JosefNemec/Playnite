@@ -1,4 +1,4 @@
-﻿<Window x:Class="PlayniteUI.SettingsWindow"
+﻿<controls:WindowBase x:Class="PlayniteUI.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,21 +6,22 @@
         xmlns:local="clr-namespace:PlayniteUI"
         xmlns:steam="clr-namespace:Playnite.Providers.Steam;assembly=Playnite"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="Configuration" Width="580" Height="420"
+        Title="Playnite Settings" Width="580" Height="420"
         AutomationProperties.AutomationId="WindowSettings"
         Background="{StaticResource NormalBrush}">
 
-    <Window.Resources>
+    <controls:WindowBase.Resources>
         <local:NegateConverter x:Key="NegateConverter" />
         <local:EnumConverter x:Key="EnumConverter" />
         <sys:Double x:Key="IconSize">24</sys:Double>
         
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
-    </Window.Resources>    
+    </controls:WindowBase.Resources>    
     
-    <Grid Margin="5">
+    <Border Padding="5" Margin="0,5,0,0" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
         <DockPanel>
             <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="-5,0,-5,-5"
                        Background="{StaticResource NormalBrush}">
@@ -83,14 +84,14 @@
                     </TabItem.Header>
                     <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding SteamSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
-                                  Name="CheckSteamEnabled" Content="Import Steam Games" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                  Name="CheckSteamEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                   DockPanel.Dock="Top" Margin="5"/>
 
-                        <RadioButton Name="RadioInstalledSteam" Content="Only import installed games"
+                        <RadioButton Name="RadioInstalledSteam" Content="{DynamicResource SettingsImportInstalledLabel}"
                                      IsChecked="{Binding SteamSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <RadioButton Name="RadioLibrarySteam" Content="Import complete library"
+                        <RadioButton Name="RadioLibrarySteam" Content="{DynamicResource SettingsImportLibraryLabel}"
                                      IsChecked="{Binding SteamSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,0"/>
@@ -150,14 +151,14 @@
                     </TabItem.Header>
                     <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding GOGSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
-                                  Name="CheckGogEnabled" Content="Import GOG Games" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                  Name="CheckGogEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                   DockPanel.Dock="Top" Margin="5"/>
 
-                        <RadioButton Name="RadioInstalledGOG" Content="Only import installed games"
+                        <RadioButton Name="RadioInstalledGOG" Content="{DynamicResource SettingsImportInstalledLabel}"
                                      IsChecked="{Binding GOGSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <RadioButton Name="RadioLibraryGOG" Content="Import complete library (requires authentication)"
+                        <RadioButton Name="RadioLibraryGOG" Content="{DynamicResource SettingsImportLibraryLabel}"
                                      IsChecked="{Binding GOGSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
@@ -191,14 +192,14 @@
                     </TabItem.Header>
                     <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding OriginSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
-                                  Name="CheckOriginEnabled" Content="Import Origin Games" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                  Name="CheckOriginEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                   DockPanel.Dock="Top" Margin="5"/>
 
-                        <RadioButton Name="RadioInstalledOrigin" Content="Only import installed games"
+                        <RadioButton Name="RadioInstalledOrigin" Content="{DynamicResource SettingsImportInstalledLabel}"
                                      IsChecked="{Binding OriginSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <RadioButton Name="RadioLibraryOrigin" Content="Import complete library (requires authentication)"
+                        <RadioButton Name="RadioLibraryOrigin" Content="{DynamicResource SettingsImportLibraryLabel}"
                                      IsChecked="{Binding OriginSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
                                      IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
                                      DockPanel.Dock="Top" Margin="20,5,5,5"/>
@@ -217,7 +218,24 @@
                         </DockPanel>
                     </DockPanel>
                 </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/uplayicon.png" Width="{StaticResource IconSize}" RenderOptions.BitmapScalingMode="Fant" />
+                            <TextBlock Text="Uplay" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <DockPanel Margin="10" LastChildFill="False">
+                        <CheckBox IsChecked="{Binding UplaySettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
+                                  Name="CheckUplayEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                  DockPanel.Dock="Top" Margin="5"/>
+                        <RadioButton Name="RadioInstalledUplay" Content="{DynamicResource SettingsImportInstalledLabel}"
+                                     IsChecked="{Binding UplaySettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
+                                     IsEnabled="{Binding IsChecked, ElementName=CheckUplayEnabled}"
+                                     DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                    </DockPanel>
+                </TabItem>
             </TabControl>
         </DockPanel>
-    </Grid>
-</Window>
+    </Border>
+</controls:WindowBase>

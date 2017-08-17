@@ -6,23 +6,38 @@
 
     <sys:String x:Key="LanguageSettingsLabel">Language:</sys:String>
 
-
     <sys:String x:Key="ExitAppLabel">Exit</sys:String>
-    <sys:String x:Key="FilterGeneralLabel">FILTER</sys:String>
-
-    <sys:String x:Key="OKLabel">OK</sys:String>
-    <sys:String x:Key="CloseLabel">Close</sys:String>
-    <sys:String x:Key="CancelLabel">Cancel</sys:String>
-    
+    <sys:String x:Key="FilterActiveLabel">Filter is Enabled (click to toggle filter panel)</sys:String>
+    <sys:String x:Key="FilterInactiveLabel">Filter is Disabled (click to toggle filter panel)</sys:String>    
 
     <sys:String x:Key="AboutHomePageLink">Homepage at www.playnite.link</sys:String>
     <sys:String x:Key="AboutSourceLink">Source Code at GitHub</sys:String>
     <sys:String x:Key="AboutCreateDiagButton">Create diag. package</sys:String>
     <sys:String x:Key="AboutWindowTitle">About Playnite</sys:String>
 
-    <sys:String x:Key="CategoryWindowTitle">Assign category for the game</sys:String>
+    <sys:String x:Key="CategoryWindowTitle">Assign Category</sys:String>
     <sys:String x:Key="CategorySetButton">Set Categories</sys:String>
     <sys:String x:Key="CategoryAddCatButton">Add Category</sys:String>
 
     <sys:String x:Key="CrashWindowTitle">Oh no, something bad happened...</sys:String>
+
+    <sys:String x:Key="GameRemoveAskTitle">Remove Game?</sys:String>
+    <sys:String x:Key="GameRemoveAskMessage" xml:space="preserve">Are you sure you want to remove this game?
+Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
+    
+    
+    <!--Settings Window-->
+    <sys:String x:Key="SettingsImportLabel">Import changes in library automatically</sys:String>
+    <sys:String x:Key="SettingsImportInstalledLabel">Import installed games</sys:String>
+    <sys:String x:Key="SettingsImportLibraryLabel">Import all games</sys:String>
+
+    <!--First Time Wizard-->
+    <sys:String x:Key="WizardImportIntroduction" xml:space="preserve">Automatically import games from following services. Any later game changes (installation status) will be automatically updated on Playnite startup or when triggered manually. Selected settings affect initial and all subsequent imports.</sys:String>
+    
+    <!--MessageBox-->
+    <sys:String x:Key="OKLabel">OK</sys:String>
+    <sys:String x:Key="CloseLabel">Close</sys:String>
+    <sys:String x:Key="CancelLabel">Cancel</sys:String>
+    <sys:String x:Key="YesLabel">Yes</sys:String>
+    <sys:String x:Key="NoLabel">No</sys:String>
 </ResourceDictionary>

@@ -29,13 +29,14 @@ using Playnite.Providers.Origin;
 using PlayniteUI.Controls;
 using System.Globalization;
 using Playnite.Services;
+using Playnite.Providers.Uplay;
 
 namespace PlayniteUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : WindowBase, INotifyPropertyChanged
     {
         private Settings config;
         public Settings Config
@@ -90,11 +91,6 @@ namespace PlayniteUI
             get; set;
         }
 
-        public ThirdPartyToolsList ThirdPartyTools
-        {
-            get; set;
-        }
-
         public MainWindow()
         {
             Config = Settings.Instance;
@@ -114,11 +110,11 @@ namespace PlayniteUI
             SteamSettings.DefaultImage = @"/Images/custom_cover_background.png";
             OriginSettings.DefaultIcon = @"/Images/originicon.png";
             OriginSettings.DefaultImage = @"/Images/custom_cover_background.png";
+            UplaySettings.DefaultIcon = @"/Images/uplayicon.png";
+            UplaySettings.DefaultImage = @"/Images/custom_cover_background.png";
             CustomGameSettings.DefaultIcon = @"/Images/applogo.png";
             CustomGameSettings.DefaultImage = @"/Images/custom_cover_background.png";
             CustomGameSettings.DefaultBackgroundImage = @"/Images/default_background.png";
-
-            LoadThirdPartyTools();
 
             Config.PropertyChanged += Config_PropertyChanged;
             Config.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
@@ -148,6 +144,7 @@ namespace PlayniteUI
                     Config.GOGSettings.LibraryDownloadEnabled = window.GogImportLibrary;
                     Config.OriginSettings.IntegrationEnabled = window.OriginEnabled;
                     Config.OriginSettings.LibraryDownloadEnabled = window.OriginImportLibrary;
+                    Config.UplaySettings.IntegrationEnabled = window.UplayEnabled;
                     importSteamCatWizard = window.SteamImportCategories;
                     importSteamCatWizardId = window.SteamIdCategoryImport;
 
@@ -316,7 +313,7 @@ namespace PlayniteUI
                 catch (Exception exc)
                 {
                     GameAdditionAllowed = false;
-                    MessageBox.Show("Failed to open library database: " + exc.Message, "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    PlayniteMessageBox.Show("Failed to open library database: " + exc.Message, "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -346,6 +343,23 @@ namespace PlayniteUI
                     ProgressControl.Visible = Visibility.Visible;
                     ProgressControl.ProgressValue = 0;
                     ProgressControl.Text = "Importing installed games...";
+
+                    try
+                    {
+                        if (Config.UplaySettings.IntegrationEnabled)
+                        {
+                            database.UpdateInstalledGames(Provider.Uplay);
+                            NotificationsWin.RemoveMessage(NotificationCodes.UplayInstalledImportError);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, "Failed to import installed Uplay games.");
+                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.UplayInstalledImportError, "Failed to import installed Uplay games:" + e.Message, NotificationType.Error, () =>
+                        {
+
+                        }));
+                    }
 
                     try
                     {
@@ -513,6 +527,12 @@ namespace PlayniteUI
                         Task.Factory.StartNew(() =>
                         {
                             DownloadMetadata(database, Provider.GOG, ProgressControl, GamesLoaderHandler.CancelToken.Token);
+                        }),
+
+                        // Uplay metada download thread
+                        Task.Factory.StartNew(() =>
+                        {
+                            DownloadMetadata(database, Provider.Uplay, ProgressControl, GamesLoaderHandler.CancelToken.Token);
                         })
                     };
 
@@ -549,6 +569,17 @@ namespace PlayniteUI
                 installedResult = true;
             }
 
+            // ------------------ UnInstalled
+            bool unInstalledResult = false;
+            if (Config.FilterSettings.IsUnInstalled && !game.IsInstalled)
+            {
+                unInstalledResult = true;
+            }
+            else if (!Config.FilterSettings.IsUnInstalled)
+            {
+                unInstalledResult = true;
+            }
+
             // ------------------ Hidden
             bool hiddenResult = true;
             if (Config.FilterSettings.Hidden && game.Hidden)
@@ -577,7 +608,7 @@ namespace PlayniteUI
 
             // ------------------ Providers
             bool providersFilter = false;
-            if (Config.FilterSettings.Steam == false && Config.FilterSettings.Origin == false && Config.FilterSettings.GOG == false && Config.FilterSettings.Custom == false)
+            if (Config.FilterSettings.Steam == false && Config.FilterSettings.Origin == false && Config.FilterSettings.GOG == false && Config.FilterSettings.Custom == false && Config.FilterSettings.Uplay == false)
             {
                 providersFilter = true;
             }
@@ -605,6 +636,12 @@ namespace PlayniteUI
                         break;
                     case Provider.Steam:
                         if (Config.FilterSettings.Steam)
+                        {
+                            providersFilter = true;
+                        }
+                        break;
+                    case Provider.Uplay:
+                        if (Config.FilterSettings.Uplay)
                         {
                             providersFilter = true;
                         }
@@ -722,7 +759,7 @@ namespace PlayniteUI
                 }
             }
 
-            return installedResult && hiddenResult && favoriteResult && textResult && providersFilter && genreResult && releaseDateResult && publisherResult && developerResult && categoryResult;
+            return installedResult && unInstalledResult && hiddenResult && favoriteResult && textResult && providersFilter && genreResult && releaseDateResult && publisherResult && developerResult && categoryResult;
         }
 
         private void Config_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -1032,14 +1069,12 @@ namespace PlayniteUI
             Show();
             WindowState = WindowState.Normal;
             Focus();
-            TrayPlaynite.TrayPopupResolved.IsOpen = false;
         }
 
         private void MenuLastGamesGame_Click(object sender, RoutedEventArgs e)
         {
             var game = (sender as MenuItem).DataContext as IGame;
             GamesEditor.Instance.PlayGame(game);
-            TrayPlaynite.TrayPopupResolved.IsOpen = false;
         }
 
         private void CheckUpdate()
@@ -1108,24 +1143,11 @@ namespace PlayniteUI
             });
         }
 
-        private void LoadThirdPartyTools()
-        {
-            try
-            {
-                ThirdPartyTools = new ThirdPartyToolsList();
-                ThirdPartyTools.SetTools(ThirdPartyTools.GetDefaultInstalledTools());
-            }
-            catch (Exception exc)
-            {
-                logger.Error(exc, "Failed to load 3rd party tool list.");
-            }
-}
-
         private void ThirdPartyToolMenuItem_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var item = sender as MenuItem;
+                var item = e.OriginalSource as MenuItem;
                 var tool = item.DataContext as ThirdPartyTool;
                 tool.Start();
             }

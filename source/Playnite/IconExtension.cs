@@ -23,14 +23,7 @@ namespace Playnite
 
     public static class IconExtension
     {
-        [DllImport("Shell32.dll")]
-        public extern static int ExtractIconEx(string libName, int iconIndex, IntPtr[] largeIcon, IntPtr[] smallIcon, uint nIcons);
 
-        [DllImport("user32.dll", EntryPoint = "DestroyIcon", SetLastError = true)]
-        private static extern int DestroyIcon(IntPtr hIcon);
-
-        [DllImport("gdi32.dll", SetLastError = true)]
-        private static extern bool DeleteObject(IntPtr hObject);
 
         public static Icon ExtractIconFromExe(string file, bool large)
         {
@@ -42,11 +35,11 @@ namespace Playnite
             {
                 if (large)
                 {
-                    readIconCount = ExtractIconEx(file, 0, hIconEx, hDummy, 1);
+                    readIconCount = InteropMethods.ExtractIconEx(file, 0, hIconEx, hDummy, 1);
                 }
                 else
                 {
-                    readIconCount = ExtractIconEx(file, 0, hDummy, hIconEx, 1);
+                    readIconCount = InteropMethods.ExtractIconEx(file, 0, hDummy, hIconEx, 1);
                 }
 
                 if (readIconCount > 0 && hIconEx[0] != IntPtr.Zero)
@@ -69,7 +62,7 @@ namespace Playnite
                 {
                     if (ptr != IntPtr.Zero)
                     {
-                        DestroyIcon(ptr);
+                        InteropMethods.DestroyIcon(ptr);
                     }
                 }
 
@@ -77,7 +70,7 @@ namespace Playnite
                 {
                     if (ptr != IntPtr.Zero)
                     {
-                        DestroyIcon(ptr);
+                        InteropMethods.DestroyIcon(ptr);
                     }
                 }
             }
@@ -92,18 +85,18 @@ namespace Playnite
             }
         }
 
-        public static ImageSource ToImageSource(this Icon icon)
+        public static BitmapSource ToImageSource(this Icon icon)
         {
             Bitmap bitmap = icon.ToBitmap();
             IntPtr hBitmap = bitmap.GetHbitmap();
 
-            ImageSource wpfBitmap = Imaging.CreateBitmapSourceFromHBitmap(
+            BitmapSource wpfBitmap = Imaging.CreateBitmapSourceFromHBitmap(
                 hBitmap,
                 IntPtr.Zero,
                 Int32Rect.Empty,
                 BitmapSizeOptions.FromEmptyOptions());
 
-            if (!DeleteObject(hBitmap))
+            if (!InteropMethods.DeleteObject(hBitmap))
             {
                 throw new Win32Exception();
             }

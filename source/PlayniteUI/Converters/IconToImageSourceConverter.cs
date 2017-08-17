@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using Playnite;
+using System.Windows;
 
 namespace PlayniteUI
 {
@@ -15,7 +16,7 @@ namespace PlayniteUI
         {
             if (value == null)
             {
-                return null;
+                return DependencyProperty.UnsetValue;
             }
 
             var icon = (Icon)value;

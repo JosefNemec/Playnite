@@ -1,4 +1,4 @@
-﻿<Window x:Class="PlayniteUI.GameEditWindow"
+﻿<controls:WindowBase x:Class="PlayniteUI.GameEditWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,17 +7,18 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
         xmlns:models="clr-namespace:Playnite.Models;assembly=Playnite"
+        xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
         Title="Edit Game Details"
         Background="{StaticResource NormalBrush}" Height="550" Width="800"
         WindowStartupLocation="CenterOwner"
-        Name="mainWindow"
+        x:Name="mainWindow"
         LocationChanged="MainWindow_LocationChanged"
         Loaded="MainWindow_Loaded"
         SizeChanged="MainWindow_SizeChanged"
         AutomationProperties.AutomationId="WindowGameEdit">
 
-    <Window.Resources>
+    <controls:WindowBase.Resources>
         <local:ListToStringConverter x:Key="ListToStringConverter" />
         <local:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
         <local:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
@@ -29,271 +30,273 @@
             <BooleanToVisibilityConverter/>
         </local:ValueConverterGroup>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
-    </Window.Resources>
+    </controls:WindowBase.Resources>
 
-    <Grid Margin="5">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        
-        <TabControl Name="TabControlMain" DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0">
-            <TabItem Header="General">
-                <Grid Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="70*"/>
-                        <ColumnDefinition Width="35*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Column="0" Grid.Row="0" Margin="5,0,3,0">
-                        <Grid.Resources>
-                            <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
-                                <Setter Property="Margin" Value="3" />
-                            </Style>
-                            <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}" >
-                                <Setter Property="Margin" Value="0,5,0,0" />
-                            </Style>
-                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}" >
-                                <Setter Property="Margin" Value="0,3,0,0" />
-                            </Style>
-                        </Grid.Resources>
+    <Border Padding="5" Margin="0,5,0,0" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TabControl Name="TabControlMain" DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0">
+                <TabItem Header="General">
+                    <Grid Margin="10">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="70*"/>
+                            <ColumnDefinition Width="35*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition />
                         </Grid.RowDefinitions>
+                        <Grid Grid.Column="0" Grid.Row="0" Margin="5,0,3,0">
+                            <Grid.Resources>
+                                <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
+                                    <Setter Property="Margin" Value="3" />
+                                </Style>
+                                <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}" >
+                                    <Setter Property="Margin" Value="0,5,0,0" />
+                                </Style>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}" >
+                                    <Setter Property="Margin" Value="0,3,0,0" />
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                        <TextBlock Text="Id" Grid.Column="0" Grid.Row="0"
+                            <TextBlock Text="Id" Grid.Column="0" Grid.Row="0"
                                    Visibility="{Binding Source={x:Static playnite:Constants.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                        <TextBox Grid.Column="2" Grid.Row="0" IsReadOnly="True" Text="{Binding ProviderId, Mode=OneTime}"
+                            <TextBox Grid.Column="2" Grid.Row="0" IsReadOnly="True" Text="{Binding ProviderId, Mode=OneTime}"
                                  Visibility="{Binding Source={x:Static playnite:Constants.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                        <TextBlock  Grid.Column="0" Grid.Row="1" Text="Name"/>
-                        <CheckBox   Grid.Column="1" Grid.Row="1" Name="CheckName"
+                            <TextBlock  Grid.Column="0" Grid.Row="1" Text="Name"/>
+                            <CheckBox   Grid.Column="1" Grid.Row="1" Name="CheckName"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsNameBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <TextBox    Grid.Column="2" Grid.Row="1" Name="TextName"
+                            <TextBox    Grid.Column="2" Grid.Row="1" Name="TextName"
                                     Text="{Binding Name, UpdateSourceTrigger=Explicit}"
                                     TextChanged="TextBox_TextChanged" Tag="IsNameBindingDirty"/>
 
-                        <TextBlock  Grid.Column="0" Grid.Row="2" Text="Genre(s)" />
-                        <CheckBox   Grid.Column="1" Grid.Row="2" Name="CheckGenres"
+                            <TextBlock  Grid.Column="0" Grid.Row="2" Text="Genre(s)" />
+                            <CheckBox   Grid.Column="1" Grid.Row="2" Name="CheckGenres"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsGenreBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <TextBox    Grid.Column="2" Grid.Row="2" Name="TextGenres"
+                            <TextBox    Grid.Column="2" Grid.Row="2" Name="TextGenres"
                                     Text="{Binding Genres, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
                                     TextChanged="TextBox_TextChanged" Tag="IsGenreBindingDirty"/>
 
-                        <TextBlock  Grid.Column="0" Grid.Row="3" Text="Release date"/>
-                        <CheckBox   Grid.Column="1" Grid.Row="3" Name="CheckReleaseDate"
+                            <TextBlock  Grid.Column="0" Grid.Row="3" Text="Release date"/>
+                            <CheckBox   Grid.Column="1" Grid.Row="3" Name="CheckReleaseDate"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsReleaseDateBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <Grid       Grid.Column="2" Grid.Row="3">
-                            <TextBox Text="{x:Static playnite:Constants.DateUiFormat}" Foreground="LightGray"
+                            <Grid       Grid.Column="2" Grid.Row="3">
+                                <TextBox Text="{x:Static playnite:Constants.DateUiFormat}" Foreground="LightGray"
                                      Visibility="{Binding ElementName=TextReleaseDate, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                            <TextBox Name="TextReleaseDate" Background="Transparent"
+                                <TextBox Name="TextReleaseDate" Background="Transparent"
                                      Text="{Binding ReleaseDate, UpdateSourceTrigger=Explicit, Converter={StaticResource NullableDateToStringConverter}}"
                                      TextChanged="TextBox_TextChanged" Tag="IsReleaseDateBindingDirty"/>
-                        </Grid>
+                            </Grid>
 
-                        <TextBlock  Grid.Column="0" Grid.Row="4" Text="Developer(s)"/>
-                        <CheckBox   Grid.Column="1" Grid.Row="4" Name="CheckDeveloper"
+                            <TextBlock  Grid.Column="0" Grid.Row="4" Text="Developer(s)"/>
+                            <CheckBox   Grid.Column="1" Grid.Row="4" Name="CheckDeveloper"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsDeveloperBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <TextBox    Grid.Column="2" Grid.Row="4" Name="TextDeveloper"
+                            <TextBox    Grid.Column="2" Grid.Row="4" Name="TextDeveloper"
                                     Text="{Binding Developers, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
                                     TextChanged="TextBox_TextChanged" Tag="IsDeveloperBindingDirty"/>
 
-                        <TextBlock  Grid.Column="0" Grid.Row="5" Text="Publisher(s)" />
-                        <CheckBox   Grid.Column="1" Grid.Row="5" Name="CheckPublisher"
+                            <TextBlock  Grid.Column="0" Grid.Row="5" Text="Publisher(s)" />
+                            <CheckBox   Grid.Column="1" Grid.Row="5" Name="CheckPublisher"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsPublisherBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <TextBox    Grid.Column="2" Grid.Row="5" Name="TextPublisher"
+                            <TextBox    Grid.Column="2" Grid.Row="5" Name="TextPublisher"
                                     Text="{Binding Publishers, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
                                     TextChanged="TextBox_TextChanged" Tag="IsPublisherBindingDirty"/>
 
-                        <TextBlock  Grid.Column="0" Grid.Row="6" Text="Categories" />
-                        <CheckBox   Grid.Column="1" Grid.Row="6" Name="CheckCategories"
+                            <TextBlock  Grid.Column="0" Grid.Row="6" Text="Categories" />
+                            <CheckBox   Grid.Column="1" Grid.Row="6" Name="CheckCategories"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsCategoriesBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <DockPanel Grid.Column="2" Grid.Row="6">
-                            <Button Name="ButtonPickCat" Click="ButtonPickCat_Click" Content="..."  DockPanel.Dock="Right" Padding="5,0,5,0" Margin="2" />
-                            <TextBox Name="TextCategories"  Text="{Binding Categories, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
+                            <DockPanel Grid.Column="2" Grid.Row="6">
+                                <Button Name="ButtonPickCat" Click="ButtonPickCat_Click" Content="..."  DockPanel.Dock="Right" Padding="5,0,5,0" Margin="2" />
+                                <TextBox Name="TextCategories"  Text="{Binding Categories, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
                                     TextChanged="TextBox_TextChanged" Tag="IsCategoriesBindingDirty" DockPanel.Dock="Left"/>
-                        </DockPanel>
-                       
-                        <TextBlock  Grid.Column="0" Grid.Row="7" Text="Description" />
-                        <CheckBox   Grid.Column="1" Grid.Row="7" Name="CheckDescription"
+                            </DockPanel>
+
+                            <TextBlock  Grid.Column="0" Grid.Row="7" Text="Description" />
+                            <CheckBox   Grid.Column="1" Grid.Row="7" Name="CheckDescription"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    IsChecked="{Binding IsDescriptionBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>                        
-                        <TextBox    Grid.Column="2" Grid.Row="7" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
+                                    IsChecked="{Binding IsDescriptionBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
+                            <TextBox    Grid.Column="2" Grid.Row="7" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                                     Text="{Binding Description, UpdateSourceTrigger=Explicit}"
                                     TextChanged="TextBox_TextChanged" Tag="IsDescriptionBindingDirty"/>
-                    </Grid>
-                    <Grid Grid.Column="1" Grid.Row="0"  Margin="0,0,2,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <GroupBox Grid.Column="0" Grid.Row="0" Header="Icon" Padding="10,10,10,0">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <CheckBox Name="CheckIcon" VerticalAlignment="Center" Loaded="CheckIcon_Loaded"
+                        </Grid>
+                        <Grid Grid.Column="1" Grid.Row="0"  Margin="0,0,2,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <GroupBox Grid.Column="0" Grid.Row="0" Header="Icon" Padding="10,10,10,0">
+                                <GroupBox.HeaderTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox Name="CheckIcon" VerticalAlignment="Center" Loaded="CheckIcon_Loaded"
                                                   Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                   IsChecked="{Binding IsIconBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                                        <TextBlock Text="{Binding}" Style="{StaticResource BaseTextBlockStyle}" />
+                                            <TextBlock Text="{Binding}" Style="{StaticResource BaseTextBlockStyle}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GroupBox.HeaderTemplate>
+                                <DockPanel LastChildFill="True">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,5" DockPanel.Dock="Top">
+                                        <Button Name="ButtonSelectIcon" Content="Select Icon" Click="ButtonSelectIcon_Click" />
+                                        <Button Name="ButtonUseExeIcon" Content=" Use exe's icon " Click="ButtonExecIcon_Click" Margin="5,0,0,0"/>
                                     </StackPanel>
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
-                            <DockPanel LastChildFill="True">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,5" DockPanel.Dock="Top">
-                                    <Button Name="ButtonSelectIcon" Content="Select Icon" Click="ButtonSelectIcon_Click" />
-                                    <Button Name="ButtonUseExeIcon" Content=" Use exe's icon " Click="ButtonExecIcon_Click" Margin="5,0,0,0"/>
-                                </StackPanel>
-                                <Image Source="{Binding Icon, UpdateSourceTrigger=Explicit, Mode=TwoWay, Converter={StaticResource LiteDBImageToImageConverter}}"
+                                    <Image Source="{Binding Icon, UpdateSourceTrigger=Explicit, Mode=TwoWay, Converter={StaticResource LiteDBImageToImageConverter}}"
                                        Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageIcon"
                                        DockPanel.Dock="Top" Tag="IsIconBindingDirty" MaxHeight="64"
                                        AutomationProperties.HelpText="{Binding Icon, TargetNullValue=''}"/>
-                            </DockPanel>
-                        </GroupBox>
-                        <GroupBox Grid.Column="0" Grid.Row="1" Header="Cover Image" Margin="0,5,0,0" Padding="10">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <CheckBox Name="CheckImage" VerticalAlignment="Center" Loaded="CheckImage_Loaded"
+                                </DockPanel>
+                            </GroupBox>
+                            <GroupBox Grid.Column="0" Grid.Row="1" Header="Cover Image" Margin="0,5,0,0" Padding="10">
+                                <GroupBox.HeaderTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox Name="CheckImage" VerticalAlignment="Center" Loaded="CheckImage_Loaded"
                                                   Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                   IsChecked="{Binding IsImageBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                                        <TextBlock Text="{Binding}" Style="{StaticResource BaseTextBlockStyle}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
-                            <DockPanel LastChildFill="True">                                
-                                <Button Name="ButtonSelectImage" Content="Select Image" Click="ButtonSelectImage_Click"
+                                            <TextBlock Text="{Binding}" Style="{StaticResource BaseTextBlockStyle}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GroupBox.HeaderTemplate>
+                                <DockPanel LastChildFill="True">
+                                    <Button Name="ButtonSelectImage" Content="Select Image" Click="ButtonSelectImage_Click"
                                         DockPanel.Dock="Top" MaxWidth="120" Margin="0,0,0,5" />
-                                <Image Source="{Binding Image, UpdateSourceTrigger=Explicit, Mode=TwoWay, Converter={StaticResource LiteDBImageToImageConverter}}"
+                                    <Image Source="{Binding Image, UpdateSourceTrigger=Explicit, Mode=TwoWay, Converter={StaticResource LiteDBImageToImageConverter}}"
                                        Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
                                        DockPanel.Dock="Top" Tag="IsImageBindingDirty"
                                        AutomationProperties.HelpText="{Binding Image, TargetNullValue=''}"/>
-                            </DockPanel>
-                        </GroupBox>
+                                </DockPanel>
+                            </GroupBox>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </TabItem>
+                </TabItem>
 
-            <TabItem Header="Links" Name="TabLinks">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10">
-                    <StackPanel>
-                        <CheckBox Name="CheckLinks" Content="Save Changes" Margin="5"
+                <TabItem Header="Links" Name="TabLinks">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10">
+                        <StackPanel>
+                            <CheckBox Name="CheckLinks" Content="Save Changes" Margin="5"
                                   Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   IsChecked="True" />
-                        <ItemsControl Name="ItemsLinks" Grid.IsSharedSizeScope="True"
+                            <ItemsControl Name="ItemsLinks" Grid.IsSharedSizeScope="True"
                                       ItemsSource="{Binding TempLinks, ElementName=mainWindow, UpdateSourceTrigger=Explicit}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                        </Grid.RowDefinitions>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
 
-                                        <TextBox Text="{Binding Name}" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5,3,5,3" />
-                                        <TextBox Text="{Binding Url}" Grid.Column="1" Grid.Row="0" Margin="0,3,5,3" />
-                                        <Button Name="ButtonRemoveLink" Content="Remove" Grid.Column="2" Grid.Row="1"  Margin="0,3,5,3" 
+                                            <TextBox Text="{Binding Name}" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5,3,5,3" />
+                                            <TextBox Text="{Binding Url}" Grid.Column="1" Grid.Row="0" Margin="0,3,5,3" />
+                                            <Button Name="ButtonRemoveLink" Content="Remove" Grid.Column="2" Grid.Row="1"  Margin="0,3,5,3" 
                                                 Click="ButtonRemoveLink_Click"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        <Button Name="ButtonAddLink" Content="Add Link" HorizontalAlignment="Left" Margin="0,10,0,0"
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <Button Name="ButtonAddLink" Content="Add Link" HorizontalAlignment="Left" Margin="0,10,0,0"
                                 Click="ButtonAddLink_Click"/>
-                    </StackPanel>
-                </ScrollViewer>
-            </TabItem>
-            
-            <TabItem Header="Actions" Name="TabActions">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel>
-                        <GroupBox Header="Play Action" Padding="10">
-                            <StackPanel>
-                                <Button Name="ButtonAddPlay" Content="Add Play Action"  Click="ButtonAddPlayAction_Click" HorizontalAlignment="Left"
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+
+                <TabItem Header="Actions" Name="TabActions">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <GroupBox Header="Play Action" Padding="10">
+                                <StackPanel>
+                                    <Button Name="ButtonAddPlay" Content="Add Play Action"  Click="ButtonAddPlayAction_Click" HorizontalAlignment="Left"
                                         Visibility="{Binding ShowAddPlayAction, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Margin="0,5,0,5"/>
-                                <Button Name="ButtonRemovePlay" Content="Remove Play Action"  Click="ButtonRemovePlayAction_Click" HorizontalAlignment="Left"
+                                    <Button Name="ButtonRemovePlay" Content="Remove Play Action"  Click="ButtonRemovePlayAction_Click" HorizontalAlignment="Left"
                                         Visibility="{Binding ShowRemovePlayAction, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Margin="0,5,0,5"/>
-                                <local:GameTaskView x:Name="TaskPlay" DataContext="{Binding TempPlayTask, ElementName=mainWindow}"
+                                    <local:GameTaskView x:Name="TaskPlay" DataContext="{Binding TempPlayTask, ElementName=mainWindow}"
                                         Visibility="{Binding ShowPlayActionEdit, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            </StackPanel>
-                        </GroupBox>
-                        <GroupBox Header="Other Actions" Padding="10">
-                            <StackPanel>
-                                <ItemsControl Name="OtherTasksItems">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Border BorderThickness="1" BorderBrush="{StaticResource NormalBrush}" CornerRadius="3" Padding="5" Margin="0,0,0,10">
-                                                <StackPanel Margin="10">
-                                                    <local:GameTaskView x:Name="TaskCustom"/>
-                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-                                                        <Button Name="ButtonMoveUpAction" FontFamily="Marlett" Content="5" Margin="0,0,5,0" Click="ButtonMoveUpAction_Click"/>
-                                                        <Button Name="ButtonMoveDownAction" FontFamily="Marlett" Content="6" Margin="0,0,5,0" Click="ButtonMoveDownAction_Click"/>
-                                                        <Button Name="ButtonDeleteAction" Content="Delete Action" Click="ButtonDeleteAction_Click"/>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Other Actions" Padding="10">
+                                <StackPanel>
+                                    <ItemsControl Name="OtherTasksItems">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border BorderThickness="1" BorderBrush="{StaticResource NormalBrush}" CornerRadius="3" Padding="5" Margin="0,0,0,10">
+                                                    <StackPanel Margin="10">
+                                                        <local:GameTaskView x:Name="TaskCustom"/>
+                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                                                            <Button Name="ButtonMoveUpAction" FontFamily="Marlett" Content="5" Margin="0,0,5,0" Click="ButtonMoveUpAction_Click"/>
+                                                            <Button Name="ButtonMoveDownAction" FontFamily="Marlett" Content="6" Margin="0,0,5,0" Click="ButtonMoveDownAction_Click"/>
+                                                            <Button Name="ButtonDeleteAction" Content="Delete Action" Click="ButtonDeleteAction_Click"/>
+                                                        </StackPanel>
                                                     </StackPanel>
-                                                </StackPanel>
-                                            </Border>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                                <Button Name="ButtonAddAction" Content="Add Action" Click="ButtonAddAction_Click" HorizontalAlignment="Left"
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <Button Name="ButtonAddAction" Content="Add Action" Click="ButtonAddAction_Click" HorizontalAlignment="Left"
                                         Margin="0,5,0,5"/>
-                            </StackPanel>
-                        </GroupBox>
-                    </StackPanel>
-                </ScrollViewer>
-            </TabItem>
-        </TabControl>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
 
-        <Grid Name="GridDownload" Visibility="Hidden">
-            <ProgressBar IsIndeterminate="True" Width="350" Height="30" />
-            <TextBlock Text="Downloading..." HorizontalAlignment="Center" VerticalAlignment="Center"/>            
-        </Grid>
+            <Grid Name="GridDownload" Visibility="Hidden">
+                <ProgressBar IsIndeterminate="True" Width="350" Height="30" />
+                <TextBlock Text="Downloading..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
 
-        <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="1" Margin="-5,0,-5,-5">
-            <Button Name="ButtonDownload" Content=" Download metadata from..." DockPanel.Dock="Left"
+            <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="1" Margin="-5,0,-5,-5" Background="{StaticResource NormalBrush}">
+                <Button Name="ButtonDownload" Content=" Download metadata from..." DockPanel.Dock="Left"
                     Click="ButtonDownload_Click" Style="{StaticResource BottomButton}">
-                <Button.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="IGDB" Click="MenuIGDBDownload_Click" />
-                        <MenuItem Header="Wiki" Click="MenuWikiDownload_Click" />
-                        <MenuItem Header="Official Store" Click="MenuStoreDownload_Click"
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="IGDB" Click="MenuIGDBDownload_Click" />
+                            <MenuItem Header="Wiki" Click="MenuWikiDownload_Click" />
+                            <MenuItem Header="Official Store" Click="MenuStoreDownload_Click"
                                   Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}"/>
-                    </ContextMenu>
-                </Button.ContextMenu>
-            </Button>
-            <Button Name="ButtonCancel" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right" IsCancel="True"
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <Button Name="ButtonCancel" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right" IsCancel="True"
                     Click="ButtonCancel_Click" Style="{StaticResource BottomButton}"/>
-            <Button Name="ButtonOK" Content="Save" DockPanel.Dock="Right"
+                <Button Name="ButtonOK" Content="Save" DockPanel.Dock="Right"
                     Click="ButtonOK_Click" Style="{StaticResource BottomButton}"/>
-        </DockPanel>        
-    </Grid>
-</Window>
+            </DockPanel>
+        </Grid>
+    </Border>
+</controls:WindowBase>

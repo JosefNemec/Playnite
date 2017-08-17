@@ -1,4 +1,4 @@
-﻿<Window x:Class="PlayniteUI.MainWindow"
+﻿<controls:WindowBase x:Class="PlayniteUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,10 +6,8 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:PlayniteUI"
         xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
+        xmlns:playniteModels="clr-namespace:Playnite.Models;assembly=Playnite"
         xmlns:models ="clr-namespace:Playnite.Models;assembly=Playnite"
-        xmlns:steamProvider="clr-namespace:Playnite.Providers.Steam;assembly=Playnite"
-        xmlns:gogProvider="clr-namespace:Playnite.Providers.GOG;assembly=Playnite"
-        xmlns:customProvider="clr-namespace:Playnite.Providers.Custom;assembly=Playnite"
         xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         xmlns:tray="http://www.hardcodet.net/taskbar"
@@ -19,10 +17,10 @@
         Background="{StaticResource ControlBackgroundBrush}"
         Loaded="Window_Loaded" Closed="WindowMain_Closed" Closing="WindowMain_Closing" StateChanged="WindowMain_StateChanged"
         LocationChanged="Window_LocationChanged" SizeChanged="Window_SizeChanged"
-        Name="WindowMain"
+        x:Name="WindowMain" ShowTitle="False"
         AutomationProperties.AutomationId="WindowMain">
 
-    <Window.Resources>
+    <controls:WindowBase.Resources>
         <local:EnumConverter x:Key="EnumConverter" />
         <local:OpacityBoolConverter x:Key="OpacityBoolConverter" />
         <local:NegateConverter x:Key="NegateConverter" />
@@ -41,44 +39,70 @@
             <local:NegateConverter/>
             <BooleanToVisibilityConverter/>
         </local:ValueConverterGroup>
-    </Window.Resources>
+    </controls:WindowBase.Resources>
     
-    <DockPanel>
-        <tray:TaskbarIcon x:Name="TrayPlaynite" ToolTipText="Playnite" IconSource="/Images/applogo.ico" PopupActivation="LeftOrRightClick"
+    <DockPanel Margin="0,-25,0,0">
+        <tray:TaskbarIcon x:Name="TrayPlaynite" ToolTipText="Playnite" IconSource="/Images/applogo.ico" MenuActivation="LeftOrRightClick"
                           Visibility="{Binding Path=EnableTray, Source={x:Static shared:Settings.Instance}, Converter={StaticResource BooleanToVisibilityConverter}}"
                           TrayMouseDoubleClick="TrayPlaynite_TrayMouseDoubleClick">
-            <tray:TaskbarIcon.TrayPopup>
-                <Border Background="{StaticResource PopupBackgroundBrush}" BorderBrush="{StaticResource PopupBorderBrush}" BorderThickness="{StaticResource PopupBorderThickness}">
-                    <StackPanel>
-                        <ItemsControl ItemsSource="{Binding Path=LastGames, Source={x:Static local:GamesEditor.Instance}}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <MenuItem Header="{Binding Name}" Click="MenuLastGamesGame_Click">
-                                        <MenuItem.Icon>
-                                            <Image Width="16">
-                                                <Image.Source>
-                                                    <PriorityBinding>
-                                                        <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" />
-                                                        <Binding Path="DefaultIcon" Mode="OneTime"/>
-                                                    </PriorityBinding>
-                                                </Image.Source>
-                                            </Image>
-                                        </MenuItem.Icon>
-                                    </MenuItem>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        <Separator Style="{StaticResource {x:Type Separator}}"/>
-                        <MenuItem Header="Open" Click="TrayPlaynite_TrayMouseDoubleClick" />
-                        <Separator Style="{StaticResource {x:Type Separator}}"/>
-                        <MenuItem Header="{DynamicResource ExitAppLabel}" Click="Exitappp_Click" />
-                    </StackPanel>
-                </Border>
-            </tray:TaskbarIcon.TrayPopup>
+            <tray:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <ContextMenu.ItemContainerStyle>
+                        <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                            <Setter Property="OverridesDefaultStyle" Value="True" />
+                            <EventSetter Event="Click" Handler="MenuLastGamesGame_Click" />
+                        </Style>
+                    </ContextMenu.ItemContainerStyle>
+                    <ContextMenu.Resources>
+                        <HierarchicalDataTemplate DataType="{x:Type playniteModels:Game}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="16" Margin="-16,0,5,0">
+                                    <Image.Source>
+                                        <PriorityBinding>
+                                            <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" />
+                                            <Binding Path="DefaultIcon" Mode="OneTime"/>
+                                        </PriorityBinding>
+                                    </Image.Source>
+                                </Image>
+                                <TextBlock Text="{Binding Name}" />
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        <Style x:Key="OpenUIItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                            <Setter Property="OverridesDefaultStyle" Value="True" />
+                            <Setter Property="Header" Value="Open" />
+                            <EventSetter Event="Click" Handler="TrayPlaynite_TrayMouseDoubleClick" />
+                        </Style>
+                        <Style x:Key="ExitItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                            <Setter Property="OverridesDefaultStyle" Value="True" />
+                            <Setter Property="Header" Value="{DynamicResource ExitAppLabel}" />
+                            <EventSetter Event="Click" Handler="Exitappp_Click" />
+                        </Style>
+                    </ContextMenu.Resources>
+                    <ContextMenu.ItemsSource>
+                        <CompositeCollection>
+                            <CollectionContainer Collection="{Binding Path=LastGames, Source={x:Static local:GamesEditor.Instance}}" />
+                            <Separator Style="{StaticResource {x:Type Separator}}"/>
+                            <MenuItem Style="{StaticResource OpenUIItem}" />
+                            <MenuItem Header="Open 3rd Party Client" ItemsSource="{Binding Path=Tools, Source={x:Static local:App.ThirdPartyTools}}"
+                                      OverridesDefaultStyle="True" Style="{StaticResource {x:Type MenuItem}}">
+                                <MenuItem.ItemContainerStyle>
+                                    <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                        <Setter Property="OverridesDefaultStyle" Value="True" />
+                                        <Setter Property="Header" Value="{Binding Name}" />
+                                        <EventSetter Event="Click" Handler="ThirdPartyToolMenuItem_Click" />
+                                    </Style>
+                                </MenuItem.ItemContainerStyle>
+                            </MenuItem>
+                            <Separator Style="{StaticResource {x:Type Separator}}"/>
+                            <MenuItem Style="{StaticResource ExitItem}"/>
+                        </CompositeCollection>
+                    </ContextMenu.ItemsSource>
+                </ContextMenu>
+            </tray:TaskbarIcon.ContextMenu>
         </tray:TaskbarIcon>
 
         <DockPanel LastChildFill="True" DockPanel.Dock="Top" Background="{StaticResource NormalBrushDark}">
-            <DockPanel MouseUp="ImageLogo_MouseDown" Cursor="Hand" Margin="10,0,5,0"
+            <DockPanel MouseUp="ImageLogo_MouseDown" Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True"
                        Opacity="{Binding IsMouseOver, Converter={StaticResource OpacityBoolConverter}, ConverterParameter={StaticResource True}, RelativeSource={RelativeSource Self}}">
                 <Border DockPanel.Dock="Left" Background="Transparent">
                     <StackPanel Orientation="Horizontal">
@@ -87,15 +111,14 @@
                     </StackPanel>
                 </Border>                
                 <DockPanel.ContextMenu>
-                    <ContextMenu StaysOpen="False" Name="MenuMainMenu" Placement="Bottom"
-                                 DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget.DataContext}">                        
+                    <ContextMenu StaysOpen="False" Name="MenuMainMenu" Placement="Bottom">                        
                         <MenuItem Header="Add Game..." Click="AddNewGame_Click" IsEnabled="{Binding GameAdditionAllowed}"/>
                         <MenuItem Header="Add Installed Game(s)..." Click="AddInstalledGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
                         <Separator Style="{DynamicResource {x:Type Separator}}" />
                         <MenuItem Header="Reload Games List" Click="ReloadGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
                         <MenuItem Header="Settings..." Click="Settings_Click" />
                         <Separator Style="{DynamicResource {x:Type Separator}}" />
-                        <MenuItem Header="Open 3rd Party Client" ItemsSource="{Binding ThirdPartyTools.Tools}">
+                        <MenuItem Header="Open 3rd Party Client" ItemsSource="{Binding Path=Tools, Source={x:Static local:App.ThirdPartyTools}}">
                             <MenuItem.ItemContainerStyle>
                                 <Style TargetType="MenuItem">
                                     <Setter Property="Header" Value="{Binding Name}" />
@@ -113,10 +136,12 @@
             </DockPanel>
 
             <controls:SearchBox x:Name="SearchBoxFilter" Margin="5,8,10,8" DockPanel.Dock="Left" Padding="0" Width="235"
-                                Text="{Binding Path=Config.FilterSettings.Name, ElementName=WindowMain, Delay=500, Mode=TwoWay}" />
+                                Text="{Binding Path=Config.FilterSettings.Name, ElementName=WindowMain, Delay=500, Mode=TwoWay}"
+                                WindowChrome.IsHitTestVisibleInChrome="True" />
 
             <Border CornerRadius="3" Background="Transparent" Style="{StaticResource HighlightBorder}"
-                    BorderThickness="2" Width="35" Height="28" Cursor="Hand" MouseUp="ViewConfigElement_MouseUp">
+                    BorderThickness="2" Width="35" Height="28" Cursor="Hand" MouseUp="ViewConfigElement_MouseUp"
+                    WindowChrome.IsHitTestVisibleInChrome="True">
                 <TextBlock Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
                            Foreground="{StaticResource TextBrush}"/>
                 <Border.ContextMenu>
@@ -136,32 +161,35 @@
                 </Border.ContextMenu>
             </Border>
 
-            <CheckBox Name="CheckFilterView" DockPanel.Dock="Right" Margin="30,0,30,0"
+            <CheckBox Name="CheckFilterView" DockPanel.Dock="Left" Margin="10,0,10,0" Height="28" WindowChrome.IsHitTestVisibleInChrome="True"
                       IsChecked="{Binding Path=FilterPanelVisible, Source={x:Static shared:Settings.Instance}}">
                 <CheckBox.Style>
                     <Style TargetType="CheckBox">
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                <StackPanel Orientation="Horizontal" Cursor="Hand">
-                                    <TextBlock Text="{DynamicResource FilterGeneralLabel}" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Margin="0,0,3,0"/>
-                                    <TextBlock FontFamily="Marlett" Text="6" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" />
-                                </StackPanel>
-                            </ControlTemplate>
+                                    <Border CornerRadius="3" Background="Transparent" Style="{StaticResource HighlightBorder}" 
+                                            BorderThickness="2" Cursor="Hand" WindowChrome.IsHitTestVisibleInChrome="True">
+                                        <TextBlock Text="∇" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="8,0,8,0" Foreground="{TemplateBinding Foreground}"/>
+                                    </Border>
+                                </ControlTemplate>
                             </Setter.Value>
                         </Setter>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Active}" Value="True">
                                 <Setter Property="Foreground" Value="{StaticResource IndicatorBrush}" />
+                                <Setter Property="ToolTip" Value="{DynamicResource FilterActiveLabel}" />
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Active}" Value="False">
                                 <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                                <Setter Property="ToolTip" Value="{DynamicResource FilterInactiveLabel}" />
                             </DataTrigger>
                         </Style.Triggers>
-                    </Style>                        
+                    </Style>
                 </CheckBox.Style>
             </CheckBox>
-            <local:ProgressControl x:Name="ProgressControl" DockPanel.Dock="Left" Margin="40,0,40,0" Height="25"/>
+
+            <local:ProgressControl x:Name="ProgressControl" DockPanel.Dock="Left" Margin="40,0,140,0" Height="25"/>
         </DockPanel>
 
         <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" >
@@ -185,4 +213,4 @@
             </DockPanel>
         </Border>
     </DockPanel>
-</Window>
+</controls:WindowBase>

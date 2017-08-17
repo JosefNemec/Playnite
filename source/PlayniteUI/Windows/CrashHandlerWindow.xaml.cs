@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using NLog;
 using Playnite;
+using PlayniteUI.Controls;
 
 namespace PlayniteUI.Windows
 {
     /// <summary>
     /// Interaction logic for CrashHandlerWindow.xaml
     /// </summary>
-    public partial class CrashHandlerWindow : Window
+    public partial class CrashHandlerWindow : WindowBase
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -47,12 +48,12 @@ namespace PlayniteUI.Windows
                 try
                 {
                     Diagnostic.CreateDiagPackage(dialog.FileName);
-                    MessageBox.Show("Diagnostics package created successfully.");
+                    PlayniteMessageBox.Show("Diagnostics package created successfully.");
                 }
                 catch (Exception exc)
                 {
                     logger.Error(exc, "Faild to created diagnostics package.");
-                    MessageBox.Show("Failed to create diagnostics package.");
+                    PlayniteMessageBox.Show("Failed to create diagnostics package.");
                 }
             }
         }

@@ -23,6 +23,11 @@ namespace PlayniteUI
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private string instanceMuxet = "PlayniteInstaceMutex";
         private Mutex appMutex;
+        
+        public static ThirdPartyToolsList ThirdPartyTools
+        {
+            get; set;
+        }
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
@@ -85,11 +90,26 @@ namespace PlayniteUI
                 appMutex = new Mutex(true, instanceMuxet);
             }
 
+
+            LoadThirdPartyTools();
             var mainWindow = new MainWindow();
             Current.MainWindow = MainWindow;
             mainWindow.Show();
 
             logger.Info("Application started");
+        }
+
+        private void LoadThirdPartyTools()
+        {
+            try
+            {
+                ThirdPartyTools = new ThirdPartyToolsList();
+                ThirdPartyTools.SetTools(ThirdPartyTools.GetDefaultInstalledTools());
+            }
+            catch (Exception exc)
+            {
+                logger.Error(exc, "Failed to load 3rd party tool list.");
+            }
         }
     }
 }

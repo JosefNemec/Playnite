@@ -14,13 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Playnite.Database;
 using Playnite.Models;
+using PlayniteUI.Controls;
 
 namespace PlayniteUI.Windows
 {
     /// <summary>
     /// Interaction logic for CategoryConfigWindow.xaml
     /// </summary>
-    public partial class CategoryConfigWindow : Window
+    public partial class CategoryConfigWindow : WindowBase
     {
         public class Category
         {

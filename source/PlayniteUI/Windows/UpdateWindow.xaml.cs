@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using PlayniteUI.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace PlayniteUI.Windows
     /// <summary>
     /// Interaction logic for UpdateWindow.xaml
     /// </summary>
-    public partial class UpdateWindow : Window
+    public partial class UpdateWindow : WindowBase
     {
         private Update update;
 

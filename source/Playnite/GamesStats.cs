@@ -16,11 +16,13 @@ namespace Playnite
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         public int Installed { get; private set; } = 0;
+        public int UnInstalled { get; private set; } = 0;
         public int Hidden { get; private set; } = 0;
         public int Favorite { get; private set; } = 0;
         public int Origin { get; private set; } = 0;
         public int Steam { get; private set; } = 0;
         public int GOG { get; private set; } = 0;
+        public int Uplay { get; private set; } = 0;
         public int Custom { get; private set; } = 0;
 
         public int Total
@@ -61,11 +63,13 @@ namespace Playnite
             logger.Info("Completely recalculating database statistics...");
 
             Installed = 0;
+            UnInstalled = 0;
             Hidden = 0;
             Favorite = 0;
             Origin = 0;
             Steam = 0;
             GOG = 0;
+            Uplay = 0;
             Custom = 0;
 
             foreach (var game in database.GamesCollection.FindAll())
@@ -74,6 +78,10 @@ namespace Playnite
                 {
                     Installed++;
                 }
+                else
+                {
+                    UnInstalled++;
+                }                
 
                 if (game.Hidden)
                 {
@@ -99,6 +107,9 @@ namespace Playnite
                     case Provider.Steam:
                         Steam++;
                         break;
+                    case Provider.Uplay:
+                        Uplay++;
+                        break;
                     default:
                         break;
                 }
@@ -115,11 +126,13 @@ namespace Playnite
         private void NotifiyAllChanged()
         {
             OnPropertyChanged("Installed");
+            OnPropertyChanged("UnInstalled");
             OnPropertyChanged("Hidden");
             OnPropertyChanged("Favorite");
             OnPropertyChanged("Origin");
             OnPropertyChanged("Steam");
             OnPropertyChanged("GOG");
+            OnPropertyChanged("Uplay");
             OnPropertyChanged("Custom");
             OnPropertyChanged("Total");
         }
@@ -159,9 +172,11 @@ namespace Playnite
             if (args.OldData.IsInstalled != args.NewData.IsInstalled)
             {
                 Installed = Installed + (1 * (args.NewData.IsInstalled ? 1 : -1));
+                UnInstalled = UnInstalled + (1 * (!args.NewData.IsInstalled ? 1 : -1));
             }
 
             OnPropertyChanged("Installed");
+            OnPropertyChanged("UnInstalled");
             OnPropertyChanged("Hidden");
             OnPropertyChanged("Favorite");
         }
@@ -182,6 +197,10 @@ namespace Playnite
             {
                 Installed = Installed + (1 * modifier);
             }
+            else
+            {
+                UnInstalled = UnInstalled + (1 * modifier);
+            }
 
             switch (game.Provider)
             {
@@ -196,6 +215,9 @@ namespace Playnite
                     break;
                 case Provider.Steam:
                     Steam = Steam + (1 * modifier);
+                    break;
+                case Provider.Uplay:
+                    Uplay = Uplay + (1 * modifier);
                     break;
             }
         }

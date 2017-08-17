@@ -72,8 +72,7 @@ namespace PlayniteUI.Controls
                 {
                     if (game.Id == entry.Game.Id)
                     {
-                        GameDetails.DataContext = null;
-                        CloseDetailBorder_MouseLeftButtonDown(this, null);
+                        HideDetails();
                         return;
                     }
                 }
@@ -87,7 +86,13 @@ namespace PlayniteUI.Controls
             ColumnDetails.Width = new GridLength(0, GridUnitType.Pixel);
         }
 
-        private void ShowDetails(object sender)
+        private void HideDetails()
+        {
+            GameDetails.DataContext = null;
+            CloseDetailBorder_MouseLeftButtonDown(this, null);            
+        }
+
+        private void ShowDetails(GameViewEntry viewEntry)
         {
             if (ColumnDetails.Width.Value == 0)
             {
@@ -95,11 +100,10 @@ namespace PlayniteUI.Controls
                 ColumnDetails.Width = lastDetailsWidht;
             }
 
-            var entry = (GameViewEntry)((FrameworkElement)sender).DataContext;
-            var game = entry.Game;
+            var game = viewEntry.Game;
 
             GameDetails.DataContext = game;
-            ItemsView.ScrollIntoView(entry);
+            ItemsView.ScrollIntoView(viewEntry);
         }
 
         private void ZoomIn_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -134,11 +138,6 @@ namespace PlayniteUI.Controls
             }
         }
 
-        private void ShowDetails_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            ShowDetails(e.OriginalSource);
-        }
-
         private void Expander_Collapsed(object sender, RoutedEventArgs e)
         {
             var group = (CollectionViewGroup)((Expander)sender).DataContext;
@@ -160,6 +159,27 @@ namespace PlayniteUI.Controls
                 {
                     Settings.Instance.CollapsedCategories.Remove(category.Category);
                 }
+            }
+        }
+
+        private void ItemsView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ItemsView.SelectedItems.Count == 1)
+            {
+                ShowDetails(ItemsView.SelectedItem as GameViewEntry);
+            }
+            else if (ItemsView.SelectedItems.Count == 0)
+            {
+                HideDetails();
+            }
+        }
+
+        private void ItemsView_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var r = VisualTreeHelper.HitTest(this, e.GetPosition(this));
+            if (r.VisualHit.GetType() != typeof(ListViewItem))
+            {
+                ItemsView.UnselectAll();
             }
         }
     }

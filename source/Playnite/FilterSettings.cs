@@ -19,11 +19,13 @@ namespace Playnite
             {
                 return
                     IsInstalled ||
+                    IsUnInstalled ||
                     Hidden ||
                     Favorite ||
                     Steam ||
                     Origin ||
                     GOG ||
+                    Uplay ||
                     Custom ||
                     !string.IsNullOrEmpty(Name) ||
                     !string.IsNullOrEmpty(ReleaseDate) ||
@@ -146,7 +148,23 @@ namespace Playnite
                 OnPropertyChanged("IsInstalled");
                 OnPropertyChanged("Active");
             }
-        }        
+        }
+
+        private bool isUnInstalled;
+        public bool IsUnInstalled
+        {
+            get
+            {
+                return isUnInstalled;
+            }
+
+            set
+            {
+                isUnInstalled = value;
+                OnPropertyChanged("IsUnInstalled");
+                OnPropertyChanged("Active");
+            }
+        }
 
         private bool hidden;
         public bool Hidden
@@ -224,6 +242,22 @@ namespace Playnite
             {
                 gog = value;
                 OnPropertyChanged("GOG");
+                OnPropertyChanged("Active");
+            }
+        }
+
+        private bool uplay;
+        public bool Uplay
+        {
+            get
+            {
+                return uplay;
+            }
+
+            set
+            {
+                uplay = value;
+                OnPropertyChanged("Uplay");
                 OnPropertyChanged("Active");
             }
         }

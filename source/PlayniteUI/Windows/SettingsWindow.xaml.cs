@@ -17,13 +17,14 @@ using System.ComponentModel;
 using Playnite.Providers.Steam;
 using Playnite.Database;
 using NLog;
+using PlayniteUI.Controls;
 
 namespace PlayniteUI
 {
     /// <summary>
     /// Interaction logic for Configuration.xaml
     /// </summary>
-    public partial class SettingsWindow : Window, INotifyPropertyChanged
+    public partial class SettingsWindow : WindowBase, INotifyPropertyChanged
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -106,19 +107,19 @@ namespace PlayniteUI
         {
             if ((RadioLibrarySteam.IsChecked == true && RadioSteamLibName.IsChecked == true) && string.IsNullOrEmpty(TextSteamAccountName.Text))
             {
-                MessageBox.Show("Steam account name cannot be empty.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show("Steam account name cannot be empty.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (RadioLibrarySteam.IsChecked == true && RadioSteamLibAccount.IsChecked == true && ((ulong)ComboSteamAccount.SelectedValue) == 0)
             {
-                MessageBox.Show("No Steam account selected for library import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show("No Steam account selected for library import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (string.IsNullOrEmpty(TextDatabase.Text))
             {
-                MessageBox.Show("Database path cannot be empty.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show("Database path cannot be empty.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -205,6 +206,13 @@ namespace PlayniteUI
                 originDownloadLib.UpdateSource();
             }
 
+            var uplayEnabled = CheckUplayEnabled.GetBindingExpression(CheckBox.IsCheckedProperty);
+            if (uplayEnabled.IsDirty)
+            {
+                providerIntegrationChanged = true;
+                uplayEnabled.UpdateSource();
+            }
+
             var trayMinimize = CheckMinimizeToTray.GetBindingExpression(CheckBox.IsCheckedProperty);
             if (trayMinimize.IsDirty)
             {
@@ -284,15 +292,15 @@ namespace PlayniteUI
 
         private void ButtonImportSteamCategories_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("This will overwrite current categories on all Steam games. Do you want to continue?",
-                "Import Categories?", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            if (PlayniteMessageBox.Show("This will overwrite current categories on all Steam games. Do you want to continue?",
+                "Import Categories?", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
             {
                 return;
             }
 
             if (ComboSteamCatImport.SelectedValue == null)
             {
-                MessageBox.Show("Cannot import categories, account for import is not selected.", "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show("Cannot import categories, account for import is not selected.", "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -308,12 +316,12 @@ namespace PlayniteUI
                 }
 
                 GameDatabase.Instance.ImportCategories(games);
-                MessageBox.Show("Import finished.", "Import Successful");
+                PlayniteMessageBox.Show("Import finished.", "Import Successful");
             }
             catch (Exception exc)
             {
                 logger.Error(exc, "Failed to import Steam categories.");
-                MessageBox.Show("Failed to import Steam categories: " + exc.Message, "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show("Failed to import Steam categories: " + exc.Message, "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

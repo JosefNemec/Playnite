@@ -16,6 +16,7 @@ using Playnite.Providers.Origin;
 using Playnite.Providers.Steam;
 using CefSharp;
 using System.Configuration;
+using Playnite.Providers.Uplay;
 
 namespace Playnite
 {
@@ -197,47 +198,25 @@ namespace Playnite
             }
         }
 
-        private GogSettings gogSettings = new GogSettings();
         public GogSettings GOGSettings
         {
-            get
-            {
-                return gogSettings;
-            }
+            get; set;
+        } = new GogSettings();
 
-            set
-            {
-                gogSettings = value;
-            }
-        }
-
-        private SteamSettings steamSettings = new SteamSettings();
         public SteamSettings SteamSettings
         {
-            get
-            {
-                return steamSettings;
-            }
+            get; set;
+        } = new SteamSettings();
 
-            set
-            {
-                steamSettings = value;
-            }
-        }
-
-        private OriginSettings originSettings = new OriginSettings();
         public OriginSettings OriginSettings
         {
-            get
-            {
-                return originSettings;
-            }
+            get; set;
+        } = new OriginSettings();
 
-            set
-            {
-                originSettings = value;
-            }
-        }
+        public UplaySettings UplaySettings
+        {
+            get; set;
+        } = new UplaySettings();
 
         private FilterSettings filterSettings = new FilterSettings();
         public FilterSettings FilterSettings

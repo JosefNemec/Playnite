@@ -16,13 +16,14 @@ using Microsoft.Win32;
 using Playnite.Models;
 using System.Diagnostics;
 using Playnite.Providers.Steam;
+using PlayniteUI.Controls;
 
 namespace PlayniteUI.Windows
 {
     /// <summary>
     /// Interaction logic for FirstTimeStartupWindow.xaml
     /// </summary>
-    public partial class FirstTimeStartupWindow : Window, INotifyPropertyChanged
+    public partial class FirstTimeStartupWindow : WindowBase, INotifyPropertyChanged
     {
         private string loginReuiredMessage = "Login Required";
         private string loginOKMessage = "OK";
@@ -152,6 +153,21 @@ namespace PlayniteUI.Windows
                 OnPropertyChanged("OriginEnabled");
             }
         }
+
+        private bool uplayEnabled;
+        public bool UplayEnabled
+        {
+            get
+            {
+                return uplayEnabled;
+            }
+
+            set
+            {
+                uplayEnabled = value;
+                OnPropertyChanged("UplayEnabled");
+            }
+        }
         #endregion General
 
         #region Steam
@@ -266,20 +282,20 @@ namespace PlayniteUI.Windows
                     {
                         if (window.SteamImportLibByName && string.IsNullOrEmpty(window.SteamAccountName))
                         {
-                            MessageBox.Show("Steam account name cannot be empty.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                            PlayniteMessageBox.Show("Steam account name cannot be empty.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
                             return false;
                         }
 
                         if (!window.SteamImportLibByName && window.SteamIdLibImport == 0)
                         {
-                            MessageBox.Show("No Steam account selected for library import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                            PlayniteMessageBox.Show("No Steam account selected for library import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
                             return false;
                         }
                     }
 
                     if (window.SteamImportCategories && window.SteamIdCategoryImport == 0)
                     {
-                        MessageBox.Show("No Steam account selected for category import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                        PlayniteMessageBox.Show("No Steam account selected for category import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
                         return false;
                     }
 
@@ -294,6 +310,7 @@ namespace PlayniteUI.Windows
             SteamEnabled = true;
             GOGEnabled = true;
             OriginEnabled = true;
+            UplayEnabled = true;
             SteamImportLibrary = false;
             SteamAccountName = string.Empty;
             GogImportLibrary = false;
@@ -340,11 +357,21 @@ namespace PlayniteUI.Windows
             {
                 TabMain.SelectedIndex = TabMain.SelectedIndex + 1;
             }
+
+            if (selectedPage == "Uplay" && !UplayEnabled)
+            {
+                TabMain.SelectedIndex = TabMain.SelectedIndex + 1;
+            }
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
             TabMain.SelectedIndex = TabMain.SelectedIndex - 1;
+
+            if (selectedPage == "Uplay" && !UplayEnabled)
+            {
+                TabMain.SelectedIndex = TabMain.SelectedIndex - 1;
+            }
 
             if (selectedPage == "Origin" && !OriginEnabled)
             {

@@ -52,6 +52,7 @@
                   Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <MenuItem Header="Create Desktop Shortcut" Click="Shortuct_Click"
                   Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <Separator Margin="0,2,0,2" Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <MenuItem Header="Add to Favorites" Click="Favorite_Click"
                   Visibility="{Binding Favorite, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
         <MenuItem Header="Remove from Favorites" Click="Favorite_Click"
@@ -62,8 +63,8 @@
                   Visibility="{Binding Hidden, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <MenuItem Header="Edit..."  Click="Edit_Click" />
         <MenuItem Header="Set Category..." Click="Category_Click" />
-        <MenuItem Header="Remove" Click="Delete_Click"
-                  Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static models:Provider.Custom}}"/>
+        <Separator Margin="0,2,0,2" />
+        <MenuItem Header="Remove" Click="Delete_Click"/>
         <UserControl Visibility="{Binding IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}">
             <MenuItem Header="Uninstall" Click="Uninstall_Click"
                       Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}"/>

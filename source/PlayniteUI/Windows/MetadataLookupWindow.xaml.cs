@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using NLog;
 using Playnite.MetaProviders;
 using Playnite.Models;
+using PlayniteUI.Controls;
 
 namespace PlayniteUI.Windows
 {
@@ -26,7 +27,7 @@ namespace PlayniteUI.Windows
     /// <summary>
     /// Interaction logic for MetadataLookupWindow.xaml
     /// </summary>
-    public partial class MetadataLookupWindow : Window
+    public partial class MetadataLookupWindow : WindowBase
     {
         public class SearchResult
         {
@@ -117,7 +118,7 @@ namespace PlayniteUI.Windows
 #else
                     logger.Warn(exc, "Failed to download metadata from meta page.");
 #endif
-                    MessageBox.Show("Didn't found any relevant information about game \"" + searchTerm + "\" on specified page.");
+                    PlayniteMessageBox.Show("Didn't found any relevant information about game \"" + searchTerm + "\" on specified page.");
 
                     TextDownloading.Dispatcher.Invoke(() =>
                     {

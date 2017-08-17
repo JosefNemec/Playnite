@@ -15,6 +15,7 @@ using Playnite.Providers.Origin;
 using Playnite.Providers.Steam;
 using Playnite.Providers;
 using System.Collections.Concurrent;
+using Playnite.Providers.Uplay;
 
 namespace Playnite.Models
 {
@@ -50,6 +51,8 @@ namespace Playnite.Models
                         return SteamSettings.DefaultIcon;
                     case Provider.Origin:
                         return OriginSettings.DefaultIcon;
+                    case Provider.Uplay:
+                        return UplaySettings.DefaultIcon;
                     case Provider.Custom:
                     default:
                         return CustomGameSettings.DefaultIcon;
@@ -70,6 +73,8 @@ namespace Playnite.Models
                         return SteamSettings.DefaultImage;
                     case Provider.Origin:
                         return OriginSettings.DefaultImage;
+                    case Provider.Uplay:
+                        return UplaySettings.DefaultImage;
                     case Provider.Custom:
                     default:
                         return CustomGameSettings.DefaultImage;
@@ -87,6 +92,7 @@ namespace Playnite.Models
                     case Provider.GOG:
                     case Provider.Steam:
                     case Provider.Origin:
+                    case Provider.Uplay:
                     case Provider.Custom:
                     default:
                         return CustomGameSettings.DefaultBackgroundImage;
@@ -121,6 +127,7 @@ namespace Playnite.Models
                         return string.IsNullOrEmpty(GogSettings.DescriptionTemplate) ? Description : GogSettings.DescriptionTemplate.Replace("{0}", Description);
                     case Provider.Custom:
                     case Provider.Origin:
+                    case Provider.Uplay:
                     case Provider.Steam:
                     default:
                         return string.IsNullOrEmpty(SteamSettings.DescriptionTemplate) ? Description : SteamSettings.DescriptionTemplate.Replace("{0}", Description);
@@ -485,6 +492,10 @@ namespace Playnite.Models
                     Process.Start(string.Format(@"origin2://game/launch?offerIds={0}&autoDownload=true", ProviderId));
                     RegisterStateMonitor(new OriginGameStateMonitor(ProviderId, new OriginLibrary()));
                     break;
+                case Provider.Uplay:
+                    Process.Start("uplay://install/" + ProviderId);
+                    RegisterStateMonitor(new UplayGameStateMonitor(ProviderId, new UplayLibrary()));
+                    break;
                 case Provider.Custom:
                     break;
                 default:
@@ -531,6 +542,10 @@ namespace Playnite.Models
                 case Provider.Origin:
                     Process.Start("appwiz.cpl");
                     RegisterStateMonitor(new OriginGameStateMonitor(ProviderId, new OriginLibrary()));
+                    break;
+                case Provider.Uplay:
+                    Process.Start("uplay://uninstall/" + ProviderId);
+                    RegisterStateMonitor(new UplayGameStateMonitor(ProviderId, new UplayLibrary()));
                     break;
                 case Provider.Custom:
                     break;

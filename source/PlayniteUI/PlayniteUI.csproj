@@ -179,6 +179,7 @@
     <Compile Include="Controls\GamesListView.xaml.cs">
       <DependentUpon>GamesListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WindowBase.cs" />
     <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />
     <Compile Include="Converters\BoolToAutoWidthConverter.cs" />
     <Compile Include="Converters\BoolToCategoryExpander.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="GamesCollectionView.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="MouseWheelGesture.cs" />
+    <Compile Include="PlayniteMessageBox.cs" />
     <Compile Include="WindowPositionHandler.cs" />
     <Compile Include="Windows\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
@@ -237,6 +239,9 @@
     <Compile Include="GamesLoaderHandler.cs" />
     <Compile Include="Windows\InstalledGamesWindow.xaml.cs">
       <DependentUpon>InstalledGamesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageBoxWindow.xaml.cs">
+      <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MetadataLookupWindow.xaml.cs">
       <DependentUpon>MetadataLookupWindow.xaml</DependentUpon>
@@ -330,6 +335,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Controls\ProgressControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MessageBoxWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -455,6 +464,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\uplayicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MessageBox\error.png" />
+    <Resource Include="Images\MessageBox\information.png" />
+    <Resource Include="Images\MessageBox\question.png" />
+    <Resource Include="Images\MessageBox\warning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
