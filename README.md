@@ -6,9 +6,9 @@ Screenshots on [Homepage](http://playnite.link/)
 
 ### Features in current Alpha release:
 
-**Steam, Origin and GOG support**
+**Steam, Origin, GOG, Uplay support**
 
-Import games from Steam, Origin and GOG services including games that are not installed.
+Import games from Steam, Origin, GOG and Uplay services including games that are not installed.
 
 **View options**
 
