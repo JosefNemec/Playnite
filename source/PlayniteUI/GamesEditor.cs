@@ -166,12 +166,12 @@ namespace PlayniteUI
 
                 Programs.CreateShortcut(Paths.ExecutablePath, "-command launch:" + game.Id, icon, path);
             }
-            catch (Exception exc)
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Failed to create shortcut: ");
                 PlayniteMessageBox.Show("Failed to create shortcut: " + exc.Message, "Shortcut Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-}
+        }
 
         public void CreateShortcuts(IEnumerable<IGame> games)
         {

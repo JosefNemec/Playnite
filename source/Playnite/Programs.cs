@@ -81,6 +81,11 @@ namespace Playnite
         {
             get; set;
         }
+
+        public string RegistryKeyName
+        {
+            get; set;
+        }
     }
 
     public class Programs
@@ -92,7 +97,7 @@ namespace Playnite
             link.TargetPath = executablePath;
             link.WorkingDirectory = Path.GetDirectoryName(executablePath);
             link.Arguments = arguments;
-            link.IconLocation = iconPath;
+            link.IconLocation = string.IsNullOrEmpty(iconPath) ? executablePath + ",0" : iconPath;
             link.Save();
         }
 
@@ -304,7 +309,8 @@ namespace Playnite
                     InstallLocation = prog.GetValue("InstallLocation")?.ToString(),
                     Publisher = prog.GetValue("Publisher")?.ToString(),
                     UninstallString = prog.GetValue("UninstallString")?.ToString(),
-                    URLInfoAbout = prog.GetValue("URLInfoAbout")?.ToString()
+                    URLInfoAbout = prog.GetValue("URLInfoAbout")?.ToString(),
+                    RegistryKeyName = key
                 };
 
                 progs.Add(program);

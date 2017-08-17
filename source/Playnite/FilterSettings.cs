@@ -25,6 +25,7 @@ namespace Playnite
                     Steam ||
                     Origin ||
                     GOG ||
+                    Uplay ||
                     Custom ||
                     !string.IsNullOrEmpty(Name) ||
                     !string.IsNullOrEmpty(ReleaseDate) ||
@@ -241,6 +242,22 @@ namespace Playnite
             {
                 gog = value;
                 OnPropertyChanged("GOG");
+                OnPropertyChanged("Active");
+            }
+        }
+
+        private bool uplay;
+        public bool Uplay
+        {
+            get
+            {
+                return uplay;
+            }
+
+            set
+            {
+                uplay = value;
+                OnPropertyChanged("Uplay");
                 OnPropertyChanged("Active");
             }
         }

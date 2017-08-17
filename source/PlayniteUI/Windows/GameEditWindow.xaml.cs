@@ -860,6 +860,8 @@ namespace PlayniteUI
                         case Provider.Origin:
                             metadata = (new OriginLibrary()).UpdateGameWithMetadata(tempGame);
                             break;
+                        case Provider.Uplay:
+                            return;
                         case Provider.Custom:
                         default:
                             return;

@@ -79,6 +79,8 @@
                               DockPanel.Dock="Top" Margin="5" Name="CheckEnableGOG"/>
                         <CheckBox Content="Origin" IsChecked="{Binding OriginEnabled, ElementName=WindowMain}"
                               DockPanel.Dock="Top" Margin="5" Name="CheckEnableOrigin"/>
+                        <CheckBox Content="Uplay" IsChecked="{Binding UplayEnabled, ElementName=WindowMain}"
+                              DockPanel.Dock="Top" Margin="5" Name="CheckEnableUplay"/>
                     </DockPanel>
                 </TabItem>
                 <TabItem Header="Steam" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
@@ -192,6 +194,16 @@
                                 </TextBlock.Text>
                             </TextBlock>
                         </DockPanel>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="Uplay" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
+                    <DockPanel Margin="20" LastChildFill="False">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
+                            <Image Source="/Images/uplayicon.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
+                            <TextBlock Text="Uplay Integration" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
+                        </StackPanel>
+                        <RadioButton Name="RadioInstalledUplay" Content="{DynamicResource SettingsImportInstalledLabel}" GroupName="uplay"
+                                     IsChecked="True" DockPanel.Dock="Top" Margin="5"/>
                     </DockPanel>
                 </TabItem>
                 <TabItem Header="Custom" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">

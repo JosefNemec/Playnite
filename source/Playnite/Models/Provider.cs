@@ -11,6 +11,7 @@ namespace Playnite.Models
         Custom,
         GOG,
         Origin,
-        Steam        
+        Steam,
+        Uplay
     }
 }

@@ -13,6 +13,7 @@ using Playnite.Providers.Steam;
 using Playnite.Providers.Origin;
 using NUnit.Framework;
 using LiteDB;
+using Playnite.Providers.Uplay;
 
 namespace PlayniteTests.Database
 {
@@ -180,7 +181,7 @@ namespace PlayniteTests.Database
             steamLibrary.Setup(oc => oc.GetLibraryGames(string.Empty)).Returns(libraryGames);
             originLibrary.Setup(oc => oc.GetLibraryGames()).Returns(libraryGames);
 
-            var db = new GameDatabase(gogLibrary.Object, steamLibrary.Object, originLibrary.Object);
+            var db = new GameDatabase(gogLibrary.Object, steamLibrary.Object, originLibrary.Object, null);
             using (db.OpenDatabase(path))
             {
                 // Games are properly imported
@@ -223,6 +224,7 @@ namespace PlayniteTests.Database
         [TestCase(Provider.GOG)]
         [TestCase(Provider.Steam)]
         [TestCase(Provider.Origin)]
+        [TestCase(Provider.Uplay)]
         public void UpdateInstalledGamesTest(Provider provider)
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "installedgames.db");
@@ -233,12 +235,14 @@ namespace PlayniteTests.Database
             var gogLibrary = new Mock<IGogLibrary>();
             var steamLibrary = new Mock<ISteamLibrary>();
             var originLibrary = new Mock<IOriginLibrary>();
+            var uplayLibrary = new Mock<IUplayLibrary>();
             gogLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
             steamLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
             originLibrary.Setup(oc => oc.GetInstalledGames(false)).Returns(installedGames);
             originLibrary.Setup(oc => oc.GetInstalledGames(true)).Returns(installedGames);
+            uplayLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
 
-            var db = new GameDatabase(gogLibrary.Object, steamLibrary.Object, originLibrary.Object);
+            var db = new GameDatabase(gogLibrary.Object, steamLibrary.Object, originLibrary.Object, uplayLibrary.Object);
             using (db.OpenDatabase(path))
             {
                 // Games are imported
@@ -605,6 +609,55 @@ namespace PlayniteTests.Database
         }
 
         #endregion Origin
+
+        #region Uplay
+        [Test]
+        public void UpdateUplayInstalledGamesCleanImportTest()
+        {
+            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "uplayinstalledimportclean.db");
+            FileSystem.DeleteFile(path);
+
+            var db = new GameDatabase();
+            using (db.OpenDatabase(path))
+            {
+                db.UpdateInstalledGames(Provider.Uplay);
+                Assert.AreNotEqual(0, db.GamesCollection.Count());
+            }
+        }
+
+        [Test]
+        public void UpdateUplayInstalledGamesUpdateImportTest()
+        {
+            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "uplayinstalledimportupdate.db");
+            FileSystem.DeleteFile(path);
+
+            var db = new GameDatabase();
+            using (db.OpenDatabase(path))
+            {
+                db.UpdateInstalledGames(Provider.Uplay);
+                var game = db.GamesCollection.FindOne(Query.All());
+                game.PlayTask = null;
+                game.InstallDirectory = @"c:\nonsense\directory\";
+                db.UpdateGameInDatabase(game);
+            }
+
+            db = new GameDatabase();
+            using (db.OpenDatabase(path))
+            {
+                var game = db.GamesCollection.FindOne(Query.All());
+                Assert.IsNull(game.PlayTask);
+                Assert.AreEqual(@"c:\nonsense\directory\", game.InstallDirectory);
+                var gameCount = db.GamesCollection.Count();
+
+                db.UpdateInstalledGames(Provider.Uplay);
+                Assert.AreEqual(gameCount, db.GamesCollection.Count());
+
+                game = db.GamesCollection.FindOne(Query.All());
+                Assert.IsNotNull(game.PlayTask);
+                Assert.AreNotEqual(@"c:\nonsense\directory\", game.InstallDirectory);
+            }
+        }
+        #endregion Uplay
 
         [Test]
         public void Migration0toCurrentTest()

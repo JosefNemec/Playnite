@@ -154,6 +154,7 @@
     <Compile Include="Models\Game.cs" />
     <Compile Include="Paths.cs" />
     <Compile Include="PipeServer.cs" />
+    <Compile Include="PlayniteEnvironment.cs" />
     <Compile Include="Programs.cs" />
     <Compile Include="FileSystem.cs" />
     <Compile Include="CloneObject.cs" />
@@ -199,6 +200,9 @@
     <Compile Include="Providers\Steam\WebApiClient.cs" />
     <Compile Include="Providers\Steam\VdfParser.cs" />
     <Compile Include="Providers\Steam\WebApiTypes.cs" />
+    <Compile Include="Providers\Uplay\IUplayLibrary.cs" />
+    <Compile Include="Providers\Uplay\UplayGameStateMonitor.cs" />
+    <Compile Include="Providers\Uplay\UplayLibrary.cs" />
     <Compile Include="Providers\Uplay\UplaySettings.cs" />
     <Compile Include="RangeObservableCollection.cs" />
     <Compile Include="Services\GenericResponse.cs" />

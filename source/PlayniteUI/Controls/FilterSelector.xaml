@@ -60,6 +60,10 @@
             <TextBlock Text="{Binding Stats.Origin, Mode=OneWay, StringFormat=Origin ({0})}" />
         </CheckBox>
 
+        <CheckBox Name="CheckFilterUplay" IsChecked="{Binding Path=Settings.Uplay}" Style="{StaticResource FilterCheck}">
+            <TextBlock Text="{Binding Stats.Uplay, Mode=OneWay, StringFormat=Uplay ({0})}" />
+        </CheckBox>
+
         <CheckBox Name="CheckFilterCustom" IsChecked="{Binding Path=Settings.Custom}" Style="{StaticResource FilterCheck}">
             <TextBlock Text="{Binding Stats.Custom, Mode=OneWay, StringFormat=Custom ({0})}" />
         </CheckBox>

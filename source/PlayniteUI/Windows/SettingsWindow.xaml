@@ -218,6 +218,23 @@
                         </DockPanel>
                     </DockPanel>
                 </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/uplayicon.png" Width="{StaticResource IconSize}" RenderOptions.BitmapScalingMode="Fant" />
+                            <TextBlock Text="Uplay" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <DockPanel Margin="10" LastChildFill="False">
+                        <CheckBox IsChecked="{Binding UplaySettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
+                                  Name="CheckUplayEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                  DockPanel.Dock="Top" Margin="5"/>
+                        <RadioButton Name="RadioInstalledUplay" Content="{DynamicResource SettingsImportInstalledLabel}"
+                                     IsChecked="{Binding UplaySettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
+                                     IsEnabled="{Binding IsChecked, ElementName=CheckUplayEnabled}"
+                                     DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                    </DockPanel>
+                </TabItem>
             </TabControl>
         </DockPanel>
     </Border>

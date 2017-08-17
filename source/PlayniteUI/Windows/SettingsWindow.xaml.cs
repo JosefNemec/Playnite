@@ -206,6 +206,13 @@ namespace PlayniteUI
                 originDownloadLib.UpdateSource();
             }
 
+            var uplayEnabled = CheckUplayEnabled.GetBindingExpression(CheckBox.IsCheckedProperty);
+            if (uplayEnabled.IsDirty)
+            {
+                providerIntegrationChanged = true;
+                uplayEnabled.UpdateSource();
+            }
+
             var trayMinimize = CheckMinimizeToTray.GetBindingExpression(CheckBox.IsCheckedProperty);
             if (trayMinimize.IsDirty)
             {

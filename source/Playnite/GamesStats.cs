@@ -22,6 +22,7 @@ namespace Playnite
         public int Origin { get; private set; } = 0;
         public int Steam { get; private set; } = 0;
         public int GOG { get; private set; } = 0;
+        public int Uplay { get; private set; } = 0;
         public int Custom { get; private set; } = 0;
 
         public int Total
@@ -68,6 +69,7 @@ namespace Playnite
             Origin = 0;
             Steam = 0;
             GOG = 0;
+            Uplay = 0;
             Custom = 0;
 
             foreach (var game in database.GamesCollection.FindAll())
@@ -105,6 +107,9 @@ namespace Playnite
                     case Provider.Steam:
                         Steam++;
                         break;
+                    case Provider.Uplay:
+                        Uplay++;
+                        break;
                     default:
                         break;
                 }
@@ -127,6 +132,7 @@ namespace Playnite
             OnPropertyChanged("Origin");
             OnPropertyChanged("Steam");
             OnPropertyChanged("GOG");
+            OnPropertyChanged("Uplay");
             OnPropertyChanged("Custom");
             OnPropertyChanged("Total");
         }
@@ -209,6 +215,9 @@ namespace Playnite
                     break;
                 case Provider.Steam:
                     Steam = Steam + (1 * modifier);
+                    break;
+                case Provider.Uplay:
+                    Uplay = Uplay + (1 * modifier);
                     break;
             }
         }

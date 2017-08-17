@@ -124,6 +124,7 @@
     <Compile Include="Providers\Steam\SteamApiClientTests.cs" />
     <Compile Include="Providers\Steam\SteamLibraryTests.cs" />
     <Compile Include="Providers\Steam\WebApiClientTests.cs" />
+    <Compile Include="Providers\Uplay\UplayLibraryTests.cs" />
     <Compile Include="SettingsTests.cs" />
   </ItemGroup>
   <ItemGroup>

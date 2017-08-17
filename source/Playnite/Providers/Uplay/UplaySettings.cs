@@ -9,6 +9,16 @@ namespace Playnite.Providers.Uplay
 {
     public class UplaySettings
     {
+        public static string DefaultIcon
+        {
+            get; set;
+        }
+
+        public static string DefaultImage
+        {
+            get; set;
+        }
+
         public static string ClientExecPath
         {
             get
@@ -46,6 +56,40 @@ namespace Playnite.Providers.Uplay
                 else
                 {
                     return true;
+                }
+            }
+        }
+
+        private bool libraryDownloadEnabled = false;
+        public bool LibraryDownloadEnabled
+        {
+            get
+            {
+                return libraryDownloadEnabled;
+            }
+
+            set
+            {
+                if (libraryDownloadEnabled != value)
+                {
+                    libraryDownloadEnabled = value;
+                }
+            }
+        }
+
+        private bool integrationEnabled = true;
+        public bool IntegrationEnabled
+        {
+            get
+            {
+                return integrationEnabled;
+            }
+
+            set
+            {
+                if (integrationEnabled != value)
+                {
+                    integrationEnabled = value;
                 }
             }
         }

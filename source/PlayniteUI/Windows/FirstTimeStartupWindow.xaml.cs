@@ -153,6 +153,21 @@ namespace PlayniteUI.Windows
                 OnPropertyChanged("OriginEnabled");
             }
         }
+
+        private bool uplayEnabled;
+        public bool UplayEnabled
+        {
+            get
+            {
+                return uplayEnabled;
+            }
+
+            set
+            {
+                uplayEnabled = value;
+                OnPropertyChanged("UplayEnabled");
+            }
+        }
         #endregion General
 
         #region Steam
@@ -295,6 +310,7 @@ namespace PlayniteUI.Windows
             SteamEnabled = true;
             GOGEnabled = true;
             OriginEnabled = true;
+            UplayEnabled = true;
             SteamImportLibrary = false;
             SteamAccountName = string.Empty;
             GogImportLibrary = false;
@@ -341,11 +357,21 @@ namespace PlayniteUI.Windows
             {
                 TabMain.SelectedIndex = TabMain.SelectedIndex + 1;
             }
+
+            if (selectedPage == "Uplay" && !UplayEnabled)
+            {
+                TabMain.SelectedIndex = TabMain.SelectedIndex + 1;
+            }
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
             TabMain.SelectedIndex = TabMain.SelectedIndex - 1;
+
+            if (selectedPage == "Uplay" && !UplayEnabled)
+            {
+                TabMain.SelectedIndex = TabMain.SelectedIndex - 1;
+            }
 
             if (selectedPage == "Origin" && !OriginEnabled)
             {

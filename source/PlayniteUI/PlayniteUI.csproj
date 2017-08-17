@@ -465,7 +465,9 @@
   <ItemGroup>
     <Resource Include="Images\close.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\uplayicon.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\MessageBox\error.png" />
     <Resource Include="Images\MessageBox\information.png" />

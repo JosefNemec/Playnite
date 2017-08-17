@@ -17,6 +17,7 @@ using System.Collections.Concurrent;
 using System.Windows.Media.Imaging;
 using System.Threading;
 using System.Windows.Threading;
+using Playnite.Providers.Uplay;
 
 namespace Playnite.Database
 {
@@ -124,6 +125,7 @@ namespace Playnite.Database
         private IGogLibrary gogLibrary;
         private ISteamLibrary steamLibrary;
         private IOriginLibrary originLibrary;
+        private IUplayLibrary uplayLibrary;
 
         public readonly ushort DBVersion = 1;
 
@@ -141,13 +143,15 @@ namespace Playnite.Database
             gogLibrary = new GogLibrary();
             steamLibrary = new SteamLibrary();
             originLibrary = new OriginLibrary();
+            uplayLibrary = new UplayLibrary();
         }
 
-        public GameDatabase(IGogLibrary gogLibrary, ISteamLibrary steamLibrary, IOriginLibrary originLibrary)
+        public GameDatabase(IGogLibrary gogLibrary, ISteamLibrary steamLibrary, IOriginLibrary originLibrary, IUplayLibrary uplayLibrary)
         {
             this.gogLibrary = gogLibrary;
             this.steamLibrary = steamLibrary;
             this.originLibrary = originLibrary;
+            this.uplayLibrary = uplayLibrary;
         }
 
         private void CheckDbState()
@@ -414,6 +418,9 @@ namespace Playnite.Database
                 case Provider.Origin:
                     metadata = originLibrary.UpdateGameWithMetadata(game);
                     break;
+                case Provider.Uplay:
+                    metadata = uplayLibrary.UpdateGameWithMetadata(game);
+                    break;
                 case Provider.Custom:
                     return;
                 default:
@@ -451,6 +458,9 @@ namespace Playnite.Database
                     break;
                 case Provider.Steam:
                     installedGames = steamLibrary.GetInstalledGames();
+                    break;
+                case Provider.Uplay:
+                    installedGames = uplayLibrary.GetInstalledGames();
                     break;
                 default:
                     return;
@@ -527,6 +537,8 @@ namespace Playnite.Database
                 case Provider.Steam:
                     importedGames = steamLibrary.GetLibraryGames(SteamUserName);
                     break;
+                case Provider.Uplay:
+                    return;
                 default:
                     return;
             }

@@ -29,6 +29,7 @@ using Playnite.Providers.Origin;
 using PlayniteUI.Controls;
 using System.Globalization;
 using Playnite.Services;
+using Playnite.Providers.Uplay;
 
 namespace PlayniteUI
 {
@@ -109,6 +110,8 @@ namespace PlayniteUI
             SteamSettings.DefaultImage = @"/Images/custom_cover_background.png";
             OriginSettings.DefaultIcon = @"/Images/originicon.png";
             OriginSettings.DefaultImage = @"/Images/custom_cover_background.png";
+            UplaySettings.DefaultIcon = @"/Images/uplayicon.png";
+            UplaySettings.DefaultImage = @"/Images/custom_cover_background.png";
             CustomGameSettings.DefaultIcon = @"/Images/applogo.png";
             CustomGameSettings.DefaultImage = @"/Images/custom_cover_background.png";
             CustomGameSettings.DefaultBackgroundImage = @"/Images/default_background.png";
@@ -141,6 +144,7 @@ namespace PlayniteUI
                     Config.GOGSettings.LibraryDownloadEnabled = window.GogImportLibrary;
                     Config.OriginSettings.IntegrationEnabled = window.OriginEnabled;
                     Config.OriginSettings.LibraryDownloadEnabled = window.OriginImportLibrary;
+                    Config.UplaySettings.IntegrationEnabled = window.UplayEnabled;
                     importSteamCatWizard = window.SteamImportCategories;
                     importSteamCatWizardId = window.SteamIdCategoryImport;
 
@@ -342,6 +346,23 @@ namespace PlayniteUI
 
                     try
                     {
+                        if (Config.UplaySettings.IntegrationEnabled)
+                        {
+                            database.UpdateInstalledGames(Provider.Uplay);
+                            NotificationsWin.RemoveMessage(NotificationCodes.UplayInstalledImportError);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, "Failed to import installed Uplay games.");
+                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.UplayInstalledImportError, "Failed to import installed Uplay games:" + e.Message, NotificationType.Error, () =>
+                        {
+
+                        }));
+                    }
+
+                    try
+                    {
                         if (Config.GOGSettings.IntegrationEnabled)
                         {
                             database.UpdateInstalledGames(Provider.GOG);
@@ -506,6 +527,12 @@ namespace PlayniteUI
                         Task.Factory.StartNew(() =>
                         {
                             DownloadMetadata(database, Provider.GOG, ProgressControl, GamesLoaderHandler.CancelToken.Token);
+                        }),
+
+                        // Uplay metada download thread
+                        Task.Factory.StartNew(() =>
+                        {
+                            DownloadMetadata(database, Provider.Uplay, ProgressControl, GamesLoaderHandler.CancelToken.Token);
                         })
                     };
 
@@ -581,7 +608,7 @@ namespace PlayniteUI
 
             // ------------------ Providers
             bool providersFilter = false;
-            if (Config.FilterSettings.Steam == false && Config.FilterSettings.Origin == false && Config.FilterSettings.GOG == false && Config.FilterSettings.Custom == false)
+            if (Config.FilterSettings.Steam == false && Config.FilterSettings.Origin == false && Config.FilterSettings.GOG == false && Config.FilterSettings.Custom == false && Config.FilterSettings.Uplay == false)
             {
                 providersFilter = true;
             }
@@ -609,6 +636,12 @@ namespace PlayniteUI
                         break;
                     case Provider.Steam:
                         if (Config.FilterSettings.Steam)
+                        {
+                            providersFilter = true;
+                        }
+                        break;
+                    case Provider.Uplay:
+                        if (Config.FilterSettings.Uplay)
                         {
                             providersFilter = true;
                         }
