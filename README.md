@@ -29,18 +29,23 @@ Run Playnite without need to install, with ability to run from any place, with o
 ### Planned Features:
 
 **Support for non-PC games**
+
 Easy to use import of console games with appropriate emulator.
 
 **Add DOSBox configuration GUI**
+
 DOSBox profile manager for DOS games.
 
 **Add additional launch options for legacy games**
+
 To help managing and launching older games. Features like limit CPU cores, CPU speed fix, compatibility flags, automatic installation of 3d party wrappers etc.
 
 **"Big Picture" mode with controller support**
+
 Fullscreen mode managed with controller.
 
 **UI Customization**
+
 Tweak UI colors and additional features.
 
 Download
