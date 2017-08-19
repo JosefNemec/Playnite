@@ -4,7 +4,7 @@ Video game library manager and launcher with support for 3rd party libraries lik
 
 Screenshots on [Homepage](http://playnite.link/)
 
-### Features in current Alpha release:
+### Features:
 
 **Steam, Origin, GOG, Uplay support**
 
