@@ -121,7 +121,10 @@ namespace PlayniteUI.Windows
                         }
 
                         var icon = IconExtension.ExtractIconFromExe(path, true);
-                        iconSource = icon.ToImageSource();
+                        if (icon != null)
+                        {
+                            iconSource = icon.ToImageSource();
+                        }
                     }
 
                     return iconSource;
