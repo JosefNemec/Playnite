@@ -52,7 +52,7 @@
     <Color x:Key="PopupBorderColor">#75290b</Color>-->
 
     <Color x:Key="TextColor">#f2f2f2</Color>
-    <Color x:Key="TextColorDark">#FFFCF2</Color>
+    <Color x:Key="TextColorDark">#9e9e9e</Color>
     <Color x:Key="MainColorLight">#CCC5B9</Color>
     <Color x:Key="MainColor">#403D39</Color>
     <Color x:Key="MainColorDark">#252422</Color>

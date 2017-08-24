@@ -35,6 +35,17 @@
                     <EventSetter Event="MouseRightButtonUp" Handler="Grid_MouseRightButtonUp" />
                     <EventSetter Event="MouseDoubleClick" Handler="Grid_MouseDoubleClick" />
                     <Setter Property="FontSize" Value="12" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsInstalled}" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsInstalled}" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+                        </DataTrigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.GroupStyle>
