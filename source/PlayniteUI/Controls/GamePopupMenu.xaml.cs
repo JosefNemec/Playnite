@@ -81,7 +81,7 @@ namespace PlayniteUI.Controls
             var gameTask = (GameTask)(sender as FrameworkElement).DataContext;
             try
             {
-                gameTask.Activate();
+                gameTask.Activate(DataContext as Game);
             }
             catch (Exception exc)
             {

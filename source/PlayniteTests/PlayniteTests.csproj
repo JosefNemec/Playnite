@@ -114,6 +114,7 @@
     <Compile Include="Database\GameDatabaseTests.cs" />
     <Compile Include="GamesStatsTests.cs" />
     <Compile Include="MetaProviders\WikipediaTests.cs" />
+    <Compile Include="Models\GameTests.cs" />
     <Compile Include="PlayniteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\GOG\GogLibraryTests.cs" />

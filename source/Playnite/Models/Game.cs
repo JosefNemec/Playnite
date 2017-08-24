@@ -518,7 +518,7 @@ namespace Playnite.Models
                 return;
             }
 
-            PlayTask.Activate();
+            PlayTask.Activate(this);
         }
 
         public void UninstallGame()
@@ -611,6 +611,18 @@ namespace Playnite.Models
         public override string ToString()
         {
             return Name;
+        }
+
+        public string ResolveVariables(string inputString)
+        {
+            if (string.IsNullOrEmpty(inputString))
+            {
+                return inputString;
+            }
+
+            var result = inputString;
+            result = result.Replace("{InstallDir}", InstallDirectory);
+            return result;
         }
     }
 }
