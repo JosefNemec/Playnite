@@ -4,17 +4,51 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlayniteUI.Controls"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"              
              d:DesignWidth="300" Height="28">
 
-    <Border BorderThickness="2" CornerRadius="3" Background="Transparent" Style="{StaticResource HighlightBorder}" Padding="1">
-        <DockPanel Background="{StaticResource ControlBackgroundBrush}" Name="dock">
-            <Image Source="/Images/searchicon.png" DockPanel.Dock="Left" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"/>
-            <Image Source="/Images/clear.png" Name="ImageClear" DockPanel.Dock="Right" RenderOptions.BitmapScalingMode="Fant"
-                   MouseUp="ClearImage_MouseUp" Margin="0,0,4,0" Visibility="Hidden"/>
-            <TextBox Name="TextFilter" BorderThickness="0" VerticalContentAlignment="Center" FontSize="14"                 
-                     Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
-                     TextChanged="TextFilter_TextChanged"/>
-        </DockPanel>
-    </Border>
+    <Grid>
+        <TextBlock Text="⌕" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0">
+            <TextBlock.Style>
+                <Style BasedOn="{StaticResource BaseTextBlockStyle}" TargetType="TextBlock">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ShowImage, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="True" />
+                                <Condition Binding="{Binding Text, ElementName=TextFilter}" Value="{x:Static sys:String.Empty}" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <TextBox Name="TextFilter" VerticalContentAlignment="Center" FontSize="14" Background="Transparent"         
+                 Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}">
+            <TextBox.Style>
+                <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                    <Setter Property="Padding" Value="5,0,25,0" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=TextFilter}" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Padding" Value="5,0,5,0" />                            
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBlock Text="⌫" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" 
+                   MouseUp="ClearImage_MouseUp">
+                <TextBlock.Style>
+                    <Style BasedOn="{StaticResource BaseTextBlockStyle}" TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=TextFilter}" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+        </TextBlock>
+    </Grid>
 </UserControl>

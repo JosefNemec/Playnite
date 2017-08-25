@@ -1315,6 +1315,7 @@
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="AllowDrop" Value="true" />
+        <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}" />
         <Setter Property="Template" Value="{DynamicResource TextBoxTemplate}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
