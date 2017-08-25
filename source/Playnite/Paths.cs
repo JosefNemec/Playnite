@@ -95,5 +95,26 @@ namespace Playnite
                 return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Playnite");
             }
         }
+
+        public static bool GetValidFilePath(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                return false;
+            }            
+            
+            if (string.IsNullOrEmpty(Path.GetExtension(path)))
+            {
+                return false;
+            }
+
+            string drive = Path.GetPathRoot(path);
+            if (!string.IsNullOrEmpty(drive) && !Directory.Exists(drive))
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

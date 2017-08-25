@@ -17,6 +17,8 @@ using Playnite.Models;
 using System.Diagnostics;
 using Playnite.Providers.Steam;
 using PlayniteUI.Controls;
+using System.IO;
+using Playnite;
 
 namespace PlayniteUI.Windows
 {
@@ -273,36 +275,7 @@ namespace PlayniteUI.Windows
             }
         }
 
-        private Dictionary<string, Func<FirstTimeStartupWindow, bool>> pageValidators = new Dictionary<string, Func<FirstTimeStartupWindow,bool>>()
-        {
-            {
-                "Steam", (window) =>
-                {
-                    if (window.SteamImportLibrary)
-                    {
-                        if (window.SteamImportLibByName && string.IsNullOrEmpty(window.SteamAccountName))
-                        {
-                            PlayniteMessageBox.Show("Steam account name cannot be empty.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
-                            return false;
-                        }
-
-                        if (!window.SteamImportLibByName && window.SteamIdLibImport == 0)
-                        {
-                            PlayniteMessageBox.Show("No Steam account selected for library import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
-                            return false;
-                        }
-                    }
-
-                    if (window.SteamImportCategories && window.SteamIdCategoryImport == 0)
-                    {
-                        PlayniteMessageBox.Show("No Steam account selected for category import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return false;
-                    }
-
-                    return true;
-                }
-            }
-        };
+        private Dictionary<string, Func<FirstTimeStartupWindow, bool>> pageValidators = new Dictionary<string, Func<FirstTimeStartupWindow, bool>>();
 
         public FirstTimeStartupWindow()
         {
@@ -315,6 +288,46 @@ namespace PlayniteUI.Windows
             SteamAccountName = string.Empty;
             GogImportLibrary = false;
             OriginImportLibrary = false;
+
+            pageValidators.Add("Steam", (window) =>
+            {
+                if (window.SteamImportLibrary)
+                {
+                    if (window.SteamImportLibByName && string.IsNullOrEmpty(window.SteamAccountName))
+                    {
+                        PlayniteMessageBox.Show(FindResource("SettingsInvalidSteamAccountName") as string, FindResource("InvalidDataTitle") as string, MessageBoxButton.OK, MessageBoxImage.Error);
+                        return false;
+                    }
+
+                    if (!window.SteamImportLibByName && window.SteamIdLibImport == 0)
+                    {
+                        PlayniteMessageBox.Show(FindResource("SettingsInvalidSteamAccountLibImport") as string, FindResource("InvalidDataTitle") as string, MessageBoxButton.OK, MessageBoxImage.Error);
+                        return false;
+                    }
+                }
+
+                if (window.SteamImportCategories && window.SteamIdCategoryImport == 0)
+                {
+                    PlayniteMessageBox.Show(FindResource("SettingsInvalidSteamAccountCatImport") as string, FindResource("InvalidDataTitle") as string, MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+
+                return true;
+            });
+
+            pageValidators.Add("Database", (window) =>
+            {
+                if (window.DatabaseLocation == DbLocation.Custom)
+                {
+                    if (!Paths.GetValidFilePath(window.DatabasePath))
+                    {
+                        PlayniteMessageBox.Show(FindResource("SettingsInvalidDBLocation") as string, FindResource("InvalidDataTitle") as string, MessageBoxButton.OK, MessageBoxImage.Error);
+                        return false;
+                    }
+                }
+
+                return true;
+            });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

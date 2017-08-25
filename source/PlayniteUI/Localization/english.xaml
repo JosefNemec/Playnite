@@ -8,7 +8,9 @@
 
     <sys:String x:Key="ExitAppLabel">Exit</sys:String>
     <sys:String x:Key="FilterActiveLabel">Filter is Enabled (click to toggle filter panel)</sys:String>
-    <sys:String x:Key="FilterInactiveLabel">Filter is Disabled (click to toggle filter panel)</sys:String>    
+    <sys:String x:Key="FilterInactiveLabel">Filter is Disabled (click to toggle filter panel)</sys:String>
+
+    <sys:String x:Key="InvalidDataTitle">Invalid data</sys:String>
 
     <sys:String x:Key="AboutHomePageLink">Homepage at www.playnite.link</sys:String>
     <sys:String x:Key="AboutSourceLink">Source Code at GitHub</sys:String>
@@ -31,6 +33,10 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="SettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="SettingsImportInstalledLabel">Import installed games</sys:String>
     <sys:String x:Key="SettingsImportLibraryLabel">Import all games</sys:String>
+    <sys:String x:Key="SettingsInvalidDBLocation">Invalid database file location, proper file path must be set.</sys:String>
+    <sys:String x:Key="SettingsInvalidSteamAccountName">Steam account name cannot be empty.</sys:String>
+    <sys:String x:Key="SettingsInvalidSteamAccountLibImport">No Steam account selected for library import.</sys:String>
+    <sys:String x:Key="SettingsInvalidSteamAccountCatImport">No Steam account selected for category import.</sys:String>
 
     <!--First Time Wizard-->
     <sys:String x:Key="WizardImportIntroduction" xml:space="preserve">Automatically import games from following services. Any later game changes (installation status) will be automatically updated on Playnite startup or when triggered manually. Selected settings affect initial and all subsequent imports.</sys:String>
