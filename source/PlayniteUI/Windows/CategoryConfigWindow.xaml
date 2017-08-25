@@ -9,7 +9,8 @@
         Title="{DynamicResource CategoryWindowTitle}" Height="320" Width="340"
         Background="{StaticResource NormalBrush}"
         WindowStartupLocation="CenterScreen" ShowInTaskbar="False"
-        AutomationProperties.AutomationId="WindowCategories">
+        AutomationProperties.AutomationId="WindowCategories"
+        x:Name="WindowCategories">
 
     <Border Padding="5" Margin="0,5,0,0" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
         <DockPanel>
@@ -37,7 +38,7 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox IsChecked="{Binding Enabled}" Content="{Binding Name}" IsThreeState="True" />
+                        <CheckBox IsChecked="{Binding Enabled}" Content="{Binding Name}" IsThreeState="{Binding EnableThreeState, ElementName=WindowCategories}" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
