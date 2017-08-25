@@ -20,6 +20,9 @@
     <sys:String x:Key="CategoryWindowTitle">Assign Category</sys:String>
     <sys:String x:Key="CategorySetButton">Set Categories</sys:String>
     <sys:String x:Key="CategoryAddCatButton">Add Category</sys:String>
+    <sys:String x:Key="CategoryTooltip" xml:space="preserve">Checked - Assign category
+Unchecked - Remove category
+Indeterminate - No changes (when editing multiple games)</sys:String>
 
     <sys:String x:Key="CrashWindowTitle">Oh no, something bad happened...</sys:String>
 

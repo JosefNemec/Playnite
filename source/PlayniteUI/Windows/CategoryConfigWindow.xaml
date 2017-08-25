@@ -20,7 +20,7 @@
                 <Button Name="ButtonOK" Click="ButtonOK_Click" Content="{DynamicResource CategorySetButton}"
                     Style="{StaticResource BottomButton}" DockPanel.Dock="Right"/>
             </DockPanel>
-
+            
             <Border Padding="8" Background="{StaticResource NormalBrushDark}" DockPanel.Dock="Bottom"
                 BorderThickness="0">
                 <DockPanel>
@@ -29,7 +29,7 @@
                     <TextBox Name="TextNewCat" DockPanel.Dock="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
                 </DockPanel>
             </Border>
-
+            
             <ListBox Name="ListCategories" DockPanel.Dock="Top" BorderThickness="0">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
@@ -38,7 +38,7 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox IsChecked="{Binding Enabled}" Content="{Binding Name}" IsThreeState="{Binding EnableThreeState, ElementName=WindowCategories}" />
+                        <CheckBox IsChecked="{Binding Enabled}" Content="{Binding Name}" IsThreeState="{Binding EnableThreeState, ElementName=WindowCategories}" ToolTip="{DynamicResource CategoryTooltip}"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
