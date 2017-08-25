@@ -17,6 +17,7 @@ using Playnite.Database;
 using Playnite.Models;
 using System.Collections.ObjectModel;
 using Playnite;
+using System.Timers;
 
 namespace PlayniteUI.Controls
 {
@@ -25,7 +26,9 @@ namespace PlayniteUI.Controls
     /// </summary>
     public partial class GamesImagesView : UserControl
     {
-        private GridLength lastDetailsWidht = new GridLength(400, GridUnitType.Pixel);
+        private Timer ClickTimer = new Timer(300);
+        private int ClickCount = 0;
+        private GridLength LastDetailsWidht = new GridLength(400, GridUnitType.Pixel);
 
         public IEnumerable ItemsSource
         {
@@ -50,6 +53,7 @@ namespace PlayniteUI.Controls
         public GamesImagesView()
         {
             InitializeComponent();
+            ClickTimer.Elapsed += ClickTimer_Elapsed;
         }
 
         private void GamesGridView_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -81,14 +85,18 @@ namespace PlayniteUI.Controls
 
         private void CloseDetailBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            lastDetailsWidht = ColumnDetails.Width;
+            LastDetailsWidht = ColumnDetails.Width;
             ColumnSplitter.Width = new GridLength(0, GridUnitType.Pixel);
             ColumnDetails.Width = new GridLength(0, GridUnitType.Pixel);
+
+            if (ItemsView.SelectedItem != null)
+            {
+                ItemsView.ScrollIntoView(ItemsView.SelectedItem as GameViewEntry);
+            }
         }
 
         private void HideDetails()
-        {
-            GameDetails.DataContext = null;
+        {            
             CloseDetailBorder_MouseLeftButtonDown(this, null);            
         }
 
@@ -97,13 +105,16 @@ namespace PlayniteUI.Controls
             if (ColumnDetails.Width.Value == 0)
             {
                 ColumnSplitter.Width = new GridLength(4, GridUnitType.Pixel);
-                ColumnDetails.Width = lastDetailsWidht;
+                ColumnDetails.Width = LastDetailsWidht;
             }
 
-            var game = viewEntry.Game;
-
-            GameDetails.DataContext = game;
             ItemsView.ScrollIntoView(viewEntry);
+        }
+
+        private void ChangeDetails(GameViewEntry viewEntry)
+        {
+            var game = viewEntry.Game;
+            GameDetails.DataContext = game;
         }
 
         private void ZoomIn_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -116,11 +127,9 @@ namespace PlayniteUI.Controls
             SliderZoom.Value -= 10;
         }
 
-        private void PlayGame_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void PlayGame(GameViewEntry viewEntry)
         {
-            var entry = (GameViewEntry)((FrameworkElement)e.OriginalSource).DataContext;
-            var game = entry.Game;
-
+            var game = viewEntry.Game;
             if (game.IsInstalled)
             {
                 GamesEditor.Instance.PlayGame(game);
@@ -166,7 +175,7 @@ namespace PlayniteUI.Controls
         {
             if (ItemsView.SelectedItems.Count == 1)
             {
-                ShowDetails(ItemsView.SelectedItem as GameViewEntry);
+                ChangeDetails(ItemsView.SelectedItem as GameViewEntry);
             }
             else if (ItemsView.SelectedItems.Count == 0)
             {
@@ -181,6 +190,32 @@ namespace PlayniteUI.Controls
             {
                 ItemsView.UnselectAll();
             }
+        }
+
+        private void ListViewItem_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ClickTimer.Stop();
+            ClickCount++;
+            ClickTimer.Start();
+        }
+
+        private void ClickTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            ClickTimer.Stop();
+
+            Dispatcher.Invoke(() =>
+            {
+                if (ClickCount == 1)
+                {
+                    ShowDetails(ItemsView.SelectedItem as GameViewEntry);
+                }
+                else if (ClickCount == 2)
+                {
+                    PlayGame(ItemsView.SelectedItem as GameViewEntry);
+                }
+            });
+
+            ClickCount = 0;
         }
     }
 }
