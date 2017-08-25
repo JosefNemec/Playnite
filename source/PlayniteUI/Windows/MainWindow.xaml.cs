@@ -165,7 +165,7 @@ namespace PlayniteUI
                 }
             }
 
-            LoadGames();
+            LoadGames(Config.UpdateLibStartup);
             CheckUpdate();
             SendUsageData();
             Focus();
@@ -287,7 +287,7 @@ namespace PlayniteUI
             }
         }
 
-        private async void LoadGames()
+        private async void LoadGames(bool downloadLibUpdates)
         {
             if (GamesLoaderHandler.ProgressTask != null && GamesLoaderHandler.ProgressTask.Status == TaskStatus.Running)
             {
@@ -337,180 +337,182 @@ namespace PlayniteUI
 
                 Config_PropertyChanged(this, null);
 
-                GamesLoaderHandler.CancelToken = new CancellationTokenSource();
-                GamesLoaderHandler.ProgressTask = Task.Factory.StartNew(() =>
+                if (downloadLibUpdates)
                 {
-                    ProgressControl.Visible = Visibility.Visible;
-                    ProgressControl.ProgressValue = 0;
-                    ProgressControl.Text = "Importing installed games...";
-
-                    try
+                    GamesLoaderHandler.CancelToken = new CancellationTokenSource();
+                    GamesLoaderHandler.ProgressTask = Task.Factory.StartNew(() =>
                     {
-                        if (Config.UplaySettings.IntegrationEnabled)
-                        {
-                            database.UpdateInstalledGames(Provider.Uplay);
-                            NotificationsWin.RemoveMessage(NotificationCodes.UplayInstalledImportError);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to import installed Uplay games.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.UplayInstalledImportError, "Failed to import installed Uplay games:" + e.Message, NotificationType.Error, () =>
-                        {
-
-                        }));
-                    }
-
-                    try
-                    {
-                        if (Config.GOGSettings.IntegrationEnabled)
-                        {
-                            database.UpdateInstalledGames(Provider.GOG);
-                            NotificationsWin.RemoveMessage(NotificationCodes.GOGLInstalledImportError);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to import installed GOG games.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.GOGLInstalledImportError, "Failed to import installed GOG games:" + e.Message, NotificationType.Error, () =>
-                        {
-
-                        }));
-                    }
-
-                    try
-                    {
-                        if (Config.SteamSettings.IntegrationEnabled)
-                        {
-                            database.UpdateInstalledGames(Provider.Steam);
-                            NotificationsWin.RemoveMessage(NotificationCodes.SteamInstalledImportError);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to import installed Steam games.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamInstalledImportError, "Failed to import installed Steam games: " + e.Message, NotificationType.Error, () =>
-                        {
-
-                        }));
-                    }
-
-                    try
-                    {
-                        if (Config.OriginSettings.IntegrationEnabled)
-                        {
-                            database.UpdateInstalledGames(Provider.Origin);
-                            NotificationsWin.RemoveMessage(NotificationCodes.OriginInstalledImportError);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to import installed Origin games.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.OriginInstalledImportError, "Failed to import installed Origin games: " + e.Message, NotificationType.Error, () =>
-                        {
-
-                        }));
-                    }
-
-                    ProgressControl.Text = "Downloading GOG library updates...";
-
-                    try
-                    {
-                        if (Config.GOGSettings.IntegrationEnabled && Config.GOGSettings.LibraryDownloadEnabled)
-                        {
-                            database.UpdateOwnedGames(Provider.GOG);
-                            NotificationsWin.RemoveMessage(NotificationCodes.GOGLibDownloadError);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to download GOG library updates.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.GOGLibDownloadError, "Failed to download GOG library updates: " + e.Message, NotificationType.Error, () =>
-                        {
-
-                        }));
-                    }
-
-                    ProgressControl.Text = "Downloading Steam library updates...";
-
-                    try
-                    {
-                        if (Config.SteamSettings.IntegrationEnabled && Config.SteamSettings.LibraryDownloadEnabled)
-                        {
-                            if (config.SteamSettings.IdSource == SteamIdSource.Name)
-                            {
-                                database.SteamUserName = Config.SteamSettings.AccountName;
-                            }
-                            else
-                            {
-                                database.SteamUserName = Config.SteamSettings.AccountId.ToString();
-                            }
-
-                            database.UpdateOwnedGames(Provider.Steam);
-                            NotificationsWin.RemoveMessage(NotificationCodes.SteamLibDownloadError);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to download Steam library updates.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamLibDownloadError, "Failed to download Steam library updates: " + e.Message, NotificationType.Error, () =>
-                        {
-
-                        }));
-                    }
-
-                    if (importSteamCatWizard && importSteamCatWizardId != 0)
-                    {
-                        ProgressControl.Text = "Importing Steam categories...";
+                        ProgressControl.Visible = Visibility.Visible;
+                        ProgressControl.ProgressValue = 0;
+                        ProgressControl.Text = "Importing installed games...";
 
                         try
                         {
-                            var steamLib = new SteamLibrary();
-                            GameDatabase.Instance.ImportCategories(steamLib.GetCategorizedGames(importSteamCatWizardId));
+                            if (Config.UplaySettings.IntegrationEnabled)
+                            {
+                                database.UpdateInstalledGames(Provider.Uplay);
+                                NotificationsWin.RemoveMessage(NotificationCodes.UplayInstalledImportError);
+                            }
                         }
                         catch (Exception e)
                         {
-                            logger.Error(e, "Failed to import Steam categories.");
-                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamLibDownloadError, "Failed to import Steam categories: " + e.Message, NotificationType.Error, () =>
+                            logger.Error(e, "Failed to import installed Uplay games.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.UplayInstalledImportError, "Failed to import installed Uplay games:" + e.Message, NotificationType.Error, () =>
                             {
 
                             }));
                         }
-                    }
 
-                    ProgressControl.Text = "Downloading Origin library updates...";
-
-                    try
-                    {
-                        if (Config.OriginSettings.IntegrationEnabled && Config.OriginSettings.LibraryDownloadEnabled)
+                        try
                         {
-                            database.UpdateOwnedGames(Provider.Origin);
-                            NotificationsWin.RemoveMessage(NotificationCodes.OriginLibDownloadError);
+                            if (Config.GOGSettings.IntegrationEnabled)
+                            {
+                                database.UpdateInstalledGames(Provider.GOG);
+                                NotificationsWin.RemoveMessage(NotificationCodes.GOGLInstalledImportError);
+                            }
                         }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to download Origin library updates.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.OriginLibDownloadError, "Failed to download Origin library updates: " + e.Message, NotificationType.Error, () =>
+                        catch (Exception e)
                         {
+                            logger.Error(e, "Failed to import installed GOG games.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.GOGLInstalledImportError, "Failed to import installed GOG games:" + e.Message, NotificationType.Error, () =>
+                            {
 
-                        }));
-                    }
+                            }));
+                        }
 
-                    ProgressControl.Text = "Downloading images and game details...";
-                    ProgressControl.ProgressMin = 0;
+                        try
+                        {
+                            if (Config.SteamSettings.IntegrationEnabled)
+                            {
+                                database.UpdateInstalledGames(Provider.Steam);
+                                NotificationsWin.RemoveMessage(NotificationCodes.SteamInstalledImportError);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to import installed Steam games.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamInstalledImportError, "Failed to import installed Steam games: " + e.Message, NotificationType.Error, () =>
+                            {
 
-                    var gamesCount = 0;
-                    gamesCount = database.GamesCollection.Count(a => a.Provider != Provider.Custom && !a.IsProviderDataUpdated);
-                    if (gamesCount > 0)
-                    {
-                        gamesCount -= 1;
-                    }
+                            }));
+                        }
 
-                    ProgressControl.ProgressMax = gamesCount;
+                        try
+                        {
+                            if (Config.OriginSettings.IntegrationEnabled)
+                            {
+                                database.UpdateInstalledGames(Provider.Origin);
+                                NotificationsWin.RemoveMessage(NotificationCodes.OriginInstalledImportError);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to import installed Origin games.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.OriginInstalledImportError, "Failed to import installed Origin games: " + e.Message, NotificationType.Error, () =>
+                            {
 
-                    var tasks = new List<Task>
-                    {
+                            }));
+                        }
+
+                        ProgressControl.Text = "Downloading GOG library updates...";
+
+                        try
+                        {
+                            if (Config.GOGSettings.IntegrationEnabled && Config.GOGSettings.LibraryDownloadEnabled)
+                            {
+                                database.UpdateOwnedGames(Provider.GOG);
+                                NotificationsWin.RemoveMessage(NotificationCodes.GOGLibDownloadError);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to download GOG library updates.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.GOGLibDownloadError, "Failed to download GOG library updates: " + e.Message, NotificationType.Error, () =>
+                            {
+
+                            }));
+                        }
+
+                        ProgressControl.Text = "Downloading Steam library updates...";
+
+                        try
+                        {
+                            if (Config.SteamSettings.IntegrationEnabled && Config.SteamSettings.LibraryDownloadEnabled)
+                            {
+                                if (config.SteamSettings.IdSource == SteamIdSource.Name)
+                                {
+                                    database.SteamUserName = Config.SteamSettings.AccountName;
+                                }
+                                else
+                                {
+                                    database.SteamUserName = Config.SteamSettings.AccountId.ToString();
+                                }
+
+                                database.UpdateOwnedGames(Provider.Steam);
+                                NotificationsWin.RemoveMessage(NotificationCodes.SteamLibDownloadError);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to download Steam library updates.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamLibDownloadError, "Failed to download Steam library updates: " + e.Message, NotificationType.Error, () =>
+                            {
+
+                            }));
+                        }
+
+                        if (importSteamCatWizard && importSteamCatWizardId != 0)
+                        {
+                            ProgressControl.Text = "Importing Steam categories...";
+
+                            try
+                            {
+                                var steamLib = new SteamLibrary();
+                                GameDatabase.Instance.ImportCategories(steamLib.GetCategorizedGames(importSteamCatWizardId));
+                            }
+                            catch (Exception e)
+                            {
+                                logger.Error(e, "Failed to import Steam categories.");
+                                NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamLibDownloadError, "Failed to import Steam categories: " + e.Message, NotificationType.Error, () =>
+                                {
+
+                                }));
+                            }
+                        }
+
+                        ProgressControl.Text = "Downloading Origin library updates...";
+
+                        try
+                        {
+                            if (Config.OriginSettings.IntegrationEnabled && Config.OriginSettings.LibraryDownloadEnabled)
+                            {
+                                database.UpdateOwnedGames(Provider.Origin);
+                                NotificationsWin.RemoveMessage(NotificationCodes.OriginLibDownloadError);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to download Origin library updates.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.OriginLibDownloadError, "Failed to download Origin library updates: " + e.Message, NotificationType.Error, () =>
+                            {
+
+                            }));
+                        }
+
+                        ProgressControl.Text = "Downloading images and game details...";
+                        ProgressControl.ProgressMin = 0;
+
+                        var gamesCount = 0;
+                        gamesCount = database.GamesCollection.Count(a => a.Provider != Provider.Custom && !a.IsProviderDataUpdated);
+                        if (gamesCount > 0)
+                        {
+                            gamesCount -= 1;
+                        }
+
+                        ProgressControl.ProgressMax = gamesCount;
+
+                        var tasks = new List<Task>
+                        {
                         // Steam metada download thread
                         Task.Factory.StartNew(() =>
                         {
@@ -534,17 +536,18 @@ namespace PlayniteUI
                         {
                             DownloadMetadata(database, Provider.Uplay, ProgressControl, GamesLoaderHandler.CancelToken.Token);
                         })
-                    };
+                        };
 
-                    Task.WaitAll(tasks.ToArray());
+                        Task.WaitAll(tasks.ToArray());
 
-                    ProgressControl.Text = "Library update finished";
+                        ProgressControl.Text = "Library update finished";
 
-                    Thread.Sleep(1500);
-                    ProgressControl.Visible = Visibility.Collapsed;
-                });
+                        Thread.Sleep(1500);
+                        ProgressControl.Visible = Visibility.Collapsed;
+                    });
 
-                await GamesLoaderHandler.ProgressTask;
+                    await GamesLoaderHandler.ProgressTask;
+                }
             }
             finally
             {
@@ -959,7 +962,7 @@ namespace PlayniteUI
 
         private void ReloadGames_Click(object sender, RoutedEventArgs e)
         {
-            LoadGames();
+            LoadGames(true);
             MenuMainMenu.IsOpen = false;
         }
 
@@ -1023,7 +1026,7 @@ namespace PlayniteUI
 
             if (configWindow.ProviderIntegrationChanged || configWindow.DatabaseLocationChanged)
             {
-                LoadGames();
+                LoadGames(true);
             }
         }
 

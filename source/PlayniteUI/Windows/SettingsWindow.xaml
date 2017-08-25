@@ -60,6 +60,10 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
                             <StackPanel Grid.Column="0">
                                 <CheckBox Name="CheckEnableTray" Content="Show Tray Icon" Margin="5,0,0,0"
                                           IsChecked="{Binding EnableTray, UpdateSourceTrigger=Explicit}" />
@@ -72,6 +76,10 @@
                             </StackPanel>
                             <CheckBox Name="CheckMinimizeLaunch" Content="Minimize after starting game" VerticalAlignment="Top"
                                       IsChecked="{Binding MinimizeAfterLaunch, UpdateSourceTrigger=Explicit}" Grid.Column="1"/>
+
+                            <CheckBox Name="CheckUpdateLibStartup" Margin="5,15,5,5" Grid.Row="1" Grid.ColumnSpan="2"
+                                      Content="{DynamicResource SettingsUpdateLibStartup}" ToolTip="{DynamicResource SettingsUpdateLibStartupTooltip}" 
+                                      IsChecked="{Binding UpdateLibStartup, UpdateSourceTrigger=Explicit}"/>
                         </Grid>
                     </StackPanel>
                 </TabItem>                

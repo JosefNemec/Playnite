@@ -342,6 +342,21 @@ namespace Playnite
             }
         }
 
+        private bool updateLibStartup = true;
+        public bool UpdateLibStartup
+        {
+            get
+            {
+                return updateLibStartup;
+            }
+
+            set
+            {
+                updateLibStartup = value;
+                OnPropertyChanged("UpdateLibStartup");
+            }
+        }
+
         private bool minimizeAfterLaunch = true;
         public bool MinimizeAfterLaunch
         {

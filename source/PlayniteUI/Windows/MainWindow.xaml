@@ -189,7 +189,7 @@
                 </CheckBox.Style>
             </CheckBox>
 
-            <local:ProgressControl x:Name="ProgressControl" DockPanel.Dock="Left" Margin="40,0,140,0" Height="25"/>
+            <local:ProgressControl x:Name="ProgressControl" DockPanel.Dock="Left" Margin="40,0,140,0" Height="25" Visibility="Collapsed"/>
         </DockPanel>
 
         <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" >

@@ -40,6 +40,8 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="SettingsInvalidSteamAccountName">Steam account name cannot be empty.</sys:String>
     <sys:String x:Key="SettingsInvalidSteamAccountLibImport">No Steam account selected for library import.</sys:String>
     <sys:String x:Key="SettingsInvalidSteamAccountCatImport">No Steam account selected for category import.</sys:String>
+    <sys:String x:Key="SettingsUpdateLibStartup">Download 3rd party library updates on startup</sys:String>
+    <sys:String x:Key="SettingsUpdateLibStartupTooltip">Includes Steam, Origin and others. Also won't download any metadata when disabled.</sys:String>
 
     <!--First Time Wizard-->
     <sys:String x:Key="WizardImportIntroduction" xml:space="preserve">Automatically import games from following services. Any later game changes (installation status) will be automatically updated on Playnite startup or when triggered manually. Selected settings affect initial and all subsequent imports.</sys:String>

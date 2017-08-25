@@ -232,6 +232,12 @@ namespace PlayniteUI
                 trayEnable.UpdateSource();
             }
 
+            var updateLibStartupEnable = CheckUpdateLibStartup.GetBindingExpression(CheckBox.IsCheckedProperty);
+            if (updateLibStartupEnable.IsDirty)
+            {
+                updateLibStartupEnable.UpdateSource();
+            }
+
             var language = ComboLanguage.GetBindingExpression(ComboBox.SelectedValueProperty);
             if (language.IsDirty)
             {
