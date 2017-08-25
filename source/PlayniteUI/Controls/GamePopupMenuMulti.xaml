@@ -23,7 +23,7 @@
                   Visibility="{Binding ShowUnHideButton, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <MenuItem Header="Edit" Click="Edit_Click"/>
         <MenuItem Header="Set Category..." Click="Categories_Click"/>
-        <MenuItem Header="Remove" Click="Remove_Click"
-                  Visibility="{Binding ShowRemoveButton, RelativeSource={RelativeSource AncestorType=Popup}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <Separator Margin="0,2,0,2" />
+        <MenuItem Header="Remove" Click="Remove_Click" />
     </ItemsControl>
 </Popup>

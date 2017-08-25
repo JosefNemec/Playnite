@@ -21,11 +21,12 @@
 
     <sys:String x:Key="CrashWindowTitle">Oh no, something bad happened...</sys:String>
 
-    <sys:String x:Key="GameRemoveAskTitle">Remove Game?</sys:String>
+    <sys:String x:Key="GameRemoveAskTitle">Remove Game(s)?</sys:String>
     <sys:String x:Key="GameRemoveAskMessage" xml:space="preserve">Are you sure you want to remove this game?
 Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
-    
-    
+    <sys:String x:Key="GamesRemoveAskMessage" xml:space="preserve">Are you sure you want to remove {0} games?
+Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
+
     <!--Settings Window-->
     <sys:String x:Key="SettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="SettingsImportInstalledLabel">Import installed games</sys:String>
