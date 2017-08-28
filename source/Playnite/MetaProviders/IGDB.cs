@@ -45,7 +45,7 @@ namespace Playnite.MetaProviders
 
             if (dbGame.developers != null && dbGame.developers.Count > 0)
             {
-                game.Developers = new List<string>();
+                game.Developers = new ComparableList<string>();
                 foreach (var developer in dbGame.developers)
                 {
                     game.Developers.Add(client.GetIGDBCompany(developer).name);
@@ -54,7 +54,7 @@ namespace Playnite.MetaProviders
 
             if (dbGame.publishers != null && dbGame.publishers.Count > 0)
             {
-                game.Publishers = new List<string>();
+                game.Publishers = new ComparableList<string>();
                 foreach (var publisher in dbGame.publishers)
                 {
                     game.Publishers.Add(client.GetIGDBCompany(publisher).name);
@@ -63,7 +63,7 @@ namespace Playnite.MetaProviders
 
             if (dbGame.developers != null && dbGame.developers.Count > 0)
             {
-                game.Genres = new List<string>();
+                game.Genres = new ComparableList<string>();
                 foreach (var genre in dbGame.genres)
                 {
                     game.Genres.Add(client.GetIGDBGenre(genre).name);

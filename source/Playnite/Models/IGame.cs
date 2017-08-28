@@ -139,12 +139,12 @@ namespace Playnite.Models
             get; set;
         }
 
-        List<string> Categories
+        ComparableList<string> Categories
         {
             get; set;
         }
 
-        List<string> Genres
+        ComparableList<string> Genres
         {
             get; set;
         }
@@ -154,12 +154,12 @@ namespace Playnite.Models
             get; set;
         }
 
-        List<string> Developers
+        ComparableList<string> Developers
         {
             get; set;
         }
 
-        List<string> Publishers
+        ComparableList<string> Publishers
         {
             get; set;
         }

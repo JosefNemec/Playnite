@@ -1,16 +1,70 @@
-﻿using Playnite;
+﻿using NLog;
+using Playnite;
 using Playnite.Database;
 using Playnite.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace PlayniteUI
 {
+    public class NullBottomSorter: Comparer<GameViewEntry>, IComparer
+    {
+        public override int Compare(GameViewEntry x, GameViewEntry y)
+        {
+            if (x == null && y != null)
+            {
+                return -1;
+            }
+
+            if (x != null && y == null)
+            {
+                return 1;
+            }
+
+            if (x == null && y == null)
+            {
+                return 0;
+            }
+
+            var settings = Settings.Instance;
+
+            switch (settings.SortingOrder)
+            {
+                case SortOrder.Name:
+                    var catComp = x.Category.CompareTo(y.Category);
+                    if (catComp == 0)
+                    {
+                        return string.Compare(x.Name, y.Name) * (settings.SortingOrderDirection == SortOrderDirection.Ascending ? 1 : -1);
+                    }
+                    else
+                    {
+                        return catComp;
+                    }
+                case SortOrder.LastActivity:
+                case SortOrder.Provider:
+                case SortOrder.Categories:
+                case SortOrder.Genres:
+                case SortOrder.ReleaseDate:
+                case SortOrder.Developers:
+                case SortOrder.Publishers:
+                case SortOrder.IsInstalled:
+                case SortOrder.Hidden:
+                case SortOrder.Favorite:
+                case SortOrder.InstallDirectory:
+                case SortOrder.Icon:
+                default:
+                    return 0;
+            }
+        }
+    }
+
     public class CategoryView : IComparable
     {
         public string Category
@@ -156,7 +210,21 @@ namespace PlayniteUI
 
     public class GamesCollectionView
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         private GameDatabase database;
+
+        public ListCollectionView CollectionView
+        {
+            get;
+            private set;
+        }
+
+        public Settings Settings
+        {
+            get;
+            private set;
+        }
 
         private GamesViewType? viewType = null;
         public GamesViewType? ViewType
@@ -179,12 +247,322 @@ namespace PlayniteUI
             get; set;
         }
 
-        public GamesCollectionView(GameDatabase database)
+        public GamesCollectionView(GameDatabase database, Settings settings)
         {
             this.database = database;
             database.GamesCollectionChanged += Database_GamesCollectionChanged;
             database.GameUpdated += Database_GameUpdated;
             Items = new RangeObservableCollection<GameViewEntry>();
+            Settings = settings;
+            Settings.PropertyChanged += Settings_PropertyChanged;
+            Settings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
+            CollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(Items);
+            SetViewConfiguration();
+            CollectionView.Filter = Filter;
+        }
+
+        private bool Filter(object item)
+        {
+            var entry = (GameViewEntry)item;
+            var game = entry.Game;
+
+            // ------------------ Installed
+            bool installedResult = false;
+            if (Settings.FilterSettings.IsInstalled && game.IsInstalled)
+            {
+                installedResult = true;
+            }
+            else if (!Settings.FilterSettings.IsInstalled)
+            {
+                installedResult = true;
+            }
+
+            // ------------------ UnInstalled
+            bool unInstalledResult = false;
+            if (Settings.FilterSettings.IsUnInstalled && !game.IsInstalled)
+            {
+                unInstalledResult = true;
+            }
+            else if (!Settings.FilterSettings.IsUnInstalled)
+            {
+                unInstalledResult = true;
+            }
+
+            // ------------------ Hidden
+            bool hiddenResult = true;
+            if (Settings.FilterSettings.Hidden && game.Hidden)
+            {
+                hiddenResult = true;
+            }
+            else if (!Settings.FilterSettings.Hidden && game.Hidden)
+            {
+                hiddenResult = false;
+            }
+            else if (Settings.FilterSettings.Hidden && !game.Hidden)
+            {
+                hiddenResult = false;
+            }
+
+            // ------------------ Favorite
+            bool favoriteResult = false;
+            if (Settings.FilterSettings.Favorite && game.Favorite)
+            {
+                favoriteResult = true;
+            }
+            else if (!Settings.FilterSettings.Favorite)
+            {
+                favoriteResult = true;
+            }
+
+            // ------------------ Providers
+            bool providersFilter = false;
+            if (Settings.FilterSettings.Steam == false && Settings.FilterSettings.Origin == false && Settings.FilterSettings.GOG == false && Settings.FilterSettings.Custom == false && Settings.FilterSettings.Uplay == false)
+            {
+                providersFilter = true;
+            }
+            else
+            {
+                switch (game.Provider)
+                {
+                    case Provider.Custom:
+                        if (Settings.FilterSettings.Custom)
+                        {
+                            providersFilter = true;
+                        }
+                        break;
+                    case Provider.GOG:
+                        if (Settings.FilterSettings.GOG)
+                        {
+                            providersFilter = true;
+                        }
+                        break;
+                    case Provider.Origin:
+                        if (Settings.FilterSettings.Origin)
+                        {
+                            providersFilter = true;
+                        }
+                        break;
+                    case Provider.Steam:
+                        if (Settings.FilterSettings.Steam)
+                        {
+                            providersFilter = true;
+                        }
+                        break;
+                    case Provider.Uplay:
+                        if (Settings.FilterSettings.Uplay)
+                        {
+                            providersFilter = true;
+                        }
+                        break;
+                }
+            }
+
+            // ------------------ Name filter
+            bool textResult = false;
+            if (string.IsNullOrEmpty(Settings.FilterSettings.Name))
+            {
+                textResult = true;
+            }
+            else
+            {
+                textResult = (game.Name.IndexOf(Settings.FilterSettings.Name, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+
+
+            // ------------------ Genre
+            bool genreResult = false;
+            if (Settings.FilterSettings.Genres == null || Settings.FilterSettings.Genres.Count == 0)
+            {
+                genreResult = true;
+            }
+            else
+            {
+                if (game.Genres == null)
+                {
+                    genreResult = false;
+                }
+                else
+                {
+                    genreResult = Settings.FilterSettings.Genres.IntersectsPartiallyWith(game.Genres);
+                }
+            }
+
+            // ------------------ Release Date
+            bool releaseDateResult = false;
+            if (string.IsNullOrEmpty(Settings.FilterSettings.ReleaseDate))
+            {
+                releaseDateResult = true;
+            }
+            else
+            {
+                if (game.ReleaseDate == null)
+                {
+
+                    releaseDateResult = false;
+                }
+                else
+                {
+                    releaseDateResult = game.ReleaseDate.Value.ToString(Constants.DateUiFormat).IndexOf(Settings.FilterSettings.ReleaseDate, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+            }
+
+            // ------------------ Publisher
+            bool publisherResult = false;
+            if (Settings.FilterSettings.Publishers == null || Settings.FilterSettings.Publishers.Count == 0)
+            {
+                publisherResult = true;
+            }
+            else
+            {
+                if (game.Publishers == null)
+                {
+                    publisherResult = false;
+                }
+                else
+                {
+                    publisherResult = Settings.FilterSettings.Publishers.IntersectsPartiallyWith(game.Publishers);
+                }
+            }
+
+            // ------------------ Developer
+            bool developerResult = false;
+            if (Settings.FilterSettings.Developers == null || Settings.FilterSettings.Developers.Count == 0)
+            {
+                developerResult = true;
+            }
+            else
+            {
+                if (game.Developers == null)
+                {
+                    developerResult = false;
+                }
+                else
+                {
+                    developerResult = Settings.FilterSettings.Developers.IntersectsPartiallyWith(game.Developers);
+                }
+            }
+
+            // ------------------ Category
+            bool categoryResult = false;
+            if (Settings.FilterSettings.Categories == null || Settings.FilterSettings.Categories.Count == 0)
+            {
+                categoryResult = true;
+            }
+            else
+            {
+                if (game.Categories == null)
+                {
+                    categoryResult = false;
+                }
+                else
+                {
+                    if (ViewType == GamesViewType.Standard)
+                    {
+                        categoryResult = Settings.FilterSettings.Categories.IntersectsPartiallyWith(game.Categories);
+                    }
+                    else
+                    {
+                        categoryResult = Settings.FilterSettings.Categories.Any(a => entry.Category.Category.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0);
+                    }
+                }
+            }
+
+            return installedResult && unInstalledResult && hiddenResult && favoriteResult && textResult && providersFilter && genreResult && releaseDateResult && publisherResult && developerResult && categoryResult;
+        }
+
+        private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if ((new string[] { "SortingOrder", "GroupingOrder", "SortingOrderDirection" }).Contains(e.PropertyName))
+            {
+                UpdateViewConfiguration();
+            }
+        }
+
+        private void FilterSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            logger.Debug("Refreshing collection view filter.");
+            CollectionView.Refresh();
+        }
+
+        private void SetViewDescriptions()
+        {
+            var sortDirection = Settings.SortingOrderDirection == SortOrderDirection.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;
+
+            switch (Settings.GroupingOrder)
+            {
+                case GroupOrder.None:
+                    ViewType = GamesViewType.Standard;
+                    break;
+                case GroupOrder.Provider:
+                    ViewType = GamesViewType.Standard;
+                    break;
+                case GroupOrder.Category:
+                    ViewType = GamesViewType.CategoryGrouped;
+                    break;
+            }
+
+            CollectionView.SortDescriptions.Add(new SortDescription(Settings.SortingOrder.ToString(), sortDirection));
+            if (Settings.SortingOrder != SortOrder.Name)
+            {
+                CollectionView.SortDescriptions.Add(new SortDescription("Name", sortDirection));
+            }
+
+            if (Settings.GroupingOrder != GroupOrder.None)
+            {
+                CollectionView.GroupDescriptions.Add(new PropertyGroupDescription(Settings.GroupingOrder.ToString()));
+                if (CollectionView.SortDescriptions.First().PropertyName != Settings.GroupingOrder.ToString())
+                {
+                    CollectionView.SortDescriptions.Insert(0, new SortDescription(Settings.GroupingOrder.ToString(), ListSortDirection.Ascending));
+                }
+            }
+        }
+
+        private void SetViewConfiguration()
+        {
+            using (CollectionView.DeferRefresh())
+            {
+                SetViewDescriptions();
+                CollectionView.LiveGroupingProperties.Add("Provider");
+                CollectionView.LiveGroupingProperties.Add("Category");
+
+                CollectionView.LiveSortingProperties.Add("Provider");
+                CollectionView.LiveSortingProperties.Add("Name");
+                CollectionView.LiveSortingProperties.Add("Categories");
+                CollectionView.LiveSortingProperties.Add("Genres");
+                CollectionView.LiveSortingProperties.Add("ReleaseDate");
+                CollectionView.LiveSortingProperties.Add("Developers");
+                CollectionView.LiveSortingProperties.Add("Publishers");
+                CollectionView.LiveSortingProperties.Add("IsInstalled");
+                CollectionView.LiveSortingProperties.Add("Hidden");
+                CollectionView.LiveSortingProperties.Add("Favorite");
+                CollectionView.LiveSortingProperties.Add("LastActivity");
+
+                CollectionView.LiveFilteringProperties.Add("Provider");
+                CollectionView.LiveFilteringProperties.Add("Name");
+                CollectionView.LiveFilteringProperties.Add("Categories");
+                CollectionView.LiveFilteringProperties.Add("Genres");
+                CollectionView.LiveFilteringProperties.Add("ReleaseDate");
+                CollectionView.LiveFilteringProperties.Add("Developers");
+                CollectionView.LiveFilteringProperties.Add("Publishers");
+                CollectionView.LiveFilteringProperties.Add("IsInstalled");
+                CollectionView.LiveFilteringProperties.Add("Hidden");
+                CollectionView.LiveFilteringProperties.Add("Favorite");
+
+                CollectionView.IsLiveSorting = true;
+                CollectionView.IsLiveFiltering = true;
+                CollectionView.IsLiveGrouping = true;
+            };
+        }
+
+        private void UpdateViewConfiguration()
+        {
+            logger.Debug("Updating collection view settings.");
+            using (CollectionView.DeferRefresh())
+            {
+                CollectionView.SortDescriptions.Clear();
+                CollectionView.GroupDescriptions.Clear();
+                SetViewDescriptions();                
+            }
         }
 
         public void SetViewType(GamesViewType? viewType)
@@ -199,7 +577,6 @@ namespace PlayniteUI
                 case GamesViewType.Standard:
                     Items.Clear();
                     Items.AddRange(database.GamesCollection.FindAll().Select(x => new GameViewEntry(x, string.Empty)));
-
                     break;
 
                 case GamesViewType.CategoryGrouped:

@@ -804,7 +804,7 @@ namespace PlayniteUI
             var converter = new ListToStringConverter();
             var dummyGame = new Game()
             {
-                Categories = (List<string>)converter.ConvertBack(TextCategories.Text, typeof(List<string>), null, CultureInfo.InvariantCulture)
+                Categories = (ComparableList<string>)converter.ConvertBack(TextCategories.Text, typeof(ComparableList<string>), null, CultureInfo.InvariantCulture)
             };
 
             var window = new CategoryConfigWindow()

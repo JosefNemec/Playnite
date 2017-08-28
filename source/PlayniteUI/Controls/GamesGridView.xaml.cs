@@ -16,13 +16,14 @@ using System.Windows.Shapes;
 using Playnite.Database;
 using Playnite.Models;
 using Playnite;
+using System.ComponentModel;
 
 namespace PlayniteUI.Controls
 {
     /// <summary>
     /// Interaction logic for GamesGridView.xaml
     /// </summary>
-    public partial class GamesGridView : UserControl
+    public partial class GamesGridView : UserControl, INotifyPropertyChanged
     {
         public IEnumerable ItemsSource
         {
@@ -36,6 +37,25 @@ namespace PlayniteUI.Controls
                 GridGames.ItemsSource = value;
             }
         }
+
+        private Settings appSettings;
+        public Settings AppSettings
+        {
+            get
+            {
+                return appSettings;
+            }
+
+            set
+            {
+                GridGames.DataContext = value;
+                HeaderMenu.DataContext = value;
+                appSettings = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AppSettings"));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public GamesGridView()
         {
@@ -98,10 +118,34 @@ namespace PlayniteUI.Controls
 
             BindingOperations.SetBinding(header, GridViewColumnHeader.VisibilityProperty, new Binding(string.Format("GridViewHeaders[{0}]", header.Tag.ToString()))
             {
-                Source = HeaderMenu.DataContext,
+                Source = AppSettings,
                 Mode = BindingMode.OneWay,
                 Converter = new BooleanToVisibilityConverter()
             });
+        }
+
+        private void GridViewColumnHeader_Click(object sender, RoutedEventArgs e)
+        {
+            var header = sender as GridViewColumnHeader;            
+            if (header == null || header.Tag == null)
+            {
+                return;
+            }
+
+            var sortOrder = (SortOrder)header.Tag;
+            if (sortOrder == SortOrder.Icon)
+            {
+                return;
+            }
+
+            if (AppSettings.SortingOrder == sortOrder)
+            {
+                AppSettings.SortingOrderDirection = AppSettings.SortingOrderDirection == SortOrderDirection.Ascending ? SortOrderDirection.Descending : SortOrderDirection.Ascending;
+            }
+            else
+            {
+                AppSettings.SortingOrder = sortOrder;
+            }
         }
 
         private void Expander_Collapsed(object sender, RoutedEventArgs e)

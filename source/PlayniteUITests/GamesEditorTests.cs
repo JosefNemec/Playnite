@@ -4,6 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using Playnite.Models;
 using PlayniteUI;
+using Playnite;
 
 namespace PlayniteUITests
 {
@@ -19,32 +20,32 @@ namespace PlayniteUITests
                 new Game()
                 {
                     Name = "Game",
-                    Genres = new List<string>() { "Genre 1", "Genre 2", "Genre 3" },
+                    Genres = new ComparableList<string>() { "Genre 1", "Genre 2", "Genre 3" },
                     ReleaseDate = new DateTime(2011,6,20),
-                    Developers = new List<string>() { "Developer 1", "Developer 2", "Developer 3" },
-                    Publishers = new List<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
-                    Categories = new List<string>() { "Tag 1", "Tag 2", "Tag 3" },
+                    Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
+                    Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
+                    Categories = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
                     Description = "Description"
 
                 },
                 new Game()
                 {
                     Name = "Game",
-                    Genres = new List<string>() { "Genre 1", "Genre 2", "Genre 3" },
+                    Genres = new ComparableList<string>() { "Genre 1", "Genre 2", "Genre 3" },
                     ReleaseDate = new DateTime(2011,6,20),
-                    Developers = new List<string>() { "Developer 1", "Developer 2", "Developer 3" },
-                    Publishers = new List<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
-                    Categories = new List<string>() { "Tag 1", "Tag 2", "Tag 3" },
+                    Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
+                    Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
+                    Categories = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
                     Description = "Description"
                 },
                 new Game()
                 {
                     Name = "Game",
-                    Genres = new List<string>() { "Genre 1", "Genre 2", "Genre 3" },
+                    Genres = new ComparableList<string>() { "Genre 1", "Genre 2", "Genre 3" },
                     ReleaseDate = new DateTime(2011,6,20),
-                    Developers = new List<string>() { "Developer 1", "Developer 2", "Developer 3" },
-                    Publishers = new List<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
-                    Categories = new List<string>() { "Tag 1", "Tag 2", "Tag 3" },
+                    Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
+                    Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
+                    Categories = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
                     Description = "Description"
                 }
             };
@@ -66,32 +67,32 @@ namespace PlayniteUITests
                 new Game()
                 {
                     Name = "Game 1",
-                    Genres = new List<string>() { "Genre 1", "Genre 2", "Genre 3" },
+                    Genres = new ComparableList<string>() { "Genre 1", "Genre 2", "Genre 3" },
                     ReleaseDate = new DateTime(2011,6,20),
-                    Developers = new List<string>() { "Developer 1", "Developer 2", "Developer 3" },
-                    Publishers = new List<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
-                    Categories = new List<string>() { "Tag 1", "Tag 2", "Tag 3" },
+                    Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
+                    Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
+                    Categories = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
                     Description = "Description 1"
 
                 },
                 new Game()
                 {
                     Name = "Game 2",
-                    Genres = new List<string>() { "Genre 4", "Genre 5", "Genre 6" },
+                    Genres = new ComparableList<string>() { "Genre 4", "Genre 5", "Genre 6" },
                     ReleaseDate = new DateTime(2012,6,20),
-                    Developers = new List<string>() { "Developer 4", "Developer 5", "Developer 6" },
-                    Publishers = new List<string>() { "Publisher 4", "Publisher 5", "Publisher 6" },
-                    Categories = new List<string>() { "Tag 4", "Tag 5", "Tag 6" },
+                    Developers = new ComparableList<string>() { "Developer 4", "Developer 5", "Developer 6" },
+                    Publishers = new ComparableList<string>() { "Publisher 4", "Publisher 5", "Publisher 6" },
+                    Categories = new ComparableList<string>() { "Tag 4", "Tag 5", "Tag 6" },
                     Description = "Description 2"
                 },
                 new Game()
                 {
                     Name = "Game 3",
-                    Genres = new List<string>() { "Genre 7", "Genre 8", "Genre 9" },
+                    Genres = new ComparableList<string>() { "Genre 7", "Genre 8", "Genre 9" },
                     ReleaseDate = new DateTime(2013,6,20),
-                    Developers = new List<string>() { "Developer 7", "Developer 8", "Developer 9" },
-                    Publishers = new List<string>() { "Publisher 7", "Publisher 8", "Publisher 9" },
-                    Categories = new List<string>() { "Tag 7", "Tag 8", "Tag 9" },
+                    Developers = new ComparableList<string>() { "Developer 7", "Developer 8", "Developer 9" },
+                    Publishers = new ComparableList<string>() { "Publisher 7", "Publisher 8", "Publisher 9" },
+                    Categories = new ComparableList<string>() { "Tag 7", "Tag 8", "Tag 9" },
                     Description = "Description 3"
                 }
             };

@@ -143,6 +143,7 @@
       <Link>Services\Models\Playnite\Playnite.cs</Link>
     </Compile>
     <Compile Include="BitmapExtensions.cs" />
+    <Compile Include="ComparableList.cs" />
     <Compile Include="CoverCreator.cs" />
     <Compile Include="Database\GameDatabase.cs" />
     <Compile Include="EmbededResources.cs" />

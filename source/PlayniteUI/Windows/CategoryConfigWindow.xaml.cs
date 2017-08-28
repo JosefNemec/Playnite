@@ -16,6 +16,7 @@ using Playnite.Database;
 using Playnite.Models;
 using PlayniteUI.Controls;
 using System.ComponentModel;
+using Playnite;
 
 namespace PlayniteUI.Windows
 {
@@ -147,7 +148,7 @@ namespace PlayniteUI.Windows
 
                     if (categories.Count > 0)
                     {
-                        game.Categories = categories.OrderBy(a => a).ToList();
+                        game.Categories = new ComparableList<string>(categories.OrderBy(a => a));
                     }
                     else
                     {
@@ -166,7 +167,7 @@ namespace PlayniteUI.Windows
 
                 if (categories.Count > 0)
                 {
-                    game.Categories = categories;
+                    game.Categories = new ComparableList<string>(categories);
                 }
                 else
                 {

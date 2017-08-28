@@ -146,15 +146,36 @@
                            Foreground="{StaticResource TextBrush}"/>
                 <Border.ContextMenu>
                     <ContextMenu StaysOpen="False" Name="MenuViewSettings" Placement="Bottom">
-                        <MenuItem Header="Sort by Name" IsCheckable="True"
-                                  IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Name}}"/>
-                        <MenuItem Header="Sort by Last Activity" IsCheckable="True"
-                                  IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Activity}}"/>
+                        <MenuItem Header="{DynamicResource MenuSortByTitle}">
+                            <MenuItem Header="{DynamicResource MenuSortAscending}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrderDirection, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrderDirection.Ascending}}"/>
+                            <MenuItem Header="{DynamicResource MenuSortDescending}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrderDirection, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrderDirection.Descending}}"/>
+                            <Separator Style="{DynamicResource {x:Type Separator}}" />
+                            <MenuItem Header="{DynamicResource GameNameTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Name}}"/>
+                            <MenuItem Header="{DynamicResource GameDevelopersTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Developers}}"/>
+                            <MenuItem Header="{DynamicResource GamePublishersTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Publishers}}"/>
+                            <MenuItem Header="{DynamicResource GameReleaseDateTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.ReleaseDate}}"/>
+                            <MenuItem Header="{DynamicResource GameGenresTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Genres}}"/>
+                            <MenuItem Header="{DynamicResource GameLastActivityTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.LastActivity}}"/>
+                            <MenuItem Header="{DynamicResource GameCategoriesTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Categories}}"/>
+                            <MenuItem Header="{DynamicResource GameIsInstalledTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.IsInstalled}}"/>
+                            <MenuItem Header="{DynamicResource GameInstallDirTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.InstallDirectory}}"/>
+                        </MenuItem>
                         <Separator Style="{DynamicResource {x:Type Separator}}" />
                         <MenuItem Header="Don't group" IsCheckable="True"
                                   IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.None}}"/>
                         <MenuItem Header="Group by Store" IsCheckable="True"
-                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Store}}"/>
+                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Provider}}"/>
                         <MenuItem Header="Group by Category" IsCheckable="True"
                                   IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Category}}"/>
                     </ContextMenu>
