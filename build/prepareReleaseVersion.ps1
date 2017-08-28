@@ -14,6 +14,7 @@ $updateInfoPath = "..\web\update\update.json"
 $asmInfoPath = "..\source\PlayniteUI\Properties\AssemblyInfo.cs"
 $changelogPath = "..\web\update\" + $updateVersion + ".html"
 $changelogTemplatePath = "..\web\update\template.html"
+$asmInfoContent = Get-Content $asmInfoPath
 
 # AssemblyInfo.cs update
 $asmInfoContent = $asmInfoContent -replace '^\[.*AssemblyVersion.*$', "[assembly: AssemblyVersion(`"$asmVersion`")]"
@@ -34,8 +35,8 @@ $updateInfoContent | ConvertTo-Json -Depth 10 | Out-File $updateInfoPath -Encodi
 
 # Changelog
 $gitOutPath = "gitout.txt"
-Start-Process "git" "log --pretty=oneline ...origin/master" -NoNewWindow -Wait -RedirectStandardOutput $gitOutPath
-$messages = (Get-Content $gitOutPath) -replace "^(.*?)\s" | ForEach { "<li>$_</li>" }
+Start-Process "git" "log --pretty=oneline ...$CompareBranch" -NoNewWindow -Wait -RedirectStandardOutput $gitOutPath
+$messages = (Get-Content $gitOutPath) -replace "^(.*?)\s" | Sort-Object -Descending | ForEach { "<li>$_</li>" }
 $changelogContent = (Get-Content $changelogTemplatePath) -replace "{changelog}", ($messages | Out-String)
 $changelogContent | Out-File $changelogPath -Encoding utf8
 Remove-Item $gitOutPath
