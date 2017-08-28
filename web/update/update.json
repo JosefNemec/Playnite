@@ -1,41 +1,45 @@
-{
-    "stable" : {
-        "version" : "1.0",
-        "url" : "https://github.com/JosefNemec/Playnite/releases/download/1.0/PlayniteInstaller.exe",
-        "notesUrlRoot" : "http://playnite.link/update/",
-        "releases" : [
-            {
-                "version" : "1.0",
-                "file" : "1.0.html"
-            },
-            {
-                "version" : "0.94",
-                "file" : "0.94.html"
-            },
-            {
-                "version" : "0.93",
-                "file" : "0.93.html"
-            },
-            {
-                "version" : "0.92",
-                "file" : "0.92.html"
-            },
-            {
-                "version" : "0.91",
-                "file" : "0.91.html"
-            },
-            {
-                "version" : "0.90",
-                "file" : "0.90.html"
-            },
-            {
-                "version" : "0.80",
-                "file" : "0.80.html"
-            },       
-            {
-                "version" : "0.74",
-                "file" : "0.74.html"
-            }
-        ]
-    }
+﻿{
+    "stable":  {
+                   "version":  "1.1",
+                   "url":  "https://github.com/JosefNemec/Playnite/releases/download/1.1/PlayniteInstaller.exe",
+                   "notesUrlRoot":  "http://playnite.link/update/",
+                   "releases":  [
+                                    {
+                                        "version":  "1.1",
+                                        "file":  "1.1.html"
+                                    },
+                                    {
+                                        "version":  "1.0",
+                                        "file":  "1.0.html"
+                                    },
+                                    {
+                                        "version":  "0.94",
+                                        "file":  "0.94.html"
+                                    },
+                                    {
+                                        "version":  "0.93",
+                                        "file":  "0.93.html"
+                                    },
+                                    {
+                                        "version":  "0.92",
+                                        "file":  "0.92.html"
+                                    },
+                                    {
+                                        "version":  "0.91",
+                                        "file":  "0.91.html"
+                                    },
+                                    {
+                                        "version":  "0.90",
+                                        "file":  "0.90.html"
+                                    },
+                                    {
+                                        "version":  "0.80",
+                                        "file":  "0.80.html"
+                                    },
+                                    {
+                                        "version":  "0.74",
+                                        "file":  "0.74.html"
+                                    }
+                                ]
+               }
 }
