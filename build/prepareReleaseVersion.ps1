@@ -36,7 +36,13 @@ $updateInfoContent | ConvertTo-Json -Depth 10 | Out-File $updateInfoPath -Encodi
 # Changelog
 $gitOutPath = "gitout.txt"
 Start-Process "git" "log --pretty=oneline ...$CompareBranch" -NoNewWindow -Wait -RedirectStandardOutput $gitOutPath
-$messages = (Get-Content $gitOutPath) -replace "^(.*?)\s" | Sort-Object -Descending | ForEach { "<li>$_</li>" }
-$changelogContent = (Get-Content $changelogTemplatePath) -replace "{changelog}", ($messages | Out-String)
+$messages = (Get-Content $gitOutPath) -replace "^(.*?)\s" | Sort-Object -Descending
+$changelogContent = (Get-Content $changelogTemplatePath) -replace "{changelog}", ($messages | ForEach { "<li>$_</li>" } | Out-String)
 $changelogContent | Out-File $changelogPath -Encoding utf8
 Remove-Item $gitOutPath
+
+Write-Host "Git Changelog" -ForegroundColor Green
+$messages | Write-Host
+
+Write-Host "Others Changelog" -ForegroundColor Green
+$messages | ForEach { $_ -replace "\s*#\d+", "" } | Write-Host
