@@ -15,13 +15,15 @@ using System.Windows.Shapes;
 using Playnite.Database;
 using Playnite.Models;
 using PlayniteUI.Controls;
+using System.ComponentModel;
+using Playnite;
 
 namespace PlayniteUI.Windows
 {
     /// <summary>
     /// Interaction logic for CategoryConfigWindow.xaml
     /// </summary>
-    public partial class CategoryConfigWindow : WindowBase
+    public partial class CategoryConfigWindow : WindowBase, INotifyPropertyChanged
     {
         public class Category
         {
@@ -50,6 +52,21 @@ namespace PlayniteUI.Windows
         public bool AutoUpdateGame
         {
             get; set;
+        }
+
+        private bool enableThreeState;
+        public bool EnableThreeState
+        {
+            get
+            {
+                return enableThreeState;
+            }
+
+            set
+            {
+                enableThreeState = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EnableThreeState"));
+            }
         }
 
         private IGame game;
@@ -85,8 +102,9 @@ namespace PlayniteUI.Windows
         private ObservableCollection<Category> Categories
         {
             get; set;
-        }
+        }        
 
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public CategoryConfigWindow()
         {
@@ -130,7 +148,7 @@ namespace PlayniteUI.Windows
 
                     if (categories.Count > 0)
                     {
-                        game.Categories = categories.OrderBy(a => a).ToList();
+                        game.Categories = new ComparableList<string>(categories.OrderBy(a => a));
                     }
                     else
                     {
@@ -149,7 +167,7 @@ namespace PlayniteUI.Windows
 
                 if (categories.Count > 0)
                 {
-                    game.Categories = categories;
+                    game.Categories = new ComparableList<string>(categories);
                 }
                 else
                 {
@@ -173,6 +191,7 @@ namespace PlayniteUI.Windows
 
             if (data is IEnumerable<IGame>)
             {
+                EnableThreeState = true;
                 foreach (var game in Games)
                 {
                     if (game.Categories == null)
@@ -211,6 +230,7 @@ namespace PlayniteUI.Windows
             }
             else
             {
+                EnableThreeState = false;
                 if (Game.Categories != null)
                 {
                     foreach (var cat in Game.Categories)

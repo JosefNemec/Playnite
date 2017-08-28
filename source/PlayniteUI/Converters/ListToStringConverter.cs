@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace PlayniteUI
                 return string.Empty;
             }
 
-            return string.Join(", ", ((List<string>)value).ToArray());
+            return string.Join(", ", ((IEnumerable<string>)value).ToArray());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -29,7 +30,15 @@ namespace PlayniteUI
             }
             else
             {
-                return stringVal.Split(new char[] { ',' }).SkipWhile(a => string.IsNullOrEmpty(a.Trim())).Select(a => a.Trim()).ToList();
+                var converted = stringVal.Split(new char[] { ',' }).SkipWhile(a => string.IsNullOrEmpty(a.Trim())).Select(a => a.Trim());
+                if (targetType == typeof(ComparableList<string>))
+                {
+                    return new ComparableList<string>(converted);
+                }
+                else
+                {
+                    return converted.ToList();
+                }
             }
         }
     }

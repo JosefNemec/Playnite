@@ -60,30 +60,10 @@ namespace PlayniteUI.Controls
             TextFilter.Text = string.Empty;
         }
 
-        private void TextFilter_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(TextFilter.Text))
-            {
-                ImageClear.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                ImageClear.Visibility = Visibility.Hidden;
-            }
-        }
-
         private static void ShowImagePropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var obj = sender as SearchBox;
-
-            if ((bool)e.NewValue == true)
-            {
-                obj.ImageImage.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                obj.ImageImage.Visibility = Visibility.Collapsed;
-            }
+            obj.ShowImage = (bool)e.NewValue;
         }
     }
 }

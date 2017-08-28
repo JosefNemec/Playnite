@@ -25,21 +25,6 @@ namespace PlayniteUI.Controls
     /// </summary>
     public partial class GamePopupMenuMulti : Popup, INotifyPropertyChanged
     {
-        private bool showRemoveButton = false;
-        public bool ShowRemoveButton
-        {
-            get
-            {
-                return showRemoveButton;
-            }
-
-            set
-            {
-                showRemoveButton = value;
-                OnPropertyChanged("ShowRemoveButton");
-            }
-        }
-
         private bool showHideUnButton = false;
         public bool ShowUnHideButton
         {
@@ -113,7 +98,6 @@ namespace PlayniteUI.Controls
             var allUnHidden = !games.Any(a => a.Hidden == true);
             var onlyCustomGames = !games.Any(a => a.Provider != Provider.Custom);
 
-            ShowRemoveButton = onlyCustomGames;
             ShowUnHideButton = allHidden;
             ShowHideButton = allUnHidden;
             ShowAddFavorite = games.Any(a => a.Favorite == false);
@@ -167,9 +151,10 @@ namespace PlayniteUI.Controls
         {
             var games = (List<IGame>)DataContext;
             if (PlayniteMessageBox.Show(
-                string.Format("Are you sure you want to remove {0} games?", games.Count),
-                "Remove games?",
-                MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                string.Format((FindResource("GamesRemoveAskMessage") as string), games.Count),
+                FindResource("GameRemoveAskTitle") as string,
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question) != MessageBoxResult.Yes)
             {
                 return;
             }

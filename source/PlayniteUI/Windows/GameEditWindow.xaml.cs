@@ -25,6 +25,7 @@ using Playnite.Providers.Steam;
 using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
 using PlayniteUI.Controls;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace PlayniteUI
 {
@@ -247,6 +248,14 @@ namespace PlayniteUI
             }
         }
 
+        public bool IsInstallDirBindingDirty
+        {
+            get
+            {
+                return IsControlBindingDirty(TextInstallDir, TextBox.TextProperty);
+            }
+        }
+
         #endregion Dirty flags
 
         private CheckBox CheckIcon;
@@ -302,6 +311,7 @@ namespace PlayniteUI
                 Game = previewGame;
                 TabActions.Visibility = Visibility.Hidden;
                 TabLinks.Visibility = Visibility.Hidden;
+                TabInstallation.Visibility = Visibility.Hidden;
                 ButtonDownload.Visibility = Visibility.Hidden;
             }
             else
@@ -322,6 +332,11 @@ namespace PlayniteUI
                 if (Game.Links != null)
                 {
                     TempLinks = Playnite.CloneObject.CloneJson<ObservableCollection<Link>>(Game.Links);
+                }
+
+                if (Game.Provider != Provider.Custom)
+                {
+                    TabInstallation.Visibility = Visibility.Collapsed;
                 }
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowAddPlayAction"));
@@ -515,6 +530,11 @@ namespace PlayniteUI
                         game.Description = Game.Description;
                     }
                 }
+            }
+
+            if (IsInstallDirBindingDirty)
+            {
+                BindingOperations.GetBindingExpression(TextInstallDir, TextBox.TextProperty).UpdateSource();
             }
 
             if (IsIconBindingDirty && CheckIcon.IsChecked == true)
@@ -784,7 +804,7 @@ namespace PlayniteUI
             var converter = new ListToStringConverter();
             var dummyGame = new Game()
             {
-                Categories = (List<string>)converter.ConvertBack(TextCategories.Text, typeof(List<string>), null, CultureInfo.InvariantCulture)
+                Categories = (ComparableList<string>)converter.ConvertBack(TextCategories.Text, typeof(ComparableList<string>), null, CultureInfo.InvariantCulture)
             };
 
             var window = new CategoryConfigWindow()
@@ -926,6 +946,20 @@ namespace PlayniteUI
             if (index != TempOtherTasks.Count - 1)
             {
                 TempOtherTasks.Move(index, index + 1);
+            }
+        }
+
+        private void ButtonBrowseInstallDir_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new CommonOpenFileDialog()
+            {
+                IsFolderPicker = true,
+                Title = "Select Folder..."
+            };
+
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                TextInstallDir.Text = dialog.FileName;
             }
         }
     }

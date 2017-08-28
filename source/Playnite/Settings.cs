@@ -108,7 +108,7 @@ namespace Playnite
             }
         }
 
-        private SortOrder sortingOrder;
+        private SortOrder sortingOrder = SortOrder.Name;
         public SortOrder SortingOrder
         {
             get
@@ -123,7 +123,22 @@ namespace Playnite
             }
         }
 
-        private GroupOrder groupingOrder;
+        private SortOrderDirection sortingOrderDirection = SortOrderDirection.Ascending;
+        public SortOrderDirection SortingOrderDirection
+        {
+            get
+            {
+                return sortingOrderDirection;
+            }
+
+            set
+            {
+                sortingOrderDirection = value;
+                OnPropertyChanged("SortingOrderDirection");
+            }
+        }
+
+        private GroupOrder groupingOrder = GroupOrder.None;
         public GroupOrder GroupingOrder
         {
             get
@@ -236,14 +251,13 @@ namespace Playnite
         {
             { "Icon", true },
             { "Name", true },
-            { "Developer", true },
-            { "Publisher", false },
+            { "Developers", true },
+            { "Publishers", false },
             { "ReleaseDate", true },
-            { "Genre", true },
-            { "LastPlayed", true },
-            { "ForumsURL", false },
-            { "Installed", false },
-            { "Directory", false },
+            { "Genres", true },
+            { "LastActivity", true },
+            { "IsInstalled", false },
+            { "InstallDirectory", false },
             { "Categories", false }
         };
 
@@ -339,6 +353,21 @@ namespace Playnite
             {
                 language = value;
                 OnPropertyChanged("Language");
+            }
+        }
+
+        private bool updateLibStartup = true;
+        public bool UpdateLibStartup
+        {
+            get
+            {
+                return updateLibStartup;
+            }
+
+            set
+            {
+                updateLibStartup = value;
+                OnPropertyChanged("UpdateLibStartup");
             }
         }
 

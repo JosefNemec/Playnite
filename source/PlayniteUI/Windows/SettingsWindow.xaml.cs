@@ -18,6 +18,7 @@ using Playnite.Providers.Steam;
 using Playnite.Database;
 using NLog;
 using PlayniteUI.Controls;
+using Playnite;
 
 namespace PlayniteUI
 {
@@ -107,19 +108,19 @@ namespace PlayniteUI
         {
             if ((RadioLibrarySteam.IsChecked == true && RadioSteamLibName.IsChecked == true) && string.IsNullOrEmpty(TextSteamAccountName.Text))
             {
-                PlayniteMessageBox.Show("Steam account name cannot be empty.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show(FindResource("SettingsInvalidSteamAccountName") as string, FindResource("InvalidDataTitle") as string, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (RadioLibrarySteam.IsChecked == true && RadioSteamLibAccount.IsChecked == true && ((ulong)ComboSteamAccount.SelectedValue) == 0)
             {
-                PlayniteMessageBox.Show("No Steam account selected for library import.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show(FindResource("SettingsInvalidSteamAccountLibImport") as string, FindResource("InvalidDataTitle") as string, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if (string.IsNullOrEmpty(TextDatabase.Text))
+            if (!Paths.GetValidFilePath(TextDatabase.Text))
             {
-                PlayniteMessageBox.Show("Database path cannot be empty.", "Wrong settings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                PlayniteMessageBox.Show(FindResource("SettingsInvalidDBLocation") as string, FindResource("InvalidDataTitle") as string, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -229,6 +230,12 @@ namespace PlayniteUI
             if (trayEnable.IsDirty)
             {
                 trayEnable.UpdateSource();
+            }
+
+            var updateLibStartupEnable = CheckUpdateLibStartup.GetBindingExpression(CheckBox.IsCheckedProperty);
+            if (updateLibStartupEnable.IsDirty)
+            {
+                updateLibStartupEnable.UpdateSource();
             }
 
             var language = ComboLanguage.GetBindingExpression(ComboBox.SelectedValueProperty);

@@ -272,8 +272,8 @@ namespace Playnite.Providers.Origin
             }
 
             game.Description = metadata.StoreDetails.i18n.longDescription;
-            game.Developers = new List<string>() { metadata.StoreDetails.developerFacetKey };
-            game.Publishers = new List<string>() { metadata.StoreDetails.publisherFacetKey };
+            game.Developers = new ComparableList<string>() { metadata.StoreDetails.developerFacetKey };
+            game.Publishers = new ComparableList<string>() { metadata.StoreDetails.publisherFacetKey };
             game.ReleaseDate = metadata.StoreDetails.platforms.First(a => a.platform == "PCWIN").releaseDate;
 
             if (!string.IsNullOrEmpty(metadata.StoreDetails.i18n.gameManualURL))

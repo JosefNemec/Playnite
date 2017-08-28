@@ -124,7 +124,7 @@ namespace PlayniteUI
 
                 GameDatabase.Instance.UpdateGameInDatabase(game);
             }
-            catch (Exception exc)
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Cannot start game: ");
                 PlayniteMessageBox.Show(Application.Current.MainWindow, "Cannot start game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -135,7 +135,7 @@ namespace PlayniteUI
                 OnPropertyChanged("LastGames");
                 UpdateJumpList();                
             }
-            catch (Exception exc)
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Failed to set jump list data: ");
             }
@@ -188,7 +188,7 @@ namespace PlayniteUI
                 game.InstallGame();
                 GameDatabase.Instance.UpdateGameInDatabase(game);
             }
-            catch (Exception exc)
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Cannot install game: ");
                 PlayniteMessageBox.Show("Cannot install game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -202,7 +202,7 @@ namespace PlayniteUI
                 game.UninstallGame();
                 GameDatabase.Instance.UpdateGameInDatabase(game);
             }
-            catch (Exception exc)
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Cannot un-install game: ");
                 PlayniteMessageBox.Show("Cannot un-install game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -226,26 +226,23 @@ namespace Playnite.MetaProviders
 
                 if (rowName.IndexOf("developer", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    game.Developers = rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim())
-                        .ToList();
+                    game.Developers = new ComparableList<string>(rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim()));
                     
                     continue;
                 }
 
                 if (rowName.IndexOf("publisher", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    game.Publishers = rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim())
-                        .ToList();
+                    game.Publishers = new ComparableList<string>(rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim()));
                     continue;
                 }
 
                 if (rowName.IndexOf("genre", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    game.Genres = rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim())
-                        .ToList();
+                    game.Genres = new ComparableList<string>(rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim()));
                     continue;
                 }
 

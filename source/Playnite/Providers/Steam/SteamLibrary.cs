@@ -285,9 +285,9 @@ namespace Playnite.Providers.Steam
             if (metadata.StoreDetails != null)
             {
                 game.Description = metadata.StoreDetails.detailed_description;
-                game.Genres = metadata.StoreDetails.genres?.Select(a => a.description).ToList();
-                game.Developers = metadata.StoreDetails.developers;
-                game.Publishers = metadata.StoreDetails.publishers;
+                game.Genres = new ComparableList<string>(metadata.StoreDetails.genres?.Select(a => a.description));
+                game.Developers = new ComparableList<string>(metadata.StoreDetails.developers);
+                game.Publishers = new ComparableList<string>(metadata.StoreDetails.publishers);
                 game.ReleaseDate = metadata.StoreDetails.release_date.date;
             }
 
@@ -388,7 +388,7 @@ namespace Playnite.Providers.Steam
                 {
                     Provider = Provider.Steam,
                     ProviderId = app.Name,
-                    Categories = appData
+                    Categories = new ComparableList<string>(appData)
                 });
             }
 

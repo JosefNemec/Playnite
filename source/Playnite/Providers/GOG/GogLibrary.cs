@@ -206,9 +206,9 @@ namespace Playnite.Providers.GOG
 
             if (metadata.StoreDetails != null)
             {
-                game.Genres = metadata.StoreDetails.genres.Select(a => a.name).ToList();
-                game.Developers = new List<string>() { metadata.StoreDetails.developer.name };
-                game.Publishers = new List<string>() { metadata.StoreDetails.publisher.name };
+                game.Genres = new ComparableList<string>(metadata.StoreDetails.genres.Select(a => a.name));
+                game.Developers = new ComparableList<string>() { metadata.StoreDetails.developer.name };
+                game.Publishers = new ComparableList<string>() { metadata.StoreDetails.publisher.name };
 
                 if (game.ReleaseDate == null && metadata.StoreDetails.releaseDate != null)
                 {

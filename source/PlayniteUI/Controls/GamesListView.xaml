@@ -34,6 +34,17 @@
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                         <EventSetter Event="MouseRightButtonUp" Handler="ListItem_MouseRightButtonUp" />
                         <EventSetter Event="MouseDoubleClick" Handler="ListItem_MouseDoubleClick" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsInstalled}" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsInstalled}" Value="False">
+                                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+                            </DataTrigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                 </ListBox.ItemContainerStyle>
                 <ListBox.GroupStyle>
@@ -65,7 +76,7 @@
                                     </PriorityBinding>
                                 </Image.Source>
                             </Image>                                
-                            <TextBlock Text="{Binding Name, Mode=OneWay}" TextTrimming="CharacterEllipsis" Foreground="{StaticResource TextBrush}"
+                            <TextBlock Text="{Binding Name, Mode=OneWay}" TextTrimming="CharacterEllipsis"
                                        Margin="8,0,0,0" VerticalAlignment="Center" DockPanel.Dock="Left" />
                         </DockPanel>
                     </DataTemplate>

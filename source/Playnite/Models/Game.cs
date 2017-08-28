@@ -135,8 +135,8 @@ namespace Playnite.Models
             }
         }
 
-        private List<string> developers;
-        public List<string> Developers
+        private ComparableList<string> developers;
+        public ComparableList<string> Developers
         {
             get
             {
@@ -150,8 +150,8 @@ namespace Playnite.Models
             }
         }
 
-        private List<string> genres;
-        public List<string> Genres
+        private ComparableList<string> genres;
+        public ComparableList<string> Genres
         {
             get
             {
@@ -365,8 +365,8 @@ namespace Playnite.Models
             }
         }
 
-        private List<string> publishers;
-        public List<string> Publishers
+        private ComparableList<string> publishers;
+        public ComparableList<string> Publishers
         {
             get
             {
@@ -395,8 +395,8 @@ namespace Playnite.Models
             }
         }
 
-        private List<string> categories;
-        public List<string> Categories
+        private ComparableList<string> categories;
+        public ComparableList<string> Categories
         {
             get
             {
@@ -518,7 +518,7 @@ namespace Playnite.Models
                 return;
             }
 
-            PlayTask.Activate();
+            PlayTask.Activate(this);
         }
 
         public void UninstallGame()
@@ -611,6 +611,18 @@ namespace Playnite.Models
         public override string ToString()
         {
             return Name;
+        }
+
+        public string ResolveVariables(string inputString)
+        {
+            if (string.IsNullOrEmpty(inputString))
+            {
+                return inputString;
+            }
+
+            var result = inputString;
+            result = result.Replace("{InstallDir}", InstallDirectory);
+            return result;
         }
     }
 }

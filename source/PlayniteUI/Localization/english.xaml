@@ -8,7 +8,9 @@
 
     <sys:String x:Key="ExitAppLabel">Exit</sys:String>
     <sys:String x:Key="FilterActiveLabel">Filter is Enabled (click to toggle filter panel)</sys:String>
-    <sys:String x:Key="FilterInactiveLabel">Filter is Disabled (click to toggle filter panel)</sys:String>    
+    <sys:String x:Key="FilterInactiveLabel">Filter is Disabled (click to toggle filter panel)</sys:String>
+
+    <sys:String x:Key="InvalidDataTitle">Invalid data</sys:String>
 
     <sys:String x:Key="AboutHomePageLink">Homepage at www.playnite.link</sys:String>
     <sys:String x:Key="AboutSourceLink">Source Code at GitHub</sys:String>
@@ -18,22 +20,54 @@
     <sys:String x:Key="CategoryWindowTitle">Assign Category</sys:String>
     <sys:String x:Key="CategorySetButton">Set Categories</sys:String>
     <sys:String x:Key="CategoryAddCatButton">Add Category</sys:String>
+    <sys:String x:Key="CategoryTooltip" xml:space="preserve">Checked - Assign category
+Unchecked - Remove category
+Indeterminate - No changes (when editing multiple games)</sys:String>
 
     <sys:String x:Key="CrashWindowTitle">Oh no, something bad happened...</sys:String>
 
-    <sys:String x:Key="GameRemoveAskTitle">Remove Game?</sys:String>
+    <sys:String x:Key="GameRemoveAskTitle">Remove Game(s)?</sys:String>
     <sys:String x:Key="GameRemoveAskMessage" xml:space="preserve">Are you sure you want to remove this game?
 Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
-    
-    
+    <sys:String x:Key="GamesRemoveAskMessage" xml:space="preserve">Are you sure you want to remove {0} games?
+Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
+
     <!--Settings Window-->
     <sys:String x:Key="SettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="SettingsImportInstalledLabel">Import installed games</sys:String>
     <sys:String x:Key="SettingsImportLibraryLabel">Import all games</sys:String>
+    <sys:String x:Key="SettingsInvalidDBLocation">Invalid database file location, proper file path must be set.</sys:String>
+    <sys:String x:Key="SettingsInvalidSteamAccountName">Steam account name cannot be empty.</sys:String>
+    <sys:String x:Key="SettingsInvalidSteamAccountLibImport">No Steam account selected for library import.</sys:String>
+    <sys:String x:Key="SettingsInvalidSteamAccountCatImport">No Steam account selected for category import.</sys:String>
+    <sys:String x:Key="SettingsUpdateLibStartup">Download 3rd party library updates on startup</sys:String>
+    <sys:String x:Key="SettingsUpdateLibStartupTooltip">Includes Steam, Origin and others. Also won't download any metadata when disabled.</sys:String>
 
     <!--First Time Wizard-->
     <sys:String x:Key="WizardImportIntroduction" xml:space="preserve">Automatically import games from following services. Any later game changes (installation status) will be automatically updated on Playnite startup or when triggered manually. Selected settings affect initial and all subsequent imports.</sys:String>
+
     
+    <sys:String x:Key="MenuSortByTitle">Sort By</sys:String>
+    <sys:String x:Key="MenuSortAscending">Ascending</sys:String>
+    <sys:String x:Key="MenuSortDescending">Descending</sys:String>
+
+    <!--Game fields-->
+    <sys:String x:Key="GameIconTitle">Icon</sys:String>
+    <sys:String x:Key="GameProviderTitle">Provider</sys:String>
+    <sys:String x:Key="GameNameTitle">Name</sys:String>
+    <sys:String x:Key="GameCategoriesTitle">Category(s)</sys:String>
+    <sys:String x:Key="GameGenresTitle">Genre(s)</sys:String>
+    <sys:String x:Key="GameReleaseDateTitle">Release Date</sys:String>
+    <sys:String x:Key="GameDevelopersTitle">Developer(s)</sys:String>
+    <sys:String x:Key="GamePublishersTitle">Publisher(s)</sys:String>
+    <sys:String x:Key="GameIsInstalledTitle">Installed</sys:String>
+    <sys:String x:Key="GameHiddenTitle">Hidden</sys:String>
+    <sys:String x:Key="GameFavoriteTitle">Favorite</sys:String>
+    <sys:String x:Key="GameLastActivityTitle">Last Activity</sys:String>
+    <sys:String x:Key="GameCategoryTitle">Category</sys:String>
+    <sys:String x:Key="GameDescriptionTitle">Description</sys:String>
+    <sys:String x:Key="GameInstallDirTitle">Installation Directory</sys:String>
+
     <!--MessageBox-->
     <sys:String x:Key="OKLabel">OK</sys:String>
     <sys:String x:Key="CloseLabel">Close</sys:String>

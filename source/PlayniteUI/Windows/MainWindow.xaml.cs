@@ -81,11 +81,6 @@ namespace PlayniteUI
             }
         }
 
-        public ListCollectionView MainCollectionView
-        {
-            get; set;
-        }
-
         public GamesCollectionView GamesView
         {
             get; set;
@@ -124,7 +119,7 @@ namespace PlayniteUI
             MenuViewSettings.DataContext = Config;
             FilterSelector.DataContext = new FilterSelectorConfig(gamesStats, Config.FilterSettings);
             CheckFilterView.DataContext = Config.FilterSettings;
-            GridGamesView.HeaderMenu.DataContext = Config;
+            GridGamesView.AppSettings = Config;
 
             if (!Config.FirstTimeWizardComplete)
             {
@@ -165,7 +160,7 @@ namespace PlayniteUI
                 }
             }
 
-            LoadGames();
+            LoadGames(Config.UpdateLibStartup);
             CheckUpdate();
             SendUsageData();
             Focus();
@@ -287,7 +282,7 @@ namespace PlayniteUI
             }
         }
 
-        private async void LoadGames()
+        private async void LoadGames(bool downloadLibUpdates)
         {
             if (GamesLoaderHandler.ProgressTask != null && GamesLoaderHandler.ProgressTask.Status == TaskStatus.Running)
             {
@@ -318,7 +313,7 @@ namespace PlayniteUI
                 }
 
                 LiteDBImageToImageConverter.ClearCache();
-                GamesView = new GamesCollectionView(database);
+                GamesView = new GamesCollectionView(database, Config);
                 BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
 
                 try
@@ -329,188 +324,187 @@ namespace PlayniteUI
                 {
                     logger.Error(exc, "Failed to set update JumpList data: ");
                 }
+                
+                ListGamesView.ItemsSource = GamesView.CollectionView;
+                ImagesGamesView.ItemsSource = GamesView.CollectionView;
+                GridGamesView.ItemsSource = GamesView.CollectionView;
 
-                MainCollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(GamesView.Items);
-                ListGamesView.ItemsSource = MainCollectionView;
-                ImagesGamesView.ItemsSource = MainCollectionView;
-                GridGamesView.ItemsSource = MainCollectionView;
-
-                Config_PropertyChanged(this, null);
-
-                GamesLoaderHandler.CancelToken = new CancellationTokenSource();
-                GamesLoaderHandler.ProgressTask = Task.Factory.StartNew(() =>
+                if (downloadLibUpdates)
                 {
-                    ProgressControl.Visible = Visibility.Visible;
-                    ProgressControl.ProgressValue = 0;
-                    ProgressControl.Text = "Importing installed games...";
-
-                    try
+                    GamesLoaderHandler.CancelToken = new CancellationTokenSource();
+                    GamesLoaderHandler.ProgressTask = Task.Factory.StartNew(() =>
                     {
-                        if (Config.UplaySettings.IntegrationEnabled)
-                        {
-                            database.UpdateInstalledGames(Provider.Uplay);
-                            NotificationsWin.RemoveMessage(NotificationCodes.UplayInstalledImportError);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to import installed Uplay games.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.UplayInstalledImportError, "Failed to import installed Uplay games:" + e.Message, NotificationType.Error, () =>
-                        {
-
-                        }));
-                    }
-
-                    try
-                    {
-                        if (Config.GOGSettings.IntegrationEnabled)
-                        {
-                            database.UpdateInstalledGames(Provider.GOG);
-                            NotificationsWin.RemoveMessage(NotificationCodes.GOGLInstalledImportError);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to import installed GOG games.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.GOGLInstalledImportError, "Failed to import installed GOG games:" + e.Message, NotificationType.Error, () =>
-                        {
-
-                        }));
-                    }
-
-                    try
-                    {
-                        if (Config.SteamSettings.IntegrationEnabled)
-                        {
-                            database.UpdateInstalledGames(Provider.Steam);
-                            NotificationsWin.RemoveMessage(NotificationCodes.SteamInstalledImportError);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to import installed Steam games.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamInstalledImportError, "Failed to import installed Steam games: " + e.Message, NotificationType.Error, () =>
-                        {
-
-                        }));
-                    }
-
-                    try
-                    {
-                        if (Config.OriginSettings.IntegrationEnabled)
-                        {
-                            database.UpdateInstalledGames(Provider.Origin);
-                            NotificationsWin.RemoveMessage(NotificationCodes.OriginInstalledImportError);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to import installed Origin games.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.OriginInstalledImportError, "Failed to import installed Origin games: " + e.Message, NotificationType.Error, () =>
-                        {
-
-                        }));
-                    }
-
-                    ProgressControl.Text = "Downloading GOG library updates...";
-
-                    try
-                    {
-                        if (Config.GOGSettings.IntegrationEnabled && Config.GOGSettings.LibraryDownloadEnabled)
-                        {
-                            database.UpdateOwnedGames(Provider.GOG);
-                            NotificationsWin.RemoveMessage(NotificationCodes.GOGLibDownloadError);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to download GOG library updates.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.GOGLibDownloadError, "Failed to download GOG library updates: " + e.Message, NotificationType.Error, () =>
-                        {
-
-                        }));
-                    }
-
-                    ProgressControl.Text = "Downloading Steam library updates...";
-
-                    try
-                    {
-                        if (Config.SteamSettings.IntegrationEnabled && Config.SteamSettings.LibraryDownloadEnabled)
-                        {
-                            if (config.SteamSettings.IdSource == SteamIdSource.Name)
-                            {
-                                database.SteamUserName = Config.SteamSettings.AccountName;
-                            }
-                            else
-                            {
-                                database.SteamUserName = Config.SteamSettings.AccountId.ToString();
-                            }
-
-                            database.UpdateOwnedGames(Provider.Steam);
-                            NotificationsWin.RemoveMessage(NotificationCodes.SteamLibDownloadError);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to download Steam library updates.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamLibDownloadError, "Failed to download Steam library updates: " + e.Message, NotificationType.Error, () =>
-                        {
-
-                        }));
-                    }
-
-                    if (importSteamCatWizard && importSteamCatWizardId != 0)
-                    {
-                        ProgressControl.Text = "Importing Steam categories...";
+                        ProgressControl.Visible = Visibility.Visible;
+                        ProgressControl.ProgressValue = 0;
+                        ProgressControl.Text = "Importing installed games...";
 
                         try
                         {
-                            var steamLib = new SteamLibrary();
-                            GameDatabase.Instance.ImportCategories(steamLib.GetCategorizedGames(importSteamCatWizardId));
+                            if (Config.UplaySettings.IntegrationEnabled)
+                            {
+                                database.UpdateInstalledGames(Provider.Uplay);
+                                NotificationsWin.RemoveMessage(NotificationCodes.UplayInstalledImportError);
+                            }
                         }
                         catch (Exception e)
                         {
-                            logger.Error(e, "Failed to import Steam categories.");
-                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamLibDownloadError, "Failed to import Steam categories: " + e.Message, NotificationType.Error, () =>
+                            logger.Error(e, "Failed to import installed Uplay games.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.UplayInstalledImportError, "Failed to import installed Uplay games:" + e.Message, NotificationType.Error, () =>
                             {
 
                             }));
                         }
-                    }
 
-                    ProgressControl.Text = "Downloading Origin library updates...";
-
-                    try
-                    {
-                        if (Config.OriginSettings.IntegrationEnabled && Config.OriginSettings.LibraryDownloadEnabled)
+                        try
                         {
-                            database.UpdateOwnedGames(Provider.Origin);
-                            NotificationsWin.RemoveMessage(NotificationCodes.OriginLibDownloadError);
+                            if (Config.GOGSettings.IntegrationEnabled)
+                            {
+                                database.UpdateInstalledGames(Provider.GOG);
+                                NotificationsWin.RemoveMessage(NotificationCodes.GOGLInstalledImportError);
+                            }
                         }
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to download Origin library updates.");
-                        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.OriginLibDownloadError, "Failed to download Origin library updates: " + e.Message, NotificationType.Error, () =>
+                        catch (Exception e)
                         {
+                            logger.Error(e, "Failed to import installed GOG games.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.GOGLInstalledImportError, "Failed to import installed GOG games:" + e.Message, NotificationType.Error, () =>
+                            {
 
-                        }));
-                    }
+                            }));
+                        }
 
-                    ProgressControl.Text = "Downloading images and game details...";
-                    ProgressControl.ProgressMin = 0;
+                        try
+                        {
+                            if (Config.SteamSettings.IntegrationEnabled)
+                            {
+                                database.UpdateInstalledGames(Provider.Steam);
+                                NotificationsWin.RemoveMessage(NotificationCodes.SteamInstalledImportError);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to import installed Steam games.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamInstalledImportError, "Failed to import installed Steam games: " + e.Message, NotificationType.Error, () =>
+                            {
 
-                    var gamesCount = 0;
-                    gamesCount = database.GamesCollection.Count(a => a.Provider != Provider.Custom && !a.IsProviderDataUpdated);
-                    if (gamesCount > 0)
-                    {
-                        gamesCount -= 1;
-                    }
+                            }));
+                        }
 
-                    ProgressControl.ProgressMax = gamesCount;
+                        try
+                        {
+                            if (Config.OriginSettings.IntegrationEnabled)
+                            {
+                                database.UpdateInstalledGames(Provider.Origin);
+                                NotificationsWin.RemoveMessage(NotificationCodes.OriginInstalledImportError);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to import installed Origin games.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.OriginInstalledImportError, "Failed to import installed Origin games: " + e.Message, NotificationType.Error, () =>
+                            {
 
-                    var tasks = new List<Task>
-                    {
+                            }));
+                        }
+
+                        ProgressControl.Text = "Downloading GOG library updates...";
+
+                        try
+                        {
+                            if (Config.GOGSettings.IntegrationEnabled && Config.GOGSettings.LibraryDownloadEnabled)
+                            {
+                                database.UpdateOwnedGames(Provider.GOG);
+                                NotificationsWin.RemoveMessage(NotificationCodes.GOGLibDownloadError);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to download GOG library updates.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.GOGLibDownloadError, "Failed to download GOG library updates: " + e.Message, NotificationType.Error, () =>
+                            {
+
+                            }));
+                        }
+
+                        ProgressControl.Text = "Downloading Steam library updates...";
+
+                        try
+                        {
+                            if (Config.SteamSettings.IntegrationEnabled && Config.SteamSettings.LibraryDownloadEnabled)
+                            {
+                                if (config.SteamSettings.IdSource == SteamIdSource.Name)
+                                {
+                                    database.SteamUserName = Config.SteamSettings.AccountName;
+                                }
+                                else
+                                {
+                                    database.SteamUserName = Config.SteamSettings.AccountId.ToString();
+                                }
+
+                                database.UpdateOwnedGames(Provider.Steam);
+                                NotificationsWin.RemoveMessage(NotificationCodes.SteamLibDownloadError);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to download Steam library updates.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamLibDownloadError, "Failed to download Steam library updates: " + e.Message, NotificationType.Error, () =>
+                            {
+
+                            }));
+                        }
+
+                        if (importSteamCatWizard && importSteamCatWizardId != 0)
+                        {
+                            ProgressControl.Text = "Importing Steam categories...";
+
+                            try
+                            {
+                                var steamLib = new SteamLibrary();
+                                GameDatabase.Instance.ImportCategories(steamLib.GetCategorizedGames(importSteamCatWizardId));
+                            }
+                            catch (Exception e)
+                            {
+                                logger.Error(e, "Failed to import Steam categories.");
+                                NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamLibDownloadError, "Failed to import Steam categories: " + e.Message, NotificationType.Error, () =>
+                                {
+
+                                }));
+                            }
+                        }
+
+                        ProgressControl.Text = "Downloading Origin library updates...";
+
+                        try
+                        {
+                            if (Config.OriginSettings.IntegrationEnabled && Config.OriginSettings.LibraryDownloadEnabled)
+                            {
+                                database.UpdateOwnedGames(Provider.Origin);
+                                NotificationsWin.RemoveMessage(NotificationCodes.OriginLibDownloadError);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to download Origin library updates.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.OriginLibDownloadError, "Failed to download Origin library updates: " + e.Message, NotificationType.Error, () =>
+                            {
+
+                            }));
+                        }
+
+                        ProgressControl.Text = "Downloading images and game details...";
+                        ProgressControl.ProgressMin = 0;
+
+                        var gamesCount = 0;
+                        gamesCount = database.GamesCollection.Count(a => a.Provider != Provider.Custom && !a.IsProviderDataUpdated);
+                        if (gamesCount > 0)
+                        {
+                            gamesCount -= 1;
+                        }
+
+                        ProgressControl.ProgressMax = gamesCount;
+
+                        var tasks = new List<Task>
+                        {
                         // Steam metada download thread
                         Task.Factory.StartNew(() =>
                         {
@@ -534,17 +528,18 @@ namespace PlayniteUI
                         {
                             DownloadMetadata(database, Provider.Uplay, ProgressControl, GamesLoaderHandler.CancelToken.Token);
                         })
-                    };
+                        };
 
-                    Task.WaitAll(tasks.ToArray());
+                        Task.WaitAll(tasks.ToArray());
 
-                    ProgressControl.Text = "Library update finished";
+                        ProgressControl.Text = "Library update finished";
 
-                    Thread.Sleep(1500);
-                    ProgressControl.Visible = Visibility.Collapsed;
-                });
+                        Thread.Sleep(1500);
+                        ProgressControl.Visible = Visibility.Collapsed;
+                    });
 
-                await GamesLoaderHandler.ProgressTask;
+                    await GamesLoaderHandler.ProgressTask;
+                }
             }
             finally
             {
@@ -553,346 +548,12 @@ namespace PlayniteUI
             }
         }
 
-        private bool GamesFilter(object item)
-        {
-            var entry = (GameViewEntry)item;
-            var game = entry.Game;
-
-            // ------------------ Installed
-            bool installedResult = false;
-            if (Config.FilterSettings.IsInstalled && game.IsInstalled)
-            {
-                installedResult = true;
-            }
-            else if (!Config.FilterSettings.IsInstalled)
-            {
-                installedResult = true;
-            }
-
-            // ------------------ UnInstalled
-            bool unInstalledResult = false;
-            if (Config.FilterSettings.IsUnInstalled && !game.IsInstalled)
-            {
-                unInstalledResult = true;
-            }
-            else if (!Config.FilterSettings.IsUnInstalled)
-            {
-                unInstalledResult = true;
-            }
-
-            // ------------------ Hidden
-            bool hiddenResult = true;
-            if (Config.FilterSettings.Hidden && game.Hidden)
-            {
-                hiddenResult = true;
-            }
-            else if (!Config.FilterSettings.Hidden && game.Hidden)
-            {
-                hiddenResult = false;
-            }
-            else if (Config.FilterSettings.Hidden && !game.Hidden)
-            {
-                hiddenResult = false;
-            }
-
-            // ------------------ Favorite
-            bool favoriteResult = false;
-            if (Config.FilterSettings.Favorite && game.Favorite)
-            {
-                favoriteResult = true;
-            }
-            else if (!Config.FilterSettings.Favorite)
-            {
-                favoriteResult = true;
-            }
-
-            // ------------------ Providers
-            bool providersFilter = false;
-            if (Config.FilterSettings.Steam == false && Config.FilterSettings.Origin == false && Config.FilterSettings.GOG == false && Config.FilterSettings.Custom == false && Config.FilterSettings.Uplay == false)
-            {
-                providersFilter = true;
-            }
-            else
-            {
-                switch (game.Provider)
-                {
-                    case Provider.Custom:
-                        if (Config.FilterSettings.Custom)
-                        {
-                            providersFilter = true;
-                        }
-                        break;
-                    case Provider.GOG:
-                        if (Config.FilterSettings.GOG)
-                        {
-                            providersFilter = true;
-                        }
-                        break;
-                    case Provider.Origin:
-                        if (Config.FilterSettings.Origin)
-                        {
-                            providersFilter = true;
-                        }
-                        break;
-                    case Provider.Steam:
-                        if (Config.FilterSettings.Steam)
-                        {
-                            providersFilter = true;
-                        }
-                        break;
-                    case Provider.Uplay:
-                        if (Config.FilterSettings.Uplay)
-                        {
-                            providersFilter = true;
-                        }
-                        break;
-                }
-            }
-
-            // ------------------ Name filter
-            bool textResult = false;
-            if (string.IsNullOrEmpty(Config.FilterSettings.Name))
-            {
-                textResult = true;
-            }
-            else
-            {
-                textResult = (game.Name.IndexOf(Config.FilterSettings.Name, StringComparison.OrdinalIgnoreCase) >= 0);
-            }
-
-
-            // ------------------ Genre
-            bool genreResult = false;
-            if (Config.FilterSettings.Genres == null || Config.FilterSettings.Genres.Count == 0)
-            {
-                genreResult = true;
-            }
-            else
-            {
-                if (game.Genres == null)
-                {
-                    genreResult = false;
-                }
-                else
-                {
-                    genreResult = Config.FilterSettings.Genres.IntersectsPartiallyWith(game.Genres);
-                }
-            }
-
-            // ------------------ Release Date
-            bool releaseDateResult = false;
-            if (string.IsNullOrEmpty(config.FilterSettings.ReleaseDate))
-            {
-                releaseDateResult = true;
-            }
-            else
-            {
-                if (game.ReleaseDate == null)
-                {
-
-                    releaseDateResult = false;
-                }
-                else
-                {
-                    releaseDateResult = game.ReleaseDate.Value.ToString(Constants.DateUiFormat).IndexOf(Config.FilterSettings.ReleaseDate, StringComparison.OrdinalIgnoreCase) >= 0;
-                }
-            }
-
-            // ------------------ Publisher
-            bool publisherResult = false;
-            if (Config.FilterSettings.Publishers == null || Config.FilterSettings.Publishers.Count == 0)
-            {
-                publisherResult = true;
-            }
-            else
-            {
-                if (game.Publishers == null)
-                {
-                    publisherResult = false;
-                }
-                else
-                {
-                    publisherResult = Config.FilterSettings.Publishers.IntersectsPartiallyWith(game.Publishers);
-                }
-            }
-
-            // ------------------ Developer
-            bool developerResult = false;
-            if (Config.FilterSettings.Developers == null || Config.FilterSettings.Developers.Count == 0)
-            {
-                developerResult = true;
-            }
-            else
-            {
-                if (game.Developers == null)
-                {
-                    developerResult = false;
-                }
-                else
-                {
-                    developerResult = Config.FilterSettings.Developers.IntersectsPartiallyWith(game.Developers);
-                }
-            }
-
-            // ------------------ Category
-            bool categoryResult = false;
-            if (Config.FilterSettings.Categories == null || Config.FilterSettings.Categories.Count == 0)
-            {
-                categoryResult = true;
-            }
-            else
-            {
-                if (game.Categories == null)
-                {
-                    categoryResult = false;
-                }
-                else
-                {
-                    if (GamesView.ViewType == GamesViewType.Standard)
-                    {
-                        categoryResult = Config.FilterSettings.Categories.IntersectsPartiallyWith(game.Categories);
-                    }
-                    else
-                    {
-                        categoryResult = Config.FilterSettings.Categories.Any(a => entry.Category.Category.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0);
-                    }
-                }
-            }
-
-            return installedResult && unInstalledResult && hiddenResult && favoriteResult && textResult && providersFilter && genreResult && releaseDateResult && publisherResult && developerResult && categoryResult;
-        }
-
         private void Config_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e != null && e.PropertyName == "Language")
+            if (e.PropertyName == "Language")
             {
                 Localization.SetLanguage(Config.Language);
                 return;
-            }
-
-            if (e != null && !(new string[] { "SortingOrder", "GroupingOrder", "GamesViewType" }).Contains(e.PropertyName))
-            {
-                return;
-            }
-
-            if (e != null && e.PropertyName == "GamesViewType")
-            {
-                return;
-            }
-
-            if (GamesView == null)
-            {
-                return;
-            }
-
-            using (MainCollectionView.DeferRefresh())
-            {
-                if (e == null)
-                {
-                    logger.Debug("Doing complete view refresh.");
-                    if (Config.SortingOrder == SortOrder.Activity)
-                    {
-                        MainCollectionView.SortDescriptions.Add(new SortDescription("LastActivity", ListSortDirection.Descending));
-                    }
-
-                    MainCollectionView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
-
-                    if (config.GroupingOrder == GroupOrder.None)
-                    {
-                        GamesView.ViewType = GamesViewType.Standard;
-                    }
-                    else if (Config.GroupingOrder == GroupOrder.Store)
-                    {
-                        GamesView.ViewType = GamesViewType.Standard;
-                        MainCollectionView.GroupDescriptions.Clear();
-                        MainCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Provider"));
-                        MainCollectionView.SortDescriptions.Insert(0, new SortDescription("Provider", ListSortDirection.Ascending));
-                    }
-                    else if (Config.GroupingOrder == GroupOrder.Category)
-                    {
-                        GamesView.ViewType = GamesViewType.CategoryGrouped;
-                        MainCollectionView.GroupDescriptions.Clear();
-                        MainCollectionView.SortDescriptions.Insert(0, new SortDescription("Category", ListSortDirection.Ascending));
-                        MainCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Category"));
-                    }
-
-                    if (MainCollectionView.LiveGroupingProperties.Count > 0)
-                    {
-                        MainCollectionView.LiveGroupingProperties.Clear();
-                    }
-
-                    MainCollectionView.LiveGroupingProperties.Add("Category");
-
-                    if (MainCollectionView.LiveFilteringProperties.Count > 0)
-                    {
-                        MainCollectionView.LiveFilteringProperties.Clear();
-                    }
-
-                    MainCollectionView.LiveFilteringProperties.Add("Provider");
-                    MainCollectionView.LiveFilteringProperties.Add("Name");
-                    MainCollectionView.LiveFilteringProperties.Add("Categories");
-                    MainCollectionView.LiveFilteringProperties.Add("Genres");
-                    MainCollectionView.LiveFilteringProperties.Add("ReleaseDate");
-                    MainCollectionView.LiveFilteringProperties.Add("Developers");
-                    MainCollectionView.LiveFilteringProperties.Add("Publishers");
-                    MainCollectionView.LiveFilteringProperties.Add("IsInstalled");
-                    MainCollectionView.LiveFilteringProperties.Add("Hidden");
-                    MainCollectionView.LiveFilteringProperties.Add("Favorite");
-                    MainCollectionView.Filter = GamesFilter;
-                }
-                else
-                {
-                    logger.Debug("Doing refresh of listview - " + e.PropertyName);
-                    if (e.PropertyName == "SortingOrder")
-                    {
-                        MainCollectionView.SortDescriptions.Clear();
-
-                        switch (Config.SortingOrder)
-                        {
-                            case SortOrder.Activity:
-                                MainCollectionView.SortDescriptions.Add(new SortDescription("LastActivity", ListSortDirection.Descending));
-                                MainCollectionView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
-                                break;
-
-                            case SortOrder.Name:
-                                MainCollectionView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
-                                break;
-                        }
-                    }
-
-                    if (e.PropertyName == "GroupingOrder")
-                    {
-                        MainCollectionView.GroupDescriptions.Clear();
-                        var sortItem = MainCollectionView.SortDescriptions.First();
-                        if (sortItem.PropertyName == "Provider" || sortItem.PropertyName == "Category")
-                        {
-                            MainCollectionView.SortDescriptions.Remove(sortItem);
-                        }
-
-                        switch (Config.GroupingOrder)
-                        {
-                            case GroupOrder.None:
-                                GamesView.ViewType = GamesViewType.Standard;
-                                break;
-
-                            case GroupOrder.Store:
-                                GamesView.ViewType = GamesViewType.Standard;
-                                MainCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Provider"));
-                                MainCollectionView.SortDescriptions.Insert(0, new SortDescription("Provider", ListSortDirection.Ascending));
-                                break;
-
-                            case GroupOrder.Category:
-                                GamesView.ViewType = GamesViewType.CategoryGrouped;
-                                MainCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Category"));
-                                MainCollectionView.SortDescriptions.Insert(0, new SortDescription("Category", ListSortDirection.Ascending));
-                                break;
-                        }
-                    }
-                }
-
-                MainCollectionView.IsLiveSorting = true;
-                MainCollectionView.IsLiveFiltering = true;
-                MainCollectionView.IsLiveGrouping = true;
             }
         }
 
@@ -903,30 +564,6 @@ namespace PlayniteUI
                 return;
             }
 
-            if (MainCollectionView == null)
-            {
-                return;
-            }
-
-            //var providers = new List<string>() { "Steam", "Origin", "GOG", "Custom" };
-
-            //using (MainCollectionView.DeferRefresh())
-            //{
-            //    foreach (var item in GamesView.Items)
-            //    {
-            //        if (providers.Contains(e.PropertyName))
-            //        {
-            //            item.OnPropertyChanged("Provider");
-            //        }
-            //        else
-            //        {
-            //            item.OnPropertyChanged(e.PropertyName);
-            //        }
-            //    }
-            //}
-
-            logger.Debug("Doing complete view refresh...");
-            MainCollectionView.Refresh();
             Config.SaveSettings();
         }
 
@@ -959,7 +596,7 @@ namespace PlayniteUI
 
         private void ReloadGames_Click(object sender, RoutedEventArgs e)
         {
-            LoadGames();
+            LoadGames(true);
             MenuMainMenu.IsOpen = false;
         }
 
@@ -1023,7 +660,7 @@ namespace PlayniteUI
 
             if (configWindow.ProviderIntegrationChanged || configWindow.DatabaseLocationChanged)
             {
-                LoadGames();
+                LoadGames(true);
             }
         }
 

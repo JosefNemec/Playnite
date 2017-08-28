@@ -11,13 +11,30 @@ namespace Playnite
     public enum SortOrder
     {
         Name,
-        Activity
+        LastActivity,
+        Provider,
+        Categories,
+        Genres,
+        ReleaseDate,
+        Developers,
+        Publishers,
+        IsInstalled,
+        Hidden,
+        Favorite,
+        InstallDirectory,
+        Icon
+    }
+
+    public enum SortOrderDirection
+    {
+        Ascending,
+        Descending
     }
 
     public enum GroupOrder
     {
         None,
-        Store,
+        Provider,
         Category
     }
 
