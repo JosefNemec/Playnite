@@ -31,6 +31,7 @@ namespace Playnite
 
         public static void DownloadFile(string url, string path)
         {
+            FileSystem.CreateFolder(Path.GetDirectoryName(path));
             var webClient = new WebClient();
             webClient.DownloadFile(url, path);
         }
