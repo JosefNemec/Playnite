@@ -50,7 +50,7 @@
         <playniteControls:GamePopupMenuMulti x:Name="PopupGameMulti" />
 
         <ListView Name="GridGames" SelectionMode="Extended"
-                  VirtualizingPanel.VirtualizationMode="Standard"
+                  VirtualizingPanel.VirtualizationMode="Recycling"
                   VirtualizingPanel.IsVirtualizingWhenGrouping="True">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">

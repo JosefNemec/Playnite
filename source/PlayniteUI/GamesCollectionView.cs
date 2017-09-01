@@ -480,6 +480,11 @@ namespace PlayniteUI
 
         private void FilterSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            if (e.PropertyName == "Active")
+            {
+                return;
+            }
+
             logger.Debug("Refreshing collection view filter.");
             CollectionView.Refresh();
         }

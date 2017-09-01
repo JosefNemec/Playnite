@@ -50,7 +50,7 @@
                 </Grid.ColumnDefinitions>
 
                 <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="ItemsView" Grid.Column="0"
-                          VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Standard"
+                          VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Recycling"
                           SelectionMode="Single" SelectionChanged="ItemsView_SelectionChanged" MouseDown="ItemsView_MouseDown">
                     <ListView.Resources>
                         <Style TargetType="GridViewColumnHeader">
