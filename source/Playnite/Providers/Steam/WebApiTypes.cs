@@ -69,7 +69,13 @@ namespace Playnite.Providers.Steam
     {
         public class AppDetails
         {
-            public class IdDescription
+            public class Category
+            {
+                public int id;
+                public string description;
+            }
+
+            public class Genre
             {
                 public string id;
                 public string description;
@@ -139,13 +145,13 @@ namespace Playnite.Providers.Steam
             public object pc_requirements;
             public object mac_requirements;
             public object linux_requirements;
-            public List<IdDescription> genres;
+            public List<Genre> genres;
             public ReleaseDate release_date;
             public List<string> developers;
             public List<string> publishers;
             public Platforms platforms;
             public Metacritic metacritic;
-            public List<IdDescription> categories;
+            public List<Category> categories;
             public List<Screenshot> screenshots;
             public List<Movie> movies;
             public Support support_info;

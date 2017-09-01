@@ -249,23 +249,6 @@ namespace Playnite.Providers.Steam
             return metadata;
         }
 
-        public bool GetGameSupportsWorkshop(int id)
-        {
-            var workshopLink = GetGameWorkshopUrl(id);
-            var workshopRequest = WebRequest.Create(workshopLink) as HttpWebRequest;
-            workshopRequest.UserAgent = @"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36)";
-            workshopRequest.Timeout = 10000;
-            var response = workshopRequest.GetResponse();
-            if (response.ResponseUri.AbsoluteUri.Contains("workshop"))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public SteamGameMetadata UpdateGameWithMetadata(IGame game)
         {
             var metadata = DownloadGameMetadata(int.Parse(game.ProviderId));
@@ -277,7 +260,7 @@ namespace Playnite.Providers.Steam
                 new Link("Wiki", @"http://pcgamingwiki.com/api/appid.php?appid=" + game.ProviderId)
             };
 
-            if (GetGameSupportsWorkshop(int.Parse(game.ProviderId)))
+            if (metadata.StoreDetails.categories?.FirstOrDefault(a => a.id == 30) != null)
             {
                 game.Links.Add(new Link("Workshop", GetGameWorkshopUrl(int.Parse(game.ProviderId))));
             }

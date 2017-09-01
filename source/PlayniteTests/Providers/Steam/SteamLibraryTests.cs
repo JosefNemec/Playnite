@@ -57,18 +57,6 @@ namespace PlayniteTests.Providers.Steam
         }
 
         [Test]
-        public void WorkshopDetectionTest()
-        {
-            var steamLib = new SteamLibrary();
-
-            // Supports workshop
-            Assert.IsTrue(steamLib.GetGameSupportsWorkshop(289070));
-
-            // Doesn't support workshop
-            Assert.IsFalse(steamLib.GetGameSupportsWorkshop(7200));
-        }
-
-        [Test]
         public void GetCategorizedGamesTest()
         {
             var steamLib = new SteamLibrary();
