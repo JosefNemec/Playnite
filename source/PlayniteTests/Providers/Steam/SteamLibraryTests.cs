@@ -14,6 +14,14 @@ namespace PlayniteTests.Providers.Steam
     [TestFixture]
     public class SteamLibraryTests
     {
+        [OneTimeSetUp]
+        public void Init()
+        {
+            // Some test are reading resources, which cannot be access until pack:// namespace is initialized
+            // http://stackoverflow.com/questions/6005398/uriformatexception-invalid-uri-invalid-port-specified
+            string s = System.IO.Packaging.PackUriHelper.UriSchemePack;
+        }
+
         [Test]
         [Description("Basic verification testing that installed games can be fetched from local client.")]
         public void GetInstalledGamesTest()
@@ -78,6 +86,27 @@ namespace PlayniteTests.Providers.Steam
             var user = users.First();
             Assert.IsFalse(string.IsNullOrEmpty(user.AccountName));
             Assert.IsFalse(string.IsNullOrEmpty(user.PersonaName));
+        }
+
+        [Test]
+        public void UpdateGameWithMetadataMissingMetadataTest()
+        {
+            var steamLib = new SteamLibrary();
+            var game = new Game()
+            {
+                Provider = Provider.Steam,
+                ProviderId = "704580"
+            };
+
+            Assert.DoesNotThrow(() => steamLib.UpdateGameWithMetadata(game));
+
+            game = new Game()
+            {
+                Provider = Provider.Steam,
+                ProviderId = "347350"
+            };
+
+            Assert.DoesNotThrow(() => steamLib.UpdateGameWithMetadata(game));            
         }
     }
 }

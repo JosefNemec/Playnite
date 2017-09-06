@@ -539,7 +539,7 @@ namespace PlayniteUI
 
             if (IsIconBindingDirty && CheckIcon.IsChecked == true)
             {
-                var iconPath = HttpUtility.UrlDecode(((BitmapImage)ImageIcon.Source).UriSource.AbsolutePath);
+                var iconPath = ((BitmapImage)ImageIcon.Source).UriSource.OriginalString;
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(iconPath);
                 var iconId = "images/custom/" + fileName;
                 GameDatabase.Instance.AddImage(iconId, fileName, File.ReadAllBytes(iconPath));
@@ -574,7 +574,7 @@ namespace PlayniteUI
 
             if (IsImageBindingDirty && CheckImage.IsChecked == true)
             {
-                var imagePath = HttpUtility.UrlDecode(((BitmapImage)ImageImage.Source).UriSource.AbsolutePath);
+                var imagePath = ((BitmapImage)ImageImage.Source).UriSource.OriginalString;
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
                 var imageId = "images/custom/" + fileName;
                 GameDatabase.Instance.AddImage(imageId, fileName, File.ReadAllBytes(imagePath));

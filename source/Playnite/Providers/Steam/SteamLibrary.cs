@@ -260,7 +260,7 @@ namespace Playnite.Providers.Steam
                 new Link("Wiki", @"http://pcgamingwiki.com/api/appid.php?appid=" + game.ProviderId)
             };
 
-            if (metadata.StoreDetails.categories?.FirstOrDefault(a => a.id == 30) != null)
+            if (metadata.StoreDetails?.categories?.FirstOrDefault(a => a.id == 30) != null)
             {
                 game.Links.Add(new Link("Workshop", GetGameWorkshopUrl(int.Parse(game.ProviderId))));
             }
@@ -381,11 +381,10 @@ namespace Playnite.Providers.Steam
         public List<LocalSteamUser> GetSteamUsers()
         {
             var users = new List<LocalSteamUser>();
-            var path = Path.Combine(SteamSettings.InstallationPath, "config", "loginusers.vdf");
-            if (File.Exists(path))
+            if (File.Exists(SteamSettings.LoginUsersPath))
             {
                 var config = new KeyValue();
-                config.ReadFileAsText(path);
+                config.ReadFileAsText(SteamSettings.LoginUsersPath);
                 foreach (var user in config.Children)
                 {
                     users.Add(new LocalSteamUser()

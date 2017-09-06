@@ -96,6 +96,7 @@ namespace PlayniteUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            BringToForeground();
             NotificationsWin.AutoOpen = true;
             positionManager.RestoreSizeAndLocation(Config);
 
@@ -157,6 +158,7 @@ namespace PlayniteUI
                     AddInstalledGames(window.ImportedGames);
 
                     Config.FirstTimeWizardComplete = true;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Config"));
                 }
             }
 
@@ -180,6 +182,12 @@ namespace PlayniteUI
             }
         }
 
+        public void BringToForeground()
+        {
+            Topmost = true;
+            Topmost = false;
+        }
+
         private void PipeService_CommandExecuted(object sender, CommandExecutedEventArgs args)
         {
             logger.Info(@"Executing command ""{0}"" from pipe with arguments ""{1}""", args.Command, args.Args);
@@ -190,7 +198,7 @@ namespace PlayniteUI
                     Show();
                     WindowState = WindowState.Normal;
                     Activate();
-                    Focus();
+                    BringToForeground();
                     break;
 
                 case CmdlineCommands.Launch:
@@ -555,6 +563,8 @@ namespace PlayniteUI
                 Localization.SetLanguage(Config.Language);
                 return;
             }
+
+            Config.SaveSettings();
         }
 
         private void FilterSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -705,7 +715,7 @@ namespace PlayniteUI
         {
             Show();
             WindowState = WindowState.Normal;
-            Focus();
+            BringToForeground();
         }
 
         private void MenuLastGamesGame_Click(object sender, RoutedEventArgs e)
@@ -792,6 +802,11 @@ namespace PlayniteUI
             {
                 logger.Error(exc, "Failed to start 3rd party tool.");
             }
+        }
+
+        private void ButtonFriends_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"steam://open/friends");
         }
     }
 }

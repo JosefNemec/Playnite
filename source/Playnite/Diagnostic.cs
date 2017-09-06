@@ -66,8 +66,11 @@ namespace Playnite
                         archive.CreateEntryFromFile(logFile, Path.GetFileName(logFile));
                     }
 
-                    // Config file
-                    archive.CreateEntryFromFile(Paths.ConfigFilePath, Path.GetFileName(Paths.ConfigFilePath));
+                    // Config 
+                    if (File.Exists(Paths.ConfigFilePath))
+                    {
+                        archive.CreateEntryFromFile(Paths.ConfigFilePath, Path.GetFileName(Paths.ConfigFilePath));
+                    }
 
                     // Origin data
                     var originContentPath = Path.Combine(Providers.Origin.OriginPaths.DataPath, "LocalContent");
@@ -79,7 +82,11 @@ namespace Playnite
                     // GOG data
                     if (GogSettings.IsInstalled)
                     {
-                        archive.CreateEntryFromFile(Path.Combine(GogSettings.DBStoragePath, "index.db"), "index.db");
+                        var dbPath = Path.Combine(GogSettings.DBStoragePath, "index.db");
+                        if (File.Exists(dbPath))
+                        {
+                            archive.CreateEntryFromFile(dbPath, "index.db");
+                        }
                     }
 
                     // Steam data
@@ -89,6 +96,11 @@ namespace Playnite
                         {
                             var appsFolder = Path.Combine(folder, "steamapps");
                             AddFolderToZip(archive, "Steam", appsFolder, "appmanifest*", SearchOption.TopDirectoryOnly);
+                        }
+
+                        if (File.Exists(SteamSettings.LoginUsersPath))
+                        {
+                            archive.CreateEntryFromFile(SteamSettings.LoginUsersPath, "loginusers.vdf");
                         }
                     }
 

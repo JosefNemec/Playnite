@@ -3013,6 +3013,7 @@
     <Style TargetType="ToolTip">        
         <Setter Property="Background" Value="{StaticResource NormalBrush}" />
         <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="FontSize" Value="14" />
         <Setter Property="BorderBrush" Value="{StaticResource GlyphBrush}" />
     </Style>
 
@@ -3052,6 +3053,25 @@
             </Trigger>
             <Trigger Property="IsFocused" Value="True">
                 <Setter Property="BorderBrush" Value="{StaticResource GlyphBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ImageHighlightButton" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Fill="{TemplateBinding Foreground}" OpacityMask="{TemplateBinding OpacityMask}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource GlyphBrush}" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
             </Trigger>
         </Style.Triggers>
     </Style>
