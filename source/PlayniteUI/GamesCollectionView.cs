@@ -263,9 +263,14 @@ namespace PlayniteUI
 
         private bool Filter(object item)
         {
+            if (!Settings.FilterSettings.Active)
+            {
+                return true;
+            }
+
             var entry = (GameViewEntry)item;
             var game = entry.Game;
-
+            
             // ------------------ Installed
             bool installedResult = false;
             if (Settings.FilterSettings.IsInstalled && game.IsInstalled)
