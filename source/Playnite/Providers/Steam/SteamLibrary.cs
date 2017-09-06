@@ -260,7 +260,7 @@ namespace Playnite.Providers.Steam
                 new Link("Wiki", @"http://pcgamingwiki.com/api/appid.php?appid=" + game.ProviderId)
             };
 
-            if (metadata.StoreDetails.categories?.FirstOrDefault(a => a.id == 30) != null)
+            if (metadata.StoreDetails?.categories?.FirstOrDefault(a => a.id == 30) != null)
             {
                 game.Links.Add(new Link("Workshop", GetGameWorkshopUrl(int.Parse(game.ProviderId))));
             }
