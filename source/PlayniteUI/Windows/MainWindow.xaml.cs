@@ -555,6 +555,8 @@ namespace PlayniteUI
                 Localization.SetLanguage(Config.Language);
                 return;
             }
+
+            Config.SaveSettings();
         }
 
         private void FilterSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
