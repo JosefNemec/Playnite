@@ -43,6 +43,11 @@ namespace Playnite.Providers.Steam
             }
         }
 
+        public static string LoginUsersPath
+        {
+            get => Path.Combine(InstallationPath, "config", "loginusers.vdf");
+        }
+
         public SteamIdSource IdSource
         {
             get; set;
