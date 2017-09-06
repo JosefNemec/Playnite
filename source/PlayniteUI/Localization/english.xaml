@@ -32,6 +32,8 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="GamesRemoveAskMessage" xml:space="preserve">Are you sure you want to remove {0} games?
 Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
 
+    <sys:String x:Key="SteamFriendsTooltip">Steam Friends</sys:String>
+    
     <!--Settings Window-->
     <sys:String x:Key="SettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="SettingsImportInstalledLabel">Import installed games</sys:String>

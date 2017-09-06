@@ -797,5 +797,10 @@ namespace PlayniteUI
                 logger.Error(exc, "Failed to start 3rd party tool.");
             }
         }
+
+        private void ButtonFriends_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"steam://open/friends");
+        }
     }
 }

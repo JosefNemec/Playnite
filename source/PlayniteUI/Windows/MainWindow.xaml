@@ -215,12 +215,23 @@
 
         <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" >
             <DockPanel>
-                <Border BorderThickness="1,0,0,0" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Right" >
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                        <controls:FilterSelector x:Name="FilterSelector" Width="180"
-                                                 Visibility="{Binding IsChecked, ElementName=CheckFilterView, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    </ScrollViewer>
-                </Border>
+                <DockPanel LastChildFill="True" DockPanel.Dock="Right">
+                    <Border Height="40" DockPanel.Dock="Bottom" Background="Transparent">
+                        <Button Name="ButtonFriends" Click="ButtonFriends_Click" Height="30" Width="30" HorizontalAlignment="Right" Margin="0,0,15,0"
+                                Style="{StaticResource ImageHighlightButton}" ToolTip="{DynamicResource SteamFriendsTooltip}"
+                                Visibility="{Binding Path=Config.SteamSettings.IntegrationEnabled, ElementName=WindowMain, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Button.OpacityMask>
+                                    <ImageBrush ImageSource="/Images/friends.png" RenderOptions.BitmapScalingMode="Fant"/>
+                            </Button.OpacityMask>                            
+                        </Button>
+                    </Border>                    
+                    <Border BorderThickness="1,0,0,1" BorderBrush="{StaticResource NormalBorderBrush}">
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
+                            <controls:FilterSelector x:Name="FilterSelector" Width="180"
+                                                    Visibility="{Binding IsChecked, ElementName=CheckFilterView, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </ScrollViewer>
+                    </Border>
+                </DockPanel>
                 <TabControl Name="TabControlView" DockPanel.Dock="Left" TabStripPlacement="Bottom"
                             SelectedIndex="{Binding Path=GamesViewType, Source={x:Static shared:Settings.Instance}, Converter={StaticResource BidirectionalEnumAndNumberConverter}}">
                     <TabItem Header="List" >
