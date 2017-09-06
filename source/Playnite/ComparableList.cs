@@ -17,7 +17,7 @@ namespace Playnite
         {
         }
 
-        public ComparableList(IEnumerable<T> collection) : base(collection)
+        public ComparableList(IEnumerable<T> collection) : base(collection ?? new List<T>())
         {
         }
 

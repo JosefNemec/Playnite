@@ -99,6 +99,14 @@ namespace PlayniteTests.Providers.Steam
             };
 
             Assert.DoesNotThrow(() => steamLib.UpdateGameWithMetadata(game));
+
+            game = new Game()
+            {
+                Provider = Provider.Steam,
+                ProviderId = "347350"
+            };
+
+            Assert.DoesNotThrow(() => steamLib.UpdateGameWithMetadata(game));            
         }
     }
 }
