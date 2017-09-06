@@ -41,7 +41,17 @@
         </local:ValueConverterGroup>
     </controls:WindowBase.Resources>
     
-    <DockPanel Margin="0,-25,0,0">
+    <Grid Margin="0,-25,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
         <tray:TaskbarIcon x:Name="TrayPlaynite" ToolTipText="Playnite" IconSource="/Images/applogo.ico" MenuActivation="LeftOrRightClick"
                           Visibility="{Binding Path=EnableTray, Source={x:Static shared:Settings.Instance}, Converter={StaticResource BooleanToVisibilityConverter}}"
                           TrayMouseDoubleClick="TrayPlaynite_TrayMouseDoubleClick">
@@ -101,7 +111,7 @@
             </tray:TaskbarIcon.ContextMenu>
         </tray:TaskbarIcon>
 
-        <DockPanel LastChildFill="True" DockPanel.Dock="Top" Background="{StaticResource NormalBrushDark}">
+        <DockPanel LastChildFill="True" Background="{StaticResource NormalBrushDark}" Grid.Row="0" Grid.Column="0">
             <DockPanel MouseUp="ImageLogo_MouseDown" Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True"
                        Opacity="{Binding IsMouseOver, Converter={StaticResource OpacityBoolConverter}, ConverterParameter={StaticResource True}, RelativeSource={RelativeSource Self}}">
                 <Border DockPanel.Dock="Left" Background="Transparent">
@@ -213,25 +223,14 @@
             <local:ProgressControl x:Name="ProgressControl" DockPanel.Dock="Left" Margin="40,0,140,0" Height="25" Visibility="Collapsed"/>
         </DockPanel>
 
-        <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" >
+        <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" Grid.Row="1" Grid.Column="0">
             <DockPanel>
-                <DockPanel LastChildFill="True" DockPanel.Dock="Right">
-                    <Border Height="40" DockPanel.Dock="Bottom" Background="Transparent">
-                        <Button Name="ButtonFriends" Click="ButtonFriends_Click" Height="30" Width="30" HorizontalAlignment="Right" Margin="0,0,15,0"
-                                Style="{StaticResource ImageHighlightButton}" ToolTip="{DynamicResource SteamFriendsTooltip}"
-                                Visibility="{Binding Path=Config.SteamSettings.IntegrationEnabled, ElementName=WindowMain, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Button.OpacityMask>
-                                    <ImageBrush ImageSource="/Images/friends.png" RenderOptions.BitmapScalingMode="Fant"/>
-                            </Button.OpacityMask>                            
-                        </Button>
-                    </Border>                    
-                    <Border BorderThickness="1,0,0,1" BorderBrush="{StaticResource NormalBorderBrush}">
-                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
-                            <controls:FilterSelector x:Name="FilterSelector" Width="180"
-                                                    Visibility="{Binding IsChecked, ElementName=CheckFilterView, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        </ScrollViewer>
-                    </Border>
-                </DockPanel>
+                <Border BorderThickness="1,0,0,1" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Right" Margin="0,0,0,40">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
+                        <controls:FilterSelector x:Name="FilterSelector" Width="180"
+                                                Visibility="{Binding IsChecked, ElementName=CheckFilterView, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    </ScrollViewer>
+                </Border>
                 <TabControl Name="TabControlView" DockPanel.Dock="Left" TabStripPlacement="Bottom"
                             SelectedIndex="{Binding Path=GamesViewType, Source={x:Static shared:Settings.Instance}, Converter={StaticResource BidirectionalEnumAndNumberConverter}}">
                     <TabItem Header="List" >
@@ -246,5 +245,16 @@
                 </TabControl>
             </DockPanel>
         </Border>
-    </DockPanel>
+        
+        <Border Margin="0,-40,0,0" Height="40" Width="100" DockPanel.Dock="Bottom" Background="Transparent"
+                Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+            <Button Name="ButtonFriends" Click="ButtonFriends_Click" Height="30" Width="30" HorizontalAlignment="Right" Margin="0,0,15,0"
+                                Style="{StaticResource ImageHighlightButton}" ToolTip="{DynamicResource SteamFriendsTooltip}"
+                                Visibility="{Binding Path=Config.SteamSettings.IntegrationEnabled, ElementName=WindowMain, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button.OpacityMask>
+                    <ImageBrush ImageSource="/Images/friends.png" RenderOptions.BitmapScalingMode="Fant"/>
+                </Button.OpacityMask>
+            </Button>
+        </Border>
+    </Grid>
 </controls:WindowBase>
