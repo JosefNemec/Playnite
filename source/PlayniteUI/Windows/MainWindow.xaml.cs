@@ -190,7 +190,8 @@ namespace PlayniteUI
                     Show();
                     WindowState = WindowState.Normal;
                     Activate();
-                    Focus();
+                    Topmost = true;
+                    Topmost = false;
                     break;
 
                 case CmdlineCommands.Launch:
@@ -707,7 +708,8 @@ namespace PlayniteUI
         {
             Show();
             WindowState = WindowState.Normal;
-            Focus();
+            Topmost = true;
+            Topmost = false;
         }
 
         private void MenuLastGamesGame_Click(object sender, RoutedEventArgs e)
