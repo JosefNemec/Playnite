@@ -1,19 +1,12 @@
 param(
     [Parameter(ParameterSetName="Base",Mandatory=$true)]
     [string]$Version,    
-    [Parameter(ParameterSetName="Base",Mandatory=$false)]
     [string]$CompareBranch = "origin/master",
-    [Parameter(ParameterSetName="Base",Mandatory=$false)]
     [switch]$CommitAndPush,
-    [Parameter(ParameterSetName="Base",Mandatory=$false)]
     [switch]$Build,
-    [Parameter(ParameterSetName="GitHubPublish",Mandatory=$true)]
     [switch]$PublishRelease,
-    [Parameter(ParameterSetName="GitHubPublish",Mandatory=$true)]
     [string]$GitHubAuth,
-    [Parameter(ParameterSetName="UpdateFTP",Mandatory=$true)]
     [switch]$PublishManifest,
-    [Parameter(ParameterSetName="UpdateFTP",Mandatory=$true)]
     [string]$ManifestFtpUri
 )
 
