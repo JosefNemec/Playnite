@@ -216,8 +216,10 @@
         <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" >
             <DockPanel>
                 <Border BorderThickness="1,0,0,0" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Right" >
-                    <controls:FilterSelector x:Name="FilterSelector" Width="180"
-                                             Visibility="{Binding IsChecked, ElementName=CheckFilterView, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <controls:FilterSelector x:Name="FilterSelector" Width="180"
+                                                 Visibility="{Binding IsChecked, ElementName=CheckFilterView, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    </ScrollViewer>
                 </Border>
                 <TabControl Name="TabControlView" DockPanel.Dock="Left" TabStripPlacement="Bottom"
                             SelectedIndex="{Binding Path=GamesViewType, Source={x:Static shared:Settings.Instance}, Converter={StaticResource BidirectionalEnumAndNumberConverter}}">
