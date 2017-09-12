@@ -66,7 +66,7 @@
                     <ContextMenu.Resources>
                         <HierarchicalDataTemplate DataType="{x:Type playniteModels:Game}">
                             <StackPanel Orientation="Horizontal">
-                                <Image Width="16" Margin="-16,0,5,0">
+                                <Image Width="16" Margin="-16,0,5,0" RenderOptions.BitmapScalingMode="Fant">
                                     <Image.Source>
                                         <PriorityBinding>
                                             <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" />
@@ -126,7 +126,10 @@
                         <MenuItem Header="Add Installed Game(s)..." Click="AddInstalledGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
                         <Separator Style="{DynamicResource {x:Type Separator}}" />
                         <MenuItem Header="Reload Games List" Click="ReloadGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
-                        <MenuItem Header="Settings..." Click="Settings_Click" />
+                        <MenuItem Header="{DynamicResource MenuConfigurationTitle}">
+                            <MenuItem Header="{DynamicResource MenuPlayniteSettingsTitle}" Click="Settings_Click" />
+                            <MenuItem Header="{DynamicResource MenuPlatformEmulatorSettingsTitle}" Click="Platforms_Click" />
+                        </MenuItem>                        
                         <Separator Style="{DynamicResource {x:Type Separator}}" />
                         <MenuItem Header="Open 3rd Party Client" ItemsSource="{Binding Path=Tools, Source={x:Static local:App.ThirdPartyTools}}">
                             <MenuItem.ItemContainerStyle>
@@ -188,6 +191,8 @@
                                   IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Provider}}"/>
                         <MenuItem Header="Group by Category" IsCheckable="True"
                                   IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Category}}"/>
+                        <MenuItem Header="Group by Platform" IsCheckable="True"
+                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Platform}}"/>
                     </ContextMenu>
                 </Border.ContextMenu>
             </Border>

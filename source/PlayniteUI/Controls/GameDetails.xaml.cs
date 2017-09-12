@@ -42,14 +42,15 @@ namespace PlayniteUI
                     return false;
                 }
 
-                var game = DataContext as IGame;
+                var game = DataContext as GameViewEntry;
                 return
                     (game.Genres != null && game.Genres.Count > 0) ||
                     (game.Publishers != null && game.Publishers.Count > 0) ||
                     (game.Developers != null && game.Developers.Count > 0) ||
                     (game.Categories != null && game.Categories.Count > 0) ||
                     game.ReleaseDate != null ||
-                    (game.Links != null && game.Links.Count > 0);
+                    (game.Links != null && game.Links.Count > 0) ||
+                    !string.IsNullOrEmpty(game.Platform.Name);
             }
         }
 
@@ -63,14 +64,14 @@ namespace PlayniteUI
 
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
         {
-            var game = (IGame)DataContext;
-            GamesEditor.Instance.PlayGame(game);
+            var game = (GameViewEntry)DataContext;
+            GamesEditor.Instance.PlayGame(game.Game);
         }
 
         private void ButtonInstall_Click(object sender, RoutedEventArgs e)
         {
-            var game = (IGame)DataContext;
-            GamesEditor.Instance.InstallGame(game);
+            var game = (GameViewEntry)DataContext;
+            GamesEditor.Instance.InstallGame(game.Game);
         }
 
         private void ButtonMore_Click(object sender, RoutedEventArgs e)
@@ -81,9 +82,10 @@ namespace PlayniteUI
 
         private void ButtonSetupProgress_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is Game)
+            if (DataContext is GameViewEntry)
             {
-                (DataContext as Game).UnregisetrStateMonitor();
+                var game = (DataContext as GameViewEntry).Game as Game;
+                game.UnregisetrStateMonitor();
             }            
         }
 
@@ -103,7 +105,7 @@ namespace PlayniteUI
         {
             if (e.NewValue != null)
             {
-                var game = (IGame)e.NewValue;
+                var game = (GameViewEntry)e.NewValue;
 
                 switch (game.Provider)
                 {
@@ -127,10 +129,12 @@ namespace PlayniteUI
                         Background = FindResource("ControlBackgroundBrush") as Brush;
                         break;
                 }
+
+                PopupMore.DataContext = game.Game;
             }
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowContent"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowInfoPanel"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowInfoPanel"));            
         }
 
         private void Filter_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -154,6 +158,9 @@ namespace PlayniteUI
                     break;
                 case "Categories":
                     Settings.Instance.FilterSettings.Categories = new List<string>() { uri };
+                    break;
+                case "Platform":
+                    Settings.Instance.FilterSettings.Platforms = new List<string>() { uri };
                     break;
                 default:
                     break;

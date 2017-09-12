@@ -51,12 +51,12 @@ namespace PlayniteUI.Controls
 
         private void GamePopupMenu_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (e.NewValue == null)
+            if (e.NewValue == null || e.NewValue.GetType() != typeof(Game))
             {
                 return;
             }
 
-            var game = (IGame)e.NewValue;
+            var game = (Game)e.NewValue;
             if (game.Provider == Provider.Custom && !game.IsInstalled)
             {
                 SeparatorPlayInstall.Visibility = Visibility.Collapsed;

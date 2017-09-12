@@ -65,10 +65,10 @@ namespace PlayniteUI.Controls
                     return;
                 }
 
-                var game = (IGame)GameDetails.DataContext;
+                var game = (GameViewEntry)GameDetails.DataContext;
                 foreach (GameViewEntry entry in e.OldItems)
                 {
-                    if (game.Id == entry.Game.Id)
+                    if (game.Id == entry.Id)
                     {
                         GameDetails.DataContext = null;
                         return;
@@ -85,7 +85,7 @@ namespace PlayniteUI.Controls
             }
 
             var entry = ListGames.SelectedItem as GameViewEntry;
-            GameDetails.DataContext = entry.Game;
+            GameDetails.DataContext = entry;
         }
 
         private void ListItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)

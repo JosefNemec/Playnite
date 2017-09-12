@@ -69,14 +69,14 @@ namespace Playnite.Models
             get; set;
         }
 
-        string Name
+        int? PlatformId
         {
             get; set;
         }
 
-        string DefaultImage
+        string Name
         {
-            get;
+            get; set;
         }
 
         string Image
@@ -84,19 +84,9 @@ namespace Playnite.Models
             get; set;
         }
 
-        string DefaultIcon
-        {
-            get;
-        }
-
         string Icon
         {
             get; set;
-        }
-
-        string DefaultBackgroundImage
-        {
-            get;
         }
 
         string BackgroundImage

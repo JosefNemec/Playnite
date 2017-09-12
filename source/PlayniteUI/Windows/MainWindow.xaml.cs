@@ -20,7 +20,6 @@ using NLog;
 using Playnite;
 using Playnite.Providers.GOG;
 using Playnite.Providers.Steam;
-using Playnite.Providers.Custom;
 using Playnite.Models;
 using System.Collections.ObjectModel;
 using PlayniteUI.Windows;
@@ -99,18 +98,6 @@ namespace PlayniteUI
             BringToForeground();
             NotificationsWin.AutoOpen = true;
             positionManager.RestoreSizeAndLocation(Config);
-
-            GogSettings.DefaultIcon = @"/Images/gogicon.png";
-            GogSettings.DefaultImage = @"/Images/custom_cover_background.png";
-            SteamSettings.DefaultIcon = @"/Images/steamicon.png";
-            SteamSettings.DefaultImage = @"/Images/custom_cover_background.png";
-            OriginSettings.DefaultIcon = @"/Images/originicon.png";
-            OriginSettings.DefaultImage = @"/Images/custom_cover_background.png";
-            UplaySettings.DefaultIcon = @"/Images/uplayicon.png";
-            UplaySettings.DefaultImage = @"/Images/custom_cover_background.png";
-            CustomGameSettings.DefaultIcon = @"/Images/applogo.png";
-            CustomGameSettings.DefaultImage = @"/Images/custom_cover_background.png";
-            CustomGameSettings.DefaultBackgroundImage = @"/Images/default_background.png";
 
             Config.PropertyChanged += Config_PropertyChanged;
             Config.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
@@ -672,6 +659,16 @@ namespace PlayniteUI
             {
                 LoadGames(true);
             }
+        }
+
+        private void Platforms_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new PlatformsWindow()
+            {
+                Owner = this
+            };
+
+            window.ConfigurePlatforms(GameDatabase.Instance);
         }
 
         private void Exitappp_Click(object sender, RoutedEventArgs e)

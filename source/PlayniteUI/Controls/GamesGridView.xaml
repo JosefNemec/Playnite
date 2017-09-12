@@ -117,6 +117,8 @@
                                       IsCheckable="True" IsChecked="{Binding GridViewHeaders[Icon]}" />
                             <MenuItem Header="{DynamicResource GameNameTitle}"
                                       IsCheckable="True" IsChecked="{Binding GridViewHeaders[Name]}" />
+                            <MenuItem Header="{DynamicResource GamePlatformTitle}"
+                                      IsCheckable="True" IsChecked="{Binding GridViewHeaders[Platform]}" />
                             <MenuItem Header="{DynamicResource GameDevelopersTitle}"
                                       IsCheckable="True" IsChecked="{Binding GridViewHeaders[Developers]}" />
                             <MenuItem Header="{DynamicResource GamePublishersTitle}"
@@ -146,7 +148,7 @@
                                     <Image.Source>
                                         <PriorityBinding>
                                             <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
-                                            <Binding Path="DefaultIcon" Mode="OneTime"/>
+                                            <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
                                         </PriorityBinding>
                                     </Image.Source>
                                 </Image>
@@ -168,6 +170,24 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name, Mode=OneWay}" Style="{StaticResource TextItemStyle}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Platform], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Platform}">
+                                <GridViewColumnHeader.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{DynamicResource GamePlatformTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+                                        <ContentControl Style="{StaticResource SortIndicator}"
+                                                        Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Platform}}"/>
+                                    </StackPanel>
+                                </GridViewColumnHeader.Content>
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Platform, Mode=OneWay}" Style="{StaticResource TextItemStyle}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

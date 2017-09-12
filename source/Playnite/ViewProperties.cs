@@ -22,7 +22,8 @@ namespace Playnite
         Hidden,
         Favorite,
         InstallDirectory,
-        Icon
+        Icon,
+        Platform
     }
 
     public enum SortOrderDirection
@@ -35,7 +36,8 @@ namespace Playnite
     {
         None,
         Provider,
-        Category
+        Category,
+        Platform
     }
 
     public enum GameImageSize

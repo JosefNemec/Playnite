@@ -730,7 +730,7 @@
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
-        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
@@ -833,19 +833,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid SnapsToDevicePixels="False" Background="Transparent">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Path Margin="5,0,5,0" Width="12" Height="12" Stretch="Uniform"
-                                  HorizontalAlignment="Center" x:Name="Up_Arrow" VerticalAlignment="Center" Fill="{DynamicResource GlyphBrush}" Data="M 0 0 L 4 4 L 8 0 Z" />
-                            <Path Margin="5,0,5,0" Width="12" Height="12" Stretch="Uniform"
-                                  Visibility="Collapsed" HorizontalAlignment="Center" x:Name="Down_Arrow" VerticalAlignment="Center" Fill="{DynamicResource GlyphBrush}" Data="M 0 4 L 4 0 L 8 4 Z" />             
-                            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Grid.Column="1" VerticalAlignment="Center">
-                                <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Left" RecognizesAccessKey="True" />
+                        <DockPanel SnapsToDevicePixels="False" Background="Transparent">
+                            <TextBlock Text="+" x:Name="Up_Arrow" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{StaticResource GlyphBrush}" FontSize="18" FontWeight="Bold" Width="20" Margin="0,0,5,0"
+                                       Grid.Column="0" DockPanel.Dock="Left" TextAlignment="Center"/>
+                            <TextBlock Text="-" x:Name="Down_Arrow" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{StaticResource GlyphBrush}" FontSize="18" FontWeight="Bold" Width="20" Margin="0,0,5,0" Visibility="Collapsed"
+                                       Grid.Column="0" DockPanel.Dock="Left" TextAlignment="Center"/>
+                            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Grid.Column="1" VerticalAlignment="Center" DockPanel.Dock="Left">
+                                <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Left" RecognizesAccessKey="True"  />
                             </TextBlock>
-                        </Grid>
+                        </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="true">
@@ -1177,7 +1175,7 @@
                         <Storyboard x:Key="HoverOff">
 
                             <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HoverRectangle" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
                             </DoubleAnimationUsingKeyFrames>
 
                         </Storyboard>
@@ -1191,17 +1189,17 @@
                         <Storyboard x:Key="SelectedOff">
 
                             <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SelectedRectangle" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
                             </DoubleAnimationUsingKeyFrames>
 
                         </Storyboard>
 
                     </ControlTemplate.Resources>
-                    <Grid SnapsToDevicePixels="true" Margin="1,1,1,1">
+                    <Grid SnapsToDevicePixels="true" Margin="1">
                         <Rectangle x:Name="Background" IsHitTestVisible="False" Opacity="0.25" Fill="{StaticResource NormalBrush}" RadiusX="1" RadiusY="1" />
                         <Rectangle x:Name="HoverRectangle" IsHitTestVisible="False" Opacity="0" Fill="{StaticResource GlyphBrush}" RadiusX="1" RadiusY="1" />
                         <Rectangle x:Name="SelectedRectangle" IsHitTestVisible="False" Opacity="0" Fill="{StaticResource GlyphBrush}" RadiusX="1" RadiusY="1" />
-                        <ContentPresenter Margin="5,2,0,2" x:Name="contentPresenter" VerticalAlignment="Center" />
+                        <ContentPresenter Margin="5" x:Name="contentPresenter" VerticalAlignment="Center" />
                         <Rectangle x:Name="FocusVisualElement" Visibility="Collapsed" Stroke="{StaticResource HoverShineBrush}" StrokeThickness="1" RadiusX="1" RadiusY="1" />
                     </Grid>
                     <ControlTemplate.Triggers>

@@ -54,6 +54,9 @@
                                 <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
                                     <Setter Property="Margin" Value="3" />
                                 </Style>
+                                <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}" >
+                                    <Setter Property="Margin" Value="3" />
+                                </Style>
                                 <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}" >
                                     <Setter Property="Margin" Value="0,5,0,0" />
                                 </Style>
@@ -67,6 +70,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -90,19 +94,33 @@
                                     Text="{Binding Name, UpdateSourceTrigger=Explicit}"
                                     TextChanged="TextBox_TextChanged" Tag="IsNameBindingDirty"/>
 
-                            <TextBlock  Grid.Column="0" Grid.Row="2" Text="Genre(s)" />
-                            <CheckBox   Grid.Column="1" Grid.Row="2" Name="CheckGenres"
+                            <TextBlock  Grid.Column="0" Grid.Row="2" Text="Platform"/>
+                            <CheckBox   Grid.Column="1" Grid.Row="2" Name="CheckPlatform"
+                                    Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    IsChecked="{Binding IsPlatformBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
+                            <ComboBox Grid.Column="2" Grid.Row="2" Name="ComboPlatforms" Tag="IsPlatformBindingDirty"
+                                     SelectionChanged="ComboPlatforms_SelectionChanged"
+                                      SelectedValuePath="Id" SelectedValue="{Binding PlatformId, UpdateSourceTrigger=Explicit}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <TextBlock  Grid.Column="0" Grid.Row="3" Text="Genre(s)" />
+                            <CheckBox   Grid.Column="1" Grid.Row="3" Name="CheckGenres"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsGenreBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                            <TextBox    Grid.Column="2" Grid.Row="2" Name="TextGenres"
+                            <TextBox    Grid.Column="2" Grid.Row="3" Name="TextGenres"
                                     Text="{Binding Genres, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
                                     TextChanged="TextBox_TextChanged" Tag="IsGenreBindingDirty"/>
 
-                            <TextBlock  Grid.Column="0" Grid.Row="3" Text="Release date"/>
-                            <CheckBox   Grid.Column="1" Grid.Row="3" Name="CheckReleaseDate"
+                            <TextBlock  Grid.Column="0" Grid.Row="4" Text="Release date"/>
+                            <CheckBox   Grid.Column="1" Grid.Row="4" Name="CheckReleaseDate"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsReleaseDateBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                            <Grid       Grid.Column="2" Grid.Row="3">
+                            <Grid       Grid.Column="2" Grid.Row="4">
                                 <TextBox Text="{x:Static playnite:Constants.DateUiFormat}" Foreground="LightGray"
                                      Visibility="{Binding ElementName=TextReleaseDate, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
                                 <TextBox Name="TextReleaseDate" Background="Transparent"
@@ -110,37 +128,37 @@
                                      TextChanged="TextBox_TextChanged" Tag="IsReleaseDateBindingDirty"/>
                             </Grid>
 
-                            <TextBlock  Grid.Column="0" Grid.Row="4" Text="Developer(s)"/>
-                            <CheckBox   Grid.Column="1" Grid.Row="4" Name="CheckDeveloper"
+                            <TextBlock  Grid.Column="0" Grid.Row="5" Text="Developer(s)"/>
+                            <CheckBox   Grid.Column="1" Grid.Row="5" Name="CheckDeveloper"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsDeveloperBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                            <TextBox    Grid.Column="2" Grid.Row="4" Name="TextDeveloper"
+                            <TextBox    Grid.Column="2" Grid.Row="5" Name="TextDeveloper"
                                     Text="{Binding Developers, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
                                     TextChanged="TextBox_TextChanged" Tag="IsDeveloperBindingDirty"/>
 
-                            <TextBlock  Grid.Column="0" Grid.Row="5" Text="Publisher(s)" />
-                            <CheckBox   Grid.Column="1" Grid.Row="5" Name="CheckPublisher"
+                            <TextBlock  Grid.Column="0" Grid.Row="6" Text="Publisher(s)" />
+                            <CheckBox   Grid.Column="1" Grid.Row="6" Name="CheckPublisher"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsPublisherBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                            <TextBox    Grid.Column="2" Grid.Row="5" Name="TextPublisher"
+                            <TextBox    Grid.Column="2" Grid.Row="6" Name="TextPublisher"
                                     Text="{Binding Publishers, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
                                     TextChanged="TextBox_TextChanged" Tag="IsPublisherBindingDirty"/>
 
-                            <TextBlock  Grid.Column="0" Grid.Row="6" Text="Categories" />
-                            <CheckBox   Grid.Column="1" Grid.Row="6" Name="CheckCategories"
+                            <TextBlock  Grid.Column="0" Grid.Row="7" Text="Categories" />
+                            <CheckBox   Grid.Column="1" Grid.Row="7" Name="CheckCategories"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsCategoriesBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                            <DockPanel Grid.Column="2" Grid.Row="6">
+                            <DockPanel Grid.Column="2" Grid.Row="7">
                                 <Button Name="ButtonPickCat" Click="ButtonPickCat_Click" Content="..."  DockPanel.Dock="Right" Padding="5,0,5,0" Margin="2" />
                                 <TextBox Name="TextCategories"  Text="{Binding Categories, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
                                     TextChanged="TextBox_TextChanged" Tag="IsCategoriesBindingDirty" DockPanel.Dock="Left"/>
                             </DockPanel>
 
-                            <TextBlock  Grid.Column="0" Grid.Row="7" Text="Description" />
-                            <CheckBox   Grid.Column="1" Grid.Row="7" Name="CheckDescription"
+                            <TextBlock  Grid.Column="0" Grid.Row="8" Text="Description" />
+                            <CheckBox   Grid.Column="1" Grid.Row="8" Name="CheckDescription"
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsDescriptionBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                            <TextBox    Grid.Column="2" Grid.Row="7" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
+                            <TextBox    Grid.Column="2" Grid.Row="8" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                                     Text="{Binding Description, UpdateSourceTrigger=Explicit}"
                                     TextChanged="TextBox_TextChanged" Tag="IsDescriptionBindingDirty"/>

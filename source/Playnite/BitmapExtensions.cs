@@ -35,5 +35,16 @@ namespace Playnite
                 return stream.ToArray();
             }
         }
+
+        public static BitmapImage BitmapFromFile(string imagePath)
+        {
+            var bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+            bitmap.UriSource = new Uri(imagePath);
+            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            bitmap.EndInit();
+            return bitmap;
+        }
     }
 }

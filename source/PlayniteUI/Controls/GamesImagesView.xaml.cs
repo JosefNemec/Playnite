@@ -113,8 +113,7 @@ namespace PlayniteUI.Controls
 
         private void ChangeDetails(GameViewEntry viewEntry)
         {
-            var game = viewEntry.Game;
-            GameDetails.DataContext = game;
+            GameDetails.DataContext = viewEntry;
         }
 
         private void ZoomIn_Executed(object sender, ExecutedRoutedEventArgs e)

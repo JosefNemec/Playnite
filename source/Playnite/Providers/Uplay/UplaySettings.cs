@@ -9,16 +9,6 @@ namespace Playnite.Providers.Uplay
 {
     public class UplaySettings
     {
-        public static string DefaultIcon
-        {
-            get; set;
-        }
-
-        public static string DefaultImage
-        {
-            get; set;
-        }
-
         public static string ClientExecPath
         {
             get

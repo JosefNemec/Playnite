@@ -96,6 +96,19 @@
         </Label>
         <local:SearchBox x:Name="TextFilterGenre" Text="{Binding Settings.Genres, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
+        <Label Content="Platform">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterPlatform}" Value="">
+                            <Setter Property="Opacity" Value="0.6"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <local:SearchBox x:Name="TextFilterPlatform" Text="{Binding Settings.Platforms, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
         <Label Content="Release Date">
             <Label.Style>
                 <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">

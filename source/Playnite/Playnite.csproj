@@ -151,6 +151,7 @@
     <Compile Include="InteropMethods.cs" />
     <Compile Include="ListExtensions.cs" />
     <Compile Include="MetaProviders\IGDB.cs" />
+    <Compile Include="Models\Platform.cs" />
     <Compile Include="Models\Old\Game.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Paths.cs" />
@@ -168,7 +169,6 @@
     <Compile Include="ObservableConcurrentDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BattleNet\BattleNetSettings.cs" />
-    <Compile Include="Providers\Custom\CustomGameSettings.cs" />
     <Compile Include="Models\GameMetadata.cs" />
     <Compile Include="Providers\EpicLauncher\EpicLauncherSettings.cs" />
     <Compile Include="Providers\GameInstalledEventArgs.cs" />

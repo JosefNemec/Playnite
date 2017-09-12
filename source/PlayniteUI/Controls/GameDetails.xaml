@@ -73,8 +73,8 @@
                 <Image DockPanel.Dock="Left" Margin="20,0,0,0" Width="32" Height="32" RenderOptions.BitmapScalingMode="Fant">
                     <Image.Source>
                         <PriorityBinding>
-                            <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
-                            <Binding Path="DefaultIcon" Mode="OneTime"/>
+                            <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
+                            <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
                         </PriorityBinding>
                     </Image.Source>
                 </Image>
@@ -116,17 +116,17 @@
                         Visibility="{Binding ShowInfoPanel, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel Width="150">
                         <Label Content="Genres" Visibility="{Binding Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}" />
-                        <ItemsControl ItemsSource="{Binding Genres}" Style="{StaticResource ListItems}"
+                        <ItemsControl ItemsSource="{Binding Genres, Mode=OneWay}" Style="{StaticResource ListItems}"
                                       Visibility="{Binding Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                       Tag="Genres"/>
 
                         <Label Content="Developed by" Style="{StaticResource ListLabel}" Visibility="{Binding Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
-                        <ItemsControl ItemsSource="{Binding Developers}" Style="{StaticResource ListItems}"
+                        <ItemsControl ItemsSource="{Binding Developers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                       Visibility="{Binding Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                       Tag="Developers"/>
 
                         <Label Content="Published by" Style="{StaticResource ListLabel}" Visibility="{Binding Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
-                        <ItemsControl ItemsSource="{Binding Publishers}" Style="{StaticResource ListItems}"
+                        <ItemsControl ItemsSource="{Binding Publishers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                       Visibility="{Binding Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                       Tag="Publishers"/>
 
@@ -134,17 +134,25 @@
                         <TextBlock Visibility="{Binding ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"
                                    Style="{StaticResource ListTextBlock}">
                             <Hyperlink NavigateUri="{Binding ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}" RequestNavigate="Filter_RequestNavigate" Tag="ReleaseDate">
-                                <Run Text="{Binding ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}" />
+                                <Run Text="{Binding ReleaseDate, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" />
                             </Hyperlink>
                         </TextBlock>
 
                         <Label Content="Categories" Style="{StaticResource ListLabel}" Visibility="{Binding Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
-                        <ItemsControl ItemsSource="{Binding Categories}" Style="{StaticResource ListItems}"
+                        <ItemsControl ItemsSource="{Binding Categories, Mode=OneWay}" Style="{StaticResource ListItems}"
                                       Visibility="{Binding Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                       Tag="Categories"/>
 
+                        <Label Content="Platform" Style="{StaticResource ListLabel}" Visibility="{Binding Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
+                        <TextBlock Visibility="{Binding Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
+                                   Style="{StaticResource ListTextBlock}">
+                            <Hyperlink NavigateUri="{Binding Platform.Name}" RequestNavigate="Filter_RequestNavigate" Tag="Platform">
+                                <Run Text="{Binding Platform.Name, Mode=OneWay}" />
+                            </Hyperlink>
+                        </TextBlock>
+
                         <Label Content="Links" Style="{StaticResource ListLabel}" Visibility="{Binding Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
-                        <ItemsControl ItemsSource="{Binding Links}" Visibility="{Binding Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}">
+                        <ItemsControl ItemsSource="{Binding Links, Mode=OneWay}" Visibility="{Binding Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Style="{StaticResource ListTextBlock}">

@@ -11,16 +11,6 @@ namespace Playnite.Providers.GOG
 {
     public class GogSettings : INotifyPropertyChanged
     {
-        public static string DefaultIcon
-        {
-            get; set;
-        }
-
-        public static string DefaultImage
-        {
-            get; set;
-        }
-
         public static string DBStoragePath
         {
             get

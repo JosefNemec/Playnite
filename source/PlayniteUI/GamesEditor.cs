@@ -256,6 +256,12 @@ namespace PlayniteUI
                 dummyGame.Description = firstDescription;
             }
 
+            var firstPlatform = firstGame.PlatformId;
+            if (games.All(a => a.PlatformId == firstPlatform) == true)
+            {
+                dummyGame.PlatformId = firstPlatform;
+            }
+
             return dummyGame;
         }
 

@@ -33,6 +33,16 @@ Automatically imported games may reappear in Playnite after next import procedur
 Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
 
     <sys:String x:Key="SteamFriendsTooltip">Steam Friends</sys:String>
+
+    <!--General-->
+    <sys:String x:Key="RemoveTitle">Remove</sys:String>
+    <sys:String x:Key="DefaultIconTitle">Default Icon</sys:String>
+    <sys:String x:Key="DefaultCoverTitle">Default Cover Image</sys:String>
+    
+    <!--Menu-->
+    <sys:String x:Key="MenuConfigurationTitle">Configuration</sys:String>
+    <sys:String x:Key="MenuPlayniteSettingsTitle">Settings...</sys:String>
+    <sys:String x:Key="MenuPlatformEmulatorSettingsTitle">Platforms and Emulators...</sys:String>
     
     <!--Settings Window-->
     <sys:String x:Key="SettingsImportLabel">Import changes in library automatically</sys:String>
@@ -44,6 +54,16 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="SettingsInvalidSteamAccountCatImport">No Steam account selected for category import.</sys:String>
     <sys:String x:Key="SettingsUpdateLibStartup">Download 3rd party library updates on startup</sys:String>
     <sys:String x:Key="SettingsUpdateLibStartupTooltip">Includes Steam, Origin and others. Also won't download any metadata when disabled.</sys:String>
+
+    
+    <!--Platforms Settings-->
+    <sys:String x:Key="PlatformsWindowTitle">Configure Platforms and Emulators</sys:String>
+    <sys:String x:Key="PlatformsTitle">Platforms</sys:String>
+    <sys:String x:Key="EmulatorsTitle">Emulators</sys:String>
+    <sys:String x:Key="AddPlatformTitle">Add Platform</sys:String>
+    <sys:String x:Key="SelectIconTitle">Select Icon</sys:String>
+    <sys:String x:Key="SelectCoverTitle">Select Cover</sys:String>
+
 
     <!--First Time Wizard-->
     <sys:String x:Key="WizardImportIntroduction" xml:space="preserve">Automatically import games from following services. Any later game changes (installation status) will be automatically updated on Playnite startup or when triggered manually. Selected settings affect initial and all subsequent imports.</sys:String>
@@ -57,6 +77,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="GameIconTitle">Icon</sys:String>
     <sys:String x:Key="GameProviderTitle">Provider</sys:String>
     <sys:String x:Key="GameNameTitle">Name</sys:String>
+    <sys:String x:Key="GamePlatformTitle">Platform</sys:String>
     <sys:String x:Key="GameCategoriesTitle">Category(s)</sys:String>
     <sys:String x:Key="GameGenresTitle">Genre(s)</sys:String>
     <sys:String x:Key="GameReleaseDateTitle">Release Date</sys:String>
@@ -72,8 +93,12 @@ Automatically imported games may reappear in Playnite after next import procedur
 
     <!--MessageBox-->
     <sys:String x:Key="OKLabel">OK</sys:String>
+    <sys:String x:Key="SaveLabel">Save</sys:String>
     <sys:String x:Key="CloseLabel">Close</sys:String>
     <sys:String x:Key="CancelLabel">Cancel</sys:String>
     <sys:String x:Key="YesLabel">Yes</sys:String>
     <sys:String x:Key="NoLabel">No</sys:String>
+    
+    
+    
 </ResourceDictionary>

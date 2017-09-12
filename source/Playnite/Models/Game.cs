@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using LiteDB;
-using Playnite.Providers.Custom;
 using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
 using Playnite.Providers.Steam;
@@ -36,69 +35,7 @@ namespace Playnite.Models
                 backgroundImage = value;
                 OnPropertyChanged("BackgroundImage");
             }
-        }
-
-        [BsonIgnore]
-        public string DefaultIcon
-        {
-            get
-            {
-                switch (Provider)
-                {
-                    case Provider.GOG:
-                        return GogSettings.DefaultIcon;
-                    case Provider.Steam:
-                        return SteamSettings.DefaultIcon;
-                    case Provider.Origin:
-                        return OriginSettings.DefaultIcon;
-                    case Provider.Uplay:
-                        return UplaySettings.DefaultIcon;
-                    case Provider.Custom:
-                    default:
-                        return CustomGameSettings.DefaultIcon;
-                }
-            }
-        }
-
-        [BsonIgnore]
-        public string DefaultImage
-        {
-            get
-            {
-                switch (Provider)
-                {
-                    case Provider.GOG:
-                        return GogSettings.DefaultImage;
-                    case Provider.Steam:
-                        return SteamSettings.DefaultImage;
-                    case Provider.Origin:
-                        return OriginSettings.DefaultImage;
-                    case Provider.Uplay:
-                        return UplaySettings.DefaultImage;
-                    case Provider.Custom:
-                    default:
-                        return CustomGameSettings.DefaultImage;
-                }
-            }
-        }
-
-        [BsonIgnore]
-        public string DefaultBackgroundImage
-        {
-            get
-            {
-                switch (Provider)
-                {
-                    case Provider.GOG:
-                    case Provider.Steam:
-                    case Provider.Origin:
-                    case Provider.Uplay:
-                    case Provider.Custom:
-                    default:
-                        return CustomGameSettings.DefaultBackgroundImage;
-                }
-            }
-        }
+        }       
 
         private string description;
         public string Description
@@ -362,6 +299,21 @@ namespace Playnite.Models
             {
                 provider = value;
                 OnPropertyChanged("Provider");
+            }
+        }
+
+        private int? platformId;
+        public int? PlatformId
+        {
+            get
+            {
+                return platformId;
+            }
+
+            set
+            {
+                platformId = value;
+                OnPropertyChanged("PlatformId");
             }
         }
 

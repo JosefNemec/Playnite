@@ -159,20 +159,23 @@ namespace Playnite
 
         private void Database_GameUpdated(object sender, GameUpdatedEventArgs args)
         {
-            if (args.OldData.Hidden != args.NewData.Hidden)
+            foreach (var update in args.UpdatedGames)
             {
-                Hidden = Hidden + (1 * (args.NewData.Hidden ? 1 : -1));
-            }
+                if (update.OldData.Hidden != update.NewData.Hidden)
+                {
+                    Hidden = Hidden + (1 * (update.NewData.Hidden ? 1 : -1));
+                }
 
-            if (args.OldData.Favorite != args.NewData.Favorite)
-            {
-                Favorite = Favorite + (1 * (args.NewData.Favorite ? 1 : -1));
-            }
+                if (update.OldData.Favorite != update.NewData.Favorite)
+                {
+                    Favorite = Favorite + (1 * (update.NewData.Favorite ? 1 : -1));
+                }
 
-            if (args.OldData.IsInstalled != args.NewData.IsInstalled)
-            {
-                Installed = Installed + (1 * (args.NewData.IsInstalled ? 1 : -1));
-                UnInstalled = UnInstalled + (1 * (!args.NewData.IsInstalled ? 1 : -1));
+                if (update.OldData.IsInstalled != update.NewData.IsInstalled)
+                {
+                    Installed = Installed + (1 * (update.NewData.IsInstalled ? 1 : -1));
+                    UnInstalled = UnInstalled + (1 * (!update.NewData.IsInstalled ? 1 : -1));
+                }
             }
 
             OnPropertyChanged("Installed");

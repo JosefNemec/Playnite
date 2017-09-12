@@ -29,16 +29,11 @@
                     <TextBox Name="TextNewCat" DockPanel.Dock="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
                 </DockPanel>
             </Border>
-            
+
             <ListBox Name="ListCategories" DockPanel.Dock="Top" BorderThickness="0">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="BorderThickness" Value="0"/>
-                    </Style>
-                </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox IsChecked="{Binding Enabled}" Content="{Binding Name}" IsThreeState="{Binding EnableThreeState, ElementName=WindowCategories}" ToolTip="{DynamicResource CategoryTooltip}"/>
+                        <CheckBox IsChecked="{Binding Enabled}" Content="{Binding Name}" IsThreeState="{Binding EnableThreeState, ElementName=WindowCategories}" ToolTip="{DynamicResource CategoryTooltip}" Margin="5"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

@@ -1,0 +1,111 @@
+﻿<controls:WindowBase x:Class="PlayniteUI.PlatformsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlayniteUI"
+        xmlns:steam="clr-namespace:Playnite.Providers.Steam;assembly=Playnite"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:controls="clr-namespace:PlayniteUI.Controls"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+        Title="{DynamicResource PlatformsWindowTitle}" Width="580" Height="600"
+        AutomationProperties.AutomationId="WindowPlatforms"
+        Background="{StaticResource NormalBrush}">
+
+    <controls:WindowBase.Resources>
+        <local:NegateConverter x:Key="NegateConverter" />
+        <local:EnumConverter x:Key="EnumConverter" />
+        <local:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
+        
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+        <Style x:Key="EnableOnSelectPlatformButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedItem, ElementName=ListPlatforms}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </controls:WindowBase.Resources>    
+    
+    <Border Padding="5" Margin="0,5,0,0" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+        <DockPanel>
+            <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="-5,0,-5,-5"
+                       Background="{StaticResource NormalBrush}">
+                <Button Name="ButtonCancel" Click="ButtonCancel_Click" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right"
+                        Style="{StaticResource BottomButton}" />
+                <Button Name="ButtonOK" Click="ButtonOK_Click" Content="{DynamicResource SaveLabel}" DockPanel.Dock="Right"
+                        Style="{StaticResource BottomButton}" />
+            </DockPanel>
+            <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Top">                
+                <TabItem Header="{DynamicResource PlatformsTitle}">
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <ListBox Name="ListPlatforms" Grid.ColumnSpan="2" Grid.Row="0" Margin="5,5,5,0">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name, Mode=OneWay}" Margin="5"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                            <Button Content="{DynamicResource AddPlatformTitle}" Name="ButtonAddPlatform" Click="ButtonAddPlatform_Click"
+                                    Grid.Row="1" Grid.Column="0" Margin="5"/>
+                            <Button Content="{DynamicResource RemoveTitle}" Name="ButtonRemovePlatform" Click="ButtonRemovePlatform_Click"
+                                    Grid.Row="1" Grid.Column="1" Margin="5"/>
+                        </Grid>
+
+                        <Grid Grid.Column="1" DataContext="{Binding SelectedItem, ElementName=ListPlatforms, Mode=OneWay}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Row="0" Margin="5">
+                                <TextBlock Text="{DynamicResource GameNameTitle}" Margin="0,0,0,0" />
+                                <TextBox Name="TextPlatformName" Margin="0,5,0,0" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+                            <GroupBox Grid.Row="1" Header="{DynamicResource DefaultIconTitle}" Margin="5">
+                                <StackPanel>
+                                    <Button Name="ButtonSelectIcon" Content="{DynamicResource SelectIconTitle}" Click="ButtonSelectIcon_Click"
+                                            Margin="5" MaxWidth="160" Style="{StaticResource EnableOnSelectPlatformButton}" />
+                                    <Image Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageIcon"
+                                           MaxHeight="64" Source="{Binding Icon, Mode=OneWay, Converter={StaticResource LiteDBImageToImageConverter}}" />
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Grid.Row="2" Header="{DynamicResource DefaultCoverTitle}" Margin="5">
+                                <StackPanel>
+                                    <Button Name="ButtonSelectCover" Content="{DynamicResource SelectCoverTitle}" Click="ButtonSelectCover_Click"
+                                            Margin="5" MaxWidth="160" Style="{StaticResource EnableOnSelectPlatformButton}"/>
+                                    <Image Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageCover"
+                                           Source="{Binding Cover, Mode=OneWay, Converter={StaticResource LiteDBImageToImageConverter}}"/>
+                                </StackPanel>
+                            </GroupBox>
+                        </Grid>
+                    </Grid>                    
+                </TabItem>
+                <TabItem Header="{DynamicResource EmulatorsTitle}">
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+    </Border>
+</controls:WindowBase>

@@ -14,56 +14,56 @@ using System.Windows.Data;
 
 namespace PlayniteUI
 {
-    public class NullBottomSorter: Comparer<GameViewEntry>, IComparer
-    {
-        public override int Compare(GameViewEntry x, GameViewEntry y)
-        {
-            if (x == null && y != null)
-            {
-                return -1;
-            }
+    //public class NullBottomSorter: Comparer<GameViewEntry>, IComparer
+    //{
+    //    public override int Compare(GameViewEntry x, GameViewEntry y)
+    //    {
+    //        if (x == null && y != null)
+    //        {
+    //            return -1;
+    //        }
 
-            if (x != null && y == null)
-            {
-                return 1;
-            }
+    //        if (x != null && y == null)
+    //        {
+    //            return 1;
+    //        }
 
-            if (x == null && y == null)
-            {
-                return 0;
-            }
+    //        if (x == null && y == null)
+    //        {
+    //            return 0;
+    //        }
 
-            var settings = Settings.Instance;
+    //        var settings = Settings.Instance;
 
-            switch (settings.SortingOrder)
-            {
-                case SortOrder.Name:
-                    var catComp = x.Category.CompareTo(y.Category);
-                    if (catComp == 0)
-                    {
-                        return string.Compare(x.Name, y.Name) * (settings.SortingOrderDirection == SortOrderDirection.Ascending ? 1 : -1);
-                    }
-                    else
-                    {
-                        return catComp;
-                    }
-                case SortOrder.LastActivity:
-                case SortOrder.Provider:
-                case SortOrder.Categories:
-                case SortOrder.Genres:
-                case SortOrder.ReleaseDate:
-                case SortOrder.Developers:
-                case SortOrder.Publishers:
-                case SortOrder.IsInstalled:
-                case SortOrder.Hidden:
-                case SortOrder.Favorite:
-                case SortOrder.InstallDirectory:
-                case SortOrder.Icon:
-                default:
-                    return 0;
-            }
-        }
-    }
+    //        switch (settings.SortingOrder)
+    //        {
+    //            case SortOrder.Name:
+    //                var catComp = x.Category.CompareTo(y.Category);
+    //                if (catComp == 0)
+    //                {
+    //                    return string.Compare(x.Name, y.Name) * (settings.SortingOrderDirection == SortOrderDirection.Ascending ? 1 : -1);
+    //                }
+    //                else
+    //                {
+    //                    return catComp;
+    //                }
+    //            case SortOrder.LastActivity:
+    //            case SortOrder.Provider:
+    //            case SortOrder.Categories:
+    //            case SortOrder.Genres:
+    //            case SortOrder.ReleaseDate:
+    //            case SortOrder.Developers:
+    //            case SortOrder.Publishers:
+    //            case SortOrder.IsInstalled:
+    //            case SortOrder.Hidden:
+    //            case SortOrder.Favorite:
+    //            case SortOrder.InstallDirectory:
+    //            case SortOrder.Icon:
+    //            default:
+    //                return 0;
+    //        }
+    //    }
+    //}
 
     public class CategoryView : IComparable
     {
@@ -143,18 +143,98 @@ namespace PlayniteUI
         }
     }
 
+    public class PlatformView : IComparable
+    {
+        public Platform Platform
+        {
+            get; set;
+        }
+
+        public int? PlatformId
+        {
+            get; set;
+        }
+
+        public string Name
+        {
+            get => Platform?.Name ?? string.Empty;
+        }
+
+        public PlatformView(int? platformId, Platform platform)
+        {
+            Platform = platform;
+            PlatformId = platformId;
+        }
+
+        public int CompareTo(object obj)
+        {
+            var platform = (obj as PlatformView).Name;
+
+            if (string.IsNullOrEmpty(Name) && string.IsNullOrEmpty(platform))
+            {
+                return 0;
+            }
+            if (string.IsNullOrEmpty(Name))
+            {
+                return 1;
+            }
+            if (string.IsNullOrEmpty(platform))
+            {
+                return -1;
+            }
+            if (Name.Equals(platform))
+            {
+                return 0;
+            }
+
+            return string.Compare(Name, platform, true);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var platform = (obj as PlatformView).Name;
+
+            if (string.IsNullOrEmpty(Name) && string.IsNullOrEmpty(platform))
+            {
+                return true;
+            }
+            if (string.IsNullOrEmpty(Name))
+            {
+                return false;
+            }
+            if (string.IsNullOrEmpty(platform))
+            {
+                return false;
+            }
+            if (Name.Equals(platform))
+            {
+                return true;
+            }
+
+            return string.Compare(Name, platform, true) == 0;
+        }
+
+        public override int GetHashCode()
+        {
+            if (Name == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return Name.GetHashCode();
+            }
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
     public class GameViewEntry : INotifyPropertyChanged
     {
-        public CategoryView Category
-        {
-            get; set;
-        }
-
-        public IGame Game
-        {
-            get; set;
-        }
-
+        public int Id => Game.Id;
         public string Name => Game.Name;
         public Provider Provider => Game.Provider;
         public List<string> Categories => Game.Categories;
@@ -163,22 +243,101 @@ namespace PlayniteUI
         public DateTime? LastActivity => Game.LastActivity;
         public List<string> Developers => Game.Developers;
         public List<string> Publishers => Game.Publishers;
+        public ObservableCollection<Link> Links => Game.Links;
         public string Icon => Game.Icon;
-        public string DefaultIcon => Game.DefaultIcon;
-        public string DefaultImage => Game.DefaultImage;
         public string Image => Game.Image;
+        public string BackgroundImage => Game.BackgroundImage;
         public bool IsInstalled => Game.IsInstalled;
         public bool Hidden => Game.Hidden;
         public bool Favorite => Game.Favorite;
         public string InstallDirectory => Game.InstallDirectory;
+        public int? PlatformId => Game.PlatformId;
+        public ObservableCollection<GameTask> OtherTasks => Game.OtherTasks;
+        public string DescriptionView => Game.DescriptionView;
+
+        public bool IsSetupInProgress
+        {
+            get
+            {
+                return Game is Game ? (Game as Game).IsSetupInProgress : false;
+            }
+        }
+
+        public CategoryView Category
+        {
+            get; set;
+        }
+
+        public PlatformView Platform
+        {
+            get; set;
+        }
+
+        public IGame Game
+        {
+            get; set;
+        }       
+
+        public string DefaultIcon
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(Platform?.Platform?.Icon))
+                {
+                    return Platform.Platform.Icon;
+                }
+                else
+                {
+                    switch (Game.Provider)
+                    {
+                        case Provider.GOG:
+                            return @"resources:/Images/gogicon.png";
+                        case Provider.Origin:
+                            return @"resources:/Images/originicon.png";
+                        case Provider.Steam:
+                            return @"resources:/Images/steamicon.png";
+                        case Provider.Uplay:
+                            return @"resources:/Images/uplayicon.png";
+                        case Provider.Custom:
+                        default:
+                            return @"resources:/Images/applogo.png";
+                    }
+                }
+            }
+        }
+
+        public string DefaultImage
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(Platform?.Platform?.Cover))
+                {
+                    return Platform.Platform.Cover;
+                }
+                else
+                {
+                    switch (Game.Provider)
+                    {
+                        case Provider.GOG:
+                        case Provider.Origin:
+                        case Provider.Steam:
+                        case Provider.Uplay:
+                        case Provider.Custom:
+                        default:
+                            return @"resources:/Images/custom_cover_background.png";
+                    }
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GameViewEntry(IGame game, string category)
+        public GameViewEntry(IGame game, string category, Platform platform)
         {
             Category = new CategoryView(category);
             Game = game;
-            Game.PropertyChanged += Game_PropertyChanged;            
+            Game.PropertyChanged += Game_PropertyChanged;
+            Platform = new PlatformView(PlatformId, platform);
         }
 
         private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -187,8 +346,13 @@ namespace PlayniteUI
         }
 
         public void OnPropertyChanged(string name)
-        {
+        {            
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+            if (name == "PlatformId")
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Platform"));
+            }
         }
 
         public override string ToString()
@@ -213,6 +377,7 @@ namespace PlayniteUI
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private GameDatabase database;
+        private List<Platform> platformsCache;
 
         public ListCollectionView CollectionView
         {
@@ -250,8 +415,11 @@ namespace PlayniteUI
         public GamesCollectionView(GameDatabase database, Settings settings)
         {
             this.database = database;
+            platformsCache = database.PlatformsCollection.FindAll().ToList();
             database.GamesCollectionChanged += Database_GamesCollectionChanged;
             database.GameUpdated += Database_GameUpdated;
+            database.PlatformsCollectionChanged += Database_PlatformsCollectionChanged;
+            database.PlatformUpdated += Database_PlatformUpdated;
             Items = new RangeObservableCollection<GameViewEntry>();
             Settings = settings;
             Settings.PropertyChanged += Settings_PropertyChanged;
@@ -392,6 +560,32 @@ namespace PlayniteUI
                 }
             }
 
+            // ------------------ Platform
+            bool platformResult = false;
+            if (Settings.FilterSettings.Platforms == null || Settings.FilterSettings.Platforms.Count == 0)
+            {
+                platformResult = true;
+            }
+            else
+            {
+                if (game.PlatformId == null)
+                {
+                    platformResult = false;
+                }
+                else
+                {
+                    var platform = GetPlatformFromCache(game.PlatformId);
+                    if (platform == null)
+                    {
+                        platformResult = false;
+                    }
+                    else
+                    {
+                        platformResult = Settings.FilterSettings.Platforms.Any(a => !string.IsNullOrEmpty(a) && platform.Name.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0);
+                    }
+                }
+            }
+
             // ------------------ Release Date
             bool releaseDateResult = false;
             if (string.IsNullOrEmpty(Settings.FilterSettings.ReleaseDate))
@@ -472,7 +666,7 @@ namespace PlayniteUI
                 }
             }
 
-            return installedResult && unInstalledResult && hiddenResult && favoriteResult && textResult && providersFilter && genreResult && releaseDateResult && publisherResult && developerResult && categoryResult;
+            return installedResult && unInstalledResult && hiddenResult && favoriteResult && textResult && providersFilter && genreResult && platformResult && releaseDateResult && publisherResult && developerResult && categoryResult;
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -506,6 +700,9 @@ namespace PlayniteUI
                 case GroupOrder.Provider:
                     ViewType = GamesViewType.Standard;
                     break;
+                case GroupOrder.Platform:
+                    ViewType = GamesViewType.Standard;
+                    break;
                 case GroupOrder.Category:
                     ViewType = GamesViewType.CategoryGrouped;
                     break;
@@ -534,6 +731,7 @@ namespace PlayniteUI
                 SetViewDescriptions();
                 CollectionView.LiveGroupingProperties.Add("Provider");
                 CollectionView.LiveGroupingProperties.Add("Category");
+                CollectionView.LiveGroupingProperties.Add("Platform");
 
                 CollectionView.LiveSortingProperties.Add("Provider");
                 CollectionView.LiveSortingProperties.Add("Name");
@@ -546,6 +744,7 @@ namespace PlayniteUI
                 CollectionView.LiveSortingProperties.Add("Hidden");
                 CollectionView.LiveSortingProperties.Add("Favorite");
                 CollectionView.LiveSortingProperties.Add("LastActivity");
+                CollectionView.LiveSortingProperties.Add("Platform");
 
                 CollectionView.LiveFilteringProperties.Add("Provider");
                 CollectionView.LiveFilteringProperties.Add("Name");
@@ -557,6 +756,7 @@ namespace PlayniteUI
                 CollectionView.LiveFilteringProperties.Add("IsInstalled");
                 CollectionView.LiveFilteringProperties.Add("Hidden");
                 CollectionView.LiveFilteringProperties.Add("Favorite");
+                CollectionView.LiveFilteringProperties.Add("PlatformId");
 
                 CollectionView.IsLiveSorting = true;
                 CollectionView.IsLiveFiltering = true;
@@ -581,12 +781,12 @@ namespace PlayniteUI
             {
                 return;
             }
-            
+
             switch (viewType)
             {
                 case GamesViewType.Standard:
                     Items.Clear();
-                    Items.AddRange(database.GamesCollection.FindAll().Select(x => new GameViewEntry(x, string.Empty)));
+                    Items.AddRange(database.GamesCollection.FindAll().Select(x => new GameViewEntry(x, string.Empty, GetPlatformFromCache(x.PlatformId))));
                     break;
 
                 case GamesViewType.CategoryGrouped:
@@ -597,14 +797,14 @@ namespace PlayniteUI
                         {
                             return new List<GameViewEntry>()
                             {
-                                new GameViewEntry(x, null)
+                                new GameViewEntry(x, null, GetPlatformFromCache(x.PlatformId))
                             };
                         }
                         else
                         {
                             return x.Categories.Select(c =>
                             {
-                                return new GameViewEntry(x, c);
+                                return new GameViewEntry(x, c, GetPlatformFromCache(x.PlatformId));
                             });
                         }
                     }));
@@ -615,23 +815,67 @@ namespace PlayniteUI
             this.viewType = viewType;
         }
 
+        private Platform GetPlatformFromCache(int? id)
+        {
+            return platformsCache?.FirstOrDefault(a => a.Id == id);
+        }
+
+        private void Database_PlatformUpdated(object sender, PlatformUpdatedEventArgs args)
+        {
+            platformsCache = database.PlatformsCollection.FindAll().ToList();
+            var platformIds = args.UpdatedPlatforms.Select(a => a.NewData.Id).ToList();
+            foreach (var item in Items.Where(a => a.PlatformId != null && platformIds.Contains(a.PlatformId.Value)))
+            {
+                item.Platform.Platform = GetPlatformFromCache(item.PlatformId);
+                item.OnPropertyChanged("Platform");
+                item.OnPropertyChanged("DefaultIcon");
+                item.OnPropertyChanged("DefaultImage");
+            }
+        }
+
+        private void Database_PlatformsCollectionChanged(object sender, PlatformsCollectionChangedEventArgs args)
+        {
+            platformsCache = database.PlatformsCollection.FindAll().ToList();
+            if (args.RemovedPlatforms == null || args.RemovedPlatforms.Count == 0)
+            {
+                return;
+            }
+
+            var platformIds = args.RemovedPlatforms.Select(a => a.Id).ToList();
+            foreach (var item in Items.Where(a => a.PlatformId != null && platformIds.Contains(a.PlatformId.Value)))
+            {
+                item.Platform.Platform = GetPlatformFromCache(item.PlatformId);
+                item.OnPropertyChanged("Platform");
+            }
+        }
+
         private void Database_GameUpdated(object sender, GameUpdatedEventArgs args)
         {
-            if (args.OldData.Categories.IsListEqual(args.NewData.Categories))
+            foreach (var update in args.UpdatedGames)
             {
-                foreach (var item in Items)
+                if (update.OldData.Categories.IsListEqual(update.NewData.Categories))
                 {
-                    if (item.Game.Id == args.NewData.Id)
+                    var existingItem = Items.FirstOrDefault(a => a.Game.Id == update.NewData.Id);
+                    if (existingItem != null)
                     {
-                        args.NewData.CopyProperties(item.Game, true);
+                        if (update.NewData.PlatformId != update.OldData.PlatformId)
+                        {
+                            existingItem.Platform = new PlatformView(update.NewData.PlatformId, GetPlatformFromCache(update.NewData.PlatformId));
+                        }
+
+                        update.NewData.CopyProperties(existingItem.Game, true);
+                    }
+                    else
+                    {
+                        logger.Warn("Receivied update for unknown game id " + update.NewData.Id);
                     }
                 }
-            }
-            else
-            {
-                Database_GamesCollectionChanged(this, new GamesCollectionChangedEventArgs(
-                    new List<IGame>() { args.NewData },
-                    new List<IGame>() { args.NewData }));
+                else
+                {
+                    Database_GamesCollectionChanged(this, new GamesCollectionChangedEventArgs(
+                        new List<IGame>() { update.NewData },
+                        new List<IGame>() { update.NewData }));
+                }
             }
         }
 
@@ -653,17 +897,17 @@ namespace PlayniteUI
                 switch (ViewType)
                 {
                     case GamesViewType.Standard:
-                        Items.Add(new GameViewEntry(game, string.Empty));
+                        Items.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game.PlatformId)));
                         break;
 
                     case GamesViewType.CategoryGrouped:
                         if (game.Categories == null || game.Categories.Count == 0)
                         {
-                            Items.Add(new GameViewEntry(game, string.Empty));
+                            Items.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game.PlatformId)));
                         }
                         else
                         {
-                            Items.AddRange(game.Categories.Select(a => new GameViewEntry(game, a)));
+                            Items.AddRange(game.Categories.Select(a => new GameViewEntry(game, a, GetPlatformFromCache(game.PlatformId))));
                         }
                         break;
                 }

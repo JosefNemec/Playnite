@@ -251,6 +251,7 @@ namespace Playnite
         {
             { "Icon", true },
             { "Name", true },
+            { "Platform", false },
             { "Developers", true },
             { "Publishers", false },
             { "ReleaseDate", true },

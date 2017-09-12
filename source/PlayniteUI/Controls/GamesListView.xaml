@@ -72,7 +72,7 @@
                                 <Image.Source>
                                     <PriorityBinding>
                                         <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
-                                        <Binding Path="DefaultIcon" Mode="OneTime"/>
+                                        <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
                                     </PriorityBinding>
                                 </Image.Source>
                             </Image>                                

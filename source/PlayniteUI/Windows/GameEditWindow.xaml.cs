@@ -184,6 +184,14 @@ namespace PlayniteUI
             }
         }
 
+        public bool IsPlatformBindingDirty
+        {
+            get
+            {
+                return IsControlBindingDirty(ComboPlatforms, ComboBox.SelectedValueProperty);
+            }
+        }
+
         public bool IsGenreBindingDirty
         {
             get
@@ -284,22 +292,7 @@ namespace PlayniteUI
             return BindingOperations.GetBindingExpression(control, property).IsDirty;
         }
 
-        private string SelectImage(string filter)
-        {
-            var dialog = new OpenFileDialog()
-            {
-                Filter = filter
-            };
 
-            if (dialog.ShowDialog(this) == true)
-            {
-                return dialog.FileName;
-            }
-            else
-            {
-                return string.Empty;
-            }
-        }
 
         private void DataChanged(object data)
         {
@@ -345,17 +338,6 @@ namespace PlayniteUI
             }
         }
 
-        private BitmapImage CreateBitmapSource(string imagePath)
-        {
-            var bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-            bitmap.UriSource = new Uri(imagePath);
-            bitmap.CacheOption = BitmapCacheOption.OnLoad;
-            bitmap.EndInit();
-            return bitmap;
-        }
-
         private void PreviewGameData(IGame game)
         {
             var listConverter = new ListToStringConverter();
@@ -397,7 +379,7 @@ namespace PlayniteUI
                 }
 
                 Web.DownloadFile(game.Image, tempPath);
-                ImageImage.Source = CreateBitmapSource(tempPath);
+                ImageImage.Source = BitmapExtensions.BitmapFromFile(tempPath);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(ImageImage.Tag.ToString()));
             }
         }
@@ -537,6 +519,18 @@ namespace PlayniteUI
                 BindingOperations.GetBindingExpression(TextInstallDir, TextBox.TextProperty).UpdateSource();
             }
 
+            if (IsPlatformBindingDirty && CheckPlatform.IsChecked == true)
+            {
+                BindingOperations.GetBindingExpression(ComboPlatforms, ComboBox.SelectedValueProperty).UpdateSource();
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.PlatformId = Game.PlatformId;
+                    }
+                }
+            }
+
             if (IsIconBindingDirty && CheckIcon.IsChecked == true)
             {
                 var iconPath = ((BitmapImage)ImageIcon.Source).UriSource.OriginalString;
@@ -643,7 +637,7 @@ namespace PlayniteUI
 
         private void ButtonSelectIcon_Click(object sender, RoutedEventArgs e)
         {
-            var path = SelectImage("Image Files (*.bmp, *.jpg, *.png, *.gif, *.ico)|*.bmp;*.jpg*;*.png;*.gif;*.ico|Executable (.exe)|*.exe");
+            var path = Dialogs.SelectIconFile(this);
             if (!string.IsNullOrEmpty(path))
             {
                 if (path.EndsWith("exe", StringComparison.CurrentCultureIgnoreCase))
@@ -656,7 +650,7 @@ namespace PlayniteUI
                     }
                 }               
 
-                ImageIcon.Source = CreateBitmapSource(path);
+                ImageIcon.Source = BitmapExtensions.BitmapFromFile(path);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(ImageIcon.Tag.ToString()));
             }
         }
@@ -674,32 +668,16 @@ namespace PlayniteUI
                 return;
             }
 
-            ImageIcon.Source = CreateBitmapSource(icon);
+            ImageIcon.Source = BitmapExtensions.BitmapFromFile(icon);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(ImageIcon.Tag.ToString()));
-        }
-
-        private void ButtonDefaulIcon_Click(object sender, RoutedEventArgs e)
-        {
-            var image = new BitmapImage(new Uri(Game.DefaultIcon, UriKind.Relative));
-            ImageIcon.Source = image;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(ImageIcon.Tag.ToString()));
-        }
-
-        private void ButtonDefaulImage_Click(object sender, RoutedEventArgs e)
-        {
-            if (Game.Provider == Provider.Custom)
-            {
-                Game.Icon = Game.DefaultIcon;
-            }
         }
 
         private void ButtonSelectImage_Click(object sender, RoutedEventArgs e)
         {
-            var path = SelectImage("Image Files (*.bmp, *.jpg, *.png, *.gif)|*.bmp;*.jpg*;*.png;*.gif");
+            var path = Dialogs.SelectImageFile(this);
             if (!string.IsNullOrEmpty(path))
             {
-                var bitmap = new BitmapImage(new Uri(path));
-                ImageImage.Source = (bitmap);
+                ImageImage.Source = BitmapExtensions.BitmapFromFile(path);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(ImageImage.Tag.ToString()));
             }
         }
@@ -789,6 +767,9 @@ namespace PlayniteUI
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             positionManager.RestoreSizeAndLocation(Settings.Instance);
+            var platforms = GameDatabase.Instance.PlatformsCollection.FindAll().OrderBy(a => a.Name).ToList();
+            platforms.Insert(0, new Platform(string.Empty));
+            ComboPlatforms.ItemsSource = platforms;
         }
 
         private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -961,6 +942,12 @@ namespace PlayniteUI
             {
                 TextInstallDir.Text = dialog.FileName;
             }
+        }
+
+        private void ComboPlatforms_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var obj = (FrameworkElement)sender;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(obj.Tag.ToString()));
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using Playnite.Database;
 using NLog;
+using System.IO;
 
 namespace PlayniteUI
 {
@@ -27,10 +28,20 @@ namespace PlayniteUI
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            if (value == null)
+            {
+                return DependencyProperty.UnsetValue;
+            }            
+
             var imageId = (string)value;
             if (string.IsNullOrEmpty(imageId))
             {
                 return DependencyProperty.UnsetValue;
+            }
+
+            if (imageId.StartsWith("resources:"))
+            {
+                return imageId.Replace("resources:", "");
             }
 
             if (Cache.ContainsKey(imageId))
@@ -39,6 +50,11 @@ namespace PlayniteUI
             }
             else
             {
+                if (File.Exists(imageId))
+                {
+                    return imageId;
+                }
+
                 var imageData = GameDatabase.Instance.GetFileImage(imageId);
                 if (imageData == null)
                 {
