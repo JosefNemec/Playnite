@@ -167,5 +167,20 @@ namespace PlayniteUI
             var platform = ListPlatforms.SelectedItem as Platform;
             platform.Cover = path;
         }
+
+        private void ButtonAddEmulator_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonRemoveEmulator_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

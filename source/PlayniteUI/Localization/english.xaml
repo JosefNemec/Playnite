@@ -63,6 +63,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="AddPlatformTitle">Add Platform</sys:String>
     <sys:String x:Key="SelectIconTitle">Select Icon</sys:String>
     <sys:String x:Key="SelectCoverTitle">Select Cover</sys:String>
+    <sys:String x:Key="AddEmulatorTitle">Add Emulator</sys:String>
 
 
     <!--First Time Wizard-->
