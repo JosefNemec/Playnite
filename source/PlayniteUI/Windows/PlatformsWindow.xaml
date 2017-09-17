@@ -9,7 +9,7 @@
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="{DynamicResource PlatformsWindowTitle}" Width="580" Height="600"
+        Title="{DynamicResource PlatformsWindowTitle}" Width="680" Height="600"
         AutomationProperties.AutomationId="WindowPlatforms"
         Background="{StaticResource NormalBrush}">
 
@@ -41,8 +41,8 @@
                 <TabItem Header="{DynamicResource PlatformsTitle}">
                     <Grid Margin="5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="6*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -106,8 +106,8 @@
                 <TabItem Header="{DynamicResource EmulatorsTitle}">
                     <Grid Margin="5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="6*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -148,6 +148,19 @@
                             <StackPanel Grid.Row="0" Margin="5">
                                 <TextBlock Text="{DynamicResource GameNameTitle}" Margin="0,0,0,0" />
                                 <TextBox Name="TextEmulatorNAme" Margin="0,5,0,0" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Margin="5">
+                                <TextBlock Text="" Margin="0,0,0,0" />
+                                <ComboBox Name="ComboEmulatorCategories" Margin="0,5,0,0">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <CheckBox />
+                                                <TextBlock Text="{Binding Name}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
                             </StackPanel>
                         </Grid>
                     </Grid>

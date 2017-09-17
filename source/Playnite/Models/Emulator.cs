@@ -22,14 +22,14 @@ namespace Playnite.Models
             }
         }
 
-        private int? platformId;
-        public int? PlatformId
+        private List<int> platforms;
+        public List<int> Platforms
         {
-            get => platformId;
+            get => platforms;
             set
             {
-                platformId = value;
-                OnPropertyChanged("PlatformId");
+                platforms = value;
+                OnPropertyChanged("Platforms");
             }
         }
 
