@@ -51,8 +51,8 @@ namespace PlayniteServices.Controllers.Steam
                 {
                     lastRequest = DateTime.Now;
                     return;
-                }
-                Console.WriteLine("waiting for -----" + ((int)requestDelay - (DateTime.Now - lastRequest).Milliseconds).ToString());
+                }                
+
                 Thread.Sleep((int)requestDelay - (DateTime.Now - lastRequest).Milliseconds);
                 lastRequest = DateTime.Now;
             }            
