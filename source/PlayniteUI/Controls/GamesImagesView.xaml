@@ -33,7 +33,7 @@
         <CommandBinding Command="{x:Static commands:GenericCommands.ZoomOutCmd}" Executed="ZoomOut_Executed" />
     </UserControl.CommandBindings>
 
-    <Grid Background="{StaticResource NormalBrushDark}">
+    <Grid>
         <DockPanel>
             <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Bottom">
                 <StackPanel Margin="5" Orientation="Horizontal">

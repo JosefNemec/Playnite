@@ -8,10 +8,10 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
+        d:DesignStyle="{StaticResource WindowDesignStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
         Title="Playnite Settings" Width="580" Height="420"
-        AutomationProperties.AutomationId="WindowSettings"
-        Background="{StaticResource NormalBrush}">
+        AutomationProperties.AutomationId="WindowSettings">
 
     <controls:WindowBase.Resources>
         <local:NegateConverter x:Key="NegateConverter" />
@@ -19,17 +19,18 @@
         <sys:Double x:Key="IconSize">24</sys:Double>
         
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
-    </controls:WindowBase.Resources>    
-    
-    <Border Padding="5" Margin="0,5,0,0" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+    </controls:WindowBase.Resources>
+
+    <Border Margin="0,10,0,0" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
         <DockPanel>
-            <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="-5,0,-5,-5"
-                       Background="{StaticResource NormalBrush}">
-                <Button Name="ButtonCancel" Click="ButtonCancel_Click" Content="Cancel" DockPanel.Dock="Right"
-                        Style="{StaticResource BottomButton}" />
-                <Button Name="ButtonOK" Click="ButtonOK_Click" Content="OK" DockPanel.Dock="Right"
-                        Style="{StaticResource BottomButton}" />
-            </DockPanel>
+            <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+                <DockPanel LastChildFill="False" Margin="5">
+                    <Button Name="ButtonCancel" Click="ButtonCancel_Click" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right"
+                            Style="{StaticResource BottomButton}" />
+                    <Button Name="ButtonOK" Click="ButtonOK_Click" Content="{DynamicResource SaveLabel}" DockPanel.Dock="Right" 
+                            Style="{StaticResource BottomButton}" />
+                </DockPanel>
+            </Border>
             <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Left">                
                 <TabItem>
                     <TabItem.Header>
@@ -52,7 +53,7 @@
                             <Button Name="ButtonBrowserDbFile" Content="..." DockPanel.Dock="Right" Padding="5,0,5,0"
                                     Click="ButtonBrowserDbFile_Click"/>                        
                             <TextBox Name="TextDatabase" Text="{Binding DatabasePath, UpdateSourceTrigger=Explicit}"
-                                     DockPanel.Dock="Left" Margin="0,0,5,0"/>
+                                        DockPanel.Dock="Left" Margin="0,0,5,0"/>
                         </DockPanel>
 
                         <Grid Margin="0,20,0,0">
@@ -66,20 +67,20 @@
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Column="0">
                                 <CheckBox Name="CheckEnableTray" Content="Show Tray Icon" Margin="5,0,0,0"
-                                          IsChecked="{Binding EnableTray, UpdateSourceTrigger=Explicit}" />
+                                            IsChecked="{Binding EnableTray, UpdateSourceTrigger=Explicit}" />
                                 <CheckBox Name="CheckMinimizeToTray" Content="Minimize to tray" Margin="20,10,5,5"
-                                          IsChecked="{Binding MinimizeToTray, UpdateSourceTrigger=Explicit}"
-                                          IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
+                                            IsChecked="{Binding MinimizeToTray, UpdateSourceTrigger=Explicit}"
+                                            IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
                                 <CheckBox Name="CheckCloseToTray" Content="Close to tray" Margin="20,5,5,5"
-                                          IsChecked="{Binding CloseToTray, UpdateSourceTrigger=Explicit}"
-                                          IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
+                                            IsChecked="{Binding CloseToTray, UpdateSourceTrigger=Explicit}"
+                                            IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
                             </StackPanel>
                             <CheckBox Name="CheckMinimizeLaunch" Content="Minimize after starting game" VerticalAlignment="Top"
-                                      IsChecked="{Binding MinimizeAfterLaunch, UpdateSourceTrigger=Explicit}" Grid.Column="1"/>
+                                        IsChecked="{Binding MinimizeAfterLaunch, UpdateSourceTrigger=Explicit}" Grid.Column="1"/>
 
                             <CheckBox Name="CheckUpdateLibStartup" Margin="5,15,5,5" Grid.Row="1" Grid.ColumnSpan="2"
-                                      Content="{DynamicResource SettingsUpdateLibStartup}" ToolTip="{DynamicResource SettingsUpdateLibStartupTooltip}" 
-                                      IsChecked="{Binding UpdateLibStartup, UpdateSourceTrigger=Explicit}"/>
+                                        Content="{DynamicResource SettingsUpdateLibStartup}" ToolTip="{DynamicResource SettingsUpdateLibStartupTooltip}" 
+                                        IsChecked="{Binding UpdateLibStartup, UpdateSourceTrigger=Explicit}"/>
                         </Grid>
                     </StackPanel>
                 </TabItem>                
@@ -92,17 +93,17 @@
                     </TabItem.Header>
                     <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding SteamSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
-                                  Name="CheckSteamEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
-                                  DockPanel.Dock="Top" Margin="5"/>
+                                    Name="CheckSteamEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                    DockPanel.Dock="Top" Margin="5"/>
 
                         <RadioButton Name="RadioInstalledSteam" Content="{DynamicResource SettingsImportInstalledLabel}"
-                                     IsChecked="{Binding SteamSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
-                                     IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
-                                     DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                                        IsChecked="{Binding SteamSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
+                                        IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
+                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <RadioButton Name="RadioLibrarySteam" Content="{DynamicResource SettingsImportLibraryLabel}"
-                                     IsChecked="{Binding SteamSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
-                                     IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
-                                     DockPanel.Dock="Top" Margin="20,5,5,0"/>
+                                        IsChecked="{Binding SteamSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
+                                        IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
+                                        DockPanel.Dock="Top" Margin="20,5,5,0"/>
 
                         <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
                             <TextBlock Text="Specify user library by:" DockPanel.Dock="Top" Margin="5"/>
@@ -117,11 +118,11 @@
                                 </Grid.RowDefinitions>
 
                                 <RadioButton Content="Name" Name="RadioSteamLibName" GroupName="steamsource"
-                                             IsChecked="{Binding SteamSettings.IdSource, UpdateSourceTrigger=Explicit, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.Name}}"
-                                             Grid.Column="0" Grid.Row="0" Margin="5"/>
+                                                IsChecked="{Binding SteamSettings.IdSource, UpdateSourceTrigger=Explicit, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.Name}}"
+                                                Grid.Column="0" Grid.Row="0" Margin="5"/>
                                 <RadioButton Content="Local User" Name="RadioSteamLibAccount" GroupName="steamsource" 
-                                             IsChecked="{Binding SteamSettings.IdSource, UpdateSourceTrigger=Explicit, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.LocalUser}}"
-                                             Grid.Column="0" Grid.Row="1" Margin="5"/>
+                                                IsChecked="{Binding SteamSettings.IdSource, UpdateSourceTrigger=Explicit, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.LocalUser}}"
+                                                Grid.Column="0" Grid.Row="1" Margin="5"/>
 
                                 <DockPanel Grid.Column="1" Grid.Row="0" Margin="5">
                                     <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">           
@@ -130,14 +131,14 @@
                                         </Hyperlink>
                                     </TextBlock>
                                     <TextBox Text="{Binding SteamSettings.AccountName, UpdateSourceTrigger=Explicit}"
-                                             IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}"
-                                             Name="TextSteamAccountName" DockPanel.Dock="Left" Margin="0,0,10,0" />
+                                                IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}"
+                                                Name="TextSteamAccountName" DockPanel.Dock="Left" Margin="0,0,10,0" />
                                 </DockPanel>
                                 <ComboBox IsReadOnly="True" Name="ComboSteamAccount" DisplayMemberPath="AccountName"
-                                          SelectedValuePath="Id" SelectedValue="{Binding SteamSettings.AccountId, UpdateSourceTrigger=Explicit}"
-                                          ItemsSource="{Binding SteamUsers, RelativeSource={RelativeSource AncestorType=Window}}"
-                                          IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"
-                                          Grid.Column="1" Grid.Row="1" Margin="5" />
+                                            SelectedValuePath="Id" SelectedValue="{Binding SteamSettings.AccountId, UpdateSourceTrigger=Explicit}"
+                                            ItemsSource="{Binding SteamUsers, RelativeSource={RelativeSource AncestorType=Window}}"
+                                            IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"
+                                            Grid.Column="1" Grid.Row="1" Margin="5" />
                             </Grid>
                         </DockPanel>
                         <TextBlock Text="Import Steam Categories:" DockPanel.Dock="Top" Margin="5,20,5,5" />
@@ -145,8 +146,8 @@
                             <Button Content="Import" Name="ButtonImportSteamCategories" Click="ButtonImportSteamCategories_Click" />
                             <TextBlock Text="from account:" VerticalAlignment="Center" Margin="10,0,0,0"/>
                             <ComboBox Name="ComboSteamCatImport" IsReadOnly="True" Margin="10,0,0,0"
-                                      DisplayMemberPath="AccountName" SelectedValuePath="Id" SelectedIndex="0"
-                                      ItemsSource="{Binding SteamUsers, RelativeSource={RelativeSource AncestorType=Window}}" />
+                                        DisplayMemberPath="AccountName" SelectedValuePath="Id" SelectedIndex="0"
+                                        ItemsSource="{Binding SteamUsers, RelativeSource={RelativeSource AncestorType=Window}}" />
                         </StackPanel>
                     </DockPanel>
                 </TabItem>
@@ -159,19 +160,19 @@
                     </TabItem.Header>
                     <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding GOGSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
-                                  Name="CheckGogEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
-                                  DockPanel.Dock="Top" Margin="5"/>
+                                    Name="CheckGogEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                    DockPanel.Dock="Top" Margin="5"/>
 
                         <RadioButton Name="RadioInstalledGOG" Content="{DynamicResource SettingsImportInstalledLabel}"
-                                     IsChecked="{Binding GOGSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
-                                     IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
-                                     DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                                        IsChecked="{Binding GOGSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
+                                        IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
+                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <RadioButton Name="RadioLibraryGOG" Content="{DynamicResource SettingsImportLibraryLabel}"
-                                     IsChecked="{Binding GOGSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
-                                     IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
-                                     DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                                        IsChecked="{Binding GOGSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
+                                        IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
+                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
-                                   LastChildFill="False">
+                                    LastChildFill="False">
                             <Button Content="Authenticate" Name="ButtonGogAuth" Click="ButtonGogAuth_Click"/>
                             <TextBlock Text="Login status:" VerticalAlignment="Center" Margin="10,0,10,0"/>
                             <TextBlock VerticalAlignment="Center">
@@ -184,11 +185,11 @@
                             </TextBlock>
                         </DockPanel>
                         <CheckBox IsChecked="{Binding GOGSettings.UseRealIcon, UpdateSourceTrigger=Explicit}" Visibility="Collapsed"
-                                  Name="CheckGogIcons" Content="Use executable icons instead of GOG icon images"
-                                  DockPanel.Dock="Top" Margin="5,15,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"/>
+                                    Name="CheckGogIcons" Content="Use executable icons instead of GOG icon images"
+                                    DockPanel.Dock="Top" Margin="5,15,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"/>
                         <CheckBox IsChecked="{Binding GOGSettings.RunViaGalaxy, UpdateSourceTrigger=Explicit}"
-                                  Name="CheckGogRunGalaxy" Content="Start games via Galaxy client (will count game time)"
-                                  DockPanel.Dock="Top" Margin="5,15,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"/>
+                                    Name="CheckGogRunGalaxy" Content="Start games via Galaxy client (will count game time)"
+                                    DockPanel.Dock="Top" Margin="5,15,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"/>
                     </DockPanel>
                 </TabItem>
                 <TabItem>
@@ -200,19 +201,19 @@
                     </TabItem.Header>
                     <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding OriginSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
-                                  Name="CheckOriginEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
-                                  DockPanel.Dock="Top" Margin="5"/>
+                                    Name="CheckOriginEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                    DockPanel.Dock="Top" Margin="5"/>
 
                         <RadioButton Name="RadioInstalledOrigin" Content="{DynamicResource SettingsImportInstalledLabel}"
-                                     IsChecked="{Binding OriginSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
-                                     IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
-                                     DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                                        IsChecked="{Binding OriginSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
+                                        IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
+                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <RadioButton Name="RadioLibraryOrigin" Content="{DynamicResource SettingsImportLibraryLabel}"
-                                     IsChecked="{Binding OriginSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
-                                     IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
-                                     DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                                        IsChecked="{Binding OriginSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
+                                        IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
+                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
-                                   LastChildFill="False">
+                                    LastChildFill="False">
                             <Button Content="Authenticate" Name="ButtonOriginAuth" Click="ButtonOriginAuth_Click"/>
                             <TextBlock Text="Login status:" VerticalAlignment="Center" Margin="10,0,10,0"/>
                             <TextBlock VerticalAlignment="Center">
@@ -235,12 +236,12 @@
                     </TabItem.Header>
                     <DockPanel Margin="10" LastChildFill="False">
                         <CheckBox IsChecked="{Binding UplaySettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
-                                  Name="CheckUplayEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
-                                  DockPanel.Dock="Top" Margin="5"/>
+                                    Name="CheckUplayEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                    DockPanel.Dock="Top" Margin="5"/>
                         <RadioButton Name="RadioInstalledUplay" Content="{DynamicResource SettingsImportInstalledLabel}"
-                                     IsChecked="{Binding UplaySettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
-                                     IsEnabled="{Binding IsChecked, ElementName=CheckUplayEnabled}"
-                                     DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                                        IsChecked="{Binding UplaySettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
+                                        IsEnabled="{Binding IsChecked, ElementName=CheckUplayEnabled}"
+                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
                     </DockPanel>
                 </TabItem>
             </TabControl>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PlayniteUI.Windows"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
-        Background="{StaticResource NormalBrush}"
+        d:DesignStyle="{StaticResource WindowDesignStyle}"
         Closing="Window_Closing"
         Title="Playnite Notifications" Height="300" Width="500" WindowStartupLocation="CenterScreen"
         AutomationProperties.AutomationId="WindowNotifications">
@@ -15,24 +15,22 @@
         <local:NotificationIconConverter x:Key="NotificationIconConverter" />
     </controls:WindowBase.Resources>
 
-    <Border Margin="0,5,0,0" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="2">
-            <ListBox Name="ListNotifications" BorderThickness="0" MouseDoubleClick="ListNotifications_MouseDoubleClick" SelectionMode="Single">
-                <ListBox.Resources>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ScrollContentPresenter}, Path=ActualWidth}" />
-                    </Style>
-                </ListBox.Resources>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <DockPanel DockPanel.Dock="Top" Margin="0,5,5,5">
-                            <Image Source="{Binding Type, Converter={StaticResource NotificationIconConverter}}"
-                               Height="20" DockPanel.Dock="Left" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" />
-                            <TextBlock Text="{Binding Text}" VerticalAlignment="Center" DockPanel.Dock="Left" Margin="5,0,0,0" TextWrapping="Wrap" Foreground="{StaticResource TextBrush}"/>
-                        </DockPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </ScrollViewer>
-    </Border>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="2">
+        <ListBox Name="ListNotifications" BorderThickness="0" MouseDoubleClick="ListNotifications_MouseDoubleClick" SelectionMode="Single">
+            <ListBox.Resources>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ScrollContentPresenter}, Path=ActualWidth}" />
+                </Style>
+            </ListBox.Resources>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel DockPanel.Dock="Top" Margin="0,5,5,5">
+                        <Image Source="{Binding Type, Converter={StaticResource NotificationIconConverter}}"
+                            Height="20" DockPanel.Dock="Left" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" />
+                        <TextBlock Text="{Binding Text}" VerticalAlignment="Center" DockPanel.Dock="Left" Margin="5,0,0,0" TextWrapping="Wrap" Foreground="{StaticResource TextBrush}"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </ScrollViewer>
 </controls:WindowBase>

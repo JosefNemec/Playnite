@@ -54,17 +54,17 @@
     <Color x:Key="TextColor">#f2f2f2</Color>
     <Color x:Key="TextColorDark">#9e9e9e</Color>
     <Color x:Key="MainColorLight">#CCC5B9</Color>
-    <Color x:Key="MainColor">#403D39</Color>
+    <Color x:Key="MainColor">#4c4c4c</Color>
     <Color x:Key="MainColorDark">#252422</Color>
     <Color x:Key="HoverColor">#247BA0</Color>
     <Color x:Key="DefaultColor">#FF9BB1C5</Color>
     <Color x:Key="IndicatorColor">#019fcb</Color>
-    <Color x:Key="PopupBackgroundColor">#252422</Color>
+    <Color x:Key="PopupBackgroundColor">#171e26</Color>
     <Color x:Key="PopupBorderColor">#006b99</Color>
     
     <SolidColorBrush x:Key="LightBrush" Color="#FF333333" />
     <SolidColorBrush x:Key="ShadeBrush" Color="#FF434343" />
-    <SolidColorBrush x:Key="ControlBackgroundBrush" Color="{StaticResource MainColorDark}" />
+    <SolidColorBrush x:Key="ControlBackgroundBrush" Color="Transparent" />
 
     <DynamicResource x:Key="TopGradientSelectColor" ResourceKey="IndicatorColor" />
     <DynamicResource x:Key="BottomGradientSelectColor" ResourceKey="IndicatorColor" />
@@ -81,7 +81,17 @@
     <SolidColorBrush x:Key="HoverBrush" Color="{StaticResource IndicatorColor}" />
     <SolidColorBrush x:Key="GlyphBrush" Color="{StaticResource IndicatorColor}" />
     <SolidColorBrush x:Key="IndicatorBrush" Color="{StaticResource IndicatorColor}" />
-    <SolidColorBrush x:Key="PopupBackgroundBrush" Color="{StaticResource PopupBackgroundColor}" />
+    
+    <LinearGradientBrush  x:Key="PopupBackgroundBrush" StartPoint="0.4,0" EndPoint="0.5,1.2" >
+        <GradientStop Color="{StaticResource MainColorDark}" Offset="0"/>
+        <GradientStop Color="#182028" Offset="0.9"/>
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="WindowBackgourndBrush" StartPoint="0.5,-0.2" EndPoint="0.4,1" >
+        <GradientStop Color="#1F2933" Offset="0"/>
+        <GradientStop Color="{StaticResource MainColorDark}" Offset="0.4"/>
+    </LinearGradientBrush>
+
     <SolidColorBrush x:Key="PopupBorderBrush" Color="{StaticResource PopupBorderColor}" />
     
     <Thickness x:Key="PopupBorderThickness">2</Thickness>
@@ -178,7 +188,7 @@
     </Style>
 
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
-        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource NormalBrushDark}" />
         <Setter Property="Foreground" Value="{DynamicResource IndicatorBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
         <Setter Property="BorderThickness" Value="2" />
@@ -324,7 +334,7 @@
         </ControlTemplate.Resources>
         <BulletDecorator Background="Transparent" x:Name="bulletDecorator">
             <BulletDecorator.Bullet>
-                <Grid Width="18" Height="18">
+                <Grid Width="18" Height="18" Background="{StaticResource NormalBrushDark}">
                     <Rectangle Height="16" Margin="1" x:Name="Background" Width="16" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" />
                     <Rectangle Height="16" Margin="1" x:Name="BackgroundOverlay" Width="16" Opacity="0" Fill="{x:Null}" Stroke="{StaticResource HoverBrush}" StrokeThickness="2" />
                     <Rectangle Height="16" x:Name="PressedRectangle" Width="16" IsHitTestVisible="false" Opacity="0" Stroke="{StaticResource HoverBrush}" StrokeThickness="1" />
@@ -3044,7 +3054,7 @@
     </Style>
 
     <Style x:Key="HighlightBorder" TargetType="Border">
-        <Setter Property="BorderBrush" Value="{StaticResource NormalBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource NormalBorderBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="BorderBrush" Value="{StaticResource GlyphBrush}" />
@@ -3097,27 +3107,22 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="WindowStyle" TargetType="Window">        
+    <Style x:Key="WindowDesignStyle" TargetType="Window">
+        <Setter Property="Background" Value="{StaticResource WindowBackgourndBrush}"/>
+    </Style>
+
+    <Style x:Key="WindowStyle" TargetType="Window">
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
-                <WindowChrome CaptionHeight="25" CornerRadius="0" ResizeBorderThickness="4" NonClientFrameEdges ="None"
-                              UseAeroCaptionButtons="False" GlassFrameThickness="0"/>
+                <WindowChrome CaptionHeight="25" CornerRadius="0" ResizeBorderThickness="4" NonClientFrameEdges ="None" UseAeroCaptionButtons="False" GlassFrameThickness="0"/>
             </Setter.Value>
         </Setter>        
         <Setter Property="Template">            
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
                     <AdornerDecorator>
-                        <Border x:Name="WindowBorder" Background="{StaticResource NormalBrushDark}" BorderBrush="{StaticResource GlyphBrush}" CornerRadius="0" BorderThickness="1">
+                        <Border x:Name="WindowBorder" BorderBrush="#3e6184" CornerRadius="0" BorderThickness="1" Background="{StaticResource WindowBackgourndBrush}">
                             <Grid>
-                                <Rectangle VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="25">
-                                    <Rectangle.Fill>
-                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                            <GradientStop Color="{StaticResource MainColor}" Offset="0"/>
-                                            <GradientStop Color="{StaticResource MainColorDark}" Offset="0.7"/>
-                                        </LinearGradientBrush>
-                                    </Rectangle.Fill>
-                                </Rectangle>
                                 <ContentPresenter Margin="0,25,0,0"/>
                                 <DockPanel DockPanel.Dock="Top" LastChildFill="False">
                                     <DockPanel DockPanel.Dock="Top" LastChildFill="False">                                        

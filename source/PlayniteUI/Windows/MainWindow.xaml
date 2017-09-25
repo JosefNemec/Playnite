@@ -12,9 +12,9 @@
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         xmlns:tray="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
+        d:DesignStyle="{StaticResource WindowDesignStyle}"
         Title="Playnite"
-        Width="1200" Height="900"  WindowStartupLocation="CenterScreen" Icon="/Images/applogo.ico"
-        Background="{StaticResource ControlBackgroundBrush}"
+        Width="1200" Height="900"  WindowStartupLocation="CenterScreen" Icon="/Images/applogo.ico"        
         Loaded="Window_Loaded" Closed="WindowMain_Closed" Closing="WindowMain_Closing" StateChanged="WindowMain_StateChanged"
         LocationChanged="Window_LocationChanged" SizeChanged="Window_SizeChanged"
         x:Name="WindowMain" ShowTitle="False"
@@ -111,7 +111,7 @@
             </tray:TaskbarIcon.ContextMenu>
         </tray:TaskbarIcon>
 
-        <DockPanel LastChildFill="True" Background="{StaticResource NormalBrushDark}" Grid.Row="0" Grid.Column="0">
+        <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="0">
             <DockPanel MouseUp="ImageLogo_MouseDown" Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True"
                        Opacity="{Binding IsMouseOver, Converter={StaticResource OpacityBoolConverter}, ConverterParameter={StaticResource True}, RelativeSource={RelativeSource Self}}">
                 <Border DockPanel.Dock="Left" Background="Transparent">
