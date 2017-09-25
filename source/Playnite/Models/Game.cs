@@ -201,6 +201,20 @@ namespace Playnite.Models
             }
         }
 
+        private string isoPath;
+        public string IsoPath
+        {
+            get
+            {
+                return isoPath;
+            }
+
+            set
+            {
+                isoPath = value;
+                OnPropertyChanged("IsoPath");
+            }
+        }
 
         [BsonIgnore]
         public bool IsInstalled
@@ -457,6 +471,11 @@ namespace Playnite.Models
 
         public void PlayGame()
         {
+            PlayGame(null);
+        }
+
+        public void PlayGame(List<Emulator> emulators)
+        {
             if (PlayTask == null)
             {
                 return;
@@ -470,7 +489,7 @@ namespace Playnite.Models
                 return;
             }
 
-            PlayTask.Activate(this);
+            GameHandler.ActivateTask(PlayTask, this, emulators);
         }
 
         public void UninstallGame()
@@ -574,6 +593,7 @@ namespace Playnite.Models
 
             var result = inputString;
             result = result.Replace("{InstallDir}", InstallDirectory);
+            result = result.Replace("{ImagePath}", IsoPath);
             return result;
         }
     }

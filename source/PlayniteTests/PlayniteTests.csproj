@@ -111,6 +111,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Database\GameDatabaseEmulatorsTests.cs" />
     <Compile Include="Database\GameDatabaseEventTests.cs" />
     <Compile Include="Database\GameDatabaseTests.cs" />
     <Compile Include="GamesStatsTests.cs" />

@@ -221,6 +221,11 @@ namespace Playnite.Database
             get; private set;
         }
 
+        public LiteCollection<Emulator> EmulatorsCollection
+        {
+            get; private set;
+        }
+
         public LiteCollection<IGame> GamesCollection
         {
             get; private set;
@@ -336,6 +341,7 @@ namespace Playnite.Database
 
             GamesCollection = Database.GetCollection<IGame>("games");
             PlatformsCollection = Database.GetCollection<Platform>("platforms");
+            EmulatorsCollection = Database.GetCollection<Emulator>("emulators");
             DatabaseOpened?.Invoke(this, null);
             return Database;
         }
@@ -350,6 +356,7 @@ namespace Playnite.Database
             Database.Dispose();
             GamesCollection = null;
             PlatformsCollection = null;
+            EmulatorsCollection = null;
         }
 
         public void AddGame(IGame game)
@@ -491,6 +498,83 @@ namespace Playnite.Database
             }
 
             OnPlatformUpdated(updates);
+        }
+
+        public void AddEmulator(Emulator emulator)
+        {
+            CheckDbState();
+
+            lock (fileLock)
+            {
+                EmulatorsCollection.Insert(emulator);
+            }
+        }
+
+        public void AddEmulator(IEnumerable<Emulator> emulators)
+        {
+            CheckDbState();
+            if (emulators == null || emulators.Count() == 0)
+            {
+                return;
+            }
+
+            lock (fileLock)
+            {
+                foreach (var emulator in emulators)
+                {
+                    EmulatorsCollection.Insert(emulator);
+                }
+            }
+        }
+
+        public void RemoveEmulator(Emulator emulator)
+        {
+            CheckDbState();
+
+            lock (fileLock)
+            {
+                EmulatorsCollection.Delete(emulator.Id);
+            }
+        }
+
+        public void RemoveEmulator(IEnumerable<Emulator> emulators)
+        {
+            CheckDbState();
+            if (emulators == null || emulators.Count() == 0)
+            {
+                return;
+            }
+
+            lock (fileLock)
+            {
+                foreach (var emulator in emulators)
+                {
+                    EmulatorsCollection.Delete(emulator.Id);
+                }
+            }
+        }
+
+        public void UpdateEmulator(Emulator emulator)
+        {
+            CheckDbState();
+
+            lock (fileLock)
+            {
+                EmulatorsCollection.Update(emulator);
+            }
+        }
+
+        public void UpdateEmulator(List<Emulator> emulators)
+        {
+            CheckDbState();
+
+            lock (fileLock)
+            {
+                foreach (var emulator in emulators)
+                {
+                    EmulatorsCollection.Update(emulator);
+                }
+            }
         }
 
         public void AddImage(string id, string name, byte[] data)

@@ -11,13 +11,14 @@
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
         Title="{DynamicResource PlatformsWindowTitle}" Width="680" Height="600"
         AutomationProperties.AutomationId="WindowPlatforms"
+        x:Name="WindowPlatforms"
         Background="{StaticResource NormalBrush}">
 
     <controls:WindowBase.Resources>
         <local:NegateConverter x:Key="NegateConverter" />
         <local:EnumConverter x:Key="EnumConverter" />
-        <local:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
-        
+        <local:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />      
+
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
         <Style x:Key="EnableOnSelectPlatformButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
             <Style.Triggers>
@@ -37,11 +38,11 @@
                 <Button Name="ButtonOK" Click="ButtonOK_Click" Content="{DynamicResource SaveLabel}" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}" />
             </DockPanel>
-            <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Top" SelectionChanged="TabControl_SelectionChanged">                
-                <TabItem Header="{DynamicResource PlatformsTitle}">
+            <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Top" Name="TabMainTabControl">
+                <TabItem Header="{DynamicResource PlatformsTitle}" IsSelected="{Binding IsPlatformsSelected, ElementName=WindowPlatforms}">
                     <Grid Margin="5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="4*" MaxWidth="250"/>
                             <ColumnDefinition Width="6*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -58,7 +59,8 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <ListBox Name="ListPlatforms" Grid.ColumnSpan="2" Grid.Row="0" Margin="5,5,5,0">
+                            <ListBox Name="ListPlatforms" Grid.ColumnSpan="2" Grid.Row="0" Margin="5,5,5,0"
+                                     ItemsSource="{Binding Platforms, ElementName=WindowPlatforms}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name, Mode=OneWay}" Margin="5"/>
@@ -103,10 +105,10 @@
                         </Grid>
                     </Grid>                    
                 </TabItem>
-                <TabItem Header="{DynamicResource EmulatorsTitle}">
+                <TabItem Header="{DynamicResource EmulatorsTitle}" IsSelected="{Binding IsEmulatorsSelected, ElementName=WindowPlatforms}">
                     <Grid Margin="5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="4*" MaxWidth="250"/>
                             <ColumnDefinition Width="6*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -117,27 +119,33 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <ListBox Name="ListEmulators" Grid.ColumnSpan="2" Grid.Row="0" Margin="5,5,5,0">
+                            <ListBox Name="ListEmulators" Grid.ColumnSpan="3" Grid.Row="0" Margin="5,5,5,0"
+                                     ItemsSource="{Binding Emulators, ElementName=WindowPlatforms}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name, Mode=OneWay}" Margin="5"/>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
-                            <Button Content="{DynamicResource AddEmulatorTitle}" Name="ButtonAddEmulator" Click="ButtonAddEmulator_Click"
+                            <Button Content="{DynamicResource AddTitle}" Name="ButtonAddEmulator" Click="ButtonAddEmulator_Click"
                                     Grid.Row="1" Grid.Column="0" Margin="5"/>
-                            <Button Content="{DynamicResource RemoveTitle}" Name="ButtonRemoveEmulator" Click="ButtonRemoveEmulator_Click"
+                            <Button Content="{DynamicResource CopyTitle}" Name="ButtonCopyEmulator" Click="ButtonCopyEmulator_Click"
                                     Grid.Row="1" Grid.Column="1" Margin="5"/>
+                            <Button Content="{DynamicResource RemoveTitle}" Name="ButtonRemoveEmulator" Click="ButtonRemoveEmulator_Click"
+                                    Grid.Row="1" Grid.Column="2" Margin="5"/>
                         </Grid>
 
-                        <Grid Grid.Column="1" DataContext="{Binding SelectedItem, ElementName=ListPlatforms, Mode=OneWay}">
+                        <Grid Grid.Column="1" DataContext="{Binding SelectedItem, ElementName=ListEmulators, Mode=OneWay}">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
@@ -147,20 +155,34 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Row="0" Margin="5">
                                 <TextBlock Text="{DynamicResource GameNameTitle}" Margin="0,0,0,0" />
-                                <TextBox Name="TextEmulatorNAme" Margin="0,5,0,0" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBox Name="TextEmulatorName" Margin="0,5,0,0" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
                             <StackPanel Grid.Row="1" Margin="5">
-                                <TextBlock Text="" Margin="0,0,0,0" />
-                                <ComboBox Name="ComboEmulatorCategories" Margin="0,5,0,0">
+                                <TextBlock Text="{DynamicResource SupportedPlatformsTitle}" Margin="0,0,0,0" />
+                                <ComboBox Name="ComboEmulatorCategories" Margin="0,5,0,0" IsReadOnly="True" IsEditable="True" 
+                                          ItemsSource="{Binding PlatformsList}" Text="{Binding PlatformsString, Mode=OneWay}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <CheckBox />
-                                                <TextBlock Text="{Binding Name}"/>
-                                            </StackPanel>
+                                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Name}" />
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Margin="5">
+                                <TextBlock Text="{DynamicResource ExecutableTitle}" Margin="0,0,0,0" />
+                                <DockPanel Margin="0,5,0,0">
+                                    <Button Name="ButtonLocateExe" Content="..." Height="{Binding ActualHeight, ElementName=TextExecutable}" DockPanel.Dock="Right" Margin="5,0,0,0"
+                                            Click="ButtonSelectExe_Click"/>
+                                    <TextBox Name="TextExecutable" Text="{Binding Executable,UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left"/>
+                                </DockPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Margin="5">
+                                <TextBlock Text="{DynamicResource ArgumentsTitle}" Margin="0,0,0,0" />
+                                <TextBox Name="TextArguments" Margin="0,5,0,0" Text="{Binding Arguments,UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="4" Margin="5">
+                                <TextBlock Text="{DynamicResource WorkingDirTitle}" Margin="0,0,0,0" />
+                                <TextBox Name="TextWorkdir" Margin="0,5,0,0" Text="{Binding WorkingDirectory,UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
                         </Grid>
                     </Grid>

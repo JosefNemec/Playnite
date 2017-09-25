@@ -115,7 +115,7 @@ namespace PlayniteUI
             {
                 if (game.IsInstalled)
                 {
-                    game.PlayGame();
+                    game.PlayGame(GameDatabase.Instance.EmulatorsCollection.FindAll().ToList());
                 }
                 else
                 {
@@ -207,62 +207,6 @@ namespace PlayniteUI
                 logger.Error(exc, "Cannot un-install game: ");
                 PlayniteMessageBox.Show("Cannot un-install game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        public static Game GetMultiGameEditObject(IEnumerable<IGame> games)
-        {
-            var dummyGame = new Game();
-            var firstGame = games.First();
-
-            var firstName = firstGame.Name;
-            if (games.All(a => a.Name == firstName) == true)
-            {
-                dummyGame.Name = firstName;
-            }
-
-            var firstGenres = firstGame.Genres;
-            if (games.All(a => a.Genres.IsListEqual(firstGenres) == true))
-            {
-                dummyGame.Genres = firstGenres;
-            }
-
-            var firstReleaseDate = firstGame.ReleaseDate;
-            if (games.All(a => a.ReleaseDate == firstReleaseDate) == true)
-            {
-                dummyGame.ReleaseDate = firstReleaseDate;
-            }
-
-            var firstDeveloper = firstGame.Developers;
-            if (games.All(a => a.Developers.IsListEqual(firstDeveloper) == true))
-            {
-                dummyGame.Developers = firstDeveloper;
-            }
-
-            var firstPublisher = firstGame.Publishers;
-            if (games.All(a => a.Publishers.IsListEqual(firstPublisher) == true))
-            {
-                dummyGame.Publishers = firstPublisher;
-            }
-
-            var firstTag = firstGame.Categories;
-            if (games.All(a => a.Categories.IsListEqual(firstTag) == true))
-            {
-                dummyGame.Categories = firstTag;
-            }
-
-            var firstDescription = firstGame.Description;
-            if (games.All(a => a.Description == firstDescription) == true)
-            {
-                dummyGame.Description = firstDescription;
-            }
-
-            var firstPlatform = firstGame.PlatformId;
-            if (games.All(a => a.PlatformId == firstPlatform) == true)
-            {
-                dummyGame.PlatformId = firstPlatform;
-            }
-
-            return dummyGame;
         }
 
         public void UpdateJumpList()

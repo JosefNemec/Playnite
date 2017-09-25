@@ -66,14 +66,14 @@ namespace Playnite.Models
             }
         }
 
-        private string workignDirectory;
-        public string WorkignDirectory
+        private string workingDirectory;
+        public string WorkingDirectory
         {
-            get => workignDirectory;
+            get => workingDirectory;
             set
             {
-                workignDirectory = value;
-                OnPropertyChanged("WorkignDirectory");
+                workingDirectory = value;
+                OnPropertyChanged("WorkingDirectory");
             }
         }
 
@@ -81,6 +81,11 @@ namespace Playnite.Models
 
         public Emulator()
         {
+        }
+
+        public Emulator(string name)
+        {
+            Name = name;
         }
 
         public void OnPropertyChanged(string name)

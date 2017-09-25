@@ -67,6 +67,21 @@ namespace PlayniteUI
             }
         }
 
+        private List<Emulator> emulators;
+        public List<Emulator> Emulators
+        {
+            get
+            {
+                return emulators;
+            }
+
+            set
+            {
+                emulators = value;
+                OnPropertyChanged("Emulators");
+            }
+        }
+
         private bool checkBoxesVisible = false;
         public bool CheckBoxesVisible
         {
@@ -264,6 +279,14 @@ namespace PlayniteUI
             }
         }
 
+        public bool IsIsoPathBindingDirty
+        {
+            get
+            {
+                return IsControlBindingDirty(TextIso, TextBox.TextProperty);
+            }
+        }
+
         #endregion Dirty flags
 
         private CheckBox CheckIcon;
@@ -299,7 +322,7 @@ namespace PlayniteUI
             if (data is IEnumerable<IGame>)
             {
                 CheckBoxesVisible = true;
-                var previewGame = GamesEditor.GetMultiGameEditObject(Games);
+                var previewGame = GameHandler.GetMultiGameEditObject(Games);
                 DataContext = previewGame;
                 Game = previewGame;
                 TabActions.Visibility = Visibility.Hidden;
@@ -517,6 +540,11 @@ namespace PlayniteUI
             if (IsInstallDirBindingDirty)
             {
                 BindingOperations.GetBindingExpression(TextInstallDir, TextBox.TextProperty).UpdateSource();
+            }
+
+            if (IsIsoPathBindingDirty)
+            {
+                BindingOperations.GetBindingExpression(TextIso, TextBox.TextProperty).UpdateSource();
             }
 
             if (IsPlatformBindingDirty && CheckPlatform.IsChecked == true)
@@ -932,15 +960,19 @@ namespace PlayniteUI
 
         private void ButtonBrowseInstallDir_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new CommonOpenFileDialog()
+            var path = Dialogs.SelectFolder(this);
+            if (!string.IsNullOrEmpty(path))
             {
-                IsFolderPicker = true,
-                Title = "Select Folder..."
-            };
+                TextInstallDir.Text = path;
+            }
+        }
 
-            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+        private void ButtonBrowseIso_Click(object sender, RoutedEventArgs e)
+        {
+            var path = Dialogs.SelectFile("*.*|*.*");
+            if (!string.IsNullOrEmpty(path))
             {
-                TextInstallDir.Text = dialog.FileName;
+                TextIso.Text = path;
             }
         }
 
@@ -948,6 +980,16 @@ namespace PlayniteUI
         {
             var obj = (FrameworkElement)sender;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(obj.Tag.ToString()));
+
+            var platformId = (int)ComboPlatforms.SelectedValue;
+            if (platformId == 0)
+            {
+                Emulators = GameDatabase.Instance.EmulatorsCollection.FindAll().ToList();
+            }
+            else
+            {
+                Emulators = GameDatabase.Instance.EmulatorsCollection.FindAll().Where(a => a.Platforms != null && a.Platforms.Contains(platformId)).ToList();
+            }
         }
     }
 }

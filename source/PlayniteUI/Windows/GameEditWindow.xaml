@@ -99,7 +99,7 @@
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsPlatformBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
                             <ComboBox Grid.Column="2" Grid.Row="2" Name="ComboPlatforms" Tag="IsPlatformBindingDirty"
-                                     SelectionChanged="ComboPlatforms_SelectionChanged"
+                                      SelectionChanged="ComboPlatforms_SelectionChanged"
                                       SelectedValuePath="Id" SelectedValue="{Binding PlatformId, UpdateSourceTrigger=Explicit}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -149,7 +149,7 @@
                                     Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding IsCategoriesBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
                             <DockPanel Grid.Column="2" Grid.Row="7">
-                                <Button Name="ButtonPickCat" Click="ButtonPickCat_Click" Content="..."  DockPanel.Dock="Right" Padding="5,0,5,0" Margin="2" />
+                                <Button Name="ButtonPickCat" Click="ButtonPickCat_Click" Content="..."  DockPanel.Dock="Right" Margin="2" Height="{Binding ActualHeight, ElementName=TextCategories}"/>
                                 <TextBox Name="TextCategories"  Text="{Binding Categories, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
                                     TextChanged="TextBox_TextChanged" Tag="IsCategoriesBindingDirty" DockPanel.Dock="Left"/>
                             </DockPanel>
@@ -260,10 +260,16 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
+                        
                         <TextBlock Text="Installation Directory" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
                         <TextBox Grid.Column="1" Margin="5" Text="{Binding InstallDirectory, UpdateSourceTrigger=Explicit}" Name="TextInstallDir" />
                         <Button Content="..." Grid.Column="2" Margin="5" Name="ButtonBrowseInstallDir" Click="ButtonBrowseInstallDir_Click"/>
+
+                        <TextBlock Text="Image/ISO Path" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding IsoPath, UpdateSourceTrigger=Explicit}" Name="TextIso" />
+                        <Button Content="..." Grid.Row="1" Grid.Column="2" Margin="5" Name="ButtonBrowseIso" Click="ButtonBrowseIso_Click"/>
                     </Grid>
                 </TabItem>
 
@@ -279,7 +285,8 @@
                                         Visibility="{Binding ShowRemovePlayAction, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Margin="0,5,0,5"/>
                                     <local:GameTaskView x:Name="TaskPlay" DataContext="{Binding TempPlayTask, ElementName=mainWindow}"
-                                        Visibility="{Binding ShowPlayActionEdit, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                        Visibility="{Binding ShowPlayActionEdit, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                        Emulators="{Binding Emulators, ElementName=mainWindow, Mode=OneWay}"/>
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox Header="Other Actions" Padding="10">
@@ -289,7 +296,8 @@
                                             <DataTemplate>
                                                 <Border BorderThickness="1" BorderBrush="{StaticResource NormalBrush}" CornerRadius="3" Padding="5" Margin="0,0,0,10">
                                                     <StackPanel Margin="10">
-                                                        <local:GameTaskView x:Name="TaskCustom"/>
+                                                        <local:GameTaskView x:Name="TaskCustom" Emulators="{Binding Emulators, ElementName=mainWindow, Mode=OneWay}"
+                                                                            ShowNameRow="True"/>
                                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
                                                             <Button Name="ButtonMoveUpAction" FontFamily="Marlett" Content="5" Margin="0,0,5,0" Click="ButtonMoveUpAction_Click"/>
                                                             <Button Name="ButtonMoveDownAction" FontFamily="Marlett" Content="6" Margin="0,0,5,0" Click="ButtonMoveDownAction_Click"/>
@@ -300,8 +308,7 @@
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
-                                    <Button Name="ButtonAddAction" Content="Add Action" Click="ButtonAddAction_Click" HorizontalAlignment="Left"
-                                        Margin="0,5,0,5"/>
+                                    <Button Name="ButtonAddAction" Content="Add Action" Click="ButtonAddAction_Click" HorizontalAlignment="Left" Margin="0,5,0,5"/>
                                 </StackPanel>
                             </GroupBox>
                         </StackPanel>

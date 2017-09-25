@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,24 @@ namespace PlayniteUI
 {
     public class Dialogs
     {
+        public static string SelectFolder(Window owner)
+        {
+            var dialog = new CommonOpenFileDialog()
+            {
+                IsFolderPicker = true,
+                Title = "Select Folder..."
+            };
+
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                return dialog.FileName;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
         public static string SelectFile(Window owner, string filter)
         {
             var dialog = new OpenFileDialog()

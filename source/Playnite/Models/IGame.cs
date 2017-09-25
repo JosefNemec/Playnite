@@ -104,6 +104,11 @@ namespace Playnite.Models
             get; set;
         }
 
+        string IsoPath
+        {
+            get; set;
+        }
+
         string Description
         {
             get; set;
@@ -170,6 +175,8 @@ namespace Playnite.Models
         }
 
         void PlayGame();
+
+        void PlayGame(List<Emulator> emulators);
 
         void InstallGame();
 

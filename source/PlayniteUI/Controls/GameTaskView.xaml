@@ -5,30 +5,39 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlayniteUI"
              mc:Ignorable="d" 
-             d:DesignWidth="300">
+             d:DesignWidth="400">
     <UserControl.Resources>
         <local:BidirectionalEnumAndNumberConverter x:Key="BidirectionalEnumAndNumberConverter" />
+        <local:BoolToAutoWidthConverter x:Key="BoolToAutoWidthConverter" />       
     </UserControl.Resources>
 
     <Grid>
         <Grid.Resources>
             <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
-                <Setter Property="Margin" Value="0,3,0,3" />
+                <Setter Property="Margin" Value="3" />
+            </Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}" >
+                <Setter Property="Margin" Value="3" />
             </Style>
             <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}" >
                 <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,0,3,0" />
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="{Binding ShowNameRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Name="RowArguments" Height="Auto"/>
-            <RowDefinition Name="RowWorkingDir" Height="Auto"/>
+            <RowDefinition Name="RowPath" Height="{Binding ShowPathRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
+            <RowDefinition Name="RowEmulator" Height="{Binding ShowEmulatorRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
+            <RowDefinition Name="RowOverrideArgs" Height="{Binding ShowOverrideArgsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
+            <RowDefinition Name="RowArguments" Height="{Binding ShowArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
+            <RowDefinition Name="RowDefaultArguments" Height="{Binding ShowDefaultArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
+            <RowDefinition Name="RowAdditionalArgs" Height="{Binding ShowAdditionalArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
+            <RowDefinition Name="RowWorkingDir" Height="{Binding ShowWorkingDirRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
         </Grid.RowDefinitions>
 
         <Label Content="Name" Grid.Column="0" Grid.Row="0"/>
@@ -36,21 +45,40 @@
 
         <Label Content="Type" Grid.Column="0" Grid.Row="1"/>
         <ComboBox Name="ComboType" Grid.Column="1" Grid.Row="1" SelectedIndex="{Binding Type, Converter={StaticResource BidirectionalEnumAndNumberConverter}}"
-                  SelectionChanged="ComboType_SelectionChanged" Margin="0,3,0,3">
-            <ComboBoxItem Content="File" />
+                  SelectionChanged="ComboType_SelectionChanged">
+            <ComboBoxItem Content="Executable" />
             <ComboBoxItem Content="URL" />
+            <ComboBoxItem Content="Emulator" />
         </ComboBox>
 
-        <Label Content="Path" Grid.Column="0" Grid.Row="2"/>
-        <DockPanel Grid.Column="1" Grid.Row="2" LastChildFill="True">
-            <Button Name="ButtonBrowse" Content="..." DockPanel.Dock="Right" Click="ButtonBrowsePath_Click" Padding="5,0,5,0" Margin="2"/>
+        <Label Content="Path" Grid.Column="0" Grid.Row="2" />
+        <DockPanel Grid.Column="1" Grid.Row="2" LastChildFill="True" >
+            <Button Name="ButtonBrowse" Content="..." DockPanel.Dock="Right" Click="ButtonBrowsePath_Click" 
+                    Height="{Binding ActualHeight, ElementName=TextPath}" Margin="0,0,3,0"/>
             <TextBox Name="TextPath" Text="{Binding Path, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left"/>
         </DockPanel>
 
-        <Label Content="Arguments" Grid.Column="0" Grid.Row="3" />
-        <TextBox Name="TextArguments" Grid.Column="1" Grid.Row="3" Text="{Binding Arguments}" Margin="0,1,0,1"/>
+        <Label Content="Arguments" Grid.Column="0" Grid.Row="5" />
+        <TextBox Name="TextArguments" Grid.Column="1" Grid.Row="5" Text="{Binding Arguments}"/>
+        
+        <Label Content="Emulator Arguments" Grid.Column="0" Grid.Row="6" />
+        <TextBox Name="TextEmulatorArguments" Grid.Column="1" Grid.Row="6" 
+                 Text="{Binding SelectedEmulatorArguments, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+                 IsEnabled="False"/>
 
-        <Label Content="WorkingDir" Grid.Column="0" Grid.Row="4"/>
-        <TextBox Name="TextWorkDir" Grid.Column="1" Grid.Row="4" Text="{Binding WorkingDir}" Margin="0,1,0,1"/>
+        <Label Content="Working Directory" Grid.Column="0" Grid.Row="8" />
+        <TextBox Name="TextWorkDir" Grid.Column="1" Grid.Row="8" Text="{Binding WorkingDir}"/>
+
+        <Label Content="Additional Arguments" Grid.Column="0" Grid.Row="7" />
+        <TextBox Name="TextAdditionalArguments" Grid.Column="1" Grid.Row="7" Text="{Binding AdditionalArguments}"/>
+
+        <Label Content="Override Default Arguments" Grid.Column="0" Grid.Row="4"  />
+        <CheckBox Name="CheckOverrideArgs" Grid.Column="1" Grid.Row="4" Margin="3,5,3,5"
+                  IsChecked="{Binding OverrideDefaultArgs}" Checked="CheckOverrideArgs_Checked" Unchecked="CheckOverrideArgs_Checked"/>
+
+        <Label Content="Emulator" Grid.Column="0" Grid.Row="3" />
+        <ComboBox Name="ComboEmulator" Grid.Column="1" Grid.Row="3" SelectionChanged="ComboEmulator_SelectionChanged"
+                  ItemsSource="{Binding Emulators, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                  SelectedValuePath="Id" SelectedValue="{Binding EmulatorId}"/>
     </Grid>
 </UserControl>

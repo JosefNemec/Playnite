@@ -10,8 +10,9 @@
     <sys:String x:Key="FilterActiveLabel">Filter is Enabled (click to toggle filter panel)</sys:String>
     <sys:String x:Key="FilterInactiveLabel">Filter is Disabled (click to toggle filter panel)</sys:String>
 
-    <sys:String x:Key="InvalidDataTitle">Invalid data</sys:String>
-
+    <sys:String x:Key="InvalidDataTitle">Invalid Data</sys:String>
+    <sys:String x:Key="SaveChangesAskTitle">Save Changes?</sys:String>
+    
     <sys:String x:Key="AboutHomePageLink">Homepage at www.playnite.link</sys:String>
     <sys:String x:Key="AboutSourceLink">Source Code at GitHub</sys:String>
     <sys:String x:Key="AboutCreateDiagButton">Create diag. package</sys:String>
@@ -36,6 +37,8 @@ Automatically imported games may reappear in Playnite after next import procedur
 
     <!--General-->
     <sys:String x:Key="RemoveTitle">Remove</sys:String>
+    <sys:String x:Key="CopyTitle">Copy</sys:String>
+    <sys:String x:Key="AddTitle">Add</sys:String>
     <sys:String x:Key="DefaultIconTitle">Default Icon</sys:String>
     <sys:String x:Key="DefaultCoverTitle">Default Cover Image</sys:String>
     
@@ -64,6 +67,12 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="SelectIconTitle">Select Icon</sys:String>
     <sys:String x:Key="SelectCoverTitle">Select Cover</sys:String>
     <sys:String x:Key="AddEmulatorTitle">Add Emulator</sys:String>
+    <sys:String x:Key="SupportedPlatformsTitle">Supported Platform(s)</sys:String>
+    <sys:String x:Key="ConfirmUnsavedPlatformsTitle">Do you want to save platform changes?</sys:String>
+    <sys:String x:Key="ConfirmUnsavedEmulatorsTitle">Do you want to save emulator changes?</sys:String>
+    <sys:String x:Key="ExecutableTitle">Executable</sys:String>
+    <sys:String x:Key="ArgumentsTitle">Arguments</sys:String>
+    <sys:String x:Key="WorkingDirTitle">Working Directory</sys:String>
 
 
     <!--First Time Wizard-->

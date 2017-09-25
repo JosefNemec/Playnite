@@ -8,32 +8,9 @@ using System.Threading.Tasks;
 
 namespace Playnite.Models
 {
-    //public class PlatformId : IComparable
-    //{
-    //    private int Value
-    //    {
-    //        get; set;
-    //    }
-
-    //    public int CompareTo(object obj)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public static implicit operator PlatformId(int value)
-    //    {
-    //        return new PlatformId { Value = value };
-    //    }
-
-    //    public static implicit operator int(PlatformId value)
-    //    {
-    //        return value.Value;
-    //    }
-    //}
-
     public class Platform : INotifyPropertyChanged
     {
-        private int id;
+        private int id = 0;
         [BsonId]
         public int Id
         {

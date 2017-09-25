@@ -14,50 +14,241 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using Playnite.Models;
+using System.ComponentModel;
 
 namespace PlayniteUI
 {
     /// <summary>
     /// Interaction logic for GameTaskView.xaml
     /// </summary>
-    public partial class GameTaskView : UserControl
+    public partial class GameTaskView : UserControl, INotifyPropertyChanged
     {
+        public bool ShowArgumentsRow
+        {
+            get
+            {
+                if (GameTask == null)
+                {
+                    return false;
+                }
+
+                if (GameTask.Type == GameTaskType.URL)
+                {
+                    return false;
+                }
+                else if (GameTask.Type == GameTaskType.Emulator && !GameTask.OverrideDefaultArgs)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        public bool ShowAdditionalArgumentsRow
+        {
+            get
+            {
+                if (GameTask == null)
+                {
+                    return false;
+                }
+
+                if (GameTask.Type == GameTaskType.Emulator && !GameTask.OverrideDefaultArgs)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        public bool ShowDefaultArgumentsRow
+        {
+            get
+            {
+                if (GameTask == null)
+                {
+                    return false;
+                }
+
+                if (GameTask.Type == GameTaskType.Emulator && !GameTask.OverrideDefaultArgs)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        public bool ShowPathRow
+        {
+            get
+            {
+                if (GameTask == null)
+                {
+                    return false;
+                }
+
+                return GameTask.Type != GameTaskType.Emulator;
+            }
+        }
+
+        public bool ShowWorkingDirRow
+        {
+            get
+            {
+                if (GameTask == null)
+                {
+                    return false;
+                }
+
+                return GameTask.Type == GameTaskType.File;
+            }
+        }
+
+        public bool ShowEmulatorRow
+        {
+            get
+            {
+                if (GameTask == null)
+                {
+                    return false;
+                }
+
+                return GameTask.Type == GameTaskType.Emulator;
+            }
+        }
+
+        public bool ShowOverrideArgsRow
+        {
+            get
+            {
+                if (GameTask == null)
+                {
+                    return false;
+                }
+
+                return GameTask.Type == GameTaskType.Emulator;
+            }
+        }
+
+        public GameTask GameTask
+        {
+            get
+            {
+                if (DataContext == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return ((GameTask)DataContext);
+                }
+            }
+        }
+
+        private string selectedEmulatorArguments;
+        public string SelectedEmulatorArguments
+        {
+            get => selectedEmulatorArguments;
+            set
+            {
+                selectedEmulatorArguments = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedEmulatorArguments"));
+            }
+        }
+
+        public List<Emulator> Emulators
+        {
+            get
+            {
+                return (List<Emulator>)GetValue(EmulatorsProperty);
+            }
+
+            set
+            {
+                SetValue(EmulatorsProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty EmulatorsProperty = DependencyProperty.Register("Emulators", typeof(List<Emulator>), typeof(GameTaskView));
+
+        public bool ShowNameRow
+        {
+            get
+            {
+                return (bool)GetValue(ShowNameRowProperty);
+            }
+
+            set
+            {
+                SetValue(ShowNameRowProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty ShowNameRowProperty = DependencyProperty.Register("ShowNameRow", typeof(bool), typeof(GameTaskView));
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public GameTaskView()
         {
             InitializeComponent();
         }
 
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
         private void ButtonBrowsePath_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new OpenFileDialog()
+            var path = Dialogs.SelectFile(Window.GetWindow(this), "*.*|*.*");
+            if (string.IsNullOrEmpty(path))
             {
-                Filter = "All files (*.*)|*.*"
-            };
-
-            if (dialog.ShowDialog(Window.GetWindow(this)) == true)
-            {
-                TextPath.Text = dialog.FileName;
+                return;
             }
+            
+            TextPath.Text = path;
         }
 
         private void ComboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (DataContext == null)
+            NotifyRowChange();
+        }
+
+        private void NotifyRowChange()
+        {
+            OnPropertyChanged("ShowArgumentsRow");
+            OnPropertyChanged("ShowAdditionalArgumentsRow");
+            OnPropertyChanged("ShowDefaultArgumentsRow");
+            OnPropertyChanged("ShowPathRow");
+            OnPropertyChanged("ShowWorkingDirRow");
+            OnPropertyChanged("ShowEmulatorRow");
+            OnPropertyChanged("ShowOverrideArgsRow");
+        }
+
+        private void CheckOverrideArgs_Checked(object sender, RoutedEventArgs e)
+        {
+            NotifyRowChange();
+
+            if (GameTask.OverrideDefaultArgs && !string.IsNullOrEmpty(SelectedEmulatorArguments))
             {
+                GameTask.Arguments = $"{SelectedEmulatorArguments} {GameTask.AdditionalArguments}";
+            }
+        }
+
+        private void ComboEmulator_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Emulators == null || Emulators.Count == 0)
+            {
+                SelectedEmulatorArguments = string.Empty;
                 return;
             }
-
-            var task = (GameTask)DataContext;
-
-            if (task.Type == GameTaskType.File)
+                        
+            if (GameTask.EmulatorId != 0 && Emulators.Any(a => a.Id == GameTask.EmulatorId))
             {
-                RowArguments.Height = new GridLength();
-                RowWorkingDir.Height = new GridLength();
-            }
-            else
-            {
-                RowArguments.Height = new GridLength(0);
-                RowWorkingDir.Height = new GridLength(0);
+                SelectedEmulatorArguments = Emulators.First(a => a.Id == GameTask.EmulatorId).Arguments;
             }
         }
     }

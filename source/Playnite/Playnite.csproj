@@ -147,6 +147,7 @@
     <Compile Include="CoverCreator.cs" />
     <Compile Include="Database\GameDatabase.cs" />
     <Compile Include="EmbededResources.cs" />
+    <Compile Include="GameHandler.cs" />
     <Compile Include="GamesStats.cs" />
     <Compile Include="InteropMethods.cs" />
     <Compile Include="ListExtensions.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Paths.cs" />
     <Compile Include="PipeServer.cs" />
     <Compile Include="PlayniteEnvironment.cs" />
+    <Compile Include="ProcessStarter.cs" />
     <Compile Include="Programs.cs" />
     <Compile Include="FileSystem.cs" />
     <Compile Include="CloneObject.cs" />
