@@ -186,6 +186,21 @@ namespace Playnite
             }
         }
 
+        private double coversZoom = 180;
+        public double CoversZoom
+        {
+            get
+            {
+                return coversZoom;
+            }
+
+            set
+            {
+                coversZoom = value;
+                OnPropertyChanged("CoversZoom");
+            }
+        }
+
         [JsonIgnore]
         public bool IsListViewSet
         {

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:playniteUI="clr-namespace:PlayniteUI"
              xmlns:commands="clr-namespace:PlayniteUI.Commands"
+             xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -38,7 +39,7 @@
             <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Bottom">
                 <StackPanel Margin="5" Orientation="Horizontal">
                     <Label Content="Zoom" DockPanel.Dock="Right" Margin="10,0,10,0"/>
-                    <Slider Name="SliderZoom" SmallChange="1" Value="180" Maximum="260" Minimum="100"
+                    <Slider Name="SliderZoom" SmallChange="1" Value="{Binding Path=CoversZoom, Source={x:Static shared:Settings.Instance}}" Maximum="260" Minimum="100"
                             IsSnapToTickEnabled="True" Width="150" DockPanel.Dock="Right" VerticalAlignment="Center"/>
                 </StackPanel>
             </Border>
