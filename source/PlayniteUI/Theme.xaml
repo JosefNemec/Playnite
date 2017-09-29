@@ -760,9 +760,6 @@
                             <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Border" />
                             <Setter Property="BorderBrush" Value="{DynamicResource DisabledBorderBrush}" TargetName="Border" />
                         </Trigger>
-                        <Trigger Property="IsGrouping" Value="true">
-                            <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
-                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -1153,9 +1150,6 @@
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
                 <Setter Property="Opacity" TargetName="grid" Value="0.5" />
-            </Trigger>
-            <Trigger Property="IsGrouping" Value="true">
-                <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
             </Trigger>
             <Trigger Property="AllowsTransparency" SourceName="Popup" Value="true">
                 <Setter Property="Margin" Value="0,2,0,0" TargetName="DropDownBorder" />
@@ -2512,9 +2506,6 @@
                     </Border>
 
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsGrouping" Value="true">
-                            <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
-                        </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
                         </Trigger>

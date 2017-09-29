@@ -71,7 +71,7 @@ namespace PlayniteUI.Controls
                     return;
                 }
                                 
-                var game = (IGame)GameDetails.DataContext;
+                var game = (GameViewEntry)GameDetails.DataContext;
                 foreach (GameViewEntry entry in e.OldItems)
                 {
                     if (game.Id == entry.Game.Id)

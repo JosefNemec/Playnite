@@ -207,6 +207,7 @@
     <Compile Include="Localization.cs" />
     <Compile Include="MouseWheelGesture.cs" />
     <Compile Include="PlayniteMessageBox.cs" />
+    <Compile Include="VirtualizingTilePanel.cs" />
     <Compile Include="WindowPositionHandler.cs" />
     <Compile Include="Windows\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>

@@ -14,57 +14,6 @@ using System.Windows.Data;
 
 namespace PlayniteUI
 {
-    //public class NullBottomSorter: Comparer<GameViewEntry>, IComparer
-    //{
-    //    public override int Compare(GameViewEntry x, GameViewEntry y)
-    //    {
-    //        if (x == null && y != null)
-    //        {
-    //            return -1;
-    //        }
-
-    //        if (x != null && y == null)
-    //        {
-    //            return 1;
-    //        }
-
-    //        if (x == null && y == null)
-    //        {
-    //            return 0;
-    //        }
-
-    //        var settings = Settings.Instance;
-
-    //        switch (settings.SortingOrder)
-    //        {
-    //            case SortOrder.Name:
-    //                var catComp = x.Category.CompareTo(y.Category);
-    //                if (catComp == 0)
-    //                {
-    //                    return string.Compare(x.Name, y.Name) * (settings.SortingOrderDirection == SortOrderDirection.Ascending ? 1 : -1);
-    //                }
-    //                else
-    //                {
-    //                    return catComp;
-    //                }
-    //            case SortOrder.LastActivity:
-    //            case SortOrder.Provider:
-    //            case SortOrder.Categories:
-    //            case SortOrder.Genres:
-    //            case SortOrder.ReleaseDate:
-    //            case SortOrder.Developers:
-    //            case SortOrder.Publishers:
-    //            case SortOrder.IsInstalled:
-    //            case SortOrder.Hidden:
-    //            case SortOrder.Favorite:
-    //            case SortOrder.InstallDirectory:
-    //            case SortOrder.Icon:
-    //            default:
-    //                return 0;
-    //        }
-    //    }
-    //}
-
     public class CategoryView : IComparable
     {
         public string Category

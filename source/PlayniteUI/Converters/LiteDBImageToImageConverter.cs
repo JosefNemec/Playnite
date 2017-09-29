@@ -16,6 +16,11 @@ namespace PlayniteUI
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        public static bool IsCacheEnabled
+        {
+            get; set;
+        } = false;
+
         public static Dictionary<string, BitmapImage> Cache
         {
             get; set;
@@ -44,7 +49,7 @@ namespace PlayniteUI
                 return imageId.Replace("resources:", "");
             }
 
-            if (Cache.ContainsKey(imageId))
+            if (IsCacheEnabled && Cache.ContainsKey(imageId))
             {
                 return Cache[imageId];
             }
@@ -63,7 +68,11 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    Cache.Add(imageId, imageData);
+                    if (IsCacheEnabled)
+                    {
+                        Cache.Add(imageId, imageData);
+                    }
+
                     return imageData;
                 }
             }
