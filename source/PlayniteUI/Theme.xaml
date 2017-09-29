@@ -670,6 +670,9 @@
                             </Grid>
                         </RepeatButton>-->
                         <Track Grid.Row="1" x:Name="PART_Track" Orientation="Vertical" IsDirectionReversed="true" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                            <Track.Resources>
+                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">42</sys:Double>
+                            </Track.Resources>
                             <Track.Thumb>
                                 <Thumb Style="{DynamicResource NuclearThumbStyle}" Background="{x:Null}" Foreground="{x:Null}" />
                             </Track.Thumb>

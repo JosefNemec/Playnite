@@ -21,6 +21,22 @@ using System.Timers;
 
 namespace PlayniteUI.Controls
 {
+
+    public class WidthToFontSizeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var width = (double)value;
+
+            return width / 10;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     /// <summary>
     /// Interaction logic for GamesImagesView.xaml
     /// </summary>
@@ -85,19 +101,18 @@ namespace PlayniteUI.Controls
 
         private void CloseDetailBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            LastDetailsWidht = ColumnDetails.Width;
-            ColumnSplitter.Width = new GridLength(0, GridUnitType.Pixel);
-            ColumnDetails.Width = new GridLength(0, GridUnitType.Pixel);
-
-            if (ItemsView.SelectedItem != null)
-            {
-                ItemsView.ScrollIntoView(ItemsView.SelectedItem as GameViewEntry);
-            }
+            HideDetails();
         }
 
         private void HideDetails()
-        {            
-            CloseDetailBorder_MouseLeftButtonDown(this, null);            
+        {
+            if (ColumnDetails.Width.Value != 0)
+            {
+                LastDetailsWidht = ColumnDetails.Width;
+            }
+
+            ColumnSplitter.Width = new GridLength(0, GridUnitType.Pixel);
+            ColumnDetails.Width = new GridLength(0, GridUnitType.Pixel);
         }
 
         private void ShowDetails(GameViewEntry viewEntry)
@@ -107,8 +122,6 @@ namespace PlayniteUI.Controls
                 ColumnSplitter.Width = new GridLength(4, GridUnitType.Pixel);
                 ColumnDetails.Width = LastDetailsWidht;
             }
-
-            ItemsView.ScrollIntoView(viewEntry);
         }
 
         private void ChangeDetails(GameViewEntry viewEntry)
