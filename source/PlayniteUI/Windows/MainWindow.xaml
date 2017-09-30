@@ -152,8 +152,9 @@
                                 Text="{Binding Path=Config.FilterSettings.Name, ElementName=WindowMain, Delay=500, Mode=TwoWay}"
                                 WindowChrome.IsHitTestVisibleInChrome="True" />
 
-            <Border CornerRadius="3" Background="Transparent" Style="{StaticResource HighlightBorder}"
-                    BorderThickness="2" Width="35" Height="28" Cursor="Hand" MouseUp="ViewConfigElement_MouseUp"
+            <Border CornerRadius="{StaticResource ControlCornerRadius}" Background="Transparent" Style="{StaticResource HighlightBorder}"
+                    SnapsToDevicePixels="True" BorderThickness="{StaticResource ControlBorderThickness}"
+                    Width="35" Height="28" Cursor="Hand" MouseUp="ViewConfigElement_MouseUp"
                     WindowChrome.IsHitTestVisibleInChrome="True">
                 <TextBlock Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
                            Foreground="{StaticResource TextBrush}"/>
@@ -204,8 +205,8 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <Border CornerRadius="3" Background="Transparent" Style="{StaticResource HighlightBorder}" 
-                                            BorderThickness="2" Cursor="Hand" WindowChrome.IsHitTestVisibleInChrome="True">
+                                    <Border Background="Transparent" Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
+                                            CornerRadius="{StaticResource ControlCornerRadius}" BorderThickness="{StaticResource ControlBorderThickness}" Cursor="Hand" WindowChrome.IsHitTestVisibleInChrome="True">
                                         <TextBlock Text="∇" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="8,0,8,0" Foreground="{TemplateBinding Foreground}"/>
                                     </Border>
                                 </ControlTemplate>

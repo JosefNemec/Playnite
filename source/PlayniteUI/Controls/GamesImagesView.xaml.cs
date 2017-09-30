@@ -21,13 +21,11 @@ using System.Timers;
 
 namespace PlayniteUI.Controls
 {
-
     public class WidthToFontSizeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var width = (double)value;
-
             return width / 10;
         }
 
@@ -97,11 +95,6 @@ namespace PlayniteUI.Controls
                     }
                 }
             });
-        }
-
-        private void CloseDetailBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            HideDetails();
         }
 
         private void HideDetails()
@@ -228,6 +221,11 @@ namespace PlayniteUI.Controls
             });
 
             ClickCount = 0;
+        }
+
+        private void ButtonCloseDetails_Click(object sender, RoutedEventArgs e)
+        {
+            HideDetails();
         }
     }
 }

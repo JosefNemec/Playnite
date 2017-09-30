@@ -86,15 +86,22 @@
         <GradientStop Color="{StaticResource MainColorDark}" Offset="0"/>
         <GradientStop Color="#182028" Offset="0.9"/>
     </LinearGradientBrush>
-    
+
+    <LinearGradientBrush  x:Key="ExpanderBackgroundBrush" StartPoint="-1,0.5" EndPoint="1.5,1" >
+        <GradientStop Color="{StaticResource MainColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource MainColorDark}" Offset="0.9"/>
+    </LinearGradientBrush>
+
     <LinearGradientBrush x:Key="WindowBackgourndBrush" StartPoint="0.5,-0.2" EndPoint="0.4,1" >
         <GradientStop Color="#1F2933" Offset="0"/>
         <GradientStop Color="{StaticResource MainColorDark}" Offset="0.4"/>
     </LinearGradientBrush>
 
-    <SolidColorBrush x:Key="PopupBorderBrush" Color="{StaticResource PopupBorderColor}" />
+    <SolidColorBrush x:Key="PopupBorderBrush" Color="#3e6184" />
     
-    <Thickness x:Key="PopupBorderThickness">2</Thickness>
+    <Thickness x:Key="PopupBorderThickness">1</Thickness>
+    <Thickness x:Key="ControlBorderThickness">1</Thickness>
+    <CornerRadius x:Key="ControlCornerRadius">2</CornerRadius>
 
     <Style x:Key="BaseStyle" TargetType="Control">
         <Setter Property="FontSize" Value="14" />
@@ -187,17 +194,22 @@
         </Setter>
     </Style>
 
+    <Style TargetType="Border">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+    
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Background" Value="{DynamicResource NormalBrushDark}" />
         <Setter Property="Foreground" Value="{DynamicResource IndicatorBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
-        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Padding" Value="10,5,10,5" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid x:Name="Grid">
-                        <Border x:Name="DefaultBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"  Background="{TemplateBinding Background}" Opacity="1" CornerRadius="3"/>
+                        <Border x:Name="DefaultBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"  Background="{TemplateBinding Background}" Opacity="1" CornerRadius="{DynamicResource ControlCornerRadius}"/>
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True" />                        
                     </Grid>
                 </ControlTemplate>
@@ -778,7 +790,7 @@
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Border SnapsToDevicePixels="true" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" CornerRadius="0" x:Name="border" Background="Transparent">
                         <Grid>
-                            <Rectangle x:Name="Background" IsHitTestVisible="False" Opacity="0.25" Fill="{StaticResource NormalBrush}" RadiusX="1" RadiusY="1"/>
+                            <Rectangle x:Name="Background" IsHitTestVisible="False" Opacity="0.25" Fill="Transparent" RadiusX="1" RadiusY="1"/>
                             <Rectangle x:Name="HoverRectangle" IsHitTestVisible="False" Opacity="0" Fill="{StaticResource NormalBrush}" RadiusX="1" RadiusY="1"/>
                             <Rectangle x:Name="SelectedRectangle" IsHitTestVisible="False" Opacity="0" Fill="{StaticResource SelectedBackgroundBrush}" RadiusX="1" RadiusY="1"/>
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" x:Name="contentPresenter" />
@@ -798,7 +810,7 @@
                                 <Condition Property="Selector.IsSelected" Value="False" />
                             </MultiTrigger.Conditions>
 
-                            <Setter Property="Opacity" Value="1" TargetName="HoverRectangle" />
+                            <Setter Property="Opacity" Value="0.4" TargetName="HoverRectangle" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -842,7 +854,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border Padding="{TemplateBinding Padding}" Background="{StaticResource ExpanderBackgroundBrush}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <DockPanel SnapsToDevicePixels="False" Background="Transparent">
                             <TextBlock Text="+" x:Name="Up_Arrow" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}"
                                        Foreground="{StaticResource GlyphBrush}" FontSize="18" FontWeight="Bold" Width="20" Margin="0,0,5,0"
@@ -1021,6 +1033,8 @@
     </Style>
 
     <Style TargetType="{x:Type Expander}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">
@@ -1033,7 +1047,7 @@
                                       Margin="1,1,1,0" MinHeight="25"
                                       x:Name="HeaderSite" Style="{StaticResource ExpanderDownHeaderStyle}" Content="{TemplateBinding Header}"
                                       IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" DockPanel.Dock="Top"/>
-                        <Border Visibility="Collapsed" x:Name="border" BorderThickness="1" BorderBrush="{DynamicResource NormalBorderBrush}">
+                        <Border Visibility="Collapsed" x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter Focusable="false" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,1,1,1" x:Name="ExpandSite"
                                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}" DockPanel.Dock="Bottom" />
                         </Border>
@@ -1096,11 +1110,11 @@
     
     <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template" Value="{DynamicResource ComboBoxTemplate}" />
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBrush}"/>
-        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
     </Style>
 
     <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type ComboBox}">
@@ -1117,7 +1131,7 @@
             </Storyboard>
         </ControlTemplate.Resources>
         <Grid x:Name="grid">
-            <Border x:Name="Border" Opacity="1" CornerRadius="3"
+            <Border x:Name="Border" Opacity="1" CornerRadius="{DynamicResource ControlCornerRadius}"
                     BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
                 <Grid>
                     <ToggleButton Grid.Column="2" Template="{DynamicResource ComboBoxToggleButton}" x:Name="ToggleButton" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press" />
@@ -1318,6 +1332,7 @@
     </Style>
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="AllowDrop" Value="true" />
         <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}" />
@@ -1325,7 +1340,7 @@
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBrush}"/>
-        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderThickness" Value="{StaticResource ControlBorderThickness}" />
         <Setter Property="Padding" Value="3" />
     </Style>
 
@@ -1354,13 +1369,13 @@
         </ControlTemplate.Resources>
         <Grid>
             <Border x:Name="Border" Opacity="1" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
-                    Background="{TemplateBinding Background}" CornerRadius="3">
+                    Background="{TemplateBinding Background}" CornerRadius="{DynamicResource ControlCornerRadius}">
                     <ScrollViewer Margin="0" x:Name="PART_ContentHost" Style="{DynamicResource NuclearScrollViewer}" />
             </Border>
             <Border x:Name="HoverBorder" IsHitTestVisible="False" Opacity="0" BorderBrush="{StaticResource GlyphBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="3"/>
+                    CornerRadius="{DynamicResource ControlCornerRadius}"/>
             <Border x:Name="FocusVisualElement" IsHitTestVisible="False" Opacity="0" BorderBrush="{StaticResource HoverShineBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="3"/>
+                    CornerRadius="{DynamicResource ControlCornerRadius}"/>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsFocused" Value="True">
@@ -1610,7 +1625,7 @@
                     <ContentPresenter Margin="6,3,6,3" ContentSource="Header" RecognizesAccessKey="True" />
                 </TextBlock>
                 <Popup x:Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
-                    <Border x:Name="SubmenuBorder" SnapsToDevicePixels="True" BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}" BorderThickness="2">
+                    <Border x:Name="SubmenuBorder" SnapsToDevicePixels="True" BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}" BorderThickness="{StaticResource PopupBorderThickness}">
                         <StackPanel Grid.IsSharedSizeScope="True" IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
                     </Border>
                 </Popup>
@@ -1629,7 +1644,7 @@
     
     <!-- TopLevelItem -->
     <ControlTemplate x:Key="{x:Static MenuItem.TopLevelItemTemplateKey}" TargetType="{x:Type MenuItem}">
-        <Border x:Name="Border" BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}" BorderThickness="2">
+        <Border x:Name="Border" BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}" BorderThickness="{StaticResource PopupBorderThickness}">
             <Grid>
                 <ContentPresenter Margin="6,3,6,3" ContentSource="Header" RecognizesAccessKey="True" />
             </Grid>
@@ -1662,7 +1677,7 @@
             </Grid>
             <Popup IsOpen="{Binding Path=IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Right" x:Name="SubMenuPopup" Focusable="false" AllowsTransparency="true" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
                 <Grid x:Name="SubMenu">
-                    <Border x:Name="SubMenuBorder" BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}" BorderThickness="2"/>
+                    <Border x:Name="SubMenuBorder" BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}" BorderThickness="{StaticResource PopupBorderThickness}"/>
                     <StackPanel Grid.IsSharedSizeScope="True" IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
                 </Grid>
             </Popup>
@@ -2531,7 +2546,7 @@
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                     <Border SnapsToDevicePixels="true" BorderThickness="0" CornerRadius="0" x:Name="border" Background="Transparent">
                         <Grid>
-                            <Rectangle x:Name="Background" IsHitTestVisible="False" Opacity="0.25" Fill="{StaticResource NormalBrush}" RadiusX="1" RadiusY="1"/>
+                            <Rectangle x:Name="Background" IsHitTestVisible="False" Opacity="0.25" Fill="Transparent" RadiusX="1" RadiusY="1"/>
                             <Rectangle x:Name="HoverRectangle" IsHitTestVisible="False" Opacity="0" Fill="{StaticResource NormalBrush}" RadiusX="1" RadiusY="1"/>
                             <Rectangle x:Name="SelectedRectangle" IsHitTestVisible="False" Opacity="0" Fill="{StaticResource SelectedBackgroundBrush}" RadiusX="1" RadiusY="1"/>
                             <GridViewRowPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Stretch"/>
@@ -2546,7 +2561,7 @@
                             <Setter Property="Opacity" Value="1" TargetName="SelectedRectangle" />
                         </Trigger>
                         <MultiTrigger>
-                            <Setter Property="Opacity" Value="1" TargetName="HoverRectangle" />
+                            <Setter Property="Opacity" Value="0.4" TargetName="HoverRectangle" />
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
                                 <Condition Property="Selector.IsSelected" Value="False" />
@@ -3035,7 +3050,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Separator}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}"  BorderThickness="{TemplateBinding BorderThickness}" 
-                            Background="{TemplateBinding Background}" Height="2" SnapsToDevicePixels="true"/>
+                            Background="{TemplateBinding Background}" Height="1" SnapsToDevicePixels="true"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -3146,7 +3161,3 @@
         </Setter>
     </Style>
 </ResourceDictionary>
-
-
-
-

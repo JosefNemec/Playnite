@@ -88,7 +88,7 @@ namespace PlayniteUI
 
         public override string ToString()
         {
-            return Category;
+            return string.IsNullOrEmpty(Category) ? "No Category" : Category;
         }
     }
 
@@ -177,7 +177,7 @@ namespace PlayniteUI
 
         public override string ToString()
         {
-            return Name;
+            return string.IsNullOrEmpty(Name) ? "No Platform" : Name;
         }
     }
 

@@ -54,7 +54,8 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-                                            <Expander Header="{Binding Mode=OneWay}" Margin="5,0,5,5" Collapsed="Expander_Collapsed" Expanded="Expander_Expanded"
+                                            <Expander Header="{Binding Mode=OneWay}" Collapsed="Expander_Collapsed"
+                                                      Expanded="Expander_Expanded" BorderThickness="0"
                                                       IsExpanded="{Binding Path=Name, Mode=OneWay, Converter={StaticResource BoolToCategoryExpander}}">
                                                 <ItemsPresenter />
                                             </Expander>

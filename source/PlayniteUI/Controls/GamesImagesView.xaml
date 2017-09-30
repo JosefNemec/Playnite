@@ -119,13 +119,13 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <GridSplitter Grid.Column="1" Width="4" HorizontalAlignment="Stretch" Background="{StaticResource NormalBorderBrush}"/>
+            <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch" Background="{StaticResource NormalBorderBrush}"/>
                 
             <Grid Grid.Column="2">
                 <playniteUI:GameDetails x:Name="GameDetails"/>
-                <Image Name="ImageCloseDetails" Source="/Images/close.png" Width="28" Margin="10" Cursor="Hand"
-                        VerticalAlignment="Top" HorizontalAlignment="Right"
-                        MouseLeftButtonUp="CloseDetailBorder_MouseLeftButtonDown"/>
+                <Button Content="r" FontFamily="Marlett" FontSize="16" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right"
+                        Name="ButtonCloseDetails" Click="ButtonCloseDetails_Click"
+                        BorderThickness="0" Background="Transparent"/>
             </Grid>
         </Grid>
     </DockPanel>

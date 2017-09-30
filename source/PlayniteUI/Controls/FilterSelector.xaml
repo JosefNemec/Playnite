@@ -46,7 +46,7 @@
             <TextBlock Text="{Binding Stats.Favorite, Mode=OneWay, StringFormat=Favorite ({0})}" />
         </CheckBox>
 
-        <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" Margin="0,5,0,5" />
+        <Border Height="10" />
 
         <CheckBox Name="CheckFilterSteam" IsChecked="{Binding Path=Settings.Steam}" Style="{StaticResource FilterCheck}">
             <TextBlock Text="{Binding Stats.Steam, Mode=OneWay, StringFormat=Steam ({0})}" />
@@ -68,8 +68,8 @@
             <TextBlock Text="{Binding Stats.Custom, Mode=OneWay, StringFormat=Custom ({0})}" />
         </CheckBox>
 
-        <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" Margin="0,5,0,5"/>
-
+        <Border Height="10" />
+        
         <Label Content="Name">
             <Label.Style>
                 <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
