@@ -321,7 +321,7 @@ namespace PlayniteUI
         CategoryGrouped
     }
 
-    public class GamesCollectionView
+    public class GamesCollectionView : IDisposable
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -376,6 +376,16 @@ namespace PlayniteUI
             CollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(Items);
             SetViewConfiguration();
             CollectionView.Filter = Filter;
+        }
+
+        public void Dispose()
+        {
+            database.GamesCollectionChanged -= Database_GamesCollectionChanged;
+            database.GameUpdated -= Database_GameUpdated;
+            database.PlatformsCollectionChanged -= Database_PlatformsCollectionChanged;
+            database.PlatformUpdated -= Database_PlatformUpdated;
+            Settings.PropertyChanged -= Settings_PropertyChanged;
+            Settings.FilterSettings.PropertyChanged -= FilterSettings_PropertyChanged;
         }
 
         private bool Filter(object item)
