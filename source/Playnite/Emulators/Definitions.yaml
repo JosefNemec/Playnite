@@ -1,0 +1,49 @@
+﻿- Name: DOSBox
+  DefaultArguments: ""
+  Platforms: [DOS, PC]
+  ExecutableLookup: dosbox\.exe
+
+- Name: NullDC
+  DefaultArguments: -config nullDC:Emulator.Autostart=1 -config ImageReader:LoadDefaultImage=1 -config ImageReader:DefaultImage="{ImagePath}"
+  Platforms: [Dreamcast]
+  ExecutableLookup: nullDC.*\.exe
+
+- Name: Dolphin
+  DefaultArguments: --exec="{ImagePath}" --batch
+  Platforms: [GameCube, Wii]
+  ExecutableLookup: Dolphin\.exe
+
+- Name: Fusion
+  DefaultArguments: "{ImagePath}" -gen -auto -fullscreen
+  Platforms: [Genesis]
+  ExecutableLookup: Fusion\.exe
+
+- Name: Project64
+  DefaultArguments: ""
+  Platforms: [Nintendo 64]
+  ExecutableLookup: Project64\.exe
+
+- Name: Nestopia
+  DefaultArguments: ""
+  Platforms: [NES]
+  ExecutableLookup: nestopia\.exe
+
+- Name: Snes9X
+  DefaultArguments: ""
+  Platforms: [SNES]
+  ExecutableLookup: snes9x\.exe
+
+- Name: ePSXe
+  DefaultArguments: ""
+  Platforms: [PlayStation]
+  ExecutableLookup: ePSXe\.exe
+
+- Name: PCSX2
+  DefaultArguments: ""
+  Platforms: [PlayStation 2]
+  ExecutableLookup: pcsx2\.exe
+
+- Name: PPSSPP
+  DefaultArguments: ""
+  Platforms: [PlayStation Portable]
+  ExecutableLookup: PPSSPP.*\.exe

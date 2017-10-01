@@ -27,7 +27,7 @@ namespace PlayniteTests
         [Test]
         public void GetExecutablesFromFolderTest()
         {
-            var apps = Programs.GetExecutablesFromFolder(@"c:\windows\system32\", System.IO.SearchOption.TopDirectoryOnly);
+            var apps = Programs.GetExecutablesFromFolder(@"c:\Program Files\", System.IO.SearchOption.AllDirectories);
             Assert.AreNotEqual(apps.Count, 0);
 
             var firstApp = apps.First();

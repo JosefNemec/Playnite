@@ -115,6 +115,8 @@
     <Compile Include="Database\GameDatabaseEmulatorsTests.cs" />
     <Compile Include="Database\GameDatabaseEventTests.cs" />
     <Compile Include="Database\GameDatabaseTests.cs" />
+    <Compile Include="Emulators\EmulatorFinderTests.cs" />
+    <Compile Include="Emulators\EmulatorDefinitionTests.cs" />
     <Compile Include="GamesStatsTests.cs" />
     <Compile Include="MetaProviders\WikipediaTests.cs" />
     <Compile Include="Models\GameTests.cs" />

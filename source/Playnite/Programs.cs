@@ -104,16 +104,16 @@ namespace Playnite
         public static List<Program> GetExecutablesFromFolder(string path, SearchOption searchOption)
         {
             var execs = new List<Program>();
-            var files = Directory.GetFiles(path, "*.exe", searchOption);
+            var files = new SafeFileEnumerator(path, "*.exe", SearchOption.AllDirectories);
 
             foreach (var file in files)
             {
                 execs.Add(new Program()
                 {
-                    Path = file,
-                    Icon = file,
-                    WorkDir = Path.GetDirectoryName(file),
-                    Name = new DirectoryInfo(Path.GetDirectoryName(file)).Name
+                    Path = file.FullName,
+                    Icon = file.FullName,
+                    WorkDir = Path.GetDirectoryName(file.FullName),
+                    Name = new DirectoryInfo(Path.GetDirectoryName(file.FullName)).Name
                 });
             }
 
@@ -147,24 +147,24 @@ namespace Playnite
 
             var shell = new WshShell();
             var apps = new List<Program>();
-            var shortucts = Directory.GetFiles(path, "*.lnk", SearchOption.AllDirectories);
+            var shortucts = new SafeFileEnumerator(path, "*.lnk", SearchOption.AllDirectories);
 
             foreach (var shortcut in shortucts)
             {
-                var fileName = Path.GetFileName(shortcut);
-                var Directory = Path.GetDirectoryName(shortcut);
+                var fileName = shortcut.Name;
+                var Directory = Path.GetDirectoryName(shortcut.FullName);
 
-                if (folderExceptions.FirstOrDefault(a => shortcut.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
+                if (folderExceptions.FirstOrDefault(a => shortcut.FullName.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
                 {
                     continue;
                 }
 
-                if (nameExceptions.FirstOrDefault(a => shortcut.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
+                if (nameExceptions.FirstOrDefault(a => shortcut.FullName.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
                 {
                     continue;
                 }
 
-                var link = (IWshShortcut)shell.CreateShortcut(shortcut);               
+                var link = (IWshShortcut)shell.CreateShortcut(shortcut.FullName);               
                 var target = link.TargetPath;
                 
                 if (pathExceptions.FirstOrDefault(a => target.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
@@ -188,7 +188,7 @@ namespace Playnite
                 {
                     Path = target,
                     Icon = link.IconLocation,
-                    Name = Path.GetFileNameWithoutExtension(shortcut),
+                    Name = Path.GetFileNameWithoutExtension(shortcut.Name),
                     WorkDir = link.WorkingDirectory
                 };
 
@@ -224,7 +224,6 @@ namespace Playnite
             var fileMask = Path.GetFileNameWithoutExtension(defPath) + ".scale*.png";
             return Directory.GetFiles(folder, fileMask).Where(a => Regex.IsMatch(a, @"\.scale-\d+\.png"))?.OrderBy(a => a).Last();
         }
-
 
         public static List<Program> GetUWPApps()
         {

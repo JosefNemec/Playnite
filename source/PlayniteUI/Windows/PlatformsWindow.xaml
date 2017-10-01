@@ -17,7 +17,7 @@
     <controls:WindowBase.Resources>
         <local:NegateConverter x:Key="NegateConverter" />
         <local:EnumConverter x:Key="EnumConverter" />
-        <local:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />      
+        <local:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
 
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
         <Style x:Key="EnableOnSelectPlatformButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -27,9 +27,8 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-    </controls:WindowBase.Resources>    
+    </controls:WindowBase.Resources>
     
-
     <DockPanel>
         <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
             <DockPanel LastChildFill="False" Margin="5">
@@ -37,6 +36,8 @@
                     Style="{StaticResource BottomButton}" />
                 <Button Name="ButtonOK" Click="ButtonOK_Click" Content="{DynamicResource SaveLabel}" DockPanel.Dock="Right"
                     Style="{StaticResource BottomButton}" />
+                <Button Content="{DynamicResource ImportEmulatorsButton}" DockPanel.Dock="Left" Style="{StaticResource BottomButton}"
+                        Name="ButtonImportEmulators" Click="ButtonImportEmulators_Click"/>
             </DockPanel>
         </Border>
         <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Top" Name="TabMainTabControl">

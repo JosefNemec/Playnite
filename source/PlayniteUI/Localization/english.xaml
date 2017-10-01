@@ -73,6 +73,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="ExecutableTitle">Executable</sys:String>
     <sys:String x:Key="ArgumentsTitle">Arguments</sys:String>
     <sys:String x:Key="WorkingDirTitle">Working Directory</sys:String>
+    <sys:String x:Key="ImportEmulatorsButton">Import Emulators...</sys:String>
 
 
     <!--First Time Wizard-->

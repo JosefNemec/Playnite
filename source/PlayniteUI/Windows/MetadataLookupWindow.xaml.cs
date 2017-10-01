@@ -118,7 +118,11 @@ namespace PlayniteUI.Windows
 #else
                     logger.Warn(exc, "Failed to download metadata from meta page.");
 #endif
-                    PlayniteMessageBox.Show("Didn't found any relevant information about game \"" + searchTerm + "\" on specified page.");
+
+                    Dispatcher.Invoke(() =>
+                    {
+                        PlayniteMessageBox.Show("Didn't found any relevant information about game \"" + searchTerm + "\" on specified page.");
+                    });
 
                     TextDownloading.Dispatcher.Invoke(() =>
                     {

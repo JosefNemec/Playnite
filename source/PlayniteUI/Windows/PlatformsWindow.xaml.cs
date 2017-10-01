@@ -427,5 +427,10 @@ namespace PlayniteUI
                 }
             }
         }
+
+        private void ButtonImportEmulators_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
