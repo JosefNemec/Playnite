@@ -69,8 +69,7 @@
                                         <Grid>
                                             <ContentPresenter />
                                             <Border Background="#D8000000" x:Name="HighlightTextBorder" Opacity="0">
-                                                    <TextBlock Width="{Binding Path=Value, ElementName=SliderZoom}"
-                                                               Text="{Binding Name, Mode=OneWay}" TextWrapping="Wrap" Padding="5"
+                                                    <TextBlock Text="{Binding Name, Mode=OneWay}" TextWrapping="Wrap" Margin="5"
                                                                Style="{StaticResource BaseTextBlockStyle}"
                                                                TextTrimming="CharacterEllipsis"
                                                                HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
@@ -79,6 +78,9 @@
                                         </Grid>
                                     </Border>
                                     <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Image}" Value="{x:Null}">
+                                            <Setter Property="Opacity" Value="0.75" TargetName="HighlightTextBorder"/>                                            
+                                        </DataTrigger>
                                         <Trigger Property="IsSelected" Value="True">
                                             <Setter Property="BorderBrush" Value="#3e6184" TargetName="SelectionBorder"/>
                                             <Setter Property="Opacity" Value="1" TargetName="HighlightTextBorder"/>
