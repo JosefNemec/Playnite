@@ -28,7 +28,12 @@ namespace Playnite.Emulators
         public string ExecutableLookup
         {
             get; set;
-        }       
+        }
+
+        public List<string> ImageExtensions
+        {
+            get; set;
+        }
 
         public static string DefinitionsPath
         {

@@ -9,30 +9,30 @@ using System.Threading.Tasks;
 
 namespace Playnite.Emulators
 {
-    public class EmulatorFinder
+    public class ScannedEmulator
     {
-        public class ImportedEmulator
+        public Emulator Emulator
         {
-            public Emulator Emulator
-            {
-                get; set;
-            }
-
-            public EmulatorDefinition Definition
-            {
-                get; set;
-            }
-
-            public ImportedEmulator(Emulator emulator, EmulatorDefinition definition)
-            {
-                Emulator = emulator;
-                Definition = definition;
-            }
+            get; set;
         }
 
-        public static List<ImportedEmulator> SearchForEmulators(string path, List<EmulatorDefinition> definitions)
+        public EmulatorDefinition Definition
         {
-            var emulators = new List<ImportedEmulator>();
+            get; set;
+        }
+
+        public ScannedEmulator(Emulator emulator, EmulatorDefinition definition)
+        {
+            Emulator = emulator;
+            Definition = definition;
+        }
+    }
+
+    public class EmulatorFinder
+    {
+        public static List<ScannedEmulator> SearchForEmulators(string path, List<EmulatorDefinition> definitions)
+        {
+            var emulators = new List<ScannedEmulator>();
             var fileEnumerator = new SafeFileEnumerator(path, "*.*", SearchOption.AllDirectories);
             foreach (var file in fileEnumerator)
             {
@@ -42,11 +42,12 @@ namespace Playnite.Emulators
                     if (regex.IsMatch(file.Name))
                     {
                         var folder = Path.GetDirectoryName(file.FullName);
-                        emulators.Add(new ImportedEmulator(new Emulator(Path.GetFileName(Path.GetDirectoryName(file.FullName)))
+                        emulators.Add(new ScannedEmulator(new Emulator(Path.GetFileName(Path.GetDirectoryName(file.FullName)))
                         {
                             WorkingDirectory = folder,
                             Executable = file.FullName,
-                            Arguments = definition.DefaultArguments
+                            Arguments = definition.DefaultArguments,
+                            Name = definition.Name
                         }, definition));
                     }
                 }

@@ -36,8 +36,6 @@
                     Style="{StaticResource BottomButton}" />
                 <Button Name="ButtonOK" Click="ButtonOK_Click" Content="{DynamicResource SaveLabel}" DockPanel.Dock="Right"
                     Style="{StaticResource BottomButton}" />
-                <Button Content="{DynamicResource ImportEmulatorsButton}" DockPanel.Dock="Left" Style="{StaticResource BottomButton}"
-                        Name="ButtonImportEmulators" Click="ButtonImportEmulators_Click"/>
             </DockPanel>
         </Border>
         <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Top" Name="TabMainTabControl">
@@ -151,6 +149,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -186,6 +185,10 @@
                             <TextBlock Text="{DynamicResource WorkingDirTitle}" Margin="0,0,0,0" />
                             <TextBox Name="TextWorkdir" Margin="0,5,0,0" Text="{Binding WorkingDirectory,UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
+
+                        <Button Content="{DynamicResource ImportEmulatorsButton}"
+                                Grid.Row="5" HorizontalAlignment="Right" Margin="5"
+                                Name="ButtonImportEmulators" Click="ButtonImportEmulators_Click"/>
                     </Grid>
                 </Grid>
             </TabItem>

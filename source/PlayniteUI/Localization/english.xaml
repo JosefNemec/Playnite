@@ -41,6 +41,10 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="AddTitle">Add</sys:String>
     <sys:String x:Key="DefaultIconTitle">Default Icon</sys:String>
     <sys:String x:Key="DefaultCoverTitle">Default Cover Image</sys:String>
+    <sys:String x:Key="FinishLabel">Finish</sys:String>
+    <sys:String x:Key="NextLabel">Next</sys:String>
+    <sys:String x:Key="BackLabel">Back</sys:String>
+    <sys:String x:Key="ImportLabel">Import</sys:String>
     
     <!--Menu-->
     <sys:String x:Key="MenuConfigurationTitle">Configuration</sys:String>

@@ -21,6 +21,7 @@ using System.IO;
 using System.ComponentModel;
 using System.Windows.Threading;
 using Newtonsoft.Json;
+using PlayniteUI.Windows;
 
 namespace PlayniteUI
 {
@@ -96,7 +97,7 @@ namespace PlayniteUI
             public static PlatformableEmulator FromEmulator(Emulator emulator, IEnumerable<Platform> platforms)
             {
                 var newObj = JsonConvert.DeserializeObject<PlatformableEmulator>(emulator.ToJson());
-                var newPlatforms = platforms.Select(a => new SelectablePlatform(a) { Selected = emulator.Platforms == null ? false : emulator.Platforms.Contains(a.Id) });
+                var newPlatforms = platforms?.Select(a => new SelectablePlatform(a) { Selected = emulator.Platforms == null ? false : emulator.Platforms.Contains(a.Id) });
                 newObj.PlatformsList = new List<SelectablePlatform>(newPlatforms);
                 foreach (var platform in newObj.PlatformsList)
                 {
@@ -430,7 +431,43 @@ namespace PlayniteUI
 
         private void ButtonImportEmulators_Click(object sender, RoutedEventArgs e)
         {
+            var window = new EmulatorImportWindow(DialogType.EmulatorImport)
+            {
+                Owner = this
+            };
+            
+            var result = window.ShowDialog();
+            if (result == false)
+            {
+                return;
+            }
 
+            foreach (var emulator in window.Model.EmulatorList)
+            {
+                if (emulator.Import)
+                {
+                    foreach (var platform in emulator.Emulator.Definition.Platforms)
+                    {
+                        var existing = Platforms.FirstOrDefault(a => string.Equals(a.Name, platform, StringComparison.InvariantCultureIgnoreCase));
+                        if (existing == null)
+                        {
+                            var newPlatform = new Platform(platform) { Id = 0 };
+                            Platforms.Add(newPlatform);
+                            UpdatePlatformsToDB();
+                            existing = newPlatform;    
+                        }
+
+                        if (emulator.Emulator.Emulator.Platforms == null)
+                        {
+                            emulator.Emulator.Emulator.Platforms = new List<int>();
+                        }
+
+                        emulator.Emulator.Emulator.Platforms.Add(existing.Id);
+                    }
+
+                    Emulators.Add(PlatformableEmulator.FromEmulator(emulator.Emulator.Emulator, Platforms));
+                }
+            }
         }
     }
 }

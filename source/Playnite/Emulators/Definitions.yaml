@@ -6,6 +6,7 @@
 - Name: NullDC
   DefaultArguments: -config nullDC:Emulator.Autostart=1 -config ImageReader:LoadDefaultImage=1 -config ImageReader:DefaultImage="{ImagePath}"
   Platforms: [Dreamcast]
+  ImageExtensions: [.iso,.bwt,.cdi,.b5t,.b6t,.ccd,.cue,.mds,.nrg,.pdi]
   ExecutableLookup: nullDC.*\.exe
 
 - Name: Dolphin
@@ -14,7 +15,7 @@
   ExecutableLookup: Dolphin\.exe
 
 - Name: Fusion
-  DefaultArguments: "{ImagePath}" -gen -auto -fullscreen
+  DefaultArguments: '"{ImagePath}" -gen -auto -fullscreen'
   Platforms: [Genesis]
   ExecutableLookup: Fusion\.exe
 

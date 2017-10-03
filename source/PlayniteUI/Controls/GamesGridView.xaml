@@ -95,20 +95,6 @@
                         <Style TargetType="GridViewColumnHeader" BasedOn="{StaticResource {x:Type GridViewColumnHeader}}">
                             <EventSetter Event="Loaded" Handler="GridViewColumnHeader_Loaded" />
                             <EventSetter Event="Click" Handler="GridViewColumnHeader_Click" />
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
-                                        <Grid Margin="1">
-                                            <Border Padding="5,3,5,3" Style="{StaticResource HighlightBorder}" BorderThickness="1" Background="Transparent">
-                                                <TextBlock Style="{StaticResource BaseTextBlockStyle}">
-                                                    <ContentPresenter VerticalAlignment="Center" />
-                                                </TextBlock>
-                                            </Border>
-                                            <Thumb x:Name="PART_HeaderGripper" HorizontalAlignment="Right" Margin="0,0,-9,0" Style="{StaticResource GridViewColumnHeaderGripper}" />
-                                        </Grid>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
                         </Style>                        
                     </GridView.ColumnHeaderContainerStyle>
                     <GridView.ColumnHeaderContextMenu>

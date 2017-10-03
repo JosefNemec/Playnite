@@ -224,6 +224,9 @@
     <Compile Include="Windows\CrashHandlerWindow.xaml.cs">
       <DependentUpon>CrashHandlerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\EmulatorImportWindow.xaml.cs">
+      <DependentUpon>EmulatorImportWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\FirstTimeStartupWindow.xaml.cs">
       <DependentUpon>FirstTimeStartupWindow.xaml</DependentUpon>
     </Compile>
@@ -309,6 +312,10 @@
     <Page Include="Windows\CrashHandlerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EmulatorImportWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\FirstTimeStartupWindow.xaml">
       <SubType>Designer</SubType>
