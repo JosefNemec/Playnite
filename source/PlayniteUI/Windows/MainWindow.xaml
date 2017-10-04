@@ -121,9 +121,12 @@
                     </StackPanel>
                 </Border>                
                 <DockPanel.ContextMenu>
-                    <ContextMenu StaysOpen="False" Name="MenuMainMenu" Placement="Bottom">                        
-                        <MenuItem Header="Add Game..." Click="AddNewGame_Click" IsEnabled="{Binding GameAdditionAllowed}"/>
-                        <MenuItem Header="Add Installed Game(s)..." Click="AddInstalledGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
+                    <ContextMenu StaysOpen="False" Name="MenuMainMenu" Placement="Bottom">
+                        <MenuItem Header="Add Game">
+                            <MenuItem Header="Manually..." Click="AddNewGame_Click" IsEnabled="{Binding GameAdditionAllowed}"/>
+                            <MenuItem Header="Import Installed or from Folder..." Click="AddInstalledGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
+                            <MenuItem Header="Import emulated Game(s)..." Click="AddEmulatedGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
+                        </MenuItem>
                         <Separator Style="{DynamicResource {x:Type Separator}}" />
                         <MenuItem Header="Reload Games List" Click="ReloadGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
                         <MenuItem Header="{DynamicResource MenuConfigurationTitle}">

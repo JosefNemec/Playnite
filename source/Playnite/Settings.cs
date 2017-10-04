@@ -93,6 +93,21 @@ namespace Playnite
             }
         }
 
+        private bool emulatorWizardComplete;
+        public bool EmulatorWizardComplete
+        {
+            get
+            {
+                return emulatorWizardComplete;
+            }
+
+            set
+            {
+                emulatorWizardComplete = value;
+                OnPropertyChanged("EmulatorWizardComplete");
+            }
+        }
+
         private string databasePath;
         public string DatabasePath
         {

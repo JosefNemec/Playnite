@@ -35,6 +35,11 @@ namespace Playnite.Emulators
             get; set;
         }
 
+        public string Website
+        {
+            get; set;
+        }
+
         public static string DefinitionsPath
         {
             get => Path.Combine(Paths.ProgramFolder, "Emulators", "Definitions.yaml");
@@ -53,7 +58,7 @@ namespace Playnite.Emulators
             }
 
             var deserializer = new DeserializerBuilder().Build();
-            var definitions = deserializer.Deserialize<List<EmulatorDefinition>>(File.ReadAllText(DefinitionsPath));
+            var definitions = deserializer.Deserialize<List<EmulatorDefinition>>(File.ReadAllText(DefinitionsPath)).OrderBy(a => a.Name).ToList();
             return definitions;
         }
     }

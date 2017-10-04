@@ -22,6 +22,7 @@ using System.ComponentModel;
 using System.Windows.Threading;
 using Newtonsoft.Json;
 using PlayniteUI.Windows;
+using Playnite.Emulators;
 
 namespace PlayniteUI
 {
@@ -73,7 +74,7 @@ namespace PlayniteUI
             {
                 get
                 {
-                    return PlatformsList?.Where(a => a.Selected).Select(a => a.Id).ToList();
+                    return PlatformsList?.Where(a => a.Selected).Select(a => a.Id).OrderBy(a => a).ToList();
                 }
             }
 
@@ -197,12 +198,17 @@ namespace PlayniteUI
             }
         }
 
+        public List<EmulatorDefinition> EmulatorDefinitions
+        {
+            get => EmulatorDefinition.GetDefinitions();
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public PlatformsWindow()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
         public void OnPropertyChanged(string name)
@@ -256,6 +262,10 @@ namespace PlayniteUI
             {
                 var platform = ListPlatforms.SelectedItem as Platform;
                 Platforms.Remove(platform);
+                if (Platforms.Count > 0)
+                {
+                    ListPlatforms.SelectedItem = Platforms[0];
+                }
             }
         }
 
@@ -309,6 +319,10 @@ namespace PlayniteUI
             {
                 var emulator = ListEmulators.SelectedItem as PlatformableEmulator;
                 Emulators.Remove(emulator);
+                if (Emulators.Count > 0)
+                {
+                    ListEmulators.SelectedItem = Emulators[0];
+                }
             }
         }
 
@@ -468,6 +482,41 @@ namespace PlayniteUI
                     Emulators.Add(PlatformableEmulator.FromEmulator(emulator.Emulator.Emulator, Platforms));
                 }
             }
+        }
+
+        private void ButtonDownloadEmulators_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new EmulatorImportWindow(DialogType.EmulatorDownload)
+            {
+                Owner = this
+            };
+
+            var result = window.ShowDialog();
+            if (result == false)
+            {
+                return;
+            }
+        }
+
+        private void ButtonArgumentPresets_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            button.ContextMenu.ItemsSource = EmulatorDefinitions;
+            button.ContextMenu.PlacementTarget = button;
+            button.ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Top;
+            button.ContextMenu.IsOpen = true;
+        }
+
+        private void ArgumentsMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListEmulators.SelectedItem == null)
+            {
+                return;
+            }
+
+            var definiton = ((MenuItem)sender).DataContext as EmulatorDefinition;
+            var emulator = ListEmulators.SelectedItem as PlatformableEmulator;
+            emulator.Arguments = definiton.DefaultArguments;
         }
     }
 }

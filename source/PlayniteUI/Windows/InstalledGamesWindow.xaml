@@ -22,18 +22,20 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <ListView Grid.Column="0" Grid.Row="0" Name="ListPrograms" SelectionMode="Single" Margin="5"
+        <ListView Grid.Column="0" Grid.Row="0" Name="ListPrograms" SelectionMode="Single" Margin="10,5,10,5"
                   VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
+                  BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
                   ItemsSource="{Binding Programs, RelativeSource={RelativeSource AncestorType=Window}}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
                     <Setter Property="AutomationProperties.Name" Value="{Binding Name}" />
                     <Setter Property="AutomationProperties.HelpText" Value="{Binding Path}" />
+                    <Setter Property="Focusable" Value="False"/>
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Import?">
+                    <GridViewColumn Header="Import">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding Import}" Padding="5" HorizontalAlignment="Right" />

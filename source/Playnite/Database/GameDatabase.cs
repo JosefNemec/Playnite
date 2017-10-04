@@ -446,6 +446,15 @@ namespace Playnite.Database
             }
 
             OnPlatformsCollectionChanged(new List<Platform>(), new List<Platform>() { platform });
+                
+            lock (fileLock)
+            {
+                foreach (var game in GamesCollection.Find(a => a.PlatformId == platform.Id))
+                {
+                    game.PlatformId = null;
+                    UpdateGameInDatabase(game);
+                }
+            }
         }
 
         public void RemovePlatform(IEnumerable<Platform> platforms)
@@ -465,6 +474,18 @@ namespace Playnite.Database
             }
 
             OnPlatformsCollectionChanged(new List<Platform>(), platforms.ToList());
+
+            lock (fileLock)
+            {
+                foreach (var platform in platforms)
+                {
+                    foreach (var game in GamesCollection.Find(a => a.PlatformId == platform.Id))
+                    {
+                        game.PlatformId = null;
+                        UpdateGameInDatabase(game);
+                    }
+                }
+            }
         }
 
         public void UpdatePlatform(Platform platform)

@@ -69,7 +69,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Margin="3">
-                            <Image Height="32" RenderOptions.BitmapScalingMode="HighQuality" DockPanel.Dock="Left">
+                            <Image Height="32" RenderOptions.BitmapScalingMode="HighQuality" DockPanel.Dock="Left" Margin="0,0,8,0">
                                 <Image.Source>
                                     <PriorityBinding>
                                         <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
@@ -78,7 +78,7 @@
                                 </Image.Source>
                             </Image>                                
                             <TextBlock Text="{Binding Name, Mode=OneWay}" TextTrimming="CharacterEllipsis"
-                                       Margin="8,0,0,0" VerticalAlignment="Center" DockPanel.Dock="Left" />
+                                       VerticalAlignment="Center" DockPanel.Dock="Left" />
                         </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

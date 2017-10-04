@@ -33,6 +33,17 @@ namespace Playnite.Models
             }
         }
 
+        private List<string> imageExtensions;
+        public List<string> ImageExtensions
+        {
+            get => imageExtensions;
+            set
+            {
+                imageExtensions = value;
+                OnPropertyChanged("ImageExtensions");
+            }
+        }
+
         private string name;
         public string Name
         {

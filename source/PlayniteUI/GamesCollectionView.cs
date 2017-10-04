@@ -217,9 +217,15 @@ namespace PlayniteUI
             get; set;
         }
 
+        private PlatformView platform;
         public PlatformView Platform
         {
-            get; set;
+            get => platform;
+            set
+            {
+                platform = value;
+                OnPropertyChanged("PlatformId");
+            }
         }
 
         public IGame Game
@@ -795,17 +801,6 @@ namespace PlayniteUI
         private void Database_PlatformsCollectionChanged(object sender, PlatformsCollectionChangedEventArgs args)
         {
             platformsCache = database.PlatformsCollection.FindAll().ToList();
-            if (args.RemovedPlatforms == null || args.RemovedPlatforms.Count == 0)
-            {
-                return;
-            }
-
-            var platformIds = args.RemovedPlatforms.Select(a => a.Id).ToList();
-            foreach (var item in Items.Where(a => a.PlatformId != null && platformIds.Contains(a.PlatformId.Value)))
-            {
-                item.Platform.Platform = GetPlatformFromCache(item.PlatformId);
-                item.OnPropertyChanged("Platform");
-            }
         }
 
         private void Database_GameUpdated(object sender, GameUpdatedEventArgs args)

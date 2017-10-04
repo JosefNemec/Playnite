@@ -147,6 +147,20 @@ namespace PlayniteUI
                     Config.FirstTimeWizardComplete = true;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Config"));
                 }
+            }            
+
+            if (!Config.EmulatorWizardComplete)
+            {
+                GameDatabase.Instance.OpenDatabase(Config.DatabasePath);
+                var window = new EmulatorImportWindow(DialogType.Wizard)
+                {
+                    Owner = this
+                };
+
+                if (window.ShowDialog() == true)
+                {
+                    Config.EmulatorWizardComplete = true;
+                }
             }
 
             LoadGames(Config.UpdateLibStartup);
@@ -643,6 +657,19 @@ namespace PlayniteUI
             if (window.DialogResult == true)
             {
                 AddInstalledGames(window.Games);
+            }
+        }
+
+        private void AddEmulatedGames_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new EmulatorImportWindow(DialogType.GameImport)
+            {
+                Owner = this
+            };
+
+            if (window.ShowDialog() == true)
+            {
+                window.Model.AddSelectedGamesToDB();
             }
         }
 

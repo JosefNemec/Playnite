@@ -21,6 +21,8 @@ using System.IO;
 using Playnite;
 using Playnite.Emulators;
 using System.Threading;
+using Playnite.Database;
+using static PlayniteUI.PlatformsWindow;
 
 namespace PlayniteUI.Windows
 {
@@ -42,6 +44,30 @@ namespace PlayniteUI.Windows
         }
     }
 
+    public class ImportableGame
+    {
+        public bool Import
+        {
+            get; set;
+        } = true;
+
+        public IGame Game
+        {
+            get; set;
+        }
+
+        public PlatformableEmulator Emulator
+        {
+            get; set;
+        }
+
+        public ImportableGame(IGame game, PlatformableEmulator emulator)
+        {
+            Game = game;
+            Emulator = emulator;
+        }
+    }
+
     public enum DialogType
     {
         EmulatorImport,
@@ -59,7 +85,7 @@ namespace PlayniteUI.Windows
 
         public bool ShowNextButton
         {
-            get => Type == DialogType.Wizard;
+            get => Type == DialogType.Wizard && ViewTabIndex != 3;
         }
 
         public bool ShowBackButton
@@ -74,7 +100,41 @@ namespace PlayniteUI.Windows
 
         public bool ShowImportButton
         {
-            get => Type != DialogType.Wizard;
+            get => Type != DialogType.Wizard && Type != DialogType.EmulatorDownload;
+        }
+
+        public bool ShowConfigEmulatorButton
+        {
+            get => Type == DialogType.GameImport;
+        }
+
+        private int viewTabIndex = 0;
+        public int ViewTabIndex
+        {
+            get
+            {
+                switch (Type)
+                {
+                    case DialogType.Wizard:
+                        return viewTabIndex;
+                    case DialogType.EmulatorDownload:
+                        return 1;
+                    case DialogType.EmulatorImport:
+                        return 2;
+                    case DialogType.GameImport:
+                        return 3;
+                }
+
+                return 0;
+            }
+
+            set
+            {
+                viewTabIndex = value;
+                OnPropertyChanged("ViewTabIndex");
+                OnPropertyChanged("ShowNextButton");
+                OnPropertyChanged("ShowBackButton");
+            }
         }
 
         private DialogType type;
@@ -110,6 +170,43 @@ namespace PlayniteUI.Windows
             }
         }
 
+        private RangeObservableCollection<ImportableGame> gamesList;
+        public RangeObservableCollection<ImportableGame> GamesList
+        {
+            get => gamesList;
+            set
+            {
+                gamesList = value;
+                OnPropertyChanged("GamesList");
+            }
+        }
+
+        public List<PlatformableEmulator> AvailableEmulators
+        {
+            get
+            {
+                var platforms = DatabasePlatforms;                
+                return GameDatabase.Instance.EmulatorsCollection.FindAll().Where(a => a.ImageExtensions != null && a.ImageExtensions.Count > 0)                
+                    .Select(a => PlatformableEmulator.FromEmulator(a, platforms.Where(b => a.Platforms != null && a.Platforms.Contains(b.Id)))).ToList();
+            }
+        }
+
+        public List<Platform> DatabasePlatforms
+        {
+            get
+            {
+                return GameDatabase.Instance.PlatformsCollection.FindAll().ToList();
+            }
+        }
+
+        public List<EmulatorDefinition> EmulatorDefinitions
+        {
+            get
+            {
+                return EmulatorDefinition.GetDefinitions();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string name)
@@ -139,6 +236,95 @@ namespace PlayniteUI.Windows
                 IsLoading = false;
             }
         }
+
+        public async Task SearchGames(string path, PlatformableEmulator emulator)
+        {
+            try
+            {
+                IsLoading = true;
+                var games = await Task.Run(() =>
+                {
+                    return EmulatorFinder.SearchForGames(path, emulator.ToEmulator());
+                });
+
+                if (GamesList == null)
+                {
+                    GamesList = new RangeObservableCollection<ImportableGame>();
+                }
+
+                GamesList.AddRange(games.Select(a =>
+                {
+                    a.PlatformId = emulator.Platforms?.FirstOrDefault();
+                    return new ImportableGame(a, emulator);
+                }));
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
+        public void AddSelectedGamesToDB()
+        {
+            if (GamesList == null || GamesList.Count == 0)
+            {
+                return;
+            }
+
+            foreach (var game in GamesList)
+            {
+                if (!game.Import)
+                {
+                    continue;
+                }
+
+                game.Game.PlayTask = new GameTask()
+                {
+                    EmulatorId = game.Emulator.Id,
+                    Type = GameTaskType.Emulator                    
+                };
+
+                GameDatabase.Instance.AddGame(game.Game);
+            }
+        }
+
+        public void AddSelectedEmulatorsToDB()
+        {
+            if (EmulatorList == null || EmulatorList.Count == 0)
+            {
+                return;
+            }
+
+            foreach (var emulator in EmulatorList)
+            {
+                if (emulator.Import)
+                {
+                    var platforms = DatabasePlatforms;
+                    foreach (var platform in emulator.Emulator.Definition.Platforms)
+                    {
+                        var existing = platforms.FirstOrDefault(a => string.Equals(a.Name, platform, StringComparison.InvariantCultureIgnoreCase));
+                        if (existing == null)
+                        {
+                            var newPlatform = new Platform(platform) { Id = 0 };
+                            GameDatabase.Instance.AddPlatform(newPlatform);
+                            existing = newPlatform;
+                        }
+
+                        if (emulator.Emulator.Emulator.Platforms == null)
+                        {
+                            emulator.Emulator.Emulator.Platforms = new List<int>();
+                        }
+
+                        emulator.Emulator.Emulator.Platforms.Add(existing.Id);
+                    }
+
+                    GameDatabase.Instance.AddEmulator(emulator.Emulator.Emulator);
+                }
+            }
+
+            OnPropertyChanged("DatabasePlatforms");
+            OnPropertyChanged("AvailableEmulators");
+        }
     }
 
     /// <summary>
@@ -158,7 +344,7 @@ namespace PlayniteUI.Windows
             {
                 Type = type
             };
-            DataContext = Model;            
+            DataContext = Model;
         }
 
         private async void ButtonScanEmulator_Click(object sender, RoutedEventArgs e)
@@ -170,6 +356,43 @@ namespace PlayniteUI.Windows
             }
 
             await Model.SearchEmulators(path);
+            ListEmulators.ScrollIntoView(Model.EmulatorList.Count == 0 ? null : Model.EmulatorList.Last());
+        }
+
+        private void ButtonScanGames_Click(object sender, RoutedEventArgs e)
+        {
+            if (Model.AvailableEmulators == null || Model.AvailableEmulators.Count == 0)
+            {
+                if (Model.EmulatorList == null || Model.EmulatorList.Count == 0 || Model.EmulatorList.Where(a => a.Import).Count() == 0)
+                {
+                    if (PlayniteMessageBox.Show(FindResource("EmuWizardNoEmulatorForGamesWarning") as string, "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        ButtonConfigEmulator_Click(this, null);
+                    }
+                }
+            }
+
+            var button = (Button)sender;
+            button.ContextMenu.PlacementTarget = button;
+            button.ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Top;
+            button.ContextMenu.IsOpen = true;
+        }
+
+        private async void ScanGamesMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var emulator = ((MenuItem)sender).DataContext as PlatformableEmulator;
+            var path = Dialogs.SelectFolder(this);
+            if (string.IsNullOrEmpty(path))
+            {
+                return;
+            }
+
+            await Model.SearchGames(path, emulator);
+            ListGames.ScrollIntoView(Model.GamesList.Count == 0 ? null : Model.GamesList.Last());
         }
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
@@ -180,6 +403,7 @@ namespace PlayniteUI.Windows
 
         private void ButtonFinish_Click(object sender, RoutedEventArgs e)
         {
+            Model.AddSelectedGamesToDB();
             DialogResult = true;
             Close();
         }
@@ -192,12 +416,49 @@ namespace PlayniteUI.Windows
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
+            if (Model.ViewTabIndex == 2)
+            {
+                if (Model.EmulatorList == null || Model.EmulatorList.Count == 0 || Model.EmulatorList.Where(a => a.Import).Count() == 0)
+                {
+                    if (PlayniteMessageBox.Show(FindResource("EmuWizardNoEmulatorWarning") as string, "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        DialogResult = true;
+                        Close();
+                    }
+                }
+            }
 
+            Model.ViewTabIndex++;                  
+
+            if (Model.ViewTabIndex == 3)
+            {
+                Model.AddSelectedEmulatorsToDB();
+            }
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
+            Model.ViewTabIndex--;
+        }
 
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+        }
+
+        private void ButtonConfigEmulator_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new PlatformsWindow()
+            {
+                Owner = this
+            };
+
+            window.ConfigurePlatforms(GameDatabase.Instance);                
+            Model.OnPropertyChanged("AvailableEmulators");
         }
     }
 }

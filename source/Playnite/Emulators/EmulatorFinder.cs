@@ -47,13 +47,44 @@ namespace Playnite.Emulators
                             WorkingDirectory = folder,
                             Executable = file.FullName,
                             Arguments = definition.DefaultArguments,
-                            Name = definition.Name
+                            Name = definition.Name,
+                            ImageExtensions = definition.ImageExtensions
                         }, definition));
                     }
                 }
             }
 
             return emulators;
+        }
+
+        public static List<IGame> SearchForGames(string path, Emulator emulator)
+        {
+            if (emulator.ImageExtensions == null)
+            {
+                throw new Exception("Cannot scan for games, emulator doesn't support any file types.");
+            }
+
+            var games = new List<IGame>();
+            var fileEnumerator = new SafeFileEnumerator(path, "*.*", SearchOption.AllDirectories);
+            foreach (var file in fileEnumerator)
+            {
+                foreach (var extension in emulator.ImageExtensions)
+                {
+                    if (string.Equals(file.Extension, extension, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        var newGame = new Game()
+                        {
+                            Name = Path.GetFileNameWithoutExtension(file.Name),
+                            IsoPath = file.FullName,
+                            InstallDirectory = Path.GetDirectoryName(file.FullName)                            
+                        };
+
+                        games.Add(newGame);
+                    }
+                }
+            }
+
+            return games;
         }
     }
 }

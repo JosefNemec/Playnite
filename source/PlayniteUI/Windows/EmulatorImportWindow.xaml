@@ -3,12 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="schemas.microsoft.com/expression/2010/interactivity‌​"
         xmlns:local="clr-namespace:PlayniteUI.Windows"
         xmlns:playniteUI="clr-namespace:PlayniteUI"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
-        Title="" WindowStartupLocation="CenterOwner"
+        Title="{DynamicResource EmuWizardWindowTitle}" WindowStartupLocation="CenterOwner"
         Height="600" Width="800" x:Name="WindowEmulatorImport"
         AutomationProperties.AutomationId="WindowEmulatorImport">
 
@@ -16,6 +17,7 @@
         <playniteUI:NegateConverter x:Key="NegateConverter" />
         <playniteUI:EnumBooleanConverter x:Key="EnumBooleanConverter" />
         <playniteUI:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
+        <playniteUI:ListToStringConverter x:Key="ListToStringConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </controls:WindowBase.Resources>
@@ -27,7 +29,8 @@
         </Grid.RowDefinitions>
 
         <TabControl DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0" Name="TabMain" OverridesDefaultStyle="True"
-                    IsEnabled="{Binding IsLoading, Converter={StaticResource NegateConverter}}">
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource NegateConverter}}"
+                    SelectedIndex="{Binding ViewTabIndex, Mode=OneWay}">
             <TabControl.Style>
                 <Style TargetType="TabControl">
                     <Setter Property="Template">
@@ -42,52 +45,195 @@
                     </Setter>                        
                 </Style>
             </TabControl.Style>
+            <TabItem Header="WizardIntro" Visibility="Collapsed">
+                <DockPanel LastChildFill="False" Margin="30">
+                    <TextBlock Text="Emulator Import Wizard" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
+                    <TextBlock Text="{DynamicResource EmuWizardIntro}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="0,20,0,0"/>
+                    <TextBlock Text="{DynamicResource EmuWizardNotice}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="0,20,0,0"/>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="EmulatorDownload" Visibility="Collapsed">
+                <DockPanel>
+                    <TextBlock Text="{DynamicResource EmuWizardDownloadListIntro}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="20,10,20,10"
+                               Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <ListView SelectionMode="Single" Margin="5" BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
+                              ItemsSource="{Binding EmulatorDefinitions}" DockPanel.Dock="Bottom">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                                <Setter Property="Focusable" Value="False"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name, Mode=OneWay}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Supported Platforms">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Platforms, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Website">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Padding="5" Style="{StaticResource BaseTextBlockStyle}">
+                                            <Hyperlink NavigateUri="{Binding Website, Mode=OneWay}" RequestNavigate="Hyperlink_RequestNavigate">
+                                                <Hyperlink.Inlines>
+                                                    <Run Text="{Binding Website, Mode=OneWay}"/>
+                                                </Hyperlink.Inlines>
+                                            </Hyperlink>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+            </TabItem>
             <TabItem Header="Emulators" Visibility="Collapsed">
-                <Grid>
-                    <DockPanel>
-                        <Button Content="Autodetect from folder..." Name="ButtonScanEmulator" Click="ButtonScanEmulator_Click"
-                                DockPanel.Dock="Bottom" HorizontalAlignment="Left" Margin="5,0,5,5" Style="{StaticResource BottomButton}"/>
-                        <ListView SelectionMode="Single" Margin="5" BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
-                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
-                                  ItemsSource="{Binding EmulatorList}">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Import?">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <CheckBox IsChecked="{Binding Import, Mode=TwoWay}" Padding="5" HorizontalAlignment="Right" />
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    <GridViewColumn Header="Name">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox Text="{Binding Emulator.Emulator.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5" Foreground="{StaticResource TextBrush}"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    <GridViewColumn Header="Preset">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Emulator.Definition.Name, Mode=OneWay}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    <GridViewColumn Header="Path">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Emulator.Emulator.Executable, Mode=OneWay}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </DockPanel>
-                </Grid>
+                <DockPanel>
+                    <TextBlock Text="{DynamicResource EmuWizardEmuImportIntro}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="20,10,20,10"/>
+                    <Button Content="{DynamicResource EmuWizardButtonScanEmulator}" Name="ButtonScanEmulator" Click="ButtonScanEmulator_Click"
+                            DockPanel.Dock="Bottom" HorizontalAlignment="Left" Margin="5,5,5,10" Style="{StaticResource BottomButton}"/>
+                    <ListView SelectionMode="Single" Margin="5" BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
+                              ItemsSource="{Binding EmulatorList}" Name="ListEmulators">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                                <Setter Property="Focusable" Value="False"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Import">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Import, Mode=TwoWay}" Padding="5" HorizontalAlignment="Right" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding Emulator.Emulator.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5" Foreground="{StaticResource TextBrush}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Preset">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Emulator.Definition.Name, Mode=OneWay}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Path">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Emulator.Emulator.Executable, Mode=OneWay}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
             </TabItem>
             <TabItem Header="Games" Visibility="Collapsed">
-
+                <DockPanel>
+                    <TextBlock Text="{DynamicResource EmuWizardGameImportIntro}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="20,10,20,10"/>
+                    <DockPanel DockPanel.Dock="Bottom" Margin="0,0,0,5" LastChildFill="False">
+                        <Button Content="{DynamicResource EmuWizardButtonScanGames}" Name="ButtonScanGames" Click="ButtonScanGames_Click" ContextMenuService.Placement="Top"
+                                Style="{StaticResource BottomButton}" DockPanel.Dock="Left">
+                                <Button.ContextMenu>
+                                <ContextMenu ItemsSource="{Binding AvailableEmulators}" Grid.IsSharedSizeScope="True">
+                                    <ContextMenu.ItemContainerStyle>
+                                        <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                            <EventSetter Event="Click" Handler="ScanGamesMenuItem_Click" />
+                                        </Style>
+                                    </ContextMenu.ItemContainerStyle>
+                                    <ContextMenu.ItemTemplate> 
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="{Binding Name}" Grid.Column="0" />
+                                                <TextBlock Text="{Binding PlatformsString, Mode=OneWay, StringFormat='({0})'}" Grid.Column="1" Margin="15,0,0,0"/>
+                                            </Grid>                                        
+                                        </DataTemplate>
+                                    </ContextMenu.ItemTemplate>
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                        </Button>
+                        <Button Content="{DynamicResource EmuWizardButtonConfigureEmulator}" Style="{StaticResource BottomButton}" DockPanel.Dock="Right"
+                                Visibility="{Binding ShowConfigEmulatorButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                Name="ButtonConfigEmulator" Click="ButtonConfigEmulator_Click"/>
+                    </DockPanel>
+                    <ListView SelectionMode="Single" Margin="5" BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
+                              ItemsSource="{Binding GamesList}" Name="ListGames">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                                <Setter Property="Focusable" Value="False"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Import">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Import, Mode=TwoWay}" Padding="5" HorizontalAlignment="Right" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding Game.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5" Foreground="{StaticResource TextBrush}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Platform">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox Padding="5" ItemsSource="{Binding Emulator.PlatformsList}" SelectedValuePath="Id"
+                                                      SelectedValue="{Binding Game.PlatformId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                <ComboBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Name, Mode=OneWay}"/>
+                                                    </DataTemplate>
+                                                </ComboBox.ItemTemplate>
+                                            </ComboBox>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Emulator">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Emulator.Name, Mode=OneWay}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Path">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Game.IsoPath, Mode=OneWay}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
             </TabItem>
         </TabControl>
 
@@ -100,8 +246,8 @@
                         Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource BottomButton}" />
                 <Button Content="{DynamicResource NextLabel}" Name="ButtonNext" DockPanel.Dock="Right" Click="ButtonNext_Click"
                         Visibility="{Binding ShowNextButton, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource BottomButton}" />
-                <Button Content="{DynamicResource BackLabel}" Name="ButtonBack"  DockPanel.Dock="Right" Click="ButtonBack_Click"
-                        Visibility="{Binding ShowBackButton, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource BottomButton}" />
+                <!--<Button Content="{DynamicResource BackLabel}" Name="ButtonBack"  DockPanel.Dock="Right" Click="ButtonBack_Click"
+                        Visibility="{Binding ShowBackButton, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource BottomButton}" />-->
                 <Button Content="{DynamicResource ImportLabel}" Name="ButtonImport"  DockPanel.Dock="Right" Click="ButtonImport_Click"
                         Visibility="{Binding ShowImportButton, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource BottomButton}" />
             </DockPanel>

@@ -55,24 +55,27 @@
         <DockPanel Grid.Column="1" Grid.Row="2" LastChildFill="True" >
             <Button Name="ButtonBrowse" Content="..." DockPanel.Dock="Right" Click="ButtonBrowsePath_Click" 
                     Height="{Binding ActualHeight, ElementName=TextPath}" Margin="0,0,3,0"/>
-            <TextBox Name="TextPath" Text="{Binding Path, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left"/>
+            <TextBox Name="TextPath" Text="{Binding Path, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left"
+                     ToolTip="{DynamicResource GameVariablesTooltip}"/>
         </DockPanel>
 
         <Label Content="Arguments" Grid.Column="0" Grid.Row="5" />
-        <TextBox Name="TextArguments" Grid.Column="1" Grid.Row="5" Text="{Binding Arguments}"/>
+        <TextBox Name="TextArguments" Grid.Column="1" Grid.Row="5" Text="{Binding Arguments}" ToolTip="{DynamicResource GameVariablesTooltip}"/>
         
         <Label Content="Emulator Arguments" Grid.Column="0" Grid.Row="6" />
         <TextBox Name="TextEmulatorArguments" Grid.Column="1" Grid.Row="6" 
                  Text="{Binding SelectedEmulatorArguments, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
-                 IsEnabled="False"/>
+                 ToolTip="{DynamicResource GameVariablesTooltip}" IsEnabled="False"/>
 
         <Label Content="Working Directory" Grid.Column="0" Grid.Row="8" />
-        <TextBox Name="TextWorkDir" Grid.Column="1" Grid.Row="8" Text="{Binding WorkingDir}"/>
+        <TextBox Name="TextWorkDir" Grid.Column="1" Grid.Row="8" Text="{Binding WorkingDir}"
+                 ToolTip="{DynamicResource GameVariablesTooltip}"/>
 
-        <Label Content="Additional Arguments" Grid.Column="0" Grid.Row="7" />
-        <TextBox Name="TextAdditionalArguments" Grid.Column="1" Grid.Row="7" Text="{Binding AdditionalArguments}"/>
+        <Label Content="Additional Emulator Arguments" Grid.Column="0" Grid.Row="7" />
+        <TextBox Name="TextAdditionalArguments" Grid.Column="1" Grid.Row="7" Text="{Binding AdditionalArguments}"
+                 ToolTip="{DynamicResource GameVariablesTooltip}"/>
 
-        <Label Content="Override Default Arguments" Grid.Column="0" Grid.Row="4"  />
+        <Label Content="Override Emulator Arguments" Grid.Column="0" Grid.Row="4"  />
         <CheckBox Name="CheckOverrideArgs" Grid.Column="1" Grid.Row="4" Margin="3,5,3,5"
                   IsChecked="{Binding OverrideDefaultArgs}" Checked="CheckOverrideArgs_Checked" Unchecked="CheckOverrideArgs_Checked"/>
 
