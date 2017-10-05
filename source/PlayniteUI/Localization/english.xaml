@@ -71,6 +71,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="SettingsAsyncImageLoading">Asynchronous image loading (requires restart)</sys:String>
     <sys:String x:Key="SettingsAsyncImageLoadingTooltip">Improves scrolling smoothness of game lists in exchange for slower image load times.</sys:String>
     <sys:String x:Key="SettingsShowNameEmptyCover">Display game name when cover art is missing</sys:String>
+    <sys:String x:Key="SettingsShowIconList">Show game icons on List view</sys:String>
 
     <!--Emulator Import-->
     <sys:String x:Key="EmuWizardWindowTitle">Emulation Import Wizard</sys:String>

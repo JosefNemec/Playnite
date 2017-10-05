@@ -138,6 +138,21 @@ namespace Playnite
             }
         }
 
+        private bool showIconsOnList = true;
+        public bool ShowIconsOnList
+        {
+            get
+            {
+                return showIconsOnList;
+            }
+
+            set
+            {
+                showIconsOnList = value;
+                OnPropertyChanged("ShowIconsOnList");
+            }
+        }
+
         private string databasePath;
         public string DatabasePath
         {

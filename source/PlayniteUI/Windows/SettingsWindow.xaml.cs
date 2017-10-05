@@ -262,6 +262,12 @@ namespace PlayniteUI
                 nameCoverArt.UpdateSource();
             }
 
+            var showIcons = CheckShowIcons.GetBindingExpression(CheckBox.IsCheckedProperty);
+            if (showIcons.IsDirty)
+            {
+                showIcons.UpdateSource();
+            }
+
             Playnite.Settings.Instance.SaveSettings();
             Close();
         }

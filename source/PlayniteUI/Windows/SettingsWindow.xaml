@@ -82,9 +82,10 @@
                     <StackPanel Margin="20">
                         <CheckBox Content="{DynamicResource SettingsAsyncImageLoading}" ToolTip="{DynamicResource SettingsAsyncImageLoadingTooltip}"
                                   Name="CheckAsyncImages" IsChecked="{Binding AsyncImageLoading, UpdateSourceTrigger=Explicit}"/>
-                        <CheckBox Content="{DynamicResource SettingsShowNameEmptyCover}" ToolTip="{DynamicResource SettingsAsyncImageLoadingTooltip}"
-                                  Name="CheckNameEmptyCover" IsChecked="{Binding ShowNameEmptyCover, UpdateSourceTrigger=Explicit}"
-                                  Margin="0,15,0,0"/>
+                        <CheckBox Content="{DynamicResource SettingsShowNameEmptyCover}" Margin="0,15,0,0"
+                                  Name="CheckNameEmptyCover" IsChecked="{Binding ShowNameEmptyCover, UpdateSourceTrigger=Explicit}"/>
+                        <CheckBox Content="{DynamicResource SettingsShowIconList}" Margin="0,15,0,0"
+                                  Name="CheckShowIcons" IsChecked="{Binding ShowIconsOnList, UpdateSourceTrigger=Explicit}"/>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Steam">
