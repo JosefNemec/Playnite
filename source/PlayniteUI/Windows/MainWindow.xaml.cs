@@ -163,6 +163,19 @@ namespace PlayniteUI
                 }
             }
 
+            if (!Config.MigrationV2PcPlatformAdded)
+            {
+                GameDatabase.Instance.OpenDatabase(Config.DatabasePath);
+                var db = GameDatabase.Instance;
+                foreach (var game in db.GamesCollection.Find(a => a.Provider != Provider.Custom).ToList())
+                {
+                    db.AssignPcPlatform(game);
+                    db.UpdateGameInDatabase(game);
+                }
+
+                Config.MigrationV2PcPlatformAdded = true;                
+            }
+
             LoadGames(Config.UpdateLibStartup);
             CheckUpdate();
             SendUsageData();

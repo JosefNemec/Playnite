@@ -792,6 +792,7 @@ namespace Playnite.Database
                 if (existingGame == null)
                 {
                     logger.Info("Adding new installed game {0} from {1} provider", newGame.ProviderId, newGame.Provider);
+                    AssignPcPlatform(newGame);
                     AddGame(newGame);
                 }
                 else
@@ -869,6 +870,7 @@ namespace Playnite.Database
                 if (existingGame == null)
                 {
                     logger.Info("Adding new game {0} into library from {1} provider", game.ProviderId, game.Provider);
+                    AssignPcPlatform(game);
                     AddGame(game);
                 }
             }
@@ -888,6 +890,18 @@ namespace Playnite.Database
                     DeleteGame(dbGame);
                 }
             }
+        }
+
+        public void AssignPcPlatform(IGame game)
+        {
+            var platform = PlatformsCollection.FindOne(a => a.Name == "PC");
+            if (platform == null)
+            {
+                platform = new Platform("PC");
+                AddPlatform(platform);
+            }
+
+            game.PlatformId = platform.Id;
         }
 
         public void ImportCategories(List<IGame> sourceGames)
