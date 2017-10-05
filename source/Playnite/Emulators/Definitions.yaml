@@ -1,12 +1,12 @@
 ﻿- Name: DOSBox
-  DefaultArguments: '-conf "{ImagePath}" -exit -fullscreen'
+  DefaultArguments: '-conf "{ImagePath}" -exit'
   Platforms: [DOS, PC]
   ImageExtensions: [.conf]  
   ExecutableLookup: ^dosbox\.exe
   Website: 'https://www.dosbox.com/'
 
 - Name: NullDC
-  DefaultArguments: '-config nullDC:Emulator.Autostart=1 -config ImageReader:LoadDefaultImage=1 -config ImageReader:DefaultImage="{ImagePath}"'
+  DefaultArguments: '-config nullDC_GUI:Fullscreen=1 -config nullDC:Emulator.Autostart=1 -config ImageReader:LoadDefaultImage=1 -config ImageReader:DefaultImage="{ImagePath}"'
   Platforms: [Dreamcast]
   ImageExtensions: [.iso, .bwt, .cdi, .b5t, .b6t, .ccd, .cue, .mds, .nrg, .pdi]
   ExecutableLookup: ^nullDC.*\.exe
@@ -27,14 +27,14 @@
   Website: 'http://www.carpeludum.com/kega-fusion/'
 
 - Name: Project64
-  DefaultArguments: "{ImagePath}"
+  DefaultArguments: '"{ImagePath}"'
   ImageExtensions: [.rom, .n64, .v64, .z64, .jap, .pal, .usa, .zip]
   Platforms: [Nintendo 64]
   ExecutableLookup: ^Project64\.exe
   Website: 'http://www.pj64-emu.com/'
 
 - Name: Nestopia
-  DefaultArguments: '"{ImagePath}" -video fullscreen bpp : 32'
+  DefaultArguments: '"{ImagePath}"'
   Platforms: [Nintendo Entertainment System]
   ImageExtensions: [.nes, .unf, .fds, .nsf, .zip]
   ExecutableLookup: ^nestopia\.exe
@@ -55,7 +55,7 @@
   Website: 'http://www.epsxe.com/'
 
 - Name: PCSX2
-  DefaultArguments: '"{ImagePath}" --fullboot --fullscreen'
+  DefaultArguments: '"{ImagePath}" --nogui --fullboot --fullscreen'
   Platforms: [PlayStation 2]
   ImageExtensions: [.iso, .bin, .mdf, .nrg]
   ExecutableLookup: ^pcsx2\.exe
@@ -74,3 +74,31 @@
   ImageExtensions: [.cue, .bin, .iso]
   ExecutableLookup: ^4do\.exe
   Website: 'http://www.fourdo.com/'
+
+- Name: Stella
+  DefaultArguments: '-fullscreen 1 "{ImagePath}"'
+  Platforms: [Atari 2600]
+  ImageExtensions: [.bin, .a26, .zip]
+  ExecutableLookup: ^Stella\.exe
+  Website: 'https://stella-emu.github.io/'
+
+- Name: Virtual Jaguar
+  DefaultArguments: '"{ImagePath}" --fullscreen'
+  Platforms: [Atari Jaguar]
+  ImageExtensions: [.abs, .rom, .jag, .bin]
+  ExecutableLookup: ^virtualjaguar\.exe
+  Website: 'https://icculus.org/virtualjaguar/'
+
+- Name: DeSmuME
+  DefaultArguments: '"{ImagePath}"'
+  Platforms: [Nintendo DS]
+  ImageExtensions: [.nds, .zip]
+  ExecutableLookup: ^DeSmuME.*\.exe
+  Website: 'http://desmume.org/'
+
+- Name: Yabuse
+  DefaultArguments: '--iso="{ImagePath}"'
+  Platforms: [Sega Saturn]
+  ImageExtensions: [.iso, .cue, .bin, .mds]
+  ExecutableLookup: ^yabause.*\.exe
+  Website: 'https://yabause.org/'

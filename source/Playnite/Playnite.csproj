@@ -227,7 +227,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Emulators\Definitions.yaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
