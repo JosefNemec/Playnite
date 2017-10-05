@@ -69,18 +69,22 @@
                                         <Grid>
                                             <ContentPresenter />
                                             <Border Background="#D8000000" x:Name="HighlightTextBorder" Opacity="0">
-                                                    <TextBlock Text="{Binding Name, Mode=OneWay}" TextWrapping="Wrap" Margin="5"
-                                                               Style="{StaticResource BaseTextBlockStyle}"
-                                                               TextTrimming="CharacterEllipsis"
-                                                               HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
-                                                               FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"/>
+                                                <TextBlock Text="{Binding Name, Mode=OneWay}" TextWrapping="Wrap" Margin="5"
+                                                           Style="{StaticResource BaseTextBlockStyle}"
+                                                           TextTrimming="CharacterEllipsis"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                                                           FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"/>
                                             </Border>
                                         </Grid>
                                     </Border>
                                     <ControlTemplate.Triggers>
-                                        <DataTrigger Binding="{Binding Image}" Value="{x:Null}">
-                                            <Setter Property="Opacity" Value="0.75" TargetName="HighlightTextBorder"/>                                            
-                                        </DataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Image}" Value="{x:Null}" />
+                                                <Condition Binding="{Binding Path=ShowNameEmptyCover, Source={x:Static shared:Settings.Instance}}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Opacity" Value="0.75" TargetName="HighlightTextBorder"/>
+                                        </MultiDataTrigger>
                                         <Trigger Property="IsSelected" Value="True">
                                             <Setter Property="BorderBrush" Value="#3e6184" TargetName="SelectionBorder"/>
                                             <Setter Property="Opacity" Value="1" TargetName="HighlightTextBorder"/>

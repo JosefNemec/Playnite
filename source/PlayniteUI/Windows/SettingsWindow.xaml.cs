@@ -256,6 +256,12 @@ namespace PlayniteUI
                 asyncImageLoad.UpdateSource();
             }
 
+            var nameCoverArt = CheckNameEmptyCover.GetBindingExpression(CheckBox.IsCheckedProperty);
+            if (nameCoverArt.IsDirty)
+            {
+                nameCoverArt.UpdateSource();
+            }
+
             Playnite.Settings.Instance.SaveSettings();
             Close();
         }

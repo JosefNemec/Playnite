@@ -123,6 +123,21 @@ namespace Playnite
             }
         }
 
+        private bool showNameEmptyCover = true;
+        public bool ShowNameEmptyCover
+        {
+            get
+            {
+                return showNameEmptyCover;
+            }
+
+            set
+            {
+                showNameEmptyCover = value;
+                OnPropertyChanged("ShowNameEmptyCover");
+            }
+        }
+
         private string databasePath;
         public string DatabasePath
         {
