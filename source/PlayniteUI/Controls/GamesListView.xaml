@@ -29,6 +29,7 @@
             <ListBox Name="ListGames" SelectionMode="Extended" BorderThickness="0,0,1,0" BorderBrush="{StaticResource NormalBorderBrush}"
                      SelectionChanged="GamesListList_SelectionChanged" Width="310"
                      DockPanel.Dock="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                     VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
                      VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Recycling">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
@@ -72,7 +73,7 @@
                             <Image Height="32" RenderOptions.BitmapScalingMode="HighQuality" DockPanel.Dock="Left" Margin="0,0,8,0">
                                 <Image.Source>
                                     <PriorityBinding>
-                                        <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
+                                        <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
                                         <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
                                     </PriorityBinding>
                                 </Image.Source>

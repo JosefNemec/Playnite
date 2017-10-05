@@ -112,7 +112,7 @@
                                    AutomationProperties.Name="{Binding Name}">
                                 <Image.Source>
                                     <PriorityBinding>
-                                        <Binding Path="Image" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Image"/>
+                                        <Binding Path="Image" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Image"/>
                                         <Binding Path="DefaultImage" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
                                     </PriorityBinding>
                                 </Image.Source>

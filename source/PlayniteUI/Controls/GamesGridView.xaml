@@ -50,8 +50,8 @@
         <playniteControls:GamePopupMenuMulti x:Name="PopupGameMulti" />
 
         <ListView Name="GridGames" SelectionMode="Extended"
-                  VirtualizingPanel.VirtualizationMode="Recycling"
-                  VirtualizingPanel.IsVirtualizingWhenGrouping="True">
+                  VirtualizingPanel.VirtualizationMode="Recycling" VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                  VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
                     <EventSetter Event="MouseRightButtonUp" Handler="Grid_MouseRightButtonUp" />
@@ -133,7 +133,7 @@
                                        RenderOptions.BitmapScalingMode="HighQuality">
                                     <Image.Source>
                                         <PriorityBinding>
-                                            <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
+                                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
                                             <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
                                         </PriorityBinding>
                                     </Image.Source>

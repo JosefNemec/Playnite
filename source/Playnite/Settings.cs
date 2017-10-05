@@ -108,6 +108,21 @@ namespace Playnite
             }
         }
 
+        private bool asyncImageLoading = false;
+        public bool AsyncImageLoading
+        {
+            get
+            {
+                return asyncImageLoading;
+            }
+
+            set
+            {
+                asyncImageLoading = value;
+                OnPropertyChanged("AsyncImageLoading");
+            }
+        }
+
         private string databasePath;
         public string DatabasePath
         {

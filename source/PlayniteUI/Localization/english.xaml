@@ -68,6 +68,8 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="SettingsInvalidSteamAccountCatImport">No Steam account selected for category import.</sys:String>
     <sys:String x:Key="SettingsUpdateLibStartup">Download 3rd party library updates on startup</sys:String>
     <sys:String x:Key="SettingsUpdateLibStartupTooltip">Includes Steam, Origin and others. Also won't download any metadata when disabled.</sys:String>
+    <sys:String x:Key="SettingsAsyncImageLoading">Asynchronous image loading (requires restart)</sys:String>
+    <sys:String x:Key="SettingsAsyncImageLoadingTooltip">Improves scrolling smoothness of game lists in exchange for slower image load times.</sys:String>
 
     <!--Emulator Import-->
     <sys:String x:Key="EmuWizardWindowTitle">Emulation Import Wizard</sys:String>

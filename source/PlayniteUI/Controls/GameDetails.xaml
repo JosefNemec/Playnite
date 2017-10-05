@@ -73,7 +73,7 @@
                 <Image DockPanel.Dock="Left" Margin="20,0,0,0" Width="32" Height="32" RenderOptions.BitmapScalingMode="Fant">
                     <Image.Source>
                         <PriorityBinding>
-                            <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
+                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
                             <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
                         </PriorityBinding>
                     </Image.Source>

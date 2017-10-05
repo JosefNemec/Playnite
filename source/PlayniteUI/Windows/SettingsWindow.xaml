@@ -32,14 +32,8 @@
                 </DockPanel>
             </Border>
             <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Left">                
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="/Images/applogo.png" Width="{StaticResource IconSize}" RenderOptions.BitmapScalingMode="Fant" />
-                            <TextBlock Text="General" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </TabItem.Header>
-                    <StackPanel Margin="10">
+                <TabItem Header="General">
+                    <StackPanel Margin="20">
                         <DockPanel Visibility="Collapsed">
                             <TextBlock Text="{DynamicResource LanguageSettingsLabel}" VerticalAlignment="Center" Margin="5,0,10,0" />
                             <ComboBox Name="ComboLanguage" SelectedValuePath="Tag" SelectedValue="{Binding Language, UpdateSourceTrigger=Explicit}">
@@ -83,19 +77,18 @@
                                         IsChecked="{Binding UpdateLibStartup, UpdateSourceTrigger=Explicit}"/>
                         </Grid>
                     </StackPanel>
-                </TabItem>                
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="/Images/steamicon.png" Width="{StaticResource IconSize}" RenderOptions.BitmapScalingMode="Fant" />
-                            <TextBlock Text="Steam" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </TabItem.Header>
-                    <DockPanel Margin="10" LastChildFill="False">
+                </TabItem>
+                <TabItem Header="Appearance">
+                    <StackPanel Margin="20">
+                        <CheckBox Content="{DynamicResource SettingsAsyncImageLoading}" ToolTip="{DynamicResource SettingsAsyncImageLoadingTooltip}"
+                                  Name="CheckAsyncImages" IsChecked="{Binding AsyncImageLoading, UpdateSourceTrigger=Explicit}"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Steam">
+                    <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding SteamSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
                                     Name="CheckSteamEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
-                                    DockPanel.Dock="Top" Margin="5"/>
-
+                                    DockPanel.Dock="Top"/>
                         <RadioButton Name="RadioInstalledSteam" Content="{DynamicResource SettingsImportInstalledLabel}"
                                         IsChecked="{Binding SteamSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
@@ -151,18 +144,11 @@
                         </StackPanel>
                     </DockPanel>
                 </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="/Images/gogicon.png" Width="{StaticResource IconSize}" RenderOptions.BitmapScalingMode="Fant" />
-                            <TextBlock Text="GOG" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </TabItem.Header>
-                    <DockPanel Margin="10" LastChildFill="False">
+                <TabItem Header="GOG">
+                    <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding GOGSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
                                     Name="CheckGogEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
-                                    DockPanel.Dock="Top" Margin="5"/>
-
+                                    DockPanel.Dock="Top"/>
                         <RadioButton Name="RadioInstalledGOG" Content="{DynamicResource SettingsImportInstalledLabel}"
                                         IsChecked="{Binding GOGSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
@@ -192,18 +178,11 @@
                                     DockPanel.Dock="Top" Margin="5,15,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"/>
                     </DockPanel>
                 </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="/Images/originicon.png" Width="{StaticResource IconSize}" RenderOptions.BitmapScalingMode="Fant" />
-                            <TextBlock Text="Origin" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </TabItem.Header>
-                    <DockPanel Margin="10" LastChildFill="False">
+                <TabItem Header="Origin">
+                    <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding OriginSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
                                     Name="CheckOriginEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
-                                    DockPanel.Dock="Top" Margin="5"/>
-
+                                    DockPanel.Dock="Top" />
                         <RadioButton Name="RadioInstalledOrigin" Content="{DynamicResource SettingsImportInstalledLabel}"
                                         IsChecked="{Binding OriginSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
@@ -227,17 +206,11 @@
                         </DockPanel>
                     </DockPanel>
                 </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="/Images/uplayicon.png" Width="{StaticResource IconSize}" RenderOptions.BitmapScalingMode="Fant" />
-                            <TextBlock Text="Uplay" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </TabItem.Header>
-                    <DockPanel Margin="10" LastChildFill="False">
+                <TabItem Header="Uplay">
+                    <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding UplaySettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
                                     Name="CheckUplayEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
-                                    DockPanel.Dock="Top" Margin="5"/>
+                                    DockPanel.Dock="Top"/>
                         <RadioButton Name="RadioInstalledUplay" Content="{DynamicResource SettingsImportInstalledLabel}"
                                         IsChecked="{Binding UplaySettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckUplayEnabled}"

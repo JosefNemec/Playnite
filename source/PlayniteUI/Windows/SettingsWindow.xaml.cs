@@ -250,6 +250,12 @@ namespace PlayniteUI
                 minimizeLaunch.UpdateSource();
             }
 
+            var asyncImageLoad = CheckAsyncImages.GetBindingExpression(CheckBox.IsCheckedProperty);
+            if (asyncImageLoad.IsDirty)
+            {
+                asyncImageLoad.UpdateSource();
+            }
+
             Playnite.Settings.Instance.SaveSettings();
             Close();
         }

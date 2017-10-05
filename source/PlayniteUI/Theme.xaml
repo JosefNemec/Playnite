@@ -1866,28 +1866,16 @@
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <Grid x:Name="grid" Margin="2,1,2,3">
-                        <Grid.LayoutTransform>
-                            <TransformGroup>
-                                <ScaleTransform ScaleX="1" ScaleY="1"/>
-                                <SkewTransform AngleX="0" AngleY="0"/>
-                                <RotateTransform Angle="0"/>
-                                <TranslateTransform X="0" Y="0"/>
-                            </TransformGroup>
-                        </Grid.LayoutTransform>
-                        <Border x:Name="border" BorderBrush="{x:Null}" Opacity="0.5">
-                        </Border>
+                    <Grid x:Name="grid" Margin="2">
+                        <Border x:Name="border" BorderBrush="{x:Null}" Opacity="0.5" />
                         <Border x:Name="SelectedBorder" Opacity="0"
                                 BorderThickness="0,0,0,2" BorderBrush="{DynamicResource IndicatorBrush}"/>
                         <Border x:Name="HoverBorder" Opacity="0"
-                                BorderThickness="0,0,0,2" BorderBrush="{DynamicResource IndicatorBrush}">
-                        </Border>
-                        <Grid>
-                            <TextBlock Padding="5" Foreground="{TemplateBinding Foreground}" x:Name="TextContent">
-                                <ContentPresenter x:Name="ContentSite" RecognizesAccessKey="True" ContentSource="Header" d:LayoutOverrides="Width, Height"
-                                                  HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center"/>
-                            </TextBlock>
-                        </Grid>
+                                BorderThickness="0,0,0,2" BorderBrush="{DynamicResource IndicatorBrush}"/>               
+                        <TextBlock Padding="5" Foreground="{TemplateBinding Foreground}" x:Name="TextContent">
+                            <ContentPresenter x:Name="ContentSite" RecognizesAccessKey="True" ContentSource="Header" d:LayoutOverrides="Width, Height" 
+                                                HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center" />
+                        </TextBlock>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="TabStripPlacement" Value="Left">
