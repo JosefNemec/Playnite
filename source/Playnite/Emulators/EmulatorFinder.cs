@@ -1,4 +1,5 @@
-﻿using Playnite.Models;
+﻿using NLog;
+using Playnite.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,8 +31,11 @@ namespace Playnite.Emulators
 
     public class EmulatorFinder
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public static List<ScannedEmulator> SearchForEmulators(string path, List<EmulatorDefinition> definitions)
         {
+            logger.Info($"Looking for emulators in {path}, using {definitions.Count} definitions.");
             var emulators = new List<ScannedEmulator>();
             var fileEnumerator = new SafeFileEnumerator(path, "*.*", SearchOption.AllDirectories);
             foreach (var file in fileEnumerator)
@@ -59,6 +63,7 @@ namespace Playnite.Emulators
 
         public static List<IGame> SearchForGames(string path, Emulator emulator)
         {
+            logger.Info($"Looking for games in {path}, using {emulator.Name} emulator.");
             if (emulator.ImageExtensions == null)
             {
                 throw new Exception("Cannot scan for games, emulator doesn't support any file types.");

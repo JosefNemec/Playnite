@@ -1,4 +1,4 @@
-﻿using LiteDB;
+﻿using NLog;
 using Playnite.Models;
 using System;
 using System.Collections.Generic;
@@ -10,15 +10,18 @@ namespace Playnite
 {
     public class GameHandler
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public static void ActivateTask(GameTask task)
         {
             switch (task.Type)
             {
                 case GameTaskType.File:
+                    logger.Info($"Starting process: {task.Path}, {task.Arguments}, {task.WorkingDir}");
                     ProcessStarter.StartProcess(task.Path, task.Arguments, task.WorkingDir);
-
                     break;
                 case GameTaskType.URL:
+                    logger.Info($"Opening URL {task.Path}");
                     ProcessStarter.StartUrl(task.Path);
                     break;
                 case GameTaskType.Emulator:
@@ -31,13 +34,16 @@ namespace Playnite
             switch (task.Type)
             {
                 case GameTaskType.File:
-                    ProcessStarter.StartProcess(
-                        gameData.ResolveVariables(task.Path),
-                        gameData.ResolveVariables(task.Arguments),
-                        gameData.ResolveVariables(task.WorkingDir));
+                    var path = gameData.ResolveVariables(task.Path);
+                    var arguments = gameData.ResolveVariables(task.Arguments);
+                    var workdir = gameData.ResolveVariables(task.WorkingDir);
+                    logger.Info($"Starting process: {path}, {arguments}, {workdir}");
+                    ProcessStarter.StartProcess(path, arguments, workdir);
                     break;
                 case GameTaskType.URL:
-                    ProcessStarter.StartUrl(gameData.ResolveVariables(task.Path));
+                    var url = gameData.ResolveVariables(task.Path);
+                    logger.Info($"Opening URL {url}");
+                    ProcessStarter.StartUrl(url);
                     break;
                 case GameTaskType.Emulator:
                     throw new Exception("Cannot start emulated game without emulator.");
@@ -70,7 +76,9 @@ namespace Playnite
                         arguments = gameData.ResolveVariables(task.Arguments);
                     }
 
-                    ProcessStarter.StartProcess(path, arguments, gameData.ResolveVariables(emulator.WorkingDirectory));
+                    var workdir = gameData.ResolveVariables(emulator.WorkingDirectory);
+                    logger.Info($"Starting emulator: {path}, {arguments}, {workdir}");
+                    ProcessStarter.StartProcess(path, arguments, workdir);
                     break;
             }
         }
