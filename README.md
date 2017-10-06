@@ -1,14 +1,19 @@
 
 # <img src="https://github.com/JosefNemec/Playnite/raw/master/web/applogo.png" width="32">  Playnite
-Video game library manager and launcher with support for 3rd party libraries like Steam, GOG and Origin, providing one unified interface for your games.
+Open source video game library manager and launcher with support for 3rd party libraries like Steam, GOG, Origin and Uplay. Including game emulation support, providing one unified interface for your games.
 
 Screenshots on [Homepage](http://playnite.link/)
 
-### Features:
+Features
+---------
 
 **Steam, Origin, GOG, Uplay support**
 
 Import games from Steam, Origin, GOG and Uplay services including games that are not installed.
+
+**Console Emulation support**
+
+Import console games and run them through emulators.
 
 **View options**
 
@@ -26,19 +31,8 @@ Application automatically updates to new version.
 
 Run Playnite without need to install, with ability to run from any place, with option to configure database location for automatic sync via service like DropBox or Google Drive.
 
-### Planned Features:
-
-**Support for non-PC games**
-
-Easy to use import of console games with appropriate emulator.
-
-**Add DOSBox configuration GUI**
-
-DOSBox profile manager for DOS games.
-
-**Add additional launch options for legacy games**
-
-To help managing and launching older games. Features like limit CPU cores, CPU speed fix, compatibility flags, automatic installation of 3d party wrappers etc.
+Planned Features
+---------
 
 **"Big Picture" mode with controller support**
 
@@ -46,7 +40,15 @@ Fullscreen mode managed with controller.
 
 **UI Customization**
 
-Tweak UI colors and additional features.
+Full support for skins and custom color pallets.
+
+**Add additional launch options for legacy games**
+
+To help managing and launching older games. Features like limit CPU cores, CPU speed fix, compatibility flags, automatic installation of 3d party wrappers etc.
+
+**Plugin support**
+
+Add additional functionality through easy scritping or fully fledged C# plugins.
 
 Download
 ---------
@@ -59,9 +61,7 @@ Questions, issues etc.
 ---------
 If you find a bug please file an [issue](https://github.com/JosefNemec/Playnite/issues) and if relevant (crashes, broken features) please attach diagnostics package, which can be created via from "About Playnite..." menu.
 
-General discussion lives on [Reddit](https://www.reddit.com/r/playnite/)
-
-Development discussion at [Playnite Gitter room](https://gitter.im/Playnite/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link).
+General discussion lives on [Reddit](https://www.reddit.com/r/playnite/) and you can also ask a question directly on [Discord](https://discord.gg/hSFvmN6) or follow [@AppPlaynite](https://twitter.com/AppPlaynite) for updates.
 
 Building
 ---------
@@ -109,28 +109,4 @@ apikeys.json example:
 {
     "Steam" : "25SSE201224DEE54F732DDDC2BA21690C"
 }
-```
-
-Contributions
----------
-
-Any contributions are welcome!
-
-Checkout [Roadmap](https://github.com/JosefNemec/Playnite/wiki/Roadmap) on wiki to see features that are currently planned or in development.
-
-Regarding code styling, there are only a few major rules:
-* private fields and properties should use camelCase (without underscore)
-* all methods (private and public) should use PascalCase
-* use spaces instead of tabs with 4 spaces width
-* always encapsulate with brackets:
-```
-if (true)
-{
-    DoSomething()
-}
-```
-instead of 
-```
-if (true)
-    DoSomething()
 ```
