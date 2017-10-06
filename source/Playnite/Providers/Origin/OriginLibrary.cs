@@ -172,7 +172,7 @@ namespace Playnite.Providers.Origin
 
                     GameLocalDataResponse localData = GetLocalManifest(gameId, package, useDataCache);
                      
-                    if (localData.offerType != "Base Game")
+                    if (localData.offerType != "Base Game" && localData.offerType != "DEMO")
                     {
                         continue;
                     }
