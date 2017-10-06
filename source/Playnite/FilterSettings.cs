@@ -32,7 +32,8 @@ namespace Playnite
                     (Genres != null && Genres.Count > 0) ||
                     (Publishers != null && Publishers.Count > 0) ||
                     (Developers != null && Developers.Count > 0) ||
-                    (Categories != null && Categories.Count > 0);
+                    (Categories != null && Categories.Count > 0) ||
+                    (Platforms != null && Platforms.Count > 0);
             }
         }
 
@@ -68,6 +69,21 @@ namespace Playnite
             }
         }
 
+        private List<string> platforms;
+        public List<string> Platforms
+        {
+            get
+            {
+                return platforms;
+            }
+
+            set
+            {
+                platforms = value;
+                OnPropertyChanged("Platforms");
+                OnPropertyChanged("Active");
+            }
+        }
 
         private string releaseDate;
         public string ReleaseDate

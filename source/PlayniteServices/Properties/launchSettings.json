@@ -16,13 +16,13 @@
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
         },
-        "PlayniteServices": {
-            "commandName": "Project",
-            "launchBrowser": true,
-            "launchUrl": "http://localhost:5000/api/steam/library/",
-            "environmentVariables": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            }
+      "PlayniteServices": {
+        "commandName": "Project",
+        "launchBrowser": true,
+        "launchUrl": "http://localhost:5000/api/stats/",
+        "environmentVariables": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
         }
+      }
     }
 }

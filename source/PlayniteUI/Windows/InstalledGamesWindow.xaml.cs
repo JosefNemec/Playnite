@@ -177,15 +177,16 @@ namespace PlayniteUI.Windows
                 var newGame = new Game()
                 {
                     Name = program.Name,
-                    Provider = Provider.Custom
+                    Provider = Provider.Custom,
+                    InstallDirectory = program.Type == ProgramType.Win32 ? program.WorkDir : string.Empty
                 };
 
                 newGame.PlayTask = new GameTask()
                 {
-                    Path = program.Path,
+                    Path = program.Type == ProgramType.Win32 ? @"{InstallDir}\" + program.Path.Replace(program.WorkDir, string.Empty).TrimStart('\\') : program.Path,
                     Arguments = program.Arguments,
                     Type = GameTaskType.File,
-                    WorkingDir = program.WorkDir,
+                    WorkingDir = program.Type == ProgramType.Win32 ? "{InstallDir}" : string.Empty,
                     Name = "Play"
                 };
 

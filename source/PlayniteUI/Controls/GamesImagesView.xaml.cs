@@ -21,6 +21,20 @@ using System.Timers;
 
 namespace PlayniteUI.Controls
 {
+    public class WidthToFontSizeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var width = (double)value;
+            return width / 10;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     /// <summary>
     /// Interaction logic for GamesImagesView.xaml
     /// </summary>
@@ -71,7 +85,7 @@ namespace PlayniteUI.Controls
                     return;
                 }
                                 
-                var game = (IGame)GameDetails.DataContext;
+                var game = (GameViewEntry)GameDetails.DataContext;
                 foreach (GameViewEntry entry in e.OldItems)
                 {
                     if (game.Id == entry.Game.Id)
@@ -83,21 +97,15 @@ namespace PlayniteUI.Controls
             });
         }
 
-        private void CloseDetailBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void HideDetails()
         {
-            LastDetailsWidht = ColumnDetails.Width;
+            if (ColumnDetails.Width.Value != 0)
+            {
+                LastDetailsWidht = ColumnDetails.Width;
+            }
+
             ColumnSplitter.Width = new GridLength(0, GridUnitType.Pixel);
             ColumnDetails.Width = new GridLength(0, GridUnitType.Pixel);
-
-            if (ItemsView.SelectedItem != null)
-            {
-                ItemsView.ScrollIntoView(ItemsView.SelectedItem as GameViewEntry);
-            }
-        }
-
-        private void HideDetails()
-        {            
-            CloseDetailBorder_MouseLeftButtonDown(this, null);            
         }
 
         private void ShowDetails(GameViewEntry viewEntry)
@@ -107,14 +115,11 @@ namespace PlayniteUI.Controls
                 ColumnSplitter.Width = new GridLength(4, GridUnitType.Pixel);
                 ColumnDetails.Width = LastDetailsWidht;
             }
-
-            ItemsView.ScrollIntoView(viewEntry);
         }
 
         private void ChangeDetails(GameViewEntry viewEntry)
         {
-            var game = viewEntry.Game;
-            GameDetails.DataContext = game;
+            GameDetails.DataContext = viewEntry;
         }
 
         private void ZoomIn_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -216,6 +221,11 @@ namespace PlayniteUI.Controls
             });
 
             ClickCount = 0;
+        }
+
+        private void ButtonCloseDetails_Click(object sender, RoutedEventArgs e)
+        {
+            HideDetails();
         }
     }
 }

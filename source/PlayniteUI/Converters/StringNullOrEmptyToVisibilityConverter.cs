@@ -11,9 +11,22 @@ namespace PlayniteUI
 {
     public class StringNullOrEmptyToVisibilityConverter : MarkupExtension, IValueConverter
     {
+        enum Parameters
+        {
+            Normal, Inverted
+        }
+
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return string.IsNullOrEmpty(value as string) ? Visibility.Collapsed : Visibility.Visible;
+            var direction = parameter == null ? Parameters.Normal : (Parameters)Enum.Parse(typeof(Parameters), (string)parameter);
+            if (direction == Parameters.Inverted)
+            {
+                return string.IsNullOrEmpty(value as string) ? Visibility.Visible : Visibility.Collapsed;
+            }
+            else
+            {
+                return string.IsNullOrEmpty(value as string) ? Visibility.Collapsed : Visibility.Visible;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

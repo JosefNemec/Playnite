@@ -93,6 +93,81 @@ namespace Playnite
             }
         }
 
+        private bool emulatorWizardComplete;
+        public bool EmulatorWizardComplete
+        {
+            get
+            {
+                return emulatorWizardComplete;
+            }
+
+            set
+            {
+                emulatorWizardComplete = value;
+                OnPropertyChanged("EmulatorWizardComplete");
+            }
+        }
+
+        private bool asyncImageLoading = false;
+        public bool AsyncImageLoading
+        {
+            get
+            {
+                return asyncImageLoading;
+            }
+
+            set
+            {
+                asyncImageLoading = value;
+                OnPropertyChanged("AsyncImageLoading");
+            }
+        }
+
+        private bool showNameEmptyCover = true;
+        public bool ShowNameEmptyCover
+        {
+            get
+            {
+                return showNameEmptyCover;
+            }
+
+            set
+            {
+                showNameEmptyCover = value;
+                OnPropertyChanged("ShowNameEmptyCover");
+            }
+        }
+
+        private bool migrationV2PcPlatformAdded = false;
+        public bool MigrationV2PcPlatformAdded
+        {
+            get
+            {
+                return migrationV2PcPlatformAdded;
+            }
+
+            set
+            {
+                migrationV2PcPlatformAdded = value;
+                OnPropertyChanged("MigrationV2PcPlatformAdded");
+            }
+        }
+
+        private bool showIconsOnList = true;
+        public bool ShowIconsOnList
+        {
+            get
+            {
+                return showIconsOnList;
+            }
+
+            set
+            {
+                showIconsOnList = value;
+                OnPropertyChanged("ShowIconsOnList");
+            }
+        }
+
         private string databasePath;
         public string DatabasePath
         {
@@ -186,6 +261,21 @@ namespace Playnite
             }
         }
 
+        private double coversZoom = 180;
+        public double CoversZoom
+        {
+            get
+            {
+                return coversZoom;
+            }
+
+            set
+            {
+                coversZoom = value;
+                OnPropertyChanged("CoversZoom");
+            }
+        }
+
         [JsonIgnore]
         public bool IsListViewSet
         {
@@ -251,6 +341,7 @@ namespace Playnite
         {
             { "Icon", true },
             { "Name", true },
+            { "Platform", false },
             { "Developers", true },
             { "Publishers", false },
             { "ReleaseDate", true },

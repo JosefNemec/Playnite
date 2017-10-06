@@ -1,6 +1,7 @@
 ﻿<Application x:Class="PlayniteUI.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:PlayniteUI"
              Exit="Application_Exit"
              Startup="Application_Startup" ShutdownMode="OnExplicitShutdown">
@@ -10,6 +11,7 @@
                 <ResourceDictionary Source="Theme.xaml"/>
                 <ResourceDictionary Source="Localization/english.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <sys:Boolean x:Key="AsyncImagesEnabled">True</sys:Boolean>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

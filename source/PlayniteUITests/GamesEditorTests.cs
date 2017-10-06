@@ -25,7 +25,8 @@ namespace PlayniteUITests
                     Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
                     Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
                     Categories = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
-                    Description = "Description"
+                    Description = "Description",
+                    PlatformId = 1
 
                 },
                 new Game()
@@ -36,7 +37,8 @@ namespace PlayniteUITests
                     Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
                     Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
                     Categories = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
-                    Description = "Description"
+                    Description = "Description",
+                    PlatformId = 1
                 },
                 new Game()
                 {
@@ -46,11 +48,12 @@ namespace PlayniteUITests
                     Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
                     Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
                     Categories = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
-                    Description = "Description"
+                    Description = "Description",
+                    PlatformId = 1
                 }
             };
 
-            var gameCommon = GamesEditor.GetMultiGameEditObject(gamesCommon);
+            var gameCommon = GameHandler.GetMultiGameEditObject(gamesCommon);
             var firstGame = gamesCommon.First();
             Assert.AreEqual(firstGame.Name, gameCommon.Name);
             CollectionAssert.AreEqual(firstGame.Genres, gameCommon.Genres);
@@ -59,6 +62,7 @@ namespace PlayniteUITests
             CollectionAssert.AreEqual(firstGame.Publishers, gameCommon.Publishers);
             CollectionAssert.AreEqual(firstGame.Categories, gameCommon.Categories);
             Assert.AreEqual(firstGame.Description, gameCommon.Description);
+            Assert.AreEqual(firstGame.PlatformId, gameCommon.PlatformId);
 
 
             // No common
@@ -72,7 +76,8 @@ namespace PlayniteUITests
                     Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
                     Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
                     Categories = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
-                    Description = "Description 1"
+                    Description = "Description 1",
+                    PlatformId = 1
 
                 },
                 new Game()
@@ -83,7 +88,8 @@ namespace PlayniteUITests
                     Developers = new ComparableList<string>() { "Developer 4", "Developer 5", "Developer 6" },
                     Publishers = new ComparableList<string>() { "Publisher 4", "Publisher 5", "Publisher 6" },
                     Categories = new ComparableList<string>() { "Tag 4", "Tag 5", "Tag 6" },
-                    Description = "Description 2"
+                    Description = "Description 2",
+                    PlatformId = 2
                 },
                 new Game()
                 {
@@ -93,11 +99,12 @@ namespace PlayniteUITests
                     Developers = new ComparableList<string>() { "Developer 7", "Developer 8", "Developer 9" },
                     Publishers = new ComparableList<string>() { "Publisher 7", "Publisher 8", "Publisher 9" },
                     Categories = new ComparableList<string>() { "Tag 7", "Tag 8", "Tag 9" },
-                    Description = "Description 3"
+                    Description = "Description 3",
+                    PlatformId = 3
                 }
             };
 
-            var gameNoCommon = GamesEditor.GetMultiGameEditObject(gamesNoCommon);
+            var gameNoCommon = GameHandler.GetMultiGameEditObject(gamesNoCommon);
             Assert.AreEqual(null, gameNoCommon.Name);
             CollectionAssert.AreEqual(null, gameNoCommon.Genres);
             Assert.AreEqual(null, gameNoCommon.ReleaseDate);

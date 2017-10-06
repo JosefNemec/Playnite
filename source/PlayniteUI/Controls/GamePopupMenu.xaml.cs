@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using Playnite.Database;
 using Playnite.Models;
 using PlayniteUI.Windows;
+using Playnite;
 
 namespace PlayniteUI.Controls
 {
@@ -51,12 +52,12 @@ namespace PlayniteUI.Controls
 
         private void GamePopupMenu_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (e.NewValue == null)
+            if (e.NewValue == null || e.NewValue.GetType() != typeof(Game))
             {
                 return;
             }
 
-            var game = (IGame)e.NewValue;
+            var game = (Game)e.NewValue;
             if (game.Provider == Provider.Custom && !game.IsInstalled)
             {
                 SeparatorPlayInstall.Visibility = Visibility.Collapsed;
@@ -79,9 +80,11 @@ namespace PlayniteUI.Controls
         private void Task_Click(object sender, RoutedEventArgs e)
         {
             var gameTask = (GameTask)(sender as FrameworkElement).DataContext;
+            var game = DataContext as Game;
+
             try
             {
-                gameTask.Activate(DataContext as Game);
+                GameHandler.ActivateTask(gameTask, game, GameDatabase.Instance.EmulatorsCollection.FindAll().ToList());
             }
             catch (Exception exc)
             {

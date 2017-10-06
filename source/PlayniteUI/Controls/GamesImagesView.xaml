@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:playniteUI="clr-namespace:PlayniteUI"
+             xmlns:controls="clr-namespace:PlayniteUI.Controls"
              xmlns:commands="clr-namespace:PlayniteUI.Commands"
+             xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -18,6 +20,7 @@
         <playniteUI:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
         <playniteUI:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
         <playniteUI:BoolToCategoryExpander x:Key="BoolToCategoryExpander" />
+        <controls:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
         <sys:Boolean x:Key="True">True</sys:Boolean>
         <sys:Boolean x:Key="False">False</sys:Boolean>
         <playniteUI:ValueConverterGroup x:Key="EnumCompVisibilityConverterInverted">
@@ -33,117 +36,103 @@
         <CommandBinding Command="{x:Static commands:GenericCommands.ZoomOutCmd}" Executed="ZoomOut_Executed" />
     </UserControl.CommandBindings>
 
-    <Grid Background="{StaticResource NormalBrushDark}">
-        <DockPanel>
-            <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Bottom">
-                <StackPanel Margin="5" Orientation="Horizontal">
-                    <Label Content="Zoom" DockPanel.Dock="Right" Margin="10,0,10,0"/>
-                    <Slider Name="SliderZoom" SmallChange="1" Value="180" Maximum="260" Minimum="100"
-                            IsSnapToTickEnabled="True" Width="150" DockPanel.Dock="Right" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Border>
-            <Grid DockPanel.Dock="Top">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="0" Name="ColumnSplitter"/>
-                    <ColumnDefinition Width="0" Name="ColumnDetails"/>
-                </Grid.ColumnDefinitions>
+    <DockPanel>
+        <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Bottom">
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <Label Content="Zoom" DockPanel.Dock="Right" Margin="10,0,10,0"/>
+                <Slider Name="SliderZoom" SmallChange="1" Value="{Binding Path=CoversZoom, Source={x:Static shared:Settings.Instance}}" Maximum="260" Minimum="100"
+                        IsSnapToTickEnabled="True" Width="150" DockPanel.Dock="Right" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0" Name="ColumnSplitter"/>
+                <ColumnDefinition Width="0" Name="ColumnDetails"/>
+            </Grid.ColumnDefinitions>
 
-                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="ItemsView" Grid.Column="0"
-                          VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Recycling"
-                          SelectionMode="Single" SelectionChanged="ItemsView_SelectionChanged" MouseDown="ItemsView_MouseDown">
-                    <ListView.Resources>
-                        <Style TargetType="GridViewColumnHeader">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </Style>
-                        <Style TargetType="ListViewItem">
-                            <EventSetter Event="PreviewMouseDown" Handler="ListViewItem_PreviewMouseDown" />
-                            <Setter Property="OverridesDefaultStyle" Value="True" />
-                            <Setter Property="Margin" Value="5"/>                            
-                            <Setter Property="Template">                               
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type ListViewItem}">                                         
-                                        <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="3" CornerRadius="3" Background="Transparent"> 
-                                            <Grid>
-                                                <ContentPresenter />
-                                                <Border Background="#D8000000" x:Name="HighlightTextBorder" Opacity="0">
-                                                    <TextBlock Text="{Binding Name, Mode=OneWay}" 
-                                                               Width="{Binding Path=Value, ElementName=SliderZoom}" TextWrapping="WrapWithOverflow" Style="{StaticResource BaseTextBlockStyle}"
-                                                               HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="5" FontSize="20" TextAlignment="Center" />
-                                                </Border>
-                                            </Grid>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsSelected" Value="True">
-                                                <Setter Property="BorderBrush" Value="{StaticResource IndicatorBrush}" TargetName="SelectionBorder"/>
-                                                <Setter Property="Opacity" Value="1" TargetName="HighlightTextBorder"/>
-                                            </Trigger>
-                                            <MultiTrigger>
-                                                <MultiTrigger.Conditions>
-                                                    <Condition Property="IsMouseOver" Value="True" />
-                                                    <Condition Property="Selector.IsSelected" Value="False" />
-                                                </MultiTrigger.Conditions>
-                                                <Setter Property="BorderBrush" Value="{StaticResource IndicatorBrush}" TargetName="SelectionBorder"/>
-                                                <Setter Property="Opacity" Value="1" TargetName="HighlightTextBorder"/>
-                                            </MultiTrigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </ListView.Resources>                    
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.ContainerStyle>
-                                <Style TargetType="GroupItem">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="GroupItem">
-                                                <Expander Header="{Binding Mode=OneWay}" Collapsed="Expander_Collapsed" Expanded="Expander_Expanded" Margin="5,0,0,0"
-                                                          IsExpanded="{Binding Path=Name, Mode=OneWay, Converter={StaticResource BoolToCategoryExpander}}">
-                                                    <ItemsPresenter />
-                                                </Expander>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </GroupStyle.ContainerStyle>
-                        </GroupStyle>
-                    </ListView.GroupStyle>
+            <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="ItemsView" Grid.Column="0"
+                      ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Single"
+                      SelectionChanged="ItemsView_SelectionChanged" MouseDown="ItemsView_MouseDown">
+                <ListView.Resources>
+                    <Style TargetType="GridViewColumnHeader">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Style>
+                    <Style TargetType="ListViewItem">
+                        <EventSetter Event="PreviewMouseDown" Handler="ListViewItem_PreviewMouseDown" />
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="OverridesDefaultStyle" Value="True" />
+                        <Setter Property="Template">                               
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="2" CornerRadius="0" Background="Transparent">
+                                        <Grid>
+                                            <ContentPresenter />
+                                            <Border Background="#D8000000" x:Name="HighlightTextBorder" Opacity="0">
+                                                <TextBlock Text="{Binding Name, Mode=OneWay}" TextWrapping="Wrap" Margin="5"
+                                                           Style="{StaticResource BaseTextBlockStyle}"
+                                                           TextTrimming="CharacterEllipsis"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                                                           FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"/>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Image}" Value="{x:Null}" />
+                                                <Condition Binding="{Binding Path=ShowNameEmptyCover, Source={x:Static shared:Settings.Instance}}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Opacity" Value="0.75" TargetName="HighlightTextBorder"/>
+                                        </MultiDataTrigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="BorderBrush" Value="#3e6184" TargetName="SelectionBorder"/>
+                                            <Setter Property="Opacity" Value="1" TargetName="HighlightTextBorder"/>
+                                        </Trigger>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsMouseOver" Value="True" />
+                                                <Condition Property="Selector.IsSelected" Value="False" />
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="BorderBrush" Value="#3e6184" TargetName="SelectionBorder"/>
+                                            <Setter Property="Opacity" Value="1" TargetName="HighlightTextBorder"/>
+                                        </MultiTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.Resources>                    
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <playniteUI:VirtualizingTilePanel ItemWidth="{Binding Path=Value, ElementName=SliderZoom}"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>                        
+                    <DataTemplate>
+                            <Image RenderOptions.BitmapScalingMode="Fant"
+                                   Name="ImageViewImage" StretchDirection="Both"
+                                   AutomationProperties.HelpText="{Binding Image, TargetNullValue=''}"
+                                   AutomationProperties.Name="{Binding Name}">
+                                <Image.Source>
+                                    <PriorityBinding>
+                                        <Binding Path="Image" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Image"/>
+                                        <Binding Path="DefaultImage" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
+                                    </PriorityBinding>
+                                </Image.Source>
+                            </Image>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-                    <ListView.ItemTemplate>                        
-                        <DataTemplate>                            
-                            <DockPanel>
-                                <Image RenderOptions.BitmapScalingMode="Fant" Width="{Binding Path=Value, ElementName=SliderZoom}"
-                                        Name="ImageViewImage" StretchDirection="Both"
-                                        AutomationProperties.HelpText="{Binding Image, TargetNullValue=''}"
-                                        AutomationProperties.Name="{Binding Name}">
-                                    <Image.Source>
-                                        <PriorityBinding>
-                                            <Binding Path="Image" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Image"/>
-                                            <Binding Path="DefaultImage" Mode="OneTime"/>
-                                        </PriorityBinding>
-                                    </Image.Source>
-                                </Image>
-                            </DockPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-
-                <GridSplitter Grid.Column="1" Width="4" HorizontalAlignment="Stretch" Background="{StaticResource NormalBorderBrush}"/>
+            <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch" Background="{StaticResource NormalBorderBrush}"/>
                 
-                <Grid Grid.Column="2">
-                    <playniteUI:GameDetails x:Name="GameDetails"/>
-                    <Image Name="ImageCloseDetails" Source="/Images/close.png" Width="28" Margin="10" Cursor="Hand"
-                           VerticalAlignment="Top" HorizontalAlignment="Right"
-                           MouseLeftButtonUp="CloseDetailBorder_MouseLeftButtonDown"/>
-                </Grid>
+            <Grid Grid.Column="2">
+                <playniteUI:GameDetails x:Name="GameDetails"/>
+                <Button Content="r" FontFamily="Marlett" FontSize="16" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right"
+                        Name="ButtonCloseDetails" Click="ButtonCloseDetails_Click"
+                        BorderThickness="0" Background="Transparent"/>
             </Grid>
-        </DockPanel>
-    </Grid>
+        </Grid>
+    </DockPanel>
 </UserControl>

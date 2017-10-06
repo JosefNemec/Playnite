@@ -8,12 +8,18 @@ using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using Playnite.Database;
 using NLog;
+using System.IO;
 
 namespace PlayniteUI
 {
     public class LiteDBImageToImageConverter : IValueConverter
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
+
+        public static bool IsCacheEnabled
+        {
+            get; set;
+        } = false;
 
         public static Dictionary<string, BitmapImage> Cache
         {
@@ -27,18 +33,33 @@ namespace PlayniteUI
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            if (value == null)
+            {
+                return DependencyProperty.UnsetValue;
+            }            
+
             var imageId = (string)value;
             if (string.IsNullOrEmpty(imageId))
             {
                 return DependencyProperty.UnsetValue;
             }
 
-            if (Cache.ContainsKey(imageId))
+            if (imageId.StartsWith("resources:"))
+            {
+                return imageId.Replace("resources:", "");
+            }
+
+            if (IsCacheEnabled && Cache.ContainsKey(imageId))
             {
                 return Cache[imageId];
             }
             else
             {
+                if (File.Exists(imageId))
+                {
+                    return imageId;
+                }
+
                 var imageData = GameDatabase.Instance.GetFileImage(imageId);
                 if (imageData == null)
                 {
@@ -47,7 +68,11 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    Cache.Add(imageId, imageData);
+                    if (IsCacheEnabled)
+                    {
+                        Cache.Add(imageId, imageData);
+                    }
+
                     return imageData;
                 }
             }

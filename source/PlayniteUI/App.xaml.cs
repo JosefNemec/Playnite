@@ -58,6 +58,8 @@ namespace PlayniteUI
         {
             var config = Settings.LoadSettings();
             Localization.SetLanguage(config.Language);
+            Resources.Remove("AsyncImagesEnabled");
+            Resources.Add("AsyncImagesEnabled", config.AsyncImageLoading);
             Settings.ConfigureLogger();
             Settings.ConfigureCef();
 

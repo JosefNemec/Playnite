@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -11,74 +12,127 @@ namespace Playnite.Models
     public enum GameTaskType : int
     {
         File = 0,
-        URL = 1
+        URL = 1,
+        Emulator = 2
     }
 
-    public class GameTask
+    public class GameTask : INotifyPropertyChanged
     {
+        private GameTaskType type;
         public GameTaskType Type
         {
-            get;set;
+            get => type;
+            set
+            {
+                type = value;
+                OnPropertyChanged("Type");
+            }
         }
 
+        private bool isPrimary;
         public bool IsPrimary
         {
-            get;set;
+            get => isPrimary;
+            set
+            {
+                isPrimary = value;
+                OnPropertyChanged("IsPrimary");
+            }
         }
 
+        private string arguments;
         public string Arguments
         {
-            get;set;
+            get => arguments;
+            set
+            {
+                arguments = value;
+                OnPropertyChanged("Arguments");
+            }
         }
 
+        private string additionalArguments;
+        public string AdditionalArguments
+        {
+            get => additionalArguments;
+            set
+            {
+                additionalArguments = value;
+                OnPropertyChanged("AdditionalArguments");
+            }
+        }
+
+        private bool overrideDefaultArgs;
+        public bool OverrideDefaultArgs
+        {
+            get => overrideDefaultArgs;
+            set
+            {
+                overrideDefaultArgs = value;
+                OnPropertyChanged("OverrideDefaultArgs");
+            }
+        }
+
+        private string path;
         public string Path
         {
-            get;set;
+            get => path;
+            set
+            {
+                path = value;
+                OnPropertyChanged("Path");
+            }
         }
 
+        private string workingDir;
         public string WorkingDir
         {
-            get;set;
+            get => workingDir;
+            set
+            {
+                workingDir = value;
+                OnPropertyChanged("WorkingDir");
+            }
         }
 
+        private string name;
         public string Name
         {
-            get;set;
+            get => name;
+            set
+            {
+                name = value;
+                OnPropertyChanged("Name");
+            }
         }
 
+        private bool isBuiltIn;
         public bool IsBuiltIn
         {
-            get;set;
-        }
-
-        private void Activate(string path, string arguments, string workDir)
-        {
-            if (Type == GameTaskType.URL)
+            get => isBuiltIn;
+            set
             {
-                Process.Start(path);
-            }
-            else
-            {
-                var info = new ProcessStartInfo(path, arguments)
-                {
-                    WorkingDirectory = string.IsNullOrEmpty(workDir) ? (new FileInfo(path)).Directory.FullName : workDir
-                };
-
-                Process.Start(info);
+                isBuiltIn = value;
+                OnPropertyChanged("IsBuiltIn");
             }
         }
 
-        public void Activate()
+        private int emulatorId;
+        public int EmulatorId
         {
-            Activate(Path, Arguments, WorkingDir);
+            get => emulatorId;
+            set
+            {
+                emulatorId = value;
+                OnPropertyChanged("EmulatorId");
+            }
         }
 
-        public void Activate(Game gameData)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string name)
         {
-            var path = gameData.ResolveVariables(Path);
-            var args = gameData.ResolveVariables(Arguments);
-            var workDir = gameData.ResolveVariables(WorkingDir);
-            Activate(path, args, workDir);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

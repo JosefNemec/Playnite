@@ -7,7 +7,8 @@
         xmlns:playniteUI="clr-namespace:PlayniteUI"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
-        Background="{StaticResource NormalBrush}" WindowStartupLocation="CenterOwner"
+        d:DesignStyle="{StaticResource WindowDesignStyle}"
+        WindowStartupLocation="CenterOwner"
         Title="Select Games to Import" Height="500" Width="800"
         Loaded="Window_Loaded"
         AutomationProperties.AutomationId="WindowInstalledGames">
@@ -15,65 +16,66 @@
         <playniteUI:IconToImageSourceConverter x:Key="IconToImageSourceConverter" />
     </controls:WindowBase.Resources>
 
-    <Border Padding="1" Margin="0,5,0,0" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-            <ListView Grid.Column="0" Grid.Row="0" Name="ListPrograms" SelectionMode="Single"
+        <ListView Grid.Column="0" Grid.Row="0" Name="ListPrograms" SelectionMode="Single" Margin="10,5,10,5"
+                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
+                  BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
                   ItemsSource="{Binding Programs, RelativeSource={RelativeSource AncestorType=Window}}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
-                        <Setter Property="AutomationProperties.Name" Value="{Binding Name}" />
-                        <Setter Property="AutomationProperties.HelpText" Value="{Binding Path}" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Import?">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <CheckBox IsChecked="{Binding Import}" Padding="5" HorizontalAlignment="Right" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Name">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{Binding IconSource, Mode=OneWay}"
-                                           RenderOptions.BitmapScalingMode="HighQuality" Width="18"/>
-                                        <TextBlock Text="{Binding Name, Mode=OneWay}" Margin="5,0,0,0" Foreground="{StaticResource TextBrush}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Path">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding DisplayPath, Mode=OneWay}" Padding="5" Foreground="{StaticResource TextBrush}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                    <Setter Property="AutomationProperties.Name" Value="{Binding Name}" />
+                    <Setter Property="AutomationProperties.HelpText" Value="{Binding Path}" />
+                    <Setter Property="Focusable" Value="False"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Import">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Import}" Padding="5" HorizontalAlignment="Right" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Name">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding IconSource, Mode=OneWay}"
+                                        RenderOptions.BitmapScalingMode="HighQuality" Width="18"/>
+                                    <TextBlock Text="{Binding Name, Mode=OneWay}" Margin="5,0,0,0" Foreground="{StaticResource TextBrush}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Path">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayPath, Mode=OneWay}" Padding="5" Foreground="{StaticResource TextBrush}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
-            <Label Grid.Column="0" Grid.Row="0" Content="Searching for executables..." HorizontalAlignment="Center" VerticalAlignment="Center"
-               Name="TextProgresssing"/>
+        <Label Grid.Column="0" Grid.Row="0" Content="Searching for executables..." HorizontalAlignment="Center" VerticalAlignment="Center"
+            Name="TextProgresssing"/>
 
-            <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="1" Background="{StaticResource NormalBrush}">
-                <Button Name="ButtonBrowse" Content="Browse..." DockPanel.Dock="Left"
-                    Click="ButtonBrowse_Click" Style="{StaticResource BottomButton}"/>
-                <Button Name="ButtonScan" Content="Scan Folder..." DockPanel.Dock="Left"
-                    Click="ButtonScan_Click" Style="{StaticResource BottomButton}"/>
-                <Button Name="ButtonCancel" Content="Cancel" DockPanel.Dock="Right" IsCancel="True"
-                    Click="ButtonCancel_Click" Style="{StaticResource BottomButton}"/>
-                <Button Name="ButtonOK" Content="Add Games" DockPanel.Dock="Right"
-                    Click="ButtonOK_Click" Style="{StaticResource BottomButton}"/>
-            </DockPanel>
-        </Grid>
-    </Border>
+        <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="1" Margin="5,0,5,5">
+            <Button Name="ButtonBrowse" Content="Browse..." DockPanel.Dock="Left"
+                Click="ButtonBrowse_Click" Style="{StaticResource BottomButton}"/>
+            <Button Name="ButtonScan" Content="Scan Folder..." DockPanel.Dock="Left"
+                Click="ButtonScan_Click" Style="{StaticResource BottomButton}"/>
+            <Button Name="ButtonCancel" Content="Cancel" DockPanel.Dock="Right" IsCancel="True"
+                Click="ButtonCancel_Click" Style="{StaticResource BottomButton}"/>
+            <Button Name="ButtonOK" Content="Add Games" DockPanel.Dock="Right"
+                Click="ButtonOK_Click" Style="{StaticResource BottomButton}"/>
+        </DockPanel>
+    </Grid>
 </controls:WindowBase>

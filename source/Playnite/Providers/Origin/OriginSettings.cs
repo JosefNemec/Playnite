@@ -11,16 +11,6 @@ namespace Playnite.Providers.Origin
 {
     public class OriginSettings
     {
-        public static string DefaultIcon
-        {
-            get; set;
-        }
-
-        public static string DefaultImage
-        {
-            get; set;
-        }
-
         private bool libraryDownloadEnabled = false;
         public bool LibraryDownloadEnabled
         {

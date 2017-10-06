@@ -134,6 +134,9 @@
       <HintPath>C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.15063.0\Windows.winmd</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="YamlDotNet, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.4.2.2\lib\net35\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\PlayniteServices\Models\IGDB\IGDB.cs">
@@ -147,15 +150,21 @@
     <Compile Include="CoverCreator.cs" />
     <Compile Include="Database\GameDatabase.cs" />
     <Compile Include="EmbededResources.cs" />
+    <Compile Include="Emulators\EmulatorDefinition.cs" />
+    <Compile Include="Emulators\EmulatorFinder.cs" />
+    <Compile Include="GameHandler.cs" />
     <Compile Include="GamesStats.cs" />
     <Compile Include="InteropMethods.cs" />
     <Compile Include="ListExtensions.cs" />
     <Compile Include="MetaProviders\IGDB.cs" />
+    <Compile Include="Models\Emulator.cs" />
+    <Compile Include="Models\Platform.cs" />
     <Compile Include="Models\Old\Game.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Paths.cs" />
     <Compile Include="PipeServer.cs" />
     <Compile Include="PlayniteEnvironment.cs" />
+    <Compile Include="ProcessStarter.cs" />
     <Compile Include="Programs.cs" />
     <Compile Include="FileSystem.cs" />
     <Compile Include="CloneObject.cs" />
@@ -168,7 +177,6 @@
     <Compile Include="ObservableConcurrentDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BattleNet\BattleNetSettings.cs" />
-    <Compile Include="Providers\Custom\CustomGameSettings.cs" />
     <Compile Include="Models\GameMetadata.cs" />
     <Compile Include="Providers\EpicLauncher\EpicLauncherSettings.cs" />
     <Compile Include="Providers\GameInstalledEventArgs.cs" />
@@ -206,6 +214,7 @@
     <Compile Include="Providers\Uplay\UplayLibrary.cs" />
     <Compile Include="Providers\Uplay\UplaySettings.cs" />
     <Compile Include="RangeObservableCollection.cs" />
+    <Compile Include="SafeFileEnumerator.cs" />
     <Compile Include="Services\GenericResponse.cs" />
     <Compile Include="Services\ServicesClient.cs" />
     <Compile Include="Settings.cs" />
@@ -217,6 +226,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Emulators\Definitions.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

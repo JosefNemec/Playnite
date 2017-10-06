@@ -17,16 +17,6 @@ namespace Playnite.Providers.Steam
 
     public class SteamSettings
     {
-        public static string DefaultIcon
-        {
-            get; set;
-        }
-
-        public static string DefaultImage
-        {
-            get; set;
-        }
-
         public static string InstallationPath
         {
             get

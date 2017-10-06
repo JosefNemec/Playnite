@@ -46,7 +46,7 @@
             <TextBlock Text="{Binding Stats.Favorite, Mode=OneWay, StringFormat=Favorite ({0})}" />
         </CheckBox>
 
-        <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" Margin="0,5,0,5" />
+        <Border Height="10" />
 
         <CheckBox Name="CheckFilterSteam" IsChecked="{Binding Path=Settings.Steam}" Style="{StaticResource FilterCheck}">
             <TextBlock Text="{Binding Stats.Steam, Mode=OneWay, StringFormat=Steam ({0})}" />
@@ -68,8 +68,8 @@
             <TextBlock Text="{Binding Stats.Custom, Mode=OneWay, StringFormat=Custom ({0})}" />
         </CheckBox>
 
-        <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" Margin="0,5,0,5"/>
-
+        <Border Height="10" />
+        
         <Label Content="Name">
             <Label.Style>
                 <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
@@ -95,6 +95,19 @@
             </Label.Style>
         </Label>
         <local:SearchBox x:Name="TextFilterGenre" Text="{Binding Settings.Genres, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+        <Label Content="Platform">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterPlatform}" Value="">
+                            <Setter Property="Opacity" Value="0.6"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <local:SearchBox x:Name="TextFilterPlatform" Text="{Binding Settings.Platforms, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
         <Label Content="Release Date">
             <Label.Style>

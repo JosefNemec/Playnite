@@ -12,9 +12,9 @@
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         xmlns:tray="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
+        d:DesignStyle="{StaticResource WindowDesignStyle}"
         Title="Playnite"
-        Width="1200" Height="900"  WindowStartupLocation="CenterScreen" Icon="/Images/applogo.ico"
-        Background="{StaticResource ControlBackgroundBrush}"
+        Width="1200" Height="900"  WindowStartupLocation="CenterScreen" Icon="/Images/applogo.ico"        
         Loaded="Window_Loaded" Closed="WindowMain_Closed" Closing="WindowMain_Closing" StateChanged="WindowMain_StateChanged"
         LocationChanged="Window_LocationChanged" SizeChanged="Window_SizeChanged"
         x:Name="WindowMain" ShowTitle="False"
@@ -66,11 +66,11 @@
                     <ContextMenu.Resources>
                         <HierarchicalDataTemplate DataType="{x:Type playniteModels:Game}">
                             <StackPanel Orientation="Horizontal">
-                                <Image Width="16" Margin="-16,0,5,0">
+                                <Image Width="16" Margin="-5,0,5,0" RenderOptions.BitmapScalingMode="Fant">
                                     <Image.Source>
                                         <PriorityBinding>
-                                            <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" />
-                                            <Binding Path="DefaultIcon" Mode="OneTime"/>
+                                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
+                                            <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
                                         </PriorityBinding>
                                     </Image.Source>
                                 </Image>
@@ -111,7 +111,7 @@
             </tray:TaskbarIcon.ContextMenu>
         </tray:TaskbarIcon>
 
-        <DockPanel LastChildFill="True" Background="{StaticResource NormalBrushDark}" Grid.Row="0" Grid.Column="0">
+        <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="0">
             <DockPanel MouseUp="ImageLogo_MouseDown" Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True"
                        Opacity="{Binding IsMouseOver, Converter={StaticResource OpacityBoolConverter}, ConverterParameter={StaticResource True}, RelativeSource={RelativeSource Self}}">
                 <Border DockPanel.Dock="Left" Background="Transparent">
@@ -121,12 +121,18 @@
                     </StackPanel>
                 </Border>                
                 <DockPanel.ContextMenu>
-                    <ContextMenu StaysOpen="False" Name="MenuMainMenu" Placement="Bottom">                        
-                        <MenuItem Header="Add Game..." Click="AddNewGame_Click" IsEnabled="{Binding GameAdditionAllowed}"/>
-                        <MenuItem Header="Add Installed Game(s)..." Click="AddInstalledGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
+                    <ContextMenu StaysOpen="False" Name="MenuMainMenu" Placement="Bottom">
+                        <MenuItem Header="Add Game">
+                            <MenuItem Header="Manually..." Click="AddNewGame_Click" IsEnabled="{Binding GameAdditionAllowed}"/>
+                            <MenuItem Header="Import Installed or from Folder..." Click="AddInstalledGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
+                            <MenuItem Header="Import emulated Game(s)..." Click="AddEmulatedGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
+                        </MenuItem>
                         <Separator Style="{DynamicResource {x:Type Separator}}" />
                         <MenuItem Header="Reload Games List" Click="ReloadGames_Click" IsEnabled="{Binding GameAdditionAllowed}" />
-                        <MenuItem Header="Settings..." Click="Settings_Click" />
+                        <MenuItem Header="{DynamicResource MenuConfigurationTitle}">
+                            <MenuItem Header="{DynamicResource MenuPlayniteSettingsTitle}" Click="Settings_Click" />
+                            <MenuItem Header="{DynamicResource MenuPlatformEmulatorSettingsTitle}" Click="Platforms_Click" />
+                        </MenuItem>                        
                         <Separator Style="{DynamicResource {x:Type Separator}}" />
                         <MenuItem Header="Open 3rd Party Client" ItemsSource="{Binding Path=Tools, Source={x:Static local:App.ThirdPartyTools}}">
                             <MenuItem.ItemContainerStyle>
@@ -149,8 +155,9 @@
                                 Text="{Binding Path=Config.FilterSettings.Name, ElementName=WindowMain, Delay=500, Mode=TwoWay}"
                                 WindowChrome.IsHitTestVisibleInChrome="True" />
 
-            <Border CornerRadius="3" Background="Transparent" Style="{StaticResource HighlightBorder}"
-                    BorderThickness="2" Width="35" Height="28" Cursor="Hand" MouseUp="ViewConfigElement_MouseUp"
+            <Border CornerRadius="{StaticResource ControlCornerRadius}" Background="Transparent" Style="{StaticResource HighlightBorder}"
+                    SnapsToDevicePixels="True" BorderThickness="{StaticResource ControlBorderThickness}"
+                    Width="35" Height="28" Cursor="Hand" MouseUp="ViewConfigElement_MouseUp"
                     WindowChrome.IsHitTestVisibleInChrome="True">
                 <TextBlock Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
                            Foreground="{StaticResource TextBrush}"/>
@@ -188,6 +195,8 @@
                                   IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Provider}}"/>
                         <MenuItem Header="Group by Category" IsCheckable="True"
                                   IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Category}}"/>
+                        <MenuItem Header="Group by Platform" IsCheckable="True"
+                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Platform}}"/>
                     </ContextMenu>
                 </Border.ContextMenu>
             </Border>
@@ -199,8 +208,8 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <Border CornerRadius="3" Background="Transparent" Style="{StaticResource HighlightBorder}" 
-                                            BorderThickness="2" Cursor="Hand" WindowChrome.IsHitTestVisibleInChrome="True">
+                                    <Border Background="Transparent" Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
+                                            CornerRadius="{StaticResource ControlCornerRadius}" BorderThickness="{StaticResource ControlBorderThickness}" Cursor="Hand" WindowChrome.IsHitTestVisibleInChrome="True">
                                         <TextBlock Text="∇" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="8,0,8,0" Foreground="{TemplateBinding Foreground}"/>
                                     </Border>
                                 </ControlTemplate>

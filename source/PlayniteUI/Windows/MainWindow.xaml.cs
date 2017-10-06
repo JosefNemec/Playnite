@@ -20,7 +20,6 @@ using NLog;
 using Playnite;
 using Playnite.Providers.GOG;
 using Playnite.Providers.Steam;
-using Playnite.Providers.Custom;
 using Playnite.Models;
 using System.Collections.ObjectModel;
 using PlayniteUI.Windows;
@@ -100,18 +99,6 @@ namespace PlayniteUI
             NotificationsWin.AutoOpen = true;
             positionManager.RestoreSizeAndLocation(Config);
 
-            GogSettings.DefaultIcon = @"/Images/gogicon.png";
-            GogSettings.DefaultImage = @"/Images/custom_cover_background.png";
-            SteamSettings.DefaultIcon = @"/Images/steamicon.png";
-            SteamSettings.DefaultImage = @"/Images/custom_cover_background.png";
-            OriginSettings.DefaultIcon = @"/Images/originicon.png";
-            OriginSettings.DefaultImage = @"/Images/custom_cover_background.png";
-            UplaySettings.DefaultIcon = @"/Images/uplayicon.png";
-            UplaySettings.DefaultImage = @"/Images/custom_cover_background.png";
-            CustomGameSettings.DefaultIcon = @"/Images/applogo.png";
-            CustomGameSettings.DefaultImage = @"/Images/custom_cover_background.png";
-            CustomGameSettings.DefaultBackgroundImage = @"/Images/default_background.png";
-
             Config.PropertyChanged += Config_PropertyChanged;
             Config.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
 
@@ -160,6 +147,33 @@ namespace PlayniteUI
                     Config.FirstTimeWizardComplete = true;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Config"));
                 }
+            }            
+
+            if (!Config.EmulatorWizardComplete)
+            {
+                GameDatabase.Instance.OpenDatabase(Config.DatabasePath);
+                var window = new EmulatorImportWindow(DialogType.Wizard)
+                {
+                    Owner = this
+                };
+
+                if (window.ShowDialog() == true)
+                {
+                    Config.EmulatorWizardComplete = true;
+                }
+            }
+
+            if (!Config.MigrationV2PcPlatformAdded)
+            {
+                GameDatabase.Instance.OpenDatabase(Config.DatabasePath);
+                var db = GameDatabase.Instance;
+                foreach (var game in db.GamesCollection.Find(a => a.Provider != Provider.Custom).ToList())
+                {
+                    db.AssignPcPlatform(game);
+                    db.UpdateGameInDatabase(game);
+                }
+
+                Config.MigrationV2PcPlatformAdded = true;                
             }
 
             LoadGames(Config.UpdateLibStartup);
@@ -321,6 +335,7 @@ namespace PlayniteUI
                 }
 
                 LiteDBImageToImageConverter.ClearCache();
+                GamesView?.Dispose();
                 GamesView = new GamesCollectionView(database, Config);
                 BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
 
@@ -354,7 +369,7 @@ namespace PlayniteUI
                                 NotificationsWin.RemoveMessage(NotificationCodes.UplayInstalledImportError);
                             }
                         }
-                        catch (Exception e)
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                         {
                             logger.Error(e, "Failed to import installed Uplay games.");
                             NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.UplayInstalledImportError, "Failed to import installed Uplay games:" + e.Message, NotificationType.Error, () =>
@@ -371,7 +386,7 @@ namespace PlayniteUI
                                 NotificationsWin.RemoveMessage(NotificationCodes.GOGLInstalledImportError);
                             }
                         }
-                        catch (Exception e)
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                         {
                             logger.Error(e, "Failed to import installed GOG games.");
                             NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.GOGLInstalledImportError, "Failed to import installed GOG games:" + e.Message, NotificationType.Error, () =>
@@ -388,7 +403,7 @@ namespace PlayniteUI
                                 NotificationsWin.RemoveMessage(NotificationCodes.SteamInstalledImportError);
                             }
                         }
-                        catch (Exception e)
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                         {
                             logger.Error(e, "Failed to import installed Steam games.");
                             NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamInstalledImportError, "Failed to import installed Steam games: " + e.Message, NotificationType.Error, () =>
@@ -405,7 +420,7 @@ namespace PlayniteUI
                                 NotificationsWin.RemoveMessage(NotificationCodes.OriginInstalledImportError);
                             }
                         }
-                        catch (Exception e)
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                         {
                             logger.Error(e, "Failed to import installed Origin games.");
                             NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.OriginInstalledImportError, "Failed to import installed Origin games: " + e.Message, NotificationType.Error, () =>
@@ -424,7 +439,7 @@ namespace PlayniteUI
                                 NotificationsWin.RemoveMessage(NotificationCodes.GOGLibDownloadError);
                             }
                         }
-                        catch (Exception e)
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                         {
                             logger.Error(e, "Failed to download GOG library updates.");
                             NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.GOGLibDownloadError, "Failed to download GOG library updates: " + e.Message, NotificationType.Error, () =>
@@ -452,7 +467,7 @@ namespace PlayniteUI
                                 NotificationsWin.RemoveMessage(NotificationCodes.SteamLibDownloadError);
                             }
                         }
-                        catch (Exception e)
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                         {
                             logger.Error(e, "Failed to download Steam library updates.");
                             NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamLibDownloadError, "Failed to download Steam library updates: " + e.Message, NotificationType.Error, () =>
@@ -470,7 +485,7 @@ namespace PlayniteUI
                                 var steamLib = new SteamLibrary();
                                 GameDatabase.Instance.ImportCategories(steamLib.GetCategorizedGames(importSteamCatWizardId));
                             }
-                            catch (Exception e)
+                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                             {
                                 logger.Error(e, "Failed to import Steam categories.");
                                 NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamLibDownloadError, "Failed to import Steam categories: " + e.Message, NotificationType.Error, () =>
@@ -490,7 +505,7 @@ namespace PlayniteUI
                                 NotificationsWin.RemoveMessage(NotificationCodes.OriginLibDownloadError);
                             }
                         }
-                        catch (Exception e)
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                         {
                             logger.Error(e, "Failed to download Origin library updates.");
                             NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.OriginLibDownloadError, "Failed to download Origin library updates: " + e.Message, NotificationType.Error, () =>
@@ -658,6 +673,19 @@ namespace PlayniteUI
             }
         }
 
+        private void AddEmulatedGames_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new EmulatorImportWindow(DialogType.GameImport)
+            {
+                Owner = this
+            };
+
+            if (window.ShowDialog() == true)
+            {
+                window.Model.AddSelectedGamesToDB();
+            }
+        }
+
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             var configWindow = new SettingsWindow()
@@ -672,6 +700,16 @@ namespace PlayniteUI
             {
                 LoadGames(true);
             }
+        }
+
+        private void Platforms_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new PlatformsWindow()
+            {
+                Owner = this
+            };
+
+            window.ConfigurePlatforms(GameDatabase.Instance);
         }
 
         private void Exitappp_Click(object sender, RoutedEventArgs e)

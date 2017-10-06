@@ -118,10 +118,24 @@ namespace Playnite
                     continue;
                 }
 
-                var sourceValue = srcProp.GetValue(source, null);
-                if (targetProperty.GetValue(destination, null) != sourceValue || !diffOnly)
+                var sourceValue = srcProp.GetValue(source);
+                var targetValue = targetProperty.GetValue(destination);
+                if (sourceValue == null && targetValue == null)
                 {
-                    targetProperty.SetValue(destination, sourceValue, null);
+                    continue;
+                }
+
+                if (sourceValue is IComparable && diffOnly)
+                {
+                    var equal = ((IComparable)sourceValue).CompareTo(targetValue) == 0;
+                    if (!equal)
+                    {
+                        targetProperty.SetValue(destination, sourceValue);
+                    }
+                }
+                else
+                {
+                    targetProperty.SetValue(destination, sourceValue);
                 }
             }
         }
