@@ -66,11 +66,11 @@
                     <ContextMenu.Resources>
                         <HierarchicalDataTemplate DataType="{x:Type playniteModels:Game}">
                             <StackPanel Orientation="Horizontal">
-                                <Image Width="16" Margin="-16,0,5,0" RenderOptions.BitmapScalingMode="Fant">
+                                <Image Width="16" Margin="-5,0,5,0" RenderOptions.BitmapScalingMode="Fant">
                                     <Image.Source>
                                         <PriorityBinding>
-                                            <Binding Path="Icon" IsAsync="True" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" />
-                                            <Binding Path="DefaultIcon" Mode="OneTime"/>
+                                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
+                                            <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
                                         </PriorityBinding>
                                     </Image.Source>
                                 </Image>

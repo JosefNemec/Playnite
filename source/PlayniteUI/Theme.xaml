@@ -867,21 +867,26 @@
 
     <Style x:Key="ExpanderDownHeaderStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border Padding="{TemplateBinding Padding}" Background="{StaticResource ExpanderBackgroundBrush}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                        <DockPanel SnapsToDevicePixels="False" Background="Transparent">
-                            <TextBlock Text="+" x:Name="Up_Arrow" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}"
-                                       Foreground="{StaticResource GlyphBrush}" FontSize="18" FontWeight="Bold" Width="20" Margin="0,0,5,0"
-                                       Grid.Column="0" DockPanel.Dock="Left" TextAlignment="Center"/>
-                            <TextBlock Text="-" x:Name="Down_Arrow" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}"
-                                       Foreground="{StaticResource GlyphBrush}" FontSize="18" FontWeight="Bold" Width="20" Margin="0,0,5,0" Visibility="Collapsed"
-                                       Grid.Column="0" DockPanel.Dock="Left" TextAlignment="Center"/>
-                            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Grid.Column="1" VerticalAlignment="Center" DockPanel.Dock="Left">
-                                <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Left" RecognizesAccessKey="True"  />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="+" x:Name="Up_Arrow" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{StaticResource GlyphBrush}" FontSize="18" MinWidth="20" FontWeight="Bold" Margin="5,0,5,0"
+                                       Grid.Column="0" TextAlignment="Center" />
+                            <TextBlock Text="-" x:Name="Down_Arrow" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{StaticResource GlyphBrush}" FontSize="18" MinWidth="20" FontWeight="Bold" Margin="5,0,5,0" Visibility="Collapsed"
+                                       Grid.Column="0" TextAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Style="{StaticResource BaseTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Stretch" RecognizesAccessKey="True"  />
                             </TextBlock>
-                        </DockPanel>
+                        </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="true">
@@ -1626,17 +1631,17 @@
     <ControlTemplate x:Key="{x:Static MenuItem.SubmenuHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition MinWidth="16" Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
                 <ColumnDefinition Width="*" SharedSizeGroup="MenuItemIGTColumnGroup" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" Grid.ColumnSpan="3" Background="{DynamicResource HoverBrush}" Opacity="0" x:Name="HoverBorder" />
             <ContentPresenter Grid.Column="0" Margin="4,0,0,0" x:Name="Icon" VerticalAlignment="Center" ContentSource="Icon" />
-            <Grid Grid.Column="0" Visibility="Hidden" Margin="4,0,0,0" x:Name="GlyphPanel" VerticalAlignment="Center">
+            <Grid Grid.Column="0" Visibility="Collapsed" Margin="5,0,-5,0" x:Name="GlyphPanel" VerticalAlignment="Center">
                 <TextBlock FontFamily="Marlett" Text="a" VerticalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}" />
             </Grid>
             <TextBlock VerticalAlignment="Center" Grid.Column="1" Padding="5" x:Name="HeaderHost" Foreground="{TemplateBinding Foreground}" Style="{StaticResource BaseTextBlockStyle}">
-                <ContentPresenter RecognizesAccessKey="True" ContentSource="Header"/>
+                <ContentPresenter RecognizesAccessKey="True" Margin="5,0,5,0" ContentSource="Header"/>
             </TextBlock>
             <Grid Grid.Column="2" Margin="0,0,5,0" x:Name="ArrowPanel" VerticalAlignment="Center">
                 <TextBlock FontFamily="Marlett" Text="4" VerticalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}" />
@@ -1671,14 +1676,14 @@
             <Border Background="{DynamicResource HoverBrush}" Opacity="0" x:Name="HoverBorder" />
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MinWidth="16" Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
                     <ColumnDefinition Width="*" SharedSizeGroup="MenuItemIGTColumnGroup" />
                 </Grid.ColumnDefinitions>
                 <ContentPresenter Grid.Column="0" Margin="4,0,0,0" x:Name="Icon" VerticalAlignment="Center" ContentSource="Icon" />
-                <Grid Grid.Column="0" Visibility="Hidden" Margin="4,0,0,0" x:Name="GlyphPanel" VerticalAlignment="Center">
+                <Grid Grid.Column="0" Visibility="Collapsed" Margin="5,0,-5,0" x:Name="GlyphPanel" VerticalAlignment="Center">
                     <TextBlock FontFamily="Marlett" Text="a" VerticalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}" />
                 </Grid>
-                <TextBlock VerticalAlignment="Center" Grid.Column="1" Margin="0,0,5,0" Padding="5" x:Name="HeaderHost" Foreground="{TemplateBinding Foreground}" Style="{StaticResource BaseTextBlockStyle}">
+                <TextBlock VerticalAlignment="Center" Grid.Column="1" Margin="5,0,5,0" Padding="5" x:Name="HeaderHost" Foreground="{TemplateBinding Foreground}" Style="{StaticResource BaseTextBlockStyle}">
                     <ContentPresenter RecognizesAccessKey="True" ContentSource="Header"/>
                 </TextBlock>
             </Grid>
