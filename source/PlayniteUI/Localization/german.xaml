@@ -1,0 +1,145 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="LocalizationLanguage">deutsch</sys:String>
+
+    <sys:String x:Key="LanguageSettingsLabel">Sprache:</sys:String>
+
+    <sys:String x:Key="ExitAppLabel">Beenden</sys:String>
+    <sys:String x:Key="FilterActiveLabel">Filter ist aktiviert (Klicken um Filter Panel umzuschalten)</sys:String>
+    <sys:String x:Key="FilterInactiveLabel">Filter ist deaktiviert (Klicken um Filter panel umzuschalten)</sys:String>
+
+    <sys:String x:Key="InvalidDataTitle">Ungültige Daten</sys:String>
+    <sys:String x:Key="SaveChangesAskTitle">Änderungen speichern?</sys:String>
+    
+    <sys:String x:Key="AboutHomePageLink">Homepage auf www.playnite.link</sys:String>
+    <sys:String x:Key="AboutSourceLink">Source Code bei GitHub</sys:String>
+    <sys:String x:Key="AboutCreateDiagButton">Diag. Package erstellen</sys:String>
+    <sys:String x:Key="AboutWindowTitle">Über Playnite</sys:String>
+
+    <sys:String x:Key="CategoryWindowTitle">Kategorie zuweisen</sys:String>
+    <sys:String x:Key="CategorySetButton">Kategorie setzen</sys:String>
+    <sys:String x:Key="CategoryAddCatButton">Kategorie hinzufügen</sys:String>
+    <sys:String x:Key="CategoryTooltip" xml:space="preserve">Markiert - Kategorie zuweisen
+Unmarkiert - Kategorie entfernen
+Unbestimmt - Keine Änderungen (wenn mehrere Spiele bearbeitet werden)</sys:String>
+
+    <sys:String x:Key="CrashWindowTitle">Oh nein, es ist was was schlimmes passiert...</sys:String>
+
+    <sys:String x:Key="GameRemoveAskTitle">Spiel(e) entfernen?</sys:String>
+    <sys:String x:Key="GameRemoveAskMessage" xml:space="preserve">Bist du sicher, dass du das Spiel entfernen willst?
+Autoamtisch importierte Spiele erscheinen nach dem nächsten Import vielleicht in Playnite wieder (Abhängig von deinen Einstellungen).</sys:String>
+    <sys:String x:Key="GamesRemoveAskMessage" xml:space="preserve">Bist du sicher, dass du {0} Spiele entfernen willst?
+Autoamtisch importierte Spiele erscheinen nach dem nächsten Import vielleicht in Playnite wieder (Abhängig von deinen Einstellungen).</sys:String>
+
+    <sys:String x:Key="SteamFriendsTooltip">Steam Freunde</sys:String>
+
+    <!--General-->
+    <sys:String x:Key="RemoveTitle">Entfernen</sys:String>
+    <sys:String x:Key="CopyTitle">Kopieren</sys:String>
+    <sys:String x:Key="AddTitle">Hinzufügen</sys:String>
+    <sys:String x:Key="DefaultIconTitle">Default Icon</sys:String>
+    <sys:String x:Key="DefaultCoverTitle">Default Cover Image</sys:String>
+    <sys:String x:Key="FinishLabel">Fertig</sys:String>
+    <sys:String x:Key="NextLabel">Nächstes</sys:String>
+    <sys:String x:Key="BackLabel">Zurück</sys:String>
+    <sys:String x:Key="ImportLabel">Importieren</sys:String>
+
+    <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Spezielle Variablen können benutzt werden, um dynamische Strings hinzuzufügen:
+{InstallDir} - Spielinstallations-Verzeichniss
+{ImagePath} - Spiel ISO/ROM Pfad
+        
+Beispiel: -image "{ImagePath}" -fullscreen
+Ergebniss: -image "c:\folder\image.iso" -fullscreen</sys:String>
+
+    <!--Menu-->
+    <sys:String x:Key="MenuConfigurationTitle">Konfiguration</sys:String>
+    <sys:String x:Key="MenuPlayniteSettingsTitle">Einstellungen...</sys:String>
+    <sys:String x:Key="MenuPlatformEmulatorSettingsTitle">Platformen und Emulatoren...</sys:String>
+    
+    <!--Settings Window-->
+    <sys:String x:Key="SettingsImportLabel">Änderungen in der Bibliothek automatisch importieren</sys:String>
+    <sys:String x:Key="SettingsImportInstalledLabel">Installierte Spiele importieren</sys:String>
+    <sys:String x:Key="SettingsImportLibraryLabel">Alle Spiele importieren</sys:String>
+    <sys:String x:Key="SettingsInvalidDBLocation">Ungültige Datenbank File Location, ein richtiger Dateipfad muss gesetzt werden.</sys:String>
+    <sys:String x:Key="SettingsInvalidSteamAccountName">Steam Account Name darf nicht leer sein.</sys:String>
+    <sys:String x:Key="SettingsInvalidSteamAccountLibImport">Kein Steam Account für Bibliotheks-Import ausgewählt.</sys:String>
+    <sys:String x:Key="SettingsInvalidSteamAccountCatImport">Kein Steam Account für Kategorie-Import ausgewählt.</sys:String>
+    <sys:String x:Key="SettingsUpdateLibStartup">Runterladen von 3rd party library updates beim Start</sys:String>
+    <sys:String x:Key="SettingsUpdateLibStartupTooltip">Beinhaltet Steam, Origin und andere. Wird auch keine Metdaten runterladen, sofern deaktiviert.</sys:String>
+    <sys:String x:Key="SettingsAsyncImageLoading">Asynchrones Laden von Bildern (benötigt Neustart)</sys:String>
+    <sys:String x:Key="SettingsAsyncImageLoadingTooltip">Verbessert Scroll Smoothness der Spieleliste im Austausch für längere Bilderladezeiten.</sys:String>
+    <sys:String x:Key="SettingsShowNameEmptyCover">Spielename anzeigen, wenn Cover Art fehlt</sys:String>
+    <sys:String x:Key="SettingsShowIconList">Zeige Spiele-Icons in Listen-Ansicht</sys:String>
+
+    <!--Emulator Import-->
+    <sys:String x:Key="EmuWizardWindowTitle">Emulations-Import Assistent</sys:String>
+    <sys:String x:Key="EmuWizardIntro">Dieser Assistent wird dich durch den Prozess des Downloadens und Imports eines Konsolen Emulators, sowie der Import von emulierten Spielen, führen.</sys:String>
+    <sys:String x:Key="EmuWizardNotice">Du kannst immer zusätzliche Emulatoren und/oder Spiele später über das Hauptmenü hinzufügen (unter "Konfiguration"-Menü für Emulator Einstellungen und "Spiele hinzufügen" für emulierte Spiele).</sys:String>
+    <sys:String x:Key="EmuWizardDownloadListIntro" xml:space="preserve">Folgend ist eine List von Emulatoren, die Playnite erkennt und automatisch konfiguriert. Du kannst diese über ihre Webseite runterladen und installieren. Sobald du einen Emulator installiert hast, gehe auf den nächsten Screen um diese in Playnite zu importieren. Du kannst auch eigene Emulatoren konfigurieren und importieren über das Konfigurationsmenü.</sys:String>        
+    <sys:String x:Key="EmuWizardEmuImportIntro">Du kannst installierte Emulatoren über den "Automatische Erkennung von Ordnern..." Knopf importieren. Playnite wird die ausgewählten Ordner nach Emulatoren durchsuchen und eine Option zum Importieren zeigen. Du kannst auch von mehreren Ordnern importieren, indem du den erwähnten Knopf mehrfach benutzt. Emulatoren werden am Ende der aktuellen List hinzugefügt.</sys:String>
+    <sys:String x:Key="EmuWizardGameImportIntro">Du kannst Spiele importieren, indem du den "Ordner mit Emulator scannen" Knopf drückst. Wähle den passenden Emulator aus, um Playnite mitzuteilen welche Dateitypen gescannt und importiert werden sollen.Du kannst auch von mehreren Ordnern importieren, indem du den erwähnten Knopf mehrfach benutzt. Spiele werden am Ende der aktuellen List hinzugefügt.</sys:String>
+    <sys:String x:Key="EmuWizardNoEmulatorWarning">Keine Emulatoren für die Importierung ausgewählt. Du wirst keine Emulator-Spiele automatisch importieren können, ohne die Emulatoren vorher zu konfigurieren. Bist du sicher, dass du fortsetzten und den Importierungs-Prozess beenden willst?</sys:String>
+    <sys:String x:Key="EmuWizardNoEmulatorForGamesWarning">Es sind keine Emulatoren in Playnite konfiguriert. Du kannst keine Spiele importieren, ohne den Emulator zuerste zu konfigurieren und die richtigen Dateitypen auszuwählen. Willst du ein paar Emulatoren jetzt hinzufügen?</sys:String>
+    <sys:String x:Key="EmuWizardButtonScanGames">Ordner mit Emulator scannen</sys:String>
+    <sys:String x:Key="EmuWizardButtonScanEmulator">Automatische Erkennung von Ordnern...</sys:String>
+    <sys:String x:Key="EmuWizardButtonConfigureEmulator">Konfigurieren von Emulatoren...</sys:String>
+    
+    <!--Platforms Settings-->
+    <sys:String x:Key="PlatformsWindowTitle">Konfiguriere Plattformen und Emulatoren</sys:String>
+    <sys:String x:Key="PlatformsTitle">Plattformen</sys:String>
+    <sys:String x:Key="EmulatorsTitle">Emulatoren</sys:String>
+    <sys:String x:Key="AddPlatformTitle">Plattform hinzufügen</sys:String>
+    <sys:String x:Key="SelectIconTitle">Icon auswählen</sys:String>
+    <sys:String x:Key="SelectCoverTitle">Cover auswählen</sys:String>
+    <sys:String x:Key="AddEmulatorTitle">Emulator hinzufügen</sys:String>
+    <sys:String x:Key="SupportedPlatformsTitle">Unterstütze Plattform(en)</sys:String>
+    <sys:String x:Key="ConfirmUnsavedPlatformsTitle">Willst du die Plattform Änderungen speichern?</sys:String>
+    <sys:String x:Key="ConfirmUnsavedEmulatorsTitle">Willst du die Emulator Änderungen speichern?</sys:String>
+    <sys:String x:Key="ExecutableTitle">Executable</sys:String>
+    <sys:String x:Key="ArgumentsTitle">Argumente</sys:String>
+    <sys:String x:Key="WorkingDirTitle">Arbeitsverzeichniss</sys:String>
+    <sys:String x:Key="SupportedFilesTitle">Unterstütze Dateitypen</sys:String>
+    <sys:String x:Key="ImportEmulatorsButton">Importiere Emulatoren...</sys:String>
+    <sys:String x:Key="DownloadEmulatorsButton">Lade Emulatoren runter...</sys:String>
+    <sys:String x:Key="EmuLoadArgsPresetTooltip">Lade Argumenten-Voreinstellung von bekanntem Emulator-Profil</sys:String>
+
+
+    <!--First Time Wizard-->
+    <sys:String x:Key="WizardImportIntroduction" xml:space="preserve">Importiere Spiele automatisch von den folgenden Diensten. Spätere Spieleänderungen (Installations-Status) werden automatisch beim Start oder beim Anstoßen von Playnite aktualisiert. Ausgewählte Einstellungen beeinflußen alle initiellen und folgenden Importierungen.</sys:String>
+
+    
+    <sys:String x:Key="MenuSortByTitle">Sortieren nach</sys:String>
+    <sys:String x:Key="MenuSortAscending">Aufsteigend</sys:String>
+    <sys:String x:Key="MenuSortDescending">Absteigend</sys:String>
+
+    <!--Game fields-->
+    <sys:String x:Key="GameIconTitle">Icon</sys:String>
+    <sys:String x:Key="GameProviderTitle">Provider</sys:String>
+    <sys:String x:Key="GameNameTitle">Name</sys:String>
+    <sys:String x:Key="GamePlatformTitle">Plattform</sys:String>
+    <sys:String x:Key="GameCategoriesTitle">Kategorie(n)</sys:String>
+    <sys:String x:Key="GameGenresTitle">Genre(s)</sys:String>
+    <sys:String x:Key="GameReleaseDateTitle">Release</sys:String>
+    <sys:String x:Key="GameDevelopersTitle">Developer(s)</sys:String>
+    <sys:String x:Key="GamePublishersTitle">Publisher(s)</sys:String>
+    <sys:String x:Key="GameIsInstalledTitle">Installiert</sys:String>
+    <sys:String x:Key="GameHiddenTitle">Versteckt</sys:String>
+    <sys:String x:Key="GameFavoriteTitle">Favorit</sys:String>
+    <sys:String x:Key="GameLastActivityTitle">Letzte Aktivität</sys:String>
+    <sys:String x:Key="GameCategoryTitle">Kategorie</sys:String>
+    <sys:String x:Key="GameDescriptionTitle">Beschreibung</sys:String>
+    <sys:String x:Key="GameInstallDirTitle">Installations Verzeichniss </sys:String>
+
+    <!--MessageBox-->
+    <sys:String x:Key="OKLabel">OK</sys:String>
+    <sys:String x:Key="SaveLabel">Speichern</sys:String>
+    <sys:String x:Key="CloseLabel">Schließen</sys:String>
+    <sys:String x:Key="CancelLabel">Abbrechen</sys:String>
+    <sys:String x:Key="YesLabel">Ja</sys:String>
+    <sys:String x:Key="NoLabel">Nein</sys:String>
+    
+    
+    
+</ResourceDictionary>
