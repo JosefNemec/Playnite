@@ -171,6 +171,10 @@
                             <Separator Style="{DynamicResource {x:Type Separator}}" />
                             <MenuItem Header="{DynamicResource GameNameTitle}" IsCheckable="True"
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Name}}"/>
+                            <MenuItem Header="{DynamicResource GamePlatformTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Platform}}"/>
+                            <MenuItem Header="{DynamicResource GameProviderTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Provider}}"/>
                             <MenuItem Header="{DynamicResource GameDevelopersTitle}" IsCheckable="True"
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Developers}}"/>
                             <MenuItem Header="{DynamicResource GamePublishersTitle}" IsCheckable="True"
@@ -191,7 +195,7 @@
                         <Separator Style="{DynamicResource {x:Type Separator}}" />
                         <MenuItem Header="Don't group" IsCheckable="True"
                                   IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.None}}"/>
-                        <MenuItem Header="Group by Store" IsCheckable="True"
+                        <MenuItem Header="Group by Provider" IsCheckable="True"
                                   IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Provider}}"/>
                         <MenuItem Header="Group by Category" IsCheckable="True"
                                   IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Category}}"/>
