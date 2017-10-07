@@ -102,3 +102,17 @@
   ImageExtensions: [.iso, .cue, .bin, .mds]
   ExecutableLookup: ^yabause.*\.exe
   Website: 'https://yabause.org/'
+
+- Name: Cemu
+  DefaultArguments: '-g "{ImagePath}" -f'
+  Platforms: [Wii U]
+  ImageExtensions: [.wud, .wux, .rpx]
+  ExecutableLookup: ^cemu.*\.exe
+  Website: 'http://cemu.info/'
+
+- Name: RPCS3
+  DefaultArguments: '"{ImagePath}"'
+  Platforms: [PlayStation 3]
+  ImageExtensions: [.bin]
+  ExecutableLookup: ^rpcs3.*\.exe
+  Website: 'https://rpcs3.net/'
