@@ -50,6 +50,14 @@ To help managing and launching older games. Features like limit CPU cores, CPU s
 
 Add additional functionality through easy scritping or fully fledged C# plugins.
 
+Security Concerns
+---------
+Playnite doesn't store any user information and you don't need to provide any information to import installed games. Login is required only for full library import of GOG and Origin games and in that case only web session cookie is stored, the same way when you login to those services via web browser.
+
+What about Defender SmartScreen installer warning?
+
+Windows may display security dialog regarding executable securty. This is mainly due to fact that installer is not digitally signed, however it's completely safe to use. More information is in issue #80
+
 Download
 ---------
 
