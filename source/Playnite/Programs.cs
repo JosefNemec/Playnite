@@ -222,7 +222,16 @@ namespace Playnite
 
             var folder = Path.GetDirectoryName(defPath);
             var fileMask = Path.GetFileNameWithoutExtension(defPath) + ".scale*.png";
-            return Directory.GetFiles(folder, fileMask).Where(a => Regex.IsMatch(a, @"\.scale-\d+\.png"))?.OrderBy(a => a).Last();
+            var files = Directory.GetFiles(folder, fileMask);
+
+            if (files == null || files.Count() == 0)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return files.Where(a => Regex.IsMatch(a, @"\.scale-\d+\.png"))?.OrderBy(a => a).Last();
+            }
         }
 
         public static List<Program> GetUWPApps()
