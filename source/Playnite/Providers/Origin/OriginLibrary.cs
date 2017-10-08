@@ -90,6 +90,7 @@ namespace Playnite.Providers.Origin
 
         public GameLocalDataResponse GetLocalManifest(string id, string packageName = null, bool useDataCache = false)
         {
+            logger.Debug($"Gettings game manifest {id}");
             var package = packageName;
 
             if (string.IsNullOrEmpty(package))
@@ -154,7 +155,7 @@ namespace Playnite.Providers.Origin
                     {
                         // Get game id by fixing file via adding : before integer part of the name
                         // for example OFB-EAST52017 converts to OFB-EAST:52017
-                        var match = Regex.Match(gameId, @"(.*?)(\d+)");
+                        var match = Regex.Match(gameId, @"^(.*?)(\d+)$");
                         if (!match.Success)
                         {
                             logger.Warn("Failed to get game id from file " + package);
@@ -170,8 +171,18 @@ namespace Playnite.Providers.Origin
                         ProviderId = gameId
                     };
 
-                    GameLocalDataResponse localData = GetLocalManifest(gameId, package, useDataCache);
-                     
+                    GameLocalDataResponse localData = null;
+
+                    try
+                    {
+                        localData = GetLocalManifest(gameId, package, useDataCache);
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to get Origin manifest for a {gameId}, {package}");
+                        continue;
+                    }
+
                     if (localData.offerType != "Base Game" && localData.offerType != "DEMO")
                     {
                         continue;
