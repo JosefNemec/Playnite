@@ -81,7 +81,10 @@
     <SolidColorBrush x:Key="HoverBrush" Color="{StaticResource IndicatorColor}" />
     <SolidColorBrush x:Key="GlyphBrush" Color="{StaticResource IndicatorColor}" />
     <SolidColorBrush x:Key="IndicatorBrush" Color="{StaticResource IndicatorColor}" />
-    
+
+    <Color x:Key="TooltipBackgroundColor">#182028</Color>
+    <SolidColorBrush x:Key="TooltipBackgroundBrush" Color="{StaticResource TooltipBackgroundColor}" />
+
     <LinearGradientBrush  x:Key="PopupBackgroundBrush" StartPoint="0.4,0" EndPoint="0.5,1.2" >
         <GradientStop Color="{StaticResource MainColorDark}" Offset="0"/>
         <GradientStop Color="#182028" Offset="0.9"/>
@@ -2895,7 +2898,7 @@
 
     <Style TargetType="ToolTip">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Background" Value="{StaticResource PopupBackgroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource TooltipBackgroundBrush}" />
         <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="BorderBrush" Value="{StaticResource PopupBorderBrush}" />

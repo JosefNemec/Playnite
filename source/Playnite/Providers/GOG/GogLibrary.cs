@@ -26,6 +26,11 @@ namespace Playnite.Providers.GOG
 
         public List<IGame> GetInstalledGames()
         {
+            if (!File.Exists(Path.Combine(GogSettings.DBStoragePath, "index.db")))
+            {
+                throw new Exception("Cannot import GOG installed games, GOG Galaxy is not installed.");
+            }
+
             var targetIndexPath = Path.Combine(Paths.TempPath, "index.db");
             CacheGogDatabases(Paths.TempPath, "index.db");
 
