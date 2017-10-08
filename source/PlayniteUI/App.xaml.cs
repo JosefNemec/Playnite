@@ -60,6 +60,11 @@ namespace PlayniteUI
             Localization.SetLanguage(config.Language);
             Resources.Remove("AsyncImagesEnabled");
             Resources.Add("AsyncImagesEnabled", config.AsyncImageLoading);
+            if (config.DisableHwAcceleration)
+            {
+                System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
+            }
+
             Settings.ConfigureLogger();
             Settings.ConfigureCef();
 

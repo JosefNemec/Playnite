@@ -268,6 +268,12 @@ namespace PlayniteUI
                 showIcons.UpdateSource();
             }
 
+            var hwAcceleration = CheckDisableAcceleration.GetBindingExpression(CheckBox.IsCheckedProperty);
+            if (hwAcceleration.IsDirty)
+            {
+                hwAcceleration.UpdateSource();
+            }
+
             Playnite.Settings.Instance.SaveSettings();
             Close();
         }

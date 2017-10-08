@@ -108,6 +108,21 @@ namespace Playnite
             }
         }
 
+        private bool disableHwAcceleration = false;
+        public bool DisableHwAcceleration
+        {
+            get
+            {
+                return disableHwAcceleration;
+            }
+
+            set
+            {
+                disableHwAcceleration = value;
+                OnPropertyChanged("DisableHwAcceleration");
+            }
+        }
+
         private bool asyncImageLoading = false;
         public bool AsyncImageLoading
         {

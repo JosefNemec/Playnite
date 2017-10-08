@@ -86,6 +86,8 @@
                                   Name="CheckNameEmptyCover" IsChecked="{Binding ShowNameEmptyCover, UpdateSourceTrigger=Explicit}"/>
                         <CheckBox Content="{DynamicResource SettingsShowIconList}" Margin="0,15,0,0"
                                   Name="CheckShowIcons" IsChecked="{Binding ShowIconsOnList, UpdateSourceTrigger=Explicit}"/>
+                        <CheckBox Content="{DynamicResource SettingsDisableAcceleration}" Margin="0,15,0,0" ToolTip="{DynamicResource SettingsDisableAccelerationTooltip}"
+                                  Name="CheckDisableAcceleration" IsChecked="{Binding DisableHwAcceleration, UpdateSourceTrigger=Explicit}"/>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Steam">
