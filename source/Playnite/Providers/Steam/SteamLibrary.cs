@@ -81,7 +81,7 @@ namespace Playnite.Providers.Steam
                 catch (Exception exc)
                 {
                     // Steam can generate invalid acf file according to issue #37
-                    logger.Error(exc, "Failed to get information about installed game from {0}: ", path);
+                    logger.Error(exc, "Failed to get information about installed game from {0}: ", file);
                 }
             }
 
@@ -129,6 +129,12 @@ namespace Playnite.Providers.Steam
 
             foreach (var game in (new ServicesClient()).GetSteamLibrary(userName))
             {
+                // Ignore games without name, like 243870
+                if (string.IsNullOrEmpty(game.name))
+                {
+                    continue;
+                }
+
                 games.Add(new Game()
                 {
                     Provider = Provider.Steam,
@@ -252,7 +258,7 @@ namespace Playnite.Providers.Steam
         public SteamGameMetadata UpdateGameWithMetadata(IGame game)
         {
             var metadata = DownloadGameMetadata(int.Parse(game.ProviderId));
-            game.Name = metadata.ProductDetails["common"]["name"].Value;
+            game.Name = metadata.ProductDetails["common"]["name"].Value ?? game.Name;
             game.Links = new ObservableCollection<Link>()
             {
                 new Link("Forum", @"https://steamcommunity.com/app/" + game.ProviderId),

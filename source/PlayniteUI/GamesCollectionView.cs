@@ -510,9 +510,15 @@ namespace PlayniteUI
             }
             else
             {
-                textResult = (game.Name.IndexOf(Settings.FilterSettings.Name, StringComparison.OrdinalIgnoreCase) >= 0);
+                if (string.IsNullOrEmpty(game.Name))
+                {
+                    textResult = false;
+                }
+                else
+                {
+                    textResult = (game.Name.IndexOf(Settings.FilterSettings.Name, StringComparison.OrdinalIgnoreCase) >= 0);
+                }
             }
-
 
             // ------------------ Genre
             bool genreResult = false;
