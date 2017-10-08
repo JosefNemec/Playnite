@@ -9,7 +9,7 @@ Features
 
 **Steam, Origin, GOG, Uplay support**
 
-Import games from Steam, Origin, GOG and Uplay services including games that are not installed.
+Import games from Steam, Origin, GOG and Uplay services including games that are not installed. You can also import Windows Store (UWP) games.
 
 **Console Emulation support**
 
