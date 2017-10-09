@@ -124,7 +124,7 @@
   ExecutableLookup: ^mupen64plus-gui\.exe
   Website: 'https://m64p.github.io/'
  
- - Name: BlastEm
+- Name: BlastEm
   DefaultArguments: '"{ImagePath}"'
   Platforms: [Sega Genesis]
   ImageExtensions: [.bin, .md]
@@ -138,7 +138,7 @@
   ExecutableLookup: ^citra-qt\.exe
   Website: 'https://citra-emu.org/'
   
-  - Name: xenia
+ - Name: xenia
   DefaultArguments: '"{ImagePath}"'
   Platforms: [Microsoft Xbox 360]
   ImageExtensions: [.iso, .xex, .cci, .cxi, .elf]
@@ -159,7 +159,7 @@
   ExecutableLookup: ^mednafen\.exe
   Website: 'https://mednafen.github.io/'
   
-  - Name: BizHawk
+ - Name: BizHawk
   DefaultArguments: '"{ImagePath}"'
   Platforms: [Apple II, Atari 2600, Atari 7800, Atari Lynx, ColecoVision, Commodore 64, Mattel Intellivision, NEC TurboGrafx 16, NEC TurboGrafx-CD, Nintendo Entertainment System, Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance, Nintendo Virtual Boy, Nintendo 64, PC Engine SuperGrafx, Sega Game Gear, Sega Genesis, Sega Master System, Sega Saturn, SNK Neo Geo Pocket, SNK Neo Geo Pocket Color, Sony PlayStation, Super Nintendo Entertainment System, WonderSwan, WonderSwan Color]
   ImageExtensions: [.lnx, .pce, .cue, .ccd, .nes, .gb, .gbc, .gba, .vb, .sfc, .smc, .gg, .sms, .md, .ws, .wsc, .ngp, .ngc, .zip, .m3u, .fds, .rar, .7z, .gz, .int, .col, .bin, .smd, .gen, .32x, .dsk, .n64, .v64, .z64, .sgb, .sg, .sgx, .a26, .a78, .rom, .prg, .d64, .g64, .crt, .tap]
