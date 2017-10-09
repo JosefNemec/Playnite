@@ -1,21 +1,21 @@
 ﻿- Name: DOSBox
   DefaultArguments: '-conf "{ImagePath}" -exit'
-  Platforms: [DOS, PC]
+  Platforms: [MS-DOS, PC]
   ImageExtensions: [.conf]  
   ExecutableLookup: ^dosbox\.exe
   Website: 'https://www.dosbox.com/'
 
 - Name: NullDC
   DefaultArguments: '-config nullDC_GUI:Fullscreen=1 -config nullDC:Emulator.Autostart=1 -config ImageReader:LoadDefaultImage=1 -config ImageReader:DefaultImage="{ImagePath}"'
-  Platforms: [Dreamcast]
+  Platforms: [Sega Dreamcast]
   ImageExtensions: [.iso, .bwt, .cdi, .b5t, .b6t, .ccd, .cue, .mds, .nrg, .pdi]
   ExecutableLookup: ^nullDC.*\.exe
   Website: 'http://segaretro.org/NullDC'
 
 - Name: Dolphin
   DefaultArguments: '--exec="{ImagePath}" --batch'
-  Platforms: [GameCube, Wii]
-  ImageExtensions: [.elf, .dol, .gcm, .iso, .wad]
+  Platforms: [Nintendo GameCube, Nintendo Wii]
+  ImageExtensions: [.elf, .dol, .gcm, .tgc, .wbfs, .ciso, .gcz, .iso, .wad, .dff]
   ExecutableLookup: ^Dolphin\.exe
   Website: 'https://dolphin-emu.org/'
 
@@ -42,35 +42,35 @@
 
 - Name: Snes9X
   DefaultArguments: '"{ImagePath}" -fullscreen'
-  Platforms: [Super Nintendo]
-  ImageExtensions: [.zip, .gz, .jma]
+  Platforms: [Super Nintendo Entertainment System]
+  ImageExtensions: [.zip, .gz, .jma, .sfc]
   ExecutableLookup: ^snes9x\.exe
   Website: 'http://www.snes9x.com/'
 
 - Name: ePSXe
   DefaultArguments: '-nogui -slowboot -loadbin "{ImagePath}"'
-  Platforms: [PlayStation]
-  ImageExtensions: [.bin, .iso, .img]
+  Platforms: [Sony PlayStation]
+  ImageExtensions: [.bin, .iso, .img, .cue]
   ExecutableLookup: ^ePSXe\.exe
   Website: 'http://www.epsxe.com/'
 
 - Name: PCSX2
   DefaultArguments: '"{ImagePath}" --nogui --fullboot --fullscreen'
-  Platforms: [PlayStation 2]
-  ImageExtensions: [.iso, .bin, .mdf, .nrg]
+  Platforms: [Sony PlayStation 2]
+  ImageExtensions: [.iso, .bin, .mdf, .nrg, .img, .gz, .cso]
   ExecutableLookup: ^pcsx2\.exe
   Website: 'https://pcsx2.net/'
 
 - Name: PPSSPP
   DefaultArguments: '"{ImagePath}" --escape-exit --fullscreen'
-  Platforms: [PlayStation Portable]
-  ImageExtensions: [.iso, .cso]
+  Platforms: [Sony PSP]
+  ImageExtensions: [.iso, .cso, .pbp]
   ExecutableLookup: ^PPSSPP.*\.exe
   Website: 'https://www.ppsspp.org/'
 
 - Name: 4DO
   DefaultArguments: '-StartLoadFile "{ImagePath}" --StartFullScreen'  
-  Platforms: [3DO]
+  Platforms: [3DO Interactive Multiplayer]
   ImageExtensions: [.cue, .bin, .iso]
   ExecutableLookup: ^4do\.exe
   Website: 'http://www.fourdo.com/'
@@ -92,7 +92,7 @@
 - Name: DeSmuME
   DefaultArguments: '"{ImagePath}"'
   Platforms: [Nintendo DS]
-  ImageExtensions: [.nds, .zip]
+  ImageExtensions: [.nds, .zip, .7z, .rar, .gz]
   ExecutableLookup: ^DeSmuME.*\.exe
   Website: 'http://desmume.org/'
 
@@ -105,14 +105,63 @@
 
 - Name: Cemu
   DefaultArguments: '-g "{ImagePath}" -f'
-  Platforms: [Wii U]
+  Platforms: [Nintendo Wii U]
   ImageExtensions: [.wud, .wux, .rpx]
   ExecutableLookup: ^cemu.*\.exe
   Website: 'http://cemu.info/'
 
 - Name: RPCS3
   DefaultArguments: '"{ImagePath}"'
-  Platforms: [PlayStation 3]
+  Platforms: [Sony PlayStation 3]
   ImageExtensions: [.bin]
   ExecutableLookup: ^rpcs3.*\.exe
   Website: 'https://rpcs3.net/'
+  
+- Name: m64p
+  DefaultArguments: '--nogui "{ImagePath}"'
+  ImageExtensions: [.n64, .v64, .z64, .zip, .7z]
+  Platforms: [Nintendo 64]
+  ExecutableLookup: ^mupen64plus-gui\.exe
+  Website: 'https://m64p.github.io/'
+ 
+ - Name: BlastEm
+  DefaultArguments: '"{ImagePath}"'
+  Platforms: [Sega Genesis]
+  ImageExtensions: [.bin, .md]
+  ExecutableLookup: ^blastem\.exe
+  Website: 'https://www.retrodev.com/blastem/'
+  
+ - Name: Citra
+  DefaultArguments: '"{ImagePath}"'
+  Platforms: [Nintendo 3DS]
+  ImageExtensions: [.3ds, .3dsx, .cci, .cxi, .elf]
+  ExecutableLookup: ^citra-qt\.exe
+  Website: 'https://citra-emu.org/'
+  
+  - Name: xenia
+  DefaultArguments: '"{ImagePath}"'
+  Platforms: [Microsoft Xbox 360]
+  ImageExtensions: [.iso, .xex, .cci, .cxi, .elf]
+  ExecutableLookup: ^xenia\.exe
+  Website: 'http://xenia.jp/'
+ 
+ - Name: WinUAE (CD32)
+  DefaultArguments: '-config=CD32.uae -cdimage="{ImagePath}"'
+  Platforms: [Commodore Amiga CD32]
+  ImageExtensions: [.iso, .ccd, .cue, .chd, .mds, .nrg]
+  ExecutableLookup: ^winuae.*\.exe
+  Website: 'https://www.winuae.net/'
+  
+ - Name: Mednafen
+  DefaultArguments: '"{ImagePath}"'
+  Platforms: [Atari Lynx, NEC TurboGrafx 16, NEC TurboGrafx-CD, NEC PC-FX, Nintendo Entertainment System, Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance, Nintendo Virtual Boy, PC Engine SuperGrafx, Sega Game Gear, Sega Genesis, Sega Master System, Sega Saturn, SNK Neo Geo Pocket, SNK Neo Geo Pocket Color, Sony PlayStation, Super Nintendo Entertainment System, WonderSwan, WonderSwan Color]
+  ImageExtensions: [.lnx, .pce, .cue, .ccd, .nes, .gb, .gbc, .gba, .vb, .sfc, .gg, .sms, .md, .ws, .wsc, .ngp, .ngc, .zip, .m3u]
+  ExecutableLookup: ^mednafen\.exe
+  Website: 'https://mednafen.github.io/'
+  
+  - Name: BizHawk
+  DefaultArguments: '"{ImagePath}"'
+  Platforms: [Apple II, Atari 2600, Atari 7800, Atari Lynx, ColecoVision, Commodore 64, Mattel Intellivision, NEC TurboGrafx 16, NEC TurboGrafx-CD, Nintendo Entertainment System, Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance, Nintendo Virtual Boy, Nintendo 64, PC Engine SuperGrafx, Sega Game Gear, Sega Genesis, Sega Master System, Sega Saturn, SNK Neo Geo Pocket, SNK Neo Geo Pocket Color, Sony PlayStation, Super Nintendo Entertainment System, WonderSwan, WonderSwan Color]
+  ImageExtensions: [.lnx, .pce, .cue, .ccd, .nes, .gb, .gbc, .gba, .vb, .sfc, .smc, .gg, .sms, .md, .ws, .wsc, .ngp, .ngc, .zip, .m3u, .fds, .rar, .7z, .gz, .int, .col, .bin, .smd, .gen, .32x, .dsk, .n64, .v64, .z64, .sgb, .sg, .sgx, .a26, .a78, .rom, .prg, .d64, .g64, .crt, .tap]
+  ExecutableLookup: ^EmuHawk\.exe
+  Website: 'http://tasvideos.org/Bizhawk.html/'
