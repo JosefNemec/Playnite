@@ -180,8 +180,9 @@
                                     Name="CheckGogIcons" Content="Use executable icons instead of GOG icon images"
                                     DockPanel.Dock="Top" Margin="5,15,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"/>
                         <CheckBox IsChecked="{Binding GOGSettings.RunViaGalaxy, UpdateSourceTrigger=Explicit}"
-                                    Name="CheckGogRunGalaxy" Content="Start games via Galaxy client (will count game time)"
-                                    DockPanel.Dock="Top" Margin="5,15,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"/>
+                                  Name="CheckGogRunGalaxy" Content="Start games via Galaxy client"
+                                  ToolTip="Will enable features like cloud saves, counting play time etc."
+                                  DockPanel.Dock="Top" Margin="5,15,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"/>
                     </DockPanel>
                 </TabItem>
                 <TabItem Header="Origin">

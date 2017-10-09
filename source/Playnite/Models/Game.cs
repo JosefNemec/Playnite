@@ -484,7 +484,7 @@ namespace Playnite.Models
             LastActivity = DateTime.Now;
             if (Provider == Provider.GOG && Settings.Instance.GOGSettings.RunViaGalaxy)
             {
-                var args = string.Format(@"/gameId={0} /command=launch /path=""{1}""", ProviderId, InstallDirectory);
+                var args = string.Format(@"/gameId={0} /command=runGame /path=""{1}""", ProviderId, InstallDirectory);
                 Process.Start(Path.Combine(GogSettings.InstallationPath, "GalaxyClient.exe"), args);
                 return;
             }
