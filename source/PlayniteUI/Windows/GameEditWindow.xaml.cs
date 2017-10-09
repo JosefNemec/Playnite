@@ -396,11 +396,7 @@ namespace PlayniteUI
             {
                 var extension = Path.GetExtension(game.Image);
                 var tempPath = Path.Combine(Paths.TempPath, "tempimage" + extension);
-                if (File.Exists(tempPath))
-                {
-                    File.Delete(tempPath);
-                }
-
+                FileSystem.PrepareSaveFile(tempPath);
                 Web.DownloadFile(game.Image, tempPath);
                 ImageImage.Source = BitmapExtensions.BitmapFromFile(tempPath);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(ImageImage.Tag.ToString()));
@@ -416,14 +412,9 @@ namespace PlayniteUI
             }
 
             var tempPath = Path.Combine(Paths.TempPath, "tempico.png");
-
             if (ico != null)
             {
-                if (File.Exists(tempPath))
-                {
-                    File.Delete(tempPath);
-                }
-
+                FileSystem.PrepareSaveFile(tempPath);
                 ico.ToBitmap().Save(tempPath, System.Drawing.Imaging.ImageFormat.Png);
             }
 
@@ -687,6 +678,7 @@ namespace PlayniteUI
         {
             if (TempPlayTask == null || TempPlayTask.Type == GameTaskType.URL)
             {
+                PlayniteMessageBox.Show(FindResource("ExecIconMissingPlayAction") as string);
                 return;
             }
 

@@ -53,6 +53,8 @@ Automatically imported games may reappear in Playnite after next import procedur
 Example: -image "{ImagePath}" -fullscreen
 Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
+    <sys:String x:Key="ExecIconMissingPlayAction">Cannot get icon if Play action is missing or is set to URL.</sys:String>
+
     <!--Menu-->
     <sys:String x:Key="MenuConfigurationTitle">Configuration</sys:String>
     <sys:String x:Key="MenuPlayniteSettingsTitle">Settings...</sys:String>

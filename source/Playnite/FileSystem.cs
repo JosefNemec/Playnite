@@ -33,6 +33,15 @@ namespace Playnite
             Directory.CreateDirectory(path);
         }
 
+        public static void PrepareSaveFile(string path)
+        {
+            CreateFolder(Path.GetDirectoryName(path));
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+
         public static void DeleteFile(string path)
         {
             if (File.Exists(path))
