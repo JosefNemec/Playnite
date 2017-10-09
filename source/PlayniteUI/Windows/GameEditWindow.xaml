@@ -11,12 +11,10 @@
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Title="Edit Game Details"
-        Height="550" Width="800"
+        Height="650" Width="900"
         WindowStartupLocation="CenterOwner"
         x:Name="mainWindow"
-        LocationChanged="MainWindow_LocationChanged"
         Loaded="MainWindow_Loaded"
-        SizeChanged="MainWindow_SizeChanged"
         AutomationProperties.AutomationId="WindowGameEdit">
 
     <controls:WindowBase.Resources>

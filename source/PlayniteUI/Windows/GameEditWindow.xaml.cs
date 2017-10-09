@@ -297,7 +297,7 @@ namespace PlayniteUI
         public GameEditWindow()
         {
             InitializeComponent();
-            positionManager = new WindowPositionHandler(this, "EditGame");
+            positionManager = new WindowPositionHandler(this, "EditGame", Settings.Instance);
         }
 
         public void OnPropertyChanged(string name)
@@ -776,28 +776,12 @@ namespace PlayniteUI
             CheckImage = sender as CheckBox;
         }
 
-        private void MainWindow_LocationChanged(object sender, EventArgs e)
-        {
-            if (IsLoaded)
-            {
-                positionManager.SavePosition(Settings.Instance);
-            }
-        }
-
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            positionManager.RestoreSizeAndLocation(Settings.Instance);
+            positionManager.RestoreSizeAndLocation();
             var platforms = GameDatabase.Instance.PlatformsCollection.FindAll().OrderBy(a => a.Name).ToList();
             platforms.Insert(0, new Platform(string.Empty));
             ComboPlatforms.ItemsSource = platforms;
-        }
-
-        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (IsLoaded)
-            {
-                positionManager.SaveSize(Settings.Instance);
-            }
         }
 
         private void ButtonPickCat_Click(object sender, RoutedEventArgs e)

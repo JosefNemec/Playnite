@@ -10,87 +10,143 @@ namespace PlayniteUI
 {
     public class WindowPositionHandler
     {
-        private Window window;
-        private string windowName;
-        private bool ignoreChanges = false;
+        private Window Window;
+        private string WindowName;
+        private bool IgnoreChanges = false;
+        private Settings Configuration;
 
-        public WindowPositionHandler(Window window, string windowName)
+        public WindowPositionHandler(Window window, string windowName, Settings settings)
         {
-            this.window = window;
-            this.windowName = windowName;
+            Window = window;
+            WindowName = windowName;
+            Configuration = settings;
+            window.SizeChanged += Window_SizeChanged;
+            window.LocationChanged += Window_LocationChanged;
+            window.StateChanged += Window_StateChanged;
         }
 
-        public void SaveSize(Settings config)
+        private void Window_StateChanged(object sender, EventArgs e)
         {
-            if (config == null || ignoreChanges)
+            if (Window.IsLoaded)
+            {
+                SaveState();
+            }
+        }
+
+        private void Window_LocationChanged(object sender, EventArgs e)
+        {
+            if (Window.IsLoaded)
+            {
+                SavePosition();
+            }
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (Window.IsLoaded)
+            {
+                SaveSize();
+            }
+        }
+
+        private void MakeSureConfigEntryExists()
+        {
+            if (!Configuration.WindowPositions.ContainsKey(WindowName))
+            {
+                Configuration.WindowPositions[WindowName] = new Settings.WindowPosition();
+            }
+        }
+
+        public void SaveState()
+        {
+            if (Configuration == null || IgnoreChanges)
             {
                 return;
             }
 
-            if (!config.WindowPositions.ContainsKey(windowName))
+            // Don't save minimized state. It would not be very user friendly if user exit Playnite while minimized
+            // and it would then open minimized on next startup.
+            if (Window.WindowState == WindowState.Minimized)
             {
-                config.WindowPositions[windowName] = new Settings.WindowPosition();
+                return;
             }
 
-            config.WindowPositions[windowName].Size = new Settings.WindowPosition.Point()
+            MakeSureConfigEntryExists();
+            Configuration.WindowPositions[WindowName].State = Window.WindowState;
+        }
+
+        public void SaveSize()
+        {
+            if (Configuration == null || IgnoreChanges)
             {
-                X = window.Width,
-                Y = window.Height
+                return;
+            }
+
+            // Don't save size if windows is maximized, it would be too large when it would restore back to normal state.
+            // Don't save size if windows is minimized becuase it has no size :)
+            if (Window.WindowState != WindowState.Normal)
+            {
+                return;
+            }
+
+            MakeSureConfigEntryExists();
+            Configuration.WindowPositions[WindowName].Size = new Settings.WindowPosition.Point()
+            {
+                X = Window.Width,
+                Y = Window.Height
             };
         }
 
-        public void SavePosition(Settings config)
+        public void SavePosition()
         {
-            if (config == null || ignoreChanges)
+            if (Configuration == null || IgnoreChanges)
             {
                 return;
             }
 
-            if (window.Left < 0 || window.Top < 0)
+            if (Window.Left < 0 || Window.Top < 0)
             {
                 return;
             }
 
-            if (!config.WindowPositions.ContainsKey(windowName))
+            MakeSureConfigEntryExists();
+            Configuration.WindowPositions[WindowName].Position = new Settings.WindowPosition.Point()
             {
-                config.WindowPositions[windowName] = new Settings.WindowPosition();
-            }
-
-            config.WindowPositions[windowName].Position = new Settings.WindowPosition.Point()
-            {
-                X = window.Left,
-                Y = window.Top
+                X = Window.Left,
+                Y = Window.Top
             };
         }
 
-        public void RestoreSizeAndLocation(Settings config)
+        public void RestoreSizeAndLocation()
         {
-            if (!config.WindowPositions.ContainsKey(windowName))
+            if (!Configuration.WindowPositions.ContainsKey(WindowName))
             {
                 return;
             }
 
-            ignoreChanges = true;
+            IgnoreChanges = true;
 
             try
             {
-                var data = config.WindowPositions[windowName];
+                var data = Configuration.WindowPositions[WindowName];
 
                 if (data.Position != null)
                 {
-                    window.Left = data.Position.X;
-                    window.Top = data.Position.Y;
+                    Window.Left = data.Position.X;
+                    Window.Top = data.Position.Y;
                 }
 
                 if (data.Size != null)
                 {
-                    window.Width = data.Size.X;
-                    window.Height = data.Size.Y;
+                    Window.Width = data.Size.X;
+                    Window.Height = data.Size.Y;
                 }
+
+                Window.WindowState = data.State;
             }
             finally
             {
-                ignoreChanges = false;
+                IgnoreChanges = false;
             }
         }
     }

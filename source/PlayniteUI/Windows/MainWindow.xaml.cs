@@ -89,7 +89,7 @@ namespace PlayniteUI
         {
             Config = Settings.Instance;
             InitializeComponent();
-            positionManager = new WindowPositionHandler(this, "Main");
+            positionManager = new WindowPositionHandler(this, "Main", Config);
             Application.Current.MainWindow = this;
         }
 
@@ -97,7 +97,7 @@ namespace PlayniteUI
         {
             BringToForeground();
             NotificationsWin.AutoOpen = true;
-            positionManager.RestoreSizeAndLocation(Config);
+            positionManager.RestoreSizeAndLocation();
 
             Config.PropertyChanged += Config_PropertyChanged;
             Config.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
@@ -731,22 +731,6 @@ namespace PlayniteUI
         {
             System.Diagnostics.Process.Start(@"https://github.com/JosefNemec/Playnite/issues/new");
             MenuMainMenu.IsOpen = false;
-        }
-
-        private void Window_LocationChanged(object sender, EventArgs e)
-        {
-            if (IsLoaded)
-            {
-                positionManager.SavePosition(Config);
-            }
-        }
-
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (IsLoaded)
-            {
-                positionManager.SaveSize(Config);
-            }
         }
 
         private void TrayPlaynite_TrayMouseDoubleClick(object sender, RoutedEventArgs e)

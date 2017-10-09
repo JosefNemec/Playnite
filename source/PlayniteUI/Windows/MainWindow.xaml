@@ -16,7 +16,6 @@
         Title="Playnite"
         Width="1200" Height="900"  WindowStartupLocation="CenterScreen" Icon="/Images/applogo.ico"        
         Loaded="Window_Loaded" Closed="WindowMain_Closed" Closing="WindowMain_Closing" StateChanged="WindowMain_StateChanged"
-        LocationChanged="Window_LocationChanged" SizeChanged="Window_SizeChanged"
         x:Name="WindowMain" ShowTitle="False"
         AutomationProperties.AutomationId="WindowMain">
 

@@ -46,6 +46,11 @@ namespace Playnite
             {
                 get; set;
             }
+
+            public System.Windows.WindowState State
+            {
+                get; set;
+            } = System.Windows.WindowState.Normal;
         }
 
         private Dictionary<string, WindowPosition> windowPositions = new Dictionary<string, WindowPosition>();
@@ -559,7 +564,7 @@ namespace Playnite
 #if DEBUG
             var consoleTarget = new ColoredConsoleTarget()
             {
-                Layout = @"${logger}:${message}${exception}"
+                Layout = @"${level:uppercase=true}|${logger}:${message}${exception}"
             };
 
             config.AddTarget("console", consoleTarget);
