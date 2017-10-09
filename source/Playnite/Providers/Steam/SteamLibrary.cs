@@ -94,7 +94,14 @@ namespace Playnite.Providers.Steam
 
             foreach (var folder in GetLibraryFolders())
             {
-                games.AddRange(GetInstalledGamesFromFolder(Path.Combine(folder, "steamapps")));
+                if (Directory.Exists(folder))
+                {
+                    games.AddRange(GetInstalledGamesFromFolder(Path.Combine(folder, "steamapps")));
+                }
+                else
+                {
+                    logger.Warn($"Steam library {folder} not found.");
+                }                
             }
 
             return games;
@@ -126,8 +133,13 @@ namespace Playnite.Providers.Steam
             }
 
             var games = new List<IGame>();
+            var importedGames = (new ServicesClient()).GetSteamLibrary(userName);
+            if (importedGames == null)
+            {
+                throw new Exception("No games found on specified Steam account.");
+            }
 
-            foreach (var game in (new ServicesClient()).GetSteamLibrary(userName))
+            foreach (var game in importedGames)
             {
                 // Ignore games without name, like 243870
                 if (string.IsNullOrEmpty(game.name))
