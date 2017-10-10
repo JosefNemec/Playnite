@@ -956,6 +956,10 @@ namespace PlayniteUI
         {
             var obj = (FrameworkElement)sender;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(obj.Tag.ToString()));
+            if (ComboPlatforms.SelectedValue == null)
+            {
+                return;
+            }
 
             var platformId = (int)ComboPlatforms.SelectedValue;
             if (platformId == 0)

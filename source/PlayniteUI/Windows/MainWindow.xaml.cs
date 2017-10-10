@@ -638,17 +638,17 @@ namespace PlayniteUI
 
             if (GamesEditor.Instance.EditGame(newGame) == true)
             {
-                GameDatabase.Instance.UpdateGameInDatabase(newGame);
+                var viewEntry = GamesView.Items.First(a => a.Game.ProviderId == newGame.ProviderId);
                 switch (Settings.Instance.GamesViewType)
                 {
                     case ViewType.List:
-                        ListGamesView.ListGames.SelectedItem = newGame;
-                        ListGamesView.ListGames.ScrollIntoView(newGame);
+                        ListGamesView.ListGames.SelectedItem = viewEntry;
+                        ListGamesView.ListGames.ScrollIntoView(viewEntry);
                         break;
 
                     case ViewType.Grid:
-                        GridGamesView.GridGames.SelectedItem = newGame;
-                        GridGamesView.GridGames.ScrollIntoView(newGame);
+                        GridGamesView.GridGames.SelectedItem = viewEntry;
+                        GridGamesView.GridGames.ScrollIntoView(viewEntry);
                         break;
                 }
             }

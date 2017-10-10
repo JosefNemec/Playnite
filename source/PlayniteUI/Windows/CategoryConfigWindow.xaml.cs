@@ -135,14 +135,16 @@ namespace PlayniteUI.Windows
                 {
                     var tempCat = game.Categories;
                     var categories = new List<string>();
-
                     categories = Categories.Where(a => a.Enabled == true).Select(a => a.Name).ToList();
 
-                    foreach (var cat in Categories.Where(a => a.Enabled == null))
+                    if (tempCat != null)
                     {
-                        if (tempCat.Contains(cat.Name, StringComparer.OrdinalIgnoreCase))
+                        foreach (var cat in Categories.Where(a => a.Enabled == null))
                         {
-                            categories.Add(cat.Name);
+                            if (tempCat.Contains(cat.Name, StringComparer.OrdinalIgnoreCase))
+                            {
+                                categories.Add(cat.Name);
+                            }
                         }
                     }
 
