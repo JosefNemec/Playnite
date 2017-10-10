@@ -138,7 +138,7 @@
   ExecutableLookup: ^citra-qt\.exe
   Website: 'https://citra-emu.org/'
   
-- Name: xenia
+- Name: Xenia
   DefaultArguments: '"{ImagePath}"'
   Platforms: [Microsoft Xbox 360]
   ImageExtensions: [.iso, .xex, .cci, .cxi, .elf]
