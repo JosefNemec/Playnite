@@ -168,7 +168,8 @@
                                                     <RowDefinition />
                                                 </Grid.RowDefinitions>
                                                 <TextBlock Text="{Binding Name}" Grid.Column="0" />
-                                                <TextBlock Text="{Binding PlatformsString, Mode=OneWay, StringFormat='({0})'}" Grid.Column="1" Margin="15,0,0,0"/>
+                                                <TextBlock Text="{Binding PlatformsString, Mode=OneWay}" Grid.Column="1" Margin="15,0,0,0"
+                                                           TextTrimming="CharacterEllipsis" MaxWidth="400"/>
                                             </Grid>                                        
                                         </DataTemplate>
                                     </ContextMenu.ItemTemplate>
