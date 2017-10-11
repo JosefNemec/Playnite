@@ -41,8 +41,6 @@ namespace Playnite.Providers.Steam
                     Filter = string.Format("appmanifest_{0}.acf", id)
                 };
 
-                watcher.Deleted += Watcher_Deleted;
-                watcher.Changed += Watcher_Changed;
                 watchers.Add(watcher);
             }
         }
@@ -72,12 +70,24 @@ namespace Playnite.Providers.Steam
             GameUninstalled?.Invoke(this, null);
         }
 
-        public void StartMonitoring()
+        public void StartInstallMonitoring()
         {
-            logger.Info("Starting monitoring of Steam app " + id);
+            logger.Info("Starting install monitoring of Steam app " + id);
 
             foreach (var watcher in watchers)
             {
+                watcher.Changed += Watcher_Changed;
+                watcher.EnableRaisingEvents = true;
+            }
+        }
+
+        public void StartUninstallMonitoring()
+        {
+            logger.Info("Starting uninstall monitoring of Steam app " + id);
+
+            foreach (var watcher in watchers)
+            {
+                watcher.Deleted += Watcher_Deleted;
                 watcher.EnableRaisingEvents = true;
             }
         }

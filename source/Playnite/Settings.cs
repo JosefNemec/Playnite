@@ -17,6 +17,7 @@ using Playnite.Providers.Steam;
 using CefSharp;
 using System.Configuration;
 using Playnite.Providers.Uplay;
+using Playnite.Providers.BattleNet;
 
 namespace Playnite
 {
@@ -342,6 +343,11 @@ namespace Playnite
         {
             get; set;
         } = new UplaySettings();
+
+        public BattleNetSettings BattleNetSettings
+        {
+            get; set;
+        } = new BattleNetSettings();
 
         private FilterSettings filterSettings = new FilterSettings();
         public FilterSettings FilterSettings

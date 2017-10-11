@@ -14,6 +14,7 @@ using Playnite.Providers.Origin;
 using NUnit.Framework;
 using LiteDB;
 using Playnite.Providers.Uplay;
+using Playnite.Providers.BattleNet;
 
 namespace PlayniteTests.Database
 {
@@ -181,7 +182,7 @@ namespace PlayniteTests.Database
             steamLibrary.Setup(oc => oc.GetLibraryGames(string.Empty)).Returns(libraryGames);
             originLibrary.Setup(oc => oc.GetLibraryGames()).Returns(libraryGames);
 
-            var db = new GameDatabase(gogLibrary.Object, steamLibrary.Object, originLibrary.Object, null);
+            var db = new GameDatabase(gogLibrary.Object, steamLibrary.Object, originLibrary.Object, null, null);
             using (db.OpenDatabase(path))
             {
                 // Games are properly imported
@@ -236,13 +237,15 @@ namespace PlayniteTests.Database
             var steamLibrary = new Mock<ISteamLibrary>();
             var originLibrary = new Mock<IOriginLibrary>();
             var uplayLibrary = new Mock<IUplayLibrary>();
+            var battleNetLibrary = new Mock<IBattleNetLibrary>();
             gogLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
             steamLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
             originLibrary.Setup(oc => oc.GetInstalledGames(false)).Returns(installedGames);
             originLibrary.Setup(oc => oc.GetInstalledGames(true)).Returns(installedGames);
             uplayLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
+            battleNetLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
 
-            var db = new GameDatabase(gogLibrary.Object, steamLibrary.Object, originLibrary.Object, uplayLibrary.Object);
+            var db = new GameDatabase(gogLibrary.Object, steamLibrary.Object, originLibrary.Object, uplayLibrary.Object, battleNetLibrary.Object);
             using (db.OpenDatabase(path))
             {
                 // Games are imported

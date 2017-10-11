@@ -64,6 +64,10 @@
             <TextBlock Text="{Binding Stats.Uplay, Mode=OneWay, StringFormat=Uplay ({0})}" />
         </CheckBox>
 
+        <CheckBox Name="CheckFilterBattleNet" IsChecked="{Binding Path=Settings.BattleNet}" Style="{StaticResource FilterCheck}">
+            <TextBlock Text="{Binding Stats.BattleNet, Mode=OneWay, StringFormat=Battle.net ({0})}" />
+        </CheckBox>
+
         <CheckBox Name="CheckFilterCustom" IsChecked="{Binding Path=Settings.Custom}" Style="{StaticResource FilterCheck}">
             <TextBlock Text="{Binding Stats.Custom, Mode=OneWay, StringFormat=Custom ({0})}" />
         </CheckBox>

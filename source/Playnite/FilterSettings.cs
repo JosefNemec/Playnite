@@ -26,6 +26,7 @@ namespace Playnite
                     Origin ||
                     GOG ||
                     Uplay ||
+                    BattleNet ||
                     Custom ||
                     !string.IsNullOrEmpty(Name) ||
                     !string.IsNullOrEmpty(ReleaseDate) ||
@@ -274,6 +275,22 @@ namespace Playnite
             {
                 uplay = value;
                 OnPropertyChanged("Uplay");
+                OnPropertyChanged("Active");
+            }
+        }
+
+        private bool battleNet;
+        public bool BattleNet
+        {
+            get
+            {
+                return battleNet;
+            }
+
+            set
+            {
+                battleNet = value;
+                OnPropertyChanged("BattleNet");
                 OnPropertyChanged("Active");
             }
         }

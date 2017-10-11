@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Title="First Time Configuration" WindowStartupLocation="CenterOwner"
-        Height="370" Width="500" x:Name="WindowMain"
+        Height="400" Width="550" x:Name="WindowMain"
         AutomationProperties.AutomationId="WindowWizard">
 
     <controls:WindowBase.Resources>
@@ -78,6 +78,8 @@
                             DockPanel.Dock="Top" Margin="5" Name="CheckEnableGOG"/>
                     <CheckBox Content="Origin" IsChecked="{Binding OriginEnabled, ElementName=WindowMain}"
                             DockPanel.Dock="Top" Margin="5" Name="CheckEnableOrigin"/>
+                    <CheckBox Content="Battle.net" IsChecked="{Binding BattleNetEnabled, ElementName=WindowMain}"
+                            DockPanel.Dock="Top" Margin="5" Name="CheckEnableBattleNet"/>
                     <CheckBox Content="Uplay" IsChecked="{Binding UplayEnabled, ElementName=WindowMain}"
                             DockPanel.Dock="Top" Margin="5" Name="CheckEnableUplay"/>
                 </DockPanel>
@@ -195,6 +197,33 @@
                     </DockPanel>
                 </DockPanel>
             </TabItem>
+            <TabItem Header="BattleNet" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
+                <DockPanel Margin="20" LastChildFill="False">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
+                        <Image Source="/Images/battleneticon.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
+                        <TextBlock Text="Battle.net Integration" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <RadioButton Name="RadioInstalledBattleNet" Content="{DynamicResource SettingsImportInstalledLabel}" GroupName="battlenet"
+                                IsChecked="{Binding BattleNetImportLibrary, ElementName=WindowMain, Converter={StaticResource NegateConverter}}"
+                                DockPanel.Dock="Top" Margin="5"/>
+                    <RadioButton Name="RadioLibraryBattleNet" Content="{DynamicResource SettingsImportLibraryLabel}"
+                                GroupName="origin" DockPanel.Dock="Top" Margin="5"
+                                IsChecked="{Binding BattleNetImportLibrary, ElementName=WindowMain}" />
+                    <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioLibraryBattleNet}"
+                            LastChildFill="False">
+                        <Button Content="Authenticate" Name="ButtonBattleNetAuthenticate" Click="ButtonBattleNetAuthenticate_Click"/>
+                        <TextBlock Text="Login status:" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                        <TextBlock VerticalAlignment="Center">
+                            <TextBlock.Text>
+                                <PriorityBinding>
+                                    <Binding Path="BattleNetLoginStatus" IsAsync="True" Mode="OneWay" RelativeSource="{RelativeSource AncestorType=Window}" />
+                                    <Binding Source="Checking..." />
+                                </PriorityBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DockPanel>
+                </DockPanel>
+            </TabItem>
             <TabItem Header="Uplay" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
                 <DockPanel Margin="20" LastChildFill="False">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
@@ -211,7 +240,7 @@
                         <Image Source="/Images/applogo.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
                         <TextBlock Text="Other games" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <TextBlock Text="Click on the button bellow to import other installed games or browse for them manually."
+                    <TextBlock Text="Click on the button bellow to import other installed games or browse for them manually. Including Windows Store games."
                             DockPanel.Dock="Top" Padding="5" TextWrapping="Wrap"/>
                     <Button Name="ButtonImportGames" HorizontalAlignment="Center" Content="Import Games" DockPanel.Dock="Top"
                         Click="ButtonImportGames_Click" Margin="0,20,0,0"/>

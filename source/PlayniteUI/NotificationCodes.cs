@@ -15,5 +15,7 @@ namespace PlayniteUI
         public static readonly int OriginInstalledImportError = 5;
         public static readonly int OriginLibDownloadError = 6;
         public static readonly int UplayInstalledImportError = 7;
+        public static readonly int BattleNetInstalledImportError = 8;
+        public static readonly int BattleNetLibDownloadImportError = 9;
     }
 }

@@ -39,15 +39,24 @@ namespace Playnite.Providers.GOG
             this.installDirectory = installDirectory;
         }
 
-        public void StartMonitoring()
+        public void StartInstallMonitoring()
         {
-            logger.Info("Starting monitoring of GOG app " + id);
+            logger.Info("Starting install monitoring of GOG app " + id);
+            Dispose();
+
+            // Installation detection not implemented for several technical limitations
+            // Maily because of shared access to GOG's local database
+            logger.Warn("GOG app {0} is currently not installed, NOT starting install monitor", id);
+        }
+
+        public void StartUninstallMonitoring()
+        {
+            logger.Info("Starting uninstall monitoring of GOG app " + id);
             Dispose();
 
             var infoFile = string.Format("goggame-{0}.info", id);
             if (File.Exists(Path.Combine(installDirectory, infoFile)))
             {
-                logger.Info("GOG app {0} is currently not installed, starting install monitor.", id);
                 watcher = new FileSystemWatcher()
                 {
                     NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName,
@@ -60,10 +69,8 @@ namespace Playnite.Providers.GOG
             }
             else
             {
-                // Installation detection not implemented for several technical limitations
-                // Maily because of shared access to GOG's local database
-                logger.Warn("GOG app {0} is currently not installed, NOT starting install monitor", id);
-            }                    
+                Watcher_Deleted(this, null);
+            }
         }
 
         private void Watcher_Deleted(object sender, FileSystemEventArgs e)

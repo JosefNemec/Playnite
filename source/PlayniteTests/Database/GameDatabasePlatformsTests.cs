@@ -67,7 +67,7 @@ namespace PlayniteTests.Database
             var steamLibrary = new Mock<ISteamLibrary>();
             steamLibrary.Setup(oc => oc.GetLibraryGames(string.Empty)).Returns(libraryGames);
 
-            var db = new GameDatabase(null, steamLibrary.Object, null, null);
+            var db = new GameDatabase(null, steamLibrary.Object, null, null, null);
             using (db.OpenDatabase(dbPath))
             {
                 db.UpdateOwnedGames(Provider.Steam);

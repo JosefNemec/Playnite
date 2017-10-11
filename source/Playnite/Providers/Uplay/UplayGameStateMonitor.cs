@@ -32,14 +32,12 @@ namespace Playnite.Providers.Uplay
             cancelToken?.Cancel(false);
         }
 
-        public void StartMonitoring()
+        public void StartInstallMonitoring()
         {
-            logger.Info("Starting monitoring of Uplay app " + id);
+            logger.Info("Starting install monitoring of Uplay app " + id);
             Dispose();
 
             cancelToken = new CancellationTokenSource();
-            var gameInstalled = library.GetInstalledGames().FirstOrDefault(a => a.ProviderId == id) != null;
-
             Task.Factory.StartNew(() =>
             {
                 // Uplay is currently 32bit only, but this will future proof this feature
@@ -52,13 +50,7 @@ namespace Playnite.Providers.Uplay
                     if (installsKey32 != null)
                     {
                         var gameKey = installsKey32.OpenSubKey(id);
-                        if (gameInstalled && gameKey == null)
-                        {
-                            logger.Info($"Uplay app {id} has been uninstalled.");
-                            GameUninstalled?.Invoke(this, null);
-                            return;
-                        }
-                        else if (!gameInstalled && gameKey != null)
+                        if (gameKey != null)
                         {
                             logger.Info($"Uplay app {id} has been installed.");
                             GameInstalled?.Invoke(this, new GameInstalledEventArgs(new Game()
@@ -76,13 +68,7 @@ namespace Playnite.Providers.Uplay
                         if (installsKey64 != null)
                         {
                             var gameKey = installsKey64.OpenSubKey(id);
-                            if (gameInstalled && gameKey == null)
-                            {
-                                logger.Info($"Uplay app {id} has been uninstalled.");
-                                GameUninstalled?.Invoke(this, null);
-                                return;
-                            }
-                            else if (!gameInstalled && gameKey != null)
+                            if (gameKey != null)
                             {
                                 logger.Info($"Uplay app {id} has been installed.");
                                 GameInstalled?.Invoke(this, new GameInstalledEventArgs(new Game()
@@ -95,7 +81,56 @@ namespace Playnite.Providers.Uplay
                         }
                     }
 
-                    Thread.Sleep(2000);
+                    Thread.Sleep(5000);
+                }
+            }, cancelToken.Token);
+        }
+
+        public void StartUninstallMonitoring()
+        {
+
+            logger.Info("Starting uninstall monitoring of Uplay app " + id);
+            Dispose();
+
+            cancelToken = new CancellationTokenSource();
+            var gameInstalled = library.GetInstalledGames().FirstOrDefault(a => a.ProviderId == id) != null;
+
+            Task.Factory.StartNew(() =>
+            {
+                // Uplay is currently 32bit only, but this will future proof this feature
+                var root32 = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
+                var root64 = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+
+                while (!cancelToken.Token.IsCancellationRequested)
+                {
+                    var installsKey32 = root32.OpenSubKey(@"SOFTWARE\ubisoft\Launcher\Installs\");
+                    if (installsKey32 != null)
+                    {
+                        var gameKey = installsKey32.OpenSubKey(id);
+                        if (gameKey == null)
+                        {
+                            logger.Info($"Uplay app {id} has been uninstalled.");
+                            GameUninstalled?.Invoke(this, null);
+                            return;
+                        }
+                    }
+
+                    if (Environment.Is64BitOperatingSystem)
+                    {
+                        var installsKey64 = root64.OpenSubKey(@"SOFTWARE\ubisoft\Launcher\Installs\");
+                        if (installsKey64 != null)
+                        {
+                            var gameKey = installsKey64.OpenSubKey(id);
+                            if (gameKey == null)
+                            {
+                                logger.Info($"Uplay app {id} has been uninstalled.");
+                                GameUninstalled?.Invoke(this, null);
+                                return;
+                            }
+                        }
+                    }
+
+                    Thread.Sleep(5000);
                 }
             }, cancelToken.Token);
         }

@@ -64,6 +64,23 @@ namespace PlayniteUI.Windows
             }
         }
 
+        private Playnite.Providers.BattleNet.WebApiClient battleNetApiClient = new Playnite.Providers.BattleNet.WebApiClient();
+
+        public string BattleNetLoginStatus
+        {
+            get
+            {
+                if (battleNetApiClient.GetLoginRequired())
+                {
+                    return loginReuiredMessage;
+                }
+                else
+                {
+                    return loginOKMessage;
+                }
+            }
+        }
+
         public List<LocalSteamUser> SteamUsers
         {
             get
@@ -170,6 +187,21 @@ namespace PlayniteUI.Windows
                 OnPropertyChanged("UplayEnabled");
             }
         }
+
+        private bool battleNetEnabled;
+        public bool BattleNetEnabled
+        {
+            get
+            {
+                return battleNetEnabled;
+            }
+
+            set
+            {
+                battleNetEnabled = value;
+                OnPropertyChanged("BattleNetEnabled");
+            }
+        }
         #endregion General
 
         #region Steam
@@ -258,6 +290,23 @@ namespace PlayniteUI.Windows
         }
         #endregion Origin
 
+        #region BattleNet
+        private bool battleNetImportLibrary;
+        public bool BattleNetImportLibrary
+        {
+            get
+            {
+                return battleNetImportLibrary;
+            }
+
+            set
+            {
+                battleNetImportLibrary = value;
+                OnPropertyChanged("BattleNetImportLibrary");
+            }
+        }
+        #endregion BattleNet
+
         private List<InstalledGameMetadata> importedGames = new List<InstalledGameMetadata>();
         public List<InstalledGameMetadata> ImportedGames
         {
@@ -284,6 +333,7 @@ namespace PlayniteUI.Windows
             GOGEnabled = true;
             OriginEnabled = true;
             UplayEnabled = true;
+            BattleNetEnabled = true;
             SteamImportLibrary = false;
             SteamAccountName = string.Empty;
             GogImportLibrary = false;
@@ -371,6 +421,11 @@ namespace PlayniteUI.Windows
                 TabMain.SelectedIndex = TabMain.SelectedIndex + 1;
             }
 
+            if (selectedPage == "BattleNet" && !BattleNetEnabled)
+            {
+                TabMain.SelectedIndex = TabMain.SelectedIndex + 1;
+            }
+
             if (selectedPage == "Uplay" && !UplayEnabled)
             {
                 TabMain.SelectedIndex = TabMain.SelectedIndex + 1;
@@ -382,6 +437,11 @@ namespace PlayniteUI.Windows
             TabMain.SelectedIndex = TabMain.SelectedIndex - 1;
 
             if (selectedPage == "Uplay" && !UplayEnabled)
+            {
+                TabMain.SelectedIndex = TabMain.SelectedIndex - 1;
+            }
+
+            if (selectedPage == "BattleNet" && !BattleNetEnabled)
             {
                 TabMain.SelectedIndex = TabMain.SelectedIndex - 1;
             }
@@ -449,6 +509,12 @@ namespace PlayniteUI.Windows
         {
             originApiClient.Login();
             OnPropertyChanged("OriginLoginStatus");
+        }
+
+        private void ButtonBattleNetAuthenticate_Click(object sender, RoutedEventArgs e)
+        {
+            battleNetApiClient.Login();
+            OnPropertyChanged("BattleNetLoginStatus");
         }
 
         private void ButtonBrowserDbFile_Click(object sender, RoutedEventArgs e)

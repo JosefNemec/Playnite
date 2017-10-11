@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Threading;
 using System.Windows.Threading;
 using Playnite.Providers.Uplay;
+using Playnite.Providers.BattleNet;
 
 namespace Playnite.Database
 {
@@ -235,6 +236,7 @@ namespace Playnite.Database
         private ISteamLibrary steamLibrary;
         private IOriginLibrary originLibrary;
         private IUplayLibrary uplayLibrary;
+        private IBattleNetLibrary battleNetLibrary;
 
         public readonly ushort DBVersion = 1;
 
@@ -255,14 +257,16 @@ namespace Playnite.Database
             steamLibrary = new SteamLibrary();
             originLibrary = new OriginLibrary();
             uplayLibrary = new UplayLibrary();
+            battleNetLibrary = new BattleNetLibrary();
         }
 
-        public GameDatabase(IGogLibrary gogLibrary, ISteamLibrary steamLibrary, IOriginLibrary originLibrary, IUplayLibrary uplayLibrary)
+        public GameDatabase(IGogLibrary gogLibrary, ISteamLibrary steamLibrary, IOriginLibrary originLibrary, IUplayLibrary uplayLibrary, IBattleNetLibrary battleNetLibrary)
         {
             this.gogLibrary = gogLibrary;
             this.steamLibrary = steamLibrary;
             this.originLibrary = originLibrary;
             this.uplayLibrary = uplayLibrary;
+            this.battleNetLibrary = battleNetLibrary;
         }
 
         private void CheckDbState()
@@ -741,6 +745,9 @@ namespace Playnite.Database
                 case Provider.Uplay:
                     metadata = uplayLibrary.UpdateGameWithMetadata(game);
                     break;
+                case Provider.BattleNet:
+                    metadata = battleNetLibrary.UpdateGameWithMetadata(game);
+                    break;
                 case Provider.Custom:
                     return;
                 default:
@@ -781,6 +788,9 @@ namespace Playnite.Database
                     break;
                 case Provider.Uplay:
                     installedGames = uplayLibrary.GetInstalledGames();
+                    break;
+                case Provider.BattleNet:
+                    installedGames = battleNetLibrary.GetInstalledGames();
                     break;
                 default:
                     return;
@@ -860,6 +870,9 @@ namespace Playnite.Database
                     break;
                 case Provider.Uplay:
                     return;
+                case Provider.BattleNet:
+                    importedGames = battleNetLibrary.GetLibraryGames();
+                    break;
                 default:
                     return;
             }

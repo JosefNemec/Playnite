@@ -253,6 +253,8 @@ namespace PlayniteUI
                             return @"resources:/Images/steamicon.png";
                         case Provider.Uplay:
                             return @"resources:/Images/uplayicon.png";
+                        case Provider.BattleNet:
+                            return @"resources:/Images/battleneticon.png";
                         case Provider.Custom:
                         default:
                             return @"resources:/Images/applogo.png";
@@ -461,7 +463,12 @@ namespace PlayniteUI
 
             // ------------------ Providers
             bool providersFilter = false;
-            if (Settings.FilterSettings.Steam == false && Settings.FilterSettings.Origin == false && Settings.FilterSettings.GOG == false && Settings.FilterSettings.Custom == false && Settings.FilterSettings.Uplay == false)
+            if (Settings.FilterSettings.Steam == false &&
+                Settings.FilterSettings.Origin == false &&
+                Settings.FilterSettings.GOG == false &&
+                Settings.FilterSettings.Custom == false &&
+                Settings.FilterSettings.Uplay == false &&
+                Settings.FilterSettings.BattleNet == false)
             {
                 providersFilter = true;
             }
@@ -495,6 +502,12 @@ namespace PlayniteUI
                         break;
                     case Provider.Uplay:
                         if (Settings.FilterSettings.Uplay)
+                        {
+                            providersFilter = true;
+                        }
+                        break;
+                    case Provider.BattleNet:
+                        if (Settings.FilterSettings.BattleNet)
                         {
                             providersFilter = true;
                         }

@@ -122,6 +122,7 @@
     <Compile Include="Models\GameTests.cs" />
     <Compile Include="PlayniteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\BattleNet\BattleNetLibraryTests.cs" />
     <Compile Include="Providers\GOG\GogLibraryTests.cs" />
     <Compile Include="ProgramsTests.cs" />
     <Compile Include="Providers\GOG\WebApiClientTests.cs" />

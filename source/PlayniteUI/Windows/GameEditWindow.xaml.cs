@@ -682,7 +682,8 @@ namespace PlayniteUI
                 return;
             }
 
-            var icon = SaveFileIconToTemp(TempPlayTask.Path);
+            var path = (Game as Game).ResolveVariables(TempPlayTask.Path);
+            var icon = SaveFileIconToTemp(path);
             if (string.IsNullOrEmpty(icon))
             {
                 return;

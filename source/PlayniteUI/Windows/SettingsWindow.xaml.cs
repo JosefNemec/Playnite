@@ -66,6 +66,23 @@ namespace PlayniteUI
             }
         }
 
+        private Playnite.Providers.BattleNet.WebApiClient battleNetApiClient = new Playnite.Providers.BattleNet.WebApiClient();
+
+        public string BattleNetLoginStatus
+        {
+            get
+            {
+                if (battleNetApiClient.GetLoginRequired())
+                {
+                    return loginReuiredMessage;
+                }
+                else
+                {
+                    return loginOKMessage;
+                }
+            }
+        }
+
         private bool providerIntegrationChanged = false;
         public bool ProviderIntegrationChanged
         {
@@ -207,6 +224,20 @@ namespace PlayniteUI
                 originDownloadLib.UpdateSource();
             }
 
+            var battleNetEnabled = CheckBattleNetEnabled.GetBindingExpression(CheckBox.IsCheckedProperty);
+            if (battleNetEnabled.IsDirty)
+            {
+                providerIntegrationChanged = true;
+                battleNetEnabled.UpdateSource();
+            }
+
+            var battleNetDownloadLib = RadioLibraryBattleNet.GetBindingExpression(RadioButton.IsCheckedProperty);
+            if (battleNetDownloadLib.IsDirty)
+            {
+                providerIntegrationChanged = true;
+                battleNetDownloadLib.UpdateSource();
+            }
+
             var uplayEnabled = CheckUplayEnabled.GetBindingExpression(CheckBox.IsCheckedProperty);
             if (uplayEnabled.IsDirty)
             {
@@ -296,6 +327,16 @@ namespace PlayniteUI
             }
 
             OnPropertyChanged("OriginLoginStatus");
+        }
+
+        private void ButtonBattleNetAuth_Click(object sender, RoutedEventArgs e)
+        {
+            if (battleNetApiClient.Login(this))
+            {
+                providerIntegrationChanged = true;
+            }
+
+            OnPropertyChanged("BattleNetLoginStatus");
         }
 
         private void ButtonBrowserDbFile_Click(object sender, RoutedEventArgs e)

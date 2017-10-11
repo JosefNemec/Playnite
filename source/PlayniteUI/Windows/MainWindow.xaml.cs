@@ -128,6 +128,8 @@ namespace PlayniteUI
                     Config.OriginSettings.IntegrationEnabled = window.OriginEnabled;
                     Config.OriginSettings.LibraryDownloadEnabled = window.OriginImportLibrary;
                     Config.UplaySettings.IntegrationEnabled = window.UplayEnabled;
+                    Config.BattleNetSettings.IntegrationEnabled = window.BattleNetEnabled;
+                    Config.BattleNetSettings.LibraryDownloadEnabled = window.BattleNetImportLibrary;
                     importSteamCatWizard = window.SteamImportCategories;
                     importSteamCatWizardId = window.SteamIdCategoryImport;
 
@@ -363,6 +365,23 @@ namespace PlayniteUI
 
                         try
                         {
+                            if (Config.BattleNetSettings.IntegrationEnabled)
+                            {
+                                database.UpdateInstalledGames(Provider.BattleNet);
+                                NotificationsWin.RemoveMessage(NotificationCodes.BattleNetInstalledImportError);
+                            }
+                        }
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            logger.Error(e, "Failed to import installed Battle.net games.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.BattleNetInstalledImportError, "Failed to import installed Battle.net games:" + e.Message, NotificationType.Error, () =>
+                            {
+
+                            }));
+                        }
+
+                        try
+                        {
                             if (Config.UplaySettings.IntegrationEnabled)
                             {
                                 database.UpdateInstalledGames(Provider.Uplay);
@@ -514,6 +533,25 @@ namespace PlayniteUI
                             }));
                         }
 
+                        ProgressControl.Text = "Downloading Battle.net library updates...";
+
+                        try
+                        {
+                            if (Config.BattleNetSettings.IntegrationEnabled && Config.BattleNetSettings.LibraryDownloadEnabled)
+                            {
+                                database.UpdateOwnedGames(Provider.BattleNet);
+                                NotificationsWin.RemoveMessage(NotificationCodes.BattleNetLibDownloadImportError);
+                            }
+                        }
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            logger.Error(e, "Failed to download Battle.net library updates.");
+                            NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.BattleNetLibDownloadImportError, "Failed to download Battle.net library updates: " + e.Message, NotificationType.Error, () =>
+                            {
+
+                            }));
+                        }
+
                         ProgressControl.Text = "Downloading images and game details...";
                         ProgressControl.ProgressMin = 0;
 
@@ -528,29 +566,31 @@ namespace PlayniteUI
 
                         var tasks = new List<Task>
                         {
-                        // Steam metada download thread
-                        Task.Factory.StartNew(() =>
-                        {
-                            DownloadMetadata(database, Provider.Steam, ProgressControl, GamesLoaderHandler.CancelToken.Token);
-                        }),
-
-                        // Origin metada download thread
-                        Task.Factory.StartNew(() =>
-                        {
-                            DownloadMetadata(database, Provider.Origin, ProgressControl, GamesLoaderHandler.CancelToken.Token);
-                        }),
-
-                        // GOG metada download thread
-                        Task.Factory.StartNew(() =>
-                        {
-                            DownloadMetadata(database, Provider.GOG, ProgressControl, GamesLoaderHandler.CancelToken.Token);
-                        }),
-
-                        // Uplay metada download thread
-                        Task.Factory.StartNew(() =>
-                        {
-                            DownloadMetadata(database, Provider.Uplay, ProgressControl, GamesLoaderHandler.CancelToken.Token);
-                        })
+                            // Steam metada download thread
+                            Task.Factory.StartNew(() =>
+                            {
+                                DownloadMetadata(database, Provider.Steam, ProgressControl, GamesLoaderHandler.CancelToken.Token);
+                            }),
+                            // Origin metada download thread
+                            Task.Factory.StartNew(() =>
+                            {
+                                DownloadMetadata(database, Provider.Origin, ProgressControl, GamesLoaderHandler.CancelToken.Token);
+                            }),
+                            // GOG metada download thread
+                            Task.Factory.StartNew(() =>
+                            {
+                                DownloadMetadata(database, Provider.GOG, ProgressControl, GamesLoaderHandler.CancelToken.Token);
+                            }),
+                            // Uplay metada download thread
+                            Task.Factory.StartNew(() =>
+                            {
+                                DownloadMetadata(database, Provider.Uplay, ProgressControl, GamesLoaderHandler.CancelToken.Token);
+                            }),
+                            // BattleNet metada download thread
+                            Task.Factory.StartNew(() =>
+                            {
+                                DownloadMetadata(database, Provider.BattleNet, ProgressControl, GamesLoaderHandler.CancelToken.Token);
+                            })
                         };
 
                         Task.WaitAll(tasks.ToArray());

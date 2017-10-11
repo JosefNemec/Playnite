@@ -176,8 +176,12 @@
     <Compile Include="MetaProviders\Wikipedia.cs" />
     <Compile Include="ObservableConcurrentDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\BattleNet\BattleNetLibrary.cs" />
     <Compile Include="Providers\BattleNet\BattleNetSettings.cs" />
     <Compile Include="Models\GameMetadata.cs" />
+    <Compile Include="Providers\BattleNet\IBattleNetLibrary.cs" />
+    <Compile Include="Providers\BattleNet\BattleNetGameStateMonitor.cs" />
+    <Compile Include="Providers\BattleNet\WebApiClient.cs" />
     <Compile Include="Providers\EpicLauncher\EpicLauncherSettings.cs" />
     <Compile Include="Providers\GameInstalledEventArgs.cs" />
     <Compile Include="Providers\GOG\GogGameStateMonitor.cs" />

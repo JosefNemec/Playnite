@@ -15,6 +15,7 @@ using Playnite.Providers.Steam;
 using Playnite.Providers;
 using System.Collections.Concurrent;
 using Playnite.Providers.Uplay;
+using Playnite.Providers.BattleNet;
 
 namespace Playnite.Models
 {
@@ -65,6 +66,7 @@ namespace Playnite.Models
                     case Provider.Custom:
                     case Provider.Origin:
                     case Provider.Uplay:
+                    case Provider.BattleNet:
                     case Provider.Steam:
                     default:
                         return string.IsNullOrEmpty(SteamSettings.DescriptionTemplate) ? Description : SteamSettings.DescriptionTemplate.Replace("{0}", Description);
@@ -448,19 +450,31 @@ namespace Playnite.Models
             {
                 case Provider.Steam:
                     Process.Start(@"steam://install/" + ProviderId);
-                    RegisterStateMonitor(new SteamGameStateMonitor(ProviderId, new SteamLibrary()));
+                    RegisterStateMonitor(new SteamGameStateMonitor(ProviderId, new SteamLibrary()), GameStateMonitorType.Install);
                     break;
                 case Provider.GOG:
                     Process.Start(@"goggalaxy://openGameView/" + ProviderId);
-                    RegisterStateMonitor(new GogGameStateMonitor(ProviderId, InstallDirectory, new GogLibrary()));
+                    RegisterStateMonitor(new GogGameStateMonitor(ProviderId, InstallDirectory, new GogLibrary()), GameStateMonitorType.Install);
                     break;
                 case Provider.Origin:
                     Process.Start(string.Format(@"origin2://game/launch?offerIds={0}&autoDownload=true", ProviderId));
-                    RegisterStateMonitor(new OriginGameStateMonitor(ProviderId, new OriginLibrary()));
+                    RegisterStateMonitor(new OriginGameStateMonitor(ProviderId, new OriginLibrary()), GameStateMonitorType.Install);
                     break;
                 case Provider.Uplay:
                     Process.Start("uplay://install/" + ProviderId);
-                    RegisterStateMonitor(new UplayGameStateMonitor(ProviderId, new UplayLibrary()));
+                    RegisterStateMonitor(new UplayGameStateMonitor(ProviderId, new UplayLibrary()), GameStateMonitorType.Install);
+                    break;
+                case Provider.BattleNet:
+                    var product = BattleNetLibrary.GetAppDefinition(ProviderId);
+                    if (product.Type == BattleNetLibrary.BNetAppType.Classic)
+                    {
+                        Process.Start(@"https://battle.net/account/management/download/");
+                    }
+                    else
+                    {
+                        Process.Start(BattleNetSettings.ClientExecPath, $"--game={product.InternalId}");
+                    }
+                    RegisterStateMonitor(new BattleNetGameStateMonitor(product, new BattleNetLibrary()), GameStateMonitorType.Install);
                     break;
                 case Provider.Custom:
                     break;
@@ -498,7 +512,7 @@ namespace Playnite.Models
             {
                 case Provider.Steam:
                     Process.Start("steam://uninstall/" + ProviderId);
-                    RegisterStateMonitor(new SteamGameStateMonitor(ProviderId, new SteamLibrary()));
+                    RegisterStateMonitor(new SteamGameStateMonitor(ProviderId, new SteamLibrary()), GameStateMonitorType.Uninstall);
                     break;
                 case Provider.GOG:
                     var uninstaller = Path.Combine(InstallDirectory, "unins000.exe");
@@ -508,15 +522,29 @@ namespace Playnite.Models
                     }
 
                     Process.Start(uninstaller);
-                    RegisterStateMonitor(new GogGameStateMonitor(ProviderId, InstallDirectory, new GogLibrary()));
+                    RegisterStateMonitor(new GogGameStateMonitor(ProviderId, InstallDirectory, new GogLibrary()), GameStateMonitorType.Uninstall);
                     break;
                 case Provider.Origin:
                     Process.Start("appwiz.cpl");
-                    RegisterStateMonitor(new OriginGameStateMonitor(ProviderId, new OriginLibrary()));
+                    RegisterStateMonitor(new OriginGameStateMonitor(ProviderId, new OriginLibrary()), GameStateMonitorType.Uninstall);
                     break;
                 case Provider.Uplay:
                     Process.Start("uplay://uninstall/" + ProviderId);
-                    RegisterStateMonitor(new UplayGameStateMonitor(ProviderId, new UplayLibrary()));
+                    RegisterStateMonitor(new UplayGameStateMonitor(ProviderId, new UplayLibrary()), GameStateMonitorType.Uninstall);
+                    break;
+                case Provider.BattleNet:
+                    var product = BattleNetLibrary.GetAppDefinition(ProviderId);
+                    var entry = BattleNetLibrary.GetUninstallEntry(product);
+                    if (entry != null)
+                    {
+                        var args = string.Format("/C \"{0}\"", entry.UninstallString);
+                        Process.Start("cmd", args);
+                        RegisterStateMonitor(new BattleNetGameStateMonitor(product, new BattleNetLibrary()), GameStateMonitorType.Uninstall);
+                    }
+                    else
+                    {
+                        RegisterStateMonitor(new BattleNetGameStateMonitor(product, new BattleNetLibrary()), GameStateMonitorType.Uninstall);
+                    }
                     break;
                 case Provider.Custom:
                     break;
@@ -525,7 +553,7 @@ namespace Playnite.Models
             }
         }
 
-        public void RegisterStateMonitor(IGameStateMonitor monitor)
+        public void RegisterStateMonitor(IGameStateMonitor monitor, GameStateMonitorType type)
         {
             if (stateMonitor != null)
             {
@@ -535,7 +563,15 @@ namespace Playnite.Models
             stateMonitor = monitor;
             stateMonitor.GameInstalled += StateMonitor_GameInstalled;
             stateMonitor.GameUninstalled += StateMonitor_GameUninstalled;
-            stateMonitor.StartMonitoring();
+            if (type == GameStateMonitorType.Install)
+            {
+                stateMonitor.StartInstallMonitoring();
+            }
+            else
+            {
+                stateMonitor.StartUninstallMonitoring();
+            }
+
             IsSetupInProgress = true;
         }
 
