@@ -278,6 +278,19 @@ namespace PlayniteUI
             }
 
             var platform = ListPlatforms.SelectedItem as Platform;
+            if (path.EndsWith("exe", StringComparison.CurrentCultureIgnoreCase))
+            {
+                var ico = IconExtension.ExtractIconFromExe(path, true);
+                if (ico == null)
+                {
+                    return;
+                }
+
+                path = System.IO.Path.Combine(Paths.TempPath, Guid.NewGuid() + ".png");
+                FileSystem.PrepareSaveFile(path);
+                ico.ToBitmap().Save(path, System.Drawing.Imaging.ImageFormat.Png);
+            }
+
             platform.Icon = path;
         }
 
@@ -387,6 +400,12 @@ namespace PlayniteUI
                     var name = Guid.NewGuid() + extension;
                     var id = string.Format(fileIdMask, platform.Id, name);
                     database.AddImage(id, name, File.ReadAllBytes(platform.Icon));
+
+                    if (Paths.AreEqual(System.IO.Path.GetDirectoryName(platform.Icon), Paths.TempPath))
+                    {
+                        File.Delete(platform.Icon);
+                    }
+
                     platform.Icon = id;
                 }
 

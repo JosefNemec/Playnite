@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using Playnite.Database;
 using NLog;
 using System.IO;
+using Playnite;
 
 namespace PlayniteUI
 {
@@ -57,7 +58,7 @@ namespace PlayniteUI
             {
                 if (File.Exists(imageId))
                 {
-                    return imageId;
+                    return BitmapExtensions.BitmapFromFile(imageId);
                 }
 
                 var imageData = GameDatabase.Instance.GetFileImage(imageId);

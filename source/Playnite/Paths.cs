@@ -116,5 +116,15 @@ namespace Playnite
 
             return true;
         }
+
+        public static string Normalize(string path)
+        {
+            return Path.GetFullPath(new Uri(path).LocalPath).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar).ToUpperInvariant();
+        }
+
+        public static bool AreEqual(string path1, string path2)
+        {
+            return Normalize(path1) == Normalize(path2);
+        }
     }
 }
