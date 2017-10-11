@@ -689,7 +689,7 @@ namespace PlayniteUI
             CollectionView.SortDescriptions.Add(new SortDescription(Settings.SortingOrder.ToString(), sortDirection));
             if (Settings.SortingOrder != SortOrder.Name)
             {
-                CollectionView.SortDescriptions.Add(new SortDescription("Name", sortDirection));
+                CollectionView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             }
 
             if (Settings.GroupingOrder != GroupOrder.None)
