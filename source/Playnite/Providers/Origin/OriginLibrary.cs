@@ -13,6 +13,7 @@ using Microsoft.Win32;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using Playnite.Database;
+using System.Net;
 
 namespace Playnite.Providers.Origin
 {
@@ -106,9 +107,25 @@ namespace Playnite.Providers.Origin
             else if (useDataCache == true && !File.Exists(cacheFile))
             {
                 FileSystem.CreateFolder(OriginPaths.CachePath);
-                var data =  WebApiClient.GetGameLocalData(id);
-                File.WriteAllText(cacheFile, JsonConvert.SerializeObject(data), Encoding.UTF8);
-                return data;
+
+                try
+                {
+                    var data = WebApiClient.GetGameLocalData(id);
+                    File.WriteAllText(cacheFile, JsonConvert.SerializeObject(data), Encoding.UTF8);
+                    return data;
+                }
+                catch (WebException exc) when ((exc.Response as HttpWebResponse)?.StatusCode == HttpStatusCode.NotFound)
+                {
+                    logger.Info($"Origin manifest {id} not found on EA server, generating fake manifest.");
+                    var data = new GameLocalDataResponse()
+                    {
+                        offerId = id,
+                        offerType = "Doesn't exists"
+                    };
+
+                    File.WriteAllText(cacheFile, JsonConvert.SerializeObject(data), Encoding.UTF8);
+                    return data;
+                }
             }
             else
             {
