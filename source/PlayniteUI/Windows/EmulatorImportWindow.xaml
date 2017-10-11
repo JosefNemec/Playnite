@@ -72,10 +72,11 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Supported Platforms">
+                                <GridViewColumn Header="Supported Platforms" Width="400">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Platforms, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"/>
+                                            <TextBlock Text="{Binding Platforms, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"
+                                                       TextTrimming="CharacterEllipsis" HorizontalAlignment="Left" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
