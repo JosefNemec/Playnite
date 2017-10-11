@@ -128,6 +128,7 @@ namespace PlayniteUI
             {
                 logger.Error(exc, "Cannot start game: ");
                 PlayniteMessageBox.Show(Application.Current.MainWindow, "Cannot start game: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
 
             try
