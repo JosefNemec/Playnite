@@ -820,9 +820,29 @@ namespace PlayniteUI
         {
             foreach (var update in args.UpdatedGames)
             {
-                Database_GamesCollectionChanged(this, new GamesCollectionChangedEventArgs(
-                    new List<IGame>() { update.NewData },
-                    new List<IGame>() { update.NewData }));
+                if (update.OldData.Categories.IsListEqual(update.NewData.Categories))
+                {
+                    var existingItem = Items.FirstOrDefault(a => a.Game.Id == update.NewData.Id);
+                    if (existingItem != null)
+                    {
+                        if (update.NewData.PlatformId != update.OldData.PlatformId)
+                        {
+                            existingItem.Platform = new PlatformView(update.NewData.PlatformId, GetPlatformFromCache(update.NewData.PlatformId));
+                        }
+
+                        update.NewData.CopyProperties(existingItem.Game, true);
+                    }
+                    else
+                    {
+                        logger.Warn("Receivied update for unknown game id " + update.NewData.Id);
+                    }
+                }
+                else
+                {
+                    Database_GamesCollectionChanged(this, new GamesCollectionChangedEventArgs(
+                        new List<IGame>() { update.NewData },
+                        new List<IGame>() { update.NewData }));
+                }
             }
         }
 
