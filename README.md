@@ -1,15 +1,15 @@
 
 # <img src="https://github.com/JosefNemec/Playnite/raw/master/web/applogo.png" width="32">  Playnite
-Open source video game library manager and launcher with support for 3rd party libraries like Steam, GOG, Origin and Uplay. Including game emulation support, providing one unified interface for your games.
+Open source video game library manager and launcher with support for 3rd party libraries like Steam, GOG, Origin, Battle.net and Uplay. Including game emulation support, providing one unified interface for your games.
 
 Screenshots on [Homepage](http://playnite.link/)
 
 Features
 ---------
 
-**Steam, Origin, GOG, Uplay support**
+**Steam, Origin, GOG, Battle.net, Uplay support**
 
-Import games from Steam, Origin, GOG and Uplay services including games that are not installed. You can also import Windows Store (UWP) games.
+Import games from Steam, Origin, Battle.net, GOG and Uplay services including games that are not installed. You can also import Windows Store (UWP) games.
 
 **Console Emulation support**
 
