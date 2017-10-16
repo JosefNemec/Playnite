@@ -81,7 +81,7 @@ Translation support will be added in 3.0 release.
 Theming support will be added in 3.0 release.
 
 ### Code Contributions
-**I recommend waiting for 3.0 release before doing any major code contributions. 3.0 will go though a big refactoring, which could later lead to merge conflicts.**
+**I recommend waiting for 3.0 release before doing any contributions regarding to new features. 3.0 will go though a big refactoring, which could later lead to merge conflicts.**
 
 Please ask in an issue first before starting with implementation to make sure that nobody else is already working on it. If the issue doesn't exists for your feature/bug fix, create one first.
 
