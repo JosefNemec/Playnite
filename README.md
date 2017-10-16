@@ -71,6 +71,45 @@ If you find a bug please file an [issue](https://github.com/JosefNemec/Playnite/
 
 General discussion lives on [Reddit](https://www.reddit.com/r/playnite/) and you can also ask a question directly on [Discord](https://discord.gg/hSFvmN6) or follow [@AppPlaynite](https://twitter.com/AppPlaynite) for updates.
 
+Contributions
+---------
+
+### Translations
+Translation support will be added in 3.0 release.
+
+### Themes
+Theming support will be added in 3.0 release.
+
+### Code Contributions
+**I recommend waiting for 3.0 release before doing any major code contributions. 3.0 will go though a big refactoring, which could later lead to merge conflicts.**
+
+Please ask in an issue first before starting with implementation to make sure that nobody else is already working on it. If the issue doesn't exists for your feature/bug fix, create one first.
+
+Regarding code styling, there are only a few major rules:
+
+- private fields and properties should use camelCase (without underscore)
+- all methods (private and public) should use PascalCase
+- use spaces instead of tabs with 4 spaces width
+- always encapsulate with brackets:
+
+````
+if (true)
+{
+    DoSomething()
+}
+````
+instead of
+```
+if (true)
+    DoSomething()
+```
+
+Roadmap
+---------
+
+You can see planned version with their feature in [projects overview](https://github.com/JosefNemec/Playnite/projects).
+
+
 Building
 ---------
 
@@ -88,7 +127,7 @@ Portable zip package can be built when using **-Portable** parameter.
 Development
 ---------
 
-Playnite runs in development environment without extra configuration with exception of Steam library import and auto-update features.
+Playnite runs in development environment without extra configuration with exception of Steam library import, IGDB integration and auto-update features.
 
 ### Auto-Update
 Requires simple web server serving **update.json** file with information about available version. URL with update.json has to be configured in **app.(Debug|Release).config** file, **UpdateUrl** key.
@@ -118,3 +157,5 @@ apikeys.json example:
     "Steam" : "25SSE201224DEE54F732DDDC2BA21690C"
 }
 ```
+### IGDB integration
+Similarly to Steam integration, IGDB services require API key to be configured in `apikeys.json` file under `IGBDKey` property.
