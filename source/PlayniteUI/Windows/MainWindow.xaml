@@ -220,7 +220,7 @@
                         </Setter>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Active}" Value="True">
-                                <Setter Property="Foreground" Value="{StaticResource IndicatorBrush}" />
+                                <Setter Property="Foreground" Value="{StaticResource GlyphBrush}" />
                                 <Setter Property="ToolTip" Value="{DynamicResource FilterActiveLabel}" />
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Active}" Value="False">

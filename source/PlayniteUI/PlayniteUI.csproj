@@ -264,6 +264,9 @@
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Theme.cs" />
+    <Compile Include="Windows\ThemeTesterWindow.xaml.cs">
+      <DependentUpon>ThemeTesterWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\UpdateWindow.xaml.cs">
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
@@ -376,6 +379,10 @@
     <Page Include="Theme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ThemeTesterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\UpdateWindow.xaml">
       <SubType>Designer</SubType>

@@ -98,6 +98,10 @@ namespace PlayniteUI
             }
 
 
+            new ThemeTesterWindow().ShowDialog();
+            Shutdown();
+            return;
+
             LoadThirdPartyTools();
             var mainWindow = new MainWindow();
             Current.MainWindow = MainWindow;

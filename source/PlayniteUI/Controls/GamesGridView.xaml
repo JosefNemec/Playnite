@@ -49,7 +49,7 @@
         <playniteControls:GamePopupMenu x:Name="PopupGame" />
         <playniteControls:GamePopupMenuMulti x:Name="PopupGameMulti" />
 
-        <ListView Name="GridGames" SelectionMode="Extended"
+        <ListView Name="GridGames" SelectionMode="Extended" BorderThickness="0"
                   VirtualizingPanel.VirtualizationMode="Recycling" VirtualizingPanel.IsVirtualizingWhenGrouping="True"
                   VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5">
             <ListView.ItemContainerStyle>
