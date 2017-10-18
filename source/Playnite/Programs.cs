@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Principal;
@@ -108,12 +109,15 @@ namespace Playnite
 
             foreach (var file in files)
             {
+                var versionInfo = FileVersionInfo.GetVersionInfo(file.FullName);
+                var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(Path.GetDirectoryName(file.FullName)).Name;
+
                 execs.Add(new Program()
                 {
                     Path = file.FullName,
                     Icon = file.FullName,
                     WorkDir = Path.GetDirectoryName(file.FullName),
-                    Name = new DirectoryInfo(Path.GetDirectoryName(file.FullName)).Name
+                    Name = programName
                 });
             }
 
@@ -164,9 +168,9 @@ namespace Playnite
                     continue;
                 }
 
-                var link = (IWshShortcut)shell.CreateShortcut(shortcut.FullName);               
+                var link = (IWshShortcut)shell.CreateShortcut(shortcut.FullName);
                 var target = link.TargetPath;
-                
+
                 if (pathExceptions.FirstOrDefault(a => target.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
                 {
                     continue;
