@@ -29,20 +29,31 @@ namespace PlayniteUI.Controls
         {
             get
             {
-                return ListGames.ItemsSource;
+                return (IEnumerable)GetValue(ItemsSourceProperty);
             }
 
             set
             {
-                ListGames.ItemsSource = value;
-                var list = value as ListCollectionView;
-
-                if (list.SourceCollection is RangeObservableCollection<GameViewEntry>)
-                {
-                    ((RangeObservableCollection<GameViewEntry>)list.SourceCollection).CollectionChanged -= GamesGridView_CollectionChanged;
-                    ((RangeObservableCollection<GameViewEntry>)list.SourceCollection).CollectionChanged += GamesGridView_CollectionChanged;
-                }
+                SetValue(ItemsSourceProperty, value);
             }
+        }
+
+        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(GamesListView), new PropertyMetadata(null, ItemsSourcePropertyChangedCallback));
+
+        private static void ItemsSourcePropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var obj = sender as GamesListView;
+            var value = (IEnumerable)e.NewValue;
+            obj.ListGames.ItemsSource = value;
+
+            // TODO
+            //var list = value as ListCollectionView;
+
+            //if (list.SourceCollection is RangeObservableCollection<GameViewEntry>)
+            //{
+            //    ((RangeObservableCollection<GameViewEntry>)list.SourceCollection).CollectionChanged -= GamesGridView_CollectionChanged;
+            //    ((RangeObservableCollection<GameViewEntry>)list.SourceCollection).CollectionChanged += GamesGridView_CollectionChanged;
+            //}
         }
 
         public GamesListView()

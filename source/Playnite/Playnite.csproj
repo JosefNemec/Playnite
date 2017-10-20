@@ -161,6 +161,7 @@
     <Compile Include="Models\Platform.cs" />
     <Compile Include="Models\Old\Game.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="ObservableObject.cs" />
     <Compile Include="Paths.cs" />
     <Compile Include="PipeServer.cs" />
     <Compile Include="PlayniteEnvironment.cs" />

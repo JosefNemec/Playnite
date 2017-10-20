@@ -26,6 +26,19 @@ using Playnite.Emulators;
 
 namespace PlayniteUI
 {
+    public class PlatformsWindowFactory : WindowFactory
+    {
+        public static PlatformsWindowFactory Instance
+        {
+            get => new PlatformsWindowFactory();
+        }
+
+        public override WindowBase CreateNewWindowInstance()
+        {
+            return new PlatformsWindow();
+        }
+    }
+
     /// <summary>
     /// Interaction logic for Configuration.xaml
     /// </summary>
@@ -108,7 +121,7 @@ namespace PlayniteUI
             }
         }
 
-        private bool isPlatformsSelected;
+        private bool isPlatformsSelected = true;
         public bool IsPlatformsSelected
         {
             get => isPlatformsSelected;

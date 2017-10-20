@@ -23,13 +23,15 @@
     <Grid>
         <DockPanel>
             <playniteControls:GamePopupMenuMulti x:Name="PopupGameMulti"
+                                                 DataContext="{x:Null}"
                                                  AutomationProperties.AutomationId="MenuGame"/>
             <playniteControls:GamePopupMenu x:Name="PopupGame" StaysOpen="False" Placement="MousePoint"
+                                            DataContext="{x:Null}"
                                             AutomationProperties.AutomationId="MenuGameMulti"/>
 
             <ListBox Name="ListGames" SelectionMode="Extended" BorderThickness="0,0,1,0" BorderBrush="{StaticResource NormalBorderBrush}"
                      SelectionChanged="GamesListList_SelectionChanged" Width="310"
-                     DockPanel.Dock="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                     DockPanel.Dock="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
                      VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Recycling">
                 <ListBox.ItemContainerStyle>
@@ -73,7 +75,7 @@
                 </ListBox.GroupStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <DockPanel Margin="3">
+                        <DockPanel Margin="1">
                             <Image Height="32" RenderOptions.BitmapScalingMode="Fant" DockPanel.Dock="Left" Margin="0,0,8,0"
                                    Visibility="{Binding Path=ShowIconsOnList, Source={x:Static shared:Settings.Instance}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Image.Source>
@@ -89,7 +91,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <local:GameDetails x:Name="GameDetails" DockPanel.Dock="Right"/>
+            <local:GameDetails x:Name="GameDetails" DockPanel.Dock="Right" DataContext="{x:Null}"/>
         </DockPanel>
     </Grid>
 </UserControl>

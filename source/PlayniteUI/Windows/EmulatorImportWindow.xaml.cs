@@ -24,7 +24,7 @@ using System.Threading;
 using Playnite.Database;
 using static PlayniteUI.PlatformsWindow;
 
-namespace PlayniteUI.Windows
+namespace PlayniteUI
 {
     public class ImportableEmulator
     {
@@ -327,6 +327,19 @@ namespace PlayniteUI.Windows
         }
     }
 
+    public class EmulatorImportWindowFactory : WindowFactory
+    {
+        public static EmulatorImportWindowFactory Instance
+        {
+            get => new EmulatorImportWindowFactory();
+        }
+
+        public override WindowBase CreateNewWindowInstance()
+        {
+            return new EmulatorImportWindow();
+        }
+    }
+
     /// <summary>
     /// Interaction logic for EmulatorImportWindow.xaml
     /// </summary>
@@ -335,6 +348,11 @@ namespace PlayniteUI.Windows
         public EmulatorImportWindowModel Model
         {
             get; private set;
+        }
+
+        public EmulatorImportWindow()
+        {
+            InitializeComponent();
         }
 
         public EmulatorImportWindow(DialogType type)
@@ -410,6 +428,15 @@ namespace PlayniteUI.Windows
 
         private void ButtonImport_Click(object sender, RoutedEventArgs e)
         {
+            if (Model.Type == DialogType.GameImport)
+            {
+                Model.AddSelectedGamesToDB();
+            }
+            else if (Model.Type == DialogType.EmulatorImport)
+            {
+                Model.AddSelectedEmulatorsToDB();
+            }
+
             DialogResult = true;
             Close();
         }

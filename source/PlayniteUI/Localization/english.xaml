@@ -145,7 +145,22 @@ You can also configure and import any custom emulator later via configuration me
     <sys:String x:Key="CancelLabel">Cancel</sys:String>
     <sys:String x:Key="YesLabel">Yes</sys:String>
     <sys:String x:Key="NoLabel">No</sys:String>
-    
-    
-    
+
+    <!--Errors-->
+    <sys:String x:Key="DatabaseErroTitle">Database Error</sys:String>
+    <sys:String x:Key="DatabaseOpenError">Failed to open library database.</sys:String>
+
+    <sys:String x:Key="BnetInstalledImportError">Failed to import installed Battle.net games.</sys:String>
+    <sys:String x:Key="SteamInstalledImportError">Failed to import installed Steam games.</sys:String>
+    <sys:String x:Key="GOGInstalledImportError">Failed to import installed GOG games.</sys:String>
+    <sys:String x:Key="OriginInstalledImportError">Failed to import installed Origin games.</sys:String>
+    <sys:String x:Key="UplayInstalledImportError">Failed to import installed Uplay games.</sys:String>
+
+    <sys:String x:Key="BnetLibraryImportError">Failed to download Battle.net library.</sys:String>
+    <sys:String x:Key="SteamLibraryImportError">Failed to download Steam library.</sys:String>
+    <sys:String x:Key="GOGLibraryImportError">Failed to download GOG library.</sys:String>
+    <sys:String x:Key="OriginLibraryImportError">Failed to download Origin library.</sys:String>
+    <sys:String x:Key="UplayLibraryImportError">Failed to download Uplay library.</sys:String>
+
+
 </ResourceDictionary>

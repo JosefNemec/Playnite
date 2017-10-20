@@ -29,6 +29,19 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace PlayniteUI
 {
+    public class GameEditWindowFactory : WindowFactory
+    {
+        public static GameEditWindowFactory Instance
+        {
+            get => new GameEditWindowFactory();
+        }
+
+        public override WindowBase CreateNewWindowInstance()
+        {
+            return new GameEditWindow();
+        }
+    }
+
     /// <summary>
     /// Interaction logic for GameEditWindow.xaml
     /// </summary>

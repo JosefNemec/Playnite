@@ -12,6 +12,9 @@ using NLog.Config;
 using Playnite;
 using Playnite.Database;
 using PlayniteUI.Windows;
+using PlayniteUI.ViewModels;
+using System.Threading.Tasks;
+using Playnite.Services;
 
 namespace PlayniteUI
 {
@@ -23,10 +26,14 @@ namespace PlayniteUI
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private string instanceMuxet = "PlayniteInstaceMutex";
         private Mutex appMutex;
-        
-        public static ThirdPartyToolsList ThirdPartyTools
+        private PipeService pipeService;
+        private PipeServer pipeServer;        
+        private MainViewModel mainModel;
+
+        public static Settings AppSettings
         {
-            get; set;
+            get;
+            private set;
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
@@ -35,7 +42,7 @@ namespace PlayniteUI
             GamesLoaderHandler.CancelToken.Cancel();
             Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
             Cef.Shutdown();
-            Settings.Instance.SaveSettings();
+            AppSettings.SaveSettings();
 
             if (appMutex != null)
             {
@@ -56,11 +63,11 @@ namespace PlayniteUI
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var config = Settings.LoadSettings();
-            Localization.SetLanguage(config.Language);
+            AppSettings = Settings.LoadSettings();
+            Localization.SetLanguage(AppSettings.Language);
             Resources.Remove("AsyncImagesEnabled");
-            Resources.Add("AsyncImagesEnabled", config.AsyncImageLoading);
-            if (config.DisableHwAcceleration)
+            Resources.Add("AsyncImagesEnabled", AppSettings.AsyncImageLoading);
+            if (AppSettings.DisableHwAcceleration)
             {
                 System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
             }
@@ -80,8 +87,7 @@ namespace PlayniteUI
                 {
                     var commandArgs = e.Args[1].Split(new char[] { ':' });
                     var command = commandArgs[0];
-                    var args = commandArgs.Count() > 1 ? commandArgs[1] : string.Empty;                    
-                    client.InvokeCommand(command, args);
+                    client.InvokeCommand(command, commandArgs.Count() > 1 ? commandArgs[1] : string.Empty);
                 }
                 else
                 {
@@ -97,30 +103,127 @@ namespace PlayniteUI
                 appMutex = new Mutex(true, instanceMuxet);
             }
 
+            var mainWindow = new MainWindowFactory();
+            mainModel = new MainViewModel(
+                mainWindow,
+                new DialogsFactory(),
+                new ResourceProvider(),
+                new NotificationFactory(),
+                AppSettings);
+            Current.MainWindow = mainWindow.Window;
+            mainWindow.Show(mainModel);            
+            mainModel.LoadGames(AppSettings.UpdateLibStartup);
 
-            new ThemeTesterWindow().ShowDialog();
-            Shutdown();
-            return;
+            pipeService = new PipeService();
+            pipeService.CommandExecuted += PipeService_CommandExecuted;
+            pipeServer = new PipeServer(Settings.GetAppConfigValue("PipeEndpoint"));
+            pipeServer.StartServer(pipeService);
 
-            LoadThirdPartyTools();
-            var mainWindow = new MainWindow();
-            Current.MainWindow = MainWindow;
-            mainWindow.Show();
+            var args = Environment.GetCommandLineArgs();
+            if (args.Count() > 0 && args.Contains("-command"))
+            {
+                var commandArgs = args[2].Split(new char[] { ':' });
+                var command = commandArgs[0];
+                var cmdArgs = commandArgs.Count() > 1 ? commandArgs[1] : string.Empty;
+                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(command, cmdArgs));
+            }            
 
             logger.Info("Application started");
         }
 
-        private void LoadThirdPartyTools()
+        private void PipeService_CommandExecuted(object sender, CommandExecutedEventArgs args)
         {
-            try
+            logger.Info(@"Executing command ""{0}"" from pipe with arguments ""{1}""", args.Command, args.Args);
+
+            switch (args.Command)
             {
-                ThirdPartyTools = new ThirdPartyToolsList();
-                ThirdPartyTools.SetTools(ThirdPartyTools.GetDefaultInstalledTools());
+                case CmdlineCommands.Focus:
+                    mainModel.ShowWindow();
+                    break;
+
+                case CmdlineCommands.Launch:
+                    var game = GameDatabase.Instance.GamesCollection.FindById(int.Parse(args.Args));
+                    if (game == null)
+                    {
+                        logger.Error("Cannot start game, game {0} not found.", args.Args);
+                    }
+                    else
+                    {
+                        GamesEditor.Instance.PlayGame(game);
+                    }
+
+                    break;
+
+                default:
+                    logger.Warn("Unknown command received");
+                    break;
             }
-            catch (Exception exc)
+        }
+
+        private void CheckUpdate()
+        {
+            Task.Factory.StartNew(() =>
             {
-                logger.Error(exc, "Failed to load 3rd party tool list.");
-            }
+                var update = new Update();
+                UpdateWindow updateWindow = null;
+
+                while (true)
+                {
+                    try
+                    {
+                        if ((updateWindow == null || !updateWindow.IsVisible) && update.IsUpdateAvailable)
+                        {
+                            if (update.IsUpdateAvailable)
+                            {
+                                update.DownloadUpdate();
+
+                                try
+                                {
+                                    update.DownloadReleaseNotes();
+                                }
+                                catch (Exception exc)
+                                {
+                                    logger.Warn(exc, "Failed to download release notes.");
+                                }
+
+                                Dispatcher.Invoke(() =>
+                                {
+                                    updateWindow = new UpdateWindow()
+                                    {
+                                        Owner = MainWindow
+                                    };
+
+                                    updateWindow.SetUpdate(update);
+                                    updateWindow.Show();
+                                    updateWindow.Focus();
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception exc)
+                    {
+                        logger.Error(exc, "Failed to process update.");
+                    }
+
+                    Thread.Sleep(4 * 60 * 60 * 1000);
+                }
+            });
+        }
+
+        private void SendUsageData()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    var client = new ServicesClient();
+                    client.PostUserUsage();
+                }
+                catch (Exception exc)
+                {
+                    logger.Error(exc, "Failed to post user usage data.");
+                }
+            });
         }
     }
 }

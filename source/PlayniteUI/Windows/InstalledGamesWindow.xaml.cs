@@ -25,8 +25,21 @@ using System.Threading;
 using NLog;
 using PlayniteUI.Controls;
 
-namespace PlayniteUI.Windows
+namespace PlayniteUI
 {
+    public class InstalledGamesWindowFactory : WindowFactory
+    {
+        public static InstalledGamesWindowFactory Instance
+        {
+            get => new InstalledGamesWindowFactory();
+        }
+
+        public override WindowBase CreateNewWindowInstance()
+        {
+            return new InstalledGamesWindow();
+        }
+    }
+
     /// <summary>
     /// Interaction logic for InstalledGamesWindow.xaml
     /// </summary>
@@ -216,6 +229,18 @@ namespace PlayniteUI.Windows
                 };
 
                 games.Add(data);
+            }
+
+            foreach (var game in games)
+            {
+                if (game.Icon != null)
+                {
+                    var iconId = "images/custom/" + game.Icon.Name;
+                    GameDatabase.Instance.AddImage(iconId, game.Icon.Name, game.Icon.Data);
+                    game.Game.Icon = iconId;
+                }
+
+                GameDatabase.Instance.AddGame(game.Game);
             }
 
             DialogResult = true;
