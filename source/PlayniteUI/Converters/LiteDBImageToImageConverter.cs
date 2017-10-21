@@ -61,20 +61,28 @@ namespace PlayniteUI
                     return BitmapExtensions.BitmapFromFile(imageId);
                 }
 
-                var imageData = GameDatabase.Instance.GetFileImage(imageId);
-                if (imageData == null)
+                try
                 {
-                    logger.Warn("Image not found in database: " + imageId);
-                    return DependencyProperty.UnsetValue;
-                }
-                else
-                {
-                    if (IsCacheEnabled)
+                    var imageData = GameDatabase.Instance.GetFileImage(imageId);
+                    if (imageData == null)
                     {
-                        Cache.Add(imageId, imageData);
+                        logger.Warn("Image not found in database: " + imageId);
+                        return DependencyProperty.UnsetValue;
                     }
+                    else
+                    {
+                        if (IsCacheEnabled)
+                        {
+                            Cache.Add(imageId, imageData);
+                        }
 
-                    return imageData;
+                        return imageData;
+                    }
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, "Failed to load image from database.");
+                    return DependencyProperty.UnsetValue;
                 }
             }
         }
