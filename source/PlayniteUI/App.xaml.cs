@@ -23,23 +23,18 @@ namespace PlayniteUI
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private string instanceMuxet = "PlayniteInstaceMutex";
         private Mutex appMutex;
+        private bool resourcesReleased = false;
         
         public static ThirdPartyToolsList ThirdPartyTools
         {
             get; set;
         }
-
+        
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            GameDatabase.Instance.CloseDatabase();
-            GamesLoaderHandler.CancelToken.Cancel();
-            Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
-            Cef.Shutdown();
-            Settings.Instance.SaveSettings();
-
-            if (appMutex != null)
+            if (!resourcesReleased)
             {
-                appMutex.ReleaseMutex();
+                ReleaseResources();
             }
         }
 
@@ -125,6 +120,29 @@ namespace PlayniteUI
             {
                 logger.Error(exc, "Failed to load 3rd party tool list.");
             }
+        }
+
+        public void Restart()
+        {
+            ReleaseResources();
+            Process.Start(Paths.ExecutablePath);
+            Shutdown(0);
+        }
+
+        private void ReleaseResources()
+        {
+            GameDatabase.Instance.CloseDatabase();
+            GamesLoaderHandler.CancelToken.Cancel();
+            Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
+            Cef.Shutdown();
+            Settings.Instance.SaveSettings();
+
+            if (appMutex != null)
+            {
+                appMutex.ReleaseMutex();
+            }
+
+            resourcesReleased = true;
         }
     }
 }

@@ -252,6 +252,13 @@
                                         DockPanel.Dock="Top" Margin="20,5,5,5"/>
                     </DockPanel>
                 </TabItem>
+                <TabItem Header="Advanced">
+                    <StackPanel Margin="20">
+                        <Button Name="ButtonClearWebCace" Content="Delete web cache" HorizontalAlignment="Left"
+                                ToolTip="May solve issues encountered while linking accounts."
+                                Click="ButtonClearWebCace_Click"/>
+                    </StackPanel>
+                </TabItem>
             </TabControl>
         </DockPanel>
     </Border>

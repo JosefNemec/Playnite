@@ -19,6 +19,7 @@ using Playnite.Database;
 using NLog;
 using PlayniteUI.Controls;
 using Playnite;
+using CefSharp;
 
 namespace PlayniteUI
 {
@@ -394,6 +395,17 @@ namespace PlayniteUI
             {
                 logger.Error(exc, "Failed to import Steam categories.");
                 PlayniteMessageBox.Show("Failed to import Steam categories: " + exc.Message, "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ButtonClearWebCace_Click(object sender, RoutedEventArgs e)
+        {
+            if (PlayniteMessageBox.Show("This will log you out of all linked services. Application restart is required, do you want to proceed?",
+                "Clear Cache?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                Cef.Shutdown();
+                System.IO.Directory.Delete(Paths.BrowserCachePath, true);
+                (Application.Current as App).Restart();
             }
         }
     }
