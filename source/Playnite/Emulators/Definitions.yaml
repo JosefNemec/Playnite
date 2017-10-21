@@ -44,7 +44,7 @@
   DefaultArguments: '"{ImagePath}" -fullscreen'
   Platforms: [Super Nintendo Entertainment System]
   ImageExtensions: [.zip, .gz, .jma, .sfc]
-  ExecutableLookup: ^snes9x\.exe
+  ExecutableLookup: ^snes9x.*\.exe
   Website: 'http://www.snes9x.com/'
 
 - Name: ePSXe
