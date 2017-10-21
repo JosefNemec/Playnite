@@ -114,6 +114,11 @@ namespace PlayniteUI.Windows
 
         public MessageBoxResult Show(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
         {
+            if (owner == null)
+            {
+                WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            }
+
             result = defaultResult;
             Owner = owner;
             Text = messageBoxText;

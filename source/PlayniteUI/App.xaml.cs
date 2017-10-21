@@ -74,18 +74,26 @@ namespace PlayniteUI
 
             if (Mutex.TryOpenExisting(instanceMuxet, out var mutex))
             {
-                var client = new PipeClient(Settings.GetAppConfigValue("PipeEndpoint"));
-
-                if (e.Args.Count() > 0 && e.Args.Contains("-command"))
+                try
                 {
-                    var commandArgs = e.Args[1].Split(new char[] { ':' });
-                    var command = commandArgs[0];
-                    var args = commandArgs.Count() > 1 ? commandArgs[1] : string.Empty;                    
-                    client.InvokeCommand(command, args);
+                    var client = new PipeClient(Settings.GetAppConfigValue("PipeEndpoint"));
+                    if (e.Args.Count() > 0 && e.Args.Contains("-command"))
+                    {
+                        var commandArgs = e.Args[1].Split(new char[] { ':' });
+                        var command = commandArgs[0];
+                        var args = commandArgs.Count() > 1 ? commandArgs[1] : string.Empty;
+                        client.InvokeCommand(command, args);
+                    }
+                    else
+                    {
+                        client.InvokeCommand(CmdlineCommands.Focus, string.Empty);
+                    }
                 }
-                else
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    client.InvokeCommand(CmdlineCommands.Focus, string.Empty);
+                    PlayniteMessageBox.Show("Playnite failed to start. Please close all running instances and try again.",
+                        "Startup Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    logger.Error(exc, "Can't process communication with other instances.");
                 }
 
                 logger.Info("Application already running, shutting down.");
