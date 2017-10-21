@@ -235,15 +235,16 @@ namespace PlayniteUI.Windows
                 EnableThreeState = false;
                 if (Game.Categories != null)
                 {
+                    // Also offer categories that are held by current game instance, but are not in DB yet
+                    foreach (var cat in Game.Categories.Except(Categories.Select(a => a.Name)))
+                    {
+                        Categories.Add(new Category(cat, true));
+                    }
+
                     foreach (var cat in Game.Categories)
                     {
                         var existingCat = Categories.FirstOrDefault(a => string.Equals(a.Name, cat, StringComparison.OrdinalIgnoreCase));
-
-                        if (existingCat == null)
-                        {
-                            existingCat.Enabled = false;
-                        }
-                        else
+                        if (existingCat != null)
                         {
                             existingCat.Enabled = true;
                         }
