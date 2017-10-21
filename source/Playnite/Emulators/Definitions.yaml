@@ -152,6 +152,13 @@
   ExecutableLookup: ^Launcher\.exe
   Website: 'https://fs-uae.net/'
   
+- Name: VisualBoyAdvance
+  DefaultArguments: '"{ImagePath}"'
+  Platforms: [Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance]
+  ImageExtensions: [.zip, .7z, .rar, .bin, .elf, .mb, .gba, .agb, .dmg, .gb, .gbc, .cgb, .sgb]
+  ExecutableLookup: ^visualboyadvance.*\.exe$
+  Website: 'https://en.wikipedia.org/wiki/VisualBoyAdvance'
+
 - Name: Mednafen
   DefaultArguments: '"{ImagePath}"'
   Platforms: [Atari Lynx, NEC TurboGrafx 16, NEC TurboGrafx-CD, NEC PC-FX, Nintendo Entertainment System, Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance, Nintendo Virtual Boy, PC Engine SuperGrafx, Sega Game Gear, Sega Genesis, Sega Master System, Sega Saturn, SNK Neo Geo Pocket, SNK Neo Geo Pocket Color, Sony PlayStation, Super Nintendo Entertainment System, WonderSwan, WonderSwan Color]
