@@ -154,7 +154,7 @@ To deploy caching service in development environment, you must do following:
 apikeys.json example:
 ```
 {
-    "Steam" : "25SSE201224DEE54F732DDDC2BA21690C"
+    "SteamKey" : "25SSE201224DEE54F732DDDC2BA21690C"
 }
 ```
 ### IGDB integration
