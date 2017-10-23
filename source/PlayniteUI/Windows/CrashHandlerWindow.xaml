@@ -14,14 +14,18 @@
 
     <DockPanel Margin="5">
         <DockPanel LastChildFill="False" DockPanel.Dock="Bottom">
-            <Button Name="ButtonClose" Click="ButtonClose_Click" Content="Close Playnite" DockPanel.Dock="Right" 
-                Style="{StaticResource BottomButton}"/>
-            <Button Name="ButtonRestart" Click="ButtonRestart_Click" Content="Restart Playnite" DockPanel.Dock="Right" 
-                Style="{StaticResource BottomButton}"/>
-            <Button Name="ButtonSaveDiag" Click="ButtonSaveDiag_Click" Content="Create diag. package" DockPanel.Dock="Left"
-                Style="{StaticResource BottomButton}"/>
-            <Button Name="ButtonReportIssue" Click="ButtonReportIssue_Click" Content="Report Issue" DockPanel.Dock="Left"
-                Style="{StaticResource BottomButton}"/>
+            <Button Name="ButtonClose" Content="Close Playnite" DockPanel.Dock="Right" 
+                Style="{StaticResource BottomButton}"
+                    Command="{Binding CloseCommand}"/>
+            <Button Name="ButtonRestart" Content="Restart Playnite" DockPanel.Dock="Right" 
+                Style="{StaticResource BottomButton}"
+                    Command="{Binding RestartCommand}"/>
+            <Button Name="ButtonSaveDiag" Content="Create diag. package" DockPanel.Dock="Left"
+                Style="{StaticResource BottomButton}"
+                    Command="{Binding CreateDiagPackageCommand}"/>
+            <Button Name="ButtonReportIssue" Content="Report Issue" DockPanel.Dock="Left"
+                Style="{StaticResource BottomButton}"
+                    Command="{Binding ReportIssueCommand}"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Top" Margin="10">
             <Image Source="/Images/Icons/warn_big.png" Width="64" RenderOptions.BitmapScalingMode="Fant" />
@@ -31,6 +35,7 @@
             </StackPanel>
         </DockPanel>
         <TextBox IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDetails"
-                 Margin="5" DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto"/>
+                 Margin="5" DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto"
+                 Text="{Binding Exception}"/>
     </DockPanel>
 </controls:WindowBase>

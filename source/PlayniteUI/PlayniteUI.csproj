@@ -177,6 +177,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviors\LeftClickContextMenuBehavior - Copy.cs" />
     <Compile Include="BindingProxy.cs" />
     <Compile Include="CmdlineCommands.cs" />
     <Compile Include="Commands\GeneralCommands.cs" />
@@ -219,8 +220,13 @@
     <Compile Include="Dialogs.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GamesCollectionView.cs" />
-    <Compile Include="LeftClickContextMenuBehavior.cs" />
+    <Compile Include="Behaviors\ScrollToSelectedBehavior.cs" />
     <Compile Include="Resources.cs" />
+    <Compile Include="ViewModels\InstalledGamesViewModel.cs" />
+    <Compile Include="ViewModels\CrashHandlerViewModel.cs" />
+    <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\CategoryConfigViewModel.cs" />
+    <Compile Include="ViewModels\EmulatorImportViewModel.cs" />
     <Compile Include="ViewModels\NotificationsViewModel.cs" />
     <Compile Include="WindowFactory.cs" />
     <Compile Include="Localization.cs" />

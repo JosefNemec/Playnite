@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using NLog;
 using System.ComponentModel;
 using LiteDB;
+using PlayniteUI.ViewModels;
 
 namespace PlayniteUI
 {
@@ -55,26 +56,14 @@ namespace PlayniteUI
 
         public bool? SetGameCategories(IGame game)
         {
-            var window = new CategoryConfigWindow()
-            {
-                AutoUpdateGame = true,
-                Game = game,
-                Owner = Application.Current.MainWindow
-            };
-            window.ShowDialog();
-            return window.DialogResult;
+            var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, GameDatabase.Instance, game, true);
+            return model.ShowDialog();
         }
 
         public bool? SetGamesCategories(IEnumerable<IGame> games)
         {
-            var window = new CategoryConfigWindow()
-            {
-                AutoUpdateGame = true,
-                Games = games,
-                Owner = Application.Current.MainWindow
-            };
-            window.ShowDialog();
-            return window.DialogResult;
+            var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, GameDatabase.Instance, games, true);
+            return model.ShowDialog();
         }
 
         public bool? EditGame(IGame game)

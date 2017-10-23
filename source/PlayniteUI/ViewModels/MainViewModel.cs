@@ -218,7 +218,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                OpenAboutWindow(AboutWindowFactory.Instance);
+                OpenAboutWindow(new AboutViewModel(AboutWindowFactory.Instance, dialogs, resources));
             });
         }
 
@@ -226,7 +226,11 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                OpenPlatformsWindow(PlatformsWindowFactory.Instance);
+                ConfigurePlatforms(
+                    new PlatformsViewModel(GameDatabase.Instance,
+                    PlatformsWindowFactory.Instance,
+                    dialogs,
+                    resources));
             });
         }
 
@@ -258,7 +262,12 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                OpenAddEmulatedGamesWindow(EmulatorImportWindowFactory.Instance);
+                ImportEmulatedGames(
+                    new EmulatorImportViewModel(GameDatabase.Instance,
+                    EmulatorImportViewModel.DialogType.GameImport,
+                    EmulatorImportWindowFactory.Instance,
+                    dialogs,
+                    resources));
             });
         }
 #endregion Commands
@@ -688,14 +697,14 @@ namespace PlayniteUI.ViewModels
             window.CreateAndOpenDialog(null);
         }
 
-        public void OpenAddEmulatedGamesWindow(IWindowFactory window)
+        public void ImportEmulatedGames(EmulatorImportViewModel model)
         {
-            window.CreateAndOpenDialog(null);
+            model.ShowDialog();
         }
 
-        public void OpenAboutWindow(IWindowFactory window)
-        {            
-            window.CreateAndOpenDialog(null);
+        public void OpenAboutWindow(AboutViewModel model)
+        {
+            model.ShowDialog();
         }
 
         public void OpenSettingsWindow(IWindowFactory window)
@@ -709,10 +718,9 @@ namespace PlayniteUI.ViewModels
             //}
         }
 
-        public void OpenPlatformsWindow(IWindowFactory window)
+        public void ConfigurePlatforms(PlatformsViewModel model)
         {
-            var model = new PlatformsViewModel(GameDatabase.Instance);
-            model.OpenPlatformsConfiguration();
+            model.ShowDialog();
         }
 
         public void SetViewType(ViewType type)

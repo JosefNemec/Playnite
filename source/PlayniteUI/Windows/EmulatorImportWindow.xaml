@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:i="schemas.microsoft.com/expression/2010/interactivity‌​"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         xmlns:local="clr-namespace:PlayniteUI.Windows"
-        xmlns:playniteUI="clr-namespace:PlayniteUI"
+        xmlns:pui="clr-namespace:PlayniteUI"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
@@ -14,15 +15,19 @@
         AutomationProperties.AutomationId="WindowEmulatorImport">
 
     <controls:WindowBase.Resources>
-        <playniteUI:NegateConverter x:Key="NegateConverter" />
-        <playniteUI:EnumBooleanConverter x:Key="EnumBooleanConverter" />
-        <playniteUI:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
-        <playniteUI:ListToStringConverter x:Key="ListToStringConverter" />
+        <pui:NegateConverter x:Key="NegateConverter" />
+        <pui:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+        <pui:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
+        <pui:ListToStringConverter x:Key="ListToStringConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </controls:WindowBase.Resources>
 
     <Grid>
+        <Grid.Resources>
+            <pui:BindingProxy x:Key="Proxy" Data="{Binding}" />
+        </Grid.Resources>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
@@ -84,7 +89,9 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Padding="5" Style="{StaticResource BaseTextBlockStyle}">
-                                            <Hyperlink NavigateUri="{Binding Website, Mode=OneWay}" RequestNavigate="Hyperlink_RequestNavigate">
+                                            <Hyperlink NavigateUri="{Binding Website, Mode=OneWay}"
+                                                       Command="{Binding Data.NavigateUrlCommand, Source={StaticResource Proxy}}"
+                                                       CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                                                 <Hyperlink.Inlines>
                                                     <Run Text="{Binding Website, Mode=OneWay}"/>
                                                 </Hyperlink.Inlines>
@@ -101,8 +108,9 @@
             <TabItem Header="Emulators" Visibility="Collapsed">
                 <DockPanel>
                     <TextBlock Text="{DynamicResource EmuWizardEmuImportIntro}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="20,10,20,10"/>
-                    <Button Content="{DynamicResource EmuWizardButtonScanEmulator}" Name="ButtonScanEmulator" Click="ButtonScanEmulator_Click"
-                            DockPanel.Dock="Bottom" HorizontalAlignment="Left" Margin="5,5,5,10" Style="{StaticResource BottomButton}"/>
+                    <Button Content="{DynamicResource EmuWizardButtonScanEmulator}" Name="ButtonScanEmulator"
+                            Command="{Binding ScanEmulatorsCommmand}" DockPanel.Dock="Bottom" HorizontalAlignment="Left"
+                            Margin="5,5,5,10" Style="{StaticResource BottomButton}"/>
                     <ListView SelectionMode="Single" Margin="5" BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
                               ItemsSource="{Binding EmulatorList}" Name="ListEmulators">
                         <ListView.ItemContainerStyle>
@@ -149,13 +157,24 @@
                 <DockPanel>
                     <TextBlock Text="{DynamicResource EmuWizardGameImportIntro}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="20,10,20,10"/>
                     <DockPanel DockPanel.Dock="Bottom" Margin="0,0,0,5" LastChildFill="False">
-                        <Button Content="{DynamicResource EmuWizardButtonScanGames}" Name="ButtonScanGames" Click="ButtonScanGames_Click" ContextMenuService.Placement="Top"
-                                Style="{StaticResource BottomButton}" DockPanel.Dock="Left">
-                                <Button.ContextMenu>
-                                <ContextMenu ItemsSource="{Binding AvailableEmulators}" Grid.IsSharedSizeScope="True">
+                        <Button Content="{DynamicResource EmuWizardButtonScanGames}" Name="ButtonScanGames"
+                                Style="{StaticResource BottomButton}" DockPanel.Dock="Left"
+                                pui:LeftClickContextMenuBehavior.Enabled="True">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="ContextMenuOpening" >
+                                    <prism:InvokeCommandAction Command="{Binding ScanGamesOpeningCommand}" />
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="PreviewMouseLeftButtonUp" >
+                                    <prism:InvokeCommandAction Command="{Binding ScanGamesOpeningCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Button.ContextMenu>
+                                <ContextMenu ItemsSource="{Binding AvailableEmulators}" Grid.IsSharedSizeScope="True"
+                                             Placement="Top">
                                     <ContextMenu.ItemContainerStyle>
                                         <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
-                                            <EventSetter Event="Click" Handler="ScanGamesMenuItem_Click" />
+                                            <Setter Property="Command" Value="{Binding Data.ScanGamesCommand, Source={StaticResource Proxy}}" />
+                                            <Setter Property="CommandParameter" Value="{Binding}" />
                                         </Style>
                                     </ContextMenu.ItemContainerStyle>
                                     <ContextMenu.ItemTemplate> 
@@ -176,13 +195,10 @@
                                     </ContextMenu.ItemTemplate>
                                 </ContextMenu>
                             </Button.ContextMenu>
-                        </Button>
-                        <Button Content="{DynamicResource EmuWizardButtonConfigureEmulator}" Style="{StaticResource BottomButton}" DockPanel.Dock="Right"
-                                Visibility="{Binding ShowConfigEmulatorButton, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                Name="ButtonConfigEmulator" Click="ButtonConfigEmulator_Click"/>
+                        </Button>                        
                     </DockPanel>
-                    <ListView SelectionMode="Single" Margin="5" BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
-                              ItemsSource="{Binding GamesList}" Name="ListGames">
+                    <ListView SelectionMode="Single" Margin="5" BorderThickness="{StaticResource ControlBorderThickness}"
+                              BorderBrush="{StaticResource NormalBorderBrush}" ItemsSource="{Binding GamesList}" Name="ListGames">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
                                 <Setter Property="Focusable" Value="False"/>
@@ -242,16 +258,18 @@
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource NegateConverter}}">
             <DockPanel LastChildFill="False" Margin="5">
-                <Button Content="{DynamicResource CloseLabel}" Name="ButtonClose" DockPanel.Dock="Right" Click="ButtonClose_Click"
-                        Visibility="{Binding ShowCloseButton, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource BottomButton}" />
-                <Button Content="{DynamicResource FinishLabel }" Name="ButtonFinish" DockPanel.Dock="Right" Click="ButtonFinish_Click"
-                        Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource BottomButton}" />
-                <Button Content="{DynamicResource NextLabel}" Name="ButtonNext" DockPanel.Dock="Right" Click="ButtonNext_Click"
-                        Visibility="{Binding ShowNextButton, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource BottomButton}" />
-                <!--<Button Content="{DynamicResource BackLabel}" Name="ButtonBack"  DockPanel.Dock="Right" Click="ButtonBack_Click"
-                        Visibility="{Binding ShowBackButton, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource BottomButton}" />-->
-                <Button Content="{DynamicResource ImportLabel}" Name="ButtonImport"  DockPanel.Dock="Right" Click="ButtonImport_Click"
-                        Visibility="{Binding ShowImportButton, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource BottomButton}" />
+                <Button Content="{DynamicResource CloseLabel}" Name="ButtonClose" DockPanel.Dock="Right"
+                        Command="{Binding CloseCommand}" Visibility="{Binding ShowCloseButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Style="{StaticResource BottomButton}" />
+                <Button Content="{DynamicResource FinishLabel }" Name="ButtonFinish" DockPanel.Dock="Right"
+                        Command="{Binding FinishCommand}" Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Style="{StaticResource BottomButton}" />
+                <Button Content="{DynamicResource NextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
+                        Command="{Binding NextCommand}" Visibility="{Binding ShowNextButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Style="{StaticResource BottomButton}" />
+                <Button Content="{DynamicResource ImportLabel}" Name="ButtonImport" DockPanel.Dock="Right"
+                        Command="{Binding ImportCommand}" Visibility="{Binding ShowImportButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Style="{StaticResource BottomButton}" />
             </DockPanel>
         </Border>
 

@@ -43,7 +43,7 @@ namespace PlayniteUI
             {
                 control.ContextMenu.PlacementTarget = control;
                 control.ContextMenu.IsOpen = true;
-            }            
+            }
         }
     }
 }

@@ -57,7 +57,7 @@
     <Color x:Key="MainColorDark">#252422</Color>
     <Color x:Key="HoverColor">#247BA0</Color>
     <Color x:Key="DefaultColor">#FF9BB1C5</Color>
-    <Color x:Key="GlyphColor">#019fcb</Color>
+    <Color x:Key="GlyphColor">#0089af</Color>
     <Color x:Key="PopupBackgroundColor">#171e26</Color>
     <Color x:Key="PopupBorderColor">#3e6184</Color>
     <Color x:Key="BackgroundToneColor">#182028</Color>

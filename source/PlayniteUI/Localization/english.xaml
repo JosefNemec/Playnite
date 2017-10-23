@@ -149,6 +149,8 @@ You can also configure and import any custom emulator later via configuration me
     <!--Errors-->
     <sys:String x:Key="DatabaseErroTitle">Database Error</sys:String>
     <sys:String x:Key="DatabaseOpenError">Failed to open library database.</sys:String>
+    <sys:String x:Key="DiagPackageCreationError">Failed to create diagnostics package.</sys:String>
+    <sys:String x:Key="DiagPackageCreationSuccess">Diagnostics package created successfully.</sys:String>
 
     <sys:String x:Key="BnetInstalledImportError">Failed to import installed Battle.net games.</sys:String>
     <sys:String x:Key="SteamInstalledImportError">Failed to import installed Steam games.</sys:String>

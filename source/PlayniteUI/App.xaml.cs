@@ -55,9 +55,10 @@ namespace PlayniteUI
             var exception = (Exception)e.ExceptionObject;
             logger.Error(exception, "Unhandled exception occured.");
 
-            var window = new CrashHandlerWindow();
-            window.TextDetails.Text = exception.ToString();
-            window.ShowDialog();
+            var model = new CrashHandlerViewModel(
+                CrashHandlerWindowFactory.Instance, new DialogsFactory(), new ResourceProvider());
+            model.Exception = exception.ToString();
+            model.ShowDialog();
             Process.GetCurrentProcess().Kill();
         }
 

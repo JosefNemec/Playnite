@@ -20,10 +20,16 @@ namespace PlayniteUI
         string SelectFile(string filter);
         string SelectIconFile();
         string SelectImagefile();
+        string SaveFile(string filter);
     }
 
     public class DialogsFactory : IDialogsFactory
     {
+        public string SaveFile(string filter)
+        {
+            return Dialogs.SaveFile(PlayniteWindows.CurrentWindow, filter);
+        }
+
         public string SelectFile(string filter)
         {
             return Dialogs.SelectFile(PlayniteWindows.CurrentWindow, filter);

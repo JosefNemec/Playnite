@@ -19,6 +19,8 @@ using Playnite.Providers.Steam;
 using PlayniteUI.Controls;
 using System.IO;
 using Playnite;
+using static PlayniteUI.ViewModels.InstalledGamesViewModel;
+using PlayniteUI.ViewModels;
 
 namespace PlayniteUI.Windows
 {
@@ -488,6 +490,7 @@ namespace PlayniteUI.Windows
 
         private void ButtonImportGames_Click(object sender, RoutedEventArgs e)
         {
+            var model = new InstalledGamesViewModel
             var window = new InstalledGamesWindow()
             {
                 Owner = this

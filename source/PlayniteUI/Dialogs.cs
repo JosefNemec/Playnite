@@ -11,6 +11,30 @@ namespace PlayniteUI
 {
     public class Dialogs
     {
+        public static string SaveFile(Window owner, string filter)
+        {
+            var dialog = new SaveFileDialog()
+            {
+                Filter = filter,
+                OverwritePrompt = true
+            };
+
+            var dialogResult = owner == null ? dialog.ShowDialog() : dialog.ShowDialog(owner);
+            if (dialogResult == true)
+            {
+                return dialog.FileName;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        public static string SaveFile(string filter)
+        {
+            return SaveFile(null, filter);
+        }
+
         public static string SelectFolder(Window owner)
         {
             var dialog = new CommonOpenFileDialog()
@@ -19,7 +43,8 @@ namespace PlayniteUI
                 Title = "Select Folder..."
             };
 
-            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            var dialogResult = owner == null ? dialog.ShowDialog() : dialog.ShowDialog(owner);
+            if (dialogResult == CommonFileDialogResult.Ok)
             {
                 return dialog.FileName;
             }

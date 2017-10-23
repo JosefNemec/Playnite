@@ -18,6 +18,10 @@ namespace PlayniteUI
         void RestoreWindow();
 
         void BringToForeground();
+
+        void Close();
+
+        void Close(bool? resutl);
     }
 
     public abstract class WindowFactory : IWindowFactory
@@ -35,13 +39,12 @@ namespace PlayniteUI
         public WindowFactory()
         {
             context = SynchronizationContext.Current;
-            Window = CreateNewWindowInstance();
         }
 
         public bool? CreateAndOpenDialog(object dataContext)
         {
             bool? result = null;
-            context.Post((a) =>
+            context.Send((a) =>
             {
                 Window = CreateNewWindowInstance();
                 Window.DataContext = dataContext;
@@ -54,8 +57,13 @@ namespace PlayniteUI
 
         public void Show(object dataContext)
         {
-            context.Post((a) =>
+            context.Send((a) =>
             {
+                if (Window == null)
+                {
+                    Window = CreateNewWindowInstance();
+                }
+
                 Window.DataContext = dataContext;
                 Window.Show();
             }, null);
@@ -63,7 +71,7 @@ namespace PlayniteUI
 
         public void BringToForeground()
         {
-            context.Post((a) =>
+            context.Send((a) =>
             {
                 WindowUtils.BringToForeground(Window);
             }, null);
@@ -71,9 +79,23 @@ namespace PlayniteUI
 
         public void RestoreWindow()
         {
-            context.Post((a) =>
+            context.Send((a) =>
             {
                 WindowUtils.RestoreWindow(Window);
+            }, null);
+        }
+
+        public void Close()
+        {
+            Close(null);
+        }
+
+        public void Close(bool? resutl)
+        {
+            context.Send((a) =>
+            {
+                Window.DialogResult = resutl;
+                Window.Close();
             }, null);
         }
     }

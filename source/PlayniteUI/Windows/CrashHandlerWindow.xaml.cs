@@ -19,54 +19,27 @@ using PlayniteUI.Controls;
 
 namespace PlayniteUI.Windows
 {
+    public class CrashHandlerWindowFactory : WindowFactory
+    {
+        public static CrashHandlerWindowFactory Instance
+        {
+            get => new CrashHandlerWindowFactory();
+        }
+
+        public override WindowBase CreateNewWindowInstance()
+        {
+            return new CrashHandlerWindow();
+        }
+    }
+
     /// <summary>
     /// Interaction logic for CrashHandlerWindow.xaml
     /// </summary>
     public partial class CrashHandlerWindow : WindowBase
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
-
         public CrashHandlerWindow()
         {
             InitializeComponent();
-        }
-
-        private void ButtonClose_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void ButtonSaveDiag_Click(object sender, RoutedEventArgs e)
-        {
-            var dialog = new SaveFileDialog()
-            {
-                Filter = "ZIP Archive (*.zip)|*.zip"
-            };
-
-            if (dialog.ShowDialog(this) == true)
-            {
-                try
-                {
-                    Diagnostic.CreateDiagPackage(dialog.FileName);
-                    PlayniteMessageBox.Show("Diagnostics package created successfully.");
-                }
-                catch (Exception exc)
-                {
-                    logger.Error(exc, "Faild to created diagnostics package.");
-                    PlayniteMessageBox.Show("Failed to create diagnostics package.");
-                }
-            }
-        }
-
-        private void ButtonReportIssue_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start(@"https://github.com/JosefNemec/Playnite/issues");
-        }
-
-        private void ButtonRestart_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start(Paths.ExecutablePath);
-            Close();
         }
     }
 }

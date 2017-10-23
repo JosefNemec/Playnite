@@ -37,51 +37,9 @@ namespace PlayniteUI
     /// </summary>
     public partial class AboutWindow : WindowBase
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
-
-        public string VersionInfo
-        {
-            get
-            {
-                return "Playnite " + Update.GetCurrentVersion().ToString(2);
-            }
-        }
-
         public AboutWindow()
         {
             InitializeComponent();
-        }
-
-        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
-        {
-            Process.Start(e.Uri.AbsoluteUri);
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void DiagButton_Click(object sender, RoutedEventArgs e)
-        {
-            var dialog = new SaveFileDialog()
-            {
-                Filter = "ZIP Archive (*.zip)|*.zip"
-            };
-
-            if (dialog.ShowDialog(this) == true)
-            {
-                try
-                {
-                    Diagnostic.CreateDiagPackage(dialog.FileName);
-                    PlayniteMessageBox.Show("Diagnostics package created successfully.");
-                }
-                catch (Exception exc)
-                {
-                    logger.Error(exc, "Faild to created diagnostics package.");
-                    PlayniteMessageBox.Show("Failed to create diagnostics package.");
-                }
-            }
         }
     }
 }

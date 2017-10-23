@@ -26,6 +26,7 @@ using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
 using PlayniteUI.Controls;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using PlayniteUI.ViewModels;
 
 namespace PlayniteUI
 {
@@ -806,16 +807,9 @@ namespace PlayniteUI
                 Categories = (ComparableList<string>)converter.ConvertBack(TextCategories.Text, typeof(ComparableList<string>), null, CultureInfo.InvariantCulture)
             };
 
-            var window = new CategoryConfigWindow()
-            {
-                AutoUpdateGame = false,
-                Game = dummyGame,
-                Owner = this
-            };
-
-            window.ShowDialog();
-
-            if (window.DialogResult == true)
+            var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, GameDatabase.Instance, dummyGame, false);
+            var result = model.ShowDialog();
+            if (result == true)
             {
                 TextCategories.Text = (string)converter.Convert(dummyGame.Categories, typeof(string), null, CultureInfo.InvariantCulture);
             }
