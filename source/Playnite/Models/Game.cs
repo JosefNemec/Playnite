@@ -630,6 +630,8 @@ namespace Playnite.Models
             var result = inputString;
             result = result.Replace("{InstallDir}", InstallDirectory);
             result = result.Replace("{ImagePath}", IsoPath);
+            result = result.Replace("{ImageNameNoExt}", Path.GetFileNameWithoutExtension(isoPath));
+            result = result.Replace("{ImageName}", Path.GetFileName(isoPath));
             return result;
         }
     }
