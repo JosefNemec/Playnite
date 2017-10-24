@@ -11,12 +11,12 @@ namespace PlayniteUI
 {
     public class Dialogs
     {
-        public static string SaveFile(Window owner, string filter)
+        public static string SaveFile(Window owner, string filter, bool promptOverwrite)
         {
             var dialog = new SaveFileDialog()
             {
                 Filter = filter,
-                OverwritePrompt = true
+                OverwritePrompt = promptOverwrite
             };
 
             var dialogResult = owner == null ? dialog.ShowDialog() : dialog.ShowDialog(owner);
@@ -30,9 +30,19 @@ namespace PlayniteUI
             }
         }
 
+        public static string SaveFile(Window owner, string filter)
+        {
+            return SaveFile(owner, filter, true);
+        }
+
+        public static string SaveFile(string filter, bool promptOverwrite)
+        {
+            return SaveFile(null, filter, promptOverwrite);
+        }
+
         public static string SaveFile(string filter)
         {
-            return SaveFile(null, filter);
+            return SaveFile(null, filter, true);
         }
 
         public static string SelectFolder(Window owner)

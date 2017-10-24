@@ -21,7 +21,8 @@ using Playnite.Providers.BattleNet;
 
 namespace Playnite
 {
-    public class Settings : INotifyPropertyChanged
+    // TODO write test for IEditableObject
+    public class Settings : INotifyPropertyChanged, IEditableObject
     {
         public class WindowPosition
         {
@@ -514,6 +515,9 @@ namespace Playnite
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        private bool isEditing = false;
+        private Settings editingCopy;
+        private List<string> editingNotifs;
 
         private static Settings instance;
         public static Settings Instance
@@ -534,9 +538,41 @@ namespace Playnite
             GridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
         }
 
+        public void BeginEdit()
+        {
+            isEditing = true;
+            editingNotifs = new List<string>();
+            editingCopy = this.CloneJson();
+        }
+
+        public void EndEdit()
+        {
+            isEditing = false;
+            foreach (var prop in editingNotifs)
+            {
+                OnPropertyChanged(prop);
+            }
+        }
+
+        public void CancelEdit()
+        {
+            editingCopy.CopyProperties(this, false);
+            isEditing = false;
+        }
+
         public void OnPropertyChanged(string name)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            if (isEditing)
+            {
+                if (!editingNotifs.Contains(name))
+                {
+                    editingNotifs.Add(name);
+                }
+            }
+            else
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }            
         }
 
         private void GridViewHeaders_PropertyChanged(object sender, PropertyChangedEventArgs e)

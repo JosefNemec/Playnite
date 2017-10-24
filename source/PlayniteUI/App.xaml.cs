@@ -80,6 +80,7 @@ namespace PlayniteUI
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 #endif
 
+            // Multi-instance checking
             if (Mutex.TryOpenExisting(instanceMuxet, out var mutex))
             {
                 var client = new PipeClient(Settings.GetAppConfigValue("PipeEndpoint"));
@@ -104,7 +105,54 @@ namespace PlayniteUI
                 appMutex = new Mutex(true, instanceMuxet);
             }
 
-            var mainWindow = new MainWindowFactory();
+            // First run wizard
+            if (!AppSettings.FirstTimeWizardComplete)
+            {
+                var wizardWindow = FirstTimeStartupWindowFactory.Instance;
+                var wizardModel = new FirstTimeStartupViewModel(
+                    wizardWindow,
+                    new DialogsFactory(),
+                    new ResourceProvider());
+                if (wizardModel.ShowDialog() == true)
+                {
+                    var settings = wizardModel.Settings;
+                    AppSettings.FirstTimeWizardComplete = true;
+                    if (wizardModel.DatabaseLocation == FirstTimeStartupViewModel.DbLocation.Custom)
+                    {
+                        AppSettings.DatabasePath = settings.DatabasePath;
+                    }
+                    else
+                    {
+                        AppSettings.DatabasePath = System.IO.Path.Combine(Paths.UserProgramDataPath, "games.db");
+                    }
+
+                    AppSettings.SteamSettings = settings.SteamSettings;
+                    AppSettings.GOGSettings = settings.GOGSettings;
+                    AppSettings.OriginSettings = settings.OriginSettings;
+                    AppSettings.BattleNetSettings = settings.BattleNetSettings;
+                    AppSettings.UplaySettings = settings.UplaySettings;
+                    AppSettings.SaveSettings();
+
+                    if (wizardModel.ImportedGames.Count > 0)
+                    {
+                        GameDatabase.Instance.OpenDatabase(AppSettings.DatabasePath);
+                        foreach (var game in wizardModel.ImportedGames)
+                        {
+                            if (game.Icon != null)
+                            {
+                                var iconId = "images/custom/" + game.Icon.Name;
+                                GameDatabase.Instance.AddImage(iconId, game.Icon.Name, game.Icon.Data);
+                                game.Game.Icon = iconId;
+                            }
+
+                            GameDatabase.Instance.AddGame(game.Game);
+                        }
+                    }
+                }
+            }
+
+            // Main view startup
+            var mainWindow = MainWindowFactory.Instance;
             mainModel = new MainViewModel(
                 mainWindow,
                 new DialogsFactory(),
@@ -112,9 +160,15 @@ namespace PlayniteUI
                 new NotificationFactory(),
                 AppSettings);
             Current.MainWindow = mainWindow.Window;
-            mainWindow.Show(mainModel);            
+            mainWindow.Show(mainModel);
+            mainWindow.BringToForeground();
             mainModel.LoadGames(AppSettings.UpdateLibStartup);
 
+            // Update and stats
+            CheckUpdate();
+            SendUsageData();
+
+            // Pipe server
             pipeService = new PipeService();
             pipeService.CommandExecuted += PipeService_CommandExecuted;
             pipeServer = new PipeServer(Settings.GetAppConfigValue("PipeEndpoint"));
@@ -161,47 +215,37 @@ namespace PlayniteUI
             }
         }
 
-        private void CheckUpdate()
+        private async void CheckUpdate()
         {
-            Task.Factory.StartNew(() =>
+            await Task.Factory.StartNew(() =>
             {
                 var update = new Update();
-                UpdateWindow updateWindow = null;
 
                 while (true)
                 {
                     try
                     {
-                        if ((updateWindow == null || !updateWindow.IsVisible) && update.IsUpdateAvailable)
+                        if (update.IsUpdateAvailable)
                         {
-                            if (update.IsUpdateAvailable)
+                            update.DownloadUpdate();
+
+                            try
                             {
-                                update.DownloadUpdate();
-
-                                try
-                                {
-                                    update.DownloadReleaseNotes();
-                                }
-                                catch (Exception exc)
-                                {
-                                    logger.Warn(exc, "Failed to download release notes.");
-                                }
-
-                                Dispatcher.Invoke(() =>
-                                {
-                                    updateWindow = new UpdateWindow()
-                                    {
-                                        Owner = MainWindow
-                                    };
-
-                                    updateWindow.SetUpdate(update);
-                                    updateWindow.Show();
-                                    updateWindow.Focus();
-                                });
+                                update.DownloadReleaseNotes();
                             }
+                            catch (Exception exc)
+                            {
+                                logger.Warn(exc, "Failed to download release notes.");
+                            }
+
+                            Dispatcher.Invoke(() =>
+                            {
+                                var model = new UpdateViewModel(update, UpdateWindowFactory.Instance);
+                                model.ShowDialog();
+                            });
                         }
                     }
-                    catch (Exception exc)
+                    catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
                         logger.Error(exc, "Failed to process update.");
                     }
@@ -211,16 +255,16 @@ namespace PlayniteUI
             });
         }
 
-        private void SendUsageData()
+        private async void SendUsageData()
         {
-            Task.Factory.StartNew(() =>
+            await Task.Factory.StartNew(() =>
             {
                 try
                 {
                     var client = new ServicesClient();
                     client.PostUserUsage();
                 }
-                catch (Exception exc)
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(exc, "Failed to post user usage data.");
                 }

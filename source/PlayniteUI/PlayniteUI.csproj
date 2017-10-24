@@ -222,11 +222,16 @@
     <Compile Include="GamesCollectionView.cs" />
     <Compile Include="Behaviors\ScrollToSelectedBehavior.cs" />
     <Compile Include="Resources.cs" />
+    <Compile Include="ViewModels\GameEditViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\FirstTimeStartupViewModel.cs" />
+    <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="ViewModels\InstalledGamesViewModel.cs" />
     <Compile Include="ViewModels\CrashHandlerViewModel.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\CategoryConfigViewModel.cs" />
     <Compile Include="ViewModels\EmulatorImportViewModel.cs" />
+    <Compile Include="ViewModels\MetadataLookupViewModel.cs" />
     <Compile Include="ViewModels\NotificationsViewModel.cs" />
     <Compile Include="WindowFactory.cs" />
     <Compile Include="Localization.cs" />

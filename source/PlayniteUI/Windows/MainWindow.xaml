@@ -10,16 +10,13 @@
         xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
         xmlns:m="clr-namespace:Playnite.Models;assembly=Playnite"
         xmlns:c="clr-namespace:PlayniteUI.Controls"
-        xmlns:cmd="clr-namespace:PlayniteUI.Commands"
         xmlns:tray="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
-        Title="Playnite"
-        Width="1200" Height="900"  WindowStartupLocation="CenterScreen" Icon="/Images/applogo.ico"        
-        Loaded="Window_Loaded"
+        Title="Playnite" ShowTitle="False"
+        Width="1200" Height="900" WindowStartupLocation="CenterScreen" Icon="/Images/applogo.ico"
         Visibility="{Binding Visibility, Mode=TwoWay}" WindowState="{Binding WindowState, Mode=TwoWay}"
-        x:Name="WindowMain" ShowTitle="False"
-        AutomationProperties.AutomationId="WindowMain">
+        x:Name="WindowMain" AutomationProperties.AutomationId="WindowMain">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing" >

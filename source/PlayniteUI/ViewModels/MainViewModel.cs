@@ -21,10 +21,6 @@ namespace PlayniteUI.ViewModels
     public class MainViewModel : ObservableObject
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-
-        //private bool importSteamCatWizard = false;
-        //private ulong importSteamCatWizardId = 0;
-
         private static object gamesLock = new object();
         //private WindowPositionHandler positionManager;
 
@@ -238,7 +234,12 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                OpenSettingsWindow(SettingsWindowFactory.Instance);
+                OpenSettings(
+                    new SettingsViewModel(GameDatabase.Instance,
+                    AppSettings,
+                    SettingsWindowFactory.Instance,
+                    dialogs,
+                    resources));
             });
         }
 
@@ -246,15 +247,19 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                OpenAddCustomGameWindow(GameEditWindowFactory.Instance);
+                AddCustomGame(GameEditWindowFactory.Instance);
             });
         }
 
         public RelayCommand<object> AddInstalledGamesCommand
         {
             get => new RelayCommand<object>((a) =>
-            {
-                OpenAddInstalledGamesWindow(InstalledGamesWindowFactory.Instance);
+            {                
+                ImportInstalledGames(
+                    new InstalledGamesViewModel(
+                    GameDatabase.Instance,
+                    InstalledGamesWindowFactory.Instance,
+                    dialogs));
             });
         }
 
@@ -439,7 +444,7 @@ namespace PlayniteUI.ViewModels
                     {
                         logger.Error(e, "Failed to import installed Uplay games.");
                         notifications.AddMessage(new NotificationMessage(
-                            NotificationCodes.BattleNetInstalledImportError,
+                            NotificationCodes.UplayInstalledImportError,
                             resources.FindString("UplayInstalledImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
@@ -456,7 +461,7 @@ namespace PlayniteUI.ViewModels
                     {
                         logger.Error(e, "Failed to import installed GOG games.");
                         notifications.AddMessage(new NotificationMessage(
-                            NotificationCodes.BattleNetInstalledImportError,
+                            NotificationCodes.GOGLInstalledImportError,
                             resources.FindString("GOGInstalledImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
@@ -473,7 +478,7 @@ namespace PlayniteUI.ViewModels
                     {
                         logger.Error(e, "Failed to import installed Steam games.");
                         notifications.AddMessage(new NotificationMessage(
-                            NotificationCodes.BattleNetInstalledImportError,
+                            NotificationCodes.SteamInstalledImportError,
                             resources.FindString("SteamInstalledImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
@@ -490,7 +495,7 @@ namespace PlayniteUI.ViewModels
                     {
                         logger.Error(e, "Failed to import installed Origin games.");
                         notifications.AddMessage(new NotificationMessage(
-                            NotificationCodes.BattleNetInstalledImportError,
+                            NotificationCodes.OriginInstalledImportError,
                             resources.FindString("OriginInstalledImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
@@ -509,39 +514,40 @@ namespace PlayniteUI.ViewModels
                     {
                         logger.Error(e, "Failed to download GOG library updates.");
                         notifications.AddMessage(new NotificationMessage(
-                            NotificationCodes.BattleNetInstalledImportError,
+                            NotificationCodes.GOGLibDownloadError,
                             resources.FindString("GOGLibraryImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
 
-                    //ProgressStatus = "Downloading Steam library updates...";
+                    ProgressStatus = "Downloading Steam library updates...";
 
-                    //try
-                    //{
-                    //    if (AppSettings.SteamSettings.IntegrationEnabled && AppSettings.SteamSettings.LibraryDownloadEnabled)
-                    //    {
-                    //        if (AppSettings.SteamSettings.IdSource == SteamIdSource.Name)
-                    //        {
-                    //            database.SteamUserName = AppSettings.SteamSettings.AccountName;
-                    //        }
-                    //        else
-                    //        {
-                    //            database.SteamUserName = AppSettings.SteamSettings.AccountId.ToString();
-                    //        }
+                    try
+                    {
+                        if (AppSettings.SteamSettings.IntegrationEnabled && AppSettings.SteamSettings.LibraryDownloadEnabled)
+                        {
+                            if (AppSettings.SteamSettings.IdSource == Playnite.Providers.Steam.SteamIdSource.Name)
+                            {
+                                database.SteamUserName = AppSettings.SteamSettings.AccountName;
+                            }
+                            else
+                            {
+                                database.SteamUserName = AppSettings.SteamSettings.AccountId.ToString();
+                            }
 
-                    //        database.UpdateOwnedGames(Provider.Steam);
-                    //        NotificationsWin.RemoveMessage(NotificationCodes.SteamLibDownloadError);
-                    //    }
-                    //}
-                    //catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    //{
-                    //    logger.Error(e, "Failed to download Steam library updates.");
-                    //    NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamLibDownloadError, "Failed to download Steam library updates: " + e.Message, NotificationType.Error, () =>
-                    //    {
+                            database.UpdateOwnedGames(Provider.Steam);
+                            notifications.RemoveMessage(NotificationCodes.SteamLibDownloadError);
+                        }
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, "Failed to download Steam library updates.");
+                        notifications.AddMessage(new NotificationMessage(
+                            NotificationCodes.SteamLibDownloadError,
+                            resources.FindString("SteamLibraryImportError") + $" {e.Message}",
+                            NotificationType.Error, null));
+                    }
 
-                    //    }));
-                    //}
-
+                    // TODO
                     //if (importSteamCatWizard && importSteamCatWizardId != 0)
                     //{
                     //    ProgressStatus = "Importing Steam categories...";
@@ -575,7 +581,7 @@ namespace PlayniteUI.ViewModels
                     {
                         logger.Error(e, "Failed to download Origin library updates.");
                         notifications.AddMessage(new NotificationMessage(
-                            NotificationCodes.BattleNetInstalledImportError,
+                            NotificationCodes.OriginLibDownloadError,
                             resources.FindString("OriginLibraryImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
@@ -594,7 +600,7 @@ namespace PlayniteUI.ViewModels
                     {
                         logger.Error(e, "Failed to download Battle.net library updates.");
                         notifications.AddMessage(new NotificationMessage(
-                            NotificationCodes.BattleNetInstalledImportError,
+                            NotificationCodes.BattleNetLibDownloadImportError,
                             resources.FindString("BnetLibraryImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
@@ -610,6 +616,7 @@ namespace PlayniteUI.ViewModels
 
                     ProgressTotal = gamesCount;
 
+                    //TODO
                     //var tasks = new List<Task>
                     //{
                     //        // Steam metada download thread
@@ -660,7 +667,7 @@ namespace PlayniteUI.ViewModels
             window.RestoreWindow();
         }
 
-        public void OpenAddCustomGameWindow(IWindowFactory window)
+        public void AddCustomGame(IWindowFactory window)
         {
             var newGame = new Game()
             {
@@ -692,9 +699,9 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public void OpenAddInstalledGamesWindow(IWindowFactory window)
+        public void ImportInstalledGames(InstalledGamesViewModel model)
         {
-            window.CreateAndOpenDialog(null);
+            model.ShowDialog();
         }
 
         public void ImportEmulatedGames(EmulatorImportViewModel model)
@@ -707,15 +714,15 @@ namespace PlayniteUI.ViewModels
             model.ShowDialog();
         }
 
-        public void OpenSettingsWindow(IWindowFactory window)
+        public void OpenSettings(SettingsViewModel model)
         {
-            window.CreateAndOpenDialog(AppSettings);
-
-            // TODO
-            //if (configWindow.ProviderIntegrationChanged || configWindow.DatabaseLocationChanged)
-            //{
-            //    LoadGames(true);
-            //}
+            if (model.ShowDialog() == true)
+            {
+                if (model.ProviderIntegrationChanged || model.DatabaseLocationChanged)
+                {
+                    LoadGames(true);
+                }
+            }
         }
 
         public void ConfigurePlatforms(PlatformsViewModel model)

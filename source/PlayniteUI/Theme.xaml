@@ -57,7 +57,7 @@
     <Color x:Key="MainColorDark">#252422</Color>
     <Color x:Key="HoverColor">#247BA0</Color>
     <Color x:Key="DefaultColor">#FF9BB1C5</Color>
-    <Color x:Key="GlyphColor">#0089af</Color>
+    <Color x:Key="GlyphColor">#019fcb</Color>
     <Color x:Key="PopupBackgroundColor">#171e26</Color>
     <Color x:Key="PopupBorderColor">#3e6184</Color>
     <Color x:Key="BackgroundToneColor">#182028</Color>
@@ -223,15 +223,17 @@
                 <ControlTemplate TargetType="{x:Type RadioButton}">
                     <BulletDecorator>
                         <BulletDecorator.Bullet>
+                            <Border Background="Transparent">
                                 <Grid Width="18" Height="18">
                                     <Ellipse x:Name="BulletBorder" Width="18" Height="18"
-                                             Stroke="{DynamicResource NormalBorderBrush}"
-                                             StrokeThickness="{TemplateBinding BorderThickness}" />
+                                                Stroke="{DynamicResource NormalBorderBrush}"
+                                                StrokeThickness="{TemplateBinding BorderThickness}" />
                                     <Viewbox x:Name="CheckIcon" Visibility="Collapsed" >
                                         <TextBlock Text="h" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
-                                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Viewbox>
                                 </Grid>
+                            </Border>
                         </BulletDecorator.Bullet>
                         <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
                             <ContentPresenter RecognizesAccessKey="True" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -426,6 +428,7 @@
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Padding" Value="2" />
+        <Setter Property="Margin" Value="1" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -433,10 +436,10 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Grid>                        
-                        <Rectangle x:Name="HoverRectangle" IsHitTestVisible="False" Visibility="Collapsed"
-                                   Fill="{DynamicResource NormalBrush}" />
-                        <Rectangle x:Name="SelectedRectangle" IsHitTestVisible="False" Visibility="Collapsed"
-                                   Fill="{DynamicResource GlyphBrush}" />
+                        <Border x:Name="HoverRectangle" IsHitTestVisible="False" Visibility="Collapsed"
+                                Background="{DynamicResource NormalBrush}" CornerRadius="{DynamicResource ControlCornerRadius}" />
+                        <Border x:Name="SelectedRectangle" IsHitTestVisible="False" Visibility="Collapsed"
+                                Background="{DynamicResource GlyphBrush}" CornerRadius="{DynamicResource ControlCornerRadius}"/>
                         <Border Padding="{TemplateBinding Padding}" Background="Transparent">
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -1183,12 +1186,14 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeView}">
-                    <ScrollViewer Focusable="False" Padding="4"
-                                  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-                                  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
-                                  CanContentScroll="True">
-                        <ItemsPresenter />
-                    </ScrollViewer>
+                    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <ScrollViewer Focusable="False" Padding="4"
+                                      HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                      VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                                      CanContentScroll="True">
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -1198,58 +1203,51 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
-        <Setter Property="Padding" Value="2" />
+        <Setter Property="Padding" Value="0,2,4,2" />
+        <Setter Property="Margin" Value="0,1,0,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition MinWidth="20" Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <ToggleButton x:Name="Expander" ClickMode="Press"
-                                      IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}">
-                            <ToggleButton.Style>
-                                <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource BaseStyle}">
-                                    <Setter Property="Focusable" Value="False" />
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                                <Grid>
-                                                    <Viewbox x:Name="IsExpandedPath" Visibility="Visible" >
-                                                        <TextBlock Text="4" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
-                                                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                    </Viewbox>
-                                                    <Viewbox x:Name="ExpandPath" Visibility="Collapsed" >
-                                                        <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
-                                                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                    </Viewbox>
-                                                </Grid>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsChecked" Value="True">
-                                                        <Setter Property="Visibility" Value="Visible" TargetName="ExpandPath" />
-                                                        <Setter Property="Visibility" Value="Collapsed" TargetName="IsExpandedPath" />
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </ToggleButton.Style>
-                        </ToggleButton>                        
-                        <Grid Width="Auto" Height="Auto" Grid.Column="1">
-                            <Border x:Name="SelectionBorder" Background="Transparent"
-                                    Padding="{TemplateBinding Padding}">
-                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" Height="Auto" />
-                            </Border>
-                        </Grid>
-                        <ItemsPresenter x:Name="ItemsHost" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" />
-                    </Grid>
+                    <StackPanel>
+                        <Border x:Name="SelectionBorder" Background="Transparent"
+                                Padding="{TemplateBinding Padding}" Margin="{TemplateBinding Margin}">
+                            <DockPanel>
+                                <ToggleButton x:Name="Expander" ClickMode="Press" DockPanel.Dock="Left"
+                                              IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <ToggleButton.Style>
+                                        <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource BaseStyle}">
+                                            <Setter Property="Focusable" Value="False" />
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                                        <Grid>
+                                                            <Viewbox x:Name="IsExpandedPath" Visibility="Visible" >
+                                                                <TextBlock Text="4" FontFamily="Marlett" Foreground="{DynamicResource TextBrush}"
+                                                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Viewbox>
+                                                            <Viewbox x:Name="ExpandPath" Visibility="Collapsed" >
+                                                                <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource TextBrush}"
+                                                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Viewbox>
+                                                        </Grid>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsChecked" Value="True">
+                                                                <Setter Property="Visibility" Value="Visible" TargetName="ExpandPath" />
+                                                                <Setter Property="Visibility" Value="Collapsed" TargetName="IsExpandedPath" />
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ToggleButton.Style>
+                                </ToggleButton>
+                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" Height="Auto"
+                                                  DockPanel.Dock="Left"/>
+                            </DockPanel>
+                        </Border>
+                        <ItemsPresenter x:Name="ItemsHost" Margin="20,0,0,0" />
+                    </StackPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsExpanded" Value="False">
                             <Setter Property="Visibility" Value="Collapsed" TargetName="ItemsHost" />

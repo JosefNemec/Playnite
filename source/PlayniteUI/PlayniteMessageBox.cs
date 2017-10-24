@@ -21,6 +21,7 @@ namespace PlayniteUI
         string SelectIconFile();
         string SelectImagefile();
         string SaveFile(string filter);
+        string SaveFile(string filter, bool promptOverwrite);
     }
 
     public class DialogsFactory : IDialogsFactory
@@ -28,6 +29,11 @@ namespace PlayniteUI
         public string SaveFile(string filter)
         {
             return Dialogs.SaveFile(PlayniteWindows.CurrentWindow, filter);
+        }
+
+        public string SaveFile(string filter, bool promptOverwrite)
+        {
+            return Dialogs.SaveFile(PlayniteWindows.CurrentWindow, filter, promptOverwrite);
         }
 
         public string SelectFile(string filter)

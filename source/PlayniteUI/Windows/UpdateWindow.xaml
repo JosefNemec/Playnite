@@ -8,7 +8,8 @@
         xmlns:html="clr-namespace:TheArtOfDev.HtmlRenderer.WPF;assembly=HtmlRenderer.WPF"
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"
-        Title="Update Available" Height="500" Width="600" WindowStartupLocation="CenterOwner">
+        Title="Update Available" Height="500" Width="600" WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="True">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -18,9 +19,9 @@
 
         <DockPanel Background="{StaticResource ControlBackgroundBrush}" Grid.Row="0" Margin="5,5,5,0">
             <TextBlock Text="Changes since last update:" Style="{StaticResource BaseTextBlockStyle}"
-                    Margin="10" DockPanel.Dock="Top"/>
+                       Margin="10" DockPanel.Dock="Top"/>
             <ScrollViewer DockPanel.Dock="Top">
-                <ItemsControl Name="ItemsNotes">
+                <ItemsControl Name="ItemsNotes" ItemsSource="{Binding ReleaseNotes}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <DockPanel Margin="0,5,0,0">
@@ -41,9 +42,11 @@
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
             <DockPanel LastChildFill="False" Margin="5">
                 <Button Name="ButtonClose" Content="Close" DockPanel.Dock="Right" IsCancel="True"
-                Click="ButtonClose_Click" Style="{StaticResource BottomButton}"/>
+                        Style="{StaticResource BottomButton}"
+                        Command="{Binding CloseCommand}"/>
                 <Button Name="ButtonInstall" Content="Install Update" DockPanel.Dock="Right"
-                Click="ButtonInstall_Click" Style="{StaticResource BottomButton}"/>
+                        Style="{StaticResource BottomButton}"
+                        Command="{Binding InstallUpdateCommand}"/>
             </DockPanel>
         </Border>
     </Grid>

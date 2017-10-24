@@ -227,6 +227,12 @@ namespace PlayniteUI.ViewModels
             this.dialogs = dialogs;
         }
 
+        public InstalledGamesViewModel(IWindowFactory window, IDialogsFactory dialogs)
+        {
+            this.window = window;
+            this.dialogs = dialogs;
+        }
+
         public bool? ShowDialog()
         {
             LoadDefaultList();
@@ -292,16 +298,19 @@ namespace PlayniteUI.ViewModels
                 Games.Add(data);
             }
 
-            foreach (var game in Games)
+            if (database != null)
             {
-                if (game.Icon != null)
+                foreach (var game in Games)
                 {
-                    var iconId = "images/custom/" + game.Icon.Name;
-                    database.AddImage(iconId, game.Icon.Name, game.Icon.Data);
-                    game.Game.Icon = iconId;
-                }
+                    if (game.Icon != null)
+                    {
+                        var iconId = "images/custom/" + game.Icon.Name;
+                        database.AddImage(iconId, game.Icon.Name, game.Icon.Data);
+                        game.Game.Icon = iconId;
+                    }
 
-                database.AddGame(game.Game);
+                    database.AddGame(game.Game);
+                }
             }
 
             CloseDialog(true);

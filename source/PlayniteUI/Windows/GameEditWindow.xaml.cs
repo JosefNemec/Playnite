@@ -823,17 +823,11 @@ namespace PlayniteUI
                 return;
             }
 
-            var window = new MetadataLookupWindow()
+            var model = new MetadataLookupViewModel(provider, MetadataLookupWindowFactory.Instance, new DialogsFactory());
+            model.SearchTerm = Game.Name;
+            if (model.ShowDialog() == true)
             {
-                DataContext = Game,
-                ShowInTaskbar = false,
-                Owner = this,
-                WindowStartupLocation = WindowStartupLocation.CenterOwner
-            };
-
-            if (window.LookupData(TextName.Text, provider) == true)
-            {
-                PreviewGameData(window.MetadataData);
+                PreviewGameData(model.MetadataData);
                 CheckBoxesVisible = true;
             }
         }

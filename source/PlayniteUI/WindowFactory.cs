@@ -48,7 +48,11 @@ namespace PlayniteUI
             {
                 Window = CreateNewWindowInstance();
                 Window.DataContext = dataContext;
-                Window.Owner = PlayniteWindows.CurrentWindow;
+                if (Window != PlayniteWindows.CurrentWindow)
+                {
+                    Window.Owner = PlayniteWindows.CurrentWindow;
+                }
+
                 result = Window.ShowDialog();
             }, null);
 
