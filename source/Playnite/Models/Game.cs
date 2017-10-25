@@ -16,6 +16,7 @@ using Playnite.Providers;
 using System.Collections.Concurrent;
 using Playnite.Providers.Uplay;
 using Playnite.Providers.BattleNet;
+using Newtonsoft.Json;
 
 namespace Playnite.Models
 {
@@ -54,6 +55,7 @@ namespace Playnite.Models
             }
         }
 
+        [JsonIgnore]
         [BsonIgnore]
         public string DescriptionView
         {
@@ -218,6 +220,7 @@ namespace Playnite.Models
             }
         }
 
+        [JsonIgnore]
         [BsonIgnore]
         public bool IsInstalled
         {
@@ -409,6 +412,7 @@ namespace Playnite.Models
         }
 
         private bool isSetupInProgress = false;
+        [JsonIgnore]
         [BsonIgnore]
         public bool IsSetupInProgress
         {

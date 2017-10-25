@@ -106,6 +106,7 @@ namespace PlayniteUI
             }
 
             // First run wizard
+            ulong steamCatImportId = 0;
             if (!AppSettings.FirstTimeWizardComplete)
             {
                 var wizardWindow = FirstTimeStartupWindowFactory.Instance;
@@ -148,12 +149,18 @@ namespace PlayniteUI
                             GameDatabase.Instance.AddGame(game.Game);
                         }
                     }
+
+                    if (wizardModel.SteamImportCategories)
+                    {
+                        steamCatImportId = wizardModel.SteamIdCategoryImport;
+                    }
                 }
             }
 
             // Main view startup
             var mainWindow = MainWindowFactory.Instance;
             mainModel = new MainViewModel(
+                GameDatabase.Instance,
                 mainWindow,
                 new DialogsFactory(),
                 new ResourceProvider(),
@@ -162,7 +169,7 @@ namespace PlayniteUI
             Current.MainWindow = mainWindow.Window;
             mainWindow.Show(mainModel);
             mainWindow.BringToForeground();
-            mainModel.LoadGames(AppSettings.UpdateLibStartup);
+            mainModel.LoadGames(AppSettings.UpdateLibStartup, steamCatImportId);
 
             // Update and stats
             CheckUpdate();

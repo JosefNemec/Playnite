@@ -337,15 +337,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollBar}">
-                        <Track x:Name="PART_Track" Orientation="Vertical" IsDirectionReversed="True"
-                               Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
-                            <Track.Resources>
-                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">42</sys:Double>
-                            </Track.Resources>
-                            <Track.Thumb>
-                                <Thumb />
-                            </Track.Thumb>
-                        </Track>
+                    <Track x:Name="PART_Track" Orientation="Vertical" IsDirectionReversed="True"
+                           Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                        <Track.Resources>
+                            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">42</sys:Double>
+                        </Track.Resources>
+                        <Track.Thumb>
+                            <Thumb />
+                        </Track.Thumb>
+                    </Track>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Orientation" Value="Horizontal">
                             <Setter Property="LayoutTransform" TargetName="PART_Track">
@@ -588,7 +588,7 @@
                                    Placement="Bottom" Focusable="False" AllowsTransparency="True">
                                 <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}"
                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                    <Border MinHeight="45" BorderBrush="{DynamicResource PopupBorderBrush}"
+                                    <Border BorderBrush="{DynamicResource PopupBorderBrush}"
                                             BorderThickness="{DynamicResource PopupBorderThickness}"
                                             Background="{DynamicResource PopupBackgroundBrush}">
                                         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">

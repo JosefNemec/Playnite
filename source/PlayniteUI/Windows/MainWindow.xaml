@@ -13,7 +13,7 @@
         xmlns:tray="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
-        Title="Playnite" ShowTitle="False"
+        Title="Playnite" ShowTitle="False" Loaded="Window_Loaded"
         Width="1200" Height="900" WindowStartupLocation="CenterScreen" Icon="/Images/applogo.ico"
         Visibility="{Binding Visibility, Mode=TwoWay}" WindowState="{Binding WindowState, Mode=TwoWay}"
         x:Name="WindowMain" AutomationProperties.AutomationId="WindowMain">

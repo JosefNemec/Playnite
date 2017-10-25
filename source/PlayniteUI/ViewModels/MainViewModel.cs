@@ -2,6 +2,7 @@
 using Playnite;
 using Playnite.Database;
 using Playnite.Models;
+using Playnite.Providers.Steam;
 using PlayniteUI.Commands;
 using PlayniteUI.Controls;
 using PlayniteUI.Windows;
@@ -22,7 +23,33 @@ namespace PlayniteUI.ViewModels
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private static object gamesLock = new object();
-        //private WindowPositionHandler positionManager;
+        private IWindowFactory window;
+        private IDialogsFactory dialogs;
+        private IResourceProvider resources;
+        private INotificationFactory notifications;
+        private GameDatabase database;
+
+        private GameViewEntry selectedGame;
+        public GameViewEntry SelectedGame
+        {
+            get => selectedGame;
+            set
+            {
+                selectedGame = value;
+                OnPropertyChanged("SelectedGame");
+            }
+        }
+
+        private IEnumerable<GameViewEntry> selectedGames;
+        public IEnumerable<GameViewEntry> SelectedGames
+        {
+            get => selectedGames;
+            set
+            {
+                selectedGames = value;
+                OnPropertyChanged("SelectedGames");
+            }
+        }
 
         private GamesCollectionView gamesView;
         public GamesCollectionView GamesView
@@ -145,7 +172,6 @@ namespace PlayniteUI.ViewModels
             private set;
         }
 
-#region Commands
         public RelayCommand<IGame> StartGameCommand
         {
             get => new RelayCommand<IGame>((game) =>
@@ -166,7 +192,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                LoadGames(true);
+                LoadGames(true, 0);
             });
         }
 
@@ -223,7 +249,7 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 ConfigurePlatforms(
-                    new PlatformsViewModel(GameDatabase.Instance,
+                    new PlatformsViewModel(database,
                     PlatformsWindowFactory.Instance,
                     dialogs,
                     resources));
@@ -235,7 +261,7 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 OpenSettings(
-                    new SettingsViewModel(GameDatabase.Instance,
+                    new SettingsViewModel(database,
                     AppSettings,
                     SettingsWindowFactory.Instance,
                     dialogs,
@@ -257,7 +283,7 @@ namespace PlayniteUI.ViewModels
             {                
                 ImportInstalledGames(
                     new InstalledGamesViewModel(
-                    GameDatabase.Instance,
+                    database,
                     InstalledGamesWindowFactory.Instance,
                     dialogs));
             });
@@ -268,21 +294,16 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 ImportEmulatedGames(
-                    new EmulatorImportViewModel(GameDatabase.Instance,
+                    new EmulatorImportViewModel(database,
                     EmulatorImportViewModel.DialogType.GameImport,
                     EmulatorImportWindowFactory.Instance,
                     dialogs,
                     resources));
             });
         }
-#endregion Commands
-
-        private IWindowFactory window;
-        private IDialogsFactory dialogs;
-        private IResourceProvider resources;
-        private INotificationFactory notifications;
 
         public MainViewModel(
+            GameDatabase database,
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources,
@@ -293,8 +314,8 @@ namespace PlayniteUI.ViewModels
             this.dialogs = dialogs;
             this.resources = resources;
             this.notifications = notifications;
+            this.database = database;
             AppSettings = settings;
-            //positionManager = new WindowPositionHandler(this, "Main", Config);
 
             try
             {
@@ -307,7 +328,7 @@ namespace PlayniteUI.ViewModels
 
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
-            FilterSelector = new FilterSelectorConfig(new GamesStats(GameDatabase.Instance), AppSettings.FilterSettings);
+            FilterSelector = new FilterSelectorConfig(new GamesStats(database), AppSettings.FilterSettings);
         }
 
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -355,7 +376,7 @@ namespace PlayniteUI.ViewModels
             Application.Current.Shutdown();
         }
 
-        public async void LoadGames(bool updateLibrary)
+        public async void LoadGames(bool updateLibrary, ulong steamImportCatId)
         {
             if (string.IsNullOrEmpty(AppSettings.DatabasePath))
             {
@@ -369,7 +390,6 @@ namespace PlayniteUI.ViewModels
             }
 
             GameAdditionAllowed = false;
-            var database = GameDatabase.Instance;
 
             try
             {
@@ -546,26 +566,25 @@ namespace PlayniteUI.ViewModels
                             resources.FindString("SteamLibraryImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
+                                        
+                    if (steamImportCatId > 0)
+                    {
+                        ProgressStatus = "Importing Steam categories...";
 
-                    // TODO
-                    //if (importSteamCatWizard && importSteamCatWizardId != 0)
-                    //{
-                    //    ProgressStatus = "Importing Steam categories...";
-
-                    //    try
-                    //    {
-                    //        var steamLib = new SteamLibrary();
-                    //        GameDatabase.Instance.ImportCategories(steamLib.GetCategorizedGames(importSteamCatWizardId));
-                    //    }
-                    //    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    //    {
-                    //        logger.Error(e, "Failed to import Steam categories.");
-                    //        NotificationsWin.AddMessage(new NotificationMessage(NotificationCodes.SteamLibDownloadError, "Failed to import Steam categories: " + e.Message, NotificationType.Error, () =>
-                    //        {
-
-                    //        }));
-                    //    }
-                    //}
+                        try
+                        {
+                            var steamLib = new SteamLibrary();
+                            database.ImportCategories(steamLib.GetCategorizedGames(steamImportCatId));
+                        }
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            logger.Error(e, "Failed to import Steam categories.");
+                            notifications.AddMessage(new NotificationMessage(
+                                NotificationCodes.SteamCatImportError,
+                                resources.FindString("SteamCategoryImportError") + $" {e.Message}",
+                                NotificationType.Error, null));
+                        }
+                    }
 
                     ProgressStatus = "Downloading Origin library updates...";
 
@@ -616,37 +635,36 @@ namespace PlayniteUI.ViewModels
 
                     ProgressTotal = gamesCount;
 
-                    //TODO
-                    //var tasks = new List<Task>
-                    //{
-                    //        // Steam metada download thread
-                    //        Task.Factory.StartNew(() =>
-                    //        {
-                    //            DownloadMetadata(database, Provider.Steam, ProgressControl, GamesLoaderHandler.CancelToken.Token);
-                    //        }),
-                    //        // Origin metada download thread
-                    //        Task.Factory.StartNew(() =>
-                    //        {
-                    //            DownloadMetadata(database, Provider.Origin, ProgressControl, GamesLoaderHandler.CancelToken.Token);
-                    //        }),
-                    //        // GOG metada download thread
-                    //        Task.Factory.StartNew(() =>
-                    //        {
-                    //            DownloadMetadata(database, Provider.GOG, ProgressControl, GamesLoaderHandler.CancelToken.Token);
-                    //        }),
-                    //        // Uplay metada download thread
-                    //        Task.Factory.StartNew(() =>
-                    //        {
-                    //            DownloadMetadata(database, Provider.Uplay, ProgressControl, GamesLoaderHandler.CancelToken.Token);
-                    //        }),
-                    //        // BattleNet metada download thread
-                    //        Task.Factory.StartNew(() =>
-                    //        {
-                    //            DownloadMetadata(database, Provider.BattleNet, ProgressControl, GamesLoaderHandler.CancelToken.Token);
-                    //        })
-                    //};
+                    var tasks = new List<Task>
+                    {
+                        // Steam metada download thread
+                        Task.Factory.StartNew(() =>
+                        {
+                            DownloadMetadata(database, Provider.Steam, GamesLoaderHandler.CancelToken.Token);
+                        }),
+                        // Origin metada download thread
+                        Task.Factory.StartNew(() =>
+                        {
+                            DownloadMetadata(database, Provider.Origin, GamesLoaderHandler.CancelToken.Token);
+                        }),
+                        // GOG metada download thread
+                        Task.Factory.StartNew(() =>
+                        {
+                            DownloadMetadata(database, Provider.GOG, GamesLoaderHandler.CancelToken.Token);
+                        }),
+                        // Uplay metada download thread
+                        Task.Factory.StartNew(() =>
+                        {
+                            DownloadMetadata(database, Provider.Uplay, GamesLoaderHandler.CancelToken.Token);
+                        }),
+                        // BattleNet metada download thread
+                        Task.Factory.StartNew(() =>
+                        {
+                            DownloadMetadata(database, Provider.BattleNet, GamesLoaderHandler.CancelToken.Token);
+                        })
+                    };
 
-                    //Task.WaitAll(tasks.ToArray());
+                    Task.WaitAll(tasks.ToArray());
 
 
                     ProgressStatus = "Library update finished";
@@ -675,27 +693,15 @@ namespace PlayniteUI.ViewModels
                 Provider = Provider.Custom
             };
 
-            GameDatabase.Instance.AddGame(newGame);
+            database.AddGame(newGame);
             if (GamesEditor.Instance.EditGame(newGame) == true)
             {
-                // TODO
-                //var viewEntry = GamesView.Items.First(a => a.Game.ProviderId == newGame.ProviderId);
-                //switch (Settings.Instance.GamesViewType)
-                //{
-                //    case ViewType.List:
-                //        ListGamesView.ListGames.SelectedItem = viewEntry;
-                //        ListGamesView.ListGames.ScrollIntoView(viewEntry);
-                //        break;
-
-                //    case ViewType.Grid:
-                //        GridGamesView.GridGames.SelectedItem = viewEntry;
-                //        GridGamesView.GridGames.ScrollIntoView(viewEntry);
-                //        break;
-                //}
+                var viewEntry = GamesView.Items.First(a => a.Game.ProviderId == newGame.ProviderId);
+                SelectedGame = viewEntry;
             }
             else
             {
-                GameDatabase.Instance.DeleteGame(newGame);
+                database.DeleteGame(newGame);
             }
         }
 
@@ -720,7 +726,7 @@ namespace PlayniteUI.ViewModels
             {
                 if (model.ProviderIntegrationChanged || model.DatabaseLocationChanged)
                 {
-                    LoadGames(true);
+                    LoadGames(true, 0);
                 }
             }
         }

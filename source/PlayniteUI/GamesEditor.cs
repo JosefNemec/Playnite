@@ -68,24 +68,24 @@ namespace PlayniteUI
 
         public bool? EditGame(IGame game)
         {
-            var window = new GameEditWindow()
-            {
-                Game = game,
-                Owner = Application.Current.MainWindow
-            };
-            window.ShowDialog();
-            return window.DialogResult;
+            var model = new GameEditViewModel(
+                            game,
+                            GameDatabase.Instance,
+                            GameEditWindowFactory.Instance,
+                            new DialogsFactory(),
+                            new ResourceProvider());
+            return model.ShowDialog();
         }
 
         public bool? EditGames(IEnumerable<IGame> games)
         {
-            var window = new GameEditWindow()
-            {
-                Games = games,
-                Owner = Application.Current.MainWindow
-            };
-            window.ShowDialog();
-            return window.DialogResult;
+            var model = new GameEditViewModel(
+                            games,
+                            GameDatabase.Instance,
+                            GameEditWindowFactory.Instance,
+                            new DialogsFactory(),
+                            new ResourceProvider());
+            return model.ShowDialog();
         }
 
         public void PlayGame(IGame game)

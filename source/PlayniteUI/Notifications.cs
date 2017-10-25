@@ -90,5 +90,6 @@ namespace PlayniteUI
         public static readonly int UplayInstalledImportError = 7;
         public static readonly int BattleNetInstalledImportError = 8;
         public static readonly int BattleNetLibDownloadImportError = 9;
+        public static readonly int SteamCatImportError = 10;
     }
 }

@@ -84,7 +84,7 @@
         </Grid>
         
         <Grid Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <ProgressBar IsIndeterminate="True" Width="350" Height="50" />
+            <ProgressBar IsIndeterminate="True" Width="350" Height="40" />
             <TextBlock Text="Scanning..." HorizontalAlignment="Center" VerticalAlignment="Center"
                        Style="{DynamicResource BaseTextBlockStyle}"/>
         </Grid>

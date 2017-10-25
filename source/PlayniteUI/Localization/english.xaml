@@ -152,6 +152,8 @@ You can also configure and import any custom emulator later via configuration me
     <sys:String x:Key="DiagPackageCreationError">Failed to create diagnostics package.</sys:String>
     <sys:String x:Key="DiagPackageCreationSuccess">Diagnostics package created successfully.</sys:String>
 
+    <sys:String x:Key="SteamCategoryImportError">Failed to import Steam categories.</sys:String>
+    
     <sys:String x:Key="BnetInstalledImportError">Failed to import installed Battle.net games.</sys:String>
     <sys:String x:Key="SteamInstalledImportError">Failed to import installed Steam games.</sys:String>
     <sys:String x:Key="GOGInstalledImportError">Failed to import installed GOG games.</sys:String>

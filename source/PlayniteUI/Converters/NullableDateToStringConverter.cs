@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace PlayniteUI
@@ -28,8 +29,15 @@ namespace PlayniteUI
                 return null;
             }
 
-            DateTime? newDate = DateTime.ParseExact(value as string, Playnite.Constants.DateUiFormat, CultureInfo.InvariantCulture);
-            return newDate;
+            var sucess = DateTime.TryParseExact(value as string, Playnite.Constants.DateUiFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var newDate);
+            if (sucess)
+            {
+                return newDate;
+            }
+            else
+            {
+                return DependencyProperty.UnsetValue;
+            }
         }
     }
 }

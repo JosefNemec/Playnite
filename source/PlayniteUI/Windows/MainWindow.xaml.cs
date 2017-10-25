@@ -20,9 +20,17 @@ namespace PlayniteUI
     /// </summary>
     public partial class MainWindow : WindowBase
     {
+        private WindowPositionHandler positionManager;
+
         public MainWindow()
         {
             InitializeComponent();
+            positionManager = new WindowPositionHandler(this, "Main", App.AppSettings);
+        }
+
+        private void Window_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            positionManager.RestoreSizeAndLocation();
         }
     }
 }
