@@ -8,7 +8,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Theme.xaml"/>
+                <ResourceDictionary Source="Themes/BaseTheme.xaml"/>
                 <ResourceDictionary Source="Localization/english.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <sys:Boolean x:Key="AsyncImagesEnabled">True</sys:Boolean>

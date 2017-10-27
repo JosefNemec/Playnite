@@ -57,7 +57,7 @@ namespace PlayniteUI
         public GameDetails()
         {
             InitializeComponent();
-            PopupMore.ShowPlayInstallButton = false;
+            //PopupMore.ShowPlayInstallButton = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -76,8 +76,8 @@ namespace PlayniteUI
 
         private void ButtonMore_Click(object sender, RoutedEventArgs e)
         {
-            PopupMore.PlacementTarget = (UIElement)sender;
-            PopupMore.IsOpen = true;
+            //PopupMore.PlacementTarget = (UIElement)sender;
+            //PopupMore.IsOpen = true;
         }
 
         private void ButtonSetupProgress_Click(object sender, RoutedEventArgs e)
@@ -130,7 +130,7 @@ namespace PlayniteUI
                         break;
                 }
 
-                PopupMore.DataContext = game.Game;
+                //PopupMore.DataContext = game.Game;
             }
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowContent"));

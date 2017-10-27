@@ -105,6 +105,9 @@ namespace PlayniteUI
                 appMutex = new Mutex(true, instanceMuxet);
             }
 
+            // Load skin
+            Skins.ApplySkin("Classic");
+
             // First run wizard
             ulong steamCatImportId = 0;
             if (!AppSettings.FirstTimeWizardComplete)

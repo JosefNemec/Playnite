@@ -9,7 +9,8 @@
              d:DesignWidth="300" Height="28">
 
     <Grid>
-        <TextBlock Text="⌕" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0">
+        <TextBlock Text="⌕" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"
+                   Foreground="{DynamicResource TextBrushDarker}">
             <TextBlock.Style>
                 <Style BasedOn="{StaticResource BaseTextBlockStyle}" TargetType="TextBlock">
                     <Setter Property="Visibility" Value="Hidden" />
@@ -39,7 +40,7 @@
             </TextBox.Style>
         </TextBox>
         <TextBlock Text="⌫" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" 
-                   MouseUp="ClearImage_MouseUp">
+                   MouseUp="ClearImage_MouseUp" Foreground="{DynamicResource TextBrushDarker}">
                 <TextBlock.Style>
                     <Style BasedOn="{StaticResource BaseTextBlockStyle}" TargetType="TextBlock">
                         <Style.Triggers>

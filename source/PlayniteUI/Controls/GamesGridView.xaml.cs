@@ -23,63 +23,46 @@ namespace PlayniteUI.Controls
     /// <summary>
     /// Interaction logic for GamesGridView.xaml
     /// </summary>
-    public partial class GamesGridView : UserControl, INotifyPropertyChanged
+    public partial class GamesGridView : UserControl
     {
         public IEnumerable ItemsSource
         {
             get
             {
-                return GridGames.ItemsSource;
+                return (IEnumerable)GetValue(ItemsSourceProperty);
             }
 
             set
             {
-                GridGames.ItemsSource = value;
+                SetValue(ItemsSourceProperty, value);
             }
         }
 
-        private Settings appSettings;
+        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(GamesGridView));
+        
         public Settings AppSettings
         {
             get
             {
-                return appSettings;
+                return (Settings)GetValue(AppSettingsProperty);
             }
 
             set
             {
-                GridGames.DataContext = value;
-                HeaderMenu.DataContext = value;
-                appSettings = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AppSettings"));
+                SetValue(AppSettingsProperty, value);
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public static readonly DependencyProperty AppSettingsProperty = DependencyProperty.Register("AppSettings", typeof(Settings), typeof(GamesGridView));
 
         public GamesGridView()
         {
             InitializeComponent();
         }
 
-        private void Grid_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if (GridGames.SelectedItems.Count > 1)
-            {
-                PopupGameMulti.DataContext = GridGames.SelectedItems.Cast<GameViewEntry>().Select(a => a.Game).ToList();
-                PopupGameMulti.IsOpen = true;
-            }
-            else if (GridGames.SelectedItems.Count == 1)
-            {
-                var game = (GridGames.SelectedItem as GameViewEntry).Game;
-                PopupGame.DataContext = game;
-                PopupGame.IsOpen = true;
-            }
-        }
-
         private void Grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (GridGames.SelectedItem == null)
+            if (e.LeftButton != MouseButtonState.Pressed || GridGames.SelectedItem == null)
             {
                 return;
             }
@@ -101,11 +84,6 @@ namespace PlayniteUI.Controls
                     GamesEditor.Instance.InstallGame(game);
                 }
             }
-        }
-
-        private void Grid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void GridViewColumnHeader_Loaded(object sender, RoutedEventArgs e)

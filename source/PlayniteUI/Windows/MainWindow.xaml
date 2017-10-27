@@ -43,26 +43,13 @@
             <pui:NegateConverter/>
             <BooleanToVisibilityConverter/>
         </pui:ValueConverterGroup>
+        <pui:BindingProxy x:Key="Proxy" Data="{Binding}" />
     </c:WindowBase.Resources>
 
     <c:WindowBase.InputBindings>        
     </c:WindowBase.InputBindings>
 
-    <Grid Margin="0,-25,0,0">
-        <Grid.Resources>
-            <pui:BindingProxy x:Key="Proxy" Data="{Binding}" />
-        </Grid.Resources>
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        
+    <Grid>
         <tray:TaskbarIcon x:Name="TrayPlaynite" ToolTipText="Playnite" IconSource="/Images/applogo.ico"
                           MenuActivation="LeftOrRightClick"
                           Visibility="{Binding Path=EnableTray, Source={x:Static shared:Settings.Instance}, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -74,7 +61,7 @@
                             <Setter Property="OverridesDefaultStyle" Value="True" />
                             <Setter Property="Command" Value="{Binding Source={StaticResource Proxy}, Path=Data.StartGameCommand}" />
                             <Setter Property="CommandParameter" Value="{Binding}" />
-                        </Style>
+                        </Style>                        
                     </ContextMenu.ItemContainerStyle>
                     <ContextMenu.Resources>
                         <HierarchicalDataTemplate DataType="{x:Type m:Game}">
@@ -104,6 +91,7 @@
                     <ContextMenu.ItemsSource>
                         <CompositeCollection>
                             <CollectionContainer Collection="{Binding Path=LastGames, Source={x:Static pui:GamesEditor.Instance}}" />
+                            <Separator Style="{StaticResource {x:Type Separator}}"/>
                             <MenuItem Style="{StaticResource OpenUIItem}" />
                             <MenuItem Header="Open 3rd Party Client" ItemsSource="{Binding ThirdPartyTools}"
                                       OverridesDefaultStyle="True" Style="{StaticResource {x:Type MenuItem}}">
@@ -122,6 +110,26 @@
                 </ContextMenu>
             </tray:TaskbarIcon.ContextMenu>
         </tray:TaskbarIcon>
+
+        <c:MainView />
+
+
+
+    </Grid>
+
+
+    <!--<Grid Margin="0,-25,0,0">        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        
 
         <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="0">
             <DockPanel Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True"
@@ -281,10 +289,10 @@
                         <c:GamesListView x:Name="ListGamesView" ItemsSource="{Binding GamesView.CollectionView}" />
                     </TabItem>
                     <TabItem Header="Covers" >
-                        <!--<c:GamesImagesView x:Name="ImagesGamesView"/>-->
+                        --><!--<c:GamesImagesView x:Name="ImagesGamesView"/>--><!--
                     </TabItem>
                     <TabItem Header="Details" >
-                        <!--<c:GamesGridView x:Name="GridGamesView" />-->
+                        --><!--<c:GamesGridView x:Name="GridGamesView" />--><!--
                     </TabItem>
                 </TabControl>
             </DockPanel>
@@ -301,5 +309,5 @@
                 </Button.OpacityMask>
             </Button>
         </Border>
-    </Grid>
+    </Grid>-->
 </c:WindowBase>

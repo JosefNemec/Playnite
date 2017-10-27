@@ -38,70 +38,16 @@ namespace PlayniteUI.Controls
             }
         }
 
-        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(GamesListView), new PropertyMetadata(null, ItemsSourcePropertyChangedCallback));
-
-        private static void ItemsSourcePropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            var obj = sender as GamesListView;
-            var value = (IEnumerable)e.NewValue;
-            obj.ListGames.ItemsSource = value;
-
-            // TODO
-            //var list = value as ListCollectionView;
-
-            //if (list.SourceCollection is RangeObservableCollection<GameViewEntry>)
-            //{
-            //    ((RangeObservableCollection<GameViewEntry>)list.SourceCollection).CollectionChanged -= GamesGridView_CollectionChanged;
-            //    ((RangeObservableCollection<GameViewEntry>)list.SourceCollection).CollectionChanged += GamesGridView_CollectionChanged;
-            //}
-        }
+        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(GamesListView));
 
         public GamesListView()
         {
             InitializeComponent();
         }
 
-        private void GamesGridView_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action != System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
-            {
-                return;
-            }
-
-            // Can be called from another thread if games are being loaded
-            GameDetails.Dispatcher.Invoke(() =>
-            {
-                if (GameDetails.DataContext == null)
-                {
-                    return;
-                }
-
-                var game = (GameViewEntry)GameDetails.DataContext;
-                foreach (GameViewEntry entry in e.OldItems)
-                {
-                    if (game.Id == entry.Id)
-                    {
-                        GameDetails.DataContext = null;
-                        return;
-                    }
-                }
-            });
-        }
-
-        private void GamesListList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (ListGames.SelectedItem == null)
-            {
-                return;
-            }
-
-            var entry = ListGames.SelectedItem as GameViewEntry;
-            GameDetails.DataContext = entry;
-        }
-
         private void ListItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (ListGames.SelectedItem == null)
+            if (e.LeftButton != MouseButtonState.Pressed || ListGames.SelectedItem == null)
             {
                 return;
             }
@@ -121,21 +67,6 @@ namespace PlayniteUI.Controls
                 {
                     GamesEditor.Instance.InstallGame(game);
                 }
-            }
-        }
-
-        private void ListItem_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if (ListGames.SelectedItems.Count > 1)
-            {
-                PopupGameMulti.DataContext = ListGames.SelectedItems.Cast<GameViewEntry>().Select(a => a.Game).ToList();
-                PopupGameMulti.IsOpen = true;
-            }
-            else if (ListGames.SelectedItems.Count == 1)
-            {
-                var game = (ListGames.SelectedItem as GameViewEntry).Game;
-                PopupGame.DataContext = game;
-                PopupGame.IsOpen = true;
             }
         }
 

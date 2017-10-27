@@ -11,7 +11,8 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   mc:Ignorable="d"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:sys="clr-namespace:System;assembly=mscorlib">
+  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+  xmlns:pc="clr-namespace:PlayniteUI.Controls">
 
     <!--<Color x:Key="TextColor">#D8DBE2</Color>
     <Color x:Key="TextColorDark">#FFFCF2</Color>
@@ -52,6 +53,7 @@
     <Color x:Key="WhiteColor">#FFFFFFFF</Color>
 
     <Color x:Key="TextColor">#f2f2f2</Color>
+    <Color x:Key="TextColorDarker">#a3a3a3</Color>
     <Color x:Key="TextColorDark">#000000</Color>
     <Color x:Key="MainColor">#4c4c4c</Color>
     <Color x:Key="MainColorDark">#252422</Color>
@@ -64,6 +66,7 @@
     
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="Transparent" />
     <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
+    <SolidColorBrush x:Key="TextBrushDarker" Color="{DynamicResource TextColorDarker}" />
     <SolidColorBrush x:Key="TextBrushDark" Color="{DynamicResource TextColorDark}" />
     <SolidColorBrush x:Key="NormalBrush" Color="{DynamicResource MainColor}" />
     <SolidColorBrush x:Key="NormalBrushDark" Color="{DynamicResource MainColorDark}" />
@@ -1585,5 +1588,4 @@
     </Style>
 
     <!--#endregion-->
-    
 </ResourceDictionary>

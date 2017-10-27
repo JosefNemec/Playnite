@@ -18,13 +18,14 @@ using NLog;
 using System.ComponentModel;
 using LiteDB;
 using PlayniteUI.ViewModels;
+using System.Diagnostics;
 
 namespace PlayniteUI
 {
     public class GamesEditor : INotifyPropertyChanged
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-
+        private IResourceProvider resources = new ResourceProvider();
         private static GamesEditor instance;
         public static GamesEditor Instance
         {
@@ -94,8 +95,7 @@ namespace PlayniteUI
             // because this method can be invoked from tray icon which otherwise bugs the dialog
             if (GameDatabase.Instance.GamesCollection.FindOne(a => a.ProviderId == game.ProviderId) == null)
             {
-                PlayniteMessageBox.Show(Application.Current.MainWindow, $"Cannot start game. '{game.Name}' was not found in database.", "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);                
-                OnPropertyChanged("LastGames");
+                PlayniteMessageBox.Show(Application.Current.MainWindow, $"Cannot start game. '{game.Name}' was not found in database.", "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 UpdateJumpList();
                 return;
             }
@@ -122,7 +122,6 @@ namespace PlayniteUI
 
             try
             {
-                OnPropertyChanged("LastGames");
                 UpdateJumpList();                
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -133,6 +132,89 @@ namespace PlayniteUI
             if (Settings.Instance.MinimizeAfterLaunch)
             {
                 Application.Current.MainWindow.WindowState = WindowState.Minimized;
+            }
+        }
+
+        public void ActivateAction(IGame game, GameTask action)
+        {
+            try
+            {
+                GameHandler.ActivateTask(action, game as Game, GameDatabase.Instance.EmulatorsCollection.FindAll().ToList());
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                PlayniteMessageBox.Show("Cannot start action: " + exc.Message, "Action Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void OpenGameLocation(IGame game)
+        {
+            try
+            {
+                Process.Start(game.InstallDirectory);
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                PlayniteMessageBox.Show("Cannot open game location: " + exc.Message, "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void ToggleHideGame(IGame game)
+        {
+            game.Hidden = !game.Hidden;
+            GameDatabase.Instance.UpdateGameInDatabase(game);
+        }
+
+        public void ToggleHideGames(IEnumerable<IGame> games)
+        {
+            foreach (var game in games)
+            {
+                ToggleHideGame(game);
+            }
+        }
+
+        public void ToggleFavoriteGame(IGame game)
+        {
+            game.Favorite = !game.Favorite;
+            GameDatabase.Instance.UpdateGameInDatabase(game);
+        }
+
+        public void ToggleFavoriteGameg(IEnumerable<IGame> games)
+        {
+            foreach (var game in games)
+            {
+                ToggleFavoriteGame(game);
+            }
+        }
+
+        public void RemoveGame(IGame game)
+        {
+            if (PlayniteMessageBox.Show(
+                resources.FindString("GameRemoveAskMessage"),
+                resources.FindString("GameRemoveAskTitle"),
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question) != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            GameDatabase.Instance.DeleteGame(game);
+        }
+
+        public void RemoveGames(IEnumerable<IGame> games)
+        {
+            if (PlayniteMessageBox.Show(
+                string.Format(resources.FindString("GamesRemoveAskMessage"), games.Count()),
+                resources.FindString("GameRemoveAskTitle"),
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question) != MessageBoxResult.Yes)
+            {
+                return;
+            }           
+
+            foreach (var game in games)
+            {
+                GameDatabase.Instance.DeleteGame(game);
             }
         }
 
@@ -201,6 +283,7 @@ namespace PlayniteUI
 
         public void UpdateJumpList()
         {
+            OnPropertyChanged("LastGames");
             var jumpList = new JumpList();
             foreach (var lastGame in LastGames)
             {

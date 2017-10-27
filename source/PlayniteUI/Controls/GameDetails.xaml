@@ -67,8 +67,6 @@
         </Grid.Background>
 
         <DockPanel Margin="0,10,0,0">
-            <playniteControls:GamePopupMenu x:Name="PopupMore" StaysOpen="False" Placement="Relative" VerticalOffset="{Binding ActualHeight, ElementName=ButtonMore}"/>
-
             <DockPanel DockPanel.Dock="Top">
                 <Image DockPanel.Dock="Left" Margin="20,0,0,0" Width="32" Height="32" RenderOptions.BitmapScalingMode="Fant">
                     <Image.Source>

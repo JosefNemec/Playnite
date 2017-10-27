@@ -186,9 +186,7 @@
     <Compile Include="Controls\FilterSelector.xaml.cs">
       <DependentUpon>FilterSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\GamePopupMenuMulti.xaml.cs">
-      <DependentUpon>GamePopupMenuMulti.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Controls\GameMenu.cs" />
     <Compile Include="Controls\GamesGridView.xaml.cs">
       <DependentUpon>GamesGridView.xaml</DependentUpon>
     </Compile>
@@ -198,6 +196,7 @@
     <Compile Include="Controls\GamesListView.xaml.cs">
       <DependentUpon>GamesListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MainView.cs" />
     <Compile Include="Controls\WindowBase.cs" />
     <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />
     <Compile Include="Converters\BoolToAutoWidthConverter.cs" />
@@ -222,6 +221,7 @@
     <Compile Include="GamesCollectionView.cs" />
     <Compile Include="Behaviors\ScrollToSelectedBehavior.cs" />
     <Compile Include="Resources.cs" />
+    <Compile Include="Skins.cs" />
     <Compile Include="ViewModels\GameEditViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\FirstTimeStartupViewModel.cs" />
@@ -266,9 +266,6 @@
     <Compile Include="Windows\GameEditWindow.xaml.cs">
       <DependentUpon>GameEditWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\GamePopupMenu.xaml.cs">
-      <DependentUpon>GamePopupMenu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="GamesEditor.cs" />
     <Compile Include="Controls\GameTaskView.xaml.cs">
       <DependentUpon>GameTaskView.xaml</DependentUpon>
@@ -304,10 +301,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\GamePopupMenuMulti.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\GamesGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -326,6 +319,15 @@
     <Resource Include="Localization\czech.xaml">
       <SubType>Designer</SubType>
     </Resource>
+    <None Include="Skins\Classic\Classic.xaml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -355,10 +357,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\GameEditWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\GamePopupMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -402,7 +400,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme.xaml">
+    <Page Include="Themes\BaseTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -531,6 +529,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\battleneticon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Skins\Modern\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

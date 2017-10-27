@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:pc="clr-namespace:PlayniteUI.Controls;assembly=PlayniteUI">
+
+    <ControlTemplate x:Key="MainView" TargetType="{x:Type pc:MainView}">
+        <Grid>
+            <!--<pc:GamesListView ItemsSource="{Binding GamesView.CollectionView}" />-->
+            <!--<pc:GamesGridView ItemsSource="{Binding GamesView.CollectionView}"
+                              AppSettings="{Binding AppSettings}"/>-->
+            <pc:GamesImagesView ItemsSource="{Binding GamesView.CollectionView}" />
+        </Grid>
+    </ControlTemplate>
+    
+    <Style TargetType="{x:Type pc:MainView}">
+        <Setter Property="Template" Value="{StaticResource MainView}"/>
+    </Style>
+</ResourceDictionary>

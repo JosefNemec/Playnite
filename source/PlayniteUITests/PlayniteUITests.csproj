@@ -74,6 +74,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Converters\ImageUrlToImageSourceConverterTests.cs" />
+    <Compile Include="SkinsTests.cs" />
     <Compile Include="GamesEditorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -25,6 +25,14 @@ namespace Playnite
             }
         }
 
+        public static string SkinsPath
+        {
+            get
+            {
+                return Path.Combine(ProgramFolder, "Skins");
+            }
+        }
+
         public static string UninstallerPath
         {
             get
