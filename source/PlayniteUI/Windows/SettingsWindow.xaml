@@ -46,6 +46,11 @@
                         <sys:Int32>1</sys:Int32>
                     </TreeViewItem.Tag>
                 </TreeViewItem>
+                <TreeViewItem Header="Advanced">
+                    <TreeViewItem.Tag>
+                        <sys:Int32>7</sys:Int32>
+                    </TreeViewItem.Tag>
+                </TreeViewItem>
                 <TreeViewItem Header="Providers" IsExpanded="True" Focusable="False">
                     <TreeViewItem Header="Steam">
                         <TreeViewItem.Tag>
@@ -316,6 +321,13 @@
                                         IsEnabled="{Binding IsChecked, ElementName=CheckUplayEnabled}"
                                         DockPanel.Dock="Top" Margin="20,5,5,5"/>
                     </DockPanel>
+                </TabItem>
+                <TabItem Visibility="Collapsed">
+                    <StackPanel Margin="20">
+                        <Button Name="ButtonClearWebCace" Content="Delete web cache" HorizontalAlignment="Left"
+                                ToolTip="May solve issues encountered while linking accounts."
+                                Command="{Binding ClearWebCacheCommand}"/>
+                    </StackPanel>
                 </TabItem>
             </TabControl>
         </DockPanel>

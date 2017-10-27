@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using CefSharp;
+using NLog;
 using Playnite;
 using Playnite.Database;
 using Playnite.Providers.Steam;
@@ -173,6 +174,14 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<object> ClearWebCacheCommand
+        {
+            get => new RelayCommand<object>((url) =>
+            {
+                ClearWebcache();
+            });
+        }
+
         public SettingsViewModel(GameDatabase database, Settings settings, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
             Settings = settings;
@@ -289,6 +298,18 @@ namespace PlayniteUI.ViewModels
                 logger.Error(exc, "Failed to import Steam categories.");
                 dialogs.ShowMessage("Failed to import Steam categories: " + exc.Message, "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        public void ClearWebcache()
+        {
+            if (dialogs.ShowMessage("This will log you out of all linked services. Application restart is required, do you want to proceed?",
+                "Clear Cache?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                Cef.Shutdown();
+                System.IO.Directory.Delete(Paths.BrowserCachePath, true);
+                (Application.Current as App).Restart();
+            }
+
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using Playnite;
 
 namespace PlayniteUI
@@ -23,6 +25,37 @@ namespace PlayniteUI
             window.SizeChanged += Window_SizeChanged;
             window.LocationChanged += Window_LocationChanged;
             window.StateChanged += Window_StateChanged;
+            window.Loaded += Window_Loaded;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Check window bounds only if this window has no configuration yet, ie. first run.
+            if (!Configuration.WindowPositions.ContainsKey(WindowName))
+            {
+                CheckWindowBounds();
+            }
+            Window.Loaded -= Window_Loaded;
+        }
+
+        private void CheckWindowBounds()
+        {
+            Screen screenBounds = Screen.FromRectangle(new Rectangle(
+                (int) Window.Left, (int) Window.Top,
+                (int) Window.Width, (int) Window.Height));
+            
+            if (Window.Height > screenBounds.WorkingArea.Height)
+            {
+                Window.Height = screenBounds.WorkingArea.Height;
+            }
+            if (Window.Width > screenBounds.WorkingArea.Width)
+            {
+                Window.Width = screenBounds.WorkingArea.Width;
+            }
+            if (Window.Top < screenBounds.WorkingArea.Top)
+            {
+                Window.Top = screenBounds.WorkingArea.Top;
+            }
         }
 
         private void Window_StateChanged(object sender, EventArgs e)

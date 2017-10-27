@@ -30,7 +30,7 @@
         <DockPanel DockPanel.Dock="Top" Margin="10">
             <Image Source="/Images/Icons/warn_big.png" Width="64" RenderOptions.BitmapScalingMode="Fant" />
             <StackPanel Margin="20,10,10,10">
-                <TextBlock Text="Playnite come across problem, which cannot be solved. If you want to help us solving it, please create diagnostics package and report an issue." 
+                <TextBlock Text="Playnite come across a problem and couldn't solve it. If you want to help us with it, please create diagnostics package and report an issue. Thank you." 
                         FontSize="14" TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
             </StackPanel>
         </DockPanel>

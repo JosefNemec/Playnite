@@ -26,6 +26,7 @@ namespace PlayniteUI
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private string instanceMuxet = "PlayniteInstaceMutex";
         private Mutex appMutex;
+        private bool resourcesReleased = false;
         private PipeService pipeService;
         private PipeServer pipeServer;        
         private MainViewModel mainModel;
@@ -35,18 +36,12 @@ namespace PlayniteUI
             get;
             private set;
         }
-
+        
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            GameDatabase.Instance.CloseDatabase();
-            GamesLoaderHandler.CancelToken.Cancel();
-            Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
-            Cef.Shutdown();
-            AppSettings.SaveSettings();
-
-            if (appMutex != null)
+            if (!resourcesReleased)
             {
-                appMutex.ReleaseMutex();
+                ReleaseResources();
             }
         }
 
@@ -83,17 +78,25 @@ namespace PlayniteUI
             // Multi-instance checking
             if (Mutex.TryOpenExisting(instanceMuxet, out var mutex))
             {
-                var client = new PipeClient(Settings.GetAppConfigValue("PipeEndpoint"));
-
-                if (e.Args.Count() > 0 && e.Args.Contains("-command"))
+                try
                 {
-                    var commandArgs = e.Args[1].Split(new char[] { ':' });
-                    var command = commandArgs[0];
-                    client.InvokeCommand(command, commandArgs.Count() > 1 ? commandArgs[1] : string.Empty);
+                    var client = new PipeClient(Settings.GetAppConfigValue("PipeEndpoint"));
+                    if (e.Args.Count() > 0 && e.Args.Contains("-command"))
+                    {
+                        var commandArgs = e.Args[1].Split(new char[] { ':' });
+                        var command = commandArgs[0];
+                        client.InvokeCommand(command, commandArgs.Count() > 1 ? commandArgs[1] : string.Empty);
+                    }
+                    else
+                    {
+                        client.InvokeCommand(CmdlineCommands.Focus, string.Empty);
+                    }
                 }
-                else
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    client.InvokeCommand(CmdlineCommands.Focus, string.Empty);
+                    PlayniteMessageBox.Show("Playnite failed to start. Please close all running instances and try again.",
+                        "Startup Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    logger.Error(exc, "Can't process communication with other instances.");
                 }
 
                 logger.Info("Application already running, shutting down.");
@@ -279,6 +282,29 @@ namespace PlayniteUI
                     logger.Error(exc, "Failed to post user usage data.");
                 }
             });
+        }
+
+        public void Restart()
+        {
+            ReleaseResources();
+            Process.Start(Paths.ExecutablePath);
+            Shutdown(0);
+        }
+
+        private void ReleaseResources()
+        {
+            GameDatabase.Instance.CloseDatabase();
+            GamesLoaderHandler.CancelToken.Cancel();
+            Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
+            Cef.Shutdown();
+            AppSettings.SaveSettings();
+
+            if (appMutex != null)
+            {
+                appMutex.ReleaseMutex();
+            }
+
+            resourcesReleased = true;
         }
     }
 }

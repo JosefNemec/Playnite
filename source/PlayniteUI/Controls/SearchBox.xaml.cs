@@ -34,7 +34,7 @@ namespace PlayniteUI.Controls
             }
         }
 
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(SearchBox));
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(SearchBox), new PropertyMetadata(string.Empty, TextPropertyChangedCallback));
 
         public bool ShowImage
         {
@@ -59,6 +59,13 @@ namespace PlayniteUI.Controls
         private void ClearImage_MouseUp(object sender, MouseButtonEventArgs e)
         {
             TextFilter.Text = string.Empty;
+        }
+        
+        private static void TextPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var obj = sender as SearchBox;
+            obj.TextFilter.Text = (string)e.NewValue;
+            obj.TextFilter.CaretIndex = obj.TextFilter.Text.Length;
         }
 
         private static void ShowImagePropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
