@@ -15,6 +15,8 @@ using PlayniteUI.Windows;
 using PlayniteUI.ViewModels;
 using System.Threading.Tasks;
 using Playnite.Services;
+using System.Windows.Markup;
+using System.IO;
 
 namespace PlayniteUI
 {
@@ -36,7 +38,12 @@ namespace PlayniteUI
             get;
             private set;
         }
-        
+
+        public App()
+        {
+            InitializeComponent();
+        }
+
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             if (!resourcesReleased)
@@ -59,6 +66,10 @@ namespace PlayniteUI
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            //var window = new ThemeTesterWindow();
+            //window.ShowDialog();
+            //Shutdown();
+
             AppSettings = Settings.LoadSettings();
             Localization.SetLanguage(AppSettings.Language);
             Resources.Remove("AsyncImagesEnabled");
@@ -109,7 +120,18 @@ namespace PlayniteUI
             }
 
             // Load skin
-            Skins.ApplySkin("Classic");
+            try
+            {
+                Skins.ApplySkin(AppSettings.Skin, AppSettings.SkinColor);
+            }
+            catch (Exception exc)
+            {
+                PlayniteMessageBox.Show(
+                    $"Failed to apply skin \"{AppSettings.Skin}\", color profile \"{AppSettings.SkinColor}\"\n\n{exc.Message}",
+                    "Skin Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Shutdown();
+                return;
+            }            
 
             // First run wizard
             ulong steamCatImportId = 0;
@@ -294,16 +316,11 @@ namespace PlayniteUI
         private void ReleaseResources()
         {
             GameDatabase.Instance.CloseDatabase();
-            GamesLoaderHandler.CancelToken.Cancel();
+            GamesLoaderHandler.CancelToken?.Cancel();
             Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
             Cef.Shutdown();
-            AppSettings.SaveSettings();
-
-            if (appMutex != null)
-            {
-                appMutex.ReleaseMutex();
-            }
-
+            AppSettings?.SaveSettings();
+            appMutex?.ReleaseMutex();
             resourcesReleased = true;
         }
     }

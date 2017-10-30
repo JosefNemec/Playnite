@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+# Blend for Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}"
 EndProject
@@ -20,9 +20,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{9783B123-F0C8-4F03-B680-4E2D6D6C684A}"
 EndProject
 Global
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
@@ -105,6 +102,12 @@ Global
 		{59D0C141-64A8-4D86-8156-4BEF8472CB8E} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
 		{B06BF5BB-0B33-437B-8759-38278FF15706} = {9783B123-F0C8-4F03-B680-4E2D6D6C684A}
 		{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3300FF38-9F6F-4C0F-87F3-776D6C64846D}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

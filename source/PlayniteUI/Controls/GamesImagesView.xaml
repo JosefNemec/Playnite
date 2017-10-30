@@ -46,7 +46,7 @@
 
         <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="ItemsView" Grid.Column="0"
                   ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Single"
-                  PreviewMouseDown="ItemsView_MouseDown" DockPanel.Dock="Top"
+                  PreviewMouseDown="ItemsView_MouseDown" DockPanel.Dock="Top"                  
                   ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=UserControl}}" >
             <ListView.Resources>
                 <Style TargetType="GridViewColumnHeader">

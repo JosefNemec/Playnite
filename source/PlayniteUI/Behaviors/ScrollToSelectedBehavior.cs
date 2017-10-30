@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace PlayniteUI
 {
-    class ScrollToSelectedBehavior
+    public class ScrollToSelectedBehavior
     {
         private static readonly DependencyProperty ScrollToSelectedProperty =
           DependencyProperty.RegisterAttached(

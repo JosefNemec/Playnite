@@ -40,8 +40,8 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private IEnumerable<GameViewEntry> selectedGames;
-        public IEnumerable<GameViewEntry> SelectedGames
+        private IList<object> selectedGames;
+        public IList<object> SelectedGames
         {
             get => selectedGames;
             set
@@ -128,17 +128,6 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private FilterSelectorConfig filterSelector;
-        public FilterSelectorConfig FilterSelector
-        {
-            get => filterSelector;
-            set
-            {
-                filterSelector = value;
-                OnPropertyChanged("FilterSelector");
-            }
-        }
-
         private Visibility visibility = Visibility.Visible;
         public Visibility Visibility
         {
@@ -166,17 +155,36 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public static Settings AppSettings
+        private Settings appSettings;
+        public Settings AppSettings
         {
-            get;
-            private set;
+            get => appSettings;
+            private set
+            {
+                appSettings = value;
+                OnPropertyChanged("AppSettings");
+            }
+        }
+
+        private GamesStats gamesStats;
+        public GamesStats GamesStats
+        {
+            get => gamesStats;
+            private set
+            {
+                gamesStats = value;
+                OnPropertyChanged("GamesStats");
+            }
         }
 
         public RelayCommand<IGame> StartGameCommand
         {
             get => new RelayCommand<IGame>((game) =>
             {
-                GamesEditor.Instance.PlayGame(game);
+                if (game != null)
+                {
+                    GamesEditor.Instance.PlayGame(game);
+                }
             });
         }
 
@@ -328,7 +336,7 @@ namespace PlayniteUI.ViewModels
 
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
-            FilterSelector = new FilterSelectorConfig(new GamesStats(database), AppSettings.FilterSettings);
+            GamesStats = new GamesStats(database);
         }
 
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -724,6 +732,7 @@ namespace PlayniteUI.ViewModels
         {
             if (model.ShowDialog() == true)
             {
+                // TODO
                 if (model.ProviderIntegrationChanged || model.DatabaseLocationChanged)
                 {
                     LoadGames(true, 0);

@@ -1,0 +1,210 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:pc="clr-namespace:PlayniteUI.Controls;assembly=PlayniteUI"
+                    xmlns:pui="clr-namespace:PlayniteUI;assembly=PlayniteUI"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
+                    mc:Ignorable="d">
+
+    <sys:String x:Key="SkinName">Modern</sys:String>
+
+    <Style x:Key="MainListItemStyle" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid>
+                        <Border x:Name="SelectedRectangle" IsHitTestVisible="False" Visibility="Collapsed"
+                                                        BorderThickness="5,0,0,0" BorderBrush="#D82545"/>
+                        <Border x:Name="HoverRectangle" IsHitTestVisible="False" Visibility="Collapsed"
+                                                        BorderThickness="5,0,0,0" BorderBrush="#D82545"/>
+                        <Border Padding="{TemplateBinding Padding}" Background="Transparent">
+                            <ContentPresenter Margin="10,5,0,5"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedRectangle" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedRectangle" />
+                            <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsSelected" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="HoverRectangle" />
+                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsSelected" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="HoverRectangle" />
+                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="MainView" TargetType="{x:Type pc:MainView}">
+        <Grid d:DesignWidth="900" d:DesignHeight="500">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <sys:Boolean x:Key="True">True</sys:Boolean>
+                <sys:Boolean x:Key="False">False</sys:Boolean>
+                <pui:BindingProxy x:Key="Proxy" Data="{Binding}" />
+                <pui:OpacityBoolConverter x:Key="OpacityBoolConverter" />
+                <pui:EnumConverter x:Key="EnumConverter" />
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+                <pui:BidirectionalEnumAndNumberConverter x:Key="BidirectionalEnumAndNumberConverter" />
+                <pui:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
+                <pc:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
+                <pui:ListToStringConverter x:Key="ListToStringConverter" />
+            </Grid.Resources>
+
+            <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="0">
+                <DockPanel  DockPanel.Dock="Top">
+                    <DockPanel Cursor="Hand" Margin="10,5,5,0" WindowChrome.IsHitTestVisibleInChrome="True"
+                                DockPanel.Dock="Left" pui:LeftClickContextMenuBehavior.Enabled="True">
+                        <Border DockPanel.Dock="Left" Background="Transparent">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="☰" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" Foreground="{StaticResource TextBrush}" />
+                                <Image Source="/Images/applogo_clean.png" Height="40" Name="ImageLogo" RenderOptions.BitmapScalingMode="Fant" Margin="5"/>
+                            </StackPanel>
+                        </Border>
+                        <DockPanel.ContextMenu>
+                            <ContextMenu StaysOpen="False" Name="MenuMainMenu" Placement="Bottom">
+                                <MenuItem Header="Add Game">
+                                    <MenuItem Header="Manually..." IsEnabled="{Binding GameAdditionAllowed}"
+                                        Command="{Binding AddCustomGameCommand}"/>
+                                    <MenuItem Header="Import Installed or from Folder..." IsEnabled="{Binding GameAdditionAllowed}"
+                                        Command="{Binding AddInstalledGamesCommand}"/>
+                                    <MenuItem Header="Import emulated Game(s)..." IsEnabled="{Binding GameAdditionAllowed}"
+                                        Command="{Binding AddEmulatedGamesCommand}"/>
+                                </MenuItem>
+                                <Separator />
+                                <MenuItem Header="Reload Games List" IsEnabled="{Binding GameAdditionAllowed}"
+                                    Command="{Binding LoadGamesCommand}"/>
+                                <MenuItem Header="{DynamicResource MenuConfigurationTitle}">
+                                    <MenuItem Header="{DynamicResource MenuPlayniteSettingsTitle}"
+                                        Command="{Binding OpenSettingsCommand}"/>
+                                    <MenuItem Header="{DynamicResource MenuPlatformEmulatorSettingsTitle}"
+                                        Command="{Binding OpenPlatformsCommand}"/>
+                                </MenuItem>
+                                <Separator  />
+                                <MenuItem Header="Open 3rd Party Client" ItemsSource="{Binding ThirdPartyTools}">
+                                    <MenuItem.ItemContainerStyle>
+                                        <Style TargetType="MenuItem">
+                                            <Setter Property="Header" Value="{Binding Name}" />
+                                            <Setter Property="Command" Value="{Binding Source={StaticResource Proxy}, Path=Data.ThridPartyToolOpenCommand}" />
+                                            <Setter Property="CommandParameter" Value="{Binding}" />
+                                        </Style>
+                                    </MenuItem.ItemContainerStyle>
+                                </MenuItem>
+                                <Separator />
+                                <MenuItem Header="About Playnite..." Command="{Binding OpenAboutCommand}"/>
+                                <MenuItem Header="Request Feature or Report Issue..." Command="{Binding ReportIssueCommand}" />
+                                <Separator />
+                                <MenuItem Header="{DynamicResource ExitAppLabel}" Command="{Binding ShutdownCommand}" />
+                            </ContextMenu>
+                        </DockPanel.ContextMenu>
+                    </DockPanel>
+
+                    <TextBlock Text="Playnite" FontSize="20" FontWeight="Bold" DockPanel.Dock="Left" 
+                            VerticalAlignment="Center" Foreground="{DynamicResource TextBrush}"/>
+                </DockPanel>
+
+                <pc:SearchBox x:Name="SearchBoxFilter" Margin="10,4,10,8" DockPanel.Dock="Top" Padding="0"
+                                Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}"
+                                WindowChrome.IsHitTestVisibleInChrome="True" />
+
+                <pc:ExtendedListBox SelectionMode="Extended" BorderThickness="0"
+                                    BorderBrush="{StaticResource NormalBorderBrush}" Width="310"
+                                    ItemsSource="{Binding GamesView.CollectionView}"
+                                    SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
+                                    SelectedItemsList="{Binding SelectedGames, Mode=TwoWay}"
+                                    ItemContainerStyle="{StaticResource MainListItemStyle}"
+                                    DockPanel.Dock="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                    pui:ScrollToSelectedBehavior.Enabled="True"
+                                    VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
+                                    VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Recycling">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick" >
+                            <i:InvokeCommandAction Command="{Binding StartGameCommand}"
+                                                    CommandParameter="{Binding SelectedGame.Game}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <pc:ExtendedListBox.ContextMenu>
+                        <pc:GameMenu DataContext="{Binding Data.SelectedGames, Source={StaticResource Proxy}}" />
+                    </pc:ExtendedListBox.ContextMenu>
+                    <pc:ExtendedListBox.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.ContainerStyle>
+                                <Style TargetType="{x:Type GroupItem}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <Expander Header="{Binding Mode=OneWay}" BorderThickness="0" IsExpanded="True">
+                                                    <ItemsPresenter />
+                                                </Expander>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </GroupStyle.ContainerStyle>
+                        </GroupStyle>
+                    </pc:ExtendedListBox.GroupStyle>
+                    <pc:ExtendedListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name, Mode=OneWay}" TextTrimming="CharacterEllipsis"
+                                        VerticalAlignment="Center" DockPanel.Dock="Left" />
+                        </DataTemplate>
+                    </pc:ExtendedListBox.ItemTemplate>
+                </pc:ExtendedListBox>
+            </DockPanel>
+            
+            <Border Grid.Column="1" Grid.Row="0">
+                <pc:GameDetails DockPanel.Dock="Left" DataContext="{Binding SelectedGame, Mode=OneWay}" />
+            </Border> 
+        </Grid>
+    </ControlTemplate>
+    
+    <Style TargetType="{x:Type pc:MainView}">
+        <Setter Property="Margin" Value="0,-25,0,0" />
+        <Setter Property="Template" Value="{StaticResource MainView}"/>
+    </Style>
+
+    <Style x:Key="MainWindowStyle" TargetType="{x:Type pc:WindowBase}" >
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0.5,0.2" EndPoint="0.5,2" >
+                    <GradientStop Color="#0C0B13" Offset="0"/>
+                    <GradientStop Color="#E50C0B13" Offset="1.5"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
+    <Style x:Key="StandardWindowStyle" TargetType="{x:Type pc:WindowBase}" >
+        <Setter Property="Background" Value="#0C0B13" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+</ResourceDictionary>

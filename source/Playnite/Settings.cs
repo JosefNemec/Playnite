@@ -505,6 +505,36 @@ namespace Playnite
             }
         }
 
+        private string skin = "Classic";
+        public string Skin
+        {
+            get
+            {
+                return skin;
+            }
+
+            set
+            {
+                skin = value;
+                OnPropertyChanged("Skin");
+            }
+        }
+
+        private string skinColor = "Default";
+        public string SkinColor
+        {
+            get
+            {
+                return skinColor;
+            }
+
+            set
+            {
+                skinColor = value;
+                OnPropertyChanged("SkinColor");
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {

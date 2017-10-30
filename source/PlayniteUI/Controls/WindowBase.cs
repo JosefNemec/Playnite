@@ -36,10 +36,20 @@ namespace PlayniteUI.Controls
             get; set;
         } = true;
 
+        static WindowBase()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(WindowBase), new FrameworkPropertyMetadata(typeof(WindowBase)));
+        }
+
         public WindowBase() : base()
         {
-            Style = FindResource("WindowStyle") as Style;
             Loaded += WindowBase_Loaded;
+
+            Style defaultStyle = (Style)Application.Current.TryFindResource(typeof(WindowBase));
+            if (defaultStyle != null)
+            {
+                Style = defaultStyle;
+            }
         }
 
         private void WindowBase_Loaded(object sender, RoutedEventArgs e)

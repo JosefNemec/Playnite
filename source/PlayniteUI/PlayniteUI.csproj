@@ -178,11 +178,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Behaviors\LeftClickContextMenuBehavior - Copy.cs" />
+    <Compile Include="AttachedProperties\ListBoxProperties.cs" />
     <Compile Include="BindingProxy.cs" />
     <Compile Include="CmdlineCommands.cs" />
     <Compile Include="Commands\GeneralCommands.cs" />
     <Compile Include="Commands\GenericCommands.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Controls\ExtendedListBox.cs" />
     <Compile Include="Controls\FilterSelector.xaml.cs">
       <DependentUpon>FilterSelector.xaml</DependentUpon>
     </Compile>
@@ -208,7 +210,8 @@
     <Compile Include="Converters\ImageUrlToImageSourceConverter.cs" />
     <Compile Include="Converters\InvertableBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\ListToStringConverter.cs" />
-    <Compile Include="Converters\LiteDBImageToImageConverter.cs" />
+    <Compile Include="Converters\LiteDBImageToImageConverter - Copy.cs" />
+    <Compile Include="Converters\SkinMediaPathConverter.cs" />
     <Compile Include="Converters\NegateConverter.cs" />
     <Compile Include="Converters\NullableDateToStringConverter.cs" />
     <Compile Include="Converters\OpacityBoolConverter.cs" />
@@ -324,6 +327,36 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <None Include="Skins\Classic\Classic.Orange.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Skins\Modern\Modern.Orange.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Skins\Modern\Modern.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Skins\Modern\Modern.Red.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Skins\Classic\Classic.Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Skins\Modern\Modern.Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -403,6 +436,7 @@
     <Page Include="Themes\BaseTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Page>
     <Page Include="Windows\ThemeTesterWindow.xaml">
       <SubType>Designer</SubType>
@@ -531,7 +565,7 @@
     <Resource Include="Images\battleneticon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Skins\Modern\" />
+    <Resource Include="Images\applogo_clean.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -98,6 +98,11 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        public List<Skin> AvailableSkins
+        {
+            get => Skins.AvailableSkins;
+        }
+
         public bool ProviderIntegrationChanged
         {
             get;

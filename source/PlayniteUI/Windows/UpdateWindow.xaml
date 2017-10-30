@@ -8,6 +8,7 @@
         xmlns:html="clr-namespace:TheArtOfDev.HtmlRenderer.WPF;assembly=HtmlRenderer.WPF"
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource StandardWindowStyle}"
         Title="Update Available" Height="500" Width="600" WindowStartupLocation="CenterOwner"
         ShowInTaskbar="True">
 

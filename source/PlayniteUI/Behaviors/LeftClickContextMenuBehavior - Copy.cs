@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace PlayniteUI
 {
-    class LeftClickContextMenuBehavior
+    public class LeftClickContextMenuBehavior
     {
         private static readonly DependencyProperty LeftClickContextMenuProperty =
           DependencyProperty.RegisterAttached(

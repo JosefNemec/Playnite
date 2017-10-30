@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace PlayniteUI
 {
-    class VirtualizingTilePanel : VirtualizingPanel, IScrollInfo
+    public class VirtualizingTilePanel : VirtualizingPanel, IScrollInfo
     {
         private static readonly DependencyProperty ContainerSizeProperty = DependencyProperty.Register("ContainerSize", typeof(Size), typeof(VirtualizingTilePanel));
 

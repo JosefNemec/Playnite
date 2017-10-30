@@ -53,12 +53,13 @@ namespace PlayniteUI.Controls
                 }
                 else if (DataContext is IEnumerable<object> entries)
                 {
-                    return (entries.First() as GameViewEntry).Game;
+                    if (entries.Count() > 0)
+                    {
+                        return (entries.First() as GameViewEntry).Game;
+                    }
                 }
-                else
-                {
-                    return null;
-                }
+
+                return null;
             }
         }
 
@@ -75,10 +76,8 @@ namespace PlayniteUI.Controls
 
                     return entries.Select(a => (a as GameViewEntry).Game);
                 }
-                else
-                {
-                    return null;
-                }
+
+                return null;
             }
         }
 

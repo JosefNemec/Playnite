@@ -10,6 +10,7 @@
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
         Title="Playnite Settings" Width="580" Height="420"
         AutomationProperties.AutomationId="WindowSettings">
@@ -26,7 +27,7 @@
             <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
                 <DockPanel LastChildFill="False" Margin="5">
                     <Button Name="ButtonCancel" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right"
-                            Style="{StaticResource BottomButton}"
+                            Style="{StaticResource BottomButton}" IsCancel="True"
                             Command="{Binding CancelCommand}"/>
                     <Button Name="ButtonOK" Content="{DynamicResource SaveLabel}" DockPanel.Dock="Right" 
                             Style="{StaticResource BottomButton}"
@@ -36,6 +37,13 @@
 
             <TreeView DockPanel.Dock="Left" BorderThickness="0,0,1,0" BorderBrush="{StaticResource NormalBorderBrush}"
                       Name="TreeSections">
+                <TreeView.Resources>
+                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                        <Setter Property="FontSize" Value="16" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="Padding" Value="0,3,3,3" />
+                    </Style>
+                </TreeView.Resources>
                 <TreeViewItem Header="General" IsSelected="True">
                     <TreeViewItem.Tag>
                         <sys:Int32>0</sys:Int32>
@@ -141,10 +149,28 @@
                                         IsChecked="{Binding Settings.UpdateLibStartup}"/>
                         </Grid>
                     </StackPanel>
-                </TabItem>
+                </TabItem>                
+                
                 <TabItem Visibility="Collapsed">
-                    <StackPanel Margin="20">
+                    <StackPanel Margin="20">                        
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{DynamicResource SettingsSkin}" VerticalAlignment="Center"/>
+                            <ComboBox Margin="10,0,10,0" Name="ComboSkins"
+                                      ItemsSource="{Binding AvailableSkins}"
+                                      SelectedValue="{Binding Settings.Skin}"
+                                      SelectionChanged="ComboSkins_SelectionChanged"
+                                      SelectedValuePath="Name" DisplayMemberPath="Name" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                            <TextBlock Text="{DynamicResource SettingsSkinColor}" VerticalAlignment="Center"/>
+                            <ComboBox Margin="10,0,0,0"
+                                      SelectedValue="{Binding Settings.SkinColor}"
+                                      SelectionChanged="ComboBox_SelectionChanged"
+                                      ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkins}">
+                            </ComboBox>
+                        </StackPanel>
                         <CheckBox Content="{DynamicResource SettingsAsyncImageLoading}" ToolTip="{DynamicResource SettingsAsyncImageLoadingTooltip}"
+                                  Margin="0,25,0,0"
                                   Name="CheckAsyncImages" IsChecked="{Binding Settings.AsyncImageLoading}"/>
                         <CheckBox Content="{DynamicResource SettingsShowNameEmptyCover}" Margin="0,15,0,0"
                                   Name="CheckNameEmptyCover" IsChecked="{Binding Settings.ShowNameEmptyCover}"/>

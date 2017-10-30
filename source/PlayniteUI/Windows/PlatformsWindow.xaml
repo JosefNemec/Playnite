@@ -8,6 +8,7 @@
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
         Title="{DynamicResource PlatformsWindowTitle}" Width="780" Height="600"
         AutomationProperties.AutomationId="WindowPlatforms"

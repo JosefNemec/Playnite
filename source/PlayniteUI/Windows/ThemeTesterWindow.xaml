@@ -7,7 +7,8 @@
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
-        Title="ThemeTesterWindow" Width="400" Height="1050"
+        Style="{DynamicResource StandardWindowStyle}"
+        Title="ThemeTesterWindow" Width="600" Height="1060"
         WindowStartupLocation="CenterScreen">
     
     <controls:WindowBase.Resources>
@@ -39,126 +40,155 @@
         
         <TabControl TabStripPlacement="Top">
             <TabItem Header="Test">
-                <StackPanel Margin="10">
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="Button" HorizontalAlignment="Left" Margin="5">
-                            <Button.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Test1" />
-                                    <Separator />
-                                    <MenuItem Header="Test2">
-                                        <MenuItem Header="Test1" />
-                                    </MenuItem>
-                                </ContextMenu>
-                            </Button.ContextMenu>
-                        </Button>
-                        <RepeatButton Content="RepeatButton" HorizontalAlignment="Left" Margin="5"
-                                      ToolTip="Testing tooltip for a button"/>
-                        <ToggleButton Content="ToggleButton"
-                                  HorizontalAlignment="Left" Margin="5" />
-                    </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                    <UniformGrid Columns="2">
-                        <CheckBox Content="TestCheckbox" IsChecked="True" HorizontalAlignment="Left" IsThreeState="True" Margin="5"/>
-                        <TextBlock VerticalAlignment="Center">           
+                    <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="10">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Button" HorizontalAlignment="Left" Margin="5">
+                                    <Button.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Test1" />
+                                            <Separator />
+                                            <MenuItem Header="Test2">
+                                                <MenuItem Header="Test1" />
+                                            </MenuItem>
+                                        </ContextMenu>
+                                    </Button.ContextMenu>
+                                </Button>
+                                <RepeatButton Content="RepeatButton" HorizontalAlignment="Left" Margin="5"
+                                      ToolTip="Testing tooltip for a button"/>
+                                <ToggleButton Content="ToggleButton"
+                                  HorizontalAlignment="Left" Margin="5" />
+                            </StackPanel>
+
+                            <UniformGrid Columns="2">
+                                <CheckBox Content="TestCheckbox" IsChecked="True" HorizontalAlignment="Left" IsThreeState="True" Margin="5"/>
+                                <TextBlock VerticalAlignment="Center">           
                             <Hyperlink>
                                 Hyperlink Click here
                             </Hyperlink>
-                        </TextBlock>
-                    </UniformGrid>
-                    <UniformGrid Columns="2">
-                        <ComboBox IsEditable="True" Text="Test2" Margin="5"
+                                </TextBlock>
+                            </UniformGrid>
+                            <UniformGrid Columns="2">
+                                <ComboBox IsEditable="True" Text="Test2" Margin="5"
                                   HorizontalAlignment="Stretch"/>
-                        <ComboBox SelectedIndex="1" Margin="5"
+                                <ComboBox SelectedIndex="1" Margin="5"
                                   HorizontalAlignment="Stretch">
-                            <ComboBoxItem Content="Test1"/>
-                            <ComboBoxItem Content="Test2"/>
-                            <ComboBoxItem Content="Test3"/>
-                            <ComboBoxItem Content="Test1"/>
-                            <ComboBoxItem Content="Test2"/>
-                            <ComboBoxItem Content="Test3"/>
-                            <ComboBoxItem Content="Test1"/>
-                            <ComboBoxItem Content="Test2"/>
-                            <ComboBoxItem Content="Test3"/>
-                            <ComboBoxItem Content="Test1"/>
-                            <ComboBoxItem Content="Test2"/>
-                            <ComboBoxItem Content="Test3"/>
-                            <ComboBoxItem Content="Test1"/>
-                            <ComboBoxItem Content="Test2"/>
-                            <ComboBoxItem Content="Test3"/>
-                            <ComboBoxItem Content="Test1"/>
-                            <ComboBoxItem Content="Test2"/>
-                            <ComboBoxItem Content="Test3"/>
-                            <ComboBoxItem Content="Test3"/>
-                            <ComboBoxItem Content="Test1"/>
-                            <ComboBoxItem Content="Test2"/>
-                            <ComboBoxItem Content="Test3"/>
-                            <ComboBoxItem Content="Test1"/>
-                            <ComboBoxItem Content="Test2"/>
-                            <ComboBoxItem Content="Test3"/>
-                            <ComboBoxItem Content="Test3"/>
-                            <ComboBoxItem Content="Test1"/>
-                        </ComboBox>
-                    </UniformGrid>
-                    <TextBlock Text="Test text just test text" Margin="5"/>
-                    <TextBox Text="Test text just test text" Margin="5" />
-                    <TextBox Height="50" TextWrapping="Wrap"  AcceptsReturn="True" Text="This TextBox will allow the user to enter multiple lines of text.  When the RETURN key is pressed, 
+                                    <ComboBoxItem Content="Test1"/>
+                                    <ComboBoxItem Content="Test2"/>
+                                    <ComboBoxItem Content="Test3"/>
+                                    <ComboBoxItem Content="Test1"/>
+                                    <ComboBoxItem Content="Test2"/>
+                                    <ComboBoxItem Content="Test3"/>
+                                    <ComboBoxItem Content="Test1"/>
+                                    <ComboBoxItem Content="Test2"/>
+                                    <ComboBoxItem Content="Test3"/>
+                                    <ComboBoxItem Content="Test1"/>
+                                    <ComboBoxItem Content="Test2"/>
+                                    <ComboBoxItem Content="Test3"/>
+                                    <ComboBoxItem Content="Test1"/>
+                                    <ComboBoxItem Content="Test2"/>
+                                    <ComboBoxItem Content="Test3"/>
+                                    <ComboBoxItem Content="Test1"/>
+                                    <ComboBoxItem Content="Test2"/>
+                                    <ComboBoxItem Content="Test3"/>
+                                    <ComboBoxItem Content="Test3"/>
+                                    <ComboBoxItem Content="Test1"/>
+                                    <ComboBoxItem Content="Test2"/>
+                                    <ComboBoxItem Content="Test3"/>
+                                    <ComboBoxItem Content="Test1"/>
+                                    <ComboBoxItem Content="Test2"/>
+                                    <ComboBoxItem Content="Test3"/>
+                                    <ComboBoxItem Content="Test3"/>
+                                    <ComboBoxItem Content="Test1"/>
+                                </ComboBox>
+                            </UniformGrid>
+                            <TextBlock Text="Test text just test text" Margin="5"/>
+                            <TextBox Text="Test text just test text" Margin="5" />
+                            <TextBox Height="50" TextWrapping="Wrap"  AcceptsReturn="True" Text="This TextBox will allow the user to enter multiple lines of text.  When the RETURN key is pressed, 
  or when typed text reaches the edge of the text box, a new line is automatically inserted." VerticalScrollBarVisibility="Auto" Margin="5"/>
-                    <PasswordBox Password="test" Margin="5"/>
-                    <Expander Header="TestExpander" IsExpanded="True" Margin="5">
-                        <ListView Height="100"
+                            <PasswordBox Password="test" Margin="5"/>
+                            <Expander Header="TestExpander" IsExpanded="True" Margin="5">
+                                <ListView Height="100"
                             Name="listview"
                             d:DataContext="{Binding Source={StaticResource ListViewMock}}"
 ItemsSource="{Binding MyListBoxItems}"
                                    SelectedIndex="1"  Margin="5">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
-                                    <GridViewColumn Header="Age" Width="50" DisplayMemberBinding="{Binding Age}" />
-                                    <GridViewColumn Header="Mail" Width="150" DisplayMemberBinding="{Binding Mail}" />
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </Expander>
-                    <ListBox SelectedIndex="1" Margin="5" Height="100">
-                        <ListBoxItem Content="ListItem 1" />
-                        <ListBoxItem Content="ListItem 2" />
-                        <ListBoxItem Content="ListItem 3" />
-                        <ListBoxItem Content="ListItem 1" />
-                        <ListBoxItem Content="ListItem 2" />
-                        <ListBoxItem Content="ListItem 3" />
-                        <ListBoxItem Content="ListItem 1" />
-                        <ListBoxItem Content="ListItem 2" />
-                        <ListBoxItem Content="ListItem 3" />
-                    </ListBox>
-                    <GroupBox Header="Test Groubox" Margin="5">
-                        <StackPanel>
-                            <ProgressBar Value="30" Margin="5" Width="342" />
-                            <ProgressBar IsIndeterminate="True"  Margin="5"/>
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
+                                            <GridViewColumn Header="Age" Width="50" DisplayMemberBinding="{Binding Age}" />
+                                            <GridViewColumn Header="Mail" Width="150" DisplayMemberBinding="{Binding Mail}" />
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Expander>
+                            <ListBox SelectedIndex="1" Margin="5" Height="100">
+                                <ListBoxItem Content="ListItem 1" />
+                                <ListBoxItem Content="ListItem 2" />
+                                <ListBoxItem Content="ListItem 3" />
+                                <ListBoxItem Content="ListItem 1" />
+                                <ListBoxItem Content="ListItem 2" />
+                                <ListBoxItem Content="ListItem 3" />
+                                <ListBoxItem Content="ListItem 1" />
+                                <ListBoxItem Content="ListItem 2" />
+                                <ListBoxItem Content="ListItem 3" />
+                            </ListBox>
+                            <GroupBox Header="Test Groubox" Margin="5">
+                                <StackPanel>
+                                    <ProgressBar Value="30" Margin="5" Width="342" />
+                                    <ProgressBar IsIndeterminate="True"  Margin="5"/>
 
-                            <RadioButton Content="RadioButton1" IsChecked="True" GroupName="test"  Margin="5"/>
-                            <RadioButton Content="RadioButton2" GroupName="test" Margin="5" />
-                        </StackPanel>
-                    </GroupBox>
-                    
-                    <ScrollViewer Width="100" Height="100"
+                                    <RadioButton Content="RadioButton1" IsChecked="True" GroupName="test"  Margin="5"/>
+                                    <RadioButton Content="RadioButton2" GroupName="test" Margin="5" />
+                                </StackPanel>
+                            </GroupBox>
+
+                            <ScrollViewer Width="100" Height="100"
                                   HorizontalScrollBarVisibility="Auto" Margin="5">
-                        <Viewbox Width="200" Height="200">
-                            <TextBlock Text="R" />
-                        </Viewbox>
-                    </ScrollViewer>
+                                <Viewbox Width="200" Height="200">
+                                    <TextBlock Text="R" />
+                                </Viewbox>
+                            </ScrollViewer>
 
-                    <TreeView Margin="5">
-                        <TreeViewItem Header="Level 1" IsExpanded="True">
-                            <TreeViewItem Header="Level 2.1" />
-                            <TreeViewItem Header="Level 2.2" IsExpanded="True">
-                                <TreeViewItem Header="Level 3.1" />
-                                <TreeViewItem Header="Level 3.2" />
-                            </TreeViewItem>
-                            <TreeViewItem Header="Level 2.3" />
-                        </TreeViewItem>
-                    </TreeView>
-                </StackPanel>
+                            <TreeView Margin="5">
+                                <TreeViewItem Header="Level 1" IsExpanded="True">
+                                    <TreeViewItem Header="Level 2.1" />
+                                    <TreeViewItem Header="Level 2.2" IsExpanded="True">
+                                        <TreeViewItem Header="Level 3.1" />
+                                        <TreeViewItem Header="Level 3.2" />
+                                    </TreeViewItem>
+                                    <TreeViewItem Header="Level 2.3" />
+                                </TreeViewItem>
+                            </TreeView>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <StackPanel Grid.Column="1" Margin="10" Width="200">
+                        <Button Content="Reload skin list" Name="ButtonReloadSkinList"
+                                Click="ButtonReloadSkinList_Click" Margin="5"/>
+                        <ListBox Margin="5"
+                                 ItemsSource="{Binding SkinList}"
+                                 SelectedValue="{Binding SelectedSkin, Mode=TwoWay}"/>
+                        <Button Content="Apply skin" Name="ButtonApplySkin" Margin="5"
+                                Click="ButtonApplySkin_Click" />
+                        <Button Content="Preview main view" Name="ButtonPreviewMain" Margin="5"
+                                Click="ButtonPreviewMain_Click" />
+                        <CheckBox Content="Watch file changes" Margin="5"
+                                  ToolTip="Automatically apply skin changes when the source file changes"
+                                  IsChecked="{Binding WatchSkinFile}"/>
+                        <TextBox Margin="5" TextWrapping="Wrap" AcceptsReturn="True"
+                                 Height="100" Text="{Binding ValidationError, Mode=OneWay}"
+                                 Name="TextError"/>
+                    </StackPanel>
+                </Grid>   
             </TabItem>
             <TabItem Header="Test2">               
             </TabItem>

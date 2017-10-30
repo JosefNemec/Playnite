@@ -329,17 +329,22 @@ namespace PlayniteUI
         CategoryGrouped
     }
 
-    public class GamesCollectionView : IDisposable
+    public class GamesCollectionView : ObservableObject, IDisposable
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private GameDatabase database;
         private List<Platform> platformsCache;
 
+        private ListCollectionView collectionView;
         public ListCollectionView CollectionView
         {
-            get;
-            private set;
+            get => collectionView;
+            private set
+            {
+                collectionView = value;
+                OnPropertyChanged("CollectionView");
+            }
         }
 
         public Settings Settings

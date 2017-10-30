@@ -18,7 +18,7 @@ using Playnite.Database;
 using Playnite.Models;
 using Playnite;
 
-namespace PlayniteUI
+namespace PlayniteUI.Controls
 {
     /// <summary>
     /// Interaction logic for GameDetails.xaml
@@ -37,20 +37,22 @@ namespace PlayniteUI
         {
             get
             {
-                if (DataContext == null)
+                if (DataContext != null && DataContext is GameViewEntry)
+                {
+                    var game = DataContext as GameViewEntry;
+                    return
+                        (game.Genres != null && game.Genres.Count > 0) ||
+                        (game.Publishers != null && game.Publishers.Count > 0) ||
+                        (game.Developers != null && game.Developers.Count > 0) ||
+                        (game.Categories != null && game.Categories.Count > 0) ||
+                        game.ReleaseDate != null ||
+                        (game.Links != null && game.Links.Count > 0) ||
+                        !string.IsNullOrEmpty(game.Platform.Name);
+                }
+                else
                 {
                     return false;
                 }
-
-                var game = DataContext as GameViewEntry;
-                return
-                    (game.Genres != null && game.Genres.Count > 0) ||
-                    (game.Publishers != null && game.Publishers.Count > 0) ||
-                    (game.Developers != null && game.Developers.Count > 0) ||
-                    (game.Categories != null && game.Categories.Count > 0) ||
-                    game.ReleaseDate != null ||
-                    (game.Links != null && game.Links.Count > 0) ||
-                    !string.IsNullOrEmpty(game.Platform.Name);
             }
         }
 
@@ -103,7 +105,7 @@ namespace PlayniteUI
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (e.NewValue != null)
+            if (e.NewValue != null && e.NewValue is GameViewEntry)
             {
                 var game = (GameViewEntry)e.NewValue;
 
@@ -129,8 +131,6 @@ namespace PlayniteUI
                         Background = FindResource("ControlBackgroundBrush") as Brush;
                         break;
                 }
-
-                //PopupMore.DataContext = game.Game;
             }
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowContent"));

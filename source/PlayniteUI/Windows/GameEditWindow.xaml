@@ -10,6 +10,7 @@
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource StandardWindowStyle}"
         Title="Edit Game Details"
         Height="650" Width="900"
         WindowStartupLocation="CenterOwner"

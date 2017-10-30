@@ -7,6 +7,7 @@
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource StandardWindowStyle}"
         x:Name="WindowMessageBox"
         Title="{Binding Caption, ElementName=WindowMessageBox}"
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False" MaxWidth="600"

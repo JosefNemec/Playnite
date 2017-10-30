@@ -10,6 +10,7 @@
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource EmuWizardWindowTitle}" WindowStartupLocation="CenterOwner"
         Height="600" Width="800" x:Name="WindowEmulatorImport"
         AutomationProperties.AutomationId="WindowEmulatorImport">
