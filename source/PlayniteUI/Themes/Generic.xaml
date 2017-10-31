@@ -34,10 +34,6 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type pc:ExtendedListBox}" BasedOn="{StaticResource {x:Type ListBox}}">
-        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
-    </Style>
-
     <Style TargetType="pc:WindowBase">
         <Setter Property="AllowsTransparency" Value="True" />
         <Setter Property="WindowStyle" Value="None" />
@@ -86,5 +82,9 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type pc:ExtendedListBox}" BasedOn="{StaticResource {x:Type ListBox}}">
+        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
     </Style>
 </ResourceDictionary>

@@ -66,10 +66,6 @@ namespace PlayniteUI
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            //var window = new ThemeTesterWindow();
-            //window.ShowDialog();
-            //Shutdown();
-
             AppSettings = Settings.LoadSettings();
             Localization.SetLanguage(AppSettings.Language);
             Resources.Remove("AsyncImagesEnabled");

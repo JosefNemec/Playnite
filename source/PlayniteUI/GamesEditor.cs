@@ -159,6 +159,20 @@ namespace PlayniteUI
             }
         }
 
+        public void SetHideGame(IGame game, bool state)
+        {
+            game.Hidden = state;
+            GameDatabase.Instance.UpdateGameInDatabase(game);
+        }
+
+        public void SetHideGames(IEnumerable<IGame> games, bool state)
+        {
+            foreach (var game in games)
+            {
+                SetHideGame(game, state);
+            }
+        }
+
         public void ToggleHideGame(IGame game)
         {
             game.Hidden = !game.Hidden;
@@ -173,13 +187,27 @@ namespace PlayniteUI
             }
         }
 
+        public void SetFavoriteGame(IGame game, bool state)
+        {
+            game.Favorite = state;
+            GameDatabase.Instance.UpdateGameInDatabase(game);
+        }
+
+        public void SetFavoriteGames(IEnumerable<IGame> games, bool state)
+        {
+            foreach (var game in games)
+            {
+                SetFavoriteGame(game, state);
+            }
+        }
+
         public void ToggleFavoriteGame(IGame game)
         {
             game.Favorite = !game.Favorite;
             GameDatabase.Instance.UpdateGameInDatabase(game);
         }
 
-        public void ToggleFavoriteGameg(IEnumerable<IGame> games)
+        public void ToggleFavoriteGame(IEnumerable<IGame> games)
         {
             foreach (var game in games)
             {

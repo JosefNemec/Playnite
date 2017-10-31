@@ -129,10 +129,8 @@ namespace PlayniteUI.Windows
         {
             InitializeComponent();
             listview.ItemsSource = new ListViewMock().MyListBoxItems;
-            DataContext = this;
-
-            ChangeSkin(SkinList.First(), false);            
-            SelectedSkin = SkinList.First();
+            DataContext = this;          
+            SelectedSkin = SkinList.First(a => Skins.CurrentSkin + "\\" + Skins.CurrentColor == a);
         }        
 
         public void OnPropertyChanged(string name)
@@ -198,11 +196,6 @@ namespace PlayniteUI.Windows
         private void ButtonApplySkin_Click(object sender, RoutedEventArgs e)
         {
             ChangeSkin(SelectedSkin, false);
-        }
-
-        private void ButtonPreviewMain_Click(object sender, RoutedEventArgs e)
-        {            
-            (new MainWindow()).ShowDialog();
         }
     }
 }

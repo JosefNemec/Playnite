@@ -184,6 +184,7 @@
     <Compile Include="Commands\GeneralCommands.cs" />
     <Compile Include="Commands\GenericCommands.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Controls\etxtest.cs" />
     <Compile Include="Controls\ExtendedListBox.cs" />
     <Compile Include="Controls\FilterSelector.xaml.cs">
       <DependentUpon>FilterSelector.xaml</DependentUpon>
@@ -191,12 +192,6 @@
     <Compile Include="Controls\GameMenu.cs" />
     <Compile Include="Controls\GamesGridView.xaml.cs">
       <DependentUpon>GamesGridView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\GamesImagesView.xaml.cs">
-      <DependentUpon>GamesImagesView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\GamesListView.xaml.cs">
-      <DependentUpon>GamesListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainView.cs" />
     <Compile Include="Controls\WindowBase.cs" />
@@ -219,6 +214,7 @@
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
+    <Compile Include="Converters\WidthToFontSizeConverter.cs" />
     <Compile Include="Dialogs.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GamesCollectionView.cs" />
@@ -305,14 +301,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\GamesGridView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\GamesImagesView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\GamesListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

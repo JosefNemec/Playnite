@@ -39,14 +39,28 @@ namespace PlayniteUI.ViewModels
                 OnPropertyChanged("SelectedGame");
             }
         }
-
-        private IList<object> selectedGames;
-        public IList<object> SelectedGames
+        
+        public IEnumerable<GameViewEntry> SelectedGames
         {
-            get => selectedGames;
+            get
+            {
+                if (selectedGamesBinder == null)
+                {
+                    return null;
+                }
+
+                return selectedGamesBinder.Cast<GameViewEntry>();
+            }
+        }
+
+        private IList<object> selectedGamesBinder;
+        public IList<object> SelectedGamesBinder
+        {
+            get => selectedGamesBinder;
             set
             {
-                selectedGames = value;
+                selectedGamesBinder = value;
+                OnPropertyChanged("SelectedGamesBinder");
                 OnPropertyChanged("SelectedGames");
             }
         }
@@ -201,7 +215,7 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 LoadGames(true, 0);
-            });
+            }, (a) => GameAdditionAllowed);
         }
 
         public RelayCommand<object> OpenSteamFriendsCommand
@@ -282,7 +296,7 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 AddCustomGame(GameEditWindowFactory.Instance);
-            });
+            }, (a) => GameAdditionAllowed);
         }
 
         public RelayCommand<object> AddInstalledGamesCommand
@@ -294,7 +308,7 @@ namespace PlayniteUI.ViewModels
                     database,
                     InstalledGamesWindowFactory.Instance,
                     dialogs));
-            });
+            }, (a) => GameAdditionAllowed);
         }
 
         public RelayCommand<object> AddEmulatedGamesCommand
@@ -307,6 +321,14 @@ namespace PlayniteUI.ViewModels
                     EmulatorImportWindowFactory.Instance,
                     dialogs,
                     resources));
+            }, (a) => GameAdditionAllowed);
+        }
+
+        public RelayCommand<object> OpenThemeTesterCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                (new ThemeTesterWindow()).Show();
             });
         }
 
@@ -730,12 +752,22 @@ namespace PlayniteUI.ViewModels
 
         public void OpenSettings(SettingsViewModel model)
         {
+            var currentSkin = Skins.CurrentSkin;
+            var currentColor = Skins.CurrentColor;
+
             if (model.ShowDialog() == true)
             {
                 // TODO
                 if (model.ProviderIntegrationChanged || model.DatabaseLocationChanged)
                 {
                     LoadGames(true, 0);
+                }
+            }
+            else
+            {
+                if (Skins.CurrentSkin != currentSkin || Skins.CurrentColor != currentColor)
+                {
+                    Skins.ApplySkin(currentSkin, currentColor);
                 }
             }
         }

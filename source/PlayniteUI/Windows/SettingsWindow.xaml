@@ -152,25 +152,38 @@
                 </TabItem>                
                 
                 <TabItem Visibility="Collapsed">
-                    <StackPanel Margin="20">                        
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{DynamicResource SettingsSkin}" VerticalAlignment="Center"/>
-                            <ComboBox Margin="10,0,10,0" Name="ComboSkins"
+                    <StackPanel Margin="20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Text="{DynamicResource SettingsSkin}" VerticalAlignment="Center"
+                                       Grid.Row="0" Grid.Column="0"/>
+                            <ComboBox Margin="10,5,0,5" Name="ComboSkins"
+                                      Grid.Row="0" Grid.Column="1"
                                       ItemsSource="{Binding AvailableSkins}"
                                       SelectedValue="{Binding Settings.Skin}"
                                       SelectionChanged="ComboSkins_SelectionChanged"
                                       SelectedValuePath="Name" DisplayMemberPath="Name" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                            <TextBlock Text="{DynamicResource SettingsSkinColor}" VerticalAlignment="Center"/>
-                            <ComboBox Margin="10,0,0,0"
+
+                            <TextBlock Text="{DynamicResource SettingsSkinColor}" VerticalAlignment="Center"
+                                       Grid.Row="1" Grid.Column="0" />
+                            <ComboBox Margin="10,5,0,5" Name="CombSkinColor"
+                                      Grid.Row="1" Grid.Column="1"
                                       SelectedValue="{Binding Settings.SkinColor}"
-                                      SelectionChanged="ComboBox_SelectionChanged"
+                                      SelectionChanged="CombSkinColor_SelectionChanged"
                                       ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkins}">
                             </ComboBox>
-                        </StackPanel>
+                        </Grid>                        
+                        
                         <CheckBox Content="{DynamicResource SettingsAsyncImageLoading}" ToolTip="{DynamicResource SettingsAsyncImageLoadingTooltip}"
-                                  Margin="0,25,0,0"
+                                  Margin="0,15,0,0"
                                   Name="CheckAsyncImages" IsChecked="{Binding Settings.AsyncImageLoading}"/>
                         <CheckBox Content="{DynamicResource SettingsShowNameEmptyCover}" Margin="0,15,0,0"
                                   Name="CheckNameEmptyCover" IsChecked="{Binding Settings.ShowNameEmptyCover}"/>

@@ -75,7 +75,7 @@
                 <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
                 <pui:BidirectionalEnumAndNumberConverter x:Key="BidirectionalEnumAndNumberConverter" />
                 <pui:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
-                <pc:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
+                <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
                 <pui:ListToStringConverter x:Key="ListToStringConverter" />
             </Grid.Resources>
 
@@ -139,7 +139,7 @@
                                     BorderBrush="{StaticResource NormalBorderBrush}" Width="310"
                                     ItemsSource="{Binding GamesView.CollectionView}"
                                     SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
-                                    SelectedItemsList="{Binding SelectedGames, Mode=TwoWay}"
+                                    SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
                                     ItemContainerStyle="{StaticResource MainListItemStyle}"
                                     DockPanel.Dock="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                     pui:ScrollToSelectedBehavior.Enabled="True"

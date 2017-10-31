@@ -90,31 +90,35 @@ namespace PlayniteUI
 
         public static void ApplySkin(string skinName, string color)
         {
-            var dictionaries = Application.Current.Resources.MergedDictionaries;
-            var currentSkinDict = dictionaries.FirstOrDefault(a => a.Contains("SkinName"));
-            var currentSkinColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinColorName"));
-
-            if (currentSkinColorDict != null)
+            if (Application.Current != null)
             {
-                dictionaries.Remove(currentSkinColorDict);
+                var dictionaries = Application.Current.Resources.MergedDictionaries;
+                var currentSkinDict = dictionaries.FirstOrDefault(a => a.Contains("SkinName"));
+                var currentSkinColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinColorName"));
+
+                if (currentSkinColorDict != null)
+                {
+                    dictionaries.Remove(currentSkinColorDict);
+                }
+
+                if (currentSkinDict != null)
+                {
+                    dictionaries.Remove(currentSkinDict);
+                }
+
+                var skinPath = GetSkinPath(skinName);
+                dictionaries.Add(LoadXaml(skinPath));                
+
+                if (string.IsNullOrEmpty(color))
+                {
+                    return;
+                }
+
+                var fullColorPath = GetColorPath(skinName, color);
+                dictionaries.Add(LoadXaml(fullColorPath));
             }
 
-            if (currentSkinDict != null)
-            {
-                dictionaries.Remove(currentSkinDict);
-            }
-
-            var skinPath = GetSkinPath(skinName);
-            dictionaries.Add(LoadXaml(skinPath));
             CurrentSkin = skinName;
-
-            if (string.IsNullOrEmpty(color))
-            {
-                return;
-            }
-            
-            var fullColorPath = GetColorPath(skinName, color);
-            dictionaries.Add(LoadXaml(fullColorPath));
             CurrentColor = color;
         }
 

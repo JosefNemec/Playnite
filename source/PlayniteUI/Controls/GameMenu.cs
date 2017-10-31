@@ -51,11 +51,18 @@ namespace PlayniteUI.Controls
                 {
                     return entry.Game;
                 }
-                else if (DataContext is IEnumerable<object> entries)
+                else if (DataContext is IEnumerable<GameViewEntry> entries)
                 {
                     if (entries.Count() > 0)
                     {
                         return (entries.First() as GameViewEntry).Game;
+                    }
+                }
+                else if (DataContext is IList<object> entries2)
+                {
+                    if (entries2.Count() > 0)
+                    {
+                        return (entries2.First() as GameViewEntry).Game;
                     }
                 }
 
@@ -67,7 +74,7 @@ namespace PlayniteUI.Controls
         {
             get
             {
-                if (DataContext is  IEnumerable<object> entries)
+                if (DataContext is IEnumerable<GameViewEntry> entries)
                 {
                     if (entries.Count() == 1)
                     {
@@ -75,6 +82,15 @@ namespace PlayniteUI.Controls
                     }
 
                     return entries.Select(a => (a as GameViewEntry).Game);
+                }
+                else if (DataContext is IList<object> entries2)
+                {
+                    if (entries2.Count() == 1)
+                    {
+                        return null;
+                    }
+
+                    return entries2.Select(a => (a as GameViewEntry).Game);
                 }
 
                 return null;
@@ -89,8 +105,8 @@ namespace PlayniteUI.Controls
         public GameMenu()
         {
             resources = new ResourceProvider();
-            InitializeItems();
             DataContextChanged += GameMenu_DataContextChanged;
+            InitializeItems();
         }        
 
         private void GameMenu_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -104,31 +120,55 @@ namespace PlayniteUI.Controls
 
             if (Games != null)
             {
-                // Toggle Favorites
+                // Set Favorites
                 var favoriteItem = new MenuItem()
                 {
-                    Header = Game.Favorite ? resources.FindString("MenuUnFavorite") : resources.FindString("MenuFavorite")
+                    Header = resources.FindString("MenuFavorite")
                 };
 
                 favoriteItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.ToggleFavoriteGameg(Games);
+                    GamesEditor.Instance.SetFavoriteGames(Games, true);
                 };
 
                 Items.Add(favoriteItem);
 
-                // Toggle Hide
+                var unFavoriteItem = new MenuItem()
+                {
+                    Header = resources.FindString("MenuUnFavorite")
+                };
+
+                unFavoriteItem.Click += (s, e) =>
+                {
+                    GamesEditor.Instance.SetFavoriteGames(Games, false);
+                };
+
+                Items.Add(unFavoriteItem);
+
+                // Set Hide
                 var hideItem = new MenuItem()
                 {
-                    Header = Game.Favorite ? resources.FindString("MenuUnHide") : resources.FindString("MenuHide")
+                    Header = resources.FindString("MenuHide")
                 };
 
                 hideItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.ToggleHideGames(Games);
+                    GamesEditor.Instance.SetHideGames(Games, true);
                 };
 
                 Items.Add(hideItem);
+
+                var unHideItem = new MenuItem()
+                {
+                    Header = resources.FindString("MenuUnHide")
+                };
+
+                unHideItem.Click += (s, e) =>
+                {
+                    GamesEditor.Instance.SetHideGames(Games, false);
+                };
+
+                Items.Add(unHideItem);
 
                 // Edit
                 var editItem = new MenuItem()

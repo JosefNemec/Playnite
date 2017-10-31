@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
-        Title="ThemeTesterWindow" Width="600" Height="1060"
+        Title="ThemeTesterWindow" Width="600" Height="500"
         WindowStartupLocation="CenterScreen">
     
     <controls:WindowBase.Resources>
@@ -179,10 +179,8 @@ ItemsSource="{Binding MyListBoxItems}"
                                  SelectedValue="{Binding SelectedSkin, Mode=TwoWay}"/>
                         <Button Content="Apply skin" Name="ButtonApplySkin" Margin="5"
                                 Click="ButtonApplySkin_Click" />
-                        <Button Content="Preview main view" Name="ButtonPreviewMain" Margin="5"
-                                Click="ButtonPreviewMain_Click" />
                         <CheckBox Content="Watch file changes" Margin="5"
-                                  ToolTip="Automatically apply skin changes when the source file changes"
+                                  ToolTip="Automatically apply skin when the source file changes"
                                   IsChecked="{Binding WatchSkinFile}"/>
                         <TextBox Margin="5" TextWrapping="Wrap" AcceptsReturn="True"
                                  Height="100" Text="{Binding ValidationError, Mode=OneWay}"

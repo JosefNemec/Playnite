@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PlayniteUI"
+             xmlns:pui="clr-namespace:PlayniteUI"
+             xmlns:pc="clr-namespace:PlayniteUI.Controls"
              xmlns:html="clr-namespace:TheArtOfDev.HtmlRenderer.WPF;assembly=HtmlRenderer.WPF"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:models="clr-namespace:Playnite.Models;assembly=Playnite"
@@ -13,20 +14,20 @@
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <local:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
-        <local:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
-        <local:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
-        <local:ImageUrlToImageSourceConverter x:Key="ImageUrlToImageSourceConverter" />
-        <local:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
-        <local:EnumerableNullOrEmptyToVisibilityConverter x:Key="EnumerableNullOrEmptyToVisibilityConverter" />
-        <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+        <pui:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
+        <pui:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
+        <pui:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
+        <pui:ImageUrlToImageSourceConverter x:Key="ImageUrlToImageSourceConverter" />
+        <pui:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
+        <pui:EnumerableNullOrEmptyToVisibilityConverter x:Key="EnumerableNullOrEmptyToVisibilityConverter" />
+        <pui:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
         <sys:Boolean x:Key="True">True</sys:Boolean>
         <sys:Boolean x:Key="False">False</sys:Boolean>
-        <local:ValueConverterGroup x:Key="EnumCompVisibilityConverterInverted">
-            <local:EnumConverter/>
-            <local:NegateConverter/>
+        <pui:ValueConverterGroup x:Key="EnumCompVisibilityConverterInverted">
+            <pui:EnumConverter/>
+            <pui:NegateConverter/>
             <BooleanToVisibilityConverter/>
-        </local:ValueConverterGroup>
+        </pui:ValueConverterGroup>
 
         <Style x:Key="ListTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
             <Setter Property="Margin" Value="0,2,5,2" />
@@ -96,7 +97,12 @@
                     </StackPanel>
                     <Button Name="ButtonSetupProgress" Content="Setup Running..." Click="ButtonSetupProgress_Click"
                             Visibility="{Binding IsSetupInProgress, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
-                    <Button Name="ButtonMore" Width="100" Margin="10, 0, 0, 0" Click="ButtonMore_Click" Content="More" />
+                    <Button Name="ButtonMore" Width="100" Margin="10, 0, 0, 0" Click="ButtonMore_Click" Content="More"
+                            pui:LeftClickContextMenuBehavior.Enabled="True">
+                        <Button.ContextMenu>
+                            <pc:GameMenu Placement="Bottom"/>
+                        </Button.ContextMenu>
+                    </Button>
                 </StackPanel>
             </DockPanel>
 

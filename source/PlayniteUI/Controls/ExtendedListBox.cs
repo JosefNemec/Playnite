@@ -23,7 +23,7 @@ namespace PlayniteUI.Controls
         }
 
         public ExtendedListBox()
-        {
+        {            
             SelectionChanged += ExtendedListBox_SelectionChanged;
         }
 

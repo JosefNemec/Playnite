@@ -24,19 +24,22 @@
             </Grid.RowDefinitions>
 
             <Grid.Resources>
+                <pui:BindingProxy x:Key="Proxy" Data="{Binding}" />
                 <sys:Boolean x:Key="True">True</sys:Boolean>
                 <sys:Boolean x:Key="False">False</sys:Boolean>
-                <pui:BindingProxy x:Key="Proxy" Data="{Binding}" />
                 <pui:OpacityBoolConverter x:Key="OpacityBoolConverter" />
                 <pui:EnumConverter x:Key="EnumConverter" />
                 <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
                 <pui:BidirectionalEnumAndNumberConverter x:Key="BidirectionalEnumAndNumberConverter" />
                 <pui:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
-                <pc:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
+                <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
                 <pui:ListToStringConverter x:Key="ListToStringConverter" />
             </Grid.Resources>
             
             <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="0">
+                <DockPanel.Resources>
+
+                </DockPanel.Resources>
                 <DockPanel Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True"
                        Opacity="{Binding IsMouseOver, Converter={StaticResource OpacityBoolConverter}, ConverterParameter={StaticResource True}, RelativeSource={RelativeSource Self}}"
                        pui:LeftClickContextMenuBehavior.Enabled="True">
@@ -49,16 +52,16 @@
                     <DockPanel.ContextMenu>
                         <ContextMenu StaysOpen="False" Name="MenuMainMenu" Placement="Bottom">
                             <MenuItem Header="Add Game">
-                                <MenuItem Header="Manually..." IsEnabled="{Binding GameAdditionAllowed}"
-                                      Command="{Binding AddCustomGameCommand}"/>
-                                <MenuItem Header="Import Installed or from Folder..." IsEnabled="{Binding GameAdditionAllowed}"
-                                      Command="{Binding AddInstalledGamesCommand}"/>
-                                <MenuItem Header="Import emulated Game(s)..." IsEnabled="{Binding GameAdditionAllowed}"
-                                      Command="{Binding AddEmulatedGamesCommand}"/>
+                                <MenuItem Header="Manually..."
+                                          Command="{Binding AddCustomGameCommand}"/>
+                                <MenuItem Header="Import Installed or from Folder..."
+                                          Command="{Binding AddInstalledGamesCommand}"/>
+                                <MenuItem Header="Import emulated Game(s)..."
+                                          Command="{Binding AddEmulatedGamesCommand}"/>
                             </MenuItem>
                             <Separator />
-                            <MenuItem Header="Reload Games List" IsEnabled="{Binding GameAdditionAllowed}"
-                                  Command="{Binding LoadGamesCommand}"/>
+                            <MenuItem Header="Reload Games List"
+                                      Command="{Binding LoadGamesCommand}"/>
                             <MenuItem Header="{DynamicResource MenuConfigurationTitle}">
                                 <MenuItem Header="{DynamicResource MenuPlayniteSettingsTitle}"
                                       Command="{Binding OpenSettingsCommand}"/>
@@ -349,7 +352,7 @@
                                          BorderBrush="{StaticResource NormalBorderBrush}" Width="310"
                                          ItemsSource="{Binding GamesView.CollectionView}"
                                          SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
-                                         SelectedItemsList="{Binding SelectedGames, Mode=TwoWay}"
+                                         SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
                                          DockPanel.Dock="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                          pui:ScrollToSelectedBehavior.Enabled="True"
                                          VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
