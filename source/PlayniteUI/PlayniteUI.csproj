@@ -178,13 +178,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Behaviors\LeftClickContextMenuBehavior - Copy.cs" />
-    <Compile Include="AttachedProperties\ListBoxProperties.cs" />
     <Compile Include="BindingProxy.cs" />
     <Compile Include="CmdlineCommands.cs" />
     <Compile Include="Commands\GeneralCommands.cs" />
     <Compile Include="Commands\GenericCommands.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Controls\etxtest.cs" />
     <Compile Include="Controls\ExtendedListBox.cs" />
     <Compile Include="Controls\FilterSelector.xaml.cs">
       <DependentUpon>FilterSelector.xaml</DependentUpon>
@@ -202,10 +200,9 @@
     <Compile Include="Converters\EnumBooleanConverter.cs" />
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\IconToImageSourceConverter.cs" />
-    <Compile Include="Converters\ImageUrlToImageSourceConverter.cs" />
     <Compile Include="Converters\InvertableBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\ListToStringConverter.cs" />
-    <Compile Include="Converters\LiteDBImageToImageConverter - Copy.cs" />
+    <Compile Include="Converters\LiteDBImageToImageConverter.cs" />
     <Compile Include="Converters\SkinMediaPathConverter.cs" />
     <Compile Include="Converters\NegateConverter.cs" />
     <Compile Include="Converters\NullableDateToStringConverter.cs" />

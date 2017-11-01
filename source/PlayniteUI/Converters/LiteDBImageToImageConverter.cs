@@ -50,17 +50,29 @@ namespace PlayniteUI
                 return imageId.Replace("resources:", "");
             }
 
+            if (imageId.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var cachedFile = Web.GetCachedWebFile(imageId);
+                if (string.IsNullOrEmpty(cachedFile))
+                {
+                    logger.Warn("Web file not found: " + imageId);
+                    return DependencyProperty.UnsetValue;
+                }
+
+                return BitmapExtensions.BitmapFromFile(cachedFile);
+            }
+
+            if (File.Exists(imageId))
+            {
+                return BitmapExtensions.BitmapFromFile(imageId);
+            }
+
             if (IsCacheEnabled && Cache.ContainsKey(imageId))
             {
                 return Cache[imageId];
             }
             else
             {
-                if (File.Exists(imageId))
-                {
-                    return BitmapExtensions.BitmapFromFile(imageId);
-                }
-
                 try
                 {
                     var imageData = GameDatabase.Instance.GetFileImage(imageId);

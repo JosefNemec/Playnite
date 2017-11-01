@@ -17,7 +17,6 @@
         <pui:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
         <pui:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
         <pui:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
-        <pui:ImageUrlToImageSourceConverter x:Key="ImageUrlToImageSourceConverter" />
         <pui:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
         <pui:EnumerableNullOrEmptyToVisibilityConverter x:Key="EnumerableNullOrEmptyToVisibilityConverter" />
         <pui:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
@@ -62,8 +61,8 @@
 
     <Grid Visibility="{Binding ShowContent, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
         <Grid.Background>
-            <ImageBrush Stretch="Uniform" AlignmentX="Center" AlignmentY="Top" RenderOptions.BitmapScalingMode="Fant"
-                        ImageSource="{Binding BackgroundImage, IsAsync=True, Mode=OneTime, Converter={StaticResource ImageUrlToImageSourceConverter}}" />
+            <ImageBrush Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Top" RenderOptions.BitmapScalingMode="Fant"
+                        ImageSource="{Binding BackgroundImage, IsAsync=True, Mode=OneWay, Converter={StaticResource LiteDBImageToImageConverter}}" />
         </Grid.Background>
 
         <DockPanel Margin="0,10,0,0">

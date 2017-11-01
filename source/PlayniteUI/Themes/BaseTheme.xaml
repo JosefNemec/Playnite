@@ -730,6 +730,9 @@
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
                         </Trigger>
+                        <Trigger Property="IsReadOnly" Value="True">
+                            <Setter Property="Opacity" Value="0.8"  />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

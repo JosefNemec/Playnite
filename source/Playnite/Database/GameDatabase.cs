@@ -675,6 +675,7 @@ namespace Playnite.Database
                 bitmap.StreamSource = fStream;
                 bitmap.CacheOption = BitmapCacheOption.OnLoad;
                 bitmap.EndInit();
+                bitmap.Freeze();
                 return bitmap;
             }
         }

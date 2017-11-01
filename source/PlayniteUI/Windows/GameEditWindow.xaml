@@ -12,7 +12,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         Title="Edit Game Details"
-        Height="650" Width="900"
+        Height="650" Width="800"
         WindowStartupLocation="CenterOwner"
         x:Name="mainWindow" Loaded="Window_Loaded"
         AutomationProperties.AutomationId="WindowGameEdit">
@@ -45,192 +45,218 @@
 
         <TabControl Name="TabControlMain" DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0">
             <TabItem Header="General">
-                <Grid Margin="10">
+                <Grid Grid.Column="0" Grid.Row="0" Margin="10">
+                    <Grid.Resources>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
+                            <Setter Property="Margin" Value="3" />
+                        </Style>
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}" >
+                            <Setter Property="Margin" Value="3" />
+                        </Style>
+                        <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}" >
+                            <Setter Property="Margin" Value="0,5,0,0" />
+                        </Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}" >
+                            <Setter Property="Margin" Value="0,3,0,0" />
+                        </Style>
+                    </Grid.Resources>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="70*"/>
-                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition />
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Column="0" Grid.Row="0" Margin="5,0,3,0">
-                        <Grid.Resources>
-                            <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
-                                <Setter Property="Margin" Value="3" />
-                            </Style>
-                            <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}" >
-                                <Setter Property="Margin" Value="3" />
-                            </Style>
-                            <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}" >
-                                <Setter Property="Margin" Value="0,5,0,0" />
-                            </Style>
-                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}" >
-                                <Setter Property="Margin" Value="0,3,0,0" />
-                            </Style>
-                        </Grid.Resources>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
 
-                        <TextBlock Text="Id" Grid.Column="0" Grid.Row="0"
-                                   Visibility="{Binding Source={x:Static playnite:Constants.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                        <TextBox Grid.Column="2" Grid.Row="0" IsReadOnly="True" Text="{Binding EditingGame.ProviderId, Mode=OneTime}"
-                                 Visibility="{Binding Source={x:Static playnite:Constants.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <TextBlock Text="Id" Grid.Column="0" Grid.Row="0"
+                                Visibility="{Binding Source={x:Static playnite:Constants.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <TextBox Grid.Column="2" Grid.Row="0" IsReadOnly="True" Text="{Binding EditingGame.ProviderId, Mode=OneTime}"
+                                Visibility="{Binding Source={x:Static playnite:Constants.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Name"/>
-                        <CheckBox Grid.Column="1" Grid.Row="1" Name="CheckName"
-                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  IsChecked="{Binding UseNameChanges}"/>
-                        <TextBox Grid.Column="2" Grid.Row="1" Name="TextName"
-                                 Text="{Binding EditingGame.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Name"/>
+                    <CheckBox Grid.Column="1" Grid.Row="1" Name="CheckName"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseNameChanges}"/>
+                    <TextBox Grid.Column="2" Grid.Row="1" Name="TextName"
+                                Text="{Binding EditingGame.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Platform"/>
-                        <CheckBox Grid.Column="1" Grid.Row="2" Name="CheckPlatform"
-                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  IsChecked="{Binding UsePlatformChanges}"/>
-                        <ComboBox Grid.Column="2" Grid.Row="2" Name="ComboPlatforms"
-                                  ItemsSource="{Binding Platforms}"
-                                  SelectedValuePath="Id" SelectedValue="{Binding EditingGame.PlatformId, UpdateSourceTrigger=PropertyChanged}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Platform"/>
+                    <CheckBox Grid.Column="1" Grid.Row="2" Name="CheckPlatform"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UsePlatformChanges}"/>
+                    <ComboBox Grid.Column="2" Grid.Row="2" Name="ComboPlatforms"
+                                ItemsSource="{Binding Platforms}"
+                                SelectedValuePath="Id" SelectedValue="{Binding EditingGame.PlatformId, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
 
-                        <TextBlock Grid.Column="0" Grid.Row="3" Text="Genre(s)" />
-                        <CheckBox Grid.Column="1" Grid.Row="3" Name="CheckGenres"
-                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  IsChecked="{Binding UseGenresChanges}"/>
-                        <TextBox Grid.Column="2" Grid.Row="3" Name="TextGenres"
-                                 Text="{Binding EditingGame.Genres, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Genre(s)" />
+                    <CheckBox Grid.Column="1" Grid.Row="3" Name="CheckGenres"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseGenresChanges}"/>
+                    <TextBox Grid.Column="2" Grid.Row="3" Name="TextGenres"
+                                Text="{Binding EditingGame.Genres, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="4" Text="Release date"/>
-                        <CheckBox Grid.Column="1" Grid.Row="4" Name="CheckReleaseDate"
-                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  IsChecked="{Binding UseReleaseDateChanges}"/>
-                        <Grid Grid.Column="2" Grid.Row="4">
-                            <TextBox Text="{x:Static playnite:Constants.DateUiFormat}" Foreground="LightGray"
-                                     Visibility="{Binding ElementName=TextReleaseDate, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                            <TextBox Name="TextReleaseDate" Background="Transparent"
-                                     Text="{Binding EditingGame.ReleaseDate, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullableDateToStringConverter}}" />
-                        </Grid>
-
-                        <TextBlock Grid.Column="0" Grid.Row="5" Text="Developer(s)"/>
-                        <CheckBox Grid.Column="1" Grid.Row="5" Name="CheckDeveloper"
-                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  IsChecked="{Binding UseDeveloperChanges}"/>
-                        <TextBox Grid.Column="2" Grid.Row="5" Name="TextDeveloper"
-                                 Text="{Binding EditingGame.Developers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
-
-                        <TextBlock Grid.Column="0" Grid.Row="6" Text="Publisher(s)" />
-                        <CheckBox Grid.Column="1" Grid.Row="6" Name="CheckPublisher"
-                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  IsChecked="{Binding UsePublisherChanges, Mode=OneWay}"/>
-                        <TextBox Grid.Column="2" Grid.Row="6" Name="TextPublisher"
-                                 Text="{Binding EditingGame.Publishers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
-
-                        <TextBlock Grid.Column="0" Grid.Row="7" Text="Categories" />
-                        <CheckBox Grid.Column="1" Grid.Row="7" Name="CheckCategories"
-                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  IsChecked="{Binding UseCategoryChanges}"/>
-                        <DockPanel Grid.Column="2" Grid.Row="7">
-                            <Button Name="ButtonPickCat" Content="..."  DockPanel.Dock="Right" Margin="2"
-                                    Height="{Binding ActualHeight, ElementName=TextCategories}"
-                                    Command="{Binding SelectCategoryCommand}"/>
-                            <TextBox Name="TextCategories" DockPanel.Dock="Left"
-                                     Text="{Binding EditingGame.Categories, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
-                        </DockPanel>
-
-                        <TextBlock Grid.Column="0" Grid.Row="8" Text="Description" />
-                        <CheckBox Grid.Column="1" Grid.Row="8" Name="CheckDescription" VerticalAlignment="Top"
-                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  IsChecked="{Binding UseDescriptionChanges}"/>
-                        <TextBox Grid.Column="2" Grid.Row="8" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
-                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                 Text="{Binding EditingGame.Description, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="Release date"/>
+                    <CheckBox Grid.Column="1" Grid.Row="4" Name="CheckReleaseDate"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseReleaseDateChanges}"/>
+                    <Grid Grid.Column="2" Grid.Row="4">
+                        <TextBox Text="{x:Static playnite:Constants.DateUiFormat}" Foreground="LightGray"
+                                    Visibility="{Binding ElementName=TextReleaseDate, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBox Name="TextReleaseDate" Background="Transparent"
+                                    Text="{Binding EditingGame.ReleaseDate, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullableDateToStringConverter}}" />
                     </Grid>
-                    <Grid Grid.Column="1" Grid.Row="0"  Margin="0,0,2,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <GroupBox Grid.Column="0" Grid.Row="0" Header="Icon">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <CheckBox Name="CheckIcon" VerticalAlignment="Center"
-                                                  Visibility="{Binding Data.ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
-                                                  IsChecked="{Binding Data.UseIconChanges, Source={StaticResource Proxy}}"/>
-                                        <TextBlock Text="{Binding}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
-                            <DockPanel LastChildFill="True">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,5" DockPanel.Dock="Top">
-                                    <Button Name="ButtonSelectIcon" Content="Select Icon"
-                                            Command="{Binding SelectIconCommand}"/>
-                                    <Button Name="ButtonUseExeIcon" Content=" Use exe's icon " Margin="5,0,0,0"
-                                            Command="{Binding UseExeIconCommand}">
-                                        <Button.Style>
-                                            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-                                                <Setter Property="Visibility" Value="Collapsed" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Games}" Value="{x:Null}">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-                                    </Button>
-                                </StackPanel>
-                                <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource LiteDBImageToImageConverter}}"
-                                       Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageIcon"
-                                       DockPanel.Dock="Top" Tag="IsIconBindingDirty" MaxHeight="64"
-                                       AutomationProperties.HelpText="{Binding EditingGame.Icon, TargetNullValue=''}"/>
-                            </DockPanel>
-                        </GroupBox>
-                        <GroupBox Grid.Column="0" Grid.Row="1" Header="Cover Image" Margin="0,5,0,0">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <CheckBox Name="CheckImage" VerticalAlignment="Center"
-                                                  Visibility="{Binding Data.ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
-                                                  IsChecked="{Binding Data.UseImageChanges, Source={StaticResource Proxy}}"/>
-                                        <TextBlock Text="{Binding}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
-                            <DockPanel LastChildFill="True">
-                                <Button Name="ButtonSelectImage" Content="Select Image" DockPanel.Dock="Top"
-                                        MaxWidth="120" Margin="0,0,0,5" HorizontalAlignment="Left"
-                                        Command="{Binding SelectCoverCommand}"/>
-                                <Image Source="{Binding EditingGame.Image, Mode=OneWay, Converter={StaticResource LiteDBImageToImageConverter}}"
-                                       Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
-                                       DockPanel.Dock="Top" Tag="IsImageBindingDirty"
-                                       AutomationProperties.HelpText="{Binding EditingGame.Image, TargetNullValue=''}"/>
-                            </DockPanel>
-                        </GroupBox>
-                    </Grid>
+
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="Developer(s)"/>
+                    <CheckBox Grid.Column="1" Grid.Row="5" Name="CheckDeveloper"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseDeveloperChanges}"/>
+                    <TextBox Grid.Column="2" Grid.Row="5" Name="TextDeveloper"
+                                Text="{Binding EditingGame.Developers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
+
+                    <TextBlock Grid.Column="0" Grid.Row="6" Text="Publisher(s)" />
+                    <CheckBox Grid.Column="1" Grid.Row="6" Name="CheckPublisher"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UsePublisherChanges, Mode=OneWay}"/>
+                    <TextBox Grid.Column="2" Grid.Row="6" Name="TextPublisher"
+                                Text="{Binding EditingGame.Publishers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
+
+                    <TextBlock Grid.Column="0" Grid.Row="7" Text="Categories" />
+                    <CheckBox Grid.Column="1" Grid.Row="7" Name="CheckCategories"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseCategoryChanges}"/>
+                    <DockPanel Grid.Column="2" Grid.Row="7">
+                        <Button Name="ButtonPickCat" Content="..."  DockPanel.Dock="Right" Margin="2"
+                                Height="{Binding ActualHeight, ElementName=TextCategories}"
+                                Command="{Binding SelectCategoryCommand}"/>
+                        <TextBox Name="TextCategories" DockPanel.Dock="Left"
+                                    Text="{Binding EditingGame.Categories, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
+                    </DockPanel>
+
+                    <TextBlock Grid.Column="0" Grid.Row="8" Text="Description" />
+                    <CheckBox Grid.Column="1" Grid.Row="8" Name="CheckDescription" VerticalAlignment="Top"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseDescriptionChanges}"/>
+                    <TextBox Grid.Column="2" Grid.Row="8" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
+                                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                Text="{Binding EditingGame.Description, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </TabItem>
 
+            <TabItem Header="Media">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <GroupBox Grid.Column="0" Grid.Row="0" Header="Icon">
+                        <GroupBox.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="CheckIcon" VerticalAlignment="Center"
+                                                  Visibility="{Binding Data.ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+                                                  IsChecked="{Binding Data.UseIconChanges, Source={StaticResource Proxy}}"/>
+                                    <TextBlock Text="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupBox.HeaderTemplate>
+                        <DockPanel LastChildFill="True">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,5" DockPanel.Dock="Top">
+                                <Button Name="ButtonSelectIcon" Content="Select Icon"
+                                            Command="{Binding SelectIconCommand}"/>
+                                <Button Name="ButtonUseExeIcon" Content=" Use exe's icon " Margin="5,0,0,0"
+                                            Command="{Binding UseExeIconCommand}">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Games}" Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </StackPanel>
+                            <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource LiteDBImageToImageConverter}}"
+                                       Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageIcon"
+                                       DockPanel.Dock="Top" MaxHeight="64"
+                                       AutomationProperties.HelpText="{Binding EditingGame.Icon, TargetNullValue=''}"/>
+                        </DockPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="0" Grid.Row="1" Header="Cover Image" Margin="0,5,0,0">
+                        <GroupBox.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="CheckImage" VerticalAlignment="Center"
+                                                  Visibility="{Binding Data.ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+                                                  IsChecked="{Binding Data.UseImageChanges, Source={StaticResource Proxy}}"/>
+                                    <TextBlock Text="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupBox.HeaderTemplate>
+                        <DockPanel LastChildFill="True">
+                            <Button Name="ButtonSelectImage" Content="Select Image" DockPanel.Dock="Top"
+                                        Margin="0,0,0,5" HorizontalAlignment="Left"
+                                        Command="{Binding SelectCoverCommand}"/>
+                            <Image Source="{Binding EditingGame.Image, Mode=OneWay, Converter={StaticResource LiteDBImageToImageConverter}}"
+                                       Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
+                                       DockPanel.Dock="Top"
+                                       AutomationProperties.HelpText="{Binding EditingGame.Image, TargetNullValue=''}"/>
+                        </DockPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
+                              Header="Background Image" Margin="5,0,0,0">
+                        <GroupBox.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="CheckImage" VerticalAlignment="Center"
+                                              Visibility="{Binding Data.ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+                                              IsChecked="{Binding Data.UseBackgroundChanges, Source={StaticResource Proxy}}"/>
+                                    <TextBlock Text="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupBox.HeaderTemplate>
+                        <DockPanel DockPanel.Dock="Top">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                <Button Content="Select File" HorizontalAlignment="Left"
+                                        Command="{Binding SelectBackgroundCommand}"/>
+                                <Button Content="Select Url" Margin="5,0,0,0" HorizontalAlignment="Left"
+                                        Command="{Binding SetBackgroundUrlCommand}"/>
+                            </StackPanel>
+                            <DockPanel DockPanel.Dock="Top" Margin="5,5,0,5"
+                                       Visibility="{Binding ShowBackgroundUrl, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <TextBlock Text="Image URL" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                                <TextBox IsReadOnly="True" DockPanel.Dock="Left" Margin="5,0,0,0"
+                                         Text="{Binding EditingGame.BackgroundImage}" />
+                            </DockPanel>
+                            <Image Source="{Binding EditingGame.BackgroundImage, Mode=OneWay, Converter={StaticResource LiteDBImageToImageConverter}}"
+                                   Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant"
+                                   DockPanel.Dock="Top"
+                                   AutomationProperties.HelpText="{Binding EditingGame.Image, TargetNullValue=''}"/>
+                        </DockPanel>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            
             <TabItem Header="Links" Name="TabLinks"
                      Visibility="{Binding ShowLinks, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <DockPanel>

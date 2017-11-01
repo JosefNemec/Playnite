@@ -81,7 +81,7 @@ namespace PlayniteUI.Controls
                         return null;
                     }
 
-                    return entries.Select(a => (a as GameViewEntry).Game);
+                    return entries.Select(a => (a as GameViewEntry).Game).ToList();
                 }
                 else if (DataContext is IList<object> entries2)
                 {
@@ -90,7 +90,7 @@ namespace PlayniteUI.Controls
                         return null;
                     }
 
-                    return entries2.Select(a => (a as GameViewEntry).Game);
+                    return entries2.Select(a => (a as GameViewEntry).Game).ToList();
                 }
 
                 return null;

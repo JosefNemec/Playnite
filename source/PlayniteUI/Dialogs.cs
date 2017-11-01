@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using PlayniteUI.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,16 @@ namespace PlayniteUI
 {
     public class Dialogs
     {
+        public static MessageBoxResult SelectString(Window owner, string messageBoxText, string caption, out string input)
+        {
+            return (new MessageBoxWindow()).ShowInput(owner, messageBoxText, caption, out input);
+        }
+
+        public static MessageBoxResult SelectString(string messageBoxText, string caption, out string input)
+        {
+            return SelectString(null, messageBoxText, caption, out input);
+        }
+
         public static string SaveFile(Window owner, string filter, bool promptOverwrite)
         {
             var dialog = new SaveFileDialog()

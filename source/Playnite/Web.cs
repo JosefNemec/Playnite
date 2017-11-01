@@ -35,5 +35,46 @@ namespace Playnite
             var webClient = new WebClient();
             webClient.DownloadFile(url, path);
         }
+
+        public static string GetCachedWebFile(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+            {
+                return string.Empty;
+            }
+
+            var extension = Path.GetExtension(url);
+            var md5 = url.MD5();
+            var cacheFile = Path.Combine(Paths.ImagesCachePath, md5 + extension);
+
+            if (!File.Exists(cacheFile))
+            {
+                FileSystem.CreateFolder(Paths.ImagesCachePath);
+
+                try
+                {
+                    DownloadFile(url, cacheFile);
+                }
+                catch (WebException e)
+                {
+                    if (e.Response == null)
+                    {
+                        throw;
+                    }
+
+                    var response = (HttpWebResponse)e.Response;
+                    if (response.StatusCode != HttpStatusCode.NotFound)
+                    {
+                        throw;
+                    }
+                    else
+                    {
+                        return string.Empty;
+                    }
+                }
+            }
+
+            return cacheFile;
+        }
     }
 }

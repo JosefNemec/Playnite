@@ -22,6 +22,7 @@ namespace PlayniteUI
         string SelectImagefile();
         string SaveFile(string filter);
         string SaveFile(string filter, bool promptOverwrite);
+        MessageBoxResult SelectString(string messageBoxText, string caption, out string input);
     }
 
     public class DialogsFactory : IDialogsFactory
@@ -54,6 +55,11 @@ namespace PlayniteUI
         public string SelectImagefile()
         {
             return Dialogs.SelectImageFile(PlayniteWindows.CurrentWindow);
+        }
+
+        public MessageBoxResult SelectString(string messageBoxText, string caption, out string input)
+        {
+            return Dialogs.SelectString(PlayniteWindows.CurrentWindow, messageBoxText, caption, out input);
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
@@ -148,6 +154,5 @@ namespace PlayniteUI
         {
             return (new MessageBoxWindow()).Show(owner, messageBoxText, string.Empty, MessageBoxButton.OK, MessageBoxImage.None, MessageBoxResult.None, MessageBoxOptions.None);
         }
-
     }
 }

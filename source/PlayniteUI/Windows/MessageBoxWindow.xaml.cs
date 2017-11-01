@@ -102,6 +102,29 @@ namespace PlayniteUI.Windows
             }
         }
 
+
+        private bool showInputField = false;
+        public bool ShowInputField
+        {
+            get => showInputField;
+            set
+            {
+                showInputField = value;
+                OnPropertyChanged("ShowInputField");
+            }
+        }
+
+        private string inputText = string.Empty;
+        public string InputText
+        {
+            get => inputText;
+            set
+            {
+                inputText = value;
+                OnPropertyChanged("InputText");
+            }
+        }
+
         public MessageBoxWindow()
         {
             InitializeComponent();
@@ -110,6 +133,28 @@ namespace PlayniteUI.Windows
         public void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public MessageBoxResult ShowInput(Window owner, string messageBoxText, string caption, out string input)
+        {
+            if (owner == null)
+            {
+                WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            }
+
+            input = string.Empty;
+            TextInputText.Focus();
+            Owner = owner;
+            Text = messageBoxText;
+            Caption = caption;
+            ShowInputField = true;
+            ShowOKButton = true;
+            ShowCancelButton = true;
+            Image = null;
+            InputText = input ?? string.Empty;
+            ShowDialog();
+            input = InputText;
+            return result;
         }
 
         public MessageBoxResult Show(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)

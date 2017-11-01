@@ -178,6 +178,21 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        private bool useBackgroundChanges;
+        public bool UseBackgroundChanges
+        {
+            get
+            {
+                return useBackgroundChanges;
+            }
+
+            set
+            {
+                useBackgroundChanges = value;
+                OnPropertyChanged("UseBackgroundChanges");
+            }
+        }
+
         private bool useInstallDirChanges;
         public bool UseInstallDirChanges
         {
@@ -326,6 +341,14 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        public bool ShowBackgroundUrl
+        {
+            get
+            {
+                return EditingGame == null || EditingGame.BackgroundImage == null ? false : EditingGame.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase);
+            }
+        }
+
         private bool showMetaDownload;
         public bool ShowMetaDownload
         {
@@ -418,6 +441,22 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 SelectCover();
+            });
+        }
+
+        public RelayCommand<object> SelectBackgroundCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                SelectBackground();
+            });
+        }
+
+        public RelayCommand<object> SetBackgroundUrlCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                SetBackgroundUrl();
             });
         }
 
@@ -590,6 +629,10 @@ namespace PlayniteUI.ViewModels
                 case "Image":
                     UseImageChanges = true;
                     break;
+                case "BackgroundImage":
+                    OnPropertyChanged("ShowBackgroundUrl");
+                    UseBackgroundChanges = true;
+                    break;
                 case "Icon":
                     UseIconChanges = true;
                     break;
@@ -749,14 +792,20 @@ namespace PlayniteUI.ViewModels
                 }
             }
 
-            if (Game.InstallDirectory != EditingGame.InstallDirectory)
+            if (Games == null)
             {
-                Game.InstallDirectory = EditingGame.InstallDirectory;
+                if (Game.InstallDirectory != EditingGame.InstallDirectory)
+                {
+                    Game.InstallDirectory = EditingGame.InstallDirectory;
+                }
             }
 
-            if (Game.IsoPath != EditingGame.IsoPath)
+            if (Games == null)
             {
-                Game.IsoPath = EditingGame.IsoPath;
+                if (Game.IsoPath != EditingGame.IsoPath)
+                {
+                    Game.IsoPath = EditingGame.IsoPath;
+                }
             }
 
             if (UsePlatformChanges)
@@ -844,6 +893,68 @@ namespace PlayniteUI.ViewModels
                 }
             }
 
+            if (UseBackgroundChanges)
+            {
+                if (EditingGame.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (Games != null)
+                    {
+                        foreach (var game in Games)
+                        {
+                            if (!string.IsNullOrEmpty(game.BackgroundImage) && game.BackgroundImage.StartsWith("images/custom/"))
+                            {
+                                database.DeleteImageSafe(game.BackgroundImage, game);
+                            }
+
+                            game.BackgroundImage = EditingGame.BackgroundImage;
+                        }
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(Game.BackgroundImage) && game.BackgroundImage.StartsWith("images/custom/"))
+                        {
+                            database.DeleteImageSafe(Game.BackgroundImage, Game);
+                        }
+
+                        Game.BackgroundImage = EditingGame.BackgroundImage;
+                    }
+                }
+                else
+                {
+                    var imagePath = EditingGame.BackgroundImage;
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
+                    var imageId = "images/custom/" + fileName;
+                    database.AddImage(imageId, fileName, File.ReadAllBytes(imagePath));
+
+                    if (Games != null)
+                    {
+                        foreach (var game in Games)
+                        {
+                            if (!string.IsNullOrEmpty(game.BackgroundImage) && game.BackgroundImage.StartsWith("images/custom/"))
+                            {
+                                database.DeleteImageSafe(game.BackgroundImage, game);
+                            }
+
+                            game.BackgroundImage = imageId;
+                        }
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(Game.BackgroundImage) && game.BackgroundImage.StartsWith("images/custom/"))
+                        {
+                            database.DeleteImageSafe(Game.BackgroundImage, Game);
+                        }
+
+                        Game.BackgroundImage = imageId;
+                    }
+
+                    if (Path.GetDirectoryName(imagePath) == Paths.TempPath)
+                    {
+                        File.Delete(imagePath);
+                    }
+                }
+            }
+
             if (Games == null)
             {
                 if (!Game.PlayTask.IsEqualJson(EditingGame.PlayTask))
@@ -917,6 +1028,11 @@ namespace PlayniteUI.ViewModels
                 EditingGame.Links = game.Links;
             }
 
+            if (!string.IsNullOrEmpty(game.BackgroundImage))
+            {
+                EditingGame.BackgroundImage = game.BackgroundImage;
+            }
+
             if (!string.IsNullOrEmpty(game.Image))
             {
                 var extension = Path.GetExtension(game.Image);
@@ -987,6 +1103,23 @@ namespace PlayniteUI.ViewModels
             if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.Image = path;
+            }
+        }        
+
+        public void SelectBackground()
+        {
+            var path = dialogs.SelectImagefile();
+            if (!string.IsNullOrEmpty(path))
+            {
+                EditingGame.BackgroundImage = path;
+            }
+        }
+
+        public void SetBackgroundUrl()
+        {
+            if (dialogs.SelectString("Enter valid web URL starting with http:// or https://", "Select Url", out var input) == MessageBoxResult.OK)
+            {
+                EditingGame.BackgroundImage = input;
             }
         }
 
