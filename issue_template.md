@@ -1,1 +1,1 @@
-Please use [search](https://github.com/JosefNemec/Playnite/search) first to see if the issue is already opened. Thank you
+Please use search first to see if the issue is already opened. Thank you
