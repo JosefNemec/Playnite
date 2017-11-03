@@ -30,8 +30,9 @@ namespace PlayniteUI
         private Mutex appMutex;
         private bool resourcesReleased = false;
         private PipeService pipeService;
-        private PipeServer pipeServer;        
+        private PipeServer pipeServer;
         private MainViewModel mainModel;
+        private FullscreenViewModel fullscreenModel;
 
         public static Settings AppSettings
         {
@@ -127,7 +128,7 @@ namespace PlayniteUI
                     "Skin Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 Shutdown();
                 return;
-            }            
+            }
 
             // First run wizard
             ulong steamCatImportId = 0;
@@ -182,18 +183,14 @@ namespace PlayniteUI
             }
 
             // Main view startup
-            var mainWindow = MainWindowFactory.Instance;
-            mainModel = new MainViewModel(
-                GameDatabase.Instance,
-                mainWindow,
-                new DialogsFactory(),
-                new ResourceProvider(),
-                new NotificationFactory(),
-                AppSettings);
-            Current.MainWindow = mainWindow.Window;
-            mainWindow.Show(mainModel);
-            mainWindow.BringToForeground();
-            mainModel.LoadGames(AppSettings.UpdateLibStartup, steamCatImportId);
+            if (AppSettings.StartInFullscreen)
+            {
+                OpenFullscreenView();
+            }
+            else
+            {
+                OpenNormalView(steamCatImportId);
+            }
 
             // Update and stats
             CheckUpdate();
@@ -212,7 +209,7 @@ namespace PlayniteUI
                 var command = commandArgs[0];
                 var cmdArgs = commandArgs.Count() > 1 ? commandArgs[1] : string.Empty;
                 PipeService_CommandExecuted(this, new CommandExecutedEventArgs(command, cmdArgs));
-            }            
+            }
 
             logger.Info("Application started");
         }
@@ -224,7 +221,7 @@ namespace PlayniteUI
             switch (args.Command)
             {
                 case CmdlineCommands.Focus:
-                    mainModel.ShowWindow();
+                    mainModel.RestoreWindow();
                     break;
 
                 case CmdlineCommands.Launch:
@@ -318,6 +315,47 @@ namespace PlayniteUI
             AppSettings?.SaveSettings();
             appMutex?.ReleaseMutex();
             resourcesReleased = true;
+        }
+
+        public void OpenNormalView(ulong steamCatImportId)
+        {
+            if (fullscreenModel != null)
+            {
+                fullscreenModel.CloseView();
+                fullscreenModel = null;
+                Current.MainWindow = null;
+            }
+
+            var window = new MainWindowFactory();
+            mainModel = new MainViewModel(
+                GameDatabase.Instance,
+                window,
+                new DialogsFactory(),
+                new ResourceProvider(),
+                new NotificationFactory(),
+                AppSettings);
+            mainModel.ShowView();
+            Current.MainWindow = window.Window;
+            mainModel.LoadGames(AppSettings.UpdateLibStartup, steamCatImportId);
+        }
+
+        public void OpenFullscreenView()
+        {
+            if (mainModel != null)
+            {
+                mainModel.CloseView();
+                mainModel = null;
+                Current.MainWindow = null;
+            }
+
+            var window = new FullscreenWindowFactory();
+            fullscreenModel = new FullscreenViewModel(
+                GameDatabase.Instance,
+                AppSettings,
+                window,
+                new ResourceProvider());
+            Current.MainWindow = window.Window;
+            fullscreenModel.OpenView(false);
         }
     }
 }

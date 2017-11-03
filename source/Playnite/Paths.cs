@@ -33,6 +33,14 @@ namespace Playnite
             }
         }
 
+        public static string SkinsFullscreenPath
+        {
+            get
+            {
+                return Path.Combine(ProgramFolder, "SkinsFullscreen");
+            }
+        }
+
         public static string UninstallerPath
         {
             get

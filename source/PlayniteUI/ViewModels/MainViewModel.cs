@@ -19,7 +19,7 @@ using System.Windows.Data;
 
 namespace PlayniteUI.ViewModels
 {
-    public class MainViewModel : ObservableObject
+    public class MainViewModel : ObservableObject, IDisposable
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private static object gamesLock = new object();
@@ -28,6 +28,7 @@ namespace PlayniteUI.ViewModels
         private IResourceProvider resources;
         private INotificationFactory notifications;
         private GameDatabase database;
+        private bool ignoreCloseActions = false;
 
         private GameViewEntry selectedGame;
         public GameViewEntry SelectedGame
@@ -246,7 +247,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                ShowWindow();
+                RestoreWindow();
             });
         }
 
@@ -329,6 +330,14 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 (new ThemeTesterWindow()).Show();
+            });
+        }
+
+        public RelayCommand<object> OpenFullScreenCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                OpenFullScreen();
             });
         }
 
@@ -710,7 +719,7 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public void ShowWindow()
+        public void RestoreWindow()
         {
             window.RestoreWindow();
         }
@@ -784,6 +793,11 @@ namespace PlayniteUI.ViewModels
 
         private void OnClosing(CancelEventArgs args)
         {
+            if (ignoreCloseActions)
+            {
+                return;
+            }
+
             if (AppSettings.CloseToTray && AppSettings.EnableTray)
             {
                 Visibility = Visibility.Hidden;
@@ -817,6 +831,33 @@ namespace PlayniteUI.ViewModels
                     logger.Error(e, string.Format("Failed to download metadata for id:{0}, provider:{1}.", game.ProviderId, game.Provider));
                 }
             }
+        }
+
+        public void OpenFullScreen()
+        {
+            (Application.Current as App).OpenFullscreenView();            
+        }
+
+        public void ShowView()
+        {
+            window.Show(this);
+            window.BringToForeground();
+        }
+
+        public void CloseView()
+        {
+            ignoreCloseActions = true;
+            window.Close();
+            ignoreCloseActions = false;
+            Dispose();
+        }
+
+        public void Dispose()
+        {
+            GamesView.Dispose();
+            GamesStats.Dispose();
+            AppSettings.PropertyChanged -= AppSettings_PropertyChanged;
+            AppSettings.FilterSettings.PropertyChanged -= FilterSettings_PropertyChanged;
         }
     }
 }

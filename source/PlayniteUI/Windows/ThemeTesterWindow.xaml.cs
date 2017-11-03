@@ -140,8 +140,8 @@ namespace PlayniteUI.Windows
 
         private void Watcher_Changed(object sender, FileSystemEventArgs e)
         {
-            if (Paths.AreEqual(e.FullPath, Skins.GetSkinPath(SelectedSkinData.Item1)) ||
-                Paths.AreEqual(e.FullPath, Skins.GetColorPath(SelectedSkinData.Item1, SelectedSkinData.Item2)))
+            if (Paths.AreEqual(e.FullPath, Skins.GetSkinPath(SelectedSkinData.Item1, false)) ||
+                Paths.AreEqual(e.FullPath, Skins.GetColorPath(SelectedSkinData.Item1, SelectedSkinData.Item2, false)))
             {
                 Dispatcher.Invoke(() => ChangeSkin(SelectedSkin, false));
             }
@@ -152,7 +152,7 @@ namespace PlayniteUI.Windows
             var name = skin.Split('\\')[0];
             var color = skin.Split('\\')[1];
 
-            var skinValid = Skins.IsSkinValid(name);
+            var skinValid = Skins.IsSkinValid(name, false);
             if (skinValid.Item1 == false)
             {
                 if (validateToDialog)
@@ -168,7 +168,7 @@ namespace PlayniteUI.Windows
                 return;
             }
 
-            var colorValid = Skins.IsColorProfileValid(name, color);
+            var colorValid = Skins.IsColorProfileValid(name, color, false);
             if (colorValid.Item1 == false)
             {
                 if (validateToDialog)

@@ -27,6 +27,7 @@ namespace PlayniteUI
     public abstract class WindowFactory : IWindowFactory
     {
         private readonly SynchronizationContext context;
+        private bool asDialog = false;
 
         public WindowBase Window
         {
@@ -38,7 +39,7 @@ namespace PlayniteUI
 
         public WindowFactory()
         {
-            context = SynchronizationContext.Current;
+            context = SynchronizationContext.Current;            
         }
 
         public bool? CreateAndOpenDialog(object dataContext)
@@ -53,6 +54,7 @@ namespace PlayniteUI
                     Window.Owner = PlayniteWindows.CurrentWindow;
                 }
 
+                asDialog = true;
                 result = Window.ShowDialog();
             }, null);
 
@@ -63,6 +65,7 @@ namespace PlayniteUI
         {
             context.Send((a) =>
             {
+                asDialog = false;
                 if (Window == null)
                 {
                     Window = CreateNewWindowInstance();
@@ -94,11 +97,14 @@ namespace PlayniteUI
             Close(null);
         }
 
-        public void Close(bool? resutl)
+        public void Close(bool? result)
         {
             context.Send((a) =>
             {
-                Window.DialogResult = resutl;
+                if (asDialog)
+                {
+                    Window.DialogResult = result;
+                }
                 Window.Close();
             }, null);
         }

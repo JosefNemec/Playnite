@@ -175,7 +175,7 @@ namespace Playnite
             }
         }
 
-        private bool showIconsOnList = true;
+        private bool showIconsOnList = false;
         public bool ShowIconsOnList
         {
             get
@@ -187,6 +187,21 @@ namespace Playnite
             {
                 showIconsOnList = value;
                 OnPropertyChanged("ShowIconsOnList");
+            }
+        }
+
+        private bool startInFullscreen = false;
+        public bool StartInFullscreen
+        {
+            get
+            {
+                return startInFullscreen;
+            }
+
+            set
+            {
+                startInFullscreen = value;
+                OnPropertyChanged("StartInFullscreen");
             }
         }
 
@@ -532,6 +547,36 @@ namespace Playnite
             {
                 skinColor = value;
                 OnPropertyChanged("SkinColor");
+            }
+        }
+
+        private string skinFullscreen = "Playnite";
+        public string SkinFullscreen
+        {
+            get
+            {
+                return skinFullscreen;
+            }
+
+            set
+            {
+                skinFullscreen = value;
+                OnPropertyChanged("SkinFullscreen ");
+            }
+        }
+
+        private string skinColorFullscreen = "Default";
+        public string SkinColorFullscreen
+        {
+            get
+            {
+                return skinColorFullscreen;
+            }
+
+            set
+            {
+                skinColorFullscreen = value;
+                OnPropertyChanged("SkinColorFullscreen ");
             }
         }
 

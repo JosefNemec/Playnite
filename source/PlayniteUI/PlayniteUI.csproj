@@ -191,6 +191,7 @@
     <Compile Include="Controls\GamesGridView.xaml.cs">
       <DependentUpon>GamesGridView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FullscreenView.cs" />
     <Compile Include="Controls\MainView.cs" />
     <Compile Include="Controls\WindowBase.cs" />
     <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="Behaviors\ScrollToSelectedBehavior.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="Skins.cs" />
+    <Compile Include="ViewModels\FullscreenViewModel.cs" />
     <Compile Include="ViewModels\GameEditViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\FirstTimeStartupViewModel.cs" />
@@ -270,6 +272,9 @@
     <Compile Include="GamesLoaderHandler.cs" />
     <Compile Include="Windows\InstalledGamesWindow.xaml.cs">
       <DependentUpon>InstalledGamesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FullscreenWindow.xaml.cs">
+      <DependentUpon>FullscreenWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MessageBoxWindow.xaml.cs">
       <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
@@ -342,6 +347,31 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="SkinsFullscreen\Playnite\Playnite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SkinsFullscreen\Playnite\Playnite.Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SkinsFullscreen\Xcube\Xcube.Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SkinsFullscreen\Xcube\Xcube.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SkinsFullscreen\Xcube\Xcube.Red.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -385,6 +415,10 @@
     <Page Include="Windows\InstalledGamesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\FullscreenWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace PlayniteUI
 {
@@ -32,12 +33,22 @@ namespace PlayniteUI
 
         private void CombSkinColor_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            if ((sender as ComboBox).SelectedValue == null)
+            {
+                return;
+            }
+
             var settings = DataContext as SettingsViewModel;
             Skins.ApplySkin(settings.Settings.Skin, settings.Settings.SkinColor);
         }
 
         private void ComboSkins_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            if ((sender as ComboBox).SelectedValue == null)
+            {
+                return;
+            }
+
             if (CombSkinColor.SelectedValue == null && ComboSkins.SelectedItem != null)
             {
                 CombSkinColor.SelectedValue = (ComboSkins.SelectedItem as Skin).Profiles.First();
@@ -45,6 +56,14 @@ namespace PlayniteUI
 
             var settings = DataContext as SettingsViewModel;
             Skins.ApplySkin(settings.Settings.Skin, settings.Settings.SkinColor);
+        }
+
+        private void ComboSkinsFullscreen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CombSkinColorFullscreen.SelectedValue == null && ComboSkinsFullscreen.SelectedItem != null)
+            {
+                CombSkinColorFullscreen.SelectedValue = (ComboSkinsFullscreen.SelectedItem as Skin).Profiles.First();
+            }
         }
     }
 }

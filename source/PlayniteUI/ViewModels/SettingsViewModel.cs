@@ -103,6 +103,11 @@ namespace PlayniteUI.ViewModels
             get => Skins.AvailableSkins;
         }
 
+        public List<Skin> AvailableFullscreenSkins
+        {
+            get => Skins.AvailableFullscreenSkins;
+        }
+
         public bool ProviderIntegrationChanged
         {
             get;

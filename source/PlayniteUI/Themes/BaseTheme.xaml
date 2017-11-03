@@ -1557,5 +1557,9 @@
         <Setter Property="Background" Value="{DynamicResource WindowBackgourndBrush}"/>
     </Style>
 
+    <Style x:Key="FullscreenWindowStyle" TargetType="pc:WindowBase">
+        <Setter Property="Background" Value="{DynamicResource WindowBackgourndBrush}"/>
+    </Style>
+
     <!--#endregion-->
 </ResourceDictionary>

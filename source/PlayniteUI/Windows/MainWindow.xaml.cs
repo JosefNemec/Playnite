@@ -4,11 +4,6 @@ namespace PlayniteUI
 {
     public class MainWindowFactory : WindowFactory
     {
-        public static MainWindowFactory Instance
-        {
-            get => new MainWindowFactory();
-        }
-
         public override WindowBase CreateNewWindowInstance()
         {
             return new MainWindow();
@@ -33,7 +28,12 @@ namespace PlayniteUI
 
         private void Window_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            positionManager?.RestoreSizeAndLocation();
+            positionManager?.RestoreSizeAndLocation();            
+        }
+
+        private void WindowMain_Unloaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            TrayPlaynite.Dispose();
         }
     }
 }

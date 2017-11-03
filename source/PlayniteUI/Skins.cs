@@ -44,48 +44,107 @@ namespace PlayniteUI
             private set;
         }
 
+        public static string CurrentFullscreenSkin
+        {
+            get;
+            private set;
+        }
+
+        public static string CurrentFullscreenColor
+        {
+            get;
+            private set;
+        }
+
+        public static List<Skin> AvailableFullscreenSkins
+        {
+            get
+            {
+                return GetSkinsFromFolder(Paths.SkinsFullscreenPath);
+            }
+        }
+
         public static List<Skin> AvailableSkins
         {
             get
             {
-                var skins = new List<Skin>();
-                if (!Directory.Exists(Paths.SkinsPath))
+                return GetSkinsFromFolder(Paths.SkinsPath);
+            }
+        }
+
+        private static List<Skin> GetSkinsFromFolder(string path)
+        {
+            var skins = new List<Skin>();
+            if (!Directory.Exists(path))
+            {
+                return skins;
+            }
+
+            foreach (var dir in Directory.GetDirectories(path))
+            {
+                var dirInfo = new DirectoryInfo(dir);
+                var rootFile = Path.Combine(dir, dirInfo.Name + ".xaml");
+                if (!File.Exists(rootFile))
                 {
-                    return skins;
+                    continue;
                 }
 
-                foreach (var dir in Directory.GetDirectories(Paths.SkinsPath))
+                var skinName = dirInfo.Name;
+                var profiles = new List<string>();
+                foreach (var file in Directory.GetFiles(dir))
                 {
-                    var dirInfo = new DirectoryInfo(dir);
-                    var rootFile = Path.Combine(dir, dirInfo.Name + ".xaml");
-                    if (!File.Exists(rootFile))
+                    var fileInfo = new FileInfo(file);
+                    if (file == rootFile)
                     {
                         continue;
                     }
 
-                    var skinName = dirInfo.Name;
-                    var profiles = new List<string>();
-                    foreach (var file in Directory.GetFiles(dir))
+                    var match = Regex.Match(fileInfo.Name, $"{skinName}\\.(.*)\\.xaml", RegexOptions.IgnoreCase);
+                    if (match.Success)
                     {
-                        var fileInfo = new FileInfo(file);
-                        if (file == rootFile)
-                        {
-                            continue;
-                        }
-
-                        var match = Regex.Match(fileInfo.Name, $"{skinName}\\.(.*)\\.xaml", RegexOptions.IgnoreCase);
-                        if (match.Success)
-                        {
-                            var profile = match.Groups[1].Value;
-                            profiles.Add(profile);
-                        }
+                        var profile = match.Groups[1].Value;
+                        profiles.Add(profile);
                     }
-
-                    skins.Add(new Skin(skinName, profiles));
                 }
 
-                return skins;
+                skins.Add(new Skin(skinName, profiles));
             }
+
+            return skins;
+        }
+
+        public static void ApplyFullscreenSkin(string skinName, string color)
+        {
+            if (Application.Current != null)
+            {
+                var dictionaries = Application.Current.Resources.MergedDictionaries;
+                var currentSkinDict = dictionaries.FirstOrDefault(a => a.Contains("SkinFullscreenName"));
+                var currentSkinColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinFullscreenColorName"));
+
+                if (currentSkinColorDict != null)
+                {
+                    dictionaries.Remove(currentSkinColorDict);
+                }
+
+                if (currentSkinDict != null)
+                {
+                    dictionaries.Remove(currentSkinDict);
+                }
+
+                var skinPath = GetSkinPath(skinName, true);
+                dictionaries.Add(LoadXaml(skinPath));
+
+                if (string.IsNullOrEmpty(color))
+                {
+                    return;
+                }
+
+                var fullColorPath = GetColorPath(skinName, color, true);
+                dictionaries.Add(LoadXaml(fullColorPath));
+            }
+
+            CurrentSkin = skinName;
+            CurrentColor = color;
         }
 
         public static void ApplySkin(string skinName, string color)
@@ -106,7 +165,7 @@ namespace PlayniteUI
                     dictionaries.Remove(currentSkinDict);
                 }
 
-                var skinPath = GetSkinPath(skinName);
+                var skinPath = GetSkinPath(skinName, false);
                 dictionaries.Add(LoadXaml(skinPath));                
 
                 if (string.IsNullOrEmpty(color))
@@ -114,7 +173,7 @@ namespace PlayniteUI
                     return;
                 }
 
-                var fullColorPath = GetColorPath(skinName, color);
+                var fullColorPath = GetColorPath(skinName, color, false);
                 dictionaries.Add(LoadXaml(fullColorPath));
             }
 
@@ -130,22 +189,22 @@ namespace PlayniteUI
             }
         }
 
-        public static string GetSkinPath(string skinName)
+        public static string GetSkinPath(string skinName, bool fullscreen)
         {
-            return Path.Combine(Paths.SkinsPath, skinName, skinName + ".xaml");
+            return Path.Combine(fullscreen ? Paths.SkinsFullscreenPath : Paths.SkinsPath, skinName, skinName + ".xaml");
         }
 
-        public static string GetColorPath(string skinName, string color)
+        public static string GetColorPath(string skinName, string color, bool fullscreen)
         {
             var colorFile = skinName + $".{color}.xaml";
-            return Path.Combine(Paths.SkinsPath, skinName, colorFile);
+            return Path.Combine(fullscreen ? Paths.SkinsFullscreenPath : Paths.SkinsPath, skinName, colorFile);
         }
 
-        public static Tuple<bool, string> IsSkinValid(string skinName)
+        public static Tuple<bool, string> IsSkinValid(string skinName, bool fullscreen)
         {
             try
             {
-                LoadXaml(GetSkinPath(skinName));
+                LoadXaml(GetSkinPath(skinName, fullscreen));
                 return new Tuple<bool, string>(true, string.Empty);
             }
             catch (Exception e)
@@ -154,11 +213,11 @@ namespace PlayniteUI
             }
         }
 
-        public static Tuple<bool, string> IsColorProfileValid(string skinName, string color)
+        public static Tuple<bool, string> IsColorProfileValid(string skinName, string color, bool fullscreen)
         {
             try
             {
-                LoadXaml(GetColorPath(skinName, color));
+                LoadXaml(GetColorPath(skinName, color, fullscreen));
                 return new Tuple<bool, string>(true, string.Empty);
             }
             catch (Exception e)
