@@ -75,7 +75,7 @@
                         </PriorityBinding>
                     </Image.Source>
                 </Image>
-                <TextBlock Text="{Binding Name, Mode=OneWay}" FontSize="20" Margin="10,10,0,10" TextWrapping="Wrap" DockPanel.Dock="Left"
+                <TextBlock Text="{Binding DisplayName, Mode=OneWay}" FontSize="20" Margin="10,10,0,10" TextWrapping="Wrap" DockPanel.Dock="Left"
                            HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
                     <TextBlock.Effect>
                         <DropShadowEffect ShadowDepth="3"/>

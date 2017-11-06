@@ -79,6 +79,11 @@ namespace Playnite.Models
             get; set;
         }
 
+        string SortingName
+        {
+            get; set;
+        }
+
         string Image
         {
             get; set;

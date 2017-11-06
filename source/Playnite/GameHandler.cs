@@ -109,6 +109,12 @@ namespace Playnite
                 dummyGame.Name = firstName;
             }
 
+            var firstSortingName = firstGame.SortingName;
+            if (games.All(a => a.SortingName == firstSortingName) == true)
+            {
+                dummyGame.SortingName = firstSortingName;
+            }
+
             var firstGenres = firstGame.Genres;
             if (games.All(a => a.Genres.IsListEqual(firstGenres) == true))
             {

@@ -112,7 +112,7 @@
                                 <MenuItem Header="Open 3rd Party Client" ItemsSource="{Binding ThirdPartyTools}">
                                     <MenuItem.ItemContainerStyle>
                                         <Style TargetType="MenuItem">
-                                            <Setter Property="Header" Value="{Binding Name}" />
+                                            <Setter Property="Header" Value="{Binding DisplayName}" />
                                             <Setter Property="Command" Value="{Binding Source={StaticResource Proxy}, Path=Data.ThridPartyToolOpenCommand}" />
                                             <Setter Property="CommandParameter" Value="{Binding}" />
                                         </Style>

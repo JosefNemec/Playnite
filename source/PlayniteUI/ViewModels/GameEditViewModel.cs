@@ -43,6 +43,21 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        private bool useSortingNameChanges;
+        public bool UseSortingNameChanges
+        {
+            get
+            {
+                return useSortingNameChanges;
+            }
+
+            set
+            {
+                useSortingNameChanges = value;
+                OnPropertyChanged("UseSortingNameChanges");
+            }
+        }
+
         private bool usePlatformChanges;
         public bool UsePlatformChanges
         {
@@ -623,6 +638,9 @@ namespace PlayniteUI.ViewModels
                 case "Name":
                     UseNameChanges = true;
                     break;
+                case "SortingName":
+                    UseSortingNameChanges = true;
+                    break;
                 case "PlatformId":
                     UsePlatformChanges = true;
                     break;
@@ -693,12 +711,27 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.Name = Game.Name;
+                        game.Name = EditingGame.Name;
                     }
                 }
                 else
                 {
                     Game.Name = EditingGame.Name;
+                }
+            }
+
+            if (UseSortingNameChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.SortingName = EditingGame.SortingName;
+                    }
+                }
+                else
+                {
+                    Game.SortingName = EditingGame.SortingName;
                 }
             }
 
@@ -708,7 +741,7 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.Genres = Game.Genres;
+                        game.Genres = EditingGame.Genres;
                     }
                 }
                 else
@@ -723,7 +756,7 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.ReleaseDate = Game.ReleaseDate;
+                        game.ReleaseDate = EditingGame.ReleaseDate;
                     }
                 }
                 else
@@ -738,7 +771,7 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.Developers = Game.Developers;
+                        game.Developers = EditingGame.Developers;
                     }
                 }
                 else
@@ -753,7 +786,7 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.Publishers = Game.Publishers;
+                        game.Publishers = EditingGame.Publishers;
                     }
                 }
                 else
@@ -768,7 +801,7 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.Categories = Game.Categories;
+                        game.Categories = EditingGame.Categories;
                     }
                 }
                 else
@@ -783,7 +816,7 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.Description = Game.Description;
+                        game.Description = EditingGame.Description;
                     }
                 }
                 else

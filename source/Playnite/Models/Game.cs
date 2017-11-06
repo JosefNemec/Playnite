@@ -260,6 +260,21 @@ namespace Playnite.Models
             }
         }
 
+        private string sortingName;
+        public string SortingName
+        {
+            get
+            {
+                return sortingName;
+            }
+
+            set
+            {
+                sortingName = value;
+                OnPropertyChanged("SortingName");
+            }
+        }
+
         private string providerId;
         public string ProviderId
         {

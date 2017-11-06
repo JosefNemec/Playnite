@@ -184,7 +184,6 @@ namespace PlayniteUI
     public class GameViewEntry : INotifyPropertyChanged
     {
         public int Id => Game.Id;
-        public string Name => Game.Name;
         public Provider Provider => Game.Provider;
         public List<string> Categories => Game.Categories;
         public List<string> Genres => Game.Genres;
@@ -203,6 +202,15 @@ namespace PlayniteUI
         public int? PlatformId => Game.PlatformId;
         public ObservableCollection<GameTask> OtherTasks => Game.OtherTasks;
         public string DescriptionView => Game.DescriptionView;
+        public string DisplayName => Game.Name;        
+
+        public string Name
+        {
+            get
+            {
+                return (string.IsNullOrEmpty(Game.SortingName)) ? Game.Name : Game.SortingName;
+            }           
+        }
 
         public bool IsSetupInProgress
         {
@@ -302,13 +310,18 @@ namespace PlayniteUI
             OnPropertyChanged(e.PropertyName);
         }
 
-        public void OnPropertyChanged(string name)
+        public void OnPropertyChanged(string propertyName)
         {            
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-            if (name == "PlatformId")
+            if (propertyName == "PlatformId")
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Platform"));
+            }
+
+            if (propertyName == "SortingName")
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
             }
         }
 

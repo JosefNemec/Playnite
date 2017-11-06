@@ -164,7 +164,7 @@
                     </GridViewColumn.Header>
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Name, Mode=OneWay}" Style="{StaticResource TextItemStyle}"/>
+                            <TextBlock Text="{Binding DisplayName, Mode=OneWay}" Style="{StaticResource TextItemStyle}"/>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
