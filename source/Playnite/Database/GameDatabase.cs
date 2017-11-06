@@ -19,6 +19,7 @@ using System.Threading;
 using System.Windows.Threading;
 using Playnite.Providers.Uplay;
 using Playnite.Providers.BattleNet;
+using Playnite.Emulators;
 
 namespace Playnite.Database
 {
@@ -341,11 +342,25 @@ namespace Playnite.Database
             MigrateDatabase();
 
             // To force litedb to try to open file, should throw exceptuion if something is wrong with db file
-            Database.GetCollectionNames();
+            Database.GetCollectionNames();                       
 
             GamesCollection = Database.GetCollection<IGame>("games");
             PlatformsCollection = Database.GetCollection<Platform>("platforms");
             EmulatorsCollection = Database.GetCollection<Emulator>("emulators");
+
+            // Generate default platforms
+            if (PlatformsCollection.Count() == 0)
+            {
+                var platforms = EmulatorDefinition.GetDefinitions().SelectMany(a => a.Platforms).Distinct();
+                using (BufferedUpdate())
+                {
+                    foreach (var platform in platforms)
+                    {
+                        AddPlatform(new Platform(platform));
+                    }
+                }
+            }
+
             DatabaseOpened?.Invoke(this, null);
             return Database;
         }

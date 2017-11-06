@@ -112,6 +112,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CloneObjectTests.cs" />
+    <Compile Include="Database\GameDatabaseMigrationTests.cs" />
     <Compile Include="Database\GameDatabasePlatformsTests.cs" />
     <Compile Include="Database\GameDatabaseEventTests.cs" />
     <Compile Include="Database\GameDatabaseTests.cs" />

@@ -660,66 +660,6 @@ namespace PlayniteTests.Database
                 Assert.AreNotEqual(@"c:\nonsense\directory\", game.InstallDirectory);
             }
         }
-        #endregion Uplay
-
-        [Test]
-        public void Migration0toCurrentTest()
-        {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "migration_0_Current.db");
-            FileSystem.DeleteFile(path);
-
-            var games = new List<Playnite.Models.Old0.Game>()
-            {
-                new Playnite.Models.Old0.Game()
-                {
-                    Provider = Provider.Custom,
-                    ProviderId = "TestId1",
-                    Name = "Test Name 1",
-                    CommunityHubUrl = @"http://communityurl.com",
-                    StoreUrl = @"http://storeurl.com",
-                    WikiUrl = @"http://wiki.com"
-                },
-                new Playnite.Models.Old0.Game()
-                {
-                    Provider = Provider.Custom,
-                    ProviderId = "TestId2",
-                    Name = "Test Name 2",
-                    CommunityHubUrl = @"http://communityurl.com"
-                },
-                new Playnite.Models.Old0.Game()
-                {
-                    Provider = Provider.Custom,
-                    ProviderId = "TestId3",
-                    Name = "Test Name 3"
-                }
-            };
-
-            using (var database = new LiteDatabase(path))
-            {
-                database.Engine.UserVersion = 0;
-                var collection = database.GetCollection<Playnite.Models.Old0.Game>("games");
-                foreach (var game in games)
-                {
-                    var id = collection.Insert(game);
-                    var genericCollection = database.GetCollection("games");
-                    var record = genericCollection.FindById(id);
-                    record.AsDocument["_type"] = "Playnite.Models.Game, Playnite";
-                    genericCollection.Update(record.AsDocument);
-                }
-            }
-
-            var db = new GameDatabase();
-            using (db.OpenDatabase(path))
-            {
-                Assert.IsTrue(db.GamesCollection.Count() == 3);
-                var migratedGames = db.GamesCollection.FindAll().ToList();
-                Assert.AreEqual(3, migratedGames[0].Links.Count);
-                Assert.IsFalse(string.IsNullOrEmpty(migratedGames[0].Links.First(a => a.Name == "Store").Url));
-                Assert.IsFalse(string.IsNullOrEmpty(migratedGames[0].Links.First(a => a.Name == "Wiki").Url));
-                Assert.IsFalse(string.IsNullOrEmpty(migratedGames[0].Links.First(a => a.Name == "Forum").Url));
-                Assert.AreEqual(1, migratedGames[1].Links.Count);
-                Assert.IsNull(migratedGames[2].Links);
-            }
-        }
+        #endregion Uplay       
     }
 }
