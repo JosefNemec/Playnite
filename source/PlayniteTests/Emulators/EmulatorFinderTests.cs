@@ -20,6 +20,7 @@ namespace PlayniteTests.Emulators
             CollectionAssert.IsNotEmpty(emulators);
         }
 
+        // TODO mock this, don't use real file system
         [Test]
         public void SearchForGames()
         {
@@ -29,7 +30,7 @@ namespace PlayniteTests.Emulators
                 ImageExtensions = def.ImageExtensions
             };
 
-            var games = EmulatorFinder.SearchForGames(@"d:\Emulators\_Games\PS2\", emulator);
+            var games = EmulatorFinder.SearchForGames(@"d:\EmulatedGames\PS2\", emulator);
             CollectionAssert.IsNotEmpty(games);
         }
     }

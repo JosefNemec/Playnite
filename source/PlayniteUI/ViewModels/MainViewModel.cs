@@ -584,15 +584,6 @@ namespace PlayniteUI.ViewModels
                     {
                         if (AppSettings.SteamSettings.IntegrationEnabled && AppSettings.SteamSettings.LibraryDownloadEnabled)
                         {
-                            if (AppSettings.SteamSettings.IdSource == Playnite.Providers.Steam.SteamIdSource.Name)
-                            {
-                                database.SteamUserName = AppSettings.SteamSettings.AccountName;
-                            }
-                            else
-                            {
-                                database.SteamUserName = AppSettings.SteamSettings.AccountId.ToString();
-                            }
-
                             database.UpdateOwnedGames(Provider.Steam);
                             notifications.RemoveMessage(NotificationCodes.SteamLibDownloadError);
                         }

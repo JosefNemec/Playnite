@@ -91,7 +91,6 @@ namespace Playnite.Providers.Origin
 
         public GameLocalDataResponse GetLocalManifest(string id, string packageName = null, bool useDataCache = false)
         {
-            logger.Debug($"Gettings game manifest {id}");
             var package = packageName;
 
             if (string.IsNullOrEmpty(package))
@@ -106,6 +105,7 @@ namespace Playnite.Providers.Origin
             }
             else if (useDataCache == true && !File.Exists(cacheFile))
             {
+                logger.Debug($"Downloading game manifest {id}");
                 FileSystem.CreateFolder(OriginPaths.CachePath);
 
                 try

@@ -12,12 +12,11 @@ namespace Playnite.Providers.GOG.Tests
     [TestFixture]
     public class GogLibraryTests
     {
-        [Test()]
-        [Description("Basic verification testing that installed games can be fetched from local client.")]
-        public void GetInstalledGames_Basic()
+        [Test]
+        public void GetInstalledGamesRegistry()
         {
             var gogLib = new GogLibrary();
-            var games = gogLib.GetInstalledGames();
+            var games = gogLib.GetInstalledGames(InstalledGamesSource.Registry);
             Assert.AreNotEqual(0, games.Count);
             CollectionAssert.AllItemsAreUnique(games);
 
@@ -30,6 +29,34 @@ namespace Playnite.Providers.GOG.Tests
                 Assert.IsNotNull(game.PlayTask);
                 Assert.IsTrue(File.Exists(game.PlayTask.Path));
             }
+        }
+
+        [Test]
+        public void GetInstalledGamesGalaxy()
+        {
+            var gogLib = new GogLibrary();
+            var games = gogLib.GetInstalledGames(InstalledGamesSource.Galaxy);
+            Assert.AreNotEqual(0, games.Count);
+            CollectionAssert.AllItemsAreUnique(games);
+
+            foreach (var game in games)
+            {
+                Assert.IsFalse(string.IsNullOrEmpty(game.Name));
+                Assert.IsFalse(string.IsNullOrEmpty(game.ProviderId));
+                Assert.IsFalse(string.IsNullOrEmpty(game.InstallDirectory));
+                Assert.IsTrue(Directory.Exists(game.InstallDirectory));
+                Assert.IsNotNull(game.PlayTask);
+                Assert.IsTrue(File.Exists(game.PlayTask.Path));
+            }
+        }
+
+        [Test]
+        public void GetInstalledGamesSourceParity()
+        {
+            var gogLib = new GogLibrary();
+            var gamesGalaxy = gogLib.GetInstalledGames(InstalledGamesSource.Galaxy);
+            var gamesRegistry = gogLib.GetInstalledGames(InstalledGamesSource.Registry);
+            Assert.AreEqual(gamesGalaxy.Count, gamesRegistry.Count);
         }
 
         [Test]

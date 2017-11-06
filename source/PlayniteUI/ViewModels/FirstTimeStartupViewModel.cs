@@ -257,6 +257,7 @@ namespace PlayniteUI.ViewModels
         {            
             Settings.SteamSettings.IntegrationEnabled = true;
             Settings.GOGSettings.IntegrationEnabled = true;
+            Settings.GOGSettings.RunViaGalaxy = Playnite.Providers.GOG.GogSettings.IsInstalled;
             Settings.OriginSettings.IntegrationEnabled = true;
             Settings.UplaySettings.IntegrationEnabled = true;
             Settings.BattleNetSettings.IntegrationEnabled = true;

@@ -44,7 +44,7 @@ namespace PlayniteUI
         {
             get
             {
-                return GameDatabase.Instance.GamesCollection?.Find(Query.All("LastActivity", Query.Descending))?.Where(a => a.LastActivity != null && a.IsInstalled)?.Take(10);
+                return App.Database.GamesCollection?.Find(Query.All("LastActivity", Query.Descending))?.Where(a => a.LastActivity != null && a.IsInstalled)?.Take(10);
             }
         }
 
@@ -57,13 +57,13 @@ namespace PlayniteUI
 
         public bool? SetGameCategories(IGame game)
         {
-            var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, GameDatabase.Instance, game, true);
+            var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, App.Database, game, true);
             return model.ShowDialog();
         }
 
         public bool? SetGamesCategories(IEnumerable<IGame> games)
         {
-            var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, GameDatabase.Instance, games, true);
+            var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, App.Database, games, true);
             return model.ShowDialog();
         }
 
@@ -71,7 +71,7 @@ namespace PlayniteUI
         {
             var model = new GameEditViewModel(
                             game,
-                            GameDatabase.Instance,
+                            App.Database,
                             GameEditWindowFactory.Instance,
                             new DialogsFactory(),
                             new ResourceProvider());
@@ -82,7 +82,7 @@ namespace PlayniteUI
         {
             var model = new GameEditViewModel(
                             games,
-                            GameDatabase.Instance,
+                            App.Database,
                             GameEditWindowFactory.Instance,
                             new DialogsFactory(),
                             new ResourceProvider());
@@ -93,7 +93,7 @@ namespace PlayniteUI
         {
             // Set parent for message boxes in this method
             // because this method can be invoked from tray icon which otherwise bugs the dialog
-            if (GameDatabase.Instance.GamesCollection.FindOne(a => a.ProviderId == game.ProviderId) == null)
+            if (App.Database.GamesCollection.FindOne(a => a.ProviderId == game.ProviderId) == null)
             {
                 PlayniteMessageBox.Show(Application.Current.MainWindow, $"Cannot start game. '{game.Name}' was not found in database.", "Game Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 UpdateJumpList();
@@ -104,14 +104,14 @@ namespace PlayniteUI
             {
                 if (game.IsInstalled)
                 {
-                    game.PlayGame(GameDatabase.Instance.EmulatorsCollection.FindAll().ToList());
+                    game.PlayGame(App.Database.EmulatorsCollection.FindAll().ToList());
                 }
                 else
                 {
                     game.InstallGame();
                 }
 
-                GameDatabase.Instance.UpdateGameInDatabase(game);
+                App.Database.UpdateGameInDatabase(game);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -139,7 +139,7 @@ namespace PlayniteUI
         {
             try
             {
-                GameHandler.ActivateTask(action, game as Game, GameDatabase.Instance.EmulatorsCollection.FindAll().ToList());
+                GameHandler.ActivateTask(action, game as Game, App.Database.EmulatorsCollection.FindAll().ToList());
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -162,7 +162,7 @@ namespace PlayniteUI
         public void SetHideGame(IGame game, bool state)
         {
             game.Hidden = state;
-            GameDatabase.Instance.UpdateGameInDatabase(game);
+            App.Database.UpdateGameInDatabase(game);
         }
 
         public void SetHideGames(IEnumerable<IGame> games, bool state)
@@ -176,7 +176,7 @@ namespace PlayniteUI
         public void ToggleHideGame(IGame game)
         {
             game.Hidden = !game.Hidden;
-            GameDatabase.Instance.UpdateGameInDatabase(game);
+            App.Database.UpdateGameInDatabase(game);
         }
 
         public void ToggleHideGames(IEnumerable<IGame> games)
@@ -190,7 +190,7 @@ namespace PlayniteUI
         public void SetFavoriteGame(IGame game, bool state)
         {
             game.Favorite = state;
-            GameDatabase.Instance.UpdateGameInDatabase(game);
+            App.Database.UpdateGameInDatabase(game);
         }
 
         public void SetFavoriteGames(IEnumerable<IGame> games, bool state)
@@ -204,7 +204,7 @@ namespace PlayniteUI
         public void ToggleFavoriteGame(IGame game)
         {
             game.Favorite = !game.Favorite;
-            GameDatabase.Instance.UpdateGameInDatabase(game);
+            App.Database.UpdateGameInDatabase(game);
         }
 
         public void ToggleFavoriteGame(IEnumerable<IGame> games)
@@ -226,7 +226,7 @@ namespace PlayniteUI
                 return;
             }
 
-            GameDatabase.Instance.DeleteGame(game);
+            App.Database.DeleteGame(game);
         }
 
         public void RemoveGames(IEnumerable<IGame> games)
@@ -242,7 +242,7 @@ namespace PlayniteUI
 
             foreach (var game in games)
             {
-                GameDatabase.Instance.DeleteGame(game);
+                App.Database.DeleteGame(game);
             }
         }
 
@@ -257,7 +257,7 @@ namespace PlayniteUI
                 {
                     FileSystem.CreateFolder(Path.Combine(Paths.DataCachePath, "icons"));
                     icon = Path.Combine(Paths.DataCachePath, "icons", game.Id + ".ico");
-                    GameDatabase.Instance.SaveFile(game.Icon, icon);
+                    App.Database.SaveFile(game.Icon, icon);
                 }
                 else if (game.PlayTask.Type == GameTaskType.File)
                 {
@@ -286,7 +286,7 @@ namespace PlayniteUI
             try
             {
                 game.InstallGame();
-                GameDatabase.Instance.UpdateGameInDatabase(game);
+                App.Database.UpdateGameInDatabase(game);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -300,7 +300,7 @@ namespace PlayniteUI
             try
             {
                 game.UninstallGame();
-                GameDatabase.Instance.UpdateGameInDatabase(game);
+                App.Database.UpdateGameInDatabase(game);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {

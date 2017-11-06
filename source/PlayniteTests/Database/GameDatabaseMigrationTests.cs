@@ -22,7 +22,7 @@ namespace PlayniteTests.Database
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "defaultplatforms.db");
             FileSystem.DeleteFile(path);
-            var db = new GameDatabase();
+            var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 var platforms = db.PlatformsCollection.FindAll();
@@ -88,7 +88,7 @@ namespace PlayniteTests.Database
                 }
             }
 
-            var db = new GameDatabase();
+            var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 Assert.IsTrue(db.GamesCollection.Count() == 3);

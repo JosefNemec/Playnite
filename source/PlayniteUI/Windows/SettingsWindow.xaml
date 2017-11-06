@@ -290,6 +290,10 @@
                 </TabItem>
                 <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
+                        <CheckBox IsChecked="{Binding Settings.GOGSettings.RunViaGalaxy}"
+                                  Name="CheckGogRunGalaxy" Content="Integrate using Galaxy client"
+                                  ToolTip="Will enable features like cloud saves, counting play time etc."
+                                  DockPanel.Dock="Top" Margin="0,0,0,15"/>
                         <CheckBox IsChecked="{Binding Settings.GOGSettings.IntegrationEnabled}"
                                     Name="CheckGogEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top"/>
@@ -315,13 +319,6 @@
                                 </TextBlock.Text>
                             </TextBlock>
                         </DockPanel>
-                        <CheckBox IsChecked="{Binding Settings.GOGSettings.UseRealIcon}" Visibility="Collapsed"
-                                    Name="CheckGogIcons" Content="Use executable icons instead of GOG icon images"
-                                    DockPanel.Dock="Top" Margin="5,15,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"/>
-                        <CheckBox IsChecked="{Binding Settings.GOGSettings.RunViaGalaxy}"
-                                  Name="CheckGogRunGalaxy" Content="Start games via Galaxy client"
-                                  ToolTip="Will enable features like cloud saves, counting play time etc."
-                                  DockPanel.Dock="Top" Margin="5,15,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"/>
                     </DockPanel>
                 </TabItem>
                 <TabItem Visibility="Collapsed">

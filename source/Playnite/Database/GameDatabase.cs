@@ -182,7 +182,7 @@ namespace Playnite.Database
             Name = name;
             Data = data;
         }
-    }    
+    }
 
     public class GameDatabase
     {
@@ -200,19 +200,6 @@ namespace Playnite.Database
         private List<IGame> RemovedGamesEventBuffer = new List<IGame>();
         private List<GameUpdateEvent> GameUpdatesEventBuffer = new List<GameUpdateEvent>();
 
-        private static GameDatabase instance;
-        public static GameDatabase Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new GameDatabase();
-                }
-
-                return instance;
-            }
-        }
         public LiteDatabase Database
         {
             get; private set;
@@ -241,19 +228,20 @@ namespace Playnite.Database
 
         public readonly ushort DBVersion = 1;
 
-        public string SteamUserName
-        {
-            get; set;
-        } = string.Empty;
-
         public event PlatformsCollectionChangedEventHandler PlatformsCollectionChanged;
         public event PlatformUpdatedEventHandler PlatformUpdated;
         public event GamesCollectionChangedEventHandler GamesCollectionChanged;
         public event GameUpdatedEventHandler GameUpdated;
         public event EventHandler DatabaseOpened;
 
-        public GameDatabase()
+        public Settings AppSettings
         {
+            get; set;
+        }
+
+        public GameDatabase(Settings settings)
+        {
+            AppSettings = settings;
             gogLibrary = new GogLibrary();
             steamLibrary = new SteamLibrary();
             originLibrary = new OriginLibrary();
@@ -261,8 +249,9 @@ namespace Playnite.Database
             battleNetLibrary = new BattleNetLibrary();
         }
 
-        public GameDatabase(IGogLibrary gogLibrary, ISteamLibrary steamLibrary, IOriginLibrary originLibrary, IUplayLibrary uplayLibrary, IBattleNetLibrary battleNetLibrary)
+        public GameDatabase(Settings settings, IGogLibrary gogLibrary, ISteamLibrary steamLibrary, IOriginLibrary originLibrary, IUplayLibrary uplayLibrary, IBattleNetLibrary battleNetLibrary)
         {
+            AppSettings = settings;
             this.gogLibrary = gogLibrary;
             this.steamLibrary = steamLibrary;
             this.originLibrary = originLibrary;
@@ -794,7 +783,13 @@ namespace Playnite.Database
                 case Provider.Custom:
                     return;
                 case Provider.GOG:
-                    installedGames = gogLibrary.GetInstalledGames();
+                    var source = InstalledGamesSource.Registry;
+                    if (AppSettings.GOGSettings.RunViaGalaxy)
+                    {
+                        source = InstalledGamesSource.Galaxy;
+                    }
+
+                    installedGames = gogLibrary.GetInstalledGames(source);
                     break;
                 case Provider.Origin:
                     installedGames = originLibrary.GetInstalledGames(true);
@@ -882,7 +877,17 @@ namespace Playnite.Database
                     importedGames = originLibrary.GetLibraryGames();
                     break;
                 case Provider.Steam:
-                    importedGames = steamLibrary.GetLibraryGames(SteamUserName);
+                    var source = string.Empty;
+                    if (AppSettings.SteamSettings.IdSource == SteamIdSource.Name)
+                    {
+                        source = AppSettings.SteamSettings.AccountName;
+                    }
+                    else
+                    {
+                        source = AppSettings.SteamSettings.AccountId.ToString();
+                    }
+
+                    importedGames = steamLibrary.GetLibraryGames(source);
                     break;
                 case Provider.Uplay:
                     return;

@@ -34,6 +34,12 @@ namespace PlayniteUI
         private MainViewModel mainModel;
         private FullscreenViewModel fullscreenModel;
 
+        public static GameDatabase Database
+        {
+            get;
+            private set;
+        }
+
         public static Settings AppSettings
         {
             get;
@@ -76,6 +82,7 @@ namespace PlayniteUI
                 System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
             }
 
+            Database = new GameDatabase(AppSettings);
             Settings.ConfigureLogger();
             Settings.ConfigureCef();
 
@@ -161,17 +168,17 @@ namespace PlayniteUI
 
                     if (wizardModel.ImportedGames.Count > 0)
                     {
-                        GameDatabase.Instance.OpenDatabase(AppSettings.DatabasePath);
+                        Database.OpenDatabase(AppSettings.DatabasePath);
                         foreach (var game in wizardModel.ImportedGames)
                         {
                             if (game.Icon != null)
                             {
                                 var iconId = "images/custom/" + game.Icon.Name;
-                                GameDatabase.Instance.AddImage(iconId, game.Icon.Name, game.Icon.Data);
+                                Database.AddImage(iconId, game.Icon.Name, game.Icon.Data);
                                 game.Game.Icon = iconId;
                             }
 
-                            GameDatabase.Instance.AddGame(game.Game);
+                            Database.AddGame(game.Game);
                         }
                     }
 
@@ -225,7 +232,7 @@ namespace PlayniteUI
                     break;
 
                 case CmdlineCommands.Launch:
-                    var game = GameDatabase.Instance.GamesCollection.FindById(int.Parse(args.Args));
+                    var game = Database.GamesCollection.FindById(int.Parse(args.Args));
                     if (game == null)
                     {
                         logger.Error("Cannot start game, game {0} not found.", args.Args);
@@ -308,7 +315,7 @@ namespace PlayniteUI
 
         private void ReleaseResources()
         {
-            GameDatabase.Instance.CloseDatabase();
+            Database.CloseDatabase();
             GamesLoaderHandler.CancelToken?.Cancel();
             Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
             Cef.Shutdown();
@@ -328,7 +335,7 @@ namespace PlayniteUI
 
             var window = new MainWindowFactory();
             mainModel = new MainViewModel(
-                GameDatabase.Instance,
+                Database,
                 window,
                 new DialogsFactory(),
                 new ResourceProvider(),
@@ -350,7 +357,7 @@ namespace PlayniteUI
 
             var window = new FullscreenWindowFactory();
             fullscreenModel = new FullscreenViewModel(
-                GameDatabase.Instance,
+                Database,
                 AppSettings,
                 window,
                 new ResourceProvider());

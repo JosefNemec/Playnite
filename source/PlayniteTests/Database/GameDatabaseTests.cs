@@ -35,7 +35,7 @@ namespace PlayniteTests.Database
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "updatedb.db");
             FileSystem.DeleteFile(path);
 
-            var db = new GameDatabase();
+            var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 db.AddGame(new Game()
@@ -53,7 +53,7 @@ namespace PlayniteTests.Database
                 Assert.AreEqual(2, db.GamesCollection.Count());
             }
 
-            db = new GameDatabase();
+            db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 Assert.AreEqual(2, db.GamesCollection.Count());
@@ -68,7 +68,7 @@ namespace PlayniteTests.Database
                 db.UpdateGameInDatabase(games[2]);
             }
 
-            db = new GameDatabase();
+            db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 var games = db.GamesCollection.FindAll().ToList();
@@ -77,7 +77,7 @@ namespace PlayniteTests.Database
                 db.DeleteGame(games[1]);
             }
 
-            db = new GameDatabase();
+            db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 Assert.AreEqual(2, db.GamesCollection.Count());
@@ -90,7 +90,7 @@ namespace PlayniteTests.Database
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "deleteimagetest.db");
             FileSystem.DeleteFile(path);
 
-            var db = new GameDatabase();
+            var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {                
                 db.AddImage("testimage", "testimage.png", new byte[] { 0 });
@@ -129,7 +129,7 @@ namespace PlayniteTests.Database
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "deleteimagecleanuptest.db");
             FileSystem.DeleteFile(path);
 
-            var db = new GameDatabase();
+            var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 db.AddImage("testimage", "testimage.png", new byte[] { 0 });
@@ -180,9 +180,9 @@ namespace PlayniteTests.Database
             var originLibrary = new Mock<IOriginLibrary>();
             gogLibrary.Setup(oc => oc.GetLibraryGames()).Returns(libraryGames);
             steamLibrary.Setup(oc => oc.GetLibraryGames(string.Empty)).Returns(libraryGames);
-            originLibrary.Setup(oc => oc.GetLibraryGames()).Returns(libraryGames);
+            originLibrary.Setup(oc => oc.GetLibraryGames()).Returns(libraryGames);        
 
-            var db = new GameDatabase(gogLibrary.Object, steamLibrary.Object, originLibrary.Object, null, null);
+            var db = new GameDatabase(new Settings(), gogLibrary.Object, steamLibrary.Object, originLibrary.Object, null, null);
             using (db.OpenDatabase(path))
             {
                 // Games are properly imported
@@ -238,14 +238,17 @@ namespace PlayniteTests.Database
             var originLibrary = new Mock<IOriginLibrary>();
             var uplayLibrary = new Mock<IUplayLibrary>();
             var battleNetLibrary = new Mock<IBattleNetLibrary>();
-            gogLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
+            gogLibrary.Setup(oc => oc.GetInstalledGames(InstalledGamesSource.Registry)).Returns(installedGames);
+            gogLibrary.Setup(oc => oc.GetInstalledGames(InstalledGamesSource.Galaxy)).Returns(installedGames);
             steamLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
             originLibrary.Setup(oc => oc.GetInstalledGames(false)).Returns(installedGames);
             originLibrary.Setup(oc => oc.GetInstalledGames(true)).Returns(installedGames);
             uplayLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
             battleNetLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
 
-            var db = new GameDatabase(gogLibrary.Object, steamLibrary.Object, originLibrary.Object, uplayLibrary.Object, battleNetLibrary.Object);
+            var settings = new Settings();
+            settings.GOGSettings.RunViaGalaxy = false;
+            var db = new GameDatabase(settings, gogLibrary.Object, steamLibrary.Object, originLibrary.Object, uplayLibrary.Object, battleNetLibrary.Object);
             using (db.OpenDatabase(path))
             {
                 // Games are imported
@@ -367,8 +370,9 @@ namespace PlayniteTests.Database
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "goginstalledimportclean.db");
             FileSystem.DeleteFile(path);
-
-            var db = new GameDatabase();
+            var settings = new Settings();
+            settings.GOGSettings.RunViaGalaxy = false;
+            var db = new GameDatabase(settings);
             using (db.OpenDatabase(path))
             {
                 db.UpdateInstalledGames(Provider.GOG);
@@ -381,8 +385,10 @@ namespace PlayniteTests.Database
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "goginstalledimportupdate.db");
             FileSystem.DeleteFile(path);
+            var settings = new Settings();
+            settings.GOGSettings.RunViaGalaxy = false;
 
-            var db = new GameDatabase();
+            var db = new GameDatabase(settings);
             using (db.OpenDatabase(path))
             {
                 db.UpdateInstalledGames(Provider.GOG);
@@ -392,7 +398,7 @@ namespace PlayniteTests.Database
                 db.UpdateGameInDatabase(game);
             }
 
-            db = new GameDatabase();
+            db = new GameDatabase(settings);
             using (db.OpenDatabase(path))
             {
                 var game = db.GamesCollection.FindOne(Query.All());
@@ -422,7 +428,7 @@ namespace PlayniteTests.Database
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "gogmetaupdate.db");
             FileSystem.DeleteFile(path);
 
-            var db = new GameDatabase();
+            var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 db.AddGame(game);
@@ -453,7 +459,7 @@ namespace PlayniteTests.Database
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "steaminstalledimportclean.db");
             FileSystem.DeleteFile(path);
 
-            var db = new GameDatabase();
+            var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 db.UpdateInstalledGames(Provider.Steam);
@@ -467,7 +473,7 @@ namespace PlayniteTests.Database
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "steaminstalledimportupdate.db");
             FileSystem.DeleteFile(path);
 
-            var db = new GameDatabase();
+            var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 db.UpdateInstalledGames(Provider.Steam);
@@ -477,7 +483,7 @@ namespace PlayniteTests.Database
                 db.UpdateGameInDatabase(game);
             }
 
-            db = new GameDatabase();
+            db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 var game = db.GamesCollection.FindOne(Query.All());
@@ -507,7 +513,7 @@ namespace PlayniteTests.Database
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "steammetaupdate.db");
             FileSystem.DeleteFile(path);
 
-            var db = new GameDatabase();
+            var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 db.AddGame(game);
@@ -538,7 +544,7 @@ namespace PlayniteTests.Database
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "origininstalledimportclean.db");
             FileSystem.DeleteFile(path);
 
-            var db = new GameDatabase();
+            var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 db.UpdateInstalledGames(Provider.Origin);
@@ -552,7 +558,7 @@ namespace PlayniteTests.Database
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "origininstalledimportupdate.db");
             FileSystem.DeleteFile(path);
 
-            var db = new GameDatabase();
+            var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 db.UpdateInstalledGames(Provider.Origin);
@@ -562,7 +568,7 @@ namespace PlayniteTests.Database
                 db.UpdateGameInDatabase(game);
             }
 
-            db = new GameDatabase();
+            db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 var game = db.GamesCollection.FindOne(Query.All());
@@ -592,7 +598,7 @@ namespace PlayniteTests.Database
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "originmetaupdate.db");
             FileSystem.DeleteFile(path);
 
-            var db = new GameDatabase();
+            var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 db.AddGame(game);
@@ -620,7 +626,7 @@ namespace PlayniteTests.Database
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "uplayinstalledimportclean.db");
             FileSystem.DeleteFile(path);
 
-            var db = new GameDatabase();
+            var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 db.UpdateInstalledGames(Provider.Uplay);
@@ -634,7 +640,7 @@ namespace PlayniteTests.Database
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "uplayinstalledimportupdate.db");
             FileSystem.DeleteFile(path);
 
-            var db = new GameDatabase();
+            var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 db.UpdateInstalledGames(Provider.Uplay);
@@ -644,7 +650,7 @@ namespace PlayniteTests.Database
                 db.UpdateGameInDatabase(game);
             }
 
-            db = new GameDatabase();
+            db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
                 var game = db.GamesCollection.FindOne(Query.All());

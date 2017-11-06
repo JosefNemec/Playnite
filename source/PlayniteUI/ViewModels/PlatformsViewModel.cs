@@ -313,7 +313,7 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 var model = new EmulatorImportViewModel(
-                    GameDatabase.Instance,
+                    database,
                     EmulatorImportViewModel.DialogType.EmulatorDownload,
                     EmulatorImportWindowFactory.Instance,
                     new DialogsFactory(),
