@@ -125,12 +125,8 @@
                     <CheckBox Grid.Column="1" Grid.Row="5" Name="CheckReleaseDate"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseReleaseDateChanges}"/>
-                    <Grid Grid.Column="2" Grid.Row="5">
-                        <TextBox Text="{x:Static playnite:Constants.DateUiFormat}" Foreground="LightGray"
-                                    Visibility="{Binding ElementName=TextReleaseDate, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                        <TextBox Name="TextReleaseDate" Background="Transparent"
-                                    Text="{Binding EditingGame.ReleaseDate, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullableDateToStringConverter}}" />
-                    </Grid>
+                    <DatePicker Grid.Column="2" Grid.Row="5" Margin="3"
+                                SelectedDate="{Binding EditingGame.ReleaseDate}"/>
 
                     <TextBlock Grid.Column="0" Grid.Row="6" Text="Developer(s)"/>
                     <CheckBox Grid.Column="1" Grid.Row="6" Name="CheckDeveloper"
