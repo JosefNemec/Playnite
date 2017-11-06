@@ -123,7 +123,9 @@ You can also configure and import any custom emulator later via configuration me
 
     <!--First Time Wizard-->
     <sys:String x:Key="WizardImportIntroduction" xml:space="preserve">Automatically import games from following services. Any later game changes (installation status) will be automatically updated on Playnite startup or when triggered manually. Selected settings affect initial and all subsequent imports.</sys:String>
+    <sys:String x:Key="WizarDBLocation" xml:space="preserve">Choose location for library database file. Location can be also changed later via Settings menu.
 
+Tip: If you want to sync your library between multiple computers, then set DB location to a cloud folder (Google Drive, Dropbox etc.)</sys:String>
     
     <sys:String x:Key="MenuSortByTitle">Sort By</sys:String>
     <sys:String x:Key="MenuSortAscending">Ascending</sys:String>

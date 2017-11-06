@@ -56,10 +56,10 @@
             <TabItem Visibility="Collapsed">
                 <DockPanel Margin="20" LastChildFill="False">
                     <TextBlock Text="Database Location" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
-                    <TextBlock Text="Choose location for library database file. Location can be also changed later via Settings menu." DockPanel.Dock="Top" Margin="5,20,5,0" TextWrapping="Wrap"/>
+                    <TextBlock Text="{DynamicResource WizarDBLocation}" DockPanel.Dock="Top" Margin="5,20,5,0" TextWrapping="Wrap"/>
                     <RadioButton Name="RadioDbDefault" Content="Default program data location for all users" GroupName="database"
                                 IsChecked="{Binding DatabaseLocation, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=ProgramData}"
-                                DockPanel.Dock="Top" Margin="5,15,5,5"/>
+                                DockPanel.Dock="Top" Margin="5,20,5,5"/>
                     <RadioButton Name="RadioDbCustom" Content="Custom location" GroupName="database"
                                 IsChecked="{Binding DatabaseLocation, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Custom}"
                                 DockPanel.Dock="Top" Margin="5"/>
