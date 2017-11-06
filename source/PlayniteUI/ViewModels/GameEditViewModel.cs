@@ -395,11 +395,11 @@ namespace PlayniteUI.ViewModels
             {
                 if (EditingGame.PlatformId == 0 || EditingGame.PlatformId == null)
                 {
-                    return database.EmulatorsCollection.FindAll().ToList();
+                    return database.EmulatorsCollection.FindAll().OrderBy(a => a.Name).ToList();
                 }
                 else
                 {
-                    return database.EmulatorsCollection.FindAll().Where(a => a.Platforms != null && a.Platforms.Contains(EditingGame.PlatformId.Value)).ToList();
+                    return database.EmulatorsCollection.FindAll().Where(a => a.Platforms != null && a.Platforms.Contains(EditingGame.PlatformId.Value)).OrderBy(a => a.Name).ToList();
                 }
             }
         }

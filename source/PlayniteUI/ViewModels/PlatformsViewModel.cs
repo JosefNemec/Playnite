@@ -488,7 +488,20 @@ namespace PlayniteUI.ViewModels
         }
 
         public void RemovePlatform(Platform platform)
-        {                
+        {
+            var games = database.GamesCollection.Find(a => a.PlatformId == platform.Id);
+            var emus = database.EmulatorsCollection.FindAll().Where(a => a.Platforms != null && a.Platforms.Contains(platform.Id));
+            if (games.Count() > 0 || emus.Count() > 0)
+            {
+                if (dialogs.ShowMessage(
+                    string.Format(resources.FindString("PlatformRemovalConfirmation"), platform.Name, games.Count(), emus.Count()),
+                    "",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                {
+                    return;
+                }
+            }
+
             Platforms.Remove(platform);
             if (Platforms.Count > 0)
             {
@@ -542,6 +555,18 @@ namespace PlayniteUI.ViewModels
 
         public void RemoveEmulator(PlatformableEmulator emulator)
         {
+            var games = database.GamesCollection.Find(a => a.PlayTask != null && a.PlayTask.Type == GameTaskType.Emulator && a.PlayTask.EmulatorId == emulator.Id);
+            if (games.Count() > 0)
+            {
+                if (dialogs.ShowMessage(
+                    string.Format(resources.FindString("EmuRemovalConfirmation"), emulator.Name, games.Count()),
+                    "",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                {
+                    return;
+                }
+            }
+
             Emulators.Remove(emulator);
             if (Emulators.Count > 0)
             {

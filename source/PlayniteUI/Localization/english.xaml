@@ -119,7 +119,10 @@ You can also configure and import any custom emulator later via configuration me
     <sys:String x:Key="ImportEmulatorsButton">Import Emulators...</sys:String>
     <sys:String x:Key="DownloadEmulatorsButton">Download Emulators...</sys:String>
     <sys:String x:Key="EmuLoadArgsPresetTooltip">Load arguments preset from known emulator profile</sys:String>
-
+    <sys:String x:Key="EmuRemovalConfirmation" xml:space="preserve">Are you sure you want to remove {0} emulator?        
+It's currently being used by {1} game(s).</sys:String>
+    <sys:String x:Key="PlatformRemovalConfirmation" xml:space="preserve">Are you sure you want to remove {0} platform?        
+It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
 
     <!--First Time Wizard-->
     <sys:String x:Key="WizardImportIntroduction" xml:space="preserve">Automatically import games from following services. Any later game changes (installation status) will be automatically updated on Playnite startup or when triggered manually. Selected settings affect initial and all subsequent imports.</sys:String>
