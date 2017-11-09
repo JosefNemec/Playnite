@@ -99,7 +99,7 @@ namespace PlayniteUI
             get; set;
         }
 
-        public int? PlatformId
+        public LiteDB.ObjectId PlatformId
         {
             get; set;
         }
@@ -109,7 +109,7 @@ namespace PlayniteUI
             get => Platform?.Name ?? string.Empty;
         }
 
-        public PlatformView(int? platformId, Platform platform)
+        public PlatformView(LiteDB.ObjectId platformId, Platform platform)
         {
             Platform = platform;
             PlatformId = platformId;
@@ -199,7 +199,7 @@ namespace PlayniteUI
         public bool Hidden => Game.Hidden;
         public bool Favorite => Game.Favorite;
         public string InstallDirectory => Game.InstallDirectory;
-        public int? PlatformId => Game.PlatformId;
+        public LiteDB.ObjectId PlatformId => Game.PlatformId;
         public ObservableCollection<GameTask> OtherTasks => Game.OtherTasks;
         public string DescriptionView => Game.DescriptionView;
         public string DisplayName => Game.Name;        
@@ -824,7 +824,7 @@ namespace PlayniteUI
             this.viewType = viewType;
         }
 
-        private Platform GetPlatformFromCache(int? id)
+        private Platform GetPlatformFromCache(LiteDB.ObjectId id)
         {
             return platformsCache?.FirstOrDefault(a => a.Id == id);
         }
@@ -833,7 +833,7 @@ namespace PlayniteUI
         {
             platformsCache = database.PlatformsCollection.FindAll().ToList();
             var platformIds = args.UpdatedPlatforms.Select(a => a.NewData.Id).ToList();
-            foreach (var item in Items.Where(a => a.PlatformId != null && platformIds.Contains(a.PlatformId.Value)))
+            foreach (var item in Items.Where(a => a.PlatformId != null && platformIds.Contains(a.PlatformId)))
             {
                 item.Platform.Platform = GetPlatformFromCache(item.PlatformId);
                 item.OnPropertyChanged("Platform");

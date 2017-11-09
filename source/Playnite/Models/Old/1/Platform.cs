@@ -8,14 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite.Models
+namespace Playnite.Models.Old1
 {
     public class Platform : INotifyPropertyChanged
     {
-        private ObjectId id;
+        private int id;
         [BsonId]
-        [JsonConverter(typeof(ObjectIdJsonConverter))]
-        public ObjectId Id
+        public int Id
         {
             get => id;
             set

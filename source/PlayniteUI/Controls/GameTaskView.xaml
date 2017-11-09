@@ -80,8 +80,25 @@
                   IsChecked="{Binding OverrideDefaultArgs}" Checked="CheckOverrideArgs_Checked" Unchecked="CheckOverrideArgs_Checked"/>
 
         <Label Content="Emulator" Grid.Column="0" Grid.Row="3" />
-        <ComboBox Name="ComboEmulator" Grid.Column="1" Grid.Row="3" SelectionChanged="ComboEmulator_SelectionChanged"
-                  ItemsSource="{Binding Emulators, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                  SelectedValuePath="Id" SelectedValue="{Binding EmulatorId}"/>
+        <Grid Grid.Column="1" Grid.Row="3" Margin="3,5,3,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Type" Grid.Column="0"/>
+            <ComboBox Name="ComboEmulator" SelectionChanged="ComboEmulator_SelectionChanged"
+                      Grid.Column="1" Margin="5,0,15,0"
+                      ItemsSource="{Binding Emulators, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                      SelectedValuePath="Id" SelectedValue="{Binding EmulatorId}"/>
+
+            <Label Content="Profile" Grid.Column="2"/>
+            <ComboBox Name="ComboEmulatorConfig" SelectionChanged="ComboEmulatorConfig_SelectionChanged"
+                      Grid.Column="3" Margin="5,0,5,0"
+                      ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboEmulator}"
+                      SelectedValuePath="Id" SelectedValue="{Binding EmulatorProfileId}"/>
+        </Grid>
     </Grid>
 </UserControl>

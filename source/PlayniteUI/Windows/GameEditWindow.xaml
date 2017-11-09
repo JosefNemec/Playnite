@@ -361,6 +361,7 @@
                                     </Button.Style>
                                 </Button>
                                 <pui:GameTaskView x:Name="TaskPlay" DataContext="{Binding EditingGame.PlayTask}"
+                                                  Margin="5,0,5,5"
                                                   Visibility="{Binding Data.EditingGame.PlayTask, Converter={StaticResource NullToVisibilityConverter}, Source={StaticResource Proxy}}"
                                                   Emulators="{Binding Data.Emulators, Source={StaticResource Proxy}}"/>
                             </StackPanel>

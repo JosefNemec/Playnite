@@ -8,6 +8,8 @@
         xmlns:local="clr-namespace:PlayniteUI.Windows"
         xmlns:pui="clr-namespace:PlayniteUI"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
+        xmlns:pvm="clr-namespace:PlayniteUI.ViewModels"
+        xmlns:pm="clr-namespace:Playnite.Models;assembly=Playnite"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
@@ -20,6 +22,8 @@
         <pui:EnumBooleanConverter x:Key="EnumBooleanConverter" />
         <pui:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
         <pui:ListToStringConverter x:Key="ListToStringConverter" />
+        <pvm:SelectedPlatformsToStringConverter x:Key="SelectedPlatformsToStringConverter" />
+        <pvm:SelectedPlatformsToListConverter x:Key="SelectedPlatformsToListConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </controls:WindowBase.Resources>
@@ -81,7 +85,8 @@
                                 <GridViewColumn Header="Supported Platforms" Width="400">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Platforms, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"
+                                            <TextBlock Text="{Binding AllPlatforms, Mode=OneWay, Converter={StaticResource ListToStringConverter}}"
+                                                       Padding="5" Style="{StaticResource BaseTextBlockStyle}"
                                                        TextTrimming="CharacterEllipsis" HorizontalAlignment="Left" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -131,21 +136,14 @@
                                 <GridViewColumn Header="Name">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBox Text="{Binding Emulator.Emulator.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5" Foreground="{StaticResource TextBrush}"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Header="Preset">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Emulator.Definition.Name, Mode=OneWay}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"/>
+                                            <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5" Foreground="{StaticResource TextBrush}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="Path">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Emulator.Emulator.Executable, Mode=OneWay}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"/>
+                                            <TextBlock Text="{Binding Profiles[0].WorkingDirectory, Mode=OneWay}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -178,25 +176,36 @@
                                             <Setter Property="CommandParameter" Value="{Binding}" />
                                         </Style>
                                     </ContextMenu.ItemContainerStyle>
-                                    <ContextMenu.ItemTemplate> 
-                                        <DataTemplate>
+                                    <ContextMenu.Resources>
+                                        <DataTemplate DataType="{x:Type pm:EmulatorProfile}">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+                                                    <ColumnDefinition Width="Auto" />
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition />
                                                 </Grid.RowDefinitions>
                                                 <TextBlock Text="{Binding Name}" Grid.Column="0" />
-                                                <TextBlock Text="{Binding PlatformsString, Mode=OneWay}" Grid.Column="1" Margin="15,0,0,0"
-                                                           TextTrimming="CharacterEllipsis" MaxWidth="400"/>
-                                            </Grid>                                        
+                                                <TextBlock Text=" | " Grid.Column="1" />
+                                                <TextBlock Grid.Column="2" TextWrapping="Wrap" MaxWidth="400">
+                                                    <TextBlock.Text>
+                                                        <MultiBinding Converter="{StaticResource SelectedPlatformsToStringConverter}" Mode="OneWay">
+                                                            <Binding Path="Platforms" />
+                                                            <Binding Path="Data.DatabasePlatforms" Source="{StaticResource Proxy}" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </Grid>
                                         </DataTemplate>
-                                    </ContextMenu.ItemTemplate>
+                                        <HierarchicalDataTemplate DataType="{x:Type pm:Emulator}" ItemsSource="{Binding Profiles}">
+                                            <TextBlock Text="{Binding Name}" />
+                                        </HierarchicalDataTemplate>
+                                    </ContextMenu.Resources>
                                 </ContextMenu>
                             </Button.ContextMenu>
-                        </Button>                        
+                        </Button>
                     </DockPanel>
                     <ListView SelectionMode="Single" Margin="5" BorderThickness="{StaticResource ControlBorderThickness}"
                               BorderBrush="{StaticResource NormalBorderBrush}" ItemsSource="{Binding GamesList}" Name="ListGames">
@@ -210,27 +219,29 @@
                                 <GridViewColumn Header="Import">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <CheckBox IsChecked="{Binding Import, Mode=TwoWay}" Padding="5" HorizontalAlignment="Right" />
+                                            <CheckBox IsChecked="{Binding Import, Mode=TwoWay}" HorizontalAlignment="Right" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="Name">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBox Text="{Binding Game.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5" Foreground="{StaticResource TextBrush}"/>
+                                            <TextBox Text="{Binding Game.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="Platform">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ComboBox Padding="5" ItemsSource="{Binding Emulator.PlatformsList}" SelectedValuePath="Id"
-                                                      SelectedValue="{Binding Game.PlatformId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                                <ComboBox.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding Name, Mode=OneWay}"/>
-                                                    </DataTemplate>
-                                                </ComboBox.ItemTemplate>
+                                            <ComboBox Padding="5" SelectedValuePath="Id"                                                      
+                                                      SelectedValue="{Binding Game.PlatformId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      DisplayMemberPath="Name">
+                                                <ComboBox.ItemsSource>
+                                                    <MultiBinding Converter="{StaticResource SelectedPlatformsToListConverter}" Mode="OneWay">
+                                                        <Binding Path="EmulatorProfile.Platforms" />
+                                                        <Binding Path="Data.DatabasePlatforms" Source="{StaticResource Proxy}" />
+                                                    </MultiBinding>
+                                                </ComboBox.ItemsSource>
                                             </ComboBox>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -238,14 +249,14 @@
                                 <GridViewColumn Header="Emulator">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Emulator.Name, Mode=OneWay}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"/>
+                                            <TextBlock Text="{Binding Emulator.Name, Mode=OneWay}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="Path">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Game.IsoPath, Mode=OneWay}" Padding="5" Style="{StaticResource BaseTextBlockStyle}"/>
+                                            <TextBlock Text="{Binding Game.IsoPath, Mode=OneWay}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

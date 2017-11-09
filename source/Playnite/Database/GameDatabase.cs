@@ -226,7 +226,7 @@ namespace Playnite.Database
         private IUplayLibrary uplayLibrary;
         private IBattleNetLibrary battleNetLibrary;
 
-        public readonly ushort DBVersion = 1;
+        public readonly ushort DBVersion = 2;
 
         public event PlatformsCollectionChangedEventHandler PlatformsCollectionChanged;
         public event PlatformUpdatedEventHandler PlatformUpdated;
@@ -279,8 +279,8 @@ namespace Playnite.Database
                 return;
             }
 
-            // 0 to 1 migration
-            if (Database.Engine.UserVersion == 0 && DBVersion == 1)
+            // 0 to 1
+            if (Database.Engine.UserVersion == 0 && DBVersion > 0)
             {
                 // Create: ObservableCollection<Link>Links
                 // Migrate: CommunityHubUrl, StoreUrl, WikiUrl to Links
@@ -288,8 +288,7 @@ namespace Playnite.Database
                 logger.Info("Migrating database from 0 to 1 version.");
 
                 var collection = Database.GetCollection("games");
-                var dbGames = collection.FindAll();
-                foreach (var game in dbGames)
+                foreach (var game in collection.FindAll())
                 {
                     var links = new ObservableCollection<Link>();
 
@@ -312,7 +311,7 @@ namespace Playnite.Database
                     }
 
                     if (links.Count() > 0)
-                    {                        
+                    {
                         game.Add("Links", new BsonArray(links.Select(a => BsonMapper.Global.ToDocument(a))));
                     }
 
@@ -320,15 +319,145 @@ namespace Playnite.Database
                 }
 
                 Database.Engine.UserVersion = 1;
-            }                      
+            }
+
+            // 1 to 2
+            if (Database.Engine.UserVersion == 1 && DBVersion > 1)
+            {
+                // Migrate: Emulators collection
+                // From:
+                // -Name: DOSBox
+                //  DefaultArguments: '-conf "{ImagePath}" -exit'
+                //  Platforms: [MS - DOS, PC]
+                //  ImageExtensions: [.conf]
+                //  ExecutableLookup: ^ dosbox\.exe
+                //  WorkingDirectory: 
+                // To:
+                // -Name: DOSBox
+                //  Configurations:
+                //    -Name: Default
+                //     DefaultArguments: '-conf "{ImagePath}" -exit'
+                //     Platforms: [MS - DOS, PC]
+                //     ImageExtensions: [.conf]
+                //     ExecutableLookup: ^ dosbox\.exe
+                //     WorkingDirectory:
+                //
+                // Add: EmulatorProfile into game's PlayTask when using emulator
+                // Convert: Platforms and Emulators Id from int to ObjectId
+                logger.Info("Migrating database from 1 to 2 version.");
+
+                var platCollection = Database.GetCollection("platforms");
+                var conPlatforms = new Dictionary<int, ObjectId>();
+                foreach (var platform in platCollection.FindAll().ToList())
+                {
+                    var oldId = platform["_id"].AsInt32;
+                    var newId = ObjectId.NewObjectId();
+                    conPlatforms.Add(oldId, newId);
+                    platCollection.Delete(oldId);
+                    platform["_id"] = newId;
+                    platCollection.Insert(platform);
+                }
+
+                var conEmulators = new Dictionary<int, ObjectId>();
+                var emuCollection = Database.GetCollection("emulators");
+                foreach (var emulator in emuCollection.FindAll().ToList())
+                {
+                    var platforms = emulator["Platforms"]?.AsArray?
+                        .Where(a => conPlatforms.ContainsKey(a.AsInt32))?
+                        .Select(a => conPlatforms[a]).ToList();
+                    var profiles = new List<EmulatorProfile>
+                    {
+                        new EmulatorProfile()
+                        {
+                            Name = "Default",
+                            Arguments = emulator["Arguments"],
+                            Executable = emulator["Executable"],
+                            ImageExtensions = emulator["ImageExtensions"]?.AsArray?.Select(a => a.AsString.TrimStart('.'))?.ToList(),
+                            Platforms = platforms,
+                            WorkingDirectory = emulator["WorkingDirectory"]                            
+                        }
+                    };
+
+                    emulator.Remove("Arguments");
+                    emulator.Remove("Executable");
+                    emulator.Remove("ImageExtensions");
+                    emulator.Remove("Platforms");
+                    emulator.Remove("WorkingDirectory");
+                    emulator.Add("Profiles", new BsonArray(profiles.Select(a => BsonMapper.Global.ToDocument(a))));
+                    var oldId = emulator["_id"].AsInt32;
+                    var newId = ObjectId.NewObjectId();
+                    conEmulators.Add(oldId, newId);
+                    emuCollection.Delete(oldId);
+                    emulator["_id"] = newId;
+                    emuCollection.Insert(emulator);
+                }
+
+                var gameCol = Database.GetCollection("games");
+                var emusCollection = Database.GetCollection<Emulator>("emulators");
+                foreach (var game in gameCol.FindAll().ToList())
+                {
+                    int? oldPlatId = game["PlatformId"]?.AsInt32;
+                    if (oldPlatId != null)
+                    {
+                        if (conPlatforms.ContainsKey(oldPlatId.Value))
+                        {
+                            game["PlatformId"] = conPlatforms[oldPlatId.Value];
+                        }
+                        else
+                        {
+                            game.Remove("PlatformId");
+                        }
+                    }
+
+                    if (game["PlayTask"].AsDocument != null)
+                    {
+                        if (game["PlayTask"].AsDocument["Type"].AsString == "Emulator")
+                        {
+                            var oldEmuId = game["PlayTask"].AsDocument["EmulatorId"].AsInt32;
+                            if (conEmulators.ContainsKey(oldEmuId))
+                            {
+                                var emulator = emusCollection.FindById(conEmulators[oldEmuId]);
+                                game["PlayTask"].AsDocument["EmulatorId"] = emulator.Id;
+                                game["PlayTask"].AsDocument["EmulatorProfileId"] = emulator.Profiles?.First().Id;
+                            }
+                            else
+                            {
+                                game["PlayTask"].AsDocument.Remove("EmulatorId");
+                                game["PlayTask"].AsDocument.Remove("EmulatorProfileId");
+                            }
+                        }
+                        else
+                        {
+                            game["PlayTask"].AsDocument.Remove("EmulatorId");
+                            game["PlayTask"].AsDocument.Remove("EmulatorProfileId");
+                        }                        
+                    }
+
+                    gameCol.Update(game);
+                }
+                
+                emusCollection.EnsureIndex(a => a.Id);
+                Database.GetCollection<IGame>("games").EnsureIndex(a => a.Id);
+                Database.GetCollection<Platform>("platforms").EnsureIndex(a => a.Id);
+
+                Database.Engine.UserVersion = 2;
+            }
         }
 
         public LiteDatabase OpenDatabase(string path)
         {
+            var dbExists = File.Exists(path);
             logger.Info("Opening db " + path);
             CloseDatabase();
             Database = new LiteDatabase(path);
-            MigrateDatabase();
+            if (dbExists)
+            {
+                MigrateDatabase();
+            }
+            else
+            {
+                Database.Engine.UserVersion = DBVersion;
+            }
 
             // To force litedb to try to open file, should throw exceptuion if something is wrong with db file
             Database.GetCollectionNames();                       
@@ -337,17 +466,17 @@ namespace Playnite.Database
             PlatformsCollection = Database.GetCollection<Platform>("platforms");
             EmulatorsCollection = Database.GetCollection<Emulator>("emulators");
 
-            // Generate default platforms
-            if (PlatformsCollection.Count() == 0)
+            if (!dbExists)
             {
-                var platforms = EmulatorDefinition.GetDefinitions().SelectMany(a => a.Platforms).Distinct();
-                using (BufferedUpdate())
-                {
-                    foreach (var platform in platforms)
-                    {
-                        AddPlatform(new Platform(platform));
-                    }
-                }
+                GamesCollection.EnsureIndex(a => a.Id);
+                PlatformsCollection.EnsureIndex(a => a.Id);
+                EmulatorsCollection.EnsureIndex(a => a.Id);
+
+                // Generate default platforms  
+                var platforms = EmulatorDefinition.GetDefinitions()
+                    .SelectMany(a => a.Profiles.SelectMany(b => b.Platforms)).Distinct()
+                    .Select(a => new Platform(a));
+                AddPlatform(platforms);
             }
 
             DatabaseOpened?.Invoke(this, null);
@@ -389,10 +518,7 @@ namespace Playnite.Database
 
             lock (fileLock)
             {
-                foreach (var game in games)
-                {
-                    GamesCollection.Insert(game);
-                }
+                GamesCollection.InsertBulk(games);
             }
 
             OnGamesCollectionChanged(games.ToList(), new List<IGame>());
@@ -435,10 +561,7 @@ namespace Playnite.Database
 
             lock (fileLock)
             {
-                foreach (var platform in platforms)
-                {
-                    PlatformsCollection.Insert(platform);
-                }
+                PlatformsCollection.InsertBulk(platforms);
             }
 
             OnPlatformsCollectionChanged(platforms.ToList(), new List<Platform>());
@@ -549,10 +672,7 @@ namespace Playnite.Database
 
             lock (fileLock)
             {
-                foreach (var emulator in emulators)
-                {
-                    EmulatorsCollection.Insert(emulator);
-                }
+                EmulatorsCollection.InsertBulk(emulators);
             }
         }
 

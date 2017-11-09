@@ -2,6 +2,7 @@
 using Playnite.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,22 +11,29 @@ using System.Threading.Tasks;
 
 namespace Playnite.Emulators
 {
-    public class ScannedEmulator
+    public class ScannedEmulatorProfile : EmulatorProfile
     {
-        public Emulator Emulator
+        public EmulatorDefinitionProfile ProfileDefinition
         {
             get; set;
         }
 
-        public EmulatorDefinition Definition
+        public ScannedEmulatorProfile() : base()
+        {
+        }
+    }
+
+    public class ScannedEmulator : Emulator
+    {
+        public new ObservableCollection<ScannedEmulatorProfile> Profiles
         {
             get; set;
         }
 
-        public ScannedEmulator(Emulator emulator, EmulatorDefinition definition)
+        public ScannedEmulator(string name, IEnumerable<ScannedEmulatorProfile> profiles)
         {
-            Emulator = emulator;
-            Definition = definition;
+            Profiles = new ObservableCollection<ScannedEmulatorProfile>(profiles);
+            Name = name;
         }
     }
 
@@ -36,35 +44,73 @@ namespace Playnite.Emulators
         public static List<ScannedEmulator> SearchForEmulators(string path, List<EmulatorDefinition> definitions)
         {
             logger.Info($"Looking for emulators in {path}, using {definitions.Count} definitions.");
-            var emulators = new List<ScannedEmulator>();
+            var emulators = new Dictionary<EmulatorDefinition, List<ScannedEmulatorProfile>>();
+
             var fileEnumerator = new SafeFileEnumerator(path, "*.*", SearchOption.AllDirectories);
             foreach (var file in fileEnumerator)
             {
                 foreach (var definition in definitions)
                 {
-                    var regex = new Regex(definition.ExecutableLookup, RegexOptions.IgnoreCase);
-                    if (regex.IsMatch(file.Name))
+                    foreach (var defProfile in definition.Profiles)
                     {
+                        var reqMet = true;
                         var folder = Path.GetDirectoryName(file.FullName);
-                        emulators.Add(new ScannedEmulator(new Emulator(Path.GetFileName(Path.GetDirectoryName(file.FullName)))
+                        var regex = new Regex(defProfile.ExecutableLookup, RegexOptions.IgnoreCase);
+                        if (regex.IsMatch(file.Name))
                         {
-                            WorkingDirectory = folder,
-                            Executable = file.FullName,
-                            Arguments = definition.DefaultArguments,
-                            Name = definition.Name,
-                            ImageExtensions = definition.ImageExtensions
-                        }, definition));
+                            if (defProfile.RequiredFiles?.Any() == true)
+                            {
+                                foreach (var reqFile in defProfile.RequiredFiles)
+                                {
+                                    if (!File.Exists(Path.Combine(folder, reqFile)))
+                                    {
+                                        reqMet = false;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            reqMet = false;
+                        }
+
+                        if (reqMet)
+                        {
+                            var emuProfile = new ScannedEmulatorProfile()
+                            {
+                                Name = defProfile.Name,
+                                Arguments = defProfile.DefaultArguments,
+                                Executable = file.FullName,
+                                WorkingDirectory = folder,
+                                ImageExtensions = defProfile.ImageExtensions,
+                                ProfileDefinition = defProfile
+                            };
+
+                            if (!emulators.ContainsKey(definition))
+                            {
+                                emulators.Add(definition, new List<ScannedEmulatorProfile>());
+                            }
+
+                            emulators[definition].Add(emuProfile);
+                        }
                     }
                 }
             }
 
-            return emulators;
+            var result = new List<ScannedEmulator>();
+            foreach (var key in emulators.Keys)
+            {
+                result.Add(new ScannedEmulator(key.Name, emulators[key]));
+            }
+
+            return result;
         }
 
-        public static List<IGame> SearchForGames(string path, Emulator emulator)
+        public static List<IGame> SearchForGames(string path, EmulatorProfile profile)
         {
-            logger.Info($"Looking for games in {path}, using {emulator.Name} emulator.");
-            if (emulator.ImageExtensions == null)
+            logger.Info($"Looking for games in {path}, using {profile.Name} emulator profile.");
+            if (profile.ImageExtensions == null)
             {
                 throw new Exception("Cannot scan for games, emulator doesn't support any file types.");
             }
@@ -73,9 +119,9 @@ namespace Playnite.Emulators
             var fileEnumerator = new SafeFileEnumerator(path, "*.*", SearchOption.AllDirectories);
             foreach (var file in fileEnumerator)
             {
-                foreach (var extension in emulator.ImageExtensions)
+                foreach (var extension in profile.ImageExtensions)
                 {
-                    if (string.Equals(file.Extension, extension, StringComparison.InvariantCultureIgnoreCase))
+                    if (string.Equals(file.Extension.TrimStart('.'), extension, StringComparison.InvariantCultureIgnoreCase))
                     {
                         var newGame = new Game()
                         {

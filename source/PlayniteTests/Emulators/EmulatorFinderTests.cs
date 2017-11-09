@@ -22,15 +22,10 @@ namespace PlayniteTests.Emulators
 
         // TODO mock this, don't use real file system
         [Test]
-        public void SearchForGames()
+        public void SearchForGamesTest()
         {
             var def = EmulatorDefinition.GetDefinitions().First(a => a.Name == "PCSX2");
-            var emulator = new Emulator("Test")
-            {
-                ImageExtensions = def.ImageExtensions
-            };
-
-            var games = EmulatorFinder.SearchForGames(@"d:\EmulatedGames\PS2\", emulator);
+            var games = EmulatorFinder.SearchForGames(@"d:\EmulatedGames\PS2\", def.Profiles.First().ToEmulatorConfig());
             CollectionAssert.IsNotEmpty(games);
         }
     }

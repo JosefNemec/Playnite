@@ -17,14 +17,11 @@ using System.Collections.Concurrent;
 using Playnite.Providers.Uplay;
 using Playnite.Providers.BattleNet;
 using Newtonsoft.Json;
-using Playnite.Converters;
 
-namespace Playnite.Models
+namespace Playnite.Models.Old1
 {
-    public class Game : IGame
+    public class Game
     {
-        private IGameStateMonitor stateMonitor;
-
         private string backgroundImage;
         public string BackgroundImage
         {
@@ -337,9 +334,8 @@ namespace Playnite.Models
             }
         }
 
-        private ObjectId platformId;
-        [JsonConverter(typeof(ObjectIdJsonConverter))]
-        public ObjectId PlatformId
+        private int? platformId;
+        public int? PlatformId
         {
             get
             {
@@ -463,197 +459,6 @@ namespace Playnite.Models
         public void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        public void InstallGame()
-        {
-            switch (Provider)
-            {
-                case Provider.Steam:
-                    Process.Start(@"steam://install/" + ProviderId);
-                    RegisterStateMonitor(new SteamGameStateMonitor(ProviderId, new SteamLibrary()), GameStateMonitorType.Install);
-                    break;
-                case Provider.GOG:
-                    Process.Start(@"goggalaxy://openGameView/" + ProviderId);
-                    RegisterStateMonitor(new GogGameStateMonitor(ProviderId, InstallDirectory, new GogLibrary()), GameStateMonitorType.Install);
-                    break;
-                case Provider.Origin:
-                    Process.Start(string.Format(@"origin2://game/launch?offerIds={0}&autoDownload=true", ProviderId));
-                    RegisterStateMonitor(new OriginGameStateMonitor(ProviderId, new OriginLibrary()), GameStateMonitorType.Install);
-                    break;
-                case Provider.Uplay:
-                    Process.Start("uplay://install/" + ProviderId);
-                    RegisterStateMonitor(new UplayGameStateMonitor(ProviderId, new UplayLibrary()), GameStateMonitorType.Install);
-                    break;
-                case Provider.BattleNet:
-                    var product = BattleNetLibrary.GetAppDefinition(ProviderId);
-                    if (product.Type == BattleNetLibrary.BNetAppType.Classic)
-                    {
-                        Process.Start(@"https://battle.net/account/management/download/");
-                    }
-                    else
-                    {
-                        Process.Start(BattleNetSettings.ClientExecPath, $"--game={product.InternalId}");
-                    }
-                    RegisterStateMonitor(new BattleNetGameStateMonitor(product, new BattleNetLibrary()), GameStateMonitorType.Install);
-                    break;
-                case Provider.Custom:
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        public void PlayGame()
-        {
-            PlayGame(null);
-        }
-
-        public void PlayGame(List<Emulator> emulators)
-        {
-            if (PlayTask == null)
-            {
-                return;
-            }
-
-            LastActivity = DateTime.Now;
-            if (Provider == Provider.GOG && Settings.Instance.GOGSettings.RunViaGalaxy)
-            {
-                var args = string.Format(@"/gameId={0} /command=runGame /path=""{1}""", ProviderId, InstallDirectory);
-                Process.Start(Path.Combine(GogSettings.InstallationPath, "GalaxyClient.exe"), args);
-                return;
-            }
-
-            GameHandler.ActivateTask(PlayTask, this, emulators);
-        }
-
-        public void UninstallGame()
-        {
-            switch (Provider)
-            {
-                case Provider.Steam:
-                    Process.Start("steam://uninstall/" + ProviderId);
-                    RegisterStateMonitor(new SteamGameStateMonitor(ProviderId, new SteamLibrary()), GameStateMonitorType.Uninstall);
-                    break;
-                case Provider.GOG:
-                    var uninstaller = Path.Combine(InstallDirectory, "unins000.exe");
-                    if (!File.Exists(uninstaller))
-                    {
-                        throw new FileNotFoundException("Uninstaller not found.");
-                    }
-
-                    Process.Start(uninstaller);
-                    RegisterStateMonitor(new GogGameStateMonitor(ProviderId, InstallDirectory, new GogLibrary()), GameStateMonitorType.Uninstall);
-                    break;
-                case Provider.Origin:
-                    Process.Start("appwiz.cpl");
-                    RegisterStateMonitor(new OriginGameStateMonitor(ProviderId, new OriginLibrary()), GameStateMonitorType.Uninstall);
-                    break;
-                case Provider.Uplay:
-                    Process.Start("uplay://uninstall/" + ProviderId);
-                    RegisterStateMonitor(new UplayGameStateMonitor(ProviderId, new UplayLibrary()), GameStateMonitorType.Uninstall);
-                    break;
-                case Provider.BattleNet:
-                    var product = BattleNetLibrary.GetAppDefinition(ProviderId);
-                    var entry = BattleNetLibrary.GetUninstallEntry(product);
-                    if (entry != null)
-                    {
-                        var args = string.Format("/C \"{0}\"", entry.UninstallString);
-                        Process.Start("cmd", args);
-                        RegisterStateMonitor(new BattleNetGameStateMonitor(product, new BattleNetLibrary()), GameStateMonitorType.Uninstall);
-                    }
-                    else
-                    {
-                        RegisterStateMonitor(new BattleNetGameStateMonitor(product, new BattleNetLibrary()), GameStateMonitorType.Uninstall);
-                    }
-                    break;
-                case Provider.Custom:
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        public void RegisterStateMonitor(IGameStateMonitor monitor, GameStateMonitorType type)
-        {
-            if (stateMonitor != null)
-            {
-                stateMonitor.Dispose();
-            }
-
-            stateMonitor = monitor;
-            stateMonitor.GameInstalled += StateMonitor_GameInstalled;
-            stateMonitor.GameUninstalled += StateMonitor_GameUninstalled;
-            if (type == GameStateMonitorType.Install)
-            {
-                stateMonitor.StartInstallMonitoring();
-            }
-            else
-            {
-                stateMonitor.StartUninstallMonitoring();
-            }
-
-            IsSetupInProgress = true;
-        }
-
-        public void UnregisetrStateMonitor()
-        {
-            if (stateMonitor != null)
-            {
-                stateMonitor.StopMonitoring();
-                stateMonitor.Dispose();
-            }
-
-            IsSetupInProgress = false;
-        }
-
-        private void StateMonitor_GameUninstalled(object sender, EventArgs e)
-        {
-            IsSetupInProgress = false;
-            PlayTask = null;
-            InstallDirectory = string.Empty;
-
-            if (OtherTasks != null)
-            {
-                OtherTasks = new ObservableCollection<GameTask>(OtherTasks.Where(a => !a.IsBuiltIn));
-            }
-        }
-
-        private void StateMonitor_GameInstalled(object sender, GameInstalledEventArgs e)
-        {
-            IsSetupInProgress = false;
-            var game = e.NewGame;
-            PlayTask = game.PlayTask;
-            InstallDirectory = game.InstallDirectory;
-
-            if (game.OtherTasks != null)
-            {
-                OtherTasks = new ObservableCollection<GameTask>(OtherTasks.Where(a => !a.IsBuiltIn));
-                foreach (var task in game.OtherTasks.Reverse())
-                {
-                    OtherTasks.Insert(0, task);
-                }
-            }
-        }
-
-        public override string ToString()
-        {
-            return Name;
-        }
-
-        public string ResolveVariables(string inputString)
-        {
-            if (string.IsNullOrEmpty(inputString))
-            {
-                return inputString;
-            }
-
-            var result = inputString;
-            result = result.Replace("{InstallDir}", InstallDirectory);
-            result = result.Replace("{ImagePath}", IsoPath);
-            result = result.Replace("{ImageNameNoExt}", Path.GetFileNameWithoutExtension(isoPath));
-            result = result.Replace("{ImageName}", Path.GetFileName(isoPath));
-            return result;
-        }
+        }        
     }
 }

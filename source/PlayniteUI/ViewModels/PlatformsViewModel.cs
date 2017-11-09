@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using LiteDB;
+using Newtonsoft.Json;
 using Playnite;
+using Playnite.Converters;
 using Playnite.Database;
 using Playnite.Emulators;
 using Playnite.Models;
@@ -13,88 +15,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 
 namespace PlayniteUI.ViewModels
 {
+    public class SelectablePlatform : Platform
+    {
+        private bool selected;
+        public bool Selected
+        {
+            get => selected;
+            set
+            {
+                selected = value;
+                OnPropertyChanged("Selected");
+            }
+        }
+
+        public SelectablePlatform(Platform platform)
+        {
+            Id = platform.Id;
+            Name = platform.Name;
+            Selected = false;
+        }
+    }
+
     public class PlatformsViewModel : ObservableObject
     {
-        public class SelectablePlatform : INotifyPropertyChanged
-        {
-            public int Id
-            {
-                get; set;
-            }
-
-            public string Name
-            {
-                get; set;
-            }
-
-            private bool selected;
-            public bool Selected
-            {
-                get => selected;
-                set
-                {
-                    selected = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Selected"));
-                }
-            }
-
-            public SelectablePlatform()
-            {
-            }
-
-            public SelectablePlatform(Platform platform)
-            {
-                Id = platform.Id;
-                Name = platform.Name;
-                Selected = false;
-            }
-
-            public event PropertyChangedEventHandler PropertyChanged;
-        }
-
-        public class PlatformableEmulator : Emulator
-        {
-            public new List<int> Platforms
-            {
-                get
-                {
-                    return PlatformsList?.Where(a => a.Selected).Select(a => a.Id).OrderBy(a => a).ToList();
-                }
-            }
-
-            [JsonIgnore]
-            public List<SelectablePlatform> PlatformsList
-            {
-                get; set;
-            }
-
-            [JsonIgnore]
-            public string PlatformsString
-            {
-                get => PlatformsList == null ? string.Empty : string.Join(", ", PlatformsList.Where(a => a.Selected).Select(a => a.Name));
-            }
-
-            public Emulator ToEmulator()
-            {
-                return JsonConvert.DeserializeObject<Emulator>(this.ToJson());
-            }
-
-            public static PlatformableEmulator FromEmulator(Emulator emulator, IEnumerable<Platform> platforms)
-            {
-                var newObj = JsonConvert.DeserializeObject<PlatformableEmulator>(emulator.ToJson());
-                var newPlatforms = platforms?.Select(a => new SelectablePlatform(a) { Selected = emulator.Platforms == null ? false : emulator.Platforms.Contains(a.Id) });
-                newObj.PlatformsList = new List<SelectablePlatform>(newPlatforms);
-                foreach (var platform in newObj.PlatformsList)
-                {
-                    platform.PropertyChanged += (s, e) => { newObj.OnPropertyChanged("PlatformsString"); };
-                }
-                return newObj;
-            }
-        }
-
         private bool isPlatformsSelected = true;
         public bool IsPlatformsSelected
         {
@@ -104,7 +51,7 @@ namespace PlayniteUI.ViewModels
                 if (value == true)
                 {
                     var dbEmulators = GetEmulatorsFromDB();
-                    if (Emulators != null && !Emulators.Select(a => a.ToEmulator()).IsEqualJson(dbEmulators))
+                    if (Emulators != null && !Emulators.IsEqualJson(dbEmulators))
                     {
                         var askResult = dialogs.ShowMessage(
                             resources.FindString("ConfirmUnsavedEmulatorsTitle"),
@@ -121,8 +68,7 @@ namespace PlayniteUI.ViewModels
                         }
                     }
 
-                    Platforms = GetPlatformsFromDB();
-                    SelectedPlatform = Platforms.Count > 0 ? Platforms[0] : null;
+                    ReloadPlatforms();
                 }
 
                 isPlatformsSelected = value;
@@ -156,8 +102,7 @@ namespace PlayniteUI.ViewModels
                         }
                     }
 
-                    Emulators = new ObservableCollection<PlatformableEmulator>(GetEmulatorsFromDB().Select(a => PlatformableEmulator.FromEmulator(a, Platforms)));
-                    SelectedEmulator = Emulators.Count > 0 ? Emulators[0] : null;
+                    ReloadEmulators();
                 }
 
                 isEmulatorsSelected = value;
@@ -176,14 +121,27 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private PlatformableEmulator selectedEmulator;
-        public PlatformableEmulator SelectedEmulator
+        private Emulator selectedEmulator;
+        public Emulator SelectedEmulator
         {
             get => selectedEmulator;
             set
             {
                 selectedEmulator = value;
                 OnPropertyChanged("SelectedEmulator");
+                SelectedEmulatorProfile = SelectedEmulator?.Profiles?.FirstOrDefault();
+            }
+        }
+
+        private EmulatorProfile selectedEmulatorProfile;
+        public EmulatorProfile SelectedEmulatorProfile
+        {
+            get => selectedEmulatorProfile;
+            set
+            {
+                selectedEmulatorProfile = value;
+                ReloadSelectablePlatforms(value);
+                OnPropertyChanged("SelectedEmulatorProfile");
             }
         }
 
@@ -198,8 +156,19 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private ObservableCollection<PlatformableEmulator> emulators;
-        public ObservableCollection<PlatformableEmulator> Emulators
+        private ObservableCollection<SelectablePlatform> selectablePlatforms;
+        public ObservableCollection<SelectablePlatform> SelectablePlatforms
+        {
+            get => selectablePlatforms;
+            set
+            {
+                selectablePlatforms = value;
+                OnPropertyChanged("SelectablePlatforms");
+            }
+        }
+
+        private ObservableCollection<Emulator> emulators;
+        public ObservableCollection<Emulator> Emulators
         {
             get => emulators;
             set
@@ -294,6 +263,30 @@ namespace PlayniteUI.ViewModels
             }, (a) => SelectedEmulator != null);
         }
 
+        public RelayCommand<object> AddEmulatorProfileCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddEmulatorProfile();
+            }, (a) => SelectedEmulator != null);
+        }
+
+        public RelayCommand<object> RemoveEmulatorProfileCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveEmulatorProfile(SelectedEmulatorProfile);
+            }, (a) => SelectedEmulatorProfile != null);
+        }
+
+        public RelayCommand<object> CopyEmulatorProfileCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                CopyEmulatorProfile(SelectedEmulatorProfile);
+            }, (a) => SelectedEmulatorProfile != null);
+        }
+
         public RelayCommand<object> ImportEmulatorsCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -320,14 +313,6 @@ namespace PlayniteUI.ViewModels
                     new ResourceProvider());
                 DownloadEmulators(model);
             });
-        }
-
-        public RelayCommand<EmulatorDefinition> SetEmulatorArgumentsCommand
-        {
-            get => new RelayCommand<EmulatorDefinition>((emu) =>
-            {
-                SetEmulatorArguments(SelectedEmulator, emu.DefaultArguments);
-            }, (a) => SelectedEmulator != null);
         }
 
         private GameDatabase database;
@@ -384,7 +369,7 @@ namespace PlayniteUI.ViewModels
             database.RemovePlatform(removedPlatforms?.ToList());
 
             // Add new platforms to database
-            var addedPlatforms = Platforms.Where(a => a.Id == 0).ToList();
+            var addedPlatforms = Platforms.Where(a => a.Id == null).ToList();
             database.AddPlatform(addedPlatforms?.ToList());
 
             // Remove files from deleted platforms
@@ -466,23 +451,28 @@ namespace PlayniteUI.ViewModels
             database.RemoveEmulator(removedEmulators?.ToList());
 
             // Add new platforms to database
-            var addedEmulators = Emulators.Select(a => a.ToEmulator()).Where(a => a.Id == 0).ToList();
+            var addedEmulators = Emulators.Where(a => a.Id == null).ToList();
             database.AddEmulator(addedEmulators?.ToList());
 
             // Update modified platforms in database
             foreach (var emulator in Emulators)
             {
-                var dbEmulator = database.EmulatorsCollection.FindById(emulator.Id);
-                if (dbEmulator != null && !emulator.ToEmulator().IsEqualJson(dbEmulator))
+                if (emulator.Id == null)
                 {
-                    database.UpdateEmulator(emulator.ToEmulator());
+                    continue;
+                }
+
+                var dbEmulator = database.EmulatorsCollection.FindById(emulator.Id);
+                if (dbEmulator != null && !emulator.IsEqualJson(dbEmulator))
+                {
+                    database.UpdateEmulator(emulator);
                 }
             }
         }
 
         public void AddPlatform()
         {
-            var platform = new Platform("New Platform") { Id = 0 };
+            var platform = new Platform("New Platform") { Id = null };
             Platforms.Add(platform);
             SelectedPlatform = platform;
         }
@@ -490,7 +480,7 @@ namespace PlayniteUI.ViewModels
         public void RemovePlatform(Platform platform)
         {
             var games = database.GamesCollection.Find(a => a.PlatformId == platform.Id);
-            var emus = database.EmulatorsCollection.FindAll().Where(a => a.Platforms != null && a.Platforms.Contains(platform.Id));
+            var emus = database.EmulatorsCollection.FindAll().Where(a => a.Profiles != null && a.Profiles.FirstOrDefault(b => b.Platforms.Contains(platform.Id)) != null);
             if (games.Count() > 0 || emus.Count() > 0)
             {
                 if (dialogs.ShowMessage(
@@ -548,12 +538,12 @@ namespace PlayniteUI.ViewModels
 
         public void AddEmulator()
         {
-            var emulator = PlatformableEmulator.FromEmulator(new Emulator("New Emulator") { Id = 0 }, Platforms);
+            var emulator = new Emulator("New Emulator") { Id = null };
             Emulators.Add(emulator);
             SelectedEmulator = emulator;
         }
 
-        public void RemoveEmulator(PlatformableEmulator emulator)
+        public void RemoveEmulator(Emulator emulator)
         {
             var games = database.GamesCollection.Find(a => a.PlayTask != null && a.PlayTask.Type == GameTaskType.Emulator && a.PlayTask.EmulatorId == emulator.Id);
             if (games.Count() > 0)
@@ -578,28 +568,48 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public void CopyEmulator(PlatformableEmulator emulator)
+        public void CopyEmulator(Emulator emulator)
         {
-            var copy = emulator.CloneJson();
-            copy.Id = 0;
+            var copy = emulator.CloneJson(new JsonSerializerSettings() { ContractResolver = new ObjectIdContractResolver() });
+            copy.Id = null;
             copy.Name += " Copy";
-            copy.PlatformsList = emulator.PlatformsList.CloneJson();
             Emulators.Add(copy);
             SelectedEmulator = copy;
         }
 
-        public void SelectEmulatorExecutable(PlatformableEmulator emulator)
+        public void AddEmulatorProfile()
+        {
+            var profile = new EmulatorProfile() { Name = "Mew Profile" };
+            if (SelectedEmulator.Profiles == null)
+            {
+                SelectedEmulator.Profiles = new ObservableCollection<EmulatorProfile>();
+            }
+
+            SelectedEmulator.Profiles.Add(profile);
+            SelectedEmulatorProfile = profile;
+        }
+
+        public void RemoveEmulatorProfile(EmulatorProfile profile)
+        {
+            SelectedEmulator.Profiles.Remove(profile);
+        }
+
+        public void CopyEmulatorProfile(EmulatorProfile profile)
+        {
+            var copy = profile.CloneJson(new JsonSerializerSettings() { ContractResolver = new ObjectIdContractResolver() });
+            copy.Name += " Copy";
+            copy.Id = ObjectId.NewObjectId();
+            SelectedEmulator.Profiles.Add(copy);
+            SelectedEmulatorProfile = copy;
+        }
+
+        public void SelectEmulatorExecutable(Emulator emulator)
         {
             var path = dialogs.SelectFile("*.*|*.*");
             if (!string.IsNullOrEmpty(path))
             {
-                emulator.Executable = path;
+                SelectedEmulatorProfile.Executable = path;
             }
-        }
-
-        public void SetEmulatorArguments(PlatformableEmulator emulator, string arguments)
-        {
-            emulator.Arguments = arguments;
         }
 
         public void DownloadEmulators(EmulatorImportViewModel model)
@@ -609,38 +619,71 @@ namespace PlayniteUI.ViewModels
 
         public void ImportEmulators(EmulatorImportViewModel model)
         {
-            var result = model.ShowDialog();
-            if (result != true)
+            var dbEmulators = GetEmulatorsFromDB();
+            if (Emulators != null && !Emulators.IsEqualJson(dbEmulators))
             {
+                var askResult = dialogs.ShowMessage(
+                    resources.FindString("ConfirmUnsavedEmulatorsTitle"),
+                    resources.FindString("SaveChangesAskTitle"),
+                    MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                if (askResult == MessageBoxResult.Yes)
+                {
+                    UpdateEmulatorsToDB();
+                }
+                else if (askResult == MessageBoxResult.Cancel)
+                {
+                    return;
+                }
+            }
+
+            var result = model.ShowDialog();
+            if (result == true)
+            {
+                ReloadPlatforms();
+                ReloadEmulators();
+            }
+        }
+
+        public void ReloadEmulators()
+        {
+            Emulators = GetEmulatorsFromDB();
+            SelectedEmulator = Emulators.Count > 0 ? Emulators[0] : null;
+        }
+
+        public void ReloadPlatforms()
+        {
+            Platforms = GetPlatformsFromDB();
+            ReloadSelectablePlatforms(SelectedEmulatorProfile);
+            SelectedPlatform = Platforms.Count > 0 ? Platforms[0] : null;
+        }
+
+        public void ReloadSelectablePlatforms(EmulatorProfile selectedProfile)
+        {
+            if (selectedProfile == null)
+            {
+                SelectablePlatforms = null;
                 return;
             }
 
-            foreach (var emulator in model.EmulatorList)
-            {
-                if (emulator.Import)
+            SelectablePlatforms = new ObservableCollection<SelectablePlatform>(
+                Platforms.Select(a =>
                 {
-                    foreach (var platform in emulator.Emulator.Definition.Platforms)
+                    var platform = new SelectablePlatform(a)
                     {
-                        var existing = Platforms.FirstOrDefault(a => string.Equals(a.Name, platform, StringComparison.InvariantCultureIgnoreCase));
-                        if (existing == null)
+                        Selected = selectedProfile.Platforms?.Contains(a.Id) == true
+                    };
+
+                    platform.PropertyChanged += (s, e) =>
+                    {
+                        if (e.PropertyName == "Selected")
                         {
-                            var newPlatform = new Platform(platform) { Id = 0 };
-                            Platforms.Add(newPlatform);
-                            UpdatePlatformsToDB();
-                            existing = newPlatform;
+                            OnPropertyChanged("SelectablePlatforms");
+                            selectedEmulatorProfile.Platforms = SelectablePlatforms.Where(b => b.Selected)?.Select(c => c.Id).ToList();
                         }
+                    };
 
-                        if (emulator.Emulator.Emulator.Platforms == null)
-                        {
-                            emulator.Emulator.Emulator.Platforms = new List<int>();
-                        }
-
-                        emulator.Emulator.Emulator.Platforms.Add(existing.Id);
-                    }
-
-                    Emulators.Add(PlatformableEmulator.FromEmulator(emulator.Emulator.Emulator, Platforms));
-                }
-            }
+                    return platform;
+                }));
         }
     }
 

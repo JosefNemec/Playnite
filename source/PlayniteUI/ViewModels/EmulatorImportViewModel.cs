@@ -6,15 +6,47 @@ using Playnite.Models;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using static PlayniteUI.ViewModels.PlatformsViewModel;
 
 namespace PlayniteUI.ViewModels
 {
+    public class SelectedPlatformsToStringConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var platforms = (IEnumerable<LiteDB.ObjectId>)values[0];
+            var allPlatforms = (IEnumerable<Platform>)values[1];
+            return string.Join(", ", allPlatforms.Where(a => platforms.Contains(a.Id))?.Select(a => a.Name));
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    public class SelectedPlatformsToListConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var platforms = (IEnumerable<LiteDB.ObjectId>)values[0];
+            var allPlatforms = (IEnumerable<Platform>)values[1];
+            return allPlatforms.Where(a => platforms.Contains(a.Id));
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
+
     public class EmulatorImportViewModel : ObservableObject
     {
         public enum DialogType
@@ -25,21 +57,15 @@ namespace PlayniteUI.ViewModels
             Wizard
         }
 
-        public class ImportableEmulator
+        public class ImportableEmulator : ScannedEmulator
         {
             public bool Import
             {
                 get; set;
             } = true;
 
-            public ScannedEmulator Emulator
-            {
-                get; set;
-            }
-
-            public ImportableEmulator(ScannedEmulator emulator)
-            {
-                Emulator = emulator;
+            public ImportableEmulator(ScannedEmulator emulator) : base(emulator.Name, emulator.Profiles)
+            {                
             }
         }
 
@@ -55,15 +81,21 @@ namespace PlayniteUI.ViewModels
                 get; set;
             }
 
-            public PlatformableEmulator Emulator
+            public Emulator Emulator
             {
                 get; set;
             }
 
-            public ImportableGame(IGame game, PlatformableEmulator emulator)
+            public EmulatorProfile EmulatorProfile
+            {
+                get; set;
+            }
+
+            public ImportableGame(IGame game, Emulator emulator, EmulatorProfile emulatorProfile)
             {
                 Game = game;
                 Emulator = emulator;
+                EmulatorProfile = emulatorProfile;
             }
         }
 
@@ -148,13 +180,14 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public List<PlatformableEmulator> AvailableEmulators
+        public List<Emulator> AvailableEmulators
         {
             get
             {
                 var platforms = DatabasePlatforms;
-                return database.EmulatorsCollection.FindAll().Where(a => a.ImageExtensions != null && a.ImageExtensions.Count > 0)
-                    .Select(a => PlatformableEmulator.FromEmulator(a, platforms.Where(b => a.Platforms != null && a.Platforms.Contains(b.Id)))).ToList();
+                return database.EmulatorsCollection.FindAll()
+                    .Where(a => a.Profiles != null && a.Profiles.Any(b => b.ImageExtensions != null && b.ImageExtensions.Count > 0))
+                    .OrderBy(a => a.Name).ToList();
             }
         }
 
@@ -178,7 +211,7 @@ namespace PlayniteUI.ViewModels
         public DialogType Type
         {
             get => type;
-            set
+            private set
             {
                 type = value;
                 OnPropertyChanged("Type");
@@ -224,16 +257,28 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public RelayCommand<PlatformableEmulator> ScanGamesCommand
+        public RelayCommand<EmulatorProfile> ScanGamesCommand
         {
-            get => new RelayCommand<PlatformableEmulator>((emu) =>
+            get => new RelayCommand<EmulatorProfile>((profile) =>
             {                
                 var path = dialogs.SelectFolder();
                 if (!string.IsNullOrEmpty(path))
                 {
-                    SearchGames(path, emu);
+                    SearchGames(path, profile);
                     // TODO
                     //ListGames.ScrollIntoView(Model.GamesList.Count == 0 ? null : Model.GamesList.Last());
+                }
+            });
+        }
+
+        public RelayCommand<object> SelectGameFilesCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                var files = dialogs.SelectFiles("All files|*.*");
+                if (files != null)
+                {
+                    ImportGamesFiles(files);
                 }
             });
         }
@@ -338,14 +383,14 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public async void SearchGames(string path, PlatformableEmulator emulator)
+        public async void SearchGames(string path, EmulatorProfile profile)
         {
             try
             {
                 IsLoading = true;
                 var games = await Task.Run(() =>
                 {
-                    return EmulatorFinder.SearchForGames(path, emulator.ToEmulator());
+                    return EmulatorFinder.SearchForGames(path, profile);
                 });
 
                 if (GamesList == null)
@@ -353,16 +398,22 @@ namespace PlayniteUI.ViewModels
                     GamesList = new RangeObservableCollection<ImportableGame>();
                 }
 
+                var emulator = AvailableEmulators.First(a => a.Profiles.Any(b => b.Id == profile.Id));
                 GamesList.AddRange(games.Select(a =>
                 {
-                    a.PlatformId = emulator.Platforms?.FirstOrDefault();
-                    return new ImportableGame(a, emulator);
+                    a.PlatformId = profile.Platforms?.FirstOrDefault();
+                    return new ImportableGame(a, emulator, profile);
                 }));
             }
             finally
             {
                 IsLoading = false;
             }
+        }
+
+        public void ImportGamesFiles(List<string> files)
+        {
+
         }
 
         public void AddSelectedGamesToDB()
@@ -382,6 +433,7 @@ namespace PlayniteUI.ViewModels
                 game.Game.PlayTask = new GameTask()
                 {
                     EmulatorId = game.Emulator.Id,
+                    EmulatorProfileId = game.EmulatorProfile.Id,
                     Type = GameTaskType.Emulator
                 };
 
@@ -401,25 +453,32 @@ namespace PlayniteUI.ViewModels
                 if (emulator.Import)
                 {
                     var platforms = DatabasePlatforms;
-                    foreach (var platform in emulator.Emulator.Definition.Platforms)
+                    foreach (var profile in emulator.Profiles)
                     {
-                        var existing = platforms.FirstOrDefault(a => string.Equals(a.Name, platform, StringComparison.InvariantCultureIgnoreCase));
-                        if (existing == null)
+                        foreach (var platform in profile.ProfileDefinition.Platforms)
                         {
-                            var newPlatform = new Platform(platform) { Id = 0 };
-                            database.AddPlatform(newPlatform);
-                            existing = newPlatform;
-                        }
+                            var existing = platforms.FirstOrDefault(a => string.Equals(a.Name, platform, StringComparison.InvariantCultureIgnoreCase));
+                            if (existing == null)
+                            {
+                                var newPlatform = new Platform(platform) { Id = null };
+                                database.AddPlatform(newPlatform);
+                                platforms = DatabasePlatforms;
+                                existing = newPlatform;
+                            }
 
-                        if (emulator.Emulator.Emulator.Platforms == null)
-                        {
-                            emulator.Emulator.Emulator.Platforms = new List<int>();
-                        }
+                            if (profile.Platforms == null)
+                            {
+                                profile.Platforms = new List<LiteDB.ObjectId>();
+                            }
 
-                        emulator.Emulator.Emulator.Platforms.Add(existing.Id);
+                            profile.Platforms.Add(existing.Id);                            
+                        }
                     }
 
-                    database.AddEmulator(emulator.Emulator.Emulator);
+                    database.AddEmulator(new Emulator(emulator.Name)
+                    {
+                        Profiles = new ObservableCollection<EmulatorProfile>(emulator.Profiles.Select(a => (EmulatorProfile)a))
+                    });
                 }
             }
 

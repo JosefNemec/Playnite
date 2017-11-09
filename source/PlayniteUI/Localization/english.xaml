@@ -98,6 +98,7 @@ You can also configure and import any custom emulator later via configuration me
     <sys:String x:Key="EmuWizardNoEmulatorWarning">There are no emulators selected for import. You won't be able to automatically import any emulated games without configuring emulators first. Are you sure you want to continue and exit import process?</sys:String>
     <sys:String x:Key="EmuWizardNoEmulatorForGamesWarning">There are no emulators configured in Playnite. You cannot import games without configuring emulator first and selecting appropriate file types. Do you want to add some emulators now?</sys:String>
     <sys:String x:Key="EmuWizardButtonScanGames">Scan folder using Emulator</sys:String>
+    <sys:String x:Key="EmuWizardButtonSelectFiles">Select files</sys:String>
     <sys:String x:Key="EmuWizardButtonScanEmulator">Autodetect from folder...</sys:String>
     <sys:String x:Key="EmuWizardButtonConfigureEmulator">Configure Emulators...</sys:String>
     

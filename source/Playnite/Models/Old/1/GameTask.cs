@@ -1,7 +1,4 @@
-﻿using LiteDB;
-using Newtonsoft.Json;
-using Playnite.Converters;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -10,15 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite.Models
+namespace Playnite.Models.Old1
 {
-    public enum GameTaskType : int
-    {
-        File = 0,
-        URL = 1,
-        Emulator = 2
-    }
-
     public class GameTask : INotifyPropertyChanged
     {
         private GameTaskType type;
@@ -120,27 +110,14 @@ namespace Playnite.Models
             }
         }
 
-        private ObjectId emulatorId;
-        [JsonConverter(typeof(ObjectIdJsonConverter))]
-        public ObjectId EmulatorId
+        private int emulatorId;
+        public int EmulatorId
         {
             get => emulatorId;
             set
             {
                 emulatorId = value;
                 OnPropertyChanged("EmulatorId");
-            }
-        }
-
-        private ObjectId emulatorProfileId;
-        [JsonConverter(typeof(ObjectIdJsonConverter))]
-        public ObjectId EmulatorProfileId
-        {
-            get => emulatorProfileId;
-            set
-            {
-                emulatorProfileId = value;
-                OnPropertyChanged("EmulatorProfileId");
             }
         }
 

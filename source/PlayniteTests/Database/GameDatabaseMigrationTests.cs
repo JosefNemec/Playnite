@@ -101,5 +101,123 @@ namespace PlayniteTests.Database
                 Assert.IsNull(migratedGames[2].Links);
             }
         }
+
+        [Test]
+        public void Migration1toCurrentTest()
+        {
+            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "migration_1_Current.db");
+            FileSystem.DeleteFile(path);
+
+            var emulators = new List<Playnite.Models.Old1.Emulator>()
+            {
+                new Playnite.Models.Old1.Emulator("TestEmu")
+                {
+                    Arguments = "Test Arguments",
+                    Executable = "Test Executable",
+                    ImageExtensions = new List<string>() { ".ext1", ".ext2" },
+                    Platforms = new List<int>() { 1, 2 },
+                    WorkingDirectory = "Test Directory"
+                },
+                new Playnite.Models.Old1.Emulator("TestEmu2")
+                {
+                    Arguments = "Test Arguments2",
+                    Executable = "Test Executable2",
+                    ImageExtensions = new List<string>() { ".ext3", ".ext4" },
+                    Platforms = new List<int>() { 3 },
+                    WorkingDirectory = "Test Directory2"
+                }
+            };
+
+            var platforms = new List<Playnite.Models.Old1.Platform>()
+            {
+                new Playnite.Models.Old1.Platform("TestPlat1"),
+                new Playnite.Models.Old1.Platform("TestPlat2")
+            };
+
+            using (var database = new LiteDatabase(path))
+            {
+                database.Engine.UserVersion = 1;
+                var emuCol = database.GetCollection<Playnite.Models.Old1.Emulator>("emulators");
+                emuCol.InsertBulk(emulators);
+
+                var platCol = database.GetCollection<Playnite.Models.Old1.Platform>("platforms");
+                platCol.InsertBulk(platforms);
+
+                var gamesCol = database.GetCollection<Playnite.Models.Old1.Game>("games");  
+                var games = new List<Playnite.Models.Old1.Game>()
+                {
+                    new Playnite.Models.Old1.Game()
+                    {
+                        Provider = Provider.Custom,
+                        ProviderId = "TestId1",
+                        PlatformId = 1,
+                        Name = "Test Name 1",
+                        PlayTask = new Playnite.Models.Old1.GameTask()
+                        {
+                            Type = GameTaskType.Emulator,
+                            EmulatorId = emuCol.FindAll().First().Id
+                        }
+                    },
+                    new Playnite.Models.Old1.Game()
+                    {
+                        Provider = Provider.Custom,
+                        ProviderId = "TestId2",
+                        PlatformId = null,
+                        Name = "Test Name 2",
+                        PlayTask = new Playnite.Models.Old1.GameTask()
+                        {
+                            Type = GameTaskType.Emulator,
+                            EmulatorId = 0
+                        }
+                    }
+                };
+
+                gamesCol.InsertBulk(games);
+                var genericCollection = database.GetCollection("games");
+                foreach (var game in genericCollection.FindAll().ToList())
+                {
+                    game.AsDocument["_type"] = "Playnite.Models.Game, Playnite";
+                    genericCollection.Update(game.AsDocument);
+                }
+            }
+
+            var db = new GameDatabase(null);
+            using (db.OpenDatabase(path))
+            {
+                var plats = db.PlatformsCollection.FindAll().ToList();
+                Assert.IsNotNull(plats[0].Id);
+                Assert.IsNotNull(plats[1].Id);
+
+                var emus = db.EmulatorsCollection.FindAll().ToList();
+                Assert.AreEqual(2, emus.Count());
+                Assert.AreEqual(plats[0].Id, emus[0].Profiles[0].Platforms[0]);
+                Assert.AreEqual(plats[1].Id, emus[0].Profiles[0].Platforms[1]);
+                CollectionAssert.IsEmpty(emus[1].Profiles[0].Platforms);
+                Assert.IsNotNull(emus[0].Id);
+                Assert.IsNotNull(emus[1].Id);
+
+                var emu = emus.First();
+                var emuConf = emu.Profiles.First();
+                Assert.AreEqual(1, emu.Profiles.Count);
+                Assert.IsNotNull(emu.Profiles);
+                Assert.AreEqual("Test Arguments", emuConf.Arguments);
+                Assert.AreEqual("Test Executable", emuConf.Executable);
+                Assert.AreEqual("Test Directory", emuConf.WorkingDirectory);
+                Assert.AreEqual(2, emuConf.Platforms.Count);
+                Assert.AreEqual(2, emuConf.ImageExtensions.Count);
+                Assert.AreEqual("ext1", emuConf.ImageExtensions[0]);
+                Assert.AreEqual("ext2", emuConf.ImageExtensions[1]);
+
+                var games = db.GamesCollection.FindAll().ToList();
+                var game = games[0];
+                Assert.AreEqual(plats[0].Id, game.PlatformId);
+                Assert.AreEqual(emu.Profiles.First().Id, game.PlayTask.EmulatorProfileId);
+                Assert.AreEqual(emu.Id, game.PlayTask.EmulatorId);
+
+                Assert.IsNull(games[1].PlatformId);
+                Assert.IsNull(games[1].PlayTask.EmulatorId);
+                Assert.IsNull(games[1].PlayTask.EmulatorProfileId);
+            }
+        }
     }
 }

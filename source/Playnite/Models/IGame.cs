@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiteDB;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -69,7 +70,7 @@ namespace Playnite.Models
             get; set;
         }
 
-        int? PlatformId
+        ObjectId PlatformId
         {
             get; set;
         }

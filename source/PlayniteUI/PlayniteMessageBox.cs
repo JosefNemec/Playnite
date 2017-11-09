@@ -18,6 +18,7 @@ namespace PlayniteUI
         MessageBoxResult ShowMessage(string messageBoxText);
         string SelectFolder();
         string SelectFile(string filter);
+        List<string> SelectFiles(string filter);
         string SelectIconFile();
         string SelectImagefile();
         string SaveFile(string filter);
@@ -40,6 +41,11 @@ namespace PlayniteUI
         public string SelectFile(string filter)
         {
             return Dialogs.SelectFile(PlayniteWindows.CurrentWindow, filter);
+        }
+
+        public List<string> SelectFiles(string filter)
+        {
+            return Dialogs.SelectFiles(PlayniteWindows.CurrentWindow, filter);
         }
 
         public string SelectFolder()

@@ -75,6 +75,30 @@ namespace PlayniteUI
             }
         }
 
+        public static List<string> SelectFiles(Window owner, string filter)
+        {
+            var dialog = new OpenFileDialog()
+            {
+                Filter = filter,
+                Multiselect = true
+            };
+
+            var dialogResult = owner == null ? dialog.ShowDialog() : dialog.ShowDialog(owner);
+            if (dialogResult == true)
+            {
+                return dialog.FileNames.ToList();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static List<string> SelectFiles(string filter)
+        {
+            return SelectFiles(null, filter);
+        }
+
         public static string SelectFile(Window owner, string filter)
         {
             var dialog = new OpenFileDialog()

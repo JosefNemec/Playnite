@@ -19,13 +19,42 @@ namespace Playnite
         /// <returns>The copied object.</returns>
         public static T CloneJson<T>(this T source)
         {
-            // Don't serialize a null object, simply return the default for that object
             if (Object.ReferenceEquals(source, null))
             {
                 return default(T);
             }
 
             return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source));
+        }
+
+        public static T CloneJson<T>(this T source, JsonSerializerSettings settings)
+        {
+            if (Object.ReferenceEquals(source, null))
+            {
+                return default(T);
+            }
+
+            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source, settings), settings);
+        }
+
+        public static U CloneJson<T, U>(this T source)
+        {
+            if (Object.ReferenceEquals(source, null))
+            {
+                return default(U);
+            }
+
+            return JsonConvert.DeserializeObject<U>(JsonConvert.SerializeObject(source));
+        }
+
+        public static U CloneJson<T, U>(this T source, JsonSerializerSettings settings)
+        {
+            if (Object.ReferenceEquals(source, null))
+            {
+                return default(U);
+            }
+
+            return JsonConvert.DeserializeObject<U>(JsonConvert.SerializeObject(source, settings), settings);
         }
 
         public static bool IsEqualJson(this object source, object targer)
@@ -62,14 +91,15 @@ namespace Playnite
             return true;
         }
 
-        public static string ToJson(this object value)
+        public static string ToJsonFormatted(this object value)
         {
             var settings = new JsonSerializerSettings
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                Formatting = Formatting.Indented
             };
 
-            return JsonConvert.SerializeObject(value, Formatting.Indented, settings);
+            return JsonConvert.SerializeObject(value, settings);
         }
 
         /// <summary>
