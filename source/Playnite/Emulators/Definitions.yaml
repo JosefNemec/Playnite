@@ -158,6 +158,13 @@
   ImageExtensions: [.zip, .7z, .rar, .bin, .elf, .mb, .gba, .agb, .dmg, .gb, .gbc, .cgb, .sgb]
   ExecutableLookup: ^visualboyadvance.*\.exe$
   Website: 'https://en.wikipedia.org/wiki/VisualBoyAdvance'
+  
+  Name: mGBA
+  DefaultArguments: '"{ImagePath}"'
+  Platforms: [Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance]
+  ImageExtensions: [.zip, .7z, .rar, .bin, .elf, .mb, .gba, .agb, .dmg, .gb, .gbc, .cgb, .sgb]
+  ExecutableLookup: ^mGBA.*\.exe$
+  Website: 'https://mgba.io/'
 
 - Name: Nebula 2
   DefaultArguments: '{ImageNameNoExt}'
