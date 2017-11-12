@@ -1,9 +1,13 @@
 ﻿{
     "stable":  {
-                   "version":  "2.8",
-                   "url":  "https://github.com/JosefNemec/Playnite/releases/download/2.8/PlayniteInstaller.exe",
+                   "version":  "2.9",
+                   "url":  "https://github.com/JosefNemec/Playnite/releases/download/2.9/PlayniteInstaller.exe",
                    "notesUrlRoot":  "http://playnite.link/update/",
                    "releases":  [
+                                    {
+                                        "version":  "2.9",
+                                        "file":  "2.9.html"
+                                    },
                                     {
                                         "version":  "2.8",
                                         "file":  "2.8.html"
