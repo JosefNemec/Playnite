@@ -171,6 +171,12 @@ namespace Playnite.Providers.GOG
     {
         public class ProductDetails
         {
+            public class Feature
+            {
+                public string title;
+                public string slug;
+            }
+
             public class SluggedName
             {
                 public string name;
@@ -178,6 +184,7 @@ namespace Playnite.Providers.GOG
             }
 
             public List<SluggedName> genres;
+            public List<Feature> features;
             public SluggedName publisher;
             public SluggedName developer;
             public int? releaseDate;

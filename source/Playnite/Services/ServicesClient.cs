@@ -61,6 +61,11 @@ namespace Playnite.Services
             return ExecuteRequest<PlayniteServices.Models.IGDB.Game>("/api/igdb/game/" + id);
         }
 
+        public PlayniteServices.Models.IGDB.ParsedGame GetIGDBGameParsed(UInt64 id)
+        {
+            return ExecuteRequest<PlayniteServices.Models.IGDB.ParsedGame>("/api/igdb/game_parsed/" + id);
+        }
+
         public PlayniteServices.Models.IGDB.Company GetIGDBCompany(UInt64 id)
         {
             return ExecuteRequest<PlayniteServices.Models.IGDB.Company>("/api/igdb/company/" + id);

@@ -15,7 +15,7 @@ namespace PlayniteServices.Controllers.IGDB
         [HttpGet("{gameName}")]
         public async Task<ServicesResponse<List<Game>>> Get(string gameName)
         {            
-            var url = string.Format(IGDB.UrlBase + @"games/?fields=name&limit=40&offset=0&search={0}", gameName);
+            var url = string.Format(IGDB.UrlBase + @"games/?fields=name,first_release_date&limit=40&offset=0&search={0}", gameName);
             var libraryStringResult = await IGDB.HttpClient.GetStringAsync(url);
             var games = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult);
             return new ServicesResponse<List<Game>>(games, string.Empty);

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SQLite;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -215,7 +216,7 @@ namespace Playnite.Providers.GOG
             }
 
             return games;
-        }       
+        }
 
         public GogGameMetadata DownloadGameMetadata(string id, string storeUrl = null)
         {
@@ -288,6 +289,9 @@ namespace Playnite.Providers.GOG
                 game.Genres = new ComparableList<string>(metadata.StoreDetails.genres.Select(a => a.name));
                 game.Developers = new ComparableList<string>() { metadata.StoreDetails.developer.name };
                 game.Publishers = new ComparableList<string>() { metadata.StoreDetails.publisher.name };
+
+                var cultInfo = new CultureInfo("en-US", false).TextInfo;
+                game.Tags = new ComparableList<string>(metadata.StoreDetails.features?.Select(a => cultInfo.ToTitleCase(a.title)));
 
                 if (game.ReleaseDate == null && metadata.StoreDetails.releaseDate != null)
                 {

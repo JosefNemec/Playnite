@@ -18,6 +18,7 @@ using SteamKit2;
 using Playnite.Services;
 using Playnite.Database;
 using System.Windows;
+using System.Globalization;
 
 namespace Playnite.Providers.Steam
 {
@@ -289,7 +290,9 @@ namespace Playnite.Providers.Steam
                 game.Genres = new ComparableList<string>(metadata.StoreDetails.genres?.Select(a => a.description));
                 game.Developers = new ComparableList<string>(metadata.StoreDetails.developers);
                 game.Publishers = new ComparableList<string>(metadata.StoreDetails.publishers);
-                game.ReleaseDate = metadata.StoreDetails.release_date.date;
+                var cultInfo = new CultureInfo("en-US", false).TextInfo;
+                game.Tags = new ComparableList<string>(metadata.StoreDetails.categories?.Select(a => cultInfo.ToTitleCase(a.description)));
+                game.ReleaseDate = metadata.StoreDetails.release_date.date;                
             }
 
             var tasks = new ObservableCollection<GameTask>();

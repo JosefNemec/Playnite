@@ -229,7 +229,10 @@ namespace PlayniteUI.ViewModels
                     var igdb = new IGDB();
                     foreach (var page in igdb.Search(keyword))
                     {
-                        searchList.Add(new SearchResult(page.id.ToString(), page.name, string.Empty));
+                        searchList.Add(new SearchResult(
+                            page.id.ToString(), 
+                            page.name + (page.first_release_date == 0 ? "" : $" ({DateTimeOffset.FromUnixTimeMilliseconds(page.first_release_date).DateTime.Year.ToString()})"),
+                            string.Empty));
                     }
 
                     break;

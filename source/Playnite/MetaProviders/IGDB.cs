@@ -7,6 +7,7 @@ using Playnite.Services;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using Playnite.Models;
+using System.Globalization;
 
 namespace Playnite.MetaProviders
 {
@@ -24,10 +25,10 @@ namespace Playnite.MetaProviders
             return client.GetIGDBGames(game);
         }
 
-        public Models.Game GetParsedGame(UInt64 id)
+        public Game GetParsedGame(UInt64 id)
         {
-            var dbGame = client.GetIGDBGame(id);
-            var game = new Models.Game()
+            var dbGame = client.GetIGDBGameParsed(id);
+            var game = new Game()
             {
                 Name = dbGame.name,
                 Description = dbGame.summary
@@ -35,7 +36,7 @@ namespace Playnite.MetaProviders
 
             if (dbGame.cover != null)
             {
-                game.Image = "https:" + dbGame.cover.url.Replace("t_thumb", "t_cover_big");
+                game.Image = dbGame.cover.Replace("t_thumb", "t_cover_big");
             }
 
             if (dbGame.first_release_date != 0)
@@ -43,43 +44,30 @@ namespace Playnite.MetaProviders
                 game.ReleaseDate = DateTimeOffset.FromUnixTimeMilliseconds(dbGame.first_release_date).DateTime;
             }
 
-            if (dbGame.developers != null && dbGame.developers.Count > 0)
+            if (dbGame.developers?.Any() == true)
             {
-                game.Developers = new ComparableList<string>();
-                foreach (var developer in dbGame.developers)
-                {
-                    game.Developers.Add(client.GetIGDBCompany(developer).name);
-                }
+                game.Developers = new ComparableList<string>(dbGame.developers);
             }
 
-            if (dbGame.publishers != null && dbGame.publishers.Count > 0)
+            if (dbGame.publishers?.Any() == true)
             {
-                game.Publishers = new ComparableList<string>();
-                foreach (var publisher in dbGame.publishers)
-                {
-                    game.Publishers.Add(client.GetIGDBCompany(publisher).name);
-                }
+                game.Publishers = new ComparableList<string>(dbGame.publishers);
             }
 
-            if (dbGame.developers != null && dbGame.developers.Count > 0)
+            if (dbGame.developers?.Any() == true)
             {
-                game.Genres = new ComparableList<string>();
-                foreach (var genre in dbGame.genres)
-                {
-                    game.Genres.Add(client.GetIGDBGenre(genre).name);
-                }
+                game.Genres = new ComparableList<string>(dbGame.genres);
             }
 
-            if (dbGame.websites != null && dbGame.websites.Count > 0)
+            if (dbGame.websites?.Any() == true)
             {
-                var links = new ObservableCollection<Link>();
+                game.Links = new ObservableCollection<Link>(dbGame.websites.Select(a => new Link(a.category.ToString(), a.url)));
+            }
 
-                foreach (var website in dbGame.websites)
-                {
-                    links.Add(new Link(website.category.ToString(), website.url));
-                }
-
-                game.Links = links;
+            if (dbGame.game_modes?.Any() == true)
+            {
+                var cultInfo = new CultureInfo("en-US", false).TextInfo;
+                game.Tags = new ComparableList<string>(dbGame.game_modes.Select(a => cultInfo.ToTitleCase(a)));
             }
 
             return game;

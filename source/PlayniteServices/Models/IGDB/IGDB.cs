@@ -22,16 +22,31 @@ namespace PlayniteServices.Models.IGDB
         Steam = 13
     }
 
+    public class Website
+    {
+        public WebSiteCategory category;
+        public string url;
+    }
+
+    public class ParsedGame
+    {
+        public UInt64 id;
+        public string name;
+        public string summary;
+        public List<string> developers;
+        public List<string> publishers;
+        public List<string> genres;
+        public List<string> themes;
+        public List<string> game_modes;
+        public Int64 first_release_date;
+        public string cover;
+        public List<Website> websites;
+    }
+
     public class Game
     {
         public class Cover
         {
-            public string url;
-        }
-
-        public class Website
-        {
-            public WebSiteCategory category;
             public string url;
         }
 
@@ -41,9 +56,41 @@ namespace PlayniteServices.Models.IGDB
         public List<UInt64> developers;
         public List<UInt64> publishers;
         public List<UInt64> genres;
+        public List<UInt64> themes;
+        public List<UInt64> game_modes;
         public Int64 first_release_date;
         public Cover cover;
         public List<Website> websites;
+    }
+
+    public class GameMode
+    {
+        [BsonId(false)]
+        [BsonIndex(true)]
+        public UInt64 id
+        {
+            get; set;
+        }
+
+        public string name
+        {
+            get; set;
+        }
+    }
+
+    public class Theme
+    {
+        [BsonId(false)]
+        [BsonIndex(true)]
+        public UInt64 id
+        {
+            get; set;
+        }
+
+        public string name
+        {
+            get; set;
+        }
     }
 
     public class Company
