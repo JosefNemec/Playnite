@@ -144,6 +144,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="GameGenresTitle">Genre(s)</sys:String>
     <sys:String x:Key="GameReleaseDateTitle">Release Date</sys:String>
     <sys:String x:Key="GameDevelopersTitle">Developer(s)</sys:String>
+    <sys:String x:Key="GameTagsTitle">Tag(s)</sys:String>
     <sys:String x:Key="GamePublishersTitle">Publisher(s)</sys:String>
     <sys:String x:Key="GameIsInstalledTitle">Installed</sys:String>
     <sys:String x:Key="GameHiddenTitle">Hidden</sys:String>

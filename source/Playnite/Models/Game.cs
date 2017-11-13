@@ -398,6 +398,21 @@ namespace Playnite.Models
             }
         }
 
+        private ComparableList<string> tags;
+        public ComparableList<string> Tags
+        {
+            get
+            {
+                return tags;
+            }
+
+            set
+            {
+                tags = value;
+                OnPropertyChanged("Tags");
+            }
+        }
+
         private ObservableCollection<Link> links;
         public ObservableCollection<Link> Links
         {

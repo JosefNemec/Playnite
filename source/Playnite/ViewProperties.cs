@@ -23,7 +23,8 @@ namespace Playnite
         Favorite,
         InstallDirectory,
         Icon,
-        Platform
+        Platform,
+        Tags
     }
 
     public enum SortOrderDirection

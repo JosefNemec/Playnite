@@ -34,6 +34,7 @@ namespace Playnite
                     (Publishers != null && Publishers.Count > 0) ||
                     (Developers != null && Developers.Count > 0) ||
                     (Categories != null && Categories.Count > 0) ||
+                    (Tags != null && Tags.Count > 0) ||
                     (Platforms != null && Platforms.Count > 0);
             }
         }
@@ -147,6 +148,22 @@ namespace Playnite
             {
                 categories = value;
                 OnPropertyChanged("Categories");
+                OnPropertyChanged("Active");
+            }
+        }
+
+        private List<string> tags;
+        public List<string> Tags
+        {
+            get
+            {
+                return tags;
+            }
+
+            set
+            {
+                tags = value;
+                OnPropertyChanged("Tags");
                 OnPropertyChanged("Active");
             }
         }

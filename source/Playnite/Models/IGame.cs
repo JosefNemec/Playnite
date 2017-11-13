@@ -140,6 +140,11 @@ namespace Playnite.Models
             get; set;
         }
 
+        ComparableList<string> Tags
+        {
+            get; set;
+        }
+
         ComparableList<string> Categories
         {
             get; set;

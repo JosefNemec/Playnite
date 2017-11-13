@@ -126,6 +126,8 @@
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.LastActivity}}"/>
                                 <MenuItem Header="{DynamicResource GameCategoriesTitle}" IsCheckable="True"
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Categories}}"/>
+                                <MenuItem Header="{DynamicResource GameTagsTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Tags}}"/>
                                 <MenuItem Header="{DynamicResource GameIsInstalledTitle}" IsCheckable="True"
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.IsInstalled}}"/>
                                 <MenuItem Header="{DynamicResource GameInstallDirTitle}" IsCheckable="True"
@@ -340,6 +342,19 @@
                                     </Label.Style>
                                 </Label>
                                 <pc:SearchBox x:Name="TextFilterCategory" Text="{Binding AppSettings.FilterSettings.Categories, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+                                <Label Content="Tag">
+                                    <Label.Style>
+                                        <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterTag}" Value="">
+                                                    <Setter Property="Opacity" Value="0.6"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                                <pc:SearchBox x:Name="TextFilterTag" Text="{Binding AppSettings.FilterSettings.Tags, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
                             </StackPanel>
                         </ScrollViewer>
                     </Border>

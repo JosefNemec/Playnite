@@ -139,10 +139,16 @@ namespace Playnite
                 dummyGame.Publishers = firstPublisher;
             }
 
-            var firstTag = firstGame.Categories;
-            if (games.All(a => a.Categories.IsListEqual(firstTag) == true))
+            var firstCat = firstGame.Categories;
+            if (games.All(a => a.Categories.IsListEqual(firstCat) == true))
             {
-                dummyGame.Categories = firstTag;
+                dummyGame.Categories = firstCat;
+            }
+
+            var firstTag = firstGame.Tags;
+            if (games.All(a => a.Tags.IsListEqual(firstTag) == true))
+            {
+                dummyGame.Tags = firstTag;
             }
 
             var firstDescription = firstGame.Description;

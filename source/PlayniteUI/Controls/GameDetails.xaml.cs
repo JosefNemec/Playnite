@@ -45,6 +45,7 @@ namespace PlayniteUI.Controls
                         (game.Publishers != null && game.Publishers.Count > 0) ||
                         (game.Developers != null && game.Developers.Count > 0) ||
                         (game.Categories != null && game.Categories.Count > 0) ||
+                        (game.Tags != null && game.Tags.Count > 0) ||
                         game.ReleaseDate != null ||
                         (game.Links != null && game.Links.Count > 0) ||
                         !string.IsNullOrEmpty(game.Platform.Name);
@@ -158,6 +159,9 @@ namespace PlayniteUI.Controls
                     break;
                 case "Categories":
                     Settings.Instance.FilterSettings.Categories = new List<string>() { uri };
+                    break;
+                case "Tags":
+                    Settings.Instance.FilterSettings.Tags = new List<string>() { uri };
                     break;
                 case "Platform":
                     Settings.Instance.FilterSettings.Platforms = new List<string>() { uri };

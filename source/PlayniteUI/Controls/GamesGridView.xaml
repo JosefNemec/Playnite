@@ -124,6 +124,8 @@
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[LastActivity]}" />
                         <MenuItem Header="{DynamicResource GameCategoriesTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Categories]}" />
+                        <MenuItem Header="{DynamicResource GameTagsTitle}"
+                                    IsCheckable="True" IsChecked="{Binding GridViewHeaders[Tags]}" />
                         <MenuItem Header="{DynamicResource GameIsInstalledTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[IsInstalled]}" />
                         <MenuItem Header="{DynamicResource GameInstallDirTitle}"
@@ -317,6 +319,25 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Categories, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                <!-- Tags -->
+                <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Tags], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                    <GridViewColumn.Header>
+                        <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Tags}">
+                            <GridViewColumnHeader.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource GameTagsTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <ContentControl Style="{StaticResource SortIndicator}"
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Tags}}"/>
+                                </StackPanel>
+                            </GridViewColumnHeader.Content>
+                        </GridViewColumnHeader>
+                    </GridViewColumn.Header>
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Tags, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" />
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>

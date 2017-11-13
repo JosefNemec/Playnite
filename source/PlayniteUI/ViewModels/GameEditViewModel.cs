@@ -148,6 +148,21 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        private bool useTagChanges;
+        public bool UseTagChanges
+        {
+            get
+            {
+                return useTagChanges;
+            }
+
+            set
+            {
+                useTagChanges = value;
+                OnPropertyChanged("UseTagChanges");
+            }
+        }
+
         private bool useDescriptionChanges;
         public bool UseDescriptionChanges
         {
@@ -671,6 +686,9 @@ namespace PlayniteUI.ViewModels
                 case "Categories":
                     UseCategoryChanges = true;
                     break;
+                case "Tags":
+                    UseTagChanges = true;
+                    break;
                 case "Genres":
                     UseGenresChanges = true;
                     break;
@@ -809,6 +827,21 @@ namespace PlayniteUI.ViewModels
                 else
                 {
                     Game.Categories = EditingGame.Categories;                        
+                }
+            }
+
+            if (UseTagChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Tags = EditingGame.Tags;
+                    }
+                }
+                else
+                {
+                    Game.Tags = EditingGame.Tags;
                 }
             }
 
@@ -1046,6 +1079,11 @@ namespace PlayniteUI.ViewModels
             if (game.Genres != null && game.Genres.Count != 0)
             {
                 EditingGame.Genres = game.Genres;
+            }
+
+            if (game.Tags != null && game.Tags.Count != 0)
+            {
+                EditingGame.Tags = game.Tags;
             }
 
             if (game.ReleaseDate != null)

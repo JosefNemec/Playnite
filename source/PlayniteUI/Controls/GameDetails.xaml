@@ -117,21 +117,25 @@
                 <Border Grid.Column="0" Grid.Row="0" Name="BorderGameInfo" Padding="10" Margin="15,10,0,0" CornerRadius="3"
                         Visibility="{Binding ShowInfoPanel, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel Width="150">
+                        <!-- Genres -->
                         <Label Content="Genres" Visibility="{Binding Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}" />
                         <ItemsControl ItemsSource="{Binding Genres, Mode=OneWay}" Style="{StaticResource ListItems}"
                                       Visibility="{Binding Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                       Tag="Genres"/>
 
+                        <!-- Developers -->
                         <Label Content="Developed by" Style="{StaticResource ListLabel}" Visibility="{Binding Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                         <ItemsControl ItemsSource="{Binding Developers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                       Visibility="{Binding Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                       Tag="Developers"/>
 
+                        <!-- Publishers -->
                         <Label Content="Published by" Style="{StaticResource ListLabel}" Visibility="{Binding Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                         <ItemsControl ItemsSource="{Binding Publishers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                       Visibility="{Binding Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                       Tag="Publishers"/>
 
+                        <!-- Release Date -->
                         <Label Content="Release Date" Style="{StaticResource ListLabel}" Visibility="{Binding ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"/>
                         <TextBlock Visibility="{Binding ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"
                                    Style="{StaticResource ListTextBlock}">
@@ -140,11 +144,19 @@
                             </Hyperlink>
                         </TextBlock>
 
+                        <!-- Categories -->
                         <Label Content="Categories" Style="{StaticResource ListLabel}" Visibility="{Binding Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                         <ItemsControl ItemsSource="{Binding Categories, Mode=OneWay}" Style="{StaticResource ListItems}"
                                       Visibility="{Binding Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                       Tag="Categories"/>
 
+                        <!-- Tags -->
+                        <Label Content="Tags" Style="{StaticResource ListLabel}" Visibility="{Binding Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                        <ItemsControl ItemsSource="{Binding Tags, Mode=OneWay}" Style="{StaticResource ListItems}"
+                                      Visibility="{Binding Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
+                                      Tag="Tags"/>
+
+                        <!-- Platform -->
                         <Label Content="Platform" Style="{StaticResource ListLabel}" Visibility="{Binding Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
                         <TextBlock Visibility="{Binding Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
                                    Style="{StaticResource ListTextBlock}">
@@ -153,6 +165,7 @@
                             </Hyperlink>
                         </TextBlock>
 
+                        <!-- Links -->
                         <Label Content="Links" Style="{StaticResource ListLabel}" Visibility="{Binding Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                         <ItemsControl ItemsSource="{Binding Links, Mode=OneWay}" Visibility="{Binding Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}">
                             <ItemsControl.ItemTemplate>

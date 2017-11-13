@@ -186,6 +186,7 @@ namespace PlayniteUI
         public int Id => Game.Id;
         public Provider Provider => Game.Provider;
         public List<string> Categories => Game.Categories;
+        public List<string> Tags => Game.Tags;
         public List<string> Genres => Game.Genres;
         public DateTime? ReleaseDate => Game.ReleaseDate;
         public DateTime? LastActivity => Game.LastActivity;
@@ -675,7 +676,38 @@ namespace PlayniteUI
                 }
             }
 
-            return installedResult && unInstalledResult && hiddenResult && favoriteResult && textResult && providersFilter && genreResult && platformResult && releaseDateResult && publisherResult && developerResult && categoryResult;
+
+            // ------------------ Tags
+            bool tagResult = false;
+            if (Settings.FilterSettings.Tags == null || Settings.FilterSettings.Tags.Count == 0)
+            {
+                tagResult = true;
+            }
+            else
+            {
+                if (game.Tags == null)
+                {
+                    tagResult = false;
+                }
+                else
+                {
+                    tagResult = Settings.FilterSettings.Tags.IntersectsPartiallyWith(game.Tags);
+                }
+            }
+
+            return installedResult &&
+                unInstalledResult &&
+                hiddenResult &&
+                favoriteResult &&
+                textResult &&
+                providersFilter &&
+                genreResult &&
+                platformResult &&
+                releaseDateResult &&
+                publisherResult &&
+                developerResult &&
+                categoryResult &&
+                tagResult;
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -748,6 +780,7 @@ namespace PlayniteUI
                 CollectionView.LiveSortingProperties.Add("Genres");
                 CollectionView.LiveSortingProperties.Add("ReleaseDate");
                 CollectionView.LiveSortingProperties.Add("Developers");
+                CollectionView.LiveSortingProperties.Add("Tags");
                 CollectionView.LiveSortingProperties.Add("Publishers");
                 CollectionView.LiveSortingProperties.Add("IsInstalled");
                 CollectionView.LiveSortingProperties.Add("Hidden");
@@ -761,6 +794,7 @@ namespace PlayniteUI
                 CollectionView.LiveFilteringProperties.Add("Genres");
                 CollectionView.LiveFilteringProperties.Add("ReleaseDate");
                 CollectionView.LiveFilteringProperties.Add("Developers");
+                CollectionView.LiveFilteringProperties.Add("Tags");
                 CollectionView.LiveFilteringProperties.Add("Publishers");
                 CollectionView.LiveFilteringProperties.Add("IsInstalled");
                 CollectionView.LiveFilteringProperties.Add("Hidden");

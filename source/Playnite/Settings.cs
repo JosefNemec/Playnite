@@ -392,7 +392,8 @@ namespace Playnite
             { "LastActivity", true },
             { "IsInstalled", false },
             { "InstallDirectory", false },
-            { "Categories", false }
+            { "Categories", false },
+            { "Tags", false }
         };
 
         public ObservableConcurrentDictionary<string, bool> GridViewHeaders

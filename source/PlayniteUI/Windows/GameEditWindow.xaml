@@ -77,15 +77,18 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
+                    <!-- ID -->
                     <TextBlock Text="Id" Grid.Column="0" Grid.Row="0"
                                 Visibility="{Binding Source={x:Static playnite:Constants.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <TextBox Grid.Column="2" Grid.Row="0" IsReadOnly="True" Text="{Binding EditingGame.ProviderId, Mode=OneTime}"
                              VerticalAlignment="Center"
                                 Visibility="{Binding Source={x:Static playnite:Constants.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
+                    <!-- Name -->
                     <TextBlock Grid.Column="0" Grid.Row="1" Text="Name"/>
                     <CheckBox Grid.Column="1" Grid.Row="1" Name="CheckName"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -93,6 +96,7 @@
                     <TextBox Grid.Column="2" Grid.Row="1" Name="TextName"
                                 Text="{Binding EditingGame.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
+                    <!-- Sorting Name -->
                     <TextBlock Grid.Column="0" Grid.Row="2" Text="Sorting Name"/>
                     <CheckBox Grid.Column="1" Grid.Row="2" Name="CheckSortingName"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -100,6 +104,7 @@
                     <TextBox Grid.Column="2" Grid.Row="2" Name="TextSortingName"
                                 Text="{Binding EditingGame.SortingName, UpdateSourceTrigger=PropertyChanged}"/>
 
+                    <!-- Platform -->
                     <TextBlock Grid.Column="0" Grid.Row="3" Text="Platform"/>
                     <CheckBox Grid.Column="1" Grid.Row="3" Name="CheckPlatform"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -114,6 +119,7 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
 
+                    <!-- Genres -->
                     <TextBlock Grid.Column="0" Grid.Row="4" Text="Genre(s)" />
                     <CheckBox Grid.Column="1" Grid.Row="4" Name="CheckGenres"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -121,6 +127,7 @@
                     <TextBox Grid.Column="2" Grid.Row="4" Name="TextGenres"
                                 Text="{Binding EditingGame.Genres, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
 
+                    <!-- Release Date -->
                     <TextBlock Grid.Column="0" Grid.Row="5" Text="Release date"/>
                     <CheckBox Grid.Column="1" Grid.Row="5" Name="CheckReleaseDate"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -128,6 +135,7 @@
                     <DatePicker Grid.Column="2" Grid.Row="5" Margin="3"
                                 SelectedDate="{Binding EditingGame.ReleaseDate}"/>
 
+                    <!-- Developers -->
                     <TextBlock Grid.Column="0" Grid.Row="6" Text="Developer(s)"/>
                     <CheckBox Grid.Column="1" Grid.Row="6" Name="CheckDeveloper"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -135,6 +143,7 @@
                     <TextBox Grid.Column="2" Grid.Row="6" Name="TextDeveloper"
                                 Text="{Binding EditingGame.Developers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
 
+                    <!-- Publishers -->
                     <TextBlock Grid.Column="0" Grid.Row="7" Text="Publisher(s)" />
                     <CheckBox Grid.Column="1" Grid.Row="7" Name="CheckPublisher"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -142,6 +151,7 @@
                     <TextBox Grid.Column="2" Grid.Row="7" Name="TextPublisher"
                                 Text="{Binding EditingGame.Publishers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
 
+                    <!-- Categories -->
                     <TextBlock Grid.Column="0" Grid.Row="8" Text="Categories" />
                     <CheckBox Grid.Column="1" Grid.Row="8" Name="CheckCategories"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -154,11 +164,20 @@
                                     Text="{Binding EditingGame.Categories, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
                     </DockPanel>
 
-                    <TextBlock Grid.Column="0" Grid.Row="9" Text="Description" VerticalAlignment="Top" Margin="0,5,0,0" />
-                    <CheckBox Grid.Column="1" Grid.Row="9" Name="CheckDescription" VerticalAlignment="Top" Margin="0,5,0,0"
+                    <!-- Tags -->
+                    <TextBlock Grid.Column="0" Grid.Row="9" Text="Tag(s)" />
+                    <CheckBox Grid.Column="1" Grid.Row="9" Name="CheckTag"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseTagChanges, Mode=OneWay}"/>
+                    <TextBox Grid.Column="2" Grid.Row="9" Name="TextTag"
+                                Text="{Binding EditingGame.Tags, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
+
+                    <!-- Description -->
+                    <TextBlock Grid.Column="0" Grid.Row="10" Text="Description" VerticalAlignment="Top" Margin="0,5,0,0" />
+                    <CheckBox Grid.Column="1" Grid.Row="10" Name="CheckDescription" VerticalAlignment="Top" Margin="0,5,0,0"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseDescriptionChanges}"/>
-                    <TextBox Grid.Column="2" Grid.Row="9" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
+                    <TextBox Grid.Column="2" Grid.Row="10" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                                 Text="{Binding EditingGame.Description, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
