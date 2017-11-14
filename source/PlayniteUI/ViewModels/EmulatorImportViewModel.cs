@@ -374,7 +374,7 @@ namespace PlayniteUI.ViewModels
                 {
                     EmulatorList = new RangeObservableCollection<ImportableEmulator>();
                 }
-
+                
                 EmulatorList.AddRange(emulators.Select(a => new ImportableEmulator(a)));
             }
             finally
@@ -398,12 +398,18 @@ namespace PlayniteUI.ViewModels
                     GamesList = new RangeObservableCollection<ImportableGame>();
                 }
 
+                var dbGames = database.GamesCollection.FindAll();
                 var emulator = AvailableEmulators.First(a => a.Profiles.Any(b => b.Id == profile.Id));
-                GamesList.AddRange(games.Select(a =>
-                {
-                    a.PlatformId = profile.Platforms?.FirstOrDefault();
-                    return new ImportableGame(a, emulator, profile);
-                }));
+                GamesList.AddRange(games
+                    .Where(a =>
+                    {
+                        return dbGames.FirstOrDefault(b => Paths.AreEqual(a.IsoPath, b.IsoPath)) == null;
+                    })
+                    .Select(a =>
+                    {
+                        a.PlatformId = profile.Platforms?.FirstOrDefault();
+                        return new ImportableGame(a, emulator, profile);
+                    }));
             }
             finally
             {
