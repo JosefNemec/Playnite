@@ -13,6 +13,18 @@ namespace Playnite
         public static string DownloadString(string url)
         {
             var webClient = new WebClient();
+            return webClient.DownloadString(url);            
+        }
+
+        public static string DownloadString(string url, List<Cookie> cookies)
+        {
+            var webClient = new WebClient();
+            if (cookies?.Any() == true)
+            {
+                var cookieString = string.Join(";", cookies.Select(a => $"{a.Name}={a.Value}"));
+                webClient.Headers.Add(HttpRequestHeader.Cookie, cookieString);
+            }
+
             return webClient.DownloadString(url);
         }
 
