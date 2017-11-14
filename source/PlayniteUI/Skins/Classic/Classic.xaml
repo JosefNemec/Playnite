@@ -473,37 +473,45 @@
                                             <Setter Property="Template">
                                                 <Setter.Value>
                                                     <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                                        <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="2" CornerRadius="0" Background="Transparent">
-                                                            <Grid>
-                                                                <ContentPresenter />
-                                                                <Border Background="#D8000000" x:Name="HighlightTextBorder" Opacity="0">
-                                                                    <TextBlock Text="{Binding DisplayName, Mode=OneWay}" TextWrapping="Wrap" Margin="5"
-                                                                                Style="{StaticResource BaseTextBlockStyle}"
-                                                                                TextTrimming="CharacterEllipsis"
-                                                                                HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
-                                                                                FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"/>
-                                                                </Border>
-                                                            </Grid>
-                                                        </Border>
+                                                        <Grid Background="Transparent">                                                          
+                                                            <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="2"
+                                                                    Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                                <Grid>
+                                                                    <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
+                                                                        <Image.Source>
+                                                                            <PriorityBinding>
+                                                                                <Binding Path="Image" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
+                                                                                <Binding Path="DefaultImage" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
+                                                                            </PriorityBinding>
+                                                                        </Image.Source>
+                                                                    </Image>
+                                                                    <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed">
+                                                                        <TextBlock Text="{Binding DisplayName, Mode=OneWay}" TextWrapping="Wrap" Margin="5"
+                                                                                   Style="{StaticResource BaseTextBlockStyle}"
+                                                                                   TextTrimming="CharacterEllipsis" TextAlignment="Center"
+                                                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                                                   FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"/>
+                                                                    </Border>
+                                                                </Grid>
+                                                            </Border>                                              
+                                                        </Grid>
                                                         <ControlTemplate.Triggers>
                                                             <MultiDataTrigger>
                                                                 <MultiDataTrigger.Conditions>
                                                                     <Condition Binding="{Binding Image}" Value="{x:Null}" />
                                                                     <Condition Binding="{Binding Path=Data.AppSettings.ShowNameEmptyCover, Source={StaticResource Proxy}}" Value="True" />
                                                                 </MultiDataTrigger.Conditions>
-                                                                <Setter Property="Opacity" Value="0.75" TargetName="HighlightTextBorder"/>
+                                                                <Setter Property="Visibility" Value="Visible" TargetName="TextGameName"/>
                                                             </MultiDataTrigger>
                                                             <Trigger Property="IsSelected" Value="True">
-                                                                <Setter Property="BorderBrush" Value="#3e6184" TargetName="SelectionBorder"/>
-                                                                <Setter Property="Opacity" Value="1" TargetName="HighlightTextBorder"/>
+                                                                <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
                                                             </Trigger>
                                                             <MultiTrigger>
                                                                 <MultiTrigger.Conditions>
                                                                     <Condition Property="IsMouseOver" Value="True" />
                                                                     <Condition Property="Selector.IsSelected" Value="False" />
                                                                 </MultiTrigger.Conditions>
-                                                                <Setter Property="BorderBrush" Value="#3e6184" TargetName="SelectionBorder"/>
-                                                                <Setter Property="Opacity" Value="1" TargetName="HighlightTextBorder"/>
+                                                                <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
                                                             </MultiTrigger>
                                                         </ControlTemplate.Triggers>
                                                     </ControlTemplate>
@@ -513,21 +521,10 @@
                                     </ListView.Resources>
                                     <ListView.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <pui:VirtualizingTilePanel ItemWidth="{Binding Path=Value, ElementName=SliderZoom}"/>
+                                            <pui:VirtualizingTilePanel ItemWidth="{Binding Path=Value, ElementName=SliderZoom}"
+                                                                       ItemHeightModifier="1.4"/>
                                         </ItemsPanelTemplate>
                                     </ListView.ItemsPanel>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
-                                                <Image.Source>
-                                                    <PriorityBinding>
-                                                        <Binding Path="Image" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
-                                                        <Binding Path="DefaultImage" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
-                                                    </PriorityBinding>
-                                                </Image.Source>
-                                            </Image>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
                                 </ListView>
                             </DockPanel>
                         </TabItem>

@@ -341,22 +341,6 @@ namespace Playnite.Providers.Steam
 
             game.OtherTasks = tasks;
 
-            if (metadata.Image != null)
-            {
-                using (var imageStream = new MemoryStream())
-                {
-                    using (var tempStream = new MemoryStream(metadata.Image.Data))
-                    {
-                        using (var backStream = Application.GetResourceStream(new Uri("pack://application:,,,/Playnite;component/Resources/Images/steam_cover_background.png")).Stream)
-                        {
-                            CoverCreator.CreateCover(backStream, tempStream, imageStream);
-                            imageStream.Seek(0, SeekOrigin.Begin);
-                            metadata.Image.Data = imageStream.ToArray();
-                        }
-                    }
-                }
-            }
-
             if (!string.IsNullOrEmpty(metadata.BackgroundImage))
             {
                 game.BackgroundImage = metadata.BackgroundImage;

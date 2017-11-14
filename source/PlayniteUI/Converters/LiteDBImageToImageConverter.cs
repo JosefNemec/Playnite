@@ -59,7 +59,15 @@ namespace PlayniteUI
                     return DependencyProperty.UnsetValue;
                 }
 
-                return BitmapExtensions.BitmapFromFile(cachedFile);
+                try
+                {
+                    return BitmapExtensions.BitmapFromFile(cachedFile);
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, $"Failed to create bitmap from {cachedFile} file.");
+                    return DependencyProperty.UnsetValue;
+                }
             }
 
             if (File.Exists(imageId))

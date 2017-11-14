@@ -12,16 +12,28 @@ namespace PlayniteUI
     public class VirtualizingTilePanel : VirtualizingPanel, IScrollInfo
     {
         private static readonly DependencyProperty ContainerSizeProperty = DependencyProperty.Register("ContainerSize", typeof(Size), typeof(VirtualizingTilePanel));
-
-        // Dependency property that controls the size of the child elements
+        
         public static readonly DependencyProperty ItemWidthProperty
            = DependencyProperty.RegisterAttached("ItemWidth", typeof(double), typeof(VirtualizingTilePanel), new FrameworkPropertyMetadata(150d, OnItemsSourceChanged));
 
-        // Accessor for the child size dependency property
         public double ItemWidth
         {
             get { return (double)GetValue(ItemWidthProperty); }
             set { SetValue(ItemWidthProperty, value); }
+        }
+
+        public static readonly DependencyProperty ItemHeightModifierProperty
+            = DependencyProperty.RegisterAttached("ItemHeightModifier", typeof(double), typeof(VirtualizingTilePanel), new FrameworkPropertyMetadata(1.5, OnItemsSourceChanged));
+
+        public double ItemHeightModifier
+        {
+            get { return (double)GetValue(ItemHeightModifierProperty); }
+            set { SetValue(ItemHeightModifierProperty, value); }
+        }
+
+        public double ItemHeight
+        {
+            get => ItemWidth * ItemHeightModifier;
         }
 
         private static void OnItemsSourceChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
@@ -240,23 +252,14 @@ namespace PlayniteUI
                 return;
             }
 
-            int childrenPerRow = CalculateChildrenPerRow(_extent);
-            
+            int childrenPerRow = CalculateChildrenPerRow(_extent);            
             var rows = 0;
             double totalHeight = 0;
-            double largestHeight = ItemWidth;
-
             while (true)
             {
-                var height = GetLargestRowHeight(rows, childrenPerRow);
-                if (height > largestHeight)
+                if (_offset.Y > totalHeight + ItemHeight)
                 {
-                    largestHeight = height;
-                }
-
-                if (_offset.Y > totalHeight + height)
-                {
-                    totalHeight += height;
+                    totalHeight += ItemHeight;
                     rows++;
                 }
                 else
@@ -264,14 +267,10 @@ namespace PlayniteUI
                     break;
                 }
             }
-
-            var avarageHeight = rows == 0 ? (ItemWidth * 1.5) : totalHeight / rows;
+            
             firstVisibleItemIndex = (int)((rows == 0 ? rows : rows) * childrenPerRow);
-
-            var newRows = (int)Math.Ceiling(_viewport.Height / avarageHeight) + 1;
-
+            var newRows = (int)Math.Ceiling(_viewport.Height / ItemHeight) + 1;
             lastVisibleItemIndex = firstVisibleItemIndex + (newRows * childrenPerRow);
-
             if (lastVisibleItemIndex >= itemCount)
             {
                 lastVisibleItemIndex = itemCount - 1;
@@ -284,8 +283,7 @@ namespace PlayniteUI
         /// <returns>The size</returns>
         private Size GetInitialChildSize(UIElement child)
         {
-            var size = new Size(ItemWidth, double.PositiveInfinity);
-            return size;
+            return new Size(ItemWidth, ItemHeight);
         }
 
         private Size GetChildSizeFromIndex(int index)
@@ -299,7 +297,7 @@ namespace PlayniteUI
             var size = GetStoredChildSize(GeneratorContainer.Items[index]);
             if (size == Size.Empty)
             {
-                return new Size(ItemWidth, (1.5 * ItemWidth));
+                return new Size(ItemWidth, ItemHeight);
             }
             else
             {
@@ -342,42 +340,6 @@ namespace PlayniteUI
         {
             return _itemsControl as IContainItemStorage;
         }
-              
-
-        private double GetLargestRowHeight(int row, int childrenPerRow)
-        {
-            if (row < 0)
-            {
-                return 0;
-            }
-
-            if (Generator == null)
-            {
-                return ItemWidth * 1.5;
-            }
-
-            var items = GeneratorContainer.Items;
-
-            var firstIndex = (row == 0 ? 0 : row -1) * childrenPerRow;
-            var lastIndex = firstIndex + childrenPerRow;
-            if (items.Count < lastIndex)
-            {
-                lastIndex = items.Count;
-            }
-
-            var aa = firstIndex == 0 ? 0 : firstIndex - 1;
-            var biggestSize = GetChildSizeFromIndex(aa);
-            for (var i = firstIndex; i < lastIndex; i++)
-            {
-                var size = GetChildSizeFromIndex(i);
-                if (size.Height > biggestSize.Height)
-                {
-                    biggestSize.Height = size.Height;
-                }
-            }
-
-            return biggestSize.Height;
-        }
 
         private int GetItemRow(int itemIndex, int itemPerRow)
         {
@@ -398,9 +360,9 @@ namespace PlayniteUI
             int row = GetItemRow(itemIndex, childrenPerRow);
             var targetRect = new Rect(
                 column * ItemWidth,
-                GetTotalHeightForRow(row, childrenPerRow),
+                GetTotalHeightForRow(row),
                 ItemWidth,
-                child.DesiredSize.Height);
+                ItemHeight);
 
             child.Arrange(targetRect);
             
@@ -418,9 +380,14 @@ namespace PlayniteUI
             // Figure out how many children fit on each row
             int childrenPerRow;
             if (availableSize.Width == Double.PositiveInfinity)
-                childrenPerRow = this.Children.Count;
+            {
+                childrenPerRow = Children.Count;
+            }
             else
+            {
                 childrenPerRow = Math.Max(1, (int)Math.Floor(availableSize.Width / ItemWidth));
+            }
+
             return childrenPerRow;
         }
 
@@ -429,16 +396,9 @@ namespace PlayniteUI
         #region IScrollInfo implementation
         // See Ben Constable's series of posts at http://blogs.msdn.com/bencon/
 
-        private double GetTotalHeightForRow(int row, int itemsPerRow)
+        private double GetTotalHeightForRow(int row)
         {
-            int itemCount = _itemsControl.HasItems ? _itemsControl.Items.Count : 0;
-            double totalHeight = 0;
-            for (var i = 0; i < row; i++)
-            {
-                totalHeight += GetLargestRowHeight(i, itemsPerRow);
-            }
-
-            return totalHeight;
+            return (ItemHeight * row);
         }
 
         private double GetTotalHeight(Size availableSize)
@@ -450,7 +410,7 @@ namespace PlayniteUI
             double totalHeight = 0;
             for (var i = 0; i < rows; i++)
             {
-                totalHeight += GetLargestRowHeight(i, perRow);
+                totalHeight += ItemHeight;
             }
 
             return totalHeight;
@@ -588,7 +548,7 @@ namespace PlayniteUI
             var index = GeneratorContainer.IndexFromContainer(visual);
             var perRow = CalculateChildrenPerRow(_extent);
             var row = GetItemRow(index, perRow);
-            var offset = GetTotalHeightForRow(row, perRow);
+            var offset = GetTotalHeightForRow(row);
             var elem = visual as UIElement;
             
             var offsetSize = offset + elem.DesiredSize.Height;
