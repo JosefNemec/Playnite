@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Threading;
-using CefSharp;
+﻿using CefSharp;
 using CefSharp.Wpf;
 using Newtonsoft.Json;
 using NLog;
 using Playnite.Controls;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Windows;
 
 namespace Playnite.Providers.GOG
 {
@@ -89,7 +85,7 @@ namespace Playnite.Providers.GOG
             }
             catch (WebException exc)
             {
-                logger.Warn(exc, "Failed to download origin game details for " + id);
+                logger.Warn(exc, "Failed to download GOG game details for " + id);
                 return null;
             }
         }

@@ -142,6 +142,11 @@ namespace Playnite.Providers.Origin
                 IsPrimary = true
             };
 
+            if (string.IsNullOrEmpty(platform.fulfillmentAttributes.executePathOverride))
+            {
+                return null;
+            }
+
             if (platform.fulfillmentAttributes.executePathOverride.Contains(@"://"))
             {
                 playTask.Type = GameTaskType.URL;
@@ -167,62 +172,69 @@ namespace Playnite.Providers.Origin
                 var packages = Directory.GetFiles(contentPath, "*.mfst", SearchOption.AllDirectories);
                 foreach (var package in packages)
                 {
-                    var gameId = Path.GetFileNameWithoutExtension(package);
-                    if (!gameId.StartsWith("Origin"))
+                    try
                     {
-                        // Get game id by fixing file via adding : before integer part of the name
-                        // for example OFB-EAST52017 converts to OFB-EAST:52017
-                        var match = Regex.Match(gameId, @"^(.*?)(\d+)$");
-                        if (!match.Success)
+                        var gameId = Path.GetFileNameWithoutExtension(package);
+                        if (!gameId.StartsWith("Origin"))
                         {
-                            logger.Warn("Failed to get game id from file " + package);
+                            // Get game id by fixing file via adding : before integer part of the name
+                            // for example OFB-EAST52017 converts to OFB-EAST:52017
+                            var match = Regex.Match(gameId, @"^(.*?)(\d+)$");
+                            if (!match.Success)
+                            {
+                                logger.Warn("Failed to get game id from file " + package);
+                                continue;
+                            }
+
+                            gameId = match.Groups[1].Value + ":" + match.Groups[2].Value;
+                        }
+
+                        var newGame = new Game()
+                        {
+                            Provider = Provider.Origin,
+                            ProviderId = gameId
+                        };
+
+                        GameLocalDataResponse localData = null;
+
+                        try
+                        {
+                            localData = GetLocalManifest(gameId, package, useDataCache);
+                        }
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            logger.Error(e, $"Failed to get Origin manifest for a {gameId}, {package}");
                             continue;
                         }
 
-                        gameId = match.Groups[1].Value + ":" + match.Groups[2].Value;
-                    }
+                        if (localData.offerType != "Base Game" && localData.offerType != "DEMO")
+                        {
+                            continue;
+                        }
 
-                    var newGame = new Game()
-                    {
-                        Provider = Provider.Origin,
-                        ProviderId = gameId
-                    };
+                        newGame.Name = localData.localizableAttributes.displayName;
+                        var platform = localData.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
 
-                    GameLocalDataResponse localData = null;
+                        if (platform == null)
+                        {
+                            logger.Warn(gameId + " game doesn't have windows platform, skipping install import.");
+                            continue;
+                        }
 
-                    try
-                    {
-                        localData = GetLocalManifest(gameId, package, useDataCache);
+                        var installPath = GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
+                        if (string.IsNullOrEmpty(installPath) || !File.Exists(installPath))
+                        {
+                            continue;
+                        }
+
+                        newGame.InstallDirectory = Path.GetDirectoryName(installPath);
+                        newGame.PlayTask = GetGamePlayTask(localData);
+                        games.Add(newGame);
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
-                        logger.Error(e, $"Failed to get Origin manifest for a {gameId}, {package}");
-                        continue;
+                        logger.Error(e, $"Failed to import installed Origin game {package}.");
                     }
-
-                    if (localData.offerType != "Base Game" && localData.offerType != "DEMO")
-                    {
-                        continue;
-                    }
-
-                    newGame.Name = localData.localizableAttributes.displayName;
-                    var platform = localData.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
-
-                    if (platform == null)
-                    {
-                        logger.Warn(gameId + " game doesn't have windows platform, skipping install import.");
-                        continue;
-                    }
-
-                    var installPath = GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
-                    if (string.IsNullOrEmpty(installPath) || !File.Exists(installPath))
-                    {
-                        continue;
-                    }
-
-                    newGame.InstallDirectory = Path.GetDirectoryName(installPath);
-                    newGame.PlayTask = GetGamePlayTask(localData);
-                    games.Add(newGame);
                 }                
             }
 

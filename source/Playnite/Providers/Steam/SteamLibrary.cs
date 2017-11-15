@@ -275,6 +275,7 @@ namespace Playnite.Providers.Steam
             game.Links = new ObservableCollection<Link>()
             {
                 new Link("Forum", @"https://steamcommunity.com/app/" + game.ProviderId),
+                new Link("News", @"http://store.steampowered.com/news/?appids=" + game.ProviderId),
                 new Link("Store", @"http://store.steampowered.com/app/" + game.ProviderId),
                 new Link("Wiki", @"http://pcgamingwiki.com/api/appid.php?appid=" + game.ProviderId)
             };

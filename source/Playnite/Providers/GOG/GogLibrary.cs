@@ -2,7 +2,6 @@
 using NLog;
 using Playnite.Database;
 using Playnite.Models;
-using Playnite.Providers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -267,6 +266,12 @@ namespace Playnite.Providers.GOG
             }
 
             var metadata = DownloadGameMetadata(game.ProviderId, currentUrl);
+            if(metadata.GameDetails == null)
+            {
+                logger.Warn($"Could not gather metadata for game {0}.", game.Id);
+                return metadata;
+            }
+
             game.Name = metadata.GameDetails.title;
             game.Description = metadata.GameDetails.description.full;
             game.Links = new ObservableCollection<Link>()

@@ -36,7 +36,11 @@ namespace Playnite.MetaProviders
 
             if (dbGame.cover != null)
             {
-                game.Image = dbGame.cover.Replace("t_thumb", "t_cover_big");
+                game.Image = dbGame.cover.url.Replace("t_thumb", "t_cover_big");
+                if (!game.Image.StartsWith("https:", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    game.Image = "https:" + game.Image;
+                }
             }
 
             if (dbGame.first_release_date != 0)
