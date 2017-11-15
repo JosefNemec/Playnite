@@ -39,7 +39,7 @@ namespace PlayniteServices.Databases
 
         public Database(string path)
         {
-            liteDB =  new LiteDatabase(string.Format("Filename={0};Mode=Exclusive", path));
+            liteDB =  new LiteDatabase(string.Format("Filename={0}", path));
         }
 
         public LiteCollection<T> GetCollection<T>(string name)

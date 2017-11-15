@@ -9,18 +9,21 @@ $ErrorActionPreference = "Stop"
 
 if (Test-Path $OutputPath)
 {
-    Remove-Item $OutputPath -Recurse
+    Remove-Item $OutputPath -Recurse -Exclude "servicedb.db"
 }
-
-New-Item $OutputPath -ItemType Directory | Out-Null
-
-Push-Location
-Set-Location "..\source\PlayniteServices\"
 
 if ($LocalDeploy)
 {
     Stop-Service -Name "W3SVC"
 }
+
+if (!(Test-Path $OutputPath))
+{
+    New-Item $OutputPath -ItemType Directory - | Out-Null
+}
+
+Push-Location
+Set-Location "..\source\PlayniteServices\"
 
 $arguments = "publish -c {0} -o {1}" -f $Configuration, $OutputPath
 $compiler = Start-Process "dotnet" $arguments -PassThru -NoNewWindow

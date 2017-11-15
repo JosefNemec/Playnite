@@ -13,7 +13,7 @@ namespace PlayniteServices.Controllers.IGDB
     public class GameController : Controller
     {
         [HttpGet("{gameId}")]
-        public async Task<ServicesResponse<Game>> Get(UInt64 gameId)
+        public async Task<ServicesResponse<Game>> Get(ulong gameId)
         {            
             var url = string.Format(IGDB.UrlBase + @"games/{0}?fields=name%2Csummary%2Cdevelopers%2Cpublishers%2Cgenres%2Cfirst_release_date%2Ccover%2Cthemes%2Cgame_modes%2Cwebsites&limit=40&offset=0&search={0}", gameId);
             var libraryStringResult = await IGDB.HttpClient.GetStringAsync(url);
@@ -26,8 +26,19 @@ namespace PlayniteServices.Controllers.IGDB
     public class GameParsedController : Controller
     {
         [HttpGet("{gameId}")]
-        public async Task<ServicesResponse<ParsedGame>> Get(UInt64 gameId)
+        public async Task<ServicesResponse<ParsedGame>> Get(ulong gameId)
         {
+            var cacheCollection = Program.DatabaseCache.GetCollection<ParsedGame>("IGBDParsedGameCache");
+            var cache = cacheCollection.FindById(gameId);
+            if (cache != null)
+            {
+                var dateDiff = DateTime.Now - cache.creation_time;
+                if (dateDiff.TotalHours <= IGDB.CacheTimeout)
+                {
+                    return new ServicesResponse<ParsedGame>(cache, string.Empty);
+                }
+            }
+
             var url = string.Format(IGDB.UrlBase + @"games/{0}?fields=name%2Csummary%2Cdevelopers%2Cpublishers%2Cgenres%2Cfirst_release_date%2Ccover%2Cthemes%2Cgame_modes%2Cwebsites&limit=40&offset=0&search={0}", gameId);
             var libraryStringResult = await IGDB.HttpClient.GetStringAsync(url);
             var game = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult)[0];
@@ -38,7 +49,8 @@ namespace PlayniteServices.Controllers.IGDB
                 first_release_date = game.first_release_date,
                 cover = game.cover?.url,
                 websites = game.websites,
-                summary = game.summary
+                summary = game.summary,
+                creation_time = DateTime.Now
             };
         
             if (game.developers?.Any() == true)
@@ -91,6 +103,7 @@ namespace PlayniteServices.Controllers.IGDB
                 }
             }
 
+            cacheCollection.Upsert(parsedGame);
             return new ServicesResponse<ParsedGame>(parsedGame, string.Empty);
         }
     }

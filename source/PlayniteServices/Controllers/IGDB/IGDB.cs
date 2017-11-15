@@ -46,6 +46,20 @@ namespace PlayniteServices.Controllers.IGDB
             }
         }
 
+        private static int? cacheTimeout;
+        public static int CacheTimeout
+        {
+            get
+            {
+                if (cacheTimeout == null)
+                {
+                    cacheTimeout = int.Parse(Startup.Configuration.GetSection("IGDBCacheTimeout").Value);
+                }
+
+                return cacheTimeout.Value;
+            }
+        }
+
         private static HttpClient httpClient;
         public static HttpClient HttpClient
         {

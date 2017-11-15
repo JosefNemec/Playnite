@@ -8,7 +8,8 @@ using Xunit;
 
 namespace PlayniteServicesTests.Controllers.Playnite
 {
-    public class UsersControllerTests : IClassFixture<TestFixture<PlayniteServices.Startup>>
+    [Collection("DefaultCollection")]
+    public class UsersControllerTests
     {
         private readonly HttpClient client;
 

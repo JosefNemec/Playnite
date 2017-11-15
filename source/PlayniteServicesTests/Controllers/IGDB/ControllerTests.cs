@@ -10,7 +10,8 @@ using Xunit;
 
 namespace PlayniteServicesTests.Controllers.IGDB
 {
-    public class ControllerTests : IClassFixture<TestFixture<PlayniteServices.Startup>>
+    [Collection("DefaultCollection")]
+    public class ControllerTests 
     {
         private readonly HttpClient client;
 
@@ -53,7 +54,7 @@ namespace PlayniteServicesTests.Controllers.IGDB
         {
             var response = await client.GetAsync("/api/igdb/games/quake");
             var validResponse = JsonConvert.DeserializeObject<ServicesResponse<List<Game>>>(await response.Content.ReadAsStringAsync());
-            Assert.NotEqual(0, validResponse.Data.Count);
+            Assert.NotEmpty(validResponse.Data);
             var game = validResponse.Data[0];
             Assert.NotEqual(UInt64.MinValue, game.id);
             Assert.False(string.IsNullOrEmpty(game.name));

@@ -1,4 +1,5 @@
 ﻿using LiteDB;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Models.IGDB
 {
-    public enum WebSiteCategory : UInt64
+    public enum WebSiteCategory : ulong
     {
         Official = 1,
         Wikia = 2,
@@ -22,52 +23,175 @@ namespace PlayniteServices.Models.IGDB
         Steam = 13
     }
 
+    public class GamesSearch
+    {
+        [BsonId(false)]
+        [BsonIndex(true)]
+        public string keyword
+        {
+            get; set;
+        }
+
+        public List<Game> results
+        {
+            get; set;
+        }
+
+        public DateTime creation_time
+        {
+            get; set;
+        }
+    }
+
     public class Website
     {
-        public WebSiteCategory category;
-        public string url;
+        public WebSiteCategory category
+        {
+            get; set;
+        }
+
+        public string url
+        {
+            get; set;
+        }
+    }
+
+    public class Cover
+    {
+        public string url
+        {
+            get; set;
+        }
     }
 
     public class ParsedGame
     {
-        public UInt64 id;
-        public string name;
-        public string summary;
-        public List<string> developers;
-        public List<string> publishers;
-        public List<string> genres;
-        public List<string> themes;
-        public List<string> game_modes;
-        public Int64 first_release_date;
-        public string cover;
-        public List<Website> websites;
+        public ulong id
+        {
+            get; set;
+        }
+
+        public string name
+        {
+            get; set;
+        }
+
+        public string summary
+        {
+            get; set;
+        }
+
+        public List<string> developers
+        {
+            get; set;
+        }
+
+        public List<string> publishers
+        {
+            get; set;
+        }
+
+        public List<string> genres
+        {
+            get; set;
+        }
+
+        public List<string> themes
+        {
+            get; set;
+        }
+
+        public List<string> game_modes
+        {
+            get; set;
+        }
+
+        public long first_release_date
+        {
+            get; set;
+        }
+
+        public string cover
+        {
+            get; set;
+        }
+
+        public List<Website> websites
+        {
+            get; set;
+        }
+
+        [JsonIgnore]
+        public DateTime creation_time
+        {
+            get; set;
+        }
     }
 
     public class Game
     {
-        public class Cover
+        public ulong id
         {
-            public string url;
+            get; set;
         }
 
-        public UInt64 id;
-        public string name;
-        public string summary;
-        public List<UInt64> developers;
-        public List<UInt64> publishers;
-        public List<UInt64> genres;
-        public List<UInt64> themes;
-        public List<UInt64> game_modes;
-        public Int64 first_release_date;
-        public Cover cover;
-        public List<Website> websites;
+        public string name
+        {
+            get; set;
+        }
+
+        public string summary
+        {
+            get; set;
+        }
+
+        public List<ulong> developers
+        {
+            get; set;
+        }
+
+        public List<ulong> publishers
+        {
+            get; set;
+        }
+
+        public List<ulong> genres
+        {
+            get; set;
+        }
+
+        public List<ulong> themes
+        {
+            get; set;
+        }
+
+        public List<ulong> game_modes
+        {
+            get; set;
+        }
+
+        public long first_release_date
+        {
+            get; set;
+        }
+
+        public Cover cover
+        {
+            get; set;
+        }
+
+        public List<Website> websites
+        {
+            get; set;
+        }
+
     }
 
     public class GameMode
     {
         [BsonId(false)]
         [BsonIndex(true)]
-        public UInt64 id
+        public ulong id
         {
             get; set;
         }
@@ -82,7 +206,7 @@ namespace PlayniteServices.Models.IGDB
     {
         [BsonId(false)]
         [BsonIndex(true)]
-        public UInt64 id
+        public ulong id
         {
             get; set;
         }
@@ -97,7 +221,7 @@ namespace PlayniteServices.Models.IGDB
     {
         [BsonId(false)]
         [BsonIndex(true)]
-        public UInt64 id
+        public ulong id
         {
             get; set;
         }
@@ -112,7 +236,7 @@ namespace PlayniteServices.Models.IGDB
     {
         [BsonId(false)]
         [BsonIndex(true)]
-        public UInt64 id
+        public ulong id
         {
             get; set;
         }

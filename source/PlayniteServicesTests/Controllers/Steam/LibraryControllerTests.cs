@@ -11,7 +11,8 @@ using PlayniteServices.Models.Steam;
 
 namespace PlayniteServicesTests.Controllers.Steam
 {
-    public class LibraryControllerTests : IClassFixture<TestFixture<PlayniteServices.Startup>>
+    [Collection("DefaultCollection")]
+    public class LibraryControllerTests
     {
         private readonly HttpClient client;
 

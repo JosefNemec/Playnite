@@ -19,7 +19,7 @@
       "PlayniteServices": {
         "commandName": "Project",
         "launchBrowser": true,
-        "launchUrl": "http://localhost:5000/api/stats/",
+        "launchUrl": "http://localhost:5000/api/igdb/games/quake",
         "environmentVariables": {
           "ASPNETCORE_ENVIRONMENT": "Development"
         }
