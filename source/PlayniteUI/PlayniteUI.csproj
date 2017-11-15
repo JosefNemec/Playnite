@@ -171,6 +171,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="XInputDotNetPure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\XInputDotNetPure.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -299,6 +303,7 @@
     <Compile Include="Windows\UpdateWindow.xaml.cs">
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="XInputBinding.cs" />
     <Page Include="Controls\FilterSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -632,4 +637,11 @@
   <Import Project="..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets')" />
   <Import Project="..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets" Condition="Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets')" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.1\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.1\build\net46\System.Data.SQLite.Core.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>Copy /Y "$(SolutionDir)..\references\XInputInterface.dll" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

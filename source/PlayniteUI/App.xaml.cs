@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using Playnite.Services;
 using System.Windows.Markup;
 using System.IO;
+using System.Windows.Input;
 
 namespace PlayniteUI
 {
@@ -33,6 +34,7 @@ namespace PlayniteUI
         private PipeServer pipeServer;
         private MainViewModel mainModel;
         private FullscreenViewModel fullscreenModel;
+        private XInputDevice xdevice;
 
         public static GameDatabase Database
         {
@@ -217,6 +219,8 @@ namespace PlayniteUI
                 var cmdArgs = commandArgs.Count() > 1 ? commandArgs[1] : string.Empty;
                 PipeService_CommandExecuted(this, new CommandExecutedEventArgs(command, cmdArgs));
             }
+
+            xdevice = new XInputDevice(InputManager.Current);
 
             logger.Info("Application started");
         }
