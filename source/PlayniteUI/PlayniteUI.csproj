@@ -592,6 +592,12 @@
   <ItemGroup>
     <Resource Include="Images\applogo_clean.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\references\XInputInterface.dll">
+      <Link>XInputInterface.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -642,6 +648,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>Copy /Y "$(SolutionDir)..\references\XInputInterface.dll" "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Blend for Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}"
 EndProject
@@ -12,12 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayniteTests", "PlayniteTests\PlayniteTests.csproj", "{3BB5A3D4-B998-4D0F-9B7A-B133905AA5C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayniteUITests", "PlayniteUITests\PlayniteUITests.csproj", "{59D0C141-64A8-4D86-8156-4BEF8472CB8E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayniteServices", "PlayniteServices\PlayniteServices.csproj", "{B06BF5BB-0B33-437B-8759-38278FF15706}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayniteServicesTests", "PlayniteServicesTests\PlayniteServicesTests.csproj", "{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{9783B123-F0C8-4F03-B680-4E2D6D6C684A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,30 +63,6 @@ Global
 		{59D0C141-64A8-4D86-8156-4BEF8472CB8E}.Release|x64.Build.0 = Release|x64
 		{59D0C141-64A8-4D86-8156-4BEF8472CB8E}.Release|x86.ActiveCfg = Release|x86
 		{59D0C141-64A8-4D86-8156-4BEF8472CB8E}.Release|x86.Build.0 = Release|x86
-		{B06BF5BB-0B33-437B-8759-38278FF15706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B06BF5BB-0B33-437B-8759-38278FF15706}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B06BF5BB-0B33-437B-8759-38278FF15706}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B06BF5BB-0B33-437B-8759-38278FF15706}.Debug|x64.Build.0 = Debug|Any CPU
-		{B06BF5BB-0B33-437B-8759-38278FF15706}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B06BF5BB-0B33-437B-8759-38278FF15706}.Debug|x86.Build.0 = Debug|Any CPU
-		{B06BF5BB-0B33-437B-8759-38278FF15706}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B06BF5BB-0B33-437B-8759-38278FF15706}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B06BF5BB-0B33-437B-8759-38278FF15706}.Release|x64.ActiveCfg = Release|Any CPU
-		{B06BF5BB-0B33-437B-8759-38278FF15706}.Release|x64.Build.0 = Release|Any CPU
-		{B06BF5BB-0B33-437B-8759-38278FF15706}.Release|x86.ActiveCfg = Release|Any CPU
-		{B06BF5BB-0B33-437B-8759-38278FF15706}.Release|x86.Build.0 = Release|Any CPU
-		{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4}.Debug|x64.Build.0 = Debug|Any CPU
-		{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4}.Debug|x86.Build.0 = Debug|Any CPU
-		{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4}.Release|x64.ActiveCfg = Release|Any CPU
-		{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4}.Release|x64.Build.0 = Release|Any CPU
-		{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4}.Release|x86.ActiveCfg = Release|Any CPU
-		{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,8 +70,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3BB5A3D4-B998-4D0F-9B7A-B133905AA5C9} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
 		{59D0C141-64A8-4D86-8156-4BEF8472CB8E} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
-		{B06BF5BB-0B33-437B-8759-38278FF15706} = {9783B123-F0C8-4F03-B680-4E2D6D6C684A}
-		{10B4D1CC-3A24-496C-8BCF-9CAEA65970C4} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3300FF38-9F6F-4C0F-87F3-776D6C64846D}

@@ -19,11 +19,15 @@ if ($LocalDeploy)
 
 if (!(Test-Path $OutputPath))
 {
-    New-Item $OutputPath -ItemType Directory - | Out-Null
+    New-Item $OutputPath -ItemType Directory | Out-Null
 }
 
 Push-Location
 Set-Location "..\source\PlayniteServices\"
+
+$compiler = Start-Process "dotnet" "restore" -PassThru -NoNewWindow
+$handle = $compiler.Handle # cache proc.Handle http://stackoverflow.com/a/23797762/1479211
+$compiler.WaitForExit()
 
 $arguments = "publish -c {0} -o {1}" -f $Configuration, $OutputPath
 $compiler = Start-Process "dotnet" $arguments -PassThru -NoNewWindow
