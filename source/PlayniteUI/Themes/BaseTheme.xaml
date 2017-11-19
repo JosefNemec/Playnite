@@ -996,7 +996,7 @@
                         <Border x:Name="HeaderBorder" Background="{DynamicResource ControlBackgroundBrush}"
                                 BorderThickness="0,0,0,1" BorderBrush="{DynamicResource NormalBorderBrush}">
                             <TabPanel x:Name="HeaderPanel" IsItemsHost="True" Panel.ZIndex="1" Width="Auto" Height="Auto"
-                                      KeyboardNavigation.TabIndex="1" RenderTransformOrigin="0.5,0.5"  >
+                                      KeyboardNavigation.TabIndex="1" RenderTransformOrigin="0.5,0.5">
                                 <TabPanel.LayoutTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="1" ScaleY="1" />
@@ -1068,6 +1068,7 @@
     
     <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
@@ -1075,7 +1076,8 @@
                         <Border x:Name="SelectedBorder" Visibility="Collapsed" Margin="1,0,1,0"
                                 SnapsToDevicePixels="True"
                                 BorderThickness="0,0,0,2" BorderBrush="{DynamicResource GlyphBrush}"/>
-                        <TextBlock x:Name="TextContent" Padding="5" Style="{DynamicResource BaseTextBlockStyle}">
+                        <TextBlock x:Name="TextContent" Padding="5" Style="{DynamicResource BaseTextBlockStyle}"
+                                   Foreground="{TemplateBinding Foreground}">
                             <ContentPresenter x:Name="ContentSite" RecognizesAccessKey="True" ContentSource="Header" 
                                               HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center" />
                         </TextBlock>
@@ -1123,7 +1125,7 @@
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="False">
-                            <Setter Property="Opacity" Value="0.5" TargetName="TextContent"/>
+                            <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" TargetName="TextContent"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />

@@ -44,7 +44,15 @@
         </Grid.RowDefinitions>
 
         <TabControl Name="TabControlMain" DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0">
-            <TabItem Header="General">
+            <TabItem Name="TabGeneral">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource GameEditChangeNotif}"
+                                    Visibility="{Binding ShowGeneralChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock Text="General"
+                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
+                    </StackPanel>
+                </TabItem.Header>
                 <Grid Grid.Column="0" Grid.Row="0" Margin="10">
                     <Grid.Resources>
                         <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
@@ -147,7 +155,7 @@
                     <TextBlock Grid.Column="0" Grid.Row="7" Text="Publisher(s)" />
                     <CheckBox Grid.Column="1" Grid.Row="7" Name="CheckPublisher"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                IsChecked="{Binding UsePublisherChanges, Mode=OneWay}"/>
+                                IsChecked="{Binding UsePublisherChanges}"/>
                     <TextBox Grid.Column="2" Grid.Row="7" Name="TextPublisher"
                                 Text="{Binding EditingGame.Publishers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
 
@@ -168,7 +176,7 @@
                     <TextBlock Grid.Column="0" Grid.Row="9" Text="Tag(s)" />
                     <CheckBox Grid.Column="1" Grid.Row="9" Name="CheckTag"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                IsChecked="{Binding UseTagChanges, Mode=OneWay}"/>
+                                IsChecked="{Binding UseTagChanges}"/>
                     <TextBox Grid.Column="2" Grid.Row="9" Name="TextTag"
                                 Text="{Binding EditingGame.Tags, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
 
@@ -183,7 +191,15 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Media">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource GameEditChangeNotif}"
+                                   Visibility="{Binding ShowMediaChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock Text="Media"
+                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
+                    </StackPanel>
+                </TabItem.Header>
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -283,8 +299,16 @@
                 </Grid>
             </TabItem>
             
-            <TabItem Header="Links" Name="TabLinks"
+            <TabItem Name="TabLinks"
                      Visibility="{Binding ShowLinks, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource GameEditChangeNotif}"
+                                   Visibility="{Binding ShowLinksChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock Text="Links"
+                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
+                    </StackPanel>
+                </TabItem.Header>
                 <DockPanel>
                     <Button Name="ButtonAddLink" Content="Add Link" HorizontalAlignment="Left" Margin="10,10,0,0"
                             Command="{Binding AddLinkCommand}" DockPanel.Dock="Top"/>
@@ -321,8 +345,16 @@
                 </DockPanel>                
             </TabItem>
 
-            <TabItem Header="Installation" Name="TabInstallation"
+            <TabItem Name="TabInstallation"
                      Visibility="{Binding ShowInstallation, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource GameEditChangeNotif}"
+                                   Visibility="{Binding ShowInstallChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock Text="Installation"
+                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
+                    </StackPanel>
+                </TabItem.Header>
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>

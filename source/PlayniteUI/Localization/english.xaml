@@ -36,6 +36,7 @@ Automatically imported games may reappear in Playnite after next import procedur
 Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
 
     <sys:String x:Key="SteamFriendsTooltip">Steam Friends</sys:String>
+    <sys:String x:Key="GameEditChangeNotif">Section contains changes to be saved</sys:String>
 
     <!--General-->
     <sys:String x:Key="RemoveTitle">Remove</sys:String>
