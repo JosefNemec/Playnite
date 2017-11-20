@@ -15,6 +15,7 @@ using Playnite.Providers.Steam;
 using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
 using System.ComponentModel;
+using Playnite.Providers.BattleNet;
 
 namespace PlayniteUI.ViewModels
 {
@@ -1282,11 +1283,28 @@ namespace PlayniteUI.ViewModels
 
             if (!string.IsNullOrEmpty(game.Image))
             {
-                var extension = Path.GetExtension(game.Image);
-                var tempPath = Path.Combine(Paths.TempPath, "tempimage" + extension);
-                FileSystem.PrepareSaveFile(tempPath);
-                Web.DownloadFile(game.Image, tempPath);
-                EditingGame.Image = tempPath;
+                if (game.Image.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    var extension = Path.GetExtension(game.Image);
+                    var tempPath = Path.Combine(Paths.TempPath, "tempimage" + extension);
+                    FileSystem.PrepareSaveFile(tempPath);
+                    Web.DownloadFile(game.Image, tempPath);
+                    EditingGame.Image = tempPath;
+                }
+                else
+                {
+                    EditingGame.Image = game.Image;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(game.BackgroundImage))
+            {
+                EditingGame.BackgroundImage = game.BackgroundImage;
+            }
+
+            if (!string.IsNullOrEmpty(game.Icon))
+            {
+                EditingGame.Icon = game.Icon;
             }
         }
 
@@ -1506,11 +1524,28 @@ namespace PlayniteUI.ViewModels
                         case Provider.Origin:
                             metadata = (new OriginLibrary()).UpdateGameWithMetadata(tempGame);
                             break;
+                        case Provider.BattleNet:
+                            metadata = (new BattleNetLibrary()).UpdateGameWithMetadata(tempGame);
+                            break;
                         case Provider.Uplay:
                             return;
                         case Provider.Custom:
                         default:
                             return;
+                    }
+
+                    if (metadata.Image != null)
+                    {
+                        var path = Path.Combine(Paths.TempPath, metadata.Image.Name);
+                        File.WriteAllBytes(path, metadata.Image.Data);
+                        tempGame.Image = path;
+                    }
+
+                    if (metadata.Icon != null)
+                    {
+                        var path = Path.Combine(Paths.TempPath, metadata.Icon.Name);
+                        File.WriteAllBytes(path, metadata.Icon.Data);
+                        tempGame.Icon = path;
                     }
 
                     ShowCheckBoxes = true;

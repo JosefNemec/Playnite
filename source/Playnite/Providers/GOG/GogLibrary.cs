@@ -260,11 +260,6 @@ namespace Playnite.Providers.GOG
         public GogGameMetadata UpdateGameWithMetadata(IGame game)
         {
             var currentUrl = string.Empty;
-            if (game.Links != null)
-            {
-                currentUrl = game.Links.Any(a => a.Name == "Store") ? game.Links.First( a=> a.Name == "Store").Url : string.Empty;
-            }
-
             var metadata = DownloadGameMetadata(game.ProviderId, currentUrl);
             if(metadata.GameDetails == null)
             {
