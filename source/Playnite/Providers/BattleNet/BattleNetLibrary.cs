@@ -160,7 +160,7 @@ namespace Playnite.Providers.BattleNet
                 ProductId = "DST2",
                 InternalId = "destiny2",
                 WebLibraryId = "game-list-destiny2",
-                PurchaseId = "destiny2-presale-link",
+                PurchaseId = "destiny2-purchase-link",
                 IconUrl = @"https://blznav.akamaized.net/img/games/logo-dest2-933dcf397eb647e0.png",
                 BackgroundUrl = @"https://bnetproduct-a.akamaihd.net//fbd/22512bcb91e4a3b3d9ee208be2ee3beb-prod-mobile-bg.jpg",
                 CoverUrl = "http://bnetproduct-a.akamaihd.net//f84/7d453e354c9df8ca335ad45da020704c-prod-card-tall.jpg",
