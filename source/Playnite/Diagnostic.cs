@@ -10,6 +10,8 @@ using Playnite.Providers.GOG;
 using Playnite.Providers.Steam;
 using Playnite.Providers.Origin;
 using System.Diagnostics;
+using YamlDotNet.Serialization;
+using Newtonsoft.Json;
 
 namespace Playnite
 {
@@ -42,15 +44,10 @@ namespace Playnite
         public static void CreateDiagPackage(string path)
         {
             var diagTemp = Path.Combine(Paths.TempPath, "diag");
-
             FileSystem.CreateFolder(diagTemp, true);
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
+            FileSystem.DeleteFile(path);    
             
-            ZipFile.CreateFromDirectory(diagTemp, path);
-            
+            ZipFile.CreateFromDirectory(diagTemp, path);            
             using (FileStream zipToOpen = new FileStream(path, FileMode.Open))
             {
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
@@ -65,6 +62,7 @@ namespace Playnite
 
                         archive.CreateEntryFromFile(logFile, Path.GetFileName(logFile));
                     }
+
 
                     // Config 
                     if (File.Exists(Paths.ConfigFilePath))
@@ -108,6 +106,12 @@ namespace Playnite
                     var diagPath = Path.Combine(diagTemp, "dxdiag.txt");
                     Process.Start("dxdiag", "/dontskip /whql:off /t " + diagPath).WaitForExit();
                     archive.CreateEntryFromFile(diagPath, Path.GetFileName(diagPath));
+
+                    // Uninstall regkey export
+                    var regKeyPath = Path.Combine(diagTemp, "uninstall.json");
+                    var programs = Programs.GetUnistallProgramsList();
+                    File.WriteAllText(regKeyPath, JsonConvert.SerializeObject(programs, Formatting.Indented));
+                    archive.CreateEntryFromFile(regKeyPath, Path.GetFileName(regKeyPath));
                 }
             }
         }
