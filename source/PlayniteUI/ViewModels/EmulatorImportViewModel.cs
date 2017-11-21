@@ -251,8 +251,6 @@ namespace PlayniteUI.ViewModels
                 if (!string.IsNullOrEmpty(path))
                 {
                     SearchEmulators(path);
-                    // TODO
-                    //ListEmulators.ScrollIntoView(Model.EmulatorList.Count == 0 ? null : Model.EmulatorList.Last());
                 }
             });
         }
@@ -265,8 +263,6 @@ namespace PlayniteUI.ViewModels
                 if (!string.IsNullOrEmpty(path))
                 {
                     SearchGames(path, profile);
-                    // TODO
-                    //ListGames.ScrollIntoView(Model.GamesList.Count == 0 ? null : Model.GamesList.Last());
                 }
             });
         }
@@ -287,7 +283,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((args) =>
             {
-                VerifyAvailableEmulators();
+                VerifyAvailableEmulators(new PlatformsViewModel(database, new PlatformsWindowFactory(), dialogs, resources));
             });
         }
 
@@ -528,7 +524,7 @@ namespace PlayniteUI.ViewModels
             System.Diagnostics.Process.Start(url);
         }
 
-        public void VerifyAvailableEmulators()
+        public void VerifyAvailableEmulators(PlatformsViewModel platforms)
         {
             if (AvailableEmulators == null || AvailableEmulators.Count == 0)
             {
@@ -536,9 +532,11 @@ namespace PlayniteUI.ViewModels
                 {
                     if (dialogs.ShowMessage(resources.FindString("EmuWizardNoEmulatorForGamesWarning")
                         , "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {
-                        // TODO
-                        OnPropertyChanged("AvailableEmulators");
+                    {                       
+                        if (platforms.ShowDialog() == true)
+                        {
+                            OnPropertyChanged("AvailableEmulators");
+                        }
                     }
                 }
             }

@@ -677,8 +677,8 @@ namespace PlayniteUI.ViewModels
                     {
                         if (e.PropertyName == "Selected")
                         {
-                            OnPropertyChanged("SelectablePlatforms");
-                            selectedEmulatorProfile.Platforms = SelectablePlatforms.Where(b => b.Selected)?.Select(c => c.Id).ToList();
+                            OnPropertyChanged("SelectablePlatforms");                            
+                            selectedEmulatorProfile.Platforms = SelectablePlatforms?.Where(b => b.Selected)?.Select(c => c.Id).ToList();
                         }
                     };
 
