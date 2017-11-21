@@ -48,8 +48,6 @@
     </Style>
 
     <Style TargetType="pc:WindowBase">
-        <Setter Property="AllowsTransparency" Value="True" />
-        <Setter Property="WindowStyle" Value="None" />
         <Setter Property="Background" Value="{DynamicResource WindowBackgourndBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
