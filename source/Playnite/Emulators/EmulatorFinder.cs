@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.IO.Abstractions;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -41,14 +42,22 @@ namespace Playnite.Emulators
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static List<ScannedEmulator> SearchForEmulators(string path, List<EmulatorDefinition> definitions)
+        public static List<ScannedEmulator> SearchForEmulators(DirectoryInfoBase path, List<EmulatorDefinition> definitions)
         {
+            var watch = new System.Diagnostics.Stopwatch();
+            watch.Start();
+
             logger.Info($"Looking for emulators in {path}, using {definitions.Count} definitions.");
             var emulators = new Dictionary<EmulatorDefinition, List<ScannedEmulatorProfile>>();
 
-            var fileEnumerator = new SafeFileEnumerator(path, "*.*", SearchOption.AllDirectories);
+            var fileEnumerator = new SafeFileEnumerator(path, "*.exe", SearchOption.AllDirectories);
             foreach (var file in fileEnumerator)
             {
+                if (file.Attributes.HasFlag(FileAttributes.Directory))
+                {
+                    continue;
+                }
+
                 foreach (var definition in definitions)
                 {
                     foreach (var defProfile in definition.Profiles)
@@ -104,10 +113,18 @@ namespace Playnite.Emulators
                 result.Add(new ScannedEmulator(key.Name, emulators[key]));
             }
 
+            watch.Stop();
+            Console.WriteLine(watch.ElapsedMilliseconds /1000);
+
             return result;
         }
 
-        public static List<IGame> SearchForGames(string path, EmulatorProfile profile)
+        public static List<ScannedEmulator> SearchForEmulators(string path, List<EmulatorDefinition> definitions)
+        {
+            return SearchForEmulators(new DirectoryInfo(path), definitions);
+        }
+
+        public static List<IGame> SearchForGames(DirectoryInfoBase path, EmulatorProfile profile)
         {
             logger.Info($"Looking for games in {path}, using {profile.Name} emulator profile.");
             if (profile.ImageExtensions == null)
@@ -119,6 +136,11 @@ namespace Playnite.Emulators
             var fileEnumerator = new SafeFileEnumerator(path, "*.*", SearchOption.AllDirectories);
             foreach (var file in fileEnumerator)
             {
+                if (file.Attributes.HasFlag(FileAttributes.Directory))
+                {
+                    continue;
+                }
+
                 foreach (var extension in profile.ImageExtensions)
                 {
                     if (string.Equals(file.Extension.TrimStart('.'), extension, StringComparison.InvariantCultureIgnoreCase))
@@ -127,7 +149,7 @@ namespace Playnite.Emulators
                         {
                             Name = Path.GetFileNameWithoutExtension(file.Name),
                             IsoPath = file.FullName,
-                            InstallDirectory = Path.GetDirectoryName(file.FullName)                            
+                            InstallDirectory = Path.GetDirectoryName(file.FullName)
                         };
 
                         games.Add(newGame);
@@ -136,6 +158,11 @@ namespace Playnite.Emulators
             }
 
             return games;
+        }
+
+        public static List<IGame> SearchForGames(string path, EmulatorProfile profile)
+        {
+            return SearchForGames(new DirectoryInfo(path), profile);
         }
     }
 }
