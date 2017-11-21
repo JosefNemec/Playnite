@@ -20,6 +20,7 @@ namespace PlayniteUI.ViewModels
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
         private GameDatabase database;
+        private Settings origSettings;
 
         private string loginReuiredMessage = "Login Required";
         private string loginOKMessage = "OK";
@@ -194,6 +195,7 @@ namespace PlayniteUI.ViewModels
 
         public SettingsViewModel(GameDatabase database, Settings settings, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
+            origSettings = settings.CloneJson();
             Settings = settings;
             Settings.BeginEdit();
             this.database = database;
@@ -240,6 +242,37 @@ namespace PlayniteUI.ViewModels
 
             Settings.EndEdit();
             Settings.SaveSettings();
+
+            if (origSettings.DatabasePath != Settings.DatabasePath)
+            {
+                DatabaseLocationChanged = true;
+            }
+
+            if (!origSettings.SteamSettings.IsEqualJson(Settings.SteamSettings))
+            {
+                ProviderIntegrationChanged = true;
+            }
+
+            if (!origSettings.OriginSettings.IsEqualJson(Settings.OriginSettings))
+            {
+                ProviderIntegrationChanged = true;
+            }
+
+            if (!origSettings.GOGSettings.IsEqualJson(Settings.GOGSettings))
+            {
+                ProviderIntegrationChanged = true;
+            }
+
+            if (!origSettings.BattleNetSettings.IsEqualJson(Settings.BattleNetSettings))
+            {
+                ProviderIntegrationChanged = true;
+            }
+
+            if (!origSettings.UplaySettings.IsEqualJson(Settings.UplaySettings))
+            {
+                ProviderIntegrationChanged = true;
+            }
+
             window.Close(true);
         }
 

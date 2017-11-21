@@ -14,10 +14,7 @@ namespace PlayniteUI
     public class LeftClickContextMenuBehavior
     {
         private static readonly DependencyProperty LeftClickContextMenuProperty =
-          DependencyProperty.RegisterAttached(
-            "Enabled", typeof(bool), typeof(LeftClickContextMenuBehavior),
-            new PropertyMetadata(new PropertyChangedCallback(HandlePropertyChanged))
-          );
+            DependencyProperty.RegisterAttached("Enabled", typeof(bool), typeof(LeftClickContextMenuBehavior), new PropertyMetadata(new PropertyChangedCallback(HandlePropertyChanged)));
 
         public static bool GetEnabled(DependencyObject obj)
         {
@@ -29,11 +26,17 @@ namespace PlayniteUI
             obj.SetValue(LeftClickContextMenuProperty, value);
         }
 
-        private static void HandlePropertyChanged(
-          DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        private static void HandlePropertyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var control = (FrameworkElement)obj;
-            control.PreviewMouseLeftButtonUp += Control_PreviewMouseLeftButtonUp;
+            if ((bool)args.NewValue)
+            {
+                control.PreviewMouseLeftButtonUp += Control_PreviewMouseLeftButtonUp;
+            }
+            else
+            {
+                control.PreviewMouseLeftButtonUp -= Control_PreviewMouseLeftButtonUp;
+            }
         }
 
         private static void Control_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)

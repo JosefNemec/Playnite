@@ -757,7 +757,6 @@ namespace PlayniteUI.ViewModels
 
             if (model.ShowDialog() == true)
             {
-                // TODO
                 if (model.ProviderIntegrationChanged || model.DatabaseLocationChanged)
                 {
                     LoadGames(true, 0);
