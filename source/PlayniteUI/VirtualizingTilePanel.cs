@@ -551,17 +551,17 @@ namespace PlayniteUI
             var offset = GetTotalHeightForRow(row);
             var elem = visual as UIElement;
             
-            var offsetSize = offset + elem.DesiredSize.Height;
+            var offsetSize = offset + ItemHeight;
             var offsetBottom = _offset.Y + _viewport.Height;
             if (offset > _offset.Y && offsetSize < offsetBottom)
             {
                 return rectangle;
             }
-            else if (offset > _offset.Y && (offsetBottom - offset < elem.DesiredSize.Height))
+            else if (offset > _offset.Y && (offsetBottom - offset < ItemHeight))
             {
-                offset = _offset.Y + (elem.DesiredSize.Height - (offsetBottom - offset));
+                offset = _offset.Y + (ItemHeight - (offsetBottom - offset));
             }
-            else if (Math.Floor((offsetBottom - offset)) == Math.Floor(elem.DesiredSize.Height))
+            else if (Math.Floor((offsetBottom - offset)) == Math.Floor(ItemHeight))
             {
                 return rectangle;
             }
