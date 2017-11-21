@@ -15,10 +15,7 @@ namespace PlayniteUI
     public class ScrollToSelectedBehavior
     {
         private static readonly DependencyProperty ScrollToSelectedProperty =
-          DependencyProperty.RegisterAttached(
-            "Enabled", typeof(bool), typeof(ScrollToSelectedBehavior),
-            new PropertyMetadata(new PropertyChangedCallback(HandlePropertyChanged))
-          );
+            DependencyProperty.RegisterAttached("Enabled", typeof(bool), typeof(ScrollToSelectedBehavior), new PropertyMetadata(new PropertyChangedCallback(HandlePropertyChanged)));
 
         public static bool GetEnabled(DependencyObject obj)
         {
@@ -34,7 +31,14 @@ namespace PlayniteUI
           DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var control = (Selector)obj;
-            control.SelectionChanged += Control_SelectionChanged;
+            if ((bool)args.NewValue)
+            {
+                control.SelectionChanged += Control_SelectionChanged;
+            }
+            else
+            {
+                control.SelectionChanged -= Control_SelectionChanged;
+            }
         }
 
         private static void Control_SelectionChanged(object sender, SelectionChangedEventArgs e)

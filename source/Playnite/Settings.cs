@@ -21,7 +21,6 @@ using Playnite.Providers.BattleNet;
 
 namespace Playnite
 {
-    // TODO write test for IEditableObject
     public class Settings : INotifyPropertyChanged, IEditableObject
     {
         public class WindowPosition

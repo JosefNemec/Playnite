@@ -11,8 +11,7 @@ using System.Windows;
 using static PlayniteUI.ViewModels.InstalledGamesViewModel;
 
 namespace PlayniteUI.ViewModels
-{
-    // TODO make login services testable
+{    
     public class FirstTimeStartupViewModel : ObservableObject
     {
         public enum DbLocation
