@@ -19,7 +19,7 @@
 
     <controls:WindowBase.Resources>
         <pui:ListToStringConverter x:Key="ListToStringConverter" />
-        <pui:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
+        <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
         <pui:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <pui:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
@@ -238,7 +238,7 @@
                                     </Button.Style>
                                 </Button>
                             </StackPanel>
-                            <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource LiteDBImageToImageConverter}}"
+                            <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
                                        Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageIcon"
                                        DockPanel.Dock="Top" MaxHeight="64"
                                        AutomationProperties.HelpText="{Binding EditingGame.Icon, TargetNullValue=''}"/>
@@ -259,7 +259,7 @@
                             <Button Name="ButtonSelectImage" Content="Select Image" DockPanel.Dock="Top"
                                         Margin="0,0,0,5" HorizontalAlignment="Left"
                                         Command="{Binding SelectCoverCommand}"/>
-                            <Image Source="{Binding EditingGame.Image, Mode=OneWay, Converter={StaticResource LiteDBImageToImageConverter}}"
+                            <Image Source="{Binding EditingGame.Image, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
                                        Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
                                        DockPanel.Dock="Top"
                                        AutomationProperties.HelpText="{Binding EditingGame.Image, TargetNullValue=''}"/>
@@ -290,7 +290,7 @@
                                 <TextBox IsReadOnly="True" DockPanel.Dock="Left" Margin="5,0,0,0"
                                          Text="{Binding EditingGame.BackgroundImage}" />
                             </DockPanel>
-                            <Image Source="{Binding EditingGame.BackgroundImage, Mode=OneWay, Converter={StaticResource LiteDBImageToImageConverter}}"
+                            <Image Source="{Binding EditingGame.BackgroundImage, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
                                    Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant"
                                    DockPanel.Dock="Top"
                                    AutomationProperties.HelpText="{Binding EditingGame.Image, TargetNullValue=''}"/>

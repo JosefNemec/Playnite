@@ -85,6 +85,7 @@ namespace PlayniteUI
             }
 
             Database = new GameDatabase(AppSettings);
+            CustomImageStringToImageConverter.Database = Database;
             Settings.ConfigureLogger();
             Settings.ConfigureCef();
 

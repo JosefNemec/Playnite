@@ -210,7 +210,7 @@
     <Compile Include="Converters\IconToImageSourceConverter.cs" />
     <Compile Include="Converters\InvertableBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\ListToStringConverter.cs" />
-    <Compile Include="Converters\LiteDBImageToImageConverter.cs" />
+    <Compile Include="Converters\CustomImageStringToImageConverter.cs" />
     <Compile Include="Converters\SelectablePlatformsListToStringConverter.cs" />
     <Compile Include="Converters\SkinMediaPathConverter.cs" />
     <Compile Include="Converters\NegateConverter.cs" />

@@ -14,7 +14,7 @@
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <pui:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
+        <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
         <pui:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
         <pui:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
         <pui:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
@@ -62,7 +62,7 @@
     <Grid Visibility="{Binding ShowContent, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
         <Grid.Background>
             <ImageBrush Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Top" RenderOptions.BitmapScalingMode="Fant"
-                        ImageSource="{Binding BackgroundImage, IsAsync=True, Mode=OneWay, Converter={StaticResource LiteDBImageToImageConverter}}" />
+                        ImageSource="{Binding BackgroundImage, IsAsync=True, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}" />
         </Grid.Background>
 
         <DockPanel Margin="0,10,0,0">
@@ -70,8 +70,8 @@
                 <Image DockPanel.Dock="Left" Margin="20,0,0,0" Width="32" Height="32" RenderOptions.BitmapScalingMode="Fant">
                     <Image.Source>
                         <PriorityBinding>
-                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
-                            <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
+                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}" ConverterParameter="Icon"/>
+                            <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
                         </PriorityBinding>
                     </Image.Source>
                 </Image>

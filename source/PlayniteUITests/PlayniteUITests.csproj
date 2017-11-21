@@ -61,6 +61,7 @@
     <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -73,7 +74,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Converters\ImageUrlToImageSourceConverterTests.cs" />
+    <Compile Include="Converters\CustomImageStringToImageConverterTests.cs" />
+    <Compile Include="PlayniteUITests.cs" />
     <Compile Include="SkinsTests.cs" />
     <Compile Include="GamesEditorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +93,12 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\PlayniteUI\Images\applogo.png">
+      <Link>Resources\Images\applogo.png</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

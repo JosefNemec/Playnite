@@ -13,24 +13,19 @@ using Playnite;
 
 namespace PlayniteUI
 {
-    public class LiteDBImageToImageConverter : IValueConverter
+    public class CustomImageStringToImageConverter : IValueConverter
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-
-        public static bool IsCacheEnabled
+                
+        public static GameDatabase Database
         {
             get; set;
-        } = false;
+        }
 
         public static Dictionary<string, BitmapImage> Cache
         {
             get; set;
         } = new Dictionary<string, BitmapImage>();
-
-        public static void ClearCache()
-        {
-            Cache.Clear();
-        }
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
@@ -75,35 +70,29 @@ namespace PlayniteUI
                 return BitmapExtensions.BitmapFromFile(imageId);
             }
 
-            if (IsCacheEnabled && Cache.ContainsKey(imageId))
+            try
             {
-                return Cache[imageId];
-            }
-            else
-            {
-                try
+                if (Database == null)
                 {
-                    var imageData = App.Database.GetFileImage(imageId);
-                    if (imageData == null)
-                    {
-                        logger.Warn("Image not found in database: " + imageId);
-                        return DependencyProperty.UnsetValue;
-                    }
-                    else
-                    {
-                        if (IsCacheEnabled)
-                        {
-                            Cache.Add(imageId, imageData);
-                        }
-
-                        return imageData;
-                    }
-                }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(exc, "Failed to load image from database.");
+                    logger.Error("Cannot load database image, database not found.");
                     return DependencyProperty.UnsetValue;
                 }
+
+                var imageData = Database.GetFileImage(imageId);
+                if (imageData == null)
+                {
+                    logger.Warn("Image not found in database: " + imageId);
+                    return DependencyProperty.UnsetValue;
+                }
+                else
+                {
+                    return imageData;
+                }
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to load image from database.");
+                return DependencyProperty.UnsetValue;
             }
         }
 

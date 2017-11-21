@@ -31,7 +31,7 @@
                 <pui:EnumConverter x:Key="EnumConverter" />
                 <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
                 <pui:BidirectionalEnumAndNumberConverter x:Key="BidirectionalEnumAndNumberConverter" />
-                <pui:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
+                <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
                 <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
                 <pui:ListToStringConverter x:Key="ListToStringConverter" />
             </Grid.Resources>
@@ -423,8 +423,8 @@
                                 Visibility="{Binding Path=Data.AppSettings.ShowIconsOnList, Source={StaticResource Proxy}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <Image.Source>
                                                         <PriorityBinding>
-                                                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
-                                                            <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
+                                                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}" ConverterParameter="Icon"/>
+                                                            <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
                                                         </PriorityBinding>
                                                     </Image.Source>
                                                 </Image>
@@ -480,8 +480,8 @@
                                                                     <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
                                                                         <Image.Source>
                                                                             <PriorityBinding>
-                                                                                <Binding Path="Image" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
-                                                                                <Binding Path="DefaultImage" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
+                                                                                <Binding Path="Image" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
+                                                                                <Binding Path="DefaultImage" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
                                                                             </PriorityBinding>
                                                                         </Image.Source>
                                                                     </Image>
