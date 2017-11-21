@@ -29,6 +29,7 @@ namespace PlayniteUI.ViewModels
         private INotificationFactory notifications;
         private GameDatabase database;
         private bool ignoreCloseActions = false;
+        private readonly SynchronizationContext context;
 
         private GameViewEntry selectedGame;
         public GameViewEntry SelectedGame
@@ -106,7 +107,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressStatus = value;
-                OnPropertyChanged("ProgressStatus");
+                context.Post((a) => OnPropertyChanged("ProgressStatus"), null);
             }
         }
 
@@ -117,7 +118,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressValue = value;
-                OnPropertyChanged("ProgressValue");
+                context.Post((a) => OnPropertyChanged("ProgressValue"), null);
             }
         }
 
@@ -128,7 +129,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressTotal = value;
-                OnPropertyChanged("ProgressTotal");
+                context.Post((a) => OnPropertyChanged("ProgressTotal"), null);
             }
         }
 
@@ -139,7 +140,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressVisible = value;
-                OnPropertyChanged("ProgressVisible");
+                context.Post((a) => OnPropertyChanged("ProgressVisible"), null );
             }
         }
 
@@ -215,7 +216,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                LoadGames(true, 0);
+                LoadGames(true);
             }, (a) => GameAdditionAllowed);
         }
 
@@ -349,6 +350,7 @@ namespace PlayniteUI.ViewModels
             INotificationFactory notifications,
             Settings settings)
         {
+            context = SynchronizationContext.Current;
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
@@ -413,6 +415,11 @@ namespace PlayniteUI.ViewModels
         public void ShutdownApp()
         {
             Application.Current.Shutdown();
+        }
+
+        public void LoadGames(bool updateLibrary)
+        {
+            LoadGames(updateLibrary, 0);
         }
 
         public async void LoadGames(bool updateLibrary, ulong steamImportCatId)
@@ -759,7 +766,7 @@ namespace PlayniteUI.ViewModels
             {
                 if (model.ProviderIntegrationChanged || model.DatabaseLocationChanged)
                 {
-                    LoadGames(true, 0);
+                    LoadGames(true);
                 }
             }
             else
