@@ -548,9 +548,7 @@ namespace PlayniteUI
             var index = GeneratorContainer.IndexFromContainer(visual);
             var perRow = CalculateChildrenPerRow(_extent);
             var row = GetItemRow(index, perRow);
-            var offset = GetTotalHeightForRow(row);
-            var elem = visual as UIElement;
-            
+            var offset = GetTotalHeightForRow(row);            
             var offsetSize = offset + ItemHeight;
             var offsetBottom = _offset.Y + _viewport.Height;
             if (offset > _offset.Y && offsetSize < offsetBottom)

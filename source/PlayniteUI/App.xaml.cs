@@ -42,6 +42,12 @@ namespace PlayniteUI
             private set;
         }
 
+        public static GamesEditor GamesEditor
+        {
+            get;
+            private set;
+        }
+
         public static Settings AppSettings
         {
             get;
@@ -85,6 +91,7 @@ namespace PlayniteUI
             }
 
             Database = new GameDatabase(AppSettings);
+            GamesEditor = new GamesEditor(Database);
             CustomImageStringToImageConverter.Database = Database;
             Settings.ConfigureLogger();
             Settings.ConfigureCef();
@@ -244,7 +251,7 @@ namespace PlayniteUI
                     }
                     else
                     {
-                        GamesEditor.Instance.PlayGame(game);
+                        GamesEditor.PlayGame(game);
                     }
 
                     break;
@@ -345,7 +352,8 @@ namespace PlayniteUI
                 new DialogsFactory(),
                 new ResourceProvider(),
                 new NotificationFactory(),
-                AppSettings);
+                AppSettings,
+                GamesEditor);
             mainModel.ShowView();
             Current.MainWindow = window.Window;
             mainModel.LoadGames(AppSettings.UpdateLibStartup, steamCatImportId);

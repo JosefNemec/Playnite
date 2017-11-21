@@ -71,17 +71,17 @@ namespace PlayniteUI.Controls
             var game = entry.Game;
             if (game.IsInstalled)
             {
-                GamesEditor.Instance.PlayGame(game);
+                App.GamesEditor.PlayGame(game);
             }
             else
             {
                 if (game.Provider == Provider.Custom)
                 {
-                    GamesEditor.Instance.EditGame(game);
+                    App.GamesEditor.EditGame(game);
                 }
                 else
                 {
-                    GamesEditor.Instance.InstallGame(game);
+                    App.GamesEditor.InstallGame(game);
                 }
             }
         }

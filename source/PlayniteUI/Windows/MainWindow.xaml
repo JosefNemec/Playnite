@@ -97,7 +97,7 @@
                     </ContextMenu.Resources>
                     <ContextMenu.ItemsSource>
                         <CompositeCollection>
-                            <CollectionContainer Collection="{Binding Path=LastGames, Source={x:Static pui:GamesEditor.Instance}}" />
+                            <CollectionContainer Collection="{Binding Path=LastGames, Source={x:Static pui:App.GamesEditor}}" />
                             <Separator Style="{StaticResource {x:Type Separator}}"/>
                             <MenuItem Style="{StaticResource OpenUIItem}" />
                             <MenuItem Header="Open 3rd Party Client" ItemsSource="{Binding ThirdPartyTools}"

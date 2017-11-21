@@ -28,6 +28,7 @@ namespace PlayniteUI.ViewModels
         private IResourceProvider resources;
         private INotificationFactory notifications;
         private GameDatabase database;
+        GamesEditor gamesEditor;
         private bool ignoreCloseActions = false;
         private readonly SynchronizationContext context;
 
@@ -199,7 +200,7 @@ namespace PlayniteUI.ViewModels
             {
                 if (game != null)
                 {
-                    GamesEditor.Instance.PlayGame(game);
+                    gamesEditor.PlayGame(game);
                 }
             });
         }
@@ -348,7 +349,8 @@ namespace PlayniteUI.ViewModels
             IDialogsFactory dialogs,
             IResourceProvider resources,
             INotificationFactory notifications,
-            Settings settings)
+            Settings settings,
+            GamesEditor gamesEditor)
         {
             context = SynchronizationContext.Current;
             this.window = window;
@@ -356,6 +358,7 @@ namespace PlayniteUI.ViewModels
             this.resources = resources;
             this.notifications = notifications;
             this.database = database;
+            this.gamesEditor = gamesEditor;
             AppSettings = settings;
 
             try
@@ -458,7 +461,7 @@ namespace PlayniteUI.ViewModels
 
             try
             {
-                GamesEditor.Instance.UpdateJumpList();
+                gamesEditor.UpdateJumpList();
             }
             catch (Exception exc)
             {
@@ -731,7 +734,7 @@ namespace PlayniteUI.ViewModels
             };
 
             database.AddGame(newGame);
-            if (GamesEditor.Instance.EditGame(newGame) == true)
+            if (gamesEditor.EditGame(newGame) == true)
             {
                 var viewEntry = GamesView.Items.First(a => a.Game.ProviderId == newGame.ProviderId);
                 SelectedGame = viewEntry;

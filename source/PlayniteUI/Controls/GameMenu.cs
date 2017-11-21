@@ -42,6 +42,7 @@ namespace PlayniteUI.Controls
         }
 
         private IResourceProvider resources;
+        private GamesEditor editor;
 
         public IGame Game
         {
@@ -102,12 +103,17 @@ namespace PlayniteUI.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(GameMenu), new FrameworkPropertyMetadata(typeof(GameMenu)));
         }
 
-        public GameMenu()
+        public GameMenu() : this(App.GamesEditor)
         {
+        }
+
+        public GameMenu(GamesEditor editor)
+        {
+            this.editor = editor;
             resources = new ResourceProvider();
             DataContextChanged += GameMenu_DataContextChanged;
             InitializeItems();
-        }        
+        }
 
         private void GameMenu_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -128,7 +134,7 @@ namespace PlayniteUI.Controls
 
                 favoriteItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.SetFavoriteGames(Games, true);
+                    editor.SetFavoriteGames(Games, true);
                 };
 
                 Items.Add(favoriteItem);
@@ -140,7 +146,7 @@ namespace PlayniteUI.Controls
 
                 unFavoriteItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.SetFavoriteGames(Games, false);
+                    editor.SetFavoriteGames(Games, false);
                 };
 
                 Items.Add(unFavoriteItem);
@@ -153,7 +159,7 @@ namespace PlayniteUI.Controls
 
                 hideItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.SetHideGames(Games, true);
+                    editor.SetHideGames(Games, true);
                 };
 
                 Items.Add(hideItem);
@@ -165,7 +171,7 @@ namespace PlayniteUI.Controls
 
                 unHideItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.SetHideGames(Games, false);
+                    editor.SetHideGames(Games, false);
                 };
 
                 Items.Add(unHideItem);
@@ -178,7 +184,7 @@ namespace PlayniteUI.Controls
 
                 editItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.EditGames(Games);
+                    editor.EditGames(Games);
                 };
 
                 Items.Add(editItem);
@@ -191,7 +197,7 @@ namespace PlayniteUI.Controls
 
                 categoryItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.SetGamesCategories(Games);
+                    editor.SetGamesCategories(Games);
                 };
 
                 Items.Add(categoryItem);
@@ -205,7 +211,7 @@ namespace PlayniteUI.Controls
 
                 removeItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.RemoveGames(Games);
+                    editor.RemoveGames(Games);
                 };
 
                 Items.Add(removeItem);
@@ -226,7 +232,7 @@ namespace PlayniteUI.Controls
 
                         playItem.Click += (s, e) =>
                         {
-                            GamesEditor.Instance.PlayGame(Game);
+                            editor.PlayGame(Game);
                         };
 
                         Items.Add(playItem);
@@ -242,7 +248,7 @@ namespace PlayniteUI.Controls
 
                         installItem.Click += (s, e) =>
                         {
-                            GamesEditor.Instance.InstallGame(Game);
+                            editor.InstallGame(Game);
                         };
 
                         Items.Add(installItem);
@@ -267,7 +273,7 @@ namespace PlayniteUI.Controls
 
                         taskItem.Click += (s, e) =>
                         {
-                            GamesEditor.Instance.ActivateAction(Game, task);
+                            editor.ActivateAction(Game, task);
                         };
 
                         Items.Add(taskItem);
@@ -286,7 +292,7 @@ namespace PlayniteUI.Controls
 
                     locationItem.Click += (s, e) =>
                     {
-                        GamesEditor.Instance.OpenGameLocation(Game);
+                        editor.OpenGameLocation(Game);
                     };
 
                     Items.Add(locationItem);
@@ -300,7 +306,7 @@ namespace PlayniteUI.Controls
 
                 shortcutItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.CreateShortcut(Game);
+                    editor.CreateShortcut(Game);
                 };
 
                 Items.Add(shortcutItem);
@@ -314,7 +320,7 @@ namespace PlayniteUI.Controls
 
                 favoriteItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.ToggleFavoriteGame(Game);
+                    editor.ToggleFavoriteGame(Game);
                 };
 
                 Items.Add(favoriteItem);
@@ -327,7 +333,7 @@ namespace PlayniteUI.Controls
 
                 hideItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.ToggleHideGame(Game);
+                    editor.ToggleHideGame(Game);
                 };
 
                 Items.Add(hideItem);
@@ -340,7 +346,7 @@ namespace PlayniteUI.Controls
 
                 editItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.EditGame(Game);
+                    editor.EditGame(Game);
                 };
 
                 Items.Add(editItem);
@@ -353,7 +359,7 @@ namespace PlayniteUI.Controls
 
                 categoryItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.SetGameCategories(Game);
+                    editor.SetGameCategories(Game);
                 };
 
                 Items.Add(categoryItem);
@@ -367,7 +373,7 @@ namespace PlayniteUI.Controls
 
                 removeItem.Click += (s, e) =>
                 {
-                    GamesEditor.Instance.RemoveGame(Game);
+                    editor.RemoveGame(Game);
                 };
 
                 Items.Add(removeItem);
@@ -382,7 +388,7 @@ namespace PlayniteUI.Controls
 
                     uninstallItem.Click += (s, e) =>
                     {
-                        GamesEditor.Instance.UnInstallGame(Game);
+                        editor.UnInstallGame(Game);
                     };
 
                     Items.Add(uninstallItem);

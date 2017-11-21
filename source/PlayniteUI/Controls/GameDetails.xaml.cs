@@ -68,13 +68,13 @@ namespace PlayniteUI.Controls
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
         {
             var game = (GameViewEntry)DataContext;
-            GamesEditor.Instance.PlayGame(game.Game);
+            App.GamesEditor.PlayGame(game.Game);
         }
 
         private void ButtonInstall_Click(object sender, RoutedEventArgs e)
         {
             var game = (GameViewEntry)DataContext;
-            GamesEditor.Instance.InstallGame(game.Game);
+            App.GamesEditor.InstallGame(game.Game);
         }
 
         private void ButtonMore_Click(object sender, RoutedEventArgs e)
