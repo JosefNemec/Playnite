@@ -174,13 +174,27 @@
                     </CheckBox.Style>
                 </CheckBox>
 
-                <Grid Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-                  DockPanel.Dock="Left" Margin="40,0,140,0">
-                    <ProgressBar Height="25" Maximum="{Binding ProgressTotal}"
+                <Grid DockPanel.Dock="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="1.5*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          Grid.Column="1">
+                        <ProgressBar Height="27" Maximum="{Binding ProgressTotal}"
                              Value="{Binding ProgressValue}" />
-                    <TextBlock Margin="10,0,0,0" Foreground="{StaticResource TextBrush}"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding ProgressStatus}" />
+                        <TextBlock Margin="10,0,0,0" Foreground="{StaticResource TextBrush}"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Text="{Binding ProgressStatus}" />
+                    </Grid>
+                    <Button Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{Binding CancelProgressCommand}"
+                            Content="{DynamicResource CancelLabel}"
+                            Height="27" Grid.Column="2" Margin="10,0,0,0"
+                            WindowChrome.IsHitTestVisibleInChrome="True"/>
                 </Grid>
             </DockPanel>
             

@@ -343,6 +343,14 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<object> CancelProgressCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                CancelProgress();
+            }, (a) => !GamesLoaderHandler.CancelToken.IsCancellationRequested);
+        }
+
         public MainViewModel(
             GameDatabase database,
             IWindowFactory window,
@@ -850,6 +858,12 @@ namespace PlayniteUI.ViewModels
             window.Close();
             ignoreCloseActions = false;
             Dispose();
+        }
+
+        public async void CancelProgress()
+        {
+            GamesLoaderHandler.CancelToken.Cancel();
+            await GamesLoaderHandler.ProgressTask;
         }
 
         public void Dispose()
