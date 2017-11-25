@@ -20,6 +20,7 @@ using System.Windows.Threading;
 using Playnite.Providers.Uplay;
 using Playnite.Providers.BattleNet;
 using Playnite.Emulators;
+using System.Security.Cryptography;
 
 namespace Playnite.Database
 {
@@ -343,6 +344,7 @@ namespace Playnite.Database
                 //     WorkingDirectory:
                 //
                 // Add: EmulatorProfile into game's PlayTask when using emulator
+                // Add: checksum to file metadata
                 // Convert: Platforms and Emulators Id from int to ObjectId
                 logger.Info("Migrating database from 1 to 2 version.");
 
@@ -440,6 +442,16 @@ namespace Playnite.Database
                 Database.GetCollection<IGame>("games").EnsureIndex(a => a.Id);
                 Database.GetCollection<Platform>("platforms").EnsureIndex(a => a.Id);
 
+                foreach (var file in Database.FileStorage.FindAll().ToList())
+                {
+                    using (var fStream = file.OpenRead())
+                    {
+                        var hash = FileSystem.GetMD5(fStream);
+                        file.Metadata.Add("checksum", hash);                        
+                        Database.FileStorage.SetMetadata(file.Id, file.Metadata);
+                    }
+                }
+
                 Database.Engine.UserVersion = 2;
             }
         }
@@ -450,6 +462,10 @@ namespace Playnite.Database
             logger.Info("Opening db " + path);
             CloseDatabase();
             Database = new LiteDatabase(path);
+
+            // To force litedb to try to open file, should throw exceptuion if something is wrong with db file
+            Database.GetCollectionNames();
+
             if (dbExists)
             {
                 MigrateDatabase();
@@ -458,9 +474,6 @@ namespace Playnite.Database
             {
                 Database.Engine.UserVersion = DBVersion;
             }
-
-            // To force litedb to try to open file, should throw exceptuion if something is wrong with db file
-            Database.GetCollectionNames();                       
 
             GamesCollection = Database.GetCollection<IGame>("games");
             PlatformsCollection = Database.GetCollection<Platform>("platforms");
@@ -726,7 +739,31 @@ namespace Playnite.Database
             }
         }
 
-        public void AddImage(string id, string name, byte[] data)
+        public string AddFileNoDuplicate(string id, string name, byte[] data)
+        {
+            CheckDbState();
+
+            lock (fileLock)
+            {
+                using (var stream = new MemoryStream(data))
+                {
+                    var hash = FileSystem.GetMD5(stream);
+                    var dbFile = Database.FileStorage.FindAll().FirstOrDefault(a => a.Metadata.ContainsKey("checksum") && a.Metadata["checksum"].AsString == hash);
+                    if (dbFile != null)
+                    {
+                        return dbFile.Id;
+                    }
+                    
+                    stream.Seek(0, SeekOrigin.Begin);
+                    var file = Database.FileStorage.Upload(id, name, stream);
+                    file.Metadata.Add("checksum", hash);
+                    Database.FileStorage.SetMetadata(id, file.Metadata);
+                    return file.Id;
+                }
+            }
+        }
+
+        public void AddFile(string id, string name, byte[] data)
         {
             CheckDbState();
 
@@ -735,6 +772,10 @@ namespace Playnite.Database
                 using (var stream = new MemoryStream(data))
                 {
                     var file = Database.FileStorage.Upload(id, name, stream);
+                    stream.Seek(0, SeekOrigin.Begin);
+                    var hash = FileSystem.GetMD5(stream);
+                    file.Metadata.Add("checksum", hash);                    
+                    Database.FileStorage.SetMetadata(id, file.Metadata);
                 }
             }
         }
@@ -776,6 +817,8 @@ namespace Playnite.Database
 
         public LiteFileInfo GetFile(string id)
         {
+            CheckDbState();
+
             lock (fileLock)
             {
                 return Database.FileStorage.FindById(id);
@@ -809,6 +852,10 @@ namespace Playnite.Database
             CheckDbState();
 
             var file = Database.FileStorage.FindById(id);
+            if (file == null)
+            {
+                throw new Exception($"File {id} not found in database.");
+            }
 
             lock (fileLock)
             {
@@ -829,7 +876,6 @@ namespace Playnite.Database
             }
 
             CheckDbState();
-            GamesCollection = Database.GetCollection<IGame>("games");
 
             var games = GamesCollection.Find(a => (a.Icon == id || a.Image == id || a.BackgroundImage == id) && a.Id != game.Id);
             if (games.Count() == 0)
@@ -881,14 +927,14 @@ namespace Playnite.Database
 
             if (metadata.Icon != null)
             {
-                AddImage(metadata.Icon.Path, metadata.Icon.Name, metadata.Icon.Data);
-                game.Icon = metadata.Icon.Path;
+                var path = AddFileNoDuplicate(metadata.Icon.Path, metadata.Icon.Name, metadata.Icon.Data);
+                game.Icon = path;
             }
 
             if (metadata.Image != null)
             {
-                AddImage(metadata.Image.Path, metadata.Image.Name, metadata.Image.Data);
-                game.Image = metadata.Image.Path;
+                var path = AddFileNoDuplicate(metadata.Image.Path, metadata.Image.Name, metadata.Image.Data);
+                game.Image = path;
             }
 
             UpdateGameInDatabase(game);

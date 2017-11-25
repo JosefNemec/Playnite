@@ -7,6 +7,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using NLog;
+using System.Security.Cryptography;
+
 namespace Playnite
 {
     public static class FileSystem
@@ -61,6 +63,12 @@ namespace Playnite
         public static string GetSafeFilename(string filename)
         {
             return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
+        }
+
+        public static string GetMD5(Stream stream)
+        {
+            var md5 = MD5.Create();
+            return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
         }
     }
 }

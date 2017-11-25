@@ -183,9 +183,8 @@ namespace PlayniteUI
                         {
                             if (game.Icon != null)
                             {
-                                var iconId = "images/custom/" + game.Icon.Name;
-                                Database.AddImage(iconId, game.Icon.Name, game.Icon.Data);
-                                game.Game.Icon = iconId;
+                                var iconId = "images/custom/" + game.Icon.Name;                                
+                                game.Game.Icon = Database.AddFileNoDuplicate(iconId, game.Icon.Name, game.Icon.Data); ;
                             }
 
                             Database.AddGame(game.Game);

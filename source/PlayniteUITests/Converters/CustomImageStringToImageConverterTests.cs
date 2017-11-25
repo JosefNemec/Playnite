@@ -54,7 +54,7 @@ namespace PlayniteUITests.Converters
             using (db.OpenDatabase(path))
             {
                 var image = "image.png";
-                db.AddImage(image, image, File.ReadAllBytes(file));
+                db.AddFile(image, image, File.ReadAllBytes(file));
                 CustomImageStringToImageConverter.Database = db;
                 var result = converter.Convert(image, null, null, CultureInfo.CurrentCulture);
                 Assert.AreEqual(typeof(BitmapImage), result.GetType());

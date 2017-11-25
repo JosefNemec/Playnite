@@ -179,6 +179,11 @@ namespace PlayniteTests.Database
                     game.AsDocument["_type"] = "Playnite.Models.Game, Playnite";
                     genericCollection.Update(game.AsDocument);
                 }
+
+                var file = Playnite.PlayniteTests.CreateFakeFile();
+                database.FileStorage.Upload(file.Name, file.Path);
+                file = Playnite.PlayniteTests.CreateFakeFile();
+                database.FileStorage.Upload(file.Name, file.Path);
             }
 
             var db = new GameDatabase(null);
@@ -217,6 +222,14 @@ namespace PlayniteTests.Database
                 Assert.IsNull(games[1].PlatformId);
                 Assert.IsNull(games[1].PlayTask.EmulatorId);
                 Assert.IsNull(games[1].PlayTask.EmulatorProfileId);
+
+                var files = db.Database.FileStorage.FindAll().ToList();
+                Assert.AreEqual(2, files.Count);
+                foreach (var file in files)
+                {
+                    Assert.IsTrue(file.Metadata.ContainsKey("checksum"));
+                    Assert.IsFalse(string.IsNullOrEmpty(file.Metadata["checksum"].AsString));
+                }
             }
         }
     }

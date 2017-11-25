@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.Database;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,6 +30,18 @@ namespace PlayniteUITests
 
                 return path;
             }
+        }
+
+        private static Random random = new Random();
+
+        public static FileDefinition CreateFakeFile()
+        {
+            var file = new byte[20];
+            random.NextBytes(file);
+            var fileName = Guid.NewGuid().ToString() + ".file";
+            var filePath = Path.Combine(TempPath, fileName);
+            File.WriteAllBytes(filePath, file);
+            return new FileDefinition(filePath, fileName, file);
         }
     }
 }

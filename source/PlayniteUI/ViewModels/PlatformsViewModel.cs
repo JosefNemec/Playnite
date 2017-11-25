@@ -402,7 +402,7 @@ namespace PlayniteUI.ViewModels
                     var extension = System.IO.Path.GetExtension(platform.Icon);
                     var name = Guid.NewGuid() + extension;
                     var id = string.Format(fileIdMask, platform.Id, name);
-                    database.AddImage(id, name, File.ReadAllBytes(platform.Icon));
+                    database.AddFile(id, name, File.ReadAllBytes(platform.Icon));
 
                     if (Paths.AreEqual(System.IO.Path.GetDirectoryName(platform.Icon), Paths.TempPath))
                     {
@@ -422,7 +422,7 @@ namespace PlayniteUI.ViewModels
                     var extension = System.IO.Path.GetExtension(platform.Cover);
                     var name = Guid.NewGuid() + extension;
                     var id = string.Format(fileIdMask, platform.Id, name);
-                    database.AddImage(id, name, File.ReadAllBytes(platform.Cover));
+                    database.AddFile(id, name, File.ReadAllBytes(platform.Cover));
                     platform.Cover = id;
                 }
             }

@@ -1071,13 +1071,13 @@ namespace PlayniteUI.ViewModels
                 var iconPath = EditingGame.Icon;
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(iconPath);
                 var iconId = "images/custom/" + fileName;
-                database.AddImage(iconId, fileName, File.ReadAllBytes(iconPath));
+                iconId = database.AddFileNoDuplicate(iconId, fileName, File.ReadAllBytes(iconPath));
 
                 if (Games != null)
                 {
                     foreach (var game in Games)
                     {
-                        if (!string.IsNullOrEmpty(game.Icon))
+                        if (!string.IsNullOrEmpty(game.Icon) && game.Icon != iconId)
                         {
                             database.DeleteImageSafe(game.Icon, game);
                         }
@@ -1087,7 +1087,7 @@ namespace PlayniteUI.ViewModels
                 }
                 else
                 {
-                    if (!string.IsNullOrEmpty(Game.Icon))
+                    if (!string.IsNullOrEmpty(Game.Icon) && Game.Icon != iconId)
                     {
                         database.DeleteImageSafe(Game.Icon, Game);
                     }
@@ -1106,13 +1106,13 @@ namespace PlayniteUI.ViewModels
                 var imagePath = EditingGame.Image;
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
                 var imageId = "images/custom/" + fileName;
-                database.AddImage(imageId, fileName, File.ReadAllBytes(imagePath));
+                imageId = database.AddFileNoDuplicate(imageId, fileName, File.ReadAllBytes(imagePath));
 
                 if (Games != null)
                 {
                     foreach (var game in Games)
                     {
-                        if (!string.IsNullOrEmpty(game.Image))
+                        if (!string.IsNullOrEmpty(game.Image) && game.Image != imageId)
                         {
                             database.DeleteImageSafe(game.Image, game);
                         }
@@ -1122,7 +1122,7 @@ namespace PlayniteUI.ViewModels
                 }
                 else
                 {
-                    if (!string.IsNullOrEmpty(Game.Image))
+                    if (!string.IsNullOrEmpty(Game.Image) && Game.Image != imageId)
                     {
                         database.DeleteImageSafe(Game.Image, Game);
                     }
@@ -1144,7 +1144,7 @@ namespace PlayniteUI.ViewModels
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.BackgroundImage) && game.BackgroundImage.StartsWith("images/custom/"))
+                            if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
                             {
                                 database.DeleteImageSafe(game.BackgroundImage, game);
                             }
@@ -1154,7 +1154,7 @@ namespace PlayniteUI.ViewModels
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.BackgroundImage) && game.BackgroundImage.StartsWith("images/custom/"))
+                        if (!string.IsNullOrEmpty(Game.BackgroundImage) && !Game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
                         {
                             database.DeleteImageSafe(Game.BackgroundImage, Game);
                         }
@@ -1167,13 +1167,15 @@ namespace PlayniteUI.ViewModels
                     var imagePath = EditingGame.BackgroundImage;
                     var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
                     var imageId = "images/custom/" + fileName;
-                    database.AddImage(imageId, fileName, File.ReadAllBytes(imagePath));
+                    imageId = database.AddFileNoDuplicate(imageId, fileName, File.ReadAllBytes(imagePath));
 
                     if (Games != null)
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.BackgroundImage) && game.BackgroundImage.StartsWith("images/custom/"))
+                            if (!string.IsNullOrEmpty(game.BackgroundImage) &&
+                                !game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase) &&
+                                game.BackgroundImage != imageId)
                             {
                                 database.DeleteImageSafe(game.BackgroundImage, game);
                             }
@@ -1183,7 +1185,9 @@ namespace PlayniteUI.ViewModels
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.BackgroundImage) && game.BackgroundImage.StartsWith("images/custom/"))
+                        if (!string.IsNullOrEmpty(Game.BackgroundImage) &&
+                            !Game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase) &&
+                            Game.BackgroundImage != imageId)
                         {
                             database.DeleteImageSafe(Game.BackgroundImage, Game);
                         }

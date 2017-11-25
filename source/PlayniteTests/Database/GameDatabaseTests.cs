@@ -93,7 +93,7 @@ namespace PlayniteTests.Database
             var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {                
-                db.AddImage("testimage", "testimage.png", new byte[] { 0 });
+                db.AddFile("testimage", "testimage.png", new byte[] { 0 });
                 Assert.AreEqual(1, db.Database.FileStorage.FindAll().Count());
 
                 db.AddGame(new Game()
@@ -132,8 +132,8 @@ namespace PlayniteTests.Database
             var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
-                db.AddImage("testimage", "testimage.png", new byte[] { 0 });
-                db.AddImage("testicon", "testicon.png", new byte[] { 0 });
+                db.AddFile("testimage", "testimage.png", new byte[] { 0 });
+                db.AddFile("testicon", "testicon.png", new byte[] { 0 });
                 Assert.AreEqual(2, db.Database.FileStorage.FindAll().Count());
 
                 var game = new Game()

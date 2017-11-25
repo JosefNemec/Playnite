@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="CloneObjectTests.cs" />
     <Compile Include="Converters\ObjectIdJsonConverterTests.cs" />
+    <Compile Include="Database\GameDatabaseFileTests.cs" />
     <Compile Include="Database\GameDatabaseMigrationTests.cs" />
     <Compile Include="Database\GameDatabasePlatformsTests.cs" />
     <Compile Include="Database\GameDatabaseEventTests.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="PathsTests.cs" />
     <Compile Include="SafeFileEnumeratorTests.cs" />
     <Compile Include="SettingsTests.cs" />
+    <Compile Include="TestsSetupClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Playnite\Playnite.csproj">
@@ -158,6 +160,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Resources\GOG\library_unreleased.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\PlayniteUI\Images\applogo.png">
+      <Link>Resources\Images\applogo.png</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
