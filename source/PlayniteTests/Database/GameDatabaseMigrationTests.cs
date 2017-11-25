@@ -7,6 +7,7 @@ using Playnite.Models;
 using Playnite.Providers.Steam;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -88,8 +89,9 @@ namespace PlayniteTests.Database
                 }
             }
 
-            var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            var db = new GameDatabase(null, path);
+            db.MigrateDatabase();
+            using (db.OpenDatabase())
             {
                 Assert.IsTrue(db.GamesCollection.Count() == 3);
                 var migratedGames = db.GamesCollection.FindAll().ToList();
@@ -156,6 +158,14 @@ namespace PlayniteTests.Database
                         {
                             Type = GameTaskType.Emulator,
                             EmulatorId = emuCol.FindAll().First().Id
+                        },
+                        OtherTasks = new ObservableCollection<Playnite.Models.Old1.GameTask>()
+                        {
+                            new Playnite.Models.Old1.GameTask()
+                            {
+                                Type = GameTaskType.Emulator,
+                                EmulatorId = emuCol.FindAll().First().Id
+                            }
                         }
                     },
                     new Playnite.Models.Old1.Game()
@@ -168,6 +178,14 @@ namespace PlayniteTests.Database
                         {
                             Type = GameTaskType.Emulator,
                             EmulatorId = 0
+                        },
+                        OtherTasks = new ObservableCollection<Playnite.Models.Old1.GameTask>()
+                        {
+                            new Playnite.Models.Old1.GameTask()
+                            {
+                                Type = GameTaskType.Emulator,
+                                EmulatorId = 0
+                            }
                         }
                     }
                 };
@@ -186,8 +204,9 @@ namespace PlayniteTests.Database
                 database.FileStorage.Upload(file.Name, file.Path);
             }
 
-            var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            var db = new GameDatabase(null, path);
+            db.MigrateDatabase();
+            using (db.OpenDatabase())
             {
                 var plats = db.PlatformsCollection.FindAll().ToList();
                 Assert.IsNotNull(plats[0].Id);
@@ -218,10 +237,14 @@ namespace PlayniteTests.Database
                 Assert.AreEqual(plats[0].Id, game.PlatformId);
                 Assert.AreEqual(emu.Profiles.First().Id, game.PlayTask.EmulatorProfileId);
                 Assert.AreEqual(emu.Id, game.PlayTask.EmulatorId);
+                Assert.AreEqual(emu.Profiles.First().Id, game.OtherTasks[0].EmulatorProfileId);
+                Assert.AreEqual(emu.Id, game.OtherTasks[0].EmulatorId);
 
                 Assert.IsNull(games[1].PlatformId);
                 Assert.IsNull(games[1].PlayTask.EmulatorId);
                 Assert.IsNull(games[1].PlayTask.EmulatorProfileId);
+                Assert.IsNull(games[1].OtherTasks[0].EmulatorId);
+                Assert.IsNull(games[1].OtherTasks[0].EmulatorProfileId);
 
                 var files = db.Database.FileStorage.FindAll().ToList();
                 Assert.AreEqual(2, files.Count);

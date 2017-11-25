@@ -90,9 +90,6 @@ namespace PlayniteUI
                 System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
             }
 
-            Database = new GameDatabase(AppSettings);
-            GamesEditor = new GamesEditor(Database);
-            CustomImageStringToImageConverter.Database = Database;
             Settings.ConfigureLogger();
             Settings.ConfigureCef();
 
@@ -178,12 +175,13 @@ namespace PlayniteUI
 
                     if (wizardModel.ImportedGames.Count > 0)
                     {
-                        Database.OpenDatabase(AppSettings.DatabasePath);
+                        Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
+                        Database.OpenDatabase();
                         foreach (var game in wizardModel.ImportedGames)
                         {
                             if (game.Icon != null)
                             {
-                                var iconId = "images/custom/" + game.Icon.Name;                                
+                                var iconId = "images/custom/" + game.Icon.Name;
                                 game.Game.Icon = Database.AddFileNoDuplicate(iconId, game.Icon.Name, game.Icon.Data); ;
                             }
 
@@ -197,6 +195,13 @@ namespace PlayniteUI
                     }
                 }
             }
+            else
+            {
+                Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
+            }
+
+            GamesEditor = new GamesEditor(Database);
+            CustomImageStringToImageConverter.Database = Database;
 
             // Main view startup
             if (AppSettings.StartInFullscreen)
@@ -327,7 +332,7 @@ namespace PlayniteUI
         private void ReleaseResources()
         {
             GamesLoaderHandler.CancelToken?.Cancel();
-            GamesLoaderHandler.ProgressTask.Wait();
+            GamesLoaderHandler.ProgressTask?.Wait();
             Database.CloseDatabase();
             Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
             Cef.Shutdown();

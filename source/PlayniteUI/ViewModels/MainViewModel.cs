@@ -450,6 +450,33 @@ namespace PlayniteUI.ViewModels
 
             try
             {
+                database.CloseDatabase();
+                if (GameDatabase.GetMigrationRequired(AppSettings.DatabasePath))
+                {
+                    var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(),
+                    () =>
+                    {
+                        try
+                        {
+                            GameDatabase.MigrateDatabase(AppSettings.DatabasePath);
+                        }
+                        catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            logger.Error(exc, "Failed to migrate database to new version.");
+                            throw;
+                        }
+                    })
+                    {
+                        ProgressText = resources.FindString("DBUpgradeProgress")
+                    };
+
+                    if (progressModel.ActivateProgress() == false)
+                    {
+                        dialogs.ShowMessage(resources.FindString("DBUpgradeFail"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                }
+
                 database.OpenDatabase(AppSettings.DatabasePath);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)

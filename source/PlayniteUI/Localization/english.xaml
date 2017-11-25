@@ -37,6 +37,8 @@ Automatically imported games may reappear in Playnite after next import procedur
 
     <sys:String x:Key="SteamFriendsTooltip">Steam Friends</sys:String>
     <sys:String x:Key="GameEditChangeNotif">Section contains changes to be saved</sys:String>
+    <sys:String x:Key="DBUpgradeProgress">Updating database version...</sys:String>
+    <sys:String x:Key="DBUpgradeFail">Database update failed, can't open database file.</sys:String>
 
     <!--General-->
     <sys:String x:Key="RemoveTitle">Remove</sys:String>

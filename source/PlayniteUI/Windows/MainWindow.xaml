@@ -19,7 +19,7 @@
         Visibility="{Binding Visibility, Mode=TwoWay}"
         WindowState="{Binding WindowState, Mode=TwoWay}"
         x:Name="WindowMain" AutomationProperties.AutomationId="WindowMain"
-              Unloaded="WindowMain_Unloaded">
+        Unloaded="WindowMain_Unloaded">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing" >

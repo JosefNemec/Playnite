@@ -221,13 +221,18 @@ namespace Playnite.Database
             get; private set;
         }
 
+        public string Path
+        {
+            get; private set;
+        }
+
         private IGogLibrary gogLibrary;
         private ISteamLibrary steamLibrary;
         private IOriginLibrary originLibrary;
         private IUplayLibrary uplayLibrary;
         private IBattleNetLibrary battleNetLibrary;
 
-        public readonly ushort DBVersion = 2;
+        public static readonly ushort DBVersion = 2;
 
         public event PlatformsCollectionChangedEventHandler PlatformsCollectionChanged;
         public event PlatformUpdatedEventHandler PlatformUpdated;
@@ -238,6 +243,17 @@ namespace Playnite.Database
         public Settings AppSettings
         {
             get; set;
+        }
+
+        public GameDatabase(Settings settings, string path) : this(settings)
+        {
+            Path = path;
+        }
+
+        public GameDatabase(Settings settings, string path, IGogLibrary gogLibrary, ISteamLibrary steamLibrary, IOriginLibrary originLibrary, IUplayLibrary uplayLibrary, IBattleNetLibrary battleNetLibrary)
+            : this(settings, gogLibrary, steamLibrary, originLibrary, uplayLibrary, battleNetLibrary)
+        {
+            Path = path;
         }
 
         public GameDatabase(Settings settings)
@@ -270,25 +286,26 @@ namespace Playnite.Database
 
         public void MigrateDatabase()
         {
-            if (Database == null)
-            {
-                throw new Exception("Database is not opened.");
-            }
+            MigrateDatabase(Path);
+        }
 
-            if (Database.Engine.UserVersion == DBVersion)
+        public static void MigrateDatabase(string path)
+        {
+            var db = new LiteDatabase(path);
+            if (db.Engine.UserVersion == DBVersion)
             {
                 return;
             }
 
             // 0 to 1
-            if (Database.Engine.UserVersion == 0 && DBVersion > 0)
+            if (db.Engine.UserVersion == 0 && DBVersion > 0)
             {
                 // Create: ObservableCollection<Link>Links
                 // Migrate: CommunityHubUrl, StoreUrl, WikiUrl to Links
                 // Remove: CommunityHubUrl, StoreUrl, WikiUrl
                 logger.Info("Migrating database from 0 to 1 version.");
 
-                var collection = Database.GetCollection("games");
+                var collection = db.GetCollection("games");
                 foreach (var game in collection.FindAll())
                 {
                     var links = new ObservableCollection<Link>();
@@ -319,11 +336,11 @@ namespace Playnite.Database
                     collection.Update(game);
                 }
 
-                Database.Engine.UserVersion = 1;
+                db.Engine.UserVersion = 1;
             }
 
             // 1 to 2
-            if (Database.Engine.UserVersion == 1 && DBVersion > 1)
+            if (db.Engine.UserVersion == 1 && DBVersion > 1)
             {
                 // Migrate: Emulators collection
                 // From:
@@ -348,7 +365,7 @@ namespace Playnite.Database
                 // Convert: Platforms and Emulators Id from int to ObjectId
                 logger.Info("Migrating database from 1 to 2 version.");
 
-                var platCollection = Database.GetCollection("platforms");
+                var platCollection = db.GetCollection("platforms");
                 var conPlatforms = new Dictionary<int, ObjectId>();
                 foreach (var platform in platCollection.FindAll().ToList())
                 {
@@ -361,7 +378,7 @@ namespace Playnite.Database
                 }
 
                 var conEmulators = new Dictionary<int, ObjectId>();
-                var emuCollection = Database.GetCollection("emulators");
+                var emuCollection = db.GetCollection("emulators");
                 foreach (var emulator in emuCollection.FindAll().ToList())
                 {
                     var platforms = emulator["Platforms"]?.AsArray?
@@ -394,8 +411,8 @@ namespace Playnite.Database
                     emuCollection.Insert(emulator);
                 }
 
-                var gameCol = Database.GetCollection("games");
-                var emusCollection = Database.GetCollection<Emulator>("emulators");
+                var gameCol = db.GetCollection("games");
+                var emusCollection = db.GetCollection<Emulator>("emulators");
                 foreach (var game in gameCol.FindAll().ToList())
                 {
                     int? oldPlatId = game["PlatformId"]?.AsInt32;
@@ -413,66 +430,119 @@ namespace Playnite.Database
 
                     if (game["PlayTask"].AsDocument != null)
                     {
-                        if (game["PlayTask"].AsDocument["Type"].AsString == "Emulator")
+                        var task = game["PlayTask"].AsDocument;
+                        if (task.AsDocument["Type"].AsString == "Emulator")
                         {
-                            var oldEmuId = game["PlayTask"].AsDocument["EmulatorId"].AsInt32;
+                            var oldEmuId = task.AsDocument["EmulatorId"].AsInt32;
                             if (conEmulators.ContainsKey(oldEmuId))
                             {
                                 var emulator = emusCollection.FindById(conEmulators[oldEmuId]);
-                                game["PlayTask"].AsDocument["EmulatorId"] = emulator.Id;
-                                game["PlayTask"].AsDocument["EmulatorProfileId"] = emulator.Profiles?.First().Id;
+                                task.AsDocument["EmulatorId"] = emulator.Id;
+                                task.AsDocument["EmulatorProfileId"] = emulator.Profiles?.First().Id;
                             }
                             else
                             {
-                                game["PlayTask"].AsDocument.Remove("EmulatorId");
-                                game["PlayTask"].AsDocument.Remove("EmulatorProfileId");
+                                task.AsDocument.Remove("EmulatorId");
+                                task.AsDocument.Remove("EmulatorProfileId");
                             }
                         }
                         else
                         {
-                            game["PlayTask"].AsDocument.Remove("EmulatorId");
-                            game["PlayTask"].AsDocument.Remove("EmulatorProfileId");
-                        }                        
+                            task.AsDocument.Remove("EmulatorId");
+                            task.AsDocument.Remove("EmulatorProfileId");
+                        }
+                    }
+
+                    if (game["OtherTasks"].AsArray != null)
+                    {
+                        foreach (var task in game["OtherTasks"].AsArray)
+                        {
+                            if (task.AsDocument["Type"].AsString == "Emulator")
+                            {
+                                var oldEmuId = task.AsDocument["EmulatorId"].AsInt32;
+                                if (conEmulators.ContainsKey(oldEmuId))
+                                {
+                                    var emulator = emusCollection.FindById(conEmulators[oldEmuId]);
+                                    task.AsDocument["EmulatorId"] = emulator.Id;
+                                    task.AsDocument["EmulatorProfileId"] = emulator.Profiles?.First().Id;
+                                }
+                                else
+                                {
+                                    task.AsDocument.Remove("EmulatorId");
+                                    task.AsDocument.Remove("EmulatorProfileId");
+                                }
+                            }
+                            else
+                            {
+                                task.AsDocument.Remove("EmulatorId");
+                                task.AsDocument.Remove("EmulatorProfileId");
+                            }
+                        }
                     }
 
                     gameCol.Update(game);
                 }
                 
                 emusCollection.EnsureIndex(a => a.Id);
-                Database.GetCollection<IGame>("games").EnsureIndex(a => a.Id);
-                Database.GetCollection<Platform>("platforms").EnsureIndex(a => a.Id);
+                db.GetCollection<IGame>("games").EnsureIndex(a => a.Id);
+                db.GetCollection<Platform>("platforms").EnsureIndex(a => a.Id);
 
-                foreach (var file in Database.FileStorage.FindAll().ToList())
+                foreach (var file in db.FileStorage.FindAll().ToList())
                 {
                     using (var fStream = file.OpenRead())
                     {
                         var hash = FileSystem.GetMD5(fStream);
-                        file.Metadata.Add("checksum", hash);                        
-                        Database.FileStorage.SetMetadata(file.Id, file.Metadata);
+                        file.Metadata.Add("checksum", hash);
+                        db.FileStorage.SetMetadata(file.Id, file.Metadata);
                     }
                 }
 
-                Database.Engine.UserVersion = 2;
+                db.Engine.UserVersion = 2;
             }
+        }
+
+        public bool GetMigrationRequired()
+        {
+            return GetMigrationRequired(Path);
+        }
+
+        public static bool GetMigrationRequired(string path)
+        {
+            var db = new LiteDatabase(path);
+            return db.Engine.UserVersion < DBVersion;
         }
 
         public LiteDatabase OpenDatabase(string path)
         {
-            var dbExists = File.Exists(path);
-            logger.Info("Opening db " + path);
+            Path = path;
+            return OpenDatabase();
+        }
+
+        public LiteDatabase OpenDatabase()
+        {
+            if (string.IsNullOrEmpty(Path))
+            {
+                throw new Exception("Database path cannot be empty.");
+            }
+
+            var dbExists = File.Exists(Path);
+            logger.Info("Opening db " + Path);
             CloseDatabase();
-            Database = new LiteDatabase(path);
+            Database = new LiteDatabase(Path);
 
             // To force litedb to try to open file, should throw exceptuion if something is wrong with db file
             Database.GetCollectionNames();
 
-            if (dbExists)
+            if (!dbExists)
             {
-                MigrateDatabase();
+                Database.Engine.UserVersion = DBVersion;
             }
             else
             {
-                Database.Engine.UserVersion = DBVersion;
+                if (GetMigrationRequired())
+                {
+                    throw new Exception("Database must be migrated before opening.");
+                }
             }
 
             GamesCollection = Database.GetCollection<IGame>("games");

@@ -54,6 +54,12 @@ namespace PlayniteUI
                     Window.Owner = PlayniteWindows.CurrentWindow;
                 }
 
+                if (Window.Owner == null)
+                {
+                    Window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                    Window.ShowInTaskbar = true;
+                }
+
                 asDialog = true;
                 result = Window.ShowDialog();
             }, null);
