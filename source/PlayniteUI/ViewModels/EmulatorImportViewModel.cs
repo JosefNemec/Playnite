@@ -437,10 +437,10 @@ namespace PlayniteUI.ViewModels
                     EmulatorId = game.Emulator.Id,
                     EmulatorProfileId = game.EmulatorProfile.Id,
                     Type = GameTaskType.Emulator
-                };
-
-                database.AddGame(game.Game);
+                };               
             }
+
+            database.AddGames(GamesList.Where(a => a.Import)?.Select(a => a.Game).ToList());
         }
 
         public void AddSelectedEmulatorsToDB()

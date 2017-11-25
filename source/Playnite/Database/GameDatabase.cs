@@ -558,7 +558,7 @@ namespace Playnite.Database
                 // Generate default platforms  
                 var platforms = EmulatorDefinition.GetDefinitions()
                     .SelectMany(a => a.Profiles.SelectMany(b => b.Platforms)).Distinct()
-                    .Select(a => new Platform(a));
+                    .Select(a => new Platform(a)).ToList();
                 AddPlatform(platforms);
             }
 
@@ -591,7 +591,7 @@ namespace Playnite.Database
             OnGamesCollectionChanged(new List<IGame>() { game }, new List<IGame>());
         }
 
-        public void AddGames(IEnumerable<IGame> games)
+        public void AddGames(List<IGame> games)
         {
             CheckDbState();
             if (games == null || games.Count() == 0)
@@ -614,12 +614,30 @@ namespace Playnite.Database
 
             lock (fileLock)
             {
+                GamesCollection.Delete(game.Id);
                 DeleteImageSafe(game.Icon, game);
                 DeleteImageSafe(game.Image, game);
-                GamesCollection.Delete(game.Id);
             }
 
             OnGamesCollectionChanged(new List<IGame>(), new List<IGame>() { game });
+        }
+
+        public void DeleteGames(List<IGame> games)
+        {
+            CheckDbState();
+
+            lock (fileLock)
+            {
+                foreach (var game in games)
+                {
+                    logger.Info("Deleting game from database {0}, {1}", game.ProviderId, game.Provider);
+                    GamesCollection.Delete(game.Id);
+                    DeleteImageSafe(game.Icon, game);
+                    DeleteImageSafe(game.Image, game);
+                }
+            }
+
+            OnGamesCollectionChanged(new List<IGame>(), games);
         }
 
         public void AddPlatform(Platform platform)
@@ -634,7 +652,7 @@ namespace Playnite.Database
             OnPlatformsCollectionChanged(new List<Platform>() { platform }, new List<Platform>());
         }
 
-        public void AddPlatform(IEnumerable<Platform> platforms)
+        public void AddPlatform(List<Platform> platforms)
         {
             CheckDbState();
             if (platforms == null || platforms.Count() == 0)

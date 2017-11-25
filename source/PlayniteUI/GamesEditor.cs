@@ -54,7 +54,7 @@ namespace PlayniteUI
             return model.ShowDialog();
         }
 
-        public bool? SetGamesCategories(IEnumerable<IGame> games)
+        public bool? SetGamesCategories(List<IGame> games)
         {
             var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, database, games, true);
             return model.ShowDialog();
@@ -71,7 +71,7 @@ namespace PlayniteUI
             return model.ShowDialog();
         }
 
-        public bool? EditGames(IEnumerable<IGame> games)
+        public bool? EditGames(List<IGame> games)
         {
             var model = new GameEditViewModel(
                             games,
@@ -158,7 +158,7 @@ namespace PlayniteUI
             database.UpdateGameInDatabase(game);
         }
 
-        public void SetHideGames(IEnumerable<IGame> games, bool state)
+        public void SetHideGames(List<IGame> games, bool state)
         {
             foreach (var game in games)
             {
@@ -172,7 +172,7 @@ namespace PlayniteUI
             database.UpdateGameInDatabase(game);
         }
 
-        public void ToggleHideGames(IEnumerable<IGame> games)
+        public void ToggleHideGames(List<IGame> games)
         {
             foreach (var game in games)
             {
@@ -186,7 +186,7 @@ namespace PlayniteUI
             database.UpdateGameInDatabase(game);
         }
 
-        public void SetFavoriteGames(IEnumerable<IGame> games, bool state)
+        public void SetFavoriteGames(List<IGame> games, bool state)
         {
             foreach (var game in games)
             {
@@ -200,7 +200,7 @@ namespace PlayniteUI
             database.UpdateGameInDatabase(game);
         }
 
-        public void ToggleFavoriteGame(IEnumerable<IGame> games)
+        public void ToggleFavoriteGame(List<IGame> games)
         {
             foreach (var game in games)
             {
@@ -222,7 +222,7 @@ namespace PlayniteUI
             database.DeleteGame(game);
         }
 
-        public void RemoveGames(IEnumerable<IGame> games)
+        public void RemoveGames(List<IGame> games)
         {
             if (PlayniteMessageBox.Show(
                 string.Format(resources.FindString("GamesRemoveAskMessage"), games.Count()),
@@ -231,12 +231,9 @@ namespace PlayniteUI
                 MessageBoxImage.Question) != MessageBoxResult.Yes)
             {
                 return;
-            }           
-
-            foreach (var game in games)
-            {
-                database.DeleteGame(game);
             }
+
+            database.DeleteGames(games);
         }
 
         public void CreateShortcut(IGame game)
@@ -266,7 +263,7 @@ namespace PlayniteUI
             }
         }
 
-        public void CreateShortcuts(IEnumerable<IGame> games)
+        public void CreateShortcuts(List<IGame> games)
         {
             foreach (var game in games)
             {

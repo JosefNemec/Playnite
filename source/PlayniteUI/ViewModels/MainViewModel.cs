@@ -299,7 +299,7 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 AddCustomGame(GameEditWindowFactory.Instance);
-            }, (a) => GameAdditionAllowed);
+            });
         }
 
         public RelayCommand<object> AddInstalledGamesCommand
@@ -311,7 +311,7 @@ namespace PlayniteUI.ViewModels
                     database,
                     InstalledGamesWindowFactory.Instance,
                     dialogs));
-            }, (a) => GameAdditionAllowed);
+            });
         }
 
         public RelayCommand<object> AddEmulatedGamesCommand
@@ -324,7 +324,7 @@ namespace PlayniteUI.ViewModels
                     EmulatorImportWindowFactory.Instance,
                     dialogs,
                     resources));
-            }, (a) => GameAdditionAllowed);
+            });
         }
 
         public RelayCommand<object> OpenThemeTesterCommand
@@ -740,7 +740,6 @@ namespace PlayniteUI.ViewModels
                     };
 
                     Task.WaitAll(tasks.ToArray());
-
 
                     ProgressStatus = "Library update finished";
                     Thread.Sleep(2000);

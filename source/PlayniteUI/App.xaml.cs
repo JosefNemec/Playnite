@@ -333,7 +333,7 @@ namespace PlayniteUI
         {
             GamesLoaderHandler.CancelToken?.Cancel();
             GamesLoaderHandler.ProgressTask?.Wait();
-            Database.CloseDatabase();
+            Database?.CloseDatabase();
             Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
             Cef.Shutdown();
             AppSettings?.SaveSettings();

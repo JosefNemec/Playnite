@@ -307,9 +307,9 @@ namespace PlayniteUI.ViewModels
                         var iconId = "images/custom/" + game.Icon.Name;                        
                         game.Game.Icon = database.AddFileNoDuplicate(iconId, game.Icon.Name, game.Icon.Data);
                     }
-
-                    database.AddGame(game.Game);
                 }
+
+                database.AddGames(Games.Select(a => a.Game).ToList<IGame>());
             }
 
             CloseDialog(true);

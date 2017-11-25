@@ -26,7 +26,7 @@ namespace PlayniteTests.Database
             var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
-                var platforms = db.PlatformsCollection.FindAll();
+                var platforms = db.PlatformsCollection.FindAll().ToList();
                 CollectionAssert.IsNotEmpty(platforms);                
                 db.RemovePlatform(platforms);
                 CollectionAssert.IsEmpty(db.PlatformsCollection.FindAll());

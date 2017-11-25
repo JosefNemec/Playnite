@@ -71,7 +71,7 @@ namespace PlayniteUI.Controls
             }
         }
 
-        public IEnumerable<IGame> Games
+        public List<IGame> Games
         {
             get
             {
