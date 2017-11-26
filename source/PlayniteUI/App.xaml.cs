@@ -356,7 +356,6 @@ namespace PlayniteUI
                 window,
                 new DialogsFactory(),
                 new ResourceProvider(),
-                new NotificationFactory(),
                 AppSettings,
                 GamesEditor);
             mainModel.ShowView();

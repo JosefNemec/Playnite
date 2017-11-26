@@ -814,6 +814,11 @@
         </Setter>
     </Style>
 
+    <Style TargetType="{x:Type Popup}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="AllowsTransparency" Value="True" />
+    </Style>
+    
     <Style TargetType="{x:Type ContextMenu}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
@@ -1834,5 +1839,11 @@
         <Setter Property="Background" Value="{DynamicResource WindowBackgourndBrush}"/>
     </Style>
 
+
+    <Style x:Key="PopupBorder" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource PopupBorderThickness}" />
+    </Style>
     <!--#endregion-->
 </ResourceDictionary>

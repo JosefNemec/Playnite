@@ -34,6 +34,7 @@
                 <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
                 <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
                 <pui:ListToStringConverter x:Key="ListToStringConverter" />
+                <pui:NotificationIconConverter x:Key="NotificationIconConverter" />
             </Grid.Resources>
             
             <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="0">
@@ -173,13 +174,67 @@
                         </Style>
                     </CheckBox.Style>
                 </CheckBox>
+                
+                <ToggleButton FontWeight="Bold" DockPanel.Dock="Right" Height="30"
+                        Name="ButtonMessages" Margin="0,0,130,0" Padding="0"
+                        WindowChrome.IsHitTestVisibleInChrome="True" BorderThickness="0"
+                        Background="Transparent">
+                    <ToggleButton.Style>
+                        <Style TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Messages.Count}" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Setter Property="IsChecked" Value="False"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ToggleButton.Style>
+                    <ToggleButton.Content>
+                        <Grid>
+                            <TextBlock Text="🔔" FontSize="20" />
+                            <Border CornerRadius="3" Width="15" Height="15" Margin="15,15,0,0"
+                                    Background="OrangeRed">
+                                <TextBlock Text="{Binding Messages.Count}" FontSize="12"
+                                           Foreground="{DynamicResource TextBrush}"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ToggleButton.Content>
+                </ToggleButton>
+
+                <Popup PlacementTarget="{Binding ElementName=ButtonMessages}"
+                       IsOpen="{Binding IsChecked, ElementName=ButtonMessages}"
+                       Placement="Bottom" StaysOpen="False">
+                    <Border Style="{StaticResource PopupBorder}">
+                        <StackPanel>
+                            <ItemsControl Name="ListNotifications" BorderThickness="0" Margin="0,5,0,0" 
+                                          ItemsSource="{Binding Messages}" MaxWidth="350">
+                                <ItemsControl.Resources>
+                                </ItemsControl.Resources>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <DockPanel Margin="6,3,6,3">
+                                            <Image Source="{Binding Type, Converter={StaticResource NotificationIconConverter}}"
+                                                   Height="14" DockPanel.Dock="Left" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" />
+                                            <TextBlock Text="{Binding Text}" VerticalAlignment="Center" DockPanel.Dock="Left" Margin="5,0,0,0" TextWrapping="Wrap"
+                                                       Style="{StaticResource BaseTextBlockStyle}" />
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <Button Content="Clear All" FontSize="10" Margin="5"
+                                    HorizontalAlignment="Right"
+                                    Command="{Binding ClearMessagesCommand}"/>
+                        </StackPanel>
+                    </Border>
+                </Popup>
 
                 <Grid DockPanel.Dock="Left">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.3*" />
-                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
 
                     <Grid Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
