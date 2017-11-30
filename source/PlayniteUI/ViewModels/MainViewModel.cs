@@ -1,6 +1,7 @@
 ﻿using NLog;
 using Playnite;
 using Playnite.Database;
+using Playnite.MetaProviders;
 using Playnite.Models;
 using Playnite.Providers.Steam;
 using PlayniteUI.Commands;
@@ -369,6 +370,14 @@ namespace PlayniteUI.ViewModels
             }, (a) => Messages.Count > 0);
         }
 
+        public RelayCommand<object> DownloadMetadataCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                DownloadMetadata(new MetadataDownloadViewModel(MetadataDownloadWindowFactory.Instance));
+            }, (a) => GameAdditionAllowed);
+        }
+
         public MainViewModel(
             GameDatabase database,
             IWindowFactory window,
@@ -727,36 +736,36 @@ namespace PlayniteUI.ViewModels
 
                     ProgressTotal = gamesCount;
 
-                    var tasks = new List<Task>
-                    {
-                        // Steam metada download thread
-                        Task.Factory.StartNew(() =>
-                        {
-                            DownloadMetadata(database, Provider.Steam, GamesLoaderHandler.CancelToken.Token);
-                        }),
-                        // Origin metada download thread
-                        Task.Factory.StartNew(() =>
-                        {
-                            DownloadMetadata(database, Provider.Origin, GamesLoaderHandler.CancelToken.Token);
-                        }),
-                        // GOG metada download thread
-                        Task.Factory.StartNew(() =>
-                        {
-                            DownloadMetadata(database, Provider.GOG, GamesLoaderHandler.CancelToken.Token);
-                        }),
-                        // Uplay metada download thread
-                        Task.Factory.StartNew(() =>
-                        {
-                            DownloadMetadata(database, Provider.Uplay, GamesLoaderHandler.CancelToken.Token);
-                        }),
-                        // BattleNet metada download thread
-                        Task.Factory.StartNew(() =>
-                        {
-                            DownloadMetadata(database, Provider.BattleNet, GamesLoaderHandler.CancelToken.Token);
-                        })
-                    };
+                    //var tasks = new List<Task>
+                    //{
+                    //    // Steam metada download thread
+                    //    Task.Factory.StartNew(() =>
+                    //    {
+                    //        DownloadMetadata(database, Provider.Steam, GamesLoaderHandler.CancelToken.Token);
+                    //    }),
+                    //    // Origin metada download thread
+                    //    Task.Factory.StartNew(() =>
+                    //    {
+                    //        DownloadMetadata(database, Provider.Origin, GamesLoaderHandler.CancelToken.Token);
+                    //    }),
+                    //    // GOG metada download thread
+                    //    Task.Factory.StartNew(() =>
+                    //    {
+                    //        DownloadMetadata(database, Provider.GOG, GamesLoaderHandler.CancelToken.Token);
+                    //    }),
+                    //    // Uplay metada download thread
+                    //    Task.Factory.StartNew(() =>
+                    //    {
+                    //        DownloadMetadata(database, Provider.Uplay, GamesLoaderHandler.CancelToken.Token);
+                    //    }),
+                    //    // BattleNet metada download thread
+                    //    Task.Factory.StartNew(() =>
+                    //    {
+                    //        DownloadMetadata(database, Provider.BattleNet, GamesLoaderHandler.CancelToken.Token);
+                    //    })
+                    //};
 
-                    Task.WaitAll(tasks.ToArray());
+                    //Task.WaitAll(tasks.ToArray());
 
                     ProgressStatus = "Library update finished";
                     Thread.Sleep(2000);
@@ -860,29 +869,29 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private void DownloadMetadata(GameDatabase database, Provider provider, CancellationToken token)
-        {   
-            var games = database.GamesCollection.Find(a => a.Provider == provider && !a.IsProviderDataUpdated).ToList();
+        //private void DownloadMetadata(GameDatabase database, Provider provider, CancellationToken token)
+        //{   
+        //    var games = database.GamesCollection.Find(a => a.Provider == provider && !a.IsProviderDataUpdated).ToList();
 
-            foreach (var game in games)
-            {
-                if (token.IsCancellationRequested)
-                {
-                    return;
-                }
+        //    foreach (var game in games)
+        //    {
+        //        if (token.IsCancellationRequested)
+        //        {
+        //            return;
+        //        }
 
-                ProgressValue++;
+        //        ProgressValue++;
 
-                try
-                {
-                    database.UpdateGameWithMetadata(game);
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, string.Format("Failed to download metadata for id:{0}, provider:{1}.", game.ProviderId, game.Provider));
-                }
-            }
-        }
+        //        try
+        //        {
+        //            database.UpdateGameWithMetadata(game);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            logger.Error(e, string.Format("Failed to download metadata for id:{0}, provider:{1}.", game.ProviderId, game.Provider));
+        //        }
+        //    }
+        //}
 
         public void AddMessage(NotificationMessage message)
         {
@@ -940,6 +949,15 @@ namespace PlayniteUI.ViewModels
         {
             GamesLoaderHandler.CancelToken.Cancel();
             await GamesLoaderHandler.ProgressTask;
+        }
+
+        public void DownloadMetadata(MetadataDownloadViewModel model)
+        {
+            if (model.OpenView(MetadataDownloadViewModel.ViewMode.Wizard) == true)
+            {
+                var downloader = new MetadataDownloader();
+                downloader.DownloadMetadata(SelectedGames.Select(a => a.Game).ToList(), database, model.Settings);
+            }
         }
 
         public void Dispose()

@@ -163,7 +163,7 @@ namespace PlayniteUI.ViewModels
                             MetadataData = wiki.ParseGamePage(page, searchTerm);
                             break;
                         case MetadataProvider.IGDB:
-                            var igdb = new IGDB();
+                            var igdb = new IGDBMetadataProvider();
                             MetadataData = igdb.GetParsedGame(UInt64.Parse(id));
                             break;
                     }
@@ -226,7 +226,7 @@ namespace PlayniteUI.ViewModels
                     break;
 
                 case MetadataProvider.IGDB:
-                    var igdb = new IGDB();
+                    var igdb = new IGDBMetadataProvider();
                     foreach (var page in igdb.Search(keyword))
                     {
                         searchList.Add(new SearchResult(

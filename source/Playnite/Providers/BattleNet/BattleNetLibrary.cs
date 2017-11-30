@@ -375,6 +375,7 @@ namespace Playnite.Providers.BattleNet
             var coverFile = Path.GetFileName(product.CoverUrl);
             metadata.Image = new Database.FileDefinition($"images/battlenet/{game.ProviderId}/{coverFile}", coverFile, cover);
             game.BackgroundImage = product.BackgroundUrl;
+            metadata.BackgroundImage = product.BackgroundUrl;
             game.Links = new ObservableCollection<Link>(product.Links);
             game.IsProviderDataUpdated = true;
             return metadata;

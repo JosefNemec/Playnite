@@ -9,6 +9,11 @@ namespace Playnite.Models
 {
     public class GameMetadata
     {
+        public IGame GameData
+        {
+            get; set;
+        }
+
         public FileDefinition Icon
         {
             get; set;
@@ -22,6 +27,18 @@ namespace Playnite.Models
         public string BackgroundImage
         {
             get; set;
+        }
+
+        public GameMetadata()
+        {
+        }
+
+        public GameMetadata(IGame gameData, FileDefinition icon, FileDefinition image, string background)
+        {
+            GameData = gameData;
+            Icon = icon;
+            Image = image;
+            BackgroundImage = background;
         }
     }
 }

@@ -63,6 +63,10 @@
                             <Separator />
                             <MenuItem Header="Reload Games List"
                                       Command="{Binding LoadGamesCommand}"/>
+                            <MenuItem Header="{DynamicResource MenuTools}">
+                                <MenuItem Header="{DynamicResource MenuDownloadMetadata}"
+                                          Command="{Binding DownloadMetadataCommand}"/>
+                            </MenuItem>
                             <MenuItem Header="{DynamicResource MenuConfigurationTitle}">
                                 <MenuItem Header="{DynamicResource MenuPlayniteSettingsTitle}"
                                       Command="{Binding OpenSettingsCommand}"/>

@@ -227,6 +227,7 @@
     <Compile Include="Behaviors\ScrollToSelectedBehavior.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="Skins.cs" />
+    <Compile Include="ViewModels\MetadataDownloadViewModel.cs" />
     <Compile Include="ViewModels\ProgressViewViewModel.cs" />
     <Compile Include="ViewModels\FullscreenViewModel.cs" />
     <Compile Include="ViewModels\GameEditViewModel.cs" />
@@ -249,6 +250,9 @@
     <Compile Include="VirtualizingTilePanel.cs" />
     <Compile Include="WindowPositionHandler.cs" />
     <Compile Include="PlayniteWindows.cs" />
+    <Compile Include="Windows\MetadataDownloadWindow.xaml.cs">
+      <DependentUpon>MetadataDownloadWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
     </Compile>
@@ -386,6 +390,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MetadataDownloadWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

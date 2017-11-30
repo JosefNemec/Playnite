@@ -827,6 +827,11 @@ namespace Playnite.Database
             }
         }
 
+        public string AddFileNoDuplicate(FileDefinition file)
+        {
+            return AddFileNoDuplicate(file.Path, file.Name, file.Data);
+        }
+
         public string AddFileNoDuplicate(string id, string name, byte[] data)
         {
             CheckDbState();
@@ -970,6 +975,24 @@ namespace Playnite.Database
             {
                 Database.FileStorage.Delete(id);
             }
+        }
+
+        public void UpdateGamesInDatabase(List<IGame> games)
+        {
+            CheckDbState();
+            var updates = new List<GameUpdateEvent>();
+
+            lock (fileLock)
+            {
+                foreach (var game in games)
+                {
+                    var oldData = GamesCollection.FindById(game.Id);
+                    GamesCollection.Update(game);
+                    updates.Add(new GameUpdateEvent(oldData, game));
+                }
+            }
+
+            OnGameUpdated(updates);
         }
 
         public void UpdateGameInDatabase(IGame game)

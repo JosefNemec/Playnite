@@ -160,7 +160,8 @@
     <Compile Include="GamesStats.cs" />
     <Compile Include="InteropMethods.cs" />
     <Compile Include="ListExtensions.cs" />
-    <Compile Include="MetaProviders\IGDB.cs" />
+    <Compile Include="MetaProviders\IGDBMetadataDownloader.cs" />
+    <Compile Include="MetaProviders\MetadataDownloader.cs" />
     <Compile Include="Models\Emulator.cs" />
     <Compile Include="Models\Old\1\Emulator.cs" />
     <Compile Include="Models\Old\1\Game.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Providers\BattleNet\BattleNetLibrary.cs" />
     <Compile Include="Providers\BattleNet\BattleNetSettings.cs" />
     <Compile Include="Models\GameMetadata.cs" />
+    <Compile Include="Providers\BattleNet\BattleNetMetadataProvider.cs" />
     <Compile Include="Providers\BattleNet\IBattleNetLibrary.cs" />
     <Compile Include="Providers\BattleNet\BattleNetGameStateMonitor.cs" />
     <Compile Include="Providers\BattleNet\WebApiClient.cs" />
@@ -201,6 +203,7 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Providers\GOG\IGogLibrary.cs" />
+    <Compile Include="Providers\GOG\GogMetadataProvider.cs" />
     <Compile Include="Providers\GOG\WebApiClient.cs" />
     <Compile Include="Providers\GOG\WebApiTypes.cs" />
     <Compile Include="Models\IGame.cs" />
@@ -212,12 +215,14 @@
     <Compile Include="Providers\Origin\OriginLibrary.cs" />
     <Compile Include="Providers\Origin\OriginSettings.cs" />
     <Compile Include="Providers\Origin\OriginPaths.cs" />
+    <Compile Include="Providers\Origin\OriginMetadataProvider.cs" />
     <Compile Include="Providers\Origin\WebApiClient.cs" />
     <Compile Include="Providers\Origin\WebApiTypes.cs" />
     <Compile Include="Providers\Steam\ISteamLibrary.cs" />
     <Compile Include="Providers\Steam\SteamGameStateMonitor.cs" />
     <Compile Include="Providers\Steam\SteamLibrary.cs" />
     <Compile Include="Providers\Steam\SteamApiClient.cs" />
+    <Compile Include="Providers\Steam\SteamMetadataProvider.cs" />
     <Compile Include="Providers\Steam\SteamSettings.cs" />
     <Compile Include="Providers\Steam\WebApiClient.cs" />
     <Compile Include="Providers\Steam\VdfParser.cs" />
@@ -227,6 +232,7 @@
     <Compile Include="Providers\Uplay\UplayLibrary.cs" />
     <Compile Include="Providers\Uplay\UplaySettings.cs" />
     <Compile Include="RangeObservableCollection.cs" />
+    <Compile Include="Roman.cs" />
     <Compile Include="SafeFileEnumerator.cs" />
     <Compile Include="Services\GenericResponse.cs" />
     <Compile Include="Services\ServicesClient.cs" />

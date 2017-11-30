@@ -62,11 +62,21 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
     <sys:String x:Key="ExecIconMissingPlayAction">Cannot get icon if Play action is missing or is set to URL.</sys:String>
 
+    <sys:String x:Key="MetaGameSourceAll">All games from database</sys:String>
+    <sys:String x:Key="MetaGameSourceFiltered">All currently filtered games</sys:String>
+    <sys:String x:Key="MetaGameSourceSelected">Selected games only</sys:String>
+    <sys:String x:Key="MetaSourceStore">Official Store</sys:String>
+    <sys:String x:Key="MetaSourceIGDB">IGDB</sys:String>
+    <sys:String x:Key="MetaSourceIGDBOverStore">IGDB > Official Store</sys:String>
+    <sys:String x:Key="MetaSourceStoreOverIGDB">Official Store > IGDB</sys:String>
+
     <!--Menu-->
     <sys:String x:Key="MenuConfigurationTitle">Configuration</sys:String>
     <sys:String x:Key="MenuPlayniteSettingsTitle">Settings...</sys:String>
     <sys:String x:Key="MenuPlatformEmulatorSettingsTitle">Platforms and Emulators...</sys:String>
-    
+    <sys:String x:Key="MenuTools">Tools</sys:String>
+    <sys:String x:Key="MenuDownloadMetadata">Download Metadata...</sys:String>
+
     <!--Settings Window-->
     <sys:String x:Key="SettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="SettingsImportInstalledLabel">Import installed games</sys:String>
@@ -89,6 +99,10 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="SettingsSkinFullscreen">Fullscreen Skin</sys:String>
     <sys:String x:Key="SettingsSkinColorFullscreen">Fullscreen Skin Color</sys:String>
 
+    <!--Meta Import-->
+    <sys:String x:Key="MetaImportWindowTitle">Metadata Import</sys:String>
+    <sys:String x:Key="DownloadMetaButton">Download Metadata</sys:String>
+    
     <!--Emulator Import-->
     <sys:String x:Key="EmuWizardWindowTitle">Emulation Import Wizard</sys:String>
     <sys:String x:Key="EmuWizardIntro">This wizard will guide you through a process of console emulator download and import, as well as import of emulated games.</sys:String>
@@ -140,6 +154,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
 
     <!--Game fields-->
     <sys:String x:Key="GameIconTitle">Icon</sys:String>
+    <sys:String x:Key="GameBackgroundTitle">Background Image</sys:String>
     <sys:String x:Key="GameProviderTitle">Provider</sys:String>
     <sys:String x:Key="GameNameTitle">Name</sys:String>
     <sys:String x:Key="GamePlatformTitle">Platform</sys:String>
@@ -156,6 +171,8 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="GameCategoryTitle">Category</sys:String>
     <sys:String x:Key="GameDescriptionTitle">Description</sys:String>
     <sys:String x:Key="GameInstallDirTitle">Installation Directory</sys:String>
+    <sys:String x:Key="GameCoverTitle">Cover Image</sys:String>
+    <sys:String x:Key="GameLinksTitle">Links</sys:String>
 
     <!--MessageBox-->
     <sys:String x:Key="OKLabel">OK</sys:String>
