@@ -12,7 +12,7 @@ namespace PlayniteServices.Controllers.IGDB
         {
             get
             {
-                return @"https://igdbcom-internet-game-database-v1.p.mashape.com/";
+                return Startup.Configuration.GetSection("IGDBEndpoint").Value;
             }
         }
 
@@ -68,7 +68,7 @@ namespace PlayniteServices.Controllers.IGDB
                 if (httpClient == null)
                 {
                     httpClient = new HttpClient();
-                    httpClient.DefaultRequestHeaders.Add("X-Mashape-Key", ApiKey);
+                    httpClient.DefaultRequestHeaders.Add("user-key", ApiKey);
                     httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
                 }
 

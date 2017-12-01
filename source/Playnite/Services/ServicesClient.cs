@@ -34,7 +34,7 @@ namespace Playnite.Services
 
         private T ExecuteRequest<T>(string subUrl)
         {
-            var url = Endpoint + subUrl;
+            var url = Uri.EscapeUriString(Endpoint + subUrl);
             var strResult = httpClient.GetStringAsync(url).GetAwaiter().GetResult();
             var result = JsonConvert.DeserializeObject<ServicesResponse<T>>(strResult);
 
