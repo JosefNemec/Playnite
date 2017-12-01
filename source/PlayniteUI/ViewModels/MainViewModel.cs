@@ -542,7 +542,7 @@ namespace PlayniteUI.ViewModels
                     ProgressVisible = true;
                     ProgressValue = 0;
                     ProgressTotal = 1;
-                    ProgressStatus = "Importing installed games...";
+                    ProgressStatus = resources.FindString("ProgressInstalledGames");
                     Thread.Sleep(2000);
 
                     try
@@ -724,58 +724,76 @@ namespace PlayniteUI.ViewModels
                             resources.FindString("BnetLibraryImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
-
-                    ProgressStatus = "Downloading images and game details...";
-
-                    var gamesCount = 0;
-                    gamesCount = database.GamesCollection.Count(a => a.Provider != Provider.Custom && !a.IsProviderDataUpdated);
-                    if (gamesCount > 0)
-                    {
-                        gamesCount -= 1;
-                    }
-
-                    ProgressTotal = gamesCount;
-
-                    //var tasks = new List<Task>
-                    //{
-                    //    // Steam metada download thread
-                    //    Task.Factory.StartNew(() =>
-                    //    {
-                    //        DownloadMetadata(database, Provider.Steam, GamesLoaderHandler.CancelToken.Token);
-                    //    }),
-                    //    // Origin metada download thread
-                    //    Task.Factory.StartNew(() =>
-                    //    {
-                    //        DownloadMetadata(database, Provider.Origin, GamesLoaderHandler.CancelToken.Token);
-                    //    }),
-                    //    // GOG metada download thread
-                    //    Task.Factory.StartNew(() =>
-                    //    {
-                    //        DownloadMetadata(database, Provider.GOG, GamesLoaderHandler.CancelToken.Token);
-                    //    }),
-                    //    // Uplay metada download thread
-                    //    Task.Factory.StartNew(() =>
-                    //    {
-                    //        DownloadMetadata(database, Provider.Uplay, GamesLoaderHandler.CancelToken.Token);
-                    //    }),
-                    //    // BattleNet metada download thread
-                    //    Task.Factory.StartNew(() =>
-                    //    {
-                    //        DownloadMetadata(database, Provider.BattleNet, GamesLoaderHandler.CancelToken.Token);
-                    //    })
-                    //};
-
-                    //Task.WaitAll(tasks.ToArray());
-
+                                        
                     ProgressStatus = "Library update finished";
                     Thread.Sleep(2000);
-                    ProgressVisible = false;
                 });
 
                 await GamesLoaderHandler.ProgressTask;            
             }
             finally
             {
+                GameAdditionAllowed = true;
+                ProgressVisible = false;
+            }
+        }
+
+        public async void DownloadMetadata(MetadataDownloadViewModel model)
+        {
+            if (model.OpenView(MetadataDownloadViewModel.ViewMode.Wizard) != true)
+            {
+                return;
+            }
+
+            List<IGame> games = null;
+            if (model.GamesSource == MetadataGamesSource.Selected)
+            {
+                if (SelectedGames != null && SelectedGames.Count() > 0)
+                {
+                    games = SelectedGames.Select(a => a.Game).Distinct().ToList();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else if (model.GamesSource == MetadataGamesSource.AllFromDB)
+            {
+                games = database.GamesCollection.FindAll().ToList();
+            }
+            else if (model.GamesSource == MetadataGamesSource.Filtered)
+            {
+                games = GamesView.CollectionView.Cast<GameViewEntry>().Select(a => a.Game).Distinct().ToList();
+            }
+
+            GameAdditionAllowed = false;
+
+            try
+            {
+                if (GamesLoaderHandler.ProgressTask != null && GamesLoaderHandler.ProgressTask.Status == TaskStatus.Running)
+                {
+                    GamesLoaderHandler.CancelToken.Cancel();
+                    await GamesLoaderHandler.ProgressTask;
+                }
+
+                GamesLoaderHandler.CancelToken = new CancellationTokenSource();
+                Action<IGame, int, int> processCallback = (game, index, total) =>
+                {
+                    ProgressValue = index + 1;
+                };
+               
+                ProgressVisible = true;
+                ProgressValue = 0;
+                ProgressTotal = games.Count;
+                ProgressStatus = resources.FindString("ProgressMetadata");
+                var downloader = new MetadataDownloader();
+                GamesLoaderHandler.ProgressTask =
+                    downloader.DownloadMetadata(games, database, model.Settings, processCallback, GamesLoaderHandler.CancelToken);
+                await GamesLoaderHandler.ProgressTask;
+            }
+            finally
+            {
+                ProgressVisible = false;
                 GameAdditionAllowed = true;
             }
         }
@@ -869,30 +887,6 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        //private void DownloadMetadata(GameDatabase database, Provider provider, CancellationToken token)
-        //{   
-        //    var games = database.GamesCollection.Find(a => a.Provider == provider && !a.IsProviderDataUpdated).ToList();
-
-        //    foreach (var game in games)
-        //    {
-        //        if (token.IsCancellationRequested)
-        //        {
-        //            return;
-        //        }
-
-        //        ProgressValue++;
-
-        //        try
-        //        {
-        //            database.UpdateGameWithMetadata(game);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            logger.Error(e, string.Format("Failed to download metadata for id:{0}, provider:{1}.", game.ProviderId, game.Provider));
-        //        }
-        //    }
-        //}
-
         public void AddMessage(NotificationMessage message)
         {
             context.Send((c =>
@@ -949,16 +943,7 @@ namespace PlayniteUI.ViewModels
         {
             GamesLoaderHandler.CancelToken.Cancel();
             await GamesLoaderHandler.ProgressTask;
-        }
-
-        public void DownloadMetadata(MetadataDownloadViewModel model)
-        {
-            if (model.OpenView(MetadataDownloadViewModel.ViewMode.Wizard) == true)
-            {
-                var downloader = new MetadataDownloader();
-                downloader.DownloadMetadata(SelectedGames.Select(a => a.Game).ToList(), database, model.Settings);
-            }
-        }
+        }        
 
         public void Dispose()
         {

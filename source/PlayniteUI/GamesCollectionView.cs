@@ -203,14 +203,14 @@ namespace PlayniteUI
         public LiteDB.ObjectId PlatformId => Game.PlatformId;
         public ObservableCollection<GameTask> OtherTasks => Game.OtherTasks;
         public string DescriptionView => Game.DescriptionView;
-        public string DisplayName => Game.Name;        
+        public string DisplayName => Game.Name;
 
         public string Name
         {
             get
             {
                 return (string.IsNullOrEmpty(Game.SortingName)) ? Game.Name : Game.SortingName;
-            }           
+            }
         }
 
         public bool IsSetupInProgress
@@ -240,7 +240,7 @@ namespace PlayniteUI
         public IGame Game
         {
             get; set;
-        }       
+        }
 
         public string DefaultIcon
         {
@@ -312,7 +312,7 @@ namespace PlayniteUI
         }
 
         public void OnPropertyChanged(string propertyName)
-        {            
+        {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
             if (propertyName == "PlatformId")
@@ -320,9 +320,10 @@ namespace PlayniteUI
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Platform"));
             }
 
-            if (propertyName == "SortingName")
+            if (propertyName == "SortingName" || propertyName == "Name")
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DisplayName"));
             }
         }
 

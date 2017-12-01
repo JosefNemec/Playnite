@@ -70,6 +70,11 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="MetaSourceIGDBOverStore">IGDB > Official Store</sys:String>
     <sys:String x:Key="MetaSourceStoreOverIGDB">Official Store > IGDB</sys:String>
 
+    <!--Progess string-->
+    <sys:String x:Key="ProgressMetadata">Downloading metadata...</sys:String>
+    <sys:String x:Key="ProgressInstalledGames">Importing installed games...</sys:String>
+    <sys:String x:Key="ProgressLibraryGames">Downloading library updates...</sys:String>
+
     <!--Menu-->
     <sys:String x:Key="MenuConfigurationTitle">Configuration</sys:String>
     <sys:String x:Key="MenuPlayniteSettingsTitle">Settings...</sys:String>

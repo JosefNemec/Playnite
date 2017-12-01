@@ -52,7 +52,7 @@ namespace PlayniteTests.MetaProviders
         }
 
         [Test]
-        public void IGDBSourceTest()
+        public async Task IGDBSourceTest()
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "metadownload.db");
             FileSystem.DeleteFile(path);
@@ -102,7 +102,7 @@ namespace PlayniteTests.MetaProviders
                 var downloader = new MockMetadataDownloader(storeProvider, storeProvider, storeProvider, storeProvider, igdbProvider);
                 var settings = new MetadataDownloaderSettings();
                 SetAllMetaFields(settings, MetadataSource.IGDB, true);
-                downloader.DownloadMetadata(
+                await downloader.DownloadMetadata(
                     db.GamesCollection.FindAll().ToList(),
                     db, settings);
 
@@ -128,7 +128,7 @@ namespace PlayniteTests.MetaProviders
         }
 
         [Test]
-        public void StoreSourceTest()
+        public async Task StoreSourceTest()
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "metadownload.db");
             FileSystem.DeleteFile(path);
@@ -170,7 +170,7 @@ namespace PlayniteTests.MetaProviders
                 var downloader = new MockMetadataDownloader(storeProvider, storeProvider, storeProvider, storeProvider, igdbProvider);
                 var settings = new MetadataDownloaderSettings();
                 SetAllMetaFields(settings, MetadataSource.Store, true);
-                downloader.DownloadMetadata(
+                await downloader.DownloadMetadata(
                     db.GamesCollection.FindAll().ToList(),
                     db, settings);
 
@@ -196,7 +196,7 @@ namespace PlayniteTests.MetaProviders
         }
 
         [Test]
-        public void IGDBStoreCombinedTest()
+        public async Task IGDBStoreCombinedTest()
         {
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "metadownload.db");
             FileSystem.DeleteFile(path);
@@ -260,7 +260,7 @@ namespace PlayniteTests.MetaProviders
                 
                 // IGDB over Store
                 SetAllMetaFields(settings, MetadataSource.IGDBOverStore, true);
-                downloader.DownloadMetadata(
+                await downloader.DownloadMetadata(
                     db.GamesCollection.FindAll().ToList(),
                     db, settings);
                 Assert.AreEqual(4, downloader.CallCount);
@@ -295,7 +295,7 @@ namespace PlayniteTests.MetaProviders
                 // Store over IGDB
                 downloader.CallCount = 0;
                 SetAllMetaFields(settings, MetadataSource.StoreOverIGDB, true);
-                downloader.DownloadMetadata(
+                await downloader.DownloadMetadata(
                     db.GamesCollection.FindAll().ToList(),
                     db, settings);
                 Assert.AreEqual(4, downloader.CallCount);
@@ -330,7 +330,7 @@ namespace PlayniteTests.MetaProviders
         }
 
         [Test]
-        public void MissingDataTest()
+        public async Task MissingDataTest()
         {
             // Test that downloader doesn't change existing values to null when missing by provider
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "metadownload.db");
@@ -379,7 +379,7 @@ namespace PlayniteTests.MetaProviders
                 var s = games[0].ReleaseDate;
 
                 SetAllMetaFields(settings, MetadataSource.Store, true);
-                downloader.DownloadMetadata(
+                await downloader.DownloadMetadata(
                     db.GamesCollection.FindAll().ToList(),
                     db, settings);
 

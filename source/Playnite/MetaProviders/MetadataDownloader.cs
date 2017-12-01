@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Playnite.MetaProviders
@@ -380,74 +381,111 @@ namespace Playnite.MetaProviders
             return null;
         }
 
-        public void DownloadMetadata(List<IGame> games, GameDatabase database, MetadataDownloaderSettings settings)
+        public async Task DownloadMetadata(
+            List<IGame> games,
+            GameDatabase database,
+            MetadataDownloaderSettings settings,
+            Action<IGame, int, int> processCallback,
+            CancellationTokenSource cancelToken)
         {
-            foreach (Game game in games)
+            await Task.Factory.StartNew(() =>
             {
-                GameMetadata storeData = null;
-                GameMetadata igdbData = null;
-                GameMetadata gameData;
-
-                // Genre
-                gameData = ProcessField(game, settings.Genre, ref storeData, ref igdbData, (a) => a.GameData?.Genres);
-                game.Genres = gameData?.GameData?.Genres ?? game.Genres;
-
-                // Release Date
-                gameData = ProcessField(game, settings.ReleaseDate, ref storeData, ref igdbData, (a) => a.GameData?.ReleaseDate);
-                game.ReleaseDate = gameData?.GameData?.ReleaseDate ?? game.ReleaseDate;
-
-                // Developer
-                gameData = ProcessField(game, settings.Developer, ref storeData, ref igdbData, (a) => a.GameData?.Developers);
-                game.Developers = gameData?.GameData?.Developers ?? game.Developers;
-
-                // Publisher
-                gameData = ProcessField(game, settings.Publisher, ref storeData, ref igdbData, (a) => a.GameData?.Publishers);
-                game.Publishers = gameData?.GameData?.Publishers ?? game.Publishers;
-
-                // Tags / Features
-                gameData = ProcessField(game, settings.Tag, ref storeData, ref igdbData, (a) => a.GameData?.Tags);
-                game.Tags = gameData?.GameData?.Tags ?? game.Tags;
-
-                // Description
-                gameData = ProcessField(game, settings.Description, ref storeData, ref igdbData, (a) => a.GameData?.Description);
-                game.Description = gameData?.GameData?.Description ?? game.Description;
-
-                // Links
-                gameData = ProcessField(game, settings.Links, ref storeData, ref igdbData, (a) => a.GameData?.Links);
-                game.Links = gameData?.GameData?.Links ?? game.Links;
-
-                // BackgroundImage
-                gameData = ProcessField(game, settings.BackgroundImage, ref storeData, ref igdbData, (a) => a.BackgroundImage);
-                game.BackgroundImage = gameData?.BackgroundImage ?? game.BackgroundImage;
-
-                // Cover
-                gameData = ProcessField(game, settings.CoverImage, ref storeData, ref igdbData, (a) => a.Image);
-                if (gameData?.Image != null)
+                if (games == null || games.Count == 0)
                 {
-                    if (!string.IsNullOrEmpty(game.Image))
-                    {
-                        database.DeleteImageSafe(game.Image, game);
-                    }
-
-                    var imageId = database.AddFileNoDuplicate(gameData.Image);
-                    game.Image = imageId;
+                    return;
                 }
 
-                // Icon
-                gameData = ProcessField(game, settings.Icon, ref storeData, ref igdbData, (a) => a.Icon);
-                if (gameData?.Icon != null)
+                for (int i = 0; i < games.Count; i++)
                 {
-                    if (!string.IsNullOrEmpty(game.Icon))
+                    if (cancelToken?.IsCancellationRequested == true)
                     {
-                        database.DeleteImageSafe(game.Icon, game);
+                        return;
                     }
 
-                    var iconId = database.AddFileNoDuplicate(gameData.Icon);
-                    game.Icon = iconId;
-                }
+                    var game = games[i];
+                    GameMetadata storeData = null;
+                    GameMetadata igdbData = null;
+                    GameMetadata gameData;
 
-                database.UpdateGameInDatabase(game);
-            }
+                    // Genre
+                    gameData = ProcessField(game, settings.Genre, ref storeData, ref igdbData, (a) => a.GameData?.Genres);
+                    game.Genres = gameData?.GameData?.Genres ?? game.Genres;
+
+                    // Release Date
+                    gameData = ProcessField(game, settings.ReleaseDate, ref storeData, ref igdbData, (a) => a.GameData?.ReleaseDate);
+                    game.ReleaseDate = gameData?.GameData?.ReleaseDate ?? game.ReleaseDate;
+
+                    // Developer
+                    gameData = ProcessField(game, settings.Developer, ref storeData, ref igdbData, (a) => a.GameData?.Developers);
+                    game.Developers = gameData?.GameData?.Developers ?? game.Developers;
+
+                    // Publisher
+                    gameData = ProcessField(game, settings.Publisher, ref storeData, ref igdbData, (a) => a.GameData?.Publishers);
+                    game.Publishers = gameData?.GameData?.Publishers ?? game.Publishers;
+
+                    // Tags / Features
+                    gameData = ProcessField(game, settings.Tag, ref storeData, ref igdbData, (a) => a.GameData?.Tags);
+                    game.Tags = gameData?.GameData?.Tags ?? game.Tags;
+
+                    // Description
+                    gameData = ProcessField(game, settings.Description, ref storeData, ref igdbData, (a) => a.GameData?.Description);
+                    game.Description = gameData?.GameData?.Description ?? game.Description;
+
+                    // Links
+                    gameData = ProcessField(game, settings.Links, ref storeData, ref igdbData, (a) => a.GameData?.Links);
+                    game.Links = gameData?.GameData?.Links ?? game.Links;
+
+                    // BackgroundImage
+                    gameData = ProcessField(game, settings.BackgroundImage, ref storeData, ref igdbData, (a) => a.BackgroundImage);
+                    game.BackgroundImage = gameData?.BackgroundImage ?? game.BackgroundImage;
+
+                    // Cover
+                    gameData = ProcessField(game, settings.CoverImage, ref storeData, ref igdbData, (a) => a.Image);
+                    if (gameData?.Image != null)
+                    {
+                        if (!string.IsNullOrEmpty(game.Image))
+                        {
+                            database.DeleteImageSafe(game.Image, game);
+                        }
+
+                        var imageId = database.AddFileNoDuplicate(gameData.Image);
+                        game.Image = imageId;
+                    }
+
+                    // Icon
+                    gameData = ProcessField(game, settings.Icon, ref storeData, ref igdbData, (a) => a.Icon);
+                    if (gameData?.Icon != null)
+                    {
+                        if (!string.IsNullOrEmpty(game.Icon))
+                        {
+                            database.DeleteImageSafe(game.Icon, game);
+                        }
+
+                        var iconId = database.AddFileNoDuplicate(gameData.Icon);
+                        game.Icon = iconId;
+                    }
+
+                    database.UpdateGameInDatabase(game);
+                    processCallback?.Invoke(game, i, games.Count);
+                }
+            });
+        }
+
+        public async Task DownloadMetadata(
+            List<IGame> games,
+            GameDatabase database,
+            MetadataDownloaderSettings settings,
+            Action<IGame, int, int> processCallback)
+        {
+            await DownloadMetadata(games, database, settings, processCallback, null);
+        }
+
+        public async Task DownloadMetadata(
+            List<IGame> games,
+            GameDatabase database,
+            MetadataDownloaderSettings settings)
+        {
+            await DownloadMetadata(games, database, settings, null, null);
         }
 
         public virtual GameMetadata DownloadGameData(string gameName, string id, IMetadataProvider provider)
