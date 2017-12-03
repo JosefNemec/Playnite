@@ -454,12 +454,12 @@ namespace PlayniteUI.ViewModels
             Application.Current.Shutdown();
         }
 
-        public void LoadGames(bool updateLibrary)
+        public async void LoadGames(bool updateLibrary)
         {
-            LoadGames(updateLibrary, 0);
+            await LoadGames(updateLibrary, 0);
         }
 
-        public async void LoadGames(bool updateLibrary, ulong steamImportCatId)
+        public async Task LoadGames(bool updateLibrary, ulong steamImportCatId)
         {
             if (string.IsNullOrEmpty(AppSettings.DatabasePath))
             {
@@ -738,15 +738,10 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public async void DownloadMetadata(MetadataDownloadViewModel model)
+        public async Task DownloadMetadata(MetadataDownloaderSettings settings)
         {
-            if (model.OpenView(MetadataDownloadViewModel.ViewMode.Wizard) != true)
-            {
-                return;
-            }
-
             List<IGame> games = null;
-            if (model.GamesSource == MetadataGamesSource.Selected)
+            if (settings.GamesSource == MetadataGamesSource.Selected)
             {
                 if (SelectedGames != null && SelectedGames.Count() > 0)
                 {
@@ -757,11 +752,11 @@ namespace PlayniteUI.ViewModels
                     return;
                 }
             }
-            else if (model.GamesSource == MetadataGamesSource.AllFromDB)
+            else if (settings.GamesSource == MetadataGamesSource.AllFromDB)
             {
                 games = database.GamesCollection.FindAll().ToList();
             }
-            else if (model.GamesSource == MetadataGamesSource.Filtered)
+            else if (settings.GamesSource == MetadataGamesSource.Filtered)
             {
                 games = GamesView.CollectionView.Cast<GameViewEntry>().Select(a => a.Game).Distinct().ToList();
             }
@@ -781,14 +776,14 @@ namespace PlayniteUI.ViewModels
                 {
                     ProgressValue = index + 1;
                 };
-               
+
                 ProgressVisible = true;
                 ProgressValue = 0;
                 ProgressTotal = games.Count;
                 ProgressStatus = resources.FindString("ProgressMetadata");
                 var downloader = new MetadataDownloader();
                 GamesLoaderHandler.ProgressTask =
-                    downloader.DownloadMetadata(games, database, model.Settings, processCallback, GamesLoaderHandler.CancelToken);
+                    downloader.DownloadMetadata(games, database, settings, processCallback, GamesLoaderHandler.CancelToken);
                 await GamesLoaderHandler.ProgressTask;
             }
             finally
@@ -796,6 +791,17 @@ namespace PlayniteUI.ViewModels
                 ProgressVisible = false;
                 GameAdditionAllowed = true;
             }
+        }
+
+
+        public async void DownloadMetadata(MetadataDownloadViewModel model)
+        {
+            if (model.OpenView(MetadataDownloadViewModel.ViewMode.Wizard) != true)
+            {
+                return;
+            }
+
+            await DownloadMetadata(model.Settings);
         }
 
         public void RestoreWindow()
@@ -832,7 +838,7 @@ namespace PlayniteUI.ViewModels
         {
             model.ShowDialog();
         }
-
+        
         public void OpenAboutWindow(AboutViewModel model)
         {
             model.ShowDialog();

@@ -10,13 +10,6 @@ using System.Threading.Tasks;
 
 namespace PlayniteUI.ViewModels
 {
-    public enum MetadataGamesSource
-    {
-        AllFromDB,
-        Selected,
-        Filtered
-    }
-
     public class MetadataDownloadViewModel : ObservableObject
     {
         public enum ViewMode
@@ -69,25 +62,11 @@ namespace PlayniteUI.ViewModels
             set
             {
                 mode = value;
+                ViewTabIndex = mode == ViewMode.Wizard ? 0 : 1;
                 OnPropertyChanged("Mode");
                 OnPropertyChanged("ShowDownloadButton");
                 OnPropertyChanged("ShowNextButton");
                 OnPropertyChanged("ShowBackButton");
-            }
-        }
-
-        private MetadataGamesSource gamesSource = MetadataGamesSource.AllFromDB;
-        public MetadataGamesSource GamesSource
-        {
-            get
-            {
-                return gamesSource;
-            }
-
-            set
-            {
-                gamesSource = value;
-                OnPropertyChanged("GamesSource");
             }
         }
 

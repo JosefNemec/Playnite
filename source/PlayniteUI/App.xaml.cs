@@ -163,7 +163,7 @@ namespace PlayniteUI
                     }
                     else
                     {
-                        AppSettings.DatabasePath = System.IO.Path.Combine(Paths.UserProgramDataPath, "games.db");
+                        AppSettings.DatabasePath = Path.Combine(Paths.UserProgramDataPath, "games.db");
                     }
 
                     AppSettings.SteamSettings = settings.SteamSettings;
@@ -173,10 +173,11 @@ namespace PlayniteUI
                     AppSettings.UplaySettings = settings.UplaySettings;
                     AppSettings.SaveSettings();
 
+                    Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
+                    Database.OpenDatabase();
+
                     if (wizardModel.ImportedGames.Count > 0)
                     {
-                        Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
-                        Database.OpenDatabase();
                         foreach (var game in wizardModel.ImportedGames)
                         {
                             if (game.Icon != null)
@@ -194,10 +195,45 @@ namespace PlayniteUI
                         steamCatImportId = wizardModel.SteamIdCategoryImport;
                     }
                 }
+                else
+                {
+                    AppSettings.DatabasePath = Path.Combine(Paths.UserProgramDataPath, "games.db");
+                    AppSettings.SaveSettings();
+                    Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
+                }
             }
             else
             {
                 Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
+            }
+
+            // Emulator wizard
+            if (!AppSettings.EmulatorWizardComplete)
+            {
+                var model = new EmulatorImportViewModel(Database,
+                       EmulatorImportViewModel.DialogType.Wizard,
+                       EmulatorImportWindowFactory.Instance,
+                       new DialogsFactory(),
+                       new ResourceProvider());
+
+                model.ShowDialog();                
+                AppSettings.EmulatorWizardComplete = true;
+                AppSettings.SaveSettings();
+            }
+
+            // Metadata wizard
+            MetadataDownloadViewModel metaModel = null;
+            if (!AppSettings.MetadataWizardComplete)
+            {
+                metaModel = new MetadataDownloadViewModel(MetadataDownloadWindowFactory.Instance);
+                metaModel.Settings.GamesSource = Playnite.MetaProviders.MetadataGamesSource.AllFromDB;
+                if (metaModel.OpenView(MetadataDownloadViewModel.ViewMode.Manual) != true)
+                {
+                    metaModel = null;
+                }
+
+                AppSettings.MetadataWizardComplete = true;
+                AppSettings.SaveSettings();
             }
 
             GamesEditor = new GamesEditor(Database);
@@ -210,7 +246,7 @@ namespace PlayniteUI
             }
             else
             {
-                OpenNormalView(steamCatImportId);
+                OpenNormalView(steamCatImportId, metaModel);
             }
 
             // Update and stats
@@ -341,7 +377,7 @@ namespace PlayniteUI
             resourcesReleased = true;
         }
 
-        public void OpenNormalView(ulong steamCatImportId)
+        public async void OpenNormalView(ulong steamCatImportId, MetadataDownloadViewModel metaModel)
         {
             if (fullscreenModel != null)
             {
@@ -360,7 +396,12 @@ namespace PlayniteUI
                 GamesEditor);
             mainModel.ShowView();
             Current.MainWindow = window.Window;
-            mainModel.LoadGames(AppSettings.UpdateLibStartup, steamCatImportId);
+            await mainModel.LoadGames(AppSettings.UpdateLibStartup, steamCatImportId);
+
+            if (metaModel != null)
+            {
+                await mainModel.DownloadMetadata(metaModel.Settings);
+            }
         }
 
         public void OpenFullscreenView()

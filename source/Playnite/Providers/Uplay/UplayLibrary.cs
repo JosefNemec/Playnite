@@ -77,7 +77,6 @@ namespace Playnite.Providers.Uplay
             }
 
             game.Name = program.DisplayName;
-            game.IsProviderDataUpdated = true;
             return metadata;
         }
     }

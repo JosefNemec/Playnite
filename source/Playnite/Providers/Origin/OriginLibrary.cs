@@ -347,7 +347,6 @@ namespace Playnite.Providers.Origin
                 }
             }
 
-            game.IsProviderDataUpdated = true;
             return metadata;
         }
     }

@@ -415,41 +415,6 @@ namespace PlayniteTests.Database
             }
         }
 
-        [Test]
-        public void UpdateGogGameWithMetadataTest()
-        {
-            var game = new Game()
-            {
-                ProviderId = "1207658890",
-                Name = "Temp Name",
-                Provider = Provider.GOG
-            };
-
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "gogmetaupdate.db");
-            FileSystem.DeleteFile(path);
-
-            var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
-            {
-                db.AddGame(game);
-                db.UpdateGameWithMetadata(game);
-                Assert.AreNotEqual("Temp Name", game.Name);
-                Assert.IsNotNull(game.ReleaseDate);
-                Assert.IsNotNull(game.Genres);
-                Assert.IsNotNull(game.Developers);
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Description));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Forum").Url));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Store").Url));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Wiki").Url));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Icon));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Image));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.BackgroundImage));
-
-                var files = db.Database.FileStorage.FindAll();
-                Assert.AreEqual(2, files.Count());
-            }
-        }
-
         #endregion GOG
 
         #region Steam
@@ -497,42 +462,6 @@ namespace PlayniteTests.Database
                 game = db.GamesCollection.FindOne(Query.All());
                 Assert.IsNotNull(game.PlayTask);
                 Assert.AreNotEqual(@"c:\nonsense\directory\", game.InstallDirectory);
-            }
-        }
-
-        [Test]
-        public void UpdateSteamGameWithMetadataTest()
-        {
-            var game = new Game()
-            {
-                ProviderId = "289070",
-                Name = "Temp Name",
-                Provider = Provider.Steam
-            };
-
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "steammetaupdate.db");
-            FileSystem.DeleteFile(path);
-
-            var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
-            {
-                db.AddGame(game);
-                db.UpdateGameWithMetadata(game);
-                Assert.AreNotEqual("Temp Name", game.Name);
-                Assert.IsNotNull(game.ReleaseDate);
-                Assert.IsNotNull(game.Genres);
-                Assert.IsNotNull(game.Developers);
-                Assert.IsFalse(string.IsNullOrEmpty(game.Description));
-                Assert.IsFalse(string.IsNullOrEmpty(game.Links.First(a => a.Name == "Forum").Url));
-                Assert.IsFalse(string.IsNullOrEmpty(game.Links.First(a => a.Name == "Store").Url));
-                Assert.IsFalse(string.IsNullOrEmpty(game.Links.First(a => a.Name == "Wiki").Url));
-                Assert.IsFalse(string.IsNullOrEmpty(game.Links.First(a => a.Name == "Workshop").Url));
-                Assert.IsFalse(string.IsNullOrEmpty(game.Icon));
-                Assert.IsFalse(string.IsNullOrEmpty(game.Image));
-                Assert.IsFalse(string.IsNullOrEmpty(game.BackgroundImage));
-
-                var files = db.Database.FileStorage.FindAll();
-                Assert.AreEqual(2, files.Count());
             }
         }
         #endregion Steam
@@ -584,39 +513,6 @@ namespace PlayniteTests.Database
                 Assert.AreNotEqual(@"c:\nonsense\directory\", game.InstallDirectory);
             }
         }
-
-        [Test]
-        public void UpdateOriginGameWithMetadataTest()
-        {
-            var game = new Game()
-            {
-                ProviderId = "DR:198070800",
-                Name = "Temp Name",
-                Provider = Provider.Origin
-            };
-
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "originmetaupdate.db");
-            FileSystem.DeleteFile(path);
-
-            var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
-            {
-                db.AddGame(game);
-                db.UpdateGameWithMetadata(game);
-                Assert.AreNotEqual("Temp Name", game.Name);
-                Assert.IsNotNull(game.ReleaseDate);
-                Assert.IsNotNull(game.Developers);
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Description));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Forum").Url));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Store").Url));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Links.First(a => a.Name == "Wiki").Url));
-                Assert.IsTrue(!string.IsNullOrEmpty(game.Image));
-
-                var files = db.Database.FileStorage.FindAll();
-                Assert.AreEqual(1, files.Count());
-            }
-        }
-
         #endregion Origin
 
         #region Uplay

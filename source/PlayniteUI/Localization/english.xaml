@@ -50,6 +50,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="NextLabel">Next</sys:String>
     <sys:String x:Key="BackLabel">Back</sys:String>
     <sys:String x:Key="ImportLabel">Import</sys:String>
+    <sys:String x:Key="SourceLabel">Source</sys:String>
 
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Special wariables can be used to add dynamic string:
 {InstallDir} - Game installation directory
@@ -62,6 +63,8 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
     <sys:String x:Key="ExecIconMissingPlayAction">Cannot get icon if Play action is missing or is set to URL.</sys:String>
 
+    <sys:String x:Key="MetaGamesSourceIntro">Games selection</sys:String>
+    <sys:String x:Key="MetaGamesSourceDescription">Import metadata for:</sys:String>
     <sys:String x:Key="MetaGameSourceAll">All games from database</sys:String>
     <sys:String x:Key="MetaGameSourceFiltered">All currently filtered games</sys:String>
     <sys:String x:Key="MetaGameSourceSelected">Selected games only</sys:String>
@@ -69,6 +72,19 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="MetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="MetaSourceIGDBOverStore">IGDB > Official Store</sys:String>
     <sys:String x:Key="MetaSourceStoreOverIGDB">Official Store > IGDB</sys:String>
+    <sys:String x:Key="MetaSourceSettingsDescription" xml:space="preserve">Select metada source for each field.
+        
+Store:
+Only use data from official Store.
+    
+IGDB:
+Only use data from IGDB.com database.
+    
+IGDB > Official Store:
+Prefer data from IGDB.com database and where not available use official Store data.
+    
+Official Store > IGDB:
+Prefer data from official Store and where not available use IGBD.com database.</sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="ProgressMetadata">Downloading metadata...</sys:String>

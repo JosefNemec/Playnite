@@ -304,7 +304,6 @@ namespace Playnite.Providers.GOG
                 game.BackgroundImage = metadata.BackgroundImage;
             }
 
-            game.IsProviderDataUpdated = true;
             return metadata;
         }
     }

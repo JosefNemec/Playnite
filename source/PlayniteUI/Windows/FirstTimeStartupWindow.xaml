@@ -11,6 +11,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         Title="First Time Configuration" WindowStartupLocation="CenterScreen"
+        ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False"
         Height="400" Width="550" x:Name="WindowMain"
         AutomationProperties.AutomationId="WindowWizard">
 

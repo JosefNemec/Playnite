@@ -428,18 +428,18 @@ namespace Playnite.Models
             }
         }
 
-        private bool isProviderDataReady;
-        public bool IsProviderDataUpdated
+        private bool isEditingBlocked;
+        public bool IsEditingBlocked
         {
             get
             {
-                return isProviderDataReady;
+                return isEditingBlocked;
             }
 
             set
             {
-                isProviderDataReady = value;
-                OnPropertyChanged("IsProviderDataReady");
+                isEditingBlocked = value;
+                OnPropertyChanged("IsEditingBlocked");
             }
         }
 

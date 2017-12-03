@@ -1009,48 +1009,6 @@ namespace Playnite.Database
             OnGameUpdated(new List<GameUpdateEvent>() { new GameUpdateEvent(oldData, game) });
         }
 
-        public void UpdateGameWithMetadata(IGame game)
-        {
-            GameMetadata metadata;
-
-            switch (game.Provider)
-            {
-                case Provider.Steam:
-                    metadata = steamLibrary.UpdateGameWithMetadata(game);
-                    break;
-                case Provider.GOG:
-                    metadata = gogLibrary.UpdateGameWithMetadata(game);
-                    break;
-                case Provider.Origin:
-                    metadata = originLibrary.UpdateGameWithMetadata(game);
-                    break;
-                case Provider.Uplay:
-                    metadata = uplayLibrary.UpdateGameWithMetadata(game);
-                    break;
-                case Provider.BattleNet:
-                    metadata = battleNetLibrary.UpdateGameWithMetadata(game);
-                    break;
-                case Provider.Custom:
-                    return;
-                default:
-                    return;
-            }
-
-            if (metadata.Icon != null)
-            {
-                var path = AddFileNoDuplicate(metadata.Icon.Path, metadata.Icon.Name, metadata.Icon.Data);
-                game.Icon = path;
-            }
-
-            if (metadata.Image != null)
-            {
-                var path = AddFileNoDuplicate(metadata.Image.Path, metadata.Image.Name, metadata.Image.Data);
-                game.Image = path;
-            }
-
-            UpdateGameInDatabase(game);
-        }
-
         public void UpdateInstalledGames(Provider provider)
         {
             List<IGame> installedGames = null;

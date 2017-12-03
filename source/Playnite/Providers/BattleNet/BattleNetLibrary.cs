@@ -377,7 +377,6 @@ namespace Playnite.Providers.BattleNet
             game.BackgroundImage = product.BackgroundUrl;
             metadata.BackgroundImage = product.BackgroundUrl;
             game.Links = new ObservableCollection<Link>(product.Links);
-            game.IsProviderDataUpdated = true;
             return metadata;
         }
 

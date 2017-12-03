@@ -125,7 +125,7 @@ namespace Playnite.Models
             get;
         }
 
-        bool IsProviderDataUpdated
+        bool IsEditingBlocked
         {
             get; set;
         }

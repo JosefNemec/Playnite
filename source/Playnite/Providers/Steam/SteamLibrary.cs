@@ -347,7 +347,6 @@ namespace Playnite.Providers.Steam
                 game.BackgroundImage = metadata.BackgroundImage;
             }
 
-            game.IsProviderDataUpdated = true;
             return metadata;
         }
 
