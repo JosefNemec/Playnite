@@ -33,22 +33,28 @@ namespace PlayniteUI.ViewModels
                 OnPropertyChanged("ShowDownloadButton");
                 OnPropertyChanged("ShowNextButton");
                 OnPropertyChanged("ShowBackButton");
+                OnPropertyChanged("ShowFinishButton");
             }
         }
 
         public bool ShowDownloadButton
         {
-            get => ViewTabIndex == 1;
+            get => Mode == ViewMode.Manual && ViewTabIndex == 1;
+        }
+
+        public bool ShowFinishButton
+        {
+            get => Mode == ViewMode.Wizard && ViewTabIndex == 1;
         }
 
         public bool ShowNextButton
         {
-            get => Mode == ViewMode.Wizard && ViewTabIndex == 0;
+            get => Mode == ViewMode.Manual && ViewTabIndex == 0;
         }
 
         public bool ShowBackButton
         {
-            get => Mode == ViewMode.Wizard && ViewTabIndex == 1;
+            get => Mode == ViewMode.Manual && ViewTabIndex == 1;
         }
 
         private ViewMode mode;
@@ -62,11 +68,12 @@ namespace PlayniteUI.ViewModels
             set
             {
                 mode = value;
-                ViewTabIndex = mode == ViewMode.Wizard ? 0 : 1;
+                ViewTabIndex = mode == ViewMode.Manual ? 0 : 1;
                 OnPropertyChanged("Mode");
                 OnPropertyChanged("ShowDownloadButton");
                 OnPropertyChanged("ShowNextButton");
                 OnPropertyChanged("ShowBackButton");
+                OnPropertyChanged("ShowFinishButton");
             }
         }
 

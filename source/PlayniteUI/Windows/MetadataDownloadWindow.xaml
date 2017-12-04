@@ -16,7 +16,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource MetaImportWindowTitle}" WindowStartupLocation="CenterOwner"
-        Height="510" Width="650" x:Name="WindowEmulatorImport"
+        Height="530" Width="670" x:Name="WindowEmulatorImport"
         AutomationProperties.AutomationId="WindowEmulatorImport">
 
     <controls:WindowBase.Resources>
@@ -78,8 +78,10 @@
 
             <TabItem Visibility="Collapsed">
                 <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Margin="20,20,20,5" TextWrapping="Wrap"
+                               Text="{DynamicResource MetaDescriptionFields}"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                          Padding="30,20,0,0" DockPanel.Dock="Left">
+                          Padding="30,0,0,0" DockPanel.Dock="Left">
                         <Grid>
                             <Grid.Resources>
                                 <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
@@ -241,7 +243,7 @@
                     </ScrollViewer>
 
                     <TextBlock Text="{DynamicResource MetaSourceSettingsDescription}" DockPanel.Dock="Left"
-                               TextWrapping="Wrap" Margin="20,25,20,20"/>
+                               TextWrapping="Wrap" Margin="20,50,20,20"/>
                 </DockPanel>
             </TabItem>
         </TabControl>        
@@ -253,6 +255,9 @@
                 <Button Content="{DynamicResource DownloadMetaButton}" Name="ButtonDownload" DockPanel.Dock="Right"                        
                         Style="{StaticResource BottomButton}" Command="{Binding DownloadCommand}"
                         Visibility="{Binding ShowDownloadButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <Button Content="{DynamicResource FinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"                        
+                        Style="{StaticResource BottomButton}" Command="{Binding DownloadCommand}"
+                        Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 <Button Content="{DynamicResource NextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
                         Command="{Binding NextCommand}"
                         Visibility="{Binding ShowNextButton, Converter={StaticResource BooleanToVisibilityConverter}}"

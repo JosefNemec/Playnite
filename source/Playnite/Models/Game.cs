@@ -428,21 +428,6 @@ namespace Playnite.Models
             }
         }
 
-        private bool isEditingBlocked;
-        public bool IsEditingBlocked
-        {
-            get
-            {
-                return isEditingBlocked;
-            }
-
-            set
-            {
-                isEditingBlocked = value;
-                OnPropertyChanged("IsEditingBlocked");
-            }
-        }
-
         private bool isSetupInProgress = false;
         [JsonIgnore]
         [BsonIgnore]

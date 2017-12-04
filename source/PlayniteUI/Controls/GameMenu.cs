@@ -1,5 +1,4 @@
 ﻿using Playnite.Models;
-using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -97,22 +96,6 @@ namespace PlayniteUI.Controls
 
                 return null;
             }
-        }
-
-        public RelayCommand<List<IGame>> RemoveGamesCommand
-        {
-            get => new RelayCommand<List<IGame>>((a) =>
-            {
-                editor.RemoveGames(a);
-            }, (a) => a?.Any(b => b.IsEditingBlocked) == false);
-        }
-
-        public RelayCommand<IGame> RemoveGameCommand
-        {
-            get => new RelayCommand<IGame>((a) =>
-            {
-                editor.RemoveGame(a);
-            }, (a) => a?.IsEditingBlocked == false);
         }
 
         static GameMenu()
@@ -387,8 +370,12 @@ namespace PlayniteUI.Controls
                 {
                     Header = resources.FindString("MenuRemove")
                 };
-                removeItem.Command = RemoveGameCommand;
-                removeItem.CommandParameter = Game;
+
+                removeItem.Click += (s, e) =>
+                {
+                    editor.RemoveGame(Game);
+                };
+
                 Items.Add(removeItem);
 
                 // Uninstall

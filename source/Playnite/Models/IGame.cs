@@ -125,11 +125,6 @@ namespace Playnite.Models
             get;
         }
 
-        bool IsEditingBlocked
-        {
-            get; set;
-        }
-
         GameTask PlayTask
         {
             get; set;

@@ -252,7 +252,7 @@
                         <Image Source="/Images/applogo.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
                         <TextBlock Text="Other games" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <TextBlock Text="Click on the button bellow to import other installed games or browse for them manually. Including Windows Store games."
+                    <TextBlock Text="Click on the button bellow to import other installed games or browse for them manually (including Windows Store games)."
                             DockPanel.Dock="Top" Padding="5" TextWrapping="Wrap"/>
                     <Button Name="ButtonImportGames" HorizontalAlignment="Center" Content="Import Games"
                             DockPanel.Dock="Top" Margin="0,20,0,0"

@@ -796,7 +796,7 @@ namespace PlayniteUI.ViewModels
 
         public async void DownloadMetadata(MetadataDownloadViewModel model)
         {
-            if (model.OpenView(MetadataDownloadViewModel.ViewMode.Wizard) != true)
+            if (model.OpenView(MetadataDownloadViewModel.ViewMode.Manual) != true)
             {
                 return;
             }

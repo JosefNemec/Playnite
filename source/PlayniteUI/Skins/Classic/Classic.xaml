@@ -63,15 +63,14 @@
                             <Separator />
                             <MenuItem Header="Reload Games List"
                                       Command="{Binding LoadGamesCommand}"/>
-                            <MenuItem Header="{DynamicResource MenuTools}">
-                                <MenuItem Header="{DynamicResource MenuDownloadMetadata}"
-                                          Command="{Binding DownloadMetadataCommand}"/>
-                            </MenuItem>
-                            <MenuItem Header="{DynamicResource MenuConfigurationTitle}">
-                                <MenuItem Header="{DynamicResource MenuPlayniteSettingsTitle}"
-                                      Command="{Binding OpenSettingsCommand}"/>
+                            <MenuItem Header="{DynamicResource MenuTools}">                                
                                 <MenuItem Header="{DynamicResource MenuPlatformEmulatorSettingsTitle}"
                                       Command="{Binding OpenPlatformsCommand}"/>
+                                <MenuItem Header="{DynamicResource MenuDownloadMetadata}"
+                                          Command="{Binding DownloadMetadataCommand}"/>
+                                <Separator />
+                                <MenuItem Header="{DynamicResource MenuPlayniteSettingsTitle}"
+                                      Command="{Binding OpenSettingsCommand}"/>
                             </MenuItem>
                             <Separator  />
                             <MenuItem Header="Open 3rd Party Client" ItemsSource="{Binding ThirdPartyTools}">

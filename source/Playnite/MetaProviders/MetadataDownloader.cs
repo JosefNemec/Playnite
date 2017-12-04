@@ -427,11 +427,19 @@ namespace Playnite.MetaProviders
                     {
                         return;
                     }
-
-                    var game = games[i];
+                                        
                     GameMetadata storeData = null;
                     GameMetadata igdbData = null;
                     GameMetadata gameData;
+
+                    // We need to get new instance from DB in case game got edited or deleted.
+                    // We don't want to block game editing while metadata is downloading for other games.
+                    var game = database.GamesCollection.FindOne(a => a.ProviderId == games[i].ProviderId);
+                    if (game == null)
+                    {
+                        processCallback?.Invoke(null, i, games.Count);
+                        continue;
+                    }
 
                     try
                     {
@@ -493,7 +501,11 @@ namespace Playnite.MetaProviders
                             game.Icon = iconId;
                         }
 
-                        database.UpdateGameInDatabase(game);                        
+                        // Just to be sure check if somebody didn't remove game while downloading data
+                        if (database.GamesCollection.FindOne(a => a.ProviderId == games[i].ProviderId) != null)
+                        {
+                            database.UpdateGameInDatabase(game);
+                        }
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {

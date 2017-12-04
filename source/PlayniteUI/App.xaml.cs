@@ -227,7 +227,7 @@ namespace PlayniteUI
             {
                 metaModel = new MetadataDownloadViewModel(MetadataDownloadWindowFactory.Instance);
                 metaModel.Settings.GamesSource = Playnite.MetaProviders.MetadataGamesSource.AllFromDB;
-                if (metaModel.OpenView(MetadataDownloadViewModel.ViewMode.Manual) != true)
+                if (metaModel.OpenView(MetadataDownloadViewModel.ViewMode.Wizard) != true)
                 {
                     metaModel = null;
                 }

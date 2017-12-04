@@ -64,7 +64,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="ExecIconMissingPlayAction">Cannot get icon if Play action is missing or is set to URL.</sys:String>
 
     <sys:String x:Key="MetaGamesSourceIntro">Games selection</sys:String>
-    <sys:String x:Key="MetaGamesSourceDescription">Import metadata for:</sys:String>
+    <sys:String x:Key="MetaGamesSourceDescription">Please select which games should to be updated with new metadata:</sys:String>
     <sys:String x:Key="MetaGameSourceAll">All games from database</sys:String>
     <sys:String x:Key="MetaGameSourceFiltered">All currently filtered games</sys:String>
     <sys:String x:Key="MetaGameSourceSelected">Selected games only</sys:String>
@@ -72,9 +72,8 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="MetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="MetaSourceIGDBOverStore">IGDB > Official Store</sys:String>
     <sys:String x:Key="MetaSourceStoreOverIGDB">Official Store > IGDB</sys:String>
-    <sys:String x:Key="MetaSourceSettingsDescription" xml:space="preserve">Select metada source for each field.
-        
-Store:
+    <sys:String x:Key="MetaDescriptionFields">Please select which fields should be automatically populated by Playnite and which sources should be used to obtain the data from.</sys:String>
+    <sys:String x:Key="MetaSourceSettingsDescription" xml:space="preserve">Store:
 Only use data from official Store.
     
 IGDB:
