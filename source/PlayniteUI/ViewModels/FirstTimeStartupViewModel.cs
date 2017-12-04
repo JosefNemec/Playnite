@@ -39,9 +39,6 @@ namespace PlayniteUI.ViewModels
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
 
-        private string loginReuiredMessage = "Login Required";
-        private string loginOKMessage = "OK";
-
         public List<LocalSteamUser> SteamUsers
         {
             get
@@ -56,13 +53,21 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                if (gogApiClient.GetLoginRequired())
+                try
                 {
-                    return loginReuiredMessage;
+                    if (gogApiClient.GetLoginRequired())
+                    {
+                        return resources.FindString("LoginRequired");
+                    }
+                    else
+                    {
+                        return resources.FindString("OKLabel");
+                    }
                 }
-                else
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    return loginOKMessage;
+                    logger.Error(e, "Failed to test GOG login status.");
+                    return resources.FindString("LoginFailed");
                 }
             }
         }
@@ -73,13 +78,21 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                if (originApiClient.GetLoginRequired())
+                try
                 {
-                    return loginReuiredMessage;
+                    if (originApiClient.GetLoginRequired())
+                    {
+                        return resources.FindString("LoginRequired");
+                    }
+                    else
+                    {
+                        return resources.FindString("OKLabel");
+                    }
                 }
-                else
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    return loginOKMessage;
+                    logger.Error(e, "Failed to test Origin login status.");
+                    return resources.FindString("LoginFailed");
                 }
             }
         }
@@ -90,13 +103,21 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                if (battleNetApiClient.GetLoginRequired())
+                try
                 {
-                    return loginReuiredMessage;
+                    if (battleNetApiClient.GetLoginRequired())
+                    {
+                        return resources.FindString("LoginRequired");
+                    }
+                    else
+                    {
+                        return resources.FindString("OKLabel");
+                    }
                 }
-                else
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    return loginOKMessage;
+                    logger.Error(e, "Failed to test BattleNet login status.");
+                    return resources.FindString("LoginFailed");
                 }
             }
         }
@@ -399,20 +420,44 @@ namespace PlayniteUI.ViewModels
 
         public void AuthenticateGOG()
         {
-            gogApiClient.Login();
-            OnPropertyChanged("GogLoginStatus");
+            try
+            {
+                gogApiClient.Login();
+                OnPropertyChanged("GogLoginStatus");
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "GOG auth failed.");
+                dialogs.ShowMessage(resources.FindString("LoginFailed"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public void AuthenticateOrigin()
         {
-            originApiClient.Login();
-            OnPropertyChanged("OriginLoginStatus");
+            try
+            {
+                originApiClient.Login();
+                OnPropertyChanged("OriginLoginStatus");
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Origin auth failed.");
+                dialogs.ShowMessage(resources.FindString("LoginFailed"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public void AuthenticateBattleNet()
         {
-            battleNetApiClient.Login();
-            OnPropertyChanged("BattleNetLoginStatus");
+            try
+            {
+                battleNetApiClient.Login();
+                OnPropertyChanged("BattleNetLoginStatus");
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "BattleNet auth failed.");
+                dialogs.ShowMessage(resources.FindString("LoginFailed"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public void ImportGames(InstalledGamesViewModel model)

@@ -126,7 +126,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <!--Emulator Import-->
     <sys:String x:Key="EmuWizardWindowTitle">Emulation Import Wizard</sys:String>
     <sys:String x:Key="EmuWizardIntro">This wizard will guide you through a process of console emulator download and import, as well as import of emulated games.</sys:String>
-    <sys:String x:Key="EmuWizardNotice">Keep in mind that you can always add additional emulators and/or games later via main menu (under "Configuration" menu for Emulator settings and "Add Games" menu for emulated games).</sys:String>
+    <sys:String x:Key="EmuWizardNotice">Keep in mind that you can always add additional emulators and/or games later via main menu (under "Tools" menu for Emulator settings and "Add Games" menu for emulated games).</sys:String>
     <sys:String x:Key="EmuWizardDownloadListIntro" xml:space="preserve">Following is the list of emulators Playnite can recognize and automatically configure. You can download and install them by visiting their website. Once you have emulators installed, proceed to next screen to import them into Playnite.
         
 You can also configure and import any custom emulator later via configuration menu.</sys:String>
@@ -221,6 +221,9 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="GOGLibraryImportError">Failed to download GOG library.</sys:String>
     <sys:String x:Key="OriginLibraryImportError">Failed to download Origin library.</sys:String>
     <sys:String x:Key="UplayLibraryImportError">Failed to download Uplay library.</sys:String>
+
+    <sys:String x:Key="LoginRequired">Authentification required</sys:String>
+    <sys:String x:Key="LoginFailed">Authentification failed</sys:String>
 
 
 </ResourceDictionary>
