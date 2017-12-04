@@ -52,16 +52,16 @@
                     </Border>
                     <DockPanel.ContextMenu>
                         <ContextMenu StaysOpen="False" Name="MenuMainMenu" Placement="Bottom">
-                            <MenuItem Header="Add Game">
-                                <MenuItem Header="Manually..."
+                            <MenuItem Header="{DynamicResource MenuAddGame}">
+                                <MenuItem Header="{DynamicResource MenuAddGameManual}"
                                           Command="{Binding AddCustomGameCommand}"/>
-                                <MenuItem Header="Import Installed or from Folder..."
+                                <MenuItem Header="{DynamicResource MenuAddGameInstalled}"
                                           Command="{Binding AddInstalledGamesCommand}"/>
-                                <MenuItem Header="Import emulated Game(s)..."
+                                <MenuItem Header="{DynamicResource MenuAddGameEmulated}"
                                           Command="{Binding AddEmulatedGamesCommand}"/>
                             </MenuItem>
                             <Separator />
-                            <MenuItem Header="Reload Games List"
+                            <MenuItem Header="{DynamicResource MenuReloadLibrary}"
                                       Command="{Binding LoadGamesCommand}"/>
                             <MenuItem Header="{DynamicResource MenuTools}">                                
                                 <MenuItem Header="{DynamicResource MenuPlatformEmulatorSettingsTitle}"
@@ -73,7 +73,7 @@
                                       Command="{Binding OpenSettingsCommand}"/>
                             </MenuItem>
                             <Separator  />
-                            <MenuItem Header="Open 3rd Party Client" ItemsSource="{Binding ThirdPartyTools}">
+                            <MenuItem Header="{DynamicResource MenuOpenClient}" ItemsSource="{Binding ThirdPartyTools}">
                                 <MenuItem.ItemContainerStyle>
                                     <Style TargetType="MenuItem">
                                         <Setter Property="Header" Value="{Binding Name}" />
@@ -83,9 +83,9 @@
                                 </MenuItem.ItemContainerStyle>
                             </MenuItem>
                             <Separator />
-                            <MenuItem Header="About Playnite..."
+                            <MenuItem Header="{DynamicResource MenuAbout}"
                                   Command="{Binding OpenAboutCommand}"/>
-                            <MenuItem Header="Request Feature or Report Issue..." Command="{Binding ReportIssueCommand}" />
+                            <MenuItem Header="{DynamicResource MenuIssues}" Command="{Binding ReportIssueCommand}" />
                             <Separator />
                             <MenuItem Header="{DynamicResource ExitAppLabel}" Command="{Binding ShutdownCommand}" />
                         </ContextMenu>
@@ -225,7 +225,7 @@
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
-                            <Button Content="Clear All" FontSize="10" Margin="5"
+                            <Button Content="{DynamicResource ClearAll}" FontSize="10" Margin="5"
                                     HorizontalAlignment="Right"
                                     Command="{Binding ClearMessagesCommand}"/>
                         </StackPanel>
@@ -324,7 +324,7 @@
 
                                 <Border Height="10" />
 
-                                <Label Content="Name">
+                                <Label Content="{DynamicResource NameLabel}">
                                     <Label.Style>
                                         <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                             <Style.Triggers>
@@ -337,7 +337,7 @@
                                 </Label>
                                 <pc:SearchBox x:Name="TextFilterName" Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
 
-                                <Label Content="Genre">
+                                <Label Content="{DynamicResource GenreLabel}">
                                     <Label.Style>
                                         <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                             <Style.Triggers>
@@ -350,7 +350,7 @@
                                 </Label>
                                 <pc:SearchBox x:Name="TextFilterGenre" Text="{Binding AppSettings.FilterSettings.Genres, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
-                                <Label Content="Platform">
+                                <Label Content="{DynamicResource PlatformTitle}">
                                     <Label.Style>
                                         <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                             <Style.Triggers>
@@ -363,7 +363,7 @@
                                 </Label>
                                 <pc:SearchBox x:Name="TextFilterPlatform" Text="{Binding AppSettings.FilterSettings.Platforms, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
-                                <Label Content="Release Date">
+                                <Label Content="{DynamicResource GameReleaseDateTitle}">
                                     <Label.Style>
                                         <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                             <Style.Triggers>
@@ -376,7 +376,7 @@
                                 </Label>
                                 <pc:SearchBox x:Name="TextFilterReleaseDate" Text="{Binding AppSettings.FilterSettings.ReleaseDate, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
 
-                                <Label Content="Developer">
+                                <Label Content="{DynamicResource DeveloperLabel}">
                                     <Label.Style>
                                         <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                             <Style.Triggers>
@@ -389,7 +389,7 @@
                                 </Label>
                                 <pc:SearchBox x:Name="TextFilterDeveloper" Text="{Binding AppSettings.FilterSettings.Developers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
-                                <Label Content="Publisher">
+                                <Label Content="{DynamicResource PublisherLabel}">
                                     <Label.Style>
                                         <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                             <Style.Triggers>
@@ -402,7 +402,7 @@
                                 </Label>
                                 <pc:SearchBox x:Name="TextFilterPublisher" Text="{Binding AppSettings.FilterSettings.Publishers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
-                                <Label Content="Category">
+                                <Label Content="{DynamicResource CategoryLabel}">
                                     <Label.Style>
                                         <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                             <Style.Triggers>
@@ -415,7 +415,7 @@
                                 </Label>
                                 <pc:SearchBox x:Name="TextFilterCategory" Text="{Binding AppSettings.FilterSettings.Categories, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
-                                <Label Content="Tag">
+                                <Label Content="{DynamicResource TagLabel}">
                                     <Label.Style>
                                         <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                             <Style.Triggers>
@@ -433,7 +433,7 @@
 
                     <TabControl Name="TabControlView" DockPanel.Dock="Left" TabStripPlacement="Bottom"
                                 SelectedIndex="{Binding AppSettings.GamesViewType, Converter={StaticResource BidirectionalEnumAndNumberConverter}}">
-                        <TabItem Header="List" >
+                        <TabItem Header="{DynamicResource ListLabel}" >
                             <DockPanel>
                                 <pc:ExtendedListBox SelectionMode="Extended" BorderThickness="0,0,1,0"
                                          BorderBrush="{StaticResource NormalBorderBrush}" Width="310"
@@ -509,11 +509,11 @@
                                 <pc:GameDetails DockPanel.Dock="Left" DataContext="{Binding SelectedGame, Mode=OneWay}"/>                            
                             </DockPanel>
                         </TabItem>
-                        <TabItem Header="Covers" >
+                        <TabItem Header="{DynamicResource CoversLabel}" >
                             <DockPanel>
                                 <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Bottom">
                                     <StackPanel Margin="5" Orientation="Horizontal">
-                                        <Label Content="Zoom" DockPanel.Dock="Right" Margin="10,0,10,0"/>
+                                        <Label Content="{DynamicResource ZoomLabel}" DockPanel.Dock="Right" Margin="10,0,10,0"/>
                                         <Slider Name="SliderZoom" SmallChange="1" Value="{Binding Path=AppSettings.CoversZoom}" Maximum="260" Minimum="100"
                             IsSnapToTickEnabled="True" Width="150" DockPanel.Dock="Right" VerticalAlignment="Center"/>
                                     </StackPanel>
@@ -600,7 +600,7 @@
                                 </ListView>
                             </DockPanel>
                         </TabItem>
-                        <TabItem Header="Details">
+                        <TabItem Header="{DynamicResource DetailsLabel}">
                             <pc:GamesGridView ItemsSource="{Binding GamesView.CollectionView}"
                                               AppSettings="{Binding AppSettings}" />
                         </TabItem>

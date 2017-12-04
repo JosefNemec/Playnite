@@ -647,7 +647,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                var model = new MetadataLookupViewModel(MetadataProvider.IGDB, MetadataLookupWindowFactory.Instance, dialogs);
+                var model = new MetadataLookupViewModel(MetadataProvider.IGDB, MetadataLookupWindowFactory.Instance, dialogs, resources);
                 DoMetadataLookup(model);
             });
         }
@@ -656,7 +656,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                var model = new MetadataLookupViewModel(MetadataProvider.Wiki, MetadataLookupWindowFactory.Instance, dialogs);
+                var model = new MetadataLookupViewModel(MetadataProvider.Wiki, MetadataLookupWindowFactory.Instance, dialogs, resources);
                 DoMetadataLookup(model);
             });
         }
@@ -895,7 +895,10 @@ namespace PlayniteUI.ViewModels
             {
                 if (string.IsNullOrWhiteSpace(EditingGame.Name))
                 {
-                    dialogs.ShowMessage("Name cannot be empty.", "Invalid game data", MessageBoxButton.OK, MessageBoxImage.Error);
+                    dialogs.ShowMessage(
+                        resources.FindString("EmptyGameNameError"),
+                        resources.FindString("InvalidGameData"),
+                        MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
             }
@@ -1386,7 +1389,10 @@ namespace PlayniteUI.ViewModels
 
         public void SetBackgroundUrl()
         {
-            if (dialogs.SelectString("Enter valid web URL starting with http:// or https://", "Select Url", out var input) == MessageBoxResult.OK)
+            if (dialogs.SelectString(
+                resources.FindString("URLInputInfo"),
+                resources.FindString("URLInputInfoTitile"),
+                out var input) == MessageBoxResult.OK)
             {
                 EditingGame.BackgroundImage = input;
             }
@@ -1493,7 +1499,7 @@ namespace PlayniteUI.ViewModels
         {
             if (string.IsNullOrEmpty(EditingGame.Name))
             {
-                dialogs.ShowMessage("Game name cannot be empty before searching metadata.", "", MessageBoxButton.OK);
+                dialogs.ShowMessage(resources.FindString("EmptyGameNameMetaSearchError"), "", MessageBoxButton.OK);
                 return;
             }
             
@@ -1558,7 +1564,10 @@ namespace PlayniteUI.ViewModels
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(exc, "Failed to download metadata, {0} , {1}", game.Provider, game.ProviderId);
-                    dialogs.ShowMessage("Failed to download metadata: " + exc.Message, "Download Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    dialogs.ShowMessage(
+                        string.Format(resources.FindString("MetadataDownloadError"), exc.Message),
+                        resources.FindString("DownloadError"),
+                        MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 finally
                 {

@@ -80,6 +80,7 @@
     <Compile Include="MockResourceProvider.cs" />
     <Compile Include="MockWindowFactory.cs" />
     <Compile Include="PlayniteUITests.cs" />
+    <Compile Include="LocalizationTests.cs" />
     <Compile Include="SkinsTests.cs" />
     <Compile Include="GamesEditorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

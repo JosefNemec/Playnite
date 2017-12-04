@@ -9,7 +9,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner"
-        Title="Select Games to Import" Height="500" Width="800"
+        Title="{DynamicResource GameImportWindowTitle}" Height="500" Width="800"
         AutomationProperties.AutomationId="WindowInstalledGames">
     <controls:WindowBase.Resources>
         <pui:IconToImageSourceConverter x:Key="IconToImageSourceConverter" />
@@ -37,14 +37,14 @@
                 </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Import">
+                        <GridViewColumn Header="{DynamicResource ImportLabel}">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox IsChecked="{Binding Import}" Padding="5" HorizontalAlignment="Right" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Name">
+                        <GridViewColumn Header="{DynamicResource NameLabel}">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -56,7 +56,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Path">
+                        <GridViewColumn Header="{DynamicResource PathLabel}">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding DisplayPath, Mode=OneWay}" Padding="0,1,0,1"
@@ -69,16 +69,16 @@
             </ListView>
 
             <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="1" Margin="5,0,5,5">
-                <Button Name="ButtonBrowse" Content="Browse..." DockPanel.Dock="Left"
+                <Button Name="ButtonBrowse" Content="{DynamicResource Browse}" DockPanel.Dock="Left"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding SelectExecutableCommand}"/>
-                <Button Name="ButtonScan" Content="Scan Folder..." DockPanel.Dock="Left"
+                <Button Name="ButtonScan" Content="{DynamicResource ScanFolder}" DockPanel.Dock="Left"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding ScanFolderCommand}"/>
-                <Button Name="ButtonCancel" Content="Cancel" DockPanel.Dock="Right" IsCancel="True"
+                <Button Name="ButtonCancel" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right" IsCancel="True"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding CloseCommand}"/>
-                <Button Name="ButtonOK" Content="Add Games" DockPanel.Dock="Right"
+                <Button Name="ButtonOK" Content="{DynamicResource AddGames}" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding ConfirmCommand}"/>
             </DockPanel>
@@ -86,7 +86,7 @@
         
         <Grid Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
             <ProgressBar IsIndeterminate="True" Width="350" Height="40" />
-            <TextBlock Text="Scanning..." HorizontalAlignment="Center" VerticalAlignment="Center"
+            <TextBlock Text="{DynamicResource EmuWizardScanning}" HorizontalAlignment="Center" VerticalAlignment="Center"
                        Style="{DynamicResource BaseTextBlockStyle}"/>
         </Grid>
     </Grid>

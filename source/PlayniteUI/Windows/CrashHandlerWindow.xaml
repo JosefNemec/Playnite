@@ -12,26 +12,25 @@
         WindowStartupLocation="CenterScreen"
         AutomationProperties.AutomationId="WindowCrash">
 
-
     <DockPanel Margin="5">
         <DockPanel LastChildFill="False" DockPanel.Dock="Bottom">
-            <Button Name="ButtonClose" Content="Close Playnite" DockPanel.Dock="Right" 
+            <Button Name="ButtonClose" Content="{DynamicResource CrashClosePlaynite}" DockPanel.Dock="Right" 
                 Style="{StaticResource BottomButton}"
                     Command="{Binding CloseCommand}"/>
-            <Button Name="ButtonRestart" Content="Restart Playnite" DockPanel.Dock="Right" 
+            <Button Name="ButtonRestart" Content="{DynamicResource CrashRestartPlaynite}" DockPanel.Dock="Right" 
                 Style="{StaticResource BottomButton}"
                     Command="{Binding RestartCommand}"/>
-            <Button Name="ButtonSaveDiag" Content="Create diag. package" DockPanel.Dock="Left"
+            <Button Name="ButtonSaveDiag" Content="{DynamicResource AboutCreateDiagButton}" DockPanel.Dock="Left"
                 Style="{StaticResource BottomButton}"
                     Command="{Binding CreateDiagPackageCommand}"/>
-            <Button Name="ButtonReportIssue" Content="Report Issue" DockPanel.Dock="Left"
+            <Button Name="ButtonReportIssue" Content="{DynamicResource CrashReportIssue}" DockPanel.Dock="Left"
                 Style="{StaticResource BottomButton}"
                     Command="{Binding ReportIssueCommand}"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Top" Margin="10">
             <Image Source="/Images/Icons/warn_big.png" Width="64" RenderOptions.BitmapScalingMode="Fant" />
             <StackPanel Margin="20,10,10,10">
-                <TextBlock Text="Playnite come across a problem and couldn't solve it. If you want to help us with it, please create diagnostics package and report an issue. Thank you." 
+                <TextBlock Text="{DynamicResource CrashDescription}" 
                         FontSize="14" TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
             </StackPanel>
         </DockPanel>

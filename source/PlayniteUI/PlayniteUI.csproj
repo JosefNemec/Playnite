@@ -191,9 +191,6 @@
     <Compile Include="Commands\GenericCommands.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Controls\ExtendedListBox.cs" />
-    <Compile Include="Controls\FilterSelector.xaml.cs">
-      <DependentUpon>FilterSelector.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\GameMenu.cs" />
     <Compile Include="Controls\GamesGridView.xaml.cs">
       <DependentUpon>GamesGridView.xaml</DependentUpon>
@@ -212,6 +209,7 @@
     <Compile Include="Converters\MetadataSourceToStringConverter.cs" />
     <Compile Include="Converters\ListToStringConverter.cs" />
     <Compile Include="Converters\CustomImageStringToImageConverter.cs" />
+    <Compile Include="Converters\NotificationIconConverter.cs" />
     <Compile Include="Converters\SelectablePlatformsListToStringConverter.cs" />
     <Compile Include="Converters\SkinMediaPathConverter.cs" />
     <Compile Include="Converters\NegateConverter.cs" />
@@ -299,9 +297,6 @@
     <Compile Include="Windows\MetadataLookupWindow.xaml.cs">
       <DependentUpon>MetadataLookupWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NotificationsWindow.xaml.cs">
-      <DependentUpon>NotificationsWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\PlatformsWindow.xaml.cs">
       <DependentUpon>PlatformsWindow.xaml</DependentUpon>
     </Compile>
@@ -316,20 +311,19 @@
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="XInputBinding.cs" />
-    <Page Include="Controls\FilterSelector.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\GamesGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Resource Include="Localization\english.xaml">
+    <Content Include="Localization\english.xaml">
       <SubType>Designer</SubType>
-    </Resource>
-    <Resource Include="Localization\czech.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <None Include="Localization\czech.xaml">
       <SubType>Designer</SubType>
-    </Resource>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Skins\Classic\Classic.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -463,10 +457,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MetadataLookupWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\NotificationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

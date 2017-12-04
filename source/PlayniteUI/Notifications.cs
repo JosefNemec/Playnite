@@ -44,40 +44,7 @@ namespace PlayniteUI
             Type = type;
             ClickAction = action;
         }
-    }
-
-    public interface INotificationFactory
-    {
-        void AddMessage(NotificationMessage message);
-        void RemoveMessage(int id);
-        void ClearMessages();
-    }
-
-    public class NotificationFactory : INotificationFactory
-    {
-        private NotificationsViewModel model;
-
-        public NotificationFactory()
-        {
-            model = new NotificationsViewModel(new NotificationsWindowFactory());
-        }
-
-        public void AddMessage(NotificationMessage message)
-        {
-            model.AddMessage(message);
-        }
-
-        public void ClearMessages()
-        {
-            model.ClearMessages();
-       
-        }
-
-        public void RemoveMessage(int id)
-        {
-            model.RemoveMessage(id);
-        }
-    }
+    }    
 
     public static class NotificationCodes
     {

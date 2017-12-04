@@ -187,7 +187,7 @@
                             </StackPanel>
 
                             <StackPanel Grid.Row="1" Margin="{StaticResource EditSeparatorMargin}">
-                                <TextBlock Text="Profiles" />
+                                <TextBlock Text="{DynamicResource ProfilesLabel}" />
                                 <DockPanel Margin="0,5,0,0">
                                     <Button Content="{DynamicResource RemoveTitle}" DockPanel.Dock="Right" Margin="5,0,5,0"
                                             Command="{Binding Data.RemoveEmulatorProfileCommand, Source={StaticResource Proxy}}"/>
@@ -202,7 +202,7 @@
                                 </DockPanel>
                             </StackPanel>
 
-                            <GroupBox Header="Profile Settings" Grid.Row="2" Margin="5,5,5,5">
+                            <GroupBox Header="{DynamicResource ProfileSettings}" Grid.Row="2" Margin="5,5,5,5">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <Grid DataContext="{Binding SelectedItem, ElementName=ComboEmulatorProfiles}" DockPanel.Dock="Top">
                                         <Grid.RowDefinitions>
@@ -218,7 +218,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <StackPanel Grid.Row="0" Margin="{StaticResource EditSeparatorMargin}">
-                                            <TextBlock Text="Profile Name" />
+                                            <TextBlock Text="{DynamicResource NameLabel}" />
                                             <TextBox Name="TextEmulatorProfileName" Margin="0,5,0,0"
                                                      Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
                                         </StackPanel>

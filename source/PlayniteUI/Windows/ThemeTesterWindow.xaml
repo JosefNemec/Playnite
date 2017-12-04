@@ -172,15 +172,15 @@ ItemsSource="{Binding MyListBoxItems}"
                         </StackPanel>
                     </ScrollViewer>
                     <StackPanel Grid.Column="1" Margin="10" Width="200">
-                        <Button Content="Reload skin list" Name="ButtonReloadSkinList"
+                        <Button Content="{DynamicResource ThemeTestReloadList}" Name="ButtonReloadSkinList"
                                 Click="ButtonReloadSkinList_Click" Margin="5"/>
                         <ListBox Margin="5"
                                  ItemsSource="{Binding SkinList}"
                                  SelectedValue="{Binding SelectedSkin, Mode=TwoWay}"/>
-                        <Button Content="Apply skin" Name="ButtonApplySkin" Margin="5"
+                        <Button Content="{DynamicResource ThemeTestApplySkin}" Name="ButtonApplySkin" Margin="5"
                                 Click="ButtonApplySkin_Click" />
-                        <CheckBox Content="Watch file changes" Margin="5"
-                                  ToolTip="Automatically apply skin when the source file changes"
+                        <CheckBox Content="{DynamicResource ThemeTestWatchChanges}" Margin="5"
+                                  ToolTip="{DynamicResource ThemeTestWatchChangesTooltip}"
                                   IsChecked="{Binding WatchSkinFile}"/>
                         <TextBox Margin="5" TextWrapping="Wrap" AcceptsReturn="True"
                                  Height="100" Text="{Binding ValidationError, Mode=OneWay}"

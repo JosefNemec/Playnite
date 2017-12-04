@@ -129,7 +129,7 @@ namespace PlayniteUI.Controls
                 // Set Favorites
                 var favoriteItem = new MenuItem()
                 {
-                    Header = resources.FindString("MenuFavorite")
+                    Header = resources.FindString("FavoriteGame")
                 };
 
                 favoriteItem.Click += (s, e) =>
@@ -141,7 +141,7 @@ namespace PlayniteUI.Controls
 
                 var unFavoriteItem = new MenuItem()
                 {
-                    Header = resources.FindString("MenuUnFavorite")
+                    Header = resources.FindString("RemoveFavoriteGame")
                 };
 
                 unFavoriteItem.Click += (s, e) =>
@@ -154,7 +154,7 @@ namespace PlayniteUI.Controls
                 // Set Hide
                 var hideItem = new MenuItem()
                 {
-                    Header = resources.FindString("MenuHide")
+                    Header = resources.FindString("HideGame")
                 };
 
                 hideItem.Click += (s, e) =>
@@ -166,7 +166,7 @@ namespace PlayniteUI.Controls
 
                 var unHideItem = new MenuItem()
                 {
-                    Header = resources.FindString("MenuUnHide")
+                    Header = resources.FindString("UnHideGame")
                 };
 
                 unHideItem.Click += (s, e) =>
@@ -179,7 +179,7 @@ namespace PlayniteUI.Controls
                 // Edit
                 var editItem = new MenuItem()
                 {
-                    Header = resources.FindString("MenuEdit")
+                    Header = resources.FindString("EditGame")
                 };
 
                 editItem.Click += (s, e) =>
@@ -192,7 +192,7 @@ namespace PlayniteUI.Controls
                 // Set Category
                 var categoryItem = new MenuItem()
                 {
-                    Header = resources.FindString("MenuSetCategory")
+                    Header = resources.FindString("SetGameCategory")
                 };
 
                 categoryItem.Click += (s, e) =>
@@ -206,7 +206,7 @@ namespace PlayniteUI.Controls
                 // Remove
                 var removeItem = new MenuItem()
                 {
-                    Header = resources.FindString("MenuRemove")
+                    Header = resources.FindString("RemoveGame")
                 };
 
                 removeItem.Click += (s, e) =>
@@ -226,7 +226,7 @@ namespace PlayniteUI.Controls
                     {
                         var playItem = new MenuItem()
                         {
-                            Header = resources.FindString("MenuPlay"),
+                            Header = resources.FindString("PlayGame"),
                             FontWeight = FontWeights.Bold
                         };
 
@@ -242,7 +242,7 @@ namespace PlayniteUI.Controls
                     {
                         var installItem = new MenuItem()
                         {
-                            Header = resources.FindString("MenuInstall"),
+                            Header = resources.FindString("InstallGame"),
                             FontWeight = FontWeights.Bold
                         };
 
@@ -287,7 +287,7 @@ namespace PlayniteUI.Controls
                 {
                     var locationItem = new MenuItem()
                     {
-                        Header = resources.FindString("MenuOpenLocation")
+                        Header = resources.FindString("OpenGameLocation")
                     };
 
                     locationItem.Click += (s, e) =>
@@ -301,7 +301,7 @@ namespace PlayniteUI.Controls
                 // Create Desktop Shortcut
                 var shortcutItem = new MenuItem()
                 {
-                    Header = resources.FindString("MenuShortcut")
+                    Header = resources.FindString("CreateDesktopShortcut")
                 };
 
                 shortcutItem.Click += (s, e) =>
@@ -315,7 +315,7 @@ namespace PlayniteUI.Controls
                 // Toggle Favorites
                 var favoriteItem = new MenuItem()
                 {
-                    Header = Game.Favorite ? resources.FindString("MenuUnFavorite") : resources.FindString("MenuFavorite")
+                    Header = Game.Favorite ? resources.FindString("RemoveFavoriteGame") : resources.FindString("FavoriteGame")
                 };
 
                 favoriteItem.Click += (s, e) =>
@@ -328,7 +328,7 @@ namespace PlayniteUI.Controls
                 // Toggle Hide
                 var hideItem = new MenuItem()
                 {
-                    Header = Game.Favorite ? resources.FindString("MenuUnHide") : resources.FindString("MenuHide")
+                    Header = Game.Favorite ? resources.FindString("UnHideGame") : resources.FindString("HideGame")
                 };
 
                 hideItem.Click += (s, e) =>
@@ -341,7 +341,7 @@ namespace PlayniteUI.Controls
                 // Edit
                 var editItem = new MenuItem()
                 {
-                    Header = resources.FindString("MenuEdit")
+                    Header = resources.FindString("EditGame")
                 };
 
                 editItem.Click += (s, e) =>
@@ -354,7 +354,7 @@ namespace PlayniteUI.Controls
                 // Set Category
                 var categoryItem = new MenuItem()
                 {
-                    Header = resources.FindString("MenuSetCategory")
+                    Header = resources.FindString("SetGameCategory")
                 };
 
                 categoryItem.Click += (s, e) =>
@@ -368,7 +368,7 @@ namespace PlayniteUI.Controls
                 // Remove
                 var removeItem = new MenuItem()
                 {
-                    Header = resources.FindString("MenuRemove")
+                    Header = resources.FindString("RemoveGame")
                 };
 
                 removeItem.Click += (s, e) =>
@@ -383,7 +383,7 @@ namespace PlayniteUI.Controls
                 {
                     var uninstallItem = new MenuItem()
                     {
-                        Header = resources.FindString("MenuUninstall")
+                        Header = resources.FindString("UninstallGame")
                     };
 
                     uninstallItem.Click += (s, e) =>

@@ -25,7 +25,7 @@
 
             <StackPanel Margin="15,0,0,0">
                 <Label Name="TextVersionInfo" Content="{Binding VersionInfo}" Foreground="{StaticResource TextBrush}" FontSize="20"/>
-                <TextBlock Text="by Josef Nemec" Foreground="LightGray"/>
+                <TextBlock Text="{DynamicResource AboutAuthor}" Foreground="LightGray"/>
                 <TextBlock>
                 <Hyperlink Name="HyperlinkHomepage" FontSize="12" NavigateUri="http://www.playnite.link"
                            Command="{Binding NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">

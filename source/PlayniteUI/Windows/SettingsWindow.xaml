@@ -12,7 +12,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="Playnite Settings" Width="600" Height="450"
+        Title="{DynamicResource SettingsWindowTitle}" Width="600" Height="450"
         AutomationProperties.AutomationId="WindowSettings">
 
     <controls:WindowBase.Resources>
@@ -106,20 +106,21 @@
                 </TabControl.Style>
                 <TabItem Visibility="Collapsed">
                     <StackPanel Margin="20">
-                        <DockPanel Visibility="Collapsed">
-                            <TextBlock Text="{DynamicResource LanguageSettingsLabel}" VerticalAlignment="Center" Margin="5,0,10,0" />
-                            <ComboBox Name="ComboLanguage" SelectedValuePath="Tag" SelectedValue="{Binding Settings.Language}">
-                                <ComboBoxItem Content="English" Tag="english" />
-                                <ComboBoxItem Content="Čeština" Tag="czech" />
-                            </ComboBox>
-                        </DockPanel>
-
-                        <Label Content="Database location:" Margin="5,5,0,5"/>
-                        <DockPanel Margin="5">
+                        <DockPanel Margin="0,10,0,0">
+                            <TextBlock Text="{DynamicResource SettingsDBLocation}" Margin="5,0,10,0"
+                                   DockPanel.Dock="Left" VerticalAlignment="Center"/>
                             <Button Name="ButtonBrowserDbFile" Content="..." DockPanel.Dock="Right" Padding="5,0,5,0"
                                     Command="{Binding SelectDbFileCommand}"/>
                             <TextBox Name="TextDatabase" Text="{Binding Settings.DatabasePath}"
                                         DockPanel.Dock="Left" Margin="0,0,5,0"/>
+                        </DockPanel>
+
+                        <DockPanel Margin="0,15,0,5" LastChildFill="False">
+                            <TextBlock Text="{DynamicResource LanguageSettingsLabel}" VerticalAlignment="Center" Margin="5,0,10,0" />
+                            <ComboBox Name="ComboLanguage"
+                                      SelectedValue="{Binding Settings.Language}"
+                                      SelectedValuePath="Id" DisplayMemberPath="LocaleString"
+                                      ItemsSource="{Binding AvailableLanguages}"/>
                         </DockPanel>
 
                         <Grid Margin="0,20,0,0">
@@ -133,16 +134,16 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Column="0">
-                                <CheckBox Name="CheckEnableTray" Content="Show Tray Icon" Margin="5,0,0,0"
+                                <CheckBox Name="CheckEnableTray" Content="{DynamicResource SettingsShowTray}" Margin="5,0,0,0"
                                             IsChecked="{Binding Settings.EnableTray}" />
-                                <CheckBox Name="CheckMinimizeToTray" Content="Minimize to tray" Margin="20,10,5,5"
+                                <CheckBox Name="CheckMinimizeToTray" Content="{DynamicResource SettingsMinimizeToTray}" Margin="20,10,5,5"
                                             IsChecked="{Binding Settings.MinimizeToTray}"
                                             IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
-                                <CheckBox Name="CheckCloseToTray" Content="Close to tray" Margin="20,5,5,5"
+                                <CheckBox Name="CheckCloseToTray" Content="{DynamicResource SettingsCloseToTray}" Margin="20,5,5,5"
                                             IsChecked="{Binding Settings.CloseToTray}"
                                             IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
                             </StackPanel>
-                            <CheckBox Name="CheckMinimizeLaunch" Content="Minimize after starting game" VerticalAlignment="Top"
+                            <CheckBox Name="CheckMinimizeLaunch" Content="{DynamicResource SettingsMinimizeStarting}" VerticalAlignment="Top"
                                       IsChecked="{Binding Settings.MinimizeAfterLaunch}" Grid.Column="1"/>
 
                             <CheckBox Name="CheckUpdateLibStartup" Margin="5,15,5,5" Grid.Row="1" Grid.ColumnSpan="2"
@@ -240,7 +241,7 @@
                                         DockPanel.Dock="Top" Margin="20,5,5,0"/>
 
                         <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
-                            <TextBlock Text="Specify user library by:" DockPanel.Dock="Top" Margin="5"/>
+                            <TextBlock Text="{DynamicResource SettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5"/>
                             <Grid DockPanel.Dock="Top">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -251,10 +252,10 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
 
-                                <RadioButton Content="Name" Name="RadioSteamLibName" GroupName="steamsource"
+                                <RadioButton Content="{DynamicResource NameLabel}" Name="RadioSteamLibName" GroupName="steamsource"
                                                 IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.Name}}"
                                                 Grid.Column="0" Grid.Row="0" Margin="5"/>
-                                <RadioButton Content="Local User" Name="RadioSteamLibAccount" GroupName="steamsource" 
+                                <RadioButton Content="{DynamicResource LocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource" 
                                                 IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.LocalUser}}"
                                                 Grid.Column="0" Grid.Row="1" Margin="5"/>
 
@@ -263,7 +264,7 @@
                                         <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"
                                                    Command="{Binding NavigateUrlCommand}"
                                                    CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                                            What's my account name?
+                                            <Run Text="{DynamicResource SettingsWhatsSteamName}" />
                                         </Hyperlink>
                                     </TextBlock>
                                     <TextBox Text="{Binding Settings.SteamSettings.AccountName}"
@@ -277,11 +278,11 @@
                                             Grid.Column="1" Grid.Row="1" Margin="5" />
                             </Grid>
                         </DockPanel>
-                        <TextBlock Text="Import Steam Categories:" DockPanel.Dock="Top" Margin="5,20,5,5" />
+                        <TextBlock Text="{DynamicResource SettingsSteamImportCategories}" DockPanel.Dock="Top" Margin="5,20,5,5" />
                         <StackPanel DockPanel.Dock="Top" Margin="20,10,5,5" Orientation="Horizontal">
-                            <Button Content="Import" Name="ButtonImportSteamCategories"
+                            <Button Content="{DynamicResource ImportLabel}" Name="ButtonImportSteamCategories"
                                     Command="{Binding ImportSteamCategoriesCommand}"/>
-                            <TextBlock Text="from account:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <TextBlock Text="{DynamicResource SettingsSteamImportCatFrom}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                             <ComboBox Name="ComboSteamCatImport" IsReadOnly="True" Margin="10,0,0,0"
                                         DisplayMemberPath="AccountName" SelectedValuePath="Id" SelectedIndex="0"
                                         ItemsSource="{Binding SteamUsers}" />
@@ -291,8 +292,8 @@
                 <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.GOGSettings.RunViaGalaxy}"
-                                  Name="CheckGogRunGalaxy" Content="Integrate using Galaxy client"
-                                  ToolTip="Will enable features like cloud saves, counting play time etc."
+                                  Name="CheckGogRunGalaxy" Content="{DynamicResource SettingsGOGUseGalaxy}"
+                                  ToolTip="{DynamicResource SettingsGOGUseGalaxyTooltip}"
                                   DockPanel.Dock="Top" Margin="0,0,0,15"/>
                         <CheckBox IsChecked="{Binding Settings.GOGSettings.IntegrationEnabled}"
                                     Name="CheckGogEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
@@ -307,14 +308,14 @@
                                         DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
                                    IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}">
-                            <Button Content="Authenticate" Name="ButtonGogAuth"
+                            <Button Content="{DynamicResource AuthenticateLabel}" Name="ButtonGogAuth"
                                     Command="{Binding AuthGOGCommand}"/>
-                            <TextBlock Text="Login status:" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                            <TextBlock Text="{DynamicResource SettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
                             <TextBlock VerticalAlignment="Center">
                                 <TextBlock.Text>
                                     <PriorityBinding>
                                         <Binding Path="GogLoginStatus" IsAsync="True" Mode="OneWay" />
-                                        <Binding Source="Checking..." />
+                                        <Binding Source="{StaticResource LoginChecking}" />
                                     </PriorityBinding>
                                 </TextBlock.Text>
                             </TextBlock>
@@ -336,14 +337,14 @@
                                         DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
                                    IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}">
-                            <Button Content="Authenticate" Name="ButtonOriginAuth"
+                            <Button Content="{DynamicResource AuthenticateLabel}" Name="ButtonOriginAuth"
                                     Command="{Binding AuthOriginCommand}"/>
-                            <TextBlock Text="Login status:" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                            <TextBlock Text="{DynamicResource SettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
                             <TextBlock VerticalAlignment="Center">
                                 <TextBlock.Text>
                                     <PriorityBinding>
                                         <Binding Path="OriginLoginStatus" IsAsync="True" Mode="OneWay" />
-                                        <Binding Source="Checking..." />
+                                        <Binding Source="{StaticResource LoginChecking}" />
                                     </PriorityBinding>
                                 </TextBlock.Text>
                             </TextBlock>
@@ -365,14 +366,14 @@
                                         DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
                                    IsEnabled="{Binding IsChecked, ElementName=CheckBattleNetEnabled}">
-                            <Button Content="Authenticate" Name="ButtonBattleNetAuth"
+                            <Button Content="{DynamicResource AuthenticateLabel}" Name="ButtonBattleNetAuth"
                                     Command="{Binding AuthBattleNetCommand}"/>
-                            <TextBlock Text="Login status:" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                            <TextBlock Text="{DynamicResource SettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
                             <TextBlock VerticalAlignment="Center">
                                 <TextBlock.Text>
                                     <PriorityBinding>
                                         <Binding Path="BattleNetLoginStatus" IsAsync="True" Mode="OneWay" />
-                                        <Binding Source="Checking..." />
+                                        <Binding Source="{StaticResource LoginChecking}" />
                                     </PriorityBinding>
                                 </TextBlock.Text>
                             </TextBlock>
@@ -392,8 +393,8 @@
                 </TabItem>
                 <TabItem Visibility="Collapsed">
                     <StackPanel Margin="20">
-                        <Button Name="ButtonClearWebCace" Content="Delete web cache" HorizontalAlignment="Left"
-                                ToolTip="May solve issues encountered while linking accounts."
+                        <Button Name="ButtonClearWebCace" Content="{DynamicResource SettingsClearWebCache}" HorizontalAlignment="Left"
+                                ToolTip="{DynamicResource SettingsClearWebCacheTooltip}"
                                 Command="{Binding ClearWebCacheCommand}"/>
                     </StackPanel>
                 </TabItem>

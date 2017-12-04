@@ -125,6 +125,11 @@ namespace PlayniteUI.ViewModels
             get => Skins.AvailableSkins;
         }
 
+        public List<PlayniteLanguage> AvailableLanguages
+        {
+            get => Localization.AvailableLanguages;
+        }
+
         public List<Skin> AvailableFullscreenSkins
         {
             get => Skins.AvailableFullscreenSkins;
@@ -355,21 +360,28 @@ namespace PlayniteUI.ViewModels
 
         public void ImportSteamCategories()
         {
-            if (dialogs.ShowMessage("This will overwrite current categories on all Steam games. Do you want to continue?",
-    "Import Categories?", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
+            if (dialogs.ShowMessage(
+                resources.FindString("SettingsSteamCatImportWarn"),
+                resources.FindString("SettingsSteamCatImportWarnTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
             {
                 return;
             }
 
             if (Settings.SteamSettings.AccountId == 0)
             {
-                dialogs.ShowMessage("Cannot import categories, account for import is not selected.", "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                dialogs.ShowMessage(
+                    resources.FindString("SettingsSteamCatImportErrorAccount"),
+                    resources.FindString("ImportError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (database.GamesCollection == null)
             {
-                dialogs.ShowMessage("Cannot import categories, database is not opened.", "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                dialogs.ShowMessage(
+                    resources.FindString("SettingsSteamCatImportErrorDb"),
+                    resources.FindString("ImportError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -384,14 +396,19 @@ namespace PlayniteUI.ViewModels
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Failed to import Steam categories.");
-                dialogs.ShowMessage("Failed to import Steam categories: " + exc.Message, "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                dialogs.ShowMessage(
+                    resources.FindString("SettingsSteamCatImportError"),
+                    resources.FindString("ImportError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         public void ClearWebcache()
         {
-            if (dialogs.ShowMessage("This will log you out of all linked services. Application restart is required, do you want to proceed?",
-                "Clear Cache?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (dialogs.ShowMessage(
+                    resources.FindString("SettingsClearCacheWarn"),
+                    resources.FindString("SettingsClearCacheTitle"),
+                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 Cef.Shutdown();
                 System.IO.Directory.Delete(Paths.BrowserCachePath, true);

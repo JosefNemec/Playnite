@@ -81,18 +81,6 @@ namespace PlayniteUI
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            AppSettings = Settings.LoadSettings();
-            Localization.SetLanguage(AppSettings.Language);
-            Resources.Remove("AsyncImagesEnabled");
-            Resources.Add("AsyncImagesEnabled", AppSettings.AsyncImageLoading);
-            if (AppSettings.DisableHwAcceleration)
-            {
-                System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
-            }
-
-            Settings.ConfigureLogger();
-            Settings.ConfigureCef();
-
 #if !DEBUG
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 #endif
@@ -129,6 +117,18 @@ namespace PlayniteUI
             {
                 appMutex = new Mutex(true, instanceMuxet);
             }
+
+            AppSettings = Settings.LoadSettings();
+            Localization.SetLanguage(AppSettings.Language);
+            Resources.Remove("AsyncImagesEnabled");
+            Resources.Add("AsyncImagesEnabled", AppSettings.AsyncImageLoading);
+            if (AppSettings.DisableHwAcceleration)
+            {
+                System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
+            }
+
+            Settings.ConfigureLogger();
+            Settings.ConfigureCef();
 
             // Load skin
             try
@@ -371,9 +371,13 @@ namespace PlayniteUI
             GamesLoaderHandler.ProgressTask?.Wait();
             Database?.CloseDatabase();
             Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
-            Cef.Shutdown();
             AppSettings?.SaveSettings();
             appMutex?.ReleaseMutex();
+            if (Cef.IsInitialized)
+            {
+                Cef.Shutdown();
+            }
+
             resourcesReleased = true;
         }
 

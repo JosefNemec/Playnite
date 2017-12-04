@@ -86,7 +86,7 @@
                         </HierarchicalDataTemplate>
                         <Style x:Key="OpenUIItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
                             <Setter Property="OverridesDefaultStyle" Value="True" />
-                            <Setter Property="Header" Value="Open" />
+                            <Setter Property="Header" Value="{DynamicResource OpenPlaynite}" />
                             <Setter Property="Command" Value="{Binding Source={StaticResource Proxy}, Path=Data.ShowWindowCommand}" />
                         </Style>
                         <Style x:Key="ExitItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
@@ -100,7 +100,7 @@
                             <CollectionContainer Collection="{Binding Path=LastGames, Source={x:Static pui:App.GamesEditor}}" />
                             <Separator Style="{StaticResource {x:Type Separator}}"/>
                             <MenuItem Style="{StaticResource OpenUIItem}" />
-                            <MenuItem Header="Open 3rd Party Client" ItemsSource="{Binding ThirdPartyTools}"
+                            <MenuItem Header="{DynamicResource MenuOpenClient}" ItemsSource="{Binding ThirdPartyTools}"
                                       OverridesDefaultStyle="True" Style="{StaticResource {x:Type MenuItem}}">
                                 <MenuItem.ItemContainerStyle>
                                     <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">

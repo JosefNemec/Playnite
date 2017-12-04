@@ -17,7 +17,7 @@ namespace PlayniteUI
         public string FindString(string key)
         {
             var resource = Application.Current.TryFindResource(key);
-            return resource == null ? $"{{{key}}}" : resource as string;
+            return resource == null ? $"<!{key}!>" : resource as string;
         }
     }
 }

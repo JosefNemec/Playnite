@@ -25,6 +25,14 @@ namespace Playnite
             }
         }
 
+        public static string LocalizationsPath
+        {
+            get
+            {
+                return Path.Combine(ProgramFolder, "Localization");
+            }
+        }
+
         public static string SkinsPath
         {
             get

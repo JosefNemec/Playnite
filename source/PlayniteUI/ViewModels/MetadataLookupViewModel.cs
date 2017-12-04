@@ -126,12 +126,14 @@ namespace PlayniteUI.ViewModels
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private MetadataProvider provider;
+        private IResourceProvider resources;
 
-        public MetadataLookupViewModel(MetadataProvider provider, IWindowFactory window, IDialogsFactory dialogs)
+        public MetadataLookupViewModel(MetadataProvider provider, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.provider = provider;
             this.window = window;
             this.dialogs = dialogs;
+            this.resources = resources;
         }
 
         public bool? ShowDialog()
@@ -182,7 +184,7 @@ namespace PlayniteUI.ViewModels
 
             if (!success)
             {
-                dialogs.ShowMessage("Didn't found any relevant information about game \"" + searchTerm + "\" on specified page.");
+                dialogs.ShowMessage(string.Format(resources.FindString("MetadownloadNoResultsMessage"), searchTerm));
             }
             else
             {

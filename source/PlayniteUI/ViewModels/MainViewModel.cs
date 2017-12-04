@@ -630,7 +630,7 @@ namespace PlayniteUI.ViewModels
                             NotificationType.Error, null));
                     }
 
-                    ProgressStatus = "Downloading GOG library updates...";
+                    ProgressStatus = resources.FindString("ProgressGOGLibImport");
 
                     try
                     {
@@ -649,7 +649,7 @@ namespace PlayniteUI.ViewModels
                             NotificationType.Error, null));
                     }
 
-                    ProgressStatus = "Downloading Steam library updates...";
+                    ProgressStatus = resources.FindString("ProgressSteamLibImport");
 
                     try
                     {
@@ -670,7 +670,7 @@ namespace PlayniteUI.ViewModels
                                         
                     if (steamImportCatId > 0)
                     {
-                        ProgressStatus = "Importing Steam categories...";
+                        ProgressStatus = resources.FindString("ProgressSteamCategoryImport");
 
                         try
                         {
@@ -687,7 +687,7 @@ namespace PlayniteUI.ViewModels
                         }
                     }
 
-                    ProgressStatus = "Downloading Origin library updates...";
+                    ProgressStatus = resources.FindString("ProgressOriginLibImport");
 
                     try
                     {
@@ -706,7 +706,7 @@ namespace PlayniteUI.ViewModels
                             NotificationType.Error, null));
                     }
 
-                    ProgressStatus = "Downloading Battle.net library updates...";
+                    ProgressStatus = resources.FindString("ProgressBattleNetLibImport");
 
                     try
                     {
@@ -725,7 +725,7 @@ namespace PlayniteUI.ViewModels
                             NotificationType.Error, null));
                     }
                                         
-                    ProgressStatus = "Library update finished";
+                    ProgressStatus = resources.FindString("ProgressLibImportFinish");
                     Thread.Sleep(2000);
                 });
 
