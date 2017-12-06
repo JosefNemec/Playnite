@@ -839,17 +839,17 @@ namespace PlayniteUI.ViewModels
 
         public void ImportInstalledGames(InstalledGamesViewModel model)
         {
-            model.ShowDialog();
+            model.OpenView();
         }
 
         public void ImportEmulatedGames(EmulatorImportViewModel model)
         {
-            model.ShowDialog();
+            model.OpenView();
         }
         
         public void OpenAboutWindow(AboutViewModel model)
         {
-            model.ShowDialog();
+            model.OpenView();
         }
 
         public void OpenSettings(SettingsViewModel model)
@@ -857,7 +857,7 @@ namespace PlayniteUI.ViewModels
             var currentSkin = Skins.CurrentSkin;
             var currentColor = Skins.CurrentColor;
 
-            if (model.ShowDialog() == true)
+            if (model.OpenView() == true)
             {
                 if (model.ProviderIntegrationChanged || model.DatabaseLocationChanged)
                 {
@@ -875,7 +875,7 @@ namespace PlayniteUI.ViewModels
 
         public void ConfigurePlatforms(PlatformsViewModel model)
         {
-            model.ShowDialog();
+            model.OpenView();
         }
 
         public void SetViewType(ViewType type)

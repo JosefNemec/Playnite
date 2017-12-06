@@ -196,7 +196,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                CloseDialog(false);
+                CloseView(false);
             });
         }
 
@@ -204,7 +204,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                CloseDialog(true);
+                CloseView(true);
             });
         }
 
@@ -333,12 +333,12 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public bool? ShowDialog()
+        public bool? OpenView()
         {
             return window.CreateAndOpenDialog(this);
         }
 
-        public void CloseDialog(bool? result)
+        public void CloseView(bool? result)
         {
             window.Close(result);
         }
@@ -464,7 +464,7 @@ namespace PlayniteUI.ViewModels
 
         public void ImportGames(InstalledGamesViewModel model)
         {
-            if (model.ShowDialog() == true)
+            if (model.OpenView() == true)
             {
                 ImportedGames = model.Games;
             }

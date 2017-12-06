@@ -151,7 +151,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                CancelDialog();
+                CloseView();
             });
         }
 
@@ -230,12 +230,12 @@ namespace PlayniteUI.ViewModels
             this.resources = resources;
         }
 
-        public bool? ShowDialog()
+        public bool? OpenView()
         {
             return window.CreateAndOpenDialog(this);
         }
 
-        public void CancelDialog()
+        public void CloseView()
         {
             Settings.CancelEdit();
             window.Close(false);

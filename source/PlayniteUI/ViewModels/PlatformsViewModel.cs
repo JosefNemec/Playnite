@@ -187,7 +187,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                CloseDialog(false);
+                CloseView(false);
             });
         }
 
@@ -328,13 +328,13 @@ namespace PlayniteUI.ViewModels
             this.database = database;
         }
 
-        public bool? ShowDialog()
+        public bool? OpenView()
         {
             IsPlatformsSelected = true;
             return window.CreateAndOpenDialog(this);
         }
 
-        public void CloseDialog(bool? result)
+        public void CloseView(bool? result)
         {
             window.Close(result);
         }
@@ -353,7 +353,7 @@ namespace PlayniteUI.ViewModels
                 }
             }
 
-            CloseDialog(true);
+            CloseView(true);
         }
 
         private ObservableCollection<Platform> GetPlatformsFromDB()
@@ -614,7 +614,7 @@ namespace PlayniteUI.ViewModels
 
         public void DownloadEmulators(EmulatorImportViewModel model)
         {
-            model.ShowDialog();
+            model.OpenView();
         }
 
         public void ImportEmulators(EmulatorImportViewModel model)
@@ -636,7 +636,7 @@ namespace PlayniteUI.ViewModels
                 }
             }
 
-            var result = model.ShowDialog();
+            var result = model.OpenView();
             if (result == true)
             {
                 ReloadPlatforms();

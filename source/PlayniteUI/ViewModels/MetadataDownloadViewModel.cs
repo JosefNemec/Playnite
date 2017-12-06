@@ -96,7 +96,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                CloseDialog(true);
+                CloseView(true);
             });
         }
 
@@ -104,7 +104,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                CloseDialog(false);
+                CloseView(false);
             });
         }
 
@@ -135,7 +135,7 @@ namespace PlayniteUI.ViewModels
             return window.CreateAndOpenDialog(this);
         }
 
-        public void CloseDialog(bool success)
+        public void CloseView(bool success)
         {
             window.Close(success);
         }

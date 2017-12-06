@@ -51,13 +51,13 @@ namespace PlayniteUI
         public bool? SetGameCategories(IGame game)
         {
             var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, database, game, true);
-            return model.ShowDialog();
+            return model.OpenView();
         }
 
         public bool? SetGamesCategories(List<IGame> games)
         {
             var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, database, games, true);
-            return model.ShowDialog();
+            return model.OpenView();
         }
 
         public bool? EditGame(IGame game)
@@ -68,7 +68,7 @@ namespace PlayniteUI
                             GameEditWindowFactory.Instance,
                             new DialogsFactory(),
                             new ResourceProvider());
-            return model.ShowDialog();
+            return model.OpenView();
         }
 
         public bool? EditGames(List<IGame> games)
@@ -79,7 +79,7 @@ namespace PlayniteUI
                             GameEditWindowFactory.Instance,
                             new DialogsFactory(),
                             new ResourceProvider());
-            return model.ShowDialog();
+            return model.OpenView();
         }
 
         public void PlayGame(IGame game)

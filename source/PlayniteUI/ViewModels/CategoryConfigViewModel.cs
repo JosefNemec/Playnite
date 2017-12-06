@@ -77,7 +77,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                CloseDialog();
+                CloseView();
             });
         }
 
@@ -120,12 +120,12 @@ namespace PlayniteUI.ViewModels
             SetCategoryStates();
         }
 
-        public bool? ShowDialog()
+        public bool? OpenView()
         {
             return window.CreateAndOpenDialog(this);
         }
 
-        public void CloseDialog()
+        public void CloseView()
         {
             window.Close(false);
         }

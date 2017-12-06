@@ -510,7 +510,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                CancelDialog();
+                CloseView();
             });
         }
 
@@ -903,12 +903,12 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public bool? ShowDialog()
+        public bool? OpenView()
         {
             return window.CreateAndOpenDialog(this);
         }
 
-        public void CancelDialog()
+        public void CloseView()
         {
             window.Close(false);
         }
@@ -1573,7 +1573,7 @@ namespace PlayniteUI.ViewModels
 
         public void SelectCategories(CategoryConfigViewModel model)
         {
-            model.ShowDialog();
+            model.OpenView();
         }
 
         public void SelectInstallDir()
@@ -1618,7 +1618,7 @@ namespace PlayniteUI.ViewModels
             }
             
             model.SearchTerm = Game.Name;
-            if (model.ShowDialog() == true)
+            if (model.OpenView() == true)
             {
                 ShowCheckBoxes = true;
                 PreviewGameData(model.MetadataData);

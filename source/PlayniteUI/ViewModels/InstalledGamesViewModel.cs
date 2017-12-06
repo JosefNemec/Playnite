@@ -192,7 +192,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                CloseDialog(false);
+                CloseView(false);
             });
         }
 
@@ -233,13 +233,13 @@ namespace PlayniteUI.ViewModels
             this.dialogs = dialogs;
         }
 
-        public bool? ShowDialog()
+        public bool? OpenView()
         {
             LoadDefaultList();
             return window.CreateAndOpenDialog(this);
         }
 
-        public void CloseDialog(bool? result)
+        public void CloseView(bool? result)
         {
             window.Close(result);
         }
@@ -312,7 +312,7 @@ namespace PlayniteUI.ViewModels
                 database.AddGames(Games.Select(a => a.Game).ToList<IGame>());
             }
 
-            CloseDialog(true);
+            CloseView(true);
         }
 
         public void SelectExecutable()

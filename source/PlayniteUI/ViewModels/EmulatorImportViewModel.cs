@@ -239,7 +239,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                CloseDialog(false);
+                CloseView(false);
             });
         }
 
@@ -300,7 +300,7 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 AddSelectedGamesToDB();
-                CloseDialog(true);
+                CloseView(true);
             });
         }
 
@@ -317,7 +317,7 @@ namespace PlayniteUI.ViewModels
                     AddSelectedEmulatorsToDB();
                 }
 
-                CloseDialog(true);
+                CloseView(true);
             });
         }
 
@@ -354,12 +354,12 @@ namespace PlayniteUI.ViewModels
             Type = type;
         }
 
-        public bool? ShowDialog()
+        public bool? OpenView()
         {
             return window.CreateAndOpenDialog(this);
         }
 
-        public void CloseDialog(bool? result)
+        public void CloseView(bool? result)
         {
             window.Close(result);
         }
@@ -505,7 +505,7 @@ namespace PlayniteUI.ViewModels
                     if (dialogs.ShowMessage(resources.FindString("EmuWizardNoEmulatorWarning"),
                         "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     {
-                        CloseDialog(false);
+                        CloseView(false);
                     }
                     else
                     {
@@ -541,7 +541,7 @@ namespace PlayniteUI.ViewModels
                     if (dialogs.ShowMessage(resources.FindString("EmuWizardNoEmulatorForGamesWarning")
                         , "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {                       
-                        if (platforms.ShowDialog() == true)
+                        if (platforms.OpenView() == true)
                         {
                             OnPropertyChanged("AvailableEmulators");
                         }

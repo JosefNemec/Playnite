@@ -102,7 +102,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                CloseDialog(false);
+                CloseView(false);
             });
         }
 
@@ -136,13 +136,13 @@ namespace PlayniteUI.ViewModels
             this.resources = resources;
         }
 
-        public bool? ShowDialog()
+        public bool? OpenView()
         {
             Search();
             return window.CreateAndOpenDialog(this);
         }
 
-        public void CloseDialog(bool? result)
+        public void CloseView(bool? result)
         {
             window.Close(result);
         }
@@ -188,7 +188,7 @@ namespace PlayniteUI.ViewModels
             }
             else
             {
-                CloseDialog(true);
+                CloseView(true);
             }
         }
 

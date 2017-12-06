@@ -240,7 +240,6 @@
     <Compile Include="ViewModels\CategoryConfigViewModel.cs" />
     <Compile Include="ViewModels\EmulatorImportViewModel.cs" />
     <Compile Include="ViewModels\MetadataLookupViewModel.cs" />
-    <Compile Include="ViewModels\NotificationsViewModel.cs" />
     <Compile Include="WindowFactory.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="MouseWheelGesture.cs" />

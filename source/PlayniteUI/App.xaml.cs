@@ -75,7 +75,7 @@ namespace PlayniteUI
             var model = new CrashHandlerViewModel(
                 CrashHandlerWindowFactory.Instance, new DialogsFactory(), new ResourceProvider());
             model.Exception = exception.ToString();
-            model.ShowDialog();
+            model.OpenView();
             Process.GetCurrentProcess().Kill();
         }
 
@@ -153,7 +153,7 @@ namespace PlayniteUI
                     wizardWindow,
                     new DialogsFactory(),
                     new ResourceProvider());
-                if (wizardModel.ShowDialog() == true)
+                if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
                     AppSettings.FirstTimeWizardComplete = true;
@@ -216,7 +216,7 @@ namespace PlayniteUI
                        new DialogsFactory(),
                        new ResourceProvider());
 
-                model.ShowDialog();                
+                model.OpenView();                
                 AppSettings.EmulatorWizardComplete = true;
                 AppSettings.SaveSettings();
             }
@@ -328,7 +328,7 @@ namespace PlayniteUI
                             Dispatcher.Invoke(() =>
                             {
                                 var model = new UpdateViewModel(update, UpdateWindowFactory.Instance);
-                                model.ShowDialog();
+                                model.OpenView();
                             });
                         }
                     }
