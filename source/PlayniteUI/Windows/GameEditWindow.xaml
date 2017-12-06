@@ -220,22 +220,15 @@
                             </DataTemplate>
                         </GroupBox.HeaderTemplate>
                         <DockPanel LastChildFill="True">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,5" DockPanel.Dock="Top">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5" DockPanel.Dock="Top">
                                 <Button Name="ButtonSelectIcon" Content="{DynamicResource SelectIconTitle}"
-                                            Command="{Binding SelectIconCommand}"/>
-                                <Button Name="ButtonUseExeIcon" Content="{DynamicResource UseExeIcon}" Margin="5,0,0,0"
-                                            Command="{Binding UseExeIconCommand}">
-                                    <Button.Style>
-                                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Games}" Value="{x:Null}">
-                                                    <Setter Property="Visibility" Value="Visible" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Button.Style>
-                                </Button>
+                                        Command="{Binding SelectIconCommand}" />
+                                <Button Name="ButtonUseExeIcon" Content="{DynamicResource UseExeIcon}" 
+                                        Command="{Binding UseExeIconCommand}"
+                                        Visibility="{Binding Game, Converter={StaticResource NullToVisibilityConverter}}"
+                                        Margin="5,0,0,0"/>
+                                <Button Content="{DynamicResource RemoveLabel}" Margin="5,0,0,0"
+                                        Command="{Binding RemoveIconCommand}" />
                             </StackPanel>
                             <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
                                        Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageIcon"
@@ -255,9 +248,13 @@
                             </DataTemplate>
                         </GroupBox.HeaderTemplate>
                         <DockPanel LastChildFill="True">
-                            <Button Name="ButtonSelectImage" Content="{DynamicResource SelectCoverTitle}" DockPanel.Dock="Top"
-                                        Margin="0,0,0,5" HorizontalAlignment="Left"
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
+                                <Button Name="ButtonSelectImage" Content="{DynamicResource SelectCoverTitle}" 
+                                        HorizontalAlignment="Left"
                                         Command="{Binding SelectCoverCommand}"/>
+                                <Button Content="{DynamicResource RemoveLabel}" Margin="5,0,0,0"
+                                        Command="{Binding RemoveImageCommand}" />
+                            </StackPanel>
                             <Image Source="{Binding EditingGame.Image, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
                                        Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
                                        DockPanel.Dock="Top"
@@ -277,11 +274,13 @@
                             </DataTemplate>
                         </GroupBox.HeaderTemplate>
                         <DockPanel DockPanel.Dock="Top">
-                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
                                 <Button Content="{DynamicResource SelectFileTitle}" HorizontalAlignment="Left"
                                         Command="{Binding SelectBackgroundCommand}"/>
                                 <Button Content="{DynamicResource SelectUrlTitle}" Margin="5,0,0,0" HorizontalAlignment="Left"
                                         Command="{Binding SetBackgroundUrlCommand}"/>
+                                <Button Content="{DynamicResource RemoveLabel}" Margin="5,0,0,0"
+                                        Command="{Binding RemoveBackgroundCommand}" />
                             </StackPanel>
                             <DockPanel DockPanel.Dock="Top" Margin="5,5,0,5"
                                        Visibility="{Binding ShowBackgroundUrl, Converter={StaticResource BooleanToVisibilityConverter}}">

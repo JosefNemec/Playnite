@@ -477,7 +477,7 @@ namespace PlayniteUI.ViewModels
                 else
                 {
                     return database.EmulatorsCollection.FindAll()
-                        .Where(a => a.Profiles != null && a.Profiles.FirstOrDefault(b => b.Platforms.Contains(EditingGame.PlatformId)) != null)
+                        .Where(a => a.Profiles != null && a.Profiles.FirstOrDefault(b => b.Platforms?.Contains(EditingGame.PlatformId) == true) != null)
                         .OrderBy(a => a.Name).ToList();
                 }
             }
@@ -669,13 +669,37 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<object> RemoveIconCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveIcon();
+            });
+        }
+
+        public RelayCommand<object> RemoveImageCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveImage();
+            });
+        }
+
+        public RelayCommand<object> RemoveBackgroundCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveBackground();
+            });
+        }
+
         public GameEditViewModel(IGame game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.database = database;
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
-            
+
             Game = game;
             EditingGame = (game as Game).CloneJson();
             ShowCheckBoxes = false;
@@ -1004,7 +1028,7 @@ namespace PlayniteUI.ViewModels
                 }
                 else
                 {
-                    Game.Categories = EditingGame.Categories;                        
+                    Game.Categories = EditingGame.Categories;
                 }
             }
 
@@ -1071,103 +1095,91 @@ namespace PlayniteUI.ViewModels
 
             if (UseIconChanges)
             {
-                var iconPath = EditingGame.Icon;
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(iconPath);
-                var iconId = "images/custom/" + fileName;
-                iconId = database.AddFileNoDuplicate(iconId, fileName, File.ReadAllBytes(iconPath));
-
-                if (Games != null)
-                {
-                    foreach (var game in Games)
-                    {
-                        if (!string.IsNullOrEmpty(game.Icon) && game.Icon != iconId)
-                        {
-                            database.DeleteImageSafe(game.Icon, game);
-                        }
-
-                        game.Icon = iconId;
-                    }
-                }
-                else
-                {
-                    if (!string.IsNullOrEmpty(Game.Icon) && Game.Icon != iconId)
-                    {
-                        database.DeleteImageSafe(Game.Icon, Game);
-                    }
-
-                    Game.Icon = iconId;
-                }
-
-                if (Path.GetDirectoryName(iconPath) == Paths.TempPath)
-                {
-                    File.Delete(iconPath);
-                }
-            }
-
-            if (UseImageChanges)
-            {
-                var imagePath = EditingGame.Image;
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
-                var imageId = "images/custom/" + fileName;
-                imageId = database.AddFileNoDuplicate(imageId, fileName, File.ReadAllBytes(imagePath));
-
-                if (Games != null)
-                {
-                    foreach (var game in Games)
-                    {
-                        if (!string.IsNullOrEmpty(game.Image) && game.Image != imageId)
-                        {
-                            database.DeleteImageSafe(game.Image, game);
-                        }
-
-                        game.Image = imageId;
-                    }
-                }
-                else
-                {
-                    if (!string.IsNullOrEmpty(Game.Image) && Game.Image != imageId)
-                    {
-                        database.DeleteImageSafe(Game.Image, Game);
-                    }
-
-                    Game.Image = imageId;
-                }
-
-                if (Path.GetDirectoryName(imagePath) == Paths.TempPath)
-                {
-                    File.Delete(imagePath);
-                }
-            }
-
-            if (UseBackgroundChanges)
-            {
-                if (EditingGame.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                if (string.IsNullOrEmpty(EditingGame.Icon))
                 {
                     if (Games != null)
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                            if (!string.IsNullOrEmpty(game.Icon))
                             {
-                                database.DeleteImageSafe(game.BackgroundImage, game);
+                                database.DeleteImageSafe(game.Icon, game);
+                                game.Icon = null;
                             }
-
-                            game.BackgroundImage = EditingGame.BackgroundImage;
                         }
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.BackgroundImage) && !Game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                        if (!string.IsNullOrEmpty(Game.Icon))
                         {
-                            database.DeleteImageSafe(Game.BackgroundImage, Game);
+                            database.DeleteImageSafe(Game.Icon, Game);
+                            Game.Icon = null;
                         }
-
-                        Game.BackgroundImage = EditingGame.BackgroundImage;
                     }
                 }
                 else
                 {
-                    var imagePath = EditingGame.BackgroundImage;
+                    var iconPath = EditingGame.Icon;
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(iconPath);
+                    var iconId = "images/custom/" + fileName;
+                    iconId = database.AddFileNoDuplicate(iconId, fileName, File.ReadAllBytes(iconPath));
+
+                    if (Games != null)
+                    {
+                        foreach (var game in Games)
+                        {
+                            if (!string.IsNullOrEmpty(game.Icon) && game.Icon != iconId)
+                            {
+                                database.DeleteImageSafe(game.Icon, game);
+                            }
+
+                            game.Icon = iconId;
+                        }
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(Game.Icon) && Game.Icon != iconId)
+                        {
+                            database.DeleteImageSafe(Game.Icon, Game);
+                        }
+
+                        Game.Icon = iconId;
+                    }
+
+                    if (Path.GetDirectoryName(iconPath) == Paths.TempPath)
+                    {
+                        File.Delete(iconPath);
+                    }
+                }
+            }
+
+            if (UseImageChanges)
+            {
+                if (string.IsNullOrEmpty(EditingGame.Image))
+                {
+                    if (Games != null)
+                    {
+                        foreach (var game in Games)
+                        {
+                            if (!string.IsNullOrEmpty(game.Image))
+                            {
+                                database.DeleteImageSafe(game.Image, game);
+                                game.Image = null;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(Game.Image))
+                        {
+                            database.DeleteImageSafe(Game.Image, Game);
+                            Game.Image = null;
+                        }
+                    }
+                }
+                else
+                {
+                    var imagePath = EditingGame.Image;
                     var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
                     var imageId = "images/custom/" + fileName;
                     imageId = database.AddFileNoDuplicate(imageId, fileName, File.ReadAllBytes(imagePath));
@@ -1176,31 +1188,118 @@ namespace PlayniteUI.ViewModels
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.BackgroundImage) &&
-                                !game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase) &&
-                                game.BackgroundImage != imageId)
+                            if (!string.IsNullOrEmpty(game.Image) && game.Image != imageId)
                             {
-                                database.DeleteImageSafe(game.BackgroundImage, game);
+                                database.DeleteImageSafe(game.Image, game);
                             }
 
-                            game.BackgroundImage = imageId;
+                            game.Image = imageId;
                         }
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.BackgroundImage) &&
-                            !Game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase) &&
-                            Game.BackgroundImage != imageId)
+                        if (!string.IsNullOrEmpty(Game.Image) && Game.Image != imageId)
                         {
-                            database.DeleteImageSafe(Game.BackgroundImage, Game);
+                            database.DeleteImageSafe(Game.Image, Game);
                         }
 
-                        Game.BackgroundImage = imageId;
+                        Game.Image = imageId;
                     }
 
                     if (Path.GetDirectoryName(imagePath) == Paths.TempPath)
                     {
                         File.Delete(imagePath);
+                    }
+                }
+            }
+
+            if (UseBackgroundChanges)
+            {
+                if (string.IsNullOrEmpty(EditingGame.BackgroundImage))
+                {
+                    if (Games != null)
+                    {
+                        foreach (var game in Games)
+                        {
+                            if (!string.IsNullOrEmpty(game.BackgroundImage))
+                            {
+                                database.DeleteImageSafe(game.BackgroundImage, game);
+                                game.BackgroundImage = null;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(Game.BackgroundImage))
+                        {
+                            database.DeleteImageSafe(Game.BackgroundImage, Game);
+                            Game.BackgroundImage = null;
+                        }
+                    }
+                }
+                else
+                {
+                    if (EditingGame.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        if (Games != null)
+                        {
+                            foreach (var game in Games)
+                            {
+                                if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                                {
+                                    database.DeleteImageSafe(game.BackgroundImage, game);
+                                }
+
+                                game.BackgroundImage = EditingGame.BackgroundImage;
+                            }
+                        }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(Game.BackgroundImage) && !Game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                database.DeleteImageSafe(Game.BackgroundImage, Game);
+                            }
+
+                            Game.BackgroundImage = EditingGame.BackgroundImage;
+                        }
+                    }
+                    else
+                    {
+                        var imagePath = EditingGame.BackgroundImage;
+                        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
+                        var imageId = "images/custom/" + fileName;
+                        imageId = database.AddFileNoDuplicate(imageId, fileName, File.ReadAllBytes(imagePath));
+
+                        if (Games != null)
+                        {
+                            foreach (var game in Games)
+                            {
+                                if (!string.IsNullOrEmpty(game.BackgroundImage) &&
+                                    !game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase) &&
+                                    game.BackgroundImage != imageId)
+                                {
+                                    database.DeleteImageSafe(game.BackgroundImage, game);
+                                }
+
+                                game.BackgroundImage = imageId;
+                            }
+                        }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(Game.BackgroundImage) &&
+                                !Game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase) &&
+                                Game.BackgroundImage != imageId)
+                            {
+                                database.DeleteImageSafe(Game.BackgroundImage, Game);
+                            }
+
+                            Game.BackgroundImage = imageId;
+                        }
+
+                        if (Path.GetDirectoryName(imagePath) == Paths.TempPath)
+                        {
+                            File.Delete(imagePath);
+                        }
                     }
                 }
             }
@@ -1376,7 +1475,7 @@ namespace PlayniteUI.ViewModels
             {
                 EditingGame.Image = path;
             }
-        }        
+        }
 
         public void SelectBackground()
         {
@@ -1493,6 +1592,21 @@ namespace PlayniteUI.ViewModels
             {
                 EditingGame.IsoPath = path;
             }
+        }
+
+        public void RemoveIcon()
+        {
+            EditingGame.Icon = null;
+        }
+
+        public void RemoveImage()
+        {
+            EditingGame.Image = null;
+        }
+
+        public void RemoveBackground()
+        {
+            EditingGame.BackgroundImage = null;
         }
 
         public void DoMetadataLookup(MetadataLookupViewModel model)
