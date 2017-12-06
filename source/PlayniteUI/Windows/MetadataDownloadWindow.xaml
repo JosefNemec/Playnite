@@ -64,8 +64,8 @@
                     <TextBlock Text="{DynamicResource MetaGamesSourceIntro}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"
                                Margin="30,30,30,0"/>
                     <TextBlock Text="{DynamicResource MetaGamesSourceDescription}" TextWrapping="Wrap" DockPanel.Dock="Top" 
-                               Margin="30,30,30,0"/>                    
-                    <StackPanel Margin="50,20,0,0">
+                               Margin="30,30,30,0"/>
+                    <StackPanel Margin="50,20,0,0" DockPanel.Dock="Top" >
                         <RadioButton Content="{DynamicResource MetaGameSourceAll}" Margin="10"                                 
                                      IsChecked="{Binding Settings.GamesSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static pmp:MetadataGamesSource.AllFromDB}}"/>
                         <RadioButton Content="{DynamicResource MetaGameSourceFiltered}" Margin="10"                                 
@@ -73,6 +73,9 @@
                         <RadioButton Content="{DynamicResource MetaGameSourceSelected}" Margin="10"
                                      IsChecked="{Binding Settings.GamesSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static pmp:MetadataGamesSource.Selected}}"/>
                     </StackPanel>
+
+                    <TextBlock Text="{DynamicResource MetadownloadSingleGameTip}" TextWrapping="Wrap"
+                               DockPanel.Dock="Top" Margin="30,30,30,0"/>
                 </DockPanel>
             </TabItem>
 

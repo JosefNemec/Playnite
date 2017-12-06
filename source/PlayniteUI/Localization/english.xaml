@@ -390,4 +390,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="CreateDesktopShortcut">Create desktop schortcut</sys:String>
     <sys:String x:Key="ClearAll">Clear All</sys:String>
     <sys:String x:Key="MetadownloadNoResultsMessage">Didn't found any relevant information about game '{0}' on specified page.</sys:String>
+
+    <sys:String x:Key="MetadownloadSingleGameTip">Tip: You can use more advanced metadata download process while editing single game via "Edit" menu option.</sys:String>
+    <sys:String x:Key="ProgreessAvailabilityMessage">Not available when some action is in progress.</sys:String>
 </ResourceDictionary>
