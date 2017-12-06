@@ -130,7 +130,7 @@
                                          Name="TextSteamAccount" DockPanel.Dock="Left" Margin="0,0,10,0" />
                             </DockPanel>
                             <ComboBox IsReadOnly="True" Name="ComboSteamAccount" DisplayMemberPath="AccountName"
-                                      SelectedValuePath="Id" SelectedIndex="0"
+                                      SelectedValuePath="Id"
                                       ItemsSource="{Binding SteamUsers}"
                                       SelectedValue="{Binding Settings.SteamSettings.AccountId}"
                                       IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"
@@ -142,7 +142,7 @@
                                   DockPanel.Dock="Top" Margin="5"
                                   IsChecked="{Binding SteamImportCategories}"/>
                         <ComboBox IsReadOnly="True" Name="ComboSteamAccountCatImport" DisplayMemberPath="AccountName"
-                                  SelectedValuePath="Id" SelectedIndex="0"
+                                  SelectedValuePath="Id"
                                   ItemsSource="{Binding SteamUsers}"
                                   SelectedValue="{Binding SteamIdCategoryImport}"
                                   IsEnabled="{Binding IsChecked, ElementName=CheckSteamImportCat}" />

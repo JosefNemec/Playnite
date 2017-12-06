@@ -46,6 +46,11 @@ namespace PlayniteUI.ViewModels
                 return new SteamLibrary().GetSteamUsers();
             }
         }
+        
+        public ulong SteamIdCategoryImport
+        {
+            get; set;
+        }
 
         private Playnite.Providers.GOG.WebApiClient gogApiClient = new Playnite.Providers.GOG.WebApiClient();
 
@@ -146,11 +151,6 @@ namespace PlayniteUI.ViewModels
         {
             get; set;
         } = true;
-
-        public ulong SteamIdCategoryImport
-        {
-            get; set;
-        } = 0;
         
         public List<InstalledGameMetadata> ImportedGames
         {
@@ -274,8 +274,10 @@ namespace PlayniteUI.ViewModels
         }
 
         public FirstTimeStartupViewModel(IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
-        {            
+        {
+            SteamIdCategoryImport = SteamUsers?.FirstOrDefault()?.Id ?? 0;
             Settings.SteamSettings.IntegrationEnabled = true;
+            Settings.SteamSettings.AccountId = SteamIdCategoryImport;
             Settings.GOGSettings.IntegrationEnabled = true;
             Settings.GOGSettings.RunViaGalaxy = Playnite.Providers.GOG.GogSettings.IsInstalled;
             Settings.OriginSettings.IntegrationEnabled = true;
