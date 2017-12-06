@@ -23,7 +23,7 @@ namespace PlayniteUI.ViewModels
         {
             var platforms = (IEnumerable<LiteDB.ObjectId>)values[0];
             var allPlatforms = (IEnumerable<Platform>)values[1];
-            return string.Join(", ", allPlatforms.Where(a => platforms.Contains(a.Id))?.Select(a => a.Name));
+            return string.Join(", ", allPlatforms.Where(a => platforms?.Contains(a.Id) == true)?.Select(a => a.Name));
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
@@ -258,7 +258,15 @@ namespace PlayniteUI.ViewModels
         public RelayCommand<EmulatorProfile> ScanGamesCommand
         {
             get => new RelayCommand<EmulatorProfile>((profile) =>
-            {                
+            {
+                if (profile.ImageExtensions?.Any() != true)
+                {
+                    dialogs.ShowMessage(
+                        resources.FindString("ScanEmulatorGamesEmptyProfileError"),
+                        "", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 var path = dialogs.SelectFolder();
                 if (!string.IsNullOrEmpty(path))
                 {

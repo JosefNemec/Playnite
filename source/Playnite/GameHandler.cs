@@ -101,6 +101,11 @@ namespace Playnite
         public static Game GetMultiGameEditObject(IEnumerable<IGame> games)
         {
             var dummyGame = new Game();
+            if (games?.Any() != true)
+            {
+                return dummyGame;
+            }
+
             var firstGame = games.First();
 
             var firstName = firstGame.Name;

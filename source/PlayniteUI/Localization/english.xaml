@@ -332,6 +332,8 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="GOGLibraryImportError">Failed to download GOG library.</sys:String>
     <sys:String x:Key="OriginLibraryImportError">Failed to download Origin library.</sys:String>
     <sys:String x:Key="UplayLibraryImportError">Failed to download Uplay library.</sys:String>
+    
+    <sys:String x:Key="ScanEmulatorGamesEmptyProfileError">Cannot search for games by selected emulator profile. Profile doesn't contain any file extensions or platforms.</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="GameEditWindowTitle">Edit Game Details</sys:String>
