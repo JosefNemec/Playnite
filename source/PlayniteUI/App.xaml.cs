@@ -146,6 +146,7 @@ namespace PlayniteUI
 
             // First run wizard
             ulong steamCatImportId = 0;
+            bool metaForNewGames = AppSettings.FirstTimeWizardComplete;
             if (!AppSettings.FirstTimeWizardComplete)
             {
                 var wizardWindow = FirstTimeStartupWindowFactory.Instance;
@@ -246,7 +247,7 @@ namespace PlayniteUI
             }
             else
             {
-                OpenNormalView(steamCatImportId, metaModel);
+                OpenNormalView(steamCatImportId, metaForNewGames, metaModel);
             }
 
             // Update and stats
@@ -381,7 +382,7 @@ namespace PlayniteUI
             resourcesReleased = true;
         }
 
-        public async void OpenNormalView(ulong steamCatImportId, MetadataDownloadViewModel metaModel)
+        public async void OpenNormalView(ulong steamCatImportId, bool metaForNewGames, MetadataDownloadViewModel metaModel)
         {
             if (fullscreenModel != null)
             {
@@ -400,7 +401,7 @@ namespace PlayniteUI
                 GamesEditor);
             mainModel.ShowView();
             Current.MainWindow = window.Window;
-            await mainModel.LoadGames(AppSettings.UpdateLibStartup, steamCatImportId);
+            await mainModel.LoadGames(AppSettings.UpdateLibStartup, steamCatImportId, metaForNewGames);
 
             if (metaModel != null)
             {

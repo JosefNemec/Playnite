@@ -189,6 +189,30 @@ namespace Playnite.MetaProviders
                 OnPropertyChanged("Links");
             }
         }
+
+        public void ConfigureFields(MetadataSource source, bool import)
+        {
+            Genre.Import = import;
+            Genre.Source = source;
+            Description.Import = import;
+            Description.Source = source;
+            Developer.Import = import;
+            Developer.Source = source;
+            Publisher.Import = import;
+            Publisher.Source = source;
+            Tag.Import = import;
+            Tag.Source = source;
+            Links.Import = import;
+            Links.Source = source;
+            CoverImage.Import = import;
+            CoverImage.Source = source;
+            BackgroundImage.Import = import;
+            BackgroundImage.Source = source;
+            Icon.Import = import;
+            Icon.Source = source;
+            ReleaseDate.Import = import;
+            ReleaseDate.Source = source;
+        }
     }
 
     public class MetadataSearchResult
@@ -547,7 +571,7 @@ namespace Playnite.MetaProviders
                 var name = StringExtensions.NormalizeGameName(gameName);
                 var results = provider.SearchGames(name.Trim());
 
-                Func<string, GameMetadata> matchFun = matchName =>
+                GameMetadata matchFun(string matchName)
                 {
                     var res = results.FirstOrDefault(a => string.Equals(matchName, a.Name, StringComparison.InvariantCultureIgnoreCase));
                     if (res != null)
@@ -558,7 +582,7 @@ namespace Playnite.MetaProviders
                     {
                         return null;
                     }
-                };
+                }
 
                 GameMetadata data = null;
                 string testName = string.Empty;

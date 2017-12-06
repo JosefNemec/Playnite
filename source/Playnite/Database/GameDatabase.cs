@@ -1012,14 +1012,15 @@ namespace Playnite.Database
             OnGameUpdated(new List<GameUpdateEvent>() { new GameUpdateEvent(oldData, game) });
         }
 
-        public void UpdateInstalledGames(Provider provider)
+        public List<IGame> UpdateInstalledGames(Provider provider)
         {
             List<IGame> installedGames = null;
+            List<IGame> newGames = new List<IGame>();
 
             switch (provider)
             {
                 case Provider.Custom:
-                    return;
+                    return newGames;
                 case Provider.GOG:
                     var source = InstalledGamesSource.Registry;
                     if (AppSettings.GOGSettings.RunViaGalaxy)
@@ -1042,7 +1043,7 @@ namespace Playnite.Database
                     installedGames = battleNetLibrary.GetInstalledGames();
                     break;
                 default:
-                    return;
+                    return newGames;
             }
 
             foreach (var newGame in installedGames)
@@ -1051,8 +1052,9 @@ namespace Playnite.Database
                 if (existingGame == null)
                 {
                     logger.Info("Adding new installed game {0} from {1} provider", newGame.ProviderId, newGame.Provider);
-                    AssignPcPlatform(newGame);
+                    AssignPcPlatform(newGame);                    
                     AddGame(newGame);
+                    newGames.Add(newGame);
                 }
                 else
                 {
@@ -1098,16 +1100,19 @@ namespace Playnite.Database
                     UpdateGameInDatabase(game);
                 }
             }
+
+            return newGames;
         }
 
-        public void UpdateOwnedGames(Provider provider)
+        public List<IGame> UpdateOwnedGames(Provider provider)
         {
             List<IGame> importedGames = null;
+            List<IGame> newGames = new List<IGame>();
 
             switch (provider)
             {
                 case Provider.Custom:
-                    return;
+                    return newGames;
                 case Provider.GOG:
                     importedGames = gogLibrary.GetLibraryGames();
                     break;
@@ -1128,12 +1133,12 @@ namespace Playnite.Database
                     importedGames = steamLibrary.GetLibraryGames(source);
                     break;
                 case Provider.Uplay:
-                    return;
+                    return newGames;
                 case Provider.BattleNet:
                     importedGames = battleNetLibrary.GetLibraryGames();
                     break;
                 default:
-                    return;
+                    return newGames;
             }
 
             foreach (var game in importedGames)
@@ -1144,6 +1149,7 @@ namespace Playnite.Database
                     logger.Info("Adding new game {0} into library from {1} provider", game.ProviderId, game.Provider);
                     AssignPcPlatform(game);
                     AddGame(game);
+                    newGames.Add(game);
                 }
             }
 
@@ -1162,6 +1168,8 @@ namespace Playnite.Database
                     DeleteGame(dbGame);
                 }
             }
+
+            return newGames;
         }
 
         public void AssignPcPlatform(IGame game)

@@ -464,10 +464,10 @@ namespace PlayniteUI.ViewModels
 
         public async void LoadGames(bool updateLibrary)
         {
-            await LoadGames(updateLibrary, 0);
+            await LoadGames(updateLibrary, 0, true);
         }
 
-        public async Task LoadGames(bool updateLibrary, ulong steamImportCatId)
+        public async Task LoadGames(bool updateLibrary, ulong steamImportCatId, bool metaForNewGames)
         {
             if (string.IsNullOrEmpty(AppSettings.DatabasePath))
             {
@@ -547,17 +547,17 @@ namespace PlayniteUI.ViewModels
                 GamesLoaderHandler.CancelToken = new CancellationTokenSource();
                 GamesLoaderHandler.ProgressTask = Task.Factory.StartNew(() =>
                 {
+                    var addedGames = new List<IGame>();
                     ProgressVisible = true;
                     ProgressValue = 0;
                     ProgressTotal = 1;
                     ProgressStatus = resources.FindString("ProgressInstalledGames");
-                    Thread.Sleep(2000);
 
                     try
                     {
                         if (AppSettings.BattleNetSettings.IntegrationEnabled)
                         {
-                            database.UpdateInstalledGames(Provider.BattleNet);
+                            addedGames.AddRange(database.UpdateInstalledGames(Provider.BattleNet));
                             RemoveMessage(NotificationCodes.BattleNetInstalledImportError);
                         }
                     }
@@ -574,7 +574,7 @@ namespace PlayniteUI.ViewModels
                     {
                         if (AppSettings.UplaySettings.IntegrationEnabled)
                         {
-                            database.UpdateInstalledGames(Provider.Uplay);
+                            addedGames.AddRange(database.UpdateInstalledGames(Provider.Uplay));
                             RemoveMessage(NotificationCodes.UplayInstalledImportError);
                         }
                     }
@@ -591,7 +591,7 @@ namespace PlayniteUI.ViewModels
                     {
                         if (AppSettings.GOGSettings.IntegrationEnabled)
                         {
-                            database.UpdateInstalledGames(Provider.GOG);
+                            addedGames.AddRange(database.UpdateInstalledGames(Provider.GOG));
                             RemoveMessage(NotificationCodes.GOGLInstalledImportError);
                         }
                     }
@@ -608,7 +608,7 @@ namespace PlayniteUI.ViewModels
                     {
                         if (AppSettings.SteamSettings.IntegrationEnabled)
                         {
-                            database.UpdateInstalledGames(Provider.Steam);
+                            addedGames.AddRange(database.UpdateInstalledGames(Provider.Steam));
                             RemoveMessage(NotificationCodes.SteamInstalledImportError);
                         }
                     }
@@ -625,7 +625,7 @@ namespace PlayniteUI.ViewModels
                     {
                         if (AppSettings.OriginSettings.IntegrationEnabled)
                         {
-                            database.UpdateInstalledGames(Provider.Origin);
+                            addedGames.AddRange(database.UpdateInstalledGames(Provider.Origin));
                             RemoveMessage(NotificationCodes.OriginInstalledImportError);
                         }
                     }
@@ -644,7 +644,7 @@ namespace PlayniteUI.ViewModels
                     {
                         if (AppSettings.GOGSettings.IntegrationEnabled && AppSettings.GOGSettings.LibraryDownloadEnabled)
                         {
-                            database.UpdateOwnedGames(Provider.GOG);
+                            addedGames.AddRange(database.UpdateOwnedGames(Provider.GOG));
                             RemoveMessage(NotificationCodes.GOGLibDownloadError);
                         }
                     }
@@ -663,7 +663,7 @@ namespace PlayniteUI.ViewModels
                     {
                         if (AppSettings.SteamSettings.IntegrationEnabled && AppSettings.SteamSettings.LibraryDownloadEnabled)
                         {
-                            database.UpdateOwnedGames(Provider.Steam);
+                            addedGames.AddRange(database.UpdateOwnedGames(Provider.Steam));
                             RemoveMessage(NotificationCodes.SteamLibDownloadError);
                         }
                     }
@@ -701,7 +701,7 @@ namespace PlayniteUI.ViewModels
                     {
                         if (AppSettings.OriginSettings.IntegrationEnabled && AppSettings.OriginSettings.LibraryDownloadEnabled)
                         {
-                            database.UpdateOwnedGames(Provider.Origin);
+                            addedGames.AddRange(database.UpdateOwnedGames(Provider.Origin));
                             RemoveMessage(NotificationCodes.OriginLibDownloadError);
                         }
                     }
@@ -720,7 +720,7 @@ namespace PlayniteUI.ViewModels
                     {
                         if (AppSettings.BattleNetSettings.IntegrationEnabled && AppSettings.BattleNetSettings.LibraryDownloadEnabled)
                         {
-                            database.UpdateOwnedGames(Provider.BattleNet);
+                            addedGames.AddRange(database.UpdateOwnedGames(Provider.BattleNet));
                             RemoveMessage(NotificationCodes.BattleNetLibDownloadImportError);
                         }
                     }
@@ -734,7 +734,24 @@ namespace PlayniteUI.ViewModels
                     }
                                         
                     ProgressStatus = resources.FindString("ProgressLibImportFinish");
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1500);
+
+                    if (addedGames.Any() && metaForNewGames)
+                    {
+                        logger.Info($"Downloading metadata for {addedGames.Count} new games.");
+                        ProgressValue = 0;
+                        ProgressTotal = addedGames.Count;
+                        ProgressStatus = resources.FindString("ProgressMetadata");
+                        var metaSettings = new MetadataDownloaderSettings();
+                        metaSettings.ConfigureFields(MetadataSource.Store, true);
+                        var downloader = new MetadataDownloader();
+                        downloader.DownloadMetadata(
+                            addedGames,
+                            database,
+                            metaSettings,
+                            (g, i, t) => ProgressValue = i + 1,
+                            GamesLoaderHandler.CancelToken).Wait();
+                    }
                 });
 
                 await GamesLoaderHandler.ProgressTask;            
@@ -780,18 +797,13 @@ namespace PlayniteUI.ViewModels
                 }
 
                 GamesLoaderHandler.CancelToken = new CancellationTokenSource();
-                Action<IGame, int, int> processCallback = (game, index, total) =>
-                {
-                    ProgressValue = index + 1;
-                };
-
                 ProgressVisible = true;
                 ProgressValue = 0;
                 ProgressTotal = games.Count;
                 ProgressStatus = resources.FindString("ProgressMetadata");
                 var downloader = new MetadataDownloader();
                 GamesLoaderHandler.ProgressTask =
-                    downloader.DownloadMetadata(games, database, settings, processCallback, GamesLoaderHandler.CancelToken);
+                    downloader.DownloadMetadata(games, database, settings, (g, i, t) => ProgressValue = i + 1, GamesLoaderHandler.CancelToken);
                 await GamesLoaderHandler.ProgressTask;
             }
             finally

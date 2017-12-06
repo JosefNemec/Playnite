@@ -27,30 +27,6 @@ namespace PlayniteTests.MetaProviders
             }
         }
 
-        private void SetAllMetaFields(MetadataDownloaderSettings settings, MetadataSource source, bool import)
-        {
-            settings.Genre.Import = import;
-            settings.Genre.Source = source;
-            settings.Description.Import = import;
-            settings.Description.Source = source;
-            settings.Developer.Import = import;
-            settings.Developer.Source = source;
-            settings.Publisher.Import = import;
-            settings.Publisher.Source = source;
-            settings.Tag.Import = import;
-            settings.Tag.Source = source;
-            settings.Links.Import = import;
-            settings.Links.Source = source;
-            settings.CoverImage.Import = import;
-            settings.CoverImage.Source = source;
-            settings.BackgroundImage.Import = import;
-            settings.BackgroundImage.Source = source;
-            settings.Icon.Import = import;
-            settings.Icon.Source = source;
-            settings.ReleaseDate.Import = import;
-            settings.ReleaseDate.Source = source;
-        }
-
         [Test]
         public async Task IGDBSourceTest()
         {
@@ -101,7 +77,7 @@ namespace PlayniteTests.MetaProviders
                 var storeProvider = new MockMetadataProvider();
                 var downloader = new MockMetadataDownloader(storeProvider, storeProvider, storeProvider, storeProvider, igdbProvider);
                 var settings = new MetadataDownloaderSettings();
-                SetAllMetaFields(settings, MetadataSource.IGDB, true);
+                settings.ConfigureFields(MetadataSource.IGDB, true);
                 await downloader.DownloadMetadata(
                     db.GamesCollection.FindAll().ToList(),
                     db, settings);
@@ -169,7 +145,7 @@ namespace PlayniteTests.MetaProviders
 
                 var downloader = new MockMetadataDownloader(storeProvider, storeProvider, storeProvider, storeProvider, igdbProvider);
                 var settings = new MetadataDownloaderSettings();
-                SetAllMetaFields(settings, MetadataSource.Store, true);
+                settings.ConfigureFields(MetadataSource.Store, true);
                 await downloader.DownloadMetadata(
                     db.GamesCollection.FindAll().ToList(),
                     db, settings);
@@ -257,9 +233,9 @@ namespace PlayniteTests.MetaProviders
 
                 var downloader = new MockMetadataDownloader(storeProvider, storeProvider, storeProvider, storeProvider, igdbProvider);
                 var settings = new MetadataDownloaderSettings();
-                
+
                 // IGDB over Store
-                SetAllMetaFields(settings, MetadataSource.IGDBOverStore, true);
+                settings.ConfigureFields(MetadataSource.IGDBOverStore, true);
                 await downloader.DownloadMetadata(
                     db.GamesCollection.FindAll().ToList(),
                     db, settings);
@@ -294,7 +270,7 @@ namespace PlayniteTests.MetaProviders
 
                 // Store over IGDB
                 downloader.CallCount = 0;
-                SetAllMetaFields(settings, MetadataSource.StoreOverIGDB, true);
+                settings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
                 await downloader.DownloadMetadata(
                     db.GamesCollection.FindAll().ToList(),
                     db, settings);
@@ -378,7 +354,7 @@ namespace PlayniteTests.MetaProviders
                 var f = dbGames[0].ReleaseDate;
                 var s = games[0].ReleaseDate;
 
-                SetAllMetaFields(settings, MetadataSource.Store, true);
+                settings.ConfigureFields(MetadataSource.Store, true);
                 await downloader.DownloadMetadata(
                     db.GamesCollection.FindAll().ToList(),
                     db, settings);
