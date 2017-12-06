@@ -970,10 +970,13 @@ namespace Playnite.Database
 
             CheckDbState();
 
-            var games = GamesCollection.Find(a => (a.Icon == id || a.Image == id || a.BackgroundImage == id) && a.Id != game.Id);
-            if (games.Count() == 0)
+            lock (fileLock)
             {
-                Database.FileStorage.Delete(id);
+                var games = GamesCollection.Find(a => (a.Icon == id || a.Image == id || a.BackgroundImage == id) && a.Id != game.Id);
+                if (games.Count() == 0)
+                {
+                    Database.FileStorage.Delete(id);
+                }
             }
         }
 
