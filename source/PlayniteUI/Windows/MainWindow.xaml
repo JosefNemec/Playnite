@@ -76,7 +76,7 @@
                                 <Image Width="16" Margin="-5,0,5,0" RenderOptions.BitmapScalingMode="Fant">
                                     <Image.Source>
                                         <PriorityBinding>
-                                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}" ConverterParameter="Icon"/>
+                                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
                                             <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
                                         </PriorityBinding>
                                     </Image.Source>
@@ -111,6 +111,7 @@
                                     </Style>
                                 </MenuItem.ItemContainerStyle>
                             </MenuItem>
+                            <Separator Style="{StaticResource {x:Type Separator}}"/>
                             <MenuItem Style="{StaticResource ExitItem}"/>
                         </CompositeCollection>
                     </ContextMenu.ItemsSource>

@@ -82,7 +82,8 @@
     <FontFamily x:Key="FontFamily">Trebuchet MS</FontFamily>
     <Thickness x:Key="PopupBorderThickness">1</Thickness>
     <Thickness x:Key="ControlBorderThickness">1</Thickness>
-    <CornerRadius x:Key="ControlCornerRadius">2</CornerRadius>
+    <sys:Double x:Key="EllipseBorderThickness">1</sys:Double>
+    <CornerRadius x:Key="ControlCornerRadius">1</CornerRadius>
 
     <LinearGradientBrush  x:Key="PopupBackgroundBrush" StartPoint="0.4,0" EndPoint="0.5,1.2" >
         <GradientStop Color="{DynamicResource MainColorDark}" Offset="0"/>
@@ -169,6 +170,7 @@
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
@@ -221,6 +223,7 @@
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
@@ -229,8 +232,8 @@
                             <Border Background="Transparent">
                                 <Grid Width="18" Height="18">
                                     <Ellipse x:Name="BulletBorder" Width="18" Height="18"
-                                                Stroke="{DynamicResource NormalBorderBrush}"
-                                                StrokeThickness="{TemplateBinding BorderThickness}" />
+                                            Stroke="{DynamicResource NormalBorderBrush}"
+                                            StrokeThickness="{DynamicResource EllipseBorderThickness}" />
                                     <Viewbox x:Name="CheckIcon" Visibility="Collapsed" >
                                         <TextBlock Text="h" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
                                                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -1457,13 +1460,16 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type Hyperlink}">
+    <Style TargetType="{x:Type Hyperlink}">        
         <Setter Property="FontSize" Value="14" />
         <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
         <Setter Property="TextDecorations" Value="{x:Null}" />        
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
             </Trigger>
         </Style.Triggers>
     </Style>
