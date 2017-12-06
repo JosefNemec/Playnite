@@ -1119,18 +1119,8 @@ namespace Playnite.Database
                 case Provider.Origin:
                     importedGames = originLibrary.GetLibraryGames();
                     break;
-                case Provider.Steam:
-                    var source = string.Empty;
-                    if (AppSettings.SteamSettings.IdSource == SteamIdSource.Name)
-                    {
-                        source = AppSettings.SteamSettings.AccountName;
-                    }
-                    else
-                    {
-                        source = AppSettings.SteamSettings.AccountId.ToString();
-                    }
-
-                    importedGames = steamLibrary.GetLibraryGames(source);
+                case Provider.Steam:                    
+                    importedGames = steamLibrary.GetLibraryGames(AppSettings.SteamSettings);
                     break;
                 case Provider.Uplay:
                     return newGames;

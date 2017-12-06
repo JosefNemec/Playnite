@@ -16,6 +16,10 @@ namespace Playnite.Providers.Steam
 
         List<IGame> GetInstalledGames();
 
+        List<IGame> GetLibraryGames(SteamSettings settings);
+
+        List<IGame> GetLibraryGames(string userName, string apiKey);
+
         List<IGame> GetLibraryGames(string userName);
 
         SteamGameMetadata DownloadGameMetadata(int id);

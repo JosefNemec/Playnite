@@ -12,7 +12,7 @@
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource FirstWindowTitle}" WindowStartupLocation="CenterScreen"
         ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False"
-        Height="400" Width="550" x:Name="WindowMain"
+        Height="450" Width="550" x:Name="WindowMain"
         AutomationProperties.AutomationId="WindowWizard">
 
     <controls:WindowBase.Resources>
@@ -136,6 +136,24 @@
                                       IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"
                                       Grid.Column="1" Grid.Row="1" Margin="5" />
                         </Grid>
+                        <CheckBox Content="{DynamicResource PrivateAccount}" DockPanel.Dock="Top"
+                                      IsChecked="{Binding Settings.SteamSettings.PrivateAccount}"
+                                      Margin="5,5,5,5" Name="CheckSteamPrivate"
+                                      ToolTip="{DynamicResource SettingsApiKeyTooltip}"/>
+                        <DockPanel DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=CheckSteamPrivate}"
+                                       Margin="30,5,5,5">
+                            <TextBlock Text="{DynamicResource APIKey}" DockPanel.Dock="Left"
+                                           VerticalAlignment="Center"/>
+                            <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">
+                                    <Hyperlink NavigateUri="https://steamcommunity.com/dev/apikey"
+                                               Command="{Binding NavigateUrlCommand}"
+                                               CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                                        <Run Text="{DynamicResource SettingsApiKeyUrlText}" />
+                                    </Hyperlink>
+                            </TextBlock>
+                            <TextBox Text="{Binding Settings.SteamSettings.APIKey}"
+                                         DockPanel.Dock="Left" Margin="10,0,10,0"/>
+                        </DockPanel>
                     </DockPanel>
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,5,0,0">
                         <CheckBox Name="CheckSteamImportCat" Content="{DynamicResource FirstSteamImportCategories}"
@@ -146,7 +164,7 @@
                                   ItemsSource="{Binding SteamUsers}"
                                   SelectedValue="{Binding SteamIdCategoryImport}"
                                   IsEnabled="{Binding IsChecked, ElementName=CheckSteamImportCat}" />
-                    </StackPanel>
+                    </StackPanel>                                        
                 </DockPanel>
             </TabItem>
             <TabItem Visibility="Collapsed">

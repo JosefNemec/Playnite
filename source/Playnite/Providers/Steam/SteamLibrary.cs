@@ -126,6 +126,67 @@ namespace Playnite.Providers.Steam
             return dbs;
         }
 
+        public List<IGame> GetLibraryGames(SteamSettings settings)
+        {
+            var userName = string.Empty;
+            if (settings.IdSource == SteamIdSource.Name)
+            {
+                userName = settings.AccountName;
+            }
+            else
+            {
+                userName = settings.AccountId.ToString();
+            }
+
+            if (settings.PrivateAccount)
+            {
+                return GetLibraryGames(userName, settings.APIKey);
+            }
+            else
+            {
+                return GetLibraryGames(userName);
+            }
+        }
+
+        public List<IGame> GetLibraryGames(string userName, string apiKey)
+        {
+            var userNameUrl = @"http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key={0}&vanityurl={1}";
+            var libraryUrl = @"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&include_appinfo=1&format=json&steamid={1}";
+
+            ulong userId = 0;
+            if (!ulong.TryParse(userName, out userId))
+            {
+                var stringData = Web.DownloadString(string.Format(userNameUrl, apiKey, userName));
+                userId = ulong.Parse(JsonConvert.DeserializeObject<ResolveVanityResult>(stringData).response.steamid);
+            }
+
+            var stringLibrary = Web.DownloadString(string.Format(libraryUrl, apiKey, userId));
+            var library = JsonConvert.DeserializeObject<GetOwnedGamesResult>(stringLibrary);
+            if (library.response.games == null)
+            {
+                throw new Exception("No games found on specified Steam account.");
+            }
+
+            var games = new List<IGame>();
+            foreach (var game in library.response.games)
+            {
+                // Ignore games without name, like 243870
+                if (string.IsNullOrEmpty(game.name))
+                {
+                    continue;
+                }
+
+                games.Add(new Game()
+                {
+                    Provider = Provider.Steam,
+                    ProviderId = game.appid.ToString(),
+                    Name = game.name
+                });
+            }
+
+            return games;
+        }
+
         public List<IGame> GetLibraryGames(string userName)
         {
             if (string.IsNullOrEmpty(userName))

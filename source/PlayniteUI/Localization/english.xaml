@@ -203,6 +203,8 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="SettingsSteamCatImportError">Failed to import Steam categories: {0}</sys:String>
     <sys:String x:Key="SettingsClearCacheWarn">This will log you out of all linked services. Application restart is required, do you want to proceed?</sys:String>
     <sys:String x:Key="SettingsClearCacheTitle">Clear Cache?</sys:String>
+    <sys:String x:Key="SettingsApiKeyTooltip">API Key is required for Steam private accounts</sys:String>
+    <sys:String x:Key="SettingsApiKeyUrlText">Get API key</sys:String>
     
     <sys:String x:Key="ImportError">Import Error</sys:String>
     <sys:String x:Key="LoginChecking">Checking...</sys:String>
@@ -359,7 +361,9 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="MetadataDownloadError">Failed to download metadata: {0}</sys:String>
     <sys:String x:Key="DownloadError">Download Error</sys:String>
     <sys:String x:Key="ClearFilters">Clear Filters</sys:String>
-
+    <sys:String x:Key="PrivateAccount">Private Account</sys:String>
+    <sys:String x:Key="APIKey">API Key</sys:String>   
+    
     <sys:String x:Key="EmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
     <sys:String x:Key="OverrideEmulatorArguments">Override Emulator Arguments</sys:String>
