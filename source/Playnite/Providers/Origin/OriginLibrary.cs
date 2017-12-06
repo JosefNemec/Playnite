@@ -250,6 +250,11 @@ namespace Playnite.Providers.Origin
             }
 
             var token = api.GetAccessToken();
+            if (token == null)
+            {
+                throw new Exception("Failed to get access to user account.");
+            }
+
             if (!string.IsNullOrEmpty(token.error))
             {
                 throw new Exception("Access error: " + token.error);

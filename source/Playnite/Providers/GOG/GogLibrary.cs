@@ -198,8 +198,13 @@ namespace Playnite.Providers.GOG
             }
 
             var games = new List<IGame>();
+            var libGames = api.GetOwnedGames();
+            if (libGames == null)
+            {
+                throw new Exception("Failed to obtain libary data.");
+            }
 
-            foreach (var game in api.GetOwnedGames())
+            foreach (var game in libGames)
             {
                 games.Add(new Game()
                 {
@@ -263,7 +268,7 @@ namespace Playnite.Providers.GOG
             var metadata = DownloadGameMetadata(game.ProviderId, currentUrl);
             if(metadata.GameDetails == null)
             {
-                logger.Warn($"Could not gather metadata for game {0}.", game.Id);
+                logger.Warn($"Could not gather metadata for game {game.ProviderId}");
                 return metadata;
             }
 

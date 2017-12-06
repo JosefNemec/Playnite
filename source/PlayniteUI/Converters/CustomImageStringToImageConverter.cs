@@ -47,20 +47,20 @@ namespace PlayniteUI
 
             if (imageId.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
             {
-                var cachedFile = Web.GetCachedWebFile(imageId);
-                if (string.IsNullOrEmpty(cachedFile))
-                {
-                    logger.Warn("Web file not found: " + imageId);
-                    return DependencyProperty.UnsetValue;
-                }
-
                 try
                 {
+                    var cachedFile = Web.GetCachedWebFile(imageId);
+                    if (string.IsNullOrEmpty(cachedFile))
+                    {
+                        logger.Warn("Web file not found: " + imageId);
+                        return DependencyProperty.UnsetValue;
+                    }
+
                     return BitmapExtensions.BitmapFromFile(cachedFile);
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(exc, $"Failed to create bitmap from {cachedFile} file.");
+                    logger.Error(exc, $"Failed to create bitmap from {imageId} file.");
                     return DependencyProperty.UnsetValue;
                 }
             }

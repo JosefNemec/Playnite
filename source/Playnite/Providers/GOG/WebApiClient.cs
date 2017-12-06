@@ -208,6 +208,12 @@ namespace Playnite.Providers.GOG
                 gamesGotEvent.WaitOne(10000);
 
                 var libraryData = JsonConvert.DeserializeObject<GetOwnedGamesResult>(gamesList);
+                if (libraryData == null)
+                {
+                    logger.Error("GOG library content is empty.");
+                    return null;
+                }
+
                 if (libraryData.totalPages > 1)
                 {
                     for (int i = 2; i <= libraryData.totalPages; i++)
