@@ -378,6 +378,14 @@ namespace PlayniteUI.ViewModels
             }, (a) => GameAdditionAllowed);
         }
 
+        public RelayCommand<object> ClearFiltersCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ClearFilters();
+            });
+        }
+
         public MainViewModel(
             GameDatabase database,
             IWindowFactory window,
@@ -950,6 +958,11 @@ namespace PlayniteUI.ViewModels
             GamesLoaderHandler.CancelToken.Cancel();
             await GamesLoaderHandler.ProgressTask;
         }        
+
+        public void ClearFilters()
+        {
+            AppSettings.FilterSettings.ClearFilters();
+        }
 
         public void Dispose()
         {

@@ -356,6 +356,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="URLInputInfoTitile">Select URL</sys:String>
     <sys:String x:Key="MetadataDownloadError">Failed to download metadata: {0}</sys:String>
     <sys:String x:Key="DownloadError">Download Error</sys:String>
+    <sys:String x:Key="ClearFilters">Clear Filters</sys:String>
 
     <sys:String x:Key="EmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>

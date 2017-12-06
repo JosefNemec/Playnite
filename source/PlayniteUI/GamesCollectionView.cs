@@ -400,7 +400,7 @@ namespace PlayniteUI
             Items = new RangeObservableCollection<GameViewEntry>();
             Settings = settings;
             Settings.PropertyChanged += Settings_PropertyChanged;
-            Settings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
+            Settings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             CollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(Items);
             SetViewConfiguration();
             CollectionView.Filter = Filter;
@@ -413,7 +413,7 @@ namespace PlayniteUI
             database.PlatformsCollectionChanged -= Database_PlatformsCollectionChanged;
             database.PlatformUpdated -= Database_PlatformUpdated;
             Settings.PropertyChanged -= Settings_PropertyChanged;
-            Settings.FilterSettings.PropertyChanged -= FilterSettings_PropertyChanged;
+            Settings.FilterSettings.FilterChanged -= FilterSettings_FilterChanged;
         }
 
         private bool Filter(object item)
@@ -719,13 +719,8 @@ namespace PlayniteUI
             }
         }
 
-        private void FilterSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
         {
-            if (e.PropertyName == "Active")
-            {
-                return;
-            }
-
             logger.Debug("Refreshing collection view filter.");
             CollectionView.Refresh();
         }

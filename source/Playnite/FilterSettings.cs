@@ -10,6 +10,23 @@ using Playnite.Models;
 
 namespace Playnite
 {
+    public class FilterChangedEventArgs : EventArgs
+    {
+        public List<string> Fields
+        {
+            get; set;
+        }
+
+        public FilterChangedEventArgs()
+        {
+        }
+
+        public FilterChangedEventArgs(List<string> fields)
+        {
+            Fields = fields;
+        }
+    }
+
     public class FilterSettings : INotifyPropertyChanged
     {
         [JsonIgnore]
@@ -51,6 +68,7 @@ namespace Playnite
             {
                 name = value;
                 OnPropertyChanged("Name");
+                OnFilterChanged("Name");
                 OnPropertyChanged("Active");
             }
         }
@@ -67,6 +85,7 @@ namespace Playnite
             {
                 genres = value;
                 OnPropertyChanged("Genres");
+                OnFilterChanged("Genres");
                 OnPropertyChanged("Active");
             }
         }
@@ -83,6 +102,7 @@ namespace Playnite
             {
                 platforms = value;
                 OnPropertyChanged("Platforms");
+                OnFilterChanged("Platforms");
                 OnPropertyChanged("Active");
             }
         }
@@ -99,6 +119,7 @@ namespace Playnite
             {
                 releaseDate = value;
                 OnPropertyChanged("ReleaseDate");
+                OnFilterChanged("ReleaseDate");
                 OnPropertyChanged("Active");
             }
         }
@@ -116,6 +137,7 @@ namespace Playnite
             {
                 publishers = value;
                 OnPropertyChanged("Publishers");
+                OnFilterChanged("Publishers");
                 OnPropertyChanged("Active");
             }
         }
@@ -132,6 +154,7 @@ namespace Playnite
             {
                 developers = value;
                 OnPropertyChanged("Developers");
+                OnFilterChanged("Developers");
                 OnPropertyChanged("Active");
             }
         }
@@ -148,6 +171,7 @@ namespace Playnite
             {
                 categories = value;
                 OnPropertyChanged("Categories");
+                OnFilterChanged("Categories");
                 OnPropertyChanged("Active");
             }
         }
@@ -164,6 +188,7 @@ namespace Playnite
             {
                 tags = value;
                 OnPropertyChanged("Tags");
+                OnFilterChanged("Tags");
                 OnPropertyChanged("Active");
             }
         }
@@ -180,6 +205,7 @@ namespace Playnite
             {
                 isInstalled = value;
                 OnPropertyChanged("IsInstalled");
+                OnFilterChanged("IsInstalled");
                 OnPropertyChanged("Active");
             }
         }
@@ -196,6 +222,7 @@ namespace Playnite
             {
                 isUnInstalled = value;
                 OnPropertyChanged("IsUnInstalled");
+                OnFilterChanged("IsUnInstalled");
                 OnPropertyChanged("Active");
             }
         }
@@ -212,6 +239,7 @@ namespace Playnite
             {
                 hidden = value;
                 OnPropertyChanged("Hidden");
+                OnFilterChanged("Hidden");
                 OnPropertyChanged("Active");
             }
         }
@@ -228,6 +256,7 @@ namespace Playnite
             {
                 favorite = value;
                 OnPropertyChanged("Favorite");
+                OnFilterChanged("Favorite");
                 OnPropertyChanged("Active");
             }
         }
@@ -244,6 +273,7 @@ namespace Playnite
             {
                 steam = value;
                 OnPropertyChanged("Steam");
+                OnFilterChanged("Steam");
                 OnPropertyChanged("Active");
             }
         }
@@ -260,6 +290,7 @@ namespace Playnite
             {
                 origin = value;
                 OnPropertyChanged("Origin");
+                OnFilterChanged("Origin");
                 OnPropertyChanged("Active");
             }
         }
@@ -276,6 +307,7 @@ namespace Playnite
             {
                 gog = value;
                 OnPropertyChanged("GOG");
+                OnFilterChanged("GOG");
                 OnPropertyChanged("Active");
             }
         }
@@ -292,6 +324,7 @@ namespace Playnite
             {
                 uplay = value;
                 OnPropertyChanged("Uplay");
+                OnFilterChanged("Uplay");
                 OnPropertyChanged("Active");
             }
         }
@@ -308,6 +341,7 @@ namespace Playnite
             {
                 battleNet = value;
                 OnPropertyChanged("BattleNet");
+                OnFilterChanged("BattleNet");
                 OnPropertyChanged("Active");
             }
         }
@@ -324,24 +358,151 @@ namespace Playnite
             {
                 custom = value;
                 OnPropertyChanged("Custom");
+                OnFilterChanged("Custom");
                 OnPropertyChanged("Active");
             }
         }
 
-        private void Providers_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "Values")
-            {
-                OnPropertyChanged("Provider");
-                OnPropertyChanged("Active");
-            }
-        }
-
+        private bool suppressFilterChanges = false;
+        public event EventHandler<FilterChangedEventArgs> FilterChanged;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public void OnFilterChanged(string field)
+        {
+            if (!suppressFilterChanges)
+            {
+                FilterChanged?.Invoke(this, new FilterChangedEventArgs(new List<string>() { field }));
+            }
+        }
+
+        public void OnFilterChanged(List<string> fields)
+        {
+            if (!suppressFilterChanges)
+            {
+                FilterChanged?.Invoke(this, new FilterChangedEventArgs(fields));
+            }
+        }
+
+        public void ClearFilters()
+        {
+            suppressFilterChanges = true;
+            var filterChanges = new List<string>();
+
+            if (Name != null)
+            {
+                Name = null;
+                filterChanges.Add("Name");
+            }
+
+            if (Genres != null)
+            {
+                Genres = null;
+                filterChanges.Add("Genres");
+            }
+
+            if (Platforms != null)
+            {
+                Platforms = null;
+                filterChanges.Add("Platforms");
+            }
+
+            if (ReleaseDate != null)
+            {
+                ReleaseDate = null;
+                filterChanges.Add("ReleaseDate");
+            }
+
+            if (Publishers != null)
+            {
+                Publishers = null;
+                filterChanges.Add("Publishers");
+            }
+
+            if (Developers != null)
+            {
+                Developers = null;
+                filterChanges.Add("Developers");
+            }
+
+            if (Categories != null)
+            {
+                Categories = null;
+                filterChanges.Add("Categories");
+            }
+
+            if (Tags != null)
+            {
+                Tags = null;
+                filterChanges.Add("Tags");
+            }
+
+            if (IsInstalled != false)
+            {
+                IsInstalled = false;
+                filterChanges.Add("IsInstalled");
+            }
+
+            if (IsUnInstalled != false)
+            {
+                IsUnInstalled = false;
+                filterChanges.Add("IsUnInstalled");
+            }
+
+            if (Hidden != false)
+            {
+                Hidden = false;
+                filterChanges.Add("Hidden");
+            }
+
+            if (Favorite != false)
+            {
+                Favorite = false;
+                filterChanges.Add("Favorite");
+            }
+
+            if (Steam != false)
+            {
+                Steam = false;
+                filterChanges.Add("Steam");
+            }
+
+            if (Origin != false)
+            {
+                Origin = false;
+                filterChanges.Add("Origin");
+            }
+
+            if (GOG != false)
+            {
+                GOG = false;
+                filterChanges.Add("GOG");
+            }
+
+            if (Uplay != false)
+            {
+                Uplay = false;
+                filterChanges.Add("Uplay");
+            }
+
+            if (BattleNet != false)
+            {
+                BattleNet = false;
+                filterChanges.Add("BattleNet");
+            }
+
+            if (Custom != false)
+            {
+                Custom = false;
+                filterChanges.Add("Custom");
+            }
+
+            suppressFilterChanges = false;
+            OnFilterChanged(filterChanges);
         }
     }
 }

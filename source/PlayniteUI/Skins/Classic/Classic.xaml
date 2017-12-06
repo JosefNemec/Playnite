@@ -280,6 +280,12 @@
                                     </Style>
                                 </StackPanel.Resources>
 
+                                <TextBlock Margin="10,10,5,5">
+                                    <Hyperlink Command="{Binding Data.ClearFiltersCommand, Source={StaticResource Proxy}}">
+                                        <Run Text="{DynamicResource ClearFilters}" />
+                                    </Hyperlink>
+                                </TextBlock>
+                                
                                 <CheckBox Name="CheckFilterInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled}" Style="{StaticResource FilterCheck}">
                                     <TextBlock Text="{Binding GamesStats.Installed, Mode=OneWay, StringFormat=Installed ({0})}" />
                                 </CheckBox>
