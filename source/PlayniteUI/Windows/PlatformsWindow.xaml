@@ -16,6 +16,7 @@
 
     <controls:WindowBase.Resources>
         <pui:NegateConverter x:Key="NegateConverter" />
+        <pui:NullToBoolConverter x:Key="NullToBoolConverter" />
         <pui:EnumConverter x:Key="EnumConverter" />
         <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
         <pui:ListToStringConverter x:Key="ListToStringConverter" />
@@ -202,7 +203,8 @@
                                 </DockPanel>
                             </StackPanel>
 
-                            <GroupBox Header="{DynamicResource ProfileSettings}" Grid.Row="2" Margin="5,5,5,5">
+                            <GroupBox Header="{DynamicResource ProfileSettings}" Grid.Row="2" Margin="5,5,5,5"
+                                      IsEnabled="{Binding Data.SelectedEmulatorProfile, Source={StaticResource Proxy}, Converter={StaticResource NullToBoolConverter}}">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <Grid DataContext="{Binding SelectedItem, ElementName=ComboEmulatorProfiles}" DockPanel.Dock="Top">
                                         <Grid.RowDefinitions>
