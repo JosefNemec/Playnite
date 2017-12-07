@@ -539,6 +539,11 @@ namespace Playnite.Database
             }
             else
             {
+                if (Database.Engine.UserVersion > DBVersion)
+                {
+                    throw new Exception($"Database version {Database.Engine.UserVersion} is not supported.");
+                }
+
                 if (GetMigrationRequired())
                 {
                     throw new Exception("Database must be migrated before opening.");
