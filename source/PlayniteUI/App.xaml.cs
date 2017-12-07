@@ -54,6 +54,11 @@ namespace PlayniteUI
             private set;
         }
 
+        public static bool IsActive
+        {
+            get; set;
+        }
+
         public App()
         {
             InitializeComponent();
@@ -426,6 +431,16 @@ namespace PlayniteUI
                 new ResourceProvider());
             Current.MainWindow = window.Window;
             fullscreenModel.OpenView(false);
+        }
+
+        private void Application_Activated(object sender, EventArgs e)
+        {
+            IsActive = true;
+        }
+
+        private void Application_Deactivated(object sender, EventArgs e)
+        {
+            IsActive = false;
         }
     }
 }
