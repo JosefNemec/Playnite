@@ -175,14 +175,15 @@ namespace PlayniteTests.Database
                 }
             };
 
+            var settings = new Settings();
             var gogLibrary = new Mock<IGogLibrary>();
             var steamLibrary = new Mock<ISteamLibrary>();
             var originLibrary = new Mock<IOriginLibrary>();
             gogLibrary.Setup(oc => oc.GetLibraryGames()).Returns(libraryGames);
-            steamLibrary.Setup(oc => oc.GetLibraryGames(string.Empty)).Returns(libraryGames);
+            steamLibrary.Setup(oc => oc.GetLibraryGames(settings.SteamSettings)).Returns(libraryGames);
             originLibrary.Setup(oc => oc.GetLibraryGames()).Returns(libraryGames);        
 
-            var db = new GameDatabase(new Settings(), gogLibrary.Object, steamLibrary.Object, originLibrary.Object, null, null);
+            var db = new GameDatabase(settings, gogLibrary.Object, steamLibrary.Object, originLibrary.Object, null, null);
             using (db.OpenDatabase(path))
             {
                 // Games are properly imported

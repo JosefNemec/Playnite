@@ -64,12 +64,11 @@ namespace PlayniteTests.Database
                 }
             };
 
-            var steamLibrary = new Mock<ISteamLibrary>();
-            steamLibrary.Setup(oc => oc.GetLibraryGames(string.Empty)).Returns(libraryGames);
-
             var settings = new Settings();
             settings.SteamSettings.IdSource = SteamIdSource.Name;
             settings.SteamSettings.AccountName = string.Empty;
+            var steamLibrary = new Mock<ISteamLibrary>();
+            steamLibrary.Setup(oc => oc.GetLibraryGames(settings.SteamSettings)).Returns(libraryGames);
 
             var db = new GameDatabase(settings, null, steamLibrary.Object, null, null, null);
             using (db.OpenDatabase(dbPath))

@@ -12,13 +12,23 @@ namespace Playnite
     {
         public static string DownloadString(string url)
         {
-            var webClient = new WebClient();
+            return DownloadString(url, Encoding.UTF8);
+        }
+
+        public static string DownloadString(string url, Encoding encoding)
+        {
+            var webClient = new WebClient { Encoding = encoding };
             return webClient.DownloadString(url);            
         }
 
         public static string DownloadString(string url, List<Cookie> cookies)
         {
-            var webClient = new WebClient();
+            return DownloadString(url, cookies, Encoding.UTF8);
+        }
+
+        public static string DownloadString(string url, List<Cookie> cookies, Encoding encoding)
+        {
+            var webClient = new WebClient { Encoding = encoding };
             if (cookies?.Any() == true)
             {
                 var cookieString = string.Join(";", cookies.Select(a => $"{a.Name}={a.Value}"));
@@ -30,7 +40,12 @@ namespace Playnite
 
         public static void DownloadString(string url, string path)
         {
-            var webClient = new WebClient();
+            DownloadString(url, path, Encoding.UTF8);
+        }
+
+        public static void DownloadString(string url, string path, Encoding encoding)
+        {
+            var webClient = new WebClient { Encoding = Encoding.UTF8 };
             var data = webClient.DownloadString(url);
             File.WriteAllText(path, data);
         }
