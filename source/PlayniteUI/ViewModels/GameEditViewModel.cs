@@ -1617,7 +1617,7 @@ namespace PlayniteUI.ViewModels
                 return;
             }
             
-            model.SearchTerm = Game.Name;
+            model.SearchTerm = EditingGame.Name;
             if (model.OpenView() == true)
             {
                 ShowCheckBoxes = true;
