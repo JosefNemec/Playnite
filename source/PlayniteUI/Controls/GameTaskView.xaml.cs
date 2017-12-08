@@ -258,10 +258,19 @@ namespace PlayniteUI
                 SelectedEmulatorArguments = string.Empty;
                 return;
             }
-
+            
             if (GameTask.EmulatorId != null && Emulators.Any(a => a.Id == GameTask.EmulatorId))
             {
-                SelectedEmulatorArguments = Emulators.First(a => a.Id == GameTask.EmulatorId).Profiles?.FirstOrDefault()?.Arguments;
+                var emulator = Emulators.First(a => a.Id == GameTask.EmulatorId);
+                var emulatorProfile = emulator.Profiles?.FirstOrDefault(a => a.Id == GameTask.EmulatorProfileId);
+                if (emulatorProfile != null)
+                {
+                    SelectedEmulatorArguments = emulatorProfile.Arguments;
+                }
+                else
+                {
+                    SelectedEmulatorArguments = emulator.Profiles?.FirstOrDefault()?.Arguments;
+                }
             }
             else
             {
