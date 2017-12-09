@@ -1,0 +1,36 @@
+﻿<c:WindowBase x:Class="PlayniteUI.FullscreenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:pui="clr-namespace:PlayniteUI"
+        xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
+        xmlns:m="clr-namespace:Playnite.Models;assembly=Playnite"
+        xmlns:c="clr-namespace:PlayniteUI.Controls"
+        xmlns:tray="http://www.hardcodet.net/taskbar"
+        mc:Ignorable="d"
+        d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource FullscreenWindowStyle}"
+        Title="Playnite FullScreen" ShowTitle="False"
+        Width="{Binding ViewWidth, Mode=TwoWay}"
+        Height="{Binding ViewHeight, Mode=TwoWay}"
+        Left="{Binding ViewLeft, Mode=TwoWay}"             
+        Top="{Binding ViewTop, Mode=TwoWay}"      
+        ShowCloseButton="False"
+        ShowMaximizeButton="False"
+        ShowMinimizeButton="False"
+        x:Name="WindowFullscreen"
+        Activated="WindowFullscreen_Activated"
+        Deactivated="WindowFullscreen_Deactivated"
+        AutomationProperties.AutomationId="WindowFullscreen">
+
+    <c:WindowBase.InputBindings>
+        <KeyBinding Command="{Binding ToggleFullscreenCommand}"
+                    Gesture="ALT+ENTER"/>
+    </c:WindowBase.InputBindings>
+
+    <c:FullscreenView />
+</c:WindowBase>

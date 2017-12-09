@@ -53,6 +53,16 @@ namespace Playnite.Providers.Steam
             get; set;
         } = string.Empty;
 
+        public bool PrivateAccount
+        {
+            get; set;
+        } = false;
+
+        public string APIKey
+        {
+            get; set;
+        } = string.Empty;
+
         public bool LibraryDownloadEnabled
         {
             get; set;

@@ -8,45 +8,127 @@ using System.Windows;
 
 namespace PlayniteUI
 {
-    public class PlayniteMessageBox
+    public interface IDialogsFactory
     {
-        private static Window CurrentWindow
+        MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options);
+        MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult);
+        MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon);
+        MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button);
+        MessageBoxResult ShowMessage(string messageBoxText, string caption);
+        MessageBoxResult ShowMessage(string messageBoxText);
+        string SelectFolder();
+        string SelectFile(string filter);
+        List<string> SelectFiles(string filter);
+        string SelectIconFile();
+        string SelectImagefile();
+        string SaveFile(string filter);
+        string SaveFile(string filter, bool promptOverwrite);
+        MessageBoxResult SelectString(string messageBoxText, string caption, out string input);
+    }
+
+    public class DialogsFactory : IDialogsFactory
+    {
+        public string SaveFile(string filter)
         {
-            get
-            {
-                var window = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
-                return window ?? Application.Current.MainWindow;
-            }
+            return Dialogs.SaveFile(PlayniteWindows.CurrentWindow, filter);
         }
 
+        public string SaveFile(string filter, bool promptOverwrite)
+        {
+            return Dialogs.SaveFile(PlayniteWindows.CurrentWindow, filter, promptOverwrite);
+        }
+
+        public string SelectFile(string filter)
+        {
+            return Dialogs.SelectFile(PlayniteWindows.CurrentWindow, filter);
+        }
+
+        public List<string> SelectFiles(string filter)
+        {
+            return Dialogs.SelectFiles(PlayniteWindows.CurrentWindow, filter);
+        }
+
+        public string SelectFolder()
+        {
+            return Dialogs.SelectFolder(PlayniteWindows.CurrentWindow);
+        }
+
+        public string SelectIconFile()
+        {
+            return Dialogs.SelectIconFile(PlayniteWindows.CurrentWindow);
+        }
+
+        public string SelectImagefile()
+        {
+            return Dialogs.SelectImageFile(PlayniteWindows.CurrentWindow);
+        }
+
+        public MessageBoxResult SelectString(string messageBoxText, string caption, out string input)
+        {
+            return Dialogs.SelectString(PlayniteWindows.CurrentWindow, messageBoxText, caption, out input);
+        }
+
+        public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
+        {
+            return PlayniteMessageBox.Show(messageBoxText, caption, button, icon, defaultResult, options);
+        }
+
+        public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult)
+        {
+            return PlayniteMessageBox.Show(messageBoxText, caption, button, icon, defaultResult);
+        }
+
+        public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon)
+        {
+            return PlayniteMessageBox.Show(messageBoxText, caption, button, icon);
+        }
+
+        public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button)
+        {
+            return PlayniteMessageBox.Show(messageBoxText, caption, button);
+        }
+
+        public MessageBoxResult ShowMessage(string messageBoxText, string caption)
+        {
+            return PlayniteMessageBox.Show(messageBoxText, caption);
+        }
+
+        public MessageBoxResult ShowMessage(string messageBoxText)
+        {
+            return PlayniteMessageBox.Show(messageBoxText);
+        }
+    }
+
+    public class PlayniteMessageBox
+    {
         public static MessageBoxResult Show(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
         {
-            return Show(CurrentWindow, messageBoxText, caption, button, icon, defaultResult, options);
+            return Show(PlayniteWindows.CurrentWindow, messageBoxText, caption, button, icon, defaultResult, options);
         }
 
         public static MessageBoxResult Show(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult)
         {
-            return Show(CurrentWindow, messageBoxText, caption, button, icon, defaultResult);
+            return Show(PlayniteWindows.CurrentWindow, messageBoxText, caption, button, icon, defaultResult);
         }
 
         public static MessageBoxResult Show(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon)
         {
-            return Show(CurrentWindow, messageBoxText, caption, button, icon);
+            return Show(PlayniteWindows.CurrentWindow, messageBoxText, caption, button, icon);
         }
 
         public static MessageBoxResult Show(string messageBoxText, string caption, MessageBoxButton button)
         {
-            return Show(CurrentWindow, messageBoxText, caption, button);
+            return Show(PlayniteWindows.CurrentWindow, messageBoxText, caption, button);
         }
 
         public static MessageBoxResult Show(string messageBoxText, string caption)
         {
-            return Show(CurrentWindow, messageBoxText, caption);
+            return Show(PlayniteWindows.CurrentWindow, messageBoxText, caption);
         }
 
         public static MessageBoxResult Show(string messageBoxText)
         {
-            return Show(CurrentWindow, messageBoxText);
+            return Show(PlayniteWindows.CurrentWindow, messageBoxText);
         }
 
         public static MessageBoxResult Show(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
@@ -78,6 +160,5 @@ namespace PlayniteUI
         {
             return (new MessageBoxWindow()).Show(owner, messageBoxText, string.Empty, MessageBoxButton.OK, MessageBoxImage.None, MessageBoxResult.None, MessageBoxOptions.None);
         }
-
     }
 }

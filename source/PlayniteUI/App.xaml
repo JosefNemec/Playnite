@@ -4,11 +4,12 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:PlayniteUI"
              Exit="Application_Exit"
-             Startup="Application_Startup" ShutdownMode="OnExplicitShutdown">
+             Startup="Application_Startup" ShutdownMode="OnExplicitShutdown"
+             Activated="Application_Activated" Deactivated="Application_Deactivated">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Theme.xaml"/>
+                <ResourceDictionary Source="Themes/BaseTheme.xaml"/>
                 <ResourceDictionary Source="Localization/english.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <sys:Boolean x:Key="AsyncImagesEnabled">True</sys:Boolean>

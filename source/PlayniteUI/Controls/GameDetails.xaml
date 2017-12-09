@@ -1,33 +1,32 @@
-﻿<UserControl x:Class="PlayniteUI.GameDetails"
+﻿<UserControl x:Class="PlayniteUI.Controls.GameDetails"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PlayniteUI"
+             xmlns:pui="clr-namespace:PlayniteUI"
+             xmlns:pc="clr-namespace:PlayniteUI.Controls"
              xmlns:html="clr-namespace:TheArtOfDev.HtmlRenderer.WPF;assembly=HtmlRenderer.WPF"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:models="clr-namespace:Playnite.Models;assembly=Playnite"
-             xmlns:playniteControls="clr-namespace:PlayniteUI.Controls"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="600" DataContextChanged="UserControl_DataContextChanged"
              SizeChanged="UserControl_SizeChanged">
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <local:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
-        <local:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
-        <local:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
-        <local:ImageUrlToImageSourceConverter x:Key="ImageUrlToImageSourceConverter" />
-        <local:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
-        <local:EnumerableNullOrEmptyToVisibilityConverter x:Key="EnumerableNullOrEmptyToVisibilityConverter" />
-        <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+        <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
+        <pui:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
+        <pui:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
+        <pui:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
+        <pui:EnumerableNullOrEmptyToVisibilityConverter x:Key="EnumerableNullOrEmptyToVisibilityConverter" />
+        <pui:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
         <sys:Boolean x:Key="True">True</sys:Boolean>
         <sys:Boolean x:Key="False">False</sys:Boolean>
-        <local:ValueConverterGroup x:Key="EnumCompVisibilityConverterInverted">
-            <local:EnumConverter/>
-            <local:NegateConverter/>
+        <pui:ValueConverterGroup x:Key="EnumCompVisibilityConverterInverted">
+            <pui:EnumConverter/>
+            <pui:NegateConverter/>
             <BooleanToVisibilityConverter/>
-        </local:ValueConverterGroup>
+        </pui:ValueConverterGroup>
 
         <Style x:Key="ListTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
             <Setter Property="Margin" Value="0,2,5,2" />
@@ -62,23 +61,21 @@
 
     <Grid Visibility="{Binding ShowContent, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
         <Grid.Background>
-            <ImageBrush Stretch="Uniform" AlignmentX="Center" AlignmentY="Top" RenderOptions.BitmapScalingMode="Fant"
-                        ImageSource="{Binding BackgroundImage, IsAsync=True, Mode=OneTime, Converter={StaticResource ImageUrlToImageSourceConverter}}" />
+            <ImageBrush Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Top" RenderOptions.BitmapScalingMode="Fant"
+                        ImageSource="{Binding BackgroundImage, IsAsync=True, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}" />
         </Grid.Background>
 
         <DockPanel Margin="0,10,0,0">
-            <playniteControls:GamePopupMenu x:Name="PopupMore" StaysOpen="False" Placement="Relative" VerticalOffset="{Binding ActualHeight, ElementName=ButtonMore}"/>
-
             <DockPanel DockPanel.Dock="Top">
                 <Image DockPanel.Dock="Left" Margin="20,0,0,0" Width="32" Height="32" RenderOptions.BitmapScalingMode="Fant">
                     <Image.Source>
                         <PriorityBinding>
-                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}" ConverterParameter="Icon"/>
-                            <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource LiteDBImageToImageConverter}"/>
+                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}" ConverterParameter="Icon"/>
+                            <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
                         </PriorityBinding>
                     </Image.Source>
                 </Image>
-                <TextBlock Text="{Binding Name, Mode=OneWay}" FontSize="20" Margin="10,10,0,10" TextWrapping="Wrap" DockPanel.Dock="Left"
+                <TextBlock Text="{Binding DisplayName, Mode=OneWay}" FontSize="20" Margin="10,10,0,10" TextWrapping="Wrap" DockPanel.Dock="Left"
                            HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
                     <TextBlock.Effect>
                         <DropShadowEffect ShadowDepth="3"/>
@@ -99,7 +96,12 @@
                     </StackPanel>
                     <Button Name="ButtonSetupProgress" Content="Setup Running..." Click="ButtonSetupProgress_Click"
                             Visibility="{Binding IsSetupInProgress, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
-                    <Button Name="ButtonMore" Width="100" Margin="10, 0, 0, 0" Click="ButtonMore_Click" Content="More" />
+                    <Button Name="ButtonMore" Width="100" Margin="10, 0, 0, 0" Click="ButtonMore_Click" Content="More"
+                            pui:LeftClickContextMenuBehavior.Enabled="True">
+                        <Button.ContextMenu>
+                            <pc:GameMenu Placement="Bottom"/>
+                        </Button.ContextMenu>
+                    </Button>
                 </StackPanel>
             </DockPanel>
 
@@ -115,21 +117,25 @@
                 <Border Grid.Column="0" Grid.Row="0" Name="BorderGameInfo" Padding="10" Margin="15,10,0,0" CornerRadius="3"
                         Visibility="{Binding ShowInfoPanel, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel Width="150">
+                        <!-- Genres -->
                         <Label Content="Genres" Visibility="{Binding Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}" />
                         <ItemsControl ItemsSource="{Binding Genres, Mode=OneWay}" Style="{StaticResource ListItems}"
                                       Visibility="{Binding Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                       Tag="Genres"/>
 
+                        <!-- Developers -->
                         <Label Content="Developed by" Style="{StaticResource ListLabel}" Visibility="{Binding Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                         <ItemsControl ItemsSource="{Binding Developers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                       Visibility="{Binding Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                       Tag="Developers"/>
 
+                        <!-- Publishers -->
                         <Label Content="Published by" Style="{StaticResource ListLabel}" Visibility="{Binding Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                         <ItemsControl ItemsSource="{Binding Publishers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                       Visibility="{Binding Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                       Tag="Publishers"/>
 
+                        <!-- Release Date -->
                         <Label Content="Release Date" Style="{StaticResource ListLabel}" Visibility="{Binding ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"/>
                         <TextBlock Visibility="{Binding ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"
                                    Style="{StaticResource ListTextBlock}">
@@ -138,11 +144,19 @@
                             </Hyperlink>
                         </TextBlock>
 
+                        <!-- Categories -->
                         <Label Content="Categories" Style="{StaticResource ListLabel}" Visibility="{Binding Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                         <ItemsControl ItemsSource="{Binding Categories, Mode=OneWay}" Style="{StaticResource ListItems}"
                                       Visibility="{Binding Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                       Tag="Categories"/>
 
+                        <!-- Tags -->
+                        <Label Content="Tags" Style="{StaticResource ListLabel}" Visibility="{Binding Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                        <ItemsControl ItemsSource="{Binding Tags, Mode=OneWay}" Style="{StaticResource ListItems}"
+                                      Visibility="{Binding Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
+                                      Tag="Tags"/>
+
+                        <!-- Platform -->
                         <Label Content="Platform" Style="{StaticResource ListLabel}" Visibility="{Binding Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
                         <TextBlock Visibility="{Binding Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
                                    Style="{StaticResource ListTextBlock}">
@@ -151,6 +165,7 @@
                             </Hyperlink>
                         </TextBlock>
 
+                        <!-- Links -->
                         <Label Content="Links" Style="{StaticResource ListLabel}" Visibility="{Binding Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                         <ItemsControl ItemsSource="{Binding Links, Mode=OneWay}" Visibility="{Binding Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}">
                             <ItemsControl.ItemTemplate>

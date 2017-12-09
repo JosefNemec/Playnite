@@ -25,6 +25,11 @@ function UpdateFile()
 
     foreach ($node in $tempSource.ResourceDictionary.ChildNodes)
     {
+        if (!$node.Key)
+        {
+            continue
+        }
+
         $targetNode = $target.ResourceDictionary.ChildNodes | Where-Object { $_.Key -eq $node.Key }
         $sourceNode = $source.ResourceDictionary.ChildNodes | Where-Object { $_.Key -eq $node.Key }
 

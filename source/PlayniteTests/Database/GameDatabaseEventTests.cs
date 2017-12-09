@@ -20,7 +20,7 @@ namespace PlayniteTests.Database
         public void Init()
         {
             FileSystem.DeleteFile(dbPath);
-            db = new GameDatabase();
+            db = new GameDatabase(null);
             db.OpenDatabase(dbPath);
         }
 

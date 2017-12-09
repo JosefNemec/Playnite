@@ -1,9 +1,45 @@
 ﻿{
     "stable":  {
-                   "version":  "1.4",
-                   "url":  "https://github.com/JosefNemec/Playnite/releases/download/1.4/PlayniteInstaller.exe",
+                   "version":  "2.9",
+                   "url":  "https://github.com/JosefNemec/Playnite/releases/download/2.9/PlayniteInstaller.exe",
                    "notesUrlRoot":  "http://playnite.link/update/",
                    "releases":  [
+                                    {
+                                        "version":  "2.9",
+                                        "file":  "2.9.html"
+                                    },
+                                    {
+                                        "version":  "2.8",
+                                        "file":  "2.8.html"
+                                    },
+                                    {
+                                        "version":  "2.7",
+                                        "file":  "2.7.html"
+                                    },
+                                    {
+                                        "version":  "2.6",
+                                        "file":  "2.6.html"
+                                    },
+                                    {
+                                        "version":  "2.4",
+                                        "file":  "2.4.html"
+                                    },
+                                    {
+                                        "version":  "2.3",
+                                        "file":  "2.3.html"
+                                    },
+                                    {
+                                        "version":  "2.2",
+                                        "file":  "2.2.html"
+                                    },
+                                    {
+                                        "version":  "2.1",
+                                        "file":  "2.1.html"
+                                    },
+                                    {
+                                        "version":  "2.0",
+                                        "file":  "2.0.html"
+                                    },
                                     {
                                         "version":  "1.4",
                                         "file":  "1.4.html"

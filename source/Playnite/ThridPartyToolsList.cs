@@ -62,7 +62,7 @@ namespace Playnite
             Tools.AddRange(tools);
         }
 
-        public List<ThirdPartyTool> GetDefaultInstalledTools()
+        public static List<ThirdPartyTool> GetDefaultInstalledTools()
         {
             var tools = new List<ThirdPartyTool>();
 

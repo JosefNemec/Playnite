@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Threading;
-using CefSharp;
+﻿using CefSharp;
 using CefSharp.Wpf;
 using Newtonsoft.Json;
 using NLog;
 using Playnite.Controls;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Windows;
 
 namespace Playnite.Providers.GOG
 {
     public class WebApiClient
     {
+        private static string localeString = "US_USD_en-US";
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private CefSharp.OffScreen.ChromiumWebBrowser browser;
@@ -41,7 +38,7 @@ namespace Playnite.Providers.GOG
 
             try
             {
-                data = Web.DownloadString(gameUrl).Split('\n');
+                data = Web.DownloadString(gameUrl, new List<System.Net.Cookie>() { new System.Net.Cookie("gog_lc", localeString) }).Split('\n');
             }
             catch (WebException e)
             {
@@ -84,17 +81,47 @@ namespace Playnite.Providers.GOG
 
             try
             {
-                var stringData = Web.DownloadString(string.Format(baseUrl, id));
+                var stringData = Web.DownloadString(string.Format(baseUrl, id), new List<System.Net.Cookie>() { new System.Net.Cookie("gog_lc", localeString) });
                 return JsonConvert.DeserializeObject<ProductApiDetail>(stringData);
             }
             catch (WebException exc)
             {
-                logger.Warn(exc, "Failed to download origin game details for " + id);
+                logger.Warn(exc, "Failed to download GOG game details for " + id);
                 return null;
             }
         }
 
         #endregion GetGameDetails
+
+        #region ForceLanguage
+        private void forceLanguage_StateChanged(object sender, LoadingStateChangedEventArgs e)
+        {
+            if (e.IsLoading == false)
+            {
+                forceLanguageEvent.Set();
+            }
+        }
+
+        private AutoResetEvent forceLanguageEvent = new AutoResetEvent(false);
+        public void ForceLanguage(string languageCode)
+        {
+            if (!browser.IsBrowserInitialized)
+            {
+                browserInitializedEvent.WaitOne(5000);
+            }
+
+            try
+            {
+                browser.LoadingStateChanged += forceLanguage_StateChanged;
+                browser.Load(@"https://www.gog.com/user/changeLanguage/" + languageCode);
+                forceLanguageEvent.WaitOne(10000);
+            }
+            finally
+            {
+                browser.LoadingStateChanged -= forceLanguage_StateChanged;
+            }
+        }
+        #endregion ForceLanguage
 
         #region GetLoginRequired
         private void getLoginRequired_StateChanged(object sender, LoadingStateChangedEventArgs e)
@@ -170,6 +197,7 @@ namespace Playnite.Providers.GOG
                 browserInitializedEvent.WaitOne(5000);
             }
 
+            ForceLanguage("en");
             var baseUrl = @"https://www.gog.com/account/getFilteredProducts?hiddenFlag=0&mediaType=1&page={0}&sortBy=title";
 
             try
@@ -180,6 +208,12 @@ namespace Playnite.Providers.GOG
                 gamesGotEvent.WaitOne(10000);
 
                 var libraryData = JsonConvert.DeserializeObject<GetOwnedGamesResult>(gamesList);
+                if (libraryData == null)
+                {
+                    logger.Error("GOG library content is empty.");
+                    return null;
+                }
+
                 if (libraryData.totalPages > 1)
                 {
                     for (int i = 2; i <= libraryData.totalPages; i++)

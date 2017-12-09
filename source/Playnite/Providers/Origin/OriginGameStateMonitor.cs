@@ -56,58 +56,63 @@ namespace Playnite.Providers.Origin
             GameUninstalled?.Invoke(this, null);
         }
        
-        public void StartMonitoring()
+        public void StartInstallMonitoring()
         {
-            logger.Info("Starting monitoring of Origin app " + id);
+            logger.Info("Starting install monitoring of Origin app " + id);
             Dispose();
 
             executablePath = library.GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
-            
-            // Game is not installed
+            installWaitToken = new CancellationTokenSource();
+
+            Task.Factory.StartNew(() =>
+            {
+                while (!installWaitToken.Token.IsCancellationRequested)
+                {
+                    executablePath = library.GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
+                    if (!string.IsNullOrEmpty(executablePath))
+                    {
+                        if (File.Exists(executablePath))
+                        {
+                            Watcher_Created(this, null);
+                            return;
+                        }
+                        else
+                        {
+                            watcher = new FileSystemWatcher()
+                            {
+                                NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName,
+                                Path = Path.GetDirectoryName(executablePath),
+                                Filter = Path.GetFileName(executablePath)
+                            };
+
+                            watcher.Created += Watcher_Created;
+                            watcher.EnableRaisingEvents = true;
+                            return;
+                        }
+                    }
+
+                    Thread.Sleep(2000);
+                }
+            }, installWaitToken.Token);
+        }
+
+        public void StartUninstallMonitoring()
+        {
+            logger.Info("Starting uninstall monitoring of Origin app " + id);
+            Dispose();
+
+            executablePath = library.GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);            
             if (string.IsNullOrEmpty(executablePath))
             {
-                logger.Info("Origin app {0} is currently not installed, starting install monitor.", id);
-                installWaitToken = new CancellationTokenSource();
-
-                Task.Factory.StartNew(() =>
-                {
-                    while (!installWaitToken.Token.IsCancellationRequested)
-                    {
-                        executablePath = library.GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
-                        if (!string.IsNullOrEmpty(executablePath))
-                        {
-                            if (File.Exists(executablePath))
-                            {
-                                Watcher_Created(this, null);
-                                return;
-                            }
-                            else
-                            {
-                                watcher = new FileSystemWatcher()
-                                {
-                                    NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName,
-                                    Path = Path.GetDirectoryName(executablePath),
-                                    Filter = Path.GetFileName(executablePath)
-                                };
-
-                                watcher.Created += Watcher_Created;
-                                watcher.EnableRaisingEvents = true;
-                                return;
-                            }
-                        }
-
-                        Thread.Sleep(2000);
-                    }
-                }, installWaitToken.Token);
+                Watcher_Deleted(this, null);
             }
             else
             {
-                logger.Info("Origin app {0} is currently installed, starting uninstall monitor.", id);
                 watcher = new FileSystemWatcher()
                 {
                     NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName,
                     Path = Path.GetDirectoryName(executablePath),
-                    Filter = Path.GetFileName(executablePath)                    
+                    Filter = Path.GetFileName(executablePath)
                 };
 
                 watcher.Deleted += Watcher_Deleted;

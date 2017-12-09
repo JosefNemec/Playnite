@@ -1,7 +1,8 @@
 param(
     [Parameter(ParameterSetName="Base",Mandatory=$true)]
-    [string]$Version,    
-    [string]$CompareBranch = "origin/master",
+    [string]$Version,
+    [Parameter(Mandatory=$true)]
+    [string]$CompareBranch,
     [switch]$CommitAndPush,
     [switch]$Build,
     [switch]$PublishRelease,

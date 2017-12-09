@@ -25,6 +25,30 @@ namespace Playnite
             }
         }
 
+        public static string LocalizationsPath
+        {
+            get
+            {
+                return Path.Combine(ProgramFolder, "Localization");
+            }
+        }
+
+        public static string SkinsPath
+        {
+            get
+            {
+                return Path.Combine(ProgramFolder, "Skins");
+            }
+        }
+
+        public static string SkinsFullscreenPath
+        {
+            get
+            {
+                return Path.Combine(ProgramFolder, "SkinsFullscreen");
+            }
+        }
+
         public static string UninstallerPath
         {
             get
@@ -115,6 +139,32 @@ namespace Playnite
             }
 
             return true;
+        }
+
+        public static string Normalize(string path)
+        {
+            return Path.GetFullPath(new Uri(path).LocalPath).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar).ToUpperInvariant();
+        }
+
+        public static bool AreEqual(string path1, string path2)
+        {
+            if (string.IsNullOrEmpty(path1) && !string.IsNullOrEmpty(path2))
+            {
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(path1) && string.IsNullOrEmpty(path2))
+            {
+                return false;
+            }
+
+            // Empty string is not valid path, return false even when both are null
+            if (string.IsNullOrEmpty(path1) && string.IsNullOrEmpty(path2))
+            {
+                return false;
+            }
+
+            return Normalize(path1) == Normalize(path2);
         }
     }
 }

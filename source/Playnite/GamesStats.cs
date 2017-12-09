@@ -11,7 +11,7 @@ using NLog;
 
 namespace Playnite
 {
-    public class GamesStats : INotifyPropertyChanged
+    public class GamesStats : INotifyPropertyChanged, IDisposable
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -23,6 +23,7 @@ namespace Playnite
         public int Steam { get; private set; } = 0;
         public int GOG { get; private set; } = 0;
         public int Uplay { get; private set; } = 0;
+        public int BattleNet { get; private set; } = 0;
         public int Custom { get; private set; } = 0;
 
         public int Total
@@ -70,6 +71,7 @@ namespace Playnite
             Steam = 0;
             GOG = 0;
             Uplay = 0;
+            BattleNet = 0;
             Custom = 0;
 
             foreach (var game in database.GamesCollection.FindAll())
@@ -110,6 +112,9 @@ namespace Playnite
                     case Provider.Uplay:
                         Uplay++;
                         break;
+                    case Provider.BattleNet:
+                        BattleNet++;
+                        break;
                     default:
                         break;
                 }
@@ -133,6 +138,7 @@ namespace Playnite
             OnPropertyChanged("Steam");
             OnPropertyChanged("GOG");
             OnPropertyChanged("Uplay");
+            OnPropertyChanged("BattleNet");
             OnPropertyChanged("Custom");
             OnPropertyChanged("Total");
         }
@@ -222,7 +228,17 @@ namespace Playnite
                 case Provider.Uplay:
                     Uplay = Uplay + (1 * modifier);
                     break;
+                case Provider.BattleNet:
+                    BattleNet = BattleNet + (1 * modifier);
+                    break;
             }
+        }
+
+        public void Dispose()
+        {
+            database.DatabaseOpened -= Database_DatabaseOpened;
+            database.GamesCollectionChanged -= Database_GamesCollectionChanged;
+            database.GameUpdated -= Database_GameUpdated;
         }
     }
 }

@@ -3,256 +3,356 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PlayniteUI"
+        xmlns:pui="clr-namespace:PlayniteUI"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
         xmlns:models="clr-namespace:Playnite.Models;assembly=Playnite"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"
-        Title="Edit Game Details"
-        Height="550" Width="800"
+        Style="{DynamicResource StandardWindowStyle}"
+        Title="{DynamicResource GameEditWindowTitle}"
+        Height="650" Width="800"
         WindowStartupLocation="CenterOwner"
-        x:Name="mainWindow"
-        LocationChanged="MainWindow_LocationChanged"
-        Loaded="MainWindow_Loaded"
-        SizeChanged="MainWindow_SizeChanged"
+        x:Name="mainWindow" Loaded="Window_Loaded"
         AutomationProperties.AutomationId="WindowGameEdit">
 
     <controls:WindowBase.Resources>
-        <local:ListToStringConverter x:Key="ListToStringConverter" />
-        <local:LiteDBImageToImageConverter x:Key="LiteDBImageToImageConverter" />
-        <local:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
+        <pui:ListToStringConverter x:Key="ListToStringConverter" />
+        <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
+        <pui:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <local:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
-        <local:ValueConverterGroup x:Key="EnumCompVisibilityConverterInverted">
-            <local:EnumConverter/>
-            <local:NegateConverter/>
+        <pui:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
+        <pui:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+        <pui:NegateConverter x:Key="NegateConverter" />
+        <pui:ValueConverterGroup x:Key="EnumCompVisibilityConverterInverted">
+            <pui:EnumConverter/>
+            <pui:NegateConverter/>
             <BooleanToVisibilityConverter/>
-        </local:ValueConverterGroup>
+        </pui:ValueConverterGroup>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </controls:WindowBase.Resources>
 
-
-    <Grid Margin="0,5,0,0">
+    <Grid Margin="0,5,0,0" IsEnabled="{Binding ProgressVisible, Converter={StaticResource NegateConverter}}">
+        <Grid.Resources>
+            <pui:BindingProxy x:Key="Proxy" Data="{Binding}" />
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TabControl Name="TabControlMain" DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0">
-            <TabItem Header="General">
-                <Grid Margin="10">
+            <TabItem Name="TabGeneral">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource GameEditChangeNotif}"
+                                    Visibility="{Binding ShowGeneralChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock Text="{DynamicResource GeneralLabel}"
+                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid Grid.Column="0" Grid.Row="0" Margin="10">
+                    <Grid.Resources>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
+                            <Setter Property="Margin" Value="3" />
+                        </Style>
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}" >
+                            <Setter Property="Margin" Value="3" />
+                        </Style>
+                        <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}" >
+                            <Setter Property="Margin" Value="0,0,0,0" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}" >
+                            <Setter Property="Margin" Value="0,0,0,0" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </Grid.Resources>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="70*"/>
-                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition />
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Column="0" Grid.Row="0" Margin="5,0,3,0">
-                        <Grid.Resources>
-                            <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
-                                <Setter Property="Margin" Value="3" />
-                            </Style>
-                            <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}" >
-                                <Setter Property="Margin" Value="3" />
-                            </Style>
-                            <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}" >
-                                <Setter Property="Margin" Value="0,5,0,0" />
-                            </Style>
-                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}" >
-                                <Setter Property="Margin" Value="0,3,0,0" />
-                            </Style>
-                        </Grid.Resources>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
 
-                        <TextBlock Text="Id" Grid.Column="0" Grid.Row="0"
+                    <!-- ID -->
+                    <TextBlock Text="Id" Grid.Column="0" Grid.Row="0"
                                 Visibility="{Binding Source={x:Static playnite:Constants.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                        <TextBox Grid.Column="2" Grid.Row="0" IsReadOnly="True" Text="{Binding ProviderId, Mode=OneTime}"
+                    <TextBox Grid.Column="2" Grid.Row="0" IsReadOnly="True" Text="{Binding EditingGame.ProviderId, Mode=OneTime}"
+                             VerticalAlignment="Center"
                                 Visibility="{Binding Source={x:Static playnite:Constants.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                        <TextBlock  Grid.Column="0" Grid.Row="1" Text="Name"/>
-                        <CheckBox   Grid.Column="1" Grid.Row="1" Name="CheckName"
-                                Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                IsChecked="{Binding IsNameBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <TextBox    Grid.Column="2" Grid.Row="1" Name="TextName"
-                                Text="{Binding Name, UpdateSourceTrigger=Explicit}"
-                                TextChanged="TextBox_TextChanged" Tag="IsNameBindingDirty"/>
+                    <!-- Name -->
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="{DynamicResource NameLabel}"/>
+                    <CheckBox Grid.Column="1" Grid.Row="1" Name="CheckName"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseNameChanges}"/>
+                    <TextBox Grid.Column="2" Grid.Row="1" Name="TextName"
+                                Text="{Binding EditingGame.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <TextBlock  Grid.Column="0" Grid.Row="2" Text="Platform"/>
-                        <CheckBox   Grid.Column="1" Grid.Row="2" Name="CheckPlatform"
-                                Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                IsChecked="{Binding IsPlatformBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <ComboBox Grid.Column="2" Grid.Row="2" Name="ComboPlatforms" Tag="IsPlatformBindingDirty"
-                                    SelectionChanged="ComboPlatforms_SelectionChanged"
-                                    SelectedValuePath="Id" SelectedValue="{Binding PlatformId, UpdateSourceTrigger=Explicit}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
+                    <!-- Sorting Name -->
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="{DynamicResource GameSortingNameTitle}"/>
+                    <CheckBox Grid.Column="1" Grid.Row="2" Name="CheckSortingName"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseSortingNameChanges}"/>
+                    <TextBox Grid.Column="2" Grid.Row="2" Name="TextSortingName"
+                                Text="{Binding EditingGame.SortingName, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <TextBlock  Grid.Column="0" Grid.Row="3" Text="Genre(s)" />
-                        <CheckBox   Grid.Column="1" Grid.Row="3" Name="CheckGenres"
-                                Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                IsChecked="{Binding IsGenreBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <TextBox    Grid.Column="2" Grid.Row="3" Name="TextGenres"
-                                Text="{Binding Genres, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
-                                TextChanged="TextBox_TextChanged" Tag="IsGenreBindingDirty"/>
+                    <!-- Platform -->
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="{DynamicResource GamePlatformTitle}"/>
+                    <CheckBox Grid.Column="1" Grid.Row="3" Name="CheckPlatform"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UsePlatformChanges}"/>
+                    <ComboBox Grid.Column="2" Grid.Row="3" Name="ComboPlatforms"
+                                ItemsSource="{Binding Platforms}"
+                                SelectedValuePath="Id" SelectedValue="{Binding EditingGame.PlatformId, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
 
-                        <TextBlock  Grid.Column="0" Grid.Row="4" Text="Release date"/>
-                        <CheckBox   Grid.Column="1" Grid.Row="4" Name="CheckReleaseDate"
-                                Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                IsChecked="{Binding IsReleaseDateBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <Grid       Grid.Column="2" Grid.Row="4">
-                            <TextBox Text="{x:Static playnite:Constants.DateUiFormat}" Foreground="LightGray"
-                                    Visibility="{Binding ElementName=TextReleaseDate, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                            <TextBox Name="TextReleaseDate" Background="Transparent"
-                                    Text="{Binding ReleaseDate, UpdateSourceTrigger=Explicit, Converter={StaticResource NullableDateToStringConverter}}"
-                                    TextChanged="TextBox_TextChanged" Tag="IsReleaseDateBindingDirty"/>
-                        </Grid>
+                    <!-- Genres -->
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="{DynamicResource GameGenresTitle}" />
+                    <CheckBox Grid.Column="1" Grid.Row="4" Name="CheckGenres"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseGenresChanges}"/>
+                    <TextBox Grid.Column="2" Grid.Row="4" Name="TextGenres"
+                                Text="{Binding EditingGame.Genres, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
 
-                        <TextBlock  Grid.Column="0" Grid.Row="5" Text="Developer(s)"/>
-                        <CheckBox   Grid.Column="1" Grid.Row="5" Name="CheckDeveloper"
-                                Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                IsChecked="{Binding IsDeveloperBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <TextBox    Grid.Column="2" Grid.Row="5" Name="TextDeveloper"
-                                Text="{Binding Developers, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
-                                TextChanged="TextBox_TextChanged" Tag="IsDeveloperBindingDirty"/>
+                    <!-- Release Date -->
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="{DynamicResource GameReleaseDateTitle}"/>
+                    <CheckBox Grid.Column="1" Grid.Row="5" Name="CheckReleaseDate"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseReleaseDateChanges}"/>
+                    <DatePicker Grid.Column="2" Grid.Row="5" Margin="3"
+                                SelectedDate="{Binding EditingGame.ReleaseDate}"/>
 
-                        <TextBlock  Grid.Column="0" Grid.Row="6" Text="Publisher(s)" />
-                        <CheckBox   Grid.Column="1" Grid.Row="6" Name="CheckPublisher"
-                                Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                IsChecked="{Binding IsPublisherBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <TextBox    Grid.Column="2" Grid.Row="6" Name="TextPublisher"
-                                Text="{Binding Publishers, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
-                                TextChanged="TextBox_TextChanged" Tag="IsPublisherBindingDirty"/>
+                    <!-- Developers -->
+                    <TextBlock Grid.Column="0" Grid.Row="6" Text="{DynamicResource GameDevelopersTitle}"/>
+                    <CheckBox Grid.Column="1" Grid.Row="6" Name="CheckDeveloper"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseDeveloperChanges}"/>
+                    <TextBox Grid.Column="2" Grid.Row="6" Name="TextDeveloper"
+                                Text="{Binding EditingGame.Developers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
 
-                        <TextBlock  Grid.Column="0" Grid.Row="7" Text="Categories" />
-                        <CheckBox   Grid.Column="1" Grid.Row="7" Name="CheckCategories"
-                                Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                IsChecked="{Binding IsCategoriesBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <DockPanel Grid.Column="2" Grid.Row="7">
-                            <Button Name="ButtonPickCat" Click="ButtonPickCat_Click" Content="..."  DockPanel.Dock="Right" Margin="2" Height="{Binding ActualHeight, ElementName=TextCategories}"/>
-                            <TextBox Name="TextCategories"  Text="{Binding Categories, UpdateSourceTrigger=Explicit, Converter={StaticResource ListToStringConverter}}"
-                                TextChanged="TextBox_TextChanged" Tag="IsCategoriesBindingDirty" DockPanel.Dock="Left"/>
-                        </DockPanel>
+                    <!-- Publishers -->
+                    <TextBlock Grid.Column="0" Grid.Row="7" Text="{DynamicResource GamePublishersTitle}" />
+                    <CheckBox Grid.Column="1" Grid.Row="7" Name="CheckPublisher"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UsePublisherChanges}"/>
+                    <TextBox Grid.Column="2" Grid.Row="7" Name="TextPublisher"
+                                Text="{Binding EditingGame.Publishers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
 
-                        <TextBlock  Grid.Column="0" Grid.Row="8" Text="Description" />
-                        <CheckBox   Grid.Column="1" Grid.Row="8" Name="CheckDescription"
-                                Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                IsChecked="{Binding IsDescriptionBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                        <TextBox    Grid.Column="2" Grid.Row="8" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
+                    <!-- Categories -->
+                    <TextBlock Grid.Column="0" Grid.Row="8" Text="{DynamicResource GameCategoriesTitle}" />
+                    <CheckBox Grid.Column="1" Grid.Row="8" Name="CheckCategories"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseCategoryChanges}"/>
+                    <DockPanel Grid.Column="2" Grid.Row="8">
+                        <Button Name="ButtonPickCat" Content="..."  DockPanel.Dock="Right" Margin="2"
+                                Height="{Binding ActualHeight, ElementName=TextCategories}"
+                                Command="{Binding SelectCategoryCommand}"/>
+                        <TextBox Name="TextCategories" DockPanel.Dock="Left"
+                                    Text="{Binding EditingGame.Categories, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
+                    </DockPanel>
+
+                    <!-- Tags -->
+                    <TextBlock Grid.Column="0" Grid.Row="9" Text="{DynamicResource GameTagsTitle}" />
+                    <CheckBox Grid.Column="1" Grid.Row="9" Name="CheckTag"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseTagChanges}"/>
+                    <TextBox Grid.Column="2" Grid.Row="9" Name="TextTag"
+                                Text="{Binding EditingGame.Tags, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
+
+                    <!-- Description -->
+                    <TextBlock Grid.Column="0" Grid.Row="10" Text="{DynamicResource GameDescriptionTitle}" VerticalAlignment="Top" Margin="0,5,0,0" />
+                    <CheckBox Grid.Column="1" Grid.Row="10" Name="CheckDescription" VerticalAlignment="Top" Margin="0,5,0,0"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseDescriptionChanges}"/>
+                    <TextBox Grid.Column="2" Grid.Row="10" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                Text="{Binding Description, UpdateSourceTrigger=Explicit}"
-                                TextChanged="TextBox_TextChanged" Tag="IsDescriptionBindingDirty"/>
-                    </Grid>
-                    <Grid Grid.Column="1" Grid.Row="0"  Margin="0,0,2,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <GroupBox Grid.Column="0" Grid.Row="0" Header="Icon" Padding="10,10,10,0">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <CheckBox Name="CheckIcon" VerticalAlignment="Center" Loaded="CheckIcon_Loaded"
-                                                Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                                IsChecked="{Binding IsIconBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                                        <TextBlock Text="{Binding}" Style="{StaticResource BaseTextBlockStyle}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
-                            <DockPanel LastChildFill="True">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,5" DockPanel.Dock="Top">
-                                    <Button Name="ButtonSelectIcon" Content="Select Icon" Click="ButtonSelectIcon_Click" />
-                                    <Button Name="ButtonUseExeIcon" Content=" Use exe's icon " Click="ButtonExecIcon_Click" Margin="5,0,0,0"/>
-                                </StackPanel>
-                                <Image Source="{Binding Icon, UpdateSourceTrigger=Explicit, Mode=TwoWay, Converter={StaticResource LiteDBImageToImageConverter}}"
-                                    Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageIcon"
-                                    DockPanel.Dock="Top" Tag="IsIconBindingDirty" MaxHeight="64"
-                                    AutomationProperties.HelpText="{Binding Icon, TargetNullValue=''}"/>
-                            </DockPanel>
-                        </GroupBox>
-                        <GroupBox Grid.Column="0" Grid.Row="1" Header="Cover Image" Margin="0,5,0,0" Padding="10">
-                            <GroupBox.HeaderTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <CheckBox Name="CheckImage" VerticalAlignment="Center" Loaded="CheckImage_Loaded"
-                                                Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                                IsChecked="{Binding IsImageBindingDirty, ElementName=mainWindow, Mode=OneWay}"/>
-                                        <TextBlock Text="{Binding}" Style="{StaticResource BaseTextBlockStyle}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GroupBox.HeaderTemplate>
-                            <DockPanel LastChildFill="True">
-                                <Button Name="ButtonSelectImage" Content="Select Image" Click="ButtonSelectImage_Click"
-                                    DockPanel.Dock="Top" MaxWidth="120" Margin="0,0,0,5" />
-                                <Image Source="{Binding Image, UpdateSourceTrigger=Explicit, Mode=TwoWay, Converter={StaticResource LiteDBImageToImageConverter}}"
-                                    Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
-                                    DockPanel.Dock="Top" Tag="IsImageBindingDirty"
-                                    AutomationProperties.HelpText="{Binding Image, TargetNullValue=''}"/>
-                            </DockPanel>
-                        </GroupBox>
-                    </Grid>
+                                Text="{Binding EditingGame.Description, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Links" Name="TabLinks">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10">
-                    <StackPanel>
-                        <CheckBox Name="CheckLinks" Content="Save Changes" Margin="5"
-                                Visibility="{Binding CheckBoxesVisible, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                IsChecked="True" />
-                        <ItemsControl Name="ItemsLinks" Grid.IsSharedSizeScope="True"
-                                    ItemsSource="{Binding TempLinks, ElementName=mainWindow, UpdateSourceTrigger=Explicit}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="-5,0,-5,0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                        </Grid.RowDefinitions>
-
-                                        <TextBox Text="{Binding Name}" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5" />
-                                        <TextBox Text="{Binding Url}" Grid.Column="1" Grid.Row="0" Margin="5" />
-                                        <Button Name="ButtonRemoveLink" Content="Remove" Grid.Column="2" Grid.Row="1"  Margin="5" 
-                                            Click="ButtonRemoveLink_Click"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        <Button Name="ButtonAddLink" Content="Add Link" HorizontalAlignment="Left" Margin="0,10,0,0"
-                            Click="ButtonAddLink_Click"/>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource GameEditChangeNotif}"
+                                   Visibility="{Binding ShowMediaChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock Text="{DynamicResource MediaLabel}"
+                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
                     </StackPanel>
-                </ScrollViewer>
+                </TabItem.Header>
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <GroupBox Grid.Column="0" Grid.Row="0" Header="{DynamicResource GameIconTitle}">
+                        <GroupBox.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="CheckIcon" VerticalAlignment="Center"
+                                                  Visibility="{Binding Data.ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+                                                  IsChecked="{Binding Data.UseIconChanges, Source={StaticResource Proxy}}"/>
+                                    <TextBlock Text="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupBox.HeaderTemplate>
+                        <DockPanel LastChildFill="True">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5" DockPanel.Dock="Top">
+                                <Button Name="ButtonSelectIcon" Content="{DynamicResource SelectIconTitle}"
+                                        Command="{Binding SelectIconCommand}" />
+                                <Button Name="ButtonUseExeIcon" Content="{DynamicResource UseExeIcon}" 
+                                        Command="{Binding UseExeIconCommand}"
+                                        Visibility="{Binding Game, Converter={StaticResource NullToVisibilityConverter}}"
+                                        Margin="5,0,0,0"/>
+                                <Button Content="{DynamicResource RemoveLabel}" Margin="5,0,0,0"
+                                        Command="{Binding RemoveIconCommand}" />
+                            </StackPanel>
+                            <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
+                                       Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageIcon"
+                                       DockPanel.Dock="Top" MaxHeight="64"
+                                       AutomationProperties.HelpText="{Binding EditingGame.Icon, TargetNullValue=''}"/>
+                        </DockPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="0" Grid.Row="1" Header="{DynamicResource GameCoverImageTitle}" Margin="0,5,0,0">
+                        <GroupBox.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="CheckImage" VerticalAlignment="Center"
+                                                  Visibility="{Binding Data.ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+                                                  IsChecked="{Binding Data.UseImageChanges, Source={StaticResource Proxy}}"/>
+                                    <TextBlock Text="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupBox.HeaderTemplate>
+                        <DockPanel LastChildFill="True">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
+                                <Button Name="ButtonSelectImage" Content="{DynamicResource SelectCoverTitle}" 
+                                        HorizontalAlignment="Left"
+                                        Command="{Binding SelectCoverCommand}"/>
+                                <Button Content="{DynamicResource RemoveLabel}" Margin="5,0,0,0"
+                                        Command="{Binding RemoveImageCommand}" />
+                            </StackPanel>
+                            <Image Source="{Binding EditingGame.Image, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
+                                       Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
+                                       DockPanel.Dock="Top"
+                                       AutomationProperties.HelpText="{Binding EditingGame.Image, TargetNullValue=''}"/>
+                        </DockPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
+                              Header="{DynamicResource GameBackgroundTitle}" Margin="5,0,0,0">
+                        <GroupBox.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="CheckImage" VerticalAlignment="Center"
+                                              Visibility="{Binding Data.ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+                                              IsChecked="{Binding Data.UseBackgroundChanges, Source={StaticResource Proxy}}"/>
+                                    <TextBlock Text="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupBox.HeaderTemplate>
+                        <DockPanel DockPanel.Dock="Top">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
+                                <Button Content="{DynamicResource SelectFileTitle}" HorizontalAlignment="Left"
+                                        Command="{Binding SelectBackgroundCommand}"/>
+                                <Button Content="{DynamicResource SelectUrlTitle}" Margin="5,0,0,0" HorizontalAlignment="Left"
+                                        Command="{Binding SetBackgroundUrlCommand}"/>
+                                <Button Content="{DynamicResource RemoveLabel}" Margin="5,0,0,0"
+                                        Command="{Binding RemoveBackgroundCommand}" />
+                            </StackPanel>
+                            <DockPanel DockPanel.Dock="Top" Margin="5,5,0,5"
+                                       Visibility="{Binding ShowBackgroundUrl, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <TextBlock Text="{DynamicResource ImageURL}" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                                <TextBox IsReadOnly="True" DockPanel.Dock="Left" Margin="5,0,0,0"
+                                         Text="{Binding EditingGame.BackgroundImage}" />
+                            </DockPanel>
+                            <Image Source="{Binding EditingGame.BackgroundImage, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
+                                   Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant"
+                                   DockPanel.Dock="Top"
+                                   AutomationProperties.HelpText="{Binding EditingGame.Image, TargetNullValue=''}"/>
+                        </DockPanel>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Name="TabLinks"
+                     Visibility="{Binding ShowLinks, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource GameEditChangeNotif}"
+                                   Visibility="{Binding ShowLinksChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock Text="{DynamicResource LinksLabel}"
+                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
+                    </StackPanel>
+                </TabItem.Header>
+                <DockPanel>
+                    <Button Name="ButtonAddLink" Content="{DynamicResource AddLinkButton}" HorizontalAlignment="Left" Margin="10,10,0,0"
+                            Command="{Binding AddLinkCommand}" DockPanel.Dock="Top"/>
+                    <CheckBox Name="CheckLinks" Content="{DynamicResource SaveChanges}" Margin="10,5,5,5" DockPanel.Dock="Top"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseLinksChanges}" />
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10" DockPanel.Dock="Top">
+                        <StackPanel>
+                            <ItemsControl Name="ItemsLinks" Grid.IsSharedSizeScope="True"
+                                          ItemsSource="{Binding EditingGame.Links}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="-5,0,-5,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+
+                                            <TextBox Text="{Binding Name}" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5" />
+                                            <TextBox Text="{Binding Url}" Grid.Column="1" Grid.Row="0" Margin="5" />
+                                            <Button Name="ButtonRemoveLink" Content="{DynamicResource RemoveLabel}" Grid.Column="2" Grid.Row="1"  Margin="5"
+                                                    Command="{Binding Data.RemoveLinkCommand,Source={StaticResource Proxy}}"
+                                                    CommandParameter="{Binding}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </ScrollViewer>
+                </DockPanel>                
             </TabItem>
 
-            <TabItem Header="Installation" Name="TabInstallation">
+            <TabItem Name="TabInstallation"
+                     Visibility="{Binding ShowInstallation, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource GameEditChangeNotif}"
+                                   Visibility="{Binding ShowInstallChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock Text="{DynamicResource InstallationLabel}"
+                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
+                    </StackPanel>
+                </TabItem.Header>
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -264,52 +364,84 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Installation Directory" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1" Margin="5" Text="{Binding InstallDirectory, UpdateSourceTrigger=Explicit}" Name="TextInstallDir" />
-                    <Button Content="..." Grid.Column="2" Margin="5" Name="ButtonBrowseInstallDir" Click="ButtonBrowseInstallDir_Click"/>
-
-                    <TextBlock Text="Image/ISO Path" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
-                    <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding IsoPath, UpdateSourceTrigger=Explicit}" Name="TextIso" />
-                    <Button Content="..." Grid.Row="1" Grid.Column="2" Margin="5" Name="ButtonBrowseIso" Click="ButtonBrowseIso_Click"/>
+                    <TextBlock Text="{DynamicResource GameInstallDirTitle}" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Margin="5" Name="TextInstallDir"
+                             Text="{Binding EditingGame.InstallDirectory, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="..." Grid.Column="2" Margin="5" Name="ButtonBrowseInstallDir"
+                            Command="{Binding SelectInstallDirCommand}"/>
+                    <TextBlock Text="{DynamicResource GameROMTitle}" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Name="TextIso"
+                             Text="{Binding EditingGame.IsoPath, UpdateSourceTrigger=PropertyChanged}"  />
+                    <Button Content="..." Grid.Row="1" Grid.Column="2" Margin="5" Name="ButtonBrowseIso"
+                            Command="{Binding SelectGameImageCommand}"/>
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Actions" Name="TabActions">
+            <TabItem Header="{DynamicResource ActionsLabel}" Name="TabActions"
+                     Visibility="{Binding ShowActions, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <GroupBox Header="Play Action" Padding="10">
+                        <GroupBox Header="{DynamicResource PlayAction}" Margin="10">
                             <StackPanel>
-                                <Button Name="ButtonAddPlay" Content="Add Play Action"  Click="ButtonAddPlayAction_Click" HorizontalAlignment="Left"
-                                    Visibility="{Binding ShowAddPlayAction, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    Margin="0,5,0,5"/>
-                                <Button Name="ButtonRemovePlay" Content="Remove Play Action"  Click="ButtonRemovePlayAction_Click" HorizontalAlignment="Left"
-                                    Visibility="{Binding ShowRemovePlayAction, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    Margin="0,5,0,5"/>
-                                <local:GameTaskView x:Name="TaskPlay" DataContext="{Binding TempPlayTask, ElementName=mainWindow}"
-                                                    Visibility="{Binding ShowPlayActionEdit, ElementName=mainWindow, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                                    Emulators="{Binding Emulators, ElementName=mainWindow, Mode=OneWay}"/>
+                                <Button Name="ButtonAddPlay" Content="{DynamicResource AddPlayAction}" HorizontalAlignment="Left"
+                                        Margin="0,5,0,5" Command="{Binding AddPlayActionCommand}">
+                                    <Button.Style>                                        
+                                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding EditingGame.PlayTask}" Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                                <Button Name="ButtonRemovePlay" Content="{DynamicResource RemovePlayAction}" HorizontalAlignment="Left"
+                                        Margin="0,5,0,5" Command="{Binding DeletePlayActionCommand}">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding EditingGame.PlayTask}" Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                                <pui:GameTaskView x:Name="TaskPlay" DataContext="{Binding EditingGame.PlayTask}"
+                                                  Margin="5,0,5,5"
+                                                  Visibility="{Binding Data.EditingGame.PlayTask, Converter={StaticResource NullToVisibilityConverter}, Source={StaticResource Proxy}}"
+                                                  Emulators="{Binding Data.Emulators, Source={StaticResource Proxy}}"/>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="Other Actions" Padding="10">
+                        <GroupBox Header="Other Actions" Margin="10">
                             <StackPanel>
-                                <ItemsControl Name="OtherTasksItems">
+                                <ItemsControl Name="OtherTasksItems" ItemsSource="{Binding EditingGame.OtherTasks}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <Border BorderThickness="1" BorderBrush="{StaticResource NormalBrush}" CornerRadius="3" Padding="5" Margin="0,0,0,10">
                                                 <StackPanel Margin="10">
-                                                    <local:GameTaskView x:Name="TaskCustom" Emulators="{Binding Emulators, ElementName=mainWindow, Mode=OneWay}"
-                                                                        ShowNameRow="True"/>
+                                                    <pui:GameTaskView x:Name="TaskCustom" ShowNameRow="True"
+                                                                      Emulators="{Binding Data.Emulators, Source={StaticResource Proxy}}"/>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-                                                        <Button Name="ButtonMoveUpAction" FontFamily="Marlett" Content="5" Margin="0,0,5,0" Click="ButtonMoveUpAction_Click"/>
-                                                        <Button Name="ButtonMoveDownAction" FontFamily="Marlett" Content="6" Margin="0,0,5,0" Click="ButtonMoveDownAction_Click"/>
-                                                        <Button Name="ButtonDeleteAction" Content="Delete Action" Click="ButtonDeleteAction_Click"/>
+                                                        <Button Name="ButtonMoveUpAction" FontFamily="Marlett" Content="5" Margin="0,0,5,0"
+                                                                Command="{Binding Data.MoveUpActionCommand, Source={StaticResource Proxy}}"
+                                                                CommandParameter="{Binding }"/>
+                                                        <Button Name="ButtonMoveDownAction" FontFamily="Marlett" Content="6" Margin="0,0,5,0"
+                                                                Command="{Binding Data.MoveDownActionCommand, Source={StaticResource Proxy}}"
+                                                                CommandParameter="{Binding }"/>
+                                                        <Button Name="ButtonDeleteAction" Content="Delete Action"
+                                                                Command="{Binding Data.DeleteActionCommand, Source={StaticResource Proxy}}"
+                                                                CommandParameter="{Binding }"/>
                                                     </StackPanel>
                                                 </StackPanel>
                                             </Border>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
-                                <Button Name="ButtonAddAction" Content="Add Action" Click="ButtonAddAction_Click" HorizontalAlignment="Left" Margin="0,5,0,5"/>
+                                <Button Name="ButtonAddAction" Content="{DynamicResource AddAction}" HorizontalAlignment="Left" Margin="0,5,0,5"
+                                        Command="{Binding AddActionCommand}"/>
                             </StackPanel>
                         </GroupBox>
                     </StackPanel>
@@ -317,29 +449,32 @@
             </TabItem>
         </TabControl>
 
-        <Grid Name="GridDownload" Visibility="Hidden">
-            <ProgressBar IsIndeterminate="True" Width="350" Height="30" />
-            <TextBlock Text="Downloading..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Grid>
-
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
             <DockPanel LastChildFill="False" Margin="5">
-                <Button Name="ButtonDownload" Content=" Download metadata from..." DockPanel.Dock="Left"
-                    Click="ButtonDownload_Click" Style="{StaticResource BottomButton}">
+                <Button Name="ButtonDownload" Content="{DynamicResource MenuDownloadMetadata}" DockPanel.Dock="Left"
+                        Style="{StaticResource BottomButton}"
+                        pui:LeftClickContextMenuBehavior.Enabled="True">
                     <Button.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="IGDB" Click="MenuIGDBDownload_Click" />
-                            <MenuItem Header="Wiki" Click="MenuWikiDownload_Click" />
-                            <MenuItem Header="Official Store" Click="MenuStoreDownload_Click"
-                                    Visibility="{Binding Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}"/>
+                        <ContextMenu Placement="Top" Width="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}">
+                            <MenuItem Header="IGDB" Command="{Binding DownloadIGDBMetadataCommand}"/>
+                            <MenuItem Header="Wiki" Command="{Binding DownloadWikiMetadataCommand}"/>
+                            <MenuItem Header="Official Store" Command="{Binding DownloadStoreCommand}"
+                                      Visibility="{Binding EditingGame.Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}"/>
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>
                 <Button Name="ButtonCancel" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right" IsCancel="True"
-                    Click="ButtonCancel_Click" Style="{StaticResource BottomButton}"/>
-                <Button Name="ButtonOK" Content="Save" DockPanel.Dock="Right"
-                    Click="ButtonOK_Click" Style="{StaticResource BottomButton}"/>
+                        Style="{StaticResource BottomButton}"
+                        Command="{Binding CancelCommand}"/>
+                <Button Name="ButtonOK" Content="{DynamicResource SaveLabel}" DockPanel.Dock="Right"
+                        Style="{StaticResource BottomButton}"
+                        Command="{Binding ConfirmCommand}"/>
             </DockPanel>
         </Border>
+
+        <Grid Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <ProgressBar IsIndeterminate="True" Width="350" Height="40" />
+            <TextBlock Text="{DynamicResource DownloadingLabel}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
     </Grid>
 </controls:WindowBase>

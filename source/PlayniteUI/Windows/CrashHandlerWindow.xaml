@@ -7,30 +7,35 @@
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource CrashWindowTitle}" Height="400" Width="600"
         WindowStartupLocation="CenterScreen"
         AutomationProperties.AutomationId="WindowCrash">
 
-
     <DockPanel Margin="5">
         <DockPanel LastChildFill="False" DockPanel.Dock="Bottom">
-            <Button Name="ButtonClose" Click="ButtonClose_Click" Content="Close Playnite" DockPanel.Dock="Right" 
-                Style="{StaticResource BottomButton}"/>
-            <Button Name="ButtonRestart" Click="ButtonRestart_Click" Content="Restart Playnite" DockPanel.Dock="Right" 
-                Style="{StaticResource BottomButton}"/>
-            <Button Name="ButtonSaveDiag" Click="ButtonSaveDiag_Click" Content="Create diag. package" DockPanel.Dock="Left"
-                Style="{StaticResource BottomButton}"/>
-            <Button Name="ButtonReportIssue" Click="ButtonReportIssue_Click" Content="Report Issue" DockPanel.Dock="Left"
-                Style="{StaticResource BottomButton}"/>
+            <Button Name="ButtonClose" Content="{DynamicResource CrashClosePlaynite}" DockPanel.Dock="Right" 
+                Style="{StaticResource BottomButton}"
+                    Command="{Binding CloseCommand}"/>
+            <Button Name="ButtonRestart" Content="{DynamicResource CrashRestartPlaynite}" DockPanel.Dock="Right" 
+                Style="{StaticResource BottomButton}"
+                    Command="{Binding RestartCommand}"/>
+            <Button Name="ButtonSaveDiag" Content="{DynamicResource AboutCreateDiagButton}" DockPanel.Dock="Left"
+                Style="{StaticResource BottomButton}"
+                    Command="{Binding CreateDiagPackageCommand}"/>
+            <Button Name="ButtonReportIssue" Content="{DynamicResource CrashReportIssue}" DockPanel.Dock="Left"
+                Style="{StaticResource BottomButton}"
+                    Command="{Binding ReportIssueCommand}"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Top" Margin="10">
             <Image Source="/Images/Icons/warn_big.png" Width="64" RenderOptions.BitmapScalingMode="Fant" />
             <StackPanel Margin="20,10,10,10">
-                <TextBlock Text="Playnite come across problem, which cannot be solved. If you want to help us solving it, please create diagnostics package and report an issue." 
+                <TextBlock Text="{DynamicResource CrashDescription}" 
                         FontSize="14" TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
             </StackPanel>
         </DockPanel>
         <TextBox IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDetails"
-                 Margin="5" DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto"/>
+                 Margin="5" DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto"
+                 Text="{Binding Exception}"/>
     </DockPanel>
 </controls:WindowBase>

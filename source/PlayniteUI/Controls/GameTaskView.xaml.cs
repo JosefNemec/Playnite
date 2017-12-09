@@ -225,7 +225,7 @@ namespace PlayniteUI
             OnPropertyChanged("ShowPathRow");
             OnPropertyChanged("ShowWorkingDirRow");
             OnPropertyChanged("ShowEmulatorRow");
-            OnPropertyChanged("ShowOverrideArgsRow");
+            OnPropertyChanged("ShowOverrideArgsRow");            
         }
 
         private void CheckOverrideArgs_Checked(object sender, RoutedEventArgs e)
@@ -242,13 +242,39 @@ namespace PlayniteUI
         {
             if (Emulators == null || Emulators.Count == 0)
             {
+                return;
+            }
+
+            if (GameTask.EmulatorId != null && Emulators.Any(a => a.Id == GameTask.EmulatorId))
+            {
+                ComboEmulatorConfig.SelectedItem = Emulators.First(a => a.Id == GameTask.EmulatorId).Profiles?.FirstOrDefault();
+            }
+        }
+
+        private void ComboEmulatorConfig_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Emulators == null || Emulators.Count == 0)
+            {
                 SelectedEmulatorArguments = string.Empty;
                 return;
             }
-                        
-            if (GameTask.EmulatorId != 0 && Emulators.Any(a => a.Id == GameTask.EmulatorId))
+            
+            if (GameTask.EmulatorId != null && Emulators.Any(a => a.Id == GameTask.EmulatorId))
             {
-                SelectedEmulatorArguments = Emulators.First(a => a.Id == GameTask.EmulatorId).Arguments;
+                var emulator = Emulators.First(a => a.Id == GameTask.EmulatorId);
+                var emulatorProfile = emulator.Profiles?.FirstOrDefault(a => a.Id == GameTask.EmulatorProfileId);
+                if (emulatorProfile != null)
+                {
+                    SelectedEmulatorArguments = emulatorProfile.Arguments;
+                }
+                else
+                {
+                    SelectedEmulatorArguments = emulator.Profiles?.FirstOrDefault()?.Arguments;
+                }
+            }
+            else
+            {
+                SelectedEmulatorArguments = string.Empty;
             }
         }
     }

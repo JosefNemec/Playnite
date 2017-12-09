@@ -14,7 +14,7 @@ namespace Playnite.Providers.BattleNet
             get
             {
                 var path = InstallationPath;
-                return string.IsNullOrEmpty(path) ? string.Empty : Path.Combine(path, "Battle.net Launcher.exe");
+                return string.IsNullOrEmpty(path) ? string.Empty : Path.Combine(path, "Battle.net.exe");
             }
         }
 
@@ -33,6 +33,16 @@ namespace Playnite.Providers.BattleNet
                 }
             }
         }
+
+        public bool LibraryDownloadEnabled
+        {
+            get; set;
+        } = false;
+
+        public bool IntegrationEnabled
+        {
+            get; set;
+        } = false;
 
         public static bool IsInstalled
         {

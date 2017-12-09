@@ -5,6 +5,7 @@ using NUnit.Framework;
 using Playnite.Models;
 using PlayniteUI;
 using Playnite;
+using LiteDB;
 
 namespace PlayniteUITests
 {
@@ -14,6 +15,8 @@ namespace PlayniteUITests
         [Test]
         public void GetMultiGameEditObject_StandardTest()
         {
+            var platId = ObjectId.NewObjectId();
+
             // All common
             var gamesCommon = new List<Game>()
             {
@@ -24,9 +27,10 @@ namespace PlayniteUITests
                     ReleaseDate = new DateTime(2011,6,20),
                     Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
                     Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
-                    Categories = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
+                    Categories = new ComparableList<string>() { "Cat 1", "Cat 2", "Cat 3" },
+                    Tags = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
                     Description = "Description",
-                    PlatformId = 1
+                    PlatformId = platId
 
                 },
                 new Game()
@@ -36,9 +40,10 @@ namespace PlayniteUITests
                     ReleaseDate = new DateTime(2011,6,20),
                     Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
                     Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
-                    Categories = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
+                    Categories = new ComparableList<string>() { "Cat 1", "Cat 2", "Cat 3" },
+                    Tags = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
                     Description = "Description",
-                    PlatformId = 1
+                    PlatformId = platId
                 },
                 new Game()
                 {
@@ -47,9 +52,10 @@ namespace PlayniteUITests
                     ReleaseDate = new DateTime(2011,6,20),
                     Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
                     Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
-                    Categories = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
+                    Categories = new ComparableList<string>() { "Cat 1", "Cat 2", "Cat 3" },
+                    Tags = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
                     Description = "Description",
-                    PlatformId = 1
+                    PlatformId = platId
                 }
             };
 
@@ -61,6 +67,7 @@ namespace PlayniteUITests
             CollectionAssert.AreEqual(firstGame.Developers, gameCommon.Developers);
             CollectionAssert.AreEqual(firstGame.Publishers, gameCommon.Publishers);
             CollectionAssert.AreEqual(firstGame.Categories, gameCommon.Categories);
+            CollectionAssert.AreEqual(firstGame.Tags, gameCommon.Tags);
             Assert.AreEqual(firstGame.Description, gameCommon.Description);
             Assert.AreEqual(firstGame.PlatformId, gameCommon.PlatformId);
 
@@ -75,9 +82,10 @@ namespace PlayniteUITests
                     ReleaseDate = new DateTime(2011,6,20),
                     Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
                     Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
-                    Categories = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
+                    Categories = new ComparableList<string>() { "Cat 1", "Cat 2", "Cat 3" },
+                    Tags = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
                     Description = "Description 1",
-                    PlatformId = 1
+                    PlatformId = ObjectId.NewObjectId()
 
                 },
                 new Game()
@@ -87,9 +95,10 @@ namespace PlayniteUITests
                     ReleaseDate = new DateTime(2012,6,20),
                     Developers = new ComparableList<string>() { "Developer 4", "Developer 5", "Developer 6" },
                     Publishers = new ComparableList<string>() { "Publisher 4", "Publisher 5", "Publisher 6" },
-                    Categories = new ComparableList<string>() { "Tag 4", "Tag 5", "Tag 6" },
+                    Categories = new ComparableList<string>() { "Cat 4", "Cat 5", "Cat 6" },
+                    Tags = new ComparableList<string>() { "Tag 4", "Tag 5", "Tag 6" },
                     Description = "Description 2",
-                    PlatformId = 2
+                    PlatformId = ObjectId.NewObjectId()
                 },
                 new Game()
                 {
@@ -98,20 +107,23 @@ namespace PlayniteUITests
                     ReleaseDate = new DateTime(2013,6,20),
                     Developers = new ComparableList<string>() { "Developer 7", "Developer 8", "Developer 9" },
                     Publishers = new ComparableList<string>() { "Publisher 7", "Publisher 8", "Publisher 9" },
-                    Categories = new ComparableList<string>() { "Tag 7", "Tag 8", "Tag 9" },
+                    Categories = new ComparableList<string>() { "Cat 7", "Cat 8", "Cat 9" },
+                    Tags = new ComparableList<string>() { "Tag 7", "Tag 8", "Tag 9" },
                     Description = "Description 3",
-                    PlatformId = 3
+                    PlatformId = ObjectId.NewObjectId()
                 }
             };
 
             var gameNoCommon = GameHandler.GetMultiGameEditObject(gamesNoCommon);
-            Assert.AreEqual(null, gameNoCommon.Name);
+            Assert.IsNull(gameNoCommon.Name);
+            Assert.IsNull(gameNoCommon.ReleaseDate);
+            Assert.IsNull(gameNoCommon.Description);
+            Assert.IsNull(gameNoCommon.PlatformId);
             CollectionAssert.AreEqual(null, gameNoCommon.Genres);
-            Assert.AreEqual(null, gameNoCommon.ReleaseDate);
             CollectionAssert.AreEqual(null, gameNoCommon.Developers);
             CollectionAssert.AreEqual(null, gameNoCommon.Publishers);
             CollectionAssert.AreEqual(null, gameNoCommon.Categories);
-            Assert.AreEqual(null, gameNoCommon.Description);
+            CollectionAssert.AreEqual(null, gameNoCommon.Tags);
         }
     }
 }

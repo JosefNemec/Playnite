@@ -10,7 +10,7 @@ namespace Playnite.Providers.GOG
 {
     public interface IGogLibrary
     {
-        List<IGame> GetInstalledGames();
+        List<IGame> GetInstalledGames(InstalledGamesSource source);
 
         List<IGame> GetLibraryGames();
 
