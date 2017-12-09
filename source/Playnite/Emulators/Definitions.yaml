@@ -52,6 +52,15 @@
       ImageExtensions: [nes, unf, fds, nsf, zip]
       ExecutableLookup: ^nestopia\.exe
 
+- Name: FCEUX
+  Website: 'http://www.fceux.com'
+  Profiles:
+    - Name: Default
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Nintendo Entertainment System]
+      ImageExtensions: [7z, zip, rar, tar, nes, fds, nsf, unf, nez, unif]
+      ExecutableLookup: ^fceux\.exe
+
 - Name: Snes9X
   Website: 'http://www.snes9x.com/'
   Profiles:
