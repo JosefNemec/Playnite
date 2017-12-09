@@ -95,13 +95,14 @@ namespace Playnite.Providers.Steam
 
             foreach (var folder in GetLibraryFolders())
             {
-                if (Directory.Exists(folder))
+                var libFolder = Path.Combine(folder, "steamapps");
+                if (Directory.Exists(libFolder))
                 {
-                    games.AddRange(GetInstalledGamesFromFolder(Path.Combine(folder, "steamapps")));
+                    games.AddRange(GetInstalledGamesFromFolder(libFolder));
                 }
                 else
                 {
-                    logger.Warn($"Steam library {folder} not found.");
+                    logger.Warn($"Steam library {libFolder} not found.");
                 }                
             }
 
@@ -119,7 +120,10 @@ namespace Playnite.Providers.Steam
             {
                 if (int.TryParse(child.Name, out int test))
                 {
-                    dbs.Add(child.Value);
+                    if (!string.IsNullOrEmpty(child.Value) && Directory.Exists(child.Value))
+                    {
+                        dbs.Add(child.Value);
+                    }
                 }
             }
 
