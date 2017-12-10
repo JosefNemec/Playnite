@@ -69,12 +69,16 @@ $ignoreList = @(
     "testvulkan_async_compute_libretro.info",
     "testvulkan_libretro.info",
     "xrick_libretro.info",
-    "cruzes_libretro.info"
+    "cruzes_libretro.info",
+    "chaigame_libretro.info",
+    "chailove_libretro.info",
+    "freej2me_libretro.info"
 )
 
 $platformsTranslate = @{
     "The 3DO Company 3DO" = "3DO Interactive Multiplayer";
     "Nintendo Super Nintendo Entertainment System" = "Super Nintendo Entertainment System";
+    "Nintendo Super Nintendo Entertainment System Hacks" = "Super Nintendo Entertainment System";
     "Nintendo DS Decrypted" = "Nintendo DS";
     "Nintendo DS (Download Play)" = "Nintendo DS";
     "RPG Maker 2000" = "RPG Maker";
@@ -83,6 +87,7 @@ $platformsTranslate = @{
     "MAME 2000" = "Various";
     "MAME 2003" = "Various";
     "MAME 2003 (Midway)" = "Various";
+    "MAME 2009" = "Various";
     "MAME 2010" = "Various";
     "MAME 2014" = "Various";
     "MAME 2016" = "Various";
@@ -90,6 +95,13 @@ $platformsTranslate = @{
     "Nintendo Game Boy Advance (e Cards)" = "Nintendo Game Boy Advance";
     "Sony PlayStation Portable" = "Sony PSP";
     "IBM PC" = "PC";
+    "Sega Master System Mark III" = "Sega Master System";
+    "Sega Mega Drive Genesis" = "Sega Genesis";
+    "Sega Mega CD Sega CD" = "Sega CD";
+    "PC 98" = "NEC PC-9801";
+    "NEC PC Engine TurboGrafx 16" = "NEC TurboGrafx 16";
+    "NEC PC Engine CD TurboGrafx CD" = "NEC TurboGrafx-CD";
+    "NEC PC FX" = "NEC PC-FX";
 }
 
 $profileTemplate = '

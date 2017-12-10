@@ -328,7 +328,7 @@
     - Name: default
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance]
-      ImageExtensions: [.zip, .7z, .rar, .bin, .elf, .mb, .gba, .agb, .dmg, .gb, .gbc, .cgb, .sgb]
+      ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb, dmg, gb, gbc, cgb, sgb]
       ExecutableLookup: ^mGBA.*\.exe$
  
 - Name: Nebula 2
@@ -466,7 +466,7 @@
 
 - Name: RetroArch
   Website: 'http://www.retroarch.com/'
-  Profiles:
+  Profiles:  
     - Name: 3DO (4DO)
       DefaultArguments: '-L ".\cores\4do_libretro.dll" "{ImagePath}"'
       Platforms: [3DO Interactive Multiplayer]
@@ -481,16 +481,16 @@
       RequiredFiles: ['cores\81_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: Atari 8-bit computer systems and 5200
+    - Name: Atari 8-bit computer systems and 5200 (Atari800)
       DefaultArguments: '-L ".\cores\atari800_libretro.dll" "{ImagePath}"'
       Platforms: [Atari 5200]
-      ImageExtensions: [xfd, atr, atx, cdm, cas, bin, a52, zip]
+      ImageExtensions: [xfd, atr, atx, cdm, cas, bin, a52, xex, zip]
       RequiredFiles: ['cores\atari800_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: Sega MD (BlastEm)
       DefaultArguments: '-L ".\cores\blastem_libretro.dll" "{ImagePath}"'
-      Platforms: [Sega Mega Drive Genesis]
+      Platforms: [Sega Genesis]
       ImageExtensions: [md, bin, smd]
       RequiredFiles: ['cores\blastem_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
@@ -565,17 +565,10 @@
       RequiredFiles: ['cores\cap32_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: ChaiGame
-      DefaultArguments: '-L ".\cores\chaigame_libretro.dll" "{ImagePath}"'
-      Platforms: [ChaiGame]
-      ImageExtensions: [chai, chaigame]
-      RequiredFiles: ['cores\chaigame_libretro.dll']
-      ExecutableLookup: ^retroarch\.exe$
-
     - Name: Nintendo 3DS (Citra)
       DefaultArguments: '-L ".\cores\citra_libretro.dll" "{ImagePath}"'
       Platforms: [Nintendo 3DS]
-      ImageExtensions: [3ds, 3dsx, cia, elf]
+      ImageExtensions: [3ds, 3dsx, elf, axf, cci, cxi, app]
       RequiredFiles: ['cores\citra_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -644,7 +637,7 @@
 
     - Name: Sega Master System (Emux)
       DefaultArguments: '-L ".\cores\emux_sms_libretro.dll" "{ImagePath}"'
-      Platforms: [Sega Master System Mark III]
+      Platforms: [Sega Master System]
       ImageExtensions: [sms, bin, rom]
       RequiredFiles: ['cores\emux_sms_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
@@ -673,7 +666,7 @@
     - Name: Arcade (FB Alpha 2012)
       DefaultArguments: '-L ".\cores\fbalpha2012_libretro.dll" "{ImagePath}"'
       Platforms: [Various]
-      ImageExtensions: [iso, zip]
+      ImageExtensions: [iso, zip, 7z]
       RequiredFiles: ['cores\fbalpha2012_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -728,8 +721,8 @@
 
     - Name: Sega MS/GG/MD/CD (Genesis Plus GX)
       DefaultArguments: '-L ".\cores\genesis_plus_gx_libretro.dll" "{ImagePath}"'
-      Platforms: [Sega Game Gear, Sega Master System Mark III, Sega Mega CD Sega CD, Sega Mega Drive Genesis, Sega PICO, Sega SG 1000]
-      ImageExtensions: [mdx, md, smd, gen, bin, cue, iso, sms, gg, sg]
+      Platforms: [Sega Game Gear, Sega Master System, Sega CD, Sega Genesis, Sega PICO, Sega SG 1000]
+      ImageExtensions: [mdx, md, smd, gen, bin, cue, iso, sms, gg, sg, 68k, chd]
       RequiredFiles: ['cores\genesis_plus_gx_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -761,6 +754,20 @@
       RequiredFiles: ['cores\hatari_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
+    - Name: SNES / Super Famicom (nSide Balanced)
+      DefaultArguments: '-L ".\cores\higan_sfc_balanced_libretro.dll" "{ImagePath}"'
+      Platforms: [Super Nintendo Entertainment System, Nintendo Game Boy, Nintendo Game Boy Color]
+      ImageExtensions: [sfc, smc, gb, gbc, bml, rom]
+      RequiredFiles: ['cores\higan_sfc_balanced_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: SNES / Super Famicom (higan Accuracy)
+      DefaultArguments: '-L ".\cores\higan_sfc_libretro.dll" "{ImagePath}"'
+      Platforms: [Super Nintendo Entertainment System, Nintendo Game Boy, Nintendo Game Boy Color]
+      ImageExtensions: [sfc, smc, gb, gbc, bml, rom]
+      RequiredFiles: ['cores\higan_sfc_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
     - Name: Arcade (MAME 2000)
       DefaultArguments: '-L ".\cores\mame2000_libretro.dll" "{ImagePath}"'
       Platforms: [Various]
@@ -780,6 +787,13 @@
       Platforms: [Various]
       ImageExtensions: [zip]
       RequiredFiles: ['cores\mame2003_midway_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: Arcade (MAME 2009)
+      DefaultArguments: '-L ".\cores\mame2009_libretro.dll" "{ImagePath}"'
+      Platforms: [Various]
+      ImageExtensions: [zip, 7z, chd]
+      RequiredFiles: ['cores\mame2009_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: Arcade (MAME 2010)
@@ -833,14 +847,14 @@
 
     - Name: PC Engine/PCE-CD (Beetle PCE FAST)
       DefaultArguments: '-L ".\cores\mednafen_pce_fast_libretro.dll" "{ImagePath}"'
-      Platforms: [NEC PC Engine TurboGrafx 16, NEC PC Engine CD TurboGrafx CD]
+      Platforms: [NEC TurboGrafx 16, NEC TurboGrafx-CD]
       ImageExtensions: [pce, cue, ccd, iso, img, bin, chd]
       RequiredFiles: ['cores\mednafen_pce_fast_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: PC-FX (Beetle PC-FX)
       DefaultArguments: '-L ".\cores\mednafen_pcfx_libretro.dll" "{ImagePath}"'
-      Platforms: [NEC PC FX]
+      Platforms: [NEC PC-FX]
       ImageExtensions: [cue, ccd, toc, chd]
       RequiredFiles: ['cores\mednafen_pcfx_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
@@ -848,14 +862,14 @@
     - Name: PlayStation (Beetle PSX HW)
       DefaultArguments: '-L ".\cores\mednafen_psx_hw_libretro.dll" "{ImagePath}"'
       Platforms: [Sony PlayStation]
-      ImageExtensions: [cue, toc, m3u, ccd, exe, pbp]
+      ImageExtensions: [cue, toc, m3u, ccd, exe, pbp, chd]
       RequiredFiles: ['cores\mednafen_psx_hw_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: PlayStation (Beetle PSX)
       DefaultArguments: '-L ".\cores\mednafen_psx_libretro.dll" "{ImagePath}"'
       Platforms: [Sony PlayStation]
-      ImageExtensions: [cue, toc, m3u, ccd, exe, pbp]
+      ImageExtensions: [cue, toc, m3u, ccd, exe, pbp, chd]
       RequiredFiles: ['cores\mednafen_psx_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -938,7 +952,7 @@
 
     - Name: NEC PC-98 (Neko Project II)
       DefaultArguments: '-L ".\cores\nekop2_libretro.dll" "{ImagePath}"'
-      Platforms: [PC 98]
+      Platforms: [NEC PC-9801]
       ImageExtensions: [d98, zip, 98d, fdi, fdd, 2hd, tfd, d88, 88d, hdm, xdf, dup, cmd, hdi, thd, nhd, hdd]
       RequiredFiles: ['cores\nekop2_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
@@ -948,6 +962,13 @@
       Platforms: [Nintendo Entertainment System, Nintendo Family Computer Disk System]
       ImageExtensions: [nes, fds, unf, unif]
       RequiredFiles: ['cores\nestopia_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: NEC PC-98 (Neko Project II Kai)
+      DefaultArguments: '-L ".\cores\np2kai_libretro.dll" "{ImagePath}"'
+      Platforms: [NEC PC-9801]
+      ImageExtensions: [d98, zip, 98d, fdi, fdd, 2hd, tfd, d88, 88d, hdm, xdf, dup, cmd, hdi, thd, nhd, hdd, hdn]
+      RequiredFiles: ['cores\np2kai_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: Odyssey2 / Videopac+ (O2EM)
@@ -1008,8 +1029,8 @@
 
     - Name: Sega MS/MD/CD/32X (PicoDrive)
       DefaultArguments: '-L ".\cores\picodrive_libretro.dll" "{ImagePath}"'
-      Platforms: [Sega Master System Mark III, Sega Mega Drive Genesis, Sega PICO, Sega 32X]
-      ImageExtensions: [bin, gen, smd, md, 32x, cue, iso, sms]
+      Platforms: [Sega Master System, Sega Genesis, Sega PICO, Sega 32X]
+      ImageExtensions: [bin, gen, smd, md, 32x, cue, iso, sms, 68k]
       RequiredFiles: ['cores\picodrive_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -1229,5 +1250,3 @@
       ImageExtensions: [bin, cue, iso]
       RequiredFiles: ['cores\yabause_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
-
-
