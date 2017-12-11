@@ -41,12 +41,12 @@ namespace Playnite.Providers.Steam
             {
                 if (kv["UserConfig"]["name"].Value != null)
                 {
-                    name = kv["UserConfig"]["name"].Value;
+                    name = StringExtensions.NormalizeGameName(kv["UserConfig"]["name"].Value);
                 }
             }
             else
             {
-                name = kv["name"].Value;
+                name = StringExtensions.NormalizeGameName(kv["name"].Value);
             }
 
             var game = new Game()

@@ -272,7 +272,7 @@ namespace Playnite.Providers.GOG
                 return metadata;
             }
 
-            game.Name = metadata.GameDetails.title;
+            game.Name = StringExtensions.NormalizeGameName(metadata.GameDetails.title);
             game.Description = metadata.GameDetails.description.full;
             game.Links = new ObservableCollection<Link>()
             {

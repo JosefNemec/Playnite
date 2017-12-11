@@ -26,6 +26,11 @@ namespace Playnite
 
         public static string NormalizeGameName(string name)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                return string.Empty;
+            }
+
             var newName = name;
             newName = Regex.Replace(newName, @"[™©®]", string.Empty);
             newName = Regex.Replace(newName, @"\s+", " ");

@@ -212,7 +212,7 @@ namespace Playnite.Providers.Origin
                             continue;
                         }
 
-                        newGame.Name = localData.localizableAttributes.displayName;
+                        newGame.Name = StringExtensions.NormalizeGameName(localData.localizableAttributes.displayName);
                         var platform = localData.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
 
                         if (platform == null)
@@ -304,7 +304,7 @@ namespace Playnite.Providers.Origin
         public OriginGameMetadata UpdateGameWithMetadata(IGame game)
         {
             var metadata = DownloadGameMetadata(game.ProviderId);
-            game.Name = metadata.StoreDetails.i18n.displayName.Replace("™", "");
+            game.Name = StringExtensions.NormalizeGameName(metadata.StoreDetails.i18n.displayName);
             game.Links = new ObservableCollection<Link>()
             {
                 new Link("Store", @"https://www.origin.com/store" + metadata.StoreDetails.offerPath),

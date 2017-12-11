@@ -481,7 +481,10 @@ namespace Playnite.MetaProviders
                         if (game.Provider != Provider.Custom)
                         {
                             gameData = ProcessField(game, new MetadataFieldSettings(true, MetadataSource.Store) , ref storeData, ref igdbData, (a) => a.GameData?.Name);
-                            game.Name = gameData?.GameData?.Name ?? game.Name;
+                            if (!string.IsNullOrEmpty(gameData?.GameData?.Name))
+                            {
+                                game.Name = StringExtensions.NormalizeGameName(gameData.GameData.Name);
+                            }
                         }
 
                         // Genre
