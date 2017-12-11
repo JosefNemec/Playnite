@@ -368,6 +368,7 @@ namespace Playnite.Providers.BattleNet
                 return metadata;
             }
 
+            game.Name = product.Name;
             var icon = Web.DownloadData(product.IconUrl);
             var iconFile = Path.GetFileName(product.IconUrl);
             metadata.Icon = new Database.FileDefinition($"images/battlenet/{game.ProviderId}/{iconFile}", iconFile, icon);

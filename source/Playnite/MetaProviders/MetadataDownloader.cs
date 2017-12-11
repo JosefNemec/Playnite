@@ -60,6 +60,16 @@ namespace Playnite.MetaProviders
                 OnPropertyChanged("Source");
             }
         }
+
+        public MetadataFieldSettings()
+        {
+        }
+
+        public MetadataFieldSettings(bool import, MetadataSource source)
+        {
+            Import = import;
+            Source = source;
+        }
     }
 
     public class MetadataDownloaderSettings : ObservableObject
@@ -467,6 +477,13 @@ namespace Playnite.MetaProviders
 
                     try
                     {
+                        // Name - always download for games from official stores
+                        if (game.Provider != Provider.Custom)
+                        {
+                            gameData = ProcessField(game, new MetadataFieldSettings(true, MetadataSource.Store) , ref storeData, ref igdbData, (a) => a.GameData?.Name);
+                            game.Name = gameData?.GameData?.Name ?? game.Name;
+                        }
+
                         // Genre
                         gameData = ProcessField(game, settings.Genre, ref storeData, ref igdbData, (a) => a.GameData?.Genres);
                         game.Genres = gameData?.GameData?.Genres ?? game.Genres;
