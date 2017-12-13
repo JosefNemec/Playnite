@@ -905,14 +905,13 @@ namespace PlayniteUI
 
         private void Database_GamesCollectionChanged(object sender, GamesCollectionChangedEventArgs args)
         {
-            foreach (var game in args.RemovedGames)
+            if (args.RemovedGames.Count > 0)
             {
-                foreach (var item in Items.ToList())
+                var removeIds = args.RemovedGames.Select(a => a.Id);
+                var toRemove = Items.Where(a => removeIds.Contains(a.Id))?.ToList();
+                if (toRemove != null)
                 {
-                    if (item.Game.Id == game.Id)
-                    {
-                        Items.Remove(item);
-                    }
+                    Items.RemoveRange(toRemove);
                 }
             }
 

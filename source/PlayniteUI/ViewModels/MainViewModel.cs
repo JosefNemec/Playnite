@@ -748,7 +748,7 @@ namespace PlayniteUI.ViewModels
                         var metaSettings = new MetadataDownloaderSettings();
                         metaSettings.ConfigureFields(MetadataSource.Store, true);
                         var downloader = new MetadataDownloader();
-                        downloader.DownloadMetadata(
+                        downloader.DownloadMetadataThreaded(
                             addedGames,
                             Database,
                             metaSettings,
@@ -806,7 +806,7 @@ namespace PlayniteUI.ViewModels
                 ProgressStatus = Resources.FindString("ProgressMetadata");
                 var downloader = new MetadataDownloader();
                 GamesLoaderHandler.ProgressTask =
-                    downloader.DownloadMetadata(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GamesLoaderHandler.CancelToken);
+                    downloader.DownloadMetadataThreaded(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GamesLoaderHandler.CancelToken);
                 await GamesLoaderHandler.ProgressTask;
             }
             finally

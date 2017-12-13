@@ -441,12 +441,43 @@ namespace Playnite.MetaProviders
             return null;
         }
 
-        public async Task DownloadMetadata(
+        public async Task DownloadMetadataThreaded(
             List<IGame> games,
             GameDatabase database,
             MetadataDownloaderSettings settings,
             Action<IGame, int, int> processCallback,
             CancellationTokenSource cancelToken)
+        {
+            int index = 0;
+            int total = games.Count;
+            var tasks = new List<Task>();
+
+            await Task.Factory.StartNew(() =>
+            {
+                var grouped = games.GroupBy(a => a.Provider);
+                foreach (IGrouping<Provider, IGame> group in grouped)
+                {
+                    tasks.Add(Task.Factory.StartNew(() =>
+                    {
+                        var gms = group.ToList();
+                        DownloadMetadata(gms, database, settings, (g, i, t) =>
+                        {
+                            index++;
+                            processCallback?.Invoke(g, index, total);
+                        }, cancelToken).Wait();
+                    }));
+                }
+
+                Task.WaitAll(tasks.ToArray());
+            });
+        }
+
+        public async Task DownloadMetadata(
+        List<IGame> games,
+        GameDatabase database,
+        MetadataDownloaderSettings settings,
+        Action<IGame, int, int> processCallback,
+        CancellationTokenSource cancelToken)
         {
             await Task.Factory.StartNew(() =>
             {
