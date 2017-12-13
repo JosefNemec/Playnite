@@ -17,10 +17,15 @@ namespace PlayniteUI
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var param = parameter as string;
-            var path = param.Split(',')[1];
-            var skinName = param.Split(',')[0];
-            var filePath = Path.Combine(Paths.ProgramFolder, "Skins", skinName, path);
+            var path = parameter as string;
+            if (string.IsNullOrEmpty(path))
+            {
+                return DependencyProperty.UnsetValue;
+            }
+
+            var skinName = string.IsNullOrEmpty(Skins.CurrentFullscreenSkin) ? Skins.CurrentSkin : Skins.CurrentFullscreenSkin;
+            var skinFolder = string.IsNullOrEmpty(Skins.CurrentFullscreenSkin) ? "Skins" : "SkinsFullscreen";
+            var filePath = Path.Combine(Paths.ProgramFolder, skinFolder, skinName, path);
             if (File.Exists(filePath))
             {
                 return filePath;

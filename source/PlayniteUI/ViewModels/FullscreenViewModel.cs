@@ -11,21 +11,15 @@ using System.Windows.Forms;
 
 namespace PlayniteUI.ViewModels
 {
-    public class FullscreenViewModel : ObservableObject
+    public class FullscreenViewModel : MainViewModel
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
-        private IWindowFactory window;
-        private IResourceProvider resources;
-        private Settings settings;
-        private GameDatabase database;
-
         public bool IsFullScreen
         {
             get;
             private set;
         } = false;
 
-        private double viewLeft;
+        private double viewLeft = 0;
         public double ViewLeft
         {
             get => viewLeft;
@@ -36,7 +30,7 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private double viewTop;
+        private double viewTop = 0;
         public double ViewTop
         {
             get => viewTop;
@@ -47,7 +41,7 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private double viewWidth;
+        private double viewWidth = 1280;
         public double ViewWidth
         {
             get => viewWidth;
@@ -58,7 +52,7 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private double viewHeight;
+        private double viewHeight = 720;
         public double ViewHeight
         {
             get => viewHeight;
@@ -69,6 +63,33 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        private bool showFilter = false;
+        public bool ShowFilter
+        {
+            get => showFilter;
+            set
+            {
+                showFilter = value;
+                OnPropertyChanged("ShowFilter");
+            }
+        }
+
+        public RelayCommand<object> BackCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {                
+                ToggleFilter();
+            });
+        }
+
+        public RelayCommand<object> ToggleFilterCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ToggleFilter();
+            });
+        }
+
         public RelayCommand<object> ToggleFullscreenCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -77,18 +98,20 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public FullscreenViewModel(GameDatabase database, Settings settings, IWindowFactory window, IResourceProvider resources)
+        public FullscreenViewModel(
+            GameDatabase database,
+            IWindowFactory window,
+            IDialogsFactory dialogs,
+            IResourceProvider resources,
+            Settings settings,
+            GamesEditor gamesEditor) : base(database, window, dialogs, resources, settings, gamesEditor)
         {
-            this.database = database;
-            this.window = window;
-            this.resources = resources;
-            this.settings = settings;
         }
 
         public void OpenView(bool fullscreen)
         {
-            window.Show(this);
-            window.BringToForeground();
+            Window.Show(this);
+            Window.BringToForeground();
             if (fullscreen)
             {
                 GoFullscreen();
@@ -97,11 +120,6 @@ namespace PlayniteUI.ViewModels
             {
                 LeaveFullscreen();
             }
-        }
-
-        public void CloseView()
-        {
-            window.Close();
         }
 
         public void ToggleFullscreen()
@@ -128,10 +146,15 @@ namespace PlayniteUI.ViewModels
         public void LeaveFullscreen()
         {
             IsFullScreen = false;
-            ViewWidth = Screen.PrimaryScreen.Bounds.Width / 2;
-            ViewHeight = Screen.PrimaryScreen.Bounds.Height / 2;
-            ViewLeft = ViewWidth - (ViewWidth / 2);
-            ViewTop = ViewHeight - (ViewHeight / 2);
+            ViewWidth = Screen.PrimaryScreen.Bounds.Width / 1.5;
+            ViewHeight = Screen.PrimaryScreen.Bounds.Height / 1.5;
+            ViewLeft = (Screen.PrimaryScreen.Bounds.Width - ViewWidth) / 2;
+            ViewTop = (Screen.PrimaryScreen.Bounds.Height - ViewHeight) / 2;
+        }
+
+        public void ToggleFilter()
+        {
+            ShowFilter = !ShowFilter;
         }
     }
 }

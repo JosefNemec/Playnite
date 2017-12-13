@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace PlayniteUI.Commands
 {
-    public class RelayCommand<T> : ICommand where T : class
+    public class RelayCommand<T> : ICommand
     {
         private readonly Predicate<T> canExecute;
         private readonly Action<T> execute;

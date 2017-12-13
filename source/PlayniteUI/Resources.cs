@@ -14,6 +14,20 @@ namespace PlayniteUI
 
     public class ResourceProvider : IResourceProvider
     {
+        private static ResourceProvider instance;
+        public static ResourceProvider Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new ResourceProvider();
+                }
+
+                return instance;
+            }
+        }
+
         public string FindString(string key)
         {
             var resource = Application.Current.TryFindResource(key);

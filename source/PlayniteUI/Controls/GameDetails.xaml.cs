@@ -106,34 +106,6 @@ namespace PlayniteUI.Controls
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (e.NewValue != null && e.NewValue is GameViewEntry)
-            {
-                var game = (GameViewEntry)e.NewValue;
-
-                switch (game.Provider)
-                {
-                    case Provider.Custom:
-                        BorderGameInfo.Background = Brushes.Transparent;
-                        Background = FindResource("ControlBackgroundBrush") as Brush;
-                        break;
-                    case Provider.GOG:
-                        BorderGameInfo.Background = FindResource("NormalBrushDark") as Brush;
-                        Background = FindResource("GogGameBackgroundBrush") as Brush;
-                        break;
-                    case Provider.Origin:
-                        BorderGameInfo.Background = Brushes.Transparent;
-                        Background = FindResource("ControlBackgroundBrush") as Brush;
-                        break;
-                    case Provider.Steam:
-                        BorderGameInfo.Background = Brushes.Transparent;
-                        Background = FindResource("SteamGameBackgroundBrush") as Brush;
-                        break;
-                    default:
-                        Background = FindResource("ControlBackgroundBrush") as Brush;
-                        break;
-                }
-            }
-
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowContent"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowInfoPanel"));            
         }

@@ -60,10 +60,10 @@ namespace PlayniteUI
 
         private void ComboSkinsFullscreen_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (CombSkinColorFullscreen.SelectedValue == null && ComboSkinsFullscreen.SelectedItem != null)
-            {
-                CombSkinColorFullscreen.SelectedValue = (ComboSkinsFullscreen.SelectedItem as Skin).Profiles.First();
-            }
+            //if (CombSkinColorFullscreen.SelectedValue == null && ComboSkinsFullscreen.SelectedItem != null)
+            //{
+            //    CombSkinColorFullscreen.SelectedValue = (ComboSkinsFullscreen.SelectedItem as Skin).Profiles.First();
+            //}
         }
     }
 }

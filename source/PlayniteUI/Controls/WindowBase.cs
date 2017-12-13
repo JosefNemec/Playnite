@@ -8,6 +8,10 @@ using System.Windows.Controls;
 
 namespace PlayniteUI.Controls
 {
+    [TemplatePart(Name = "PART_ButtonMinimize", Type = typeof(Button))]
+    [TemplatePart(Name = "PART_ButtonMaximize", Type = typeof(Button))]
+    [TemplatePart(Name = "PART_ButtonClose", Type = typeof(Button))]
+    [TemplatePart(Name = "PART_TextTitle", Type = typeof(TextBlock))]
     public class WindowBase : Window
     {
         private Button MinimizeButton;
@@ -92,34 +96,44 @@ namespace PlayniteUI.Controls
             }
         }
 
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            if (Template != null)
+            {
+                MinimizeButton = Template.FindName("PART_ButtonMinimize", this) as Button;
+                if (MinimizeButton != null)
+                {
+                    MinimizeButton.Click += MinimizeButton_Click;
+                    MinimizeButton.Visibility = ShowMinimizeButton == true ? Visibility.Visible : Visibility.Collapsed;
+                }
+
+                MaximizeButton = Template.FindName("PART_ButtonMaximize", this) as Button;
+                if (MaximizeButton != null)
+                {
+                    MaximizeButton.Click += MaximizeButton_Click;
+                    MaximizeButton.Visibility = ShowMaximizeButton == true ? Visibility.Visible : Visibility.Collapsed;
+                }
+
+                CloseButton = Template.FindName("PART_ButtonClose", this) as Button;
+                if (CloseButton != null)
+                {
+                    CloseButton.Click += CloseButton_Click;
+                    CloseButton.Visibility = ShowCloseButton == true ? Visibility.Visible : Visibility.Collapsed;
+                }
+
+                TextTitle = Template.FindName("PART_TextTitle", this) as TextBlock;
+                if (TextTitle != null)
+                {
+                    TextTitle.Visibility = ShowTitle == true ? Visibility.Visible : Visibility.Collapsed;
+                }
+            }
+        }
+
         private void WindowBase_Loaded(object sender, RoutedEventArgs e)
         {
-            MinimizeButton = Template.FindName("ButtonMinimize", this) as Button;
-            if (MinimizeButton != null)
-            {
-                MinimizeButton.Click += MinimizeButton_Click;
-                MinimizeButton.Visibility = ShowMinimizeButton == true ? Visibility.Visible : Visibility.Collapsed;
-            }
 
-            MaximizeButton = Template.FindName("ButtonMaximize", this) as Button;
-            if (MaximizeButton != null)
-            {
-                MaximizeButton.Click += MaximizeButton_Click;
-                MaximizeButton.Visibility = ShowMaximizeButton == true ? Visibility.Visible : Visibility.Collapsed;
-            }
-
-            CloseButton = Template.FindName("ButtonClose", this) as Button;
-            if (CloseButton != null)
-            {
-                CloseButton.Click += CloseButton_Click;
-                CloseButton.Visibility = ShowCloseButton == true ? Visibility.Visible : Visibility.Collapsed;
-            }
-            
-            TextTitle = Template.FindName("TextTitle", this) as TextBlock;
-            if (TextTitle != null)
-            {
-                TextTitle.Visibility = ShowTitle == true ? Visibility.Visible : Visibility.Collapsed;
-            }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

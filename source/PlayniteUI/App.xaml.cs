@@ -109,8 +109,9 @@ namespace PlayniteUI
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    PlayniteMessageBox.Show("Playnite failed to start. Please close all running instances and try again.",
-                        "Startup Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    PlayniteMessageBox.Show(
+                        ResourceProvider.Instance.FindString("StartGenericError"),
+                        ResourceProvider.Instance.FindString("StartupError"), MessageBoxButton.OK, MessageBoxImage.Error);
                     logger.Error(exc, "Can't process communication with other instances.");
                 }
 
@@ -136,18 +137,7 @@ namespace PlayniteUI
             Settings.ConfigureCef();
 
             // Load skin
-            try
-            {
-                Skins.ApplySkin(AppSettings.Skin, AppSettings.SkinColor);
-            }
-            catch (Exception exc)
-            {
-                PlayniteMessageBox.Show(
-                    $"Failed to apply skin \"{AppSettings.Skin}\", color profile \"{AppSettings.SkinColor}\"\n\n{exc.Message}",
-                    "Skin Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                Shutdown();
-                return;
-            }
+            LoadSkin(AppSettings.Skin, AppSettings.SkinColor, false);
 
             // First run wizard
             ulong steamCatImportId = 0;
@@ -396,6 +386,7 @@ namespace PlayniteUI
                 Current.MainWindow = null;
             }
 
+            LoadSkin(AppSettings.Skin, AppSettings.SkinColor, false);
             var window = new MainWindowFactory();
             mainModel = new MainViewModel(
                 Database,
@@ -404,7 +395,7 @@ namespace PlayniteUI
                 new ResourceProvider(),
                 AppSettings,
                 GamesEditor);
-            mainModel.ShowView();
+            mainModel.OpenView();
             Current.MainWindow = window.Window;
             await mainModel.LoadGames(AppSettings.UpdateLibStartup, steamCatImportId, metaForNewGames);
 
@@ -414,7 +405,7 @@ namespace PlayniteUI
             }
         }
 
-        public void OpenFullscreenView()
+        public async void OpenFullscreenView()
         {
             if (mainModel != null)
             {
@@ -423,14 +414,45 @@ namespace PlayniteUI
                 Current.MainWindow = null;
             }
 
+            LoadSkin(AppSettings.SkinFullscreen, AppSettings.SkinColorFullscreen, true);
             var window = new FullscreenWindowFactory();
             fullscreenModel = new FullscreenViewModel(
                 Database,
-                AppSettings,
                 window,
-                new ResourceProvider());
+                new DialogsFactory(),
+                new ResourceProvider(),
+                AppSettings,
+                GamesEditor);
+
+            fullscreenModel.OpenView();
+            Current.MainWindow = window.Window;
+            await fullscreenModel.LoadGames(AppSettings.UpdateLibStartup, 0, true);
+
             Current.MainWindow = window.Window;
             fullscreenModel.OpenView(false);
+        }
+
+        private void LoadSkin(string name, string profile, bool fullscreen)
+        {
+            try
+            {
+                if (fullscreen)
+                {
+                    Skins.ApplyFullscreenSkin(name, profile);
+                }
+                else
+                {
+                    Skins.ApplySkin(name, profile);
+                }
+            }
+            catch (Exception exc)
+            {
+                PlayniteMessageBox.Show(
+                    ResourceProvider.Instance.FindString(string.Format("SkinApplyError", AppSettings.Skin, AppSettings.SkinColor, exc.Message)),
+                    ResourceProvider.Instance.FindString("SkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
+                Shutdown();
+                return;
+            }
         }
 
         private void Application_Activated(object sender, EventArgs e)

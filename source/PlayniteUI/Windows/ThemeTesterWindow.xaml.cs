@@ -58,11 +58,42 @@ namespace PlayniteUI.Windows
     /// </summary>
     public partial class ThemeTesterWindow : WindowBase, INotifyPropertyChanged
     {
+        public enum SourceType
+        {
+            Normal,
+            Fullscreen
+        }
+
         public IEnumerable<string> SkinList
         {
             get
             {
-                return Skins.AvailableSkins.SelectMany(a => a.Profiles.Select(b => $"{a.Name}\\{b}"));                
+                if (SkinType == SourceType.Normal)
+                {
+                    return Skins.AvailableSkins.SelectMany(a => a.Profiles.Select(b => $"{a.Name}\\{b}"));
+                }
+                else
+                {
+                    return Skins.AvailableFullscreenSkins.SelectMany(a => a.Profiles.Select(b => $"{a.Name}\\{b}"));
+                }
+            }
+        }
+
+        private SourceType skinType = SourceType.Normal;
+        public SourceType SkinType
+        {
+            get => skinType;
+            set
+            {
+                if (watcher != null)
+                {
+                    watcher.EnableRaisingEvents = false;
+                    watcher.Dispose();
+                }
+
+                skinType = value;
+                OnPropertyChanged("SkinType");
+                OnPropertyChanged("SkinList");
             }
         }
 
@@ -90,7 +121,15 @@ namespace PlayniteUI.Windows
 
                 if (value == true)
                 {
-                    watcher = new FileSystemWatcher(Paths.SkinsPath, "*.xaml");
+                    if (SkinType == SourceType.Normal)
+                    {
+                        watcher = new FileSystemWatcher(Paths.SkinsPath, "*.xaml");
+                    }
+                    else
+                    {
+                        watcher = new FileSystemWatcher(Paths.SkinsFullscreenPath, "*.xaml");
+                    }
+
                     watcher.Changed += Watcher_Changed;
                     watcher.IncludeSubdirectories = true;
                     watcher.EnableRaisingEvents = true;
@@ -129,8 +168,7 @@ namespace PlayniteUI.Windows
         {
             InitializeComponent();
             listview.ItemsSource = new ListViewMock().MyListBoxItems;
-            DataContext = this;          
-            SelectedSkin = SkinList.First(a => Skins.CurrentSkin + "\\" + Skins.CurrentColor == a);
+            DataContext = this;
         }        
 
         public void OnPropertyChanged(string name)
@@ -152,7 +190,7 @@ namespace PlayniteUI.Windows
             var name = skin.Split('\\')[0];
             var color = skin.Split('\\')[1];
 
-            var skinValid = Skins.IsSkinValid(name, false);
+            var skinValid = Skins.IsSkinValid(name, SkinType == SourceType.Fullscreen);
             if (skinValid.Item1 == false)
             {
                 if (validateToDialog)
@@ -168,7 +206,7 @@ namespace PlayniteUI.Windows
                 return;
             }
 
-            var colorValid = Skins.IsColorProfileValid(name, color, false);
+            var colorValid = Skins.IsColorProfileValid(name, color, SkinType == SourceType.Fullscreen);
             if (colorValid.Item1 == false)
             {
                 if (validateToDialog)
@@ -185,12 +223,19 @@ namespace PlayniteUI.Windows
             }
 
             ValidationError = string.Empty;
-            Skins.ApplySkin(name, color);
+            if (SkinType == SourceType.Normal)
+            {
+                Skins.ApplySkin(name, color, true);
+            }
+            else
+            {
+                Skins.ApplyFullscreenSkin(name, color, true);
+            }
         }
 
         private void ButtonReloadSkinList_Click(object sender, RoutedEventArgs e)
         {
-            OnPropertyChanged("SelectedSkin");
+            OnPropertyChanged("SkinList");
         }
 
         private void ButtonApplySkin_Click(object sender, RoutedEventArgs e)

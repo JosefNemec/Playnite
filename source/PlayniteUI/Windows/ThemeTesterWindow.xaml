@@ -13,7 +13,6 @@
     
     <controls:WindowBase.Resources>
         <local:ListViewMock x:Key="ListViewMock"/>
-        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </controls:WindowBase.Resources>
 
     <DockPanel>

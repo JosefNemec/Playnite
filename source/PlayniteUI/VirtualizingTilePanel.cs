@@ -11,14 +11,32 @@ namespace PlayniteUI
 {
     public class VirtualizingTilePanel : VirtualizingPanel, IScrollInfo
     {
-        private static readonly DependencyProperty ContainerSizeProperty = DependencyProperty.Register("ContainerSize", typeof(Size), typeof(VirtualizingTilePanel));
-        
+        public double Columns
+        {
+            get { return (double)GetValue(ColumnsProperty); }
+            set { SetValue(ColumnsProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColumnsProperty 
+            = DependencyProperty.RegisterAttached("Columns", typeof(double), typeof(VirtualizingTilePanel), new FrameworkPropertyMetadata(Double.NaN, OnItemsSourceChanged));
+
+
         public static readonly DependencyProperty ItemWidthProperty
            = DependencyProperty.RegisterAttached("ItemWidth", typeof(double), typeof(VirtualizingTilePanel), new FrameworkPropertyMetadata(150d, OnItemsSourceChanged));
 
         public double ItemWidth
         {
-            get { return (double)GetValue(ItemWidthProperty); }
+            get
+            {
+                if (Double.IsNaN(Columns))
+                {
+                    return (double)GetValue(ItemWidthProperty);
+                }
+                else
+                {
+                    return Math.Floor(ViewportWidth / Columns);
+                }
+            }
             set { SetValue(ItemWidthProperty, value); }
         }
 
@@ -43,15 +61,9 @@ namespace PlayniteUI
             {
                 return;
             }
-
-            var storage = panel.GetItemStorageProvider();
-            foreach (var item in panel._itemsControl.Items)
-            {
-                storage.ClearItemValue(item, ContainerSizeProperty);
-            }
-
+            
             panel.InvalidateMeasure();
-            panel._owner.InvalidateScrollInfo();
+            panel._owner?.InvalidateScrollInfo();
             panel.SetVerticalOffset(0);
         }
 
@@ -222,22 +234,6 @@ namespace PlayniteUI
         // where you'll make your changes
 
         /// <summary>
-        /// Calculate the extent of the view based on the available size
-        /// </summary>
-        /// <param name="availableSize">available size</param>
-        /// <param name="itemCount">number of data items</param>
-        /// <returns></returns>
-        private Size CalculateExtent(Size availableSize, int itemCount)
-        {
-            int childrenPerRow = CalculateChildrenPerRow(availableSize);
-
-            // See how big we are
-            return new Size(
-                childrenPerRow * this.ItemWidth,
-                this.ItemWidth * Math.Ceiling(itemCount / (double)childrenPerRow));
-        }
-
-        /// <summary>
         /// Get the range of children that are visible
         /// </summary>
         /// <param name="firstVisibleItemIndex">The item index of the first visible item</param>
@@ -286,56 +282,6 @@ namespace PlayniteUI
             return new Size(ItemWidth, ItemHeight);
         }
 
-        private Size GetChildSizeFromIndex(int index)
-        {
-            var elem = (UIElement)GeneratorContainer.ContainerFromIndex(index);
-            if (elem != null)
-            {
-                return elem.DesiredSize;
-            }
-
-            var size = GetStoredChildSize(GeneratorContainer.Items[index]);
-            if (size == Size.Empty)
-            {
-                return new Size(ItemWidth, ItemHeight);
-            }
-            else
-            {
-                return size;
-            }
-        }
-
-        private Size GetStoredChildSize(object child)
-        {
-            var storage = GetItemStorageProvider();
-            if (child is UIElement)
-            {
-                var item = GeneratorContainer.ItemFromContainer((UIElement)child);
-                object value = storage.ReadItemValue(item, ContainerSizeProperty);
-                if (value == null)
-                {
-                    return Size.Empty;
-                }
-                else
-                {
-                    return (Size)value;
-                }
-
-            }
-            else
-            {
-                object value = storage.ReadItemValue(child, ContainerSizeProperty);
-                if (value == null)
-                {
-                    return Size.Empty;
-                }
-                else
-                {
-                    return (Size)value;
-                }
-            }
-        }
-
         public IContainItemStorage GetItemStorageProvider()
         {
             return _itemsControl as IContainItemStorage;
@@ -364,10 +310,8 @@ namespace PlayniteUI
                 ItemWidth,
                 ItemHeight);
 
-            child.Arrange(targetRect);
-            
+            child.Arrange(targetRect);            
             var item = GeneratorContainer.ItemFromContainer(child);
-            GetItemStorageProvider().StoreItemValue(item, ContainerSizeProperty, child.DesiredSize);
         }
 
         /// <summary>
@@ -377,6 +321,11 @@ namespace PlayniteUI
         /// <returns></returns>
         private int CalculateChildrenPerRow(Size availableSize)
         {
+            if (!Double.IsNaN(Columns))
+            {                
+                return Convert.ToInt32(Columns);
+            }
+
             // Figure out how many children fit on each row
             int childrenPerRow;
             if (availableSize.Width == Double.PositiveInfinity)

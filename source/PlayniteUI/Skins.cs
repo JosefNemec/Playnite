@@ -113,8 +113,13 @@ namespace PlayniteUI
             return skins;
         }
 
-        public static void ApplyFullscreenSkin(string skinName, string color)
+        public static void ApplyFullscreenSkin(string skinName, string color, bool forceReload = false)
         {
+            if (CurrentFullscreenSkin == skinName && CurrentFullscreenColor == color && forceReload == false)
+            {
+                return;
+            }
+
             if (Application.Current != null)
             {
                 var dictionaries = Application.Current.Resources.MergedDictionaries;
@@ -131,6 +136,23 @@ namespace PlayniteUI
                     dictionaries.Remove(currentSkinDict);
                 }
 
+                // Also remove any non-fullscreen resources
+                // we don't want to have fullscreen and non-fullscreen resources loaded at the same time
+                // to prevent possible conflicts.
+                currentSkinDict = dictionaries.FirstOrDefault(a => a.Contains("SkinName"));
+                currentSkinColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinColorName"));
+
+                if (currentSkinColorDict != null)
+                {
+                    dictionaries.Remove(currentSkinColorDict);
+                }
+
+                if (currentSkinDict != null)
+                {
+                    dictionaries.Remove(currentSkinDict);
+                }
+
+
                 var skinPath = GetSkinPath(skinName, true);
                 dictionaries.Add(LoadXaml(skinPath));
 
@@ -145,15 +167,38 @@ namespace PlayniteUI
 
             CurrentSkin = skinName;
             CurrentColor = color;
+            CurrentFullscreenSkin = CurrentSkin;
+            CurrentFullscreenColor = CurrentColor;
         }
 
-        public static void ApplySkin(string skinName, string color)
+        public static void ApplySkin(string skinName, string color, bool forceReload = false)
         {
+            if (CurrentSkin == skinName && CurrentColor == color && forceReload == false)
+            {
+                return;
+            }
+
             if (Application.Current != null)
             {
                 var dictionaries = Application.Current.Resources.MergedDictionaries;
                 var currentSkinDict = dictionaries.FirstOrDefault(a => a.Contains("SkinName"));
                 var currentSkinColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinColorName"));
+
+                if (currentSkinColorDict != null)
+                {
+                    dictionaries.Remove(currentSkinColorDict);
+                }
+
+                if (currentSkinDict != null)
+                {
+                    dictionaries.Remove(currentSkinDict);
+                }
+
+                // Also remove any fullscreen resources
+                // we don't want to have fullscreen and non-fullscreen resources loaded at the same time
+                // to prevent possible conflicts.
+                currentSkinDict = dictionaries.FirstOrDefault(a => a.Contains("SkinFullscreenName"));
+                currentSkinColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinFullscreenColorName"));
 
                 if (currentSkinColorDict != null)
                 {
@@ -179,6 +224,8 @@ namespace PlayniteUI
 
             CurrentSkin = skinName;
             CurrentColor = color;
+            CurrentFullscreenSkin = null;
+            CurrentFullscreenColor = null;
         }
 
         private static ResourceDictionary LoadXaml(string path)

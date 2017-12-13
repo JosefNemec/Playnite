@@ -150,9 +150,9 @@
                                       Content="{DynamicResource SettingsUpdateLibStartup}" ToolTip="{DynamicResource SettingsUpdateLibStartupTooltip}" 
                                       IsChecked="{Binding Settings.UpdateLibStartup}"/>
 
-                            <CheckBox Name="CheckStartFullscreen" Margin="5,15,5,5" Grid.Row="2" Grid.ColumnSpan="2"
+                            <!--<CheckBox Name="CheckStartFullscreen" Margin="5,15,5,5" Grid.Row="2" Grid.ColumnSpan="2"
                                       Content="{DynamicResource SettingsStartInFullscreen}"
-                                      IsChecked="{Binding Settings.StartInFullscreen}"/>
+                                      IsChecked="{Binding Settings.StartInFullscreen}"/>-->
                         </Grid>
                     </StackPanel>
                 </TabItem>                
@@ -162,16 +162,17 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
                             
                             <TextBlock Text="{DynamicResource SettingsSkin}" VerticalAlignment="Center"
-                                        Grid.Row="0" Grid.Column="0"/>
-                            <ComboBox Margin="10,5,0,5" Name="ComboSkins"
+                                       Grid.Row="0" Grid.Column="0"/>
+                            <ComboBox Margin="10,5,20,5" Name="ComboSkins"
                                         Grid.Row="0" Grid.Column="1"
                                         ItemsSource="{Binding AvailableSkins}"
                                         SelectedValue="{Binding Settings.Skin}"
@@ -179,16 +180,15 @@
                                         SelectedValuePath="Name" DisplayMemberPath="Name" />
 
                             <TextBlock Text="{DynamicResource SettingsSkinColor}" VerticalAlignment="Center"
-                                        Grid.Row="1" Grid.Column="0" />
-                            <ComboBox Margin="10,5,0,5" Name="CombSkinColor"
-                                        Grid.Row="1" Grid.Column="1"
-                                        SelectedValue="{Binding Settings.SkinColor}"
-                                        SelectionChanged="CombSkinColor_SelectionChanged"
-                                        ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkins}">
-                            </ComboBox>
+                                       Grid.Row="0" Grid.Column="2" />
+                            <ComboBox Margin="10,5,10,5" Name="CombSkinColor"
+                                      Grid.Row="0" Grid.Column="3"
+                                      SelectedValue="{Binding Settings.SkinColor}"
+                                      SelectionChanged="CombSkinColor_SelectionChanged"
+                                      ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkins}" />
                         </Grid>
 
-                        <Grid Margin="0,10,0,0">
+                        <!--<Grid Margin="0,10,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
@@ -214,7 +214,7 @@
                                         SelectedValue="{Binding Settings.SkinColorFullscreen}"
                                         ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkinsFullscreen}">
                             </ComboBox>
-                        </Grid>
+                        </Grid>-->
                         <CheckBox Content="{DynamicResource SettingsAsyncImageLoading}" ToolTip="{DynamicResource SettingsAsyncImageLoadingTooltip}"
                                   Margin="0,15,0,0"
                                   Name="CheckAsyncImages" IsChecked="{Binding Settings.AsyncImageLoading}"/>
