@@ -14,8 +14,8 @@ namespace PlayniteTests
         [Test]
         public void NormalizeGameNameTest()
         {
-            Assert.AreEqual("Command & Conquer Red Alert 3: Uprising",
-                StringExtensions.NormalizeGameName("Command®   & Conquer™ Red Alert 3™: Uprising©"));
+            Assert.AreEqual("Command & Conquer Red Alert 3: Uprising: Best - Game",
+                StringExtensions.NormalizeGameName("Command®   & Conquer™ Red_Alert 3™ : Uprising©:_Best- Game"));
         }
     }
 }

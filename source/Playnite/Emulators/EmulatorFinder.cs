@@ -147,7 +147,7 @@ namespace Playnite.Emulators
                     {
                         var newGame = new Game()
                         {
-                            Name = Path.GetFileNameWithoutExtension(file.Name),
+                            Name = StringExtensions.NormalizeGameName(Path.GetFileNameWithoutExtension(file.Name)),
                             IsoPath = file.FullName,
                             InstallDirectory = Path.GetDirectoryName(file.FullName)
                         };

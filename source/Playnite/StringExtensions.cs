@@ -32,8 +32,11 @@ namespace Playnite
             }
 
             var newName = name;
+            newName = newName.Replace("_", " ");
             newName = Regex.Replace(newName, @"[™©®]", string.Empty);
             newName = Regex.Replace(newName, @"\s+", " ");
+            newName = Regex.Replace(newName, @"\s*:\s*", ": ");
+            newName = Regex.Replace(newName, @"\s*-\s*", " - ");
             return newName;
         }
     }
