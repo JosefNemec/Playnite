@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     
         xmlns:local="clr-namespace:PlayniteUI.Windows"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
@@ -27,18 +28,36 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Image Grid.Column="0" Grid.Row="0" RenderOptions.BitmapScalingMode="Fant" MaxWidth="32" MaxHeight="32" Margin="10,10,0,10"
-               Source="{Binding Image, ElementName=WindowMessageBox, TargetNullValue={x:Null}}">
-            <Image.Style>
-                <Style TargetType="Image">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Image, ElementName=WindowMessageBox}" Value="{x:Null}">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
-        </Image>
+        <Viewbox Grid.Column="0" Grid.Row="0" 
+                 MaxWidth="32" MaxHeight="32" Margin="10,10,0,10">
+            <TextBlock>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding DisplayIcon, ElementName=WindowMessageBox}" Value="{x:Static MessageBoxImage.None}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding DisplayIcon, ElementName=WindowMessageBox}" Value="{x:Static MessageBoxImage.Error}">
+                                <Setter Property="Text" Value="❌" />
+                                <Setter Property="Foreground" Value="OrangeRed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding DisplayIcon, ElementName=WindowMessageBox}" Value="{x:Static MessageBoxImage.Question}">
+                                <Setter Property="Text" Value="❔" />
+                                <Setter Property="Foreground" Value="DodgerBlue" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding DisplayIcon, ElementName=WindowMessageBox}" Value="{x:Static MessageBoxImage.Warning}">
+                                <Setter Property="Text" Value="⚠" />
+                                <Setter Property="Foreground" Value="Yellow" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding DisplayIcon, ElementName=WindowMessageBox}" Value="{x:Static MessageBoxImage.Information}">
+                                <Setter Property="Text" Value="❕" />
+                                <Setter Property="Foreground" Value="DodgerBlue" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Viewbox>
         <TextBlock Grid.Column="1" Grid.Row="0" Margin="10" Text="{Binding Text, ElementName=WindowMessageBox}"
                    Style="{StaticResource BaseTextBlockStyle}" VerticalAlignment="Center" TextWrapping="Wrap"/>
         <TextBox Grid.Row="1" Grid.ColumnSpan="2" Margin="5,0,5,5" Name="TextInputText" Width="400"

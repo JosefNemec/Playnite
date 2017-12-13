@@ -25,17 +25,6 @@ namespace PlayniteUI.Windows
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string image = null;
-        public string Image
-        {
-            get => image;
-            set
-            {
-                image = value;
-                OnPropertyChanged("Image");
-            }
-        }
-
         private string text = string.Empty;
         public string Text
         {
@@ -125,6 +114,17 @@ namespace PlayniteUI.Windows
             }
         }
 
+        private MessageBoxImage displayIcon;
+        public MessageBoxImage DisplayIcon
+        {
+            get => displayIcon;
+            set
+            {
+                displayIcon = value;
+                OnPropertyChanged("DisplayIcon");
+            }
+        }
+
         public MessageBoxWindow()
         {
             InitializeComponent();
@@ -150,7 +150,6 @@ namespace PlayniteUI.Windows
             ShowInputField = true;
             ShowOKButton = true;
             ShowCancelButton = true;
-            Image = null;
             InputText = input ?? string.Empty;
             ShowDialog();
             input = InputText;
@@ -168,6 +167,7 @@ namespace PlayniteUI.Windows
             Owner = owner;
             Text = messageBoxText;
             Caption = caption;
+            DisplayIcon = icon;
 
             switch (button)
             {
@@ -189,28 +189,6 @@ namespace PlayniteUI.Windows
                     break;
                 default:
                     ShowOKButton = true;
-                    break;
-            }
-
-            switch (icon)
-            {
-                case MessageBoxImage.None:
-                    Image = null;
-                    break;
-                case MessageBoxImage.Stop:
-                    Image = @"/Images/MessageBox/error.png";
-                    break;
-                case MessageBoxImage.Question:
-                    Image = @"/Images/MessageBox/question.png";
-                    break;
-                case MessageBoxImage.Warning:
-                    Image = @"/Images/MessageBox/warning.png";
-                    break;
-                case MessageBoxImage.Information:
-                    Image = @"/Images/MessageBox/information.png";
-                    break;
-                default:
-                    Image = null;
                     break;
             }
 
