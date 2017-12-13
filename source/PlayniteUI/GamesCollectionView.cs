@@ -435,24 +435,21 @@ namespace PlayniteUI
 
             // ------------------ Installed
             bool installedResult = false;
-            if (Settings.FilterSettings.IsInstalled && game.IsInstalled)
+            if ((Settings.FilterSettings.IsInstalled && Settings.FilterSettings.IsUnInstalled) ||
+                (!Settings.FilterSettings.IsInstalled && !Settings.FilterSettings.IsUnInstalled))
             {
                 installedResult = true;
             }
-            else if (!Settings.FilterSettings.IsInstalled)
+            else
             {
-                installedResult = true;
-            }
-
-            // ------------------ UnInstalled
-            bool unInstalledResult = false;
-            if (Settings.FilterSettings.IsUnInstalled && !game.IsInstalled)
-            {
-                unInstalledResult = true;
-            }
-            else if (!Settings.FilterSettings.IsUnInstalled)
-            {
-                unInstalledResult = true;
+                if (Settings.FilterSettings.IsInstalled && game.IsInstalled)
+                {
+                    installedResult = true;
+                }
+                else if (Settings.FilterSettings.IsUnInstalled && !game.IsInstalled)
+                {
+                    installedResult = true;
+                }
             }
 
             // ------------------ Hidden
@@ -697,7 +694,6 @@ namespace PlayniteUI
             }
 
             return installedResult &&
-                unInstalledResult &&
                 hiddenResult &&
                 favoriteResult &&
                 textResult &&
