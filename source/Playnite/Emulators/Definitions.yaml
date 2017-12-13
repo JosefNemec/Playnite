@@ -16,7 +16,7 @@
       ImageExtensions: [iso, bwt, cdi, b5t, b6t, ccd, cue, mds, nrg, pdi]
       ExecutableLookup: ^nullDC.*\.exe
       
-- Name: demul
+- Name: DEmul
   Website: 'http://demul.emulation64.com/'
   Profiles:
     - Name: Sega Dreamcast
@@ -49,6 +49,15 @@
       Platforms: [Gaelco]
       ImageExtensions: [zip, 7z]
       ExecutableLookup: ^demul\.exe$
+
+- Name: redream
+  Website: 'https://redream.io/'
+  Profiles:
+    - Name: Default     
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Sega Dreamcast]
+      ImageExtensions: [cdi, gdi, chd, cue]
+      ExecutableLookup: ^redream\.exe$   
 
 - Name: Dolphin
   Website: 'https://dolphin-emu.org/'
@@ -316,7 +325,7 @@
 - Name: Gambatte
   Website: 'https://github.com/sinamas/gambatte'
   Profiles:
-    - Name: default
+    - Name: Default
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy, Nintendo Game Boy Color]
       ImageExtensions: [gb, gbc, dmg, sgb, zip, gz]
@@ -325,7 +334,7 @@
 - Name: mGBA
   Website: 'https://mgba.io/'
   Profiles:
-    - Name: default
+    - Name: Default
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance]
       ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb, dmg, gb, gbc, cgb, sgb]
@@ -361,8 +370,17 @@
       DefaultArguments: '/hardware:5200 /kernel:5200 "{ImagePath}"'
       Platforms: [Atari 5200]
       ImageExtensions: [rom, bin, car, a52, zip]  
-      ExecutableLookup: ^altirra.*\.exe$       
+      ExecutableLookup: ^altirra.*\.exe$
       
+- Name: Atari800
+  Website: 'https://atari800.github.io/'
+  Profiles:
+    - Name: Default    
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Atari 800, Atari 5200]
+      ImageExtensions: [xfd, atr, atx, cdm, cas, bin, a52]
+      ExecutableLookup: ^atari800\.exe$
+     
 - Name: WinVice
   Website: 'http://vice-emu.sourceforge.net/'
   Profiles:      
