@@ -39,7 +39,7 @@ namespace PlayniteTests.MetaProviders
                 var games = new List<IGame>()
                 {
                     new Game("Game1"),
-                    new Game("Game2") { Provider = Provider.Steam, ProviderId = "storeId" },
+                    new Game("Game2") { Provider = Provider.Steam, ProviderId = "Game2" },
                     new Game("Game3") // just to test that nonexistent game doesn't throw exception
                 };
 
@@ -74,7 +74,16 @@ namespace PlayniteTests.MetaProviders
                     }
                 };
 
-                var storeProvider = new MockMetadataProvider();
+                var storeProvider = new MockMetadataProvider
+                {
+                    GetSupportsIdSearchHandler = () => true,
+                    GetGameDataHandler = (gameId) =>
+                    {
+                        var game = new Game(gameId);
+                        return new GameMetadata(game, null, null, string.Empty);
+                    }
+                };
+
                 var downloader = new MockMetadataDownloader(storeProvider, storeProvider, storeProvider, storeProvider, igdbProvider);
                 var settings = new MetadataDownloaderSettings();
                 settings.ConfigureFields(MetadataSource.IGDB, true);
@@ -83,7 +92,7 @@ namespace PlayniteTests.MetaProviders
                     db, settings);
 
                 var dbGames = db.GamesCollection.FindAll().ToList();
-                Assert.AreEqual(3, downloader.CallCount);
+                Assert.AreEqual(4, downloader.CallCount);
                 var game1 = dbGames[0];
                 Assert.AreEqual("IGDB Description igdbid1", game1.Description);
                 Assert.AreEqual("IGDB Developer igdbid1", game1.Developers[0]);
@@ -183,7 +192,7 @@ namespace PlayniteTests.MetaProviders
                 var games = new List<IGame>()
                 {
                     new Game("Game1"),
-                    new Game("Game2") { Provider = Provider.Steam, ProviderId = "storeId" },
+                    new Game("Game2") { Provider = Provider.Steam, ProviderId = "Game2" },
                     new Game("Game3") // just to test that nonexistent game doesn't throw exception
                 };
 
@@ -219,7 +228,7 @@ namespace PlayniteTests.MetaProviders
                     GetSupportsIdSearchHandler = () => true,
                     GetGameDataHandler = (gameId) =>
                     {
-                        var game = new Game("Store Game " + gameId);
+                        var game = new Game(gameId);
                         game.Description = $"Store Description {gameId}";
                         game.Developers = new ComparableList<string>() { $"Store Developer {gameId}" };
                         game.Links = new ObservableCollection<Link>() { new Link($"Store link {gameId}", $"Store link url {gameId}") };
@@ -257,7 +266,7 @@ namespace PlayniteTests.MetaProviders
 
                 var game2 = dbGames[1];
                 Assert.AreEqual("IGDB Description igdbid2", game2.Description);
-                Assert.AreEqual("Store Developer storeId", game2.Developers[0]);
+                Assert.AreEqual("Store Developer Game2", game2.Developers[0]);
                 Assert.AreEqual("IGDB Genre igdbid2", game2.Genres[0]);
                 Assert.AreEqual("IGDB link igdbid2", game2.Links[0].Name);
                 Assert.AreEqual("IGDB link url igdbid2", game2.Links[0].Url);
@@ -291,17 +300,17 @@ namespace PlayniteTests.MetaProviders
                 Assert.AreEqual($"IGDBImagePathigdbid1.file", game1.Image);
 
                 game2 = dbGames[1];
-                Assert.AreEqual("Store Description storeId", game2.Description);
-                Assert.AreEqual("Store Developer storeId", game2.Developers[0]);
+                Assert.AreEqual("Store Description Game2", game2.Description);
+                Assert.AreEqual("Store Developer Game2", game2.Developers[0]);
                 Assert.AreEqual("IGDB Genre igdbid2", game2.Genres[0]);
-                Assert.AreEqual("Store link storeId", game2.Links[0].Name);
-                Assert.AreEqual("Store link url storeId", game2.Links[0].Url);
-                Assert.AreEqual("Store publisher storeId", game2.Publishers[0]);
+                Assert.AreEqual("Store link Game2", game2.Links[0].Name);
+                Assert.AreEqual("Store link url Game2", game2.Links[0].Url);
+                Assert.AreEqual("Store publisher Game2", game2.Publishers[0]);
                 Assert.IsNull(game2.Tags);
                 Assert.AreEqual(2016, game2.ReleaseDate.Value.Year);
-                Assert.AreEqual("Store backgournd storeId", game2.BackgroundImage);
-                Assert.AreEqual($"StoreIconPathstoreId.file", game2.Icon);
-                Assert.AreEqual($"StoreImagePathstoreId.file", game2.Image);
+                Assert.AreEqual("Store backgournd Game2", game2.BackgroundImage);
+                Assert.AreEqual($"StoreIconPathGame2.file", game2.Icon);
+                Assert.AreEqual($"StoreImagePathGame2.file", game2.Image);
             }
         }
 

@@ -495,7 +495,7 @@ namespace Playnite.MetaProviders
                                         
                     GameMetadata storeData = null;
                     GameMetadata igdbData = null;
-                    GameMetadata gameData;
+                    GameMetadata gameData = null;
 
                     // We need to get new instance from DB in case game got edited or deleted.
                     // We don't want to block game editing while metadata is downloading for other games.
@@ -620,11 +620,12 @@ namespace Playnite.MetaProviders
             else
             {
                 var name = StringExtensions.NormalizeGameName(gameName);
-                var results = provider.SearchGames(name.Trim());
+                var results = provider.SearchGames(name);
+                results.ForEach(a => a.Name = StringExtensions.NormalizeGameName(a.Name));
 
-                GameMetadata matchFun(string matchName)
+                GameMetadata matchFun(string matchName, List<MetadataSearchResult> list)
                 {
-                    var res = results.FirstOrDefault(a => string.Equals(matchName, a.Name, StringComparison.InvariantCultureIgnoreCase));
+                    var res = list.FirstOrDefault(a => string.Equals(matchName, a.Name, StringComparison.InvariantCultureIgnoreCase));
                     if (res != null)
                     {
                         return provider.GetGameData(res.Id);
@@ -639,7 +640,7 @@ namespace Playnite.MetaProviders
                 string testName = string.Empty;
 
                 // Direct comparison
-                data = matchFun(name);
+                data = matchFun(name, results);
                 if (data != null)
                 {
                     return data;
@@ -647,7 +648,7 @@ namespace Playnite.MetaProviders
 
                 // Try replacing roman numerals: 3 => III
                 testName = Regex.Replace(name, @"\d+", ReplaceNumsForRomans);
-                data = matchFun(testName);
+                data = matchFun(testName, results);
                 if (data != null)
                 {
                     return data;
@@ -655,7 +656,7 @@ namespace Playnite.MetaProviders
 
                 // Try adding The
                 testName = "The " + name;
-                data = matchFun(testName);
+                data = matchFun(testName, results);
                 if (data != null)
                 {
                     return data;
@@ -663,15 +664,30 @@ namespace Playnite.MetaProviders
 
                 // Try chaning & / and
                 testName = Regex.Replace(name, @"\s+and\s+", " & ", RegexOptions.IgnoreCase);
-                data = matchFun(testName);
+                data = matchFun(testName, results);
+                if (data != null)
+                {
+                    return data;
+                }
+
+                // Try removing all ":"
+                testName = Regex.Replace(testName, @"\s*:\s*", " ");
+                var resCopy = results.CloneJson();
+                resCopy.ForEach(a => a.Name = Regex.Replace(a.Name, @"\s*:\s*", " "));
+                data = matchFun(testName, resCopy);
                 if (data != null)
                 {
                     return data;
                 }
 
                 // Try without subtitle
-                var testResult = results.FirstOrDefault(a =>
+                var testResult = results.OrderBy(a => a.ReleaseDate).FirstOrDefault(a =>
                 {
+                    if (a.ReleaseDate == null)
+                    {
+                        return false;
+                    }
+
                     if (!string.IsNullOrEmpty(a.Name) && a.Name.Contains(":"))
                     {
                         return string.Equals(name, a.Name.Split(':')[0], StringComparison.InvariantCultureIgnoreCase);
@@ -684,7 +700,7 @@ namespace Playnite.MetaProviders
                 {
                     return provider.GetGameData(testResult.Id);
                 }
-                                
+
                 return data ?? new GameMetadata();
             }
         }

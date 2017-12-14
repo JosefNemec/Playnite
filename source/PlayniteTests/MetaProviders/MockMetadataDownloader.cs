@@ -75,5 +75,36 @@ namespace PlayniteTests
         {
             return SearchGamesHandler(gameName);
         }
+
+        public void SetGenericHandlers(List<string> searchResults)
+        {
+            var searches = new List<MetadataSearchResult>();
+            for (int i = 0; i < searchResults.Count; i++)
+            {
+                searches.Add(new MetadataSearchResult(i.ToString(), searchResults[i], DateTime.Now));
+            }
+
+            var gameDetails = new List<GameMetadata>();
+            for (int i = 0; i < searchResults.Count; i++)
+            {
+                var game = new Game(searchResults[i]) { ProviderId = i.ToString() };
+                gameDetails.Add(new GameMetadata(game, null, null, string.Empty));
+            }
+
+            GetGameDataHandler = gameId =>
+            {
+                return gameDetails.First(a => a.GameData.ProviderId == gameId);
+            };
+
+            SearchGamesHandler = gameName =>
+            {
+                return searches;
+            };
+        }
+
+        public void SetGenericHandlers(string searchResult)
+        {
+            SetGenericHandlers(new List<string>() { searchResult });
+        }
     }
 }

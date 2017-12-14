@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
+using Playnite;
 using Playnite.MetaProviders;
+using Playnite.Models;
 using Playnite.Providers.Steam;
 using Playnite.Services;
 using System;
@@ -14,7 +16,7 @@ namespace PlayniteTests.MetaProviders
     public class MetadataDownloaderTests
     {
         [Test]
-        public void SearchTest()
+        public void RealSearchTest()
         {          
             var client = new ServicesClient("http://localhost:8080/");
             var provider = new IGDBMetadataProvider(client);
@@ -48,6 +50,39 @@ namespace PlayniteTests.MetaProviders
             Assert.IsNotNull(result.GameData);
             Assert.IsNotNull(result.Image);
             Assert.AreEqual("Command & Conquer", result.GameData.Name);
+        }
+
+        [Test]
+        public void SearchTest()
+        {
+            var igdbProvider = new MockMetadataProvider
+            {
+                GetSupportsIdSearchHandler = () => false                
+            };
+
+            var downloader = new MockMetadataDownloader(null, null, null, null, igdbProvider);
+
+            var dbString = "Quake III Arena";
+            igdbProvider.SetGenericHandlers(dbString);
+            var result = downloader.DownloadGameData("Quake 3 Arena", "", igdbProvider);
+            Assert.AreEqual(dbString, result.GameData.Name);
+
+            dbString = "The Witcher 3: Wild Hunt";
+            igdbProvider.SetGenericHandlers(dbString);
+            result = downloader.DownloadGameData("Witcher 3: Wild Hunt", "", igdbProvider);
+            Assert.AreEqual(dbString, result.GameData.Name);
+            result = downloader.DownloadGameData("The Witcher 3", "", igdbProvider);
+            Assert.AreEqual(dbString, result.GameData.Name);
+
+            dbString = "Command & Conquer";
+            igdbProvider.SetGenericHandlers(dbString);
+            result = downloader.DownloadGameData("Command and Conquer", "", igdbProvider);
+            Assert.AreEqual(dbString, result.GameData.Name);
+
+            dbString = "Tom Clancy's Rainbow Six: Siege";
+            igdbProvider.SetGenericHandlers(dbString);
+            result = downloader.DownloadGameData("Tom Clancy's Rainbow Six Siege", "", igdbProvider);
+            Assert.AreEqual(dbString, result.GameData.Name);
         }
 
         [Test]
