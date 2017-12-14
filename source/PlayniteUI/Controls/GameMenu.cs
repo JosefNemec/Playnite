@@ -328,7 +328,7 @@ namespace PlayniteUI.Controls
                 // Toggle Hide
                 var hideItem = new MenuItem()
                 {
-                    Header = Game.Favorite ? resources.FindString("UnHideGame") : resources.FindString("HideGame")
+                    Header = Game.Hidden ? resources.FindString("UnHideGame") : resources.FindString("HideGame")
                 };
 
                 hideItem.Click += (s, e) =>
