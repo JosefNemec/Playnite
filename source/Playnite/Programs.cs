@@ -251,6 +251,19 @@ namespace Playnite
                     continue;
                 }
 
+                try
+                {
+                    if (package.InstalledLocation == null)
+                    {
+                        continue;
+                    }
+                }
+                catch
+                {
+                    // InstalledLocation accessor may throw Win32 exception for unknown reason
+                    continue;
+                }
+
                 string manifestPath;
                 if (package.IsBundle)
                 {
@@ -260,7 +273,7 @@ namespace Playnite
                 {
                     manifestPath = "AppxManifest.xml";
                 }
-
+                
                 manifestPath = Path.Combine(package.InstalledLocation.Path, manifestPath);
                 var manifest = new XmlDocument();
                 manifest.Load(manifestPath);
