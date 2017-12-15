@@ -87,19 +87,5 @@ namespace Playnite.Providers.Steam
                 }
             }
         }
-
-        private static string descriptionTemplate;
-        public static string DescriptionTemplate
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(descriptionTemplate))
-                {
-                    descriptionTemplate = DataResources.ReadFileFromResource("Playnite.Resources.description_steam.html");
-                }
-
-                return descriptionTemplate;
-            }
-        }
     }
 }

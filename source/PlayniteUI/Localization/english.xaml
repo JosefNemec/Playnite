@@ -177,10 +177,10 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="SettingsShowIconList">Show game icons on List view</sys:String>
     <sys:String x:Key="SettingsDisableAcceleration">Disable hardware acceleration (requires restart)</sys:String>
     <sys:String x:Key="SettingsDisableAccelerationTooltip">Use when experiencing stuttering or similar UI issues</sys:String>
-    <sys:String x:Key="SettingsSkin">Skin</sys:String>
-    <sys:String x:Key="SettingsSkinColor">Skin Color</sys:String>
-    <sys:String x:Key="SettingsSkinFullscreen">Fullscreen Skin</sys:String>
-    <sys:String x:Key="SettingsSkinColorFullscreen">Fullscreen Skin Color</sys:String>
+    <sys:String x:Key="SettingsSkin">Theme</sys:String>
+    <sys:String x:Key="SettingsSkinColor">Theme Profile</sys:String>
+    <sys:String x:Key="SettingsSkinFullscreen">Fullscreen Theme</sys:String>
+    <sys:String x:Key="SettingsSkinColorFullscreen">Fullscreen Theme Color</sys:String>
     <sys:String x:Key="SettingsDBLocation">Database Location</sys:String>
     <sys:String x:Key="SettingsWhatsSteamName">What's my account name?</sys:String>
     <sys:String x:Key="SettingsLoginStatus">Login status:</sys:String>
@@ -205,6 +205,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="SettingsClearCacheTitle">Clear Cache?</sys:String>
     <sys:String x:Key="SettingsApiKeyTooltip">API Key is required for Steam private accounts</sys:String>
     <sys:String x:Key="SettingsApiKeyUrlText">Get API key</sys:String>
+    <sys:String x:Key="SettingsSkinChangeRestart">Playnite restart is required when chaning theme</sys:String>
     
     <sys:String x:Key="ImportError">Import Error</sys:String>
     <sys:String x:Key="LoginChecking">Checking...</sys:String>
@@ -337,9 +338,10 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     
     <sys:String x:Key="ScanEmulatorGamesEmptyProfileError">Cannot search for games by selected emulator profile. Profile doesn't contain any file extensions or platforms.</sys:String>
     <sys:String x:Key="StartGenericError">Playnite failed to start. Please close all running instances and try again.</sys:String>
-    <sys:String x:Key="SkinApplyError">Failed to apply skin "{0}", color profile "{1}"
+    <sys:String x:Key="SkinApplyError">Failed to apply theme "{0}", color profile "{1}"
         
 {1}</sys:String>
+    <sys:String x:Key="URLFormatError">Cannot open link, URL is not in valid format.</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="GameEditWindowTitle">Edit Game Details</sys:String>
@@ -368,8 +370,11 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="PrivateAccount">Private Account</sys:String>
     <sys:String x:Key="APIKey">API Key</sys:String>
     <sys:String x:Key="StartupError">Startup Error</sys:String>
-    <sys:String x:Key="SkinError">Skin Error</sys:String>
-    
+    <sys:String x:Key="SkinError">Theme Error</sys:String>
+    <sys:String x:Key="ClearAll">Clear All</sys:String>
+    <sys:String x:Key="SetupRunning">Setup in progress...</sys:String>
+    <sys:String x:Key="InvalidURL">Invalid URL</sys:String>
+
     <sys:String x:Key="EmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
     <sys:String x:Key="OverrideEmulatorArguments">Override Emulator Arguments</sys:String>
@@ -380,10 +385,10 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="UpdaterChangesInfo">Changes since last update:</sys:String>
     <sys:String x:Key="UpdaterInstallUpdate">Install Update</sys:String>
 
-    <sys:String x:Key="ThemeTestReloadList">Reload skin list</sys:String>
-    <sys:String x:Key="ThemeTestApplySkin">Apply selected skin</sys:String>
+    <sys:String x:Key="ThemeTestReloadList">Reload theme list</sys:String>
+    <sys:String x:Key="ThemeTestApplySkin">Apply selected theme</sys:String>
     <sys:String x:Key="ThemeTestWatchChanges">Watch file changes</sys:String>
-    <sys:String x:Key="ThemeTestWatchChangesTooltip">Automatically apply skin when the source file changes</sys:String>
+    <sys:String x:Key="ThemeTestWatchChangesTooltip">Automatically apply theme when the source file changes</sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="FavoriteGame">Add to Favorties</sys:String>
@@ -398,9 +403,9 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="UninstallGame">Uninstall</sys:String>
     <sys:String x:Key="OpenGameLocation">Open game location</sys:String>
     <sys:String x:Key="CreateDesktopShortcut">Create desktop schortcut</sys:String>
-    <sys:String x:Key="ClearAll">Clear All</sys:String>
-    <sys:String x:Key="MetadownloadNoResultsMessage">Didn't found any relevant information about game '{0}' on specified page.</sys:String>
+    <sys:String x:Key="MoreAction">More</sys:String>
 
+    <sys:String x:Key="MetadownloadNoResultsMessage">Didn't found any relevant information about game '{0}' on specified page.</sys:String>
     <sys:String x:Key="MetadownloadSingleGameTip">Tip: You can use more advanced metadata download process while editing single game via "Edit" menu option.</sys:String>
     <sys:String x:Key="ProgreessAvailabilityMessage">Not available when some action is in progress.</sys:String>
 </ResourceDictionary>

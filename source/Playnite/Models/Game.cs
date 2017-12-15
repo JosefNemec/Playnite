@@ -56,27 +56,6 @@ namespace Playnite.Models
             }
         }
 
-        [JsonIgnore]
-        [BsonIgnore]
-        public string DescriptionView
-        {
-            get
-            {
-                switch (Provider)
-                {
-                    case Provider.GOG:
-                        return string.IsNullOrEmpty(GogSettings.DescriptionTemplate) ? Description : GogSettings.DescriptionTemplate.Replace("{0}", Description);
-                    case Provider.Custom:
-                    case Provider.Origin:
-                    case Provider.Uplay:
-                    case Provider.BattleNet:
-                    case Provider.Steam:
-                    default:
-                        return string.IsNullOrEmpty(SteamSettings.DescriptionTemplate) ? Description : SteamSettings.DescriptionTemplate.Replace("{0}", Description);
-                }
-            }
-        }
-
         private ComparableList<string> developers;
         public ComparableList<string> Developers
         {

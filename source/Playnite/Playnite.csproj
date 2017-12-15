@@ -251,10 +251,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\description_gog.html" />
-    <EmbeddedResource Include="Resources\description_steam.html" />
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="Controls\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -272,11 +268,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Resource Include="Resources\Images\gog_cover_background.png" />
-    <Resource Include="Resources\Images\origin_cover_background.png" />
-    <Resource Include="Resources\Images\steam_cover_background.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

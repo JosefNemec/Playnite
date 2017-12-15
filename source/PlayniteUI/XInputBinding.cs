@@ -196,7 +196,7 @@ namespace PlayniteUI
                 while (true)
                 {
                     var state = GamePad.GetState(PlayerIndex.One);                    
-                    if (!state.IsConnected || !App.IsActive)
+                    if (!state.IsConnected || App.CurrentApp?.IsActive == false)
                     {
                         Thread.Sleep(pollingRate);
                         continue;

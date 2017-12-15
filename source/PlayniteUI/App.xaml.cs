@@ -18,13 +18,14 @@ using Playnite.Services;
 using System.Windows.Markup;
 using System.IO;
 using System.Windows.Input;
+using System.ComponentModel;
 
 namespace PlayniteUI
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : Application, INotifyPropertyChanged
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private string instanceMuxet = "PlayniteInstaceMutex";
@@ -34,7 +35,9 @@ namespace PlayniteUI
         private PipeServer pipeServer;
         private MainViewModel mainModel;
         private FullscreenViewModel fullscreenModel;
-        private XInputDevice xdevice;
+        //private XInputDevice xdevice;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public static GameDatabase Database
         {
@@ -54,9 +57,20 @@ namespace PlayniteUI
             private set;
         }
 
-        public static bool IsActive
+        public static App CurrentApp
         {
-            get; set;
+            get => Current as App;
+        }
+
+        private bool isActive;
+        public bool IsActive
+        {
+            get => isActive;
+            set
+            {
+                isActive = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsActive"));
+            }
         }
 
         public App()
@@ -264,7 +278,7 @@ namespace PlayniteUI
                 PipeService_CommandExecuted(this, new CommandExecutedEventArgs(command, cmdArgs));
             }
 
-            xdevice = new XInputDevice(InputManager.Current);
+            //xdevice = new XInputDevice(InputManager.Current);
 
             logger.Info("Application started");
         }

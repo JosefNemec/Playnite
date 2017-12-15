@@ -25,6 +25,44 @@ namespace PlayniteUI.Controls
     /// </summary>
     public partial class GamesGridView : UserControl
     {
+        public object SelectedItem
+        {
+            get
+            {
+                return GetValue(SelectedItemProperty);
+            }
+
+            set
+            {
+                SetValue(SelectedItemProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty SelectedItemProperty =
+           DependencyProperty.Register("SelectedItem", typeof(object), typeof(GamesGridView), new PropertyMetadata(null, OnSelectedItemChange));
+
+        private static void OnSelectedItemChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var obj = sender as GamesGridView;
+            obj.GridGames.SelectedItem = e.NewValue;                
+        }
+
+        public IList<object> SelectedItemsList
+        {
+            get
+            {
+                return (IList<object>)GetValue(SelectedItemsListProperty);
+            }
+
+            set
+            {
+                SetValue(SelectedItemsListProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty SelectedItemsListProperty =
+           DependencyProperty.Register("SelectedItemsList", typeof(IList<object>), typeof(GamesGridView), new PropertyMetadata(null));
+
         public IEnumerable ItemsSource
         {
             get
@@ -58,6 +96,17 @@ namespace PlayniteUI.Controls
         public GamesGridView()
         {
             InitializeComponent();
+            GridGames.SelectionChanged += GridGames_SelectionChanged;
+        }
+
+        private void GridGames_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GridGames.SelectedItems?.Count == 1)
+            {
+                SelectedItem = GridGames.SelectedItems[0];
+            }
+
+            SelectedItemsList = (IList<object>)GridGames.SelectedItems;
         }
 
         private void Grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)

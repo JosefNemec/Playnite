@@ -39,7 +39,10 @@ namespace PlayniteUI
             }
 
             var settings = DataContext as SettingsViewModel;
-            Skins.ApplySkin(settings.Settings.Skin, settings.Settings.SkinColor);
+            if (settings.Settings.Skin == Skins.CurrentSkin)
+            {
+                Skins.ApplySkin(settings.Settings.Skin, settings.Settings.SkinColor);
+            }
         }
 
         private void ComboSkins_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -53,9 +56,6 @@ namespace PlayniteUI
             {
                 CombSkinColor.SelectedValue = (ComboSkins.SelectedItem as Skin).Profiles.First();
             }
-
-            var settings = DataContext as SettingsViewModel;
-            Skins.ApplySkin(settings.Settings.Skin, settings.Settings.SkinColor);
         }
 
         private void ComboSkinsFullscreen_SelectionChanged(object sender, SelectionChangedEventArgs e)

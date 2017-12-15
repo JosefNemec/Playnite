@@ -23,6 +23,10 @@
     <Style TargetType="{x:Type pc:FullscreenView}">
     </Style>
 
+    <Style TargetType="{x:Type pc:HtmlTextView}">
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
     <Style TargetType="{x:Type pc:ExtendedListBox}" BasedOn="{StaticResource {x:Type ListBox}}">
     </Style>
 

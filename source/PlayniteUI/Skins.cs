@@ -189,7 +189,8 @@ namespace PlayniteUI
                     dictionaries.Remove(currentSkinColorDict);
                 }
 
-                if (currentSkinDict != null)
+                var changeSkinBase = CurrentSkin != currentSkinDict["SkinName"].ToString() || string.IsNullOrEmpty(CurrentSkin);
+                if (currentSkinDict != null && changeSkinBase)
                 {
                     dictionaries.Remove(currentSkinDict);
                 }
@@ -210,8 +211,11 @@ namespace PlayniteUI
                     dictionaries.Remove(currentSkinDict);
                 }
 
-                var skinPath = GetSkinPath(skinName, false);
-                dictionaries.Add(LoadXaml(skinPath));                
+                if (changeSkinBase)
+                {
+                    var skinPath = GetSkinPath(skinName, false);
+                    dictionaries.Add(LoadXaml(skinPath));
+                }
 
                 if (string.IsNullOrEmpty(color))
                 {

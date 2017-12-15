@@ -26,12 +26,23 @@ namespace PlayniteUI.ViewModels
         private static object gamesLock = new object();
         private bool ignoreCloseActions = false;
         private readonly SynchronizationContext context;
-
+        
         public IWindowFactory Window;
         public IDialogsFactory Dialogs;
         public IResourceProvider Resources;
         public GameDatabase Database;
         public GamesEditor GamesEditor;
+
+        private GameDetailsViewModel selectedGameDetails;
+        public GameDetailsViewModel SelectedGameDetails
+        {
+            get => selectedGameDetails;
+            set
+            {
+                selectedGameDetails = value;
+                OnPropertyChanged("SelectedGameDetails");
+            }
+        }
 
         private GameViewEntry selectedGame;
         public GameViewEntry SelectedGame
@@ -39,6 +50,15 @@ namespace PlayniteUI.ViewModels
             get => selectedGame;
             set
             {
+                if (value == null)
+                {
+                    SelectedGameDetails = null;
+                }
+                else
+                {
+                    SelectedGameDetails = new GameDetailsViewModel(value, AppSettings, GamesEditor, Dialogs, Resources);
+                }
+
                 selectedGame = value;
                 OnPropertyChanged("SelectedGame");
             }
@@ -389,6 +409,14 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<object> RemoveGameSelectionCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveGameSelection();
+            });
+        }
+
         public MainViewModel(
             GameDatabase database,
             IWindowFactory window,
@@ -448,6 +476,12 @@ namespace PlayniteUI.ViewModels
             {
                 Logger.Error(e, "Failed to start 3rd party tool.");
             }
+        }
+
+        public void RemoveGameSelection()
+        {
+            SelectedGame = null;
+            SelectedGamesBinder = null;
         }
 
         public void OpenSteamFriends()

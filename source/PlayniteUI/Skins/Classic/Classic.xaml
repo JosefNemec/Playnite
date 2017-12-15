@@ -23,6 +23,7 @@
     <Color x:Key="HoverColor">#247BA0</Color>
     <Color x:Key="DefaultColor">#FF9BB1C5</Color>
     <Color x:Key="GlyphColor">#019fcb</Color>
+    <Color x:Key="HighlightGlyphColor">#33019fcb</Color>
     <Color x:Key="PopupBackgroundColor">#171e26</Color>
     <Color x:Key="PopupBorderColor">#3e6184</Color>
     <Color x:Key="BackgroundToneColor">#182028</Color>
@@ -34,8 +35,9 @@
     <SolidColorBrush x:Key="NormalBrush" Color="{DynamicResource MainColor}" />
     <SolidColorBrush x:Key="NormalBrushDark" Color="{DynamicResource MainColorDark}" />
     <SolidColorBrush x:Key="NormalBorderBrush" Color="{DynamicResource MainColor}" />
-    <SolidColorBrush x:Key="HoverBrush" Color="{DynamicResource GlyphColor}" />
+    <SolidColorBrush x:Key="HoverBrush" Color="{DynamicResource HighlightGlyphColor}" />
     <SolidColorBrush x:Key="GlyphBrush" Color="{DynamicResource GlyphColor}" />
+    <SolidColorBrush x:Key="HighlightGlyphBrush" Color="{DynamicResource HighlightGlyphColor}" />
     <SolidColorBrush x:Key="PopupBorderBrush" Color="{DynamicResource PopupBorderColor}" />
     <SolidColorBrush x:Key="TooltipBackgroundBrush" Color="{DynamicResource BackgroundToneColor}" />
 
@@ -398,7 +400,7 @@
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Grid>
                         <Border x:Name="HoverRectangle" IsHitTestVisible="False" Visibility="Collapsed"
-                                Background="{DynamicResource NormalBrush}" CornerRadius="{DynamicResource ControlCornerRadius}" />
+                                Background="{DynamicResource HoverBrush}" CornerRadius="{DynamicResource ControlCornerRadius}" />
                         <Border x:Name="SelectedRectangle" IsHitTestVisible="False" Visibility="Collapsed"
                                 Background="{DynamicResource GlyphBrush}" CornerRadius="{DynamicResource ControlCornerRadius}"/>
                         <Border Padding="{TemplateBinding Padding}" Background="Transparent">
@@ -581,7 +583,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBoxItem}">
                     <Grid>
-                        <Rectangle x:Name="HoverRectangle" IsHitTestVisible="False" Visibility="Collapsed" Fill="{DynamicResource NormalBrush}" />
+                        <Rectangle x:Name="HoverRectangle" IsHitTestVisible="False" Visibility="Collapsed" Fill="{DynamicResource HoverBrush}" />
                         <Rectangle x:Name="SelectedRectangle" IsHitTestVisible="False" Visibility="Collapsed" Fill="{DynamicResource GlyphBrush}" />
                         <Border Background="Transparent" Padding="{TemplateBinding Padding}">
                             <ContentPresenter VerticalAlignment="Center" />
@@ -937,9 +939,6 @@
             <Trigger Property="Role" Value="SubmenuItem">
                 <Setter Property="Template" Value="{DynamicResource {x:Static MenuItem.SubmenuItemTemplateKey}}" />
             </Trigger>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
-            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -1236,12 +1235,10 @@
                             <Setter Property="Visibility" Value="Hidden" TargetName="Expander" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder" />
-                            <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
+                            <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True" SourceName="SelectionBorder">
-                            <Setter Property="Background" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder" />
-                            <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
+                            <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1358,7 +1355,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                     <Grid>
-                        <Rectangle x:Name="HoverRectangle" Visibility="Collapsed" Fill="{DynamicResource NormalBrush}" />
+                        <Rectangle x:Name="HoverRectangle" Visibility="Collapsed" Fill="{DynamicResource HoverBrush}" />
                         <Rectangle x:Name="SelectedRectangle" Visibility="Collapsed" Fill="{DynamicResource GlyphBrush}" />
                         <Border Padding="{TemplateBinding Padding}" Background="Transparent" >
                             <GridViewRowPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Stretch" />
@@ -1371,7 +1368,6 @@
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="HoverRectangle" />
-                            <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1792,7 +1788,7 @@
     
     <Style x:Key="StandardWindowStyle" TargetType="pc:WindowBase">
         <Setter Property="Background" Value="{DynamicResource WindowBackgourndBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderThickness" Value="1" />        
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
         <Setter Property="WindowChrome.WindowChrome">
@@ -1804,10 +1800,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type pc:WindowBase}">
+                    <ControlTemplate.Resources>
+                        <sys:Boolean x:Key="True">True</sys:Boolean>
+                    </ControlTemplate.Resources>
                     <AdornerDecorator>
                         <Border x:Name="WindowBorder" BorderBrush="#3e6184" CornerRadius="0"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}">
+                                Background="{TemplateBinding Background}">  
                             <Grid>
                                 <ContentPresenter Margin="0,25,0,0"/>
                                 <DockPanel DockPanel.Dock="Top" LastChildFill="False">
@@ -1825,6 +1824,13 @@
                         </Border>
                     </AdornerDecorator>
                     <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsActive, RelativeSource={RelativeSource Self}}" Value="False" />
+                                <Condition Binding="{Binding IsActive, Source={x:Static pui:App.Current}}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Opacity" Value="0.4" />
+                        </MultiDataTrigger>
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter Property="Content" Value="2" TargetName="PART_ButtonMaximize"/>
                             <Setter Property="Padding" Value="8" TargetName="WindowBorder"/>
@@ -1864,6 +1870,439 @@
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
     </Style>
 
+    <ControlTemplate x:Key="GamePropertiesView">
+        <Grid>
+            <Grid.Resources>
+                <pui:BindingProxy x:Key="Proxy" Data="{Binding}" />
+                <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
+                <pui:EnumerableNullOrEmptyToVisibilityConverter x:Key="EnumerableNullOrEmptyToVisibilityConverter" />
+                <pui:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+                <pui:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
+                <pui:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+                <Style x:Key="ListTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                    <Setter Property="Margin" Value="0,2,5,2" />
+                    <Setter Property="TextWrapping" Value="Wrap" />
+                </Style>
+                <Style x:Key="ListItems" TargetType="ItemsControl">
+                    <Setter Property="ItemTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource ListTextBlock}">
+                                        <Hyperlink NavigateUri="{Binding Mode=OneWay}" 
+                                                   Tag="{Binding Tag, RelativeSource={RelativeSource AncestorType=ItemsControl}}">
+                                            <Hyperlink.Style>
+                                                <Style TargetType="Hyperlink" BasedOn="{StaticResource {x:Type Hyperlink}}">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="Tag" Value="Genres">
+                                                            <Setter Property="Command" Value="{Binding Data.SetGenresFilterCommand, Source={StaticResource Proxy}}" />
+                                                            <Setter Property="CommandParameter" Value="{Binding}" />
+                                                        </Trigger>
+                                                        <Trigger Property="Tag" Value="Developers">
+                                                            <Setter Property="Command" Value="{Binding Data.SetDevelopersFilterCommand, Source={StaticResource Proxy}}" />
+                                                            <Setter Property="CommandParameter" Value="{Binding}" />
+                                                        </Trigger>
+                                                        <Trigger Property="Tag" Value="Publishers">
+                                                            <Setter Property="Command" Value="{Binding Data.SetPublishersFilterCommand, Source={StaticResource Proxy}}" />
+                                                            <Setter Property="CommandParameter" Value="{Binding}" />
+                                                        </Trigger>
+                                                        <Trigger Property="Tag" Value="Categories">
+                                                            <Setter Property="Command" Value="{Binding Data.SetCategoriesFilterCommand, Source={StaticResource Proxy}}" />
+                                                            <Setter Property="CommandParameter" Value="{Binding}" />
+                                                        </Trigger>
+                                                        <Trigger Property="Tag" Value="Tags">
+                                                            <Setter Property="Command" Value="{Binding Data.SetTagsFilterCommand, Source={StaticResource Proxy}}" />
+                                                            <Setter Property="CommandParameter" Value="{Binding}" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Hyperlink.Style>
+                                            <Run Text="{Binding Mode=OneWay}" />
+                                        </Hyperlink>
+                                </TextBlock>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <WrapPanel FlowDirection="LeftToRight" IsItemsHost="true" />
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style x:Key="ListLabel" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                    <Setter Property="Margin" Value="0,10,0,2" />
+                </Style>
+            </Grid.Resources>
+
+            <StackPanel>
+                <!-- Genres -->
+                <Label Content="Genres" Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}" />
+                <ItemsControl ItemsSource="{Binding Game.Genres, Mode=OneWay}" Style="{StaticResource ListItems}"
+                                  Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
+                                  Tag="Genres"/>
+
+                <!-- Developers -->
+                <Label Content="Developed by" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <ItemsControl ItemsSource="{Binding Game.Developers, Mode=OneWay}" Style="{StaticResource ListItems}"
+                                  Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
+                                  Tag="Developers"/>
+
+                <!-- Publishers -->
+                <Label Content="Published by" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <ItemsControl ItemsSource="{Binding Game.Publishers, Mode=OneWay}" Style="{StaticResource ListItems}"
+                                  Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
+                                  Tag="Publishers"/>
+
+                <!-- Release Date -->
+                <Label Content="Release Date" Style="{StaticResource ListLabel}" Visibility="{Binding Game.ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"/>
+                <TextBlock Visibility="{Binding Game.ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"
+                               Style="{StaticResource ListTextBlock}">
+                            <Hyperlink NavigateUri="{Binding Game.ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}"
+                                       Command="{Binding SetReleaseDateFilterCommand}"
+                                       CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                                <Run Text="{Binding Game.ReleaseDate, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" />
+                            </Hyperlink>
+                </TextBlock>
+
+                <!-- Categories -->
+                <Label Content="Categories" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <ItemsControl ItemsSource="{Binding Game.Categories, Mode=OneWay}" Style="{StaticResource ListItems}"
+                                  Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
+                                  Tag="Categories"/>
+
+                <!-- Tags -->
+                <Label Content="Tags" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <ItemsControl ItemsSource="{Binding Game.Tags, Mode=OneWay}" Style="{StaticResource ListItems}"
+                                  Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
+                                  Tag="Tags"/>
+
+                <!-- Platform -->
+                <Label Content="Platform" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
+                <TextBlock Visibility="{Binding Game.Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
+                                   Style="{StaticResource ListTextBlock}">
+                            <Hyperlink NavigateUri="{Binding Game.Platform.Name}"
+                                       Command="{Binding SetPlatformFilterCommand}"
+                                       CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                                <Run Text="{Binding Game.Platform.Name, Mode=OneWay}" />
+                            </Hyperlink>
+                </TextBlock>
+
+                <!-- Links -->
+                <Label Content="{DynamicResource LinksLabel}" Style="{StaticResource ListLabel}"
+                           Visibility="{Binding Game.Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <ItemsControl ItemsSource="{Binding Game.Links}"
+                                  Visibility="{Binding Game.Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Style="{StaticResource ListTextBlock}">
+                                        <Hyperlink NavigateUri="{Binding Url}" ToolTip="{Binding Url}"
+                                                   Command="{Binding Data.NavigateUrlCommand, Source={StaticResource Proxy}}"
+                                                   CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                                            <Run Text="{Binding Name, Mode=OneWay}" />
+                                        </Hyperlink>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="CoversView">
+        <Grid>
+            <Grid.Resources>
+                <pui:BindingProxy x:Key="CoversProxy" Data="{Binding}" />
+                <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
+                <pui:EnumerableNullOrEmptyToVisibilityConverter x:Key="EnumerableNullOrEmptyToVisibilityConverter" />
+                <pui:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+                <pui:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
+                <pui:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+                <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <ListView Grid.Row="0" Grid.Column="0"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="ItemsView"
+                      ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Single"
+                      pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"
+                      ItemsSource="{Binding GamesView.CollectionView}"
+                      SelectedItem="{Binding SelectedGame, Mode=TwoWay}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick" >
+                        <i:InvokeCommandAction Command="{Binding StartGameCommand}"
+                                               CommandParameter="{Binding SelectedGame.Game}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ListView.Resources>
+                    <Style TargetType="GridViewColumnHeader">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Style>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="OverridesDefaultStyle" Value="True" />
+                        <Setter Property="ContextMenu">
+                            <Setter.Value>
+                                <pc:GameMenu />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <Grid Background="Transparent">
+                                        <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="2"
+                                                                    Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Grid>
+                                                <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
+                                                    <Image.Source>
+                                                        <PriorityBinding>
+                                                            <Binding Path="Image" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay"
+                                                                     Converter="{StaticResource CustomImageStringToImageConverter}"/>
+                                                            <Binding Path="DefaultImage" Mode="OneWay"
+                                                                     Converter="{StaticResource CustomImageStringToImageConverter}"/>
+                                                        </PriorityBinding>
+                                                    </Image.Source>
+                                                </Image>
+                                                <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed">
+                                                    <TextBlock Text="{Binding DisplayName, Mode=OneWay}" TextWrapping="Wrap" Margin="5"
+                                                                                   Style="{StaticResource BaseTextBlockStyle}"
+                                                                                   TextTrimming="CharacterEllipsis" TextAlignment="Center"
+                                                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                                                   FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"/>
+                                                </Border>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Image}" Value="{x:Null}" />
+                                                <Condition Binding="{Binding Path=Data.AppSettings.ShowNameEmptyCover, Source={StaticResource CoversProxy}}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Visibility" Value="Visible" TargetName="TextGameName"/>
+                                        </MultiDataTrigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
+                                        </Trigger>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsMouseOver" Value="True" />
+                                                <Condition Property="Selector.IsSelected" Value="False" />
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
+                                        </MultiTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.Resources>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <pui:VirtualizingTilePanel ItemWidth="{Binding Path=Value, ElementName=SliderZoom}"
+                                                                       ItemHeightModifier="1.4"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+
+            <Border Grid.Column="0" Grid.Row="1"
+                    BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <Label Content="{DynamicResource ZoomLabel}" DockPanel.Dock="Right" Margin="10,0,10,0"/>
+                    <Slider Name="SliderZoom" SmallChange="1" Value="{Binding Path=AppSettings.CoversZoom}" Maximum="260" Minimum="100"
+                            IsSnapToTickEnabled="True" Width="150" DockPanel.Dock="Right" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+            
+            <ScrollViewer Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Width="350"
+                          HorizontalScrollBarVisibility="Disabled"
+                          DataContext="{Binding SelectedGameDetails, Mode=OneWay}">
+                <ScrollViewer.Style>
+                    <Style TargetType="ScrollViewer">
+                        <Style.Triggers>
+                            <Trigger Property="DataContext" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ScrollViewer.Style>
+                <Border BorderThickness="1,0,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+                    <Grid>
+                        <Grid.Resources>
+                            <pui:BindingProxy x:Key="Proxy" Data="{Binding}" />
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top"
+                                   Margin="10">
+                            <Hyperlink Command="{Binding Data.RemoveGameSelectionCommand, Source={StaticResource CoversProxy}}">🗙</Hyperlink>
+                        </TextBlock>
+
+                        <DockPanel Grid.Column="0" Grid.Row="0" Margin="10,20,10,0">
+                            <Image DockPanel.Dock="Left" MaxHeight="32" MaxWidth="32" RenderOptions.BitmapScalingMode="Fant"
+                                Source="{Binding Game.Icon, Mode=OneWay,Converter={StaticResource CustomImageStringToImageConverter}}" />
+                            <TextBlock Text="{Binding Game.DisplayName, Mode=OneWay}" FontSize="20" Margin="10,10,0,10" TextWrapping="Wrap"
+                                   DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
+                                <TextBlock.Effect>
+                                    <DropShadowEffect ShadowDepth="3"/>
+                                </TextBlock.Effect>
+                            </TextBlock>
+                        </DockPanel>
+
+                        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
+                                Margin="10,20,10,0" Orientation="Horizontal" Height="35">
+                            <Button MinWidth="120" Content="{DynamicResource PlayGame}" Style="{StaticResource PlayButton}"
+                                Visibility="{Binding IsPlayAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                Command="{Binding PlayCommand}"/>
+                            <Button MinWidth="120" Content="{DynamicResource InstallGame}"
+                                Visibility="{Binding IsInstallAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                Command="{Binding InstallCommand}"/>
+                            <Button MinWidth="120" Content="{DynamicResource SetupRunning}"
+                                Visibility="{Binding IsSetupProgressAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                Command="{Binding CheckSetupCommand}"/>
+                            <Button MinWidth="120" Content="{DynamicResource MoreAction}"
+                                Margin="15,0,0,0" pui:LeftClickContextMenuBehavior.Enabled="True">
+                                <Button.ContextMenu>
+                                    <pc:GameMenu Placement="Bottom" DataContext="{Binding Data.Game, Source={StaticResource Proxy}}"
+                                             ShowStartSection="False" />
+                                </Button.ContextMenu>
+                            </Button>
+                        </StackPanel>
+
+                        <ContentControl Grid.Column="0" Grid.Row="2" Padding="10" Margin="10,20,10,0"
+                                        Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Template="{StaticResource GamePropertiesView}" />
+
+                        <pc:HtmlTextView Grid.Column="0" Grid.Row="3" Margin="5,10,5,10" 
+                                        Background="Transparent" HtmlText="{Binding Game.Description, Mode=OneWay}"
+                                        HtmlForeground="{DynamicResource TextColor}"
+                                        LinkForeground="{DynamicResource GlyphColor}"
+                                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                        ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+
+                    </Grid>
+                </Border>
+            </ScrollViewer>
+        </Grid>
+    </ControlTemplate>           
+
+    <ControlTemplate x:Key="GameDetailsView">
+        <Grid>
+            <Grid.Resources>
+                <pui:BindingProxy x:Key="Proxy" Data="{Binding}" />
+                <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
+                <pui:EnumerableNullOrEmptyToVisibilityConverter x:Key="EnumerableNullOrEmptyToVisibilityConverter" />
+                <pui:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+                <pui:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
+                <pui:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />               
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <Trigger Property="DataContext" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+
+            <Image Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Top"
+                   RenderOptions.BitmapScalingMode="Fant"
+                   Grid.ColumnSpan="10" Grid.RowSpan="10"
+                   Source="{Binding Game.BackgroundImage, IsAsync=True, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}" />
+
+            <DockPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
+                       Margin="20,20,0,0">
+                <Image DockPanel.Dock="Left" MaxHeight="32" MaxWidth="32" RenderOptions.BitmapScalingMode="Fant"
+                       Source="{Binding Game.Icon, Mode=OneWay,Converter={StaticResource CustomImageStringToImageConverter}}" />
+                <TextBlock Text="{Binding Game.DisplayName, Mode=OneWay}" FontSize="20" Margin="10,10,0,10" TextWrapping="Wrap"
+                           DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="3"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </DockPanel>
+            
+            <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
+                        Margin="20,20,0,0" Orientation="Horizontal" Height="35">
+                <Button MinWidth="120" Content="{DynamicResource PlayGame}" Style="{StaticResource PlayButton}"
+                        Visibility="{Binding IsPlayAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{Binding PlayCommand}"/>
+                <Button MinWidth="120" Content="{DynamicResource InstallGame}"
+                        Visibility="{Binding IsInstallAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{Binding InstallCommand}"/>
+                <Button MinWidth="120" Content="{DynamicResource SetupRunning}"
+                        Visibility="{Binding IsSetupProgressAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{Binding CheckSetupCommand}"/>
+                <Button MinWidth="120" Content="{DynamicResource MoreAction}"
+                        Margin="15,0,0,0" pui:LeftClickContextMenuBehavior.Enabled="True">
+                    <Button.ContextMenu>
+                        <pc:GameMenu Placement="Bottom" DataContext="{Binding Data.Game, Source={StaticResource Proxy}}"
+                                     ShowStartSection="False" />
+                    </Button.ContextMenu>
+                </Button>
+            </StackPanel>
+            
+            <Border Grid.Column="0" Grid.Row="2" Padding="10" Margin="20,30,0,0" CornerRadius="3"
+                    Background="#AA000000" VerticalAlignment="Top"
+                    Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <ContentControl Template="{StaticResource GamePropertiesView}" />
+            </Border>
+
+            <Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="10,30,10,10" 
+                    CornerRadius="3" Background="#AA000000" VerticalAlignment="Top">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Game.Description}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Game.Description}" Value="">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <ScrollViewer>
+                    <pc:HtmlTextView Background="Transparent" HtmlText="{Binding Game.Description, Mode=OneWay}"
+                                     HtmlForeground="{DynamicResource TextColor}"
+                                     LinkForeground="{DynamicResource GlyphColor}"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                     ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+        
     <ControlTemplate x:Key="MainView" TargetType="{x:Type pc:MainView}">
         <Grid d:DesignWidth="900" d:DesignHeight="500">
             <Grid.ColumnDefinitions>
@@ -2375,109 +2814,24 @@
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
                                 </pc:ExtendedListBox>
-                                <pc:GameDetails DockPanel.Dock="Left" DataContext="{Binding SelectedGame, Mode=OneWay}"/>                            
+                                <ContentControl DockPanel.Dock="Left" DataContext="{Binding SelectedGameDetails, Mode=OneWay}"
+                                                Template="{StaticResource GameDetailsView}" />
                             </DockPanel>
                         </TabItem>
                         <TabItem Header="{DynamicResource CoversLabel}" >
-                            <DockPanel>
-                                <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Bottom">
-                                    <StackPanel Margin="5" Orientation="Horizontal">
-                                        <Label Content="{DynamicResource ZoomLabel}" DockPanel.Dock="Right" Margin="10,0,10,0"/>
-                                        <Slider Name="SliderZoom" SmallChange="1" Value="{Binding Path=AppSettings.CoversZoom}" Maximum="260" Minimum="100"
-                            IsSnapToTickEnabled="True" Width="150" DockPanel.Dock="Right" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </Border>
-                            
-                                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="ItemsView"
-                                          ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Single" DockPanel.Dock="Top"
-                                          pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"
-                                          ItemsSource="{Binding GamesView.CollectionView}"
-                                          SelectedItem="{Binding SelectedGame, Mode=TwoWay}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseDoubleClick" >
-                                            <i:InvokeCommandAction Command="{Binding StartGameCommand}"
-                                                                   CommandParameter="{Binding SelectedGame.Game}"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <ListView.Resources>
-                                        <Style TargetType="GridViewColumnHeader">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </Style>
-                                        <Style TargetType="ListViewItem">                                        
-                                            <Setter Property="Margin" Value="5"/>
-                                            <Setter Property="OverridesDefaultStyle" Value="True" />
-                                            <Setter Property="ContextMenu">
-                                                <Setter.Value>
-                                                    <pc:GameMenu />
-                                                </Setter.Value>
-                                            </Setter>
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                                        <Grid Background="Transparent">                                                          
-                                                            <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="2"
-                                                                    Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                                                <Grid>
-                                                                    <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
-                                                                        <Image.Source>
-                                                                            <PriorityBinding>
-                                                                                <Binding Path="Image" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
-                                                                                <Binding Path="DefaultImage" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
-                                                                            </PriorityBinding>
-                                                                        </Image.Source>
-                                                                    </Image>
-                                                                    <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed">
-                                                                        <TextBlock Text="{Binding DisplayName, Mode=OneWay}" TextWrapping="Wrap" Margin="5"
-                                                                                   Style="{StaticResource BaseTextBlockStyle}"
-                                                                                   TextTrimming="CharacterEllipsis" TextAlignment="Center"
-                                                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                                                                                   FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"/>
-                                                                    </Border>
-                                                                </Grid>
-                                                            </Border>                                              
-                                                        </Grid>
-                                                        <ControlTemplate.Triggers>
-                                                            <MultiDataTrigger>
-                                                                <MultiDataTrigger.Conditions>
-                                                                    <Condition Binding="{Binding Image}" Value="{x:Null}" />
-                                                                    <Condition Binding="{Binding Path=Data.AppSettings.ShowNameEmptyCover, Source={StaticResource Proxy}}" Value="True" />
-                                                                </MultiDataTrigger.Conditions>
-                                                                <Setter Property="Visibility" Value="Visible" TargetName="TextGameName"/>
-                                                            </MultiDataTrigger>
-                                                            <Trigger Property="IsSelected" Value="True">
-                                                                <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
-                                                            </Trigger>
-                                                            <MultiTrigger>
-                                                                <MultiTrigger.Conditions>
-                                                                    <Condition Property="IsMouseOver" Value="True" />
-                                                                    <Condition Property="Selector.IsSelected" Value="False" />
-                                                                </MultiTrigger.Conditions>
-                                                                <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
-                                                            </MultiTrigger>
-                                                        </ControlTemplate.Triggers>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </ListView.Resources>
-                                    <ListView.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <pui:VirtualizingTilePanel ItemWidth="{Binding Path=Value, ElementName=SliderZoom}"
-                                                                       ItemHeightModifier="1.4"/>
-                                        </ItemsPanelTemplate>
-                                    </ListView.ItemsPanel>
-                                </ListView>
-                            </DockPanel>
+                            <ContentControl Template="{StaticResource CoversView}" />
                         </TabItem>
                         <TabItem Header="{DynamicResource DetailsLabel}">
                             <pc:GamesGridView ItemsSource="{Binding GamesView.CollectionView}"
+                                              SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
+                                              SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
                                               AppSettings="{Binding AppSettings}" />
                         </TabItem>
                     </TabControl>
                 </DockPanel>
             </Border>
 
-            <Border Margin="0,-38,0,0" Height="38" Width="100" DockPanel.Dock="Bottom" Background="Transparent"
+            <!--<Border Margin="0,-38,0,0" Height="38" Width="100" DockPanel.Dock="Bottom" Background="Transparent"
                 Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
                 <Button Name="ButtonFriends" Command="{Binding OpenSteamFriendsCommand}"
                     Height="30" Width="30" HorizontalAlignment="Right" Margin="0,0,15,0"
@@ -2487,7 +2841,7 @@
                         <ImageBrush ImageSource="/Images/friends.png" RenderOptions.BitmapScalingMode="Fant"/>
                     </Button.OpacityMask>
                 </Button>
-            </Border>
+            </Border>-->
         </Grid>
     </ControlTemplate>
     

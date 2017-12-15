@@ -34,8 +34,15 @@ namespace PlayniteUI.Controls
 
         public IList<object> SelectedItemsList
         {
-            get { return (IList<object>)GetValue(SelectedItemsListProperty); }
-            set { SetValue(SelectedItemsListProperty, value); }
+            get
+            {
+                return (IList<object>)GetValue(SelectedItemsListProperty);
+            }
+
+            set
+            {
+                SetValue(SelectedItemsListProperty, value);
+            }
         }
 
         public static readonly DependencyProperty SelectedItemsListProperty =

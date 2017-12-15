@@ -191,6 +191,7 @@
     <Compile Include="Commands\GenericCommands.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Controls\ExtendedListBox.cs" />
+    <Compile Include="Controls\HtmlTextView.cs" />
     <Compile Include="Controls\GameMenu.cs" />
     <Compile Include="Controls\GamesGridView.xaml.cs">
       <DependentUpon>GamesGridView.xaml</DependentUpon>
@@ -227,6 +228,7 @@
     <Compile Include="Behaviors\ScrollToSelectedBehavior.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="Skins.cs" />
+    <Compile Include="ViewModels\GameDetailsViewModel.cs" />
     <Compile Include="ViewModels\MetadataDownloadViewModel.cs" />
     <Compile Include="ViewModels\ProgressViewViewModel.cs" />
     <Compile Include="ViewModels\FullscreenViewModel.cs" />
@@ -260,9 +262,6 @@
     </Compile>
     <Compile Include="Controls\SearchBox.xaml.cs">
       <DependentUpon>SearchBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\GameDetails.xaml.cs">
-      <DependentUpon>GameDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\CategoryConfigWindow.xaml.cs">
       <DependentUpon>CategoryConfigWindow.xaml</DependentUpon>
@@ -315,6 +314,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Resource Include="Images\icon_dark.png" />
     <Content Include="Localization\english.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -324,6 +324,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <EmbeddedResource Include="Resources\DescriptionView.html" />
     <Content Include="Skins\Classic\Classic.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -376,10 +377,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SearchBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\GameDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

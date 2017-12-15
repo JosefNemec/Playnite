@@ -120,11 +120,6 @@ namespace Playnite.Models
             get; set;
         }
 
-        string DescriptionView
-        {
-            get;
-        }
-
         GameTask PlayTask
         {
             get; set;

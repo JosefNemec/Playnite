@@ -202,8 +202,8 @@ namespace PlayniteUI
         public string InstallDirectory => Game.InstallDirectory;
         public LiteDB.ObjectId PlatformId => Game.PlatformId;
         public ObservableCollection<GameTask> OtherTasks => Game.OtherTasks;
-        public string DescriptionView => Game.DescriptionView;
-        public string DisplayName => Game.Name;
+        public string DisplayName => Game.Name;                
+        public string Description => Game.Description;
 
         public string Name
         {
@@ -266,7 +266,7 @@ namespace PlayniteUI
                             return @"resources:/Images/battleneticon.png";
                         case Provider.Custom:
                         default:
-                            return @"resources:/Images/applogo.png";
+                            return @"resources:/Images/icon_dark.png";
                     }
                 }
             }

@@ -111,20 +111,6 @@ namespace Playnite.Providers.GOG
             }
         }
 
-        private static string descriptionTemplate;
-        public static string DescriptionTemplate
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(descriptionTemplate))
-                {
-                    descriptionTemplate= DataResources.ReadFileFromResource("Playnite.Resources.description_gog.html");
-                }
-
-                return descriptionTemplate;
-            }
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string name)
