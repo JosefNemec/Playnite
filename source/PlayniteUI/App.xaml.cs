@@ -155,7 +155,7 @@ namespace PlayniteUI
 
             // First run wizard
             ulong steamCatImportId = 0;
-            bool metaForNewGames = AppSettings.FirstTimeWizardComplete;
+            bool notFirstStart = AppSettings.FirstTimeWizardComplete;
             if (!AppSettings.FirstTimeWizardComplete)
             {
                 var wizardWindow = FirstTimeStartupWindowFactory.Instance;
@@ -233,7 +233,7 @@ namespace PlayniteUI
 
             // Metadata wizard
             MetadataDownloadViewModel metaModel = null;
-            if (!AppSettings.MetadataWizardComplete)
+            if (!notFirstStart)
             {
                 metaModel = new MetadataDownloadViewModel(MetadataDownloadWindowFactory.Instance);
                 metaModel.Settings.GamesSource = Playnite.MetaProviders.MetadataGamesSource.AllFromDB;
@@ -242,7 +242,6 @@ namespace PlayniteUI
                     metaModel = null;
                 }
 
-                AppSettings.MetadataWizardComplete = true;
                 AppSettings.SaveSettings();
             }
 
@@ -256,7 +255,7 @@ namespace PlayniteUI
             }
             else
             {
-                OpenNormalView(steamCatImportId, metaForNewGames, metaModel);
+                OpenNormalView(steamCatImportId, notFirstStart, metaModel);
             }
 
             // Update and stats

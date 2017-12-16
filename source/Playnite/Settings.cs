@@ -114,21 +114,6 @@ namespace Playnite
             }
         }
 
-        private bool metadataWizardComplete;
-        public bool MetadataWizardComplete
-        {
-            get
-            {
-                return metadataWizardComplete;
-            }
-
-            set
-            {
-                metadataWizardComplete = value;
-                OnPropertyChanged("MetadataWizardComplete");
-            }
-        }
-
         private bool disableHwAcceleration = false;
         public bool DisableHwAcceleration
         {
@@ -430,7 +415,7 @@ namespace Playnite
             }
         }
 
-        private bool filterPanelVisible = true;
+        private bool filterPanelVisible = false;
         public bool FilterPanelVisible
         {
             get
