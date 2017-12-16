@@ -378,7 +378,6 @@ namespace PlayniteUI
         private void ReleaseResources()
         {
             GamesLoaderHandler.CancelToken?.Cancel();
-            GamesLoaderHandler.ProgressTask?.Wait();
             Database?.CloseDatabase();
             Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
             AppSettings?.SaveSettings();
