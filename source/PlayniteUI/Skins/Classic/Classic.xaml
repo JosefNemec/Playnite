@@ -2566,183 +2566,192 @@
             
             <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" Grid.Row="1" Grid.Column="0">
                 <DockPanel>
-                    <Border BorderThickness="1,0,0,1" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Right" Margin="0,0,0,36">
-                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
-                            <StackPanel Margin="0,5,0,0" Width="180"
-                                        Visibility="{Binding IsChecked, ElementName=CheckFilterView, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <StackPanel.Resources>
-                                    <Style x:Key="FilterCheck" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
-                                        <Setter Property="Margin" Value="8" />
-                                        <Style.Triggers>
-                                            <Trigger Property="IsChecked" Value="False">
-                                                <Setter Property="Opacity" Value="0.6" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                    <Style x:Key="FilterLabel" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
-                                        <Setter Property="Margin" Value="8,8,8,4" />
-                                    </Style>
-                                    <Style x:Key="FilterTextBox" TargetType="pc:SearchBox">
-                                        <Setter Property="Margin" Value="8,0,8,8" />
-                                        <Setter Property="ShowImage" Value="False" />
-                                    </Style>
-                                </StackPanel.Resources>
-
-                                <TextBlock Margin="10,10,5,5">
-                                    <Hyperlink Command="{Binding Data.ClearFiltersCommand, Source={StaticResource Proxy}}">
-                                        <Run Text="{DynamicResource ClearFilters}" />
-                                    </Hyperlink>
+                    <Border BorderThickness="1,0,0,1" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Right" Margin="0,0,0,36"                    
+                            Visibility="{Binding IsChecked, ElementName=CheckFilterView, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <DockPanel>
+                            <DockPanel Margin="10,5,5,5" DockPanel.Dock="Top">
+                                <TextBlock DockPanel.Dock="Right" Margin="0,0,5,0">
+                                <Hyperlink Command="{Binding Data.CloseFilterPanelCommand, Source={StaticResource Proxy}}">
+                                    <Run Text="r" FontFamily="Marlett" />
+                                </Hyperlink>
                                 </TextBlock>
-                                
-                                <CheckBox Name="CheckFilterInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled}" Style="{StaticResource FilterCheck}">
-                                    <TextBlock Text="{Binding GamesStats.Installed, Mode=OneWay, StringFormat=Installed ({0})}" />
-                                </CheckBox>
-
-                                <CheckBox Name="CheckFilterUnInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsUnInstalled}" Style="{StaticResource FilterCheck}">
-                                    <TextBlock Text="{Binding GamesStats.UnInstalled, Mode=OneWay, StringFormat=Uninstalled ({0})}" />
-                                </CheckBox>
-
-                                <CheckBox Name="CheckFilterHidden" IsChecked="{Binding AppSettings.FilterSettings.Hidden}" Style="{StaticResource FilterCheck}">
-                                    <TextBlock Text="{Binding GamesStats.Hidden, Mode=OneWay, StringFormat=Hidden ({0})}" />
-                                </CheckBox>
-
-                                <CheckBox Name="CheckFilterFavorite" IsChecked="{Binding AppSettings.FilterSettings.Favorite}" Style="{StaticResource FilterCheck}">
-                                    <TextBlock Text="{Binding GamesStats.Favorite, Mode=OneWay, StringFormat=Favorite ({0})}" />
-                                </CheckBox>
-
-                                <Border Height="10" />
-
-                                <CheckBox Name="CheckFilterSteam" IsChecked="{Binding AppSettings.FilterSettings.Steam}" Style="{StaticResource FilterCheck}">
-                                    <TextBlock Text="{Binding GamesStats.Steam, Mode=OneWay, StringFormat=Steam ({0})}" />
-                                </CheckBox>
-
-                                <CheckBox Name="CheckFilterGOG" IsChecked="{Binding AppSettings.FilterSettings.GOG}" Style="{StaticResource FilterCheck}">
-                                    <TextBlock Text="{Binding GamesStats.GOG, Mode=OneWay, StringFormat=GOG ({0})}" />
-                                </CheckBox>
-
-                                <CheckBox Name="CheckFilterOrigin" IsChecked="{Binding AppSettings.FilterSettings.Origin}" Style="{StaticResource FilterCheck}">
-                                    <TextBlock Text="{Binding GamesStats.Origin, Mode=OneWay, StringFormat=Origin ({0})}" />
-                                </CheckBox>
-
-                                <CheckBox Name="CheckFilterUplay" IsChecked="{Binding AppSettings.FilterSettings.Uplay}" Style="{StaticResource FilterCheck}">
-                                    <TextBlock Text="{Binding GamesStats.Uplay, Mode=OneWay, StringFormat=Uplay ({0})}" />
-                                </CheckBox>
-
-                                <CheckBox Name="CheckFilterBattleNet" IsChecked="{Binding AppSettings.FilterSettings.BattleNet}" Style="{StaticResource FilterCheck}">
-                                    <TextBlock Text="{Binding GamesStats.BattleNet, Mode=OneWay, StringFormat=Battle.net ({0})}" />
-                                </CheckBox>
-
-                                <CheckBox Name="CheckFilterCustom" IsChecked="{Binding AppSettings.FilterSettings.Custom}" Style="{StaticResource FilterCheck}">
-                                    <TextBlock Text="{Binding GamesStats.Custom, Mode=OneWay, StringFormat=Custom ({0})}" />
-                                </CheckBox>
-
-                                <Border Height="10" />
-
-                                <Label Content="{DynamicResource NameLabel}">
-                                    <Label.Style>
-                                        <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                <TextBlock DockPanel.Dock="Left">
+                                <Hyperlink Command="{Binding Data.ClearFiltersCommand, Source={StaticResource Proxy}}">
+                                    <Run Text="{DynamicResource ClearFilters}" />
+                                </Hyperlink>
+                                </TextBlock>
+                            </DockPanel>
+                            
+                            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
+                                <StackPanel Margin="0,5,0,0" Width="180">
+                                    <StackPanel.Resources>
+                                        <Style x:Key="FilterCheck" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                                            <Setter Property="Margin" Value="8" />
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding AppSettings.FilterSettings.Name, TargetNullValue=''}" Value="">
-                                                    <Setter Property="Opacity" Value="0.6"/>
-                                                </DataTrigger>
+                                                <Trigger Property="IsChecked" Value="False">
+                                                    <Setter Property="Opacity" Value="0.6" />
+                                                </Trigger>
                                             </Style.Triggers>
                                         </Style>
-                                    </Label.Style>
-                                </Label>
-                                <pc:SearchBox x:Name="TextFilterName" Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
-
-                                <Label Content="{DynamicResource GenreLabel}">
-                                    <Label.Style>
-                                        <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding AppSettings.FilterSettings.Genres, TargetNullValue=''}" Value="">
-                                                    <Setter Property="Opacity" Value="0.6"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
+                                        <Style x:Key="FilterLabel" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                                            <Setter Property="Margin" Value="8,8,8,4" />
                                         </Style>
-                                    </Label.Style>
-                                </Label>
-                                <pc:SearchBox x:Name="TextFilterGenre" Text="{Binding AppSettings.FilterSettings.Genres, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
-
-                                <Label Content="{DynamicResource PlatformTitle}">
-                                    <Label.Style>
-                                        <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterPlatform}" Value="">
-                                                    <Setter Property="Opacity" Value="0.6"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
+                                        <Style x:Key="FilterTextBox" TargetType="pc:SearchBox">
+                                            <Setter Property="Margin" Value="8,0,8,8" />
+                                            <Setter Property="ShowImage" Value="False" />
                                         </Style>
-                                    </Label.Style>
-                                </Label>
-                                <pc:SearchBox x:Name="TextFilterPlatform" Text="{Binding AppSettings.FilterSettings.Platforms, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                                    </StackPanel.Resources>
 
-                                <Label Content="{DynamicResource GameReleaseDateTitle}">
-                                    <Label.Style>
-                                        <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterReleaseDate}" Value="">
-                                                    <Setter Property="Opacity" Value="0.6"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Label.Style>
-                                </Label>
-                                <pc:SearchBox x:Name="TextFilterReleaseDate" Text="{Binding AppSettings.FilterSettings.ReleaseDate, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+                                    <CheckBox Name="CheckFilterInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled}" Style="{StaticResource FilterCheck}">
+                                        <TextBlock Text="{Binding GamesStats.Installed, Mode=OneWay, StringFormat=Installed ({0})}" />
+                                    </CheckBox>
 
-                                <Label Content="{DynamicResource DeveloperLabel}">
-                                    <Label.Style>
-                                        <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterDeveloper}" Value="">
-                                                    <Setter Property="Opacity" Value="0.6"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Label.Style>
-                                </Label>
-                                <pc:SearchBox x:Name="TextFilterDeveloper" Text="{Binding AppSettings.FilterSettings.Developers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                                    <CheckBox Name="CheckFilterUnInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsUnInstalled}" Style="{StaticResource FilterCheck}">
+                                        <TextBlock Text="{Binding GamesStats.UnInstalled, Mode=OneWay, StringFormat=Uninstalled ({0})}" />
+                                    </CheckBox>
 
-                                <Label Content="{DynamicResource PublisherLabel}">
-                                    <Label.Style>
-                                        <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterPublisher}" Value="">
-                                                    <Setter Property="Opacity" Value="0.6"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Label.Style>
-                                </Label>
-                                <pc:SearchBox x:Name="TextFilterPublisher" Text="{Binding AppSettings.FilterSettings.Publishers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                                    <CheckBox Name="CheckFilterHidden" IsChecked="{Binding AppSettings.FilterSettings.Hidden}" Style="{StaticResource FilterCheck}">
+                                        <TextBlock Text="{Binding GamesStats.Hidden, Mode=OneWay, StringFormat=Hidden ({0})}" />
+                                    </CheckBox>
 
-                                <Label Content="{DynamicResource CategoryLabel}">
-                                    <Label.Style>
-                                        <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterCategory}" Value="">
-                                                    <Setter Property="Opacity" Value="0.6"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Label.Style>
-                                </Label>
-                                <pc:SearchBox x:Name="TextFilterCategory" Text="{Binding AppSettings.FilterSettings.Categories, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                                    <CheckBox Name="CheckFilterFavorite" IsChecked="{Binding AppSettings.FilterSettings.Favorite}" Style="{StaticResource FilterCheck}">
+                                        <TextBlock Text="{Binding GamesStats.Favorite, Mode=OneWay, StringFormat=Favorite ({0})}" />
+                                    </CheckBox>
 
-                                <Label Content="{DynamicResource TagLabel}">
-                                    <Label.Style>
-                                        <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterTag}" Value="">
-                                                    <Setter Property="Opacity" Value="0.6"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Label.Style>
-                                </Label>
-                                <pc:SearchBox x:Name="TextFilterTag" Text="{Binding AppSettings.FilterSettings.Tags, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
-                            </StackPanel>
-                        </ScrollViewer>
+                                    <Border Height="10" />
+
+                                    <CheckBox Name="CheckFilterSteam" IsChecked="{Binding AppSettings.FilterSettings.Steam}" Style="{StaticResource FilterCheck}">
+                                        <TextBlock Text="{Binding GamesStats.Steam, Mode=OneWay, StringFormat=Steam ({0})}" />
+                                    </CheckBox>
+
+                                    <CheckBox Name="CheckFilterGOG" IsChecked="{Binding AppSettings.FilterSettings.GOG}" Style="{StaticResource FilterCheck}">
+                                        <TextBlock Text="{Binding GamesStats.GOG, Mode=OneWay, StringFormat=GOG ({0})}" />
+                                    </CheckBox>
+
+                                    <CheckBox Name="CheckFilterOrigin" IsChecked="{Binding AppSettings.FilterSettings.Origin}" Style="{StaticResource FilterCheck}">
+                                        <TextBlock Text="{Binding GamesStats.Origin, Mode=OneWay, StringFormat=Origin ({0})}" />
+                                    </CheckBox>
+
+                                    <CheckBox Name="CheckFilterUplay" IsChecked="{Binding AppSettings.FilterSettings.Uplay}" Style="{StaticResource FilterCheck}">
+                                        <TextBlock Text="{Binding GamesStats.Uplay, Mode=OneWay, StringFormat=Uplay ({0})}" />
+                                    </CheckBox>
+
+                                    <CheckBox Name="CheckFilterBattleNet" IsChecked="{Binding AppSettings.FilterSettings.BattleNet}" Style="{StaticResource FilterCheck}">
+                                        <TextBlock Text="{Binding GamesStats.BattleNet, Mode=OneWay, StringFormat=Battle.net ({0})}" />
+                                    </CheckBox>
+
+                                    <CheckBox Name="CheckFilterCustom" IsChecked="{Binding AppSettings.FilterSettings.Custom}" Style="{StaticResource FilterCheck}">
+                                        <TextBlock Text="{Binding GamesStats.Custom, Mode=OneWay, StringFormat=Custom ({0})}" />
+                                    </CheckBox>
+
+                                    <Border Height="10" />
+
+                                    <Label Content="{DynamicResource NameLabel}">
+                                        <Label.Style>
+                                            <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Name, TargetNullValue=''}" Value="">
+                                                        <Setter Property="Opacity" Value="0.6"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                    <pc:SearchBox x:Name="TextFilterName" Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <Label Content="{DynamicResource GenreLabel}">
+                                        <Label.Style>
+                                            <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Genres, TargetNullValue=''}" Value="">
+                                                        <Setter Property="Opacity" Value="0.6"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                    <pc:SearchBox x:Name="TextFilterGenre" Text="{Binding AppSettings.FilterSettings.Genres, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <Label Content="{DynamicResource PlatformTitle}">
+                                        <Label.Style>
+                                            <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterPlatform}" Value="">
+                                                        <Setter Property="Opacity" Value="0.6"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                    <pc:SearchBox x:Name="TextFilterPlatform" Text="{Binding AppSettings.FilterSettings.Platforms, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <Label Content="{DynamicResource GameReleaseDateTitle}">
+                                        <Label.Style>
+                                            <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterReleaseDate}" Value="">
+                                                        <Setter Property="Opacity" Value="0.6"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                    <pc:SearchBox x:Name="TextFilterReleaseDate" Text="{Binding AppSettings.FilterSettings.ReleaseDate, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <Label Content="{DynamicResource DeveloperLabel}">
+                                        <Label.Style>
+                                            <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterDeveloper}" Value="">
+                                                        <Setter Property="Opacity" Value="0.6"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                    <pc:SearchBox x:Name="TextFilterDeveloper" Text="{Binding AppSettings.FilterSettings.Developers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <Label Content="{DynamicResource PublisherLabel}">
+                                        <Label.Style>
+                                            <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterPublisher}" Value="">
+                                                        <Setter Property="Opacity" Value="0.6"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                    <pc:SearchBox x:Name="TextFilterPublisher" Text="{Binding AppSettings.FilterSettings.Publishers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <Label Content="{DynamicResource CategoryLabel}">
+                                        <Label.Style>
+                                            <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterCategory}" Value="">
+                                                        <Setter Property="Opacity" Value="0.6"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                    <pc:SearchBox x:Name="TextFilterCategory" Text="{Binding AppSettings.FilterSettings.Categories, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <Label Content="{DynamicResource TagLabel}">
+                                        <Label.Style>
+                                            <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterTag}" Value="">
+                                                        <Setter Property="Opacity" Value="0.6"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                    <pc:SearchBox x:Name="TextFilterTag" Text="{Binding AppSettings.FilterSettings.Tags, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </DockPanel>                        
                     </Border>
 
                     <TabControl Name="TabControlView" DockPanel.Dock="Left" TabStripPlacement="Bottom"
