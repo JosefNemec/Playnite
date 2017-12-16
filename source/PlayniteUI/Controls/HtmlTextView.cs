@@ -21,6 +21,33 @@ namespace PlayniteUI.Controls
 {
     public class HtmlTextView : HtmlPanel
     {
+        public FontFamily HtmlFontFamily
+        {
+            get
+            {
+                return (FontFamily)GetValue(HtmlFontFamilyProperty);
+            }
+
+            set
+            {
+                SetValue(HtmlFontFamilyProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty HtmlFontFamilyProperty =
+            DependencyProperty.Register("HtmlFontFamily", typeof(FontFamily), typeof(HtmlTextView), new PropertyMetadata(new FontFamily("Trebuchet MS"), OnHtmlFontFamilyChange));
+
+        private static void OnHtmlFontFamilyChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var obj = sender as HtmlTextView;
+            var font = e.NewValue.ToString();
+            var template = DataResources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
+            template = template.Replace("{text}", obj.HtmlText);
+            template = template.Replace("{foreground}", obj.HtmlForeground.ToHtml());
+            template = template.Replace("{link_foreground}", obj.LinkForeground.ToHtml());
+            obj.Text = template.Replace("{font_family}", font);
+        }
+
         public Color LinkForeground
         {
             get
@@ -44,6 +71,7 @@ namespace PlayniteUI.Controls
             var template = DataResources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
             template = template.Replace("{text}", obj.HtmlText);
             template = template.Replace("{foreground}", obj.HtmlForeground.ToHtml());
+            template = template.Replace("{font_family}", obj.HtmlFontFamily.ToString());
             obj.Text = template.Replace("{link_foreground}", color.ToHtml());
         }
 
@@ -70,6 +98,7 @@ namespace PlayniteUI.Controls
             var template = DataResources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
             template = template.Replace("{text}", obj.HtmlText);
             template = template.Replace("{link_foreground}", obj.LinkForeground.ToHtml());
+            template = template.Replace("{font_family}", obj.HtmlFontFamily.ToString());
             obj.Text = template.Replace("{foreground}", color.ToHtml());
         }
 
@@ -95,6 +124,7 @@ namespace PlayniteUI.Controls
             var template = DataResources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
             template = template.Replace("{foreground}", obj.HtmlForeground.ToHtml());
             template = template.Replace("{link_foreground}", obj.LinkForeground.ToHtml());
+            template = template.Replace("{font_family}", obj.HtmlFontFamily.ToString());
             obj.Text = template.Replace("{text}", e.NewValue?.ToString());
         }
 

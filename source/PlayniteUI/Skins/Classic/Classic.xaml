@@ -608,7 +608,7 @@
                 <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -1727,20 +1727,22 @@
 
     <Style x:Key="PlayButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="Background" Value="{DynamicResource GlyphBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
-        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
         <Setter Property="Padding" Value="10,5,10,5" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid x:Name="Grid">
-                        <Border x:Name="DefaultBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"  Background="{TemplateBinding Background}" Opacity="1" CornerRadius="3"/>
+                        <Border x:Name="DefaultBorder" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"  Background="{TemplateBinding Background}"
+                                Opacity="1" CornerRadius="{DynamicResource ControlCornerRadius}"/>
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True" />
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="true" />
-                        <Trigger Property="IsEnabled" Value="false">
+                        <Trigger Property="IsEnabled" Value="True" />
+                        <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="DefaultBorder" />
                             <Setter Property="Opacity" TargetName="Grid" Value="0.5" />
                         </Trigger>
@@ -1751,6 +1753,7 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TextBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -1804,7 +1807,7 @@
                         <sys:Boolean x:Key="True">True</sys:Boolean>
                     </ControlTemplate.Resources>
                     <AdornerDecorator>
-                        <Border x:Name="WindowBorder" BorderBrush="#3e6184" CornerRadius="0"
+                        <Border x:Name="WindowBorder" BorderBrush="{DynamicResource PopupBorderBrush}" CornerRadius="0"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}">  
                             <Grid>
@@ -2774,7 +2777,7 @@
                                                     <Setter Property="Foreground" Value="{StaticResource TextBrushDarker}" />
                                                 </DataTrigger>
                                                 <Trigger Property="IsSelected" Value="True">
-                                                    <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                                                    <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
                                                 </Trigger>
                                             </Style.Triggers>
                                         </Style>

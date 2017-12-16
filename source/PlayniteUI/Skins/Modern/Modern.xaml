@@ -25,7 +25,7 @@
     <Color x:Key="PopupBackgroundColor">#171e26</Color>
     <Color x:Key="PopupBorderColor">#3e6184</Color>
     <Color x:Key="BackgroundToneColor">#2C3A67</Color>
-    <Color x:Key="GamesListPanelColor">#CC0D1225</Color>
+    <Color x:Key="GamesListPanelColor">#CC000000</Color>
 
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="Transparent" />
     <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
@@ -615,7 +615,7 @@
                 <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -2104,8 +2104,8 @@
 
             <Border Grid.ColumnSpan="10" Grid.RowSpan="10" Background="{DynamicResource GameDetailsBackGroundBrush}" />
 
-            <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
-                       Text="{Binding Game.DisplayName, Mode=OneWay}" FontSize="30" Margin="40,60,0,10" TextWrapping="Wrap"
+            <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontFamily="{DynamicResource FontFamily}"
+                       Text="{Binding Game.DisplayName, Mode=OneWay}" FontSize="34" Margin="40,60,0,10" TextWrapping="Wrap"
                        DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
                 <TextBlock.Effect>
                     <DropShadowEffect ShadowDepth="3"/>
@@ -2159,6 +2159,7 @@
                 </Border.Style>
                 <ScrollViewer>
                     <pc:HtmlTextView Background="Transparent" HtmlText="{Binding Game.Description, Mode=OneWay}"
+                                     HtmlFontFamily="{DynamicResource FontFamily}"
                                      HtmlForeground="{DynamicResource TextColor}"
                                      LinkForeground="{DynamicResource GlyphColor}"
                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"

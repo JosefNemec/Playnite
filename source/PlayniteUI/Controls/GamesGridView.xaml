@@ -69,7 +69,7 @@
                         <Setter Property="Foreground" Value="{StaticResource TextBrushDarker}" />
                     </DataTrigger>
                     <Trigger Property="IsSelected" Value="True">
-                        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                        <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
                     </Trigger>
                 </Style.Triggers>
             </Style>

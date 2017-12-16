@@ -4,44 +4,7 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:pc="clr-namespace:PlayniteUI.Controls;assembly=PlayniteUI"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    mc:Ignorable="d">    
+                    mc:Ignorable="d">
 
     <sys:String x:Key="SkinColorName">Default</sys:String>
-
-    <!--<Color x:Key="TextColor">#D8DBE2</Color>
-    <Color x:Key="TextColorDark">#FFFCF2</Color>
-    <Color x:Key="MainColorLight">#A9BCD0</Color>
-    <Color x:Key="MainColor">#373F51</Color>
-    <Color x:Key="MainColorDark">#1B1B1E</Color>
-    <Color x:Key="HoverColor">#247BA0</Color>
-    <Color x:Key="DefaultColor">#FF9BB1C5</Color>
-    <Color x:Key="IndicatorColor">#58A4B0</Color>
-    <Color x:Key="PopupBackgroundColor">#252422</Color>
-    <Color x:Key="PopupBorderColor">#75290b</Color>-->
-
-    <!--<Color x:Key="TextColor">#D8DBE2</Color>
-    <Color x:Key="TextColorDark">#FFFCF2</Color>
-    <Color x:Key="MainColorLight">#A9BCD0</Color>
-    <Color x:Key="MainColor">#373F51</Color>
-    <Color x:Key="MainColorDark">#1B1B1E</Color>
-    <Color x:Key="HoverColor">#247BA0</Color>
-    <Color x:Key="DefaultColor">#FF9BB1C5</Color>
-    <Color x:Key="IndicatorColor">#58A4B0</Color>
-    <Color x:Key="PopupBackgroundColor">#252422</Color>
-    <Color x:Key="PopupBorderColor">#75290b</Color>-->
-
-    <!--<Color x:Key="TextColor">#FFFCF2</Color>
-    <Color x:Key="TextColorDark">#FFFCF2</Color>
-    <Color x:Key="MainColorLight">#007EA7</Color>
-    <Color x:Key="MainColor">#003459</Color>
-    <Color x:Key="MainColorDark">#00171F</Color>
-    <Color x:Key="HoverColor">#247BA0</Color>
-    <Color x:Key="DefaultColor">#FF9BB1C5</Color>
-    <Color x:Key="IndicatorColor">#00A8E8</Color>
-    <Color x:Key="PopupBackgroundColor">#252422</Color>
-    <Color x:Key="PopupBorderColor">#75290b</Color>-->
-
-    <!--#region Colors and Brushes -->
-
-    
 </ResourceDictionary>
