@@ -65,9 +65,9 @@ namespace PlayniteUI
             {
                 var langsPath = Path.Combine(path, file);
 
-                using (var stream = new FileStream(langsPath, FileMode.Open))
+                using (var stream = new StreamReader(langsPath))
                 {
-                    var res = XamlReader.Load(stream) as ResourceDictionary;
+                    var res = XamlReader.Load(stream.BaseStream) as ResourceDictionary;
                     langs.Add(new PlayniteLanguage()
                     {
                         Id = Path.GetFileNameWithoutExtension(langsPath),
