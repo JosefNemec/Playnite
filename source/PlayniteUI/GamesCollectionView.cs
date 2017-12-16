@@ -99,7 +99,7 @@ namespace PlayniteUI
             get; set;
         }
 
-        public int? PlatformId
+        public LiteDB.ObjectId PlatformId
         {
             get; set;
         }
@@ -109,7 +109,7 @@ namespace PlayniteUI
             get => Platform?.Name ?? string.Empty;
         }
 
-        public PlatformView(int? platformId, Platform platform)
+        public PlatformView(LiteDB.ObjectId platformId, Platform platform)
         {
             Platform = platform;
             PlatformId = platformId;
@@ -184,9 +184,9 @@ namespace PlayniteUI
     public class GameViewEntry : INotifyPropertyChanged
     {
         public int Id => Game.Id;
-        public string Name => Game.Name;
         public Provider Provider => Game.Provider;
         public List<string> Categories => Game.Categories;
+        public List<string> Tags => Game.Tags;
         public List<string> Genres => Game.Genres;
         public DateTime? ReleaseDate => Game.ReleaseDate;
         public DateTime? LastActivity => Game.LastActivity;
@@ -200,9 +200,18 @@ namespace PlayniteUI
         public bool Hidden => Game.Hidden;
         public bool Favorite => Game.Favorite;
         public string InstallDirectory => Game.InstallDirectory;
-        public int? PlatformId => Game.PlatformId;
+        public LiteDB.ObjectId PlatformId => Game.PlatformId;
         public ObservableCollection<GameTask> OtherTasks => Game.OtherTasks;
-        public string DescriptionView => Game.DescriptionView;
+        public string DisplayName => Game.Name;                
+        public string Description => Game.Description;
+
+        public string Name
+        {
+            get
+            {
+                return (string.IsNullOrEmpty(Game.SortingName)) ? Game.Name : Game.SortingName;
+            }
+        }
 
         public bool IsSetupInProgress
         {
@@ -231,7 +240,7 @@ namespace PlayniteUI
         public IGame Game
         {
             get; set;
-        }       
+        }
 
         public string DefaultIcon
         {
@@ -257,7 +266,7 @@ namespace PlayniteUI
                             return @"resources:/Images/battleneticon.png";
                         case Provider.Custom:
                         default:
-                            return @"resources:/Images/applogo.png";
+                            return @"resources:/Images/icon_dark.png";
                     }
                 }
             }
@@ -302,13 +311,19 @@ namespace PlayniteUI
             OnPropertyChanged(e.PropertyName);
         }
 
-        public void OnPropertyChanged(string name)
-        {            
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        public void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-            if (name == "PlatformId")
+            if (propertyName == "PlatformId")
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Platform"));
+            }
+
+            if (propertyName == "SortingName" || propertyName == "Name")
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DisplayName"));
             }
         }
 
@@ -329,17 +344,22 @@ namespace PlayniteUI
         CategoryGrouped
     }
 
-    public class GamesCollectionView : IDisposable
+    public class GamesCollectionView : ObservableObject, IDisposable
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private GameDatabase database;
         private List<Platform> platformsCache;
 
+        private ListCollectionView collectionView;
         public ListCollectionView CollectionView
         {
-            get;
-            private set;
+            get => collectionView;
+            private set
+            {
+                collectionView = value;
+                OnPropertyChanged("CollectionView");
+            }
         }
 
         public Settings Settings
@@ -380,7 +400,7 @@ namespace PlayniteUI
             Items = new RangeObservableCollection<GameViewEntry>();
             Settings = settings;
             Settings.PropertyChanged += Settings_PropertyChanged;
-            Settings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
+            Settings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             CollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(Items);
             SetViewConfiguration();
             CollectionView.Filter = Filter;
@@ -393,7 +413,7 @@ namespace PlayniteUI
             database.PlatformsCollectionChanged -= Database_PlatformsCollectionChanged;
             database.PlatformUpdated -= Database_PlatformUpdated;
             Settings.PropertyChanged -= Settings_PropertyChanged;
-            Settings.FilterSettings.PropertyChanged -= FilterSettings_PropertyChanged;
+            Settings.FilterSettings.FilterChanged -= FilterSettings_FilterChanged;
         }
 
         private bool Filter(object item)
@@ -415,24 +435,21 @@ namespace PlayniteUI
 
             // ------------------ Installed
             bool installedResult = false;
-            if (Settings.FilterSettings.IsInstalled && game.IsInstalled)
+            if ((Settings.FilterSettings.IsInstalled && Settings.FilterSettings.IsUnInstalled) ||
+                (!Settings.FilterSettings.IsInstalled && !Settings.FilterSettings.IsUnInstalled))
             {
                 installedResult = true;
             }
-            else if (!Settings.FilterSettings.IsInstalled)
+            else
             {
-                installedResult = true;
-            }
-
-            // ------------------ UnInstalled
-            bool unInstalledResult = false;
-            if (Settings.FilterSettings.IsUnInstalled && !game.IsInstalled)
-            {
-                unInstalledResult = true;
-            }
-            else if (!Settings.FilterSettings.IsUnInstalled)
-            {
-                unInstalledResult = true;
+                if (Settings.FilterSettings.IsInstalled && game.IsInstalled)
+                {
+                    installedResult = true;
+                }
+                else if (Settings.FilterSettings.IsUnInstalled && !game.IsInstalled)
+                {
+                    installedResult = true;
+                }
             }
 
             // ------------------ Hidden
@@ -657,7 +674,37 @@ namespace PlayniteUI
                 }
             }
 
-            return installedResult && unInstalledResult && hiddenResult && favoriteResult && textResult && providersFilter && genreResult && platformResult && releaseDateResult && publisherResult && developerResult && categoryResult;
+
+            // ------------------ Tags
+            bool tagResult = false;
+            if (Settings.FilterSettings.Tags == null || Settings.FilterSettings.Tags.Count == 0)
+            {
+                tagResult = true;
+            }
+            else
+            {
+                if (game.Tags == null)
+                {
+                    tagResult = false;
+                }
+                else
+                {
+                    tagResult = Settings.FilterSettings.Tags.IntersectsPartiallyWith(game.Tags);
+                }
+            }
+
+            return installedResult &&
+                hiddenResult &&
+                favoriteResult &&
+                textResult &&
+                providersFilter &&
+                genreResult &&
+                platformResult &&
+                releaseDateResult &&
+                publisherResult &&
+                developerResult &&
+                categoryResult &&
+                tagResult;
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -668,13 +715,8 @@ namespace PlayniteUI
             }
         }
 
-        private void FilterSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
         {
-            if (e.PropertyName == "Active")
-            {
-                return;
-            }
-
             logger.Debug("Refreshing collection view filter.");
             CollectionView.Refresh();
         }
@@ -730,6 +772,7 @@ namespace PlayniteUI
                 CollectionView.LiveSortingProperties.Add("Genres");
                 CollectionView.LiveSortingProperties.Add("ReleaseDate");
                 CollectionView.LiveSortingProperties.Add("Developers");
+                CollectionView.LiveSortingProperties.Add("Tags");
                 CollectionView.LiveSortingProperties.Add("Publishers");
                 CollectionView.LiveSortingProperties.Add("IsInstalled");
                 CollectionView.LiveSortingProperties.Add("Hidden");
@@ -743,6 +786,7 @@ namespace PlayniteUI
                 CollectionView.LiveFilteringProperties.Add("Genres");
                 CollectionView.LiveFilteringProperties.Add("ReleaseDate");
                 CollectionView.LiveFilteringProperties.Add("Developers");
+                CollectionView.LiveFilteringProperties.Add("Tags");
                 CollectionView.LiveFilteringProperties.Add("Publishers");
                 CollectionView.LiveFilteringProperties.Add("IsInstalled");
                 CollectionView.LiveFilteringProperties.Add("Hidden");
@@ -806,7 +850,7 @@ namespace PlayniteUI
             this.viewType = viewType;
         }
 
-        private Platform GetPlatformFromCache(int? id)
+        private Platform GetPlatformFromCache(LiteDB.ObjectId id)
         {
             return platformsCache?.FirstOrDefault(a => a.Id == id);
         }
@@ -815,7 +859,7 @@ namespace PlayniteUI
         {
             platformsCache = database.PlatformsCollection.FindAll().ToList();
             var platformIds = args.UpdatedPlatforms.Select(a => a.NewData.Id).ToList();
-            foreach (var item in Items.Where(a => a.PlatformId != null && platformIds.Contains(a.PlatformId.Value)))
+            foreach (var item in Items.Where(a => a.PlatformId != null && platformIds.Contains(a.PlatformId)))
             {
                 item.Platform.Platform = GetPlatformFromCache(item.PlatformId);
                 item.OnPropertyChanged("Platform");
@@ -861,14 +905,13 @@ namespace PlayniteUI
 
         private void Database_GamesCollectionChanged(object sender, GamesCollectionChangedEventArgs args)
         {
-            foreach (var game in args.RemovedGames)
+            if (args.RemovedGames.Count > 0)
             {
-                foreach (var item in Items.ToList())
+                var removeIds = args.RemovedGames.Select(a => a.Id);
+                var toRemove = Items.Where(a => removeIds.Contains(a.Id))?.ToList();
+                if (toRemove != null)
                 {
-                    if (item.Game.Id == game.Id)
-                    {
-                        Items.Remove(item);
-                    }
+                    Items.RemoveRange(toRemove);
                 }
             }
 

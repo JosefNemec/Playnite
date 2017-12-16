@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace PlayniteUI
 {
@@ -31,6 +32,11 @@ namespace PlayniteUI
 
             object item = control.Items[count - 1];
             control.ScrollIntoView(item);
+        }
+
+        public static string ToHtml(this Color color)
+        {
+            return $"#{color.R:X2}{color.G:X2}{color.B:X2}";
         }
     }
 }

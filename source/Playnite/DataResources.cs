@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Playnite
 {
-    class DataResources
+    public class DataResources
     {
         public static string ReadFileFromResource(string resource)
         {
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource))
+            using (var stream = Assembly.GetCallingAssembly().GetManifestResourceStream(resource))
             {
                 var tr = new StreamReader(stream);
                 return tr.ReadToEnd();

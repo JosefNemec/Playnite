@@ -1,4 +1,6 @@
 ﻿using LiteDB;
+using Newtonsoft.Json;
+using Playnite.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,9 +12,10 @@ namespace Playnite.Models
 {
     public class Platform : INotifyPropertyChanged
     {
-        private int id = 0;
+        private ObjectId id;
         [BsonId]
-        public int Id
+        [JsonConverter(typeof(ObjectIdJsonConverter))]
+        public ObjectId Id
         {
             get => id;
             set

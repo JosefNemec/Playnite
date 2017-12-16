@@ -7,48 +7,7 @@ Screenshots on [Homepage](http://playnite.link/)
 Features
 ---------
 
-**Steam, Origin, GOG, Battle.net, Uplay support**
-
-Import games from Steam, Origin, Battle.net, GOG and Uplay services including games that are not installed. You can also import Windows Store (UWP) games.
-
-**Console Emulation support**
-
-Import console games and run them through emulators.
-
-**View options**
-
-Choose from 3 different view options.
-
-**Custom games**
-
-Add any game or program with custom launch options.
-
-**Automatic Update**
-
-Application automatically updates to new version.
-
-**Portable installation**
-
-Run Playnite without need to install, with ability to run from any place, with option to configure database location for automatic sync via service like DropBox or Google Drive.
-
-Planned Features
----------
-
-**"Big Picture" mode with controller support**
-
-Fullscreen mode managed with controller.
-
-**UI Customization**
-
-Full support for skins and custom color pallets.
-
-**Add additional launch options for legacy games**
-
-To help managing and launching older games. Features like limit CPU cores, CPU speed fix, compatibility flags, automatic installation of 3d party wrappers etc.
-
-**Plugin support**
-
-Add additional functionality through easy scritping or fully fledged C# plugins.
+See [homepage](http://playnite.link/) for list of features.
 
 Security Concerns
 ---------
@@ -65,6 +24,8 @@ Grab latest installer or portable package from [releases](https://github.com/Jos
 
 Requirements: Windows 7, 8 or 10 and [.Net 4.6](https://www.microsoft.com/en-us/download/details.aspx?id=53344)
 
+Portable version requires [Microsoft Visual C++ 2013 Redistributable (x86)](https://www.microsoft.com/en-us/download/details.aspx?id=40784) to be installed manually.
+
 Questions, issues etc.
 ---------
 If you find a bug please file an [issue](https://github.com/JosefNemec/Playnite/issues) and if relevant (crashes, broken features) please attach diagnostics package, which can be created via from "About Playnite..." menu.
@@ -75,14 +36,12 @@ Contributions
 ---------
 
 ### Translations
-Translation support will be added in 3.0 release.
+See [How to: Translations](https://github.com/JosefNemec/Playnite/wiki/How-to:-Translations) wiki page.
 
 ### Themes
-Theming support will be added in 3.0 release.
+See [How to: Themes](https://github.com/JosefNemec/Playnite/wiki/How-to%3A-Themes) wiki page.
 
 ### Code Contributions
-**I recommend waiting for 3.0 release before doing any contributions regarding to new features. 3.0 will go though a big refactoring, which could later lead to merge conflicts.**
-
 Please ask in an issue first before starting with implementation to make sure that nobody else is already working on it. If the issue doesn't exists for your feature/bug fix, create one first.
 
 Regarding code styling, there are only a few major rules:

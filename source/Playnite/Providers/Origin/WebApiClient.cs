@@ -72,7 +72,7 @@ namespace Playnite.Providers.Origin
                 var b = (CefSharp.OffScreen.ChromiumWebBrowser)sender;
                 var stringData = await b.GetTextAsync();
                 var data = JsonConvert.DeserializeObject<AuthTokenResponse>(stringData);
-                loginRequired = !string.IsNullOrEmpty(data.error);
+                loginRequired = !string.IsNullOrEmpty(data?.error);
                 loginRequiredEvent.Set();
             }
         }

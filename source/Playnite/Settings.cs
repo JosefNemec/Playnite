@@ -21,7 +21,7 @@ using Playnite.Providers.BattleNet;
 
 namespace Playnite
 {
-    public class Settings : INotifyPropertyChanged
+    public class Settings : INotifyPropertyChanged, IEditableObject
     {
         public class WindowPosition
         {
@@ -174,7 +174,7 @@ namespace Playnite
             }
         }
 
-        private bool showIconsOnList = true;
+        private bool showIconsOnList = false;
         public bool ShowIconsOnList
         {
             get
@@ -186,6 +186,21 @@ namespace Playnite
             {
                 showIconsOnList = value;
                 OnPropertyChanged("ShowIconsOnList");
+            }
+        }
+
+        private bool startInFullscreen = false;
+        public bool StartInFullscreen
+        {
+            get
+            {
+                return startInFullscreen;
+            }
+
+            set
+            {
+                startInFullscreen = value;
+                OnPropertyChanged("StartInFullscreen");
             }
         }
 
@@ -376,7 +391,8 @@ namespace Playnite
             { "LastActivity", true },
             { "IsInstalled", false },
             { "InstallDirectory", false },
-            { "Categories", false }
+            { "Categories", false },
+            { "Tags", false }
         };
 
         public ObservableConcurrentDictionary<string, bool> GridViewHeaders
@@ -399,7 +415,7 @@ namespace Playnite
             }
         }
 
-        private bool filterPanelVisible = true;
+        private bool filterPanelVisible = false;
         public bool FilterPanelVisible
         {
             get
@@ -504,6 +520,66 @@ namespace Playnite
             }
         }
 
+        private string skin = "Classic";
+        public string Skin
+        {
+            get
+            {
+                return skin;
+            }
+
+            set
+            {
+                skin = value;
+                OnPropertyChanged("Skin");
+            }
+        }
+
+        private string skinColor = "Default";
+        public string SkinColor
+        {
+            get
+            {
+                return skinColor;
+            }
+
+            set
+            {
+                skinColor = value;
+                OnPropertyChanged("SkinColor");
+            }
+        }
+
+        private string skinFullscreen = "Playnite";
+        public string SkinFullscreen
+        {
+            get
+            {
+                return skinFullscreen;
+            }
+
+            set
+            {
+                skinFullscreen = value;
+                OnPropertyChanged("SkinFullscreen ");
+            }
+        }
+
+        private string skinColorFullscreen = "Default";
+        public string SkinColorFullscreen
+        {
+            get
+            {
+                return skinColorFullscreen;
+            }
+
+            set
+            {
+                skinColorFullscreen = value;
+                OnPropertyChanged("SkinColorFullscreen ");
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -514,6 +590,9 @@ namespace Playnite
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        private bool isEditing = false;
+        private Settings editingCopy;
+        private List<string> editingNotifs;
 
         private static Settings instance;
         public static Settings Instance
@@ -534,9 +613,41 @@ namespace Playnite
             GridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
         }
 
+        public void BeginEdit()
+        {
+            isEditing = true;
+            editingNotifs = new List<string>();
+            editingCopy = this.CloneJson();
+        }
+
+        public void EndEdit()
+        {
+            isEditing = false;
+            foreach (var prop in editingNotifs)
+            {
+                OnPropertyChanged(prop);
+            }
+        }
+
+        public void CancelEdit()
+        {
+            editingCopy.CopyProperties(this, false);
+            isEditing = false;
+        }
+
         public void OnPropertyChanged(string name)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            if (isEditing)
+            {
+                if (!editingNotifs.Contains(name))
+                {
+                    editingNotifs.Add(name);
+                }
+            }
+            else
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }            
         }
 
         private void GridViewHeaders_PropertyChanged(object sender, PropertyChangedEventArgs e)

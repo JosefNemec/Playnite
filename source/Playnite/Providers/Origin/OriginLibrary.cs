@@ -91,7 +91,6 @@ namespace Playnite.Providers.Origin
 
         public GameLocalDataResponse GetLocalManifest(string id, string packageName = null, bool useDataCache = false)
         {
-            logger.Debug($"Gettings game manifest {id}");
             var package = packageName;
 
             if (string.IsNullOrEmpty(package))
@@ -106,6 +105,7 @@ namespace Playnite.Providers.Origin
             }
             else if (useDataCache == true && !File.Exists(cacheFile))
             {
+                logger.Debug($"Downloading game manifest {id}");
                 FileSystem.CreateFolder(OriginPaths.CachePath);
 
                 try
@@ -212,7 +212,7 @@ namespace Playnite.Providers.Origin
                             continue;
                         }
 
-                        newGame.Name = localData.localizableAttributes.displayName;
+                        newGame.Name = StringExtensions.NormalizeGameName(localData.localizableAttributes.displayName);
                         var platform = localData.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
 
                         if (platform == null)
@@ -250,6 +250,11 @@ namespace Playnite.Providers.Origin
             }
 
             var token = api.GetAccessToken();
+            if (token == null)
+            {
+                throw new Exception("Failed to get access to user account.");
+            }
+
             if (!string.IsNullOrEmpty(token.error))
             {
                 throw new Exception("Access error: " + token.error);
@@ -299,7 +304,7 @@ namespace Playnite.Providers.Origin
         public OriginGameMetadata UpdateGameWithMetadata(IGame game)
         {
             var metadata = DownloadGameMetadata(game.ProviderId);
-            game.Name = metadata.StoreDetails.i18n.displayName.Replace("™", "");
+            game.Name = StringExtensions.NormalizeGameName(metadata.StoreDetails.i18n.displayName);
             game.Links = new ObservableCollection<Link>()
             {
                 new Link("Store", @"https://www.origin.com/store" + metadata.StoreDetails.offerPath),
@@ -314,6 +319,7 @@ namespace Playnite.Providers.Origin
             game.Description = metadata.StoreDetails.i18n.longDescription;
             game.Developers = new ComparableList<string>() { metadata.StoreDetails.developerFacetKey };
             game.Publishers = new ComparableList<string>() { metadata.StoreDetails.publisherFacetKey };
+            game.Genres = new ComparableList<string>(metadata.StoreDetails.genreFacetKey?.Split(','));
             game.ReleaseDate = metadata.StoreDetails.platforms.First(a => a.platform == "PCWIN").releaseDate;
 
             if (!string.IsNullOrEmpty(metadata.StoreDetails.i18n.gameManualURL))
@@ -346,7 +352,6 @@ namespace Playnite.Providers.Origin
                 }
             }
 
-            game.IsProviderDataUpdated = true;
             return metadata;
         }
     }

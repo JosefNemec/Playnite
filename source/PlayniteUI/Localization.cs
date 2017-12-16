@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Playnite;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,16 +9,39 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Markup;
 
 namespace PlayniteUI
 {
+    public class PlayniteLanguage
+    {
+        public string LocaleString
+        {
+            get; set;
+        }
+
+        public string Id
+        {
+            get; set;
+        }
+    }
+
     public static class Localization
     {
+        public static List<PlayniteLanguage> AvailableLanguages
+        {
+            get
+            {
+                return GetLanguagesFromFolder(Paths.LocalizationsPath);
+            }
+        }
+
         public static string CurrentLanguage
         {
             get
             {
-                var dictionary = Application.Current.Resources.MergedDictionaries.FirstOrDefault(a => a.Contains("LocalizationLanguage"));
+                var dictionary = Application.Current.Resources.MergedDictionaries.
+                    FirstOrDefault(a => a.Contains("LocalizationLanguage") && a["LocalizationLanguage"].ToString() != "english");
                 if (dictionary == null)
                 {
                     return string.Empty;
@@ -34,22 +58,41 @@ namespace PlayniteUI
             }
         }
 
+        public static List<PlayniteLanguage> GetLanguagesFromFolder(string path)
+        {
+            var langs = new List<PlayniteLanguage>();
+            foreach (var file in Directory.GetFiles(path, "*.xaml"))
+            {
+                var langsPath = Path.Combine(path, file);
+
+                using (var stream = new StreamReader(langsPath))
+                {
+                    var res = XamlReader.Load(stream.BaseStream) as ResourceDictionary;
+                    langs.Add(new PlayniteLanguage()
+                    {
+                        Id = Path.GetFileNameWithoutExtension(langsPath),
+                        LocaleString = res["LocalizationString"].ToString()
+                    });
+                }
+            }
+
+            return langs.OrderBy(a => a.LocaleString).ToList();
+        }
+
         public static void SetLanguage(string language)
         {
             var dictionaries = Application.Current.Resources.MergedDictionaries;
-            var currentDict = dictionaries.FirstOrDefault(a => a.Contains("LocalizationLanguage"));
-            var desiredDict = new ResourceDictionary()
+            var currentLang = dictionaries.FirstOrDefault(a => a.Contains("LocalizationLanguage") && a["LocalizationLanguage"].ToString() != "english");
+            if (currentLang != null)
             {
-                Source = new Uri(string.Format("pack://application:,,,/Localization/{0}.xaml", language))
-            };
-
-            if (currentDict == null)
-            {
-                dictionaries.Add(desiredDict);
+                dictionaries.Remove(currentLang);
             }
-            else
+
+            var langFile = Path.Combine(Paths.LocalizationsPath, language + ".xaml");
+            if (File.Exists(langFile) && language != "english")
             {
-                dictionaries[dictionaries.IndexOf(currentDict)] = desiredDict;
+                var newLang = new ResourceDictionary() { Source = new Uri(langFile) };
+                dictionaries.Add(newLang);
             }
         }
     }

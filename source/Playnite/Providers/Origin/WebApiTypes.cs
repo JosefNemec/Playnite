@@ -88,6 +88,7 @@ namespace Playnite.Providers.Origin
         public List<Platform> platforms;
         public string publisherFacetKey;
         public string developerFacetKey;
+        public string genreFacetKey;
         public string imageServer;
         public string itemName;
         public string itemType;

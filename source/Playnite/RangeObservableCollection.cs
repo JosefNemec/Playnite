@@ -36,5 +36,22 @@ namespace Playnite
             suppressNotification = false;
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
+
+        public void RemoveRange(IEnumerable<T> list)
+        {
+            if (list == null)
+            {
+                throw new ArgumentNullException("list");
+            }
+
+            suppressNotification = true;
+            foreach (T item in list)
+            {
+                Remove(item);
+            }
+
+            suppressNotification = false;
+            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiteDB;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -69,12 +70,17 @@ namespace Playnite.Models
             get; set;
         }
 
-        int? PlatformId
+        ObjectId PlatformId
         {
             get; set;
         }
 
         string Name
+        {
+            get; set;
+        }
+
+        string SortingName
         {
             get; set;
         }
@@ -114,22 +120,17 @@ namespace Playnite.Models
             get; set;
         }
 
-        string DescriptionView
-        {
-            get;
-        }
-
-        bool IsProviderDataUpdated
-        {
-            get; set;
-        }
-
         GameTask PlayTask
         {
             get; set;
         }
 
         ObservableCollection<GameTask> OtherTasks
+        {
+            get; set;
+        }
+
+        ComparableList<string> Tags
         {
             get; set;
         }

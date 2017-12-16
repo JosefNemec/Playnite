@@ -101,8 +101,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\references\HtmlRenderer.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="LiteDB, Version=3.1.0.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiteDB.3.1.0\lib\net35\LiteDB.dll</HintPath>
+    <Reference Include="LiteDB, Version=3.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.3.1.4\lib\net462\LiteDB.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
@@ -120,10 +123,16 @@
       <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.4.9\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
@@ -142,9 +151,15 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.105.1\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Abstractions, Version=2.1.0.175, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.2.1.0.175\lib\net40\System.IO.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -159,29 +174,30 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="XInputDotNetPure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\XInputDotNetPure.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviors\LeftClickContextMenuBehavior.cs" />
+    <Compile Include="BindingProxy.cs" />
     <Compile Include="CmdlineCommands.cs" />
+    <Compile Include="Commands\GeneralCommands.cs" />
     <Compile Include="Commands\GenericCommands.cs" />
-    <Compile Include="Controls\FilterSelector.xaml.cs">
-      <DependentUpon>FilterSelector.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\GamePopupMenuMulti.xaml.cs">
-      <DependentUpon>GamePopupMenuMulti.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Controls\ExtendedListBox.cs" />
+    <Compile Include="Controls\HtmlTextView.cs" />
+    <Compile Include="Controls\GameMenu.cs" />
     <Compile Include="Controls\GamesGridView.xaml.cs">
       <DependentUpon>GamesGridView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\GamesImagesView.xaml.cs">
-      <DependentUpon>GamesImagesView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\GamesListView.xaml.cs">
-      <DependentUpon>GamesListView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Controls\FullscreenView.cs" />
+    <Compile Include="Controls\MainView.cs" />
     <Compile Include="Controls\WindowBase.cs" />
     <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />
     <Compile Include="Converters\BoolToAutoWidthConverter.cs" />
@@ -190,10 +206,14 @@
     <Compile Include="Converters\EnumBooleanConverter.cs" />
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\IconToImageSourceConverter.cs" />
-    <Compile Include="Converters\ImageUrlToImageSourceConverter.cs" />
     <Compile Include="Converters\InvertableBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\MetadataSourceToStringConverter.cs" />
     <Compile Include="Converters\ListToStringConverter.cs" />
-    <Compile Include="Converters\LiteDBImageToImageConverter.cs" />
+    <Compile Include="Converters\CustomImageStringToImageConverter.cs" />
+    <Compile Include="Converters\NotificationIconConverter.cs" />
+    <Compile Include="Converters\NullToBoolConverter.cs" />
+    <Compile Include="Converters\SelectablePlatformsListToStringConverter.cs" />
+    <Compile Include="Converters\SkinMediaPathConverter.cs" />
     <Compile Include="Converters\NegateConverter.cs" />
     <Compile Include="Converters\NullableDateToStringConverter.cs" />
     <Compile Include="Converters\OpacityBoolConverter.cs" />
@@ -201,22 +221,47 @@
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
+    <Compile Include="Converters\WidthToFontSizeConverter.cs" />
     <Compile Include="Dialogs.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GamesCollectionView.cs" />
+    <Compile Include="Behaviors\ScrollToSelectedBehavior.cs" />
+    <Compile Include="Resources.cs" />
+    <Compile Include="Skins.cs" />
+    <Compile Include="ViewModels\GameDetailsViewModel.cs" />
+    <Compile Include="ViewModels\MetadataDownloadViewModel.cs" />
+    <Compile Include="ViewModels\ProgressViewViewModel.cs" />
+    <Compile Include="ViewModels\FullscreenViewModel.cs" />
+    <Compile Include="ViewModels\GameEditViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\FirstTimeStartupViewModel.cs" />
+    <Compile Include="ViewModels\UpdateViewModel.cs" />
+    <Compile Include="ViewModels\InstalledGamesViewModel.cs" />
+    <Compile Include="ViewModels\CrashHandlerViewModel.cs" />
+    <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\CategoryConfigViewModel.cs" />
+    <Compile Include="ViewModels\EmulatorImportViewModel.cs" />
+    <Compile Include="ViewModels\MetadataLookupViewModel.cs" />
+    <Compile Include="WindowFactory.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="MouseWheelGesture.cs" />
     <Compile Include="PlayniteMessageBox.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PlatformsViewModel.cs" />
     <Compile Include="VirtualizingTilePanel.cs" />
     <Compile Include="WindowPositionHandler.cs" />
+    <Compile Include="PlayniteWindows.cs" />
+    <Compile Include="Windows\MetadataDownloadWindow.xaml.cs">
+      <DependentUpon>MetadataDownloadWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ProgressWindow.xaml.cs">
+      <DependentUpon>ProgressWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SearchBox.xaml.cs">
       <DependentUpon>SearchBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\GameDetails.xaml.cs">
-      <DependentUpon>GameDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\CategoryConfigWindow.xaml.cs">
       <DependentUpon>CategoryConfigWindow.xaml</DependentUpon>
@@ -233,29 +278,23 @@
     <Compile Include="Windows\GameEditWindow.xaml.cs">
       <DependentUpon>GameEditWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\GamePopupMenu.xaml.cs">
-      <DependentUpon>GamePopupMenu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="GamesEditor.cs" />
     <Compile Include="Controls\GameTaskView.xaml.cs">
       <DependentUpon>GameTaskView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NotificationCodes.cs" />
-    <Compile Include="Controls\ProgressControl.xaml.cs">
-      <DependentUpon>ProgressControl.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Notifications.cs" />
     <Compile Include="GamesLoaderHandler.cs" />
     <Compile Include="Windows\InstalledGamesWindow.xaml.cs">
       <DependentUpon>InstalledGamesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FullscreenWindow.xaml.cs">
+      <DependentUpon>FullscreenWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MessageBoxWindow.xaml.cs">
       <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MetadataLookupWindow.xaml.cs">
       <DependentUpon>MetadataLookupWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\NotificationsWindow.xaml.cs">
-      <DependentUpon>NotificationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\PlatformsWindow.xaml.cs">
       <DependentUpon>PlatformsWindow.xaml</DependentUpon>
@@ -264,44 +303,76 @@
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Theme.cs" />
+    <Compile Include="Windows\ThemeTesterWindow.xaml.cs">
+      <DependentUpon>ThemeTesterWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\UpdateWindow.xaml.cs">
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Controls\FilterSelector.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\GamePopupMenuMulti.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="XInputBinding.cs" />
     <Page Include="Controls\GamesGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\GamesImagesView.xaml">
+    <Resource Include="Images\icon_dark.png" />
+    <Content Include="Localization\english.xaml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\GamesListView.xaml">
+    </Content>
+    <EmbeddedResource Include="Resources\DescriptionView.html" />
+    <Content Include="Skins\Classic\Classic.xaml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Skins\Classic\Classic.Green.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Modern\Modern.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Modern\Modern.Red.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Classic\Classic.Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Modern\Modern.Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skins\Classic\Classic.Plain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Resource Include="Localization\english.xaml">
+    <Page Include="Windows\MetadataDownloadWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Resource>
-    <Resource Include="Localization\czech.xaml">
+    </Page>
+    <Page Include="Windows\ProgressWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Resource>
+    </Page>
     <Page Include="Windows\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SearchBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\GameDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -325,10 +396,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\GamePopupMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\GameTaskView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -336,6 +403,10 @@
     <Page Include="Windows\InstalledGamesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\FullscreenWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -349,19 +420,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Controls\ProgressControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Windows\MessageBoxWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MetadataLookupWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\NotificationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -373,9 +436,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Windows\ThemeTesterWindow.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\UpdateWindow.xaml">
       <SubType>Designer</SubType>
@@ -499,6 +562,15 @@
   <ItemGroup>
     <Resource Include="Images\battleneticon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\applogo_clean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\references\XInputInterface.dll">
+      <Link>XInputInterface.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -544,4 +616,12 @@
   <Import Project="..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets')" />
   <Import Project="..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets" Condition="Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets')" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.1\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.1\build\net46\System.Data.SQLite.Core.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

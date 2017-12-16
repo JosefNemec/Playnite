@@ -50,7 +50,7 @@ namespace Playnite
             }
         }
 
-        public static void ActivateTask(GameTask task, Game gameData, Emulator emulator)
+        public static void ActivateTask(GameTask task, Game gameData, EmulatorProfile config)
         {
             switch (task.Type)
             {
@@ -59,13 +59,13 @@ namespace Playnite
                     ActivateTask(task, gameData);
                     break;
                 case GameTaskType.Emulator:
-                    if (emulator == null)
+                    if (config == null)
                     {
                         throw new Exception("Cannot start emulated game without emulator.");
                     }
 
-                    var path = gameData.ResolveVariables(emulator.Executable);
-                    var arguments = gameData.ResolveVariables(emulator.Arguments);
+                    var path = gameData.ResolveVariables(config.Executable);
+                    var arguments = gameData.ResolveVariables(config.Arguments);
                     if (!string.IsNullOrEmpty(task.AdditionalArguments))
                     {
                         arguments += " " + gameData.ResolveVariables(task.AdditionalArguments);
@@ -76,7 +76,7 @@ namespace Playnite
                         arguments = gameData.ResolveVariables(task.Arguments);
                     }
 
-                    var workdir = gameData.ResolveVariables(emulator.WorkingDirectory);
+                    var workdir = gameData.ResolveVariables(config.WorkingDirectory);
                     logger.Info($"Starting emulator: {path}, {arguments}, {workdir}");
                     ProcessStarter.StartProcess(path, arguments, workdir);
                     break;
@@ -85,28 +85,39 @@ namespace Playnite
 
         public static void ActivateTask(GameTask task, Game gameData, List<Emulator> emulators)
         {
-            ActivateTask(task, gameData, GetGameTaskEmulator(task, emulators));
+            ActivateTask(task, gameData, GetGameTaskEmulatorConfig(task, emulators));
         }
 
-        public static Emulator GetGameTaskEmulator(GameTask task, List<Emulator> emulators)
+        public static EmulatorProfile GetGameTaskEmulatorConfig(GameTask task, List<Emulator> emulators)
         {
-            if (task.EmulatorId == 0 || emulators == null)
+            if (task.EmulatorId == null || emulators == null)
             {
                 return null;
             }
 
-            return emulators.FirstOrDefault(a => a.Id == task.EmulatorId);
+            return emulators.FirstOrDefault(a => a.Id == task.EmulatorId)?.Profiles.FirstOrDefault(a => a.Id == task.EmulatorProfileId);
         }
 
         public static Game GetMultiGameEditObject(IEnumerable<IGame> games)
         {
             var dummyGame = new Game();
+            if (games?.Any() != true)
+            {
+                return dummyGame;
+            }
+
             var firstGame = games.First();
 
             var firstName = firstGame.Name;
             if (games.All(a => a.Name == firstName) == true)
             {
                 dummyGame.Name = firstName;
+            }
+
+            var firstSortingName = firstGame.SortingName;
+            if (games.All(a => a.SortingName == firstSortingName) == true)
+            {
+                dummyGame.SortingName = firstSortingName;
             }
 
             var firstGenres = firstGame.Genres;
@@ -133,10 +144,16 @@ namespace Playnite
                 dummyGame.Publishers = firstPublisher;
             }
 
-            var firstTag = firstGame.Categories;
-            if (games.All(a => a.Categories.IsListEqual(firstTag) == true))
+            var firstCat = firstGame.Categories;
+            if (games.All(a => a.Categories.IsListEqual(firstCat) == true))
             {
-                dummyGame.Categories = firstTag;
+                dummyGame.Categories = firstCat;
+            }
+
+            var firstTag = firstGame.Tags;
+            if (games.All(a => a.Tags.IsListEqual(firstTag) == true))
+            {
+                dummyGame.Tags = firstTag;
             }
 
             var firstDescription = firstGame.Description;

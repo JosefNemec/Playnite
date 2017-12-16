@@ -12,7 +12,7 @@ namespace PlayniteServices.Controllers.IGDB
         {
             get
             {
-                return @"https://igdbcom-internet-game-database-v1.p.mashape.com/";
+                return Startup.Configuration.GetSection("IGDBEndpoint").Value;
             }
         }
 
@@ -46,6 +46,20 @@ namespace PlayniteServices.Controllers.IGDB
             }
         }
 
+        private static int? cacheTimeout;
+        public static int CacheTimeout
+        {
+            get
+            {
+                if (cacheTimeout == null)
+                {
+                    cacheTimeout = int.Parse(Startup.Configuration.GetSection("IGDBCacheTimeout").Value);
+                }
+
+                return cacheTimeout.Value;
+            }
+        }
+
         private static HttpClient httpClient;
         public static HttpClient HttpClient
         {
@@ -54,7 +68,7 @@ namespace PlayniteServices.Controllers.IGDB
                 if (httpClient == null)
                 {
                     httpClient = new HttpClient();
-                    httpClient.DefaultRequestHeaders.Add("X-Mashape-Key", ApiKey);
+                    httpClient.DefaultRequestHeaders.Add("user-key", ApiKey);
                     httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
                 }
 

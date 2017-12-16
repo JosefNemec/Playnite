@@ -69,11 +69,15 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LiteDB, Version=3.1.0.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiteDB.3.1.0\lib\net35\LiteDB.dll</HintPath>
+    <Reference Include="LiteDB, Version=3.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.3.1.4\lib\net462\LiteDB.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Moq, Version=4.7.10.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.7.10\lib\net45\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
@@ -96,6 +100,12 @@
     <Reference Include="System.Data.SQLite.Linq, Version=1.0.105.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.105.1\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Abstractions, Version=2.1.0.175, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.2.1.0.175\lib\net40\System.IO.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="TestingHelpers, Version=2.1.0.175, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.TestingHelpers.2.1.0.175\lib\net40\TestingHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="Windows, Version=255.255.255.255, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.15063.0\Windows.winmd</HintPath>
@@ -112,28 +122,42 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CloneObjectTests.cs" />
+    <Compile Include="Converters\ObjectIdJsonConverterTests.cs" />
+    <Compile Include="Database\GameDatabaseFileTests.cs" />
+    <Compile Include="Database\GameDatabaseMigrationTests.cs" />
     <Compile Include="Database\GameDatabasePlatformsTests.cs" />
     <Compile Include="Database\GameDatabaseEventTests.cs" />
     <Compile Include="Database\GameDatabaseTests.cs" />
     <Compile Include="Emulators\EmulatorFinderTests.cs" />
     <Compile Include="Emulators\EmulatorDefinitionTests.cs" />
     <Compile Include="GamesStatsTests.cs" />
+    <Compile Include="MetaProviders\IGDBMetadataDownloaderTests.cs" />
+    <Compile Include="MetaProviders\MetadataDownloaderTests.cs" />
+    <Compile Include="MetaProviders\MetadataDownloaderDownloadTests.cs" />
+    <Compile Include="MetaProviders\MockMetadataDownloader.cs" />
     <Compile Include="MetaProviders\WikipediaTests.cs" />
     <Compile Include="Models\GameTests.cs" />
     <Compile Include="PlayniteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BattleNet\BattleNetLibraryTests.cs" />
+    <Compile Include="Providers\BattleNet\BattleNetMetadataProviderTests.cs" />
     <Compile Include="Providers\GOG\GogLibraryTests.cs" />
     <Compile Include="ProgramsTests.cs" />
+    <Compile Include="Providers\GOG\GogMetadataProviderTests.cs" />
     <Compile Include="Providers\GOG\WebApiClientTests.cs" />
     <Compile Include="Providers\Origin\OriginLibraryTests.cs" />
+    <Compile Include="Providers\Origin\OriginMetadataProviderTests.cs" />
     <Compile Include="Providers\Origin\WebApiClientTests.cs" />
     <Compile Include="Providers\Steam\SteamApiClientTests.cs" />
     <Compile Include="Providers\Steam\SteamLibraryTests.cs" />
+    <Compile Include="Providers\Steam\SteamMetadataProviderTests.cs" />
     <Compile Include="Providers\Steam\WebApiClientTests.cs" />
     <Compile Include="Providers\Uplay\UplayLibraryTests.cs" />
     <Compile Include="PathsTests.cs" />
+    <Compile Include="SafeFileEnumeratorTests.cs" />
     <Compile Include="SettingsTests.cs" />
+    <Compile Include="StringExtensionsTests.cs" />
+    <Compile Include="TestsSetupClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Playnite\Playnite.csproj">
@@ -145,6 +169,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Resources\GOG\library_unreleased.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\PlayniteUI\Images\applogo.png">
+      <Link>Resources\Images\applogo.png</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

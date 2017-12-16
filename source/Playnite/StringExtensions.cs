@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Playnite
@@ -21,6 +22,27 @@ namespace Playnite
 
                 return builder.ToString();
             }
+        }
+
+        public static string NormalizeGameName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return string.Empty;
+            }
+
+            var newName = name;
+            newName = newName.Replace("_", " ");
+            newName = Regex.Replace(newName, @"[™©®]", string.Empty);
+            newName = Regex.Replace(newName, @"\s+", " ");
+            newName = Regex.Replace(newName, @"\s*:\s*", ": ");
+            newName = Regex.Replace(newName, @"\s*-\s*", ": ");
+            if (Regex.IsMatch(newName, @",\s*The$"))
+            {
+                newName = "The " + Regex.Replace(newName, @",\s*The$", "");
+            }
+
+            return newName.Trim();
         }
     }
 }

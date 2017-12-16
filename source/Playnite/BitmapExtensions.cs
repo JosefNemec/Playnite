@@ -44,6 +44,7 @@ namespace Playnite
             bitmap.UriSource = new Uri(imagePath);
             bitmap.CacheOption = BitmapCacheOption.OnLoad;
             bitmap.EndInit();
+            bitmap.Freeze();
             return bitmap;
         }
     }

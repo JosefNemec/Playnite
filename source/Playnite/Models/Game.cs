@@ -16,6 +16,8 @@ using Playnite.Providers;
 using System.Collections.Concurrent;
 using Playnite.Providers.Uplay;
 using Playnite.Providers.BattleNet;
+using Newtonsoft.Json;
+using Playnite.Converters;
 
 namespace Playnite.Models
 {
@@ -51,26 +53,6 @@ namespace Playnite.Models
                 description = value;
                 OnPropertyChanged("Description");
                 OnPropertyChanged("DescriptionView");
-            }
-        }
-
-        [BsonIgnore]
-        public string DescriptionView
-        {
-            get
-            {
-                switch (Provider)
-                {
-                    case Provider.GOG:
-                        return string.IsNullOrEmpty(GogSettings.DescriptionTemplate) ? Description : GogSettings.DescriptionTemplate.Replace("{0}", Description);
-                    case Provider.Custom:
-                    case Provider.Origin:
-                    case Provider.Uplay:
-                    case Provider.BattleNet:
-                    case Provider.Steam:
-                    default:
-                        return string.IsNullOrEmpty(SteamSettings.DescriptionTemplate) ? Description : SteamSettings.DescriptionTemplate.Replace("{0}", Description);
-                }
             }
         }
 
@@ -218,6 +200,7 @@ namespace Playnite.Models
             }
         }
 
+        [JsonIgnore]
         [BsonIgnore]
         public bool IsInstalled
         {
@@ -254,6 +237,21 @@ namespace Playnite.Models
             {
                 name = value;
                 OnPropertyChanged("Name");
+            }
+        }
+
+        private string sortingName;
+        public string SortingName
+        {
+            get
+            {
+                return sortingName;
+            }
+
+            set
+            {
+                sortingName = value;
+                OnPropertyChanged("SortingName");
             }
         }
 
@@ -318,8 +316,9 @@ namespace Playnite.Models
             }
         }
 
-        private int? platformId;
-        public int? PlatformId
+        private ObjectId platformId;
+        [JsonConverter(typeof(ObjectIdJsonConverter))]
+        public ObjectId PlatformId
         {
             get
             {
@@ -378,6 +377,21 @@ namespace Playnite.Models
             }
         }
 
+        private ComparableList<string> tags;
+        public ComparableList<string> Tags
+        {
+            get
+            {
+                return tags;
+            }
+
+            set
+            {
+                tags = value;
+                OnPropertyChanged("Tags");
+            }
+        }
+
         private ObservableCollection<Link> links;
         public ObservableCollection<Link> Links
         {
@@ -393,22 +407,8 @@ namespace Playnite.Models
             }
         }
 
-        private bool isProviderDataReady;
-        public bool IsProviderDataUpdated
-        {
-            get
-            {
-                return isProviderDataReady;
-            }
-
-            set
-            {
-                isProviderDataReady = value;
-                OnPropertyChanged("IsProviderDataReady");
-            }
-        }
-
         private bool isSetupInProgress = false;
+        [JsonIgnore]
         [BsonIgnore]
         public bool IsSetupInProgress
         {

@@ -3,21 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PlayniteUI"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:pui="clr-namespace:PlayniteUI"
         xmlns:steam="clr-namespace:Playnite.Providers.Steam;assembly=Playnite"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="Playnite Settings" Width="580" Height="420"
+        Title="{DynamicResource SettingsWindowTitle}" Width="600" Height="500"
         AutomationProperties.AutomationId="WindowSettings">
 
     <controls:WindowBase.Resources>
-        <local:NegateConverter x:Key="NegateConverter" />
-        <local:EnumConverter x:Key="EnumConverter" />
+        <pui:NegateConverter x:Key="NegateConverter" />
+        <pui:EnumConverter x:Key="EnumConverter" />
         <sys:Double x:Key="IconSize">24</sys:Double>
-        
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </controls:WindowBase.Resources>
 
@@ -25,29 +26,101 @@
         <DockPanel>
             <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
                 <DockPanel LastChildFill="False" Margin="5">
-                    <Button Name="ButtonCancel" Click="ButtonCancel_Click" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right"
-                            Style="{StaticResource BottomButton}" />
-                    <Button Name="ButtonOK" Click="ButtonOK_Click" Content="{DynamicResource SaveLabel}" DockPanel.Dock="Right" 
-                            Style="{StaticResource BottomButton}" />
+                    <Button Name="ButtonCancel" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right"
+                            Style="{StaticResource BottomButton}" IsCancel="True"
+                            Command="{Binding CancelCommand}"/>
+                    <Button Name="ButtonOK" Content="{DynamicResource SaveLabel}" DockPanel.Dock="Right" 
+                            Style="{StaticResource BottomButton}"
+                            Command="{Binding ConfirmCommand}"/>
                 </DockPanel>
             </Border>
-            <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Left">                
-                <TabItem Header="General">
+
+            <TreeView DockPanel.Dock="Left" BorderThickness="0,0,1,0" BorderBrush="{StaticResource NormalBorderBrush}"
+                      Name="TreeSections">
+                <TreeView.Resources>
+                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                        <Setter Property="FontSize" Value="16" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="Padding" Value="0,3,3,3" />
+                    </Style>
+                </TreeView.Resources>
+                <TreeViewItem Header="General" IsSelected="True">
+                    <TreeViewItem.Tag>
+                        <sys:Int32>0</sys:Int32>
+                    </TreeViewItem.Tag>
+                </TreeViewItem>
+                <TreeViewItem Header="Appearance">
+                    <TreeViewItem.Tag>
+                        <sys:Int32>1</sys:Int32>
+                    </TreeViewItem.Tag>
+                </TreeViewItem>
+                <TreeViewItem Header="Advanced">
+                    <TreeViewItem.Tag>
+                        <sys:Int32>7</sys:Int32>
+                    </TreeViewItem.Tag>
+                </TreeViewItem>
+                <TreeViewItem Header="Providers" IsExpanded="True" Focusable="False">
+                    <TreeViewItem Header="Steam">
+                        <TreeViewItem.Tag>
+                            <sys:Int32>2</sys:Int32>
+                        </TreeViewItem.Tag>
+                    </TreeViewItem>
+                    <TreeViewItem Header="GOG">
+                        <TreeViewItem.Tag>
+                            <sys:Int32>3</sys:Int32>
+                        </TreeViewItem.Tag>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Origin" >
+                        <TreeViewItem.Tag>
+                            <sys:Int32>4</sys:Int32>
+                        </TreeViewItem.Tag>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Battle.net">
+                        <TreeViewItem.Tag>
+                            <sys:Int32>5</sys:Int32>
+                        </TreeViewItem.Tag>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Uplay">
+                        <TreeViewItem.Tag>
+                            <sys:Int32>6</sys:Int32>
+                        </TreeViewItem.Tag>
+                    </TreeViewItem>
+                </TreeViewItem>
+            </TreeView>
+
+            <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Top" OverridesDefaultStyle="True"
+                        SelectedIndex="{Binding SelectedItem.Tag, ElementName=TreeSections}">
+                <TabControl.Style>
+                    <Style TargetType="TabControl">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TabControl">
+                                    <Grid>
+                                        <TabPanel IsItemsHost="True" />
+                                        <ContentPresenter ContentSource="SelectedContent" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Style>
+                <TabItem Visibility="Collapsed">
                     <StackPanel Margin="20">
-                        <DockPanel Visibility="Collapsed">
-                            <TextBlock Text="{DynamicResource LanguageSettingsLabel}" VerticalAlignment="Center" Margin="5,0,10,0" />
-                            <ComboBox Name="ComboLanguage" SelectedValuePath="Tag" SelectedValue="{Binding Language, UpdateSourceTrigger=Explicit}">
-                                <ComboBoxItem Content="English" Tag="english" />
-                                <ComboBoxItem Content="Čeština" Tag="czech" />
-                            </ComboBox>
+                        <DockPanel Margin="0,10,0,0">
+                            <TextBlock Text="{DynamicResource SettingsDBLocation}" Margin="5,0,10,0"
+                                   DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                            <Button Name="ButtonBrowserDbFile" Content="..." DockPanel.Dock="Right" Padding="5,0,5,0"
+                                    Command="{Binding SelectDbFileCommand}"/>
+                            <TextBox Name="TextDatabase" Text="{Binding Settings.DatabasePath}"
+                                        DockPanel.Dock="Left" Margin="0,0,5,0"/>
                         </DockPanel>
 
-                        <Label Content="Database location:" Margin="5,5,0,5"/>
-                        <DockPanel Margin="5">
-                            <Button Name="ButtonBrowserDbFile" Content="..." DockPanel.Dock="Right" Padding="5,0,5,0"
-                                    Click="ButtonBrowserDbFile_Click"/>                        
-                            <TextBox Name="TextDatabase" Text="{Binding DatabasePath, UpdateSourceTrigger=Explicit}"
-                                        DockPanel.Dock="Left" Margin="0,0,5,0"/>
+                        <DockPanel Margin="0,15,0,5" LastChildFill="False">
+                            <TextBlock Text="{DynamicResource LanguageSettingsLabel}" VerticalAlignment="Center" Margin="5,0,10,0" />
+                            <ComboBox Name="ComboLanguage"
+                                      SelectedValue="{Binding Settings.Language}"
+                                      SelectedValuePath="Id" DisplayMemberPath="LocaleString"
+                                      ItemsSource="{Binding AvailableLanguages}"/>
                         </DockPanel>
 
                         <Grid Margin="0,20,0,0">
@@ -58,54 +131,120 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Column="0">
-                                <CheckBox Name="CheckEnableTray" Content="Show Tray Icon" Margin="5,0,0,0"
-                                            IsChecked="{Binding EnableTray, UpdateSourceTrigger=Explicit}" />
-                                <CheckBox Name="CheckMinimizeToTray" Content="Minimize to tray" Margin="20,10,5,5"
-                                            IsChecked="{Binding MinimizeToTray, UpdateSourceTrigger=Explicit}"
+                                <CheckBox Name="CheckEnableTray" Content="{DynamicResource SettingsShowTray}" Margin="5,0,0,0"
+                                            IsChecked="{Binding Settings.EnableTray}" />
+                                <CheckBox Name="CheckMinimizeToTray" Content="{DynamicResource SettingsMinimizeToTray}" Margin="20,10,5,5"
+                                            IsChecked="{Binding Settings.MinimizeToTray}"
                                             IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
-                                <CheckBox Name="CheckCloseToTray" Content="Close to tray" Margin="20,5,5,5"
-                                            IsChecked="{Binding CloseToTray, UpdateSourceTrigger=Explicit}"
+                                <CheckBox Name="CheckCloseToTray" Content="{DynamicResource SettingsCloseToTray}" Margin="20,5,5,5"
+                                            IsChecked="{Binding Settings.CloseToTray}"
                                             IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
                             </StackPanel>
-                            <CheckBox Name="CheckMinimizeLaunch" Content="Minimize after starting game" VerticalAlignment="Top"
-                                        IsChecked="{Binding MinimizeAfterLaunch, UpdateSourceTrigger=Explicit}" Grid.Column="1"/>
+                            <CheckBox Name="CheckMinimizeLaunch" Content="{DynamicResource SettingsMinimizeStarting}" VerticalAlignment="Top"
+                                      IsChecked="{Binding Settings.MinimizeAfterLaunch}" Grid.Column="1"/>
 
                             <CheckBox Name="CheckUpdateLibStartup" Margin="5,15,5,5" Grid.Row="1" Grid.ColumnSpan="2"
-                                        Content="{DynamicResource SettingsUpdateLibStartup}" ToolTip="{DynamicResource SettingsUpdateLibStartupTooltip}" 
-                                        IsChecked="{Binding UpdateLibStartup, UpdateSourceTrigger=Explicit}"/>
+                                      Content="{DynamicResource SettingsUpdateLibStartup}" ToolTip="{DynamicResource SettingsUpdateLibStartupTooltip}" 
+                                      IsChecked="{Binding Settings.UpdateLibStartup}"/>
+
+                            <!--<CheckBox Name="CheckStartFullscreen" Margin="5,15,5,5" Grid.Row="2" Grid.ColumnSpan="2"
+                                      Content="{DynamicResource SettingsStartInFullscreen}"
+                                      IsChecked="{Binding Settings.StartInFullscreen}"/>-->
                         </Grid>
                     </StackPanel>
-                </TabItem>
-                <TabItem Header="Appearance">
+                </TabItem>                
+                
+                <TabItem Visibility="Collapsed">
                     <StackPanel Margin="20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Text="{DynamicResource SettingsSkin}" VerticalAlignment="Center"
+                                       Grid.Row="0" Grid.Column="0"/>
+                            <ComboBox Margin="10,5,20,5" Name="ComboSkins"
+                                        Grid.Row="0" Grid.Column="1"
+                                        ItemsSource="{Binding AvailableSkins}"
+                                        SelectedValue="{Binding Settings.Skin}"
+                                        SelectionChanged="ComboSkins_SelectionChanged"
+                                        SelectedValuePath="Name" DisplayMemberPath="Name" />
+
+                            <TextBlock Text="{DynamicResource SettingsSkinColor}" VerticalAlignment="Center"
+                                       Grid.Row="0" Grid.Column="2" />
+                            <ComboBox Margin="10,5,10,5" Name="CombSkinColor"
+                                      Grid.Row="0" Grid.Column="3"
+                                      SelectedValue="{Binding Settings.SkinColor}"
+                                      SelectionChanged="CombSkinColor_SelectionChanged"
+                                      ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkins}" />
+                        </Grid>
+
+                        <TextBlock Text="{DynamicResource SettingsSkinChangeRestart}" Margin="0,5,0,10"
+                                   FontStyle="Italic"/>
+
+                        <!--<Grid Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{DynamicResource SettingsSkinFullscreen}" VerticalAlignment="Center"
+                                        Grid.Row="0" Grid.Column="0"/>
+                            <ComboBox Margin="10,5,0,5" Name="ComboSkinsFullscreen"
+                                        Grid.Row="0" Grid.Column="1"
+                                        ItemsSource="{Binding AvailableFullscreenSkins}"
+                                        SelectedValue="{Binding Settings.SkinFullscreen}"
+                                        SelectionChanged="ComboSkinsFullscreen_SelectionChanged"
+                                        SelectedValuePath="Name" DisplayMemberPath="Name" />
+
+                            <TextBlock Text="{DynamicResource SettingsSkinColorFullscreen}" VerticalAlignment="Center"
+                                        Grid.Row="1" Grid.Column="0" />
+                            <ComboBox Margin="10,5,0,5" Name="CombSkinColorFullscreen"
+                                        Grid.Row="1" Grid.Column="1"
+                                        SelectedValue="{Binding Settings.SkinColorFullscreen}"
+                                        ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkinsFullscreen}">
+                            </ComboBox>
+                        </Grid>-->
                         <CheckBox Content="{DynamicResource SettingsAsyncImageLoading}" ToolTip="{DynamicResource SettingsAsyncImageLoadingTooltip}"
-                                  Name="CheckAsyncImages" IsChecked="{Binding AsyncImageLoading, UpdateSourceTrigger=Explicit}"/>
+                                  Margin="0,15,0,0"
+                                  Name="CheckAsyncImages" IsChecked="{Binding Settings.AsyncImageLoading}"/>
                         <CheckBox Content="{DynamicResource SettingsShowNameEmptyCover}" Margin="0,15,0,0"
-                                  Name="CheckNameEmptyCover" IsChecked="{Binding ShowNameEmptyCover, UpdateSourceTrigger=Explicit}"/>
+                                  Name="CheckNameEmptyCover" IsChecked="{Binding Settings.ShowNameEmptyCover}"/>
                         <CheckBox Content="{DynamicResource SettingsShowIconList}" Margin="0,15,0,0"
-                                  Name="CheckShowIcons" IsChecked="{Binding ShowIconsOnList, UpdateSourceTrigger=Explicit}"/>
+                                  Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
                         <CheckBox Content="{DynamicResource SettingsDisableAcceleration}" Margin="0,15,0,0" ToolTip="{DynamicResource SettingsDisableAccelerationTooltip}"
-                                  Name="CheckDisableAcceleration" IsChecked="{Binding DisableHwAcceleration, UpdateSourceTrigger=Explicit}"/>
+                                  Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"/>
                     </StackPanel>
                 </TabItem>
-                <TabItem Header="Steam">
+                <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
-                        <CheckBox IsChecked="{Binding SteamSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
+                        <CheckBox IsChecked="{Binding Settings.SteamSettings.IntegrationEnabled}"
                                     Name="CheckSteamEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top"/>
                         <RadioButton Name="RadioInstalledSteam" Content="{DynamicResource SettingsImportInstalledLabel}"
-                                        IsChecked="{Binding SteamSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
+                                        IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
                                         DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <RadioButton Name="RadioLibrarySteam" Content="{DynamicResource SettingsImportLibraryLabel}"
-                                        IsChecked="{Binding SteamSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
+                                        IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
                                         DockPanel.Dock="Top" Margin="20,5,5,0"/>
 
                         <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
-                            <TextBlock Text="Specify user library by:" DockPanel.Dock="Top" Margin="5"/>
+                            <TextBlock Text="{DynamicResource SettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5"/>
                             <Grid DockPanel.Dock="Top">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -116,147 +255,169 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
 
-                                <RadioButton Content="Name" Name="RadioSteamLibName" GroupName="steamsource"
-                                                IsChecked="{Binding SteamSettings.IdSource, UpdateSourceTrigger=Explicit, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.Name}}"
+                                <RadioButton Content="{DynamicResource NameLabel}" Name="RadioSteamLibName" GroupName="steamsource"
+                                                IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.Name}}"
                                                 Grid.Column="0" Grid.Row="0" Margin="5"/>
-                                <RadioButton Content="Local User" Name="RadioSteamLibAccount" GroupName="steamsource" 
-                                                IsChecked="{Binding SteamSettings.IdSource, UpdateSourceTrigger=Explicit, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.LocalUser}}"
+                                <RadioButton Content="{DynamicResource LocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource" 
+                                                IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.LocalUser}}"
                                                 Grid.Column="0" Grid.Row="1" Margin="5"/>
 
                                 <DockPanel Grid.Column="1" Grid.Row="0" Margin="5">
                                     <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">           
-                                        <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name" RequestNavigate="Hyperlink_RequestNavigate">
-                                            What's my account name?
+                                        <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"
+                                                   Command="{Binding NavigateUrlCommand}"
+                                                   CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                                            <Run Text="{DynamicResource SettingsWhatsSteamName}" />
                                         </Hyperlink>
                                     </TextBlock>
-                                    <TextBox Text="{Binding SteamSettings.AccountName, UpdateSourceTrigger=Explicit}"
+                                    <TextBox Text="{Binding Settings.SteamSettings.AccountName}"
                                                 IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}"
                                                 Name="TextSteamAccountName" DockPanel.Dock="Left" Margin="0,0,10,0" />
                                 </DockPanel>
                                 <ComboBox IsReadOnly="True" Name="ComboSteamAccount" DisplayMemberPath="AccountName"
-                                            SelectedValuePath="Id" SelectedValue="{Binding SteamSettings.AccountId, UpdateSourceTrigger=Explicit}"
-                                            ItemsSource="{Binding SteamUsers, RelativeSource={RelativeSource AncestorType=Window}}"
+                                            SelectedValuePath="Id" SelectedValue="{Binding Settings.SteamSettings.AccountId}"
+                                            ItemsSource="{Binding SteamUsers}"
                                             IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"
                                             Grid.Column="1" Grid.Row="1" Margin="5" />
                             </Grid>
+                            <CheckBox Content="{DynamicResource PrivateAccount}" DockPanel.Dock="Top"
+                                      IsChecked="{Binding Settings.SteamSettings.PrivateAccount}"
+                                      Margin="5,5,5,5" Name="CheckSteamPrivate"
+                                      ToolTip="{DynamicResource SettingsApiKeyTooltip}"/>
+                            <DockPanel DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=CheckSteamPrivate}"
+                                       Margin="30,5,5,5">
+                                <TextBlock Text="{DynamicResource APIKey}" DockPanel.Dock="Left"
+                                           VerticalAlignment="Center"/>
+                                <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">
+                                    <Hyperlink NavigateUri="https://steamcommunity.com/dev/apikey"
+                                               Command="{Binding NavigateUrlCommand}"
+                                               CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                                        <Run Text="{DynamicResource SettingsApiKeyUrlText}" />
+                                    </Hyperlink>
+                                </TextBlock>
+                                <TextBox Text="{Binding Settings.SteamSettings.APIKey}"
+                                         DockPanel.Dock="Left" Margin="10,0,10,0"/>
+                            </DockPanel>
                         </DockPanel>
-                        <TextBlock Text="Import Steam Categories:" DockPanel.Dock="Top" Margin="5,20,5,5" />
+                        
+                        <TextBlock Text="{DynamicResource SettingsSteamImportCategories}" DockPanel.Dock="Top" Margin="5,20,5,5" />
                         <StackPanel DockPanel.Dock="Top" Margin="20,10,5,5" Orientation="Horizontal">
-                            <Button Content="Import" Name="ButtonImportSteamCategories" Click="ButtonImportSteamCategories_Click" />
-                            <TextBlock Text="from account:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <Button Content="{DynamicResource ImportLabel}" Name="ButtonImportSteamCategories"
+                                    Command="{Binding ImportSteamCategoriesCommand}"/>
+                            <TextBlock Text="{DynamicResource SettingsSteamImportCatFrom}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                             <ComboBox Name="ComboSteamCatImport" IsReadOnly="True" Margin="10,0,0,0"
                                         DisplayMemberPath="AccountName" SelectedValuePath="Id" SelectedIndex="0"
-                                        ItemsSource="{Binding SteamUsers, RelativeSource={RelativeSource AncestorType=Window}}" />
+                                        ItemsSource="{Binding SteamUsers}" />
                         </StackPanel>
                     </DockPanel>
                 </TabItem>
-                <TabItem Header="GOG">
+                <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
-                        <CheckBox IsChecked="{Binding GOGSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
+                        <CheckBox IsChecked="{Binding Settings.GOGSettings.RunViaGalaxy}"
+                                  Name="CheckGogRunGalaxy" Content="{DynamicResource SettingsGOGUseGalaxy}"
+                                  ToolTip="{DynamicResource SettingsGOGUseGalaxyTooltip}"
+                                  DockPanel.Dock="Top" Margin="0,0,0,15"/>
+                        <CheckBox IsChecked="{Binding Settings.GOGSettings.IntegrationEnabled}"
                                     Name="CheckGogEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top"/>
                         <RadioButton Name="RadioInstalledGOG" Content="{DynamicResource SettingsImportInstalledLabel}"
-                                        IsChecked="{Binding GOGSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
+                                        IsChecked="{Binding Settings.GOGSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
                                         DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <RadioButton Name="RadioLibraryGOG" Content="{DynamicResource SettingsImportLibraryLabel}"
-                                        IsChecked="{Binding GOGSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
+                                        IsChecked="{Binding Settings.GOGSettings.LibraryDownloadEnabled}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
                                         DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
-                                    LastChildFill="False">
-                            <Button Content="Authenticate" Name="ButtonGogAuth" Click="ButtonGogAuth_Click"/>
-                            <TextBlock Text="Login status:" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                        <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
+                                   IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}">
+                            <Button Content="{DynamicResource AuthenticateLabel}" Name="ButtonGogAuth"
+                                    Command="{Binding AuthGOGCommand}"/>
+                            <TextBlock Text="{DynamicResource SettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
                             <TextBlock VerticalAlignment="Center">
                                 <TextBlock.Text>
                                     <PriorityBinding>
-                                        <Binding Path="GogLoginStatus" IsAsync="True" Mode="OneWay" RelativeSource="{RelativeSource AncestorType=Window}" />
-                                        <Binding Source="Checking..." />
+                                        <Binding Path="GogLoginStatus" IsAsync="True" Mode="OneWay" />
+                                        <Binding Source="{StaticResource LoginChecking}" />
                                     </PriorityBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                         </DockPanel>
-                        <CheckBox IsChecked="{Binding GOGSettings.UseRealIcon, UpdateSourceTrigger=Explicit}" Visibility="Collapsed"
-                                    Name="CheckGogIcons" Content="Use executable icons instead of GOG icon images"
-                                    DockPanel.Dock="Top" Margin="5,15,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"/>
-                        <CheckBox IsChecked="{Binding GOGSettings.RunViaGalaxy, UpdateSourceTrigger=Explicit}"
-                                  Name="CheckGogRunGalaxy" Content="Start games via Galaxy client"
-                                  ToolTip="Will enable features like cloud saves, counting play time etc."
-                                  DockPanel.Dock="Top" Margin="5,15,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"/>
                     </DockPanel>
                 </TabItem>
-                <TabItem Header="Origin">
+                <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
-                        <CheckBox IsChecked="{Binding OriginSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
+                        <CheckBox IsChecked="{Binding Settings.OriginSettings.IntegrationEnabled}"
                                     Name="CheckOriginEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top" />
                         <RadioButton Name="RadioInstalledOrigin" Content="{DynamicResource SettingsImportInstalledLabel}"
-                                        IsChecked="{Binding OriginSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
+                                        IsChecked="{Binding Settings.OriginSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
                                         DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <RadioButton Name="RadioLibraryOrigin" Content="{DynamicResource SettingsImportLibraryLabel}"
-                                        IsChecked="{Binding OriginSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
+                                        IsChecked="{Binding Settings.OriginSettings.LibraryDownloadEnabled}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
                                         DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
-                                    LastChildFill="False">
-                            <Button Content="Authenticate" Name="ButtonOriginAuth" Click="ButtonOriginAuth_Click"/>
-                            <TextBlock Text="Login status:" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                        <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
+                                   IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}">
+                            <Button Content="{DynamicResource AuthenticateLabel}" Name="ButtonOriginAuth"
+                                    Command="{Binding AuthOriginCommand}"/>
+                            <TextBlock Text="{DynamicResource SettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
                             <TextBlock VerticalAlignment="Center">
                                 <TextBlock.Text>
                                     <PriorityBinding>
-                                        <Binding Path="OriginLoginStatus" IsAsync="True" Mode="OneWay" RelativeSource="{RelativeSource AncestorType=Window}" />
-                                        <Binding Source="Checking..." />
+                                        <Binding Path="OriginLoginStatus" IsAsync="True" Mode="OneWay" />
+                                        <Binding Source="{StaticResource LoginChecking}" />
                                     </PriorityBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                         </DockPanel>
                     </DockPanel>
                 </TabItem>
-                <TabItem Header="Battle.net">
+                <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
-                        <CheckBox IsChecked="{Binding BattleNetSettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
+                        <CheckBox IsChecked="{Binding Settings.BattleNetSettings.IntegrationEnabled}"
                                     Name="CheckBattleNetEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top" />
                         <RadioButton Name="RadioInstalledBattleNet" Content="{DynamicResource SettingsImportInstalledLabel}"
-                                        IsChecked="{Binding BattleNetSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
+                                        IsChecked="{Binding Settings.BattleNetSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckBattleNetEnabled}"
                                         DockPanel.Dock="Top" Margin="20,5,5,5"/>
                         <RadioButton Name="RadioLibraryBattleNet" Content="{DynamicResource SettingsImportLibraryLabel}"
-                                        IsChecked="{Binding BattleNetSettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit}"
+                                        IsChecked="{Binding Settings.BattleNetSettings.LibraryDownloadEnabled}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckBattleNetEnabled}"
                                         DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckBattleNetEnabled}"
-                                    LastChildFill="False">
-                            <Button Content="Authenticate" Name="ButtonBattleNetAuth" Click="ButtonBattleNetAuth_Click"/>
-                            <TextBlock Text="Login status:" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                        <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
+                                   IsEnabled="{Binding IsChecked, ElementName=CheckBattleNetEnabled}">
+                            <Button Content="{DynamicResource AuthenticateLabel}" Name="ButtonBattleNetAuth"
+                                    Command="{Binding AuthBattleNetCommand}"/>
+                            <TextBlock Text="{DynamicResource SettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
                             <TextBlock VerticalAlignment="Center">
                                 <TextBlock.Text>
                                     <PriorityBinding>
-                                        <Binding Path="BattleNetLoginStatus" IsAsync="True" Mode="OneWay" RelativeSource="{RelativeSource AncestorType=Window}" />
-                                        <Binding Source="Checking..." />
+                                        <Binding Path="BattleNetLoginStatus" IsAsync="True" Mode="OneWay" />
+                                        <Binding Source="{StaticResource LoginChecking}" />
                                     </PriorityBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                         </DockPanel>
                     </DockPanel>
                 </TabItem>
-                <TabItem Header="Uplay">
+                <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
-                        <CheckBox IsChecked="{Binding UplaySettings.IntegrationEnabled, UpdateSourceTrigger=Explicit}"
+                        <CheckBox IsChecked="{Binding Settings.UplaySettings.IntegrationEnabled}"
                                     Name="CheckUplayEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top"/>
                         <RadioButton Name="RadioInstalledUplay" Content="{DynamicResource SettingsImportInstalledLabel}"
-                                        IsChecked="{Binding UplaySettings.LibraryDownloadEnabled, UpdateSourceTrigger=Explicit, Converter={StaticResource NegateConverter}}"
+                                        IsChecked="{Binding Settings.UplaySettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckUplayEnabled}"
                                         DockPanel.Dock="Top" Margin="20,5,5,5"/>
                     </DockPanel>
                 </TabItem>
-                <TabItem Header="Advanced">
+                <TabItem Visibility="Collapsed">
                     <StackPanel Margin="20">
-                        <Button Name="ButtonClearWebCace" Content="Delete web cache" HorizontalAlignment="Left"
-                                ToolTip="May solve issues encountered while linking accounts."
-                                Click="ButtonClearWebCace_Click"/>
+                        <Button Name="ButtonClearWebCace" Content="{DynamicResource SettingsClearWebCache}" HorizontalAlignment="Left"
+                                ToolTip="{DynamicResource SettingsClearWebCacheTooltip}"
+                                Command="{Binding ClearWebCacheCommand}"/>
                     </StackPanel>
                 </TabItem>
             </TabControl>

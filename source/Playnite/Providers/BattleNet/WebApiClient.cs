@@ -38,8 +38,8 @@ namespace Playnite.Providers.BattleNet
             if (e.IsLoading == false)
             {
                 var b = (CefSharp.OffScreen.ChromiumWebBrowser)sender;
-
-                if (b.Address.Contains("battle.net/login"))
+                Console.WriteLine(b.Address);
+                if (b.Address.Contains("battle.net/login") || !b.Address.StartsWith("http"))
                 {
                     loginRequired = true;
                 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using LiteDB;
+using Newtonsoft.Json;
+using Playnite.Converters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -117,14 +120,27 @@ namespace Playnite.Models
             }
         }
 
-        private int emulatorId;
-        public int EmulatorId
+        private ObjectId emulatorId;
+        [JsonConverter(typeof(ObjectIdJsonConverter))]
+        public ObjectId EmulatorId
         {
             get => emulatorId;
             set
             {
                 emulatorId = value;
                 OnPropertyChanged("EmulatorId");
+            }
+        }
+
+        private ObjectId emulatorProfileId;
+        [JsonConverter(typeof(ObjectIdJsonConverter))]
+        public ObjectId EmulatorProfileId
+        {
+            get => emulatorProfileId;
+            set
+            {
+                emulatorProfileId = value;
+                OnPropertyChanged("EmulatorProfileId");
             }
         }
 

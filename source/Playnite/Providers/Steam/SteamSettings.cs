@@ -53,6 +53,16 @@ namespace Playnite.Providers.Steam
             get; set;
         } = string.Empty;
 
+        public bool PrivateAccount
+        {
+            get; set;
+        } = false;
+
+        public string APIKey
+        {
+            get; set;
+        } = string.Empty;
+
         public bool LibraryDownloadEnabled
         {
             get; set;
@@ -75,20 +85,6 @@ namespace Playnite.Providers.Steam
                 {
                     return true;
                 }
-            }
-        }
-
-        private static string descriptionTemplate;
-        public static string DescriptionTemplate
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(descriptionTemplate))
-                {
-                    descriptionTemplate = DataResources.ReadFileFromResource("Playnite.Resources.description_steam.html");
-                }
-
-                return descriptionTemplate;
             }
         }
     }

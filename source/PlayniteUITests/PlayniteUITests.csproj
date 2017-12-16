@@ -55,12 +55,14 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LiteDB, Version=3.1.0.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiteDB.3.1.0\lib\net35\LiteDB.dll</HintPath>
+    <Reference Include="LiteDB, Version=3.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.3.1.4\lib\net462\LiteDB.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -73,9 +75,17 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Converters\ImageUrlToImageSourceConverterTests.cs" />
+    <Compile Include="Converters\CustomImageStringToImageConverterTests.cs" />
+    <Compile Include="MockDialogsFactory.cs" />
+    <Compile Include="MockResourceProvider.cs" />
+    <Compile Include="MockWindowFactory.cs" />
+    <Compile Include="PlayniteUITests.cs" />
+    <Compile Include="LocalizationTests.cs" />
+    <Compile Include="SkinsTests.cs" />
     <Compile Include="GamesEditorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestsSetupClass.cs" />
+    <Compile Include="ViewModels\GameEditViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PlayniteUI\PlayniteUI.csproj">
@@ -90,6 +100,12 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\PlayniteUI\Images\applogo.png">
+      <Link>Resources\Images\applogo.png</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

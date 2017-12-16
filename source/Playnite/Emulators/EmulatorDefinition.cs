@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Playnite.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -8,14 +10,10 @@ using YamlDotNet.Serialization;
 
 namespace Playnite.Emulators
 {
-    public class EmulatorDefinition
+
+    public class EmulatorDefinitionProfile
     {
         public string Name
-        {
-            get; set;
-        }
-
-        public List<string> Platforms
         {
             get; set;
         }
@@ -25,7 +23,7 @@ namespace Playnite.Emulators
             get; set;
         }
 
-        public string ExecutableLookup
+        public List<string> Platforms
         {
             get; set;
         }
@@ -35,15 +33,55 @@ namespace Playnite.Emulators
             get; set;
         }
 
+        public List<string> RequiredFiles
+        {
+            get; set;
+        }
+
+        public string ExecutableLookup
+        {
+            get; set;
+        }
+
+        public EmulatorProfile ToEmulatorConfig()
+        {
+            return new EmulatorProfile()
+            {
+                Arguments = DefaultArguments,
+                ImageExtensions = ImageExtensions,
+                Name = Name                
+            };
+        }
+    }
+
+    public class EmulatorDefinition
+    {
+        public string Name
+        {
+            get; set;
+        }
         public string Website
         {
             get; set;
         }
 
+        public List<EmulatorDefinitionProfile> Profiles
+        {
+            get; set;
+        }
+
+        public List<string> AllPlatforms
+        {
+            get
+            {
+                return Profiles?.SelectMany(a => a.Platforms).Distinct().OrderBy(a => a).ToList();
+            }
+        }
+
         public static string DefinitionsPath
         {
             get => Path.Combine(Paths.ProgramFolder, "Emulators", "Definitions.yaml");
-        }
+        }        
 
         public override string ToString()
         {

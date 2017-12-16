@@ -34,7 +34,7 @@ namespace Playnite.Services
 
         private T ExecuteRequest<T>(string subUrl)
         {
-            var url = Endpoint + subUrl;
+            var url = Uri.EscapeUriString(Endpoint + subUrl);
             var strResult = httpClient.GetStringAsync(url).GetAwaiter().GetResult();
             var result = JsonConvert.DeserializeObject<ServicesResponse<T>>(strResult);
 
@@ -59,6 +59,11 @@ namespace Playnite.Services
         public PlayniteServices.Models.IGDB.Game GetIGDBGame(UInt64 id)
         {
             return ExecuteRequest<PlayniteServices.Models.IGDB.Game>("/api/igdb/game/" + id);
+        }
+
+        public PlayniteServices.Models.IGDB.ParsedGame GetIGDBGameParsed(UInt64 id)
+        {
+            return ExecuteRequest<PlayniteServices.Models.IGDB.ParsedGame>("/api/igdb/game_parsed/" + id);
         }
 
         public PlayniteServices.Models.IGDB.Company GetIGDBCompany(UInt64 id)

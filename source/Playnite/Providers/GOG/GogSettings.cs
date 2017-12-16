@@ -55,24 +55,8 @@ namespace Playnite.Providers.GOG
             }
         }
 
-        private bool useRealIcon = false;
-        public bool UseRealIcon
-        {
-            get
-            {
-                return useRealIcon;
-            }
-
-            set
-            {
-                if (useRealIcon != value)
-                {
-                    useRealIcon = value;
-                    OnPropertyChanged("UseRealIcon");
-                }
-            }
-        }
-
+        // Used on only for running game via galaxy but for all action including game import.
+        // Name is misleading due to backwards compatibility.
         private bool runViaGalaxy = false;
         public bool RunViaGalaxy
         {
@@ -124,20 +108,6 @@ namespace Playnite.Providers.GOG
 
                 return key.GetValue("client").ToString();            
 
-            }
-        }
-
-        private static string descriptionTemplate;
-        public static string DescriptionTemplate
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(descriptionTemplate))
-                {
-                    descriptionTemplate= DataResources.ReadFileFromResource("Playnite.Resources.description_gog.html");
-                }
-
-                return descriptionTemplate;
             }
         }
 

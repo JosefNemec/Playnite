@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using LiteDB;
 
 namespace PlayniteServices.Controllers.IGDB
 {
@@ -14,10 +15,29 @@ namespace PlayniteServices.Controllers.IGDB
     {
         [HttpGet("{gameName}")]
         public async Task<ServicesResponse<List<Game>>> Get(string gameName)
-        {            
-            var url = string.Format(IGDB.UrlBase + @"games/?fields=name&limit=40&offset=0&search={0}", gameName);
+        {
+            gameName = gameName.ToLower();
+            var cacheCollection = Program.DatabaseCache.GetCollection<GamesSearch>("IGBDSearchCache");
+            var cache = cacheCollection.FindById(gameName);
+            if (cache != null)
+            {
+                var dateDiff = DateTime.Now - cache.creation_time;
+                if (dateDiff.TotalHours <= IGDB.CacheTimeout)
+                {
+                    return new ServicesResponse<List<Game>>(cache.results, string.Empty);
+                }
+            }
+
+            var url = string.Format(IGDB.UrlBase + @"games/?fields=name,first_release_date&limit=40&offset=0&search={0}", gameName);
             var libraryStringResult = await IGDB.HttpClient.GetStringAsync(url);
             var games = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult);
+            cacheCollection.Upsert(new GamesSearch()
+            {
+                keyword = gameName,
+                results = games,
+                creation_time = DateTime.Now
+            });
+
             return new ServicesResponse<List<Game>>(games, string.Empty);
         }
     }

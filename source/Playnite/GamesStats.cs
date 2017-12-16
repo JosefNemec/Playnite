@@ -11,7 +11,7 @@ using NLog;
 
 namespace Playnite
 {
-    public class GamesStats : INotifyPropertyChanged
+    public class GamesStats : INotifyPropertyChanged, IDisposable
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -232,6 +232,13 @@ namespace Playnite
                     BattleNet = BattleNet + (1 * modifier);
                     break;
             }
+        }
+
+        public void Dispose()
+        {
+            database.DatabaseOpened -= Database_DatabaseOpened;
+            database.GamesCollectionChanged -= Database_GamesCollectionChanged;
+            database.GameUpdated -= Database_GameUpdated;
         }
     }
 }

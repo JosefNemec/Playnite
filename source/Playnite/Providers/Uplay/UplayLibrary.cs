@@ -76,8 +76,7 @@ namespace Playnite.Providers.Uplay
                 metadata.Icon = new Database.FileDefinition($"images/uplay/{game.ProviderId}/{iconFile}", iconFile, data);
             }
 
-            game.Name = program.DisplayName;
-            game.IsProviderDataUpdated = true;
+            game.Name = StringExtensions.NormalizeGameName(program.DisplayName);
             return metadata;
         }
     }

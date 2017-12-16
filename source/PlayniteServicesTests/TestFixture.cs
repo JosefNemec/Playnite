@@ -8,21 +8,27 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.Extensions.Configuration;
+using PlayniteServices.Databases;
+using Xunit;
 
 namespace PlayniteServicesTests
 {
-    /// <summary>
-    /// A test fixture which hosts the target project (project we wish to test) in an in-memory server.
-    /// Courtesy of https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/
-    /// </summary>
-    /// <typeparam name="TStartup">Target project's startup type</typeparam>
+    [CollectionDefinition("DefaultCollection")]
+    public class DefaultTestCollection : ICollectionFixture<TestFixture<PlayniteServices.Startup>>
+    {
+    }
+
     public class TestFixture<TStartup> : IDisposable
     {
         private readonly TestServer server;
 
         public TestFixture() : this(Path.Combine("source"))
         {
+            if (File.Exists(Database.DefaultLocation))
+            {
+                File.Delete(Database.DefaultLocation);
+            }
         }
 
         protected TestFixture(string solutionRelativeTargetProjectParentDir)
@@ -30,9 +36,13 @@ namespace PlayniteServicesTests
             var startupAssembly = typeof(TStartup).GetTypeInfo().Assembly;
 
             var builder = new WebHostBuilder()
+                .UseStartup(typeof(TStartup))
                 .ConfigureServices(InitializeServices)
-                .UseEnvironment("Development")
-                .UseStartup(typeof(TStartup));
+                .ConfigureAppConfiguration((hostContext, config) =>
+                {
+                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                    config.AddJsonFile("apikeys.json", optional: false, reloadOnChange: true);
+                });
 
             server = new TestServer(builder);
 
