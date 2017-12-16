@@ -40,205 +40,142 @@
 </head>
 
 <body>
+	<br>
+	<nav class="navbar navbar-full navbar-static-top navbar-dark bg-inverse">
+		<div class="container">
+			<div>
+				<ul class="nav navbar-nav">
+					<li class="nav-item">	
+						<img src="applogo.png" height="40" />
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/download">Download</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/contribute">Contribute</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://github.com/JosefNemec/Playnite">GitHub</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
 	<div class="container">
-		<br>
-		<br>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="jumbotron well">
-					<h2>
-						<img src="applogo.png" height="40" /> Playnite
 					</h2>
 					<p>
-						Open source video game library manager and launcher with support for 3rd party libraries like Steam, GOG, Origin and Uplay.
-						Including game emulation support, providing one unified interface for your games.
+						<b>Playnite</b> is open source video game library manager with one simple goal: Provide unified interface  for all your games.
 					</p>
 				</div>
 				<div class="carousel slide center-block" id="carousel-711607" data-ride="carousel" data-interval="3500">
-					<ol class="carousel-indicators">
-						<li class="active" data-slide-to="0" data-target="#carousel-711607">
-						</li>
-						<li data-slide-to="1" data-target="#carousel-711607">
-						</li>
-						<li data-slide-to="2" data-target="#carousel-711607">
-						</li>
-						<li data-slide-to="3" data-target="#carousel-711607">
-						</li>
-					</ol>
-					<div class="carousel-inner">
-						<div class="item active">
-							<img alt="Carousel Bootstrap First" src="screen1.png">
-						</div>
-						<div class="item">
-							<img alt="Carousel Bootstrap First" src="screen2.png">
-						</div>
-						<div class="item">
-							<img alt="Carousel Bootstrap First" src="screen3.png">
-						</div>
-						<div class="item">
-							<img alt="Carousel Bootstrap First" src="screen4.png">
-						</div>
-					</div>
-					<a class="left carousel-control" href="#carousel-711607" data-slide="prev">
-						<span class="glyphicon glyphicon-chevron-left"></span>
-					</a>
-					<a class="right carousel-control" href="#carousel-711607" data-slide="next">
-						<span class="glyphicon glyphicon-chevron-right"></span>
-					</a>
-				</div>
-				<br>
-				<div class="row">
-					<div class="col-md-8">
-						<h3 class="text-left">
-							Features:
-						</h3>
-						<dl class="dl">
-							<dt>
-								Steam, Origin, GOG, Battle.net, Uplay support
-							</dt>
-							<dd>
-								Import games from Steam, Origin, GOG, Battle.net and Uplay services including games that are not installed. You can also
-								import Windows Store (UWP) games.
-							</dd>
-							<br>
-							<dt>
-								Console Emulation support
-							</dt>
-							<dd>
-								Import console games and run them through emulators.
-							</dd>
-							<br>
-							<dt>
-								View options
-							</dt>
-							<dd>
-								Choose from 3 different view options.
-							</dd>
-							<br>
-							<dt>
-								Custom games
-							</dt>
-							<dd>
-								Add any game or program with custom launch options.
-							</dd>
-							<br>
-							<dt>
-								Automatic Update
-							</dt>
-							<dd>
-								Application automatically updates to new version.
-							</dd>
-							<br>
-							<dt>
-								Portable installation
-							</dt>
-							<dd>
-								Run Playnite without need to install, with ability to run from any place, with option to configure database location for
-								automatic sync via service like DropBox or Google Drive.
-							</dd>
-						</dl>
-						<br>
-						<h3 class="text-left">
-							Upcoming features:
-						</h3>
-						<dl class="dl">
-							<dt>
-								"Big Picture" mode with controller support
-							</dt>
-							<dd>
-								Fullscreen mode managed with controller.
-							</dd>
-							<br>
-							<dt>
-								UI Customization
-							</dt>
-							<dd>
-								Full support for skins and custom color pallets.
-							</dd>
-							<br>
-							<dt>
-								Add additional launch options for legacy games
-							</dt>
-							<dd>
-								To help managing and launching older games. Features like limit CPU cores, CPU speed fix, compatibility flags, automatic
-								installation of 3d party wrappers etc.
-							</dd>
-							<br>
-							<dt>
-								Plugin support
-							</dt>
-							<dd>
-								Add additional functionality through easy scritping or fully fledged C# plugins.
-							</dd>
-						</dl>
-						<br>
-						<h3 class="text-left">
-							Password policy
-						</h3>
-						<dl class="dl">
-							Playnite doesn't store any user information and you don't need to provide any information to import installed games. Login
-							is required only for full library import of GOG, Origin and Battle.net games and in that case only web session cookie
-							is stored, the same way when you login to those services via web browser.
-						</dl>
-						<br>
-					</div>
-					<div class="col-md-4">
-						<dl class="dl">
-							<dt>
-								<h3>Requirements</h3>
-							</dt>
-							<dd>
-								Windows 7, 8 or 10 and
-								<a href="https://www.microsoft.com/en-us/download/details.aspx?id=53344">.Net 4.6</a>
-							</dd>
-						</dl>
-
-						<a href="https://github.com/JosefNemec/Playnite/releases" type="button" class="btn btn-primary" style="width:300px">
-							Download latest version
-						</a>
-						<br>
-						<br>
-						<a href="https://github.com/JosefNemec/Playnite" type="button" class="btn btn-success" style="width:300px">
-							<span class="glyphicon icon-github" aria-hidden="true"></span>
-							Source Code on GitHub
-						</a>
-						<br>
-						<br>
-						<a href="https://github.com/JosefNemec/Playnite/issues" type="button" class="btn btn-info" style="width:300px">
-							Request feature or report an issue
-						</a>
-
-						<dl class="dl">
-							<dt>
-								<h3>Social</h3>
-							</dt>
-							<dd>
-								<img src="reddit.png" height="24" style="margin-right:10px" />
-								<a href="https://www.reddit.com/r/playnite/">/r/playnite</a>
-								<br>
-								<img src="twitter.png" height="24" style="margin-right:10px" />
-								<a href="https://twitter.com/AppPlaynite">@AppPlaynite</a>
-								<br>
-								<img src="discord.png" height="24" style="margin-right:10px" />
-								<a href="https://discord.gg/hSFvmN6">Playnite</a>
-							</dd>
-						</dl>
-					</div>
-				</div>
-				<br>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="panel panel-default">
-							<div class="panel-body">
-								Developed and maintained by Josef Nemec, contact me at
-								<label>contact@playnite.link</label> or on Discord.
+						<ol class="carousel-indicators">
+							<li class="active" data-slide-to="0" data-target="#carousel-711607">
+							</li>
+							<li data-slide-to="1" data-target="#carousel-711607">
+							</li>
+							<li data-slide-to="2" data-target="#carousel-711607">
+							</li>
+							<li data-slide-to="3" data-target="#carousel-711607">
+							</li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="item active">
+								<img alt="Carousel Bootstrap First" src="screen1.png">
+							</div>
+							<div class="item">
+								<img alt="Carousel Bootstrap First" src="screen2.png">
+							</div>
+							<div class="item">
+								<img alt="Carousel Bootstrap First" src="screen3.png">
+							</div>
+							<div class="item">
+								<img alt="Carousel Bootstrap First" src="screen4.png">
 							</div>
 						</div>
+						<a class="left carousel-control" href="#carousel-711607" data-slide="prev">
+							<span class="glyphicon glyphicon-chevron-left"></span>
+						</a>
+						<a class="right carousel-control" href="#carousel-711607" data-slide="next">
+							<span class="glyphicon glyphicon-chevron-right"></span>
+						</a>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-4">
+						<h3>
+							<a href="#">Import popular libraries</a>
+						</h3>
+						<p>Link games from Steam, Origin, GOG, Battle.net and Uplay services, including games that are not installed! Windows Store (UWP) games are also supported.</p>
+					</div>
+					<div class="col-md-4">
+						<h3>
+							<a href="#">Emulation support</a>
+						</h3>
+						<p>Playnite supports wide variety of console emulators.</p>
+					</div>
+					<div class="col-md-4">
+						<h3>
+							<a href="#">Themes</a>
+						</h3>
+						<p>Playnite's look can be fully customized, from simple colors changes to complete layout re-designs.</p>
 					</div>
 				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+							<h3>
+								<a href="#">Fast</a>
+							</h3>
+							<p>Playnites user interface is fast and light on resources, even with large libraries.</p>
+						</div>
+					<div class="col-md-4">
+						<h3>
+							<a href="#">Portable</a>
+						</h3>
+						<p>Playnite can run from any portable storage with option to configure database location for automatic sync via services like DropBox or Google Drive.</p>
+					</div>
+					<div class="col-md-4">
+						<h3>
+							<a href="#">Completely Free</a>
+						</h3>
+						<p>No Playnite features are locked behind paywall and complete source code is available under MIT license.</p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<h3>
+							<a href="#">Safe</a>
+						</h3>
+						<p>Playnite doesn't store any user information. It stores the same amount of information like web browser when linking accounts (cookies).</p>
+					</div>
+				</div>			
+				<br>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-5">
+						<a class="btn btn-primary btn-lg btn-info" href="http://www.quackit.com/bootstrap/bootstrap_4/tutorial/bootstrap_jumbotron.cfm" role="button">Download</a>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-4">								
+						<a href="https://www.reddit.com/r/playnite/"><img src="reddit.png" height="24" style="margin-right:10px"/></a>								
+						<a href="https://twitter.com/AppPlaynite"><img src="twitter.png" height="24" style="margin-right:10px"/></a>								
+						<a href="https://discord.gg/hSFvmN6"><img src="discord.png" height="24" style="margin-right:10px" /></a>
+
+						<a href="https://www.patreon.com/playnite"><img src="patreon.png" height="24" style="margin-right:10px" /></a>
+					</div>
+				</div>
+				<br><br>
 			</div>
 		</div>
 	</div>
 </body>
-
 </html>
