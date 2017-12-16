@@ -1316,9 +1316,12 @@ namespace PlayniteUI.ViewModels
                     Game.OtherTasks = EditingGame.OtherTasks;
                 }
 
-                if (!Game.Links.IsEqualJson(EditingGame.Links) && UseLinksChanges)
+                if (!Game.Links.IsEqualJson(EditingGame.Links))
                 {
-                    Game.Links = EditingGame.Links;
+                    if ((ShowCheckBoxes && UseLinksChanges) || !ShowCheckBoxes)
+                    {
+                        Game.Links = EditingGame.Links;
+                    }
                 }
             }
 
