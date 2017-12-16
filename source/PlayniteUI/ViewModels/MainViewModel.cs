@@ -177,6 +177,17 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        private bool mainMenuOpened = false;
+        public bool MainMenuOpened
+        {
+            get => mainMenuOpened;
+            set
+            {
+                mainMenuOpened = value;
+                OnPropertyChanged("MainMenuOpened");
+            }
+        }
+
         private Visibility visibility = Visibility.Visible;
         public Visibility Visibility
         {
@@ -226,6 +237,38 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        public RelayCommand<object> OpenFilterPanelCommand
+        {
+            get => new RelayCommand<object>((game) =>
+            {
+                AppSettings.FilterPanelVisible = true;
+            });
+        }
+
+        public RelayCommand<object> CloseFilterPanelCommand
+        {
+            get => new RelayCommand<object>((game) =>
+            {
+                AppSettings.FilterPanelVisible = false;
+            });
+        }
+
+        public RelayCommand<object> OpenMainMenuCommand
+        {
+            get => new RelayCommand<object>((game) =>
+            {
+                MainMenuOpened = true;
+            });
+        }
+
+        public RelayCommand<object> CloseMainMenuCommand
+        {
+            get => new RelayCommand<object>((game) =>
+            {
+                MainMenuOpened = false;
+            });
+        }
+
         public RelayCommand<IGame> StartGameCommand
         {
             get => new RelayCommand<IGame>((game) =>
@@ -241,6 +284,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<ThirdPartyTool>((tool) =>
             {
+                MainMenuOpened = false;
                 StartThirdPartyTool(tool);
             });
         }
@@ -249,6 +293,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
+                MainMenuOpened = false;
                 LoadGames(true);
             }, (a) => GameAdditionAllowed);
         }
@@ -265,6 +310,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
+                MainMenuOpened = false;
                 ReportIssue();
             });
         }
@@ -273,6 +319,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
+                MainMenuOpened = false;
                 ShutdownApp();
             });
         }
@@ -297,6 +344,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
+                MainMenuOpened = false;
                 OpenAboutWindow(new AboutViewModel(AboutWindowFactory.Instance, Dialogs, Resources));
             });
         }
@@ -305,6 +353,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
+                MainMenuOpened = false;
                 ConfigurePlatforms(
                     new PlatformsViewModel(Database,
                     PlatformsWindowFactory.Instance,
@@ -317,6 +366,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
+                MainMenuOpened = false;
                 OpenSettings(
                     new SettingsViewModel(Database,
                     AppSettings,
@@ -330,6 +380,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
+                MainMenuOpened = false;
                 AddCustomGame(GameEditWindowFactory.Instance);
             });
         }
@@ -337,7 +388,8 @@ namespace PlayniteUI.ViewModels
         public RelayCommand<object> AddInstalledGamesCommand
         {
             get => new RelayCommand<object>((a) =>
-            {                
+            {
+                MainMenuOpened = false;
                 ImportInstalledGames(
                     new InstalledGamesViewModel(
                     Database,
@@ -350,6 +402,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
+                MainMenuOpened = false;
                 ImportEmulatedGames(
                     new EmulatorImportViewModel(Database,
                     EmulatorImportViewModel.DialogType.GameImport,
@@ -397,6 +450,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
+                MainMenuOpened = false;
                 DownloadMetadata(new MetadataDownloadViewModel(MetadataDownloadWindowFactory.Instance));
             }, (a) => GameAdditionAllowed);
         }
@@ -564,6 +618,14 @@ namespace PlayniteUI.ViewModels
             GamesView?.Dispose();
             GamesView = new GamesCollectionView(Database, AppSettings);
             BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
+            if (GamesView.CollectionView.Count > 0)
+            {
+                SelectedGame = GamesView.CollectionView.GetItemAt(0) as GameViewEntry;
+            }
+            else
+            {
+                SelectedGame = null;
+            }
 
             try
             {
@@ -791,7 +853,7 @@ namespace PlayniteUI.ViewModels
                     }
                 });
 
-                await GamesLoaderHandler.ProgressTask;            
+                await GamesLoaderHandler.ProgressTask;
             }
             finally
             {
