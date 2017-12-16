@@ -7,7 +7,53 @@
                     mc:Ignorable="d">
 
     <sys:String x:Key="SkinColorName">Red</sys:String>
+    
+    <Color x:Key="TextColor">#f2f2f2</Color>
+    <Color x:Key="TextColorDarker">#a3a3a3</Color>
+    <Color x:Key="TextColorDark">#000000</Color>
+    <Color x:Key="MainColor">#003459</Color>
+    <Color x:Key="MainColorDark">#00171F</Color>
+    <Color x:Key="HoverColor">#247BA0</Color>
+    <Color x:Key="GlyphColor">#00A8E8</Color>
+    <Color x:Key="HighlightGlyphColor">#3300A8E8</Color>
+    <Color x:Key="PopupBackgroundColor">#171e26</Color>
+    <Color x:Key="PopupBorderColor">#3e6184</Color>
+    <Color x:Key="BackgroundToneColor">#003459</Color>
+    <Color x:Key="GamesListPanelColor">#CC000000</Color>
 
-    <Color x:Key="GlyphColor">Red</Color>
+    <SolidColorBrush x:Key="ControlBackgroundBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
+    <SolidColorBrush x:Key="TextBrushDarker" Color="{DynamicResource TextColorDarker}" />
+    <SolidColorBrush x:Key="TextBrushDark" Color="{DynamicResource TextColorDark}" />
+    <SolidColorBrush x:Key="NormalBrush" Color="{DynamicResource MainColor}" />
+    <SolidColorBrush x:Key="NormalBrushDark" Color="{DynamicResource MainColorDark}" />
+    <SolidColorBrush x:Key="NormalBorderBrush" Color="#88007EA7" />
+    <SolidColorBrush x:Key="HoverBrush" Color="{DynamicResource HighlightGlyphColor}" />
     <SolidColorBrush x:Key="GlyphBrush" Color="{DynamicResource GlyphColor}" />
+    <SolidColorBrush x:Key="HighlightGlyphBrush" Color="{DynamicResource HighlightGlyphColor}" />
+    <SolidColorBrush x:Key="PopupBorderBrush" Color="{DynamicResource PopupBorderColor}" />
+    <SolidColorBrush x:Key="TooltipBackgroundBrush" Color="{DynamicResource BackgroundToneColor}" />
+    <SolidColorBrush x:Key="GamesListPanelBrush" Color="{DynamicResource GamesListPanelColor}" />
+
+    <sys:Double x:Key="FontSize">14</sys:Double>
+    <FontFamily x:Key="FontFamily">Trebuchet MS</FontFamily>
+    <Thickness x:Key="PopupBorderThickness">1</Thickness>
+    <Thickness x:Key="ControlBorderThickness">1</Thickness>
+    <sys:Double x:Key="EllipseBorderThickness">1</sys:Double>
+    <CornerRadius x:Key="ControlCornerRadius">0</CornerRadius>
+
+    <LinearGradientBrush  x:Key="PopupBackgroundBrush" StartPoint="0.4,0" EndPoint="0.5,1.2" >
+        <GradientStop Color="{DynamicResource MainColorDark}" Offset="0"/>
+        <GradientStop Color="{DynamicResource BackgroundToneColor}" Offset="0.9"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush  x:Key="ExpanderBackgroundBrush" StartPoint="-1,0.5" EndPoint="1.5,1" >
+        <GradientStop Color="#00171F" Offset="0"/>
+        <GradientStop Color="#003459" Offset="0.9"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="WindowBackgourndBrush" StartPoint="0.5,-0.2" EndPoint="0.4,1" >
+        <GradientStop Color="#003459" Offset="0"/>
+        <GradientStop Color="#1B1B1E" Offset="0.4"/>
+    </LinearGradientBrush>
 </ResourceDictionary>

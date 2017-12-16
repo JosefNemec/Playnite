@@ -320,10 +320,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Generator>MSBuild:Compile</Generator>
     </Content>
-    <None Include="Localization\czech.xaml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <EmbeddedResource Include="Resources\DescriptionView.html" />
     <Content Include="Skins\Classic\Classic.xaml">
       <SubType>Designer</SubType>

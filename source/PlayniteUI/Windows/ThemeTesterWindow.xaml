@@ -128,6 +128,11 @@ ItemsSource="{Binding MyListBoxItems}"
                                             <GridViewColumn Header="Mail" Width="150" DisplayMemberBinding="{Binding Mail}" />
                                         </GridView>
                                     </ListView.View>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" />
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
                                 </ListView>
                             </Expander>
                             <ListBox SelectedIndex="1" Margin="5" Height="100">
@@ -175,7 +180,13 @@ ItemsSource="{Binding MyListBoxItems}"
                                 Click="ButtonReloadSkinList_Click" Margin="5"/>
                         <ListBox Margin="5"
                                  ItemsSource="{Binding SkinList}"
-                                 SelectedValue="{Binding SelectedSkin, Mode=TwoWay}"/>
+                                 SelectedValue="{Binding SelectedSkin, Mode=TwoWay}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                         <Button Content="{DynamicResource ThemeTestApplySkin}" Name="ButtonApplySkin" Margin="5"
                                 Click="ButtonApplySkin_Click" />
                         <CheckBox Content="{DynamicResource ThemeTestWatchChanges}" Margin="5"

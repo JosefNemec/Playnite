@@ -2153,7 +2153,9 @@
 
                         <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top"
                                    Margin="10">
-                            <Hyperlink Command="{Binding Data.RemoveGameSelectionCommand, Source={StaticResource CoversProxy}}">🗙</Hyperlink>
+                            <Hyperlink Command="{Binding Data.RemoveGameSelectionCommand, Source={StaticResource CoversProxy}}">
+                                <Run Text="r" FontFamily="Marlett" />
+                            </Hyperlink>
                         </TextBlock>
 
                         <DockPanel Grid.Column="0" Grid.Row="0" Margin="10,20,10,0">
@@ -2216,7 +2218,7 @@
                 <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />               
             </Grid.Resources>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -2275,10 +2277,10 @@
             <Border Grid.Column="0" Grid.Row="2" Padding="10" Margin="20,30,0,0" CornerRadius="3"
                     Background="#AA000000" VerticalAlignment="Top"
                     Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <ContentControl Template="{StaticResource GamePropertiesView}" />
+                <ContentControl Template="{StaticResource GamePropertiesView}" Width="250" />
             </Border>
 
-            <Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="10,30,10,10" 
+            <Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="10,30,10,10"
                     CornerRadius="3" Background="#AA000000" VerticalAlignment="Top">
                 <Border.Style>
                     <Style TargetType="Border">
@@ -2296,6 +2298,7 @@
                     <pc:HtmlTextView Background="Transparent" HtmlText="{Binding Game.Description, Mode=OneWay}"
                                      HtmlForeground="{DynamicResource TextColor}"
                                      LinkForeground="{DynamicResource GlyphColor}"
+                                     Margin="5"
                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                      ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
                 </ScrollViewer>
