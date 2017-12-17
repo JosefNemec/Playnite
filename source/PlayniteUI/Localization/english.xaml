@@ -205,7 +205,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="SettingsClearCacheTitle">Clear Cache?</sys:String>
     <sys:String x:Key="SettingsApiKeyTooltip">API Key is required for Steam private accounts</sys:String>
     <sys:String x:Key="SettingsApiKeyUrlText">Get API key</sys:String>
-    <sys:String x:Key="SettingsSkinChangeRestart">Playnite restart is required when chaning theme</sys:String>
+    <sys:String x:Key="SettingsSkinChangeRestart">Playnite restart is required when changing theme</sys:String>
     
     <sys:String x:Key="ImportError">Import Error</sys:String>
     <sys:String x:Key="LoginChecking">Checking...</sys:String>
