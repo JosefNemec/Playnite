@@ -61,6 +61,6 @@
 
     <LinearGradientBrush x:Key="GameDetailsBackGroundBrush" StartPoint="0.5,0.1" EndPoint="0.5,1" >
         <GradientStop Color="#00000000" Offset="0"/>
-        <GradientStop Color="{DynamicResource MainColorDark}" Offset="0.4"/>
+        <GradientStop Color="#DD0D1225" Offset="0.4"/>
     </LinearGradientBrush>
 </ResourceDictionary>
