@@ -2846,17 +2846,17 @@
                 </DockPanel>
             </Border>
 
-            <!--<Border Margin="0,-38,0,0" Height="38" Width="100" DockPanel.Dock="Bottom" Background="Transparent"
-                Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+            <Border Margin="0,-38,0,0" Height="38" Width="100" DockPanel.Dock="Bottom" Background="Transparent"
+                    Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
                 <Button Name="ButtonFriends" Command="{Binding OpenSteamFriendsCommand}"
-                    Height="30" Width="30" HorizontalAlignment="Right" Margin="0,0,15,0"
-                    Style="{StaticResource ImageHighlightButton}" ToolTip="{DynamicResource SteamFriendsTooltip}"
-                    Visibility="{Binding AppSettings.SteamSettings.IntegrationEnabled, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        Height="30" Width="30" HorizontalAlignment="Right" Margin="0,0,15,0"
+                        Style="{StaticResource ImageHighlightButton}" ToolTip="{DynamicResource SteamFriendsTooltip}"
+                        Visibility="{Binding AppSettings.SteamSettings.IntegrationEnabled, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Button.OpacityMask>
                         <ImageBrush ImageSource="/Images/friends.png" RenderOptions.BitmapScalingMode="Fant"/>
                     </Button.OpacityMask>
                 </Button>
-            </Border>-->
+            </Border>
         </Grid>
     </ControlTemplate>
     
