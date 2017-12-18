@@ -315,6 +315,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Resource Include="Images\icon_dark.png" />
+    <Resource Include="Images\discord.png" />
+    <Resource Include="Images\patreon.png" />
+    <Resource Include="Images\reddit.png" />
+    <Resource Include="Images\twitter.png" />
     <Content Include="Localization\english.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

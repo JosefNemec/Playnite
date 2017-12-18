@@ -5,6 +5,7 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                     xmlns:pc="clr-namespace:PlayniteUI.Controls;assembly=PlayniteUI"
+                    xmlns:pcmd="clr-namespace:PlayniteUI.Commands;assembly=PlayniteUI"
                     xmlns:pui="clr-namespace:PlayniteUI;assembly=PlayniteUI"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
@@ -2391,8 +2392,22 @@
                                 </MenuItem.ItemContainerStyle>
                             </MenuItem>
                             <Separator />
-                            <MenuItem Header="{DynamicResource MenuAbout}"
-                                  Command="{Binding OpenAboutCommand}"/>
+                            <MenuItem Header="{DynamicResource MenuAbout}">
+                                <MenuItem Header="{DynamicResource MenuAbout}" Command="{Binding OpenAboutCommand}" />
+                                <Separator />
+                                <MenuItem Header="Discord"
+                                          Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                          CommandParameter="https://discord.gg/hSFvmN6"/>
+                                <MenuItem Header="Twitter" 
+                                          Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                          CommandParameter="https://twitter.com/AppPlaynite"/>
+                                <MenuItem Header="Reddit" 
+                                          Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                          CommandParameter="https://www.reddit.com/r/playnite/"/>
+                                <MenuItem Header="Patreon" 
+                                          Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                          CommandParameter="https://www.patreon.com/playnite"/>
+                            </MenuItem>
                             <MenuItem Header="{DynamicResource MenuIssues}" Command="{Binding ReportIssueCommand}" />
                             <Separator />
                             <MenuItem Header="{DynamicResource ExitAppLabel}" Command="{Binding ShutdownCommand}" />

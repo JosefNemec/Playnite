@@ -4,6 +4,7 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                     xmlns:pc="clr-namespace:PlayniteUI.Controls;assembly=PlayniteUI"
+                    xmlns:pcmd="clr-namespace:PlayniteUI.Commands;assembly=PlayniteUI"
                     xmlns:pui="clr-namespace:PlayniteUI;assembly=PlayniteUI"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
@@ -2724,6 +2725,24 @@
                                     DockPanel.Dock="Top"/>
                             <RadioButton Content="{DynamicResource ExitAppLabel}" Command="{Binding ShutdownCommand}"
                                     DockPanel.Dock="Top" />
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="-10,0,0,0">
+                                <Button Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                        CommandParameter="https://discord.gg/hSFvmN6" Cursor="Hand">
+                                    <Image Height="24" Source="/Images/discord.png" RenderOptions.BitmapScalingMode="Fant" />
+                                </Button>
+                                <Button Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                        CommandParameter="https://twitter.com/AppPlaynite" Cursor="Hand">
+                                    <Image Height="24" Source="/Images/twitter.png" RenderOptions.BitmapScalingMode="Fant" />
+                                </Button>
+                                <Button Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                        CommandParameter="https://www.reddit.com/r/playnite/" Cursor="Hand">
+                                    <Image Height="24" Source="/Images/reddit.png" RenderOptions.BitmapScalingMode="Fant" />
+                                </Button>
+                                <Button Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                        CommandParameter="https://www.patreon.com/playnite" Cursor="Hand">
+                                    <Image Height="24" Source="/Images/patreon.png" RenderOptions.BitmapScalingMode="Fant" />
+                                </Button>
+                            </StackPanel>
                             <RadioButton Content="{DynamicResource MenuIssues}" Command="{Binding ReportIssueCommand}"
                                     DockPanel.Dock="Bottom" />
                             <RadioButton Content="{DynamicResource MenuAbout}" Command="{Binding OpenAboutCommand}"

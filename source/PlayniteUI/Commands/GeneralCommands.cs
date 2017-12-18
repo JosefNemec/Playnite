@@ -9,10 +9,19 @@ using System.Threading.Tasks;
 
 namespace PlayniteUI.Commands
 {
-    public class GeneralCommands
+    public static class GeneralCommands
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        public static RelayCommand<string> NavigateUrlCommand
+        {
+            get => new RelayCommand<string>((url) =>
+            {
+                NavigateUrl(url);
+            });
+        }
 
-
+        public static void NavigateUrl(string url)
+        {
+            System.Diagnostics.Process.Start(url);
+        }
     }
 }
