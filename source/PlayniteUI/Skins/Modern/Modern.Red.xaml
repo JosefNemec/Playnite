@@ -10,12 +10,12 @@
 
     <Color x:Key="TextColor">#f2f2f2</Color>
     <Color x:Key="TextColorDarker">#a3a3a3</Color>
-    <Color x:Key="TextColorDark">#0459AA</Color>
+    <Color x:Key="TextColorDark">#1a1a1a</Color>
     <Color x:Key="MainColor">#2C3A67</Color>
     <Color x:Key="MainColorDark">#0D1225</Color>
     <Color x:Key="HoverColor">#247BA0</Color>
-    <Color x:Key="GlyphColor">#55CDFF</Color>
-    <Color x:Key="HighlightGlyphColor">#3355CDFF</Color>
+    <Color x:Key="GlyphColor">#ff1a1a</Color>
+    <Color x:Key="HighlightGlyphColor">#AAff0000</Color>
     <Color x:Key="PopupBackgroundColor">#171e26</Color>
     <Color x:Key="PopupBorderColor">#3e6184</Color>
     <Color x:Key="BackgroundToneColor">#2C3A67</Color>

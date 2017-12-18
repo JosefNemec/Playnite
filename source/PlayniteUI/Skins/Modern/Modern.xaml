@@ -2432,7 +2432,7 @@
                                         </PriorityBinding>
                                     </Image.Source>
                                 </Image>
-                                <TextBlock Text="{Binding Name, Mode=OneWay}" TextTrimming="CharacterEllipsis"
+                                <TextBlock Text="{Binding DisplayName, Mode=OneWay}" TextTrimming="CharacterEllipsis"
                                         VerticalAlignment="Center" DockPanel.Dock="Left" />
                             </StackPanel>
                         </DataTemplate>
