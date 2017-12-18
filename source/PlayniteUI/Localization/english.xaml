@@ -207,7 +207,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="SettingsApiKeyUrlText">Get API key</sys:String>
     <sys:String x:Key="SettingsSkinChangeRestart">Playnite restart is required when changing theme</sys:String>
     <sys:String x:Key="SettingsIGDBApiKey">IGDB.com API key</sys:String>
-    <sys:String x:Key="SettingsIGDBApiKeyDescription"  xml:space="preserve">Playnite can download additional metadata for games from IGDB.com database (covers, descriptions etc.).
+    <sys:String x:Key="SettingsIGDBApiKeyDescription"  xml:space="preserve">Playnite can download additional metadata for custom and emulated games from IGDB.com database (covers, descriptions etc.).
     
 By default Playnite uses shared access key. In some cases that may result in temporary unavailability of this feature, depending on current load. It's therefore highly recommended that you get your own key and not get limited by other users.
     
