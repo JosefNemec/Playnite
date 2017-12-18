@@ -2277,11 +2277,13 @@
                     </Button.ContextMenu>
                 </Button>
             </StackPanel>
-            
-            <Border Grid.Column="0" Grid.Row="2" Padding="10" Margin="20,30,0,0" CornerRadius="3"
+
+            <Border Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Padding="10" Margin="20,30,0,10" CornerRadius="3"
                     Background="#AA000000" VerticalAlignment="Top"
                     Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <ContentControl Template="{StaticResource GamePropertiesView}" Width="250" />
+                <ScrollViewer>
+                    <ContentControl Template="{StaticResource GamePropertiesView}" Width="250" />
+                </ScrollViewer>
             </Border>
 
             <Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="10,30,10,10"
