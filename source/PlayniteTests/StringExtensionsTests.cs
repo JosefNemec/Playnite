@@ -19,6 +19,12 @@ namespace PlayniteTests
 
             Assert.AreEqual("The Witcher 3",
                 StringExtensions.NormalizeGameName("Witcher 3, The"));
+
+            Assert.AreEqual("Pokemon Red Test",
+                 StringExtensions.NormalizeGameName("Pokemon.Red.[US].[l33th4xor].Test.[22]"));
+
+            Assert.AreEqual("Pokemon Red Test",
+     StringExtensions.NormalizeGameName("Pokemon.Red.[US].(l33th 4xor).Test.(22)"));
         }
     }
 }
