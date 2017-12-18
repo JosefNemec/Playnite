@@ -297,94 +297,98 @@ namespace Playnite.Database
                 return;
             }
 
-            // 0 to 1
-            if (db.Engine.UserVersion == 0 && DBVersion > 0)
+            var trans = db.BeginTrans();
+
+            try
             {
-                // Create: ObservableCollection<Link>Links
-                // Migrate: CommunityHubUrl, StoreUrl, WikiUrl to Links
-                // Remove: CommunityHubUrl, StoreUrl, WikiUrl
-                logger.Info("Migrating database from 0 to 1 version.");
-
-                var collection = db.GetCollection("games");
-                foreach (var game in collection.FindAll())
+                // 0 to 1
+                if (db.Engine.UserVersion == 0 && DBVersion > 0)
                 {
-                    var links = new ObservableCollection<Link>();
+                    // Create: ObservableCollection<Link>Links
+                    // Migrate: CommunityHubUrl, StoreUrl, WikiUrl to Links
+                    // Remove: CommunityHubUrl, StoreUrl, WikiUrl
+                    logger.Info("Migrating database from 0 to 1 version.");
 
-                    if (game.ContainsKey("CommunityHubUrl"))
+                    var collection = db.GetCollection("games");
+                    foreach (var game in collection.FindAll())
                     {
-                        links.Add(new Link("Forum", game["CommunityHubUrl"].AsString));
-                        game.Remove("CommunityHubUrl");
+                        var links = new ObservableCollection<Link>();
+
+                        if (game.ContainsKey("CommunityHubUrl"))
+                        {
+                            links.Add(new Link("Forum", game["CommunityHubUrl"].AsString));
+                            game.Remove("CommunityHubUrl");
+                        }
+
+                        if (game.ContainsKey("StoreUrl"))
+                        {
+                            links.Add(new Link("Store", game["StoreUrl"].AsString));
+                            game.Remove("StoreUrl");
+                        }
+
+                        if (game.ContainsKey("WikiUrl"))
+                        {
+                            links.Add(new Link("Wiki", game["WikiUrl"].AsString));
+                            game.Remove("WikiUrl");
+                        }
+
+                        if (links.Count() > 0)
+                        {
+                            game.Add("Links", new BsonArray(links.Select(a => BsonMapper.Global.ToDocument(a))));
+                        }
+
+                        collection.Update(game);
                     }
 
-                    if (game.ContainsKey("StoreUrl"))
-                    {
-                        links.Add(new Link("Store", game["StoreUrl"].AsString));
-                        game.Remove("StoreUrl");
-                    }
-
-                    if (game.ContainsKey("WikiUrl"))
-                    {
-                        links.Add(new Link("Wiki", game["WikiUrl"].AsString));
-                        game.Remove("WikiUrl");
-                    }
-
-                    if (links.Count() > 0)
-                    {
-                        game.Add("Links", new BsonArray(links.Select(a => BsonMapper.Global.ToDocument(a))));
-                    }
-
-                    collection.Update(game);
+                    db.Engine.UserVersion = 1;
                 }
 
-                db.Engine.UserVersion = 1;
-            }
-
-            // 1 to 2
-            if (db.Engine.UserVersion == 1 && DBVersion > 1)
-            {
-                // Migrate: Emulators collection
-                // From:
-                // -Name: DOSBox
-                //  DefaultArguments: '-conf "{ImagePath}" -exit'
-                //  Platforms: [MS - DOS, PC]
-                //  ImageExtensions: [.conf]
-                //  ExecutableLookup: ^ dosbox\.exe
-                //  WorkingDirectory: 
-                // To:
-                // -Name: DOSBox
-                //  Configurations:
-                //    -Name: Default
-                //     DefaultArguments: '-conf "{ImagePath}" -exit'
-                //     Platforms: [MS - DOS, PC]
-                //     ImageExtensions: [.conf]
-                //     ExecutableLookup: ^ dosbox\.exe
-                //     WorkingDirectory:
-                //
-                // Add: EmulatorProfile into game's PlayTask when using emulator
-                // Add: checksum to file metadata
-                // Convert: Platforms and Emulators Id from int to ObjectId
-                logger.Info("Migrating database from 1 to 2 version.");
-
-                var platCollection = db.GetCollection("platforms");
-                var conPlatforms = new Dictionary<int, ObjectId>();
-                foreach (var platform in platCollection.FindAll().ToList())
+                // 1 to 2
+                if (db.Engine.UserVersion == 1 && DBVersion > 1)
                 {
-                    var oldId = platform["_id"].AsInt32;
-                    var newId = ObjectId.NewObjectId();
-                    conPlatforms.Add(oldId, newId);
-                    platCollection.Delete(oldId);
-                    platform["_id"] = newId;
-                    platCollection.Insert(platform);
-                }
+                    // Migrate: Emulators collection
+                    // From:
+                    // -Name: DOSBox
+                    //  DefaultArguments: '-conf "{ImagePath}" -exit'
+                    //  Platforms: [MS - DOS, PC]
+                    //  ImageExtensions: [.conf]
+                    //  ExecutableLookup: ^ dosbox\.exe
+                    //  WorkingDirectory: 
+                    // To:
+                    // -Name: DOSBox
+                    //  Configurations:
+                    //    -Name: Default
+                    //     DefaultArguments: '-conf "{ImagePath}" -exit'
+                    //     Platforms: [MS - DOS, PC]
+                    //     ImageExtensions: [.conf]
+                    //     ExecutableLookup: ^ dosbox\.exe
+                    //     WorkingDirectory:
+                    //
+                    // Add: EmulatorProfile into game's PlayTask when using emulator
+                    // Add: checksum to file metadata
+                    // Convert: Platforms and Emulators Id from int to ObjectId
+                    logger.Info("Migrating database from 1 to 2 version.");
 
-                var conEmulators = new Dictionary<int, ObjectId>();
-                var emuCollection = db.GetCollection("emulators");
-                foreach (var emulator in emuCollection.FindAll().ToList())
-                {
-                    var platforms = emulator["Platforms"]?.AsArray?
-                        .Where(a => conPlatforms.ContainsKey(a.AsInt32))?
-                        .Select(a => conPlatforms[a]).ToList();
-                    var profiles = new List<EmulatorProfile>
+                    var platCollection = db.GetCollection("platforms");
+                    var conPlatforms = new Dictionary<int, ObjectId>();
+                    foreach (var platform in platCollection.FindAll().ToList())
+                    {
+                        var oldId = platform["_id"].AsInt32;
+                        var newId = ObjectId.NewObjectId();
+                        conPlatforms.Add(oldId, newId);
+                        platCollection.Delete(oldId);
+                        platform["_id"] = newId;
+                        platCollection.Insert(platform);
+                    }
+
+                    var conEmulators = new Dictionary<int, ObjectId>();
+                    var emuCollection = db.GetCollection("emulators");
+                    foreach (var emulator in emuCollection.FindAll().ToList())
+                    {
+                        var platforms = emulator["Platforms"]?.AsArray?
+                            .Where(a => conPlatforms.ContainsKey(a.AsInt32))?
+                            .Select(a => conPlatforms[a]).ToList();
+                        var profiles = new List<EmulatorProfile>
                     {
                         new EmulatorProfile()
                         {
@@ -393,70 +397,44 @@ namespace Playnite.Database
                             Executable = emulator["Executable"],
                             ImageExtensions = emulator["ImageExtensions"]?.AsArray?.Select(a => a.AsString.TrimStart('.'))?.ToList(),
                             Platforms = platforms,
-                            WorkingDirectory = emulator["WorkingDirectory"]                            
+                            WorkingDirectory = emulator["WorkingDirectory"]
                         }
                     };
 
-                    emulator.Remove("Arguments");
-                    emulator.Remove("Executable");
-                    emulator.Remove("ImageExtensions");
-                    emulator.Remove("Platforms");
-                    emulator.Remove("WorkingDirectory");
-                    emulator.Add("Profiles", new BsonArray(profiles.Select(a => BsonMapper.Global.ToDocument(a))));
-                    var oldId = emulator["_id"].AsInt32;
-                    var newId = ObjectId.NewObjectId();
-                    conEmulators.Add(oldId, newId);
-                    emuCollection.Delete(oldId);
-                    emulator["_id"] = newId;
-                    emuCollection.Insert(emulator);
-                }
-
-                var gameCol = db.GetCollection("games");
-                var emusCollection = db.GetCollection<Emulator>("emulators");
-                foreach (var game in gameCol.FindAll().ToList())
-                {
-                    int? oldPlatId = game["PlatformId"]?.AsInt32;
-                    if (oldPlatId != null)
-                    {
-                        if (conPlatforms.ContainsKey(oldPlatId.Value))
-                        {
-                            game["PlatformId"] = conPlatforms[oldPlatId.Value];
-                        }
-                        else
-                        {
-                            game.Remove("PlatformId");
-                        }
+                        emulator.Remove("Arguments");
+                        emulator.Remove("Executable");
+                        emulator.Remove("ImageExtensions");
+                        emulator.Remove("Platforms");
+                        emulator.Remove("WorkingDirectory");
+                        emulator.Add("Profiles", new BsonArray(profiles.Select(a => BsonMapper.Global.ToDocument(a))));
+                        var oldId = emulator["_id"].AsInt32;
+                        var newId = ObjectId.NewObjectId();
+                        conEmulators.Add(oldId, newId);
+                        emuCollection.Delete(oldId);
+                        emulator["_id"] = newId;
+                        emuCollection.Insert(emulator);
                     }
 
-                    if (game["PlayTask"].AsDocument != null)
+                    var gameCol = db.GetCollection("games");
+                    var emusCollection = db.GetCollection<Emulator>("emulators");
+                    foreach (var game in gameCol.FindAll().ToList())
                     {
-                        var task = game["PlayTask"].AsDocument;
-                        if (task.AsDocument["Type"].AsString == "Emulator")
+                        int? oldPlatId = game["PlatformId"]?.AsInt32;
+                        if (oldPlatId != null)
                         {
-                            var oldEmuId = task.AsDocument["EmulatorId"].AsInt32;
-                            if (conEmulators.ContainsKey(oldEmuId))
+                            if (conPlatforms.ContainsKey(oldPlatId.Value))
                             {
-                                var emulator = emusCollection.FindById(conEmulators[oldEmuId]);
-                                task.AsDocument["EmulatorId"] = emulator.Id;
-                                task.AsDocument["EmulatorProfileId"] = emulator.Profiles?.First().Id;
+                                game["PlatformId"] = conPlatforms[oldPlatId.Value];
                             }
                             else
                             {
-                                task.AsDocument.Remove("EmulatorId");
-                                task.AsDocument.Remove("EmulatorProfileId");
+                                game.Remove("PlatformId");
                             }
                         }
-                        else
-                        {
-                            task.AsDocument.Remove("EmulatorId");
-                            task.AsDocument.Remove("EmulatorProfileId");
-                        }
-                    }
 
-                    if (game["OtherTasks"].AsArray != null)
-                    {
-                        foreach (var task in game["OtherTasks"].AsArray)
+                        if (game["PlayTask"].AsDocument != null)
                         {
+                            var task = game["PlayTask"].AsDocument;
                             if (task.AsDocument["Type"].AsString == "Emulator")
                             {
                                 var oldEmuId = task.AsDocument["EmulatorId"].AsInt32;
@@ -478,26 +456,65 @@ namespace Playnite.Database
                                 task.AsDocument.Remove("EmulatorProfileId");
                             }
                         }
+
+                        if (game["OtherTasks"].AsArray != null)
+                        {
+                            foreach (var task in game["OtherTasks"].AsArray)
+                            {
+                                if (task.AsDocument["Type"].AsString == "Emulator")
+                                {
+                                    var oldEmuId = task.AsDocument["EmulatorId"].AsInt32;
+                                    if (conEmulators.ContainsKey(oldEmuId))
+                                    {
+                                        var emulator = emusCollection.FindById(conEmulators[oldEmuId]);
+                                        task.AsDocument["EmulatorId"] = emulator.Id;
+                                        task.AsDocument["EmulatorProfileId"] = emulator.Profiles?.First().Id;
+                                    }
+                                    else
+                                    {
+                                        task.AsDocument.Remove("EmulatorId");
+                                        task.AsDocument.Remove("EmulatorProfileId");
+                                    }
+                                }
+                                else
+                                {
+                                    task.AsDocument.Remove("EmulatorId");
+                                    task.AsDocument.Remove("EmulatorProfileId");
+                                }
+                            }
+                        }
+
+                        gameCol.Update(game);
                     }
 
-                    gameCol.Update(game);
-                }
-                
-                emusCollection.EnsureIndex(a => a.Id);
-                db.GetCollection<IGame>("games").EnsureIndex(a => a.Id);
-                db.GetCollection<Platform>("platforms").EnsureIndex(a => a.Id);
+                    emusCollection.EnsureIndex(a => a.Id);
+                    db.GetCollection<IGame>("games").EnsureIndex(a => a.Id);
+                    db.GetCollection<Platform>("platforms").EnsureIndex(a => a.Id);
 
+                    db.Engine.UserVersion = 2;
+                }
+
+                trans.Commit();
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "Failed to migrate database, reverting back.");
+                trans.Rollback();
+                throw;
+            }
+
+            // we must do this outside of transaction operation
+            if (db.Engine.UserVersion == 2)
+            {
                 foreach (var file in db.FileStorage.FindAll().ToList())
                 {
                     using (var fStream = file.OpenRead())
                     {
                         var hash = FileSystem.GetMD5(fStream);
-                        file.Metadata.Add("checksum", hash);
+                        file.Metadata.Set("checksum", hash);
                         db.FileStorage.SetMetadata(file.Id, file.Metadata);
                     }
                 }
-
-                db.Engine.UserVersion = 2;
             }
         }
 
