@@ -595,7 +595,15 @@ namespace Playnite.Database
                 return;
             }
 
-            Database.Dispose();
+            try
+            {
+                Database.Dispose();
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to dispose LiteDB database object.");                
+            }
+
             GamesCollection = null;
             PlatformsCollection = null;
             EmulatorsCollection = null;
