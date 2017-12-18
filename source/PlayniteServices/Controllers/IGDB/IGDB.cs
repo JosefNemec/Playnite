@@ -75,7 +75,7 @@ namespace PlayniteServices.Controllers.IGDB
             }
         }
 
-        public static async Task<string> SendStringRequest(string url, string key)
+        private static HttpRequestMessage CreateRequest(string url, string apiKey)
         {
             var request = new HttpRequestMessage()
             {
@@ -83,10 +83,26 @@ namespace PlayniteServices.Controllers.IGDB
                 Method = HttpMethod.Get
             };
 
-            request.Headers.Add("user-key", string.IsNullOrEmpty(key) ? ApiKey : key);
+            request.Headers.Add("user-key", apiKey);
             request.Headers.Add("Accept", "application/json");
-            var response = await HttpClient.SendAsync(request);
-            return await response.Content.ReadAsStringAsync();
+            return request;
+        }
+
+        public static async Task<string> SendStringRequest(string url, string key)
+        {
+            if (!string.IsNullOrEmpty(key))
+            {
+                var request = CreateRequest(url, key);
+                var response = await HttpClient.SendAsync(request);
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+            }
+
+            var sharedRequest = CreateRequest(url, ApiKey);
+            var sharedResponse = await HttpClient.SendAsync(sharedRequest);
+            return await sharedResponse.Content.ReadAsStringAsync();
         }
     }
 }
