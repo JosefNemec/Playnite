@@ -114,7 +114,7 @@ namespace Playnite
             }
         }
 
-        private bool disableHwAcceleration = false;
+        private bool disableHwAcceleration = true;
         public bool DisableHwAcceleration
         {
             get
