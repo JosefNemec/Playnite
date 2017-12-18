@@ -278,6 +278,15 @@ namespace Playnite.MetaProviders
             igdbProvider = new IGDBMetadataProvider();
         }
 
+        public MetadataDownloader(string igdbApiKey)
+        {
+            steamProvider = new SteamMetadataProvider();
+            originProvider = new OriginMetadataProvider();
+            gogProvider = new GogMetadataProvider();
+            battleNetProvider = new BattleNetMetadataProvider();
+            igdbProvider = new IGDBMetadataProvider(igdbApiKey);
+        }
+
         public MetadataDownloader(
             IMetadataProvider steamProvider,
             IMetadataProvider originProvider,

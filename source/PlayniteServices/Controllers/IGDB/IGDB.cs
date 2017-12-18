@@ -68,12 +68,25 @@ namespace PlayniteServices.Controllers.IGDB
                 if (httpClient == null)
                 {
                     httpClient = new HttpClient();
-                    httpClient.DefaultRequestHeaders.Add("user-key", ApiKey);
-                    httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+                    
                 }
 
                 return httpClient;
             }
+        }
+
+        public static async Task<string> SendStringRequest(string url, string key)
+        {
+            var request = new HttpRequestMessage()
+            {
+                RequestUri = new Uri(UrlBase + url),
+                Method = HttpMethod.Get
+            };
+
+            request.Headers.Add("user-key", string.IsNullOrEmpty(key) ? ApiKey : key);
+            request.Headers.Add("Accept", "application/json");
+            var response = await HttpClient.SendAsync(request);
+            return await response.Content.ReadAsStringAsync();
         }
     }
 }

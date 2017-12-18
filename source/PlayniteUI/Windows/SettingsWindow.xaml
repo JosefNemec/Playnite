@@ -415,6 +415,20 @@
                 </TabItem>
                 <TabItem Visibility="Collapsed">
                     <StackPanel Margin="20">
+                        <DockPanel Margin="0,10,0,40">
+                            <TextBlock Text="{DynamicResource SettingsIGDBApiKey}" DockPanel.Dock="Left"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">
+                                <Hyperlink NavigateUri="https://api.igdb.com/"
+                                            Command="{Binding NavigateUrlCommand}"
+                                            CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                                    <Run Text="{DynamicResource SettingsApiKeyUrlText}" />
+                                </Hyperlink>
+                            </TextBlock>
+                            <TextBox DockPanel.Dock="Left" Margin="10,0,10,0"
+                                     Text="{Binding Settings.IGDBApiKey}"/>
+                        </DockPanel>
+                        
                         <Button Name="ButtonClearWebCace" Content="{DynamicResource SettingsClearWebCache}" HorizontalAlignment="Left"
                                 ToolTip="{DynamicResource SettingsClearWebCacheTooltip}"
                                 Command="{Binding ClearWebCacheCommand}"/>

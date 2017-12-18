@@ -31,7 +31,8 @@ namespace PlayniteUI.ViewModels
             BattleNet = 6,
             Uplay = 7,
             Custom = 8,
-            Finish = 9
+            MetaKeys = 9,
+            Finish = 10
         }
 
         private static Logger logger = LogManager.GetCurrentClassLogger();

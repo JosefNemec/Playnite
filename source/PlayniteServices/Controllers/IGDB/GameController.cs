@@ -13,10 +13,10 @@ namespace PlayniteServices.Controllers.IGDB
     public class GameController : Controller
     {
         [HttpGet("{gameId}")]
-        public async Task<ServicesResponse<Game>> Get(ulong gameId)
+        public async Task<ServicesResponse<Game>> Get(ulong gameId, [FromQuery]string apiKey)
         {            
-            var url = string.Format(IGDB.UrlBase + @"games/{0}?fields=name%2Csummary%2Cdevelopers%2Cpublishers%2Cgenres%2Cfirst_release_date%2Ccover%2Cthemes%2Cgame_modes%2Cwebsites&limit=40&offset=0&search={0}", gameId);
-            var libraryStringResult = await IGDB.HttpClient.GetStringAsync(url);
+            var url = string.Format(@"games/{0}?fields=name%2Csummary%2Cdevelopers%2Cpublishers%2Cgenres%2Cfirst_release_date%2Ccover%2Cthemes%2Cgame_modes%2Cwebsites&limit=40&offset=0&search={0}", gameId);
+            var libraryStringResult = await IGDB.SendStringRequest(url, apiKey);
             var game = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult);
             return new ServicesResponse<Game>(game[0], string.Empty);
         }
@@ -26,7 +26,7 @@ namespace PlayniteServices.Controllers.IGDB
     public class GameParsedController : Controller
     {
         [HttpGet("{gameId}")]
-        public async Task<ServicesResponse<ParsedGame>> Get(ulong gameId)
+        public async Task<ServicesResponse<ParsedGame>> Get(ulong gameId, [FromQuery]string apiKey)
         {
             var cacheCollection = Program.DatabaseCache.GetCollection<ParsedGame>("IGBDParsedGameCache");
             var cache = cacheCollection.FindById(gameId);
@@ -39,8 +39,8 @@ namespace PlayniteServices.Controllers.IGDB
                 }
             }
 
-            var url = string.Format(IGDB.UrlBase + @"games/{0}?fields=name%2Csummary%2Cdevelopers%2Cpublishers%2Cgenres%2Cfirst_release_date%2Ccover%2Cthemes%2Cgame_modes%2Cwebsites&limit=40&offset=0&search={0}", gameId);
-            var libraryStringResult = await IGDB.HttpClient.GetStringAsync(url);
+            var url = string.Format(@"games/{0}?fields=name%2Csummary%2Cdevelopers%2Cpublishers%2Cgenres%2Cfirst_release_date%2Ccover%2Cthemes%2Cgame_modes%2Cwebsites&limit=40&offset=0&search={0}", gameId);
+            var libraryStringResult = await IGDB.SendStringRequest(url, apiKey);
             var game = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult)[0];
             var parsedGame = new ParsedGame()
             {
@@ -58,7 +58,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.developers = new List<string>();
                 foreach (var dev in game.developers)
                 {
-                    var dbDev = (await (new CompanyController()).Get(dev)).Data;
+                    var dbDev = (await (new CompanyController()).Get(dev, apiKey)).Data;
                     parsedGame.developers.Add(dbDev.name);
                 }
             }
@@ -68,7 +68,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.game_modes = new List<string>();
                 foreach (var mode in game.game_modes)
                 {
-                    var dbMode = (await (new GameModeController()).Get(mode)).Data;
+                    var dbMode = (await (new GameModeController()).Get(mode, apiKey)).Data;
                     parsedGame.game_modes.Add(dbMode.name);
                 }
             }
@@ -78,7 +78,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.genres = new List<string>();
                 foreach (var genre in game.genres)
                 {
-                    var dbGenre = (await (new GenreController()).Get(genre)).Data;
+                    var dbGenre = (await (new GenreController()).Get(genre, apiKey)).Data;
                     parsedGame.genres.Add(dbGenre.name);
                 }
             }
@@ -88,7 +88,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.publishers = new List<string>();
                 foreach (var pub in game.publishers)
                 {
-                    var dbDev = (await (new CompanyController()).Get(pub)).Data;
+                    var dbDev = (await (new CompanyController()).Get(pub, apiKey)).Data;
                     parsedGame.publishers.Add(dbDev.name);
                 }
             }
@@ -98,7 +98,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.themes = new List<string>();
                 foreach (var genre in game.themes)
                 {
-                    var dbTheme = (await (new ThemeController()).Get(genre)).Data;
+                    var dbTheme = (await (new ThemeController()).Get(genre, apiKey)).Data;
                     parsedGame.themes.Add(dbTheme.name);
                 }
             }

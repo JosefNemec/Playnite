@@ -27,6 +27,7 @@ namespace PlayniteUI
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         private IResourceProvider resources = new ResourceProvider();
         private GameDatabase database;
+        private Settings appSettings;
 
         public IEnumerable<IGame> LastGames
         {
@@ -38,9 +39,10 @@ namespace PlayniteUI
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GamesEditor(GameDatabase database)
+        public GamesEditor(GameDatabase database, Settings appSettings)
         {
             this.database = database;
+            this.appSettings = appSettings;
         }
 
         public void OnPropertyChanged(string name)
@@ -67,7 +69,8 @@ namespace PlayniteUI
                             database,
                             GameEditWindowFactory.Instance,
                             new DialogsFactory(),
-                            new ResourceProvider());
+                            new ResourceProvider(),
+                            appSettings);
             return model.OpenView();
         }
 
@@ -78,7 +81,8 @@ namespace PlayniteUI
                             database,
                             GameEditWindowFactory.Instance,
                             new DialogsFactory(),
-                            new ResourceProvider());
+                            new ResourceProvider(),
+                            appSettings);
             return model.OpenView();
         }
 

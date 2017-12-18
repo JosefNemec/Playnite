@@ -26,6 +26,7 @@ namespace PlayniteUI.ViewModels
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
         private GameDatabase database;
+        private Settings appSettings;
 
         #region Field checks
 
@@ -647,7 +648,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                var model = new MetadataLookupViewModel(MetadataProvider.IGDB, MetadataLookupWindowFactory.Instance, dialogs, resources);
+                var model = new MetadataLookupViewModel(MetadataProvider.IGDB, MetadataLookupWindowFactory.Instance, dialogs, resources, appSettings.IGDBApiKey);
                 DoMetadataLookup(model);
             });
         }
@@ -708,7 +709,6 @@ namespace PlayniteUI.ViewModels
             ShowActions = true;
             ShowInstallation = Game.Provider == Provider.Custom;
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
-
         }
 
         public GameEditViewModel(IEnumerable<IGame> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
@@ -727,6 +727,18 @@ namespace PlayniteUI.ViewModels
             ShowActions = false;
             ShowInstallation = false;
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
+        }
+
+        public GameEditViewModel(IGame game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, Settings appSettings)
+            : this(game, database, window, dialogs, resources)
+        {
+            this.appSettings = appSettings;
+        }
+
+        public GameEditViewModel(IEnumerable<IGame> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, Settings appSettings)
+            : this(games, database, window, dialogs, resources)
+        {
+            this.appSettings = appSettings;
         }
 
         private void EditingGame_PropertyChanged(object sender, PropertyChangedEventArgs e)

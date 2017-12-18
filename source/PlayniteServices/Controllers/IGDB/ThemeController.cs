@@ -13,7 +13,7 @@ namespace PlayniteServices.Controllers.IGDB
     public class ThemeController : Controller
     {
         [HttpGet("{themeId}")]
-        public async Task<ServicesResponse<Theme>> Get(UInt64 themeId)
+        public async Task<ServicesResponse<Theme>> Get(UInt64 themeId, [FromQuery]string apiKey)
         {
             var cacheCollection = Program.DatabaseCache.GetCollection<Theme>("IGBDThemesCache");
             var cache = cacheCollection.FindById(themeId);
@@ -22,8 +22,8 @@ namespace PlayniteServices.Controllers.IGDB
                 return new ServicesResponse<Theme>(cache, string.Empty);
             }
 
-            var url = string.Format(IGDB.UrlBase + @"themes/{0}?fields=name", themeId);
-            var stringResult = await IGDB.HttpClient.GetStringAsync(url);
+            var url = string.Format(@"themes/{0}?fields=name", themeId);
+            var stringResult = await IGDB.SendStringRequest(url, apiKey);
             var theme = JsonConvert.DeserializeObject<List<Theme>>(stringResult)[0];
             cacheCollection.Insert(theme);            
             return new ServicesResponse<Theme>(theme, string.Empty);

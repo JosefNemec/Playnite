@@ -16,10 +16,17 @@ namespace Playnite.MetaProviders
     public class IGDBMetadataProvider : IMetadataProvider
     {
         private ServicesClient client;
+        private string apiKey;
 
         public IGDBMetadataProvider()
         {
             client = new ServicesClient();
+        }
+
+        public IGDBMetadataProvider(string apiKey)
+        {
+            client = new ServicesClient();
+            this.apiKey = apiKey;
         }
 
         public IGDBMetadataProvider(ServicesClient client)
@@ -27,14 +34,20 @@ namespace Playnite.MetaProviders
             this.client = client;
         }
 
+        public IGDBMetadataProvider(ServicesClient client, string apiKey)
+        {
+            this.client = client;
+            this.apiKey = apiKey;
+        }
+
         public List<PlayniteServices.Models.IGDB.Game> Search(string game)
         {
-            return client.GetIGDBGames(game);
+            return client.GetIGDBGames(game, apiKey);
         }
 
         public Game GetParsedGame(ulong id)
         {
-            var dbGame = client.GetIGDBGameParsed(id);
+            var dbGame = client.GetIGDBGameParsed(id, apiKey);
             var game = new Game()
             {
                 Name = dbGame.name,

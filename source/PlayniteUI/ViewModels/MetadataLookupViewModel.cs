@@ -127,6 +127,16 @@ namespace PlayniteUI.ViewModels
         private IDialogsFactory dialogs;
         private MetadataProvider provider;
         private IResourceProvider resources;
+        private string igdbApiKey;
+
+        public MetadataLookupViewModel(MetadataProvider provider, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, string igdbApiKey)
+        {
+            this.provider = provider;
+            this.window = window;
+            this.dialogs = dialogs;
+            this.resources = resources;
+            this.igdbApiKey = igdbApiKey;
+        }
 
         public MetadataLookupViewModel(MetadataProvider provider, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
@@ -165,7 +175,7 @@ namespace PlayniteUI.ViewModels
                             MetadataData = wiki.ParseGamePage(page, searchTerm);
                             break;
                         case MetadataProvider.IGDB:
-                            var igdb = new IGDBMetadataProvider();
+                            var igdb = new IGDBMetadataProvider(igdbApiKey);
                             MetadataData = igdb.GetParsedGame(UInt64.Parse(id));
                             break;
                     }
@@ -228,7 +238,7 @@ namespace PlayniteUI.ViewModels
                     break;
 
                 case MetadataProvider.IGDB:
-                    var igdb = new IGDBMetadataProvider();
+                    var igdb = new IGDBMetadataProvider(igdbApiKey);
                     foreach (var page in igdb.Search(keyword))
                     {
                         searchList.Add(new SearchResult(

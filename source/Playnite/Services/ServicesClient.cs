@@ -51,29 +51,34 @@ namespace Playnite.Services
             return ExecuteRequest<List<Playnite.Providers.Steam.GetOwnedGamesResult.Game>>("/api/steam/library/" + userName);
         }
 
-        public List<PlayniteServices.Models.IGDB.Game> GetIGDBGames(string searchName)
+        public List<PlayniteServices.Models.IGDB.Game> GetIGDBGames(string searchName, string apiKey = null)
         {
-            return ExecuteRequest<List<PlayniteServices.Models.IGDB.Game>>("/api/igdb/games/" + searchName);
+            var url = string.IsNullOrEmpty(apiKey) ? $"/api/igdb/games/{searchName}" : $"/api/igdb/games/{searchName}?apikey={apiKey}";
+            return ExecuteRequest<List<PlayniteServices.Models.IGDB.Game>>(url);
         }
 
-        public PlayniteServices.Models.IGDB.Game GetIGDBGame(UInt64 id)
+        public PlayniteServices.Models.IGDB.Game GetIGDBGame(UInt64 id, string apiKey = null)
         {
-            return ExecuteRequest<PlayniteServices.Models.IGDB.Game>("/api/igdb/game/" + id);
+            var url = string.IsNullOrEmpty(apiKey) ? $"/api/igdb/game/{id}" : $"/api/igdb/game/{id}?apikey={apiKey}";
+            return ExecuteRequest<PlayniteServices.Models.IGDB.Game>(url);
         }
 
-        public PlayniteServices.Models.IGDB.ParsedGame GetIGDBGameParsed(UInt64 id)
+        public PlayniteServices.Models.IGDB.ParsedGame GetIGDBGameParsed(UInt64 id, string apiKey = null)
         {
-            return ExecuteRequest<PlayniteServices.Models.IGDB.ParsedGame>("/api/igdb/game_parsed/" + id);
+            var url = string.IsNullOrEmpty(apiKey) ? $"/api/igdb/game_parsed/{id}" : $"/api/igdb/game_parsed/{id}?apikey={apiKey}";
+            return ExecuteRequest<PlayniteServices.Models.IGDB.ParsedGame>(url);
         }
 
-        public PlayniteServices.Models.IGDB.Company GetIGDBCompany(UInt64 id)
+        public PlayniteServices.Models.IGDB.Company GetIGDBCompany(UInt64 id, string apiKey = null)
         {
-            return ExecuteRequest<PlayniteServices.Models.IGDB.Company>("/api/igdb/company/" + id);
+            var url = string.IsNullOrEmpty(apiKey) ? $"/api/igdb/company/{id}" : $"/api/igdb/company/{id}?apikey={apiKey}";
+            return ExecuteRequest<PlayniteServices.Models.IGDB.Company>(url);
         }
 
-        public PlayniteServices.Models.IGDB.Genre GetIGDBGenre(UInt64 id)
+        public PlayniteServices.Models.IGDB.Genre GetIGDBGenre(UInt64 id, string apiKey = null)
         {
-            return ExecuteRequest<PlayniteServices.Models.IGDB.Genre>("/api/igdb/genre/" + id);
+            var url = string.IsNullOrEmpty(apiKey) ? $"/api/igdb/genre/{id}" : $"/api/igdb/genre/{id}?apikey={apiKey}";
+            return ExecuteRequest<PlayniteServices.Models.IGDB.Genre>(url);
         }
 
         public void PostUserUsage()

@@ -13,7 +13,7 @@ namespace PlayniteServices.Controllers.IGDB
     public class GameModeController : Controller
     {
         [HttpGet("{modeId}")]
-        public async Task<ServicesResponse<GameMode>> Get(UInt64 modeId)
+        public async Task<ServicesResponse<GameMode>> Get(UInt64 modeId, [FromQuery]string apiKey)
         {
             var cacheCollection = Program.DatabaseCache.GetCollection<GameMode>("IGBDGameModesCache");
             var cache = cacheCollection.FindById(modeId);
@@ -22,8 +22,8 @@ namespace PlayniteServices.Controllers.IGDB
                 return new ServicesResponse<GameMode>(cache, string.Empty);
             }
 
-            var url = string.Format(IGDB.UrlBase + @"game_modes/{0}?fields=name", modeId);
-            var stringResult = await IGDB.HttpClient.GetStringAsync(url);
+            var url = string.Format(@"game_modes/{0}?fields=name", modeId);
+            var stringResult = await IGDB.SendStringRequest(url, apiKey);
             var gameMode = JsonConvert.DeserializeObject<List<GameMode>>(stringResult)[0];
             cacheCollection.Insert(gameMode);            
             return new ServicesResponse<GameMode>(gameMode, string.Empty);

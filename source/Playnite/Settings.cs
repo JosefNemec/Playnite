@@ -561,7 +561,7 @@ namespace Playnite
             set
             {
                 skinFullscreen = value;
-                OnPropertyChanged("SkinFullscreen ");
+                OnPropertyChanged("SkinFullscreen");
             }
         }
 
@@ -576,7 +576,22 @@ namespace Playnite
             set
             {
                 skinColorFullscreen = value;
-                OnPropertyChanged("SkinColorFullscreen ");
+                OnPropertyChanged("SkinColorFullscreen");
+            }
+        }
+
+        private string igdbApiKey;
+        public string IGDBApiKey
+        {
+            get
+            {
+                return igdbApiKey;
+            }
+
+            set
+            {
+                igdbApiKey = value;
+                OnPropertyChanged("IGDBApiKey");
             }
         }
 
