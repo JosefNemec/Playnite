@@ -101,7 +101,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="CoversLabel">Covers</sys:String>
     <sys:String x:Key="DetailsLabel">Details</sys:String>
     
-    <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Special wariables can be used to add dynamic string:
+    <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
 {ImagePath} - Game ISO/ROM path if set
 {ImageName} - Game ISO/ROM file name
@@ -206,6 +206,12 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="SettingsApiKeyTooltip">API Key is required for Steam private accounts</sys:String>
     <sys:String x:Key="SettingsApiKeyUrlText">Get API key</sys:String>
     <sys:String x:Key="SettingsSkinChangeRestart">Playnite restart is required when changing theme</sys:String>
+    <sys:String x:Key="SettingsIGDBApiKey">IGDB.com API key</sys:String>
+    <sys:String x:Key="SettingsIGDBApiKeyDescription"  xml:space="preserve">Playnite can download additional metadata for games from IGDB.com database (covers, descriptions etc.).
+    
+By default Playnite uses shared access key. In some cases that may result in temporary unavailability of this feature, depending on current load. It's therefore highly recommended that you get your own key and not get limited by other users.
+    
+You can get your key for free and if you contribute to the database you get less restrictive limits (see Contributor program).</sys:String>
     
     <sys:String x:Key="ImportError">Import Error</sys:String>
     <sys:String x:Key="LoginChecking">Checking...</sys:String>
@@ -256,7 +262,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="FirstOtherGamesText">Click on the button bellow to import other installed games or browse for them manually (including Windows Store games).</sys:String>
     <sys:String x:Key="FirstOtherGamesImportButton">Import Games</sys:String>
     <sys:String x:Key="FirstConfigFinishedTitle">Configuration Finished</sys:String>
-    <sys:String x:Key="FirstConfigFinishedText" xml:space="preserve">Intial setup has been completed. Remember that you can change all settings later via 'Settings' menu.
+    <sys:String x:Key="FirstConfigFinishedText" xml:space="preserve">Initial setup has been completed. Remember that you can change all settings later via 'Settings' menu.
 
 You can also add any other game(s) later from main menu by clicking on Playnite application logo.</sys:String>
     
@@ -374,6 +380,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="ClearAll">Clear All</sys:String>
     <sys:String x:Key="SetupRunning">Setup in progress...</sys:String>
     <sys:String x:Key="InvalidURL">Invalid URL</sys:String>
+    <sys:String x:Key="UserKey">User key</sys:String>
 
     <sys:String x:Key="EmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
