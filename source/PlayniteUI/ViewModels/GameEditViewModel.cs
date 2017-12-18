@@ -1096,7 +1096,7 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.PlatformId = Game.PlatformId;
+                        game.PlatformId = EditingGame.PlatformId;
                     }
                 }
                 else
