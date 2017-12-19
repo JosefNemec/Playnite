@@ -44,22 +44,22 @@
                         <Setter Property="Padding" Value="0,3,3,3" />
                     </Style>
                 </TreeView.Resources>
-                <TreeViewItem Header="General" IsSelected="True">
+                <TreeViewItem Header="{DynamicResource SettingsGeneralLabel}" IsSelected="True">
                     <TreeViewItem.Tag>
                         <sys:Int32>0</sys:Int32>
                     </TreeViewItem.Tag>
                 </TreeViewItem>
-                <TreeViewItem Header="Appearance">
+                <TreeViewItem Header="{DynamicResource SettingsAppearanceLabel}">
                     <TreeViewItem.Tag>
                         <sys:Int32>1</sys:Int32>
                     </TreeViewItem.Tag>
                 </TreeViewItem>
-                <TreeViewItem Header="Advanced">
+                <TreeViewItem Header="{DynamicResource SettingsAdvancedLabel}">
                     <TreeViewItem.Tag>
                         <sys:Int32>7</sys:Int32>
                     </TreeViewItem.Tag>
                 </TreeViewItem>
-                <TreeViewItem Header="Providers" IsExpanded="True" Focusable="False">
+                <TreeViewItem Header="{DynamicResource SettingsProvidersLabel}" IsExpanded="True" Focusable="False">
                     <TreeViewItem Header="Steam">
                         <TreeViewItem.Tag>
                             <sys:Int32>2</sys:Int32>

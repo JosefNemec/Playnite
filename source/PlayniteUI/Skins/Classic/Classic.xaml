@@ -1943,25 +1943,25 @@
 
             <StackPanel>
                 <!-- Genres -->
-                <Label Content="Genres" Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}" />
+                <Label Content="{DynamicResource GenreLabel}" Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}" />
                 <ItemsControl ItemsSource="{Binding Game.Genres, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Genres"/>
 
                 <!-- Developers -->
-                <Label Content="Developed by" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource DeveloperLabel}" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Developers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Developers"/>
 
                 <!-- Publishers -->
-                <Label Content="Published by" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource PublisherLabel}" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Publishers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Publishers"/>
 
                 <!-- Release Date -->
-                <Label Content="Release Date" Style="{StaticResource ListLabel}" Visibility="{Binding Game.ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource GameReleaseDateTitle}" Style="{StaticResource ListLabel}" Visibility="{Binding Game.ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"/>
                 <TextBlock Visibility="{Binding Game.ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"
                                Style="{StaticResource ListTextBlock}">
                             <Hyperlink NavigateUri="{Binding Game.ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}"
@@ -1972,19 +1972,19 @@
                 </TextBlock>
 
                 <!-- Categories -->
-                <Label Content="Categories" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource GameCategoriesTitle}" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Categories, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Categories"/>
 
                 <!-- Tags -->
-                <Label Content="Tags" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource TagsLabel}" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Tags, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Tags"/>
 
                 <!-- Platform -->
-                <Label Content="Platform" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
+                <Label Content="{DynamicResource PlatformTitle}" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
                 <TextBlock Visibility="{Binding Game.Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
                                    Style="{StaticResource ListTextBlock}">
                             <Hyperlink NavigateUri="{Binding Game.Platform.Name}"
@@ -2620,19 +2620,31 @@
                                     </StackPanel.Resources>
 
                                     <CheckBox Name="CheckFilterInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.Installed, Mode=OneWay, StringFormat=Installed ({0})}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{DynamicResource GameIsInstalledTitle}" Margin="0,0,5,0" />
+                                            <TextBlock Text="{Binding GamesStats.Installed, Mode=OneWay, StringFormat=({0})}" />
+                                        </StackPanel>
                                     </CheckBox>
 
                                     <CheckBox Name="CheckFilterUnInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsUnInstalled}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.UnInstalled, Mode=OneWay, StringFormat=Uninstalled ({0})}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{DynamicResource GameIsUnInstalledTitle}" Margin="0,0,5,0" />
+                                            <TextBlock Text="{Binding GamesStats.UnInstalled, Mode=OneWay, StringFormat=({0})}" />
+                                        </StackPanel>
                                     </CheckBox>
 
                                     <CheckBox Name="CheckFilterHidden" IsChecked="{Binding AppSettings.FilterSettings.Hidden}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.Hidden, Mode=OneWay, StringFormat=Hidden ({0})}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{DynamicResource GameHiddenTitle}" Margin="0,0,5,0" />
+                                            <TextBlock Text="{Binding GamesStats.Hidden, Mode=OneWay, StringFormat=({0})}" />
+                                        </StackPanel>
                                     </CheckBox>
 
                                     <CheckBox Name="CheckFilterFavorite" IsChecked="{Binding AppSettings.FilterSettings.Favorite}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.Favorite, Mode=OneWay, StringFormat=Favorite ({0})}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{DynamicResource GameFavoriteTitle}" Margin="0,0,5,0" />
+                                            <TextBlock Text="{Binding GamesStats.Favorite, Mode=OneWay, StringFormat=({0})}" />
+                                        </StackPanel>
                                     </CheckBox>
 
                                     <Border Height="10" />
@@ -2658,7 +2670,10 @@
                                     </CheckBox>
 
                                     <CheckBox Name="CheckFilterCustom" IsChecked="{Binding AppSettings.FilterSettings.Custom}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.Custom, Mode=OneWay, StringFormat=Custom ({0})}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{DynamicResource CustomLabel}" Margin="0,0,5,0" />
+                                            <TextBlock Text="{Binding GamesStats.Custom, Mode=OneWay, StringFormat=({0})}" />
+                                        </StackPanel>
                                     </CheckBox>
 
                                     <Border Height="10" />

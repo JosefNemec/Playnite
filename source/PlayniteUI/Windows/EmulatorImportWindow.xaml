@@ -57,7 +57,7 @@
             </TabControl.Style>
             <TabItem Header="WizardIntro" Visibility="Collapsed">
                 <DockPanel LastChildFill="False" Margin="30">
-                    <TextBlock Text="Emulator Import Wizard" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
+                    <TextBlock Text="{DynamicResource EmuWizardWindowTitle}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
                     <TextBlock Text="{DynamicResource EmuWizardIntro}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="0,20,0,0"/>
                     <TextBlock Text="{DynamicResource EmuWizardNotice}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="0,20,0,0"/>
                 </DockPanel>
