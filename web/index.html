@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Title -->
+  <title>Playnite - Video Game Library Manager</title>
+
+  <!-- Icons -->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="content-language" content="en">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+  <meta name="title" content="Playnite - Video Game Library Manager">
+  <meta name="author" content="Martijn Vegter">
+  <meta name="description" content="Open source video game library manager and launcher with support for 3rd party libraries like Steam, GOG, Origin, Battle.net and Uplay. Including game emulation support, providing one unified interface for your games.">
+  <meta name="robots" content="index,follow">
+  <meta name="keywords" lang="en" content="Playnite, Video, Game, Library, Manager, Launcher, Steam, GOG, Origin, Battle.net, Uplay, Github, Open Source, Martijn Vegter">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" integrity="sha256-e22BQKCF7bb/h/4MFJ1a4lTRR2OuAe8Hxa/3tgU5Taw=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108130883-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-108130883-1');
+  </script>
+</head>
+
+<body id="home">
+
+  <nav>
+    <div class="nav-wrapper">
+
+      <a href="#" class="brand-logo center">
+        <img style="vertical-align:middle" src="img/logo.png" height="45" width="45">
+        <span style="">Playnite</span>
+      </a>
+
+      <a href="#" data-activates="mobile-demo" class="button-collapse">
+        <i class="fa fa-bars small" aria-hidden="true"></i>
+      </a>
+
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="#home">
+            <i class="fa fa-home" aria-hidden="true"></i> Home
+          </a>
+        </li>
+        <li>
+          <a href="#screenshots">
+            <i class="fa fa-desktop" aria-hidden="true"></i> Screenshots
+          </a>
+        </li>
+        <li>
+          <a href="#features">
+            <i class="fa fa-plug" aria-hidden="true"></i> Features
+          </a>
+        </li>
+        <li>
+          <a href="#download">
+            <i class="fa fa-download" aria-hidden="true"></i> Download
+          </a>
+        </li>
+      </ul>
+
+      <ul class="side-nav" id="mobile-demo">
+        <li>
+          <a href="#home">
+            <i class="fa fa-home" aria-hidden="true"></i> Home
+          </a>
+        </li>
+        <li>
+          <a href="#screenshots">
+            <i class="fa fa-desktop" aria-hidden="true"></i> Screenshots
+          </a>
+        </li>
+        <li>
+          <a href="#features">
+            <i class="fa fa-plug" aria-hidden="true"></i> Features
+          </a>
+        </li>
+        <li>
+          <a href="#download">
+            <i class="fa fa-download" aria-hidden="true"></i> Download
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="row">
+      <div class="col s1"></div>
+
+      <div class="col s10">
+        <section>
+          <blockquote>
+            <h3>
+              <b>Playnite</b> is an open source video game library manager with one simple goal:
+              <i>Provide an unified interface for all your games.</i>
+            </h3>
+          </blockquote>
+        </section>
+
+        <section id="screenshots">
+          <h1>Screenshots</h1>
+          <div class="row">
+            <div class="col s1"></div>
+
+            <div class="col s10">
+              <div class="carousel carousel-slider">
+                <a class="carousel-item" href="#one!">
+                  <img src="img/screen1.png">
+                </a>
+                <a class="carousel-item" href="#two!">
+                  <img src="img/screen2.png">
+                </a>
+                <a class="carousel-item" href="#three!">
+                  <img src="img/screen3.png">
+                </a>
+                <a class="carousel-item" href="#four!">
+                  <img src="img/screen4.png">
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="features">
+          <h1>Features</h1>
+
+          <div class="row">
+
+            <div class="col l4 m6 s12">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">
+                    Import popular libraries
+                  </span>
+                  <p>
+                    Link games from Steam, Origin, GOG, Battle.net and Uplay services, including games that are not installed! Windows Store (UWP) games are also supported.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col l4 m6 s12">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">
+                    Emulation support
+                  </span>
+                  <p>
+                    Playnite supports wide variety of console emulators.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col l4 m6 s12">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">
+                    Themes
+                  </span>
+                  <p>
+                    Playnite's look can be fully customized, from simple colors changes to complete layout re-designs.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col l4 m6 s12">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">
+                    Fast
+                  </span>
+                  <p>
+                    Playnites user interface is fast and light on resources, even with large libraries.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col l4 m6 s12">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">
+                    Portable
+                  </span>
+                  <p>
+                    Playnite can run from any portable storage with option to configure database location for automatic sync via services like DropBox or Google Drive.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col l4 m6 s12">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">
+                    Completely Free
+                  </span>
+                  <p>
+                    No Playnite features are locked behind paywall and complete source code is available under MIT license.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col l4 m6 s12">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">
+                    Safe
+                  </span>
+                  <p>
+                    Playnite doesn't store any user information. It stores the same amount of information like web browser when linking accounts (cookies).
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col l4 m6 s12">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">
+                    IGDB.com integration
+                  </span>
+                  <p>
+                    Playnite can automatically download metadata for you custom games (covers, descriptions and other information).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="download">
+          <h1>Download</h1>
+
+          <div class="row">
+            <div class="col l4 m6 s12">
+              <h5 class="white-text">Requirements</h5>
+              <p class="grey-text text-lighten-4">
+                Windows 7, 8 or 10 and .Net 4.6
+              </p>
+              <p class="grey-text text-lighten-4">
+                Portable version requires manual installation of <a href="https://www.microsoft.com/en-us/download/details.aspx?id=40784">Microsoft Visual C++ 2013 Redistributable (x86)</a>
+              </p>
+            </div>
+            <div class="col l4 m6 s12">
+              <a href="https://github.com/JosefNemec/Playnite/releases" type="button" class="btn btn-primary" style="width:300px">
+                Download latest version
+              </a>
+              <br>
+              <br>
+              <a href="https://github.com/JosefNemec/Playnite" type="button" class="btn btn-success" style="width:300px">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                Source Code on GitHub
+              </a>
+            </div>
+            <div class="col s1"></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="col s1"></div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+
+        <div class="col l3 m6 s12">
+          <h5 class="white-text">Spread the word</h5>
+          <p class="grey-text text-lighten-4 footer-text">
+            Simplest way, just tell your friends and others in your gaming community about Playnite.
+          </p>
+        </div>
+        <div class="col l3 m6 s12">
+          <h5 class="white-text">Submit translations</h5>
+          <p class="grey-text text-lighten-4 footer-text">
+            Playnite interface can be translated, if you want to help and contribute translated the check translations guide on GitHub.
+          </p>
+        </div>
+        <div class="col l3 m6 s12">
+          <h5 class="white-text">Create new theme</h5>
+          <p class="grey-text text-lighten-4 footer-text">
+            Playnite interface can be fully customized. From color changes to full layout redesign. You can check theming guide on GitHub.
+          </p>
+        </div>
+        <div class="col l3 m6 s12">
+          <h5 class="white-text">Patreon or PayPal</h5>
+          <p class="grey-text text-lighten-4 footer-text">
+            If you have some spare money you can support Playnite development on Patreon or PayPal. Patreons also receive some additional perks like earlier feature updates and ability to vote on prioritization of new features.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-copyright">
+      <div class="container">
+        © 2017 Playnite
+
+        <a class="grey-text text-lighten-4 right footer-link" href="">
+          Reddit
+        </a>
+
+        <a class="grey-text text-lighten-4 right footer-link" href="">
+          Twitter
+        </a>
+
+        <a class="grey-text text-lighten-4 right footer-link" href="">
+          Discord
+        </a>
+
+        <a class="grey-text text-lighten-4 right footer-link" href="">
+          Patreon
+        </a>
+      </div>
+    </div>
+  </footer>
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js" integrity="sha256-uWtSXRErwH9kdJTIr1swfHFJn/d/WQ6s72gELOHXQGM=" crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(() => {
+      $(".button-collapse").sideNav();
+      $('.carousel').carousel({
+        fullWidth: true,
+        indicators: true
+      });
+
+      setInterval(function() {
+        $('.carousel').carousel('next');
+      }, 5000); // every 5 seconds
+    });
+  </script>
+</body>
+
+</html>
