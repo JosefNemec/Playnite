@@ -89,8 +89,8 @@ namespace PlayniteTests.Database
                 }
             }
 
+            GameDatabase.MigrateDatabase(path);
             var db = new GameDatabase(null, path);
-            db.MigrateDatabase();
             using (db.OpenDatabase())
             {
                 Assert.IsTrue(db.GamesCollection.Count() == 3);
@@ -204,8 +204,8 @@ namespace PlayniteTests.Database
                 database.FileStorage.Upload(file.Name, file.Path);
             }
 
+            GameDatabase.MigrateDatabase(path);
             var db = new GameDatabase(null, path);
-            db.MigrateDatabase();
             using (db.OpenDatabase())
             {
                 var plats = db.PlatformsCollection.FindAll().ToList();
