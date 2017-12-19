@@ -108,7 +108,7 @@ namespace Playnite
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="destination">The destination.</param>
-        public static void CopyProperties(this object source, object destination, bool diffOnly)
+        public static void CopyProperties(this object source, object destination, bool diffOnly, List<string> ignoreNames = null)
         {
             // If any this null throw an exception
             if (source == null || destination == null)
@@ -153,6 +153,14 @@ namespace Playnite
                 if (sourceValue == null && targetValue == null)
                 {
                     continue;
+                }
+
+                if (ignoreNames?.Any() == true)
+                {
+                    if (ignoreNames.Contains(srcProp.Name))
+                    {
+                        continue;
+                    }
                 }
 
                 if (sourceValue is IComparable && diffOnly)
