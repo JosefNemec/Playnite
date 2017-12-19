@@ -365,6 +365,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="PlayAction">Play Action</sys:String>
     <sys:String x:Key="AddPlayAction">Add Play Action</sys:String>
     <sys:String x:Key="AddAction">Add Action</sys:String>
+    <sys:String x:Key="DeleteAction">Delete Action</sys:String>
     <sys:String x:Key="RemovePlayAction">Remove Play Action</sys:String>
     <sys:String x:Key="OtherActions">Other Actions</sys:String>
     <sys:String x:Key="AddGames">Add Games</sys:String>
