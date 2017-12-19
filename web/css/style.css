@@ -1,3 +1,7 @@
+.col {
+  padding: 0 !important;
+}
+
 html, body {
   color: #FFFFFF;
   background-color: #272b30;
@@ -22,6 +26,10 @@ blockquote {
 .footer-text, .card-content>p {
   text-align: justify;
   text-justify: inter-word;
+}
+
+.footer-block {
+  padding: 1.5% !important;
 }
 
 .footer-link {
@@ -69,8 +77,4 @@ section {
 
 .card-content>p  {
   font-size: 1rem;
-}
-
-.col {
-  padding: 0 !important;
 }
