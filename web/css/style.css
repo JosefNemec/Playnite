@@ -47,6 +47,18 @@ section {
   margin-right: 2.5%;
 }
 
+@media screen and (min-width: 300px) {
+  .card {
+    height: 250px !important;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .card {
+    height: 200px !important;
+  }
+}
+
 @media screen and (min-width: 600px) {
   blockquote {
     text-align: justify;
