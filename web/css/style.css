@@ -69,3 +69,7 @@ section {
 .card-content>p  {
   font-size: 1rem;
 }
+
+.col {
+  padding: 0 !important;
+}
