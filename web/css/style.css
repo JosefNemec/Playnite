@@ -19,13 +19,17 @@ blockquote {
   border-color: #ff8023;
 }
 
-blockquote, .footer-text, .card-content>p {
+.footer-text, .card-content>p {
   text-align: justify;
   text-justify: inter-word;
 }
 
 .footer-link {
   margin-left: 2.5%;
+}
+
+h1 {
+  font-size: 4rem !important;
 }
 
 h3 {
@@ -42,6 +46,11 @@ section {
 }
 
 @media screen and (min-width: 600px) {
+  blockquote {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
   .card {
     height: 265px !important;
   }
