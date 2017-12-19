@@ -406,7 +406,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="ThemeTestWatchChangesTooltip">Automatically apply theme when the source file changes</sys:String>
 
     <!--Game actions-->
-    <sys:String x:Key="FavoriteGame">Add to Favorties</sys:String>
+    <sys:String x:Key="FavoriteGame">Add to Favorites</sys:String>
     <sys:String x:Key="RemoveFavoriteGame">Remove from Favorties</sys:String>
     <sys:String x:Key="HideGame">Hide</sys:String>
     <sys:String x:Key="UnHideGame">Show in Library</sys:String>
