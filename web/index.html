@@ -346,7 +346,10 @@
 
   <script>
     $(document).ready(() => {
-      $(".button-collapse").sideNav();
+      $(".button-collapse").sideNav({
+        closeOnClick: true
+      });
+
       $('.carousel').carousel({
         fullWidth: true,
         indicators: true
