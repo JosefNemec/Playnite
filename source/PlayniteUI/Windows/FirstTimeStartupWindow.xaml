@@ -278,28 +278,6 @@
             </TabItem>
             <TabItem Header="Done" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
                 <DockPanel LastChildFill="False" Margin="20">
-                    <TextBlock Text="{DynamicResource SettingsIGDBApiKey}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
-                    <TextBlock Text="{DynamicResource SettingsIGDBApiKeyDescription}" 
-                            TextWrapping="Wrap" Margin="0,20,0,0" DockPanel.Dock="Top"/>
-
-
-                    <TextBlock DockPanel.Dock="Top" VerticalAlignment="Center" Margin="0,15,0,15">
-                        <Hyperlink NavigateUri="https://api.igdb.com/"
-                                    Command="{Binding NavigateUrlCommand}"
-                                    CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                            <Run Text="{DynamicResource SettingsApiKeyUrlText}" />
-                        </Hyperlink>
-                    </TextBlock>
-
-                    <DockPanel DockPanel.Dock="Top">
-                        <TextBlock Text="{DynamicResource UserKey}" DockPanel.Dock="Left" VerticalAlignment="Center"
-                                   Margin="0,0,10,0"/>
-                        <TextBox Text="{Binding Settings.IGDBApiKey}" DockPanel.Dock="Left" />
-                    </DockPanel>
-                </DockPanel>
-            </TabItem>
-            <TabItem Header="Done" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
-                <DockPanel LastChildFill="False" Margin="20">
                     <TextBlock Text="{DynamicResource FirstConfigFinishedTitle}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
                     <TextBlock Text="{DynamicResource FirstConfigFinishedText}" 
                             TextWrapping="Wrap" Margin="0,20,0,0" DockPanel.Dock="Top"/>

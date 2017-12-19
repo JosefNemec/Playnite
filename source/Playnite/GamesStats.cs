@@ -74,7 +74,7 @@ namespace Playnite
             BattleNet = 0;
             Custom = 0;
 
-            foreach (var game in database.GamesCollection.FindAll())
+            foreach (var game in database.GamesCollection.FindAll().ToList())
             {
                 if (game.IsInstalled)
                 {

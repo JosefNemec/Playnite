@@ -5,6 +5,7 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                     xmlns:pc="clr-namespace:PlayniteUI.Controls;assembly=PlayniteUI"
+                    xmlns:pcmd="clr-namespace:PlayniteUI.Commands;assembly=PlayniteUI"
                     xmlns:pui="clr-namespace:PlayniteUI;assembly=PlayniteUI"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
@@ -1942,25 +1943,25 @@
 
             <StackPanel>
                 <!-- Genres -->
-                <Label Content="Genres" Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}" />
+                <Label Content="{DynamicResource GenreLabel}" Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}" />
                 <ItemsControl ItemsSource="{Binding Game.Genres, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Genres"/>
 
                 <!-- Developers -->
-                <Label Content="Developed by" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource DeveloperLabel}" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Developers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Developers"/>
 
                 <!-- Publishers -->
-                <Label Content="Published by" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource PublisherLabel}" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Publishers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Publishers"/>
 
                 <!-- Release Date -->
-                <Label Content="Release Date" Style="{StaticResource ListLabel}" Visibility="{Binding Game.ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource GameReleaseDateTitle}" Style="{StaticResource ListLabel}" Visibility="{Binding Game.ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"/>
                 <TextBlock Visibility="{Binding Game.ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"
                                Style="{StaticResource ListTextBlock}">
                             <Hyperlink NavigateUri="{Binding Game.ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}"
@@ -1971,19 +1972,19 @@
                 </TextBlock>
 
                 <!-- Categories -->
-                <Label Content="Categories" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource GameCategoriesTitle}" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Categories, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Categories"/>
 
                 <!-- Tags -->
-                <Label Content="Tags" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource TagsLabel}" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Tags, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Tags"/>
 
                 <!-- Platform -->
-                <Label Content="Platform" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
+                <Label Content="{DynamicResource PlatformTitle}" Style="{StaticResource ListLabel}" Visibility="{Binding Game.Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
                 <TextBlock Visibility="{Binding Game.Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
                                    Style="{StaticResource ListTextBlock}">
                             <Hyperlink NavigateUri="{Binding Game.Platform.Name}"
@@ -2276,11 +2277,13 @@
                     </Button.ContextMenu>
                 </Button>
             </StackPanel>
-            
-            <Border Grid.Column="0" Grid.Row="2" Padding="10" Margin="20,30,0,0" CornerRadius="3"
+
+            <Border Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Padding="10" Margin="20,30,0,10" CornerRadius="3"
                     Background="#AA000000" VerticalAlignment="Top"
                     Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <ContentControl Template="{StaticResource GamePropertiesView}" Width="250" />
+                <ScrollViewer>
+                    <ContentControl Template="{StaticResource GamePropertiesView}" Width="250" />
+                </ScrollViewer>
             </Border>
 
             <Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="10,30,10,10"
@@ -2391,8 +2394,22 @@
                                 </MenuItem.ItemContainerStyle>
                             </MenuItem>
                             <Separator />
-                            <MenuItem Header="{DynamicResource MenuAbout}"
-                                  Command="{Binding OpenAboutCommand}"/>
+                            <MenuItem Header="{DynamicResource MenuAbout}">
+                                <MenuItem Header="{DynamicResource MenuAbout}" Command="{Binding OpenAboutCommand}" />
+                                <Separator />
+                                <MenuItem Header="Discord"
+                                          Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                          CommandParameter="https://discord.gg/hSFvmN6"/>
+                                <MenuItem Header="Twitter" 
+                                          Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                          CommandParameter="https://twitter.com/AppPlaynite"/>
+                                <MenuItem Header="Reddit" 
+                                          Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                          CommandParameter="https://www.reddit.com/r/playnite/"/>
+                                <MenuItem Header="Patreon" 
+                                          Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                          CommandParameter="https://www.patreon.com/playnite"/>
+                            </MenuItem>
                             <MenuItem Header="{DynamicResource MenuIssues}" Command="{Binding ReportIssueCommand}" />
                             <Separator />
                             <MenuItem Header="{DynamicResource ExitAppLabel}" Command="{Binding ShutdownCommand}" />
@@ -2603,19 +2620,31 @@
                                     </StackPanel.Resources>
 
                                     <CheckBox Name="CheckFilterInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.Installed, Mode=OneWay, StringFormat=Installed ({0})}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{DynamicResource GameIsInstalledTitle}" Margin="0,0,5,0" />
+                                            <TextBlock Text="{Binding GamesStats.Installed, Mode=OneWay, StringFormat=({0})}" />
+                                        </StackPanel>
                                     </CheckBox>
 
                                     <CheckBox Name="CheckFilterUnInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsUnInstalled}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.UnInstalled, Mode=OneWay, StringFormat=Uninstalled ({0})}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{DynamicResource GameIsUnInstalledTitle}" Margin="0,0,5,0" />
+                                            <TextBlock Text="{Binding GamesStats.UnInstalled, Mode=OneWay, StringFormat=({0})}" />
+                                        </StackPanel>
                                     </CheckBox>
 
                                     <CheckBox Name="CheckFilterHidden" IsChecked="{Binding AppSettings.FilterSettings.Hidden}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.Hidden, Mode=OneWay, StringFormat=Hidden ({0})}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{DynamicResource GameHiddenTitle}" Margin="0,0,5,0" />
+                                            <TextBlock Text="{Binding GamesStats.Hidden, Mode=OneWay, StringFormat=({0})}" />
+                                        </StackPanel>
                                     </CheckBox>
 
                                     <CheckBox Name="CheckFilterFavorite" IsChecked="{Binding AppSettings.FilterSettings.Favorite}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.Favorite, Mode=OneWay, StringFormat=Favorite ({0})}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{DynamicResource GameFavoriteTitle}" Margin="0,0,5,0" />
+                                            <TextBlock Text="{Binding GamesStats.Favorite, Mode=OneWay, StringFormat=({0})}" />
+                                        </StackPanel>
                                     </CheckBox>
 
                                     <Border Height="10" />
@@ -2641,7 +2670,10 @@
                                     </CheckBox>
 
                                     <CheckBox Name="CheckFilterCustom" IsChecked="{Binding AppSettings.FilterSettings.Custom}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.Custom, Mode=OneWay, StringFormat=Custom ({0})}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{DynamicResource CustomLabel}" Margin="0,0,5,0" />
+                                            <TextBlock Text="{Binding GamesStats.Custom, Mode=OneWay, StringFormat=({0})}" />
+                                        </StackPanel>
                                     </CheckBox>
 
                                     <Border Height="10" />
@@ -2846,17 +2878,17 @@
                 </DockPanel>
             </Border>
 
-            <!--<Border Margin="0,-38,0,0" Height="38" Width="100" DockPanel.Dock="Bottom" Background="Transparent"
-                Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+            <Border Margin="0,-38,0,0" Height="38" Width="100" DockPanel.Dock="Bottom" Background="Transparent"
+                    Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
                 <Button Name="ButtonFriends" Command="{Binding OpenSteamFriendsCommand}"
-                    Height="30" Width="30" HorizontalAlignment="Right" Margin="0,0,15,0"
-                    Style="{StaticResource ImageHighlightButton}" ToolTip="{DynamicResource SteamFriendsTooltip}"
-                    Visibility="{Binding AppSettings.SteamSettings.IntegrationEnabled, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        Height="30" Width="30" HorizontalAlignment="Right" Margin="0,0,15,0"
+                        Style="{StaticResource ImageHighlightButton}" ToolTip="{DynamicResource SteamFriendsTooltip}"
+                        Visibility="{Binding AppSettings.SteamSettings.IntegrationEnabled, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Button.OpacityMask>
                         <ImageBrush ImageSource="/Images/friends.png" RenderOptions.BitmapScalingMode="Fant"/>
                     </Button.OpacityMask>
                 </Button>
-            </Border>-->
+            </Border>
         </Grid>
     </ControlTemplate>
     

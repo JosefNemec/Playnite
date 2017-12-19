@@ -114,7 +114,7 @@ namespace Playnite
             }
         }
 
-        private bool disableHwAcceleration = false;
+        private bool disableHwAcceleration = true;
         public bool DisableHwAcceleration
         {
             get
@@ -646,8 +646,9 @@ namespace Playnite
 
         public void CancelEdit()
         {
-            editingCopy.CopyProperties(this, false);
+            editingCopy.CopyProperties(this, false, new List<string>() { "FilterSettings" });
             isEditing = false;
+            editingNotifs = new List<string>();
         }
 
         public void OnPropertyChanged(string name)

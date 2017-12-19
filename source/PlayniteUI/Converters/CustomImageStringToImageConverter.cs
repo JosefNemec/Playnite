@@ -67,7 +67,15 @@ namespace PlayniteUI
 
             if (File.Exists(imageId))
             {
-                return BitmapExtensions.BitmapFromFile(imageId);
+                try
+                {
+                    return BitmapExtensions.BitmapFromFile(imageId);
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, "Failed to create bitmap from " + imageId);
+                    return DependencyProperty.UnsetValue;
+                }
             }
 
             try
@@ -78,15 +86,23 @@ namespace PlayniteUI
                     return DependencyProperty.UnsetValue;
                 }
 
-                var imageData = Database.GetFileImage(imageId);
-                if (imageData == null)
+                try
                 {
-                    logger.Warn("Image not found in database: " + imageId);
-                    return DependencyProperty.UnsetValue;
+                    var imageData = Database.GetFileImage(imageId);
+                    if (imageData == null)
+                    {
+                        logger.Warn("Image not found in database: " + imageId);
+                        return DependencyProperty.UnsetValue;
+                    }
+                    else
+                    {
+                        return imageData;
+                    }
                 }
-                else
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    return imageData;
+                    logger.Error(exc, $"Failed to get bitmap from {imageId} database file.");
+                    return DependencyProperty.UnsetValue;
                 }
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)

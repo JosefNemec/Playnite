@@ -176,7 +176,6 @@ namespace PlayniteUI
                         AppSettings.DatabasePath = Path.Combine(Paths.UserProgramDataPath, "games.db");
                     }
 
-                    AppSettings.IGDBApiKey = settings.IGDBApiKey;
                     AppSettings.SteamSettings = settings.SteamSettings;
                     AppSettings.GOGSettings = settings.GOGSettings;
                     AppSettings.OriginSettings = settings.OriginSettings;

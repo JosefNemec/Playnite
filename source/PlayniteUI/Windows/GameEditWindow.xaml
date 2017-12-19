@@ -415,7 +415,7 @@
                                                   Emulators="{Binding Data.Emulators, Source={StaticResource Proxy}}"/>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="Other Actions" Margin="10">
+                        <GroupBox Header="{DynamicResource OtherActions}" Margin="10">
                             <StackPanel>
                                 <ItemsControl Name="OtherTasksItems" ItemsSource="{Binding EditingGame.OtherTasks}">
                                     <ItemsControl.ItemTemplate>
@@ -431,7 +431,7 @@
                                                         <Button Name="ButtonMoveDownAction" FontFamily="Marlett" Content="6" Margin="0,0,5,0"
                                                                 Command="{Binding Data.MoveDownActionCommand, Source={StaticResource Proxy}}"
                                                                 CommandParameter="{Binding }"/>
-                                                        <Button Name="ButtonDeleteAction" Content="Delete Action"
+                                                        <Button Name="ButtonDeleteAction" Content="{DynamicResource DeleteAction}"
                                                                 Command="{Binding Data.DeleteActionCommand, Source={StaticResource Proxy}}"
                                                                 CommandParameter="{Binding }"/>
                                                     </StackPanel>

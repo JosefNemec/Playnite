@@ -96,10 +96,12 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="PublisherLabel">Publisher</sys:String>
     <sys:String x:Key="CategoryLabel">Category</sys:String>
     <sys:String x:Key="TagLabel">Tag</sys:String>
+    <sys:String x:Key="TagsLabel">Tags</sys:String>
     <sys:String x:Key="ZoomLabel">Zoom</sys:String>
     <sys:String x:Key="ListLabel">List</sys:String>
     <sys:String x:Key="CoversLabel">Covers</sys:String>
     <sys:String x:Key="DetailsLabel">Details</sys:String>
+    <sys:String x:Key="CustomLabel">Custom</sys:String>
     
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
@@ -161,6 +163,10 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="MenuIssues">Send Feedback</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="SettingsGeneralLabel">General</sys:String>
+    <sys:String x:Key="SettingsAppearanceLabel">Appearance</sys:String>
+    <sys:String x:Key="SettingsAdvancedLabel">Advanced</sys:String>
+    <sys:String x:Key="SettingsProvidersLabel">Providers</sys:String>
     <sys:String x:Key="SettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="SettingsImportInstalledLabel">Import installed games</sys:String>
     <sys:String x:Key="SettingsImportLibraryLabel">Import all games</sys:String>
@@ -312,6 +318,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="GameTagsTitle">Tag(s)</sys:String>
     <sys:String x:Key="GamePublishersTitle">Publisher(s)</sys:String>
     <sys:String x:Key="GameIsInstalledTitle">Installed</sys:String>
+    <sys:String x:Key="GameIsUnInstalledTitle">Uninstalled</sys:String>
     <sys:String x:Key="GameHiddenTitle">Hidden</sys:String>
     <sys:String x:Key="GameFavoriteTitle">Favorite</sys:String>
     <sys:String x:Key="GameLastActivityTitle">Last Activity</sys:String>
@@ -358,6 +365,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="PlayAction">Play Action</sys:String>
     <sys:String x:Key="AddPlayAction">Add Play Action</sys:String>
     <sys:String x:Key="AddAction">Add Action</sys:String>
+    <sys:String x:Key="DeleteAction">Delete Action</sys:String>
     <sys:String x:Key="RemovePlayAction">Remove Play Action</sys:String>
     <sys:String x:Key="OtherActions">Other Actions</sys:String>
     <sys:String x:Key="AddGames">Add Games</sys:String>
