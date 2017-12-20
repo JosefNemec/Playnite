@@ -49,7 +49,7 @@ function AddImage () {
     try
     {
         $image.Save($stream, "Png")
-        $database.AddImage($id, $id + ".png", $stream.ToArray())
+        $database.AddFile($id, $id + ".png", $stream.ToArray())
     }
     finally
     {
@@ -64,12 +64,13 @@ $random = New-Object System.Random
 $playniteModule = Join-Path $PlaynitePath "Playnite.dll"
 Import-Module $playniteModule | Out-Null
 
-Remove-Item $OutputPath -EA 0 
-$database = New-Object Playnite.Database.GameDatabase 
-$database.OpenDatabase($OutputPath, $false) | Out-Null
+Remove-Item $OutputPath -EA 0
 $progressActivity = "Generating Playnite DB"
 try
 {
+    $database = New-Object Playnite.Database.GameDatabase -ArgumentList @($null)
+    $database.OpenDatabase($OutputPath) | Out-Null
+
     for ($i = 0; $i -lt $RecordCount; $i++)
     {
         Write-Progress -Activity $progressActivity -PercentComplete (($i / $RecordCount) * 100)

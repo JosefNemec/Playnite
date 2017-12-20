@@ -577,11 +577,14 @@ namespace Playnite.Database
                 PlatformsCollection.EnsureIndex(a => a.Id);
                 EmulatorsCollection.EnsureIndex(a => a.Id);
 
-                // Generate default platforms  
-                var platforms = EmulatorDefinition.GetDefinitions()
-                    .SelectMany(a => a.Profiles.SelectMany(b => b.Platforms)).Distinct()
-                    .Select(a => new Platform(a)).ToList();
-                AddPlatform(platforms);
+                // Generate default platforms
+                if (File.Exists(EmulatorDefinition.DefinitionsPath))
+                {
+                    var platforms = EmulatorDefinition.GetDefinitions()
+                        .SelectMany(a => a.Profiles.SelectMany(b => b.Platforms)).Distinct()
+                        .Select(a => new Platform(a)).ToList();
+                    AddPlatform(platforms);
+                }
             }
 
             DatabaseOpened?.Invoke(this, null);
