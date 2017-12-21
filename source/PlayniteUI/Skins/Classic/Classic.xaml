@@ -2277,18 +2277,20 @@
                 </Button>
             </StackPanel>
 
-            <Border Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Padding="10" Margin="20,30,0,10" CornerRadius="3"
-                    Background="#AA000000" VerticalAlignment="Top"
+            <Border Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Padding="10" Margin="20,30,0,10"
+                    CornerRadius="{DynamicResource ControlCornerRadius}"
+                    Background="#9A000000" VerticalAlignment="Top"
                     Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ScrollViewer>
                     <ContentControl Template="{StaticResource GamePropertiesView}" Width="250" />
                 </ScrollViewer>
             </Border>
 
-            <Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="10,30,10,10"
-                    CornerRadius="3" Background="#AA000000" VerticalAlignment="Top">
+            <Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="10,30,20,10"
+                    CornerRadius="{DynamicResource ControlCornerRadius}"
+                    Background="#9A000000" VerticalAlignment="Top">
                 <Border.Style>
-                    <Style TargetType="Border">
+                    <Style TargetType="Border" BasedOn="{StaticResource {x:Type Border}}">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Game.Description}" Value="{x:Null}">
                                 <Setter Property="Visibility" Value="Collapsed" />

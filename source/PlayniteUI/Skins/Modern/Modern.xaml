@@ -66,10 +66,7 @@
         <GradientStop Color="{DynamicResource MainColorDark}" Offset="0.4"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="GameDetailsBackGroundBrush" StartPoint="0.5,0.1" EndPoint="0.5,1" >
-        <GradientStop Color="#00000000" Offset="0"/>
-        <GradientStop Color="#DD0D1225" Offset="0.4"/>
-    </LinearGradientBrush>
+    <SolidColorBrush x:Key="GameDetailsBackGroundBrush" Color="#BC0D1225" />
 
     <!--#region Standard Controls -->
     <Style TargetType="Border">
@@ -2090,8 +2087,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="7*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.Style>
                 <Style TargetType="Grid">
@@ -2103,18 +2099,17 @@
                 </Style>
             </Grid.Style>
 
-            <Border Grid.ColumnSpan="10" Grid.RowSpan="10" Background="{DynamicResource GameDetailsBackGroundBrush}" />
-
             <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontFamily="{DynamicResource FontFamily}"
-                       Text="{Binding Game.DisplayName, Mode=OneWay}" FontSize="34" Margin="40,60,0,10" TextWrapping="Wrap"
+                       Text="{Binding Game.DisplayName, Mode=OneWay}"
+                       FontSize="34" Margin="40,60,0,60" TextWrapping="Wrap"
                        DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
                 <TextBlock.Effect>
                     <DropShadowEffect ShadowDepth="3"/>
                 </TextBlock.Effect>
             </TextBlock>
                         
-            <StackPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top"
-                        Margin="40,10,0,0">                
+            <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                        Margin="40,0,0,0">                
                 <Image Margin="0,0,0,10" VerticalAlignment="Top"          
                        RenderOptions.BitmapScalingMode="Fant"
                        Source="{Binding Game.Image, IsAsync=True, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}" />
@@ -2136,18 +2131,21 @@
                 </Button>
             </StackPanel>
 
-            <Border Grid.Column="1" Grid.Row="2" Padding="10" Margin="20,0,10,20" CornerRadius="3"
+            <Border Grid.Column="1" Grid.Row="1" Padding="10" Margin="20,0,20,20"
                     Grid.RowSpan="2" VerticalAlignment="Top" MaxWidth="300"
+                    CornerRadius="2"
+                    Background="{DynamicResource GameDetailsBackGroundBrush}"
                     Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ScrollViewer>
                     <ContentControl Template="{StaticResource GamePropertiesView}" />
                 </ScrollViewer>
             </Border>
 
-            <Border Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Margin="0,0,5,20"
-                    CornerRadius="3" VerticalAlignment="Top" >
+            <Border Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,25,20"
+                    CornerRadius="2" VerticalAlignment="Top"
+                    Background="{DynamicResource GameDetailsBackGroundBrush}">
                 <Border.Style>
-                    <Style TargetType="Border">
+                    <Style TargetType="Border" BasedOn="{StaticResource {x:Type Border}}">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Game.Description}" Value="{x:Null}">
                                 <Setter Property="Visibility" Value="Collapsed" />
