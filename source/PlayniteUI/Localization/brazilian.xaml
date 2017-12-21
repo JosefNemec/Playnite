@@ -1,0 +1,426 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="LocalizationLanguage">brazilian</sys:String>
+    <sys:String x:Key="LocalizationString">Português do Brasil</sys:String>
+
+    <sys:String x:Key="LanguageSettingsLabel">Idioma</sys:String>
+
+    <sys:String x:Key="ExitAppLabel">Sair</sys:String>
+    <sys:String x:Key="FilterActiveLabel">O filtro está habilitado (clique para alternar o painel de filtros)</sys:String>
+    <sys:String x:Key="FilterInactiveLabel">O filtro está desabilitado (clique para alternar o painel de filtros)</sys:String>
+
+    <sys:String x:Key="InvalidDataTitle">Dados Inválidos</sys:String>
+    <sys:String x:Key="SaveChangesAskTitle">Salvar alterações?</sys:String>
+    
+    <sys:String x:Key="AboutHomePageLink">Site oficial em www.playnite.link</sys:String>
+    <sys:String x:Key="AboutSourceLink">Código fonte no GitHub</sys:String>
+    <sys:String x:Key="AboutCreateDiagButton">Criar pacote de diagnóstico</sys:String>
+    <sys:String x:Key="AboutWindowTitle">Sobre o Playnite</sys:String>
+    <sys:String x:Key="AboutAuthor">Criado por Josef Němec</sys:String>
+
+    <sys:String x:Key="CategoryWindowTitle">Atribuir Categorias</sys:String>
+    <sys:String x:Key="CategorySetButton">Definir categorias</sys:String>
+    <sys:String x:Key="CategoryAddCatButton">Adicionar categoria</sys:String>
+    <sys:String x:Key="CategoryTooltip" xml:space="preserve">Selecionado - Atribuir categoria
+Não selecionado - Remover categoria
+Indeterminado - Nenhuma alteração (quando editando vários jogos)</sys:String>
+
+    <sys:String x:Key="CrashWindowTitle">Vixe, isso não deveria ter acontecido...</sys:String>
+    <sys:String x:Key="CrashDescription">O Playnite encontrou um problema e não conseguiu resolvê-lo. Se deseja ajudar-nos a descobrir o que aconteceu, crie um pacote de diagnóstico e faça um relatório sobre o problema. Obrigado.</sys:String>
+    <sys:String x:Key="CrashReportIssue">Fazer um Relatório</sys:String>
+    <sys:String x:Key="CrashRestartPlaynite">Reiniciar o Playnite</sys:String>
+    <sys:String x:Key="CrashClosePlaynite">Fechar o Playnite</sys:String>
+
+    <sys:String x:Key="GameRemoveAskTitle">Remover Jogo(s)?</sys:String>
+    <sys:String x:Key="GameRemoveAskMessage" xml:space="preserve">Tem certeza de que deseja remover este jogo?
+        
+Jogos importados automaticamente podem reaparecer no Playnite após o próximo processo de importação, dependendo das suas configurações.</sys:String>
+    <sys:String x:Key="GamesRemoveAskMessage" xml:space="preserve">Tem certeza de que deseja remover estes {0} jogo?
+        
+Jogos importados automaticamente podem reaparecer no Playnite após o próximo processo de importação, dependendo das suas configurações.</sys:String>
+
+    <sys:String x:Key="SteamFriendsTooltip">Amigos do Steam</sys:String>
+    <sys:String x:Key="GameEditChangeNotif">Esta seção contém alterações para serem salvas</sys:String>
+    <sys:String x:Key="DBUpgradeProgress">Atualizando versão do banco de dados...</sys:String>
+    <sys:String x:Key="DBUpgradeFail">Falha ao atualizar o banco de dados, não foi possível abrir o arquivo.</sys:String>
+
+    <sys:String x:Key="GameError">Erro do Jogo</sys:String>
+    <sys:String x:Key="GameStartErrorNoGame">Não foi possível executar o jogo. "{0}" não foi encontrado no banco de dados.</sys:String>
+    <sys:String x:Key="GameStartError">Não foi possível executar o jogo: {0}</sys:String>
+    <sys:String x:Key="GameStartActionError">Não foi possível executar a ação: {0}</sys:String>
+    <sys:String x:Key="GameOpenLocationError">Não foi possível abrir local do jogo: {0}</sys:String>
+    <sys:String x:Key="GameShortcutError">Não foi possível criar o atalho: {0}</sys:String>
+    <sys:String x:Key="GameInstallError">Não foi possível instalar o jogo: {0}</sys:String>
+    <sys:String x:Key="GameUninstallError">Não foi possível desinstalar o jogo: {0}</sys:String>
+
+
+    <!--General-->
+    <sys:String x:Key="RemoveTitle">Remover</sys:String>
+    <sys:String x:Key="CopyTitle">Copiar</sys:String>
+    <sys:String x:Key="AddTitle">Adicionar</sys:String>
+    <sys:String x:Key="DefaultIconTitle">Ícone Padrão</sys:String>
+    <sys:String x:Key="DefaultCoverTitle">Imagem de Capa Padrão</sys:String>
+    <sys:String x:Key="FinishLabel">Finalizar</sys:String>
+    <sys:String x:Key="NextLabel">Próximo</sys:String>
+    <sys:String x:Key="BackLabel">Anterior</sys:String>
+    <sys:String x:Key="ImportLabel">Importar</sys:String>
+    <sys:String x:Key="SourceLabel">Fonte</sys:String>
+    <sys:String x:Key="NameLabel">Nome</sys:String>
+    <sys:String x:Key="WebsiteLabel">Site</sys:String>
+    <sys:String x:Key="PathLabel">Caminho</sys:String>
+    <sys:String x:Key="OKLabel">OK</sys:String>
+    <sys:String x:Key="SaveLabel">Salvar</sys:String>
+    <sys:String x:Key="CloseLabel">Fechar</sys:String>
+    <sys:String x:Key="CancelLabel">Cancelar</sys:String>
+    <sys:String x:Key="YesLabel">Sim</sys:String>
+    <sys:String x:Key="NoLabel">Não</sys:String>
+    <sys:String x:Key="WelcomeLabel">Boas-vindas</sys:String>
+    <sys:String x:Key="LocalUserLabel">Usuário Local</sys:String>
+    <sys:String x:Key="AuthenticateLabel">Autenticar</sys:String>
+    <sys:String x:Key="GeneralLabel">Geral</sys:String>
+    <sys:String x:Key="MediaLabel">Mídia</sys:String>
+    <sys:String x:Key="LinksLabel">Links</sys:String>
+    <sys:String x:Key="InstallationLabel">Instalação</sys:String>
+    <sys:String x:Key="ActionsLabel">Ações</sys:String>
+    <sys:String x:Key="DownloadingLabel">Baixando...</sys:String>
+    <sys:String x:Key="TypeLabel">Tipo</sys:String>
+    <sys:String x:Key="ProfileLabel">Perfil</sys:String>
+    <sys:String x:Key="ProfilesLabel">Perfis</sys:String>
+    <sys:String x:Key="RemoveLabel">Remover</sys:String>
+    <sys:String x:Key="DownloadLabel">Baixar</sys:String>
+    <sys:String x:Key="SearchLabel">Buscar</sys:String>
+    <sys:String x:Key="GenreLabel">Gênero</sys:String>
+    <sys:String x:Key="DeveloperLabel">Desenvolvedor(a)</sys:String>
+    <sys:String x:Key="PublisherLabel">Editora</sys:String>
+    <sys:String x:Key="CategoryLabel">Categoria</sys:String>
+    <sys:String x:Key="TagLabel">Marcador</sys:String>
+    <sys:String x:Key="TagsLabel">Marcadores</sys:String>
+    <sys:String x:Key="ZoomLabel">Zoom</sys:String>
+    <sys:String x:Key="ListLabel">Lista</sys:String>
+    <sys:String x:Key="CoversLabel">Capas</sys:String>
+    <sys:String x:Key="DetailsLabel">Detalhes</sys:String>
+    <sys:String x:Key="CustomLabel">Personalizados</sys:String>
+    
+    <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Variáveis especiais podem ser usadas para criar cadeias de caracteres dinâmicas:
+{InstallDir} - Caminho de instalação do jogo
+{ImagePath} - Caminho da ISO/ROM, se definido
+{ImageName} - Nome do arquivo ISO/ROM
+{ImageNameNoExt} - Nome do arquivo ISO/ROM sem extensão
+        
+Exemplo: -image "{ImagePath}" -fullscreen
+Resultado: -image "c:\pasta\imagem.iso" -fullscreen</sys:String>
+
+    <sys:String x:Key="ExecIconMissingPlayAction">Não é possível obter um ícone se a ação "Executar" não existe ou estiver definida como um URL.</sys:String>
+
+    <sys:String x:Key="MetaGamesSourceIntro">Seleção de jogos</sys:String>
+    <sys:String x:Key="MetaGamesSourceDescription">Selecione quais jogos devem ser atualizados com novos metadados:</sys:String>
+    <sys:String x:Key="MetaGameSourceAll">Todos os jogos do banco de dados</sys:String>
+    <sys:String x:Key="MetaGameSourceFiltered">Todos os jogos filtrados atualmente</sys:String>
+    <sys:String x:Key="MetaGameSourceSelected">Todos os jogos selecionados</sys:String>
+    <sys:String x:Key="MetaSourceStore">Loja Oficial</sys:String>
+    <sys:String x:Key="MetaSourceIGDB">IGDB</sys:String>
+    <sys:String x:Key="MetaSourceIGDBOverStore">IGDB > Loja Oficial</sys:String>
+    <sys:String x:Key="MetaSourceStoreOverIGDB">Loja Oficial > IGDB</sys:String>
+    <sys:String x:Key="MetaDescriptionFields">Selecione quais campos devem ser preenchidos automaticamente pelo Playnite e quais fontes devem ser usadas para obter os dados.</sys:String>
+    <sys:String x:Key="MetaSourceSettingsDescription" xml:space="preserve">Loja Oficial:
+Usar somente os dados da loja oficial.
+    
+IGDB:
+Usar somente o banco de dados IGBD.com.
+    
+IGDB > Loja Oficial:
+Prefirir o banco de dados IGBD.com e, quando não estiver disponível, usar os dados da loja oficial.
+    
+Official Store > IGDB:
+Prefirir os dados da loja oficial e, quando não estiver disponível, usar o banco de dados IGBD.com.</sys:String>
+
+    <!--Progess string-->
+    <sys:String x:Key="ProgressSteamLibImport">Baixando as atualizações da biblioteca do Steam...</sys:String>
+    <sys:String x:Key="ProgressGOGLibImport">Carregando as atualizações da biblioteca do GOG...</sys:String>
+    <sys:String x:Key="ProgressOriginLibImport">Carregando as atualizações da biblioteca do Origin...</sys:String>
+    <sys:String x:Key="ProgressBattleNetLibImport">Carregando as atualizações da biblioteca da Battle.net...</sys:String>
+    <sys:String x:Key="ProgressMetadata">Baixando metadados...</sys:String>
+    <sys:String x:Key="ProgressInstalledGames">Importando jogos instalados...</sys:String>
+    <sys:String x:Key="ProgressLibraryGames">Baixando as atualizações da biblioteca...</sys:String>
+    <sys:String x:Key="ProgressSteamCategoryImport">Baixando as atualizações da biblioteca...</sys:String>
+    <sys:String x:Key="ProgressLibImportFinish">Biblioteca atualizada</sys:String>
+
+    <!--Menu-->
+    <sys:String x:Key="MenuConfigurationTitle">Configuração</sys:String>
+    <sys:String x:Key="MenuPlayniteSettingsTitle">Configurações</sys:String>
+    <sys:String x:Key="MenuPlatformEmulatorSettingsTitle">Plataformas e emuladores</sys:String>
+    <sys:String x:Key="MenuTools">Ferramentas</sys:String>
+    <sys:String x:Key="MenuDownloadMetadata">Baixar metadados</sys:String>
+    <sys:String x:Key="MenuOpenClient">Abrir cliente de terceiros</sys:String>
+    <sys:String x:Key="MenuReloadLibrary">Recarregar lista de jogos</sys:String>
+    <sys:String x:Key="MenuAddGame">Adicionar Jogo</sys:String>
+    <sys:String x:Key="MenuAddGameManual">Manualmente</sys:String>
+    <sys:String x:Key="MenuAddGameInstalled">Importar instalação ou de pasta</sys:String>
+    <sys:String x:Key="MenuAddGameEmulated">Importar jogos emulados</sys:String>
+    <sys:String x:Key="MenuAbout">Sobre o Playnite</sys:String>
+    <sys:String x:Key="MenuIssues">Enviar comentários</sys:String>
+
+    <!--Settings Window-->
+    <sys:String x:Key="SettingsGeneralLabel">Geral</sys:String>
+    <sys:String x:Key="SettingsAppearanceLabel">Aparência</sys:String>
+    <sys:String x:Key="SettingsAdvancedLabel">Avançado</sys:String>
+    <sys:String x:Key="SettingsProvidersLabel">Provedores</sys:String>
+    <sys:String x:Key="SettingsImportLabel">Importar alterações na biblioteca automaticamente</sys:String>
+    <sys:String x:Key="SettingsImportInstalledLabel">Importar os jogos instalados</sys:String>
+    <sys:String x:Key="SettingsImportLibraryLabel">Importar todos os jogos</sys:String>
+    <sys:String x:Key="SettingsInvalidDBLocation">Local do arquivo de banco de dados inválido, o caminho correto do arquivo deve ser configurado.</sys:String>
+    <sys:String x:Key="SettingsInvalidSteamAccountName">O nome da conta Steam não pode estar vazio.</sys:String>
+    <sys:String x:Key="SettingsInvalidSteamAccountLibImport">Nenhuma conta do Steam selecionada para importação da biblioteca.</sys:String>
+    <sys:String x:Key="SettingsInvalidSteamAccountCatImport">Nenhuma conta do Steam selecionada para importação das categorias.</sys:String>
+    <sys:String x:Key="SettingsUpdateLibStartup">Baixar atualizações de bibliotecas de terceiros ao iniciar.</sys:String>
+    <sys:String x:Key="SettingsStartInFullscreen">Iniciar em tela cheia</sys:String>
+    <sys:String x:Key="SettingsUpdateLibStartupTooltip">Inclui Steam, Origin e outros.</sys:String>
+    <sys:String x:Key="SettingsAsyncImageLoading">Carregamento de imagens assíncrona (requer reinicialização)</sys:String>
+    <sys:String x:Key="SettingsAsyncImageLoadingTooltip">Melhora a suavidade da rolagem nas listas de jogos, mas as imagens podem carregar mais lentamente.</sys:String>
+    <sys:String x:Key="SettingsShowNameEmptyCover">Exibir o nome do jogo se não houver capa</sys:String>
+    <sys:String x:Key="SettingsShowIconList">Exibir os ícones dos jogos no esquema de lista</sys:String>
+    <sys:String x:Key="SettingsDisableAcceleration">Desabilitar aceleração de hardware (requer reinicialização)</sys:String>
+    <sys:String x:Key="SettingsDisableAccelerationTooltip">Use se experienciar travamentos ou problemas com a interface.</sys:String>
+    <sys:String x:Key="SettingsSkin">Tema</sys:String>
+    <sys:String x:Key="SettingsSkinColor">Perfil do tema</sys:String>
+    <sys:String x:Key="SettingsSkinFullscreen">Tema em tela cheia</sys:String>
+    <sys:String x:Key="SettingsSkinColorFullscreen">Cor em tela cheia</sys:String>
+    <sys:String x:Key="SettingsDBLocation">Local do banco de dados</sys:String>
+    <sys:String x:Key="SettingsWhatsSteamName">Qual o nome da minha conta?</sys:String>
+    <sys:String x:Key="SettingsLoginStatus">Estado da conta:</sys:String>
+    <sys:String x:Key="SettingsSteamLibrarySource">Especificar a biblioteca do usuário por:</sys:String>
+    <sys:String x:Key="SettingsWindowTitle">Configurações do Playnite</sys:String>
+    <sys:String x:Key="SettingsSteamImportCategories">Importar categorias do Steam:</sys:String>
+    <sys:String x:Key="SettingsSteamImportCatFrom">da conta:</sys:String>
+    <sys:String x:Key="SettingsClearWebCache">Limpar cache web</sys:String>
+    <sys:String x:Key="SettingsClearWebCacheTooltip">Pode resolver problemas encontrados ao vincular contas.</sys:String>
+    <sys:String x:Key="SettingsShowTray">Exibir ícone na bandeja</sys:String>
+    <sys:String x:Key="SettingsMinimizeToTray">Minimizar para a bandeja</sys:String>
+    <sys:String x:Key="SettingsCloseToTray">Fechar para a bandeja</sys:String>
+    <sys:String x:Key="SettingsMinimizeStarting">Minimizar ao executar um jogo</sys:String>
+    <sys:String x:Key="SettingsGOGUseGalaxy">Integrar usando o cliente Galaxy</sys:String>
+    <sys:String x:Key="SettingsGOGUseGalaxyTooltip">Habilita recursos como salvamento de jogos na nuvem, contador de tempo de jogo, etc.</sys:String>
+    <sys:String x:Key="SettingsSteamCatImportWarn">As categorias atuais de todos os seus jogos do Steam serão substituídas. Você deseja continuar?</sys:String>
+    <sys:String x:Key="SettingsSteamCatImportWarnTitle">Importar categorias?</sys:String>
+    <sys:String x:Key="SettingsSteamCatImportErrorAccount">Não foi possível importar as categorias, a conta para importação não foi definida.</sys:String>
+    <sys:String x:Key="SettingsSteamCatImportErrorDb">Não foi possível importar as categorias, o banco de dados não está aberto.</sys:String>
+    <sys:String x:Key="SettingsSteamCatImportError">Não foi possível importar as categorias do Steam: {0}</sys:String>
+    <sys:String x:Key="SettingsClearCacheWarn">Todas as contas de serviços configuradas serão desvinculadas. Será necessário reiniciar o programa, você deseja continuar?</sys:String>
+    <sys:String x:Key="SettingsClearCacheTitle">Limpar cache?</sys:String>
+    <sys:String x:Key="SettingsApiKeyTooltip">Você precisa de uma chave da API para usar contas privadas do Steam</sys:String>
+    <sys:String x:Key="SettingsApiKeyUrlText">Obter chave da API</sys:String>
+    <sys:String x:Key="SettingsSkinChangeRestart">Você precisa reiniciar o Playnite para alterar o tema</sys:String>
+    <sys:String x:Key="SettingsIGDBApiKey">Chave da API do IGDB.com</sys:String>
+    <sys:String x:Key="SettingsIGDBApiKeyDescription"  xml:space="preserve">O Playnite pode baixar metadados adicionais para jogos personalizados e emulados do banco de dados IGDB.com (capas, descrições etc.).
+    
+Por padrão, o Playnite usa uma chave de acesso compartilhada. Em alguns casos, isso pode resultar em indisponibilidade temporária deste recurso, dependendo da carga atual nos servidores. Portanto, é altamente recomendável que você obtenha a sua própria chave e não seja limitado por outros usuários.
+    
+Você pode obter a sua chave gratuitamente e, se você contribuir com o banco de dados, obter limites menos restritivos (consulte o Programa do Contribuidor).</sys:String>
+    
+    <sys:String x:Key="ImportError">Erro de importação</sys:String>
+    <sys:String x:Key="LoginChecking">Verificando...</sys:String>
+    <sys:String x:Key="LoginRequired">Autentificação requerida</sys:String>
+    <sys:String x:Key="LoginFailed">Falha na autenticação</sys:String>
+
+    <!--Meta Import-->
+    <sys:String x:Key="MetaImportWindowTitle">Importar Metadados</sys:String>
+    <sys:String x:Key="DownloadMetaButton">Baixar metadados</sys:String>
+    
+    <!--Emulator Import-->
+    <sys:String x:Key="EmuWizardWindowTitle">Assistente de Importação de Emuladores</sys:String>
+    <sys:String x:Key="EmuWizardIntro">Este assistente lhe ajudará a baixar e importar emuladores de consoles, bem como a importar os jogos emulados.</sys:String>
+    <sys:String x:Key="EmuWizardNotice">Tenha em mente que você sempre pode adicionar outros emuladores e/ou jogos mais tarde através do menu principal (no menu "Ferramentas" para configurações de emuladores e no menu "Adicionar Jogos" para jogos emulados).</sys:String>
+    <sys:String x:Key="EmuWizardDownloadListIntro" xml:space="preserve">A seguir está a lista de emuladores que o Playnite reconhece e configura automaticamente. Você pode baixá-los e instalá-los visitando seus respectivos sites. Assim que estiver com os emuladores instalados, vá para a próxima tela para importá-los para o Playnite.
+        
+Você também poderá configurar e importar emuladores personalizados posteriormente através do menu de configurações.</sys:String>
+    <sys:String x:Key="EmuWizardEmuImportIntro">Você pode importar qualquer emulador instalado no seu PC pressionando o botão "Detectar automaticamente de uma pasta...". O Playnite procurará por qualquer emulador conhecido na pasta selecionada e fornecerá a opção para importá-los. Você pode importar várias pastas usando o botão várias vezes, os emuladores serão adicionados na parte inferior da lista atual.</sys:String>
+    <sys:String x:Key="EmuWizardGameImportIntro">Você pode importar jogos pressionando o botão "Escanear pasta usando um emulador". Ao selecionar o emulador apropriado, o Playnite saberá quais tipos de arquivos devem ser importados. Você pode importar de várias pastas usando o botão várias vezes, os jogos serão adicionados na parte inferior da lista atual.</sys:String>
+    <sys:String x:Key="EmuWizardNoEmulatorWarning">Não há emuladores selecionados para importação. Você não poderá importar automaticamente nenhum jogo emulado sem configurar os emuladores primeiro. Tem certeza de que deseja continuar e sair do processo de importação?</sys:String>
+    <sys:String x:Key="EmuWizardNoEmulatorForGamesWarning">Não há emuladores configurados no Playnite. Você não pode importar jogos sem configurar os emuladores primeiro e selecionar os tipos de arquivo apropriados. Você deseja adicionar alguns emuladores agora?</sys:String>
+    <sys:String x:Key="EmuWizardButtonScanGames">Escanear pasta usando um emulador</sys:String>
+    <sys:String x:Key="EmuWizardButtonSelectFiles">Selecionar arquivos</sys:String>
+    <sys:String x:Key="EmuWizardButtonScanEmulator">Detectar automaticamente uma pasta...</sys:String>
+    <sys:String x:Key="EmuWizardButtonConfigureEmulator">Configurar emuladores...</sys:String>
+    <sys:String x:Key="EmuWizardScanning">Escaneando...</sys:String>
+
+    <!--FirstTime Wizard-->
+    <sys:String x:Key="FirstWindowTitle">Configuração Inicial</sys:String>
+    <sys:String x:Key="FirstIntro" xml:space="preserve">Este assistente lhe ajudará no processo de importação automática de jogos e configuração de bibliotecas de jogos externas. O Playnite pode importar automaticamente jogos de vários serviços de jogos como o Steam ou o GOG, além de manter a sua biblioteca sempre atualizada, atualizando-os de forma automática durante a inicialização do programa.
+        
+Tenha em mente que você sempre pode adicionar jogos personalizados de qualquer plataforma manualmente através do menu principal, clicando no botão "Playnite".   
+    </sys:String>
+    <sys:String x:Key="FirstDBLocation" xml:space="preserve">Selecione o local onde o arquivo de banco de dados da biblioteca ficará guardado. Este local poderá ser alterado posteriormente através do menu Configurações.
+
+Dica: se quiser sincronizar a sua biblioteca entre diferentes computadores, guarde o banco de dados em uma pasta na nuvem (como o Google Drive, Dropbox, etc.)</sys:String>
+    <sys:String x:Key="FirstDBLocDefault">Local de dados de programas padrão para todos os usuários</sys:String>
+    <sys:String x:Key="FirstDBLocCustom">Local personalizado</sys:String>
+    <sys:String x:Key="FirstExternalTitle">Integração da Biblioteca</sys:String>
+    <sys:String x:Key="FirstImportIntroduction" xml:space="preserve">Importe automaticamente os jogos dos seguintes serviços. Qualquer mudança posterior nos jogos (estado da instalação) serão detectadas automaticamente na próxima inicialização do Playnite ou quando ativada manualmente. As configurações selecionadas aqui afetarão tanto as importações iniciais quanto todas as subsequentes.</sys:String>
+    <sys:String x:Key="FirstSteamIntegration">Integração com o Steam</sys:String>
+    <sys:String x:Key="FirstOriginIntegration">Integração com o Origin</sys:String>
+    <sys:String x:Key="FirstGOGIntegration">Integração com o GOG</sys:String>
+    <sys:String x:Key="FirstBattleNetIntegration">Integração com a Battle.net</sys:String>
+    <sys:String x:Key="FirstUplayIntegration">Integração com o Uplay</sys:String>
+    <sys:String x:Key="FirstSteamImportCategories">Importar categorias da conta:</sys:String>
+    <sys:String x:Key="FirstOtherGamesTitle">Outros jogos</sys:String>
+    <sys:String x:Key="FirstOtherGamesText">Clique no botão abaixo para importar outros jogos instalados ou procurá-los manualmente (incluindo jogos da Loja do Windows).</sys:String>
+    <sys:String x:Key="FirstOtherGamesImportButton">Importar jogos</sys:String>
+    <sys:String x:Key="FirstConfigFinishedTitle">Configuração concluída</sys:String>
+    <sys:String x:Key="FirstConfigFinishedText" xml:space="preserve">A configuração inicial foi concluída. Lembre-se de que você pode alterar todas as configurações mais tarde através do menu "Configurações".
+
+Você também pode adicionar mais jogos através do menu principal, clicando no botão "Playnite".</sys:String>
+    
+    <!--Platforms Settings-->
+    <sys:String x:Key="PlatformsWindowTitle">Configurar Plataformas e Emuladores</sys:String>
+    <sys:String x:Key="PlatformsTitle">Plataformas</sys:String>
+    <sys:String x:Key="PlatformTitle">Plataforma</sys:String>
+    <sys:String x:Key="EmulatorsTitle">Emuladores</sys:String>
+    <sys:String x:Key="EmulatorTitle">Emulador</sys:String>
+    <sys:String x:Key="AddPlatformTitle">Adicionar Plataforma</sys:String>
+    <sys:String x:Key="SelectIconTitle">Selecionar ícone</sys:String>
+    <sys:String x:Key="SelectCoverTitle">Selecionar capa</sys:String>
+    <sys:String x:Key="SelectFileTitle">Selecionar arquivo</sys:String>
+    <sys:String x:Key="SelectUrlTitle">Selecionar URL</sys:String>
+    <sys:String x:Key="AddEmulatorTitle">Adicionar emulador</sys:String>
+    <sys:String x:Key="SupportedPlatformsTitle">Plataformas compatíveis</sys:String>
+    <sys:String x:Key="ConfirmUnsavedPlatformsTitle">Deseja salvar as alterações nas plataformas?</sys:String>
+    <sys:String x:Key="ConfirmUnsavedEmulatorsTitle">Deseja salvar as alterações nos emuladores?</sys:String>
+    <sys:String x:Key="ExecutableTitle">Executável</sys:String>
+    <sys:String x:Key="ArgumentsTitle">Argumentos</sys:String>
+    <sys:String x:Key="WorkingDirTitle">Local de destino</sys:String>
+    <sys:String x:Key="SupportedFilesTitle">Tipos de arquivo compatíveis</sys:String>
+    <sys:String x:Key="ImportEmulatorsButton">Importar emuladores...</sys:String>
+    <sys:String x:Key="DownloadEmulatorsButton">Baixar emuladores...</sys:String>
+    <sys:String x:Key="EmuLoadArgsPresetTooltip">Carregar argumentos predefinidos do perfil de um emulador conhecido</sys:String>
+    <sys:String x:Key="EmuRemovalConfirmation" xml:space="preserve">Tem certeza de que deseja remover o emulador {0}?        
+Ele está sendo usado por {1} jogos(s).</sys:String>
+    <sys:String x:Key="PlatformRemovalConfirmation" xml:space="preserve">Tem certeza de que deseja remover a plataforma {0}?        
+Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
+    
+    <sys:String x:Key="MenuSortByTitle">Ordenar por</sys:String>
+    <sys:String x:Key="MenuSortAscending">Ascendente</sys:String>
+    <sys:String x:Key="MenuSortDescending">Descendente</sys:String>
+
+    <!--Game fields-->
+    <sys:String x:Key="GameIconTitle">Ícone</sys:String>
+    <sys:String x:Key="GameCoverImageTitle">Imagem da capa</sys:String>
+    <sys:String x:Key="GameBackgroundTitle">Imagem de fundo</sys:String>
+    <sys:String x:Key="GameSortingNameTitle">Nome (ordem)</sys:String>
+    <sys:String x:Key="GameProviderTitle">Provedor</sys:String>
+    <sys:String x:Key="GameNameTitle">Nome</sys:String>
+    <sys:String x:Key="GamePlatformTitle">Plataforma</sys:String>
+    <sys:String x:Key="GameCategoriesTitle">Categorias</sys:String>
+    <sys:String x:Key="GameGenresTitle">Gêneros</sys:String>
+    <sys:String x:Key="GameReleaseDateTitle">Data de lançamento</sys:String>
+    <sys:String x:Key="GameDevelopersTitle">Desenvolvedor(a)</sys:String>
+    <sys:String x:Key="GameTagsTitle">Marcadores</sys:String>
+    <sys:String x:Key="GamePublishersTitle">Editora</sys:String>
+    <sys:String x:Key="GameIsInstalledTitle">Instalados</sys:String>
+    <sys:String x:Key="GameIsUnInstalledTitle">Desinstalados</sys:String>
+    <sys:String x:Key="GameHiddenTitle">Ocultos</sys:String>
+    <sys:String x:Key="GameFavoriteTitle">Favoritos</sys:String>
+    <sys:String x:Key="GameLastActivityTitle">Última execução</sys:String>
+    <sys:String x:Key="GameCategoryTitle">Cetegorias</sys:String>
+    <sys:String x:Key="GameDescriptionTitle">Descrição</sys:String>
+    <sys:String x:Key="GameInstallDirTitle">Local de instalação</sys:String>
+    <sys:String x:Key="GameCoverTitle">Imagem da capa</sys:String>
+    <sys:String x:Key="GameLinksTitle">Links</sys:String>
+    <sys:String x:Key="GameROMTitle">Caminho da imagem/ISO</sys:String>
+
+    <!--Errors-->
+    <sys:String x:Key="DatabaseErroTitle">Erro no Banco de Dados</sys:String>
+    <sys:String x:Key="DatabaseOpenError">Não foi possível abrir o banco de dados.</sys:String>
+    <sys:String x:Key="DiagPackageCreationError">Não foi possível criar o pacote de diagnóstico.</sys:String>
+    <sys:String x:Key="DiagPackageCreationSuccess">Pacote de diagnóstico criado com sucesso.</sys:String>
+
+    <sys:String x:Key="SteamCategoryImportError">Não foi possível importar as categorias do Steam.</sys:String>
+    
+    <sys:String x:Key="BnetInstalledImportError">Não foi possível importar os jogos instalados da Battle.net.</sys:String>
+    <sys:String x:Key="SteamInstalledImportError">Não foi possível importar os jogos instalados do Steam.</sys:String>
+    <sys:String x:Key="GOGInstalledImportError">Não foi possível importar os jogos instalados do GOG.</sys:String>
+    <sys:String x:Key="OriginInstalledImportError">Não foi possível importar os jogos instalados do Origin.</sys:String>
+    <sys:String x:Key="UplayInstalledImportError">Não foi possível importar os jogos instalados do Uplay.</sys:String>
+
+    <sys:String x:Key="BnetLibraryImportError">Não foi possível baixar a biblioteca da Battle.net.</sys:String>
+    <sys:String x:Key="SteamLibraryImportError">Não foi possível baixar a biblioteca do Steam.</sys:String>
+    <sys:String x:Key="GOGLibraryImportError">Não foi possível baixar a biblioteca do GOG.</sys:String>
+    <sys:String x:Key="OriginLibraryImportError">Não foi possível baixar a biblioteca do Origin.</sys:String>
+    <sys:String x:Key="UplayLibraryImportError">Não foi possível baixar a biblioteca do Uplay</sys:String>
+    
+    <sys:String x:Key="ScanEmulatorGamesEmptyProfileError">Não foi possível procurar por jogos usando o perfil do emulador selecionado. O perfil não contém extensões de arquivo ou plataformas.</sys:String>
+    <sys:String x:Key="StartGenericError">Não foi possível iniciar o Playnite. Feche todas as instâncias em execução e tente novamente.</sys:String>
+    <sys:String x:Key="SkinApplyError">Não foi possível aplicar o tema "{0}" usando o perfil de cores "{1}"
+        
+{1}</sys:String>
+    <sys:String x:Key="URLFormatError">Não foi possível abrir o link, o URL não está em um formato válido.</sys:String>
+
+    <!--GameEdit-->
+    <sys:String x:Key="GameEditWindowTitle">Editar Detalhes do Jogo</sys:String>
+    <sys:String x:Key="UseExeIcon">Usar ícone do executável</sys:String>
+    <sys:String x:Key="ImageURL">URL da imagem</sys:String>
+    <sys:String x:Key="AddLinkButton">Adicionar link</sys:String>
+    <sys:String x:Key="SaveChanges">Salvar alterações</sys:String>
+    <sys:String x:Key="PlayAction">Ação de executar</sys:String>
+    <sys:String x:Key="AddPlayAction">Adicionar ação de executar</sys:String>
+    <sys:String x:Key="AddAction">Adicionar ação</sys:String>
+    <sys:String x:Key="DeleteAction">Remover ação</sys:String>
+    <sys:String x:Key="RemovePlayAction">Remover ação de executar</sys:String>
+    <sys:String x:Key="OtherActions">Outras ações</sys:String>
+    <sys:String x:Key="AddGames">Adicionar jogos</sys:String>
+    <sys:String x:Key="ScanFolder">Escanear pasta...</sys:String>
+    <sys:String x:Key="Browse">Navegar...</sys:String>
+    <sys:String x:Key="OpenPlaynite">Abrir o Playnite</sys:String>
+    <sys:String x:Key="ProfileSettings">Configurações do perfil</sys:String>
+    <sys:String x:Key="EmptyGameNameError">O nome do jogo não pode estar vazio.</sys:String>
+    <sys:String x:Key="EmptyGameNameMetaSearchError">O nome do jogo não pode estar vazio antes de procurar metadados.</sys:String>
+    <sys:String x:Key="InvalidGameData">Dados do jogo inválidos</sys:String>
+    <sys:String x:Key="URLInputInfo">Insira um URL válido iniciado com http:// ou https://</sys:String>
+    <sys:String x:Key="URLInputInfoTitile">Selecionar URL</sys:String>
+    <sys:String x:Key="MetadataDownloadError">Falha ao baixar metadados: {0}</sys:String>
+    <sys:String x:Key="DownloadError">Erro ao baixar</sys:String>
+    <sys:String x:Key="ClearFilters">Limpar filtros</sys:String>
+    <sys:String x:Key="PrivateAccount">Conta privada</sys:String>
+    <sys:String x:Key="APIKey">Chave da API</sys:String>
+    <sys:String x:Key="StartupError">Erro de inicialização</sys:String>
+    <sys:String x:Key="SkinError">Erro no tema</sys:String>
+    <sys:String x:Key="ClearAll">Limpar tudo</sys:String>
+    <sys:String x:Key="SetupRunning">Instalador em execução...</sys:String>
+    <sys:String x:Key="InvalidURL">URL inválido</sys:String>
+    <sys:String x:Key="UserKey">Chave do usuário</sys:String>
+
+    <sys:String x:Key="EmulatorArguments">Argumentos do emulador</sys:String>
+    <sys:String x:Key="AdditionalEmulatorArguments">Argumentos adicionais do emulador</sys:String>
+    <sys:String x:Key="OverrideEmulatorArguments">Substituir argumentos do emulador</sys:String>
+
+    <sys:String x:Key="GameImportWindowTitle">Selecione Jogos para Importar</sys:String>
+    <sys:String x:Key="MetaLookupWindowTitle">Buscar por Metadados</sys:String>
+    <sys:String x:Key="UpdaterWindowTitle">Atualização Disponível</sys:String>
+    <sys:String x:Key="UpdaterChangesInfo">Mudanças desde a última atualização:</sys:String>
+    <sys:String x:Key="UpdaterInstallUpdate">Instalar atualização</sys:String>
+
+    <sys:String x:Key="ThemeTestReloadList">Atualizar lista de temas</sys:String>
+    <sys:String x:Key="ThemeTestApplySkin">Aplicar o tema selecionado</sys:String>
+    <sys:String x:Key="ThemeTestWatchChanges">Verificar mudanças em arquivos em tempo real</sys:String>
+    <sys:String x:Key="ThemeTestWatchChangesTooltip">Aplicar o tema automaticamente quando algum arquivo for alterado</sys:String>
+
+    <!--Game actions-->
+    <sys:String x:Key="FavoriteGame">Adicionar aos favoritos</sys:String>
+    <sys:String x:Key="RemoveFavoriteGame">Remover dos favoritos</sys:String>
+    <sys:String x:Key="HideGame">Ocultar</sys:String>
+    <sys:String x:Key="UnHideGame">Exibir na biblioteca</sys:String>
+    <sys:String x:Key="EditGame">Editar...</sys:String>
+    <sys:String x:Key="SetGameCategory">Definir categorias...</sys:String>
+    <sys:String x:Key="RemoveGame">Remover</sys:String>
+    <sys:String x:Key="PlayGame">Executar</sys:String>
+    <sys:String x:Key="InstallGame">Instalar</sys:String>
+    <sys:String x:Key="UninstallGame">Desinstalar</sys:String>
+    <sys:String x:Key="OpenGameLocation">Abrir o local do jogo</sys:String>
+    <sys:String x:Key="CreateDesktopShortcut">Criar atalho na área de trabalho</sys:String>
+    <sys:String x:Key="MoreAction">Mais</sys:String>
+
+    <sys:String x:Key="MetadownloadNoResultsMessage">Não encontramos nenhuma informação relevante sobre o jogo "{0}" na página especificada.</sys:String>
+    <sys:String x:Key="MetadownloadSingleGameTip">Dica: você pode usar um processo mais avançado para baixar metadados ao editar um único jogo através da opção "Editar...".</sys:String>
+    <sys:String x:Key="ProgreessAvailabilityMessage">Indisponível enquanto houver alguma ação em andamento.</sys:String>
+</ResourceDictionary>
