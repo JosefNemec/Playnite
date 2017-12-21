@@ -52,8 +52,8 @@
             <TabItem Header="{DynamicResource PlatformsTitle}" IsSelected="{Binding IsPlatformsSelected}">
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4*" MaxWidth="250"/>
-                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="7*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -61,15 +61,16 @@
                         
                     <Grid Grid.Column="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <ListBox Name="ListPlatforms" Grid.ColumnSpan="2" Grid.Row="0" Margin="5,5,5,0"
+                        <ListBox Name="ListPlatforms" Grid.ColumnSpan="3" Grid.Row="0" Margin="5,5,5,0"
                                  ItemsSource="{Binding Platforms}"
                                  SelectedItem="{Binding SelectedPlatform, Mode=TwoWay}"
                                  pui:ScrollToSelectedBehavior.Enabled="True">
@@ -124,8 +125,8 @@
             <TabItem Header="{DynamicResource EmulatorsTitle}" IsSelected="{Binding IsEmulatorsSelected}">
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4*" MaxWidth="250"/>
-                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="7*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -133,16 +134,17 @@
 
                     <Grid Grid.Column="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <ListBox Name="ListEmulators" Grid.ColumnSpan="3" Grid.Row="0" Margin="5,5,5,5"
+                        <ListBox Name="ListEmulators" Grid.ColumnSpan="4" Grid.Row="0" Margin="5,5,5,5"
                                  ItemsSource="{Binding Emulators}"
                                  SelectedItem="{Binding SelectedEmulator, Mode=TwoWay}"
                                  pui:ScrollToSelectedBehavior.Enabled="True">

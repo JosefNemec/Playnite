@@ -65,12 +65,12 @@
                             <Setter Property="VerticalAlignment" Value="Center" />
                         </Style>
                         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}" >
-                            <Setter Property="Margin" Value="0,0,0,0" />
+                            <Setter Property="Margin" Value="0,0,10,0" />
                             <Setter Property="VerticalAlignment" Value="Center" />
                         </Style>
                     </Grid.Resources>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
