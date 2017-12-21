@@ -88,7 +88,7 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="TypeLabel">Typ</sys:String>
     <sys:String x:Key="ProfileLabel">Profil</sys:String>
     <sys:String x:Key="ProfilesLabel">Profile</sys:String>
-    <sys:String x:Key="RemoveLabel">Entferne</sys:String>
+    <sys:String x:Key="RemoveLabel">Entfernen</sys:String>
     <sys:String x:Key="DownloadLabel">Herunterladen</sys:String>
     <sys:String x:Key="SearchLabel">Suche</sys:String>
     <sys:String x:Key="GenreLabel">Genre</sys:String>
@@ -102,6 +102,7 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="CoversLabel">Cover</sys:String>
     <sys:String x:Key="DetailsLabel">Details</sys:String>
     <sys:String x:Key="CustomLabel">Benutzerdefiniert</sys:String>
+    <sys:String x:Key="URLLabel">URL</sys:String>
     
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Es können folgende Variablen verwendet werden:
 {InstallDir} - Instllationspfad des Spiels
@@ -112,7 +113,7 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
 Beispiel: -image "{ImagePath}" -fullscreen
 Ergebnis: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
-    <sys:String x:Key="ExecIconMissingPlayAction">Ohne "Spielen"-Aktion oder bei Verwenden einer URL kann kein Icon definiert werden.</sys:String>
+    <sys:String x:Key="ExecIconMissingPlayAction">Ohne "Spielen"-Aktion oder beim Verwenden einer URL kann kein Icon automatisch ausgewählt werden.</sys:String>
 
     <sys:String x:Key="MetaGamesSourceIntro">Spielauswahl</sys:String>
     <sys:String x:Key="MetaGamesSourceDescription">Bitte wähle die Spiele für die Metadaten aktualisiert werden sollen:</sys:String>
@@ -279,18 +280,18 @@ You can also add any other game(s) later from main menu by clicking on Playnite 
     <sys:String x:Key="EmulatorsTitle">Emulators</sys:String>
     <sys:String x:Key="EmulatorTitle">Emulator</sys:String>
     <sys:String x:Key="AddPlatformTitle">Add Platform</sys:String>
-    <sys:String x:Key="SelectIconTitle">Select Icon</sys:String>
-    <sys:String x:Key="SelectCoverTitle">Select Cover</sys:String>
-    <sys:String x:Key="SelectFileTitle">Select File</sys:String>
-    <sys:String x:Key="SelectUrlTitle">Select URL</sys:String>
+    <sys:String x:Key="SelectIconTitle">Datei</sys:String>
+    <sys:String x:Key="SelectCoverTitle">Datei</sys:String>
+    <sys:String x:Key="SelectFileTitle">Datei</sys:String>
+    <sys:String x:Key="SelectUrlTitle">URL</sys:String>
     <sys:String x:Key="AddEmulatorTitle">Add Emulator</sys:String>
     <sys:String x:Key="SupportedPlatformsTitle">Supported Platform(s)</sys:String>
     <sys:String x:Key="ConfirmUnsavedPlatformsTitle">Do you want to save platform changes?</sys:String>
     <sys:String x:Key="ConfirmUnsavedEmulatorsTitle">Do you want to save emulator changes?</sys:String>
-    <sys:String x:Key="ExecutableTitle">Executable</sys:String>
-    <sys:String x:Key="ArgumentsTitle">Arguments</sys:String>
-    <sys:String x:Key="WorkingDirTitle">Working Directory</sys:String>
-    <sys:String x:Key="SupportedFilesTitle">Supported File Types</sys:String>
+    <sys:String x:Key="ExecutableTitle">Ausführbare Datei</sys:String>
+    <sys:String x:Key="ArgumentsTitle">Argumente</sys:String>
+    <sys:String x:Key="WorkingDirTitle">Arbeitsverzeichnis</sys:String>
+    <sys:String x:Key="SupportedFilesTitle">Unterstützte Dateitypen</sys:String>
     <sys:String x:Key="ImportEmulatorsButton">Import Emulators...</sys:String>
     <sys:String x:Key="DownloadEmulatorsButton">Download Emulators...</sys:String>
     <sys:String x:Key="EmuLoadArgsPresetTooltip">Load arguments preset from known emulator profile</sys:String>
@@ -302,6 +303,10 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="MenuSortByTitle">Sortieren nach</sys:String>
     <sys:String x:Key="MenuSortAscending">Aufsteigend</sys:String>
     <sys:String x:Key="MenuSortDescending">Absteigend</sys:String>
+    <sys:String x:Key="MenuGroupDont">Nicht gruppieren</sys:String>
+    <sys:String x:Key="MenuGroupProvider">Gruppiere nach Anbieter</sys:String>
+    <sys:String x:Key="MenuGroupCategory">Gruppiere nach Kategorie</sys:String>
+    <sys:String x:Key="MenuGroupPlatform">Gruppiere nach Plattform</sys:String>
 
     <!--Game fields-->
     <sys:String x:Key="GameIconTitle">Icon</sys:String>
@@ -349,59 +354,59 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="OriginLibraryImportError">Fehler beim Import der Origin-Bibliothek.</sys:String>
     <sys:String x:Key="UplayLibraryImportError">Fehler beim Import der Uplay-Bibliothek.</sys:String>
     
-    <sys:String x:Key="ScanEmulatorGamesEmptyProfileError">Cannot search for games by selected emulator profile. Profile doesn't contain any file extensions or platforms.</sys:String>
-    <sys:String x:Key="StartGenericError">Playnite failed to start. Please close all running instances and try again.</sys:String>
-    <sys:String x:Key="SkinApplyError">Failed to apply theme "{0}", color profile "{1}"</sys:String>
-    <sys:String x:Key="URLFormatError">Cannot open link, URL is not in valid format.</sys:String>
+    <sys:String x:Key="ScanEmulatorGamesEmptyProfileError">Für das ausgewählte Emulatorprofil konnten keine Spiele gefunden werden: Du musst entweder eine Plattform oder Dateiendungen definieren.</sys:String>
+    <sys:String x:Key="StartGenericError">Playnite konnte nicht gestartet werden. Bitte beende alle laufenden Instanzen von Playnite und versuche es erneut.</sys:String>
+    <sys:String x:Key="SkinApplyError">Fehler beim Anwenden des Themes '{0}' mit Farbprofil '{1}'.</sys:String>
+    <sys:String x:Key="URLFormatError">Fehler beim Öffnen des Links: URL ist ungültig.</sys:String>
 
     <!--GameEdit-->
-    <sys:String x:Key="GameEditWindowTitle">Edit Game Details</sys:String>
-    <sys:String x:Key="UseExeIcon">Use exe's icon</sys:String>
-    <sys:String x:Key="ImageURL">Image URL</sys:String>
-    <sys:String x:Key="AddLinkButton">Add Link</sys:String>
-    <sys:String x:Key="SaveChanges">Save Changes</sys:String>
-    <sys:String x:Key="PlayAction">Play Action</sys:String>
-    <sys:String x:Key="AddPlayAction">Add Play Action</sys:String>
-    <sys:String x:Key="AddAction">Add Action</sys:String>
-    <sys:String x:Key="DeleteAction">Delete Action</sys:String>
-    <sys:String x:Key="RemovePlayAction">Remove Play Action</sys:String>
-    <sys:String x:Key="OtherActions">Other Actions</sys:String>
-    <sys:String x:Key="AddGames">Add Games</sys:String>
-    <sys:String x:Key="ScanFolder">Scan Folder...</sys:String>
-    <sys:String x:Key="Browse">Browse...</sys:String>
-    <sys:String x:Key="OpenPlaynite">Open Playnite</sys:String>
-    <sys:String x:Key="ProfileSettings">Profile Settings</sys:String>
-    <sys:String x:Key="EmptyGameNameError">Game name cannot be empty.</sys:String>
-    <sys:String x:Key="EmptyGameNameMetaSearchError">Game name cannot be empty before searching metadata.</sys:String>
-    <sys:String x:Key="InvalidGameData">Invalid game data</sys:String>
-    <sys:String x:Key="URLInputInfo">Enter valid web URL starting with http:// or https://</sys:String>
-    <sys:String x:Key="URLInputInfoTitile">Select URL</sys:String>
-    <sys:String x:Key="MetadataDownloadError">Failed to download metadata: {0}</sys:String>
-    <sys:String x:Key="DownloadError">Download Error</sys:String>
+    <sys:String x:Key="GameEditWindowTitle">Metadaten bearbeiten</sys:String>
+    <sys:String x:Key="UseExeIcon">Icon der ausführbaren Datei</sys:String>
+    <sys:String x:Key="ImageURL">URL</sys:String>
+    <sys:String x:Key="AddLinkButton">Link hinzufügen</sys:String>
+    <sys:String x:Key="SaveChanges">Speichern</sys:String>
+    <sys:String x:Key="PlayAction">"Spielen"-Aktion</sys:String>
+    <sys:String x:Key="AddPlayAction">Aktion hinzufügen</sys:String>
+    <sys:String x:Key="AddAction">Aktion hinzufügen</sys:String>
+    <sys:String x:Key="DeleteAction">Aktion entfernen</sys:String>
+    <sys:String x:Key="RemovePlayAction">Aktion entfernen</sys:String>
+    <sys:String x:Key="OtherActions">Andere Aktionen</sys:String>
+    <sys:String x:Key="AddGames">Spiele hinzufügen</sys:String>
+    <sys:String x:Key="ScanFolder">Verzeichnis durchsuchen...</sys:String>
+    <sys:String x:Key="Browse">Datei auswählen...</sys:String>
+    <sys:String x:Key="OpenPlaynite">Öffne Playnite</sys:String>
+    <sys:String x:Key="ProfileSettings">Profileinstellungen</sys:String>
+    <sys:String x:Key="EmptyGameNameError">Du musst dem Spiel einen Namen geben.</sys:String>
+    <sys:String x:Key="EmptyGameNameMetaSearchError">Du musst dem Spiel einen Namen geben.</sys:String>
+    <sys:String x:Key="InvalidGameData">Ungültige Metadaten</sys:String>
+    <sys:String x:Key="URLInputInfo">Bitte gib eine gültige URL ein (mit http:// oder https://):</sys:String>
+    <sys:String x:Key="URLInputInfoTitile">URL</sys:String>
+    <sys:String x:Key="MetadataDownloadError">Fehler beim Herunterladen der Metadaten: {0}</sys:String>
+    <sys:String x:Key="DownloadError">Download-Fehler</sys:String>
     <sys:String x:Key="ClearFilters">Filter zurücksetzen</sys:String>
     <sys:String x:Key="PrivateAccount">Privater Account</sys:String>
     <sys:String x:Key="APIKey">API Key</sys:String>
-    <sys:String x:Key="StartupError">Startup Error</sys:String>
-    <sys:String x:Key="SkinError">Theme Error</sys:String>
-    <sys:String x:Key="ClearAll">Clear All</sys:String>
-    <sys:String x:Key="SetupRunning">Setup in progress...</sys:String>
-    <sys:String x:Key="InvalidURL">Invalid URL</sys:String>
-    <sys:String x:Key="UserKey">User key</sys:String>
+    <sys:String x:Key="StartupError">Fehler beim Starten von Playnite</sys:String>
+    <sys:String x:Key="SkinError">Ungültiges Theme</sys:String>
+    <sys:String x:Key="ClearAll">Zurücksetzen</sys:String>
+    <sys:String x:Key="SetupRunning">Installation wird durchgeführt...</sys:String>
+    <sys:String x:Key="InvalidURL">Ungültige URL</sys:String>
+    <sys:String x:Key="UserKey">Schlüssel</sys:String>
 
-    <sys:String x:Key="EmulatorArguments">Emulator Arguments</sys:String>
-    <sys:String x:Key="AdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
-    <sys:String x:Key="OverrideEmulatorArguments">Override Emulator Arguments</sys:String>
+    <sys:String x:Key="EmulatorArguments">Emulator-Argumente</sys:String>
+    <sys:String x:Key="AdditionalEmulatorArguments">Zusätzliche Emulator-Argumente</sys:String>
+    <sys:String x:Key="OverrideEmulatorArguments">Überschreibe Emulator-Argumente</sys:String>
 
-    <sys:String x:Key="GameImportWindowTitle">Select Games to Import</sys:String>
-    <sys:String x:Key="MetaLookupWindowTitle">Metadata search</sys:String>
-    <sys:String x:Key="UpdaterWindowTitle">Update Available</sys:String>
-    <sys:String x:Key="UpdaterChangesInfo">Changes since last update:</sys:String>
-    <sys:String x:Key="UpdaterInstallUpdate">Install Update</sys:String>
+    <sys:String x:Key="GameImportWindowTitle">Spiele importieren</sys:String>
+    <sys:String x:Key="MetaLookupWindowTitle">Metadaten importieren</sys:String>
+    <sys:String x:Key="UpdaterWindowTitle">Aktualisierung verfügbar</sys:String>
+    <sys:String x:Key="UpdaterChangesInfo">Änderungen seit der letzten Aktualisierung:</sys:String>
+    <sys:String x:Key="UpdaterInstallUpdate">Aktualisieren</sys:String>
 
-    <sys:String x:Key="ThemeTestReloadList">Reload theme list</sys:String>
-    <sys:String x:Key="ThemeTestApplySkin">Apply selected theme</sys:String>
-    <sys:String x:Key="ThemeTestWatchChanges">Watch file changes</sys:String>
-    <sys:String x:Key="ThemeTestWatchChangesTooltip">Automatically apply theme when the source file changes</sys:String>
+    <sys:String x:Key="ThemeTestReloadList">Themes-Liste neu laden</sys:String>
+    <sys:String x:Key="ThemeTestApplySkin">Theme anwenden</sys:String>
+    <sys:String x:Key="ThemeTestWatchChanges">Dateiänderungen überwachen</sys:String>
+    <sys:String x:Key="ThemeTestWatchChangesTooltip">Überwacht die Dateien des Themes auf Änderungen und wendet diese automatisch an.</sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="FavoriteGame">Zu Favoriten hinzufügen</sys:String>
