@@ -156,7 +156,7 @@ namespace Playnite.MetaProviders
             }
         }
 
-        private MetadataFieldSettings coverImage = new MetadataFieldSettings();
+        private MetadataFieldSettings coverImage = new MetadataFieldSettings() { Source = MetadataSource.IGDBOverStore };
         public MetadataFieldSettings CoverImage
         {
             get => coverImage;

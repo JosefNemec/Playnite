@@ -844,6 +844,7 @@ namespace PlayniteUI.ViewModels
                         ProgressStatus = Resources.FindString("ProgressMetadata");
                         var metaSettings = new MetadataDownloaderSettings();
                         metaSettings.ConfigureFields(MetadataSource.Store, true);
+                        metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         var downloader = new MetadataDownloader(AppSettings.IGDBApiKey);
                         downloader.DownloadMetadataThreaded(
                             addedGames,
