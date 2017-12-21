@@ -2395,12 +2395,6 @@
                                     pui:ScrollToSelectedBehavior.Enabled="True"
                                     VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
                                     VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Recycling">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseDoubleClick" >
-                            <i:InvokeCommandAction Command="{Binding StartGameCommand}"
-                                                   CommandParameter="{Binding SelectedGame.Game}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
                     <pc:ExtendedListBox.ContextMenu>
                         <pc:GameMenu DataContext="{Binding Data.SelectedGames, Source={StaticResource Proxy}}" />
                     </pc:ExtendedListBox.ContextMenu>
@@ -2423,7 +2417,12 @@
                     </pc:ExtendedListBox.GroupStyle>
                     <pc:ExtendedListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
+                            <DockPanel>
+                                <DockPanel.InputBindings>
+                                    <MouseBinding MouseAction="LeftDoubleClick"
+                                                  Command="{Binding Data.StartGameCommand, Source={StaticResource Proxy}}"
+                                                  CommandParameter="{Binding Game}"/>
+                                </DockPanel.InputBindings>
                                 <Image Height="32" RenderOptions.BitmapScalingMode="Fant" DockPanel.Dock="Left" Margin="0,0,8,0"
                                        Visibility="{Binding Path=Data.AppSettings.ShowIconsOnList, Source={StaticResource Proxy}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <Image.Source>
@@ -2434,8 +2433,9 @@
                                     </Image.Source>
                                 </Image>
                                 <TextBlock Text="{Binding DisplayName, Mode=OneWay}" TextTrimming="CharacterEllipsis"
-                                        VerticalAlignment="Center" DockPanel.Dock="Left" />
-                            </StackPanel>
+                                           VerticalAlignment="Center" DockPanel.Dock="Left">
+                                </TextBlock>
+                            </DockPanel>
                         </DataTemplate>
                     </pc:ExtendedListBox.ItemTemplate>
                 </pc:ExtendedListBox>

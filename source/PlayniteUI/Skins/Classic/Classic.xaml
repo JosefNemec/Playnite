@@ -2035,19 +2035,13 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            
+
             <ListView Grid.Row="0" Grid.Column="0"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="ItemsView"
                       ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Single"
                       pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"
                       ItemsSource="{Binding GamesView.CollectionView}"
                       SelectedItem="{Binding SelectedGame, Mode=TwoWay}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDoubleClick" >
-                        <i:InvokeCommandAction Command="{Binding StartGameCommand}"
-                                               CommandParameter="{Binding SelectedGame.Game}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
                 <ListView.Resources>
                     <Style TargetType="GridViewColumnHeader">
                         <Setter Property="Visibility" Value="Collapsed" />
@@ -2065,8 +2059,13 @@
                                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                                     <Grid Background="Transparent">
                                         <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="2"
-                                                                    Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
                                             <Grid>
+                                                <Grid.InputBindings>
+                                                    <MouseBinding MouseAction="LeftDoubleClick"
+                                                                  Command="{Binding Data.StartGameCommand, Source={StaticResource CoversProxy}}"
+                                                                  CommandParameter="{Binding Game}"/>
+                                                </Grid.InputBindings>
                                                 <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
                                                     <Image.Source>
                                                         <PriorityBinding>
@@ -2799,12 +2798,6 @@
                                          pui:ScrollToSelectedBehavior.Enabled="True"
                                          VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
                                          VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Recycling">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseDoubleClick" >
-                                            <i:InvokeCommandAction Command="{Binding StartGameCommand}"
-                                                                   CommandParameter="{Binding SelectedGame.Game}"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
                                     <ListBox.ItemContainerStyle>
                                         <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                                             <Style.Triggers>
@@ -2846,6 +2839,11 @@
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <DockPanel Margin="1">
+                                                <DockPanel.InputBindings>
+                                                    <MouseBinding MouseAction="LeftDoubleClick"
+                                                                  Command="{Binding Data.StartGameCommand, Source={StaticResource Proxy}}"
+                                                                  CommandParameter="{Binding Game}"/>
+                                                </DockPanel.InputBindings>
                                                 <Image Height="32" RenderOptions.BitmapScalingMode="Fant" DockPanel.Dock="Left" Margin="0,0,8,0"
                                 Visibility="{Binding Path=Data.AppSettings.ShowIconsOnList, Source={StaticResource Proxy}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <Image.Source>
