@@ -598,6 +598,7 @@ namespace PlayniteUI.ViewModels
                     if (progressModel.ActivateProgress() == false)
                     {
                         Dialogs.ShowMessage(Resources.FindString("DBUpgradeFail"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                        GameAdditionAllowed = true;
                         return;
                     }
                 }
