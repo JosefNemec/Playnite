@@ -2087,7 +2087,9 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="7*"/>
+
             </Grid.RowDefinitions>
             <Grid.Style>
                 <Style TargetType="Grid">
@@ -2101,14 +2103,14 @@
 
             <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontFamily="{DynamicResource FontFamily}"
                        Text="{Binding Game.DisplayName, Mode=OneWay}"
-                       FontSize="34" Margin="40,60,0,60" TextWrapping="Wrap"
+                       FontSize="34" Margin="40,60,0,0" TextWrapping="Wrap"
                        DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
                 <TextBlock.Effect>
                     <DropShadowEffect ShadowDepth="3"/>
                 </TextBlock.Effect>
             </TextBlock>
                         
-            <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+            <StackPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top"
                         Margin="40,0,0,0">                
                 <Image Margin="0,0,0,10" VerticalAlignment="Top"          
                        RenderOptions.BitmapScalingMode="Fant"
@@ -2131,7 +2133,7 @@
                 </Button>
             </StackPanel>
 
-            <Border Grid.Column="1" Grid.Row="1" Padding="10" Margin="20,0,20,20"
+            <Border Grid.Column="1" Grid.Row="2" Padding="10" Margin="20,0,20,20"
                     Grid.RowSpan="2" VerticalAlignment="Top" MaxWidth="300"
                     CornerRadius="2"
                     Background="{DynamicResource GameDetailsBackGroundBrush}"
@@ -2141,7 +2143,7 @@
                 </ScrollViewer>
             </Border>
 
-            <Border Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,25,20"
+            <Border Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Margin="0,0,25,20"
                     CornerRadius="2" VerticalAlignment="Top"
                     Background="{DynamicResource GameDetailsBackGroundBrush}">
                 <Border.Style>
