@@ -8,8 +8,8 @@
     <sys:String x:Key="LanguageSettingsLabel">Sprache</sys:String>
 
     <sys:String x:Key="ExitAppLabel">Beenden</sys:String>
-    <sys:String x:Key="FilterActiveLabel">Filter sind aktiv (Klicken für Filter Panel)</sys:String>
-    <sys:String x:Key="FilterInactiveLabel">Filter sind nicht aktiv (Klicken für Filter Panel)</sys:String>
+    <sys:String x:Key="FilterActiveLabel">Filter sind aktiv (Klicken für Filteroptionen)</sys:String>
+    <sys:String x:Key="FilterInactiveLabel">Filter sind nicht aktiv (Klicken für Filteroptionen)</sys:String>
 
     <sys:String x:Key="InvalidDataTitle">Ungültige Daten</sys:String>
     <sys:String x:Key="SaveChangesAskTitle">Änderungen speichern?</sys:String>
@@ -27,8 +27,8 @@
 Inaktiv - Spiel aus Kategorie entfernen
 Unentschieden - Keine Änderung (mehrere Spiele)</sys:String>
 
-    <sys:String x:Key="CrashWindowTitle">Oh Nein, etwas schlimmes ist passiert...</sys:String>
-    <sys:String x:Key="CrashDescription">Playnite hat ein Problem festgestellt das es nicht beheben konnte. Wenn du uns bei der Verbesserung von Playnite helfen möchtest, bitte erstelle über das "Über Playnite"-Menü Diagnosedaten und erstelle ein Issue auf GitHub. Danke!</sys:String>
+    <sys:String x:Key="CrashWindowTitle">Oh nein, das hätte nicht passieren dürfen...</sys:String>
+    <sys:String x:Key="CrashDescription">Playnite hat ein schwerwiegendes Problem festgestellt. Wenn du uns bei der Verbesserung von Playnite helfen möchtest erstelle bitte über das "Über Playnite"-Menü Diagnosedaten und sende uns Feedback via GitHub. Danke!</sys:String>
     <sys:String x:Key="CrashReportIssue">Issue erstellen</sys:String>
     <sys:String x:Key="CrashRestartPlaynite">Playnite neu starten</sys:String>
     <sys:String x:Key="CrashClosePlaynite">Playnite beenden</sys:String>
@@ -44,16 +44,16 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="SteamFriendsTooltip">Steam Freundesliste</sys:String>
     <sys:String x:Key="GameEditChangeNotif">Abschnitt enthält zu speichernde Änderungen</sys:String>
     <sys:String x:Key="DBUpgradeProgress">Aktualisiere Datenbank...</sys:String>
-    <sys:String x:Key="DBUpgradeFail">Datenbank-Aktualisierung ist fehlgeschlagen, konnte Datenbank nicht öffnen.</sys:String>
+    <sys:String x:Key="DBUpgradeFail">Fehler beim Aktualisieren der Datenbank: Datenbank ist nicht geöffnet</sys:String>
 
     <sys:String x:Key="GameError">Spielfehler</sys:String>
-    <sys:String x:Key="GameStartErrorNoGame">Konnte Spiel nicht starten. '{0}' befindet sich nicht in der Datenbank.</sys:String>
-    <sys:String x:Key="GameStartError">Konnte Spiel nicht starten: {0}</sys:String>
-    <sys:String x:Key="GameStartActionError">Konnte Aktion nicht ausführen: {0}</sys:String>
-    <sys:String x:Key="GameOpenLocationError">Konnte Installationspfad nicht öffnen: {0}</sys:String>
-    <sys:String x:Key="GameShortcutError">Konnte Verknüpfung nicht erstellen: {0}</sys:String>
-    <sys:String x:Key="GameInstallError">Konnte Spiel nicht installieren: {0}</sys:String>
-    <sys:String x:Key="GameUninstallError">Konnte Spiel nicht deinstallieren: {0}</sys:String>
+    <sys:String x:Key="GameStartErrorNoGame">Fehler beim Starten des Spiels: '{0}' befindet sich nicht in der Datenbank</sys:String>
+    <sys:String x:Key="GameStartError">Fehler beim Starten des Spiels: {0}</sys:String>
+    <sys:String x:Key="GameStartActionError">Fehler beim Ausführen der Aktion: {0}</sys:String>
+    <sys:String x:Key="GameOpenLocationError">Fehler beim Öffnen des Installationspfades: {0}</sys:String>
+    <sys:String x:Key="GameShortcutError">Fehler beim Erstellen der Verknüpfung: {0}</sys:String>
+    <sys:String x:Key="GameInstallError">Fehler beim Installieren des Spiels: {0}</sys:String>
+    <sys:String x:Key="GameUninstallError">Fehler beim Deinstallieren des Spiels: {0}</sys:String>
 
 
     <!--General-->
@@ -205,8 +205,8 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="SettingsSteamCatImportWarn">Dies wird die Kategorien aller Steam-Spiele zurücksetzen. Bist du sicher?</sys:String>
     <sys:String x:Key="SettingsSteamCatImportWarnTitle">Kategorien importieren</sys:String>
     <sys:String x:Key="SettingsSteamCatImportErrorAccount">Es wurde kein Account zum importieren von Kategorien ausgewählt.</sys:String>
-    <sys:String x:Key="SettingsSteamCatImportErrorDb">Konnte Steam-Kategorien nicht importieren: Datenbank ist nicht geöffnet</sys:String>
-    <sys:String x:Key="SettingsSteamCatImportError">Konnte Steam-Kategorien nicht importieren: {0}</sys:String>
+    <sys:String x:Key="SettingsSteamCatImportErrorDb">Fehler beim Import der Steam-Kategorien: Datenbank ist nicht geöffnet</sys:String>
+    <sys:String x:Key="SettingsSteamCatImportError">Fehler beim Import der Steam-Kategorien: {0}</sys:String>
     <sys:String x:Key="SettingsClearCacheWarn">Dies wird alle Verknüpfungen entfernen und Playnite neu starten. Bist du sicher?</sys:String>
     <sys:String x:Key="SettingsClearCacheTitle">Cache leeren?</sys:String>
     <sys:String x:Key="SettingsApiKeyTooltip">Für private Accounts ist ein API-Key notwendig.</sys:String>
@@ -331,8 +331,8 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
 
     <!--Errors-->
     <sys:String x:Key="DatabaseErroTitle">Datenbankfehler</sys:String>
-    <sys:String x:Key="DatabaseOpenError">Konnte Datenbank nicht öffnen..</sys:String>
-    <sys:String x:Key="DiagPackageCreationError">Konnte Diagnosedaten nicht erstellen.</sys:String>
+    <sys:String x:Key="DatabaseOpenError">Fehler beim Öffnen der Datenbank.</sys:String>
+    <sys:String x:Key="DiagPackageCreationError">Fehler beim Erstellen von Diagnosedaten.</sys:String>
     <sys:String x:Key="DiagPackageCreationSuccess">Diagnosedaten erfolgreich erstellt.</sys:String>
 
     <sys:String x:Key="SteamCategoryImportError">Fehler beim Import der Steam-Kategorien.</sys:String>
@@ -418,7 +418,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="CreateDesktopShortcut">Erstelle Desktop-Verknüpfung</sys:String>
     <sys:String x:Key="MoreAction">Mehr</sys:String>
 
-    <sys:String x:Key="MetadownloadNoResultsMessage">Didn't found any relevant information about game '{0}' on specified page.</sys:String>
-    <sys:String x:Key="MetadownloadSingleGameTip">Tip: You can use more advanced metadata download process while editing single game via "Edit" menu option.</sys:String>
-    <sys:String x:Key="ProgreessAvailabilityMessage">Not available when some action is in progress.</sys:String>
+    <sys:String x:Key="MetadownloadNoResultsMessage">Zum Spiel '{0}' konnten keine relevanten Metadaten gefunden werden.</sys:String>
+    <sys:String x:Key="MetadownloadSingleGameTip">Tipp: Du kannst einen erweiterten Dialog zum Import von Metadaten verwenden wenn du den Menüpunkt "Metadaten bearbeiten" eines einzelnen Spiels anwählst.</sys:String>
+    <sys:String x:Key="ProgreessAvailabilityMessage">Es wird gerade eine andere Aktion ausgeführt...</sys:String>
 </ResourceDictionary>
