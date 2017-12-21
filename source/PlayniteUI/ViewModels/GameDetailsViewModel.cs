@@ -62,7 +62,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                return Game != null && Game.IsInstalled;
+                return Game != null && Game.IsInstalled && !IsSetupProgressAvailable;
             }
         }
 

@@ -28,11 +28,11 @@ namespace PlayniteTests.Providers.Origin
             Assert.IsTrue(Directory.Exists(game.InstallDirectory));
             Assert.IsNotNull(game.PlayTask);
 
-            foreach (var g in games)
+            foreach (Game g in games)
             {
                 if (g.PlayTask.Type == GameTaskType.File)
-                {
-                    Assert.IsTrue(File.Exists(g.PlayTask.Path));
+                {                     
+                    Assert.IsTrue(File.Exists(g.ResolveVariables(g.PlayTask.Path)));
                 }
             }
         }

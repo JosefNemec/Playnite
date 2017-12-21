@@ -229,6 +229,12 @@ namespace Playnite.Providers.Origin
 
                         newGame.InstallDirectory = Path.GetDirectoryName(installPath);
                         newGame.PlayTask = GetGamePlayTask(localData);
+                        if (newGame.PlayTask.Type == GameTaskType.File)
+                        {
+                            newGame.PlayTask.WorkingDir = newGame.PlayTask.WorkingDir.Replace(newGame.InstallDirectory, "{InstallDir}");
+                            newGame.PlayTask.Path = newGame.PlayTask.Path.Replace(newGame.InstallDirectory, "{InstallDir}");
+                        }
+
                         games.Add(newGame);
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)

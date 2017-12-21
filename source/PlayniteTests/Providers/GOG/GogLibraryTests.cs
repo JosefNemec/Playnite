@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Playnite.Models;
 
 namespace Playnite.Providers.GOG.Tests
 {
@@ -20,14 +21,14 @@ namespace Playnite.Providers.GOG.Tests
             Assert.AreNotEqual(0, games.Count);
             CollectionAssert.AllItemsAreUnique(games);
 
-            foreach (var game in games)
+            foreach (Game game in games)
             {
                 Assert.IsFalse(string.IsNullOrEmpty(game.Name));
                 Assert.IsFalse(string.IsNullOrEmpty(game.ProviderId));
                 Assert.IsFalse(string.IsNullOrEmpty(game.InstallDirectory));
                 Assert.IsTrue(Directory.Exists(game.InstallDirectory));
                 Assert.IsNotNull(game.PlayTask);
-                Assert.IsTrue(File.Exists(game.PlayTask.Path));
+                Assert.IsTrue(File.Exists(game.ResolveVariables(game.PlayTask.Path)));
             }
         }
 
@@ -39,14 +40,14 @@ namespace Playnite.Providers.GOG.Tests
             Assert.AreNotEqual(0, games.Count);
             CollectionAssert.AllItemsAreUnique(games);
 
-            foreach (var game in games)
+            foreach (Game game in games)
             {
                 Assert.IsFalse(string.IsNullOrEmpty(game.Name));
                 Assert.IsFalse(string.IsNullOrEmpty(game.ProviderId));
                 Assert.IsFalse(string.IsNullOrEmpty(game.InstallDirectory));
                 Assert.IsTrue(Directory.Exists(game.InstallDirectory));
                 Assert.IsNotNull(game.PlayTask);
-                Assert.IsTrue(File.Exists(game.PlayTask.Path));
+                Assert.IsTrue(File.Exists(game.ResolveVariables(game.PlayTask.Path)));
             }
         }
 

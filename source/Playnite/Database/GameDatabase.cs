@@ -1091,8 +1091,11 @@ namespace Playnite.Database
                 }
                 else
                 {
-                    existingGame.PlayTask = newGame.PlayTask;
                     existingGame.InstallDirectory = newGame.InstallDirectory;
+                    if (existingGame.PlayTask == null)
+                    {
+                        existingGame.PlayTask = newGame.PlayTask;
+                    }
 
                     // Don't import custom action if imported already (user may changed them manually and this would overwrite it)
                     if (existingGame.OtherTasks?.FirstOrDefault(a => a.IsBuiltIn) == null && newGame.OtherTasks != null)

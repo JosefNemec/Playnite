@@ -33,8 +33,8 @@ namespace Playnite.Providers.GOG
                     IsPrimary = isPrimary,
                     Arguments = arguments,
                     Name = string.IsNullOrEmpty(name) ? "Play" : name,
-                    Path = type == GogGameTaskInfo.TaskType.FileTask ? Path.Combine(installDirectory, path) : link,
-                    WorkingDir = Path.Combine(installDirectory, (workingDir ?? string.Empty)),
+                    Path = type == GogGameTaskInfo.TaskType.FileTask ? Paths.FixSeparators(Path.Combine(@"{InstallDir}\", path)) : link,
+                    WorkingDir = Paths.FixSeparators(Path.Combine(@"{InstallDir}\", (workingDir ?? string.Empty))),
                     Type = type == GogGameTaskInfo.TaskType.FileTask ? GameTaskType.File : GameTaskType.URL,
                     IsBuiltIn = true
                 };

@@ -141,6 +141,17 @@ namespace Playnite
             return true;
         }
 
+        public static string FixSeparators(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                return path;
+            }
+
+            var newPath = path.Replace('\\', Path.DirectorySeparatorChar);
+            return newPath.Replace('/', Path.DirectorySeparatorChar);
+        }
+
         public static string Normalize(string path)
         {
             return Path.GetFullPath(new Uri(path).LocalPath).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar).ToUpperInvariant();

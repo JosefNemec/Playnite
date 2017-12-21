@@ -25,5 +25,11 @@ namespace PlayniteTests
             Assert.IsFalse(Paths.GetValidFilePath(@"test"));
             Assert.IsFalse(Paths.GetValidFilePath(@"..\test"));
         }
+
+        [Test]
+        public void FixSeparatorsTest()
+        {
+            Assert.AreEqual(@"D:\GOG Games\Albion\DOSBOX\dosbox.exe", Paths.FixSeparators(@"D:/GOG Games/Albion\DOSBOX\dosbox.exe"));
+        }
     }
 }
