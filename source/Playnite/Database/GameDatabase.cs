@@ -188,12 +188,7 @@ namespace Playnite.Database
     public class GameDatabase
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-
-        // LiteDB file storage is not thread safe, so we need to lock all file operations.        
-        private object fileLock = new object();
-
         private bool IsEventBufferEnabled = false;
-
         private List<Platform> AddedPlatformsEventBuffer = new List<Platform>();
         private List<Platform> RemovedPlatformsEventBuffer = new List<Platform>();
         private List<PlatformUpdateEvent> PlatformUpdatesEventBuffer = new List<PlatformUpdateEvent>();
@@ -518,6 +513,11 @@ namespace Playnite.Database
 
         public static bool GetMigrationRequired(string path)
         {
+            if (!File.Exists(path))
+            {
+                return false;
+            }
+
             using (var db = new LiteDatabase(path))
             {
                 return GetMigrationRequired(db);
@@ -616,7 +616,7 @@ namespace Playnite.Database
         {
             CheckDbState();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 GamesCollection.Insert(game);
             }
@@ -632,7 +632,7 @@ namespace Playnite.Database
                 return;
             }
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 GamesCollection.InsertBulk(games);
             }
@@ -645,7 +645,7 @@ namespace Playnite.Database
             logger.Info("Deleting game from database {0}, {1}", game.ProviderId, game.Provider);
             CheckDbState();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 GamesCollection.Delete(game.Id);
                 DeleteImageSafe(game.Icon, game);
@@ -659,7 +659,7 @@ namespace Playnite.Database
         {
             CheckDbState();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 foreach (var game in games)
                 {
@@ -677,7 +677,7 @@ namespace Playnite.Database
         {
             CheckDbState();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 PlatformsCollection.Insert(platform);
             }
@@ -693,7 +693,7 @@ namespace Playnite.Database
                 return;
             }
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 PlatformsCollection.InsertBulk(platforms);
             }
@@ -705,14 +705,14 @@ namespace Playnite.Database
         {
             CheckDbState();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 PlatformsCollection.Delete(platform.Id);
             }
 
             OnPlatformsCollectionChanged(new List<Platform>(), new List<Platform>() { platform });
-                
-            lock (fileLock)
+
+            using (Database.Engine.Locker.Reserved())
             {
                 foreach (var game in GamesCollection.Find(a => a.PlatformId == platform.Id))
                 {
@@ -730,7 +730,7 @@ namespace Playnite.Database
                 return;
             }
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 foreach (var platform in platforms)
                 {
@@ -740,7 +740,7 @@ namespace Playnite.Database
 
             OnPlatformsCollectionChanged(new List<Platform>(), platforms.ToList());
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 foreach (var platform in platforms)
                 {
@@ -758,7 +758,7 @@ namespace Playnite.Database
             CheckDbState();
             Platform oldData;
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 oldData = PlatformsCollection.FindById(platform.Id);
                 PlatformsCollection.Update(platform);
@@ -772,7 +772,7 @@ namespace Playnite.Database
             CheckDbState();            
             var updates = new List<PlatformUpdateEvent>();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 foreach (var platform in platforms)
                 {
@@ -790,7 +790,7 @@ namespace Playnite.Database
         {
             CheckDbState();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 EmulatorsCollection.Insert(emulator);
             }
@@ -804,7 +804,7 @@ namespace Playnite.Database
                 return;
             }
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 EmulatorsCollection.InsertBulk(emulators);
             }
@@ -814,7 +814,7 @@ namespace Playnite.Database
         {
             CheckDbState();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 EmulatorsCollection.Delete(emulator.Id);
             }
@@ -828,7 +828,7 @@ namespace Playnite.Database
                 return;
             }
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 foreach (var emulator in emulators)
                 {
@@ -841,7 +841,7 @@ namespace Playnite.Database
         {
             CheckDbState();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 EmulatorsCollection.Update(emulator);
             }
@@ -851,7 +851,7 @@ namespace Playnite.Database
         {
             CheckDbState();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 foreach (var emulator in emulators)
                 {
@@ -869,7 +869,7 @@ namespace Playnite.Database
         {
             CheckDbState();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 using (var stream = new MemoryStream(data))
                 {
@@ -893,7 +893,7 @@ namespace Playnite.Database
         {
             CheckDbState();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 using (var stream = new MemoryStream(data))
                 {
@@ -910,7 +910,7 @@ namespace Playnite.Database
         {
             CheckDbState();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 if (Database.FileStorage.Delete(id) == false)
                 {
@@ -929,7 +929,7 @@ namespace Playnite.Database
                 return null;
             }
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 using (var fStream = file.OpenRead())
                 {
@@ -945,7 +945,7 @@ namespace Playnite.Database
         {
             CheckDbState();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 return Database.FileStorage.FindById(id);
             }
@@ -983,7 +983,7 @@ namespace Playnite.Database
                 throw new Exception($"File {id} not found in database.");
             }
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 file.SaveAs(path, true);
             }
@@ -1003,7 +1003,7 @@ namespace Playnite.Database
 
             CheckDbState();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 var games = GamesCollection.Find(a => (a.Icon == id || a.Image == id || a.BackgroundImage == id) && a.Id != game.Id);
                 if (games.Count() == 0)
@@ -1018,7 +1018,7 @@ namespace Playnite.Database
             CheckDbState();
             var updates = new List<GameUpdateEvent>();
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 foreach (var game in games)
                 {
@@ -1036,7 +1036,7 @@ namespace Playnite.Database
             CheckDbState();
             IGame oldData;
 
-            lock (fileLock)
+            using (Database.Engine.Locker.Reserved())
             {
                 oldData = GamesCollection.FindById(game.Id);
                 GamesCollection.Update(game);
