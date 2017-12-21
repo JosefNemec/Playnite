@@ -1,1 +1,80 @@
-# Empty CSS file for your own CSS
+.col {
+  padding: 0 !important;
+}
+
+html, body {
+  color: #FFFFFF;
+  background-color: #272b30;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  font-size: 16px;
+}
+
+nav, .page-footer {
+  background-color: #171717;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+blockquote {
+  border-color: #ff8023;
+}
+
+.footer-text, .card-content>p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.footer-block {
+  padding: 1.5% !important;
+}
+
+.footer-link {
+  margin-left: 2.5%;
+}
+
+h1 {
+  font-size: 3.5rem !important;
+}
+
+h3 {
+  font-size: 2.5rem;
+}
+
+section {
+  width: 100%;
+}
+
+.card {
+  height: 100% !important;
+  display:flex;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+@media screen and (min-width: 600px) {
+  blockquote {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  .card {
+    height: 250px !important;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .card {
+    height: 190px !important;
+  }
+}
+
+.card-title {
+  font-size: 1.25rem;
+}
+
+.card-content>p  {
+  font-size: 1rem;
+}
