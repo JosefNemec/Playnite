@@ -21,7 +21,7 @@
     <sys:String x:Key="AboutAuthor">von Josef Němec</sys:String>
 
     <sys:String x:Key="CategoryWindowTitle">Kategorien</sys:String>
-    <sys:String x:Key="CategorySetButton">Kategorien bearbeiten</sys:String>
+    <sys:String x:Key="CategorySetButton">Speichern</sys:String>
     <sys:String x:Key="CategoryAddCatButton">Kategorie hinzufügen</sys:String>
     <sys:String x:Key="CategoryTooltip" xml:space="preserve">Aktiv - Spiel zur Kategorie hinzufügen
 Inaktiv - Spiel aus Kategorie entfernen
@@ -299,9 +299,9 @@ It's currently being used by {1} game(s).</sys:String>
     <sys:String x:Key="PlatformRemovalConfirmation" xml:space="preserve">Are you sure you want to remove {0} platform?        
 It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     
-    <sys:String x:Key="MenuSortByTitle">Sort By</sys:String>
-    <sys:String x:Key="MenuSortAscending">Ascending</sys:String>
-    <sys:String x:Key="MenuSortDescending">Descending</sys:String>
+    <sys:String x:Key="MenuSortByTitle">Sortieren nach</sys:String>
+    <sys:String x:Key="MenuSortAscending">Aufsteigend</sys:String>
+    <sys:String x:Key="MenuSortDescending">Absteigend</sys:String>
 
     <!--Game fields-->
     <sys:String x:Key="GameIconTitle">Icon</sys:String>
@@ -330,30 +330,28 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="GameROMTitle">Image/ISO-Pfad</sys:String>
 
     <!--Errors-->
-    <sys:String x:Key="DatabaseErroTitle">Database Error</sys:String>
-    <sys:String x:Key="DatabaseOpenError">Failed to open library database.</sys:String>
-    <sys:String x:Key="DiagPackageCreationError">Failed to create diagnostics package.</sys:String>
-    <sys:String x:Key="DiagPackageCreationSuccess">Diagnostics package created successfully.</sys:String>
+    <sys:String x:Key="DatabaseErroTitle">Datenbankfehler</sys:String>
+    <sys:String x:Key="DatabaseOpenError">Konnte Datenbank nicht öffnen..</sys:String>
+    <sys:String x:Key="DiagPackageCreationError">Konnte Diagnosedaten nicht erstellen.</sys:String>
+    <sys:String x:Key="DiagPackageCreationSuccess">Diagnosedaten erfolgreich erstellt.</sys:String>
 
-    <sys:String x:Key="SteamCategoryImportError">Failed to import Steam categories.</sys:String>
+    <sys:String x:Key="SteamCategoryImportError">Fehler beim Import der Steam-Kategorien.</sys:String>
     
-    <sys:String x:Key="BnetInstalledImportError">Failed to import installed Battle.net games.</sys:String>
-    <sys:String x:Key="SteamInstalledImportError">Failed to import installed Steam games.</sys:String>
-    <sys:String x:Key="GOGInstalledImportError">Failed to import installed GOG games.</sys:String>
-    <sys:String x:Key="OriginInstalledImportError">Failed to import installed Origin games.</sys:String>
-    <sys:String x:Key="UplayInstalledImportError">Failed to import installed Uplay games.</sys:String>
+    <sys:String x:Key="BnetInstalledImportError">Fehler beim Import der installierten Battle.net-Spiele.</sys:String>
+    <sys:String x:Key="SteamInstalledImportError">Fehler beim Import der installierten Steam-Spiele.</sys:String>
+    <sys:String x:Key="GOGInstalledImportError">Fehler beim Import der installierten GOG-Spiele.</sys:String>
+    <sys:String x:Key="OriginInstalledImportError">Fehler beim Import der installierten Origin-Spiele.</sys:String>
+    <sys:String x:Key="UplayInstalledImportError">Fehler beim Import der installiertne Uplay-Spiele.</sys:String>
 
-    <sys:String x:Key="BnetLibraryImportError">Failed to download Battle.net library.</sys:String>
-    <sys:String x:Key="SteamLibraryImportError">Failed to download Steam library.</sys:String>
-    <sys:String x:Key="GOGLibraryImportError">Failed to download GOG library.</sys:String>
-    <sys:String x:Key="OriginLibraryImportError">Failed to download Origin library.</sys:String>
-    <sys:String x:Key="UplayLibraryImportError">Failed to download Uplay library.</sys:String>
+    <sys:String x:Key="BnetLibraryImportError">Fehler beim Import der Battle.net-Bibliothek.</sys:String>
+    <sys:String x:Key="SteamLibraryImportError">Fehler beim Import der Steam-Bibliothek.</sys:String>
+    <sys:String x:Key="GOGLibraryImportError">Fehler beim Import der GOG-Bibliothek.</sys:String>
+    <sys:String x:Key="OriginLibraryImportError">Fehler beim Import der Origin-Bibliothek.</sys:String>
+    <sys:String x:Key="UplayLibraryImportError">Fehler beim Import der Uplay-Bibliothek.</sys:String>
     
     <sys:String x:Key="ScanEmulatorGamesEmptyProfileError">Cannot search for games by selected emulator profile. Profile doesn't contain any file extensions or platforms.</sys:String>
     <sys:String x:Key="StartGenericError">Playnite failed to start. Please close all running instances and try again.</sys:String>
-    <sys:String x:Key="SkinApplyError">Failed to apply theme "{0}", color profile "{1}"
-        
-{1}</sys:String>
+    <sys:String x:Key="SkinApplyError">Failed to apply theme "{0}", color profile "{1}"</sys:String>
     <sys:String x:Key="URLFormatError">Cannot open link, URL is not in valid format.</sys:String>
 
     <!--GameEdit-->
@@ -380,7 +378,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="URLInputInfoTitile">Select URL</sys:String>
     <sys:String x:Key="MetadataDownloadError">Failed to download metadata: {0}</sys:String>
     <sys:String x:Key="DownloadError">Download Error</sys:String>
-    <sys:String x:Key="ClearFilters">Clear Filters</sys:String>
+    <sys:String x:Key="ClearFilters">Filter zurücksetzen</sys:String>
     <sys:String x:Key="PrivateAccount">Privater Account</sys:String>
     <sys:String x:Key="APIKey">API Key</sys:String>
     <sys:String x:Key="StartupError">Startup Error</sys:String>
@@ -406,19 +404,19 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="ThemeTestWatchChangesTooltip">Automatically apply theme when the source file changes</sys:String>
 
     <!--Game actions-->
-    <sys:String x:Key="FavoriteGame">Add to Favorties</sys:String>
-    <sys:String x:Key="RemoveFavoriteGame">Remove from Favorties</sys:String>
-    <sys:String x:Key="HideGame">Hide</sys:String>
-    <sys:String x:Key="UnHideGame">Show in Library</sys:String>
-    <sys:String x:Key="EditGame">Edit...</sys:String>
-    <sys:String x:Key="SetGameCategory">Set Category...</sys:String>
-    <sys:String x:Key="RemoveGame">Remove</sys:String>
-    <sys:String x:Key="PlayGame">Play</sys:String>
-    <sys:String x:Key="InstallGame">Install</sys:String>
-    <sys:String x:Key="UninstallGame">Uninstall</sys:String>
-    <sys:String x:Key="OpenGameLocation">Open game location</sys:String>
-    <sys:String x:Key="CreateDesktopShortcut">Create desktop schortcut</sys:String>
-    <sys:String x:Key="MoreAction">More</sys:String>
+    <sys:String x:Key="FavoriteGame">Zu Favoriten hinzufügen</sys:String>
+    <sys:String x:Key="RemoveFavoriteGame">Aus Favoriten entfernen</sys:String>
+    <sys:String x:Key="HideGame">Verstecke in Bibliothek</sys:String>
+    <sys:String x:Key="UnHideGame">Zeige in Bibliothek</sys:String>
+    <sys:String x:Key="EditGame">Bearbeite Metadaten</sys:String>
+    <sys:String x:Key="SetGameCategory">Bearbeite Kategorien</sys:String>
+    <sys:String x:Key="RemoveGame">Spiel entfernen</sys:String>
+    <sys:String x:Key="PlayGame">Spielen</sys:String>
+    <sys:String x:Key="InstallGame">Spiel installieren</sys:String>
+    <sys:String x:Key="UninstallGame">Spiel deinstallieren</sys:String>
+    <sys:String x:Key="OpenGameLocation">Öffne Installationspfad</sys:String>
+    <sys:String x:Key="CreateDesktopShortcut">Erstelle Desktop-Verknüpfung</sys:String>
+    <sys:String x:Key="MoreAction">Mehr</sys:String>
 
     <sys:String x:Key="MetadownloadNoResultsMessage">Didn't found any relevant information about game '{0}' on specified page.</sys:String>
     <sys:String x:Key="MetadownloadSingleGameTip">Tip: You can use more advanced metadata download process while editing single game via "Edit" menu option.</sys:String>
