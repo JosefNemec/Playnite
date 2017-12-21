@@ -559,7 +559,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, database, EditingGame, true);
+                var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, database, EditingGame, false);
                 SelectCategories(model);
             });
         }
