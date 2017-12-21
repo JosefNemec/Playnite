@@ -102,6 +102,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="CoversLabel">Covers</sys:String>
     <sys:String x:Key="DetailsLabel">Details</sys:String>
     <sys:String x:Key="CustomLabel">Custom</sys:String>
+    <sys:String x:Key="URLLabel">URL</sys:String>
     
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
@@ -302,6 +303,10 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="MenuSortByTitle">Sort By</sys:String>
     <sys:String x:Key="MenuSortAscending">Ascending</sys:String>
     <sys:String x:Key="MenuSortDescending">Descending</sys:String>
+    <sys:String x:Key="MenuGroupDont">Don't group</sys:String>
+    <sys:String x:Key="MenuGroupProvider">Group by Provider</sys:String>
+    <sys:String x:Key="MenuGroupCategory">Group by Category</sys:String>
+    <sys:String x:Key="MenuGroupPlatform">Group by Platform</sys:String>
 
     <!--Game fields-->
     <sys:String x:Key="GameIconTitle">Icon</sys:String>

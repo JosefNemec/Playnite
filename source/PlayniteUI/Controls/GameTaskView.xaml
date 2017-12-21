@@ -46,9 +46,9 @@
         <Label Content="{DynamicResource TypeLabel}" Grid.Column="0" Grid.Row="1"/>
         <ComboBox Name="ComboType" Grid.Column="1" Grid.Row="1" SelectedIndex="{Binding Type, Converter={StaticResource BidirectionalEnumAndNumberConverter}}"
                   SelectionChanged="ComboType_SelectionChanged">
-            <ComboBoxItem Content="Executable" />
-            <ComboBoxItem Content="URL" />
-            <ComboBoxItem Content="Emulator" />
+            <ComboBoxItem Content="{DynamicResource ExecutableTitle}" />
+            <ComboBoxItem Content="{DynamicResource URLLabel}" />
+            <ComboBoxItem Content="{DynamicResource EmulatorTitle}" />
         </ComboBox>
 
         <Label Content="{DynamicResource PathLabel}" Grid.Column="0" Grid.Row="2" />

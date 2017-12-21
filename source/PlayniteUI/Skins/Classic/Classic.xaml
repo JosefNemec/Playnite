@@ -2463,13 +2463,13 @@
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.InstallDirectory}}"/>
                             </MenuItem>
                             <Separator />
-                            <MenuItem Header="Don't group" IsCheckable="True"
+                            <MenuItem Header="{DynamicResource MenuGroupDont}" IsCheckable="True"
                                   IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.None}}"/>
-                            <MenuItem Header="Group by Provider" IsCheckable="True"
+                            <MenuItem Header="{DynamicResource MenuGroupProvider}" IsCheckable="True"
                                   IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Provider}}"/>
-                            <MenuItem Header="Group by Category" IsCheckable="True"
+                            <MenuItem Header="{DynamicResource MenuGroupCategory}" IsCheckable="True"
                                   IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Category}}"/>
-                            <MenuItem Header="Group by Platform" IsCheckable="True"
+                            <MenuItem Header="{DynamicResource MenuGroupPlatform}" IsCheckable="True"
                                   IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Platform}}"/>
                         </ContextMenu>
                     </Border.ContextMenu>
