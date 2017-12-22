@@ -212,7 +212,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="SettingsClearCacheTitle">Cache leeren?</sys:String>
     <sys:String x:Key="SettingsApiKeyTooltip">Für private Accounts ist ein API-Key notwendig.</sys:String>
     <sys:String x:Key="SettingsApiKeyUrlText">Hole API-Key</sys:String>
-    <sys:String x:Key="SettingsSkinChangeRestart">Eine Änderung des Themes erfordert einen Neustart.</sys:String>
+    <sys:String x:Key="SettingsSkinChangeRestart">Die Änderung des Themes erfordert einen Neustart.</sys:String>
     <sys:String x:Key="SettingsIGDBApiKey">IGDB.com API-Key</sys:String>
     <sys:String x:Key="SettingsIGDBApiKeyDescription"  xml:space="preserve">Playnite kann für manuelle und emulierte Spiele zusätzliche Metadaten aus der IGDB.com-Datenbank herunterladen (Cover, Beschreibungen, etc.).
     
@@ -285,15 +285,15 @@ Weitere Spiele kannst du zudem auch später noch über den "Spiel hinzufügen"-D
     <sys:String x:Key="SelectUrlTitle">URL</sys:String>
     <sys:String x:Key="AddEmulatorTitle">Emulator hinzufügen</sys:String>
     <sys:String x:Key="SupportedPlatformsTitle">Unterstützte Plattformen</sys:String>
-    <sys:String x:Key="ConfirmUnsavedPlatformsTitle">Bist du sicher, dass du die Änderungen an der Plattform speichern möchtest?</sys:String>
-    <sys:String x:Key="ConfirmUnsavedEmulatorsTitle">Bist du sicher, dass du die Änderungen am Emulator speichern möchtest?</sys:String>
+    <sys:String x:Key="ConfirmUnsavedPlatformsTitle">Bist du sicher, dass du die Änderungen an den Plattformen speichern möchtest?</sys:String>
+    <sys:String x:Key="ConfirmUnsavedEmulatorsTitle">Bist du sicher, dass du die Änderungen an den Emulatoren speichern möchtest?</sys:String>
     <sys:String x:Key="ExecutableTitle">Ausführbare Datei</sys:String>
     <sys:String x:Key="ArgumentsTitle">Argumente</sys:String>
     <sys:String x:Key="WorkingDirTitle">Arbeitsverzeichnis</sys:String>
     <sys:String x:Key="SupportedFilesTitle">Unterstützte Dateitypen</sys:String>
     <sys:String x:Key="ImportEmulatorsButton">Emulator importieren</sys:String>
     <sys:String x:Key="DownloadEmulatorsButton">Emulator herunterladen</sys:String>
-    <sys:String x:Key="EmuLoadArgsPresetTooltip">[NOT USED]</sys:String>
+    <sys:String x:Key="EmuLoadArgsPresetTooltip">[UNUSED]</sys:String>
     <sys:String x:Key="EmuRemovalConfirmation" xml:space="preserve">Bist du sicher, dass du den Emulator '{0}' entfernen möchtest?
 
 Der Emulator wird momentan von {1} Spielen verwendet.</sys:String>
@@ -392,7 +392,7 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="ClearAll">Zurücksetzen</sys:String>
     <sys:String x:Key="SetupRunning">Installation wird durchgeführt...</sys:String>
     <sys:String x:Key="InvalidURL">Ungültige URL</sys:String>
-    <sys:String x:Key="UserKey">[NOT USED]</sys:String>
+    <sys:String x:Key="UserKey">[UNUSED]</sys:String>
 
     <sys:String x:Key="EmulatorArguments">Emulator-Argumente</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Zusätzliche Emulator-Argumente</sys:String>
