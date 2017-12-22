@@ -28,10 +28,10 @@ Inaktiv - Spiel aus Kategorie entfernen
 Unentschieden - Keine Änderung (mehrere Spiele)</sys:String>
 
     <sys:String x:Key="CrashWindowTitle">Oh nein, das hätte nicht passieren dürfen...</sys:String>
-    <sys:String x:Key="CrashDescription">Playnite hat ein schwerwiegendes Problem festgestellt. Wenn du uns bei der Verbesserung von Playnite helfen möchtest erstelle bitte über das "Über Playnite"-Menü Diagnosedaten und sende uns Feedback via GitHub. Danke!</sys:String>
-    <sys:String x:Key="CrashReportIssue">Issue erstellen</sys:String>
-    <sys:String x:Key="CrashRestartPlaynite">Playnite neu starten</sys:String>
-    <sys:String x:Key="CrashClosePlaynite">Playnite beenden</sys:String>
+    <sys:String x:Key="CrashDescription">Playnite hat ein schwerwiegendes Problem festgestellt. Wenn du uns bei der Verbesserung von Playnite helfen möchtest erstelle bitte Diagnosedaten und sende uns Feedback via GitHub. Danke!</sys:String>
+    <sys:String x:Key="CrashReportIssue">Feedback senden</sys:String>
+    <sys:String x:Key="CrashRestartPlaynite">Neu starten</sys:String>
+    <sys:String x:Key="CrashClosePlaynite">Beenden</sys:String>
 
     <sys:String x:Key="GameRemoveAskTitle">Spiel entfernen?</sys:String>
     <sys:String x:Key="GameRemoveAskMessage" xml:space="preserve">Bist du sicher, dass du dieses Spiel entfernen möchtest?
