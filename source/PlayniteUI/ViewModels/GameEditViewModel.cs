@@ -1672,10 +1672,11 @@ namespace PlayniteUI.ViewModels
                         default:
                             return;
                     }
-
+                    
                     if (metadata.Image != null)
                     {
                         var path = Path.Combine(Paths.TempPath, metadata.Image.Name);
+                        FileSystem.PrepareSaveFile(path);
                         File.WriteAllBytes(path, metadata.Image.Data);
                         tempGame.Image = path;
                     }
@@ -1683,6 +1684,7 @@ namespace PlayniteUI.ViewModels
                     if (metadata.Icon != null)
                     {
                         var path = Path.Combine(Paths.TempPath, metadata.Icon.Name);
+                        FileSystem.PrepareSaveFile(path);
                         File.WriteAllBytes(path, metadata.Icon.Data);
                         tempGame.Icon = path;
                     }
