@@ -524,6 +524,11 @@ namespace Playnite.MetaProviders
                             if (!string.IsNullOrEmpty(gameData?.GameData?.Name))
                             {
                                 game.Name = StringExtensions.NormalizeGameName(gameData.GameData.Name);
+                                var sortingName = StringExtensions.ConvertToSortableName(game.Name);
+                                if (sortingName != game.Name)
+                                {
+                                    game.SortingName = sortingName;
+                                }
                             }
                         }
 

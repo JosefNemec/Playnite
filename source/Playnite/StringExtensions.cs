@@ -24,6 +24,20 @@ namespace Playnite
             }
         }
 
+        public static string ConvertToSortableName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return string.Empty;
+            }
+
+            var newName = name;
+            newName = Regex.Replace(newName, @"^the\s+", "", RegexOptions.IgnoreCase);
+            newName = Regex.Replace(newName, @"^a\s+", "", RegexOptions.IgnoreCase);
+            newName = Regex.Replace(newName, @"^an\s+", "", RegexOptions.IgnoreCase);
+            return newName;
+        }
+
         public static string NormalizeGameName(string name)
         {
             if (string.IsNullOrEmpty(name))
@@ -42,7 +56,7 @@ namespace Playnite
             newName = Regex.Replace(newName, @"\s+", " ");
             if (Regex.IsMatch(newName, @",\s*The$"))
             {
-                newName = "The " + Regex.Replace(newName, @",\s*The$", "");
+                newName = "The " + Regex.Replace(newName, @",\s*The$", "", RegexOptions.IgnoreCase);
             }
 
             return newName.Trim();
