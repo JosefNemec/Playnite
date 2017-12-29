@@ -221,6 +221,11 @@ namespace Playnite.Database
             get; private set;
         }
 
+        public bool IsOpen
+        {
+            get; private set;
+        }
+
         private IGogLibrary gogLibrary;
         private ISteamLibrary steamLibrary;
         private IOriginLibrary originLibrary;
@@ -588,6 +593,7 @@ namespace Playnite.Database
             }
 
             DatabaseOpened?.Invoke(this, null);
+            IsOpen = true;
             return Database;
         }
 
@@ -610,6 +616,7 @@ namespace Playnite.Database
             GamesCollection = null;
             PlatformsCollection = null;
             EmulatorsCollection = null;
+            IsOpen = false;
         }
 
         public void AddGame(IGame game)

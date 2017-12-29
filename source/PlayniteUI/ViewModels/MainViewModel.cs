@@ -359,7 +359,7 @@ namespace PlayniteUI.ViewModels
                     PlatformsWindowFactory.Instance,
                     Dialogs,
                     Resources));
-            });
+            }, (a) => Database.IsOpen);
         }
 
         public RelayCommand<object> OpenSettingsCommand
@@ -382,7 +382,7 @@ namespace PlayniteUI.ViewModels
             {
                 MainMenuOpened = false;
                 AddCustomGame(GameEditWindowFactory.Instance);
-            });
+            }, (a) => Database.IsOpen);
         }
 
         public RelayCommand<object> AddInstalledGamesCommand
@@ -395,7 +395,7 @@ namespace PlayniteUI.ViewModels
                     Database,
                     InstalledGamesWindowFactory.Instance,
                     Dialogs));
-            });
+            }, (a) => Database.IsOpen);
         }
 
         public RelayCommand<object> AddEmulatedGamesCommand
@@ -409,7 +409,7 @@ namespace PlayniteUI.ViewModels
                     EmulatorImportWindowFactory.Instance,
                     Dialogs,
                     Resources));
-            });
+            }, (a) => Database.IsOpen);
         }
 
         public RelayCommand<bool> OpenThemeTesterCommand
