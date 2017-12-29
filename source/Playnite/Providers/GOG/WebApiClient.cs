@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace Playnite.Providers.GOG
 {
-    public class WebApiClient
+    public class WebApiClient : IDisposable
     {
         private static string localeString = "US_USD_en-US";
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -24,6 +24,11 @@ namespace Playnite.Providers.GOG
             browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser:false);
             browser.BrowserInitialized += Browser_BrowserInitialized;
             browser.CreateBrowser(IntPtr.Zero);
+        }
+
+        public void Dispose()
+        {
+            browser?.Dispose();
         }
 
         private AutoResetEvent browserInitializedEvent = new AutoResetEvent(false);

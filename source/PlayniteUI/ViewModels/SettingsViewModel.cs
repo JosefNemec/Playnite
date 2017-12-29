@@ -13,7 +13,7 @@ using System.Windows;
 
 namespace PlayniteUI.ViewModels
 {
-    public class SettingsViewModel : ObservableObject
+    public class SettingsViewModel : ObservableObject, IDisposable
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IWindowFactory window;
@@ -163,6 +163,14 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<object> DisposeCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                Dispose();
+            });
+        }
+
         public RelayCommand<object> SelectDbFileCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -239,6 +247,17 @@ namespace PlayniteUI.ViewModels
         {
             Settings.CancelEdit();
             window.Close(false);
+            Dispose();
+        }
+
+        public void Dispose()
+        {
+            battleNetApiClient?.Dispose();
+            originApiClient?.Dispose();
+            gogApiClient?.Dispose();
+            battleNetApiClient = null;
+            originApiClient = null;
+            gogApiClient = null;
         }
 
         public void ConfirmDialog()
@@ -300,6 +319,7 @@ namespace PlayniteUI.ViewModels
             }
 
             window.Close(true);
+            Dispose();
         }
 
         public void SelectDbFile()

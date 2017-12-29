@@ -191,35 +191,37 @@ namespace Playnite.Providers.GOG
 
         public List<IGame> GetLibraryGames()
         {
-            var api = new WebApiClient();
-            if (api.GetLoginRequired())
+            using (var api = new WebApiClient())
             {
-                throw new Exception("User is not logged in.");
-            }
-
-            var games = new List<IGame>();
-            var libGames = api.GetOwnedGames();
-            if (libGames == null)
-            {
-                throw new Exception("Failed to obtain libary data.");
-            }
-
-            foreach (var game in libGames)
-            {
-                games.Add(new Game()
+                if (api.GetLoginRequired())
                 {
-                    Provider = Provider.GOG,
-                    ProviderId = game.id.ToString(),
-                    Name = game.title,
-                    ReleaseDate = game.releaseDate.date,
-                    Links = new ObservableCollection<Link>()
+                    throw new Exception("User is not logged in.");
+                }
+
+                var games = new List<IGame>();
+                var libGames = api.GetOwnedGames();
+                if (libGames == null)
+                {
+                    throw new Exception("Failed to obtain libary data.");
+                }
+
+                foreach (var game in libGames)
+                {
+                    games.Add(new Game()
+                    {
+                        Provider = Provider.GOG,
+                        ProviderId = game.id.ToString(),
+                        Name = game.title,
+                        ReleaseDate = game.releaseDate.date,
+                        Links = new ObservableCollection<Link>()
                     {
                         new Link("Store", @"https://www.gog.com" + game.url)
                     }
-                });
-            }
+                    });
+                }
 
-            return games;
+                return games;
+            }
         }
 
         public GogGameMetadata DownloadGameMetadata(string id, string storeUrl = null)

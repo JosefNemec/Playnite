@@ -14,7 +14,7 @@ using System.Windows;
 
 namespace Playnite.Providers.BattleNet
 {
-    public class WebApiClient
+    public class WebApiClient : IDisposable
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private CefSharp.OffScreen.ChromiumWebBrowser browser;
@@ -24,6 +24,11 @@ namespace Playnite.Providers.BattleNet
             browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser: false);
             browser.BrowserInitialized += Browser_BrowserInitialized;
             browser.CreateBrowser(IntPtr.Zero);
+        }
+
+        public void Dispose()
+        {
+            browser?.Dispose();
         }
 
         private AutoResetEvent browserInitializedEvent = new AutoResetEvent(false);

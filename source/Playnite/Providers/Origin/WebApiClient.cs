@@ -14,7 +14,7 @@ using Playnite.Controls;
 
 namespace Playnite.Providers.Origin
 {
-    public class WebApiClient
+    public class WebApiClient : IDisposable
     {
         private CefSharp.OffScreen.ChromiumWebBrowser browser;
 
@@ -23,6 +23,10 @@ namespace Playnite.Providers.Origin
             browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser: false);
             browser.BrowserInitialized += Browser_BrowserInitialized;
             browser.CreateBrowser(IntPtr.Zero);
+        }
+        public void Dispose()
+        {
+            browser?.Dispose();
         }
 
         private AutoResetEvent browserInitializedEvent = new AutoResetEvent(false);

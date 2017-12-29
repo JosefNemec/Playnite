@@ -12,7 +12,7 @@ using static PlayniteUI.ViewModels.InstalledGamesViewModel;
 
 namespace PlayniteUI.ViewModels
 {    
-    public class FirstTimeStartupViewModel : ObservableObject
+    public class FirstTimeStartupViewModel : ObservableObject, IDisposable
     {
         public enum DbLocation
         {
@@ -341,6 +341,17 @@ namespace PlayniteUI.ViewModels
         public void CloseView(bool? result)
         {
             window.Close(result);
+            Dispose();
+        }
+
+        public void Dispose()
+        {
+            battleNetApiClient?.Dispose();
+            originApiClient?.Dispose();
+            gogApiClient?.Dispose();
+            battleNetApiClient = null;
+            originApiClient = null;
+            gogApiClient = null;
         }
 
         public void NavigateNext()

@@ -12,9 +12,15 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="{DynamicResource SettingsWindowTitle}" Width="600" Height="500"
+        Title="{DynamicResource SettingsWindowTitle}" Width="600" Height="500"                     
         AutomationProperties.AutomationId="WindowSettings">
 
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding DisposeCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
     <controls:WindowBase.Resources>
         <pui:NegateConverter x:Key="NegateConverter" />
         <pui:EnumConverter x:Key="EnumConverter" />

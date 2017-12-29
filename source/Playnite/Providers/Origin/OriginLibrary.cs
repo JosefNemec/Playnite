@@ -249,42 +249,44 @@ namespace Playnite.Providers.Origin
 
         public List<IGame> GetLibraryGames()
         {
-            var api = new WebApiClient();
-            if (api.GetLoginRequired())
+            using (var api = new WebApiClient())
             {
-                throw new Exception("User is not logged in.");
-            }
-
-            var token = api.GetAccessToken();
-            if (token == null)
-            {
-                throw new Exception("Failed to get access to user account.");
-            }
-
-            if (!string.IsNullOrEmpty(token.error))
-            {
-                throw new Exception("Access error: " + token.error);
-            }
-
-            var info = api.GetAccountInfo(token);
-            if (!string.IsNullOrEmpty(info.error))
-            {
-                throw new Exception("Access error: " + info.error);
-            }
-
-            var games = new List<IGame>();
-
-            foreach (var game in api.GetOwnedGames(info.pid.pidId, token).Where(a => a.offerType == "basegame"))
-            {
-                games.Add(new Game()
+                if (api.GetLoginRequired())
                 {
-                    Provider = Provider.Origin,
-                    ProviderId = game.offerId,
-                    Name = game.offerId
-                });
-            }
+                    throw new Exception("User is not logged in.");
+                }
 
-            return games;
+                var token = api.GetAccessToken();
+                if (token == null)
+                {
+                    throw new Exception("Failed to get access to user account.");
+                }
+
+                if (!string.IsNullOrEmpty(token.error))
+                {
+                    throw new Exception("Access error: " + token.error);
+                }
+
+                var info = api.GetAccountInfo(token);
+                if (!string.IsNullOrEmpty(info.error))
+                {
+                    throw new Exception("Access error: " + info.error);
+                }
+
+                var games = new List<IGame>();
+
+                foreach (var game in api.GetOwnedGames(info.pid.pidId, token).Where(a => a.offerType == "basegame"))
+                {
+                    games.Add(new Game()
+                    {
+                        Provider = Provider.Origin,
+                        ProviderId = game.offerId,
+                        Name = game.offerId
+                    });
+                }
+
+                return games;
+            }
         }
 
         public OriginGameMetadata DownloadGameMetadata(string id)

@@ -382,57 +382,59 @@ namespace Playnite.Providers.BattleNet
         }
 
         public List<IGame> GetLibraryGames()
-        {            
-            var api = new WebApiClient();
-            if (api.GetLoginRequired())
+        {
+            using (var api = new WebApiClient())
             {
-                throw new Exception("User is not logged in.");
-            }
-
-            var page = api.GetOwnedGames();
-            var games = new List<IGame>();
-            var parser = new HtmlParser();
-            var document = parser.Parse(page);
-
-            foreach (var product in BattleNetProducts)
-            {
-                if (product.Type == BNetAppType.Default)
+                if (api.GetLoginRequired())
                 {
-                    var documentProduct = document.QuerySelector($"#{product.WebLibraryId}");
-                    if (documentProduct == null)
-                    {
-                        continue;
-                    }
+                    throw new Exception("User is not logged in.");
+                }
 
-                    if (!string.IsNullOrEmpty(product.PurchaseId))
+                var page = api.GetOwnedGames();
+                var games = new List<IGame>();
+                var parser = new HtmlParser();
+                var document = parser.Parse(page);
+
+                foreach (var product in BattleNetProducts)
+                {
+                    if (product.Type == BNetAppType.Default)
                     {
-                        var saleOffer = documentProduct.QuerySelector($"#{product.PurchaseId}");
-                        if (saleOffer != null)
+                        var documentProduct = document.QuerySelector($"#{product.WebLibraryId}");
+                        if (documentProduct == null)
+                        {
+                            continue;
+                        }
+
+                        if (!string.IsNullOrEmpty(product.PurchaseId))
+                        {
+                            var saleOffer = documentProduct.QuerySelector($"#{product.PurchaseId}");
+                            if (saleOffer != null)
+                            {
+                                continue;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        var documentProduct = document.QuerySelector($".{product.WebLibraryId}");
+                        if (documentProduct == null)
                         {
                             continue;
                         }
                     }
-                }
-                else
-                {
-                    var documentProduct = document.QuerySelector($".{product.WebLibraryId}");
-                    if (documentProduct == null)
+
+                    var game = new Game()
                     {
-                        continue;
-                    }
+                        Provider = Provider.BattleNet,
+                        ProviderId = product.ProductId,
+                        Name = product.Name
+                    };
+
+                    games.Add(game);
                 }
 
-                var game = new Game()
-                {
-                    Provider = Provider.BattleNet,
-                    ProviderId = product.ProductId,
-                    Name = product.Name
-                };
-
-                games.Add(game);
+                return games;
             }
-
-            return games;
         }
     }
 }
