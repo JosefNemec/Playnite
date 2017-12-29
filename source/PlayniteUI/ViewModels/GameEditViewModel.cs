@@ -1409,8 +1409,16 @@ namespace PlayniteUI.ViewModels
                     var extension = Path.GetExtension(game.Image);
                     var tempPath = Path.Combine(Paths.TempPath, "tempimage" + extension);
                     FileSystem.PrepareSaveFile(tempPath);
-                    Web.DownloadFile(game.Image, tempPath);
-                    EditingGame.Image = tempPath;
+
+                    try
+                    {
+                        Web.DownloadFile(game.Image, tempPath);
+                        EditingGame.Image = tempPath;
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, "Failed to download web image to preview game data.");
+                    }
                 }
                 else
                 {
