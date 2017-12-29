@@ -21,6 +21,13 @@ using Playnite.Providers.BattleNet;
 
 namespace Playnite
 {
+    public enum AfterLaunchOptions
+    {
+        None,
+        Minimize,
+        Close
+    }
+
     public class Settings : INotifyPropertyChanged, IEditableObject
     {
         public class WindowPosition
@@ -505,18 +512,18 @@ namespace Playnite
             }
         }
 
-        private bool minimizeAfterLaunch = true;
-        public bool MinimizeAfterLaunch
+        private AfterLaunchOptions afterLaunch = AfterLaunchOptions.Minimize;
+        public AfterLaunchOptions AfterLaunch
         {
             get
             {
-                return minimizeAfterLaunch;
+                return afterLaunch;
             }
 
             set
             {
-                minimizeAfterLaunch = value;
-                OnPropertyChanged("MinimizeAfterLaunch");
+                afterLaunch = value;
+                OnPropertyChanged("AfterLaunch");
             }
         }
 

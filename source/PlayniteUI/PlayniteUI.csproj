@@ -207,6 +207,7 @@
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\IconToImageSourceConverter.cs" />
     <Compile Include="Converters\InvertableBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\AfterGameLaunchOptionToStringConverter.cs" />
     <Compile Include="Converters\MetadataSourceToStringConverter.cs" />
     <Compile Include="Converters\ListToStringConverter.cs" />
     <Compile Include="Converters\CustomImageStringToImageConverter.cs" />

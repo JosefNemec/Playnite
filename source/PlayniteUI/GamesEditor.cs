@@ -134,7 +134,11 @@ namespace PlayniteUI
                 logger.Error(exc, "Failed to set jump list data: ");
             }
 
-            if (Settings.Instance.MinimizeAfterLaunch)
+            if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
+            {
+                Application.Current.Shutdown();
+            }
+            else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
             {
                 Application.Current.MainWindow.WindowState = WindowState.Minimized;
             }

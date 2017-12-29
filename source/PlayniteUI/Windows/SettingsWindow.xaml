@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:pui="clr-namespace:PlayniteUI"
+        xmlns:pn="clr-namespace:Playnite;assembly=Playnite"
         xmlns:steam="clr-namespace:Playnite.Providers.Steam;assembly=Playnite"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
@@ -130,29 +131,55 @@
                         </DockPanel>
 
                         <Grid Margin="0,20,0,0">
+                            <Grid.Resources>
+                                <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
+                                                    x:Key="AfterLaunchOptionsEnumValues">
+                                    <ObjectDataProvider.MethodParameters>
+                                        <x:Type TypeName="pn:AfterLaunchOptions" />
+                                    </ObjectDataProvider.MethodParameters>
+                                </ObjectDataProvider>
+                                <pui:AfterGameLaunchOptionToStringConverter x:Key="AfterGameLaunchOptionToStringConverter" />
+                                <ComboBox x:Key="ComboAfterGameOptions" x:Shared="False"
+                                          SelectedValue="{Binding AfterLaunch}"
+                                          ItemsSource="{Binding Source={StaticResource AfterLaunchOptionsEnumValues}}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Converter={StaticResource AfterGameLaunchOptionToStringConverter}}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </Grid.Resources>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition />
                                 <RowDefinition />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
-                            <StackPanel Grid.Column="0">
-                                <CheckBox Name="CheckEnableTray" Content="{DynamicResource SettingsShowTray}" Margin="5,0,0,0"
-                                            IsChecked="{Binding Settings.EnableTray}" />
-                                <CheckBox Name="CheckMinimizeToTray" Content="{DynamicResource SettingsMinimizeToTray}" Margin="20,10,5,5"
-                                            IsChecked="{Binding Settings.MinimizeToTray}"
-                                            IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
-                                <CheckBox Name="CheckCloseToTray" Content="{DynamicResource SettingsCloseToTray}" Margin="20,5,5,5"
-                                            IsChecked="{Binding Settings.CloseToTray}"
-                                            IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"/>
-                            </StackPanel>
-                            <CheckBox Name="CheckMinimizeLaunch" Content="{DynamicResource SettingsMinimizeStarting}" VerticalAlignment="Top"
-                                      IsChecked="{Binding Settings.MinimizeAfterLaunch}" Grid.Column="1"/>
+                            <CheckBox Name="CheckEnableTray" Content="{DynamicResource SettingsShowTray}" Margin="5,0,0,0"
+                                            IsChecked="{Binding Settings.EnableTray}"
+                                      Grid.Column="0" Grid.Row="0"/>
+                            <CheckBox Name="CheckMinimizeToTray" Content="{DynamicResource SettingsMinimizeToTray}" Margin="20,10,5,5"
+                                        IsChecked="{Binding Settings.MinimizeToTray}"
+                                        IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"
+                                      Grid.Column="0" Grid.Row="1"/>
+                            <CheckBox Name="CheckCloseToTray" Content="{DynamicResource SettingsCloseToTray}" Margin="20,5,5,5"
+                                        IsChecked="{Binding Settings.CloseToTray}"
+                                        IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"
+                                      Grid.Column="0" Grid.Row="2"/>                
 
-                            <CheckBox Name="CheckUpdateLibStartup" Margin="5,15,5,5" Grid.Row="1" Grid.ColumnSpan="2"
+                            <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal"
+                                        Margin="40,0,0,0">
+                                <TextBlock Text="{DynamicResource SettingsAfterGameStart}" Margin="0,0,5,0"
+                                           VerticalAlignment="Center" />
+                                <ContentControl DataContext="{Binding Settings}"
+                                                Content="{StaticResource ComboAfterGameOptions}" />
+                            </StackPanel>
+
+                            <CheckBox Name="CheckUpdateLibStartup" Margin="5,15,5,5" Grid.Row="3" Grid.ColumnSpan="2"
                                       Content="{DynamicResource SettingsUpdateLibStartup}" ToolTip="{DynamicResource SettingsUpdateLibStartupTooltip}" 
                                       IsChecked="{Binding Settings.UpdateLibStartup}"/>
 
