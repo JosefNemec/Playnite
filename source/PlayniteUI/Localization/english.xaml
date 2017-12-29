@@ -109,6 +109,7 @@ Automatically imported games may reappear in Playnite after next import procedur
 {ImagePath} - Game ISO/ROM path if set
 {ImageName} - Game ISO/ROM file name
 {ImageNameNoExt} - Game ISO/ROM file name without extension
+{PlayniteDir} - Playnite's installation directory
         
 Example: -image "{ImagePath}" -fullscreen
 Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>

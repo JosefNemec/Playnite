@@ -632,6 +632,7 @@ namespace Playnite.Models
             result = result.Replace("{ImagePath}", IsoPath);
             result = result.Replace("{ImageNameNoExt}", Path.GetFileNameWithoutExtension(isoPath));
             result = result.Replace("{ImageName}", Path.GetFileName(isoPath));
+            result = result.Replace("{PlayniteDir}", Paths.ProgramFolder);
             return result;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Playnite;
 using Playnite.Models;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ namespace PlayniteTests.Models
             Assert.AreEqual(game.IsoPath, game.ResolveVariables("{ImagePath}"));
             Assert.AreEqual("test", game.ResolveVariables("{ImageNameNoExt}"));
             Assert.AreEqual("test.iso", game.ResolveVariables("{ImageName}"));
+            Assert.AreEqual(Paths.ProgramFolder, game.ResolveVariables("{PlayniteDir}"));
         }
     }
 }
