@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -28,74 +29,101 @@ namespace PlayniteUI
 
     public class DialogsFactory : IDialogsFactory
     {
+        private readonly SynchronizationContext context;
+
+        public DialogsFactory()
+        {
+            context = SynchronizationContext.Current;
+        }
+
+        private T Invoke<T>(Func<T> action)
+        {
+            T result = default(T);
+            context.Send((a) =>
+            {
+                result = action();
+            }, null);
+
+            return result;
+        }
+
         public string SaveFile(string filter)
         {
-            return Dialogs.SaveFile(PlayniteWindows.CurrentWindow, filter);
+            return Invoke(() => Dialogs.SaveFile(PlayniteWindows.CurrentWindow, filter));
         }
 
         public string SaveFile(string filter, bool promptOverwrite)
         {
-            return Dialogs.SaveFile(PlayniteWindows.CurrentWindow, filter, promptOverwrite);
+            return Invoke(() => Dialogs.SaveFile(PlayniteWindows.CurrentWindow, filter, promptOverwrite));
         }
 
         public string SelectFile(string filter)
         {
-            return Dialogs.SelectFile(PlayniteWindows.CurrentWindow, filter);
+            return Invoke(() => Dialogs.SelectFile(PlayniteWindows.CurrentWindow, filter));
         }
 
         public List<string> SelectFiles(string filter)
         {
-            return Dialogs.SelectFiles(PlayniteWindows.CurrentWindow, filter);
+            return Invoke(() => Dialogs.SelectFiles(PlayniteWindows.CurrentWindow, filter));
         }
 
         public string SelectFolder()
         {
-            return Dialogs.SelectFolder(PlayniteWindows.CurrentWindow);
+            return Invoke(() => Dialogs.SelectFolder(PlayniteWindows.CurrentWindow));
         }
 
         public string SelectIconFile()
         {
-            return Dialogs.SelectIconFile(PlayniteWindows.CurrentWindow);
+            return Invoke(() => Dialogs.SelectIconFile(PlayniteWindows.CurrentWindow));
         }
 
         public string SelectImagefile()
         {
-            return Dialogs.SelectImageFile(PlayniteWindows.CurrentWindow);
+            return Invoke(() => Dialogs.SelectImageFile(PlayniteWindows.CurrentWindow));
         }
 
         public MessageBoxResult SelectString(string messageBoxText, string caption, out string input)
         {
-            return Dialogs.SelectString(PlayniteWindows.CurrentWindow, messageBoxText, caption, out input);
+            var result = MessageBoxResult.None;
+            input = string.Empty;
+            var inpt = input ?? string.Empty;
+            context.Send((a) =>
+            {
+                result = Dialogs.SelectString(PlayniteWindows.CurrentWindow, messageBoxText, caption, out inpt);
+            }, null);
+
+            input = inpt;
+            return result;
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
         {
-            return PlayniteMessageBox.Show(messageBoxText, caption, button, icon, defaultResult, options);
+            return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption, button, icon, defaultResult, options));
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult)
         {
-            return PlayniteMessageBox.Show(messageBoxText, caption, button, icon, defaultResult);
+            return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption, button, icon, defaultResult));
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon)
         {
-            return PlayniteMessageBox.Show(messageBoxText, caption, button, icon);
+            return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption, button, icon));
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button)
         {
-            return PlayniteMessageBox.Show(messageBoxText, caption, button);
+            return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption, button));
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption)
         {
-            return PlayniteMessageBox.Show(messageBoxText, caption);
+            return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption));
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText)
         {
-            return PlayniteMessageBox.Show(messageBoxText);
+            return Invoke(() => PlayniteMessageBox.Show(messageBoxText));
         }
     }
 
