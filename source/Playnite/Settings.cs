@@ -658,9 +658,9 @@ namespace Playnite
             editingNotifs = new List<string>();
         }
 
-        public void OnPropertyChanged(string name)
+        public void OnPropertyChanged(string name, bool force = false)
         {
-            if (isEditing)
+            if (isEditing && !force)
             {
                 if (!editingNotifs.Contains(name))
                 {

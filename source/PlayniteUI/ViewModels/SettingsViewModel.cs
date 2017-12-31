@@ -328,6 +328,7 @@ namespace PlayniteUI.ViewModels
             if (!string.IsNullOrEmpty(path))
             {
                 Settings.DatabasePath = path;
+                Settings.OnPropertyChanged("DatabasePath", true);
             }
         }
 
