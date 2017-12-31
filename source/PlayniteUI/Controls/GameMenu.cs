@@ -282,6 +282,27 @@ namespace PlayniteUI.Controls
                     Items.Add(new Separator());
                 }
 
+                if (Game.Links?.Any() == true)
+                {
+                    var linksItem = new MenuItem()
+                    {
+                        Header = resources.FindString("LinksLabel")
+                    };
+
+                    foreach (var link in Game.Links)
+                    {
+                        linksItem.Items.Add(new MenuItem()
+                        {
+                            Header = link.Name,
+                            Command = Commands.GeneralCommands.NavigateUrlCommand,
+                            CommandParameter = link.Url
+                        });
+                    }     
+                    
+                    Items.Add(linksItem);
+                    Items.Add(new Separator());
+                }
+
                 // Open Game Location
                 if (Game.IsInstalled)
                 {
