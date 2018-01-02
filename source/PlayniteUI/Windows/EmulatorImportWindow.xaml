@@ -256,7 +256,7 @@
                                 <GridViewColumn Header="{DynamicResource PathLabel}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Game.IsoPath, Mode=OneWay}" />
+                                            <TextBox Text="{Binding Game.IsoPath, Mode=OneWay}" IsReadOnly="True" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
