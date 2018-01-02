@@ -39,6 +39,11 @@ namespace Playnite
                 get; set;
             }
 
+            public string url2
+            {
+                get; set;
+            }
+
             public string notesUrlRoot
             {
                 get; set;
@@ -71,8 +76,16 @@ namespace Playnite
             }
         }
 
+        private static string updateDataUrl2
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["UpdateUrl2"];
+            }
+        }
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private UpdateData latestData;
+        private UpdateData updateManifest;
 
         private string updaterPath
         {
@@ -108,11 +121,16 @@ namespace Playnite
             LatestReleaseNotes = new List<ReleaseNoteData>();
             var current = GetCurrentVersion();
 
-            foreach (var version in latestData.releases)
+            if (updateManifest == null)
+            {
+                DownloadManifest();
+            }
+
+            foreach (var version in updateManifest.releases)
             {
                 if ((new Version(version.version)).CompareTo(current) > 0)
                 {
-                    var noteUrl = latestData.notesUrlRoot + version.file;
+                    var noteUrl = updateManifest.notesUrlRoot + version.file;
                     var note = Web.DownloadString(noteUrl);
                     LatestReleaseNotes.Add(new ReleaseNoteData()
                     {
@@ -125,12 +143,35 @@ namespace Playnite
 
         public void DownloadUpdate()
         {
-            if (latestData == null)
+            if (updateManifest == null)
             {
-                GetLatestVersion();
+                DownloadManifest();
             }
 
-            DownloadUpdate(latestData.url);
+            try
+            {
+                DownloadUpdate(updateManifest.url);
+                return;
+            }
+            catch (Exception e)
+            {
+                logger.Warn(e, "Failed to download update from main URL");
+            }
+
+            try
+            {
+                if (!string.IsNullOrEmpty(updateManifest.url2))
+                {
+                    DownloadUpdate(updateManifest.url2);
+                    return;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Warn(e, "Failed to download update from secondary URL");
+            }
+
+            throw new Exception("Failed to download update from provided URLs.");
         }
 
         public void DownloadUpdate(string url)
@@ -170,13 +211,55 @@ namespace Playnite
             {
                 Application.Current.Shutdown();
             });
-        }     
-        
+        }
+
+        private string GetUpdateManifestData(string url)
+        {
+            return Web.DownloadString(url);
+        }
+
+        public UpdateData DownloadManifest()
+        {
+            var dataString = string.Empty;
+
+            try
+            {
+                dataString = GetUpdateManifestData(updateDataUrl);
+            }
+            catch (Exception e)
+            {
+                logger.Warn(e, "Failed to download update manifest from main URL");
+            }
+
+            try
+            {
+                if (string.IsNullOrEmpty(dataString) && !string.IsNullOrEmpty(updateDataUrl2))
+                {
+                    dataString = GetUpdateManifestData(updateDataUrl2);
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Warn(e, "Failed to download update manifest from secondary URL");
+            }
+
+            if (string.IsNullOrEmpty(dataString))
+            {
+                throw new Exception("Failed to download update manifest.");
+            }
+
+            updateManifest = JsonConvert.DeserializeObject<Dictionary<string, UpdateData>>(dataString)["stable"];
+            return updateManifest;
+        }
+
         public Version GetLatestVersion()
         {
-            var dataString = Web.DownloadString(updateDataUrl);
-            latestData = JsonConvert.DeserializeObject<Dictionary<string, UpdateData>>(dataString)["stable"];
-            return new Version(latestData.version);
+            if (updateManifest == null)
+            {
+                DownloadManifest();
+            }
+
+            return new Version(updateManifest.version);
         }
 
         public static Version GetCurrentVersion()

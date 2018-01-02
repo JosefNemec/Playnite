@@ -36,6 +36,7 @@ Write-Host "Updating update manifest..." -ForegroundColor Green
 $updateInfoContent = Get-Content $updateInfoPath | ConvertFrom-Json
 $updateInfoContent.stable.version = $updateVersion
 $updateInfoContent.stable.url = "https://github.com/JosefNemec/Playnite/releases/download/$updateVersion/PlayniteInstaller.exe"
+$updateInfoContent.stable.url2 = "http://playnite.cz/update/$updateVersion/PlayniteInstaller.exe"
 $releases = {$updateInfoContent.stable.releases}.Invoke()
 if ($releases[0].version -ne $updateVersion)
 {
