@@ -116,6 +116,7 @@ Section "Installer Section"
   ;{files_here}
 
   ${If} $Portable != "1"
+  ${AndIf} $ProgressOnly != "1"
     ${WriteUninstaller} "$INSTDIR\uninstall.exe"
     
     ${CreateDirectory} "$SMPROGRAMS\Playnite"
