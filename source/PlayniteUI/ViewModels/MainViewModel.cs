@@ -5,14 +5,12 @@ using Playnite.MetaProviders;
 using Playnite.Models;
 using Playnite.Providers.Steam;
 using PlayniteUI.Commands;
-using PlayniteUI.Controls;
 using PlayniteUI.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -295,7 +293,7 @@ namespace PlayniteUI.ViewModels
             {
                 MainMenuOpened = false;
                 LoadGames(true);
-            }, (a) => GameAdditionAllowed);
+            }, (a) => GameAdditionAllowed || !Database.IsOpen);
         }
 
         public RelayCommand<object> OpenSteamFriendsCommand
@@ -607,12 +605,19 @@ namespace PlayniteUI.ViewModels
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                GameAdditionAllowed = false;
+                Logger.Error(exc, "Failed to open database.");
+                var message = Resources.FindString("DatabaseOpenError") + $" {exc.Message}";
+                if (exc is System.IO.IOException || exc is UnauthorizedAccessException)
+                {
+                    message = string.Format(Resources.FindString("DatabaseOpenAccessError"), AppSettings.DatabasePath);
+                }
+
                 Dialogs.ShowMessage(
-                    Resources.FindString("DatabaseOpenError") + $" {exc.Message}",
-                    Resources.FindString("DatabaseErroTitle"),
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                        message,
+                        Resources.FindString("DatabaseErroTitle"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                GameAdditionAllowed = false;
                 return;
             }
             
