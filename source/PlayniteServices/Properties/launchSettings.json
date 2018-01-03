@@ -19,7 +19,7 @@
       "PlayniteServices": {
         "commandName": "Project",
         "launchBrowser": true,
-        "launchUrl": "http://localhost:5000/api/igdb/games/quake",
+        "launchUrl": "http://localhost:5000/api/patreon/patrons",
         "environmentVariables": {
           "ASPNETCORE_ENVIRONMENT": "Development"
         }

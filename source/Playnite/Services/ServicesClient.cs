@@ -81,6 +81,11 @@ namespace Playnite.Services
             return ExecuteRequest<PlayniteServices.Models.IGDB.Genre>(url);
         }
 
+        public List<string> GetPatrons()
+        {
+            return ExecuteRequest<List<string>>("/api/patreon/patrons");
+        }
+
         public void PostUserUsage()
         {
             var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);

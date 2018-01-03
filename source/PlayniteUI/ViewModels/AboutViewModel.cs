@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Playnite;
+using Playnite.Services;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,25 @@ namespace PlayniteUI.ViewModels
             {
                 return "Playnite " + Update.GetCurrentVersion().ToString(2);
             }
+        }
+
+        private string patronsList;
+        public string PatronsList
+        {
+            get
+            {
+                if (patronsList == null)
+                {
+                    patronsList = string.Join(Environment.NewLine, (new ServicesClient()).GetPatrons());
+                }
+
+                return patronsList;
+            }
+        }
+
+        public string PatronsListDownloading
+        {
+            get => resources.FindString("DownloadingLabel");
         }
 
         public RelayCommand<object> CreateDiagPackageCommand

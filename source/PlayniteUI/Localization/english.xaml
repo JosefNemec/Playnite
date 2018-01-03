@@ -103,6 +103,8 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="DetailsLabel">Details</sys:String>
     <sys:String x:Key="CustomLabel">Custom</sys:String>
     <sys:String x:Key="URLLabel">URL</sys:String>
+    <sys:String x:Key="PatronsLabel">Patrons</sys:String>
+    <sys:String x:Key="LicenseLabel">License</sys:String>
     
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
@@ -432,4 +434,5 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="MetadownloadNoResultsMessage">Didn't found any relevant information about game '{0}' on specified page.</sys:String>
     <sys:String x:Key="MetadownloadSingleGameTip">Tip: You can use more advanced metadata download process while editing single game via "Edit" menu option.</sys:String>
     <sys:String x:Key="ProgreessAvailabilityMessage">Not available when some action is in progress.</sys:String>
+    <sys:String x:Key="PatreonDevelopMessage">Playnite's development is supported by these patrons:</sys:String>
 </ResourceDictionary>
