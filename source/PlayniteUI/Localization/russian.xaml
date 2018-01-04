@@ -16,7 +16,7 @@
     
     <sys:String x:Key="AboutHomePageLink">Домашняя страница: www.playnite.link</sys:String>
     <sys:String x:Key="AboutSourceLink">Исходный код на GitHub</sys:String>
-    <sys:String x:Key="AboutCreateDiagButton">Провести диагностику</sys:String>
+    <sys:String x:Key="AboutCreateDiagButton">Диагностика</sys:String>
     <sys:String x:Key="AboutWindowTitle">О Playnite</sys:String>
     <sys:String x:Key="AboutAuthor">Разработчик: Josef Němec</sys:String>
 
@@ -30,8 +30,8 @@
     <sys:String x:Key="CrashWindowTitle">О нет, что-то пошло не так...</sys:String>
     <sys:String x:Key="CrashDescription">Playnite столкнулась с проблемой и не может решить ее. Если вы хотите помочь нам, пожалуйста проведите диагностику и сообщите нам о проблеме. Спасибо.</sys:String>
     <sys:String x:Key="CrashReportIssue">Сообщить о проблеме</sys:String>
-    <sys:String x:Key="CrashRestartPlaynite">Перезагрузить Playnite</sys:String>
-    <sys:String x:Key="CrashClosePlaynite">Закрыть Playnite</sys:String>
+    <sys:String x:Key="CrashRestartPlaynite">Перезагрузить</sys:String>
+    <sys:String x:Key="CrashClosePlaynite">Закрыть</sys:String>
 
     <sys:String x:Key="GameRemoveAskTitle">Убрать игру(ы)?</sys:String>
     <sys:String x:Key="GameRemoveAskMessage" xml:space="preserve">Вы уверены что хотите убрать эту игру?
@@ -82,7 +82,7 @@
     <sys:String x:Key="GeneralLabel">Основное</sys:String>
     <sys:String x:Key="MediaLabel">Медиа</sys:String>
     <sys:String x:Key="LinksLabel">Ссылки</sys:String>
-    <sys:String x:Key="InstallationLabel">Установки</sys:String>
+    <sys:String x:Key="InstallationLabel">Настройки</sys:String>
     <sys:String x:Key="ActionsLabel">Действия</sys:String>
     <sys:String x:Key="DownloadingLabel">Скачивание...</sys:String>
     <sys:String x:Key="TypeLabel">Тип</sys:String>
@@ -96,10 +96,13 @@
     <sys:String x:Key="PublisherLabel">Издатель</sys:String>
     <sys:String x:Key="CategoryLabel">Категория</sys:String>
     <sys:String x:Key="TagLabel">Тэг</sys:String>
+    <sys:String x:Key="TagsLabel">Тэги</sys:String>
     <sys:String x:Key="ZoomLabel">Приблизить</sys:String>
     <sys:String x:Key="ListLabel">Список</sys:String>
     <sys:String x:Key="CoversLabel">Обложка</sys:String>
     <sys:String x:Key="DetailsLabel">Подробно</sys:String>
+    <sys:String x:Key="CustomLabel">Собственные</sys:String>
+    <sys:String x:Key="URLLabel">URL</sys:String>
     
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Специальные переменные могут быть использованы при добавлении динамический строки:
 {InstallDir} - Директория с установленной игрой
@@ -143,7 +146,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="ProgressInstalledGames">Импортирование установленных игр...</sys:String>
     <sys:String x:Key="ProgressLibraryGames">Скачивание обновлений библиотеки...</sys:String>
     <sys:String x:Key="ProgressSteamCategoryImport">Скачивание обновлений библиотеки...</sys:String>
-    <sys:String x:Key="ProgressLibImportFinish">Обновление библиотеки заверщено</sys:String>
+    <sys:String x:Key="ProgressLibImportFinish">Обновление библиотеки завершено</sys:String>
 
     <!--Menu-->
     <sys:String x:Key="MenuConfigurationTitle">Конфигурация</sys:String>
@@ -161,28 +164,32 @@ IGDB > Официальный магазин:
     <sys:String x:Key="MenuIssues">Отправить отзыв</sys:String>
 
     <!--Settings Window-->
-    <sys:String x:Key="SettingsImportLabel">Автоматически импортировать изменения в библиотеке</sys:String>
+    <sys:String x:Key="SettingsGeneralLabel">Основные</sys:String>
+    <sys:String x:Key="SettingsAppearanceLabel">Внешний вид</sys:String>
+    <sys:String x:Key="SettingsAdvancedLabel">Дополнительные</sys:String>
+    <sys:String x:Key="SettingsProvidersLabel">Сторонние клиенты</sys:String>
+    <sys:String x:Key="SettingsImportLabel">Автоматически импортировать изменения</sys:String>
     <sys:String x:Key="SettingsImportInstalledLabel">Импортировать установленные игры</sys:String>
     <sys:String x:Key="SettingsImportLibraryLabel">Импортировать все игры</sys:String>
     <sys:String x:Key="SettingsInvalidDBLocation">Не найдено расположение базы данных, должен быть указан верный путь.</sys:String>
     <sys:String x:Key="SettingsInvalidSteamAccountName">Имя Steam-аккаунта не может быть пустым.</sys:String>
     <sys:String x:Key="SettingsInvalidSteamAccountLibImport">Не выбран Steam-аккаунт для импорта библиотеки.</sys:String>
     <sys:String x:Key="SettingsInvalidSteamAccountCatImport">Не выбран Steam-аккаунт для импорта категории.</sys:String>
-    <sys:String x:Key="SettingsUpdateLibStartup">Обновление библиотек из сторонних клиентов при запуске</sys:String>
+    <sys:String x:Key="SettingsUpdateLibStartup">Обновления из сторонних клиентов при запуске</sys:String>
     <sys:String x:Key="SettingsStartInFullscreen">Запуск в полноэкранном режиме</sys:String>
     <sys:String x:Key="SettingsUpdateLibStartupTooltip">Включает в себя Steam,Origin и прочие.</sys:String>
-    <sys:String x:Key="SettingsAsyncImageLoading">Асинхронная загрузка изображений (требуется перезапуск)</sys:String>
+    <sys:String x:Key="SettingsAsyncImageLoading">Асинхронная загрузка изображений</sys:String>
     <sys:String x:Key="SettingsAsyncImageLoadingTooltip">Улучшает прокрутку игрового списка,но ухудшает скорость загрузки изображений.</sys:String>
     <sys:String x:Key="SettingsShowNameEmptyCover">Показывать название игры при отсутствии обложки</sys:String>
     <sys:String x:Key="SettingsShowIconList">Отображать иконки в режиме списка</sys:String>
-    <sys:String x:Key="SettingsDisableAcceleration">Выключить аппаратное ускорение (требуется перезапуск)</sys:String>
+    <sys:String x:Key="SettingsDisableAcceleration">Выключить аппаратное ускорение</sys:String>
     <sys:String x:Key="SettingsDisableAccelerationTooltip">Используйте когда присутствуют заикания или другие проблемы интерфейса.</sys:String>
     <sys:String x:Key="SettingsSkin">Тема</sys:String>
     <sys:String x:Key="SettingsSkinColor">Цвет текста</sys:String>
     <sys:String x:Key="SettingsSkinFullscreen">Полноэкранная тема</sys:String>
     <sys:String x:Key="SettingsSkinColorFullscreen">Цвет полноэкранной темы</sys:String>
     <sys:String x:Key="SettingsDBLocation">Местоположение базы данных</sys:String>
-    <sys:String x:Key="SettingsWhatsSteamName">Какое имя у моего аккаунта?</sys:String>
+    <sys:String x:Key="SettingsWhatsSteamName">Имя моего аккаунта?</sys:String>
     <sys:String x:Key="SettingsLoginStatus">Статус:</sys:String>
     <sys:String x:Key="SettingsSteamLibrarySource">Выберите библиотеку пользователя:</sys:String>
     <sys:String x:Key="SettingsWindowTitle">Настройки</sys:String>
@@ -192,8 +199,8 @@ IGDB > Официальный магазин:
     <sys:String x:Key="SettingsClearWebCacheTooltip">Может решить проблемы, возникающие при привязке учетных записей.</sys:String>
     <sys:String x:Key="SettingsShowTray">Показывать трэй-иконку</sys:String>
     <sys:String x:Key="SettingsMinimizeToTray">Свернуть в трэй</sys:String>
-    <sys:String x:Key="SettingsCloseToTray">Свернуть при закрытии</sys:String>
-    <sys:String x:Key="SettingsMinimizeStarting">Свернуть после запуска игры</sys:String>
+    <sys:String x:Key="SettingsCloseToTray">Свернуть</sys:String>
+    <sys:String x:Key="SettingsMinimizeStarting">Свернуть при запуске exe</sys:String>
     <sys:String x:Key="SettingsGOGUseGalaxy">Интеграция с клиентом Galaxy</sys:String>
     <sys:String x:Key="SettingsGOGUseGalaxyTooltip">Будут работать такие возможности, как: облачные сохранения, счетчик проведенного времени в игре и т.д.</sys:String>
     <sys:String x:Key="SettingsSteamCatImportWarn">Это перезапишет текущие категории всех Steam-игр. Вы хотите продолжить?</sys:String>
@@ -209,7 +216,7 @@ IGDB > Официальный магазин:
     
     <sys:String x:Key="ImportError">Ошибка при импортировании</sys:String>
     <sys:String x:Key="LoginChecking">Проверка...</sys:String>
-    <sys:String x:Key="LoginRequired">Требуется аутентификация</sys:String>
+    <sys:String x:Key="LoginRequired">Нужна аутентификация</sys:String>
     <sys:String x:Key="LoginFailed">Не удалось аутентифицировать</sys:String>
 
     <!--Meta Import-->
@@ -290,13 +297,17 @@ IGDB > Официальный магазин:
     <sys:String x:Key="MenuSortByTitle">Сортировка по</sys:String>
     <sys:String x:Key="MenuSortAscending">Возрастанию</sys:String>
     <sys:String x:Key="MenuSortDescending">Убыванию</sys:String>
+    <sys:String x:Key="MenuGroupDont">Не группировать</sys:String>
+    <sys:String x:Key="MenuGroupProvider">По стороннему клиенту</sys:String>
+    <sys:String x:Key="MenuGroupCategory">По категории</sys:String>
+    <sys:String x:Key="MenuGroupPlatform">По платформе</sys:String>
 
     <!--Game fields-->
     <sys:String x:Key="GameIconTitle">Иконка</sys:String>
     <sys:String x:Key="GameCoverImageTitle">Обложка</sys:String>
     <sys:String x:Key="GameBackgroundTitle">Фон</sys:String>
     <sys:String x:Key="GameSortingNameTitle">Сортировка</sys:String>
-    <sys:String x:Key="GameProviderTitle">Поставщик</sys:String>
+    <sys:String x:Key="GameProviderTitle">Сторонний клиент</sys:String>
     <sys:String x:Key="GameNameTitle">Название игры</sys:String>
     <sys:String x:Key="GamePlatformTitle">Платформа</sys:String>
     <sys:String x:Key="GameCategoriesTitle">Категория</sys:String>
@@ -305,13 +316,14 @@ IGDB > Официальный магазин:
     <sys:String x:Key="GameDevelopersTitle">Разработчик</sys:String>
     <sys:String x:Key="GameTagsTitle">Тэги</sys:String>
     <sys:String x:Key="GamePublishersTitle">Издатель</sys:String>
-    <sys:String x:Key="GameIsInstalledTitle">Установленным</sys:String>
+    <sys:String x:Key="GameIsInstalledTitle">Установленные</sys:String>
+    <sys:String x:Key="GameIsUnInstalledTitle">Удаленные</sys:String>
     <sys:String x:Key="GameHiddenTitle">Скрытые</sys:String>
     <sys:String x:Key="GameFavoriteTitle">Любимые</sys:String>
-    <sys:String x:Key="GameLastActivityTitle">Последней активности</sys:String>
+    <sys:String x:Key="GameLastActivityTitle">Последняя активность</sys:String>
     <sys:String x:Key="GameCategoryTitle">Категории</sys:String>
     <sys:String x:Key="GameDescriptionTitle">Описание</sys:String>
-    <sys:String x:Key="GameInstallDirTitle">Пути установки</sys:String>
+    <sys:String x:Key="GameInstallDirTitle">Путь установки</sys:String>
     <sys:String x:Key="GameCoverTitle">Обложка</sys:String>
     <sys:String x:Key="GameLinksTitle">Ссылка</sys:String>
     <sys:String x:Key="GameROMTitle">Образ/ISO путь</sys:String>
@@ -345,13 +357,14 @@ IGDB > Официальный магазин:
 
     <!--GameEdit-->
     <sys:String x:Key="GameEditWindowTitle">Редактировать данные игры</sys:String>
-    <sys:String x:Key="UseExeIcon">Использовать exe иконку</sys:String>
+    <sys:String x:Key="UseExeIcon">Exe иконка</sys:String>
     <sys:String x:Key="ImageURL">Изображение URL</sys:String>
     <sys:String x:Key="AddLinkButton">Добавить ссылку</sys:String>
     <sys:String x:Key="SaveChanges">Сохранить изменения</sys:String>
     <sys:String x:Key="PlayAction">Игровое действие</sys:String>
     <sys:String x:Key="AddPlayAction">Добавить игровое действие</sys:String>
     <sys:String x:Key="AddAction">Добавить действие</sys:String>
+    <sys:String x:Key="DeleteAction">Удалить действие</sys:String>
     <sys:String x:Key="RemovePlayAction">Удалить игровое действие</sys:String>
     <sys:String x:Key="OtherActions">Другие действия</sys:String>
     <sys:String x:Key="AddGames">Добавить игры</sys:String>
@@ -400,10 +413,10 @@ IGDB > Официальный магазин:
     <sys:String x:Key="RemoveGame">Удалить</sys:String>
     <sys:String x:Key="PlayGame">Запустить</sys:String>
     <sys:String x:Key="InstallGame">Установить</sys:String>
-    <sys:String x:Key="UninstallGame">Удалить</sys:String>
+    <sys:String x:Key="UninstallGame">Установить</sys:String>
     <sys:String x:Key="OpenGameLocation">Открыть расположение игры</sys:String>
     <sys:String x:Key="CreateDesktopShortcut">Создать ярлык на рабочем столе</sys:String>
-    <sys:String x:Key="MoreAction">Другие действия</sys:String>
+    <sys:String x:Key="MoreAction">Другое</sys:String>
 
     <sys:String x:Key="MetadownloadNoResultsMessage">Не найдена соответствующая информация об игре '{0}' на конкретной странице.</sys:String>
     <sys:String x:Key="MetadownloadSingleGameTip">Совет: Вы можете использовать более детальный процесс загрузки метаданных во время редактирования одной игры с помощью опции меню "Редактировать".</sys:String>

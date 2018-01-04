@@ -8,8 +8,8 @@
     <sys:String x:Key="LanguageSettingsLabel">Jazyk</sys:String>
 
     <sys:String x:Key="ExitAppLabel">Odísť</sys:String>
-    <sys:String x:Key="FilterActiveLabel">Filter is Enabled (click to toggle filter panel)</sys:String>
-    <sys:String x:Key="FilterInactiveLabel">Filter is Disabled (click to toggle filter panel)</sys:String>
+    <sys:String x:Key="FilterActiveLabel">Filter je zapnutý(klikni pre prepnutie panelu filtra)</sys:String>
+    <sys:String x:Key="FilterInactiveLabel">Filter je vypnutý(klikni pre prepnutie panelu filtra)</sys:String>
 
     <sys:String x:Key="InvalidDataTitle">Chybné údaje</sys:String>
     <sys:String x:Key="SaveChangesAskTitle">Uložiť zmeny?</sys:String>
@@ -100,7 +100,9 @@ Hry, ktoré sa automatický importovaly sa môžu znova objaviť v aplikácií P
     <sys:String x:Key="ListLabel">Zoznam</sys:String>
     <sys:String x:Key="CoversLabel">Obaly</sys:String>
     <sys:String x:Key="DetailsLabel">Detaily</sys:String>
-    
+    <sys:String x:Key="CustomLabel">Vlastné</sys:String>
+    <sys:String x:Key="URLLabel">URL</sys:String>
+
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Umiestnenie inštalácie hry
 {ImagePath} - Cieľ súboru ISO/ROM ak je určený
@@ -151,7 +153,7 @@ Preferovať údaje z officiálneho Obchodu, pokiaľ niesú dostupné, použiť �
     <sys:String x:Key="MenuPlatformEmulatorSettingsTitle">Platformy a Emulatory</sys:String>
     <sys:String x:Key="MenuTools">Nástroje</sys:String>
     <sys:String x:Key="MenuDownloadMetadata">Sťiahnuť Metadata</sys:String>
-    <sys:String x:Key="MenuOpenClient">Otvoriť klien</sys:String>
+    <sys:String x:Key="MenuOpenClient">Otvoriť klient</sys:String>
     <sys:String x:Key="MenuReloadLibrary">Obnoviť zoznam hier</sys:String>
     <sys:String x:Key="MenuAddGame">Pridať hru</sys:String>
     <sys:String x:Key="MenuAddGameManual">Ručné</sys:String>
@@ -243,7 +245,7 @@ Neskôr tiež môžte nastaviť a importovať akýkoľvek emulátor pomocou menu
     <sys:String x:Key="FirstWindowTitle">Úvodné nastavenie</sys:String>
     <sys:String x:Key="FirstIntro" xml:space="preserve">Tento sprievodca vás prevedie procesom automatického importovania hier a a nastavením externých knižníc. Playnite môže automatický importovať hry z viacerých služieb ako Steam alebo GOG a tiež udržiavať vašu knižnicu aktuálnu jej aktualizovaním počas spúštania programu.
         
-Keep in mind that you can always add any custom game for any platform manually from main menu by clicking on 'Playnite' button.   
+Pamätajte že vždy môžte pridať vlastnú hru pre akúkoľvek platformu v hlavnom menu kliknutí na ikonu Playnite.   
     </sys:String>
     <sys:String x:Key="FirstDBLocation" xml:space="preserve">Vyberte umiestnenie súboru databázy knižnice. Umiestenie môžete zmeniť neskôr cez menu nastavení.
 
@@ -296,6 +298,10 @@ Monetálne ju používa(ju) {1} hra(y) a {2} emulátor(i).</sys:String>
     <sys:String x:Key="MenuSortByTitle">Zoradiť podľa</sys:String>
     <sys:String x:Key="MenuSortAscending">Zostupne</sys:String>
     <sys:String x:Key="MenuSortDescending">Vzostupne</sys:String>
+	<sys:String x:Key="MenuGroupDont">Nezoraďovať</sys:String>
+    <sys:String x:Key="MenuGroupProvider">Zoradiť podľa poskytovateľa</sys:String>
+    <sys:String x:Key="MenuGroupCategory">Zoradiť podľa kategórie</sys:String>
+    <sys:String x:Key="MenuGroupPlatform">Zoradiť podľa platformy</sys:String>
 
     <!--Game fields-->
     <sys:String x:Key="GameIconTitle">Ikona</sys:String>
@@ -377,12 +383,12 @@ Monetálne ju používa(ju) {1} hra(y) a {2} emulátor(i).</sys:String>
     <sys:String x:Key="APIKey">Kľúč API</sys:String>
     <sys:String x:Key="StartupError">Chyba spúšťania</sys:String>
     <sys:String x:Key="SkinError">Chyba vzhľadu</sys:String>
-    <sys:String x:Key="ClearAll">Vyčistiť všetko</sys:String>
+    <sys:String x:Key="ClearAll">Zmazať všetko</sys:String>
     <sys:String x:Key="SetupRunning">Pripravuje sa...</sys:String>
     <sys:String x:Key="InvalidURL">Chybná URL</sys:String>
     <sys:String x:Key="UserKey">Kľúč používatela</sys:String>
 
-    <sys:String x:Key="EmulatorArguments">Emulator Arguments</sys:String>
+    <sys:String x:Key="EmulatorArguments">Argumenty emulátoru</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Dodatočné argumenty emulátora</sys:String>
     <sys:String x:Key="OverrideEmulatorArguments">Nahradiť argumenty emulátora</sys:String>
 
@@ -413,6 +419,6 @@ Monetálne ju používa(ju) {1} hra(y) a {2} emulátor(i).</sys:String>
     <sys:String x:Key="MoreAction">Viac</sys:String>
 
     <sys:String x:Key="MetadownloadNoResultsMessage">Na tejto stránke sa o hre '{0}' nenašli žiadne relevantné informácie.</sys:String>
-    <sys:String x:Key="MetadownloadSingleGameTip">Tip: You can use more advanced metadata download process while editing single game via "Edit" menu option.</sys:String>
-    <sys:String x:Key="ProgreessAvailabilityMessage">Not available when some action is in progress.</sys:String>
-</ResourceDictionary>
+    <sys:String x:Key="MetadownloadSingleGameTip">Typ: Môžte použiť pokročilejší proces sťahovania dát metadata počas upravovania jednej hry pomocou menu "Upraviť..</sys:String>
+    <sys:String x:Key="ProgreessAvailabilityMessage">Nieje dostupné počas prebiehajúcej akcie.</sys:String>
+</ResourceDictionary> 

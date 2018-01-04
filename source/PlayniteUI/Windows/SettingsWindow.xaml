@@ -14,7 +14,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="{DynamicResource SettingsWindowTitle}" Width="600" Height="500"                     
+        Title="{DynamicResource SettingsWindowTitle}" Width="650" Height="500"                     
         AutomationProperties.AutomationId="WindowSettings">
 
     <i:Interaction.Triggers>

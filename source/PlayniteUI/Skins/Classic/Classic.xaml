@@ -2601,7 +2601,7 @@
                             </DockPanel>
                             
                             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
-                                <StackPanel Margin="0,5,0,0" Width="180">
+                                <StackPanel Margin="0,5,0,0" MinWidth="180">
                                     <StackPanel.Resources>
                                         <Style x:Key="FilterCheck" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
                                             <Setter Property="Margin" Value="8" />
