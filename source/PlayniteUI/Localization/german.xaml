@@ -219,11 +219,6 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="SettingsGetThemes">Themes herunterladen</sys:String>
     <sys:String x:Key="SettingsCreateThemes">Neues Theme erstellen</sys:String>
     <sys:String x:Key="SettingsCreateLocalization">Playnite übersetzen</sys:String>
-    <sys:String x:Key="SettingsIGDBApiKeyDescription"  xml:space="preserve">Playnite kann für manuelle und emulierte Spiele zusätzliche Metadaten aus der IGDB.com-Datenbank herunterladen (Cover, Beschreibungen, etc.).
-    
-Standardmäßig verwendet Playnite hierfür einen allgemeinen API-Key. Das kann aber auch dazu führen, dass der Dienst temporär nicht verfügbar ist. Daher empfehlen wir dir, dass du dir selbst einen API-Key beschaffst um nicht von anderen Playnite-Nutzern abhängig zu sein.
-    
-Ein API-Key ist kostenlos und wenn du zur IGDB.com-Datenbank beiträgst, werden auch deine Zugriffsbeschränkungen gelockert (siehe IGDB.com Contributors-Programm).</sys:String>
     
     <sys:String x:Key="ImportError">Import fehlgeschlagen</sys:String>
     <sys:String x:Key="LoginChecking">Überprüfe...</sys:String>
