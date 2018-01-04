@@ -239,6 +239,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="ThridPartyToolsList.cs" />
+    <Compile Include="Timer.cs" />
     <Compile Include="Update.cs" />
     <Compile Include="ViewProperties.cs" />
     <Compile Include="Web.cs" />

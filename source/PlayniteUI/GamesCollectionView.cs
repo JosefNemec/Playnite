@@ -402,8 +402,8 @@ namespace PlayniteUI
             Settings.PropertyChanged += Settings_PropertyChanged;
             Settings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             CollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(Items);
-            SetViewConfiguration();
             CollectionView.Filter = Filter;
+            SetViewConfiguration();
         }
 
         public void Dispose()
@@ -762,6 +762,7 @@ namespace PlayniteUI
             using (CollectionView.DeferRefresh())
             {
                 SetViewDescriptions();
+
                 CollectionView.LiveGroupingProperties.Add("Provider");
                 CollectionView.LiveGroupingProperties.Add("Category");
                 CollectionView.LiveGroupingProperties.Add("Platform");
@@ -795,7 +796,7 @@ namespace PlayniteUI
 
                 CollectionView.IsLiveSorting = true;
                 CollectionView.IsLiveFiltering = true;
-                CollectionView.IsLiveGrouping = true;
+                CollectionView.IsLiveGrouping = true;                   
             };
         }
 
@@ -832,7 +833,7 @@ namespace PlayniteUI
                         {
                             return new List<GameViewEntry>()
                             {
-                                new GameViewEntry(x, null, GetPlatformFromCache(x.PlatformId))
+                            new GameViewEntry(x, null, GetPlatformFromCache(x.PlatformId))
                             };
                         }
                         else

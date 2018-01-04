@@ -29,11 +29,11 @@ namespace PlayniteUI
         private GameDatabase database;
         private Settings appSettings;
 
-        public IEnumerable<IGame> LastGames
+        public List<IGame> LastGames
         {
             get
             {
-                return database.GamesCollection?.Find(Query.All("LastActivity", Query.Descending))?.Where(a => a.LastActivity != null && a.IsInstalled)?.Take(10);
+                return database.GamesCollection?.Find(Query.Not("LastActivity", null), Query.Descending, limit: 10).ToList();              
             }
         }
 
@@ -331,7 +331,7 @@ namespace PlayniteUI
         }
 
         public void UpdateJumpList()
-        {
+        {           
             OnPropertyChanged("LastGames");
             var jumpList = new JumpList();
             foreach (var lastGame in LastGames)
@@ -361,8 +361,8 @@ namespace PlayniteUI
                 jumpList.ShowFrequentCategory = false;
                 jumpList.ShowRecentCategory = false;
             }
-
-            JumpList.SetJumpList(Application.Current, jumpList);
+            
+            JumpList.SetJumpList(Application.Current, jumpList);            
         }
     }
 }
