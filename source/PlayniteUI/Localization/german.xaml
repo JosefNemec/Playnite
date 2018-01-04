@@ -103,12 +103,15 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="DetailsLabel">Details</sys:String>
     <sys:String x:Key="CustomLabel">Manuell</sys:String>
     <sys:String x:Key="URLLabel">URL</sys:String>
+    <sys:String x:Key="PatronsLabel">Patrons</sys:String>
+    <sys:String x:Key="LicenseLabel">License</sys:String>
     
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Es können folgende Variablen verwendet werden:
-{InstallDir} - Instllationspfad des Spiels
+{InstallDir} - Installationspfad des Spiels
 {ImagePath} - Pfad zur ISO/ROM des Spiels, falls vorhanden
 {ImageName} - Name des ISO/ROM des Spiels
 {ImageNameNoExt} - Dateiname des ISO/ROM ohne Dateiendung
+{PlayniteDir} - Playnite Installationspfad
         
 Beispiel: -image "{ImagePath}" -fullscreen
 Ergebnis: -image "c:\folder\image.iso" -fullscreen</sys:String>
@@ -200,7 +203,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="SettingsShowTray">Zeige Tray-Icon</sys:String>
     <sys:String x:Key="SettingsMinimizeToTray">Minimiere ins Tray</sys:String>
     <sys:String x:Key="SettingsCloseToTray">Schließe ins Tray</sys:String>
-    <sys:String x:Key="SettingsMinimizeStarting">Minimiere beim Spielstart</sys:String>
+    <sys:String x:Key="SettingsAfterGameStart">Spielstart:</sys:String>
     <sys:String x:Key="SettingsGOGUseGalaxy">Verwende GOG Galaxy</sys:String>
     <sys:String x:Key="SettingsGOGUseGalaxyTooltip">GOG Galaxy ermöglicht synchronisierte Cloud-Spielstände, das Aufzeichnen von Spielzeiten, usw.</sys:String>
     <sys:String x:Key="SettingsSteamCatImportWarn">Dies wird die Kategorien aller Steam-Spiele zurücksetzen. Bist du sicher?</sys:String>
@@ -213,7 +216,9 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="SettingsApiKeyTooltip">Für private Accounts ist ein API-Key notwendig.</sys:String>
     <sys:String x:Key="SettingsApiKeyUrlText">Hole API-Key</sys:String>
     <sys:String x:Key="SettingsSkinChangeRestart">Die Änderung des Themes erfordert einen Neustart.</sys:String>
-    <sys:String x:Key="SettingsIGDBApiKey">IGDB.com API-Key</sys:String>
+    <sys:String x:Key="SettingsGetThemes">Themes herunterladen</sys:String>
+    <sys:String x:Key="SettingsCreateThemes">Neues Theme erstellen</sys:String>
+    <sys:String x:Key="SettingsCreateLocalization">Playnite übersetzen</sys:String>
     <sys:String x:Key="SettingsIGDBApiKeyDescription"  xml:space="preserve">Playnite kann für manuelle und emulierte Spiele zusätzliche Metadaten aus der IGDB.com-Datenbank herunterladen (Cover, Beschreibungen, etc.).
     
 Standardmäßig verwendet Playnite hierfür einen allgemeinen API-Key. Das kann aber auch dazu führen, dass der Dienst temporär nicht verfügbar ist. Daher empfehlen wir dir, dass du dir selbst einen API-Key beschaffst um nicht von anderen Playnite-Nutzern abhängig zu sein.
@@ -300,6 +305,7 @@ Der Emulator wird momentan von {1} Spielen verwendet.</sys:String>
     <sys:String x:Key="PlatformRemovalConfirmation" xml:space="preserve">Bist du sicher, dass du die Plattform '{0}' entfernen möchtest?
 
 Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:String>
+    <sys:String x:Key="EmulatorSettingsHelp">Hilfe</sys:String>
     
     <sys:String x:Key="MenuSortByTitle">Sortieren nach</sys:String>
     <sys:String x:Key="MenuSortAscending">Aufsteigend</sys:String>
@@ -338,6 +344,7 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <!--Errors-->
     <sys:String x:Key="DatabaseErroTitle">Datenbankfehler</sys:String>
     <sys:String x:Key="DatabaseOpenError">Fehler beim Öffnen der Datenbank.</sys:String>
+    <sys:String x:Key="DatabaseOpenAccessError">Fehler beim Öffnen der Datenbank: Datei "{0}" wird von einem anderen Prozess verwendet oder ist nicht lesbar.</sys:String>
     <sys:String x:Key="DiagPackageCreationError">Fehler beim Erstellen von Diagnosedaten.</sys:String>
     <sys:String x:Key="DiagPackageCreationSuccess">Diagnosedaten erfolgreich erstellt.</sys:String>
 
@@ -393,6 +400,9 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="SetupRunning">Installation wird durchgeführt...</sys:String>
     <sys:String x:Key="InvalidURL">Ungültige URL</sys:String>
     <sys:String x:Key="UserKey">[UNUSED]</sys:String>
+    <sys:String x:Key="DoNothing">Nichts unternehmen</sys:String>
+    <sys:String x:Key="Minimize">Minimieren</sys:String>
+    <sys:String x:Key="Close">Schließen</sys:String>
 
     <sys:String x:Key="EmulatorArguments">Emulator-Argumente</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Zusätzliche Emulator-Argumente</sys:String>
@@ -427,4 +437,6 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="MetadownloadNoResultsMessage">Zum Spiel '{0}' konnten keine relevanten Metadaten gefunden werden.</sys:String>
     <sys:String x:Key="MetadownloadSingleGameTip">Tipp: Du kannst einen erweiterten Dialog zum Import von Metadaten verwenden wenn du den Menüpunkt "Metadaten bearbeiten" eines einzelnen Spiels anwählst.</sys:String>
     <sys:String x:Key="ProgreessAvailabilityMessage">Es wird gerade eine andere Aktion ausgeführt...</sys:String>
+    <sys:String x:Key="DescriptionHTMLSupportTooltip">Für die Beschreibung muss HTML verwendet werden.</sys:String>
+    <sys:String x:Key="PatreonDevelopMessage">Die Entwicklung von Playnite wurde unterstützt durch:</sys:String>
 </ResourceDictionary>
