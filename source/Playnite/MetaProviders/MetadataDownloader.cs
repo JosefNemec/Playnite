@@ -74,7 +74,6 @@ namespace Playnite.MetaProviders
 
     public class MetadataDownloaderSettings : ObservableObject
     {
-
         private MetadataGamesSource gamesSource = MetadataGamesSource.AllFromDB;
         public MetadataGamesSource GamesSource
         {
@@ -87,6 +86,17 @@ namespace Playnite.MetaProviders
             {
                 gamesSource = value;
                 OnPropertyChanged("GamesSource");
+            }
+        }
+
+        private MetadataFieldSettings name = new MetadataFieldSettings(false, MetadataSource.Store);
+        public MetadataFieldSettings Name
+        {
+            get => name;
+            set
+            {
+                name = value;
+                OnPropertyChanged("Name");
             }
         }
 
@@ -517,10 +527,10 @@ namespace Playnite.MetaProviders
 
                     try
                     {
-                        // Name - always download for games from official stores
-                        if (game.Provider != Provider.Custom)
+                        // Name
+                        if (game.Provider != Provider.Custom && settings.Name.Import)
                         {
-                            gameData = ProcessField(game, new MetadataFieldSettings(true, MetadataSource.Store) , ref storeData, ref igdbData, (a) => a.GameData?.Name);
+                            gameData = ProcessField(game, settings.Name, ref storeData, ref igdbData, (a) => a.GameData?.Name);
                             if (!string.IsNullOrEmpty(gameData?.GameData?.Name))
                             {
                                 game.Name = StringExtensions.NormalizeGameName(gameData.GameData.Name);
@@ -533,61 +543,91 @@ namespace Playnite.MetaProviders
                         }
 
                         // Genre
-                        gameData = ProcessField(game, settings.Genre, ref storeData, ref igdbData, (a) => a.GameData?.Genres);
-                        game.Genres = gameData?.GameData?.Genres ?? game.Genres;
+                        if (settings.Genre.Import)
+                        {
+                            gameData = ProcessField(game, settings.Genre, ref storeData, ref igdbData, (a) => a.GameData?.Genres);
+                            game.Genres = ListExtensions.IsNullOrEmpty(gameData?.GameData?.Genres) ? game.Genres : gameData.GameData.Genres;
+                        }
 
                         // Release Date
-                        gameData = ProcessField(game, settings.ReleaseDate, ref storeData, ref igdbData, (a) => a.GameData?.ReleaseDate);
-                        game.ReleaseDate = gameData?.GameData?.ReleaseDate ?? game.ReleaseDate;
+                        if (settings.ReleaseDate.Import)
+                        {
+                            gameData = ProcessField(game, settings.ReleaseDate, ref storeData, ref igdbData, (a) => a.GameData?.ReleaseDate);
+                            game.ReleaseDate = gameData?.GameData?.ReleaseDate ?? game.ReleaseDate;
+                        }
 
                         // Developer
-                        gameData = ProcessField(game, settings.Developer, ref storeData, ref igdbData, (a) => a.GameData?.Developers);
-                        game.Developers = gameData?.GameData?.Developers ?? game.Developers;
+                        if (settings.Developer.Import)
+                        {
+                            gameData = ProcessField(game, settings.Developer, ref storeData, ref igdbData, (a) => a.GameData?.Developers);
+                            game.Developers = ListExtensions.IsNullOrEmpty(gameData?.GameData?.Developers) ? game.Developers : gameData.GameData.Developers;
+                        }
 
                         // Publisher
-                        gameData = ProcessField(game, settings.Publisher, ref storeData, ref igdbData, (a) => a.GameData?.Publishers);
-                        game.Publishers = gameData?.GameData?.Publishers ?? game.Publishers;
+                        if (settings.Publisher.Import)
+                        {
+                            gameData = ProcessField(game, settings.Publisher, ref storeData, ref igdbData, (a) => a.GameData?.Publishers);
+                            game.Publishers = ListExtensions.IsNullOrEmpty(gameData?.GameData?.Publishers) ? game.Publishers : gameData.GameData.Publishers;
+                        }
 
                         // Tags / Features
-                        gameData = ProcessField(game, settings.Tag, ref storeData, ref igdbData, (a) => a.GameData?.Tags);
-                        game.Tags = gameData?.GameData?.Tags ?? game.Tags;
+                        if (settings.Tag.Import)
+                        {
+                            gameData = ProcessField(game, settings.Tag, ref storeData, ref igdbData, (a) => a.GameData?.Tags);
+                            game.Tags = ListExtensions.IsNullOrEmpty(gameData?.GameData?.Tags) ? game.Tags : gameData.GameData.Tags;
+                        }
 
                         // Description
-                        gameData = ProcessField(game, settings.Description, ref storeData, ref igdbData, (a) => a.GameData?.Description);
-                        game.Description = gameData?.GameData?.Description ?? game.Description;
+                        if (settings.Description.Import)
+                        {
+                            gameData = ProcessField(game, settings.Description, ref storeData, ref igdbData, (a) => a.GameData?.Description);
+                            game.Description = string.IsNullOrEmpty(gameData?.GameData?.Description) == true ? game.Description : gameData.GameData.Description;
+                        }
 
                         // Links
-                        gameData = ProcessField(game, settings.Links, ref storeData, ref igdbData, (a) => a.GameData?.Links);
-                        game.Links = gameData?.GameData?.Links ?? game.Links;
+                        if (settings.Links.Import)
+                        {
+                            gameData = ProcessField(game, settings.Links, ref storeData, ref igdbData, (a) => a.GameData?.Links);
+                            game.Links = gameData?.GameData?.Links ?? game.Links;
+                        }
 
                         // BackgroundImage
-                        gameData = ProcessField(game, settings.BackgroundImage, ref storeData, ref igdbData, (a) => a.BackgroundImage);
-                        game.BackgroundImage = gameData?.BackgroundImage ?? game.BackgroundImage;
+                        if (settings.BackgroundImage.Import)
+                        {
+                            gameData = ProcessField(game, settings.BackgroundImage, ref storeData, ref igdbData, (a) => a.BackgroundImage);
+                            game.BackgroundImage = string.IsNullOrEmpty(gameData?.BackgroundImage) ? game.BackgroundImage : gameData.BackgroundImage;
+                        }
 
                         // Cover
-                        gameData = ProcessField(game, settings.CoverImage, ref storeData, ref igdbData, (a) => a.Image);
-                        if (gameData?.Image != null)
+                        if (settings.CoverImage.Import)
                         {
-                            if (!string.IsNullOrEmpty(game.Image))
+                            gameData = ProcessField(game, settings.CoverImage, ref storeData, ref igdbData, (a) => a.Image);
+                            if (gameData?.Image != null)
                             {
-                                database.DeleteImageSafe(game.Image, game);
-                            }
+                                if (!string.IsNullOrEmpty(game.Image))
+                                {
+                                    database.DeleteImageSafe(game.Image, game);
+                                }
 
-                            var imageId = database.AddFileNoDuplicate(gameData.Image);
-                            game.Image = imageId;
+                                var imageId = database.AddFileNoDuplicate(gameData.Image);
+                                game.Image = imageId;
+                            }
                         }
 
                         // Icon
-                        gameData = ProcessField(game, settings.Icon, ref storeData, ref igdbData, (a) => a.Icon);
-                        if (gameData?.Icon != null)
+                        if (settings.Icon.Import)
                         {
-                            if (!string.IsNullOrEmpty(game.Icon))
+                            gameData = ProcessField(game, settings.Icon, ref storeData, ref igdbData, (a) => a.Icon);
+                            if (gameData?.Icon != null)
                             {
-                                database.DeleteImageSafe(game.Icon, game);
-                            }
+                                if (!string.IsNullOrEmpty(game.Icon))
+                                {
+                                    database.DeleteImageSafe(game.Icon, game);
+                                }
 
-                            var iconId = database.AddFileNoDuplicate(gameData.Icon);
-                            game.Icon = iconId;
+                                var iconId = database.AddFileNoDuplicate(gameData.Icon);
+                                game.Icon = iconId;
+                            }
                         }
 
                         // Just to be sure check if somebody didn't remove game while downloading data

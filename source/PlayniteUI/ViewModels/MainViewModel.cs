@@ -850,6 +850,7 @@ namespace PlayniteUI.ViewModels
                         var metaSettings = new MetadataDownloaderSettings();
                         metaSettings.ConfigureFields(MetadataSource.Store, true);
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
+                        metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
                         var downloader = new MetadataDownloader(AppSettings.IGDBApiKey);
                         downloader.DownloadMetadataThreaded(
                             addedGames,

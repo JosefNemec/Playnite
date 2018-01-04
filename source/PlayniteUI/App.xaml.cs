@@ -19,6 +19,7 @@ using System.Windows.Markup;
 using System.IO;
 using System.Windows.Input;
 using System.ComponentModel;
+using Playnite.MetaProviders;
 
 namespace PlayniteUI
 {
@@ -155,7 +156,7 @@ namespace PlayniteUI
 
             // First run wizard
             ulong steamCatImportId = 0;
-            bool notFirstStart = AppSettings.FirstTimeWizardComplete;
+            bool isFirstStart = !AppSettings.FirstTimeWizardComplete;
             if (!AppSettings.FirstTimeWizardComplete)
             {
                 var wizardWindow = FirstTimeStartupWindowFactory.Instance;
@@ -231,20 +232,6 @@ namespace PlayniteUI
                 AppSettings.SaveSettings();
             }
 
-            // Metadata wizard
-            MetadataDownloadViewModel metaModel = null;
-            if (!notFirstStart)
-            {
-                metaModel = new MetadataDownloadViewModel(MetadataDownloadWindowFactory.Instance);
-                metaModel.Settings.GamesSource = Playnite.MetaProviders.MetadataGamesSource.AllFromDB;
-                if (metaModel.OpenView(MetadataDownloadViewModel.ViewMode.Wizard) != true)
-                {
-                    metaModel = null;
-                }
-
-                AppSettings.SaveSettings();
-            }
-
             GamesEditor = new GamesEditor(Database, AppSettings);
             CustomImageStringToImageConverter.Database = Database;
 
@@ -255,7 +242,7 @@ namespace PlayniteUI
             }
             else
             {
-                OpenNormalView(steamCatImportId, notFirstStart, metaModel);
+                OpenNormalView(steamCatImportId, isFirstStart);
             }
 
             // Update and stats
@@ -389,7 +376,7 @@ namespace PlayniteUI
             resourcesReleased = true;
         }
 
-        public async void OpenNormalView(ulong steamCatImportId, bool metaForNewGames, MetadataDownloadViewModel metaModel)
+        public async void OpenNormalView(ulong steamCatImportId, bool isFirstStart)
         {
             if (fullscreenModel != null)
             {
@@ -409,11 +396,15 @@ namespace PlayniteUI
                 GamesEditor);
             mainModel.OpenView();
             Current.MainWindow = window.Window;
-            await mainModel.LoadGames(AppSettings.UpdateLibStartup, steamCatImportId, metaForNewGames);
+            await mainModel.LoadGames(AppSettings.UpdateLibStartup, steamCatImportId, !isFirstStart);
 
-            if (metaModel != null)
+            if (isFirstStart)
             {
-                await mainModel.DownloadMetadata(metaModel.Settings);
+                var metaSettings = new MetadataDownloaderSettings();
+                metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
+                metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
+                metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
+                await mainModel.DownloadMetadata(metaSettings);
             }
         }
 

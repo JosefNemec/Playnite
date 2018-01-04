@@ -92,7 +92,7 @@ namespace PlayniteTests.MetaProviders
                     db, settings);
 
                 var dbGames = db.GamesCollection.FindAll().ToList();
-                Assert.AreEqual(4, downloader.CallCount);
+                Assert.AreEqual(3, downloader.CallCount);
                 var game1 = dbGames[0];
                 Assert.AreEqual("IGDB Description igdbid1", game1.Description);
                 Assert.AreEqual("IGDB Developer igdbid1", game1.Developers[0]);

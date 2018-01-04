@@ -8,6 +8,15 @@ namespace Playnite
 {
     public static class ListExtensions
     {
+        public static bool IsNullOrEmpty(List<string> source)
+        {
+            if (source == null || source.Count == 0)
+            {
+                return true;
+            }
+
+            return source.TrueForAll(a => string.IsNullOrEmpty(a));
+        }
 
         public static bool IntersectsPartiallyWith(this List<string> source, List<string> target)
         {

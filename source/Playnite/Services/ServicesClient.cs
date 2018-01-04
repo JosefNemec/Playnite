@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using Newtonsoft.Json;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,6 +13,8 @@ namespace Playnite.Services
 {
     public class ServicesClient
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         private HttpClient httpClient = new HttpClient()
         {
             Timeout = new TimeSpan(0, 0, 30)
@@ -40,6 +43,7 @@ namespace Playnite.Services
 
             if (!string.IsNullOrEmpty(result.Error))
             {
+                logger.Error("Service request error by proxy: " + result.Error);
                 throw new Exception(result.Error);
             }
 
@@ -53,7 +57,8 @@ namespace Playnite.Services
 
         public List<PlayniteServices.Models.IGDB.Game> GetIGDBGames(string searchName, string apiKey = null)
         {
-            var url = string.IsNullOrEmpty(apiKey) ? $"/api/igdb/games/{searchName}" : $"/api/igdb/games/{searchName}?apikey={apiKey}";
+            var encoded = Uri.EscapeDataString(searchName);
+            var url = string.IsNullOrEmpty(apiKey) ? $"/api/igdb/games/{encoded}" : $"/api/igdb/games/{encoded}?apikey={apiKey}";
             return ExecuteRequest<List<PlayniteServices.Models.IGDB.Game>>(url);
         }
 
