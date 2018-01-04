@@ -132,7 +132,7 @@
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseGenresChanges}"/>
                     <TextBox Grid.Column="2" Grid.Row="4" Name="TextGenres"
-                                Text="{Binding EditingGame.Genres, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
+                                Text="{Binding EditingGame.Genres, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}, Delay=1000}"/>
 
                     <!-- Release Date -->
                     <TextBlock Grid.Column="0" Grid.Row="5" Text="{DynamicResource GameReleaseDateTitle}"/>
@@ -148,7 +148,7 @@
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseDeveloperChanges}"/>
                     <TextBox Grid.Column="2" Grid.Row="6" Name="TextDeveloper"
-                                Text="{Binding EditingGame.Developers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
+                                Text="{Binding EditingGame.Developers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}, Delay=1000}"/>
 
                     <!-- Publishers -->
                     <TextBlock Grid.Column="0" Grid.Row="7" Text="{DynamicResource GamePublishersTitle}" />
@@ -156,7 +156,7 @@
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UsePublisherChanges}"/>
                     <TextBox Grid.Column="2" Grid.Row="7" Name="TextPublisher"
-                                Text="{Binding EditingGame.Publishers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
+                                Text="{Binding EditingGame.Publishers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}, Delay=1000}"/>
 
                     <!-- Categories -->
                     <TextBlock Grid.Column="0" Grid.Row="8" Text="{DynamicResource GameCategoriesTitle}" />
@@ -168,7 +168,7 @@
                                 Height="{Binding ActualHeight, ElementName=TextCategories}"
                                 Command="{Binding SelectCategoryCommand}"/>
                         <TextBox Name="TextCategories" DockPanel.Dock="Left"
-                                    Text="{Binding EditingGame.Categories, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
+                                    Text="{Binding EditingGame.Categories, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}, Delay=1000}"/>
                     </DockPanel>
 
                     <!-- Tags -->
@@ -177,7 +177,7 @@
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseTagChanges}"/>
                     <TextBox Grid.Column="2" Grid.Row="9" Name="TextTag"
-                                Text="{Binding EditingGame.Tags, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
+                                Text="{Binding EditingGame.Tags, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}, Delay=1000}"/>
 
                     <!-- Description -->
                     <TextBlock Grid.Column="0" Grid.Row="10" Text="{DynamicResource GameDescriptionTitle}" VerticalAlignment="Top" Margin="0,5,0,0" />
