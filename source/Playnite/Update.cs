@@ -68,6 +68,14 @@ namespace Playnite
             }
         }
 
+        private static string updateBranch
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["UpdateBranch"];
+            }
+        }
+
         private static string updateDataUrl
         {
             get
@@ -248,7 +256,7 @@ namespace Playnite
                 throw new Exception("Failed to download update manifest.");
             }
 
-            updateManifest = JsonConvert.DeserializeObject<Dictionary<string, UpdateData>>(dataString)["stable"];
+            updateManifest = JsonConvert.DeserializeObject<Dictionary<string, UpdateData>>(dataString)[updateBranch];
             return updateManifest;
         }
 

@@ -6,7 +6,8 @@ param(
     [switch]$Portable = $false,
     [switch]$SkipBuild = $false,
     [ValidateSet("x86", "x64")]
-    [string]$Platform = "x86"
+    [string]$Platform = "x86",
+    [string]$UpdateBranch = "stable"
 )
 
 $ErrorActionPreference = "Stop"
@@ -53,6 +54,12 @@ else
 {
     $appCompileSuccess = $true
 }
+
+# -------------------------------------------
+#            Set update branch 
+# -------------------------------------------
+$configPath = Join-Path $OutputPath "PlayniteUI.exe.config"
+(Get-Content $configPath) -replace '.*key="UpdateBranch".*', "<add key=`"UpdateBranch`" value=`"$UpdateBranch`" />" | Out-File $configPath -Encoding utf8
 
 # -------------------------------------------
 #            Build installer

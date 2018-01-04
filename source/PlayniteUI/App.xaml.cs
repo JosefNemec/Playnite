@@ -302,6 +302,7 @@ namespace PlayniteUI
         {
             await Task.Factory.StartNew(() =>
             {
+                Thread.Sleep(10000);
                 var update = new Update();
 
                 while (true)

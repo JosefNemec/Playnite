@@ -5,6 +5,7 @@ param(
     [string]$CompareBranch,
     [switch]$CommitAndPush,
     [switch]$Build,
+    [string]$UpdateBranch = "stable",
     [switch]$PublishRelease,
     [string]$GitHubAuth,
     [switch]$PublishManifest,
@@ -34,17 +35,17 @@ $asmInfoContent  | Out-File $asmInfoPath -Encoding utf8
 # update.json update
 Write-Host "Updating update manifest..." -ForegroundColor Green
 $updateInfoContent = Get-Content $updateInfoPath | ConvertFrom-Json
-$updateInfoContent.stable.version = $updateVersion
-$updateInfoContent.stable.url = "https://github.com/JosefNemec/Playnite/releases/download/$updateVersion/PlayniteInstaller.exe"
-$updateInfoContent.stable.url2 = "http://playnite.cz/update/$updateVersion/PlayniteInstaller.exe"
-$releases = {$updateInfoContent.stable.releases}.Invoke()
+$updateInfoContent.$UpdateBranch.version = $updateVersion
+$updateInfoContent.$UpdateBranch.url = "https://github.com/JosefNemec/Playnite/releases/download/$updateVersion/PlayniteInstaller.exe"
+$updateInfoContent.$UpdateBranch.url2 = "http://playnite.cz/update/$updateVersion/PlayniteInstaller.exe"
+$releases = {$updateInfoContent.$UpdateBranch.releases}.Invoke()
 if ($releases[0].version -ne $updateVersion)
 {
     $releases.Insert(0, (New-Object psobject -Property @{
         version = $updateVersion
         file = $updateVersion + ".html"
     }))
-    $updateInfoContent.stable.releases = $releases
+    $updateInfoContent.$UpdateBranch.releases = $releases
 }
 
 $updateInfoContent | ConvertTo-Json -Depth 10 | Out-File $updateInfoPath -Encoding utf8
@@ -92,7 +93,7 @@ if ($CommitAndPush)
 if ($Build)
 {
     Write-Host "Building release..." -ForegroundColor Green
-    $buildPassed = .\build.ps1 -Setup -Portable
+    $buildPassed = .\build.ps1 -Setup -Portable -UpdateBranch $UpdateBranch
     if (!$buildPassed)
     {
         throw "Building release failed."

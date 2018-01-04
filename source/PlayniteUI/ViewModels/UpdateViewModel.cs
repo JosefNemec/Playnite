@@ -41,7 +41,7 @@ namespace PlayniteUI.ViewModels
         {
             this.window = window;
             this.update = update;
-            ReleaseNotes = update.LatestReleaseNotes;
+            ReleaseNotes = update.LatestReleaseNotes.OrderBy(a => a.Version).ToList();
         }
 
         public void OpenView()
