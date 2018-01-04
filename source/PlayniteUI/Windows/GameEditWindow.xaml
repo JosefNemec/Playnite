@@ -185,8 +185,10 @@
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseDescriptionChanges}"/>
                     <TextBox Grid.Column="2" Grid.Row="10" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
-                                ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                Text="{Binding EditingGame.Description, UpdateSourceTrigger=PropertyChanged}"/>
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             Text="{Binding EditingGame.Description, UpdateSourceTrigger=PropertyChanged}"
+                             ToolTip="{DynamicResource DescriptionHTMLSupportTooltip}"
+                             ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"/>
                 </Grid>
             </TabItem>
 
@@ -458,7 +460,7 @@
                         <ContextMenu Placement="Top" Width="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}">
                             <MenuItem Header="IGDB" Command="{Binding DownloadIGDBMetadataCommand}"/>
                             <MenuItem Header="Wiki" Command="{Binding DownloadWikiMetadataCommand}"/>
-                            <MenuItem Header="Official Store" Command="{Binding DownloadStoreCommand}"
+                            <MenuItem Header="{DynamicResource MetaSourceStore}" Command="{Binding DownloadStoreCommand}"
                                       Visibility="{Binding EditingGame.Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}"/>
                         </ContextMenu>
                     </Button.ContextMenu>

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:pui="clr-namespace:PlayniteUI"
+        xmlns:pcmd="clr-namespace:PlayniteUI.Commands"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
@@ -191,7 +192,13 @@
 
                             <StackPanel Grid.Row="1" Margin="{StaticResource EditSeparatorMargin}">
                                 <TextBlock Text="{DynamicResource ProfilesLabel}" />
-                                <DockPanel Margin="0,5,0,0">
+                                <DockPanel Margin="0,5,0,0">                                    
+                                    <TextBlock DockPanel.Dock="Right" Padding="10,0,10,0" VerticalAlignment="Center">
+                                        <Hyperlink Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                                   CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Emulator-Settings">
+                                            <Run Text="?" FontSize="22" ToolTip="{DynamicResource EmulatorSettingsHelp}" />
+                                        </Hyperlink>
+                                    </TextBlock>
                                     <Button Content="{DynamicResource RemoveTitle}" DockPanel.Dock="Right" Margin="5,0,5,0"
                                             Command="{Binding Data.RemoveEmulatorProfileCommand, Source={StaticResource Proxy}}"/>
                                     <Button Content="{DynamicResource CopyTitle}" DockPanel.Dock="Right" Margin="5,0,5,0"

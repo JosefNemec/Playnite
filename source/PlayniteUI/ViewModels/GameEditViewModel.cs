@@ -1702,7 +1702,7 @@ namespace PlayniteUI.ViewModels
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(exc, "Failed to download metadata, {0} , {1}", game.Provider, game.ProviderId);
+                    logger.Error(exc, "Failed to download metadata, {0}, {1}", game.Provider, game.ProviderId);
                     dialogs.ShowMessage(
                         string.Format(resources.FindString("MetadataDownloadError"), exc.Message),
                         resources.FindString("DownloadError"),

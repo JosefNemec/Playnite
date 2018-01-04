@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:pui="clr-namespace:PlayniteUI"
+        xmlns:pcmd="clr-namespace:PlayniteUI.Commands"
         xmlns:pn="clr-namespace:Playnite;assembly=Playnite"
         xmlns:steam="clr-namespace:Playnite.Providers.Steam;assembly=Playnite"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -128,6 +129,12 @@
                                       SelectedValue="{Binding Settings.Language}"
                                       SelectedValuePath="Id" DisplayMemberPath="LocaleString"
                                       ItemsSource="{Binding AvailableLanguages}"/>
+                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
+                                <Hyperlink Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                           CommandParameter="https://github.com/JosefNemec/Playnite/wiki/How-to:-Translations">
+                                    <Run Text="{DynamicResource SettingsCreateLocalization}" />
+                                </Hyperlink>
+                            </TextBlock>
                         </DockPanel>
 
                         <Grid Margin="0,20,0,0">
@@ -220,9 +227,21 @@
                                       SelectionChanged="CombSkinColor_SelectionChanged"
                                       ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkins}" />
                         </Grid>
-
-                        <TextBlock Text="{DynamicResource SettingsSkinChangeRestart}" Margin="0,5,0,10"
-                                   FontStyle="Italic"/>
+                        <TextBlock Text="{DynamicResource SettingsSkinChangeRestart}" FontStyle="Italic" Margin="0,15,0,15"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock >
+                                <Hyperlink Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                           CommandParameter="https://www.reddit.com/r/playnite/comments/7o2bd2/custom_themes_database/">
+                                    <Run Text="{DynamicResource SettingsGetThemes}" />
+                                </Hyperlink>
+                            </TextBlock>
+                            <TextBlock Margin="20,0,0,0">
+                                <Hyperlink Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                           CommandParameter="https://github.com/JosefNemec/Playnite/wiki/How-to:-Themes">
+                                    <Run Text="{DynamicResource SettingsCreateThemes}" />
+                                </Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
 
                         <!--<Grid Margin="0,10,0,0">
                             <Grid.ColumnDefinitions>
@@ -252,7 +271,7 @@
                             </ComboBox>
                         </Grid>-->
                         <CheckBox Content="{DynamicResource SettingsAsyncImageLoading}" ToolTip="{DynamicResource SettingsAsyncImageLoadingTooltip}"
-                                  Margin="0,15,0,0"
+                                  Margin="0,40,0,0"
                                   Name="CheckAsyncImages" IsChecked="{Binding Settings.AsyncImageLoading}"/>
                         <CheckBox Content="{DynamicResource SettingsShowNameEmptyCover}" Margin="0,15,0,0"
                                   Name="CheckNameEmptyCover" IsChecked="{Binding Settings.ShowNameEmptyCover}"/>
