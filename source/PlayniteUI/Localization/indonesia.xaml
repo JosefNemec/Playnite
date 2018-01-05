@@ -31,7 +31,7 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
         
 Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan (tergantung setting).</sys:String>
   <sys:String x:Key="SteamFriendsTooltip">Teman di Steam</sys:String>
-  <sys:String x:Key="GameEditChangeNotif">Ada perubahan yang belum disimpan.</sys:String>
+  <sys:String x:Key="GameEditChangeNotif">Ada perubahan yang belum disimpan</sys:String>
   <sys:String x:Key="DBUpgradeProgress">Mengupdate versi database...</sys:String>
   <sys:String x:Key="DBUpgradeFail">Update database gagal, gagal membuka file database.</sys:String>
   <sys:String x:Key="GameError">Game Error</sys:String>
@@ -41,7 +41,7 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
   <sys:String x:Key="GameOpenLocationError">Gagal membuka lokasi game: {0}</sys:String>
   <sys:String x:Key="GameShortcutError">Gagal membuat shortcut: {0}</sys:String>
   <sys:String x:Key="GameInstallError">Gagal menginstal game: {0}</sys:String>
-  <sys:String x:Key="GameUninstallError">Gagal menguninstal game: {0}</sys:String>
+  <sys:String x:Key="GameUninstallError">Gagal menguninstall game: {0}</sys:String>
   <!--General-->
   <sys:String x:Key="RemoveTitle">Hapus</sys:String>
   <sys:String x:Key="CopyTitle">Salin</sys:String>
@@ -82,12 +82,13 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
   <sys:String x:Key="PublisherLabel">Publisher</sys:String>
   <sys:String x:Key="CategoryLabel">Kategori</sys:String>
   <sys:String x:Key="TagLabel">Tag</sys:String>
-  <sys:String x:Key="TagsLabel">Tag</sys:String>
+  <sys:String x:Key="TagsLabel">Tags</sys:String>
   <sys:String x:Key="ZoomLabel">Perbesaran</sys:String>
   <sys:String x:Key="ListLabel">List</sys:String>
   <sys:String x:Key="CoversLabel">Sampul</sys:String>
   <sys:String x:Key="DetailsLabel">Terinci</sys:String>
-  <sys:String x:Key="CustomLabel">Kustom</sys:String>
+  <sys:String x:Key="CustomLabel">Custom</sys:String>
+  <sys:String x:Key="URLLabel">URL</sys:String>
   <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Variable spesial bisa digunakan untuk menambah dynamic string:
 {InstallDir} - Direktori instalasi game
 {ImagePath} - Path untuk ISO/ROM game jika di set
@@ -144,9 +145,9 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
   <sys:String x:Key="MenuIssues">Kirim Timbal Balik</sys:String>
   <!--Settings Window-->
   <sys:String x:Key="SettingsGeneralLabel">Umum</sys:String>
-  <sys:String x:Key="SettingsAppearanceLabel">Tampilan</sys:String>
+  <sys:String x:Key="SettingsAppearanceLabel">Penampilan</sys:String>
   <sys:String x:Key="SettingsAdvancedLabel">Opsi Lanjut</sys:String>
-  <sys:String x:Key="SettingsProvidersLabel">Layanan</sys:String>
+  <sys:String x:Key="SettingsProvidersLabel">Provider</sys:String>
   <sys:String x:Key="SettingsImportLabel">Import perubahan library secara otomatis</sys:String>
   <sys:String x:Key="SettingsImportInstalledLabel">Import game yang sudah terinstal</sys:String>
   <sys:String x:Key="SettingsImportLibraryLabel">Import semua game</sys:String>
@@ -162,7 +163,7 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
   <sys:String x:Key="SettingsShowNameEmptyCover">Tampilkan nama game jika sampul tidak ditemukan</sys:String>
   <sys:String x:Key="SettingsShowIconList">Tampilkan ikon game di Tampilan List</sys:String>
   <sys:String x:Key="SettingsDisableAcceleration">Nonaktifkan hardware acceleration (muat ulang untuk bekerja)</sys:String>
-  <sys:String x:Key="SettingsDisableAccelerationTooltip">Coba cek bila Playnite terasa lambat atau ada masalah dengan UI.</sys:String>
+  <sys:String x:Key="SettingsDisableAccelerationTooltip">Gunakan ketika bereksperimen dengan lag atau masalah UI</sys:String>
   <sys:String x:Key="SettingsSkin">Tema</sys:String>
   <sys:String x:Key="SettingsSkinColor">Tema Profil</sys:String>
   <sys:String x:Key="SettingsSkinFullscreen">Tema Fullscreen</sys:String>
@@ -189,7 +190,7 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
   <sys:String x:Key="SettingsSteamCatImportError">Gagal mengimport kategori dari Steam: {0}</sys:String>
   <sys:String x:Key="SettingsClearCacheWarn">Semua akun akan dilogout. Aplikasi harus dimuat ulang. Lanjutkan?</sys:String>
   <sys:String x:Key="SettingsClearCacheTitle">Bersihkan Cache?</sys:String>
-  <sys:String x:Key="SettingsApiKeyTooltip">Kunci API dibutuhkan untuk akun Steam dengan status private.</sys:String>
+  <sys:String x:Key="SettingsApiKeyTooltip">Kunci API dibutuhkan untuk akun Steam denga status private.</sys:String>
   <sys:String x:Key="SettingsApiKeyUrlText">Dapatkan Kunci API</sys:String>
   <sys:String x:Key="SettingsSkinChangeRestart">Playnite harus dimuat ulang untuk mengganti tema.</sys:String>
   <sys:String x:Key="SettingsIGDBApiKey">Kunci API IGDB.com</sys:String>
@@ -197,7 +198,7 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
     
 Secara default Playnite menggunakan kunci publik. Ini berarti metadata dari IGDB.com mungkin tidak akan bekerja untuk sementara. Direkomendasikan untuk mendapatkan kunci privat yang tidak dibagi dengan publik.
     
-Kamu bisa mendapatkan kunci secara gratis, dan jika kamu berkontribusi dengan database, kamu bisa mendapatkan akes yang lebih luas (lihat Program Kontribusi).</sys:String>
+Kamu bisa mendapatkan kunci secara gratis jika, dan jika kamu berkontribusi dengan database, kamu mendapatkan akes yang lebih luas (lihat Program Kontribusi).</sys:String>
   <sys:String x:Key="ImportError">Import Error</sys:String>
   <sys:String x:Key="LoginChecking">Mengecek masalah...</sys:String>
   <sys:String x:Key="LoginRequired">Login dibutuhkan</sys:String>
@@ -207,8 +208,8 @@ Kamu bisa mendapatkan kunci secara gratis, dan jika kamu berkontribusi dengan da
   <sys:String x:Key="DownloadMetaButton">Download Metadata</sys:String>
   <!--Emulator Import-->
   <sys:String x:Key="EmuWizardWindowTitle">Panduan Import Emulator</sys:String>
-  <sys:String x:Key="EmuWizardIntro">Panduan ini akan membantu kamu melalui proses setting emulator untuk bekerja dengan Playnite (import/download) beserta gamenya.</sys:String>
-  <sys:String x:Key="EmuWizardNotice">Perlu diingat bahwa kamu bisa menambahkan emulator/game lewat Playnite menu ("Alat" untuk setting Emulator, dan "Tambah Game" untuk gamenya).</sys:String>
+  <sys:String x:Key="EmuWizardIntro">Panduan ini akan membantu kamu melalui proses setting emulator untuk bekerja dengan Playnite (import/download), beserta gamenya.</sys:String>
+  <sys:String x:Key="EmuWizardNotice">Perlu diingat bahwa kamu bisa menambahkan emulator/game lewat main menu (di toolbar "Alat" untuk setting Emulator dan "Tambah Game" untuk gamenya).</sys:String>
   <sys:String x:Key="EmuWizardDownloadListIntro" xml:space="preserve">Berikut adalah emulator yang dikenali oleh Playnite secara otomatis. Kamu bisa mendownload dan menginstalnya dari website officialnya. Setelah emulator diinstal, lanjutkan untuk mengimport emulator ke Playnite.
         
 Kamu juga bisa mengatur dan import emulator kustom lewat menu Konfigurasi.</sys:String>
@@ -223,17 +224,17 @@ Kamu juga bisa mengatur dan import emulator kustom lewat menu Konfigurasi.</sys:
   <sys:String x:Key="EmuWizardScanning">Mencari...</sys:String>
   <!--FirstTime Wizard-->
   <sys:String x:Key="FirstWindowTitle">Konfigurasi Awal</sys:String>
-  <sys:String x:Key="FirstIntro" xml:space="preserve">Panduan akan membantu kamu melalui proses import dan konfigurasi library game eksternal. Playnite bisa mengimport game scara otomatis dari layanan seperti Steam dan GOG, dan ini dapat memastikan library kamu selalu terupdate dengan update otomatis ketika Playnite dimulai.
+  <sys:String x:Key="FirstIntro" xml:space="preserve">Panduan akan membatu kamu melalui proses import dan konfigurasi library game eksternal. Playnite bisa mengimport game scara otomatis dari layanan seperti Steam dan GOG, dan ini dapat memastikan library kamu selalu terupdate dengan update otomatis ketika Playnite dimulai.
         
 Perlu diingat bahwa kamu bisa selalu menambah game kustom untuk platform apapun secara manual dari main menu dengan menclick tombol 'Playnite'.   
     </sys:String>
-  <sys:String x:Key="FirstDBLocation" xml:space="preserve">Pilih lokasi database untuk library kamu. Bisa diubah lagi di menu Setting.
+  <sys:String x:Key="FirstDBLocation" xml:space="preserve">Pilih lokasi database untuk library kamu. Bisa diganti di menu Setting.
 
-Tip: Jika kamu ingin mensingkronisasikan library untuk beberapa komputer sekaligus, cobalah set lokasi database ke folder Cloud (Google Drive, Dropbox, dll.)</sys:String>
+Tip: Jika kamu ingin mensingkronisasikan library untuk beberapa komputer sekaligus, Set lokasi database ke folder Cloud (Google Drive, Dropbox, dll.)</sys:String>
   <sys:String x:Key="FirstDBLocDefault">Gunakan lokasi default untuk semua user</sys:String>
-  <sys:String x:Key="FirstDBLocCustom">lokasi kustom</sys:String>
+  <sys:String x:Key="FirstDBLocCustom">location kustom</sys:String>
   <sys:String x:Key="FirstExternalTitle">Integrasi Library</sys:String>
-  <sys:String x:Key="FirstImportIntroduction" xml:space="preserve">Otomatis mengimport game dari layanan berikut. Perubahan selanjutnya (status instalasi) akan otomatis diupdate ketika Playnite dibuka atau secara manual. Setting yang dipilih juga berpengaruh untuk import yang menyusul.</sys:String>
+  <sys:String x:Key="FirstImportIntroduction" xml:space="preserve">Otomatis mengimport game dari layanan berikut. Perubahan selanjutnya (status instalasi) akan otomatis diupdate ketika Playnite dibuka atau secara manual. Setting yang dipilih berpengaruh untuk import yang menyusul.</sys:String>
   <sys:String x:Key="FirstSteamIntegration">Integrasi Steam</sys:String>
   <sys:String x:Key="FirstOriginIntegration">Integrasi Origin</sys:String>
   <sys:String x:Key="FirstGOGIntegration">Integrasi GOG</sys:String>
@@ -268,7 +269,7 @@ Kamu juga bisa menambahkan game lainnya nanti lewat tombol 'Playnite'.</sys:Stri
   <sys:String x:Key="SupportedFilesTitle">Tipe File yang Didukung</sys:String>
   <sys:String x:Key="ImportEmulatorsButton">Import Emulator...</sys:String>
   <sys:String x:Key="DownloadEmulatorsButton">Download Emulator...</sys:String>
-  <sys:String x:Key="EmuLoadArgsPresetTooltip">Muat argumen preset dari profil emulator yang tersedia</sys:String>
+  <sys:String x:Key="EmuLoadArgsPresetTooltip">muat argumen preset dari profil emulator yang tersedia</sys:String>
   <sys:String x:Key="EmuRemovalConfirmation" xml:space="preserve">Hapus {0} emulator?        
 Emulator digunakan oleh {1} game(s).</sys:String>
   <sys:String x:Key="PlatformRemovalConfirmation" xml:space="preserve">Hapus {0} platform?        
@@ -276,6 +277,10 @@ Platform digunakan oleh {1} game dan {2} emulator.</sys:String>
   <sys:String x:Key="MenuSortByTitle">Sortir</sys:String>
   <sys:String x:Key="MenuSortAscending">Menaik</sys:String>
   <sys:String x:Key="MenuSortDescending">Menurun</sys:String>
+  <sys:String x:Key="MenuGroupDont">Jangan digrupkan</sys:String>
+  <sys:String x:Key="MenuGroupProvider">Grup berdasarkan Provider</sys:String>
+  <sys:String x:Key="MenuGroupCategory">Grup berdasarkan Kategori</sys:String>
+  <sys:String x:Key="MenuGroupPlatform">Grup berdasarkan Platform</sys:String>
   <!--Game fields-->
   <sys:String x:Key="GameIconTitle">Ikon</sys:String>
   <sys:String x:Key="GameCoverImageTitle">Gambar Sampul</sys:String>
@@ -291,7 +296,7 @@ Platform digunakan oleh {1} game dan {2} emulator.</sys:String>
   <sys:String x:Key="GameTagsTitle">Tag</sys:String>
   <sys:String x:Key="GamePublishersTitle">Publisher</sys:String>
   <sys:String x:Key="GameIsInstalledTitle">Terinstal</sys:String>
-  <sys:String x:Key="GameIsUnInstalledTitle">Dihapus</sys:String>
+  <sys:String x:Key="GameIsUnInstalledTitle">Uninstalled</sys:String>
   <sys:String x:Key="GameHiddenTitle">Tersembunyi</sys:String>
   <sys:String x:Key="GameFavoriteTitle">Favorit</sys:String>
   <sys:String x:Key="GameLastActivityTitle">Aktivitas terakhir</sys:String>
@@ -318,8 +323,8 @@ Platform digunakan oleh {1} game dan {2} emulator.</sys:String>
   <sys:String x:Key="OriginLibraryImportError">Gagal mendowload library Origin.</sys:String>
   <sys:String x:Key="UplayLibraryImportError">Gagal mendowload library Uplay.</sys:String>
   <sys:String x:Key="ScanEmulatorGamesEmptyProfileError">Tidak bisa mencari game dengan profil emulator yang dipilih. Profil tidak memiliki tipe file atau emulator apapun.</sys:String>
-  <sys:String x:Key="StartGenericError">Playnite gagal dibuka. Tutup semua program Playnite yang terbuka dan coba lagi.</sys:String>
-  <sys:String x:Key="SkinApplyError">Gagal memuat tema "{0}", profil warna "{1}"
+  <sys:String x:Key="StartGenericError">Playnite gagal dibuka. Tutup semua Playnite program yang terbuka dan coba lagi.</sys:String>
+  <sys:String x:Key="SkinApplyError">Gagal menggunakan tema "{0}", profil warna "{1}"
         
 {1}</sys:String>
   <sys:String x:Key="URLFormatError">Tidak bisa membuka link, URL format tidak valid.</sys:String>
@@ -366,13 +371,13 @@ Platform digunakan oleh {1} game dan {2} emulator.</sys:String>
   <sys:String x:Key="UpdaterInstallUpdate">Install Update</sys:String>
   <sys:String x:Key="ThemeTestReloadList">Muat ulang list tema</sys:String>
   <sys:String x:Key="ThemeTestApplySkin">Gunakan tema yang dipilih</sys:String>
-  <sys:String x:Key="ThemeTestWatchChanges">Awasi perubahan file</sys:String>
+  <sys:String x:Key="ThemeTestWatchChanges">Saksikan perubahan file</sys:String>
   <sys:String x:Key="ThemeTestWatchChangesTooltip">Gunakan tema secara otomatis ketika source berubah</sys:String>
   <!--Game actions-->
   <sys:String x:Key="FavoriteGame">Tambah ke Favorit</sys:String>
   <sys:String x:Key="RemoveFavoriteGame">Hapus dari Favorit</sys:String>
   <sys:String x:Key="HideGame">Sembunyikan</sys:String>
-  <sys:String x:Key="UnHideGame">Tampilkan</sys:String>
+  <sys:String x:Key="UnHideGame">Show in Library</sys:String>
   <sys:String x:Key="EditGame">Edit...</sys:String>
   <sys:String x:Key="SetGameCategory">Set Kategori...</sys:String>
   <sys:String x:Key="RemoveGame">Hapus</sys:String>
@@ -384,5 +389,5 @@ Platform digunakan oleh {1} game dan {2} emulator.</sys:String>
   <sys:String x:Key="MoreAction">Lainnya...</sys:String>
   <sys:String x:Key="MetadownloadNoResultsMessage">Tidak menemukan informasi relevan tentang game '{0}'.</sys:String>
   <sys:String x:Key="MetadownloadSingleGameTip">Tip: Kamu bisa menggunakan metadata editor yang lebih lengkap dimenu "Edit" per game.</sys:String>
-  <sys:String x:Key="ProgreessAvailabilityMessage">Tidak tersedia untuk sementara. Ada yang masih diproses.</sys:String>
+  <sys:String x:Key="ProgreessAvailabilityMessage">Tidak tersedia. Ada yang masih diproses.</sys:String>
 </ResourceDictionary>

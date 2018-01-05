@@ -579,7 +579,7 @@ namespace PlayniteUI.ViewModels
 
         public void AddEmulatorProfile()
         {
-            var profile = new EmulatorProfile() { Name = "Mew Profile" };
+            var profile = new EmulatorProfile() { Name = "New Profile" };
             if (SelectedEmulator.Profiles == null)
             {
                 SelectedEmulator.Profiles = new ObservableCollection<EmulatorProfile>();

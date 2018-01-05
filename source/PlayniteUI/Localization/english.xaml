@@ -395,7 +395,6 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="ClearAll">Clear All</sys:String>
     <sys:String x:Key="SetupRunning">Setup in progress...</sys:String>
     <sys:String x:Key="InvalidURL">Invalid URL</sys:String>
-    <sys:String x:Key="UserKey">User key</sys:String>
     <sys:String x:Key="DoNothing">Do nothing</sys:String>
     <sys:String x:Key="Minimize">Minimize</sys:String>
     <sys:String x:Key="Close">Close</sys:String>
