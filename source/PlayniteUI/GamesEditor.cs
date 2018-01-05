@@ -33,7 +33,7 @@ namespace PlayniteUI
         {
             get
             {
-                return database.GamesCollection?.Find(Query.Not("LastActivity", null), Query.Descending, limit: 10).ToList();              
+                return database.GamesCollection?.Find(Query.And(Query.Not("LastActivity", null), Query.Not("PlayTask", null))).OrderByDescending(a => a.LastActivity).Take(10).ToList();
             }
         }
 
