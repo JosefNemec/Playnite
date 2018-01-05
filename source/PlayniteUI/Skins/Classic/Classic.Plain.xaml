@@ -49,4 +49,6 @@
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="WindowBackgourndBrush" Color="{DynamicResource MainColorDark}" />
+
+    <sys:Double x:Key="GameCoverViewRation">1.4</sys:Double>
 </ResourceDictionary>

@@ -55,4 +55,6 @@
         <GradientStop Color="{DynamicResource MainColor}" Offset="0"/>
         <GradientStop Color="{DynamicResource MainColorDark}" Offset="0.4"/>
     </LinearGradientBrush>
+    
+    <sys:Double x:Key="GameCoverViewRation">1.4</sys:Double>
 </ResourceDictionary>

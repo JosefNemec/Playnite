@@ -64,6 +64,8 @@
         <GradientStop Color="{DynamicResource MainColorDark}" Offset="0.4"/>
     </LinearGradientBrush>
 
+    <sys:Double x:Key="GameCoverViewRation">1.4</sys:Double>
+
     <!--#region Standard Controls -->
     <Style TargetType="Border">
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -2113,7 +2115,7 @@
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <pui:VirtualizingTilePanel ItemWidth="{Binding Path=Value, ElementName=SliderZoom}"
-                                                                       ItemHeightModifier="1.4"/>
+                                                   ItemHeightModifier="{DynamicResource GameCoverViewRation}"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
