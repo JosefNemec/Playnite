@@ -293,7 +293,7 @@ Weitere Spiele kannst du zudem auch später noch über den "Spiel hinzufügen"-D
     <sys:String x:Key="SupportedFilesTitle">Unterstützte Dateitypen</sys:String>
     <sys:String x:Key="ImportEmulatorsButton">Emulator importieren</sys:String>
     <sys:String x:Key="DownloadEmulatorsButton">Emulator herunterladen</sys:String>
-    <sys:String x:Key="EmuLoadArgsPresetTooltip">[UNUSED]</sys:String>
+    <sys:String x:Key="EmuLoadArgsPresetTooltip">Verwende die Argumente des Standardemulators</sys:String>
     <sys:String x:Key="EmuRemovalConfirmation" xml:space="preserve">Bist du sicher, dass du den Emulator '{0}' entfernen möchtest?
 
 Der Emulator wird momentan von {1} Spielen verwendet.</sys:String>
@@ -394,7 +394,6 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="ClearAll">Zurücksetzen</sys:String>
     <sys:String x:Key="SetupRunning">Installation wird durchgeführt...</sys:String>
     <sys:String x:Key="InvalidURL">Ungültige URL</sys:String>
-    <sys:String x:Key="UserKey">[UNUSED]</sys:String>
     <sys:String x:Key="DoNothing">Nichts unternehmen</sys:String>
     <sys:String x:Key="Minimize">Minimieren</sys:String>
     <sys:String x:Key="Close">Schließen</sys:String>
