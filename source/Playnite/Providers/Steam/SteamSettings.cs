@@ -25,7 +25,7 @@ namespace Playnite.Providers.Steam
                 {
                     if (key != null)
                     {
-                        return key.GetValue("SteamPath").ToString().Replace('/', '\\');
+                        return key.GetValue("SteamPath")?.ToString().Replace('/', '\\') ?? string.Empty;
                     }
                 }
 
