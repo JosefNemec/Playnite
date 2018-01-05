@@ -105,6 +105,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="URLLabel">URL</sys:String>
     <sys:String x:Key="PatronsLabel">Patrons</sys:String>
     <sys:String x:Key="LicenseLabel">License</sys:String>
+    <sys:String x:Key="ContributorsLabel">Contributors</sys:String>
     
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
@@ -434,4 +435,5 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="ProgreessAvailabilityMessage">Not available when some action is in progress.</sys:String>
     <sys:String x:Key="DescriptionHTMLSupportTooltip">Description text is HTML syntax sensitive</sys:String>
     <sys:String x:Key="PatreonDevelopMessage">Playnite's development is supported by these patrons:</sys:String>
+    <sys:String x:Key="AboutContributorsMessage">Code, localization and other contributors in no particular order:</sys:String>
 </ResourceDictionary>
