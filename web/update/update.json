@@ -1,10 +1,14 @@
 ﻿{
     "stable":  {
-                   "version":  "3.4",
-                   "url":  "https://github.com/JosefNemec/Playnite/releases/download/3.4/PlayniteInstaller.exe",
-                   "url2":  "http://playnite.cz/update/3.4/PlayniteInstaller.exe",
+                   "version":  "3.5",
+                   "url":  "https://github.com/JosefNemec/Playnite/releases/download/3.5/PlayniteInstaller.exe",
+                   "url2":  "http://playnite.cz/update/3.5/PlayniteInstaller.exe",
                    "notesUrlRoot":  "http://playnite.cz/update/",
                    "releases":  [
+                                    {
+                                        "version":  "3.5",
+                                        "file":  "3.5.html"
+                                    },
                                     {
                                         "version":  "3.4",
                                         "file":  "3.4.html"
