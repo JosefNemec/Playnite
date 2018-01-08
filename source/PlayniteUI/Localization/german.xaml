@@ -105,6 +105,7 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="URLLabel">URL</sys:String>
     <sys:String x:Key="PatronsLabel">Patrons</sys:String>
     <sys:String x:Key="LicenseLabel">License</sys:String>
+    <sys:String x:Key="ContributorsLabel">Contributors</sys:String>
     
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Es können folgende Variablen verwendet werden:
 {InstallDir} - Installationspfad des Spiels
@@ -293,7 +294,7 @@ Weitere Spiele kannst du zudem auch später noch über den "Spiel hinzufügen"-D
     <sys:String x:Key="SupportedFilesTitle">Unterstützte Dateitypen</sys:String>
     <sys:String x:Key="ImportEmulatorsButton">Emulator importieren</sys:String>
     <sys:String x:Key="DownloadEmulatorsButton">Emulator herunterladen</sys:String>
-    <sys:String x:Key="EmuLoadArgsPresetTooltip">[UNUSED]</sys:String>
+    <sys:String x:Key="EmuLoadArgsPresetTooltip">Verwende die Argumente des Standardemulators</sys:String>
     <sys:String x:Key="EmuRemovalConfirmation" xml:space="preserve">Bist du sicher, dass du den Emulator '{0}' entfernen möchtest?
 
 Der Emulator wird momentan von {1} Spielen verwendet.</sys:String>
@@ -394,7 +395,6 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="ClearAll">Zurücksetzen</sys:String>
     <sys:String x:Key="SetupRunning">Installation wird durchgeführt...</sys:String>
     <sys:String x:Key="InvalidURL">Ungültige URL</sys:String>
-    <sys:String x:Key="UserKey">[UNUSED]</sys:String>
     <sys:String x:Key="DoNothing">Nichts unternehmen</sys:String>
     <sys:String x:Key="Minimize">Minimieren</sys:String>
     <sys:String x:Key="Close">Schließen</sys:String>
@@ -433,5 +433,6 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="MetadownloadSingleGameTip">Tipp: Du kannst einen erweiterten Dialog zum Import von Metadaten verwenden wenn du den Menüpunkt "Metadaten bearbeiten" eines einzelnen Spiels anwählst.</sys:String>
     <sys:String x:Key="ProgreessAvailabilityMessage">Es wird gerade eine andere Aktion ausgeführt...</sys:String>
     <sys:String x:Key="DescriptionHTMLSupportTooltip">Für die Beschreibung muss HTML verwendet werden.</sys:String>
-    <sys:String x:Key="PatreonDevelopMessage">Die Entwicklung von Playnite wurde unterstützt durch:</sys:String>
+    <sys:String x:Key="PatreonDevelopMessage">Die Entwicklung von Playnite wurde finanziell unterstützt durch:</sys:String>
+    <sys:String x:Key="AboutContributorsMessage">Die Entwicklung von Playnite wurde mit Quellcodebeiträgen, Übersetzungen, etc. unterstützt durch:</sys:String>
 </ResourceDictionary>
