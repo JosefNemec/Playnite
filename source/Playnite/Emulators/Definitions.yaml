@@ -67,16 +67,51 @@
       Platforms: [Nintendo GameCube, Nintendo Wii]
       ImageExtensions: [elf, dol, gcm, tgc, wbfs, ciso, gcz, iso, wad, dff]
       ExecutableLookup: ^Dolphin\.exe
+    - Name: Nintendo GameCube
+      DefaultArguments: '--exec="{ImagePath}" --batch'
+      Platforms: [Nintendo GameCube]
+      ImageExtensions: [elf, dol, gcm, tgc, wbfs, ciso, gcz, iso, wad, dff]
+      ExecutableLookup: ^Dolphin\.exe
+    - Name: Nintendo Wii
+      DefaultArguments: '--exec="{ImagePath}" --batch'
+      Platforms: [Nintendo Wii]
+      ImageExtensions: [elf, dol, gcm, tgc, wbfs, ciso, gcz, iso, wad, dff]
+      ExecutableLookup: ^Dolphin\.exe
 
 - Name: Kega Fusion
   Website: 'http://www.carpeludum.com/kega-fusion/'
   Profiles:
     - Name: Default
       DefaultArguments: '"{ImagePath}" -auto -fullscreen'
-      Platforms: [Sega Genesis, Sega 32X, Sega CD, Sega Master System]
-      ImageExtensions: [cue, bin, iso, smd, 32x, raw, gen, zip]
+      Platforms: [Sega Genesis, Sega 32X, Sega CD, Sega Master System, Sega Game Gear]
+      ImageExtensions: [cue, bin, iso, smd, md, 32x, raw, gen, zip]
       ExecutableLookup: ^Fusion\.exe
-
+    - Name: Sega Genesis
+      DefaultArguments: '"{ImagePath}" -auto -fullscreen'
+      Platforms: [Sega Genesis]
+      ImageExtensions: [bin, smd, md, raw, gen, zip]
+      ExecutableLookup: ^Fusion\.exe
+    - Name: Sega 32X
+      DefaultArguments: '"{ImagePath}" -auto -fullscreen'
+      Platforms: [Sega 32X]
+      ImageExtensions: [cue, bin, iso, smd, md, 32x, raw, gen, zip]
+      ExecutableLookup: ^Fusion\.exe
+    - Name: Sega CD
+      DefaultArguments: '"{ImagePath}" -auto -fullscreen'
+      Platforms: [Sega CD]
+      ImageExtensions: [cue, bin, iso, smd, md, 32x, raw, gen, zip]
+      ExecutableLookup: ^Fusion\.exe
+    - Name: Sega Master System
+      DefaultArguments: '"{ImagePath}" -auto -fullscreen'
+      Platforms: [Sega Master System]
+      ImageExtensions: [sms, sg, sc, mv, bin, smd, 32x, raw, gen, zip]
+      ExecutableLookup: ^Fusion\.exe
+    - Name: Sega Game Gear
+      DefaultArguments: '"{ImagePath}" -auto -fullscreen'
+      Platforms: [Sega Game Gear]
+      ImageExtensions: [bin, gg, raw, zip]
+      ExecutableLookup: ^Fusion\.exe
+      
 - Name: Project64
   Website: 'http://www.pj64-emu.com/'
   Profiles:
@@ -330,6 +365,16 @@
       Platforms: [Nintendo Game Boy, Nintendo Game Boy Color]
       ImageExtensions: [gb, gbc, dmg, sgb, zip, gz]
       ExecutableLookup: ^gambatte\.exe$    
+    - Name: Nintendo Game Boy
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Nintendo Game Boy]
+      ImageExtensions: [gb, gbc, dmg, sgb, zip, gz]
+      ExecutableLookup: ^gambatte\.exe$  
+    - Name: Nintendo Game Boy Color
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Nintendo Game Boy Color]
+      ImageExtensions: [gb, gbc, dmg, sgb, zip, gz]
+      ExecutableLookup: ^gambatte\.exe$  
       
 - Name: mGBA
   Website: 'https://mgba.io/'
@@ -339,6 +384,22 @@
       Platforms: [Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance]
       ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb, dmg, gb, gbc, cgb, sgb]
       ExecutableLookup: ^mGBA.*\.exe$
+    - Name: Nintendo Game Boy
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Nintendo Game Boy]
+      ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb, dmg, gb, gbc, cgb, sgb]
+      ExecutableLookup: ^mGBA.*\.exe$ 
+    - Name: Nintendo Game Boy Color
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Nintendo Game Boy Color]
+      ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb, dmg, gb, gbc, cgb, sgb]
+      ExecutableLookup: ^mGBA.*\.exe$
+    - Name: Nintendo Game Boy Advance
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance]
+      ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb, dmg, gb, gbc, cgb, sgb]
+      ExecutableLookup: ^mGBA.*\.exe$
+ 
  
 - Name: Nebula 2
   Website: 'http://nebula.emulatronia.com/'
@@ -354,10 +415,20 @@
   Profiles:       
     - Name: Default 
       DefaultArguments: '"{ImagePath}"'
-      Platforms: [Sinclair ZX Spectrum +3, Sinclair ZX Spectrum]
+      Platforms: [Sinclair ZX Spectrum, Sinclair ZX Spectrum +3]
       ImageExtensions: [tzx, tap, z80, rzx, scl, trd]
       ExecutableLookup: ^fuse\.exe$  
-
+    - Name: Sinclair ZX Spectrum 
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Sinclair ZX Spectrum]
+      ImageExtensions: [tzx, tap, z80, rzx, scl, trd]
+      ExecutableLookup: ^fuse\.exe$  
+    - Name: Sinclair ZX Spectrum +3 
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Sinclair ZX Spectrum +3]
+      ImageExtensions: [tzx, tap, z80, rzx, scl, trd]
+      ExecutableLookup: ^fuse\.exe$  
+      
 - Name: Altirra
   Website: 'http://www.virtualdub.org/altirra.html'
   Profiles:
