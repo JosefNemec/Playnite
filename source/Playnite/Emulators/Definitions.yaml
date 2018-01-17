@@ -94,17 +94,17 @@
     - Name: Sega 32X
       DefaultArguments: '"{ImagePath}" -auto -fullscreen'
       Platforms: [Sega 32X]
-      ImageExtensions: [cue, bin, iso, smd, md, 32x, raw, gen, zip]
+      ImageExtensions: [32x, raw, zip]
       ExecutableLookup: ^Fusion\.exe
     - Name: Sega CD
       DefaultArguments: '"{ImagePath}" -auto -fullscreen'
       Platforms: [Sega CD]
-      ImageExtensions: [cue, bin, iso, smd, md, 32x, raw, gen, zip]
+      ImageExtensions: [cue, bin, iso, raw, zip]
       ExecutableLookup: ^Fusion\.exe
     - Name: Sega Master System
       DefaultArguments: '"{ImagePath}" -auto -fullscreen'
       Platforms: [Sega Master System]
-      ImageExtensions: [sms, sg, sc, mv, bin, smd, 32x, raw, gen, zip]
+      ImageExtensions: [sms, sg, sc, mv, bin, raw, zip]
       ExecutableLookup: ^Fusion\.exe
     - Name: Sega Game Gear
       DefaultArguments: '"{ImagePath}" -auto -fullscreen'
@@ -368,12 +368,12 @@
     - Name: Nintendo Game Boy
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy]
-      ImageExtensions: [gb, gbc, dmg, sgb, zip, gz]
+      ImageExtensions: [gb, dmg, zip, gz]
       ExecutableLookup: ^gambatte\.exe$  
     - Name: Nintendo Game Boy Color
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy Color]
-      ImageExtensions: [gb, gbc, dmg, sgb, zip, gz]
+      ImageExtensions: [gbc, dmg, sgb, zip, gz]
       ExecutableLookup: ^gambatte\.exe$  
       
 - Name: mGBA
@@ -387,17 +387,17 @@
     - Name: Nintendo Game Boy
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy]
-      ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb, dmg, gb, gbc, cgb, sgb]
+      ImageExtensions: [zip, 7z, rar, bin, gb, dmg]
       ExecutableLookup: ^mGBA.*\.exe$ 
     - Name: Nintendo Game Boy Color
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy Color]
-      ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb, dmg, gb, gbc, cgb, sgb]
+      ImageExtensions: [zip, 7z, rar, bin, gbc, cgb, sgb]
       ExecutableLookup: ^mGBA.*\.exe$
     - Name: Nintendo Game Boy Advance
       DefaultArguments: '"{ImagePath}"'
-      Platforms: [Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance]
-      ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb, dmg, gb, gbc, cgb, sgb]
+      Platforms: [Nintendo Game Boy Advance]
+      ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb]
       ExecutableLookup: ^mGBA.*\.exe$
  
  
