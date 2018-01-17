@@ -373,7 +373,7 @@
     - Name: Nintendo Game Boy Color
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy Color]
-      ImageExtensions: [gbc, dmg, sgb, zip, gz]
+      ImageExtensions: [gbc, sgb, zip, gz]
       ExecutableLookup: ^gambatte\.exe$  
       
 - Name: mGBA
