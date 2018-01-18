@@ -38,6 +38,11 @@ namespace Playnite
             return newName;
         }
 
+        public static string RemoveTrademarks(string str)
+        {
+            return Regex.Replace(str, @"[™©®]", string.Empty);
+        }
+
         public static string NormalizeGameName(string name)
         {
             if (string.IsNullOrEmpty(name))
@@ -48,7 +53,7 @@ namespace Playnite
             var newName = name;
             newName = newName.Replace("_", " ");
             newName = newName.Replace(".", " ");
-            newName = Regex.Replace(newName, @"[™©®]", string.Empty);
+            newName = RemoveTrademarks(newName);
             newName = Regex.Replace(newName, @"\[.*?\]", "");
             newName = Regex.Replace(newName, @"\(.*?\)", "");
             newName = Regex.Replace(newName, @"\s*:\s*", ": ");

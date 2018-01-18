@@ -533,7 +533,7 @@ namespace Playnite.MetaProviders
                             gameData = ProcessField(game, settings.Name, ref storeData, ref igdbData, (a) => a.GameData?.Name);
                             if (!string.IsNullOrEmpty(gameData?.GameData?.Name))
                             {
-                                game.Name = StringExtensions.NormalizeGameName(gameData.GameData.Name);
+                                game.Name = StringExtensions.RemoveTrademarks(gameData.GameData.Name);
                                 var sortingName = StringExtensions.ConvertToSortableName(game.Name);
                                 if (sortingName != game.Name)
                                 {
