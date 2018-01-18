@@ -1129,7 +1129,7 @@ namespace PlayniteUI.ViewModels
                         }
                     }
                 }
-                else
+                else if (File.Exists(EditingGame.Icon))
                 {
                     var iconPath = EditingGame.Icon;
                     var fileName = Guid.NewGuid().ToString() + Path.GetExtension(iconPath);
@@ -1189,7 +1189,7 @@ namespace PlayniteUI.ViewModels
                         }
                     }
                 }
-                else
+                else if (File.Exists(EditingGame.Image))
                 {
                     var imagePath = EditingGame.Image;
                     var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
@@ -1275,7 +1275,7 @@ namespace PlayniteUI.ViewModels
                             Game.BackgroundImage = EditingGame.BackgroundImage;
                         }
                     }
-                    else
+                    else if (File.Exists(EditingGame.BackgroundImage))
                     {
                         var imagePath = EditingGame.BackgroundImage;
                         var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
