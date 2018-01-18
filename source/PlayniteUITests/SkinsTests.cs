@@ -14,7 +14,7 @@ namespace PlayniteUITests
         [Test]
         public void AvailableSkinsTest()
         {
-            CollectionAssert.IsNotEmpty(Skins.AvailableSkins);
+            CollectionAssert.IsNotEmpty(Themes.AvailableThemes);
         }
     }
 }

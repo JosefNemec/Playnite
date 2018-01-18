@@ -39,9 +39,9 @@ namespace PlayniteUI
             }
 
             var settings = DataContext as SettingsViewModel;
-            if (settings.Settings.Skin == Skins.CurrentSkin)
+            if (settings.Settings.Skin == Themes.CurrentTheme)
             {
-                Skins.ApplySkin(settings.Settings.Skin, settings.Settings.SkinColor);
+                Themes.ApplyTheme(settings.Settings.Skin, settings.Settings.SkinColor);
             }
         }
 
@@ -54,7 +54,7 @@ namespace PlayniteUI
 
             if (CombSkinColor.SelectedValue == null && ComboSkins.SelectedItem != null)
             {
-                CombSkinColor.SelectedValue = (ComboSkins.SelectedItem as Skin).Profiles.First();
+                CombSkinColor.SelectedValue = (ComboSkins.SelectedItem as Theme).Profiles.First();
             }
         }
 

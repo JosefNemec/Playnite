@@ -359,9 +359,9 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     
     <sys:String x:Key="ScanEmulatorGamesEmptyProfileError">Cannot search for games by selected emulator profile. Profile doesn't contain any file extensions or platforms.</sys:String>
     <sys:String x:Key="StartGenericError">Playnite failed to start. Please close all running instances and try again.</sys:String>
-    <sys:String x:Key="SkinApplyError">Failed to apply theme "{0}", color profile "{1}"
+    <sys:String x:Key="SkinApplyError" xml:space="preserve">Failed to apply theme "{0}", color profile "{1}"
         
-{1}</sys:String>
+{2}</sys:String>
     <sys:String x:Key="URLFormatError">Cannot open link, URL is not in valid format.</sys:String>
 
     <!--GameEdit-->

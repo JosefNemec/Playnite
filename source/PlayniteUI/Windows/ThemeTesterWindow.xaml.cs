@@ -70,11 +70,11 @@ namespace PlayniteUI.Windows
             {
                 if (SkinType == SourceType.Normal)
                 {
-                    return Skins.AvailableSkins.SelectMany(a => a.Profiles.Select(b => $"{a.Name}\\{b}"));
+                    return Themes.AvailableThemes.SelectMany(a => a.Profiles.Select(b => $"{a.Name}\\{b}"));
                 }
                 else
                 {
-                    return Skins.AvailableFullscreenSkins.SelectMany(a => a.Profiles.Select(b => $"{a.Name}\\{b}"));
+                    return Themes.AvailableFullscreenThemes.SelectMany(a => a.Profiles.Select(b => $"{a.Name}\\{b}"));
                 }
             }
         }
@@ -123,11 +123,11 @@ namespace PlayniteUI.Windows
                 {
                     if (SkinType == SourceType.Normal)
                     {
-                        watcher = new FileSystemWatcher(Paths.SkinsPath, "*.xaml");
+                        watcher = new FileSystemWatcher(Paths.ThemesPath, "*.xaml");
                     }
                     else
                     {
-                        watcher = new FileSystemWatcher(Paths.SkinsFullscreenPath, "*.xaml");
+                        watcher = new FileSystemWatcher(Paths.ThemesFullscreenPath, "*.xaml");
                     }
 
                     watcher.Changed += Watcher_Changed;
@@ -178,8 +178,8 @@ namespace PlayniteUI.Windows
 
         private void Watcher_Changed(object sender, FileSystemEventArgs e)
         {
-            if (Paths.AreEqual(e.FullPath, Skins.GetSkinPath(SelectedSkinData.Item1, false)) ||
-                Paths.AreEqual(e.FullPath, Skins.GetColorPath(SelectedSkinData.Item1, SelectedSkinData.Item2, false)))
+            if (Paths.AreEqual(e.FullPath, Themes.GetThemePath(SelectedSkinData.Item1, false)) ||
+                Paths.AreEqual(e.FullPath, Themes.GetColorPath(SelectedSkinData.Item1, SelectedSkinData.Item2, false)))
             {
                 Dispatcher.Invoke(() => ChangeSkin(SelectedSkin, false));
             }
@@ -190,7 +190,7 @@ namespace PlayniteUI.Windows
             var name = skin.Split('\\')[0];
             var color = skin.Split('\\')[1];
 
-            var skinValid = Skins.IsSkinValid(name, SkinType == SourceType.Fullscreen);
+            var skinValid = Themes.IsThemeValid(name, SkinType == SourceType.Fullscreen);
             if (skinValid.Item1 == false)
             {
                 if (validateToDialog)
@@ -206,7 +206,7 @@ namespace PlayniteUI.Windows
                 return;
             }
 
-            var colorValid = Skins.IsColorProfileValid(name, color, SkinType == SourceType.Fullscreen);
+            var colorValid = Themes.IsColorProfileValid(name, color, SkinType == SourceType.Fullscreen);
             if (colorValid.Item1 == false)
             {
                 if (validateToDialog)
@@ -225,11 +225,11 @@ namespace PlayniteUI.Windows
             ValidationError = string.Empty;
             if (SkinType == SourceType.Normal)
             {
-                Skins.ApplySkin(name, color, true);
+                Themes.ApplyTheme(name, color, true);
             }
             else
             {
-                Skins.ApplyFullscreenSkin(name, color, true);
+                Themes.ApplyFullscreenTheme(name, color, true);
             }
         }
 
