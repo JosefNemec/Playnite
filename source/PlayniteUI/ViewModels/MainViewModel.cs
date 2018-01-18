@@ -24,7 +24,7 @@ namespace PlayniteUI.ViewModels
     {
         public static Logger Logger = LogManager.GetCurrentClassLogger();
         private static object gamesLock = new object();
-        private bool ignoreCloseActions = false;
+        protected bool ignoreCloseActions = false;
         private readonly SynchronizationContext context;
         
         public IWindowFactory Window;
@@ -32,6 +32,10 @@ namespace PlayniteUI.ViewModels
         public IResourceProvider Resources;
         public GameDatabase Database;
         public GamesEditor GamesEditor;
+        public bool IsFullscreenView
+        {
+            get; protected set;
+        } = false;
 
         private GameDetailsViewModel selectedGameDetails;
         public GameDetailsViewModel SelectedGameDetails
@@ -287,6 +291,10 @@ namespace PlayniteUI.ViewModels
                 if (game != null)
                 {
                     GamesEditor.PlayGame(game);
+                }
+                else if (SelectedGame != null)
+                {
+                    GamesEditor.PlayGame(SelectedGame.Game);
                 }
             });
         }
@@ -613,7 +621,7 @@ namespace PlayniteUI.ViewModels
             App.CurrentApp.Quit();
         }
 
-        private void InitializeView()
+        protected void InitializeView()
         {
             try
             {
@@ -667,7 +675,7 @@ namespace PlayniteUI.ViewModels
                 return;
             }
 
-            GamesView = new GamesCollectionView(Database, AppSettings);
+            GamesView = new GamesCollectionView(Database, AppSettings, IsFullscreenView);
             BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
             if (GamesView.CollectionView.Count > 0)
             {
@@ -1074,7 +1082,7 @@ namespace PlayniteUI.ViewModels
             SelectedGame = viewEntry;
         }
 
-        private void OnClosing(CancelEventArgs args)
+        protected virtual void OnClosing(CancelEventArgs args)
         {
             if (ignoreCloseActions)
             {
@@ -1164,7 +1172,8 @@ namespace PlayniteUI.ViewModels
 
         public void OpenFullScreen()
         {
-            (Application.Current as App).OpenFullscreenView();            
+            CloseView();
+            App.CurrentApp.OpenFullscreenView();            
         }
 
         public void OpenView()
@@ -1174,7 +1183,7 @@ namespace PlayniteUI.ViewModels
             InitializeView();
         }
 
-        public void CloseView()
+        public virtual void CloseView()
         {
             ignoreCloseActions = true;
             Window.Close();
@@ -1188,12 +1197,12 @@ namespace PlayniteUI.ViewModels
             await GlobalTaskHandler.ProgressTask;
         }        
 
-        public void ClearFilters()
+        public virtual void ClearFilters()
         {
             AppSettings.FilterSettings.ClearFilters();
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             GamesView.Dispose();
             GamesStats.Dispose();

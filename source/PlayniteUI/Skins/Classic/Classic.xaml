@@ -2498,6 +2498,8 @@
                                 </MenuItem.ItemContainerStyle>
                             </MenuItem>
                             <Separator />
+                            <MenuItem Header="{DynamicResource MenuOpenFullscreen}"
+                                      Command="{Binding OpenFullScreenCommand}" />
                             <MenuItem Header="{DynamicResource MenuAbout}">
                                 <MenuItem Header="{DynamicResource MenuAbout}" Command="{Binding OpenAboutCommand}" />
                                 <Separator />

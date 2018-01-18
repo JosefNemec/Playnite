@@ -10,10 +10,11 @@ using Playnite.Database;
 using NLog;
 using System.IO;
 using Playnite;
+using System.Windows.Markup;
 
 namespace PlayniteUI
 {
-    public class CustomImageStringToImageConverter : IValueConverter
+    public class CustomImageStringToImageConverter : MarkupExtension, IValueConverter
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
                 
@@ -115,6 +116,11 @@ namespace PlayniteUI
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             return DependencyProperty.UnsetValue;
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
         }
     }
 }

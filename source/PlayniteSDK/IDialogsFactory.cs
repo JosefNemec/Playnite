@@ -8,6 +8,39 @@ using System.Windows;
 namespace Playnite.SDK
 {
     /// <summary>
+    /// Refresents result of selection string dialog operation.
+    /// </summary>
+    public class StringSelectionDialogResult
+    {
+        /// <summary>
+        /// Gets or sets dialog result. True if user confirmed selected otherwise false.
+        /// </summary>
+        public bool Result
+        {
+            get; set;
+        }
+
+        /// <summary>
+        /// Gets or sets string selected by user.
+        /// </summary>
+        public string SelectedString
+        {
+            get; set;
+        }
+
+        /// <summary>
+        /// Creates new instance of StringSelectionDialogResult.
+        /// </summary>
+        /// <param name="result">Dialog result.</param>
+        /// <param name="selectedString">Selected string.</param>
+        public StringSelectionDialogResult(bool result, string selectedString)
+        {
+            Result = result;
+            SelectedString = selectedString;
+        }
+    }
+
+    /// <summary>
     /// Describes object providing methods for dialog based actions.
     /// </summary>
     public interface IDialogsFactory
@@ -99,7 +132,7 @@ namespace Playnite.SDK
         /// <param name="messageBoxText">Dialog message text.</param>
         /// <param name="caption">Dialog window caption.</param>
         /// <param name="defaultInput">Default string presented in input field..</param>
-        /// <returns>String input or empty string if use cancels the dialog.</returns>
-        string SelectString(string messageBoxText, string caption, string defaultInput);
+        /// <returns>Selection result.</returns>
+        StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput);
     }
 }

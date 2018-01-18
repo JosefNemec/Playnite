@@ -385,6 +385,20 @@ namespace Playnite
             }
         }
 
+        private FilterSettings fullScreenFilterSettings = new FilterSettings();
+        public FilterSettings FullScreenFilterSettings
+        {
+            get
+            {
+                return fullScreenFilterSettings;
+            }
+
+            set
+            {
+                fullScreenFilterSettings = value;
+            }
+        }
+
         private ObservableConcurrentDictionary<string, bool> gridViewHeaders = new ObservableConcurrentDictionary<string, bool>()
         {
             { "Icon", true },

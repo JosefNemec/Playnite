@@ -38,14 +38,14 @@ namespace PlayniteUI
         private PipeServer pipeServer;
         private MainViewModel mainModel;
         private FullscreenViewModel fullscreenModel;
+        private XInputDevice xdevice;
+        private DialogsFactory dialogs;
 
         public PlayniteAPI Api
         {
             get; set;
         }
-
-        //private XInputDevice xdevice;
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         public static GameDatabase Database
@@ -99,7 +99,7 @@ namespace PlayniteUI
             logger.Error(exception, "Unhandled exception occured.");
 
             var model = new CrashHandlerViewModel(
-                CrashHandlerWindowFactory.Instance, new DialogsFactory(), new ResourceProvider());
+                CrashHandlerWindowFactory.Instance, dialogs, new ResourceProvider());
             model.Exception = exception.ToString();
             model.OpenView();
             Process.GetCurrentProcess().Kill();
@@ -156,6 +156,7 @@ namespace PlayniteUI
 
             Settings.ConfigureLogger();
             Settings.ConfigureCef();
+            dialogs = new DialogsFactory(AppSettings.StartInFullscreen);
 
             // Load theme
             ApplyTheme(AppSettings.Skin, AppSettings.SkinColor, false);
@@ -168,7 +169,7 @@ namespace PlayniteUI
                 var wizardWindow = FirstTimeStartupWindowFactory.Instance;
                 var wizardModel = new FirstTimeStartupViewModel(
                     wizardWindow,
-                    new DialogsFactory(),
+                    dialogs,
                     new ResourceProvider());
                 if (wizardModel.OpenView() == true)
                 {
@@ -230,7 +231,7 @@ namespace PlayniteUI
                 var model = new EmulatorImportViewModel(Database,
                        EmulatorImportViewModel.DialogType.Wizard,
                        EmulatorImportWindowFactory.Instance,
-                       new DialogsFactory(),
+                       dialogs,
                        new ResourceProvider());
 
                 model.OpenView();                
@@ -240,7 +241,7 @@ namespace PlayniteUI
 
             GamesEditor = new GamesEditor(Database, AppSettings);
             CustomImageStringToImageConverter.Database = Database;
-            Api = new PlayniteAPI(Database, GamesEditor.Controllers, new DialogsFactory(), null);
+            Api = new PlayniteAPI(Database, GamesEditor.Controllers, dialogs, null);
 
             // Main view startup
             if (AppSettings.StartInFullscreen)
@@ -271,7 +272,11 @@ namespace PlayniteUI
                 PipeService_CommandExecuted(this, new CommandExecutedEventArgs(command, cmdArgs));
             }
 
-            //xdevice = new XInputDevice(InputManager.Current);
+            xdevice = new XInputDevice(InputManager.Current)
+            {
+                SimulateAllKeys = false,
+                SimulateNavigationKeys = true
+            };
 
             logger.Info("Application started");
         }
@@ -282,8 +287,9 @@ namespace PlayniteUI
 
             switch (args.Command)
             {
-                case CmdlineCommands.Focus:
-                    mainModel.RestoreWindow();
+                case CmdlineCommands.Focus:                    
+                    mainModel?.RestoreWindow();
+                    fullscreenModel?.RestoreWindow();
                     break;
 
                 case CmdlineCommands.Launch:
@@ -336,7 +342,7 @@ namespace PlayniteUI
 
                             Dispatcher.Invoke(() =>
                             {
-                                var model = new UpdateViewModel(update, UpdateWindowFactory.Instance, new ResourceProvider(), new DialogsFactory());
+                                var model = new UpdateViewModel(update, UpdateWindowFactory.Instance, new ResourceProvider(), dialogs);
                                 model.OpenView();
                             });
                         }
@@ -398,7 +404,7 @@ namespace PlayniteUI
                     logger.Error(exc, "Failed to cancel global progress task.");
                     throw;
                 }
-                
+
                 GamesEditor?.Dispose();
                 Database?.CloseDatabase();
                 AppSettings?.SaveSettings();
@@ -417,19 +423,20 @@ namespace PlayniteUI
 
         public async void OpenNormalView(ulong steamCatImportId, bool isFirstStart)
         {
-            if (fullscreenModel != null)
+            if (Database.IsOpen)
             {
-                fullscreenModel.CloseView();
                 fullscreenModel = null;
-                Current.MainWindow = null;
+                Database.CloseDatabase();
             }
 
+            GamesEditor.IsFullscreen = false;
+            dialogs.IsFullscreen = false;
             ApplyTheme(AppSettings.Skin, AppSettings.SkinColor, false);
             var window = new MainWindowFactory();
             mainModel = new MainViewModel(
                 Database,
                 window,
-                new DialogsFactory(),
+                dialogs,
                 new ResourceProvider(),
                 AppSettings,
                 GamesEditor);
@@ -453,26 +460,27 @@ namespace PlayniteUI
 
         public async void OpenFullscreenView()
         {
-            if (mainModel != null)
+            if (Database.IsOpen)
             {
-                mainModel.CloseView();
                 mainModel = null;
-                Current.MainWindow = null;
+                Database.CloseDatabase();
             }
 
+            GamesEditor.IsFullscreen = true;
+            dialogs.IsFullscreen = true;
             ApplyTheme(AppSettings.SkinFullscreen, AppSettings.SkinColorFullscreen, true);
             var window = new FullscreenWindowFactory();
             fullscreenModel = new FullscreenViewModel(
                 Database,
                 window,
-                new DialogsFactory(),
+                dialogs,
                 new ResourceProvider(),
                 AppSettings,
                 GamesEditor);
             Api.MainView = new MainViewAPI(mainModel);
-            fullscreenModel.OpenView();
+            fullscreenModel.OpenView(false);
             Current.MainWindow = window.Window;
-            await fullscreenModel.UpdateDatabase(AppSettings.UpdateLibStartup, 0, true);
+            //await fullscreenModel.UpdateDatabase(AppSettings.UpdateLibStartup, 0, true);
         }
 
         private void ApplyTheme(string name, string profile, bool fullscreen)
@@ -522,11 +530,11 @@ namespace PlayniteUI
 
             if (fullscreen)
             {
-                Themes.ApplyFullscreenTheme(themeName, themeProfile);
+                Themes.ApplyFullscreenTheme(themeName, themeProfile, true);
             }
             else
             {
-                Themes.ApplyTheme(themeName, themeProfile);
+                Themes.ApplyTheme(themeName, themeProfile, true);
             }
         }
 

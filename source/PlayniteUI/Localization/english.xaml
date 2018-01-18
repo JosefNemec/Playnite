@@ -189,6 +189,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="MenuAddGameEmulated">Import emulated Game(s)</sys:String>
     <sys:String x:Key="MenuAbout">About Playnite</sys:String>
     <sys:String x:Key="MenuIssues">Send Feedback</sys:String>
+    <sys:String x:Key="MenuOpenFullscreen">Start Fullscreen Mode</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="SettingsGeneralLabel">General</sys:String>

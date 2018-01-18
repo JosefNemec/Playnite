@@ -1,4 +1,5 @@
-﻿using PlayniteUI.Controls;
+﻿using Playnite.SDK;
+using PlayniteUI.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -135,7 +136,7 @@ namespace PlayniteUI.Windows
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public string ShowInput(Window owner, string messageBoxText, string caption, string defaultInput)
+        public StringSelectionDialogResult ShowInput(Window owner, string messageBoxText, string caption, string defaultInput)
         {
             if (owner == null)
             {
@@ -151,13 +152,14 @@ namespace PlayniteUI.Windows
             ShowCancelButton = true;
             InputText = defaultInput ?? string.Empty;
             ShowDialog();
+
             if (result == MessageBoxResult.Cancel)
             {
-                return string.Empty;
+                return new StringSelectionDialogResult(false, InputText);
             }
             else
             {
-                return InputText;
+                return new StringSelectionDialogResult(true, InputText);
             }
         }
 

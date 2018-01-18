@@ -176,6 +176,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="API\MainViewAPI.cs" />
+    <Compile Include="Behaviors\FocusBahaviors.cs" />
     <Compile Include="Behaviors\ExpanderBehaviors.cs" />
     <Compile Include="Behaviors\LeftClickContextMenuBehavior.cs" />
     <Compile Include="BindingProxy.cs" />
@@ -186,6 +187,9 @@
     <Compile Include="Controls\NullableIntBox.cs" />
     <Compile Include="Controls\NumericBox.cs" />
     <Compile Include="Controls\ExtendedListBox.cs" />
+    <Compile Include="Controls\FadeImage.xaml.cs">
+      <DependentUpon>FadeImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\HtmlTextView.cs" />
     <Compile Include="Controls\GameMenu.cs" />
     <Compile Include="Controls\GamesGridView.xaml.cs">
@@ -193,6 +197,7 @@
     </Compile>
     <Compile Include="Controls\FullscreenView.cs" />
     <Compile Include="Controls\MainView.cs" />
+    <Compile Include="Controls\VirtualKeyboard.cs" />
     <Compile Include="Controls\WindowBase.cs" />
     <Compile Include="Converters\BooleanToHiddenConverter.cs" />
     <Compile Include="Converters\CompletionStatusToStringConverter.cs" />
@@ -205,6 +210,7 @@
     <Compile Include="Converters\InvertableBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\AfterGameLaunchOptionToStringConverter.cs" />
     <Compile Include="Converters\DateTimeToLastPlayedConverter.cs" />
+    <Compile Include="Converters\MatchConverter.cs" />
     <Compile Include="Converters\MetadataSourceToStringConverter.cs" />
     <Compile Include="Converters\ListToStringConverter.cs" />
     <Compile Include="Converters\CustomImageStringToImageConverter.cs" />
@@ -222,6 +228,7 @@
     <Compile Include="Converters\ValueConverterGroup.cs" />
     <Compile Include="Converters\WidthToFontSizeConverter.cs" />
     <Compile Include="Dialogs.cs" />
+    <Compile Include="ElementTreeHelper.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GamesCollectionView.cs" />
     <Compile Include="Behaviors\ScrollToSelectedBehavior.cs" />
@@ -241,6 +248,7 @@
     <Compile Include="ViewModels\CategoryConfigViewModel.cs" />
     <Compile Include="ViewModels\EmulatorImportViewModel.cs" />
     <Compile Include="ViewModels\MetadataLookupViewModel.cs" />
+    <Compile Include="VirtualizingTilePanel2.cs" />
     <Compile Include="WindowFactory.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="MouseWheelGesture.cs" />
@@ -250,6 +258,12 @@
     <Compile Include="VirtualizingTilePanel.cs" />
     <Compile Include="WindowPositionHandler.cs" />
     <Compile Include="PlayniteWindows.cs" />
+    <Compile Include="Windows\FullscreenTextInputWindow.xaml.cs">
+      <DependentUpon>FullscreenTextInputWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FullscreenMessageBoxWindow.xaml.cs">
+      <DependentUpon>FullscreenMessageBoxWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MetadataDownloadWindow.xaml.cs">
       <DependentUpon>MetadataDownloadWindow.xaml</DependentUpon>
     </Compile>
@@ -308,6 +322,10 @@
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="XInputBinding.cs" />
+    <Page Include="Controls\FadeImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\GamesGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -408,7 +426,25 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SkinsFullscreen\Playnite\Playnite.Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SkinsFullscreen\Playnite\Playnite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FullscreenTextInputWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FullscreenMessageBoxWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -627,6 +663,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -675,7 +712,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>xcopy "$(SolutionDir)PlayniteUI\Skins" "$(TargetDir)\Skins" /e /y
+xcopy "$(SolutionDir)PlayniteUI\SkinsFullscreen" "$(TargetDir)\SkinsFullscreen" /e /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

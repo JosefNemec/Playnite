@@ -2906,6 +2906,8 @@
                                     DockPanel.Dock="Top" />
                             <RadioButton Content="{DynamicResource MenuPlayniteSettingsTitle}" Command="{Binding OpenSettingsCommand}"
                                     DockPanel.Dock="Top"/>
+                            <RadioButton Content="{DynamicResource MenuOpenFullscreen}" Command="{Binding OpenFullScreenCommand}"
+                                    DockPanel.Dock="Top"/>
                             <RadioButton Content="{DynamicResource ExitAppLabel}" Command="{Binding ShutdownCommand}"
                                     DockPanel.Dock="Top" />
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="-10,0,0,0">

@@ -14,7 +14,9 @@ namespace PlayniteUI
         public double Columns
         {
             get { return (double)GetValue(ColumnsProperty); }
-            set { SetValue(ColumnsProperty, value); }
+            set {
+                SetValue(ColumnsProperty, value);
+            }
         }
 
         public static readonly DependencyProperty ColumnsProperty 
@@ -474,12 +476,12 @@ namespace PlayniteUI
 
         public void MouseWheelUp()
         {
-            SetVerticalOffset(VerticalOffset - ItemWidth);
+            SetVerticalOffset(VerticalOffset - ItemHeight);
         }
 
         public void MouseWheelDown()
         {
-            SetVerticalOffset(VerticalOffset + ItemWidth);
+            SetVerticalOffset(VerticalOffset + ItemHeight);
         }
 
         public void LineLeft()

@@ -117,7 +117,7 @@ cover = PlayniteApi.Database.GetFile(game.Image)
 PlayniteApi.Database.SaveFile(cover.Id, cover.Filename)
 ```
 
-### Chaning Cover Image
+### Changing Cover Image
 
 Changing cover image involves several step. First remove original image by calling [RemoveImage](xref:Playnite.SDK.IGameDatabaseAPI.RemoveImage(System.String,Playnite.SDK.Models.Game)) method. Then add new image file to a database using [AddFile](xref:Playnite.SDK.IGameDatabaseAPI.AddFile(System.String,System.String)). And lastly assign Id of new image to a game.
 

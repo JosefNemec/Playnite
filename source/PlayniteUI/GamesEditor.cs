@@ -25,6 +25,11 @@ namespace PlayniteUI
         private GameDatabase database;
         private Settings appSettings;
 
+        public bool IsFullscreen
+        {
+            get; set;
+        }
+
         public GameControllerFactory Controllers
         {
             get; private set;
@@ -463,13 +468,16 @@ namespace PlayniteUI
             logger.Info($"Started {game.Name} game.");
             UpdateGameState(game.Id, null, true, null, null, false);
 
-            if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
+            if (!IsFullscreen)
             {
-                App.CurrentApp.Quit();
-            }
-            else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
-            {
-                Application.Current.MainWindow.WindowState = WindowState.Minimized;
+                if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
+                {
+                    App.CurrentApp.Quit();
+                }
+                else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
+                {
+                    Application.Current.MainWindow.WindowState = WindowState.Minimized;
+                }
             }
         }
 

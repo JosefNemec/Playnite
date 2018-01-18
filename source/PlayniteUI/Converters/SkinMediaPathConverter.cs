@@ -10,10 +10,11 @@ using Playnite.Database;
 using NLog;
 using System.IO;
 using Playnite;
+using System.Windows.Markup;
 
 namespace PlayniteUI
 {
-    public class SkinMediaPathConverter : IValueConverter
+    public class SkinMediaPathConverter : MarkupExtension, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
@@ -25,6 +26,11 @@ namespace PlayniteUI
 
             var skinName = string.IsNullOrEmpty(Themes.CurrentFullscreenTheme) ? Themes.CurrentTheme : Themes.CurrentFullscreenTheme;
             var skinFolder = string.IsNullOrEmpty(Themes.CurrentFullscreenTheme) ? "Skins" : "SkinsFullscreen";
+            if (string.IsNullOrEmpty(skinName))
+            {
+                return DependencyProperty.UnsetValue;
+            }
+
             var filePath = Path.Combine(Paths.ProgramFolder, skinFolder, skinName, path);
             if (File.Exists(filePath))
             {
@@ -39,6 +45,11 @@ namespace PlayniteUI
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             return DependencyProperty.UnsetValue;
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
         }
     }
 }

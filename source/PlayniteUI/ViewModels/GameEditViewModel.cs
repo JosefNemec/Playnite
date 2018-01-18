@@ -2201,9 +2201,9 @@ namespace PlayniteUI.ViewModels
                 resources.FindString("URLInputInfoTitile"),
                 string.Empty);
 
-            if (!string.IsNullOrEmpty(url))
+            if (url.Result)
             {
-                EditingGame.BackgroundImage = url;
+                EditingGame.BackgroundImage = url.SelectedString;
             }
         }
 
