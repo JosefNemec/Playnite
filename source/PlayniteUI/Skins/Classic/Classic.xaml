@@ -873,7 +873,9 @@
                    Focusable="False" AllowsTransparency="True">
                 <Border BorderBrush="{DynamicResource PopupBorderBrush}" Background="{DynamicResource PopupBackgroundBrush}"
                         BorderThickness="{DynamicResource PopupBorderThickness}">
-                    <StackPanel Grid.IsSharedSizeScope="True" IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <StackPanel Grid.IsSharedSizeScope="True" IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                    </ScrollViewer>
                 </Border>
             </Popup>
         </Grid>
