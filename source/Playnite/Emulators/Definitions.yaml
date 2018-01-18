@@ -262,6 +262,15 @@
       ImageExtensions: [3ds, 3dsx, cci, cxi, elf]
       ExecutableLookup: ^citra-qt\.exe
       
+- Name: yuzu
+  Website: 'https://yuzu-emu.org/'
+  Profiles:
+    - Name: Default
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Nintendo Switch]
+      ImageExtensions: [nso, nro]
+      ExecutableLookup: ^yuzu\.exe$
+      
 - Name: Cxbx-Reloaded
   Website: 'https://github.com/Cxbx-Reloaded/Cxbx-Reloaded/'
   Profiles:
