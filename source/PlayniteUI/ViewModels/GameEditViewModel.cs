@@ -1481,7 +1481,7 @@ namespace PlayniteUI.ViewModels
                 return;
             }
 
-            var path = (EditingGame as Game).ResolveVariables(EditingGame.PlayTask.Path);
+            var path = EditingGame.ResolveVariables(EditingGame.PlayTask.Path);
             var icon = SaveFileIconToTemp(path);
             if (string.IsNullOrEmpty(icon))
             {

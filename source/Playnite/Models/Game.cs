@@ -619,21 +619,5 @@ namespace Playnite.Models
         {
             return Name;
         }
-
-        public string ResolveVariables(string inputString)
-        {
-            if (string.IsNullOrEmpty(inputString))
-            {
-                return inputString;
-            }
-
-            var result = inputString;
-            result = result.Replace("{InstallDir}", InstallDirectory);
-            result = result.Replace("{ImagePath}", IsoPath);
-            result = result.Replace("{ImageNameNoExt}", Path.GetFileNameWithoutExtension(isoPath));
-            result = result.Replace("{ImageName}", Path.GetFileName(isoPath));
-            result = result.Replace("{PlayniteDir}", Paths.ProgramFolder);
-            return result;
-        }
     }
 }

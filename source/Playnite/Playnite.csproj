@@ -156,6 +156,7 @@
     <Compile Include="EmbededResources.cs" />
     <Compile Include="Emulators\EmulatorDefinition.cs" />
     <Compile Include="Emulators\EmulatorFinder.cs" />
+    <Compile Include="GameExtensions.cs" />
     <Compile Include="GameHandler.cs" />
     <Compile Include="GamesStats.cs" />
     <Compile Include="InteropMethods.cs" />

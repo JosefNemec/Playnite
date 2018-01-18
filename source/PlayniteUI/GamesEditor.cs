@@ -161,9 +161,14 @@ namespace PlayniteUI
 
         public void OpenGameLocation(IGame game)
         {
+            if (string.IsNullOrEmpty(game.InstallDirectory))
+            {
+                return;
+            }
+
             try
             {
-                Process.Start(game.InstallDirectory);
+                Process.Start(game.ResolveVariables(game.InstallDirectory));
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -271,9 +276,16 @@ namespace PlayniteUI
                     icon = Path.Combine(Paths.DataCachePath, "icons", game.Id + ".ico");
                     database.SaveFile(game.Icon, icon);
                 }
-                else if (game.PlayTask.Type == GameTaskType.File)
+                else if (game.PlayTask?.Type == GameTaskType.File)
                 {
-                    icon = Path.Combine(game.PlayTask.WorkingDir, game.PlayTask.Path);
+                    if (Path.IsPathRooted(game.ResolveVariables(game.PlayTask.Path)))
+                    {
+                        icon = game.ResolveVariables(game.PlayTask.Path);
+                    }
+                    else
+                    {
+                        icon = Path.Combine(game.ResolveVariables(game.PlayTask.WorkingDir), game.ResolveVariables(game.PlayTask.Path));
+                    }
                 }
 
                 Programs.CreateShortcut(Paths.ExecutablePath, "-command launch:" + game.Id, icon, path);
@@ -345,15 +357,15 @@ namespace PlayniteUI
                     ApplicationPath = Paths.ExecutablePath
                 };
 
-                if (lastGame.PlayTask != null && lastGame.PlayTask.Type == GameTaskType.File)
+                if (lastGame.PlayTask?.Type == GameTaskType.File)
                 {
-                    if (string.IsNullOrEmpty(lastGame.PlayTask.WorkingDir))
+                    if (Path.IsPathRooted(lastGame.ResolveVariables(lastGame.PlayTask.Path)))
                     {
-                        task.IconResourcePath = lastGame.PlayTask.Path;
+                        task.IconResourcePath = lastGame.ResolveVariables(lastGame.PlayTask.Path);
                     }
                     else
                     {
-                        task.IconResourcePath = Path.Combine(lastGame.PlayTask.WorkingDir, lastGame.PlayTask.Path);
+                        task.IconResourcePath = Path.Combine(lastGame.ResolveVariables(lastGame.PlayTask.WorkingDir), lastGame.ResolveVariables(lastGame.PlayTask.Path));
                     }
                 }
 
