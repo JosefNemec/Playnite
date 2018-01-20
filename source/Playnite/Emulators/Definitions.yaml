@@ -75,7 +75,7 @@
     - Name: Nintendo Wii
       DefaultArguments: '--exec="{ImagePath}" --batch'
       Platforms: [Nintendo Wii]
-      ImageExtensions: [elf, dol, gcm, tgc, wbfs, ciso, iso, wad, dff]
+      ImageExtensions: [elf, dol, tgc, wbfs, ciso, gcz, iso, wad, dff]
       ExecutableLookup: ^Dolphin\.exe
 
 - Name: Kega Fusion
