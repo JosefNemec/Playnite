@@ -29,6 +29,7 @@ Indetermine - Aucun changement (lors du modification de plusieurs jeux)</sys:Str
 
     <sys:String x:Key="CrashWindowTitle">Ah non, quelque chose de mal est arrive...</sys:String>
     <sys:String x:Key="CrashDescription">Playnite rencontre une probleme et ne pouvait pas le resoudre. Si vous voulez nous aider avec la probleme, S'il vous plait creer une package de diagnostic et signaler la probleme. Merci.</sys:String>
+
     <sys:String x:Key="CrashReportIssue">Signaler une probleme</sys:String>
     <sys:String x:Key="CrashRestartPlaynite">Redemarrer Playnite</sys:String>
     <sys:String x:Key="CrashClosePlaynite">Fermer Playnite</sys:String>
@@ -100,13 +101,16 @@ Les jeux importes automatiquement peuvent reapparaitre dans Playnite apres la pr
     <sys:String x:Key="DetailsLabel">Details</sys:String>
     <sys:String x:Key="CustomLabel">Personnalise</sys:String>
     <sys:String x:Key="URLLabel">URL</sys:String>
-
+    <sys:String x:Key="PatronsLabel">Patrons</sys:String>
+    <sys:String x:Key="LicenseLabel">Licence</sys:String>
+    <sys:String x:Key="ContributorsLabel">Contributeurs</sys:String>
 
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Des variables spéciales peuvent être utilisées pour ajouter une chaîne dynamique:
 {InstallDir} - Répertoire d'installation du jeu
 {ImagePath} - Chemin de ISO / ROM du jeu si défini
 {ImageName} - Nom du fichier ISO / ROM du jeu
 {ImageNameNoExt} - Nom du fichier ISO / ROM du jeu sans extension
+{PlayniteDir} - Le répertoire d'installation de Playnite
 
 Exemple: -image "{ImagePath}" -fullscreen
 Résultats dans: -image "c:\folder\image.iso" -fullscreen</sys:String>
@@ -198,8 +202,8 @@ Préférez les données du magasin officiel et, lorsqu'elles ne sont pas disponi
     <sys:String x:Key="SettingsShowTray">Afficher l'icône du bac</sys:String>
     <sys:String x:Key="SettingsMinimizeToTray">Réduire au plateau</sys:String>
     <sys:String x:Key="SettingsCloseToTray">Fermer au plateau</sys:String>
-    <sys:String x:Key="SettingsMinimizeStarting">Minimiser après le début du jeu</sys:String>
-    <sys:String x:Key="SettingsGOGUseGalaxy">Integrar usando el cliente Galaxy</sys:String>
+    <sys:String x:Key="SettingsAfterGameStart">When game starts:</sys:String>
+    <sys:String x:Key="SettingsGOGUseGalaxy">Intégrer en utilisant le client Galaxy</sys:String>
     <sys:String x:Key="SettingsGOGUseGalaxyTooltip">Permet d'activer des fonctionnalités telles que le cloud, le comptage du temps de jeu, etc.</sys:String>
     <sys:String x:Key="SettingsSteamCatImportWarn">Cela remplacera les catégories en cours sur tous les jeux de Steam. Voulez-vous continuer?</sys:String>
     <sys:String x:Key="SettingsSteamCatImportWarnTitle">Importer des catégories?</sys:String>
@@ -210,14 +214,11 @@ Préférez les données du magasin officiel et, lorsqu'elles ne sont pas disponi
     <sys:String x:Key="SettingsClearCacheTitle">Effacer le cache?</sys:String>
     <sys:String x:Key="SettingsApiKeyTooltip">La clé API est requise pour les profils privés Steam</sys:String>
     <sys:String x:Key="SettingsApiKeyUrlText">Obtenir la clé de l'API</sys:String>
-    <sys:String x:Key="SettingsSkinChangeRestart">Redémarrage de Playnite est nécessaire lors du changement de thème</sys:String>
-  <sys:String x:Key="SettingsIGDBApiKey">Clé de l'API IGDB.com</sys:String>
-    <sys:String x:Key="SettingsIGDBApiKeyDescription"  xml:space="preserve">Playnite peut télécharger des métadonnées supplémentaires pour les jeux personnalisés et émulés à partir de la base de données IGDB.com (couvertures, descriptions, etc.).
-    
-Par défaut, Playnite utilise une clé d'accès partagée. Dans certains cas, cela peut entraîner une indisponibilité temporaire de cette fonctionnalité, en fonction de la charge actuelle. Il est donc fortement recommandé d'obtenir votre propre clé et de ne pas être limité par d'autres utilisateurs.
-    
-Vous pouvez obtenir votre clé gratuitement et si vous contribuez à la base de données, vous obtenez des limites moins restrictives (voir programme Contributor).</sys:String>
-    
+    <sys:String x:Key="SettingsSkinChangeRestart">Le redémarrage de Playnite est nécessaire d'appliquer un nouveau thème</sys:String>
+    <sys:String x:Key="SettingsCreateThemes">Créer un nouveau thème</sys:String>
+    <sys:String x:Key="SettingsCreateLocalization">Contribuer nouvelle localisation</sys:String>
+
+    <sys:String x:Key="SettingsGetThemes">Get more themes</sys:String>
     <sys:String x:Key="ImportError">Erreur d'importation</sys:String>
     <sys:String x:Key="LoginChecking">Vérification...</sys:String>
     <sys:String x:Key="LoginRequired">Authentification requise</sys:String>
@@ -297,6 +298,7 @@ Vous pouvez également ajouter d'autres jeux plus tard dans le menu principal en
 Il est actuellement utilisé par {1} jeu(x).</sys:String>
     <sys:String x:Key="PlatformRemovalConfirmation" xml:space="preserve">Voulez-vous vraiment supprimer la plateforme {0}?
 Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
+    <sys:String x:Key="EmulatorSettingsHelp">Aide sur les paramètres</sys:String>
 
     <sys:String x:Key="MenuSortByTitle">Trier Par</sys:String>
     <sys:String x:Key="MenuSortAscending">Ascendant</sys:String>
@@ -336,6 +338,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <!--Errors-->
     <sys:String x:Key="DatabaseErroTitle">Erreur de la Base de Données</sys:String>
     <sys:String x:Key="DatabaseOpenError">Erreur: Impossible d'ouvrir la base de données de la bibliothèque.</sys:String>
+    <sys:String x:Key="DatabaseOpenAccessError">Erreur: Impossible d'accéder à la base de données de la bibliothèque. Le fichier "{0}" est utilisé par un autre processus ou dans un emplacement inaccessible.</sys:String>
     <sys:String x:Key="DiagPackageCreationError">Erreur: Impossible de créer le package de diagnostics.</sys:String>
     <sys:String x:Key="DiagPackageCreationSuccess">Package de diagnostic créé avec succès.</sys:String>
 
@@ -391,7 +394,9 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="ClearAll">Effacer Tout</sys:String>
     <sys:String x:Key="SetupRunning">Configuration en cours...</sys:String>
     <sys:String x:Key="InvalidURL">URL invalide</sys:String>
-    <sys:String x:Key="UserKey">Cle utilisateur</sys:String>
+    <sys:String x:Key="DoNothing">Ne fais rien</sys:String>
+    <sys:String x:Key="Minimize">Minimiser</sys:String>
+    <sys:String x:Key="Close">Fermer</sys:String>
 
     <sys:String x:Key="EmulatorArguments">Arguments de l'emulateur</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Arguments d'emulateur supplementaires</sys:String>
@@ -426,4 +431,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="MetadownloadNoResultsMessage">N'a pas trouve l'informations pertinentes pour le jeu'{0}'sur la page specifiee.</sys:String>
     <sys:String x:Key="MetadownloadSingleGameTip">Conseil: Vous pouvez utiliser un processus de télécharger les metadonnees plus avance lors de la modification d'un seul jeu via l'option de menu "Modifier".</sys:String>
     <sys:String x:Key="ProgreessAvailabilityMessage">Non disponible lorsqu'une action est en cours.</sys:String>
+    <sys:String x:Key="DescriptionHTMLSupportTooltip">Le texte de description est sensible à la syntaxe HTML</sys:String>
+    <sys:String x:Key="PatreonDevelopMessage">Le développement de Playnite est soutenu par ces patrons:</sys:String>
+    <sys:String x:Key="AboutContributorsMessage">Code, localisation et autres contributeurs sans ordre particulier:</sys:String>
 </ResourceDictionary>

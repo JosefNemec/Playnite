@@ -103,6 +103,9 @@
     <sys:String x:Key="DetailsLabel">Подробно</sys:String>
     <sys:String x:Key="CustomLabel">Собственные</sys:String>
     <sys:String x:Key="URLLabel">URL</sys:String>
+    <sys:String x:Key="PatronsLabel">Меценаты</sys:String>
+    <sys:String x:Key="LicenseLabel">Лицензия</sys:String>
+    <sys:String x:Key="ContributorsLabel">Авторы</sys:String>
     
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Специальные переменные могут быть использованы при добавлении динамический строки:
 {InstallDir} - Директория с установленной игрой
@@ -200,7 +203,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="SettingsShowTray">Показывать трэй-иконку</sys:String>
     <sys:String x:Key="SettingsMinimizeToTray">Свернуть в трэй</sys:String>
     <sys:String x:Key="SettingsCloseToTray">Свернуть</sys:String>
-    <sys:String x:Key="SettingsMinimizeStarting">Свернуть при запуске exe</sys:String>
+ 	<sys:String x:Key="SettingsAfterGameStart">Во время игры:</sys:String>
     <sys:String x:Key="SettingsGOGUseGalaxy">Интеграция с клиентом Galaxy</sys:String>
     <sys:String x:Key="SettingsGOGUseGalaxyTooltip">Будут работать такие возможности, как: облачные сохранения, счетчик проведенного времени в игре и т.д.</sys:String>
     <sys:String x:Key="SettingsSteamCatImportWarn">Это перезапишет текущие категории всех Steam-игр. Вы хотите продолжить?</sys:String>
@@ -213,6 +216,9 @@ IGDB > Официальный магазин:
     <sys:String x:Key="SettingsApiKeyTooltip">API-ключ необходим для приватных Steam-аккаунтов</sys:String>
     <sys:String x:Key="SettingsApiKeyUrlText">Получить API-ключ</sys:String>
     <sys:String x:Key="SettingsSkinChangeRestart">Playnite требуется перезапуск при смене темы</sys:String>
+    <sys:String x:Key="SettingsGetThemes">Получить больше тем</sys:String>
+    <sys:String x:Key="SettingsCreateThemes">Создать новую тему</sys:String>
+    <sys:String x:Key="SettingsCreateLocalization">Добавить новую локализацию</sys:String>
     
     <sys:String x:Key="ImportError">Ошибка при импортировании</sys:String>
     <sys:String x:Key="LoginChecking">Проверка...</sys:String>
@@ -385,8 +391,11 @@ IGDB > Официальный магазин:
     <sys:String x:Key="StartupError">Ошибка при запуске</sys:String>
     <sys:String x:Key="SkinError">Ошибка темы</sys:String>
     <sys:String x:Key="ClearAll">Очистить всё</sys:String>
-    <sys:String x:Key="SetupRunning">Установка в процессе...</sys:String>
+    <sys:String x:Key="SetupRunning">Установка...</sys:String>
     <sys:String x:Key="InvalidURL">Неверный URL</sys:String>
+    <sys:String x:Key="DoNothing">Ничего</sys:String>
+    <sys:String x:Key="Minimize">Свернуть</sys:String>
+    <sys:String x:Key="Close">Закрыть</sys:String>
 
     <sys:String x:Key="EmulatorArguments">Аргументы для эмулятора</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Дополнительные аргументы для эмулятора</sys:String>
@@ -421,4 +430,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="MetadownloadNoResultsMessage">Не найдена соответствующая информация об игре '{0}' на конкретной странице.</sys:String>
     <sys:String x:Key="MetadownloadSingleGameTip">Совет: Вы можете использовать более детальный процесс загрузки метаданных во время редактирования одной игры с помощью опции меню "Редактировать".</sys:String>
     <sys:String x:Key="ProgreessAvailabilityMessage">Недоступно, когда выполняется какое-либо действие.</sys:String>
+    <sys:String x:Key="DescriptionHTMLSupportTooltip">Текст описания - синтаксис HTML</sys:String>
+    <sys:String x:Key="PatreonDevelopMessage">Разработка Playnite осуществляется благодаря средствам этих людей:</sys:String>
+    <sys:String x:Key="AboutContributorsMessage">Люди, принимающие участие в написании кода, локализаций и т.д.:</sys:String>
 </ResourceDictionary>
