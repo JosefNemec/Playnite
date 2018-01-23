@@ -89,11 +89,15 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
   <sys:String x:Key="DetailsLabel">Detalhes</sys:String>
   <sys:String x:Key="CustomLabel">Personalizados</sys:String>
   <sys:String x:Key="URLLabel">URL</sys:String>
+  <sys:String x:Key="PatronsLabel">Patronos</sys:String>
+  <sys:String x:Key="LicenseLabel">Licença</sys:String>
+  <sys:String x:Key="ContributorsLabel">Colaboradores</sys:String>
   <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Variáveis especiais podem ser usadas para criar cadeias de caracteres dinâmicas:
 {InstallDir} - Caminho de instalação do jogo
 {ImagePath} - Caminho da ISO/ROM, se definido
 {ImageName} - Nome do arquivo ISO/ROM
 {ImageNameNoExt} - Nome do arquivo ISO/ROM sem extensão
+{PlayniteDir} - Diretório de instalação do Playnite
         
 Exemplo: -image "{ImagePath}" -fullscreen
 Resultado: -image "c:\pasta\imagem.iso" -fullscreen</sys:String>
@@ -155,7 +159,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
   <sys:String x:Key="SettingsInvalidSteamAccountName">O nome da conta Steam não pode estar vazio.</sys:String>
   <sys:String x:Key="SettingsInvalidSteamAccountLibImport">Nenhuma conta do Steam selecionada para importação da biblioteca.</sys:String>
   <sys:String x:Key="SettingsInvalidSteamAccountCatImport">Nenhuma conta do Steam selecionada para importação das categorias.</sys:String>
-  <sys:String x:Key="SettingsUpdateLibStartup">Baixar atualizações de bibliotecas de terceiros ao iniciar.</sys:String>
+  <sys:String x:Key="SettingsUpdateLibStartup">Baixar atualizações de bibliotecas de terceiros ao iniciar</sys:String>
   <sys:String x:Key="SettingsStartInFullscreen">Iniciar em tela cheia</sys:String>
   <sys:String x:Key="SettingsUpdateLibStartupTooltip">Inclui Steam, Origin e outros.</sys:String>
   <sys:String x:Key="SettingsAsyncImageLoading">Carregamento de imagens assíncrono (requer reinicialização)</sys:String>
@@ -180,7 +184,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
   <sys:String x:Key="SettingsShowTray">Exibir ícone na bandeja</sys:String>
   <sys:String x:Key="SettingsMinimizeToTray">Minimizar para a bandeja</sys:String>
   <sys:String x:Key="SettingsCloseToTray">Fechar para a bandeja</sys:String>
-  <sys:String x:Key="SettingsMinimizeStarting">Minimizar ao executar um jogo</sys:String>
+  <sys:String x:Key="SettingsAfterGameStart">Ao iniciar um jogo:</sys:String>
   <sys:String x:Key="SettingsGOGUseGalaxy">Integrar usando o cliente Galaxy</sys:String>
   <sys:String x:Key="SettingsGOGUseGalaxyTooltip">Habilita recursos como salvamento de jogos na nuvem, contador de tempo de jogo, etc.</sys:String>
   <sys:String x:Key="SettingsSteamCatImportWarn">As categorias atuais de todos os seus jogos do Steam serão substituídas. Você deseja continuar?</sys:String>
@@ -192,13 +196,10 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
   <sys:String x:Key="SettingsClearCacheTitle">Limpar cache?</sys:String>
   <sys:String x:Key="SettingsApiKeyTooltip">Você precisa de uma chave da API para usar contas privadas do Steam</sys:String>
   <sys:String x:Key="SettingsApiKeyUrlText">Obter chave da API</sys:String>
-  <sys:String x:Key="SettingsSkinChangeRestart">Você precisa reiniciar o Playnite para alterar o tema</sys:String>
-  <sys:String x:Key="SettingsIGDBApiKey">Chave da API do IGDB.com</sys:String>
-  <sys:String x:Key="SettingsIGDBApiKeyDescription" xml:space="preserve">O Playnite pode baixar metadados adicionais para jogos personalizados e emulados do banco de dados IGDB.com (capas, descrições etc.).
-    
-Por padrão, o Playnite usa uma chave de acesso compartilhada. Em alguns casos, isso pode resultar em indisponibilidade temporária deste recurso, dependendo da carga atual nos servidores. Portanto, é altamente recomendável que você obtenha a sua própria chave e não seja limitado por outros usuários.
-    
-Você pode obter a sua chave gratuitamente e, se você contribuir com o banco de dados, obter limites menos restritivos (consulte o Programa do Contribuidor).</sys:String>
+  <sys:String x:Key="SettingsSkinChangeRestart">É necessário reiniciar o Playnite para aplicar um novo tema</sys:String>
+  <sys:String x:Key="SettingsGetThemes">Baixar mais temas</sys:String>
+  <sys:String x:Key="SettingsCreateThemes">Como criar um novo tema</sys:String>
+  <sys:String x:Key="SettingsCreateLocalization">Como traduzir para o seu idioma</sys:String>
   <sys:String x:Key="ImportError">Erro de importação</sys:String>
   <sys:String x:Key="LoginChecking">Verificando...</sys:String>
   <sys:String x:Key="LoginRequired">Autentificação requerida</sys:String>
@@ -274,6 +275,7 @@ Você também pode adicionar mais jogos através do menu principal, clicando no 
 Ele está sendo usado por {1} jogos(s).</sys:String>
   <sys:String x:Key="PlatformRemovalConfirmation" xml:space="preserve">Tem certeza de que deseja remover a plataforma {0}?        
 Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
+  <sys:String x:Key="EmulatorSettingsHelp">Ajuda para configuração de emuladores</sys:String>
   <sys:String x:Key="MenuSortByTitle">Ordenar por</sys:String>
   <sys:String x:Key="MenuSortAscending">Ascendente</sys:String>
   <sys:String x:Key="MenuSortDescending">Descendente</sys:String>
@@ -309,6 +311,7 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
   <!--Errors-->
   <sys:String x:Key="DatabaseErroTitle">Erro no Banco de Dados</sys:String>
   <sys:String x:Key="DatabaseOpenError">Não foi possível abrir o banco de dados.</sys:String>
+  <sys:String x:Key="DatabaseOpenAccessError">Não foi possível acessar o banco de dados da biblioteca. O arquivo "{0}" está sendo usado por outro processo ou está em um local inacessível.</sys:String>
   <sys:String x:Key="DiagPackageCreationError">Não foi possível criar o pacote de diagnóstico.</sys:String>
   <sys:String x:Key="DiagPackageCreationSuccess">Pacote de diagnóstico criado com sucesso.</sys:String>
   <sys:String x:Key="SteamCategoryImportError">Não foi possível importar as categorias do Steam.</sys:String>
@@ -358,9 +361,11 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
   <sys:String x:Key="StartupError">Erro de inicialização</sys:String>
   <sys:String x:Key="SkinError">Erro no tema</sys:String>
   <sys:String x:Key="ClearAll">Limpar tudo</sys:String>
-  <sys:String x:Key="SetupRunning">Instalador em execução...</sys:String>
+  <sys:String x:Key="SetupRunning">Instalando...</sys:String>
   <sys:String x:Key="InvalidURL">URL inválido</sys:String>
-  <sys:String x:Key="UserKey">Chave do usuário</sys:String>
+  <sys:String x:Key="DoNothing">Não fazer nada</sys:String>
+  <sys:String x:Key="Minimize">Minimizar</sys:String>
+  <sys:String x:Key="Close">Fechar</sys:String>
   <sys:String x:Key="EmulatorArguments">Argumentos do emulador</sys:String>
   <sys:String x:Key="AdditionalEmulatorArguments">Argumentos adicionais do emulador</sys:String>
   <sys:String x:Key="OverrideEmulatorArguments">Substituir argumentos do emulador</sys:String>
@@ -390,4 +395,7 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
   <sys:String x:Key="MetadownloadNoResultsMessage">Não encontramos nenhuma informação relevante sobre o jogo "{0}" na página especificada.</sys:String>
   <sys:String x:Key="MetadownloadSingleGameTip">Dica: você pode usar um processo mais avançado para baixar metadados ao editar um único jogo através da opção "Editar..." no menu de contexto.</sys:String>
   <sys:String x:Key="ProgreessAvailabilityMessage">Indisponível enquanto houver alguma ação em andamento.</sys:String>
+  <sys:String x:Key="DescriptionHTMLSupportTooltip">O texto de descrição é sensível à sintaxe HTML</sys:String>
+  <sys:String x:Key="PatreonDevelopMessage">O desenvolvimento do Playnite é apoiado por estes patronos:</sys:String>
+  <sys:String x:Key="AboutContributorsMessage">Programadores, tradutores e demais colaboradores sem uma ordem específica:</sys:String>
 </ResourceDictionary>

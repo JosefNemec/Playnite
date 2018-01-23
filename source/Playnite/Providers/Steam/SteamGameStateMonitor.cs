@@ -47,6 +47,12 @@ namespace Playnite.Providers.Steam
 
         private void Watcher_Changed(object sender, FileSystemEventArgs e)
         {
+            // In some cases changed event may be called even when the file was deleted
+            if (!File.Exists(e.FullPath))
+            {
+                return;
+            }
+
             var kv = new KeyValue();
 
             Policy.Handle<IOException>().WaitAndRetry(4, r => TimeSpan.FromSeconds(1)).Execute(() =>

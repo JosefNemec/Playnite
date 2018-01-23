@@ -120,9 +120,9 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public List<Skin> AvailableSkins
+        public List<Theme> AvailableSkins
         {
-            get => Skins.AvailableSkins;
+            get => Themes.AvailableThemes;
         }
 
         public List<PlayniteLanguage> AvailableLanguages
@@ -130,9 +130,9 @@ namespace PlayniteUI.ViewModels
             get => Localization.AvailableLanguages;
         }
 
-        public List<Skin> AvailableFullscreenSkins
+        public List<Theme> AvailableFullscreenSkins
         {
-            get => Skins.AvailableFullscreenSkins;
+            get => Themes.AvailableFullscreenThemes;
         }
 
         public bool ProviderIntegrationChanged

@@ -151,8 +151,8 @@ namespace PlayniteUI
             Settings.ConfigureLogger();
             Settings.ConfigureCef();
 
-            // Load skin
-            LoadSkin(AppSettings.Skin, AppSettings.SkinColor, false);
+            // Load theme
+            ApplyTheme(AppSettings.Skin, AppSettings.SkinColor, false);
 
             // First run wizard
             ulong steamCatImportId = 0;
@@ -386,7 +386,7 @@ namespace PlayniteUI
                 Current.MainWindow = null;
             }
 
-            LoadSkin(AppSettings.Skin, AppSettings.SkinColor, false);
+            ApplyTheme(AppSettings.Skin, AppSettings.SkinColor, false);
             var window = new MainWindowFactory();
             mainModel = new MainViewModel(
                 Database,
@@ -418,7 +418,7 @@ namespace PlayniteUI
                 Current.MainWindow = null;
             }
 
-            LoadSkin(AppSettings.SkinFullscreen, AppSettings.SkinColorFullscreen, true);
+            ApplyTheme(AppSettings.SkinFullscreen, AppSettings.SkinColorFullscreen, true);
             var window = new FullscreenWindowFactory();
             fullscreenModel = new FullscreenViewModel(
                 Database,
@@ -436,26 +436,58 @@ namespace PlayniteUI
             fullscreenModel.OpenView(false);
         }
 
-        private void LoadSkin(string name, string profile, bool fullscreen)
+        private void ApplyTheme(string name, string profile, bool fullscreen)
         {
-            try
+            bool isThemeValid = true;
+            string themeName = "Classic";
+            string themeProfile = "Default";
+
+            if (fullscreen)
             {
-                if (fullscreen)
+                if (Themes.CurrentFullscreenTheme == name && Themes.CurrentFullscreenColor == profile)
                 {
-                    Skins.ApplyFullscreenSkin(name, profile);
-                }
-                else
-                {
-                    Skins.ApplySkin(name, profile);
+                    return;
                 }
             }
-            catch (Exception exc)
+            else
+            {
+                if (Themes.CurrentTheme == name && Themes.CurrentColor == profile)
+                {
+                    return;
+                }
+            }
+
+            var themeValid = Themes.IsThemeValid(name, fullscreen);
+            if (themeValid.Item1 == false)
             {
                 PlayniteMessageBox.Show(
-                    ResourceProvider.Instance.FindString(string.Format("SkinApplyError", AppSettings.Skin, AppSettings.SkinColor, exc.Message)),
+                    string.Format(ResourceProvider.Instance.FindString("SkinApplyError"), AppSettings.Skin, AppSettings.SkinColor, themeValid.Item2),
                     ResourceProvider.Instance.FindString("SkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
-                Shutdown();
-                return;
+                isThemeValid = false;
+            }
+
+            var profileValid = Themes.IsColorProfileValid(name, profile, fullscreen);
+            if (profileValid.Item1 == false)
+            {
+                PlayniteMessageBox.Show(
+                    string.Format(ResourceProvider.Instance.FindString("SkinApplyError"), AppSettings.Skin, AppSettings.SkinColor, profileValid.Item2),
+                    ResourceProvider.Instance.FindString("SkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
+                isThemeValid = false;
+            }
+
+            if (isThemeValid)
+            {
+                themeName = name;
+                themeProfile = profile;
+            }
+
+            if (fullscreen)
+            {
+                Themes.ApplyFullscreenTheme(themeName, themeProfile);
+            }
+            else
+            {
+                Themes.ApplyTheme(themeName, themeProfile);
             }
         }
 

@@ -1186,22 +1186,6 @@ namespace Playnite.Database
                 }
             }
 
-            // Delete games that are no longer in library
-            foreach (IGame dbGame in GamesCollection.Find(a => a.Provider == provider))
-            {
-                if (importedGames.FirstOrDefault(a => a.ProviderId == dbGame.ProviderId) == null)
-                {
-                    // Except games that are installed, in case that game is part of free weekend, beta or similar events
-                    if (dbGame.IsInstalled)
-                    {
-                        continue;
-                    }
-
-                    logger.Info("Removing game {0} which is no longer in {1} library", dbGame.ProviderId, dbGame.Provider);
-                    DeleteGame(dbGame);
-                }
-            }
-
             return newGames;
         }
 

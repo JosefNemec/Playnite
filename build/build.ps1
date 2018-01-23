@@ -1,4 +1,4 @@
-param(
+﻿param(
     [ValidateSet("Release", "Debug")]
     [string]$Configuration = "Release",
     [string]$OutputPath = (Join-Path $PWD $Configuration),
@@ -7,11 +7,53 @@ param(
     [switch]$SkipBuild = $false,
     [ValidateSet("x86", "x64")]
     [string]$Platform = "x86",
-    [string]$UpdateBranch = "stable"
+    [string]$UpdateBranch = "stable",
+    [switch]$Sign = $false
 )
 
 $ErrorActionPreference = "Stop"
 $NugetUrl = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+
+function StartAndWait()
+{
+    param(
+        [string]$Path,
+        [string]$Arguments,
+        [string]$WorkingDir
+    )
+
+    if ($WorkingDir)
+    {
+        $proc = Start-Process $Path $Arguments -PassThru -NoNewWindow -WorkingDirectory $WorkingDir
+    }
+    else
+    { 
+        $proc = Start-Process $Path $Arguments -PassThru -NoNewWindow
+    }
+
+    $handle = $proc.Handle # cache proc.Handle http://stackoverflow.com/a/23797762/1479211
+    $proc.WaitForExit()
+    return $proc.ExitCode
+}
+
+function SignFile()
+{
+    param(
+        [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true)]
+        [string]$Path        
+    )
+
+    process
+    {
+        Write-Host "Signing file `"$Path`"" -ForegroundColor Green
+        $signToolPath = "c:\Program Files (x86)\Windows Kits\10\bin\10.0.16299.0\x86\signtool.exe"
+        $res = StartAndWait $signToolPath ('sign /n "Open Source Developer, Josef Němec" /t http://time.certum.pl /v ' + "`"$Path`"")
+        if ($res -ne 0)
+        {        
+            throw "Failed to sign file."
+        }
+    }
+}
 
 # -------------------------------------------
 #            Compile application 
@@ -36,23 +78,19 @@ if (!$SkipBuild)
     $solutionDir = Join-Path $pwd "..\source"
     $msbuildPath = "c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe";
     $arguments = "build.xml /p:SolutionDir=`"$solutionDir`" /p:OutputPath=`"$outputPath`";Configuration=$configuration /property:Platform=$Platform /t:Build";
-    $compiler = Start-Process $msbuildPath $arguments -PassThru -NoNewWindow
-    $handle = $compiler.Handle # cache proc.Handle http://stackoverflow.com/a/23797762/1479211
-    $compiler.WaitForExit()
-
-    if ($compiler.ExitCode -ne 0)
+    $compilerResult = StartAndWait $msbuildPath $arguments
+    if ($compilerResult -ne 0)
     {
-        $appCompileSuccess = $false
-        Write-Host "Build failed." -ForegroundColor "Red"
+        throw "Build failed."
     }
     else
     {
-        $appCompileSuccess = $true
+        if ($Sign)
+        {
+            Join-Path $OutputPath "Playnite.dll" | SignFile
+            Join-Path $OutputPath "PlayniteUI.exe" | SignFile
+        }
     }
-}
-else
-{
-    $appCompileSuccess = $true
 }
 
 # -------------------------------------------
@@ -64,7 +102,7 @@ $configPath = Join-Path $OutputPath "PlayniteUI.exe.config"
 # -------------------------------------------
 #            Build installer
 # -------------------------------------------
-if ($Setup -and $appCompileSuccess)
+if ($Setup)
 {
     Write-Host "Building setup..." -ForegroundColor Green
     
@@ -96,15 +134,19 @@ if ($Setup -and $appCompileSuccess)
     $scriptContent | Out-File $installerTempScript "utf8"
 
     $arguments = '/DVERSION="{0}" /DFOLDER="{1}" {2}' -f $buildNumber, $OutputPath, $installerTempScript
-    $buildProc = Start-Process $nsisCompiler $arguments -NoNewWindow -WorkingDirectory $PWD -PassThru
-    $buildProc.WaitForExit()
+    StartAndWait $nsisCompiler $arguments -WorkingDir $PWD
     Remove-Item $installerTempScript
+
+    if ($Sign)
+    {
+        SignFile "PlayniteInstaller.exe"
+    }
 }
 
 # -------------------------------------------
 #            Build portable package
 # -------------------------------------------
-if ($Portable -and $appCompileSuccess)
+if ($Portable)
 {
     Write-Host "Building portable package..." -ForegroundColor Green
 
@@ -119,4 +161,4 @@ if ($Portable -and $appCompileSuccess)
     [IO.Compression.ZipFile]::CreateFromDirectory($OutputPath, $packageName, "Optimal", $false) 
 }
 
-return $appCompileSuccess
+return $true

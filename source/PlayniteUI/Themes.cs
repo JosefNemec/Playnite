@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 
 namespace PlayniteUI
 {
-    public class Skin
+    public class Theme
     {
         public string Name
         {
@@ -23,16 +23,16 @@ namespace PlayniteUI
             get; set;
         }
 
-        public Skin(string name, List<string> profiles)
+        public Theme(string name, List<string> profiles)
         {
             Name = name;
             Profiles = profiles;
         }
     }
 
-    public class Skins
+    public class Themes
     {
-        public static string CurrentSkin
+        public static string CurrentTheme
         {
             get;
             private set;
@@ -44,7 +44,7 @@ namespace PlayniteUI
             private set;
         }
 
-        public static string CurrentFullscreenSkin
+        public static string CurrentFullscreenTheme
         {
             get;
             private set;
@@ -56,28 +56,28 @@ namespace PlayniteUI
             private set;
         }
 
-        public static List<Skin> AvailableFullscreenSkins
+        public static List<Theme> AvailableFullscreenThemes
         {
             get
             {
-                return GetSkinsFromFolder(Paths.SkinsFullscreenPath);
+                return GetThemesFromFolder(Paths.ThemesFullscreenPath);
             }
         }
 
-        public static List<Skin> AvailableSkins
+        public static List<Theme> AvailableThemes
         {
             get
             {
-                return GetSkinsFromFolder(Paths.SkinsPath);
+                return GetThemesFromFolder(Paths.ThemesPath);
             }
         }
 
-        private static List<Skin> GetSkinsFromFolder(string path)
+        private static List<Theme> GetThemesFromFolder(string path)
         {
-            var skins = new List<Skin>();
+            var themes = new List<Theme>();
             if (!Directory.Exists(path))
             {
-                return skins;
+                return themes;
             }
 
             foreach (var dir in Directory.GetDirectories(path))
@@ -89,7 +89,7 @@ namespace PlayniteUI
                     continue;
                 }
 
-                var skinName = dirInfo.Name;
+                var themeName = dirInfo.Name;
                 var profiles = new List<string>();
                 foreach (var file in Directory.GetFiles(dir))
                 {
@@ -99,7 +99,7 @@ namespace PlayniteUI
                         continue;
                     }
 
-                    var match = Regex.Match(fileInfo.Name, $"{skinName}\\.(.*)\\.xaml", RegexOptions.IgnoreCase);
+                    var match = Regex.Match(fileInfo.Name, $"{themeName}\\.(.*)\\.xaml", RegexOptions.IgnoreCase);
                     if (match.Success)
                     {
                         var profile = match.Groups[1].Value;
@@ -107,15 +107,15 @@ namespace PlayniteUI
                     }
                 }
 
-                skins.Add(new Skin(skinName, profiles));
+                themes.Add(new Theme(themeName, profiles));
             }
 
-            return skins;
+            return themes;
         }
 
-        public static void ApplyFullscreenSkin(string skinName, string color, bool forceReload = false)
+        public static void ApplyFullscreenTheme(string themeName, string color, bool forceReload = false)
         {
-            if (CurrentFullscreenSkin == skinName && CurrentFullscreenColor == color && forceReload == false)
+            if (CurrentFullscreenTheme == themeName && CurrentFullscreenColor == color && forceReload == false)
             {
                 return;
             }
@@ -123,57 +123,57 @@ namespace PlayniteUI
             if (Application.Current != null)
             {
                 var dictionaries = Application.Current.Resources.MergedDictionaries;
-                var currentSkinDict = dictionaries.FirstOrDefault(a => a.Contains("SkinFullscreenName"));
-                var currentSkinColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinFullscreenColorName"));
+                var currentThemeDict = dictionaries.FirstOrDefault(a => a.Contains("SkinFullscreenName"));
+                var currentThemeColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinFullscreenColorName"));
 
-                if (currentSkinColorDict != null)
+                if (currentThemeColorDict != null)
                 {
-                    dictionaries.Remove(currentSkinColorDict);
+                    dictionaries.Remove(currentThemeColorDict);
                 }
 
-                if (currentSkinDict != null)
+                if (currentThemeDict != null)
                 {
-                    dictionaries.Remove(currentSkinDict);
+                    dictionaries.Remove(currentThemeDict);
                 }
 
                 // Also remove any non-fullscreen resources
                 // we don't want to have fullscreen and non-fullscreen resources loaded at the same time
                 // to prevent possible conflicts.
-                currentSkinDict = dictionaries.FirstOrDefault(a => a.Contains("SkinName"));
-                currentSkinColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinColorName"));
+                currentThemeDict = dictionaries.FirstOrDefault(a => a.Contains("SkinName"));
+                currentThemeColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinColorName"));
 
-                if (currentSkinColorDict != null)
+                if (currentThemeColorDict != null)
                 {
-                    dictionaries.Remove(currentSkinColorDict);
+                    dictionaries.Remove(currentThemeColorDict);
                 }
 
-                if (currentSkinDict != null)
+                if (currentThemeDict != null)
                 {
-                    dictionaries.Remove(currentSkinDict);
+                    dictionaries.Remove(currentThemeDict);
                 }
 
 
-                var skinPath = GetSkinPath(skinName, true);
-                dictionaries.Add(LoadXaml(skinPath));
+                var themePath = GetThemePath(themeName, true);
+                dictionaries.Add(LoadXaml(themePath));
 
                 if (string.IsNullOrEmpty(color))
                 {
                     return;
                 }
 
-                var fullColorPath = GetColorPath(skinName, color, true);
+                var fullColorPath = GetColorPath(themeName, color, true);
                 dictionaries.Add(LoadXaml(fullColorPath));
             }
 
-            CurrentSkin = skinName;
+            CurrentTheme = themeName;
             CurrentColor = color;
-            CurrentFullscreenSkin = CurrentSkin;
+            CurrentFullscreenTheme = CurrentTheme;
             CurrentFullscreenColor = CurrentColor;
         }
 
-        public static void ApplySkin(string skinName, string color, bool forceReload = false)
+        public static void ApplyTheme(string themeName, string color, bool forceReload = false)
         {
-            if (CurrentSkin == skinName && CurrentColor == color && forceReload == false)
+            if (CurrentTheme == themeName && CurrentColor == color && forceReload == false)
             {
                 return;
             }
@@ -181,40 +181,40 @@ namespace PlayniteUI
             if (Application.Current != null)
             {
                 var dictionaries = Application.Current.Resources.MergedDictionaries;
-                var currentSkinDict = dictionaries.FirstOrDefault(a => a.Contains("SkinName"));
-                var currentSkinColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinColorName"));
+                var currentThemeDict = dictionaries.FirstOrDefault(a => a.Contains("SkinName"));
+                var currentThemeColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinColorName"));
 
-                if (currentSkinColorDict != null)
+                if (currentThemeColorDict != null)
                 {
-                    dictionaries.Remove(currentSkinColorDict);
+                    dictionaries.Remove(currentThemeColorDict);
                 }
 
-                var changeSkinBase = CurrentSkin != currentSkinDict["SkinName"].ToString() || string.IsNullOrEmpty(CurrentSkin);
-                if (currentSkinDict != null && changeSkinBase)
+                var changeThemeBase = CurrentTheme != currentThemeDict["SkinName"].ToString() || string.IsNullOrEmpty(CurrentTheme);
+                if (currentThemeDict != null && changeThemeBase)
                 {
-                    dictionaries.Remove(currentSkinDict);
+                    dictionaries.Remove(currentThemeDict);
                 }
 
                 // Also remove any fullscreen resources
                 // we don't want to have fullscreen and non-fullscreen resources loaded at the same time
                 // to prevent possible conflicts.
-                currentSkinDict = dictionaries.FirstOrDefault(a => a.Contains("SkinFullscreenName"));
-                currentSkinColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinFullscreenColorName"));
+                currentThemeDict = dictionaries.FirstOrDefault(a => a.Contains("SkinFullscreenName"));
+                currentThemeColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinFullscreenColorName"));
 
-                if (currentSkinColorDict != null)
+                if (currentThemeColorDict != null)
                 {
-                    dictionaries.Remove(currentSkinColorDict);
+                    dictionaries.Remove(currentThemeColorDict);
                 }
 
-                if (currentSkinDict != null)
+                if (currentThemeDict != null)
                 {
-                    dictionaries.Remove(currentSkinDict);
+                    dictionaries.Remove(currentThemeDict);
                 }
 
-                if (changeSkinBase)
+                if (changeThemeBase)
                 {
-                    var skinPath = GetSkinPath(skinName, false);
-                    dictionaries.Add(LoadXaml(skinPath));
+                    var themePath = GetThemePath(themeName, false);
+                    dictionaries.Add(LoadXaml(themePath));
                 }
 
                 if (string.IsNullOrEmpty(color))
@@ -222,13 +222,13 @@ namespace PlayniteUI
                     return;
                 }
 
-                var fullColorPath = GetColorPath(skinName, color, false);
+                var fullColorPath = GetColorPath(themeName, color, false);
                 dictionaries.Add(LoadXaml(fullColorPath));
             }
 
-            CurrentSkin = skinName;
+            CurrentTheme = themeName;
             CurrentColor = color;
-            CurrentFullscreenSkin = null;
+            CurrentFullscreenTheme = null;
             CurrentFullscreenColor = null;
         }
 
@@ -240,22 +240,22 @@ namespace PlayniteUI
             }
         }
 
-        public static string GetSkinPath(string skinName, bool fullscreen)
+        public static string GetThemePath(string themeName, bool fullscreen)
         {
-            return Path.Combine(fullscreen ? Paths.SkinsFullscreenPath : Paths.SkinsPath, skinName, skinName + ".xaml");
+            return Path.Combine(fullscreen ? Paths.ThemesFullscreenPath : Paths.ThemesPath, themeName, themeName + ".xaml");
         }
 
-        public static string GetColorPath(string skinName, string color, bool fullscreen)
+        public static string GetColorPath(string themeName, string color, bool fullscreen)
         {
-            var colorFile = skinName + $".{color}.xaml";
-            return Path.Combine(fullscreen ? Paths.SkinsFullscreenPath : Paths.SkinsPath, skinName, colorFile);
+            var colorFile = themeName + $".{color}.xaml";
+            return Path.Combine(fullscreen ? Paths.ThemesFullscreenPath : Paths.ThemesPath, themeName, colorFile);
         }
 
-        public static Tuple<bool, string> IsSkinValid(string skinName, bool fullscreen)
+        public static Tuple<bool, string> IsThemeValid(string themeName, bool fullscreen)
         {
             try
             {
-                LoadXaml(GetSkinPath(skinName, fullscreen));
+                LoadXaml(GetThemePath(themeName, fullscreen));
                 return new Tuple<bool, string>(true, string.Empty);
             }
             catch (Exception e)
@@ -264,11 +264,11 @@ namespace PlayniteUI
             }
         }
 
-        public static Tuple<bool, string> IsColorProfileValid(string skinName, string color, bool fullscreen)
+        public static Tuple<bool, string> IsColorProfileValid(string themeName, string color, bool fullscreen)
         {
             try
             {
-                LoadXaml(GetColorPath(skinName, color, fullscreen));
+                LoadXaml(GetColorPath(themeName, color, fullscreen));
                 return new Tuple<bool, string>(true, string.Empty);
             }
             catch (Exception e)

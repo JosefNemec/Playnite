@@ -197,7 +197,11 @@ namespace Playnite.Providers.Steam
                 var connect = await api.Connect();
                 if (connect != EResult.OK)
                 {
-                    throw new Exception("Failed to connect to Steam " + connect);
+                    connect = await api.Connect();
+                    if (connect != EResult.OK)
+                    {
+                        throw new Exception("Failed to connect to Steam " + connect);
+                    }
                 }
             }
 

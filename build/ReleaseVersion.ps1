@@ -1,4 +1,4 @@
-param(
+﻿param(
     [Parameter(ParameterSetName="Base",Mandatory=$true)]
     [string]$Version,
     [Parameter(Mandatory=$true)]
@@ -36,8 +36,8 @@ $asmInfoContent  | Out-File $asmInfoPath -Encoding utf8
 Write-Host "Updating update manifest..." -ForegroundColor Green
 $updateInfoContent = Get-Content $updateInfoPath | ConvertFrom-Json
 $updateInfoContent.$UpdateBranch.version = $updateVersion
-$updateInfoContent.$UpdateBranch.url = "https://github.com/JosefNemec/Playnite/releases/download/$updateVersion/PlayniteInstaller.exe"
-$updateInfoContent.$UpdateBranch.url2 = "http://playnite.cz/update/$updateVersion/PlayniteInstaller.exe"
+$updateInfoContent.$UpdateBranch.url = "http://playnite.cz/update/$updateVersion/PlayniteInstaller.exe"
+$updateInfoContent.$UpdateBranch.url2 = "https://github.com/JosefNemec/Playnite/releases/download/$updateVersion/PlayniteInstaller.exe"
 $releases = {$updateInfoContent.$UpdateBranch.releases}.Invoke()
 if ($releases[0].version -ne $updateVersion)
 {
@@ -93,7 +93,7 @@ if ($CommitAndPush)
 if ($Build)
 {
     Write-Host "Building release..." -ForegroundColor Green
-    $buildPassed = .\build.ps1 -Setup -Portable -UpdateBranch $UpdateBranch
+    $buildPassed = .\build.ps1 -Setup -Portable -UpdateBranch $UpdateBranch -Sign
     if (!$buildPassed)
     {
         throw "Building release failed."

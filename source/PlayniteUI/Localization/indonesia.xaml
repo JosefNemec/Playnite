@@ -87,8 +87,11 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
   <sys:String x:Key="ListLabel">List</sys:String>
   <sys:String x:Key="CoversLabel">Sampul</sys:String>
   <sys:String x:Key="DetailsLabel">Terinci</sys:String>
-  <sys:String x:Key="CustomLabel">Custom</sys:String>
+  <sys:String x:Key="CustomLabel">Kustom</sys:String>
   <sys:String x:Key="URLLabel">URL</sys:String>
+  <sys:String x:Key="PatronsLabel">Patron</sys:String>
+  <sys:String x:Key="LicenseLabel">Lisensi</sys:String>
+  <sys:String x:Key="ContributorsLabel">Kontributor</sys:String>
   <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Variable spesial bisa digunakan untuk menambah dynamic string:
 {InstallDir} - Direktori instalasi game
 {ImagePath} - Path untuk ISO/ROM game jika di set
@@ -180,7 +183,7 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
   <sys:String x:Key="SettingsShowTray">Tampilkan Ikon di Tray</sys:String>
   <sys:String x:Key="SettingsMinimizeToTray">Minimalkan ke Tray</sys:String>
   <sys:String x:Key="SettingsCloseToTray">Tutup ke Tray</sys:String>
-  <sys:String x:Key="SettingsMinimizeStarting">Minimalkan saat bermain</sys:String>
+  <sys:String x:Key="SettingsAfterGameStart">Ketika game dimulai:</sys:String>
   <sys:String x:Key="SettingsGOGUseGalaxy">Integrasikan menggunakan klien Galaxy</sys:String>
   <sys:String x:Key="SettingsGOGUseGalaxyTooltip">Untuk mengaktifkan fitur seperti Cloud save, Play Counter, dll.</sys:String>
   <sys:String x:Key="SettingsSteamCatImportWarn">Ini akan mengoverwrite kategori untuk game Steam yang ada di libary. Lanjutkan?</sys:String>
@@ -193,12 +196,9 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
   <sys:String x:Key="SettingsApiKeyTooltip">Kunci API dibutuhkan untuk akun Steam denga status private.</sys:String>
   <sys:String x:Key="SettingsApiKeyUrlText">Dapatkan Kunci API</sys:String>
   <sys:String x:Key="SettingsSkinChangeRestart">Playnite harus dimuat ulang untuk mengganti tema.</sys:String>
-  <sys:String x:Key="SettingsIGDBApiKey">Kunci API IGDB.com</sys:String>
-  <sys:String x:Key="SettingsIGDBApiKeyDescription" xml:space="preserve">Playnite bisa mendownload metadata tambahan untuk game kustom dan emulator game dari database IGDB.com (sampul, deskripsi, etc.).
-    
-Secara default Playnite menggunakan kunci publik. Ini berarti metadata dari IGDB.com mungkin tidak akan bekerja untuk sementara. Direkomendasikan untuk mendapatkan kunci privat yang tidak dibagi dengan publik.
-    
-Kamu bisa mendapatkan kunci secara gratis jika, dan jika kamu berkontribusi dengan database, kamu mendapatkan akes yang lebih luas (lihat Program Kontribusi).</sys:String>
+  <sys:String x:Key="SettingsGetThemes">Cari tema baru</sys:String>
+  <sys:String x:Key="SettingsCreateThemes">Buat tema baru</sys:String>
+  <sys:String x:Key="SettingsCreateLocalization">Kontribusi lokalisasi baru</sys:String>
   <sys:String x:Key="ImportError">Import Error</sys:String>
   <sys:String x:Key="LoginChecking">Mengecek masalah...</sys:String>
   <sys:String x:Key="LoginRequired">Login dibutuhkan</sys:String>
@@ -274,10 +274,11 @@ Kamu juga bisa menambahkan game lainnya nanti lewat tombol 'Playnite'.</sys:Stri
 Emulator digunakan oleh {1} game(s).</sys:String>
   <sys:String x:Key="PlatformRemovalConfirmation" xml:space="preserve">Hapus {0} platform?        
 Platform digunakan oleh {1} game dan {2} emulator.</sys:String>
+  <sys:String x:Key="EmulatorSettingsHelp">Settings help</sys:String>
   <sys:String x:Key="MenuSortByTitle">Sortir</sys:String>
   <sys:String x:Key="MenuSortAscending">Menaik</sys:String>
   <sys:String x:Key="MenuSortDescending">Menurun</sys:String>
-  <sys:String x:Key="MenuGroupDont">Jangan digrupkan</sys:String>
+  <sys:String x:Key="MenuGroupDont">Jangan buat grup</sys:String>
   <sys:String x:Key="MenuGroupProvider">Grup berdasarkan Provider</sys:String>
   <sys:String x:Key="MenuGroupCategory">Grup berdasarkan Kategori</sys:String>
   <sys:String x:Key="MenuGroupPlatform">Grup berdasarkan Platform</sys:String>
@@ -309,6 +310,7 @@ Platform digunakan oleh {1} game dan {2} emulator.</sys:String>
   <!--Errors-->
   <sys:String x:Key="DatabaseErroTitle">Database Error</sys:String>
   <sys:String x:Key="DatabaseOpenError">Gagal membuka library database.</sys:String>
+  <sys:String x:Key="DatabaseOpenAccessError">Cannot access library database. File "{0}" is being used by another process or it's in inaccessible location.</sys:String>
   <sys:String x:Key="DiagPackageCreationError">Gagal membuat paket diagnosa.</sys:String>
   <sys:String x:Key="DiagPackageCreationSuccess">Paket diagnosa berhasil dibuat.</sys:String>
   <sys:String x:Key="SteamCategoryImportError">Gagal mengimport kategori dari Steam.</sys:String>
@@ -360,7 +362,9 @@ Platform digunakan oleh {1} game dan {2} emulator.</sys:String>
   <sys:String x:Key="ClearAll">Bersihkan semua</sys:String>
   <sys:String x:Key="SetupRunning">Konfigurasi sedang bekerja...</sys:String>
   <sys:String x:Key="InvalidURL">URL invalid</sys:String>
-  <sys:String x:Key="UserKey">Kunci milik pengguna</sys:String>
+  <sys:String x:Key="DoNothing">Diamkan aplikasi</sys:String>
+  <sys:String x:Key="Minimize">Minimalkan</sys:String>
+  <sys:String x:Key="Close">Tutup aplikasi</sys:String>
   <sys:String x:Key="EmulatorArguments">Argumen untuk Emulator</sys:String>
   <sys:String x:Key="AdditionalEmulatorArguments">Argumen tambahan untuk Emulator</sys:String>
   <sys:String x:Key="OverrideEmulatorArguments">Tindih argumen Emulator dengan...</sys:String>
@@ -390,4 +394,7 @@ Platform digunakan oleh {1} game dan {2} emulator.</sys:String>
   <sys:String x:Key="MetadownloadNoResultsMessage">Tidak menemukan informasi relevan tentang game '{0}'.</sys:String>
   <sys:String x:Key="MetadownloadSingleGameTip">Tip: Kamu bisa menggunakan metadata editor yang lebih lengkap dimenu "Edit" per game.</sys:String>
   <sys:String x:Key="ProgreessAvailabilityMessage">Tidak tersedia. Ada yang masih diproses.</sys:String>
+  <sys:String x:Key="DescriptionHTMLSupportTooltip">Teks deskripsi ini menggunakan format HTML.</sys:String>
+  <sys:String x:Key="PatreonDevelopMessage">Pengembangan Playnite ini didukung oleh para patron berikut:</sys:String>
+  <sys:String x:Key="AboutContributorsMessage">Kode, lokalisasi, dan kontribusi lainya, tidak diurutkan:</sys:String>
 </ResourceDictionary>

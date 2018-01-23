@@ -33,7 +33,7 @@ namespace Playnite
             }
         }
 
-        public static string SkinsPath
+        public static string ThemesPath
         {
             get
             {
@@ -41,7 +41,7 @@ namespace Playnite
             }
         }
 
-        public static string SkinsFullscreenPath
+        public static string ThemesFullscreenPath
         {
             get
             {

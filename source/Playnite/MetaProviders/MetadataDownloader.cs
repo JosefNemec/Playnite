@@ -533,7 +533,7 @@ namespace Playnite.MetaProviders
                             gameData = ProcessField(game, settings.Name, ref storeData, ref igdbData, (a) => a.GameData?.Name);
                             if (!string.IsNullOrEmpty(gameData?.GameData?.Name))
                             {
-                                game.Name = StringExtensions.NormalizeGameName(gameData.GameData.Name);
+                                game.Name = StringExtensions.RemoveTrademarks(gameData.GameData.Name);
                                 var sortingName = StringExtensions.ConvertToSortableName(game.Name);
                                 if (sortingName != game.Name)
                                 {
@@ -627,6 +627,32 @@ namespace Playnite.MetaProviders
 
                                 var iconId = database.AddFileNoDuplicate(gameData.Icon);
                                 game.Icon = iconId;
+                            }
+                        }
+
+                        // We need to download and set aditional steam tasks here because they are only part of metadata
+                        if (game.Provider == Provider.Steam)
+                        {
+                            // Only update them if they don't exist yet
+                            if (game.OtherTasks?.FirstOrDefault(a => a.IsBuiltIn) == null)
+                            {
+                                if (storeData == null)
+                                {
+                                    storeData = steamProvider.GetGameData(game.ProviderId);
+                                }
+
+                                if (storeData?.GameData?.OtherTasks != null)
+                                {
+                                    if (game.OtherTasks == null)
+                                    {
+                                        game.OtherTasks = new System.Collections.ObjectModel.ObservableCollection<GameTask>();
+                                    }
+
+                                    foreach (var task in storeData.GameData.OtherTasks)
+                                    {
+                                        game.OtherTasks.Add(task);
+                                    }
+                                }
                             }
                         }
 

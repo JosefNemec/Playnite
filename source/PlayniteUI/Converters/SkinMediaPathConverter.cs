@@ -23,8 +23,8 @@ namespace PlayniteUI
                 return DependencyProperty.UnsetValue;
             }
 
-            var skinName = string.IsNullOrEmpty(Skins.CurrentFullscreenSkin) ? Skins.CurrentSkin : Skins.CurrentFullscreenSkin;
-            var skinFolder = string.IsNullOrEmpty(Skins.CurrentFullscreenSkin) ? "Skins" : "SkinsFullscreen";
+            var skinName = string.IsNullOrEmpty(Themes.CurrentFullscreenTheme) ? Themes.CurrentTheme : Themes.CurrentFullscreenTheme;
+            var skinFolder = string.IsNullOrEmpty(Themes.CurrentFullscreenTheme) ? "Skins" : "SkinsFullscreen";
             var filePath = Path.Combine(Paths.ProgramFolder, skinFolder, skinName, path);
             if (File.Exists(filePath))
             {

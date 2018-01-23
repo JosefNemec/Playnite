@@ -973,8 +973,8 @@ namespace PlayniteUI.ViewModels
 
         public void OpenSettings(SettingsViewModel model)
         {
-            var currentSkin = Skins.CurrentSkin;
-            var currentColor = Skins.CurrentColor;
+            var currentSkin = Themes.CurrentTheme;
+            var currentColor = Themes.CurrentColor;
 
             if (model.OpenView() == true)
             {
@@ -985,9 +985,9 @@ namespace PlayniteUI.ViewModels
             }
             else
             {
-                if (Skins.CurrentSkin != currentSkin || Skins.CurrentColor != currentColor)
+                if (Themes.CurrentTheme != currentSkin || Themes.CurrentColor != currentColor)
                 {
-                    Skins.ApplySkin(currentSkin, currentColor);
+                    Themes.ApplyTheme(currentSkin, currentColor);
                 }
             }
         }
