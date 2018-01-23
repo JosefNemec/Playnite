@@ -427,7 +427,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="InstallGame">Install</sys:String>
     <sys:String x:Key="UninstallGame">Uninstall</sys:String>
     <sys:String x:Key="OpenGameLocation">Open installation location</sys:String>
-    <sys:String x:Key="CreateDesktopShortcut">Create desktop schortcut</sys:String>
+    <sys:String x:Key="CreateDesktopShortcut">Create desktop shortcut</sys:String>
     <sys:String x:Key="MoreAction">More</sys:String>
 
     <sys:String x:Key="MetadownloadNoResultsMessage">Didn't found any relevant information about game '{0}' on specified page.</sys:String>
