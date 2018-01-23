@@ -1,4 +1,4 @@
-param(
+﻿param(
     [Parameter(ParameterSetName="Base",Mandatory=$true)]
     [string]$Version,
     [Parameter(Mandatory=$true)]
@@ -93,7 +93,7 @@ if ($CommitAndPush)
 if ($Build)
 {
     Write-Host "Building release..." -ForegroundColor Green
-    $buildPassed = .\build.ps1 -Setup -Portable -UpdateBranch $UpdateBranch
+    $buildPassed = .\build.ps1 -Setup -Portable -UpdateBranch $UpdateBranch -Sign
     if (!$buildPassed)
     {
         throw "Building release failed."
