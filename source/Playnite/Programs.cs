@@ -234,7 +234,13 @@ namespace Playnite
             }
             else
             {
-                return files.Where(a => Regex.IsMatch(a, @"\.scale-\d+\.png"))?.OrderBy(a => a).Last();
+                var icons = files.Where(a => Regex.IsMatch(a, @"\.scale-\d+\.png"));
+                if (icons.Any())
+                {
+                    return icons.OrderBy(a => a).Last();
+                }
+
+                return string.Empty;
             }
         }
 
