@@ -365,7 +365,16 @@ namespace PlayniteUI
                     }
                     else
                     {
-                        task.IconResourcePath = Path.Combine(lastGame.ResolveVariables(lastGame.PlayTask.WorkingDir), lastGame.ResolveVariables(lastGame.PlayTask.Path));
+                        var workDir = lastGame.ResolveVariables(lastGame.PlayTask.WorkingDir);
+                        var path = lastGame.ResolveVariables(lastGame.PlayTask.Path);
+                        if (string.IsNullOrEmpty(workDir))
+                        {
+                            task.IconResourcePath = path;
+                        }
+                        else
+                        {
+                            task.IconResourcePath = Path.Combine(workDir, path);
+                        }
                     }
                 }
 
