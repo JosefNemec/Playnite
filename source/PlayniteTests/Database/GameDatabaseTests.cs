@@ -201,10 +201,10 @@ namespace PlayniteTests.Database
                 db.UpdateOwnedGames(provider);
                 Assert.AreEqual(3, db.GamesCollection.Count());
 
-                // Game removed from library is removed from DB
+                // Game removed from library was not removed from DB
                 libraryGames.RemoveAt(0);
                 db.UpdateOwnedGames(provider);
-                Assert.AreEqual(2, db.GamesCollection.Count());
+                Assert.AreEqual(3, db.GamesCollection.Count());
 
                 // Game not in library but installed is not removed from DB
                 libraryGames.Insert(0, new Game()
@@ -216,10 +216,10 @@ namespace PlayniteTests.Database
                 });
 
                 db.UpdateOwnedGames(provider);
-                Assert.AreEqual(3, db.GamesCollection.Count());
+                Assert.AreEqual(4, db.GamesCollection.Count());
                 libraryGames.RemoveAt(0);
                 db.UpdateOwnedGames(provider);
-                Assert.AreEqual(3, db.GamesCollection.Count());
+                Assert.AreEqual(4, db.GamesCollection.Count());
             }
         }
 
