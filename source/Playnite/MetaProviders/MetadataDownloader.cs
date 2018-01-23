@@ -630,6 +630,32 @@ namespace Playnite.MetaProviders
                             }
                         }
 
+                        // We need to download and set aditional steam tasks here because they are only part of metadata
+                        if (game.Provider == Provider.Steam)
+                        {
+                            // Only update them if they don't exist yet
+                            if (game.OtherTasks?.FirstOrDefault(a => a.IsBuiltIn) == null)
+                            {
+                                if (storeData == null)
+                                {
+                                    storeData = steamProvider.GetGameData(game.ProviderId);
+                                }
+
+                                if (storeData?.GameData?.OtherTasks != null)
+                                {
+                                    if (game.OtherTasks == null)
+                                    {
+                                        game.OtherTasks = new System.Collections.ObjectModel.ObservableCollection<GameTask>();
+                                    }
+
+                                    foreach (var task in storeData.GameData.OtherTasks)
+                                    {
+                                        game.OtherTasks.Add(task);
+                                    }
+                                }
+                            }
+                        }
+
                         // Just to be sure check if somebody didn't remove game while downloading data
                         if (database.GamesCollection.FindOne(a => a.ProviderId == games[i].ProviderId) != null)
                         {
