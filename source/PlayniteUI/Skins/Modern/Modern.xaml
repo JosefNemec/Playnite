@@ -2299,10 +2299,10 @@
                    Grid.ColumnSpan="10" Grid.RowSpan="10"
                    Source="{Binding SelectedGameDetails.Game.BackgroundImage, IsAsync=True, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}" />
 
-            <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+            <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
                        Background="{DynamicResource GamesListPanelBrush}">
                 <DockPanel DockPanel.Dock="Top" Margin="10,45,10,5">
-                    <CheckBox Name="CheckFilterView" DockPanel.Dock="Right" Height="28"
+                    <CheckBox Name="CheckFilterView" DockPanel.Dock="Left" Height="28"
                               IsChecked="{Binding AppSettings.FilterPanelVisible}">
                         <CheckBox.Style>
                             <Style TargetType="CheckBox">
@@ -2334,7 +2334,7 @@
                     <Border CornerRadius="{StaticResource ControlCornerRadius}" Background="Transparent" Style="{StaticResource HighlightBorder}"
                             pui:LeftClickContextMenuBehavior.Enabled="True"
                             SnapsToDevicePixels="True" BorderThickness="{StaticResource ControlBorderThickness}"
-                            Width="35" Height="28" Cursor="Hand" DockPanel.Dock="Left">
+                            Width="35" Height="28" Cursor="Hand" DockPanel.Dock="Right">
                         <TextBlock Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
                            Foreground="{StaticResource TextBrush}"/>
                         <Border.ContextMenu>
@@ -2443,12 +2443,35 @@
                 </pc:ExtendedListBox>
             </DockPanel>
 
-            <ContentControl Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
+            <ContentControl Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
                             DockPanel.Dock="Left" DataContext="{Binding SelectedGameDetails, Mode=OneWay}"
                             Template="{StaticResource GameDetailsView}" />
 
-            <Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Background="{DynamicResource NormalBrushDark}"
-                    Visibility="{Binding AppSettings.FilterPanelVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Background="{DynamicResource NormalBrushDark}"
+                    IsEnabled="{Binding AppSettings.FilterPanelVisible}">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Width" Value="0" />
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Width">
+                                            <DoubleAnimation Duration="0:0:0.2" To="240" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Width">
+                                            <DoubleAnimation Duration="0:0:0.2" To="0" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
                 <DockPanel>
                     <DockPanel Margin="10,50,5,5" DockPanel.Dock="Top">
                         <TextBlock DockPanel.Dock="Right" Margin="0,0,5,0">
@@ -2463,7 +2486,7 @@
                         </TextBlock>
                     </DockPanel>
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
-                        <StackPanel Margin="0,0,0,10" Width="240">
+                        <StackPanel Margin="0,0,0,10">
                             <StackPanel.Resources>
                                 <Style x:Key="FilterCheck" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
                                     <Setter Property="Margin" Value="8" />
@@ -2653,20 +2676,17 @@
                     VerticalAlignment="Top" Background="#33000000" Height="38">
                 <DockPanel>
                     <Button DockPanel.Dock="Left" Command="{Binding OpenMainMenuCommand}"
-                            HorizontalContentAlignment="Left" BorderThickness="0" Background="Transparent">
-                        <DockPanel Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True">
-                            <Border DockPanel.Dock="Left" Background="Transparent">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="☰" VerticalAlignment="Center" FontWeight="Bold" Opacity="0.9"
-                                               FontSize="20" Foreground="{StaticResource TextBrush}" />
-                                    <Image Source="/Images/applogo_clean.png" Height="28" Name="ImageLogo"
-                                           RenderOptions.BitmapScalingMode="Fant" Margin="10,0,5,0"
-                                           VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Border>
-                            <TextBlock Text="Playnite" FontSize="20" FontWeight="Bold" Opacity="0.9"
-                                       VerticalAlignment="Center" Foreground="{DynamicResource TextBrush}"/>
-                        </DockPanel>
+                            HorizontalContentAlignment="Left" BorderThickness="0" Background="Transparent">                    
+                        <Border DockPanel.Dock="Left" Background="Transparent"
+                                Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="☰" VerticalAlignment="Center" FontWeight="Bold" Opacity="0.9"
+                                            FontSize="20" Foreground="{StaticResource TextBrush}" />
+                                <Image Source="/Images/applogo_clean.png" Height="28" Name="ImageLogo"
+                                        RenderOptions.BitmapScalingMode="Fant" Margin="10,0,5,0"
+                                        VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
                     </Button>
 
                     <ContentControl Template="{StaticResource NotificationIcon}" Margin="0,0,130,0"
@@ -2680,6 +2700,22 @@
             <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
                     Visibility="{Binding MainMenuOpened, Converter={StaticResource BooleanToVisibilityConverter}}"                    
                     Background="#AA000000">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <Trigger Property="Visibility" Value="Visible">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0.15" From="0" To="1" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+
                 <Grid>
                     <Grid.Resources>
                         <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
