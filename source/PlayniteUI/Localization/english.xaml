@@ -378,6 +378,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="OtherActions">Other Actions</sys:String>
     <sys:String x:Key="AddGames">Add Games</sys:String>
     <sys:String x:Key="ScanFolder">Scan Folder...</sys:String>
+    <sys:String x:Key="DetectInstalled">Detect Installed</sys:String>
     <sys:String x:Key="Browse">Browse...</sys:String>
     <sys:String x:Key="OpenPlaynite">Open Playnite</sys:String>
     <sys:String x:Key="ProfileSettings">Profile Settings</sys:String>

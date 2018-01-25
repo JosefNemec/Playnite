@@ -7,6 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Security.Principal;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml;
 using Windows.ApplicationModel;
 using Windows.Management.Deployment;
@@ -102,117 +104,149 @@ namespace Playnite
             link.Save();
         }
 
-        public static List<Program> GetExecutablesFromFolder(string path, SearchOption searchOption)
+        public static async Task<List<Program>> GetExecutablesFromFolder(string path, SearchOption searchOption, CancellationTokenSource cancelToken = null)
         {
-            var execs = new List<Program>();
-            var files = new SafeFileEnumerator(path, "*.exe", SearchOption.AllDirectories);
-
-            foreach (var file in files)
+            return await Task.Run(() =>
             {
-                var versionInfo = FileVersionInfo.GetVersionInfo(file.FullName);
-                var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(Path.GetDirectoryName(file.FullName)).Name;
+                var execs = new List<Program>();
+                var files = new SafeFileEnumerator(path, "*.exe", SearchOption.AllDirectories);
 
-                execs.Add(new Program()
+                foreach (var file in files)
                 {
-                    Path = file.FullName,
-                    Icon = file.FullName,
-                    WorkDir = Path.GetDirectoryName(file.FullName),
-                    Name = programName
-                });
-            }
+                    if (cancelToken?.IsCancellationRequested == true)
+                    {
+                        return null;
+                    }
 
-            return execs;
+                    var versionInfo = FileVersionInfo.GetVersionInfo(file.FullName);
+                    var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(Path.GetDirectoryName(file.FullName)).Name;
+
+                    execs.Add(new Program()
+                    {
+                        Path = file.FullName,
+                        Icon = file.FullName,
+                        WorkDir = Path.GetDirectoryName(file.FullName),
+                        Name = programName
+                    });
+                }
+
+                return execs;
+            });
         }
 
-        public static List<Program> GetShortcutProgramsFromFolder(string path)
+        public static async Task<List<Program>> GetShortcutProgramsFromFolder(string path, CancellationTokenSource cancelToken = null)
         {
-            var folderExceptions = new string[]
+            return await Task.Run(() =>
             {
-                @"\Accessibility\",
-                @"\Accessories\",
-                @"\Administrative Tools\",
-                @"\Maintenance\",
-                @"\StartUp\",
-                @"\Windows ",
-                @"\Microsoft ",
-            };
-
-            var nameExceptions = new string[]
-            {
-                "uninstall",
-                "setup"
-            };
-
-            var pathExceptions = new string[]
-            {
-                @"\system32\",
-                @"\windows\",
-            };
-
-            var shell = new WshShell();
-            var apps = new List<Program>();
-            var shortucts = new SafeFileEnumerator(path, "*.lnk", SearchOption.AllDirectories);
-
-            foreach (var shortcut in shortucts)
-            {
-                var fileName = shortcut.Name;
-                var Directory = Path.GetDirectoryName(shortcut.FullName);
-
-                if (folderExceptions.FirstOrDefault(a => shortcut.FullName.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
+                var folderExceptions = new string[]
                 {
-                    continue;
-                }
-
-                if (nameExceptions.FirstOrDefault(a => shortcut.FullName.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
-                {
-                    continue;
-                }
-
-                var link = (IWshShortcut)shell.CreateShortcut(shortcut.FullName);
-                var target = link.TargetPath;
-
-                if (pathExceptions.FirstOrDefault(a => target.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
-                {
-                    continue;
-                }
-
-                // Ignore duplicates
-                if (apps.FirstOrDefault(a => a.Path == target) != null)
-                {
-                    continue;
-                }
-
-                // Ignore non-application links
-                if (Path.GetExtension(target) != ".exe")
-                {
-                    continue;
-                }
-
-                var app = new Program()
-                {
-                    Path = target,
-                    Icon = link.IconLocation,
-                    Name = Path.GetFileNameWithoutExtension(shortcut.Name),
-                    WorkDir = link.WorkingDirectory
+                    @"\Accessibility\",
+                    @"\Accessories\",
+                    @"\Administrative Tools\",
+                    @"\Maintenance\",
+                    @"\StartUp\",
+                    @"\Windows ",
+                    @"\Microsoft ",
                 };
 
-                apps.Add(app);
-            }
+                var nameExceptions = new string[]
+                {
+                "uninstall",
+                "setup"
+                };
 
-            return apps;
+                var pathExceptions = new string[]
+                {
+                @"\system32\",
+                @"\windows\",
+                };
+
+                var shell = new WshShell();
+                var apps = new List<Program>();
+                var shortucts = new SafeFileEnumerator(path, "*.lnk", SearchOption.AllDirectories);
+
+                foreach (var shortcut in shortucts)
+                {
+                    if (cancelToken?.IsCancellationRequested == true)
+                    {
+                        return null;
+                    }
+
+                    var fileName = shortcut.Name;
+                    var Directory = Path.GetDirectoryName(shortcut.FullName);
+
+                    if (folderExceptions.FirstOrDefault(a => shortcut.FullName.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
+                    {
+                        continue;
+                    }
+
+                    if (nameExceptions.FirstOrDefault(a => shortcut.FullName.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
+                    {
+                        continue;
+                    }
+
+                    var link = (IWshShortcut)shell.CreateShortcut(shortcut.FullName);
+                    var target = link.TargetPath;
+
+                    if (pathExceptions.FirstOrDefault(a => target.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
+                    {
+                        continue;
+                    }
+
+                    // Ignore duplicates
+                    if (apps.FirstOrDefault(a => a.Path == target) != null)
+                    {
+                        continue;
+                    }
+
+                    // Ignore non-application links
+                    if (Path.GetExtension(target) != ".exe")
+                    {
+                        continue;
+                    }
+
+                    var app = new Program()
+                    {
+                        Path = target,
+                        Icon = link.IconLocation,
+                        Name = Path.GetFileNameWithoutExtension(shortcut.Name),
+                        WorkDir = link.WorkingDirectory
+                    };
+
+                    apps.Add(app);
+                }
+
+                return apps;
+            });
         }
 
-        public static List<Program> GetInstalledPrograms()
+        public static async Task<List<Program>> GetInstalledPrograms(CancellationTokenSource cancelToken = null)
         {
             var apps = new List<Program>();
 
             // Get apps from All Users
             var allPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "Programs");
-            apps.AddRange(GetShortcutProgramsFromFolder(allPath));
+            var allApps = await GetShortcutProgramsFromFolder(allPath);
+            if (cancelToken?.IsCancellationRequested == true)
+            {
+                return null;
+            }
+            else
+            {
+                apps.AddRange(allApps);
+            }
 
             // Get current user apps
             var userPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), "Programs");
-            apps.AddRange(GetShortcutProgramsFromFolder(userPath));
+            var userApps = await GetShortcutProgramsFromFolder(userPath);
+            if (cancelToken?.IsCancellationRequested == true)
+            {
+                return null;
+            }
+            else
+            {
+                apps.AddRange(userApps);
+            }
 
             return apps;
         }

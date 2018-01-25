@@ -12,9 +12,9 @@ namespace PlayniteTests
     public class ProgramsTests
     {
         [Test]
-        public void GetInstalledProgramsTest()
+        public async Task GetInstalledProgramsTest()
         {
-            var apps = Programs.GetInstalledPrograms();
+            var apps = await Programs.GetInstalledPrograms();
             Assert.AreNotEqual(apps.Count, 0);
 
             var firstApp = apps.First();
@@ -25,9 +25,9 @@ namespace PlayniteTests
         }
 
         [Test]
-        public void GetExecutablesFromFolderTest()
+        public async Task GetExecutablesFromFolderTest()
         {
-            var apps = Programs.GetExecutablesFromFolder(@"c:\Program Files\", System.IO.SearchOption.AllDirectories);
+            var apps = await Programs.GetExecutablesFromFolder(@"c:\Program Files\", System.IO.SearchOption.AllDirectories);
             Assert.AreNotEqual(apps.Count, 0);
 
             var firstApp = apps.First();

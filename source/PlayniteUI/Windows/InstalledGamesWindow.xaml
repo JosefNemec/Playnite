@@ -75,6 +75,9 @@
                 <Button Name="ButtonScan" Content="{DynamicResource ScanFolder}" DockPanel.Dock="Left"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding ScanFolderCommand}"/>
+                <Button Name="ButtonDetectInstalled" Content="{DynamicResource DetectInstalled}" DockPanel.Dock="Left"
+                        Style="{StaticResource BottomButton}"
+                        Command="{Binding DetectInstalledCommand}"/>
                 <Button Name="ButtonCancel" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right" IsCancel="True"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding CloseCommand}"/>
@@ -84,10 +87,17 @@
             </DockPanel>
         </Grid>
         
-        <Grid Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <ProgressBar IsIndeterminate="True" Width="350" Height="40" />
-            <TextBlock Text="{DynamicResource EmuWizardScanning}" HorizontalAlignment="Center" VerticalAlignment="Center"
-                       Style="{DynamicResource BaseTextBlockStyle}"/>
+        <Grid Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
+              Background="#99000000">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid>
+                    <ProgressBar IsIndeterminate="True" Width="350" Height="40" />
+                    <TextBlock Text="{DynamicResource EmuWizardScanning}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Style="{DynamicResource BaseTextBlockStyle}"/>
+                </Grid>
+                <Button Content="{DynamicResource CancelLabel}"  Margin="10,0,0,0"
+                        Command="{Binding CancelProgressCommand}"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </controls:WindowBase>

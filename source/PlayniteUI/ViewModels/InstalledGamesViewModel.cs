@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -187,6 +188,7 @@ namespace PlayniteUI.ViewModels
         private GameDatabase database;
         private IWindowFactory window;
         private IDialogsFactory dialogs;
+        private CancellationTokenSource cancelToken;
 
         public RelayCommand<object> CloseCommand
         {
@@ -220,6 +222,22 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<object> DetectInstalledCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                DetectInstalled();
+            });
+        }
+
+        public RelayCommand<object> CancelProgressCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                CancelProgress();
+            });
+        }
+
         public InstalledGamesViewModel(GameDatabase database, IWindowFactory window, IDialogsFactory dialogs)
         {
             this.database = database;
@@ -235,7 +253,6 @@ namespace PlayniteUI.ViewModels
 
         public bool? OpenView()
         {
-            LoadDefaultList();
             return window.CreateAndOpenDialog(this);
         }
 
@@ -336,15 +353,18 @@ namespace PlayniteUI.ViewModels
             SelectedProgram = program;
         }
 
-        public async void LoadDefaultList()
+        public async void DetectInstalled()
         {
             IsLoading = true;
-            await Task.Factory.StartNew(() =>
+            cancelToken = new CancellationTokenSource();
+       
+            try
             {
-                try
+                var allApps = new List<ImportableProgram>();
+                var installed = await Playnite.Programs.GetInstalledPrograms(cancelToken);
+                if (installed != null)
                 {
-                    var allApps = new List<ImportableProgram>();
-                    allApps.AddRange(Playnite.Programs.GetInstalledPrograms().Select(a => new ImportableProgram(a, ProgramType.Win32)));
+                    allApps.AddRange(installed.Select(a => new ImportableProgram(a, ProgramType.Win32)));
 
                     if (Environment.OSVersion.Version.Major == 10)
                     {
@@ -353,15 +373,15 @@ namespace PlayniteUI.ViewModels
 
                     Programs = new ObservableCollection<ImportableProgram>(allApps.OrderBy(a => a.Name));
                 }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(exc, "Failed to load list of installed apps.");
-                }
-                finally
-                {
-                    IsLoading = false;
-                }
-            });
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to load list of installed apps.");
+            }
+            finally
+            {
+                IsLoading = false;
+            }
         }
 
         public async void ScanFolder()
@@ -373,22 +393,30 @@ namespace PlayniteUI.ViewModels
             }
 
             IsLoading = true;
-            await Task.Factory.StartNew(() =>
+            cancelToken = new CancellationTokenSource();
+
+            try
             {
-                try
+                var executables = await Playnite.Programs.GetExecutablesFromFolder(path, SearchOption.AllDirectories, cancelToken);
+                if (executables != null)
                 {
-                    var apps = Playnite.Programs.GetExecutablesFromFolder(path, SearchOption.AllDirectories).Select(a => new ImportableProgram(a, ProgramType.Win32)).OrderBy(a => a.Name);
+                    var apps = executables.Select(a => new ImportableProgram(a, ProgramType.Win32)).OrderBy(a => a.Name);
                     Programs = new ObservableCollection<ImportableProgram>(apps);
                 }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(exc, "Failed to scan folder for executables: " + path);
-                }
-                finally
-                {
-                    IsLoading = false;
-                }
-            });
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to scan folder for executables: " + path);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
+        public void CancelProgress()
+        {
+            cancelToken?.Cancel();
         }
     }
 }
