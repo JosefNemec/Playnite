@@ -11,5 +11,11 @@ namespace PlayniteUI
     {
         public static CancellationTokenSource CancelToken = new CancellationTokenSource();
         public static Task ProgressTask;
+
+        public static void CancelAndWait()
+        {
+            CancelToken?.Cancel();
+            ProgressTask?.Wait();
+        }
     }
 }

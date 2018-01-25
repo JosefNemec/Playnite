@@ -136,7 +136,7 @@ namespace PlayniteUI
 
             if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
             {
-                Application.Current.Shutdown();
+                App.CurrentApp.Quit();
             }
             else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
             {

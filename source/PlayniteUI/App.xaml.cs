@@ -85,6 +85,8 @@ namespace PlayniteUI
             {
                 ReleaseResources();
             }
+
+            appMutex?.ReleaseMutex();
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -131,7 +133,7 @@ namespace PlayniteUI
                 }
 
                 logger.Info("Application already running, shutting down.");
-                Shutdown();
+                Quit();
                 return;
             }
             else
@@ -362,13 +364,31 @@ namespace PlayniteUI
             Shutdown(0);
         }
 
+        public void Quit()
+        {
+            ReleaseResources();
+            Shutdown(0);
+        }
+
         private void ReleaseResources()
         {
-            GamesLoaderHandler.CancelToken?.Cancel();
+            var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), () =>
+            {
+                try
+                {
+                    GamesLoaderHandler.CancelAndWait();
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, "Failed to cancel global progress task.");
+                    throw;
+                }
+            }, ResourceProvider.Instance.FindString("ClosingPlaynite"));
+            progressModel.ActivateProgress();
+
             Database?.CloseDatabase();
             Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
             AppSettings?.SaveSettings();
-            appMutex?.ReleaseMutex();
             if (Cef.IsInitialized)
             {
                 Cef.Shutdown();

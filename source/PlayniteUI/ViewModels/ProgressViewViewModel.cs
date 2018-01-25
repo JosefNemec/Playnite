@@ -33,6 +33,11 @@ namespace PlayniteUI.ViewModels
             this.progresAction = progresAction;
         }
 
+        public ProgressViewViewModel(IWindowFactory window, Action progresAction, string text) : this(window, progresAction)
+        {
+            ProgressText = text;
+        }
+
         public bool? ActivateProgress()
         {
             Task.Factory.StartNew(progresAction).

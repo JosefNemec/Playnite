@@ -612,9 +612,9 @@ namespace Playnite
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public List<string> EditedFields;
         private bool isEditing = false;
         private Settings editingCopy;
-        private List<string> editingNotifs;
 
         private static Settings instance;
         public static Settings Instance
@@ -638,14 +638,14 @@ namespace Playnite
         public void BeginEdit()
         {
             isEditing = true;
-            editingNotifs = new List<string>();
+            EditedFields = new List<string>();
             editingCopy = this.CloneJson();
         }
 
         public void EndEdit()
         {
             isEditing = false;
-            foreach (var prop in editingNotifs)
+            foreach (var prop in EditedFields)
             {
                 OnPropertyChanged(prop);
             }
@@ -655,16 +655,16 @@ namespace Playnite
         {
             editingCopy.CopyProperties(this, false, new List<string>() { "FilterSettings" });
             isEditing = false;
-            editingNotifs = new List<string>();
+            EditedFields = new List<string>();
         }
 
         public void OnPropertyChanged(string name, bool force = false)
         {
             if (isEditing && !force)
             {
-                if (!editingNotifs.Contains(name))
+                if (!EditedFields.Contains(name))
                 {
-                    editingNotifs.Add(name);
+                    EditedFields.Add(name);
                 }
             }
             else

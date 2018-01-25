@@ -106,6 +106,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="PatronsLabel">Patrons</sys:String>
     <sys:String x:Key="LicenseLabel">License</sys:String>
     <sys:String x:Key="ContributorsLabel">Contributors</sys:String>
+    <sys:String x:Key="ClosingPlaynite">Closing Playnite...</sys:String>
     
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
@@ -220,6 +221,8 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="SettingsGetThemes">Get more themes</sys:String>
     <sys:String x:Key="SettingsCreateThemes">Create new theme</sys:String>
     <sys:String x:Key="SettingsCreateLocalization">Contribute new localization</sys:String>
+    <sys:String x:Key="SettingsRestartAskMessage">Some of the changed settings require Playnite to be restarted. Do you want to restart Playnite now?</sys:String>
+    <sys:String x:Key="SettingsRestartTitle">Restart Playnite?</sys:String>
 
     <sys:String x:Key="ImportError">Import Error</sys:String>
     <sys:String x:Key="LoginChecking">Checking...</sys:String>

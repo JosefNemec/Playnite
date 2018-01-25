@@ -553,7 +553,7 @@ namespace PlayniteUI.ViewModels
 
         public void ShutdownApp()
         {
-            Application.Current.Shutdown();
+            App.CurrentApp.Quit();
         }
 
         public async void LoadGames(bool updateLibrary)

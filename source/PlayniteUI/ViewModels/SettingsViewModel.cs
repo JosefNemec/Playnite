@@ -288,6 +288,21 @@ namespace PlayniteUI.ViewModels
             Settings.EndEdit();
             Settings.SaveSettings();
 
+            if (Settings.EditedFields?.Any() == true)
+            {
+                if (Settings.EditedFields.IntersectsPartiallyWith(
+                    new List<string>() { "Skin", "AsyncImageLoading", "DisableHwAcceleration" }))
+                {
+                    if (dialogs.ShowMessage(
+                        resources.FindString("SettingsRestartAskMessage"),
+                        resources.FindString("SettingsRestartTitle"),
+                        MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        App.CurrentApp.Restart();
+                    }
+                }
+            }
+
             if (origSettings.DatabasePath != Settings.DatabasePath)
             {
                 DatabaseLocationChanged = true;
@@ -433,9 +448,8 @@ namespace PlayniteUI.ViewModels
             {
                 Cef.Shutdown();
                 System.IO.Directory.Delete(Paths.BrowserCachePath, true);
-                (Application.Current as App).Restart();
-            }
-
+                App.CurrentApp.Restart();
+            }            
         }
     }
 }
