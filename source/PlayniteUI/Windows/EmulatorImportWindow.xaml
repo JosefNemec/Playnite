@@ -285,9 +285,16 @@
             </DockPanel>
         </Border>
 
-        <Grid Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <ProgressBar IsIndeterminate="True" Width="350" Height="40" />
-            <TextBlock Text="{DynamicResource EmuWizardScanning}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
+              Background="#99000000" Grid.RowSpan="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid>
+                    <ProgressBar IsIndeterminate="True" Width="350" Height="40" />
+                    <TextBlock Text="{DynamicResource EmuWizardScanning}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+                <Button Content="{DynamicResource CancelLabel}"  Margin="10,0,0,0"
+                        Command="{Binding CancelProgressCommand}"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </controls:WindowBase>

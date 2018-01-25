@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -234,6 +235,7 @@ namespace PlayniteUI.ViewModels
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
         private GameDatabase database;
+        private CancellationTokenSource cancelToken;
 
         public RelayCommand<object> CloseCommand
         {
@@ -345,6 +347,14 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<object> CancelProgressCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                CancelProgress();
+            });
+        }
+
         public EmulatorImportViewModel(GameDatabase database, DialogType type, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.window = window;
@@ -369,17 +379,17 @@ namespace PlayniteUI.ViewModels
             try
             {
                 IsLoading = true;
-                var emulators = await Task.Run(() =>
+                cancelToken = new CancellationTokenSource();
+                var emulators = await EmulatorFinder.SearchForEmulators(path, EmulatorDefinition.GetDefinitions(), cancelToken);
+                if (emulators != null)
                 {
-                    return EmulatorFinder.SearchForEmulators(path, EmulatorDefinition.GetDefinitions());
-                });
+                    if (EmulatorList == null)
+                    {
+                        EmulatorList = new RangeObservableCollection<ImportableEmulator>();
+                    }
 
-                if (EmulatorList == null)
-                {
-                    EmulatorList = new RangeObservableCollection<ImportableEmulator>();
+                    EmulatorList.AddRange(emulators.Select(a => new ImportableEmulator(a)));
                 }
-                
-                EmulatorList.AddRange(emulators.Select(a => new ImportableEmulator(a)));
             }
             finally
             {
@@ -392,28 +402,29 @@ namespace PlayniteUI.ViewModels
             try
             {
                 IsLoading = true;
-                var games = await Task.Run(() =>
+                cancelToken = new CancellationTokenSource();
+                var games = await  EmulatorFinder.SearchForGames(path, profile, cancelToken);
+                if (games != null)
                 {
-                    return EmulatorFinder.SearchForGames(path, profile);
-                });
 
-                if (GamesList == null)
-                {
-                    GamesList = new RangeObservableCollection<ImportableGame>();
+                    if (GamesList == null)
+                    {
+                        GamesList = new RangeObservableCollection<ImportableGame>();
+                    }
+
+                    var dbGames = database.GamesCollection.FindAll();
+                    var emulator = AvailableEmulators.First(a => a.Profiles.Any(b => b.Id == profile.Id));
+                    GamesList.AddRange(games
+                        .Where(a =>
+                        {
+                            return dbGames.FirstOrDefault(b => Paths.AreEqual(a.IsoPath, b.IsoPath)) == null;
+                        })
+                        .Select(a =>
+                        {
+                            a.PlatformId = profile.Platforms?.FirstOrDefault();
+                            return new ImportableGame(a, emulator, profile);
+                        }));
                 }
-
-                var dbGames = database.GamesCollection.FindAll();
-                var emulator = AvailableEmulators.First(a => a.Profiles.Any(b => b.Id == profile.Id));
-                GamesList.AddRange(games
-                    .Where(a =>
-                    {
-                        return dbGames.FirstOrDefault(b => Paths.AreEqual(a.IsoPath, b.IsoPath)) == null;
-                    })
-                    .Select(a =>
-                    {
-                        a.PlatformId = profile.Platforms?.FirstOrDefault();
-                        return new ImportableGame(a, emulator, profile);
-                    }));
             }
             finally
             {
@@ -548,6 +559,11 @@ namespace PlayniteUI.ViewModels
                     }
                 }
             }
+        }
+
+        public void CancelProgress()
+        {
+            cancelToken?.Cancel();
         }
     }
 }
