@@ -62,11 +62,6 @@
 - Name: Dolphin
   Website: 'https://dolphin-emu.org/'
   Profiles:
-    - Name: Default
-      DefaultArguments: '--exec="{ImagePath}" --batch'
-      Platforms: [Nintendo GameCube, Nintendo Wii]
-      ImageExtensions: [elf, dol, gcm, tgc, wbfs, ciso, gcz, iso, wad, dff]
-      ExecutableLookup: ^Dolphin\.exe
     - Name: Nintendo GameCube
       DefaultArguments: '--exec="{ImagePath}" --batch'
       Platforms: [Nintendo GameCube]
@@ -81,11 +76,6 @@
 - Name: Kega Fusion
   Website: 'http://www.carpeludum.com/kega-fusion/'
   Profiles:
-    - Name: Default
-      DefaultArguments: '"{ImagePath}" -auto -fullscreen'
-      Platforms: [Sega Genesis, Sega 32X, Sega CD, Sega Master System, Sega Game Gear]
-      ImageExtensions: [cue, bin, iso, smd, md, 32x, raw, gen, zip]
-      ExecutableLookup: ^Fusion\.exe
     - Name: Sega Genesis
       DefaultArguments: '"{ImagePath}" -auto -fullscreen'
       Platforms: [Sega Genesis]
@@ -360,11 +350,6 @@
 - Name: Gambatte
   Website: 'https://github.com/sinamas/gambatte'
   Profiles:
-    - Name: Default
-      DefaultArguments: '"{ImagePath}"'
-      Platforms: [Nintendo Game Boy, Nintendo Game Boy Color]
-      ImageExtensions: [gb, gbc, dmg, sgb, zip, gz]
-      ExecutableLookup: ^gambatte\.exe$    
     - Name: Nintendo Game Boy
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy]
@@ -379,11 +364,6 @@
 - Name: mGBA
   Website: 'https://mgba.io/'
   Profiles:
-    - Name: Default
-      DefaultArguments: '"{ImagePath}"'
-      Platforms: [Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance]
-      ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb, dmg, gb, gbc, cgb, sgb]
-      ExecutableLookup: ^mGBA.*\.exe$
     - Name: Nintendo Game Boy
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Game Boy]
@@ -399,8 +379,7 @@
       Platforms: [Nintendo Game Boy Advance]
       ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb]
       ExecutableLookup: ^mGBA.*\.exe$
- 
- 
+
 - Name: Nebula 2
   Website: 'http://nebula.emulatronia.com/'
   Profiles:
@@ -412,12 +391,7 @@
 
 - Name: Fuse
   Website: 'http://fuse-emulator.sourceforge.net/'
-  Profiles:       
-    - Name: Default 
-      DefaultArguments: '"{ImagePath}"'
-      Platforms: [Sinclair ZX Spectrum, Sinclair ZX Spectrum +3]
-      ImageExtensions: [tzx, tap, z80, rzx, scl, trd]
-      ExecutableLookup: ^fuse\.exe$  
+  Profiles:
     - Name: Sinclair ZX Spectrum 
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Sinclair ZX Spectrum]
@@ -432,10 +406,10 @@
 - Name: Altirra
   Website: 'http://www.virtualdub.org/altirra.html'
   Profiles:
-    - Name: Default
+    - Name: Atari 800
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Atari 800]
-      ImageExtensions: [atr, atx, xfd, dcm, pro, cas, wav, rom, bin, car, a52, xex, obx, com, arc, sap, zip]  
+      ImageExtensions: [atr, atx, xfd, dcm, pro, cas, wav, rom, bin, car, xex, obx, com, arc, sap, zip]  
       ExecutableLookup: ^altirra.*\.exe$       
     - Name: Atari 5200
       DefaultArguments: '/hardware:5200 /kernel:5200 "{ImagePath}"'
