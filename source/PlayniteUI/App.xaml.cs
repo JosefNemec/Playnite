@@ -26,7 +26,7 @@ namespace PlayniteUI
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application, INotifyPropertyChanged
+    public partial class App : Application, INotifyPropertyChanged, IPlayniteApplication
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private string instanceMuxet = "PlayniteInstaceMutex";
@@ -305,7 +305,12 @@ namespace PlayniteUI
             await Task.Factory.StartNew(() =>
             {
                 Thread.Sleep(10000);
-                var update = new Update();
+                if (GlobalTaskHandler.IsActive)
+                {
+                    GlobalTaskHandler.Wait();
+                }
+
+                var update = new Update(this);
 
                 while (true)
                 {
@@ -326,7 +331,7 @@ namespace PlayniteUI
 
                             Dispatcher.Invoke(() =>
                             {
-                                var model = new UpdateViewModel(update, UpdateWindowFactory.Instance);
+                                var model = new UpdateViewModel(update, UpdateWindowFactory.Instance, new ResourceProvider(), new DialogsFactory());
                                 model.OpenView();
                             });
                         }
@@ -376,7 +381,7 @@ namespace PlayniteUI
             {
                 try
                 {
-                    GamesLoaderHandler.CancelAndWait();
+                    GlobalTaskHandler.CancelAndWait();
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {

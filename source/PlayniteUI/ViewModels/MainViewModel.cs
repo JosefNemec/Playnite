@@ -433,7 +433,7 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 CancelProgress();
-            }, (a) => !GamesLoaderHandler.CancelToken.IsCancellationRequested);
+            }, (a) => !GlobalTaskHandler.CancelToken.IsCancellationRequested);
         }
 
         public RelayCommand<object> ClearMessagesCommand
@@ -568,10 +568,10 @@ namespace PlayniteUI.ViewModels
                 throw new Exception("Cannot load games, database path is not set.");
             }
 
-            if (GamesLoaderHandler.ProgressTask != null && GamesLoaderHandler.ProgressTask.Status == TaskStatus.Running)
+            if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
             {
-                GamesLoaderHandler.CancelToken.Cancel();
-                await GamesLoaderHandler.ProgressTask;
+                GlobalTaskHandler.CancelToken.Cancel();
+                await GlobalTaskHandler.ProgressTask;
             }
 
             GameAdditionAllowed = false;
@@ -654,8 +654,8 @@ namespace PlayniteUI.ViewModels
                     return;
                 }
 
-                GamesLoaderHandler.CancelToken = new CancellationTokenSource();
-                GamesLoaderHandler.ProgressTask = Task.Factory.StartNew(() =>
+                GlobalTaskHandler.CancelToken = new CancellationTokenSource();
+                GlobalTaskHandler.ProgressTask = Task.Factory.StartNew(() =>
                 {
                     var addedGames = new List<IGame>();
                     ProgressVisible = true;
@@ -862,11 +862,11 @@ namespace PlayniteUI.ViewModels
                             Database,
                             metaSettings,
                             (g, i, t) => ProgressValue = i + 1,
-                            GamesLoaderHandler.CancelToken).Wait();
+                            GlobalTaskHandler.CancelToken).Wait();
                     }
                 });
 
-                await GamesLoaderHandler.ProgressTask;
+                await GlobalTaskHandler.ProgressTask;
             }
             finally
             {
@@ -902,21 +902,21 @@ namespace PlayniteUI.ViewModels
 
             try
             {
-                if (GamesLoaderHandler.ProgressTask != null && GamesLoaderHandler.ProgressTask.Status == TaskStatus.Running)
+                if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
                 {
-                    GamesLoaderHandler.CancelToken.Cancel();
-                    await GamesLoaderHandler.ProgressTask;
+                    GlobalTaskHandler.CancelToken.Cancel();
+                    await GlobalTaskHandler.ProgressTask;
                 }
 
-                GamesLoaderHandler.CancelToken = new CancellationTokenSource();
+                GlobalTaskHandler.CancelToken = new CancellationTokenSource();
                 ProgressVisible = true;
                 ProgressValue = 0;
                 ProgressTotal = games.Count;
                 ProgressStatus = Resources.FindString("ProgressMetadata");
                 var downloader = new MetadataDownloader(AppSettings.IGDBApiKey);
-                GamesLoaderHandler.ProgressTask =
-                    downloader.DownloadMetadataThreaded(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GamesLoaderHandler.CancelToken);
-                await GamesLoaderHandler.ProgressTask;
+                GlobalTaskHandler.ProgressTask =
+                    downloader.DownloadMetadataThreaded(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GlobalTaskHandler.CancelToken);
+                await GlobalTaskHandler.ProgressTask;
             }
             finally
             {
@@ -1079,8 +1079,8 @@ namespace PlayniteUI.ViewModels
 
         public async void CancelProgress()
         {
-            GamesLoaderHandler.CancelToken.Cancel();
-            await GamesLoaderHandler.ProgressTask;
+            GlobalTaskHandler.CancelToken.Cancel();
+            await GlobalTaskHandler.ProgressTask;
         }        
 
         public void ClearFilters()

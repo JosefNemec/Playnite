@@ -152,6 +152,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="ProgressLibraryGames">Downloading library updates...</sys:String>
     <sys:String x:Key="ProgressSteamCategoryImport">Downloading library updates...</sys:String>
     <sys:String x:Key="ProgressLibImportFinish">Library update finished</sys:String>
+    <sys:String x:Key="ProgressReleasingResources">Releasing resources...</sys:String>
 
     <!--Menu-->
     <sys:String x:Key="MenuConfigurationTitle">Configuration</sys:String>
@@ -413,6 +414,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="UpdaterWindowTitle">Update Available</sys:String>
     <sys:String x:Key="UpdaterChangesInfo">Changes since last update:</sys:String>
     <sys:String x:Key="UpdaterInstallUpdate">Install Update</sys:String>
+    <sys:String x:Key="UpdateProgressCancelAsk">Background task is currently in progress, do you want to cancel it and processed with update installation?</sys:String>
 
     <sys:String x:Key="ThemeTestReloadList">Reload theme list</sys:String>
     <sys:String x:Key="ThemeTestApplySkin">Apply selected theme</sys:String>

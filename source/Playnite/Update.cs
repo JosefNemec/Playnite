@@ -94,6 +94,7 @@ namespace Playnite
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private UpdateData updateManifest;
+        private IPlayniteApplication playniteApp;
 
         private string updaterPath
         {
@@ -122,6 +123,11 @@ namespace Playnite
             {
                 return GetLatestVersion().CompareTo(GetCurrentVersion()) > 0;
             }
+        }
+
+        public Update(IPlayniteApplication app)
+        {
+            playniteApp = app;
         }
 
         public void DownloadReleaseNotes()
@@ -215,10 +221,7 @@ namespace Playnite
                 Process.Start(updaterPath, string.Format(@"/ProgressOnly 1 {0} /D={1}", portable, Paths.ProgramFolder));
             });
 
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                Application.Current.Shutdown();
-            });
+            playniteApp.Quit();
         }
 
         private string GetUpdateManifestData(string url)
