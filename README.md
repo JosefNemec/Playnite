@@ -15,7 +15,11 @@ Playnite doesn't store any user information and you don't need to provide any in
 
 What about Defender SmartScreen installer warning?
 
-Windows may display security dialog regarding executable securty. This is mainly due to fact that installer is not digitally signed, however it's completely safe to use. More information is in issue #80
+Windows may display security dialog regarding executable security. The warning is shown for applications downloaded from untrusted places. Playnite files are digitally signed to prevent warning from occurring, but the signature needs to gain enough reputation (number of installations) with Microsoft to not occur anymore.
+
+Known Issues
+---------
+List of known issues and solutions can be found [on wiki](https://github.com/JosefNemec/Playnite/wiki/Known-Issues).
 
 Download
 ---------
