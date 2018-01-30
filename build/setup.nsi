@@ -47,7 +47,7 @@ SectionEnd
 !define AppExecutable "PlayniteUI.exe"
 Name "Playnite ${VERSION}"
 Caption "Playnite ${VERSION} Setup"
-InstallDir $PROGRAMFILES\Playnite
+InstallDir $LOCALAPPDATA\Playnite
 RequestExecutionLevel admin
 AutoCloseWindow true
 
