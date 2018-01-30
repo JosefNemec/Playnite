@@ -156,6 +156,7 @@
     <Compile Include="PathsTests.cs" />
     <Compile Include="SafeFileEnumeratorTests.cs" />
     <Compile Include="SettingsTests.cs" />
+    <Compile Include="ListExtensionsTests.cs" />
     <Compile Include="StringExtensionsTests.cs" />
     <Compile Include="TestsSetupClass.cs" />
   </ItemGroup>
