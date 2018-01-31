@@ -25,6 +25,16 @@ namespace Playnite.Providers.Steam
     public class SteamLibrary : ISteamLibrary
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
+        private ServicesClient playniteServices;
+
+        public SteamLibrary()
+        {
+        }
+
+        public SteamLibrary(ServicesClient playniteServices)
+        {
+            this.playniteServices = playniteServices;
+        }
 
         private string GetGameWorkshopUrl(int id)
         {
@@ -224,38 +234,146 @@ namespace Playnite.Providers.Steam
             return games;
         }
 
-        public SteamGameMetadata DownloadGameMetadata(int id)
+        public StoreAppDetailsResult.AppDetails GetStoreData(int appId)
         {
-            var metadata = new SteamGameMetadata();
-            var productInfo = SteamApiClient.GetProductInfo(id).GetAwaiter().GetResult();
-            metadata.ProductDetails = productInfo;
+            var stringData = string.Empty;
 
-            // Steam may return 429 if we put too many request
-            for (int i = 0; i < 10; i++)
+            // First try to get cached data
+            try
             {
-                try
-                {
-                    metadata.StoreDetails = WebApiClient.GetStoreAppDetail(id);
-                    break;
-                }
-                catch (WebException e)
-                {
-                    if (i + 1 == 10)
-                    {
-                        throw;
-                    }
+                stringData = playniteServices?.GetSteamStoreData(appId);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "Failed to get Steam store cache data.");
+            }
 
-                    if (e.Message.Contains("429"))
+            // If no cache then download on client and push to cache
+            if (string.IsNullOrEmpty(stringData))
+            {
+                // Steam may return 429 if we put too many request
+                for (int i = 0; i < 10; i++)
+                {
+                    try
                     {
-                        Thread.Sleep(2500);
-                        continue;
+                        stringData = WebApiClient.GetRawStoreAppDetail(appId);
+                        logger.Debug($"Steam store data got from live server {appId}");
+
+                        try
+                        {
+                            playniteServices?.PostSteamStoreData(appId, stringData);
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, $"Failed to post steam store data to cache {appId}");
+                        }
+
+                        break;
                     }
-                    else
+                    catch (WebException e)
                     {
-                        throw;
+                        if (i + 1 == 10)
+                        {
+                            throw;
+                        }
+
+                        if (e.Message.Contains("429"))
+                        {
+                            Thread.Sleep(2500);
+                            continue;
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
                 }
             }
+            else
+            {
+                logger.Debug($"Steam store data got from cache {appId}");
+            }
+
+            if (!string.IsNullOrEmpty(stringData))
+            {
+                var response = WebApiClient.ParseStoreData(appId, stringData);
+                if (response.success != true)
+                {
+                    return null;
+                }
+
+                return response.data;
+            }
+
+            return null;
+        }
+
+        public KeyValue GetAppInfo(int appId)
+        {
+            KeyValue data = null;
+            var stringData = string.Empty;
+
+            // First try to get cached data
+            try
+            {
+                stringData = playniteServices?.GetSteamAppInfoData(appId);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "Failed to get Steam appinfo cache data.");
+            }
+
+            // If no cache then download on client and push to cache
+            if (string.IsNullOrEmpty(stringData))
+            {
+                data = SteamApiClient.GetProductInfo(appId).GetAwaiter().GetResult();                
+                logger.Debug($"Steam appinfo got from live server {appId}");
+
+                try
+                {
+                    if (playniteServices != null)
+                    {
+                        using (var str = new MemoryStream())
+                        {
+                            data.SaveToStream(str, false);
+                            using (var reader = new StreamReader(str, Encoding.UTF8))
+                            {
+                                str.Seek(0, SeekOrigin.Begin);
+                                stringData = reader.ReadToEnd();
+                            }
+                        }
+
+                        playniteServices.PostSteamAppInfoData(appId, stringData);
+                    }
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to post steam appinfo data to cache {appId}");
+                }
+            }
+            else
+            {
+                logger.Debug($"Steam appinfo data got from cache {appId}");
+            }
+
+            if (data != null)
+            {
+                return data;
+            }
+            else if (!string.IsNullOrEmpty(stringData))
+            {
+                return KeyValue.LoadFromString(stringData);
+            }
+
+            return null;
+        }
+
+        public SteamGameMetadata DownloadGameMetadata(int id)
+        {
+            var metadata = new SteamGameMetadata();
+            var productInfo = GetAppInfo(id);
+            metadata.ProductDetails = productInfo;
+            metadata.StoreDetails = GetStoreData(id);
 
             // Icon
             var iconRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.ico";

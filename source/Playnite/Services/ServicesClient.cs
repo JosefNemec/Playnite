@@ -35,7 +35,7 @@ namespace Playnite.Services
             Endpoint = endpoint.TrimEnd('/');
         }
 
-        private T ExecuteRequest<T>(string subUrl)
+        private T ExecuteGetRequest<T>(string subUrl)
         {
             var url = Uri.EscapeUriString(Endpoint + subUrl);
             var strResult = httpClient.GetStringAsync(url).GetAwaiter().GetResult();
@@ -50,45 +50,67 @@ namespace Playnite.Services
             return result.Data;
         }
 
+        public void PostSteamAppInfoData(int appId, string data)
+        {
+            var content = new StringContent(data, Encoding.UTF8, "text/plain");
+            httpClient.PostAsync(Endpoint + $"/api/steam/appinfo/{appId}", content).Wait();
+        }
+
+        public string GetSteamAppInfoData(int appId)
+        {
+            return ExecuteGetRequest<string>($"/api/steam/appinfo/{appId}");
+        }
+
+        public void PostSteamStoreData(int appId, string data)
+        {
+            var content = new StringContent(data, Encoding.UTF8, "text/plain");
+            httpClient.PostAsync(Endpoint + $"/api/steam/store/{appId}", content).Wait();
+        }
+
+        public string GetSteamStoreData(int appId)
+        {
+            return ExecuteGetRequest<string>($"/api/steam/store/{appId}");
+        }
+
         public List<Playnite.Providers.Steam.GetOwnedGamesResult.Game> GetSteamLibrary(string userName)
         {
-            return ExecuteRequest<List<Playnite.Providers.Steam.GetOwnedGamesResult.Game>>("/api/steam/library/" + userName);
+            return ExecuteGetRequest<List<Playnite.Providers.Steam.GetOwnedGamesResult.Game>>("/api/steam/library/" + userName);
         }
 
         public List<PlayniteServices.Models.IGDB.Game> GetIGDBGames(string searchName, string apiKey = null)
         {
             var encoded = Uri.EscapeDataString(searchName);
             var url = string.IsNullOrEmpty(apiKey) ? $"/api/igdb/games/{encoded}" : $"/api/igdb/games/{encoded}?apikey={apiKey}";
-            return ExecuteRequest<List<PlayniteServices.Models.IGDB.Game>>(url);
+            return ExecuteGetRequest<List<PlayniteServices.Models.IGDB.Game>>(url);
         }
 
         public PlayniteServices.Models.IGDB.Game GetIGDBGame(UInt64 id, string apiKey = null)
         {
             var url = string.IsNullOrEmpty(apiKey) ? $"/api/igdb/game/{id}" : $"/api/igdb/game/{id}?apikey={apiKey}";
-            return ExecuteRequest<PlayniteServices.Models.IGDB.Game>(url);
+            return ExecuteGetRequest<PlayniteServices.Models.IGDB.Game>(url);
         }
 
         public PlayniteServices.Models.IGDB.ParsedGame GetIGDBGameParsed(UInt64 id, string apiKey = null)
         {
             var url = string.IsNullOrEmpty(apiKey) ? $"/api/igdb/game_parsed/{id}" : $"/api/igdb/game_parsed/{id}?apikey={apiKey}";
-            return ExecuteRequest<PlayniteServices.Models.IGDB.ParsedGame>(url);
+            return ExecuteGetRequest<PlayniteServices.Models.IGDB.ParsedGame>(url);
         }
 
         public PlayniteServices.Models.IGDB.Company GetIGDBCompany(UInt64 id, string apiKey = null)
         {
             var url = string.IsNullOrEmpty(apiKey) ? $"/api/igdb/company/{id}" : $"/api/igdb/company/{id}?apikey={apiKey}";
-            return ExecuteRequest<PlayniteServices.Models.IGDB.Company>(url);
+            return ExecuteGetRequest<PlayniteServices.Models.IGDB.Company>(url);
         }
 
         public PlayniteServices.Models.IGDB.Genre GetIGDBGenre(UInt64 id, string apiKey = null)
         {
             var url = string.IsNullOrEmpty(apiKey) ? $"/api/igdb/genre/{id}" : $"/api/igdb/genre/{id}?apikey={apiKey}";
-            return ExecuteRequest<PlayniteServices.Models.IGDB.Genre>(url);
+            return ExecuteGetRequest<PlayniteServices.Models.IGDB.Genre>(url);
         }
 
         public List<string> GetPatrons()
         {
-            return ExecuteRequest<List<string>>("/api/patreon/patrons");
+            return ExecuteGetRequest<List<string>>("/api/patreon/patrons");
         }
 
         public void PostUserUsage()

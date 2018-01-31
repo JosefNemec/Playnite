@@ -856,7 +856,7 @@ namespace PlayniteUI.ViewModels
                         metaSettings.ConfigureFields(MetadataSource.Store, true);
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                        var downloader = new MetadataDownloader(AppSettings.IGDBApiKey);
+                        var downloader = new MetadataDownloader();
                         downloader.DownloadMetadataThreaded(
                             addedGames,
                             Database,
@@ -913,7 +913,7 @@ namespace PlayniteUI.ViewModels
                 ProgressValue = 0;
                 ProgressTotal = games.Count;
                 ProgressStatus = Resources.FindString("ProgressMetadata");
-                var downloader = new MetadataDownloader(AppSettings.IGDBApiKey);
+                var downloader = new MetadataDownloader();
                 GlobalTaskHandler.ProgressTask =
                     downloader.DownloadMetadataThreaded(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GlobalTaskHandler.CancelToken);
                 await GlobalTaskHandler.ProgressTask;
