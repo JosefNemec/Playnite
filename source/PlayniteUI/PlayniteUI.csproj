@@ -184,6 +184,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviors\ExpanderBehaviors.cs" />
     <Compile Include="Behaviors\LeftClickContextMenuBehavior.cs" />
     <Compile Include="BindingProxy.cs" />
     <Compile Include="CmdlineCommands.cs" />
@@ -201,7 +202,6 @@
     <Compile Include="Controls\WindowBase.cs" />
     <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />
     <Compile Include="Converters\BoolToAutoWidthConverter.cs" />
-    <Compile Include="Converters\BoolToCategoryExpander.cs" />
     <Compile Include="Converters\BoolToYesNoConverter.cs" />
     <Compile Include="Converters\EnumBooleanConverter.cs" />
     <Compile Include="Converters\EnumConverter.cs" />

@@ -17,7 +17,6 @@
         <pui:BoolToAutoWidthConverter x:Key="BoolToAutoWidthConverter" />        
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <pui:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
-        <pui:BoolToCategoryExpander x:Key="BoolToCategoryExpander" />
         <pui:ValueConverterGroup x:Key="EnumCompVisibilityConverter">
             <pui:EnumConverter/>
             <BooleanToVisibilityConverter/>
@@ -81,8 +80,9 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <Expander Header="{Binding Mode=OneWay}" Collapsed="Expander_Collapsed" Expanded="Expander_Expanded"
-                                                IsExpanded="{Binding Path=Name, Mode=OneWay, Converter={StaticResource BoolToCategoryExpander}}">
+                                    <Expander Header="{Binding Mode=OneWay}"
+                                              pui:ExpanderBehaviors.SaveState="True"
+                                              pui:ExpanderBehaviors.SaveStateId="{Binding Name, Mode=OneWay}">
                                         <ItemsPresenter />
                                     </Expander>
                                 </ControlTemplate>

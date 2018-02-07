@@ -174,29 +174,5 @@ namespace PlayniteUI.Controls
                 AppSettings.SortingOrder = sortOrder;
             }
         }
-
-        private void Expander_Collapsed(object sender, RoutedEventArgs e)
-        {
-            var group = (CollectionViewGroup)((Expander)sender).DataContext;
-            if (group.Name is CategoryView category)
-            {
-                if (!Settings.Instance.CollapsedCategories.Contains(category.Category))
-                {
-                    Settings.Instance.CollapsedCategories.Add(category.Category);
-                }
-            }
-        }
-
-        private void Expander_Expanded(object sender, RoutedEventArgs e)
-        {
-            var group = (CollectionViewGroup)((Expander)sender).DataContext;
-            if (group.Name is CategoryView category)
-            {
-                if (Settings.Instance.CollapsedCategories.Contains(category.Category))
-                {
-                    Settings.Instance.CollapsedCategories.Remove(category.Category);
-                }
-            }
-        }
     }
 }

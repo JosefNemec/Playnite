@@ -466,10 +466,8 @@
                                        Foreground="{DynamicResource GlyphBrush}" FontSize="18" MinWidth="20" FontWeight="Bold" Margin="5,0,5,0"
                                        Visibility="Collapsed"
                                        Grid.Column="0" TextAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Style="{DynamicResource BaseTextBlockStyle}"
-                                       VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                                <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Stretch" RecognizesAccessKey="True"  />
-                            </TextBlock>
+                            <ContentPresenter Grid.Column="1" VerticalAlignment="Center"
+                                              SnapsToDevicePixels="True" HorizontalAlignment="Stretch" RecognizesAccessKey="True"  />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -2832,7 +2830,9 @@
                                                     <Setter Property="Template">
                                                         <Setter.Value>
                                                             <ControlTemplate>
-                                                                <Expander Header="{Binding Mode=OneWay}" BorderThickness="0" IsExpanded="True">
+                                                                <Expander Header="{Binding Mode=OneWay}" BorderThickness="0"
+                                                                          pui:ExpanderBehaviors.SaveState="True"
+                                                                          pui:ExpanderBehaviors.SaveStateId="{Binding Name, Mode=OneWay}">
                                                                     <ItemsPresenter />
                                                                 </Expander>
                                                             </ControlTemplate>
