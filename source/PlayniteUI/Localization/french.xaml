@@ -177,7 +177,7 @@ Préférez les données du magasin officiel et, lorsqu'elles ne sont pas disponi
     <sys:String x:Key="SettingsInvalidSteamAccountName">Le nom du profil Steam ne peut pas être vide.</sys:String>
     <sys:String x:Key="SettingsInvalidSteamAccountLibImport">Aucun profil de Steam n'a été sélectionné pour l'importation de la bibliothèque.</sys:String>
     <sys:String x:Key="SettingsInvalidSteamAccountCatImport">Aucun compte Steam n'a été sélectionné pour l'importation de catégories.</sys:String>
-    <sys:String x:Key="SettingsUpdateLibStartup">Télécharger les mises à jour de la bibliothèque tierce au démarrage.</sys:String>
+    <sys:String x:Key="SettingsUpdateLibStartup">Télécharger les mises à jour des bibliothèques tiers au démarrage.</sys:String>
     <sys:String x:Key="SettingsStartInFullscreen">Démarrer en mode plein écran</sys:String>
     <sys:String x:Key="SettingsUpdateLibStartupTooltip">Inclut Steam, Origin et autres.</sys:String>
     <sys:String x:Key="SettingsAsyncImageLoading">Chargement d'image asynchrone (nécessite un redémarrage)</sys:String>
