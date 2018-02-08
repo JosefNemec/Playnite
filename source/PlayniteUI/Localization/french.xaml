@@ -7,7 +7,7 @@
 
     <sys:String x:Key="LanguageSettingsLabel">Langue</sys:String>
 
-    <sys:String x:Key="ExitAppLabel">Sortie</sys:String>
+    <sys:String x:Key="ExitAppLabel">Quitter</sys:String>
     <sys:String x:Key="FilterActiveLabel">Le filtre est active (Cliquez pour basculer le panneau filtre)</sys:String>
     <sys:String x:Key="FilterInactiveLabel">Le filtre est desactive (Cliquez pour basculer le panneau filtre)</sys:String>
 
@@ -15,37 +15,37 @@
     <sys:String x:Key="SaveChangesAskTitle">Enregistrer les modifications?</sys:String>
 
     <sys:String x:Key="AboutHomePageLink">Page d'acceuil a www.playnite.link</sys:String>
-    <sys:String x:Key="AboutSourceLink">Code Source a GitHub</sys:String>
-    <sys:String x:Key="AboutCreateDiagButton">Creer un package diag.</sys:String>
+    <sys:String x:Key="AboutSourceLink">Code Source sur GitHub</sys:String>
+    <sys:String x:Key="AboutCreateDiagButton">Creer un rapport de bug.</sys:String>
     <sys:String x:Key="AboutWindowTitle">A propos de Playnite</sys:String>
-    <sys:String x:Key="AboutAuthor">Creer par Josef Nemec</sys:String>
+    <sys:String x:Key="AboutAuthor">Créé par Josef Nemec</sys:String>
 
     <sys:String x:Key="CategoryWindowTitle">Attribuer une categorie</sys:String>
-    <sys:String x:Key="CategorySetButton">Definir les categories</sys:String>
+    <sys:String x:Key="CategorySetButton">Définir les categories</sys:String>
     <sys:String x:Key="CategoryAddCatButton">Ajouter une categorie</sys:String>
-    <sys:String x:Key="CategoryTooltip" xml:space="preserve">Sélectionne - Attribuer une categorie
+    <sys:String x:Key="CategoryTooltip" xml:space="preserve">Sélectionne - Attribuer une catégorie
 Non sélectionne - Supprimer la categorie
-Indetermine - Aucun changement (lors du modification de plusieurs jeux)</sys:String>
+Indeterminé - Aucun changement (lors du modification de plusieurs jeux)</sys:String>
 
-    <sys:String x:Key="CrashWindowTitle">Ah non, quelque chose de mal est arrive...</sys:String>
-    <sys:String x:Key="CrashDescription">Playnite rencontre une probleme et ne pouvait pas le resoudre. Si vous voulez nous aider avec la probleme, S'il vous plait creer une package de diagnostic et signaler la probleme. Merci.</sys:String>
-
-    <sys:String x:Key="CrashReportIssue">Signaler une probleme</sys:String>
-    <sys:String x:Key="CrashRestartPlaynite">Redemarrer Playnite</sys:String>
+    <sys:String x:Key="CrashWindowTitle">Ah non, quelque chose de mal s'est passé...</sys:String>
+    <sys:String x:Key="CrashDescription">Playnite rencontre un problème et ne pouvait pas le resoudre. Si vous voulez nous aider avec le problème, merci de faire un rapport de bug et de signaler le problème.</sys:String>
+ 
+    <sys:String x:Key="CrashReportIssue">Signaler un problème</sys:String>
+    <sys:String x:Key="CrashRestartPlaynite">Redémarrer Playnite</sys:String>
     <sys:String x:Key="CrashClosePlaynite">Fermer Playnite</sys:String>
 
     <sys:String x:Key="GameRemoveAskTitle">supprimer le(s) jeu(x)?</sys:String>
-    <sys:String x:Key="GameRemoveAskMessage" xml:space="preserve"> Etes-vous sur de vouloir supprimer ce jeu?
+    <sys:String x:Key="GameRemoveAskMessage" xml:space="preserve"> Êtes-vous sur de vouloir supprimer ce jeu?
 
 Les jeux importes automatiquement peuvent reapparaitre dans Playnite apres la procahine procedure d'importation (selon vos parametres).</sys:String>
-    <sys:String x:Key="GamesRemoveAskMessage" xml:space="preserve">Etes-vous sur de vouloir supprimer {0} jeux?
+    <sys:String x:Key="GamesRemoveAskMessage" xml:space="preserve">Êtes-vous sur de vouloir supprimer {0} jeux?
 
 Les jeux importes automatiquement peuvent reapparaitre dans Playnite apres la procahine procedure d'importation (selon vos parametres).</sys:String>
 
     <sys:String x:Key="SteamFriendsTooltip">Les amis sur Steam</sys:String>
     <sys:String x:Key="GameEditChangeNotif">La section contient les modifications a enregistrer</sys:String>
-    <sys:String x:Key="DBUpgradeProgress">Mise a jour de la base de  donnees...</sys:String>
-    <sys:String x:Key="DBUpgradeFail">La mise a jour de la base de donnees a echoue, impossible d'ouvrir le fichier de base.</sys:String>
+    <sys:String x:Key="DBUpgradeProgress">mise à jour de la base de  donnees...</sys:String>
+    <sys:String x:Key="DBUpgradeFail">La mise à jour de la base de donnees a echoue, impossible d'ouvrir le fichier de base.</sys:String>
 
     <sys:String x:Key="GameError">Erreur de jeu</sys:String>
     <sys:String x:Key="GameStartErrorNoGame">Erreur: Impossible de démarrer le jeu. '{0}' n'a pas été trouvé dans la base de données.</sys:String>
