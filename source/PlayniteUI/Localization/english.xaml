@@ -34,6 +34,8 @@ Indeterminate - No changes (when editing multiple games)</sys:String>
     <sys:String x:Key="CrashClosePlaynite">Close Playnite</sys:String>
 
     <sys:String x:Key="GameRemoveAskTitle">Remove Game(s)?</sys:String>
+    <sys:String x:Key="GameRemoveRunningError">Cannot remove game that's running or being installed/uninstalled.</sys:String>
+    <sys:String x:Key="GameUninstallRunningError">Cannot uninstall game that's running.</sys:String>
     <sys:String x:Key="GameRemoveAskMessage" xml:space="preserve">Are you sure you want to remove this game?
         
 Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
@@ -401,7 +403,9 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="StartupError">Startup Error</sys:String>
     <sys:String x:Key="SkinError">Theme Error</sys:String>
     <sys:String x:Key="ClearAll">Clear All</sys:String>
-    <sys:String x:Key="SetupRunning">Setup in progress...</sys:String>
+    <sys:String x:Key="SetupRunning">Setup in progress</sys:String>
+    <sys:String x:Key="GameLaunching">Launching</sys:String>
+    <sys:String x:Key="GameRunning">Running</sys:String>
     <sys:String x:Key="InvalidURL">Invalid URL</sys:String>
     <sys:String x:Key="DoNothing">Do nothing</sys:String>
     <sys:String x:Key="Minimize">Minimize</sys:String>
@@ -444,4 +448,8 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="DescriptionHTMLSupportTooltip">Description text is HTML syntax sensitive</sys:String>
     <sys:String x:Key="PatreonDevelopMessage">Playnite's development is supported by these patrons:</sys:String>
     <sys:String x:Key="AboutContributorsMessage">Code, localization and other contributors in no particular order:</sys:String>
+
+    <sys:String x:Key="CancelMonitoringAskTitle">Cancel game monitoring?</sys:String>
+    <sys:String x:Key="CancelMonitoringSetupAsk">Installation monitoring is currently running, do you want to cancel the process and return game to previous state?</sys:String>
+    <sys:String x:Key="CancelMonitoringExecutionAsk">Game execution monitoring is currently running, do you want to cancel the process and return game to previous state?</sys:String>
 </ResourceDictionary>

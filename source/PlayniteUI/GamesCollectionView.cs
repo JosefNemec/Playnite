@@ -2,6 +2,7 @@
 using Playnite;
 using Playnite.Database;
 using Playnite.Models;
+using Playnite.Providers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -204,20 +205,18 @@ namespace PlayniteUI
         public ObservableCollection<GameTask> OtherTasks => Game.OtherTasks;
         public string DisplayName => Game.Name;                
         public string Description => Game.Description;
+        public bool IsInstalling => Game.IsInstalling;
+        public bool IsUnistalling => Game.IsUninstalling;
+        public bool IsLaunching => Game.IsLaunching;
+        public bool IsRunning => Game.IsRunning;
+        public GameState State => Game.State;
+        public double Playtime => Game.Playtime;
 
         public string Name
         {
             get
             {
                 return (string.IsNullOrEmpty(Game.SortingName)) ? Game.Name : Game.SortingName;
-            }
-        }
-
-        public bool IsSetupInProgress
-        {
-            get
-            {
-                return Game is Game ? (Game as Game).IsSetupInProgress : false;
             }
         }
 

@@ -35,7 +35,7 @@ namespace Playnite.Providers.GOG
         {
             var gameInfoPath = Path.Combine(installDir, string.Format("goggame-{0}.info", gameId));
             var gameTaskData = JsonConvert.DeserializeObject<GogGameTaskInfo>(File.ReadAllText(gameInfoPath));
-            var playTask = gameTaskData.playTasks.First(a => a.isPrimary).ConvertToGenericTask(installDir);
+            var playTask = gameTaskData.playTasks.FirstOrDefault(a => a.isPrimary)?.ConvertToGenericTask(installDir);
             var otherTasks = new ObservableCollection<GameTask>();
 
             foreach (var task in gameTaskData.playTasks.Where(a => !a.isPrimary))
@@ -66,10 +66,15 @@ namespace Playnite.Providers.GOG
                     continue;
                 }
 
+                if (!Directory.Exists(program.InstallLocation))
+                {
+                    continue;
+                }
+
                 var gameId = match.Groups[1].Value;
                 var game = new Game()
                 {
-                    InstallDirectory = program.InstallLocation,
+                    InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                     ProviderId = gameId,
                     Provider = Provider.GOG,
                     Name = program.DisplayName
@@ -78,6 +83,12 @@ namespace Playnite.Providers.GOG
                 try
                 {
                     var tasks = GetGameTasks(game.ProviderId, game.InstallDirectory);
+                    // Empty play task = DLC
+                    if (tasks.Item1 == null)
+                    {
+                        continue;
+                    }
+
                     game.PlayTask = tasks.Item1;
                     game.OtherTasks = tasks.Item2;
                 }

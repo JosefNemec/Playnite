@@ -9,9 +9,9 @@ using Playnite.Models;
 using Playnite.Database;
 using NLog;
 
-namespace Playnite
+namespace Playnite.Database
 {
-    public class GamesStats : INotifyPropertyChanged, IDisposable
+    public class DatabaseStats : INotifyPropertyChanged, IDisposable
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -45,7 +45,7 @@ namespace Playnite
 
         private GameDatabase database;
 
-        public GamesStats(GameDatabase database)
+        public DatabaseStats(GameDatabase database)
         {
             this.database = database;
             database.GameUpdated += Database_GameUpdated;

@@ -17,30 +17,6 @@ namespace Playnite
 {
     public static class Diagnostic
     {
-        private static void AddFolderToZip(ZipArchive archive, string zipRoot, string path, string filter, SearchOption searchOption)
-        {
-            IEnumerable<string> files;
-
-            if (filter.Contains('|'))
-            {
-                var filters = filter.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
-                files = Directory.EnumerateFiles(path, "*.*", searchOption).Where(a =>
-                {
-                    return filters.Contains(Path.GetExtension(a));
-                });
-            }
-            else
-            {
-                files = Directory.EnumerateFiles(path, filter, searchOption);
-            }
-
-            foreach (var file in files)
-            {
-                var archiveName = zipRoot + file.Replace(path, "").Replace(@"\", @"/");
-                archive.CreateEntryFromFile(file, archiveName);
-            }
-        }
-
         public static void CreateDiagPackage(string path)
         {
             var diagTemp = Path.Combine(Paths.TempPath, "diag");
@@ -74,7 +50,7 @@ namespace Playnite
                     var originContentPath = Path.Combine(Providers.Origin.OriginPaths.DataPath, "LocalContent");
                     if (Directory.Exists(originContentPath))
                     {
-                        AddFolderToZip(archive, "Origin", originContentPath, ".dat|.mfst", SearchOption.AllDirectories);
+                        FileSystem.AddFolderToZip(archive, "Origin", originContentPath, ".dat|.mfst", SearchOption.AllDirectories);
                     }
 
                     // GOG data
@@ -93,7 +69,7 @@ namespace Playnite
                         foreach (var folder in (new SteamLibrary()).GetLibraryFolders())
                         {
                             var appsFolder = Path.Combine(folder, "steamapps");
-                            AddFolderToZip(archive, "Steam", appsFolder, "appmanifest*", SearchOption.TopDirectoryOnly);
+                            FileSystem.AddFolderToZip(archive, "Steam", appsFolder, "appmanifest*", SearchOption.TopDirectoryOnly);
                         }
 
                         if (File.Exists(SteamSettings.LoginUsersPath))

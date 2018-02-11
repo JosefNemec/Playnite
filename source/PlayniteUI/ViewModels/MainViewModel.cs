@@ -224,8 +224,8 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private GamesStats gamesStats;
-        public GamesStats GamesStats
+        private DatabaseStats gamesStats;
+        public DatabaseStats GamesStats
         {
             get => gamesStats;
             private set
@@ -318,6 +318,7 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 MainMenuOpened = false;
+                ignoreCloseActions = true;
                 ShutdownApp();
             });
         }
@@ -497,7 +498,7 @@ namespace PlayniteUI.ViewModels
 
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
-            GamesStats = new GamesStats(database);
+            GamesStats = new DatabaseStats(database);
         }
 
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

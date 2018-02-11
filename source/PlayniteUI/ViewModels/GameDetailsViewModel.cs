@@ -50,11 +50,35 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public bool IsSetupProgressAvailable
+        public bool IsRunning
         {
             get
             {
-                return Game != null && Game.IsSetupInProgress;
+                return Game != null && Game.IsRunning;
+            }
+        }
+
+        public bool IsInstalling
+        {
+            get
+            {
+                return Game != null && Game.IsInstalling;
+            }
+        }
+
+        public bool IsUninstalling
+        {
+            get
+            {
+                return Game != null && Game.IsUnistalling;
+            }
+        }
+
+        public bool IsLaunching
+        {
+            get
+            {
+                return Game != null && Game.IsLaunching;
             }
         }
 
@@ -62,7 +86,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                return Game != null && Game.IsInstalled && !IsSetupProgressAvailable;
+                return Game != null && Game.IsInstalled && !IsRunning && !IsInstalling && !IsUninstalling && !IsLaunching;
             }
         }
 
@@ -70,7 +94,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                return Game != null && !IsSetupProgressAvailable && !Game.IsInstalled && Game.Provider != Provider.Custom;
+                return Game != null && !Game.IsInstalled && !IsRunning && !IsInstalling && !IsUninstalling && !IsLaunching && Game.Provider != Provider.Custom;
             }
         }
 
@@ -173,6 +197,14 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<object> CheckExecutionCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                CheckExecution();
+            });
+        }
+
         public GameDetailsViewModel(GameViewEntry game, Settings settings, GamesEditor editor, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.resources = resources;
@@ -189,7 +221,10 @@ namespace PlayniteUI.ViewModels
         private void Game_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             OnPropertyChanged("ShowInfoPanel");
-            OnPropertyChanged("IsSetupProgressAvailable");
+            OnPropertyChanged("IsRunning");
+            OnPropertyChanged("IsInstalling");
+            OnPropertyChanged("IsUninstalling");
+            OnPropertyChanged("IsLaunching");
             OnPropertyChanged("IsPlayAvailable");
             OnPropertyChanged("IsInstallAvailable");
         }
@@ -251,7 +286,25 @@ namespace PlayniteUI.ViewModels
 
         public void CheckSetup()
         {
-            (game.Game as Game).UnregisetrStateMonitor();
+            if (dialogs.ShowMessage(
+                resources.FindString("CancelMonitoringSetupAsk"),
+                resources.FindString("CancelMonitoringAskTitle"),
+                MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                editor.CancelGameMonitoring(game.Game);
+            }               
+        }
+
+        public void CheckExecution()
+        {
+            if (dialogs.ShowMessage(
+                resources.FindString("CancelMonitoringExecutionAsk"),
+                resources.FindString("CancelMonitoringAskTitle"),
+                MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                editor.CancelGameMonitoring(game.Game);
+            }
         }
     }
 }
+

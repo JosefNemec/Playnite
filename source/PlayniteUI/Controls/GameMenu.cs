@@ -23,16 +23,16 @@ namespace PlayniteUI.Controls
         {
             get
             {
-                return (bool)GetValue(GameProperty);
+                return (bool)GetValue(ShowStartSectionProperty);
             }
 
             set
             {
-                SetValue(GameProperty, value);
+                SetValue(ShowStartSectionProperty, value);
             }
         }
 
-        public static readonly DependencyProperty GameProperty =
+        public static readonly DependencyProperty ShowStartSectionProperty =
             DependencyProperty.Register("ShowStartSection", typeof(bool), typeof(GameMenu), new PropertyMetadata(true, ShowStartSectionPropertyChangedCallback));
 
         private static void ShowStartSectionPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)

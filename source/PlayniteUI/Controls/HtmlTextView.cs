@@ -41,7 +41,7 @@ namespace PlayniteUI.Controls
         {
             var obj = sender as HtmlTextView;
             var font = e.NewValue.ToString();
-            var template = DataResources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
+            var template = Playnite.Resources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
             template = template.Replace("{text}", obj.HtmlText);
             template = template.Replace("{foreground}", obj.HtmlForeground.ToHtml());
             template = template.Replace("{link_foreground}", obj.LinkForeground.ToHtml());
@@ -68,7 +68,7 @@ namespace PlayniteUI.Controls
         {
             var obj = sender as HtmlTextView;
             var color = (Color)e.NewValue;
-            var template = DataResources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
+            var template = Playnite.Resources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
             template = template.Replace("{text}", obj.HtmlText);
             template = template.Replace("{foreground}", obj.HtmlForeground.ToHtml());
             template = template.Replace("{font_family}", obj.HtmlFontFamily.ToString());
@@ -95,7 +95,7 @@ namespace PlayniteUI.Controls
         {
             var obj = sender as HtmlTextView;
             var color = (Color)e.NewValue;
-            var template = DataResources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
+            var template = Playnite.Resources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
             template = template.Replace("{text}", obj.HtmlText);
             template = template.Replace("{link_foreground}", obj.LinkForeground.ToHtml());
             template = template.Replace("{font_family}", obj.HtmlFontFamily.ToString());
@@ -121,7 +121,7 @@ namespace PlayniteUI.Controls
         private static void OnHtmlTextChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var obj = sender as HtmlTextView;
-            var template = DataResources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
+            var template = Playnite.Resources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
             template = template.Replace("{foreground}", obj.HtmlForeground.ToHtml());
             template = template.Replace("{link_foreground}", obj.LinkForeground.ToHtml());
             template = template.Replace("{font_family}", obj.HtmlFontFamily.ToString());

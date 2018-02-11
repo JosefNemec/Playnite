@@ -388,12 +388,14 @@ namespace PlayniteUI
                     logger.Error(exc, "Failed to cancel global progress task.");
                     throw;
                 }
-            }, ResourceProvider.Instance.FindString("ClosingPlaynite"));
-            progressModel.ActivateProgress();
 
-            Database?.CloseDatabase();
+                GamesEditor?.Dispose();
+                Database?.CloseDatabase();
+                AppSettings?.SaveSettings();
+            }, ResourceProvider.Instance.FindString("ClosingPlaynite"));
+
+            progressModel.ActivateProgress();
             Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
-            AppSettings?.SaveSettings();
             if (Cef.IsInitialized)
             {
                 Cef.Shutdown();

@@ -2,6 +2,7 @@
 using Playnite.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,24 +13,24 @@ namespace Playnite
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static void ActivateTask(GameTask task)
+        public static Process ActivateTask(GameTask task)
         {
             switch (task.Type)
             {
                 case GameTaskType.File:
                     logger.Info($"Starting process: {task.Path}, {task.Arguments}, {task.WorkingDir}");
-                    ProcessStarter.StartProcess(task.Path, task.Arguments, task.WorkingDir);
-                    break;
+                    return ProcessStarter.StartProcess(task.Path, task.Arguments, task.WorkingDir);
                 case GameTaskType.URL:
                     logger.Info($"Opening URL {task.Path}");
-                    ProcessStarter.StartUrl(task.Path);
-                    break;
+                    return ProcessStarter.StartUrl(task.Path);
                 case GameTaskType.Emulator:
                     throw new Exception("Cannot start emulated game without emulator.");
             }
+
+            return null;
         }
 
-        public static void ActivateTask(GameTask task, Game gameData)
+        public static Process ActivateTask(GameTask task, Game gameData)
         {
             switch (task.Type)
             {
@@ -38,26 +39,25 @@ namespace Playnite
                     var arguments = gameData.ResolveVariables(task.Arguments);
                     var workdir = gameData.ResolveVariables(task.WorkingDir);
                     logger.Info($"Starting process: {path}, {arguments}, {workdir}");
-                    ProcessStarter.StartProcess(path, arguments, workdir);
-                    break;
+                    return ProcessStarter.StartProcess(path, arguments, workdir);
                 case GameTaskType.URL:
                     var url = gameData.ResolveVariables(task.Path);
                     logger.Info($"Opening URL {url}");
-                    ProcessStarter.StartUrl(url);
-                    break;
+                    return ProcessStarter.StartUrl(url);
                 case GameTaskType.Emulator:
                     throw new Exception("Cannot start emulated game without emulator.");
             }
+
+            return null;
         }
 
-        public static void ActivateTask(GameTask task, Game gameData, EmulatorProfile config)
+        public static Process ActivateTask(GameTask task, Game gameData, EmulatorProfile config)
         {
             switch (task.Type)
             {
                 case GameTaskType.File:
                 case GameTaskType.URL:
-                    ActivateTask(task, gameData);
-                    break;
+                    return ActivateTask(task, gameData);                    
                 case GameTaskType.Emulator:
                     if (config == null)
                     {
@@ -78,14 +78,15 @@ namespace Playnite
 
                     var workdir = gameData.ResolveVariables(config.WorkingDirectory);
                     logger.Info($"Starting emulator: {path}, {arguments}, {workdir}");
-                    ProcessStarter.StartProcess(path, arguments, workdir);
-                    break;
+                    return ProcessStarter.StartProcess(path, arguments, workdir);
             }
+
+            return null;
         }
 
-        public static void ActivateTask(GameTask task, Game gameData, List<Emulator> emulators)
+        public static Process ActivateTask(GameTask task, Game gameData, List<Emulator> emulators)
         {
-            ActivateTask(task, gameData, GetGameTaskEmulatorConfig(task, emulators));
+            return ActivateTask(task, gameData, GetGameTaskEmulatorConfig(task, emulators));
         }
 
         public static EmulatorProfile GetGameTaskEmulatorConfig(GameTask task, List<Emulator> emulators)

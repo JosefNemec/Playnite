@@ -1,33 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using LiteDB;
+using NLog;
 using Playnite;
 using Playnite.Database;
 using Playnite.Models;
-using PlayniteUI.Windows;
-using System.Windows.Shell;
-using System.Reflection;
-using System.IO;
-using System.Drawing;
-using System.Windows.Media.Imaging;
-using NLog;
-using System.ComponentModel;
-using LiteDB;
+using Playnite.Providers;
+using Playnite.Providers.Steam;
 using PlayniteUI.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Windows;
+using System.Windows.Shell;
 
 namespace PlayniteUI
 {
-    public class GamesEditor : INotifyPropertyChanged
+    public class GamesEditor : INotifyPropertyChanged, IDisposable
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         private IResourceProvider resources = new ResourceProvider();
         private GameDatabase database;
         private Settings appSettings;
+        private GameControllerFactory controllers;
 
         public List<IGame> LastGames
         {
@@ -43,6 +39,21 @@ namespace PlayniteUI
         {
             this.database = database;
             this.appSettings = appSettings;
+            controllers = new GameControllerFactory(database);
+            controllers.Installed += Controllers_Installed;
+            controllers.Uninstalled += Controllers_Uninstalled;
+            controllers.Started += Controllers_Started;
+            controllers.Stopped += Controllers_Stopped;            
+        }
+
+        public void Dispose()
+        {
+            foreach (var controller in controllers.Controllers)
+            {                
+                UpdateGameState(controller.Game.Id, null, false, false, false, false);
+            }
+
+            controllers?.Dispose();
         }
 
         public void OnPropertyChanged(string name)
@@ -90,7 +101,8 @@ namespace PlayniteUI
         {
             // Set parent for message boxes in this method
             // because this method can be invoked from tray icon which otherwise bugs the dialog
-            if (database.GamesCollection.FindOne(a => a.ProviderId == game.ProviderId) == null)
+            var dbGame = database.GetGame(game.Id);
+            if (dbGame == null)
             {
                 PlayniteMessageBox.Show(
                     Application.Current.MainWindow,
@@ -103,16 +115,20 @@ namespace PlayniteUI
 
             try
             {
+                var controller = GameControllerFactory.GetGameBasedController(game, appSettings);
+                controllers.RemoveController(game.Id);
+                controllers.AddController(controller);
+
                 if (game.IsInstalled)
                 {
-                    game.PlayGame(database.EmulatorsCollection.FindAll().ToList());
+                    UpdateGameState(game.Id, null, null, null, null, true);
+                    controller.Play(database.GetEmulators());
                 }
                 else
                 {
-                    game.InstallGame();
+                    InstallGame(game);
+                    return;
                 }
-
-                database.UpdateGameInDatabase(game);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -237,6 +253,16 @@ namespace PlayniteUI
 
         public void RemoveGame(IGame game)
         {
+            if (game.State.Installing || game.State.Running || game.State.Launching || game.State.Uninstalling)
+            {
+                PlayniteMessageBox.Show(
+                    resources.FindString("GameRemoveRunningError"),
+                    resources.FindString("GameError"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return;
+            }
+
             if (PlayniteMessageBox.Show(
                 resources.FindString("GameRemoveAskMessage"),
                 resources.FindString("GameRemoveAskTitle"),
@@ -251,6 +277,16 @@ namespace PlayniteUI
 
         public void RemoveGames(List<IGame> games)
         {
+            if (games.Exists(a => a.State.Installing || a.State.Running || a.State.Launching || a.State.Uninstalling))
+            {
+                PlayniteMessageBox.Show(
+                    resources.FindString("GameRemoveRunningError"),
+                    resources.FindString("GameError"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return;
+            }
+
             if (PlayniteMessageBox.Show(
                 string.Format(resources.FindString("GamesRemoveAskMessage"), games.Count()),
                 resources.FindString("GameRemoveAskTitle"),
@@ -312,8 +348,11 @@ namespace PlayniteUI
         {
             try
             {
-                game.InstallGame();
-                database.UpdateGameInDatabase(game);
+                var controller = GameControllerFactory.GetGameBasedController(game, appSettings);
+                controllers.RemoveController(game.Id);
+                controllers.AddController(controller);
+                UpdateGameState(game.Id, null, null, true, null, null);
+                controller.Install();
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -327,10 +366,23 @@ namespace PlayniteUI
 
         public void UnInstallGame(IGame game)
         {
+            if (game.State.Running || game.State.Launching)
+            {
+                PlayniteMessageBox.Show(
+                    resources.FindString("GameUninstallRunningError"),
+                    resources.FindString("GameError"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return;
+            }
+
             try
             {
-                game.UninstallGame();
-                database.UpdateGameInDatabase(game);
+                var controller = GameControllerFactory.GetGameBasedController(game, appSettings);
+                controllers.RemoveController(game.Id);
+                controllers.AddController(controller);
+                UpdateGameState(game.Id, null, null, null, true, null);
+                controller.Uninstall();
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -383,7 +435,76 @@ namespace PlayniteUI
                 jumpList.ShowRecentCategory = false;
             }
             
-            JumpList.SetJumpList(Application.Current, jumpList);            
+            JumpList.SetJumpList(Application.Current, jumpList);
+        }
+
+        public void CancelGameMonitoring(IGame game)
+        {
+            controllers.RemoveController(game.Id);
+            UpdateGameState(game.Id, null, false, false, false, false);
+        }
+
+        private void UpdateGameState(int id, bool? installed, bool? running, bool? installing, bool? uninstalling, bool? launching)
+        {
+            var game = database.GetGame(id);
+            game.State.SetState(installed, running, installing, uninstalling, launching);
+            database.UpdateGameInDatabase(game);
+        }
+
+        private void Controllers_Started(object sender, GameControllerEventArgs args)
+        {
+            var game = args.Controller.Game;
+            logger.Info($"Started {game.Name} game.");
+            UpdateGameState(game.Id, null, true, null, null, false);
+        }
+
+        private void Controllers_Stopped(object sender, GameControllerEventArgs args)
+        {
+            var game = args.Controller.Game;
+            logger.Info($"Game {game.Name} stopped after {args.ElapsedTime} seconds.");
+
+            var dbGame = database.GetGame(game.Id);
+            dbGame.State.Running = false;
+            dbGame.Playtime += args.ElapsedTime;
+            database.UpdateGameInDatabase(dbGame);
+            controllers.RemoveController(args.Controller);
+        }
+
+        private void Controllers_Installed(object sender, GameControllerEventArgs args)
+        {
+            var game = args.Controller.Game;
+            logger.Info($"Game {game.Name} installed after {args.ElapsedTime} seconds.");
+
+            var dbGame = database.GetGame(game.Id);
+            dbGame.State.Installing = false;
+            dbGame.State.Installed = true;
+            dbGame.InstallDirectory = args.Controller.Game.InstallDirectory;
+
+            if (dbGame.PlayTask == null)
+            {
+                dbGame.PlayTask = args.Controller.Game.PlayTask;
+            }
+
+            if (dbGame.OtherTasks == null)
+            {
+                dbGame.OtherTasks = args.Controller.Game.OtherTasks;
+            }
+
+            database.UpdateGameInDatabase(dbGame);
+            controllers.RemoveController(args.Controller);
+        }
+
+        private void Controllers_Uninstalled(object sender, GameControllerEventArgs args)
+        {
+            var game = args.Controller.Game;
+            logger.Info($"Game {game.Name} uninstalled after {args.ElapsedTime} seconds.");
+
+            var dbGame = database.GetGame(game.Id);
+            dbGame.State.Uninstalling = false;
+            dbGame.State.Installed = false;
+            dbGame.InstallDirectory = string.Empty;
+            database.UpdateGameInDatabase(dbGame);
+            controllers.RemoveController(args.Controller);
         }
     }
 }

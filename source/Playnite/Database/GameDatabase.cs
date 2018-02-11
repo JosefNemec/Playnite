@@ -216,6 +216,11 @@ namespace Playnite.Database
             get; private set;
         }
 
+        public LiteCollection<ActiveController> ActiveControllersCollection
+        {
+            get; private set;
+        }
+
         public string Path
         {
             get; private set;
@@ -575,7 +580,9 @@ namespace Playnite.Database
             GamesCollection = Database.GetCollection<IGame>("games");
             PlatformsCollection = Database.GetCollection<Platform>("platforms");
             EmulatorsCollection = Database.GetCollection<Emulator>("emulators");
+            ActiveControllersCollection = Database.GetCollection<ActiveController>("controllers");
 
+            // New DB setup
             if (!dbExists)
             {
                 GamesCollection.EnsureIndex(a => a.Id);
@@ -592,6 +599,22 @@ namespace Playnite.Database
                 }
             }
 
+            // Reset game states in case they were not released properly
+            if (ActiveControllersCollection.Count() > 0)
+            {
+                foreach (var controller in ActiveControllersCollection.FindAll())
+                {
+                    var game = GamesCollection.FindById(controller.Game.Id);
+                    if (game != null)
+                    {
+                        game.State.SetState(null, false, false, false, false);
+                        UpdateGameInDatabase(game);
+                    }
+
+                    RemoveActiveController(controller.Game.Id);
+                }
+            }
+
             DatabaseOpened?.Invoke(this, null);
             IsOpen = true;
             return Database;
@@ -605,18 +628,24 @@ namespace Playnite.Database
             }
 
             try
-            {                
+            {
                 Database.Dispose();
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                logger.Error(e, "Failed to dispose LiteDB database object.");                
+                logger.Error(e, "Failed to dispose LiteDB database object.");
             }
 
             GamesCollection = null;
             PlatformsCollection = null;
             EmulatorsCollection = null;
+            ActiveControllersCollection = null;
             IsOpen = false;
+        }
+
+        public IGame GetGame(int id)
+        {
+            return GamesCollection.FindById(id);
         }
 
         public void AddGame(IGame game)
@@ -646,7 +675,7 @@ namespace Playnite.Database
 
             OnGamesCollectionChanged(games.ToList(), new List<IGame>());
         }
-                
+
         public void DeleteGame(IGame game)
         {
             logger.Info("Deleting game from database {0}, {1}", game.ProviderId, game.Provider);
@@ -776,7 +805,7 @@ namespace Playnite.Database
 
         public void UpdatePlatform(List<Platform> platforms)
         {
-            CheckDbState();            
+            CheckDbState();
             var updates = new List<PlatformUpdateEvent>();
 
             using (Database.Engine.Locker.Reserved())
@@ -867,6 +896,11 @@ namespace Playnite.Database
             }
         }
 
+        public List<Emulator> GetEmulators()
+        {
+            return EmulatorsCollection.FindAll().ToList();
+        }
+
         public string AddFileNoDuplicate(FileDefinition file)
         {
             return AddFileNoDuplicate(file.Path, file.Name, file.Data);
@@ -886,7 +920,7 @@ namespace Playnite.Database
                     {
                         return dbFile.Id;
                     }
-                    
+
                     stream.Seek(0, SeekOrigin.Begin);
                     var file = Database.FileStorage.Upload(id, name, stream);
                     file.Metadata.Add("checksum", hash);
@@ -907,7 +941,7 @@ namespace Playnite.Database
                     var file = Database.FileStorage.Upload(id, name, stream);
                     stream.Seek(0, SeekOrigin.Begin);
                     var hash = FileSystem.GetMD5(stream);
-                    file.Metadata.Add("checksum", hash);                    
+                    file.Metadata.Add("checksum", hash);
                     Database.FileStorage.SetMetadata(id, file.Metadata);
                 }
             }
@@ -1039,7 +1073,7 @@ namespace Playnite.Database
         }
 
         public void UpdateGameInDatabase(IGame game)
-        {            
+        {
             CheckDbState();
             IGame oldData;
 
@@ -1092,12 +1126,14 @@ namespace Playnite.Database
                 if (existingGame == null)
                 {
                     logger.Info("Adding new installed game {0} from {1} provider", newGame.ProviderId, newGame.Provider);
-                    AssignPcPlatform(newGame);                    
+                    newGame.State.Installed = true;
+                    AssignPcPlatform(newGame);
                     AddGame(newGame);
                     newGames.Add(newGame);
                 }
                 else
                 {
+                    existingGame.State.Installed = true;
                     existingGame.InstallDirectory = newGame.InstallDirectory;
                     if (existingGame.PlayTask == null)
                     {
@@ -1133,13 +1169,13 @@ namespace Playnite.Database
                     UpdateGameInDatabase(existingGame);
                 }
             }
-            
+
             foreach (var game in GamesCollection.Find(a => a.Provider == provider))
             {
                 if (installedGames.FirstOrDefault(a => a.ProviderId == game.ProviderId) == null)
                 {
-                    game.PlayTask = null;
                     game.InstallDirectory = string.Empty;
+                    game.State.Installed = false;
                     UpdateGameInDatabase(game);
                 }
             }
@@ -1162,7 +1198,7 @@ namespace Playnite.Database
                 case Provider.Origin:
                     importedGames = originLibrary.GetLibraryGames();
                     break;
-                case Provider.Steam:                    
+                case Provider.Steam:
                     importedGames = steamLibrary.GetLibraryGames(AppSettings.SteamSettings);
                     break;
                 case Provider.Uplay:
@@ -1305,6 +1341,26 @@ namespace Playnite.Database
             {
                 GameUpdatesEventBuffer.AddRange(updates);
             }
+        }
+
+        public ActiveController AddActiveController(IGameController controller)
+        {
+            CheckDbState();
+            var ctrl = new ActiveController(controller);
+            ActiveControllersCollection.Upsert(ctrl);
+            return ctrl;
+        }
+
+        public ActiveController GetActiveController(int gameId)
+        {
+            CheckDbState();
+            return ActiveControllersCollection.FindOne(a => a.Game.Id == gameId);
+        }
+
+        public void RemoveActiveController(int gameId)
+        {
+            CheckDbState();
+            ActiveControllersCollection.Delete(a => a.Game.Id == gameId);
         }
     }
 }

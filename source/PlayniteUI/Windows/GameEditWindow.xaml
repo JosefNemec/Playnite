@@ -90,10 +90,10 @@
 
                     <!-- ID -->
                     <TextBlock Text="Id" Grid.Column="0" Grid.Row="0"
-                                Visibility="{Binding Source={x:Static playnite:Constants.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                Visibility="{Binding Source={x:Static playnite:PlayniteEnvironment.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <TextBox Grid.Column="2" Grid.Row="0" IsReadOnly="True" Text="{Binding EditingGame.ProviderId, Mode=OneTime}"
                              VerticalAlignment="Center"
-                                Visibility="{Binding Source={x:Static playnite:Constants.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                Visibility="{Binding Source={x:Static playnite:PlayniteEnvironment.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <!-- Name -->
                     <TextBlock Grid.Column="0" Grid.Row="1" Text="{DynamicResource NameLabel}"/>

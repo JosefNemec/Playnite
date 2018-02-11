@@ -1,4 +1,5 @@
 ﻿using LiteDB;
+using Playnite.Providers;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -160,9 +161,39 @@ namespace Playnite.Models
             get; set;
         }
 
+        bool IsInstalling
+        {
+            get;
+        }
+
+        bool IsUninstalling
+        {
+            get;
+        }
+
+        bool IsLaunching
+        {
+            get;
+        }
+
+        bool IsRunning
+        {
+            get;
+        }
+
         bool IsInstalled
         {
             get;
+        }
+
+        GameState State
+        {
+            get; set;
+        }
+
+        long Playtime
+        {
+            get; set;
         }
 
         bool Hidden
@@ -174,14 +205,6 @@ namespace Playnite.Models
         {
             get; set;
         }
-
-        void PlayGame();
-
-        void PlayGame(List<Emulator> emulators);
-
-        void InstallGame();
-
-        void UninstallGame();
 
         void OnPropertyChanged(string name);
     }

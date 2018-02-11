@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NLog;
 using System.Security.Cryptography;
+using System.IO.Compression;
 
 namespace Playnite
 {
@@ -69,6 +70,30 @@ namespace Playnite
         {
             var md5 = MD5.Create();
             return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
+        }
+
+        public static void AddFolderToZip(ZipArchive archive, string zipRoot, string path, string filter, SearchOption searchOption)
+        {
+            IEnumerable<string> files;
+
+            if (filter.Contains('|'))
+            {
+                var filters = filter.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+                files = Directory.EnumerateFiles(path, "*.*", searchOption).Where(a =>
+                {
+                    return filters.Contains(Path.GetExtension(a));
+                });
+            }
+            else
+            {
+                files = Directory.EnumerateFiles(path, filter, searchOption);
+            }
+
+            foreach (var file in files)
+            {
+                var archiveName = zipRoot + file.Replace(path, "").Replace(@"\", @"/");
+                archive.CreateEntryFromFile(file, archiveName);
+            }
         }
     }
 }

@@ -56,10 +56,6 @@ namespace PlayniteTests.MetaProviders
             ValidateBoxArt(game);
 
             // Multiple property tables
-            game = wiki.ParseGamePage(wiki.GetPage("Lotus_(series)"), "Lotus Turbo Challenge 2");
-            ValidateGameDate(game);
-            ValidateBoxArt(game);
-
             game = wiki.ParseGamePage(wiki.GetPage("TrackMania"), "TrackMania United");
             ValidateGameDate(game);
             ValidateBoxArt(game);

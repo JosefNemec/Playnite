@@ -6,12 +6,30 @@ using System.Threading.Tasks;
 
 namespace Playnite
 {
-    public class PlayniteEnvironment
+    public static class PlayniteEnvironment
     {
+        public static bool ThrowAllErrors
+        {
+            get
+            {
 #if DEBUG
-        public static bool ThrowAllErrors = true;
+                return true;
 #else
-        public static bool ThrowAllErrors = false;
+                return false;
 #endif
+            }
+        }
+
+        public static bool IsDebugBuild
+        {
+            get
+            {
+#if DEBUG
+                return true;
+#else
+                return false;
+#endif
+            }
+        }
     }
 }

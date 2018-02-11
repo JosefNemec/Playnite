@@ -2183,8 +2183,17 @@
                                 Visibility="{Binding IsInstallAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 Command="{Binding InstallCommand}"/>
                             <Button MinWidth="120" Content="{DynamicResource SetupRunning}"
-                                Visibility="{Binding IsSetupProgressAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                Visibility="{Binding IsInstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 Command="{Binding CheckSetupCommand}"/>
+                            <Button MinWidth="120" Content="{DynamicResource SetupRunning}"  
+                                Visibility="{Binding IsUninstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                Command="{Binding CheckSetupCommand}"/>
+                            <Button MinWidth="120" Content="{DynamicResource GameRunning}" 
+                                Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                Command="{Binding CheckExecutionCommand}"/>
+                            <Button MinWidth="120" Content="{DynamicResource GameLaunching}"
+                                Visibility="{Binding IsLaunching, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                Command="{Binding CheckExecutionCommand}"/>
                             <Button MinWidth="120" Content="{DynamicResource MoreAction}"
                                 Margin="15,0,0,0" pui:LeftClickContextMenuBehavior.Enabled="True">
                                 <Button.ContextMenu>
@@ -2268,8 +2277,17 @@
                         Visibility="{Binding IsInstallAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding InstallCommand}"/>
                 <Button MinWidth="120" Content="{DynamicResource SetupRunning}"
-                        Visibility="{Binding IsSetupProgressAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Visibility="{Binding IsInstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding CheckSetupCommand}"/>
+                <Button MinWidth="120" Content="{DynamicResource SetupRunning}"  
+                        Visibility="{Binding IsUninstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{Binding CheckSetupCommand}"/>
+                <Button MinWidth="120" Content="{DynamicResource GameRunning}" 
+                        Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{Binding CheckExecutionCommand}"/>
+                <Button MinWidth="120" Content="{DynamicResource GameLaunching}"
+                        Visibility="{Binding IsLaunching, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{Binding CheckExecutionCommand}"/>
                 <Button MinWidth="120" Content="{DynamicResource MoreAction}"
                         Margin="15,0,0,0" pui:LeftClickContextMenuBehavior.Enabled="True">
                     <Button.ContextMenu>
@@ -2277,6 +2295,9 @@
                                      ShowStartSection="False" />
                     </Button.ContextMenu>
                 </Button>
+
+                <TextBlock Text="{Binding Game.State}" />
+                <TextBlock Text="{Binding Game.Playtime}" Margin="50,0,0,0" />
             </StackPanel>
 
             <Border Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Padding="10" Margin="20,30,0,10"

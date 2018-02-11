@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using Newtonsoft.Json.Bson;
 
 namespace Playnite
 {
-    public class EmbededResources
+    public class Resources
     {
         [DllImport("kernel32.dll", SetLastError = true)]
         static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hFile, uint dwFlags);
@@ -33,6 +34,15 @@ namespace Playnite
             using (MemoryStream m = new MemoryStream(bPtr))
             {
                 File.WriteAllBytes(destination, m.ToArray());
+            }
+        }
+
+        public static string ReadFileFromResource(string resource)
+        {
+            using (var stream = Assembly.GetCallingAssembly().GetManifestResourceStream(resource))
+            {
+                var tr = new StreamReader(stream);
+                return tr.ReadToEnd();
             }
         }
     }

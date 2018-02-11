@@ -109,14 +109,12 @@ namespace PlayniteTests.Providers.Steam
             Assert.DoesNotThrow(() => steamLib.UpdateGameWithMetadata(game));            
         }
 
-        //[Test]
-        //public void GetLibraryGamesPrivateTest()
-        //{
-        //    var steamLib = new SteamLibrary();
-        //    var games = steamLib.GetLibraryGames("playnitedb", "");
-        //    CollectionAssert.IsNotEmpty(games);
-        //    games = steamLib.GetLibraryGames("76561198358889790", "");
-        //    CollectionAssert.IsNotEmpty(games);
-        //}
+
+        [Test]
+        public void GetAppStateTest()
+        {
+            var steamLib = new SteamLibrary();
+            var state = steamLib.GetAppState(12140);
+        }
     }
 }
