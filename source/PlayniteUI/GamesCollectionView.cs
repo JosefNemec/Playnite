@@ -876,6 +876,7 @@ namespace PlayniteUI
 
         private void Database_GameUpdated(object sender, GameUpdatedEventArgs args)
         {
+            var replaceList = new List<IGame>();
             foreach (var update in args.UpdatedGames)
             {
                 if (update.OldData.Categories.IsListEqual(update.NewData.Categories))
@@ -897,10 +898,13 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    Database_GamesCollectionChanged(this, new GamesCollectionChangedEventArgs(
-                        new List<IGame>() { update.NewData },
-                        new List<IGame>() { update.NewData }));
+                    replaceList.Add(update.NewData);
                 }
+            }
+
+            if (replaceList.Count > 0)
+            {
+                Database_GamesCollectionChanged(this, new GamesCollectionChangedEventArgs(replaceList, replaceList));
             }
         }
 
@@ -916,25 +920,31 @@ namespace PlayniteUI
                 }
             }
 
+            var addList = new List<GameViewEntry>();
             foreach (var game in args.AddedGames)
             {
                 switch (ViewType)
                 {
                     case GamesViewType.Standard:
-                        Items.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game.PlatformId)));
+                        addList.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game.PlatformId)));
                         break;
 
                     case GamesViewType.CategoryGrouped:
                         if (game.Categories == null || game.Categories.Count == 0)
                         {
-                            Items.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game.PlatformId)));
+                            addList.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game.PlatformId)));
                         }
                         else
                         {
-                            Items.AddRange(game.Categories.Select(a => new GameViewEntry(game, a, GetPlatformFromCache(game.PlatformId))));
+                            addList.AddRange(game.Categories.Select(a => new GameViewEntry(game, a, GetPlatformFromCache(game.PlatformId))));
                         }
                         break;
                 }
+            }
+
+            if (addList.Count > 0)
+            {
+                Items.AddRange(addList);
             }
         }
     }

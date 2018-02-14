@@ -142,35 +142,39 @@ namespace PlayniteUI.ViewModels
         {
             if (games != null)
             {
-                foreach (var game in games)
-                {
-                    var tempCat = game.Categories;
-                    var categories = new List<string>();
-                    categories = Categories.Where(a => a.Enabled == true).Select(a => a.Name).ToList();
+                var categories = new List<string>();
+                categories = Categories.Where(a => a.Enabled == true).Select(a => a.Name).ToList();
 
-                    if (tempCat != null)
+                using (database.BufferedUpdate())
+                {
+                    foreach (var game in games)
                     {
-                        foreach (var cat in Categories.Where(a => a.Enabled == null))
+                        var tempCat = game.Categories;
+
+                        if (tempCat != null)
                         {
-                            if (tempCat.Contains(cat.Name, StringComparer.OrdinalIgnoreCase))
+                            foreach (var cat in Categories.Where(a => a.Enabled == null))
                             {
-                                categories.Add(cat.Name);
+                                if (tempCat.Contains(cat.Name, StringComparer.OrdinalIgnoreCase))
+                                {
+                                    categories.Add(cat.Name);
+                                }
                             }
                         }
-                    }
 
-                    if (categories.Count > 0)
-                    {
-                        game.Categories = new ComparableList<string>(categories.OrderBy(a => a));
-                    }
-                    else
-                    {
-                        game.Categories = null;
-                    }
+                        if (categories.Count > 0)
+                        {
+                            game.Categories = new ComparableList<string>(categories.OrderBy(a => a));
+                        }
+                        else
+                        {
+                            game.Categories = null;
+                        }
 
-                    if (autoUpdate)
-                    {
-                        database.UpdateGameInDatabase(game);
+                        if (autoUpdate)
+                        {
+                            database.UpdateGameInDatabase(game);
+                        }
                     }
                 }
             }
