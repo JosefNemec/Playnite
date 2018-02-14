@@ -504,7 +504,7 @@ namespace Playnite.Providers.Steam
                         Arguments = task["arguments"].Value ?? string.Empty,
                         Path = task["executable"].Value,
                         IsBuiltIn = true,
-                        WorkingDir = game.InstallDirectory
+                        WorkingDir = "{InstallDir}"
                     };
 
                     tasks.Add(newTask);
