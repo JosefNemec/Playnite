@@ -282,6 +282,7 @@ namespace PlayniteUI.Controls
                     Items.Add(new Separator());
                 }
 
+                // Links
                 if (Game.Links?.Any() == true)
                 {
                     var linksItem = new MenuItem()

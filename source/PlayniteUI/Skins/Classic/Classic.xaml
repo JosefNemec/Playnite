@@ -2005,7 +2005,7 @@
                         <DataTemplate>
                             <TextBlock Style="{StaticResource ListTextBlock}">
                                         <Hyperlink NavigateUri="{Binding Url}" ToolTip="{Binding Url}"
-                                                   Command="{Binding Data.NavigateUrlCommand, Source={StaticResource Proxy}}"
+                                                   Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
                                                    CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                                             <Run Text="{Binding Name, Mode=OneWay}" />
                                         </Hyperlink>
