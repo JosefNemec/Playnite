@@ -143,7 +143,7 @@ namespace Playnite.Providers.BattleNet
         }
 
         private bool loginSuccess = false;
-        private string loginUrl = "battle.net/account/management/?logout";
+        private string loginUrl = @"https://battle.net/account/management/?logout";
         private string libraryUrl = @"battle.net/account/management/";
 
         LoginWindow loginWindow;
