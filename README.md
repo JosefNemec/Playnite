@@ -9,18 +9,6 @@ Features
 
 See [homepage](http://playnite.link/) for list of features.
 
-Security Concerns
----------
-Playnite doesn't store any user information and you don't need to provide any information to import installed games. Login is required only for full library import of GOG and Origin games and in that case only web session cookie is stored, the same way when you login to those services via web browser.
-
-What about Defender SmartScreen installer warning?
-
-Windows may display security dialog regarding executable security. The warning is shown for applications downloaded from untrusted places. Playnite files are digitally signed to prevent warning from occurring, but the signature needs to gain enough reputation (number of installations) with Microsoft to not occur anymore.
-
-Known Issues
----------
-List of known issues and solutions can be found [on wiki](https://github.com/JosefNemec/Playnite/wiki/Known-Issues).
-
 Download
 ---------
 
@@ -29,6 +17,14 @@ Grab latest installer or portable package from [releases](https://github.com/Jos
 Requirements: Windows 7, 8 or 10 and [.Net 4.6](https://www.microsoft.com/en-us/download/details.aspx?id=53344)
 
 Portable version requires [Microsoft Visual C++ 2013 Redistributable (x86)](https://www.microsoft.com/en-us/download/details.aspx?id=40784) to be installed manually.
+
+Known Issues
+---------
+List of known issues and solutions can be found [on wiki](https://github.com/JosefNemec/Playnite/wiki/Known-Issues).
+
+Security Concerns
+---------
+Playnite doesn't store any user information and you don't need to provide any information to import installed games. Login is required only for full library import of GOG and Origin games and in that case only web session cookie is stored, the same way when you login to those services via web browser.
 
 Questions, issues etc.
 ---------
