@@ -308,7 +308,7 @@ namespace PlayniteUI
 
                 if (!string.IsNullOrEmpty(game.Icon) && Path.GetExtension(game.Icon) == ".ico")
                 {
-                    FileSystem.CreateFolder(Path.Combine(Paths.DataCachePath, "icons"));
+                    FileSystem.CreateDirectory(Path.Combine(Paths.DataCachePath, "icons"));
                     icon = Path.Combine(Paths.DataCachePath, "icons", game.Id + ".ico");
                     database.SaveFile(game.Icon, icon);
                 }

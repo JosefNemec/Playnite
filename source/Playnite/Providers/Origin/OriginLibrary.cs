@@ -106,7 +106,7 @@ namespace Playnite.Providers.Origin
             else if (useDataCache == true && !File.Exists(cacheFile))
             {
                 logger.Debug($"Downloading game manifest {id}");
-                FileSystem.CreateFolder(OriginPaths.CachePath);
+                FileSystem.CreateDirectory(OriginPaths.CachePath);
 
                 try
                 {

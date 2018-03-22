@@ -555,6 +555,12 @@ namespace Playnite.Database
             var dbExists = File.Exists(Path);
             logger.Info("Opening db " + Path);
             CloseDatabase();
+
+            if (!dbExists)
+            {
+                FileSystem.CreateDirectory(Path);
+            }
+
             Database = new LiteDatabase($"Filename={Path};Mode=Exclusive");
 
             // To force litedb to try to open file, should throw exceptuion if something is wrong with db file

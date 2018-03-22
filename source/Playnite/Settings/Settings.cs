@@ -694,7 +694,7 @@ namespace Playnite
 
         public void SaveSettings()
         {
-            FileSystem.CreateFolder(Paths.ConfigRootPath);
+            FileSystem.CreateDirectory(Paths.ConfigRootPath);
             File.WriteAllText(Paths.ConfigFilePath, JsonConvert.SerializeObject(this, Formatting.Indented));
         }
 
@@ -733,7 +733,7 @@ namespace Playnite
 
         public static void ConfigureCef()
         {
-            FileSystem.CreateFolder(Paths.BrowserCachePath);
+            FileSystem.CreateDirectory(Paths.BrowserCachePath);
             var settings = new CefSettings();
             settings.CefCommandLineArgs.Add("disable-gpu", "1");
             settings.CefCommandLineArgs.Add("disable-gpu-compositing", "1");

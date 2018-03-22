@@ -42,7 +42,7 @@ namespace PlayniteTests.Providers.Origin
         {
             var originLib = new OriginLibrary();
             OriginPaths.CachePath = Path.Combine(Playnite.PlayniteTests.TempPath, "origincache");
-            FileSystem.CreateFolder(OriginPaths.CachePath, true);
+            FileSystem.CreateDirectory(OriginPaths.CachePath, true);
 
             var games = originLib.GetInstalledGames(true);
             var cacheFiles = Directory.GetFiles(OriginPaths.CachePath, "*.json");

@@ -26,7 +26,7 @@ namespace Playnite.Providers.GOG
         
         public void CacheGogDatabases(string targetPath, string dbfile)
         {
-            FileSystem.CreateFolder(targetPath);
+            FileSystem.CreateDirectory(targetPath);
             var source = Path.Combine(GogSettings.DBStoragePath, dbfile);
             File.Copy(source, Path.Combine(targetPath, dbfile), true);
         }

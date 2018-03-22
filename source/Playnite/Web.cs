@@ -58,7 +58,7 @@ namespace Playnite
 
         public static void DownloadFile(string url, string path)
         {
-            FileSystem.CreateFolder(Path.GetDirectoryName(path));
+            FileSystem.CreateDirectory(Path.GetDirectoryName(path));
             var webClient = new WebClient();
             webClient.DownloadFile(url, path);
         }
@@ -76,7 +76,7 @@ namespace Playnite
 
             if (!File.Exists(cacheFile))
             {
-                FileSystem.CreateFolder(Paths.ImagesCachePath);
+                FileSystem.CreateDirectory(Paths.ImagesCachePath);
 
                 try
                 {

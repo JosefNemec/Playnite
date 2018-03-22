@@ -20,7 +20,7 @@ namespace Playnite
         public static void CreateDiagPackage(string path)
         {
             var diagTemp = Path.Combine(Paths.TempPath, "diag");
-            FileSystem.CreateFolder(diagTemp, true);
+            FileSystem.CreateDirectory(diagTemp, true);
             FileSystem.DeleteFile(path);    
             
             ZipFile.CreateFromDirectory(diagTemp, path);            

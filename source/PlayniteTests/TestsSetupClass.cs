@@ -14,7 +14,7 @@ namespace PlayniteTests
         [OneTimeSetUp]
         public void GlobalSetup()
         {
-            FileSystem.CreateFolder(Playnite.PlayniteTests.TempPath, true);
+            FileSystem.CreateDirectory(Playnite.PlayniteTests.TempPath, true);
         }
 
         [OneTimeTearDown]

@@ -14,18 +14,29 @@ namespace Playnite
 {
     public static class FileSystem
     {
-        public static void CreateFolder(string path)
+        public static void CreateDirectory(string path)
         {
-            CreateFolder(path, false);
+            CreateDirectory(path, false);
         }
 
-        public static void CreateFolder(string path, bool clean)
+        public static void CreateDirectory(string path, bool clean)
         {
-            if (Directory.Exists(path))
+            var directory = path;
+            if (!string.IsNullOrEmpty(Path.GetExtension(path)))
+            {
+                directory = Path.GetDirectoryName(path);
+            }
+
+            if (string.IsNullOrEmpty(directory))
+            {
+                return;
+            }
+
+            if (Directory.Exists(directory))
             {
                 if (clean)
                 {
-                    Directory.Delete(path, true);
+                    Directory.Delete(directory, true);
                 }
                 else
                 {
@@ -33,12 +44,12 @@ namespace Playnite
                 }
             }
 
-            Directory.CreateDirectory(path);
+            Directory.CreateDirectory(directory);
         }
 
         public static void PrepareSaveFile(string path)
         {
-            CreateFolder(Path.GetDirectoryName(path));
+            CreateDirectory(Path.GetDirectoryName(path));
             if (File.Exists(path))
             {
                 File.Delete(path);
