@@ -186,6 +186,11 @@ namespace Playnite.Providers.GOG
             return games;
         }
 
+        public List<IGame> GetInstalledGames()
+        {
+            return GetInstalledGamesFromRegistry();
+        }
+
         public List<IGame> GetInstalledGames(InstalledGamesSource source)
         {
             if (source == InstalledGamesSource.Galaxy)

@@ -1102,13 +1102,7 @@ namespace Playnite.Database
                 case Provider.Custom:
                     return newGames;
                 case Provider.GOG:
-                    var source = InstalledGamesSource.Registry;
-                    if (AppSettings.GOGSettings.RunViaGalaxy)
-                    {
-                        source = InstalledGamesSource.Galaxy;
-                    }
-
-                    installedGames = gogLibrary.GetInstalledGames(source);
+                    installedGames = gogLibrary.GetInstalledGames();
                     break;
                 case Provider.Origin:
                     installedGames = originLibrary.GetInstalledGames(true);
