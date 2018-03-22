@@ -7,7 +7,7 @@
 
     <sys:String x:Key="LanguageSettingsLabel">Langue</sys:String>
 
-    <sys:String x:Key="ExitAppLabel">Sortie</sys:String>
+    <sys:String x:Key="ExitAppLabel">Quitter</sys:String>
     <sys:String x:Key="FilterActiveLabel">Le filtre est active (Cliquez pour basculer le panneau filtre)</sys:String>
     <sys:String x:Key="FilterInactiveLabel">Le filtre est desactive (Cliquez pour basculer le panneau filtre)</sys:String>
 
@@ -15,37 +15,37 @@
     <sys:String x:Key="SaveChangesAskTitle">Enregistrer les modifications?</sys:String>
 
     <sys:String x:Key="AboutHomePageLink">Page d'acceuil a www.playnite.link</sys:String>
-    <sys:String x:Key="AboutSourceLink">Code Source a GitHub</sys:String>
-    <sys:String x:Key="AboutCreateDiagButton">Creer un package diag.</sys:String>
+    <sys:String x:Key="AboutSourceLink">Code Source sur GitHub</sys:String>
+    <sys:String x:Key="AboutCreateDiagButton">Creer un rapport de bug.</sys:String>
     <sys:String x:Key="AboutWindowTitle">A propos de Playnite</sys:String>
-    <sys:String x:Key="AboutAuthor">Creer par Josef Nemec</sys:String>
+    <sys:String x:Key="AboutAuthor">Créé par Josef Nemec</sys:String>
 
     <sys:String x:Key="CategoryWindowTitle">Attribuer une categorie</sys:String>
-    <sys:String x:Key="CategorySetButton">Definir les categories</sys:String>
+    <sys:String x:Key="CategorySetButton">Définir les categories</sys:String>
     <sys:String x:Key="CategoryAddCatButton">Ajouter une categorie</sys:String>
-    <sys:String x:Key="CategoryTooltip" xml:space="preserve">Sélectionne - Attribuer une categorie
+    <sys:String x:Key="CategoryTooltip" xml:space="preserve">Sélectionne - Attribuer une catégorie
 Non sélectionne - Supprimer la categorie
-Indetermine - Aucun changement (lors du modification de plusieurs jeux)</sys:String>
+Indeterminé - Aucun changement (lors du modification de plusieurs jeux)</sys:String>
 
-    <sys:String x:Key="CrashWindowTitle">Ah non, quelque chose de mal est arrive...</sys:String>
-    <sys:String x:Key="CrashDescription">Playnite rencontre une probleme et ne pouvait pas le resoudre. Si vous voulez nous aider avec la probleme, S'il vous plait creer une package de diagnostic et signaler la probleme. Merci.</sys:String>
-
-    <sys:String x:Key="CrashReportIssue">Signaler une probleme</sys:String>
-    <sys:String x:Key="CrashRestartPlaynite">Redemarrer Playnite</sys:String>
+    <sys:String x:Key="CrashWindowTitle">Ah non, quelque chose de mal s'est passé...</sys:String>
+    <sys:String x:Key="CrashDescription">Playnite rencontre un problème et ne pouvait pas le resoudre. Si vous voulez nous aider avec le problème, merci de faire un rapport de bug et de signaler le problème.</sys:String>
+ 
+    <sys:String x:Key="CrashReportIssue">Signaler un problème</sys:String>
+    <sys:String x:Key="CrashRestartPlaynite">Redémarrer Playnite</sys:String>
     <sys:String x:Key="CrashClosePlaynite">Fermer Playnite</sys:String>
 
     <sys:String x:Key="GameRemoveAskTitle">supprimer le(s) jeu(x)?</sys:String>
-    <sys:String x:Key="GameRemoveAskMessage" xml:space="preserve"> Etes-vous sur de vouloir supprimer ce jeu?
+    <sys:String x:Key="GameRemoveAskMessage" xml:space="preserve"> Êtes-vous sur de vouloir supprimer ce jeu?
 
 Les jeux importes automatiquement peuvent reapparaitre dans Playnite apres la procahine procedure d'importation (selon vos parametres).</sys:String>
-    <sys:String x:Key="GamesRemoveAskMessage" xml:space="preserve">Etes-vous sur de vouloir supprimer {0} jeux?
+    <sys:String x:Key="GamesRemoveAskMessage" xml:space="preserve">Êtes-vous sur de vouloir supprimer {0} jeux?
 
 Les jeux importes automatiquement peuvent reapparaitre dans Playnite apres la procahine procedure d'importation (selon vos parametres).</sys:String>
 
     <sys:String x:Key="SteamFriendsTooltip">Les amis sur Steam</sys:String>
     <sys:String x:Key="GameEditChangeNotif">La section contient les modifications a enregistrer</sys:String>
-    <sys:String x:Key="DBUpgradeProgress">Mise a jour de la base de  donnees...</sys:String>
-    <sys:String x:Key="DBUpgradeFail">La mise a jour de la base de donnees a echoue, impossible d'ouvrir le fichier de base.</sys:String>
+    <sys:String x:Key="DBUpgradeProgress">mise à jour de la base de  donnees...</sys:String>
+    <sys:String x:Key="DBUpgradeFail">La mise à jour de la base de donnees a echoue, impossible d'ouvrir le fichier de base.</sys:String>
 
     <sys:String x:Key="GameError">Erreur de jeu</sys:String>
     <sys:String x:Key="GameStartErrorNoGame">Erreur: Impossible de démarrer le jeu. '{0}' n'a pas été trouvé dans la base de données.</sys:String>
@@ -177,12 +177,12 @@ Préférez les données du magasin officiel et, lorsqu'elles ne sont pas disponi
     <sys:String x:Key="SettingsInvalidSteamAccountName">Le nom du profil Steam ne peut pas être vide.</sys:String>
     <sys:String x:Key="SettingsInvalidSteamAccountLibImport">Aucun profil de Steam n'a été sélectionné pour l'importation de la bibliothèque.</sys:String>
     <sys:String x:Key="SettingsInvalidSteamAccountCatImport">Aucun compte Steam n'a été sélectionné pour l'importation de catégories.</sys:String>
-    <sys:String x:Key="SettingsUpdateLibStartup">Télécharger les mises à jour de la bibliothèque 3e parti au démarrage.</sys:String>
+    <sys:String x:Key="SettingsUpdateLibStartup">Télécharger les mises à jour des bibliothèques tiers au démarrage.</sys:String>
     <sys:String x:Key="SettingsStartInFullscreen">Démarrer en mode plein écran</sys:String>
     <sys:String x:Key="SettingsUpdateLibStartupTooltip">Inclut Steam, Origin et autres.</sys:String>
     <sys:String x:Key="SettingsAsyncImageLoading">Chargement d'image asynchrone (nécessite un redémarrage)</sys:String>
     <sys:String x:Key="SettingsAsyncImageLoadingTooltip">Améliore la fluidité du défilement des listes de jeux en échange de temps de chargement d'image lents.</sys:String>
-    <sys:String x:Key="SettingsShowNameEmptyCover">Afficher le nom du jeu quand l'art de couverture manquante</sys:String>
+    <sys:String x:Key="SettingsShowNameEmptyCover">Afficher le nom du jeu quand la couverture manquante</sys:String>
     <sys:String x:Key="SettingsShowIconList">Afficher les icônes de jeu dans la vue Liste</sys:String>
     <sys:String x:Key="SettingsDisableAcceleration">Désactiver l'accélération matérielle (nécessite un redémarrage)</sys:String>
     <sys:String x:Key="SettingsDisableAccelerationTooltip">Utilisez quand rencontrez des problèmes d'interface utilisateur ou similaires bègues</sys:String>
@@ -388,7 +388,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="DownloadError">Erreur de téléchargement</sys:String>
     <sys:String x:Key="ClearFilters">Effacer les filtres</sys:String>
     <sys:String x:Key="PrivateAccount">Profil Prive</sys:String>
-    <sys:String x:Key="APIKey">Cle API</sys:String>
+    <sys:String x:Key="APIKey">Clé API</sys:String>
     <sys:String x:Key="StartupError">Erreur de Demarrage</sys:String>
     <sys:String x:Key="SkinError">Erreur de thème</sys:String>
     <sys:String x:Key="ClearAll">Effacer Tout</sys:String>
@@ -402,14 +402,14 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Arguments d'emulateur supplementaires</sys:String>
     <sys:String x:Key="OverrideEmulatorArguments">Outrepasser l'Arguments de l'emulateur</sys:String>
 
-    <sys:String x:Key="GameImportWindowTitle">Sélectionnez les jeux a importer</sys:String>
+    <sys:String x:Key="GameImportWindowTitle">Sélectionnez les jeux à importer</sys:String>
     <sys:String x:Key="MetaLookupWindowTitle">Recherche de metadonnees</sys:String>
-    <sys:String x:Key="UpdaterWindowTitle">Mise a jour disponible</sys:String>
-    <sys:String x:Key="UpdaterChangesInfo">Changements depuis la derniere mise a jour:</sys:String>
-    <sys:String x:Key="UpdaterInstallUpdate">Installer la mise a jour</sys:String>
+    <sys:String x:Key="UpdaterWindowTitle">Mise à jour disponible</sys:String>
+    <sys:String x:Key="UpdaterChangesInfo">Changements depuis la dernière mise à jour:</sys:String>
+    <sys:String x:Key="UpdaterInstallUpdate">Installer la mise à jour</sys:String>
 
     <sys:String x:Key="ThemeTestReloadList">Recharger la liste des thèmes</sys:String>
-    <sys:String x:Key="ThemeTestApplySkin">Appliquer la thème sélectionnée</sys:String>
+    <sys:String x:Key="ThemeTestApplySkin">Appliquer le thème sélectionnée</sys:String>
     <sys:String x:Key="ThemeTestWatchChanges">Regarder les changements de fichiers</sys:String>
     <sys:String x:Key="ThemeTestWatchChangesTooltip">Appliquer automatiquement le thème lorsque le fichier source change</sys:String>
 
@@ -429,7 +429,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="MoreAction">Plus</sys:String>
 
     <sys:String x:Key="MetadownloadNoResultsMessage">N'a pas trouve l'informations pertinentes pour le jeu'{0}'sur la page specifiee.</sys:String>
-    <sys:String x:Key="MetadownloadSingleGameTip">Conseil: Vous pouvez utiliser un processus de télécharger les metadonnees plus avance lors de la modification d'un seul jeu via l'option de menu "Modifier".</sys:String>
+    <sys:String x:Key="MetadownloadSingleGameTip">Conseil: Vous pouvez utiliser un processus de télécharger les metadonnees plus avance lors de la modification d'un seul jeu via l'option "Modifier".</sys:String>
     <sys:String x:Key="ProgreessAvailabilityMessage">Non disponible lorsqu'une action est en cours.</sys:String>
     <sys:String x:Key="DescriptionHTMLSupportTooltip">Le texte de description est sensible à la syntaxe HTML</sys:String>
     <sys:String x:Key="PatreonDevelopMessage">Le développement de Playnite est soutenu par ces patrons:</sys:String>
