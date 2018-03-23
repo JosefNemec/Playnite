@@ -104,13 +104,11 @@ namespace Playnite.Providers
         
         public void Dispose()
         {
-            foreach (var controller in Controllers)
+            foreach (var controller in Controllers.ToList())
             {
                 DisposeController(controller);
                 database?.RemoveActiveController(controller.Game.Id);
             }
-
-            Controllers = null;
         }
 
         public void AddController(IGameController controller)

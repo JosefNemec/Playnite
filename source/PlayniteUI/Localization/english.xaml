@@ -228,6 +228,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="SettingsCreateLocalization">Contribute new localization</sys:String>
     <sys:String x:Key="SettingsRestartAskMessage">Some of the changed settings require Playnite to be restarted. Do you want to restart Playnite now?</sys:String>
     <sys:String x:Key="SettingsRestartTitle">Restart Playnite?</sys:String>
+    <sys:String x:Key="SettingsDBPathNotification">New database file location will only be used after application is restarted.</sys:String>
 
     <sys:String x:Key="ImportError">Import Error</sys:String>
     <sys:String x:Key="LoginChecking">Checking...</sys:String>
@@ -410,6 +411,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="DoNothing">Do nothing</sys:String>
     <sys:String x:Key="Minimize">Minimize</sys:String>
     <sys:String x:Key="Close">Close</sys:String>
+    <sys:String x:Key="Change">Change</sys:String>
 
     <sys:String x:Key="EmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>

@@ -287,12 +287,12 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public RelayCommand<object> LoadGamesCommand
+        public RelayCommand<object> UpdateGamesCommand
         {
             get => new RelayCommand<object>((a) =>
             {
                 MainMenuOpened = false;
-                LoadGames(true);
+                UpdateDatabase(true);
             }, (a) => GameAdditionAllowed || !Database.IsOpen);
         }
 
@@ -557,29 +557,10 @@ namespace PlayniteUI.ViewModels
             App.CurrentApp.Quit();
         }
 
-        public async void LoadGames(bool updateLibrary)
+        private void InitializeView()
         {
-            await LoadGames(updateLibrary, 0, true);
-        }
-
-        public async Task LoadGames(bool updateLibrary, ulong steamImportCatId, bool metaForNewGames)
-        {
-            if (string.IsNullOrEmpty(AppSettings.DatabasePath))
-            {
-                throw new Exception("Cannot load games, database path is not set.");
-            }
-
-            if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
-            {
-                GlobalTaskHandler.CancelToken.Cancel();
-                await GlobalTaskHandler.ProgressTask;
-            }
-
-            GameAdditionAllowed = false;
-
             try
             {
-                Database.CloseDatabase();
                 if (GameDatabase.GetMigrationRequired(AppSettings.DatabasePath))
                 {
                     var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(),
@@ -607,7 +588,10 @@ namespace PlayniteUI.ViewModels
                     }
                 }
 
-                Database.OpenDatabase(AppSettings.DatabasePath);
+                if (!Database.IsOpen)
+                {
+                    Database.OpenDatabase();
+                }
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -626,8 +610,7 @@ namespace PlayniteUI.ViewModels
                 GameAdditionAllowed = false;
                 return;
             }
-            
-            GamesView?.Dispose();
+
             GamesView = new GamesCollectionView(Database, AppSettings);
             BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
             if (GamesView.CollectionView.Count > 0)
@@ -647,6 +630,27 @@ namespace PlayniteUI.ViewModels
             {
                 Logger.Error(exc, "Failed to set update JumpList data: ");
             }
+        }
+
+        public async void UpdateDatabase(bool updateLibrary)
+        {
+            await UpdateDatabase(updateLibrary, 0, true);
+        }
+
+        public async Task UpdateDatabase(bool updateLibrary, ulong steamImportCatId, bool metaForNewGames)
+        {
+            if (!Database.IsOpen)
+            {
+                throw new Exception("Cannot load new games, database is not loaded.");
+            }
+
+            if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
+            {
+                GlobalTaskHandler.CancelToken.Cancel();
+                await GlobalTaskHandler.ProgressTask;
+            }
+
+            GameAdditionAllowed = false;           
 
             try
             {
@@ -984,9 +988,9 @@ namespace PlayniteUI.ViewModels
 
             if (model.OpenView() == true)
             {
-                if (model.ProviderIntegrationChanged || model.DatabaseLocationChanged)
+                if (model.ProviderIntegrationChanged)
                 {
-                    LoadGames(true);
+                    UpdateDatabase(true);
                 }
             }
             else
@@ -1068,6 +1072,7 @@ namespace PlayniteUI.ViewModels
         {
             Window.Show(this);
             Window.BringToForeground();
+            InitializeView();
         }
 
         public void CloseView()

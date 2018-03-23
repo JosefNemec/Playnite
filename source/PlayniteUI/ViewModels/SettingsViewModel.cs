@@ -291,7 +291,7 @@ namespace PlayniteUI.ViewModels
             if (Settings.EditedFields?.Any() == true)
             {
                 if (Settings.EditedFields.IntersectsPartiallyWith(
-                    new List<string>() { "Skin", "AsyncImageLoading", "DisableHwAcceleration" }))
+                    new List<string>() { "Skin", "AsyncImageLoading", "DisableHwAcceleration", "DatabasePath" }))
                 {
                     if (dialogs.ShowMessage(
                         resources.FindString("SettingsRestartAskMessage"),
@@ -339,9 +339,10 @@ namespace PlayniteUI.ViewModels
 
         public void SelectDbFile()
         {
-            var path = dialogs.SaveFile("Database file (*.db)|*.db", false);
+            var path = dialogs.SelectFile("Database file (*.db)|*.db");
             if (!string.IsNullOrEmpty(path))
             {
+                dialogs.ShowMessage(resources.FindString("SettingsDBPathNotification"));
                 Settings.DatabasePath = path;
                 Settings.OnPropertyChanged("DatabasePath", true);
             }

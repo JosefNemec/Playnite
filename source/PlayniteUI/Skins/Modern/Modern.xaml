@@ -2771,7 +2771,7 @@
                         <DockPanel>
                             <RadioButton Content="{DynamicResource MenuAddGame}" Name="ButtonAddGame"
                                     DockPanel.Dock="Top" />
-                            <RadioButton Content="{DynamicResource MenuReloadLibrary}" Command="{Binding LoadGamesCommand}"
+                            <RadioButton Content="{DynamicResource MenuReloadLibrary}" Command="{Binding UpdateGamesCommand}"
                                     DockPanel.Dock="Top" />
                             <RadioButton Content="{DynamicResource MenuTools}" Name="ButtonTools"
                                     DockPanel.Dock="Top" />

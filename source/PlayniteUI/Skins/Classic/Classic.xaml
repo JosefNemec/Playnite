@@ -2397,7 +2397,7 @@
                             </MenuItem>
                             <Separator />
                             <MenuItem Header="{DynamicResource MenuReloadLibrary}" Style="{DynamicResource ProgressMenu}"
-                                      Command="{Binding LoadGamesCommand}"/>
+                                      Command="{Binding UpdateGamesCommand}"/>
                             <MenuItem Header="{DynamicResource MenuTools}">                                
                                 <MenuItem Header="{DynamicResource MenuPlatformEmulatorSettingsTitle}"
                                       Command="{Binding OpenPlatformsCommand}"/>

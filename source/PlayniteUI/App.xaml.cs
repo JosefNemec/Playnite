@@ -424,7 +424,10 @@ namespace PlayniteUI
                 GamesEditor);
             mainModel.OpenView();
             Current.MainWindow = window.Window;
-            await mainModel.LoadGames(AppSettings.UpdateLibStartup, steamCatImportId, !isFirstStart);
+            if (AppSettings.UpdateLibStartup)
+            {
+                await mainModel.UpdateDatabase(AppSettings.UpdateLibStartup, steamCatImportId, !isFirstStart);
+            }
 
             if (isFirstStart)
             {
@@ -457,7 +460,7 @@ namespace PlayniteUI
 
             fullscreenModel.OpenView();
             Current.MainWindow = window.Window;
-            await fullscreenModel.LoadGames(AppSettings.UpdateLibStartup, 0, true);
+            await fullscreenModel.UpdateDatabase(AppSettings.UpdateLibStartup, 0, true);
 
             Current.MainWindow = window.Window;
             fullscreenModel.OpenView(false);
