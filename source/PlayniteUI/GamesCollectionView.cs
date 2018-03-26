@@ -210,7 +210,7 @@ namespace PlayniteUI
         public bool IsLaunching => Game.IsLaunching;
         public bool IsRunning => Game.IsRunning;
         public GameState State => Game.State;
-        public double Playtime => Game.Playtime;
+        public long Playtime => Game.Playtime;
 
         public string Name
         {

@@ -448,6 +448,11 @@ namespace PlayniteUI
         {
             var game = database.GetGame(id);
             game.State.SetState(installed, running, installing, uninstalling, launching);
+            if (launching == true)
+            {
+                game.LastActivity = DateTime.Now;
+            }
+
             database.UpdateGameInDatabase(game);
         }
 

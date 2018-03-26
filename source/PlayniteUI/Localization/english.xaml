@@ -412,6 +412,8 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="Minimize">Minimize</sys:String>
     <sys:String x:Key="Close">Close</sys:String>
     <sys:String x:Key="Change">Change</sys:String>
+    <sys:String x:Key="Advanced">Advanced</sys:String>
+    <sys:String x:Key="Never">Never</sys:String>
 
     <sys:String x:Key="EmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
@@ -454,4 +456,9 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="CancelMonitoringAskTitle">Cancel game monitoring?</sys:String>
     <sys:String x:Key="CancelMonitoringSetupAsk">Installation monitoring is currently running, do you want to cancel the process and return game to previous state?</sys:String>
     <sys:String x:Key="CancelMonitoringExecutionAsk">Game execution monitoring is currently running, do you want to cancel the process and return game to previous state?</sys:String>
+
+    <sys:String x:Key="TimePlayed">Time played</sys:String>
+    <sys:String x:Key="LastPlayed">Last played</sys:String>
+    <sys:String x:Key="PlayedHours">{0}h {1}m</sys:String>
+    <sys:String x:Key="PlayedMinutes">{0} minutes</sys:String>
 </ResourceDictionary>

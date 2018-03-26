@@ -2073,7 +2073,31 @@
             </StackPanel>
         </Grid>
     </ControlTemplate>
-    
+
+    <ControlTemplate x:Key="PlayTimeInfoView">
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{DynamicResource TimePlayed}" Foreground="{DynamicResource GlyphBrush}"
+                       Grid.Column="0" Grid.Row="0" Margin="0,0,10,3"/>
+            <TextBlock Text="{Binding Game.Playtime, Converter={pui:LongToTimePlayedConverter}}"
+                       Grid.Column="1" Grid.Row="0"/>
+            <TextBlock Text="{DynamicResource LastPlayed}" Foreground="{DynamicResource GlyphBrush}" 
+                       Grid.Column="0" Grid.Row="1"/>
+            <TextBlock Text="{Binding Game.LastActivity, Converter={pui:NullableDateToStringConverter}}"
+                       Grid.Column="1" Grid.Row="1"/>
+        </Grid>
+    </ControlTemplate>
+
     <ControlTemplate x:Key="GameDetailsView">
         <Grid>
             <Grid.Resources>
@@ -2120,15 +2144,24 @@
                 <Image Margin="0,0,0,10" VerticalAlignment="Top"          
                        RenderOptions.BitmapScalingMode="Fant"
                        Source="{Binding Game.Image, IsAsync=True, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}" />
-                <Button Content="{DynamicResource PlayGame}" Style="{StaticResource PlayButton}" Height="40"
+                <Button Height="40" Content="{DynamicResource PlayGame}" Style="{StaticResource PlayButton}"
                         Visibility="{Binding IsPlayAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding PlayCommand}"/>
-                <Button Content="{DynamicResource InstallGame}" Height="40"
+                <Button Height="40" Content="{DynamicResource InstallGame}"
                         Visibility="{Binding IsInstallAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding InstallCommand}"/>
-                <Button Content="{DynamicResource SetupRunning}" Height="40"
-                        Visibility="{Binding IsSetupProgressAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                <Button Height="40" Content="{DynamicResource SetupRunning}"
+                        Visibility="{Binding IsInstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding CheckSetupCommand}"/>
+                <Button Height="40" Content="{DynamicResource SetupRunning}"  
+                        Visibility="{Binding IsUninstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{Binding CheckSetupCommand}"/>
+                <Button Height="40" Content="{DynamicResource GameRunning}" 
+                        Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{Binding CheckExecutionCommand}"/>
+                <Button Height="40" Content="{DynamicResource GameLaunching}"
+                        Visibility="{Binding IsLaunching, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{Binding CheckExecutionCommand}"/>
                 <Button Content="{DynamicResource MoreAction}" Height="40"
                         Margin="0,5,0,0" pui:LeftClickContextMenuBehavior.Enabled="True">
                     <Button.ContextMenu>
@@ -2138,12 +2171,26 @@
                 </Button>
             </StackPanel>
 
-            <Border Grid.Column="1" Grid.Row="1" Padding="10" Margin="20,0,10,20" CornerRadius="3"
+            <Border Grid.Column="1" Grid.Row="2" Padding="10" Margin="20,0,10,20" CornerRadius="3"
                     VerticalAlignment="Top" MaxWidth="300"
                     Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <ScrollViewer>
-                    <ContentControl Template="{StaticResource GamePropertiesView}" />
-                </ScrollViewer>
+                <DockPanel>
+                    <Border DockPanel.Dock="Top" Margin="0,0,0,20">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Game.Playtime}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <ContentControl Template="{StaticResource PlayTimeInfoView}"  />
+                    </Border>
+                    <ScrollViewer DockPanel.Dock="Top">
+                        <ContentControl Template="{StaticResource GamePropertiesView}" />
+                    </ScrollViewer>
+                </DockPanel>
             </Border>
 
             <Border Grid.Column="2" Grid.Row="1" Margin="0,0,5,20"
@@ -2680,14 +2727,9 @@
                     <Button DockPanel.Dock="Left" Command="{Binding OpenMainMenuCommand}"
                             HorizontalContentAlignment="Left" BorderThickness="0" Background="Transparent">                    
                         <Border DockPanel.Dock="Left" Background="Transparent"
-                                Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="☰" VerticalAlignment="Center" FontWeight="Bold" Opacity="0.9"
-                                            FontSize="20" Foreground="{StaticResource TextBrush}" />
-                                <Image Source="/Images/applogo_clean.png" Height="28" Name="ImageLogo"
-                                        RenderOptions.BitmapScalingMode="Fant" Margin="10,0,5,0"
-                                        VerticalAlignment="Center"/>
-                            </StackPanel>
+                                Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True">                           
+                            <TextBlock Text="☰" VerticalAlignment="Center" FontWeight="Bold" Opacity="0.9"
+                                        FontSize="20" Foreground="{StaticResource TextBrush}" />
                         </Border>
                     </Button>
 

@@ -220,6 +220,7 @@
     <Compile Include="Converters\OpacityBoolConverter.cs" />
     <Compile Include="Converters\EnumerableNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\LongToTimePlayedConverter.cs" />
     <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
     <Compile Include="Converters\WidthToFontSizeConverter.cs" />
