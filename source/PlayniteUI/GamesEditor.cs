@@ -149,15 +149,6 @@ namespace PlayniteUI
             {
                 logger.Error(exc, "Failed to set jump list data: ");
             }
-
-            if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
-            {
-                App.CurrentApp.Quit();
-            }
-            else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
-            {
-                Application.Current.MainWindow.WindowState = WindowState.Minimized;
-            }
         }
 
         public void ActivateAction(IGame game, GameTask action)
@@ -461,6 +452,15 @@ namespace PlayniteUI
             var game = args.Controller.Game;
             logger.Info($"Started {game.Name} game.");
             UpdateGameState(game.Id, null, true, null, null, false);
+
+            if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
+            {
+                App.CurrentApp.Quit();
+            }
+            else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Minimized;
+            }
         }
 
         private void Controllers_Stopped(object sender, GameControllerEventArgs args)

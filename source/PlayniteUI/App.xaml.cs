@@ -81,11 +81,7 @@ namespace PlayniteUI
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            if (!resourcesReleased)
-            {
-                ReleaseResources();
-            }
-
+            ReleaseResources();
             appMutex?.ReleaseMutex();
         }
 
@@ -377,6 +373,11 @@ namespace PlayniteUI
 
         private void ReleaseResources()
         {
+            if (resourcesReleased)
+            {
+                return;
+            }
+
             var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), () =>
             {
                 try
