@@ -259,7 +259,16 @@
       Platforms: [Sony PlayStation 3]
       ImageExtensions: [bin]
       ExecutableLookup: ^rpcs3.*\.exe
-  
+
+- Name: Vita3K
+  Website: 'https://vita3k.github.io/'
+  Profiles:
+    - Name: Default
+      DefaultArguments: '"{ImagePath}"'
+      Platforms: [Sony PlayStation Vita]
+      ImageExtensions: [vpk]
+      ExecutableLookup: ^Vita3K.*\.exe
+
 - Name: m64p
   Website: 'https://m64p.github.io/'
   Profiles:
@@ -320,7 +329,7 @@
     - Name: Default
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Commodore Amiga]
-      ImageExtensions: [iso, ccd, cue, chd, mds, nrg, adf, adz, gz, dms, ipf, scp, fdi]
+      ImageExtensions: [iso, ccd, cue, chd, mds, nrg, adf, adz, gz, dms, ipf, scp, fdi, lha, lzx]
       ExecutableLookup: ^Launcher\.exe
       
 - Name: WinUAE
@@ -329,7 +338,7 @@
     - Name: Default
       DefaultArguments: '-s use_gui=no -s gfx_fullscreen_amiga=true -0 "{ImagePath}"'
       Platforms: [Commodore Amiga]
-      ImageExtensions: [iso, ccd, cue, chd, mds, nrg, adf, adz, gz, dms, ipf, scp, fdi]
+      ImageExtensions: [iso, ccd, cue, chd, mds, nrg, adf, adz, gz, dms, ipf, scp, fdi, lha]
       ExecutableLookup: ^winuae.*\.exe$
     - Name: Amiga CD32
       DefaultArguments: '-s use_gui=no -s gfx_fullscreen_amiga=true -s quickstart=cd32,0 -cdimage="{ImagePath}"'
@@ -339,12 +348,12 @@
     - Name: Amiga 500
       DefaultArguments: '-s use_gui=no -s gfx_fullscreen_amiga=true -s quickstart=a500,0 -0 "{ImagePath}"'
       Platforms: [Commodore Amiga]
-      ImageExtensions: [adf, adz, gz, dms, ipf, scp, fdi]
+      ImageExtensions: [adf, adz, gz, dms, ipf, scp, fdi, lha]
       ExecutableLookup: ^winuae.*\.exe$
     - Name: Amiga 1200
       DefaultArguments: '-s use_gui=no -s gfx_fullscreen_amiga=true -s quickstart=a1200,0 -0 "{ImagePath}"'
       Platforms: [Commodore Amiga]
-      ImageExtensions: [iso, ccd, cue, chd, mds, nrg, adf, adz, gz, dms, ipf, scp, fdi]
+      ImageExtensions: [iso, ccd, cue, chd, mds, nrg, adf, adz, gz, dms, ipf, scp, fdi, lha]
       ExecutableLookup: ^winuae.*\.exe$
   
 - Name: VisualBoyAdvance
@@ -487,8 +496,8 @@
   Profiles:
     - Name: Default
       DefaultArguments: '"{ImagePath}"'
-      Platforms: [Apple II, Atari 2600, Atari 7800, Atari Lynx, ColecoVision, Commodore 64, Mattel Intellivision, NEC TurboGrafx 16, NEC TurboGrafx-CD, Nintendo Entertainment System, Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance, Nintendo Virtual Boy, Nintendo 64, PC Engine SuperGrafx, Sega Game Gear, Sega Genesis, Sega Master System, Sega Saturn, SNK Neo Geo Pocket, SNK Neo Geo Pocket Color, Sony PlayStation, Super Nintendo Entertainment System, WonderSwan, WonderSwan Color]
-      ImageExtensions: [lnx, pce, cue, ccd, nes, gb, gbc, gba, vb, sfc, smc, gg, sms, md, ws, wsc, ngp, ngc, zip, m3u, fds, rar, 7z, gz, int, col, bin, smd, gen, 32x, dsk, n64, v64, z64, sgb, sg, sgx, a26, a78, rom, prg, d64, g64, crt, tap]
+      Platforms: [Apple II, Atari 2600, Atari 7800, Atari Lynx, ColecoVision, Commodore 64, Mattel Intellivision, NEC TurboGrafx 16, NEC TurboGrafx-CD, Nintendo Entertainment System, Nintendo Game Boy, Nintendo Game Boy Color, Nintendo Game Boy Advance, Nintendo Virtual Boy, Nintendo 64, PC Engine SuperGrafx, Sega Game Gear, Sega Genesis, Sega Master System, Sega Saturn, SNK Neo Geo Pocket, SNK Neo Geo Pocket Color, Sony PlayStation, Super Nintendo Entertainment System, WonderSwan, WonderSwan Color, Sinclair ZX Spectrum]
+      ImageExtensions: [lnx, pce, cue, ccd, nes, gb, gbc, gba, vb, sfc, smc, gg, sms, md, ws, wsc, ngp, ngc, zip, m3u, fds, rar, 7z, gz, int, col, bin, smd, gen, 32x, dsk, n64, v64, z64, sgb, sg, sgx, a26, a78, rom, prg, d64, g64, crt, tap, tzx]
       ExecutableLookup: ^EmuHawk\.exe$
       
 - Name: MAME
