@@ -19,11 +19,15 @@
         Visibility="{Binding Visibility, Mode=TwoWay}"
         WindowState="{Binding WindowState, Mode=TwoWay}"              
         x:Name="WindowMain" AutomationProperties.AutomationId="WindowMain"
-        Unloaded="WindowMain_Unloaded">
+        Unloaded="WindowMain_Unloaded"
+        AllowDrop="True">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing" >
             <prism:InvokeCommandAction Command="{Binding WindowClosingCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Drop" >
+            <prism:InvokeCommandAction Command="{Binding FileDroppedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 

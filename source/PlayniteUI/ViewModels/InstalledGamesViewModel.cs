@@ -256,6 +256,14 @@ namespace PlayniteUI.ViewModels
             return window.CreateAndOpenDialog(this);
         }
 
+        public bool? OpenView(string directory)
+        {
+#pragma warning disable CS4014
+            ScanFolder(directory);
+#pragma warning restore CS4014
+            return window.CreateAndOpenDialog(this);
+        }
+
         public void CloseView(bool? result)
         {
             window.Close(result);
@@ -392,6 +400,11 @@ namespace PlayniteUI.ViewModels
                 return;
             }
 
+            await ScanFolder(path);
+        }
+
+        public async Task ScanFolder(string path)
+        {
             IsLoading = true;
             cancelToken = new CancellationTokenSource();
 

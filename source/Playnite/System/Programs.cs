@@ -1,5 +1,6 @@
 ﻿using IWshRuntimeLibrary;
 using Microsoft.Win32;
+using Playnite.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -395,6 +396,64 @@ namespace Playnite
 
             progs.AddRange(GetUninstallProgsFromView(RegistryView.Registry32));
             return progs;
+        }
+
+        public static Game GetGameFromExecutable(string path)
+        {
+            if (!System.IO.File.Exists(path))
+            {
+                throw new FileNotFoundException($"Cannot create game from executable, {path} not found.");
+            }
+
+            var game = new Game();
+
+            if (string.Equals(Path.GetExtension(path), ".lnk", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var prog = ParseShortcut(path);
+                var file = new FileInfo(prog.Path);
+                var versionInfo = FileVersionInfo.GetVersionInfo(prog.Path);
+                var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(file.DirectoryName).Name;
+                game.Name = programName;
+                game.InstallDirectory = prog.WorkDir;
+                game.PlayTask = new GameTask()
+                {
+                    Type = GameTaskType.File,
+                    WorkingDir = "{InstallDir}",
+                    Path = prog.Path.Replace(game.InstallDirectory, "").Trim(Path.DirectorySeparatorChar),
+                    Arguments = prog.Arguments
+                };
+            }
+            else
+            {
+                var file = new FileInfo(path);
+                var versionInfo = FileVersionInfo.GetVersionInfo(path);
+                var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(file.DirectoryName).Name;
+                game.Name = programName;
+                game.InstallDirectory = file.DirectoryName;
+                game.PlayTask = new GameTask()
+                {
+                    Type = GameTaskType.File,
+                    WorkingDir = "{InstallDir}",
+                    Path = file.Name
+                };
+            };
+
+            return game;
+        }
+
+        private static Program ParseShortcut(string path)
+        {
+            var shell = new WshShell();
+            var link = (IWshShortcut)shell.CreateShortcut(path);
+
+            return new Program()
+            {
+                Path = link.TargetPath,
+                Icon = link.IconLocation,
+                Name = link.FullName,
+                WorkDir = link.WorkingDirectory,
+                Arguments = link.Arguments
+            };
         }
     }
 }

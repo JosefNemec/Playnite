@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -339,6 +340,14 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<DragEventArgs> FileDroppedCommand
+        {
+            get => new RelayCommand<DragEventArgs>((args) =>
+            {
+                OnFileDropped(args);
+            });
+        }
+
         public RelayCommand<object> OpenAboutCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -615,7 +624,7 @@ namespace PlayniteUI.ViewModels
             BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
             if (GamesView.CollectionView.Count > 0)
             {
-                SelectedGame = GamesView.CollectionView.GetItemAt(0) as GameViewEntry;
+                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).ProviderId);
             }
             else
             {
@@ -1012,6 +1021,12 @@ namespace PlayniteUI.ViewModels
             AppSettings.GamesViewType = type;
         }
 
+        public void SelectGame(string providerId)
+        {
+            var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.ProviderId == providerId);
+            SelectedGame = viewEntry;
+        }
+
         private void OnClosing(CancelEventArgs args)
         {
             if (ignoreCloseActions)
@@ -1027,6 +1042,36 @@ namespace PlayniteUI.ViewModels
             else
             {
                 ShutdownApp();
+            }
+        }
+
+        private void OnFileDropped(DragEventArgs args)
+        {
+            if (args.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var files = (string[])args.Data.GetData(DataFormats.FileDrop);
+                if (files.Count() == 1)
+                {
+                    Window.BringToForeground();
+
+                    var path = files[0];
+                    if (File.Exists(path))
+                    {
+                        var game = Programs.GetGameFromExecutable(path);
+                        Database.AddGame(game);
+                        GamesEditor.EditGame(game);
+                        SelectGame(game.ProviderId);
+                    }
+                    else if (Directory.Exists(path))
+                    {
+                        var instMode = new InstalledGamesViewModel(
+                           Database,
+                           InstalledGamesWindowFactory.Instance,
+                           Dialogs);
+
+                        instMode.OpenView(path);
+                    }
+                }
             }
         }
 

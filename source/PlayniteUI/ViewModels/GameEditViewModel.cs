@@ -1482,6 +1482,19 @@ namespace PlayniteUI.ViewModels
             }
 
             var path = EditingGame.ResolveVariables(EditingGame.PlayTask.Path);
+            if (!File.Exists(path))
+            {
+                path = Path.Combine(
+                    EditingGame.ResolveVariables(EditingGame.PlayTask.WorkingDir),
+                    path);
+            }
+
+            if (!File.Exists(path))
+            {
+                logger.Error($"Can't find executable for icon extraction, file {path}");
+                return;
+            }
+
             var icon = SaveFileIconToTemp(path);
             if (string.IsNullOrEmpty(icon))
             {

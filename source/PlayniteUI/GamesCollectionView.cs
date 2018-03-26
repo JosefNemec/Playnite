@@ -186,6 +186,7 @@ namespace PlayniteUI
     {
         public int Id => Game.Id;
         public Provider Provider => Game.Provider;
+        public string ProviderId => Game.ProviderId;
         public List<string> Categories => Game.Categories;
         public List<string> Tags => Game.Tags;
         public List<string> Genres => Game.Genres;
