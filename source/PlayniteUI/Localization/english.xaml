@@ -229,6 +229,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="SettingsRestartAskMessage">Some of the changed settings require Playnite to be restarted. Do you want to restart Playnite now?</sys:String>
     <sys:String x:Key="SettingsRestartTitle">Restart Playnite?</sys:String>
     <sys:String x:Key="SettingsDBPathNotification">New database file location will only be used after application is restarted.</sys:String>
+    <sys:String x:Key="SettingsClosePlaytimeNotif">Gameplay time will not be recorded if "Close" action is set.</sys:String>
 
     <sys:String x:Key="ImportError">Import Error</sys:String>
     <sys:String x:Key="LoginChecking">Checking...</sys:String>
