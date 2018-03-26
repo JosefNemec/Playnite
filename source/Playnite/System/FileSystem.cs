@@ -79,8 +79,10 @@ namespace Playnite
 
         public static string GetMD5(Stream stream)
         {
-            var md5 = MD5.Create();
-            return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
+            using (var md5 = MD5.Create())
+            {
+                return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
+            }
         }
 
         public static void AddFolderToZip(ZipArchive archive, string zipRoot, string path, string filter, SearchOption searchOption)
