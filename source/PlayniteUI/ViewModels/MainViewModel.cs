@@ -1057,6 +1057,12 @@ namespace PlayniteUI.ViewModels
                     var path = files[0];
                     if (File.Exists(path))
                     {
+                        // Other file types to be added in #501
+                        if (!(new List<string>() { ".exe", ".lnk" }).Contains(Path.GetExtension(path).ToLower()))
+                        {
+                            return;
+                        }
+
                         var game = Programs.GetGameFromExecutable(path);
                         Database.AddGame(game);
                         GamesEditor.EditGame(game);
