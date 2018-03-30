@@ -34,7 +34,10 @@ namespace Playnite
         AgeRating,
         Region,
         Source,
-        CompletionStatus
+        CompletionStatus,
+        UserScore,
+        CriticScore,
+        CommunityScore
     }
 
     public enum SortOrderDirection

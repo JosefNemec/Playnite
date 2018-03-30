@@ -428,6 +428,9 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="Beaten">Beaten</sys:String>
     <sys:String x:Key="Completed">Completed</sys:String>
     <sys:String x:Key="CompletionStatus">Completion Status</sys:String>
+    <sys:String x:Key="UserScore">User Score</sys:String>
+    <sys:String x:Key="CriticScore">Critic Score</sys:String>
+    <sys:String x:Key="CommunityScore">Community Score</sys:String>
 
     <sys:String x:Key="EmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
@@ -465,6 +468,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="ProgreessAvailabilityMessage">Not available when some action is in progress.</sys:String>
     <sys:String x:Key="DescriptionHTMLSupportTooltip">Description text is HTML syntax sensitive</sys:String>
     <sys:String x:Key="DescriptionPlaytimeSeconds">Playtime is tracked and stored in seconds.</sys:String>
+    <sys:String x:Key="DescriptionScoreValues">Accepts 0 to 100 or empty for no score.</sys:String>
     <sys:String x:Key="PatreonDevelopMessage">Playnite's development is supported by these patrons:</sys:String>
     <sys:String x:Key="AboutContributorsMessage">Code, localization and other contributors in no particular order:</sys:String>
 

@@ -33,6 +33,9 @@
     <Style TargetType="{x:Type pc:NumericBox}"  BasedOn="{StaticResource {x:Type TextBox}}">
     </Style>
 
+    <Style TargetType="{x:Type pc:NullableIntBox}"  BasedOn="{StaticResource {x:Type TextBox}}">
+    </Style>
+
     <Style TargetType="pc:WindowBase">
         <Setter Property="Template">
             <Setter.Value>

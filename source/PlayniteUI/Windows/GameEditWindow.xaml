@@ -59,6 +59,9 @@
                         <Style TargetType="controls:NumericBox" BasedOn="{StaticResource {x:Type controls:NumericBox}}" >
                             <Setter Property="Margin" Value="3" />
                         </Style>
+                        <Style TargetType="controls:NullableIntBox" BasedOn="{StaticResource {x:Type controls:NullableIntBox}}" >
+                            <Setter Property="Margin" Value="3" />
+                        </Style>
                         <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}" >
                             <Setter Property="Margin" Value="3" />
                         </Style>
@@ -98,6 +101,9 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -211,14 +217,12 @@
                     <CheckBox Grid.Column="1" Grid.Row="10" Name="CheckDescription" 
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseDescriptionChanges}"/>
-                    <TextBox Grid.Column="2" Grid.Row="10" Grid.RowSpan="5"
+                    <TextBox Grid.Column="2" Grid.Row="10" Grid.RowSpan="9"
                              TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
                              ScrollViewer.VerticalScrollBarVisibility="Auto"
                              Text="{Binding EditingGame.Description, UpdateSourceTrigger=PropertyChanged}"
                              ToolTip="{DynamicResource DescriptionHTMLSupportTooltip}"
-                             ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"/>
-
-                    
+                             ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"/>                    
                     
                     <!-- Series -->
                     <TextBlock Grid.Column="3" Grid.Row="1" Text="{DynamicResource SeriesLabel}"/>
@@ -260,59 +264,90 @@
                     <TextBox Grid.Column="5" Grid.Row="5"
                              Text="{Binding EditingGame.Source, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <!-- Last Played -->
-                    <TextBlock Grid.Column="3" Grid.Row="7" Text="{DynamicResource LastPlayedLabel}"/>
+                    <!-- UserScore -->
+                    <TextBlock Grid.Column="3" Grid.Row="6" Text="{DynamicResource UserScore}"/>
+                    <CheckBox Grid.Column="4" Grid.Row="6"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseUserScoreChanges}"/>
+                    <controls:NullableIntBox Grid.Column="5" Grid.Row="6" Width="50" HorizontalAlignment="Left"
+                                             MinValue="0" MaxValue="100"
+                                             Value="{Binding EditingGame.UserScore}"
+                                             ToolTip="{DynamicResource DescriptionScoreValues}"
+                                             ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0" />
+
+                    <!-- CriticScore -->
+                    <TextBlock Grid.Column="3" Grid.Row="7" Text="{DynamicResource CriticScore}"/>
                     <CheckBox Grid.Column="4" Grid.Row="7"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseCriticScoreChanges}"/>
+                    <controls:NullableIntBox Grid.Column="5" Grid.Row="7" Width="50" HorizontalAlignment="Left"
+                                             MinValue="0" MaxValue="100"
+                                             Value="{Binding EditingGame.CriticScore}"
+                                             ToolTip="{DynamicResource DescriptionScoreValues}"
+                                             ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0" />          
+
+                    <!-- CommunityScore -->
+                    <TextBlock Grid.Column="3" Grid.Row="8" Text="{DynamicResource CommunityScore}"/>
+                    <CheckBox Grid.Column="4" Grid.Row="8"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseCommunityScoreChanges}"/>
+                    <controls:NullableIntBox Grid.Column="5" Grid.Row="8" Width="50" HorizontalAlignment="Left"
+                                             MinValue="0" MaxValue="100"
+                                             Value="{Binding EditingGame.CommunityScore}"
+                                             ToolTip="{DynamicResource DescriptionScoreValues}"
+                                             ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0" />
+
+                    <!-- Last Played -->
+                    <TextBlock Grid.Column="3" Grid.Row="10" Text="{DynamicResource LastPlayedLabel}"/>
+                    <CheckBox Grid.Column="4" Grid.Row="10"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseLastActivityChanges}"/>
-                    <DatePicker Grid.Column="5" Grid.Row="7"
+                    <DatePicker Grid.Column="5" Grid.Row="10"
                                 SelectedDate="{Binding EditingGame.LastActivity}"/>
 
                     <!-- PlayTime -->
-                    <TextBlock Grid.Column="3" Grid.Row="8" Text="{DynamicResource TimePlayed}"/>
-                    <CheckBox Grid.Column="4" Grid.Row="8"
+                    <TextBlock Grid.Column="3" Grid.Row="11" Text="{DynamicResource TimePlayed}"/>
+                    <CheckBox Grid.Column="4" Grid.Row="11"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UsePlaytimeChanges}"/>
-                    <controls:NumericBox Grid.Column="5" Grid.Row="8"
+                    <controls:NumericBox Grid.Column="5" Grid.Row="11"
                               LongValue="{Binding EditingGame.Playtime}"
                               ToolTip="{DynamicResource DescriptionPlaytimeSeconds}"
                               ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"/>
 
                     <!-- PlayCount -->
-                    <TextBlock Grid.Column="3" Grid.Row="9" Text="{DynamicResource PlayCountLabel}"/>
-                    <CheckBox Grid.Column="4" Grid.Row="9"
+                    <TextBlock Grid.Column="3" Grid.Row="12" Text="{DynamicResource PlayCountLabel}"/>
+                    <CheckBox Grid.Column="4" Grid.Row="12"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UsePlayCountChanges}"/>
-                    <controls:NumericBox Grid.Column="5" Grid.Row="9"
+                    <controls:NumericBox Grid.Column="5" Grid.Row="12"
                               LongValue="{Binding EditingGame.PlayCount}" />
 
                     <!-- CompletionStatus -->
-                    <TextBlock Grid.Column="3" Grid.Row="10" Text="{DynamicResource CompletionStatus}"/>
-                    <CheckBox Grid.Column="4" Grid.Row="10"
+                    <TextBlock Grid.Column="3" Grid.Row="13" Text="{DynamicResource CompletionStatus}"/>
+                    <CheckBox Grid.Column="4" Grid.Row="13"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseCompletionStatusChanges}"/>
-
-                    <ContentControl Grid.Column="5" Grid.Row="10"
+                    <ContentControl Grid.Column="5" Grid.Row="13"
                                     DataContext="{Binding EditingGame}"
                                     Content="{StaticResource ComboCompletionStatusOptions}" />
-                    
-                    <Grid Height="25" Grid.Column="3" Grid.Row="11" />
 
+                    <Grid Height="25" Grid.Column="3" Grid.Row="14" />
+                    
                     <!-- Added -->
-                    <TextBlock Grid.Column="3" Grid.Row="12" Text="{DynamicResource AddedLabel}"/>
-                    <CheckBox Grid.Column="4" Grid.Row="12"
+                    <TextBlock Grid.Column="3" Grid.Row="15" Text="{DynamicResource AddedLabel}"/>
+                    <CheckBox Grid.Column="4" Grid.Row="15"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseAddedChanges}"/>
-                    <DatePicker Grid.Column="5" Grid.Row="12"
+                    <DatePicker Grid.Column="5" Grid.Row="15"
                                 SelectedDate="{Binding EditingGame.Added}"/>
                     
                     <!-- Modified -->
-                    <TextBlock Grid.Column="3" Grid.Row="13" Text="{DynamicResource ModifiedLabel}"
-                               />
-                    <TextBlock Grid.Column="5" Grid.Row="13" Margin="3,6,3,6"
+                    <TextBlock Grid.Column="3" Grid.Row="16" Text="{DynamicResource ModifiedLabel}" />
+                    <TextBlock Grid.Column="5" Grid.Row="16" Margin="3,6,3,6"
                              Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>                    
 
-                    <Grid Grid.Column="3" Grid.Row="14" />
+                    <Grid Grid.Column="3" Grid.Row="17" />
                 </Grid>
             </TabItem>
 

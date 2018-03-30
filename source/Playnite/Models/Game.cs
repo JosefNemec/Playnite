@@ -630,6 +630,51 @@ namespace Playnite.Models
             }
         }
 
+        private int? userScore = null;
+        public int? UserScore
+        {
+            get
+            {
+                return userScore;
+            }
+
+            set
+            {
+                userScore = value;
+                OnPropertyChanged("UserScore");
+            }
+        }
+
+        private int? criticScore = null;
+        public int? CriticScore
+        {
+            get
+            {
+                return criticScore;
+            }
+
+            set
+            {
+                criticScore = value;
+                OnPropertyChanged("CriticScore");
+            }
+        }
+
+        private int? communityScore = null;
+        public int? CommunityScore
+        {
+            get
+            {
+                return communityScore;
+            }
+
+            set
+            {
+                communityScore = value;
+                OnPropertyChanged("CommunityScore");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Game()

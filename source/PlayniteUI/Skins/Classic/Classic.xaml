@@ -1882,6 +1882,9 @@
     <Style TargetType="{x:Type pc:NumericBox}" BasedOn="{StaticResource {x:Type TextBox}}">
     </Style>
 
+    <Style TargetType="{x:Type pc:NullableIntBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+    </Style>
+        
     <ControlTemplate x:Key="GamePropertiesView">
         <Grid>
             <Grid.Resources>
@@ -2542,6 +2545,8 @@
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Playtime}}"/>
                                 <MenuItem Header="{DynamicResource PlayCountLabel}" IsCheckable="True"
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.PlayCount}}"/>
+                                <MenuItem Header="{DynamicResource CompletionStatus}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CompletionStatus}}"/>
                                 <MenuItem Header="{DynamicResource SeriesLabel}" IsCheckable="True"
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Series}}"/>
                                 <MenuItem Header="{DynamicResource VersionLabel}" IsCheckable="True"
@@ -2556,6 +2561,12 @@
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Added}}"/>
                                 <MenuItem Header="{DynamicResource ModifiedLabel}" IsCheckable="True"
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Modified}}"/>
+                                <MenuItem Header="{DynamicResource UserScore}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.UserScore}}"/>
+                                <MenuItem Header="{DynamicResource CriticScore}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CriticScore}}"/>
+                                <MenuItem Header="{DynamicResource CommunityScore}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CommunityScore}}"/>
                             </MenuItem>
                             <Separator />
                             <MenuItem Header="{DynamicResource MenuGroupDont}" IsCheckable="True"

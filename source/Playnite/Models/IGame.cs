@@ -246,6 +246,21 @@ namespace Playnite.Models
             get; set;
         }
 
+        int? UserScore
+        {
+            get; set;
+        }
+
+        int? CriticScore
+        {
+            get; set;
+        }
+
+        int? CommunityScore
+        {
+            get; set;
+        }
+
         CompletionStatus CompletionStatus
         {
             get; set;

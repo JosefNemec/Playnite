@@ -446,6 +446,54 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        private bool useUserScoreChanges;
+        public bool UseUserScoreChanges
+        {
+            get
+            {
+                return useUserScoreChanges;
+            }
+
+            set
+            {
+                useUserScoreChanges = value;
+                OnPropertyChanged("UseUserScoreChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useCriticScoreChanges;
+        public bool UseCriticScoreChanges
+        {
+            get
+            {
+                return useCriticScoreChanges;
+            }
+
+            set
+            {
+                useCriticScoreChanges = value;
+                OnPropertyChanged("UseCriticScoreChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useCommunityScoreChanges;
+        public bool UseCommunityScoreChanges
+        {
+            get
+            {
+                return useCommunityScoreChanges;
+            }
+
+            set
+            {
+                useCommunityScoreChanges = value;
+                OnPropertyChanged("UseCommunityScoreChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
         public bool ShowGeneralChangeNotif
         {
             get
@@ -470,7 +518,10 @@ namespace PlayniteUI.ViewModels
                     UseAgeRatingChanges ||
                     UseRegionChanges ||
                     UseSourceChanges ||
-                    UseCompletionStatusChanges);
+                    UseCompletionStatusChanges ||
+                    UseUserScoreChanges ||
+                    UseCriticScoreChanges ||
+                    UseCommunityScoreChanges);
             }
         }
 
@@ -1182,6 +1233,36 @@ namespace PlayniteUI.ViewModels
                         UseCompletionStatusChanges = true;
                     }
                     break;
+                case "UserScore":
+                    if (Games == null)
+                    {
+                        UseUserScoreChanges = Game.UserScore != EditingGame.UserScore;
+                    }
+                    else
+                    {
+                        UseUserScoreChanges = true;
+                    }
+                    break;
+                case "CriticScore":
+                    if (Games == null)
+                    {
+                        UseCriticScoreChanges = Game.CriticScore != EditingGame.CriticScore;
+                    }
+                    else
+                    {
+                        UseCriticScoreChanges = true;
+                    }
+                    break;
+                case "CommunityScore":
+                    if (Games == null)
+                    {
+                        UseCommunityScoreChanges = Game.CommunityScore != EditingGame.CommunityScore;
+                    }
+                    else
+                    {
+                        UseCommunityScoreChanges = true;
+                    }
+                    break;
             }
         }
 
@@ -1522,6 +1603,51 @@ namespace PlayniteUI.ViewModels
                 else
                 {
                     Game.CompletionStatus = EditingGame.CompletionStatus;
+                }
+            }
+
+            if (UseUserScoreChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.UserScore = EditingGame.UserScore;
+                    }
+                }
+                else
+                {
+                    Game.UserScore = EditingGame.UserScore;
+                }
+            }
+
+            if (UseCriticScoreChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.CriticScore = EditingGame.CriticScore;
+                    }
+                }
+                else
+                {
+                    Game.CriticScore = EditingGame.CriticScore;
+                }
+            }
+
+            if (UseCommunityScoreChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.CommunityScore = EditingGame.CommunityScore;
+                    }
+                }
+                else
+                {
+                    Game.CommunityScore = EditingGame.CommunityScore;
                 }
             }
 

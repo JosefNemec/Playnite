@@ -151,6 +151,12 @@
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Added]}" />
                         <MenuItem Header="{DynamicResource ModifiedLabel}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Modified]}" />
+                        <MenuItem Header="{DynamicResource UserScore}"
+                                    IsCheckable="True" IsChecked="{Binding GridViewHeaders[UserScore]}" />
+                        <MenuItem Header="{DynamicResource CriticScore}"
+                                    IsCheckable="True" IsChecked="{Binding GridViewHeaders[CriticScore]}" />
+                        <MenuItem Header="{DynamicResource CommunityScore}"
+                                    IsCheckable="True" IsChecked="{Binding GridViewHeaders[CommunityScore]}" />
                     </ContextMenu>
                 </GridView.ColumnHeaderContextMenu>
                 
@@ -614,6 +620,65 @@
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
 
+                <!-- UserScore -->
+                <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[UserScore], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                    <GridViewColumn.Header>
+                        <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.UserScore}">
+                            <GridViewColumnHeader.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource UserScore}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <ContentControl Style="{StaticResource SortIndicator}"
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.UserScore}}"/>
+                                </StackPanel>
+                            </GridViewColumnHeader.Content>
+                        </GridViewColumnHeader>
+                    </GridViewColumn.Header>
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding UserScore, Mode=OneWay}" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                
+                <!-- CriticScore -->
+                <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[CriticScore], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                    <GridViewColumn.Header>
+                        <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.CriticScore}">
+                            <GridViewColumnHeader.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource CriticScore}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <ContentControl Style="{StaticResource SortIndicator}"
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.CriticScore}}"/>
+                                </StackPanel>
+                            </GridViewColumnHeader.Content>
+                        </GridViewColumnHeader>
+                    </GridViewColumn.Header>
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding CriticScore, Mode=OneWay}" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                
+                <!-- CommunityScore -->
+                <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[CommunityScore], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                    <GridViewColumn.Header>
+                        <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.CommunityScore}">
+                            <GridViewColumnHeader.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource CommunityScore}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <ContentControl Style="{StaticResource SortIndicator}"
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.CommunityScore}}"/>
+                                </StackPanel>
+                            </GridViewColumnHeader.Content>
+                        </GridViewColumnHeader>
+                    </GridViewColumn.Header>
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding CommunityScore, Mode=OneWay}" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
             </GridView>
         </ListView.View>
     </ListView>

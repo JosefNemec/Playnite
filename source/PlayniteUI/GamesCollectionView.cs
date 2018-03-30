@@ -221,6 +221,9 @@ namespace PlayniteUI
         public string Region => Game.Region;
         public string Source => Game.Source;
         public CompletionStatus CompletionStatus => Game.CompletionStatus;
+        public int? UserScore => Game.UserScore;
+        public int? CriticScore => Game.CriticScore;
+        public int? CommunityScore => Game.CommunityScore;
 
         public string Name
         {

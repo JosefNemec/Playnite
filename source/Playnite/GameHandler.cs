@@ -229,6 +229,24 @@ namespace Playnite
                 dummyGame.CompletionStatus = firstCompletionStatus;
             }
 
+            var firstUserScore = firstGame.UserScore;
+            if (games.All(a => a.UserScore == firstUserScore) == true)
+            {
+                dummyGame.UserScore = firstUserScore;
+            }
+
+            var firstCriticScore = firstGame.CriticScore;
+            if (games.All(a => a.CriticScore == firstCriticScore) == true)
+            {
+                dummyGame.CriticScore = firstCriticScore;
+            }
+
+            var firstCommunityScore = firstGame.CommunityScore;
+            if (games.All(a => a.CommunityScore == firstCommunityScore) == true)
+            {
+                dummyGame.CommunityScore = firstCommunityScore;
+            }
+
             return dummyGame;
         }
     }
