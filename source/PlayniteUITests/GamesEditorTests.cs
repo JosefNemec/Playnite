@@ -39,7 +39,8 @@ namespace PlayniteUITests
                     Version = "Version 3",
                     AgeRating = "AgeRating 3",
                     Region = "Region 3",
-                    Source = "Source 3"
+                    Source = "Source 3",
+                    CompletionStatus = CompletionStatus.Completed
 
                 },
                 new Game()
@@ -61,7 +62,8 @@ namespace PlayniteUITests
                     Version = "Version 3",
                     AgeRating = "AgeRating 3",
                     Region = "Region 3",
-                    Source = "Source 3"
+                    Source = "Source 3",
+                    CompletionStatus = CompletionStatus.Completed
                 },
                 new Game()
                 {
@@ -82,7 +84,8 @@ namespace PlayniteUITests
                     Version = "Version 3",
                     AgeRating = "AgeRating 3",
                     Region = "Region 3",
-                    Source = "Source 3"
+                    Source = "Source 3",
+                    CompletionStatus = CompletionStatus.Completed
                 }
             };
 
@@ -106,6 +109,7 @@ namespace PlayniteUITests
             Assert.AreEqual(firstGame.AgeRating, gameCommon.AgeRating);
             Assert.AreEqual(firstGame.Region, gameCommon.Region);
             Assert.AreEqual(firstGame.Source, gameCommon.Source);
+            Assert.AreEqual(firstGame.CompletionStatus, gameCommon.CompletionStatus);
 
             // No common
             var gamesNoCommon = new List<Game>()
@@ -129,7 +133,8 @@ namespace PlayniteUITests
                     Version = "Version 1",
                     AgeRating = "AgeRating 1",
                     Region = "Region 1",
-                    Source = "Source 1"
+                    Source = "Source 1",
+                    CompletionStatus = CompletionStatus.Beaten
 
                 },
                 new Game()
@@ -151,7 +156,8 @@ namespace PlayniteUITests
                     Version = "Version 2",
                     AgeRating = "AgeRating 2",
                     Region = "Region 2",
-                    Source = "Source 2"
+                    Source = "Source 2",
+                    CompletionStatus = CompletionStatus.Completed
                 },
                 new Game()
                 {
@@ -172,7 +178,8 @@ namespace PlayniteUITests
                     Version = "Version 3",
                     AgeRating = "AgeRating 3",
                     Region = "Region 3",
-                    Source = "Source 3"
+                    Source = "Source 3",
+                    CompletionStatus = CompletionStatus.NotPlayed
                 }
             };
 
@@ -195,6 +202,7 @@ namespace PlayniteUITests
             Assert.IsNull(gameNoCommon.AgeRating);
             Assert.IsNull(gameNoCommon.Region);
             Assert.IsNull(gameNoCommon.Source);
+            Assert.AreEqual(gameNoCommon.CompletionStatus, CompletionStatus.NotPlayed);
         }
     }
 }

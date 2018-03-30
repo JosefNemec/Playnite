@@ -154,6 +154,7 @@
     <Compile Include="Converters\ObjectIdJsonConverter.cs" />
     <Compile Include="Database\GameDatabase.cs" />
     <Compile Include="Models\ActiveController.cs" />
+    <Compile Include="Models\CompletionStatus.cs" />
     <Compile Include="System\ProcessMonitor.cs" />
     <Compile Include="Providers\GenericGameController.cs" />
     <Compile Include="Resources.cs" />

@@ -615,6 +615,21 @@ namespace Playnite.Models
             }
         }
 
+        private CompletionStatus completionStatus = CompletionStatus.NotPlayed;
+        public CompletionStatus CompletionStatus
+        {
+            get
+            {
+                return completionStatus;
+            }
+
+            set
+            {
+                completionStatus = value;
+                OnPropertyChanged("CompletionStatus");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Game()

@@ -430,6 +430,22 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        private bool useCompletionStatusChanges;
+        public bool UseCompletionStatusChanges
+        {
+            get
+            {
+                return useCompletionStatusChanges;
+            }
+
+            set
+            {
+                useCompletionStatusChanges = value;
+                OnPropertyChanged("UseCompletionStatusChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
         public bool ShowGeneralChangeNotif
         {
             get
@@ -453,7 +469,8 @@ namespace PlayniteUI.ViewModels
                     UseVersionChanges ||
                     UseAgeRatingChanges ||
                     UseRegionChanges ||
-                    UseSourceChanges);
+                    UseSourceChanges ||
+                    UseCompletionStatusChanges);
             }
         }
 
@@ -1155,6 +1172,16 @@ namespace PlayniteUI.ViewModels
                         UseSourceChanges = true;
                     }
                     break;
+                case "CompletionStatus":
+                    if (Games == null)
+                    {
+                        UseCompletionStatusChanges = Game.CompletionStatus != EditingGame.CompletionStatus;
+                    }
+                    else
+                    {
+                        UseCompletionStatusChanges = true;
+                    }
+                    break;
             }
         }
 
@@ -1480,6 +1507,21 @@ namespace PlayniteUI.ViewModels
                 else
                 {
                     Game.Source = EditingGame.Source;
+                }
+            }
+
+            if (UseCompletionStatusChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.CompletionStatus = EditingGame.CompletionStatus;
+                    }
+                }
+                else
+                {
+                    Game.CompletionStatus = EditingGame.CompletionStatus;
                 }
             }
 

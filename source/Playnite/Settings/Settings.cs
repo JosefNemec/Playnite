@@ -407,7 +407,8 @@ namespace Playnite
             { "Version", false },
             { "AgeRating", false },
             { "Region", false },
-            { "Source", false }
+            { "Source", false },
+            { "CompletionStatus", false }
         };
 
         public ObservableConcurrentDictionary<string, bool> GridViewHeaders

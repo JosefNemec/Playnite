@@ -6,7 +6,7 @@
         xmlns:pui="clr-namespace:PlayniteUI"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
-        xmlns:models="clr-namespace:Playnite.Models;assembly=Playnite"
+        xmlns:pm="clr-namespace:Playnite.Models;assembly=Playnite"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"
@@ -73,6 +73,21 @@
                         <Style TargetType="DatePicker" BasedOn="{StaticResource {x:Type DatePicker}}" >
                             <Setter Property="Margin" Value="3" />
                         </Style>
+                        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
+                                            x:Key="CompletionStatusEnumValues">
+                            <ObjectDataProvider.MethodParameters>
+                                <x:Type TypeName="pm:CompletionStatus" />
+                            </ObjectDataProvider.MethodParameters>
+                        </ObjectDataProvider>
+                        <ComboBox x:Key="ComboCompletionStatusOptions" x:Shared="False"
+                                  SelectedValue="{Binding CompletionStatus}"
+                                  ItemsSource="{Binding Source={StaticResource CompletionStatusEnumValues}}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={pui:CompletionStatusToStringConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </Grid.Resources>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -83,6 +98,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -270,21 +286,33 @@
                     <controls:NumericBox Grid.Column="5" Grid.Row="9"
                               LongValue="{Binding EditingGame.PlayCount}" />
 
+                    <!-- CompletionStatus -->
+                    <TextBlock Grid.Column="3" Grid.Row="10" Text="{DynamicResource CompletionStatus}"/>
+                    <CheckBox Grid.Column="4" Grid.Row="10"
+                                Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                IsChecked="{Binding UseCompletionStatusChanges}"/>
+
+                    <ContentControl Grid.Column="5" Grid.Row="10"
+                                    DataContext="{Binding EditingGame}"
+                                    Content="{StaticResource ComboCompletionStatusOptions}" />
+                    
+                    <Grid Height="25" Grid.Column="3" Grid.Row="11" />
+
                     <!-- Added -->
-                    <TextBlock Grid.Column="3" Grid.Row="11" Text="{DynamicResource AddedLabel}"/>
-                    <CheckBox Grid.Column="4" Grid.Row="11"
+                    <TextBlock Grid.Column="3" Grid.Row="12" Text="{DynamicResource AddedLabel}"/>
+                    <CheckBox Grid.Column="4" Grid.Row="12"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseAddedChanges}"/>
-                    <DatePicker Grid.Column="5" Grid.Row="11"
+                    <DatePicker Grid.Column="5" Grid.Row="12"
                                 SelectedDate="{Binding EditingGame.Added}"/>
                     
                     <!-- Modified -->
-                    <TextBlock Grid.Column="3" Grid.Row="12" Text="{DynamicResource ModifiedLabel}"
+                    <TextBlock Grid.Column="3" Grid.Row="13" Text="{DynamicResource ModifiedLabel}"
                                />
-                    <TextBlock Grid.Column="5" Grid.Row="12" Margin="3,6,3,6"
+                    <TextBlock Grid.Column="5" Grid.Row="13" Margin="3,6,3,6"
                              Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>                    
 
-                    <Grid Grid.Column="3" Grid.Row="13" />
+                    <Grid Grid.Column="3" Grid.Row="14" />
                 </Grid>
             </TabItem>
 
@@ -557,7 +585,7 @@
                             <MenuItem Header="IGDB" Command="{Binding DownloadIGDBMetadataCommand}"/>
                             <MenuItem Header="Wiki" Command="{Binding DownloadWikiMetadataCommand}"/>
                             <MenuItem Header="{DynamicResource MetaSourceStore}" Command="{Binding DownloadStoreCommand}"
-                                      Visibility="{Binding EditingGame.Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static models:Provider.Custom}}"/>
+                                      Visibility="{Binding EditingGame.Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static pm:Provider.Custom}}"/>
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>

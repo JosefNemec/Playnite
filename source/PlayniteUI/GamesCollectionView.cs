@@ -220,6 +220,7 @@ namespace PlayniteUI
         public string AgeRating => Game.AgeRating;
         public string Region => Game.Region;
         public string Source => Game.Source;
+        public CompletionStatus CompletionStatus => Game.CompletionStatus;
 
         public string Name
         {

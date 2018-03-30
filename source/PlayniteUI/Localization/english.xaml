@@ -423,6 +423,11 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="Change">Change</sys:String>
     <sys:String x:Key="Advanced">Advanced</sys:String>
     <sys:String x:Key="Never">Never</sys:String>
+    <sys:String x:Key="NotPlayed">Not Played</sys:String>
+    <sys:String x:Key="Played">Played</sys:String>
+    <sys:String x:Key="Beaten">Beaten</sys:String>
+    <sys:String x:Key="Completed">Completed</sys:String>
+    <sys:String x:Key="CompletionStatus">Completion Status</sys:String>
 
     <sys:String x:Key="EmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>

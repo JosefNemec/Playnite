@@ -223,6 +223,12 @@ namespace Playnite
                 dummyGame.Source = firstSource;
             }
 
+            var firstCompletionStatus = firstGame.CompletionStatus;
+            if (games.All(a => a.CompletionStatus == firstCompletionStatus) == true)
+            {
+                dummyGame.CompletionStatus = firstCompletionStatus;
+            }
+
             return dummyGame;
         }
     }

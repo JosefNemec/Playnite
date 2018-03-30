@@ -135,6 +135,8 @@
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Playtime]}" />
                         <MenuItem Header="{DynamicResource PlayCountLabel}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[PlayCount]}" />
+                        <MenuItem Header="{DynamicResource CompletionStatus}"
+                                    IsCheckable="True" IsChecked="{Binding GridViewHeaders[CompletionStatus]}" />
                         <MenuItem Header="{DynamicResource SeriesLabel}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Series]}" />
                         <MenuItem Header="{DynamicResource VersionLabel}"
@@ -448,6 +450,26 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding PlayCount, Mode=OneWay}" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+
+                <!-- CompletionStatus -->
+                <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[CompletionStatus], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                    <GridViewColumn.Header>
+                        <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.CompletionStatus}">
+                            <GridViewColumnHeader.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource PlayCountLabel}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <ContentControl Style="{StaticResource SortIndicator}"
+                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.CompletionStatus}}"/>
+                                </StackPanel>
+                            </GridViewColumnHeader.Content>
+                        </GridViewColumnHeader>
+                    </GridViewColumn.Header>
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding CompletionStatus, Mode=OneWay, Converter={pui:CompletionStatusToStringConverter}}" />
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>

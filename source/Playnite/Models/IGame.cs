@@ -246,6 +246,11 @@ namespace Playnite.Models
             get; set;
         }
 
+        CompletionStatus CompletionStatus
+        {
+            get; set;
+        }
+
         void OnPropertyChanged(string name);
     }
 }
