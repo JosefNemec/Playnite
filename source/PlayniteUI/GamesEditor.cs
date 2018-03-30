@@ -442,6 +442,7 @@ namespace PlayniteUI
             if (launching == true)
             {
                 game.LastActivity = DateTime.Now;
+                game.PlayCount += 1;
             }
 
             database.UpdateGameInDatabase(game);

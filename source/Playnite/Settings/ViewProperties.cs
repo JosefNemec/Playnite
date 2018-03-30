@@ -24,7 +24,16 @@ namespace Playnite
         InstallDirectory,
         Icon,
         Platform,
-        Tags
+        Tags,
+        Playtime,
+        Added,
+        Modified,
+        PlayCount,
+        Series,
+        Version,
+        AgeRating,
+        Region,
+        Source
     }
 
     public enum SortOrderDirection

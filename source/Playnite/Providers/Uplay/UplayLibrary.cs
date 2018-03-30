@@ -48,6 +48,7 @@ namespace Playnite.Providers.Uplay
                 {
                     ProviderId = install,
                     Provider = Provider.Uplay,
+                    Source = "Uplay",
                     InstallDirectory = installDir,
                     PlayTask = GetGamePlayTask(install),
                     Name = Path.GetFileName(installDir.TrimEnd(Path.DirectorySeparatorChar))

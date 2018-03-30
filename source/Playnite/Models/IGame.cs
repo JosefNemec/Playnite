@@ -63,7 +63,7 @@ namespace Playnite.Models
 
         DateTime? LastActivity
         {
-            get;set;
+            get; set;
         }
 
         Provider Provider
@@ -202,6 +202,46 @@ namespace Playnite.Models
         }
 
         bool Favorite
+        {
+            get; set;
+        }
+
+        DateTime? Added
+        {
+            get; set;
+        }
+
+        DateTime? Modified
+        {
+            get; set;
+        }
+
+        long PlayCount
+        {
+            get; set;
+        }
+
+        string Series
+        {
+            get; set;
+        }
+
+        string Version
+        {
+            get; set;
+        }
+
+        string AgeRating
+        {
+            get; set;
+        }
+
+        string Region
+        {
+            get; set;
+        }
+
+        string Source
         {
             get; set;
         }

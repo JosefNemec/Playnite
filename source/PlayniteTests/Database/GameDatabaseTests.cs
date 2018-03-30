@@ -239,8 +239,7 @@ namespace PlayniteTests.Database
             var originLibrary = new Mock<IOriginLibrary>();
             var uplayLibrary = new Mock<IUplayLibrary>();
             var battleNetLibrary = new Mock<IBattleNetLibrary>();
-            gogLibrary.Setup(oc => oc.GetInstalledGames(InstalledGamesSource.Registry)).Returns(installedGames);
-            gogLibrary.Setup(oc => oc.GetInstalledGames(InstalledGamesSource.Galaxy)).Returns(installedGames);
+            gogLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
             steamLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
             originLibrary.Setup(oc => oc.GetInstalledGames(false)).Returns(installedGames);
             originLibrary.Setup(oc => oc.GetInstalledGames(true)).Returns(installedGames);
@@ -248,7 +247,6 @@ namespace PlayniteTests.Database
             battleNetLibrary.Setup(oc => oc.GetInstalledGames()).Returns(installedGames);
 
             var settings = new Settings();
-            settings.GOGSettings.RunViaGalaxy = false;
             var db = new GameDatabase(settings, gogLibrary.Object, steamLibrary.Object, originLibrary.Object, uplayLibrary.Object, battleNetLibrary.Object);
             using (db.OpenDatabase(path))
             {

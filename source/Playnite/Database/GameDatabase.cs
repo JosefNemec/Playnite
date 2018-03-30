@@ -660,6 +660,7 @@ namespace Playnite.Database
 
             using (Database.Engine.Locker.Reserved())
             {
+                game.Added = DateTime.Today;
                 GamesCollection.Insert(game);
             }
 
@@ -672,6 +673,11 @@ namespace Playnite.Database
             if (games == null || games.Count() == 0)
             {
                 return;
+            }
+
+            foreach (var game in games)
+            {
+                game.Added = DateTime.Today;
             }
 
             using (Database.Engine.Locker.Reserved())

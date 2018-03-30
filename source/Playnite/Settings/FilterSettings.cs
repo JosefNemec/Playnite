@@ -47,6 +47,10 @@ namespace Playnite
                     Custom ||
                     !string.IsNullOrEmpty(Name) ||
                     !string.IsNullOrEmpty(ReleaseDate) ||
+                    !string.IsNullOrEmpty(Series) ||
+                    !string.IsNullOrEmpty(Source) ||
+                    !string.IsNullOrEmpty(AgeRating) ||
+                    !string.IsNullOrEmpty(Region) ||
                     (Genres != null && Genres.Count > 0) ||
                     (Publishers != null && Publishers.Count > 0) ||
                     (Developers != null && Developers.Count > 0) ||
@@ -363,6 +367,74 @@ namespace Playnite
             }
         }
 
+        private string series;
+        public string Series
+        {
+            get
+            {
+                return series;
+            }
+
+            set
+            {
+                series = value;
+                OnPropertyChanged("Series");
+                OnFilterChanged("Series");
+                OnPropertyChanged("Active");
+            }
+        }
+
+        private string region;
+        public string Region
+        {
+            get
+            {
+                return region;
+            }
+
+            set
+            {
+                region = value;
+                OnPropertyChanged("Region");
+                OnFilterChanged("Region");
+                OnPropertyChanged("Active");
+            }
+        }
+
+        private string source;
+        public string Source
+        {
+            get
+            {
+                return source;
+            }
+
+            set
+            {
+                source = value;
+                OnPropertyChanged("Source");
+                OnFilterChanged("Source");
+                OnPropertyChanged("Active");
+            }
+        }
+
+        private string ageRating;
+        public string AgeRating
+        {
+            get
+            {
+                return ageRating;
+            }
+
+            set
+            {
+                ageRating = value;
+                OnPropertyChanged("AgeRating");
+                OnFilterChanged("AgeRating");
+                OnPropertyChanged("Active");
+            }
+        }
+
         private bool suppressFilterChanges = false;
         public event EventHandler<FilterChangedEventArgs> FilterChanged;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -499,6 +571,30 @@ namespace Playnite
             {
                 Custom = false;
                 filterChanges.Add("Custom");
+            }
+
+            if (Series != null)
+            {
+                Series = null;
+                filterChanges.Add("Series");
+            }
+
+            if (Region != null)
+            {
+                Region = null;
+                filterChanges.Add("Region");
+            }
+
+            if (Source != null)
+            {
+                Source = null;
+                filterChanges.Add("Source");
+            }
+
+            if (AgeRating != null)
+            {
+                AgeRating = null;
+                filterChanges.Add("AgeRating");
             }
 
             suppressFilterChanges = false;

@@ -310,6 +310,7 @@ namespace Playnite.Providers.BattleNet
                         {
                             Provider = Provider.BattleNet,
                             ProviderId = product.ProductId,
+                            Source = "Battle.net",
                             Name = product.Name,
                             PlayTask = new GameTask()
                             {
@@ -342,6 +343,7 @@ namespace Playnite.Providers.BattleNet
                     {
                         Provider = Provider.BattleNet,
                         ProviderId = product.ProductId,
+                        Source = "Battle.net",
                         Name = product.Name,
                         PlayTask = GetGamePlayTask(product.ProductId),
                         InstallDirectory = prog.InstallLocation
@@ -426,6 +428,7 @@ namespace Playnite.Providers.BattleNet
                     var game = new Game()
                     {
                         Provider = Provider.BattleNet,
+                        Source = "Battle.net",
                         ProviderId = product.ProductId,
                         Name = product.Name
                     };

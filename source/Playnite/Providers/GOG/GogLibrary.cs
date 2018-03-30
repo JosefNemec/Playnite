@@ -77,6 +77,7 @@ namespace Playnite.Providers.GOG
                     InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                     ProviderId = gameId,
                     Provider = Provider.GOG,
+                    Source = "GOG",
                     Name = program.DisplayName
                 };
 
@@ -161,6 +162,7 @@ namespace Playnite.Providers.GOG
                         InstallDirectory = reader["localpath"].ToString(),
                         ProviderId = id.ToString(),
                         Provider = Provider.GOG,
+                        Source = "GOG",
                         Name = gameNames[id]
                     };
 
@@ -226,6 +228,7 @@ namespace Playnite.Providers.GOG
                     games.Add(new Game()
                     {
                         Provider = Provider.GOG,
+                        Source = "GOG",
                         ProviderId = game.id.ToString(),
                         Name = game.title,
                         ReleaseDate = game.releaseDate.date,

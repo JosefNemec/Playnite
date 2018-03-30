@@ -30,7 +30,16 @@ namespace PlayniteUITests
                     Categories = new ComparableList<string>() { "Cat 1", "Cat 2", "Cat 3" },
                     Tags = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
                     Description = "Description",
-                    PlatformId = platId
+                    PlatformId = platId,
+                    LastActivity = new DateTime(2012,1,3),
+                    Added = new DateTime(2012,1,3),
+                    Playtime = 3,
+                    PlayCount = 3,
+                    Series = "Series 3",
+                    Version = "Version 3",
+                    AgeRating = "AgeRating 3",
+                    Region = "Region 3",
+                    Source = "Source 3"
 
                 },
                 new Game()
@@ -43,7 +52,16 @@ namespace PlayniteUITests
                     Categories = new ComparableList<string>() { "Cat 1", "Cat 2", "Cat 3" },
                     Tags = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
                     Description = "Description",
-                    PlatformId = platId
+                    PlatformId = platId,
+                    LastActivity = new DateTime(2012,1,3),
+                    Added = new DateTime(2012,1,3),
+                    Playtime = 3,
+                    PlayCount = 3,
+                    Series = "Series 3",
+                    Version = "Version 3",
+                    AgeRating = "AgeRating 3",
+                    Region = "Region 3",
+                    Source = "Source 3"
                 },
                 new Game()
                 {
@@ -55,7 +73,16 @@ namespace PlayniteUITests
                     Categories = new ComparableList<string>() { "Cat 1", "Cat 2", "Cat 3" },
                     Tags = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
                     Description = "Description",
-                    PlatformId = platId
+                    PlatformId = platId,
+                    LastActivity = new DateTime(2012,1,3),
+                    Added = new DateTime(2012,1,3),
+                    Playtime = 3,
+                    PlayCount = 3,
+                    Series = "Series 3",
+                    Version = "Version 3",
+                    AgeRating = "AgeRating 3",
+                    Region = "Region 3",
+                    Source = "Source 3"
                 }
             };
 
@@ -70,7 +97,15 @@ namespace PlayniteUITests
             CollectionAssert.AreEqual(firstGame.Tags, gameCommon.Tags);
             Assert.AreEqual(firstGame.Description, gameCommon.Description);
             Assert.AreEqual(firstGame.PlatformId, gameCommon.PlatformId);
-
+            Assert.AreEqual(firstGame.LastActivity, gameCommon.LastActivity);
+            Assert.AreEqual(firstGame.Added, gameCommon.Added);
+            Assert.AreEqual(firstGame.Playtime, gameCommon.Playtime);
+            Assert.AreEqual(firstGame.PlayCount, gameCommon.PlayCount);
+            Assert.AreEqual(firstGame.Series, gameCommon.Series);
+            Assert.AreEqual(firstGame.Version, gameCommon.Version);
+            Assert.AreEqual(firstGame.AgeRating, gameCommon.AgeRating);
+            Assert.AreEqual(firstGame.Region, gameCommon.Region);
+            Assert.AreEqual(firstGame.Source, gameCommon.Source);
 
             // No common
             var gamesNoCommon = new List<Game>()
@@ -85,7 +120,16 @@ namespace PlayniteUITests
                     Categories = new ComparableList<string>() { "Cat 1", "Cat 2", "Cat 3" },
                     Tags = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
                     Description = "Description 1",
-                    PlatformId = ObjectId.NewObjectId()
+                    PlatformId = ObjectId.NewObjectId(),
+                    LastActivity = new DateTime(2012,1,1),
+                    Added = new DateTime(2012,1,1),
+                    Playtime = 1,
+                    PlayCount = 1,
+                    Series = "Series 1",
+                    Version = "Version 1",
+                    AgeRating = "AgeRating 1",
+                    Region = "Region 1",
+                    Source = "Source 1"
 
                 },
                 new Game()
@@ -98,7 +142,16 @@ namespace PlayniteUITests
                     Categories = new ComparableList<string>() { "Cat 4", "Cat 5", "Cat 6" },
                     Tags = new ComparableList<string>() { "Tag 4", "Tag 5", "Tag 6" },
                     Description = "Description 2",
-                    PlatformId = ObjectId.NewObjectId()
+                    PlatformId = ObjectId.NewObjectId(),
+                    LastActivity = new DateTime(2012,1,2),
+                    Added = new DateTime(2012,1,2),
+                    Playtime = 2,
+                    PlayCount = 2,
+                    Series = "Series 2",
+                    Version = "Version 2",
+                    AgeRating = "AgeRating 2",
+                    Region = "Region 2",
+                    Source = "Source 2"
                 },
                 new Game()
                 {
@@ -110,7 +163,16 @@ namespace PlayniteUITests
                     Categories = new ComparableList<string>() { "Cat 7", "Cat 8", "Cat 9" },
                     Tags = new ComparableList<string>() { "Tag 7", "Tag 8", "Tag 9" },
                     Description = "Description 3",
-                    PlatformId = ObjectId.NewObjectId()
+                    PlatformId = ObjectId.NewObjectId(),
+                    LastActivity = new DateTime(2012,1,3),
+                    Added = new DateTime(2012,1,3),
+                    Playtime = 3,
+                    PlayCount = 3,
+                    Series = "Series 3",
+                    Version = "Version 3",
+                    AgeRating = "AgeRating 3",
+                    Region = "Region 3",
+                    Source = "Source 3"
                 }
             };
 
@@ -124,6 +186,15 @@ namespace PlayniteUITests
             CollectionAssert.AreEqual(null, gameNoCommon.Publishers);
             CollectionAssert.AreEqual(null, gameNoCommon.Categories);
             CollectionAssert.AreEqual(null, gameNoCommon.Tags);
+            Assert.IsNull(gameNoCommon.LastActivity);
+            Assert.IsNull(gameNoCommon.Added);
+            Assert.AreEqual(gameNoCommon.Playtime, 0);
+            Assert.AreEqual(gameNoCommon.PlayCount, 0);
+            Assert.IsNull(gameNoCommon.Series);
+            Assert.IsNull(gameNoCommon.Version);
+            Assert.IsNull(gameNoCommon.AgeRating);
+            Assert.IsNull(gameNoCommon.Region);
+            Assert.IsNull(gameNoCommon.Source);
         }
     }
 }

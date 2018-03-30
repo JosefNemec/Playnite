@@ -212,6 +212,14 @@ namespace PlayniteUI
         public bool IsRunning => Game.IsRunning;
         public GameState State => Game.State;
         public long Playtime => Game.Playtime;
+        public DateTime? Added => Game.Added;
+        public DateTime? Modified => Game.Modified;
+        public long PlayCount => Game.PlayCount;
+        public string Series => Game.Series;
+        public string Version => Game.Version;
+        public string AgeRating => Game.AgeRating;
+        public string Region => Game.Region;
+        public string Source => Game.Source;
 
         public string Name
         {
@@ -533,20 +541,92 @@ namespace PlayniteUI
             }
 
             // ------------------ Name filter
-            bool textResult = false;
+            bool nameResult = false;
             if (string.IsNullOrEmpty(Settings.FilterSettings.Name))
             {
-                textResult = true;
+                nameResult = true;
             }
             else
             {
                 if (string.IsNullOrEmpty(game.Name))
                 {
-                    textResult = false;
+                    nameResult = false;
                 }
                 else
                 {
-                    textResult = (game.Name.IndexOf(Settings.FilterSettings.Name, StringComparison.OrdinalIgnoreCase) >= 0);
+                    nameResult = (game.Name.IndexOf(Settings.FilterSettings.Name, StringComparison.OrdinalIgnoreCase) >= 0);
+                }
+            }
+
+            // ------------------ Series filter
+            bool seriesResult = false;
+            if (string.IsNullOrEmpty(Settings.FilterSettings.Series))
+            {
+                seriesResult = true;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(game.Series))
+                {
+                    seriesResult = false;
+                }
+                else
+                {
+                    seriesResult = (game.Series.IndexOf(Settings.FilterSettings.Series, StringComparison.OrdinalIgnoreCase) >= 0);
+                }
+            }
+
+            // ------------------ Region filter
+            bool regionResult = false;
+            if (string.IsNullOrEmpty(Settings.FilterSettings.Region))
+            {
+                regionResult = true;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(game.Region))
+                {
+                    regionResult = false;
+                }
+                else
+                {
+                    regionResult = (game.Region.IndexOf(Settings.FilterSettings.Region, StringComparison.OrdinalIgnoreCase) >= 0);
+                }
+            }
+
+            // ------------------ Source filter
+            bool sourceResult = false;
+            if (string.IsNullOrEmpty(Settings.FilterSettings.Source))
+            {
+                sourceResult = true;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(game.Source))
+                {
+                    sourceResult = false;
+                }
+                else
+                {
+                    sourceResult = (game.Source.IndexOf(Settings.FilterSettings.Source, StringComparison.OrdinalIgnoreCase) >= 0);
+                }
+            }
+
+            // ------------------ AgeRating filter
+            bool ageRatingResult = false;
+            if (string.IsNullOrEmpty(Settings.FilterSettings.AgeRating))
+            {
+                ageRatingResult = true;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(game.AgeRating))
+                {
+                    ageRatingResult = false;
+                }
+                else
+                {
+                    ageRatingResult = (game.AgeRating.IndexOf(Settings.FilterSettings.AgeRating, StringComparison.OrdinalIgnoreCase) >= 0);
                 }
             }
 
@@ -674,7 +754,6 @@ namespace PlayniteUI
                 }
             }
 
-
             // ------------------ Tags
             bool tagResult = false;
             if (Settings.FilterSettings.Tags == null || Settings.FilterSettings.Tags.Count == 0)
@@ -696,7 +775,7 @@ namespace PlayniteUI
             return installedResult &&
                 hiddenResult &&
                 favoriteResult &&
-                textResult &&
+                nameResult &&
                 providersFilter &&
                 genreResult &&
                 platformResult &&
@@ -704,7 +783,11 @@ namespace PlayniteUI
                 publisherResult &&
                 developerResult &&
                 categoryResult &&
-                tagResult;
+                tagResult &&
+                seriesResult &&
+                regionResult &&
+                sourceResult &&
+                ageRatingResult;
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)

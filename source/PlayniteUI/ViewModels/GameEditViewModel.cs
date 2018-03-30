@@ -286,6 +286,150 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        private bool useLastActivityChanges;
+        public bool UseLastActivityChanges
+        {
+            get
+            {
+                return useLastActivityChanges;
+            }
+
+            set
+            {
+                useLastActivityChanges = value;
+                OnPropertyChanged("UseLastActivityChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool usePlaytimeChanges;
+        public bool UsePlaytimeChanges
+        {
+            get
+            {
+                return usePlaytimeChanges;
+            }
+
+            set
+            {
+                usePlaytimeChanges = value;
+                OnPropertyChanged("UsePlaytimeChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useAddedChanges;
+        public bool UseAddedChanges
+        {
+            get
+            {
+                return useAddedChanges;
+            }
+
+            set
+            {
+                useAddedChanges = value;
+                OnPropertyChanged("UseAddedChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool usePlayCountChanges;
+        public bool UsePlayCountChanges
+        {
+            get
+            {
+                return usePlayCountChanges;
+            }
+
+            set
+            {
+                usePlayCountChanges = value;
+                OnPropertyChanged("UsePlayCountChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useSeriesChanges;
+        public bool UseSeriesChanges
+        {
+            get
+            {
+                return useSeriesChanges;
+            }
+
+            set
+            {
+                useSeriesChanges = value;
+                OnPropertyChanged("UseSeriesChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useVersionChanges;
+        public bool UseVersionChanges
+        {
+            get
+            {
+                return useVersionChanges;
+            }
+
+            set
+            {
+                useVersionChanges = value;
+                OnPropertyChanged("UseVersionChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useAgeRatingChanges;
+        public bool UseAgeRatingChanges
+        {
+            get
+            {
+                return useAgeRatingChanges;
+            }
+
+            set
+            {
+                useAgeRatingChanges = value;
+                OnPropertyChanged("UseAgeRatingChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useRegionChanges;
+        public bool UseRegionChanges
+        {
+            get
+            {
+                return useRegionChanges;
+            }
+
+            set
+            {
+                useRegionChanges = value;
+                OnPropertyChanged("UseRegionChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useSourceChanges;
+        public bool UseSourceChanges
+        {
+            get
+            {
+                return useSourceChanges;
+            }
+
+            set
+            {
+                useSourceChanges = value;
+                OnPropertyChanged("UseSourceChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
         public bool ShowGeneralChangeNotif
         {
             get
@@ -300,7 +444,16 @@ namespace PlayniteUI.ViewModels
                     UsePlatformChanges ||
                     UsePublisherChanges ||
                     UseSortingNameChanges ||
-                    UseTagChanges);
+                    UseTagChanges ||
+                    UseLastActivityChanges ||
+                    UsePlaytimeChanges ||
+                    UseAddedChanges ||
+                    UsePlayCountChanges ||
+                    UseSeriesChanges ||
+                    UseVersionChanges ||
+                    UseAgeRatingChanges ||
+                    UseRegionChanges ||
+                    UseSourceChanges);
             }
         }
 
@@ -912,6 +1065,96 @@ namespace PlayniteUI.ViewModels
                         UsePublisherChanges = true;
                     }
                     break;
+                case "LastActivity":
+                    if (Games == null)
+                    {
+                        UseLastActivityChanges = Game.LastActivity != EditingGame.LastActivity;
+                    }
+                    else
+                    {
+                        UseLastActivityChanges = true;
+                    }
+                    break;
+                case "Playtime":
+                    if (Games == null)
+                    {
+                        UsePlaytimeChanges = Game.Playtime != EditingGame.Playtime;
+                    }
+                    else
+                    {
+                        UsePlaytimeChanges = true;
+                    }
+                    break;
+                case "Added":
+                    if (Games == null)
+                    {
+                        UseAddedChanges = Game.Added != EditingGame.Added;
+                    }
+                    else
+                    {
+                        UseAddedChanges = true;
+                    }
+                    break;
+                case "PlayCount":
+                    if (Games == null)
+                    {
+                        UsePlayCountChanges = Game.PlayCount != EditingGame.PlayCount;
+                    }
+                    else
+                    {
+                        UsePlayCountChanges = true;
+                    }
+                    break;
+                case "Series":
+                    if (Games == null)
+                    {
+                        UseSeriesChanges = Game.Series != EditingGame.Series;
+                    }
+                    else
+                    {
+                        UseSeriesChanges = true;
+                    }
+                    break;
+                case "Version":
+                    if (Games == null)
+                    {
+                        UseVersionChanges = Game.Version != EditingGame.Version;
+                    }
+                    else
+                    {
+                        UseVersionChanges = true;
+                    }
+                    break;
+                case "AgeRating":
+                    if (Games == null)
+                    {
+                        UseAgeRatingChanges = Game.AgeRating != EditingGame.AgeRating;
+                    }
+                    else
+                    {
+                        UseAgeRatingChanges = true;
+                    }
+                    break;
+                case "Region":
+                    if (Games == null)
+                    {
+                        UseRegionChanges = Game.Region != EditingGame.Region;
+                    }
+                    else
+                    {
+                        UseRegionChanges = true;
+                    }
+                    break;
+                case "Source":
+                    if (Games == null)
+                    {
+                        UseSourceChanges = Game.Source != EditingGame.Source;
+                    }
+                    else
+                    {
+                        UseSourceChanges = true;
+                    }
+                    break;
             }
         }
 
@@ -1102,6 +1345,141 @@ namespace PlayniteUI.ViewModels
                 else
                 {
                     Game.PlatformId = EditingGame.PlatformId;
+                }
+            }
+
+            if (UseLastActivityChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.LastActivity = EditingGame.LastActivity;
+                    }
+                }
+                else
+                {
+                    Game.LastActivity = EditingGame.LastActivity;
+                }
+            }
+
+            if (UsePlaytimeChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Playtime = EditingGame.Playtime;
+                    }
+                }
+                else
+                {
+                    Game.Playtime = EditingGame.Playtime;
+                }
+            }
+
+            if (UseAddedChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Added = EditingGame.Added;
+                    }
+                }
+                else
+                {
+                    Game.Added = EditingGame.Added;
+                }
+            }
+
+            if (UsePlayCountChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.PlayCount = EditingGame.PlayCount;
+                    }
+                }
+                else
+                {
+                    Game.PlayCount = EditingGame.PlayCount;
+                }
+            }
+
+            if (UseSeriesChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Series = EditingGame.Series;
+                    }
+                }
+                else
+                {
+                    Game.Series = EditingGame.Series;
+                }
+            }
+
+            if (UseVersionChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Version = EditingGame.Version;
+                    }
+                }
+                else
+                {
+                    Game.Version = EditingGame.Version;
+                }
+            }
+
+            if (UseAgeRatingChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.AgeRating = EditingGame.AgeRating;
+                    }
+                }
+                else
+                {
+                    Game.AgeRating = EditingGame.AgeRating;
+                }
+            }
+
+            if (UseRegionChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Region = EditingGame.Region;
+                    }
+                }
+                else
+                {
+                    Game.Region = EditingGame.Region;
+                }
+            }
+
+            if (UseSourceChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Source = EditingGame.Source;
+                    }
+                }
+                else
+                {
+                    Game.Source = EditingGame.Source;
                 }
             }
 
@@ -1339,13 +1717,16 @@ namespace PlayniteUI.ViewModels
 
             if (Games != null)
             {
+                var date = DateTime.Today;
                 foreach (var game in Games)
                 {
+                    game.Modified = date;
                     database.UpdateGameInDatabase(game);
                 }
             }
             else
             {
+                game.Modified = DateTime.Today;
                 database.UpdateGameInDatabase(Game);
             }
 

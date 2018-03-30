@@ -1637,7 +1637,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DatePicker">
-                    <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}"
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{DynamicResource ControlCornerRadius}"
                             Padding="{TemplateBinding Padding}">
@@ -1653,8 +1653,11 @@
                         </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" />
+                        </Trigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1874,6 +1877,9 @@
 
     <Style TargetType="{x:Type pc:ExtendedListBox}" BasedOn="{StaticResource {x:Type ListBox}}">
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+    </Style>
+
+    <Style TargetType="{x:Type pc:NumericBox}" BasedOn="{StaticResource {x:Type TextBox}}">
     </Style>
 
     <ControlTemplate x:Key="GamePropertiesView">
@@ -2522,8 +2528,6 @@
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.ReleaseDate}}"/>
                                 <MenuItem Header="{DynamicResource GameGenresTitle}" IsCheckable="True"
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Genres}}"/>
-                                <MenuItem Header="{DynamicResource GameLastActivityTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.LastActivity}}"/>
                                 <MenuItem Header="{DynamicResource GameCategoriesTitle}" IsCheckable="True"
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Categories}}"/>
                                 <MenuItem Header="{DynamicResource GameTagsTitle}" IsCheckable="True"
@@ -2532,6 +2536,26 @@
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.IsInstalled}}"/>
                                 <MenuItem Header="{DynamicResource GameInstallDirTitle}" IsCheckable="True"
                                       IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.InstallDirectory}}"/>
+                                <MenuItem Header="{DynamicResource GameLastActivityTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.LastActivity}}"/>
+                                <MenuItem Header="{DynamicResource TimePlayed}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Playtime}}"/>
+                                <MenuItem Header="{DynamicResource PlayCountLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.PlayCount}}"/>
+                                <MenuItem Header="{DynamicResource SeriesLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Series}}"/>
+                                <MenuItem Header="{DynamicResource VersionLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Version}}"/>
+                                <MenuItem Header="{DynamicResource AgeRatingLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.AgeRating}}"/>
+                                <MenuItem Header="{DynamicResource RegionLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Region}}"/>
+                                <MenuItem Header="{DynamicResource SourceLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Source}}"/>
+                                <MenuItem Header="{DynamicResource AddedLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Added}}"/>
+                                <MenuItem Header="{DynamicResource ModifiedLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Modified}}"/>
                             </MenuItem>
                             <Separator />
                             <MenuItem Header="{DynamicResource MenuGroupDont}" IsCheckable="True"
@@ -2852,6 +2876,58 @@
                                         </Label.Style>
                                     </Label>
                                     <pc:SearchBox x:Name="TextFilterTag" Text="{Binding AppSettings.FilterSettings.Tags, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <Label Content="{DynamicResource SeriesLabel}">
+                                        <Label.Style>
+                                            <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterSeries}" Value="">
+                                                        <Setter Property="Opacity" Value="0.6"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                    <pc:SearchBox x:Name="TextFilterSeries" Text="{Binding AppSettings.FilterSettings.Series, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <Label Content="{DynamicResource RegionLabel}">
+                                        <Label.Style>
+                                            <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterRegion}" Value="">
+                                                        <Setter Property="Opacity" Value="0.6"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                    <pc:SearchBox x:Name="TextFilterRegion" Text="{Binding AppSettings.FilterSettings.Region, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <Label Content="{DynamicResource SourceLabel}">
+                                        <Label.Style>
+                                            <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterSource}" Value="">
+                                                        <Setter Property="Opacity" Value="0.6"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                    <pc:SearchBox x:Name="TextFilterSource" Text="{Binding AppSettings.FilterSettings.Source, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <Label Content="{DynamicResource AgeRatingLabel}">
+                                        <Label.Style>
+                                            <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterAgeRating}" Value="">
+                                                        <Setter Property="Opacity" Value="0.6"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                    <pc:SearchBox x:Name="TextFilterAgeRating" Text="{Binding AppSettings.FilterSettings.AgeRating, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
                                 </StackPanel>
                             </ScrollViewer>
                         </DockPanel>                        

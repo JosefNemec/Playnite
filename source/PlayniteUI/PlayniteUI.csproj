@@ -191,6 +191,7 @@
     <Compile Include="Commands\GeneralCommands.cs" />
     <Compile Include="Commands\GenericCommands.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Controls\NumericBox.cs" />
     <Compile Include="Controls\ExtendedListBox.cs" />
     <Compile Include="Controls\HtmlTextView.cs" />
     <Compile Include="Controls\GameMenu.cs" />

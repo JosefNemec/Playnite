@@ -70,6 +70,14 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="ImportLabel">Import</sys:String>
     <sys:String x:Key="SourceLabel">Source</sys:String>
     <sys:String x:Key="NameLabel">Name</sys:String>
+    <sys:String x:Key="SeriesLabel">Series</sys:String>
+    <sys:String x:Key="VersionLabel">Version</sys:String>
+    <sys:String x:Key="AgeRatingLabel">Age Rating</sys:String>
+    <sys:String x:Key="RegionLabel">Region</sys:String>
+    <sys:String x:Key="LastPlayedLabel">Last Played</sys:String>
+    <sys:String x:Key="PlayCountLabel">Play Count</sys:String>
+    <sys:String x:Key="AddedLabel">Added</sys:String>
+    <sys:String x:Key="ModifiedLabel">Modified</sys:String>
     <sys:String x:Key="WebsiteLabel">Website</sys:String>
     <sys:String x:Key="PathLabel">Path</sys:String>
     <sys:String x:Key="OKLabel">OK</sys:String>
@@ -451,6 +459,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="MetadownloadSingleGameTip">Tip: You can use more advanced metadata download process while editing single game via "Edit" menu option.</sys:String>
     <sys:String x:Key="ProgreessAvailabilityMessage">Not available when some action is in progress.</sys:String>
     <sys:String x:Key="DescriptionHTMLSupportTooltip">Description text is HTML syntax sensitive</sys:String>
+    <sys:String x:Key="DescriptionPlaytimeSeconds">Playtime is tracked and stored in seconds.</sys:String>
     <sys:String x:Key="PatreonDevelopMessage">Playnite's development is supported by these patrons:</sys:String>
     <sys:String x:Key="AboutContributorsMessage">Code, localization and other contributors in no particular order:</sys:String>
 

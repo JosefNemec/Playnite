@@ -169,6 +169,60 @@ namespace Playnite
                 dummyGame.PlatformId = firstPlatform;
             }
 
+            var firstLastActivity = firstGame.LastActivity;
+            if (games.All(a => a.LastActivity == firstLastActivity) == true)
+            {
+                dummyGame.LastActivity = firstLastActivity;
+            }
+
+            var firstPlaytime = firstGame.Playtime;
+            if (games.All(a => a.Playtime == firstPlaytime) == true)
+            {
+                dummyGame.Playtime = firstPlaytime;
+            }
+
+            var firstAdded = firstGame.Added;
+            if (games.All(a => a.Added == firstAdded) == true)
+            {
+                dummyGame.Added = firstAdded;
+            }
+
+            var firstPlayCount = firstGame.PlayCount;
+            if (games.All(a => a.PlayCount == firstPlayCount) == true)
+            {
+                dummyGame.PlayCount = firstPlayCount;
+            }
+
+            var firstSeries = firstGame.Series;
+            if (games.All(a => a.Series == firstSeries) == true)
+            {
+                dummyGame.Series = firstSeries;
+            }
+
+            var firstVersion = firstGame.Version;
+            if (games.All(a => a.Version == firstVersion) == true)
+            {
+                dummyGame.Version = firstVersion;
+            }
+
+            var firstAgeRating = firstGame.AgeRating;
+            if (games.All(a => a.AgeRating == firstAgeRating) == true)
+            {
+                dummyGame.AgeRating = firstAgeRating;
+            }
+
+            var firstRegion = firstGame.Region;
+            if (games.All(a => a.Region == firstRegion) == true)
+            {
+                dummyGame.Region = firstRegion;
+            }
+
+            var firstSource = firstGame.Source;
+            if (games.All(a => a.Source == firstSource) == true)
+            {
+                dummyGame.Source = firstSource;
+            }
+
             return dummyGame;
         }
     }

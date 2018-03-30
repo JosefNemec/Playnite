@@ -495,6 +495,126 @@ namespace Playnite.Models
             }
         }
 
+        private DateTime? added;
+        public DateTime? Added
+        {
+            get
+            {
+                return added;
+            }
+
+            set
+            {
+                added = value;
+                OnPropertyChanged("Added");
+            }
+        }
+
+        private DateTime? modified;
+        public DateTime? Modified
+        {
+            get
+            {
+                return modified;
+            }
+
+            set
+            {
+                modified = value;
+                OnPropertyChanged("Modified");
+            }
+        }
+
+        private long playCount = 0;
+        public long PlayCount
+        {
+            get
+            {
+                return playCount;
+            }
+
+            set
+            {
+                playCount = value;
+                OnPropertyChanged("PlayCount");
+            }
+        }
+
+        private string series;
+        public string Series
+        {
+            get
+            {
+                return series;
+            }
+
+            set
+            {
+                series = value;
+                OnPropertyChanged("Series");
+            }
+        }
+
+        private string version;
+        public string Version
+        {
+            get
+            {
+                return version;
+            }
+
+            set
+            {
+                version = value;
+                OnPropertyChanged("Version");
+            }
+        }
+
+        private string ageRating;
+        public string AgeRating
+        {
+            get
+            {
+                return ageRating;
+            }
+
+            set
+            {
+                ageRating = value;
+                OnPropertyChanged("AgeRating");
+            }
+        }
+
+        private string region;
+        public string Region
+        {
+            get
+            {
+                return region;
+            }
+
+            set
+            {
+                region = value;
+                OnPropertyChanged("Region");
+            }
+        }
+
+        private string source;
+        public string Source
+        {
+            get
+            {
+                return source;
+            }
+
+            set
+            {
+                source = value;
+                OnPropertyChanged("Source");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Game()

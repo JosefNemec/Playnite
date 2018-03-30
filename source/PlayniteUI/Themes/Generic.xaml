@@ -30,6 +30,9 @@
     <Style TargetType="{x:Type pc:ExtendedListBox}" BasedOn="{StaticResource {x:Type ListBox}}">
     </Style>
 
+    <Style TargetType="{x:Type pc:NumericBox}"  BasedOn="{StaticResource {x:Type TextBox}}">
+    </Style>
+
     <Style TargetType="pc:WindowBase">
         <Setter Property="Template">
             <Setter.Value>

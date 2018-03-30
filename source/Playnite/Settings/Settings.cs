@@ -399,7 +399,15 @@ namespace Playnite
             { "IsInstalled", false },
             { "InstallDirectory", false },
             { "Categories", false },
-            { "Tags", false }
+            { "Playtime", true },
+            { "Added", false },
+            { "Modified", false },
+            { "PlayCount", false },
+            { "Series", false },
+            { "Version", false },
+            { "AgeRating", false },
+            { "Region", false },
+            { "Source", false }
         };
 
         public ObservableConcurrentDictionary<string, bool> GridViewHeaders
