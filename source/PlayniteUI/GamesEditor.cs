@@ -443,6 +443,10 @@ namespace PlayniteUI
             {
                 game.LastActivity = DateTime.Now;
                 game.PlayCount += 1;
+                if (game.CompletionStatus == CompletionStatus.NotPlayed)
+                {
+                    game.CompletionStatus = CompletionStatus.Played;
+                }
             }
 
             database.UpdateGameInDatabase(game);
