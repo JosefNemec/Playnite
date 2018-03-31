@@ -479,7 +479,8 @@ namespace Playnite.Providers.Steam
                 game.Publishers = new ComparableList<string>(metadata.StoreDetails.publishers);
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
                 game.Tags = new ComparableList<string>(metadata.StoreDetails.categories?.Select(a => cultInfo.ToTitleCase(a.description)));
-                game.ReleaseDate = metadata.StoreDetails.release_date.date;                
+                game.ReleaseDate = metadata.StoreDetails.release_date.date;
+                game.CriticScore = metadata.StoreDetails.metacritic?.score;
             }
 
             var tasks = new ObservableCollection<GameTask>();

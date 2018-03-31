@@ -225,6 +225,28 @@ namespace Playnite.MetaProviders
             }
         }
 
+        private MetadataFieldSettings criticScore = new MetadataFieldSettings();
+        public MetadataFieldSettings CriticScore
+        {
+            get => criticScore;
+            set
+            {
+                criticScore = value;
+                OnPropertyChanged("CriticScore");
+            }
+        }
+
+        private MetadataFieldSettings communityScore = new MetadataFieldSettings();
+        public MetadataFieldSettings CommunityScore
+        {
+            get => communityScore;
+            set
+            {
+                communityScore = value;
+                OnPropertyChanged("CommunityScore");
+            }
+        }
+
         public void ConfigureFields(MetadataSource source, bool import)
         {
             Genre.Import = import;
@@ -247,6 +269,10 @@ namespace Playnite.MetaProviders
             Icon.Source = source;
             ReleaseDate.Import = import;
             ReleaseDate.Source = source;
+            CommunityScore.Import = import;
+            CommunityScore.Source = source;
+            CriticScore.Import = import;
+            CriticScore.Source = source;
         }
     }
 
@@ -506,30 +532,30 @@ namespace Playnite.MetaProviders
         {
             await Task.Factory.StartNew(() =>
             {
-                if (games == null || games.Count == 0)
+            if (games == null || games.Count == 0)
+            {
+                return;
+            }
+
+            for (int i = 0; i < games.Count; i++)
+            {
+                if (cancelToken?.IsCancellationRequested == true)
                 {
                     return;
                 }
 
-                for (int i = 0; i < games.Count; i++)
-                {
-                    if (cancelToken?.IsCancellationRequested == true)
-                    {
-                        return;
-                    }
-                                        
-                    GameMetadata storeData = null;
-                    GameMetadata igdbData = null;
-                    GameMetadata gameData = null;
+                GameMetadata storeData = null;
+                GameMetadata igdbData = null;
+                GameMetadata gameData = null;
 
-                    // We need to get new instance from DB in case game got edited or deleted.
-                    // We don't want to block game editing while metadata is downloading for other games.
-                    var game = database.GamesCollection.FindOne(a => a.ProviderId == games[i].ProviderId);
-                    if (game == null)
-                    {
-                        processCallback?.Invoke(null, i, games.Count);
-                        continue;
-                    }
+                // We need to get new instance from DB in case game got edited or deleted.
+                // We don't want to block game editing while metadata is downloading for other games.
+                var game = database.GamesCollection.FindOne(a => a.ProviderId == games[i].ProviderId);
+                if (game == null)
+                {
+                    processCallback?.Invoke(null, i, games.Count);
+                    continue;
+                }
 
                     try
                     {
@@ -617,6 +643,26 @@ namespace Playnite.MetaProviders
                             {
                                 gameData = ProcessField(game, settings.Links, ref storeData, ref igdbData, (a) => a.GameData?.Links);
                                 game.Links = gameData?.GameData?.Links ?? game.Links;
+                            }
+                        }
+
+                        // Critic Score
+                        if (settings.CriticScore.Import)
+                        {
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.CriticScore == null))
+                            {
+                                gameData = ProcessField(game, settings.CriticScore, ref storeData, ref igdbData, (a) => a.GameData?.CriticScore);
+                                game.CriticScore = gameData?.GameData?.CriticScore == null ? game.CriticScore : gameData.GameData.CriticScore;
+                            }
+                        }
+
+                        // Community Score
+                        if (settings.CommunityScore.Import)
+                        {
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.CommunityScore == null))
+                            {
+                                gameData = ProcessField(game, settings.CommunityScore, ref storeData, ref igdbData, (a) => a.GameData?.CommunityScore);
+                                game.CommunityScore = gameData?.GameData?.CommunityScore == null ? game.CommunityScore : gameData.GameData.CommunityScore;
                             }
                         }
 

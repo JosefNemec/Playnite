@@ -14,8 +14,8 @@ namespace PlayniteServices.Controllers.IGDB
     {
         [HttpGet("{gameId}")]
         public async Task<ServicesResponse<Game>> Get(ulong gameId, [FromQuery]string apiKey)
-        {            
-            var url = string.Format(@"games/{0}?fields=name%2Csummary%2Cdevelopers%2Cpublishers%2Cgenres%2Cfirst_release_date%2Ccover%2Cthemes%2Cgame_modes%2Cwebsites&limit=40&offset=0&search={0}", gameId);
+        {
+            var url = string.Format(@"games/{0}?fields=*&limit=40&offset=0&search={0}", gameId);
             var libraryStringResult = await IGDB.SendStringRequest(url, apiKey);
             var game = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult);
             return new ServicesResponse<Game>(game[0], string.Empty);
@@ -39,7 +39,7 @@ namespace PlayniteServices.Controllers.IGDB
                 }
             }
 
-            var url = string.Format(@"games/{0}?fields=name%2Csummary%2Cdevelopers%2Cpublishers%2Cgenres%2Cfirst_release_date%2Ccover%2Cthemes%2Cgame_modes%2Cwebsites&limit=40&offset=0&search={0}", gameId);
+            var url = string.Format(@"games/{0}?fields=*&limit=40&offset=0&search={0}", gameId);
             var libraryStringResult = await IGDB.SendStringRequest(url, apiKey);
             var game = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult)[0];
             var parsedGame = new ParsedGame()
@@ -50,7 +50,14 @@ namespace PlayniteServices.Controllers.IGDB
                 cover = game.cover?.url,
                 websites = game.websites,
                 summary = game.summary,
-                creation_time = DateTime.Now
+                creation_time = DateTime.Now,
+                rating = game.rating,
+                aggregated_rating = game.aggregated_rating,
+                total_rating = game.total_rating,
+                alternative_names = game.alternative_names,
+                external = game.external,
+                screenshots = game.screenshots,
+                videos = game.videos
             };
         
             if (game.developers?.Any() == true)

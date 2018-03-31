@@ -16,7 +16,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource MetaImportWindowTitle}" WindowStartupLocation="CenterOwner"
-        Height="530" Width="670" x:Name="WindowEmulatorImport"
+        Height="600" Width="700" x:Name="WindowEmulatorImport"
         AutomationProperties.AutomationId="WindowEmulatorImport">
 
     <controls:WindowBase.Resources>
@@ -136,6 +136,8 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
@@ -207,21 +209,39 @@
                                             DataContext="{Binding Settings.Links}"
                                             Content="{StaticResource ComboSourceSelection}" />
 
-                            <!--Cover-->
-                            <TextBlock Text="{DynamicResource GameCoverTitle}"
+                            <!--CriticScore-->
+                            <TextBlock Text="{DynamicResource CriticScore}"
                                Grid.Column="0" Grid.Row="8"/>
                             <CheckBox Grid.Column="1" Grid.Row="8"
-                                      IsChecked="{Binding Settings.CoverImage.Import}"/>
+                                      IsChecked="{Binding Settings.CriticScore.Import}"/>
                             <ContentControl Grid.Column="2" Grid.Row="8"
+                                            DataContext="{Binding Settings.CriticScore}"
+                                            Content="{StaticResource ComboSourceSelection}" />
+
+                            <!--CommunityScore-->
+                            <TextBlock Text="{DynamicResource CommunityScore}"
+                               Grid.Column="0" Grid.Row="9"/>
+                            <CheckBox Grid.Column="1" Grid.Row="9"
+                                      IsChecked="{Binding Settings.CommunityScore.Import}"/>
+                            <ContentControl Grid.Column="2" Grid.Row="9"
+                                            DataContext="{Binding Settings.CommunityScore}"
+                                            Content="{StaticResource ComboSourceSelection}" />
+
+                            <!--Cover-->
+                            <TextBlock Text="{DynamicResource GameCoverTitle}"
+                               Grid.Column="0" Grid.Row="10"/>
+                            <CheckBox Grid.Column="1" Grid.Row="10"
+                                      IsChecked="{Binding Settings.CoverImage.Import}"/>
+                            <ContentControl Grid.Column="2" Grid.Row="10"
                                             DataContext="{Binding Settings.CoverImage}"
                                             Content="{StaticResource ComboSourceSelection}" />
 
                             <!--Icon-->
                             <TextBlock Text="{DynamicResource GameIconTitle}"
-                               Grid.Column="0" Grid.Row="9"/>
-                            <CheckBox Grid.Column="1" Grid.Row="9"
+                               Grid.Column="0" Grid.Row="11"/>
+                            <CheckBox Grid.Column="1" Grid.Row="11"
                                       IsChecked="{Binding Settings.Icon.Import}"/>
-                            <ComboBox Grid.Column="2" Grid.Row="9"
+                            <ComboBox Grid.Column="2" Grid.Row="11"
                                       SelectedValue="{Binding Settings.Icon.Source}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -233,10 +253,10 @@
 
                             <!--Background Image-->
                             <TextBlock Text="{DynamicResource GameBackgroundTitle}"
-                               Grid.Column="0" Grid.Row="10"/>
-                            <CheckBox Grid.Column="1" Grid.Row="10"
+                               Grid.Column="0" Grid.Row="12"/>
+                            <CheckBox Grid.Column="1" Grid.Row="12"
                                       IsChecked="{Binding Settings.BackgroundImage.Import}"/>
-                            <ComboBox Grid.Column="2" Grid.Row="10"
+                            <ComboBox Grid.Column="2" Grid.Row="12"
                                       SelectedValue="{Binding Settings.BackgroundImage.Source}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>

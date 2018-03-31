@@ -315,6 +315,7 @@ namespace Playnite.Providers.GOG
                 game.Genres = new ComparableList<string>(metadata.StoreDetails.genres.Select(a => a.name));
                 game.Developers = new ComparableList<string>() { metadata.StoreDetails.developer.name };
                 game.Publishers = new ComparableList<string>() { metadata.StoreDetails.publisher.name };
+                game.CommunityScore = metadata.StoreDetails.rating != 0 ? metadata.StoreDetails.rating * 2 : (int?)null;
 
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
                 game.Tags = new ComparableList<string>(metadata.StoreDetails.features?.Select(a => cultInfo.ToTitleCase(a.title)));
