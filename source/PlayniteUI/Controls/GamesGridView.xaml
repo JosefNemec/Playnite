@@ -20,7 +20,7 @@
         <pui:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
         <pui:ValueConverterGroup x:Key="EnumCompVisibilityConverter">
             <pui:EnumConverter/>
-            <BooleanToVisibilityConverter/>
+            <pui:BooleanToHiddenConverter />
         </pui:ValueConverterGroup>
 
         <Style x:Key="TextItemStyle" BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">

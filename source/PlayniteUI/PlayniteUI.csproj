@@ -202,6 +202,7 @@
     <Compile Include="Controls\FullscreenView.cs" />
     <Compile Include="Controls\MainView.cs" />
     <Compile Include="Controls\WindowBase.cs" />
+    <Compile Include="Converters\BooleanToHiddenConverter.cs" />
     <Compile Include="Converters\CompletionStatusToStringConverter.cs" />
     <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />
     <Compile Include="Converters\BoolToAutoWidthConverter.cs" />
