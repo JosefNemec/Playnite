@@ -247,6 +247,18 @@ namespace Playnite
                 dummyGame.CommunityScore = firstCommunityScore;
             }
 
+            var firstHidden = firstGame.Hidden;
+            if (games.All(a => a.Hidden == firstHidden) == true)
+            {
+                dummyGame.Hidden = firstHidden;
+            }
+
+            var firstFavorite = firstGame.Favorite;
+            if (games.All(a => a.Favorite == firstFavorite) == true)
+            {
+                dummyGame.Favorite = firstFavorite;
+            }
+
             return dummyGame;
         }
     }

@@ -12,7 +12,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource GameEditWindowTitle}"
-        Height="650" Width="800"
+        Height="720" Width="850"
         WindowStartupLocation="CenterOwner"
         x:Name="mainWindow" Loaded="Window_Loaded"
         AutomationProperties.AutomationId="WindowGameEdit">
@@ -51,6 +51,7 @@
                                     Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
                     </StackPanel>
                 </TabItem.Header>
+                <ScrollViewer>
                 <Grid Grid.Column="0" Grid.Row="0" Margin="10">
                     <Grid.Resources>
                         <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
@@ -118,7 +119,9 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <!-- ID -->
@@ -217,7 +220,8 @@
                     <CheckBox Grid.Column="1" Grid.Row="10" Name="CheckDescription" 
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseDescriptionChanges}"/>
-                    <TextBox Grid.Column="2" Grid.Row="10" Grid.RowSpan="9"
+                    <TextBox Grid.Column="2" Grid.Row="10" Grid.RowSpan="13"
+                             Height="260" VerticalAlignment="Top"
                              TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
                              ScrollViewer.VerticalScrollBarVisibility="Auto"
                              Text="{Binding EditingGame.Description, UpdateSourceTrigger=PropertyChanged}"
@@ -332,23 +336,40 @@
                                     DataContext="{Binding EditingGame}"
                                     Content="{StaticResource ComboCompletionStatusOptions}" />
 
-                    <Grid Height="25" Grid.Column="3" Grid.Row="14" />
-                    
-                    <!-- Added -->
-                    <TextBlock Grid.Column="3" Grid.Row="15" Text="{DynamicResource AddedLabel}"/>
+                    <Grid Height="20" Grid.Column="3" Grid.Row="14" />
+
+                    <!-- Hidden -->
+                    <TextBlock Grid.Column="3" Grid.Row="15" Text="{DynamicResource GameHiddenTitle}" />
                     <CheckBox Grid.Column="4" Grid.Row="15"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseHiddenChanges}"/>
+                    <CheckBox Grid.Column="5" Grid.Row="15" Margin="3"
+                              IsChecked="{Binding EditingGame.Hidden}"/>
+
+                    <!-- Favorite -->
+                    <TextBlock Grid.Column="3" Grid.Row="16" Text="{DynamicResource GameFavoriteTitle}" />
+                    <CheckBox Grid.Column="4" Grid.Row="16"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseFavoriteChanges}"/>
+                    <CheckBox Grid.Column="5" Grid.Row="16" Margin="3"
+                              IsChecked="{Binding EditingGame.Favorite}" />
+
+                    <Grid Height="20" Grid.Column="3" Grid.Row="17" />
+
+                    <!-- Added -->
+                    <TextBlock Grid.Column="3" Grid.Row="18" Text="{DynamicResource AddedLabel}"/>
+                    <CheckBox Grid.Column="4" Grid.Row="18"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseAddedChanges}"/>
-                    <DatePicker Grid.Column="5" Grid.Row="15"
+                    <DatePicker Grid.Column="5" Grid.Row="18"
                                 SelectedDate="{Binding EditingGame.Added}"/>
-                    
-                    <!-- Modified -->
-                    <TextBlock Grid.Column="3" Grid.Row="16" Text="{DynamicResource ModifiedLabel}" />
-                    <TextBlock Grid.Column="5" Grid.Row="16" Margin="3,6,3,6"
-                             Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>                    
 
-                    <Grid Grid.Column="3" Grid.Row="17" />
+                    <!-- Modified -->
+                    <TextBlock Grid.Column="3" Grid.Row="19" Text="{DynamicResource ModifiedLabel}" />
+                    <TextBlock Grid.Column="5" Grid.Row="19" Margin="3,6,3,6"
+                             Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>
                 </Grid>
+                </ScrollViewer>
             </TabItem>
 
             <TabItem>

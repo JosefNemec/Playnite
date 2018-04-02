@@ -494,6 +494,38 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        private bool useHiddenChanges;
+        public bool UseHiddenChanges
+        {
+            get
+            {
+                return useHiddenChanges;
+            }
+
+            set
+            {
+                useHiddenChanges = value;
+                OnPropertyChanged("UseHiddenChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useFavoriteChanges;
+        public bool UseFavoriteChanges
+        {
+            get
+            {
+                return useFavoriteChanges;
+            }
+
+            set
+            {
+                useFavoriteChanges = value;
+                OnPropertyChanged("UseFavoriteChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
         public bool ShowGeneralChangeNotif
         {
             get
@@ -521,7 +553,9 @@ namespace PlayniteUI.ViewModels
                     UseCompletionStatusChanges ||
                     UseUserScoreChanges ||
                     UseCriticScoreChanges ||
-                    UseCommunityScoreChanges);
+                    UseCommunityScoreChanges ||
+                    UseHiddenChanges ||
+                    UseFavoriteChanges);
             }
         }
 
@@ -1262,6 +1296,26 @@ namespace PlayniteUI.ViewModels
                     {
                         UseCommunityScoreChanges = true;
                     }
+                    break; ;
+                case "Favorite":
+                    if (Games == null)
+                    {
+                        UseFavoriteChanges = Game.Favorite != EditingGame.Favorite;
+                    }
+                    else
+                    {
+                        UseFavoriteChanges = true;
+                    }
+                    break; ;
+                case "Hidden":
+                    if (Games == null)
+                    {
+                        UseHiddenChanges = Game.Hidden != EditingGame.Hidden;
+                    }
+                    else
+                    {
+                        UseHiddenChanges = true;
+                    }
                     break;
             }
         }
@@ -1648,6 +1702,36 @@ namespace PlayniteUI.ViewModels
                 else
                 {
                     Game.CommunityScore = EditingGame.CommunityScore;
+                }
+            }
+
+            if (UseFavoriteChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Favorite = EditingGame.Favorite;
+                    }
+                }
+                else
+                {
+                    Game.Favorite = EditingGame.Favorite;
+                }
+            }
+
+            if (UseHiddenChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Hidden = EditingGame.Hidden;
+                    }
+                }
+                else
+                {
+                    Game.Hidden = EditingGame.Hidden;
                 }
             }
 

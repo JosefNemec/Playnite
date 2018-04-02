@@ -43,8 +43,9 @@ namespace PlayniteUITests
                     CompletionStatus = CompletionStatus.Completed,
                     UserScore = 1,
                     CriticScore = 2,
-                    CommunityScore = 99
-
+                    CommunityScore = 99,
+                    Favorite = false,
+                    Hidden = true
                 },
                 new Game()
                 {
@@ -69,7 +70,9 @@ namespace PlayniteUITests
                     CompletionStatus = CompletionStatus.Completed,
                     UserScore = 1,
                     CriticScore = 2,
-                    CommunityScore = 99
+                    CommunityScore = 99,
+                    Favorite = false,
+                    Hidden = true
                 },
                 new Game()
                 {
@@ -94,7 +97,9 @@ namespace PlayniteUITests
                     CompletionStatus = CompletionStatus.Completed,
                     UserScore = 1,
                     CriticScore = 2,
-                    CommunityScore = 99
+                    CommunityScore = 99,
+                    Favorite = false,
+                    Hidden = true
                 }
             };
 
@@ -122,6 +127,8 @@ namespace PlayniteUITests
             Assert.AreEqual(firstGame.UserScore, gameCommon.UserScore);
             Assert.AreEqual(firstGame.CriticScore, gameCommon.CriticScore);
             Assert.AreEqual(firstGame.CommunityScore, gameCommon.CommunityScore);
+            Assert.AreEqual(firstGame.Favorite, gameCommon.Favorite);
+            Assert.AreEqual(firstGame.Hidden, gameCommon.Hidden);
 
             // No common
             var gamesNoCommon = new List<Game>()
@@ -149,8 +156,9 @@ namespace PlayniteUITests
                     CompletionStatus = CompletionStatus.Beaten,
                     UserScore = 1,
                     CriticScore = 1,
-                    CommunityScore = 1
-
+                    CommunityScore = 1,
+                    Favorite = false,
+                    Hidden = true
                 },
                 new Game()
                 {
@@ -175,7 +183,9 @@ namespace PlayniteUITests
                     CompletionStatus = CompletionStatus.Completed,
                     UserScore = 2,
                     CriticScore = 2,
-                    CommunityScore = 2
+                    CommunityScore = 2,
+                    Favorite = true,
+                    Hidden = false
                 },
                 new Game()
                 {
@@ -200,7 +210,9 @@ namespace PlayniteUITests
                     CompletionStatus = CompletionStatus.NotPlayed,
                     UserScore = 3,
                     CriticScore = 3,
-                    CommunityScore = 3
+                    CommunityScore = 3,
+                    Favorite = false,
+                    Hidden = false
                 }
             };
 
@@ -227,6 +239,8 @@ namespace PlayniteUITests
             Assert.IsNull(gameNoCommon.UserScore);
             Assert.IsNull(gameNoCommon.CriticScore);
             Assert.IsNull(gameNoCommon.CommunityScore);
+            Assert.IsFalse(gameNoCommon.Hidden);
+            Assert.IsFalse(gameNoCommon.Favorite);
         }
     }
 }
