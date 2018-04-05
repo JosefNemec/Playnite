@@ -6,7 +6,7 @@
         xmlns:pui="clr-namespace:PlayniteUI"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
-        xmlns:pm="clr-namespace:Playnite.Models;assembly=Playnite"
+        xmlns:pm="clr-namespace:Playnite.SDK.Models;assembly=PlayniteSDK"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"

@@ -2,8 +2,9 @@
 using Playnite;
 using Playnite.Database;
 using Playnite.MetaProviders;
-using Playnite.Models;
 using Playnite.Providers.Steam;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using PlayniteUI.Commands;
 using PlayniteUI.Windows;
 using System;

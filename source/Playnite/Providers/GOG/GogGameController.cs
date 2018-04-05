@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Playnite.Models;
+using Playnite.SDK.Models;
 
 namespace Playnite.Providers.GOG
 {

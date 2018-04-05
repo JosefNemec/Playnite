@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Playnite.Models;
+using Playnite.SDK.Models;
 
 namespace Playnite.Providers
 {

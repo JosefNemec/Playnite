@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using System.IO;
 using Playnite.Providers.Origin;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using Playnite;
 
 namespace PlayniteTests.Providers.Origin

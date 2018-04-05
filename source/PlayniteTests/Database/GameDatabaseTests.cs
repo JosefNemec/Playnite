@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Playnite.Database;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using Playnite;
 using Moq;
 using Playnite.Providers.GOG;

@@ -1,6 +1,5 @@
 ﻿using NLog;
-using Playnite;
-using PlayniteUI.Commands;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;

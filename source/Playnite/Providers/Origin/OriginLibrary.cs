@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Web;
 using NLog;
 using Playnite.Models;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using Playnite.Providers.Steam;
 using Microsoft.Win32;
 using Newtonsoft.Json;

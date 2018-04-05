@@ -10,6 +10,8 @@ using Playnite.Models;
 using System.Globalization;
 using Playnite.Database;
 using System.IO;
+using Playnite.SDK.Models;
+using Playnite.SDK;
 
 namespace Playnite.MetaProviders
 {

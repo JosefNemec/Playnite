@@ -1,6 +1,6 @@
 ﻿using LiteDB;
 using Newtonsoft.Json;
-using Playnite.Converters;
+using Playnite.SDK.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite.Models
+namespace Playnite.SDK.Models
 {
     public class Platform : INotifyPropertyChanged
     {

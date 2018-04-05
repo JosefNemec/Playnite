@@ -11,7 +11,6 @@
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         xmlns:pvm="clr-namespace:PlayniteUI.ViewModels"
         xmlns:pmp="clr-namespace:Playnite.MetaProviders;assembly=Playnite"
-        xmlns:pm="clr-namespace:Playnite.Models;assembly=Playnite"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"

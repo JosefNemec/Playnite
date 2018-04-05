@@ -1,10 +1,11 @@
 ﻿using LiteDB;
 using Newtonsoft.Json;
 using Playnite;
-using Playnite.Converters;
 using Playnite.Database;
 using Playnite.Emulators;
-using Playnite.Models;
+using Playnite.SDK;
+using Playnite.SDK.Models;
+using Playnite.SDK.Converters;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;

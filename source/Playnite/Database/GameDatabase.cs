@@ -21,6 +21,7 @@ using Playnite.Providers.Uplay;
 using Playnite.Providers.BattleNet;
 using Playnite.Emulators;
 using System.Security.Cryptography;
+using Playnite.SDK.Models;
 
 namespace Playnite.Database
 {
@@ -237,7 +238,7 @@ namespace Playnite.Database
         private IUplayLibrary uplayLibrary;
         private IBattleNetLibrary battleNetLibrary;
 
-        public static readonly ushort DBVersion = 2;
+        public static readonly ushort DBVersion = 3;
 
         public event PlatformsCollectionChangedEventHandler PlatformsCollectionChanged;
         public event PlatformUpdatedEventHandler PlatformUpdated;
@@ -298,6 +299,7 @@ namespace Playnite.Database
                     return;
                 }
 
+                var originalVersion = db.Engine.UserVersion;
                 var trans = db.BeginTrans();
 
                 try
@@ -489,11 +491,27 @@ namespace Playnite.Database
                             gameCol.Update(game);
                         }
 
-                        emusCollection.EnsureIndex(a => a.Id);
-                        db.GetCollection<IGame>("games").EnsureIndex(a => a.Id);
-                        db.GetCollection<Platform>("platforms").EnsureIndex(a => a.Id);
+                        emusCollection.EnsureIndex("Id");
+                        db.GetCollection("games").EnsureIndex("Id");
+                        db.GetCollection("platforms").EnsureIndex("Id");
 
                         db.Engine.UserVersion = 2;
+                    }
+
+                    // 2 to 3
+                    if (db.Engine.UserVersion == 2 && DBVersion > 2)
+                    {
+                        // Change "_type" field of "games" collection
+                        // From: "Playnite.Models.Game, Playnite"
+                        // To: "Playnite.SDK.Models.Game, PlayniteSDK"
+                        var gameCol = db.GetCollection("games");
+                        foreach (var game in gameCol.FindAll().ToList())
+                        {
+                            game["_type"] = "Playnite.SDK.Models.Game, PlayniteSDK";
+                            gameCol.Update(game);
+                        }
+
+                        db.Engine.UserVersion = 3;
                     }
 
                     trans.Commit();
@@ -506,7 +524,7 @@ namespace Playnite.Database
                 }
 
                 // we must do this outside of transaction operation
-                if (db.Engine.UserVersion == 2)
+                if (originalVersion <= 2)
                 {
                     foreach (var file in db.FileStorage.FindAll().ToList())
                     {
@@ -649,8 +667,15 @@ namespace Playnite.Database
             IsOpen = false;
         }
 
+        public List<IGame> GetGames()
+        {
+            CheckDbState();
+            return GamesCollection.FindAll().ToList();
+        }
+
         public IGame GetGame(int id)
         {
+            CheckDbState();
             return GamesCollection.FindById(id);
         }
 
@@ -686,6 +711,12 @@ namespace Playnite.Database
             }
 
             OnGamesCollectionChanged(games.ToList(), new List<IGame>());
+        }
+
+        public void DeleteGame(int id)
+        {
+            var game = GetGame(id);
+            DeleteGame(game.Id);
         }
 
         public void DeleteGame(IGame game)
@@ -747,6 +778,24 @@ namespace Playnite.Database
             }
 
             OnPlatformsCollectionChanged(platforms.ToList(), new List<Platform>());
+        }
+
+        public Platform GetPlatform(ObjectId id)
+        {
+            CheckDbState();
+            return PlatformsCollection.FindById(id);
+        }
+
+        public List<Platform> GetPlatforms()
+        {
+            CheckDbState();
+            return PlatformsCollection.FindAll().ToList();
+        }
+
+        public void RemovePlatform(ObjectId id)
+        {
+            var platform = GetPlatform(id);
+            RemovePlatform(platform);
         }
 
         public void RemovePlatform(Platform platform)
@@ -858,14 +907,19 @@ namespace Playnite.Database
             }
         }
 
-        public void RemoveEmulator(Emulator emulator)
+        public void RemoveEmulator(ObjectId id)
         {
             CheckDbState();
 
             using (Database.Engine.Locker.Reserved())
             {
-                EmulatorsCollection.Delete(emulator.Id);
+                EmulatorsCollection.Delete(id);
             }
+        }
+
+        public void RemoveEmulator(Emulator emulator)
+        {
+            RemoveEmulator(emulator.Id);
         }
 
         public void RemoveEmulator(IEnumerable<Emulator> emulators)
@@ -908,8 +962,15 @@ namespace Playnite.Database
             }
         }
 
+        public Emulator GetEmulator(ObjectId id)
+        {
+            CheckDbState();
+            return EmulatorsCollection.FindById(id);
+        }
+
         public List<Emulator> GetEmulators()
         {
+            CheckDbState();
             return EmulatorsCollection.FindAll().ToList();
         }
 

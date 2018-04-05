@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
-using Playnite.Models;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using PlayniteUI;
 using Playnite;
 using LiteDB;

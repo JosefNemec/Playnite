@@ -1,5 +1,6 @@
 ﻿using AngleSharp.Parser.Html;
 using Playnite.Models;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

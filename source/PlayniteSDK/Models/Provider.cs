@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite.Models
+namespace Playnite.SDK.Models
 {
     public enum Provider
     {

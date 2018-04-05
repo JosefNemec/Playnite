@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using Playnite.Providers.Steam;
 using Playnite.Services;
+using Playnite.Models;
 
 namespace Playnite.Providers.Steam
 {

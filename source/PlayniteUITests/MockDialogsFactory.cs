@@ -1,4 +1,5 @@
-﻿using PlayniteUI;
+﻿using Playnite.SDK;
+using PlayniteUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;

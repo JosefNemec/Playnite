@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Playnite.MetaProviders;
-using Playnite.Models;
+using Playnite.SDK.Models;
 
 namespace PlayniteTests.MetaProviders
 {

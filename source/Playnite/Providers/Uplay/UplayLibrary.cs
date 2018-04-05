@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using Microsoft.Win32;
 using System.IO;
+using Playnite.Models;
 
 namespace Playnite.Providers.Uplay
 {

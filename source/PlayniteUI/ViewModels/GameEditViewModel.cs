@@ -16,6 +16,8 @@ using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
 using System.ComponentModel;
 using Playnite.Providers.BattleNet;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 
 namespace PlayniteUI.ViewModels
 {

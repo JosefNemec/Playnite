@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Playnite.Providers.Steam;
-using Playnite.Models;
+using Playnite.SDK.Models;
 
 namespace PlayniteTests.Providers.Steam
 {
@@ -38,7 +38,7 @@ namespace PlayniteTests.Providers.Steam
                 Assert.IsFalse(string.IsNullOrEmpty(game.InstallDirectory));
                 Assert.IsTrue(Directory.Exists(game.InstallDirectory));
                 Assert.IsNotNull(game.PlayTask);
-                Assert.IsTrue(game.PlayTask.Type == Playnite.Models.GameTaskType.URL);
+                Assert.IsTrue(game.PlayTask.Type == GameTaskType.URL);
             }
         }
 
@@ -74,7 +74,7 @@ namespace PlayniteTests.Providers.Steam
             CollectionAssert.IsNotEmpty(cats);
             CollectionAssert.IsNotEmpty(game.Categories);
             Assert.IsFalse(string.IsNullOrEmpty(game.ProviderId));
-            Assert.AreEqual(game.Provider, Playnite.Models.Provider.Steam);
+            Assert.AreEqual(game.Provider, Provider.Steam);
         }
 
         [Test]

@@ -1,7 +1,8 @@
 ﻿using NLog;
 using Playnite;
 using Playnite.MetaProviders;
-using Playnite.Models;
+using Playnite.SDK.Models;
+using Playnite.SDK;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;

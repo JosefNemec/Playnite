@@ -5,6 +5,7 @@ using Playnite.Database;
 using Playnite.Models;
 using Playnite.Providers;
 using Playnite.Providers.Steam;
+using Playnite.SDK.Models;
 using PlayniteUI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,11 @@ namespace PlayniteUI
         private IResourceProvider resources = new ResourceProvider();
         private GameDatabase database;
         private Settings appSettings;
-        private GameControllerFactory controllers;
+
+        public GameControllerFactory Controllers
+        {
+            get; private set;
+        }
 
         public List<IGame> LastGames
         {
@@ -39,21 +44,21 @@ namespace PlayniteUI
         {
             this.database = database;
             this.appSettings = appSettings;
-            controllers = new GameControllerFactory(database);
-            controllers.Installed += Controllers_Installed;
-            controllers.Uninstalled += Controllers_Uninstalled;
-            controllers.Started += Controllers_Started;
-            controllers.Stopped += Controllers_Stopped;            
+            Controllers = new GameControllerFactory(database);
+            Controllers.Installed += Controllers_Installed;
+            Controllers.Uninstalled += Controllers_Uninstalled;
+            Controllers.Started += Controllers_Started;
+            Controllers.Stopped += Controllers_Stopped;            
         }
 
         public void Dispose()
         {
-            foreach (var controller in controllers.Controllers)
+            foreach (var controller in Controllers.Controllers)
             {                
                 UpdateGameState(controller.Game.Id, null, false, false, false, false);
             }
 
-            controllers?.Dispose();
+            Controllers?.Dispose();
         }
 
         public void OnPropertyChanged(string name)
@@ -116,8 +121,8 @@ namespace PlayniteUI
             try
             {
                 var controller = GameControllerFactory.GetGameBasedController(game, appSettings);
-                controllers.RemoveController(game.Id);
-                controllers.AddController(controller);
+                Controllers.RemoveController(game.Id);
+                Controllers.AddController(controller);
 
                 if (game.IsInstalled)
                 {
@@ -340,8 +345,8 @@ namespace PlayniteUI
             try
             {
                 var controller = GameControllerFactory.GetGameBasedController(game, appSettings);
-                controllers.RemoveController(game.Id);
-                controllers.AddController(controller);
+                Controllers.RemoveController(game.Id);
+                Controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, true, null, null);
                 controller.Install();
             }
@@ -370,8 +375,8 @@ namespace PlayniteUI
             try
             {
                 var controller = GameControllerFactory.GetGameBasedController(game, appSettings);
-                controllers.RemoveController(game.Id);
-                controllers.AddController(controller);
+                Controllers.RemoveController(game.Id);
+                Controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, true, null);
                 controller.Uninstall();
             }
@@ -431,7 +436,7 @@ namespace PlayniteUI
 
         public void CancelGameMonitoring(IGame game)
         {
-            controllers.RemoveController(game.Id);
+            Controllers.RemoveController(game.Id);
             UpdateGameState(game.Id, null, false, false, false, false);
         }
 
@@ -477,7 +482,7 @@ namespace PlayniteUI
             dbGame.State.Running = false;
             dbGame.Playtime += args.ElapsedTime;
             database.UpdateGameInDatabase(dbGame);
-            controllers.RemoveController(args.Controller);
+            Controllers.RemoveController(args.Controller);
         }
 
         private void Controllers_Installed(object sender, GameControllerEventArgs args)
@@ -501,7 +506,7 @@ namespace PlayniteUI
             }
 
             database.UpdateGameInDatabase(dbGame);
-            controllers.RemoveController(args.Controller);
+            Controllers.RemoveController(args.Controller);
         }
 
         private void Controllers_Uninstalled(object sender, GameControllerEventArgs args)
@@ -514,7 +519,7 @@ namespace PlayniteUI
             dbGame.State.Installed = false;
             dbGame.InstallDirectory = string.Empty;
             database.UpdateGameInDatabase(dbGame);
-            controllers.RemoveController(args.Controller);
+            Controllers.RemoveController(args.Controller);
         }
     }
 }

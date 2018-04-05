@@ -3,6 +3,8 @@ using Playnite;
 using Playnite.Database;
 using Playnite.MetaProviders;
 using Playnite.Models;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -403,7 +405,10 @@ namespace PlayniteTests.MetaProviders
                     Tags = new ComparableList<string>() { "Tags" },
                     Icon = "Icon",
                     Image = "Image",
-                    BackgroundImage = "BackgroundImage"
+                    BackgroundImage = "BackgroundImage",
+                    UserScore = 1,
+                    CommunityScore = 2,
+                    CriticScore = 3
                 });
 
                 var igdbProvider = new MockMetadataProvider

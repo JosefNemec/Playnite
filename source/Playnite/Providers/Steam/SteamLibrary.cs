@@ -19,6 +19,8 @@ using Playnite.Services;
 using Playnite.Database;
 using System.Windows;
 using System.Globalization;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 
 namespace Playnite.Providers.Steam
 {

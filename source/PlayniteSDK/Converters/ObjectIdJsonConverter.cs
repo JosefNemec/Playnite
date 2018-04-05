@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite.Converters
+namespace Playnite.SDK.Converters
 {
     public class ObjectIdJsonConverter : JsonConverter
     {

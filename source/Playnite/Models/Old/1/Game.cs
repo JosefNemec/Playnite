@@ -17,6 +17,8 @@ using System.Collections.Concurrent;
 using Playnite.Providers.Uplay;
 using Playnite.Providers.BattleNet;
 using Newtonsoft.Json;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 
 namespace Playnite.Models.Old1
 {

@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite.Models
+namespace Playnite.SDK
 {
-    public enum CompletionStatus
+    public interface IExtensionFunction
     {
-        NotPlayed,
-        Played,
-        Beaten,
-        Completed
+        void Invoke();
     }
 }

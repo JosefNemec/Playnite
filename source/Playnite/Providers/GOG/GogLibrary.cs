@@ -2,6 +2,8 @@
 using NLog;
 using Playnite.Database;
 using Playnite.Models;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

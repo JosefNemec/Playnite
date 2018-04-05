@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using System.ComponentModel;
 
 namespace PlayniteUI

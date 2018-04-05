@@ -9,17 +9,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using LiteDB;
-using Playnite.Providers.GOG;
-using Playnite.Providers.Origin;
-using Playnite.Providers.Steam;
-using Playnite.Providers;
 using System.Collections.Concurrent;
-using Playnite.Providers.Uplay;
-using Playnite.Providers.BattleNet;
 using Newtonsoft.Json;
-using Playnite.Converters;
+using Playnite.SDK.Converters;
 
-namespace Playnite.Models
+namespace Playnite.SDK.Models
 {
     public class Game : IGame
     {

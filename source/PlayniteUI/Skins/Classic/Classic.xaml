@@ -2459,11 +2459,24 @@
                                       Command="{Binding OpenPlatformsCommand}"/>
                                 <MenuItem Header="{DynamicResource MenuDownloadMetadata}" Style="{DynamicResource ProgressMenu}"
                                           Command="{Binding DownloadMetadataCommand}"/>
+                                <MenuItem Header="{DynamicResource ReloadScripts}"
+                                          Command="{x:Static pcmd:GeneralCommands.ReloadScriptsCommand}"/>
                                 <Separator />
                                 <MenuItem Header="{DynamicResource MenuPlayniteSettingsTitle}"
                                       Command="{Binding OpenSettingsCommand}"/>
                             </MenuItem>
-                            <Separator  />
+                            <MenuItem Header="{DynamicResource Extensions}"
+                                      DataContext="{Binding Api, Source={x:Static pui:App.Current}}"
+                                      ItemsSource="{Binding ExportedFunctions}">
+                                <MenuItem.ItemContainerStyle>
+                                    <Style TargetType="MenuItem">
+                                        <Setter Property="Header" Value="{Binding Name}" />
+                                        <Setter Property="Command" Value="{x:Static pcmd:GeneralCommands.InvokeExtensionFunctionCommand}" />
+                                        <Setter Property="CommandParameter" Value="{Binding}" />
+                                    </Style>
+                                </MenuItem.ItemContainerStyle>
+                            </MenuItem>
+                            <Separator />
                             <MenuItem Header="{DynamicResource MenuOpenClient}" ItemsSource="{Binding ThirdPartyTools}">
                                 <MenuItem.ItemContainerStyle>
                                     <Style TargetType="MenuItem">

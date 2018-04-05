@@ -1,6 +1,6 @@
 ﻿using NLog;
 using Playnite.Database;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using Polly;
 using SteamKit2;
 using System;

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite
+namespace Playnite.SDK
 {
     public class RangeObservableCollection<T> : ObservableCollection<T>
     {

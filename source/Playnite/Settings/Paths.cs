@@ -25,6 +25,22 @@ namespace Playnite
             }
         }
 
+        public static string ScriptsUserDataPath
+        {
+            get
+            {
+                return Path.Combine(ConfigRootPath, "Scripts");
+            }
+        }
+
+        public static string ScriptsProgramPath
+        {
+            get
+            {
+                return Path.Combine(ProgramFolder, "Scripts");
+            }
+        }
+
         public static string LocalizationsPath
         {
             get

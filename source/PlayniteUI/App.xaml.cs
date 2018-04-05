@@ -20,6 +20,7 @@ using System.IO;
 using System.Windows.Input;
 using System.ComponentModel;
 using Playnite.MetaProviders;
+using Playnite.API;
 
 namespace PlayniteUI
 {
@@ -36,6 +37,12 @@ namespace PlayniteUI
         private PipeServer pipeServer;
         private MainViewModel mainModel;
         private FullscreenViewModel fullscreenModel;
+
+        public PlayniteAPI Api
+        {
+            get; set;
+        }
+
         //private XInputDevice xdevice;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -232,6 +239,7 @@ namespace PlayniteUI
 
             GamesEditor = new GamesEditor(Database, AppSettings);
             CustomImageStringToImageConverter.Database = Database;
+            Api = new PlayniteAPI(Database, GamesEditor.Controllers, new DialogsFactory());
 
             // Main view startup
             if (AppSettings.StartInFullscreen)
@@ -389,10 +397,11 @@ namespace PlayniteUI
                     logger.Error(exc, "Failed to cancel global progress task.");
                     throw;
                 }
-
+                
                 GamesEditor?.Dispose();
                 Database?.CloseDatabase();
                 AppSettings?.SaveSettings();
+                Api.Dispose();
             }, ResourceProvider.Instance.FindString("ClosingPlaynite"));
 
             progressModel.ActivateProgress();

@@ -1,6 +1,7 @@
 ﻿using NLog;
 using Playnite;
 using Playnite.Models;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,22 @@ namespace PlayniteUI.Commands
             get => new RelayCommand<object>((url) =>
             {
                 NavigateUrl(url);
+            });
+        }
+
+        public static RelayCommand<IExtensionFunction> InvokeExtensionFunctionCommand
+        {
+            get => new RelayCommand<IExtensionFunction>((f) =>
+            {
+                App.CurrentApp.Api?.InvokeExtension(f);
+            });
+        }
+
+        public static RelayCommand<object> ReloadScriptsCommand
+        {
+            get => new RelayCommand<object>((f) =>
+            {
+                App.CurrentApp.Api?.LoadScripts();
             });
         }
 

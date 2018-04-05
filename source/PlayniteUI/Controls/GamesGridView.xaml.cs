@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Playnite.Database;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using Playnite;
 using System.ComponentModel;
 

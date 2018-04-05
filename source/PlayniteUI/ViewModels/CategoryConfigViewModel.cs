@@ -1,6 +1,6 @@
-﻿using Playnite;
-using Playnite.Database;
-using Playnite.Models;
+﻿using Playnite.Database;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Playnite
+namespace Playnite.SDK
 {
     public class ComparableList<T>: List<T>, IComparable, IEnumerable<T>
     {

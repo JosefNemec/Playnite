@@ -1,7 +1,7 @@
 ﻿using LiteDB;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using Playnite.Converters;
+using Playnite.SDK.Converters;
 using Playnite.Models;
 using System;
 using System.Collections.Generic;

@@ -13,6 +13,7 @@ using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
 using Playnite.Providers.Steam;
 using Playnite.Providers;
+using Playnite.SDK.Models;
 
 namespace Playnite.Models.Old0
 {
