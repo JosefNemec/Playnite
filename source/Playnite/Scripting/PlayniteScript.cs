@@ -18,13 +18,8 @@ namespace Playnite.Scripting
         IronPython
     }
 
-    public class ScriptFunctionExport : IExtensionFunction
+    public class ScriptFunctionExport : ExtensionFunction
     {
-        public string Name
-        {
-            get; set;
-        }
-
         public string FunctionName
         {
             get; set;
@@ -35,7 +30,7 @@ namespace Playnite.Scripting
             get; set;
         }
 
-        public ScriptFunctionExport(string name, string functionName, PlayniteScript script)
+        public ScriptFunctionExport(string name, string functionName, PlayniteScript script) : base (name)
         {
             Name = name;
             FunctionName = functionName;
@@ -47,7 +42,7 @@ namespace Playnite.Scripting
             return Name;
         }
 
-        public void Invoke()
+        public override void Invoke()
         {
             Script.InvokeExportedFunction(this);
         }

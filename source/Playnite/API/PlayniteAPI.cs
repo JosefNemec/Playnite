@@ -17,16 +17,48 @@ namespace Playnite.API
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private GameDatabase database;
         private GameControllerFactory controllers;
-        private List<PlayniteScript> scripts;
 
-        private List<ScriptFunctionExport> exportedFunctions;
-        public List<ScriptFunctionExport> ExportedFunctions
+        private List<PlayniteScript> scripts;
+        private List<Plugin> plugins;
+
+        private List<ScriptFunctionExport> scriptFunctions;
+        public List<ScriptFunctionExport> ScriptFunctions
         {
-            get => exportedFunctions;
+            get => scriptFunctions;
             set
             {
-                exportedFunctions = value;
+                scriptFunctions = value;
                 OnPropertyChanged("ExportedFunctions");
+            }
+        }
+
+        private List<ExtensionFunction> pluginFunctions;
+        public List<ExtensionFunction> PluginFunctions
+        {
+            get => pluginFunctions;
+            set
+            {
+                pluginFunctions = value;
+                OnPropertyChanged("ExportedFunctions");
+            }
+        }
+
+        public List<ExtensionFunction> ExportedFunctions
+        {
+            get
+            {
+                var funcs = new List<ExtensionFunction>();
+                if (ScriptFunctions?.Any() == true)
+                {
+                    funcs.AddRange(ScriptFunctions);
+                }
+
+                if (PluginFunctions?.Any() == true)
+                {
+                    funcs.AddRange(PluginFunctions);
+                }
+
+                return funcs;
             }
         }
 
@@ -47,6 +79,7 @@ namespace Playnite.API
             Dialogs = dialogs;
             Database = new DatabaseAPI(database);
             LoadScripts();
+            LoadPlugins();
             controllers.Installed += Controllers_Installed;
             controllers.Started += Controllers_Started;
             controllers.Stopped += Controllers_Stopped;
@@ -57,11 +90,28 @@ namespace Playnite.API
         public void Dispose()
         {
             DisposeScripts();
+            DisposePlugins();
             controllers.Installed -= Controllers_Installed;
             controllers.Started -= Controllers_Installed;
             controllers.Stopped -= Controllers_Installed;
             controllers.Uninstalled -= Controllers_Installed;
             database.DatabaseOpened -= Database_DatabaseOpened;
+        }
+
+        private void DisposePlugins()
+        {
+            if (plugins == null)
+            {
+                return;
+            }
+
+            foreach (var plugin in plugins)
+            {
+                plugin.Dispose();
+            }
+
+            plugins = null;
+            PluginFunctions = null;
         }
 
         private void DisposeScripts()
@@ -77,7 +127,7 @@ namespace Playnite.API
             }
 
             scripts = null;
-            ExportedFunctions = null;
+            ScriptFunctions = null;
         }
 
         public void LoadScripts()
@@ -105,10 +155,45 @@ namespace Playnite.API
                 scripts.Add(script);                
             }
 
-            ExportedFunctions = scripts.Where(a => a.FunctionExports?.Any() == true).SelectMany(a => a.FunctionExports).ToList();
+            ScriptFunctions = scripts.Where(a => a.FunctionExports?.Any() == true).SelectMany(a => a.FunctionExports).ToList();
         }
 
-        public void InvokeExtension(IExtensionFunction function)
+        public void LoadPlugins()
+        {
+            DisposePlugins();
+            plugins = new List<Plugin>();
+            foreach (var path in Plugins.Plugins.GetPluginFiles())
+            {
+                List<Plugin> plugin = null;
+
+                try
+                {
+                    plugin = Plugins.Plugins.LoadPlugin(path, this);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e.InnerException, $"Failed to load plugin file {path}");
+                    Dialogs.ShowMessage(
+                        $"Failed to load plugin file {path}:\n\n" + e.InnerException.Message, "Plugin error",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    continue;
+                }
+
+                if (plugin.Any(a => a.CompatibilityVersion != SDK.Version.CompatibilityVersion))
+                {
+                    logger.Error($"Failed to load plugin file {path}, unsupported SDK version.");
+                    Dialogs.ShowMessage(
+                        $"Failed to load plugin file {path}:\n\nUnsupported SDK version.", "Plugin error",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                plugins.AddRange(plugin);
+            }
+
+            PluginFunctions = plugins.Where(a => a.GetFunctions()?.Any() == true).SelectMany(a => a.GetFunctions()).ToList();
+        }
+
+        public void InvokeExtension(ExtensionFunction function)
         {
             try
             {
@@ -136,6 +221,18 @@ namespace Playnite.API
                     logger.Error(e, $"Failed to load execute OnGameUninstalled method from {script.Name} script.");
                 }
             }
+
+            foreach (var plugin in plugins)
+            {
+                try
+                {
+                    plugin.OnGameUninstalled(args.Controller.Game);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnGameUninstalled method from {plugin.Properties.PluginName} plugin.");
+                }
+            }
         }
 
         private void Controllers_Stopped(object sender, GameControllerEventArgs args)
@@ -144,11 +241,23 @@ namespace Playnite.API
             {
                 try
                 {
-                    script.OnGameStopped(args.Controller.Game, args.ElapsedTime);
+                    script.OnGameStopped(args.Controller.Game, args.EllapsedTime);
                 }
                     catch (Exception e)
                 {
                     logger.Error(e, $"Failed to load execute OnGameStopped method from {script.Name} script.");
+                }
+            }
+
+            foreach (var plugin in plugins)
+            {
+                try
+                {
+                    plugin.OnGameStopped(args.Controller.Game, args.EllapsedTime);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnGameStopped method from {plugin.Properties.PluginName} plugin.");
                 }
             }
         }
@@ -166,6 +275,18 @@ namespace Playnite.API
                     logger.Error(e, $"Failed to load execute OnGameStarted method from {script.Name} script.");
                 }
             }
+
+            foreach (var plugin in plugins)
+            {
+                try
+                {
+                    plugin.OnGameStarted(args.Controller.Game);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnGameStarted method from {plugin.Properties.PluginName} plugin.");
+                }
+            }
         }
 
         private void Controllers_Installed(object sender, GameControllerEventArgs args)
@@ -179,6 +300,18 @@ namespace Playnite.API
                 catch (Exception e)
                 {
                     logger.Error(e, $"Failed to load execute OnGameInstalled method from {script.Name} script.");
+                }
+            }
+
+            foreach (var plugin in plugins)
+            {
+                try
+                {
+                    plugin.OnGameInstalled(args.Controller.Game);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnGameInstalled method from {plugin.Properties.PluginName} plugin.");
                 }
             }
         }
@@ -195,6 +328,18 @@ namespace Playnite.API
                 {
                     logger.Error(e, $"Failed to load execute OnScriptLoaded method from {script.Name} script.");
                     continue;
+                }
+
+                foreach (var plugin in plugins)
+                {
+                    try
+                    {
+                        plugin.OnLoaded();
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, $"Failed to load execute OnLoaded method from {plugin.Properties.PluginName} plugin.");
+                    }
                 }
             }
         }

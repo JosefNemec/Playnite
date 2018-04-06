@@ -15,7 +15,7 @@ namespace Playnite.Scripting
             var psScripts = Path.Combine(Paths.ScriptsProgramPath, "PowerShell");
             if (Directory.Exists(psScripts))
             {
-                foreach (var file in Directory.GetFiles(psScripts, "*.ps1"))
+                foreach (var file in Directory.GetFiles(psScripts, "*.ps1", SearchOption.TopDirectoryOnly))
                 {
                     scripts.Add(file);
                 }
@@ -24,7 +24,7 @@ namespace Playnite.Scripting
             var pyScripts = Path.Combine(Paths.ScriptsProgramPath, "IronPython");
             if (Directory.Exists(pyScripts))
             {
-                foreach (var file in Directory.GetFiles(pyScripts, "*.py"))
+                foreach (var file in Directory.GetFiles(pyScripts, "*.py", SearchOption.TopDirectoryOnly))
                 {
                     scripts.Add(file);
                 }
@@ -35,7 +35,7 @@ namespace Playnite.Scripting
                 psScripts = Path.Combine(Paths.ScriptsUserDataPath, "PowerShell");
                 if (Directory.Exists(psScripts))
                 {
-                    foreach (var file in Directory.GetFiles(psScripts, "*.ps1"))
+                    foreach (var file in Directory.GetFiles(psScripts, "*.ps1", SearchOption.TopDirectoryOnly))
                     {
                         scripts.Add(file);
                     }
@@ -44,7 +44,7 @@ namespace Playnite.Scripting
                 pyScripts = Path.Combine(Paths.ScriptsUserDataPath, "IronPython");
                 if (Directory.Exists(pyScripts))
                 {
-                    foreach (var file in Directory.GetFiles(pyScripts, "*.py"))
+                    foreach (var file in Directory.GetFiles(pyScripts, "*.py", SearchOption.TopDirectoryOnly))
                     {
                         scripts.Add(file);
                     }

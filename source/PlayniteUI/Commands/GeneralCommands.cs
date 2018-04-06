@@ -21,9 +21,9 @@ namespace PlayniteUI.Commands
             });
         }
 
-        public static RelayCommand<IExtensionFunction> InvokeExtensionFunctionCommand
+        public static RelayCommand<ExtensionFunction> InvokeExtensionFunctionCommand
         {
-            get => new RelayCommand<IExtensionFunction>((f) =>
+            get => new RelayCommand<ExtensionFunction>((f) =>
             {
                 App.CurrentApp.Api?.InvokeExtension(f);
             });

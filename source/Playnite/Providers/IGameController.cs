@@ -22,7 +22,7 @@ namespace Playnite.Providers
         /// Time in seconds for event to be finished.
         /// For example in case of Stopped event it indicates how long was game running until stopped.
         /// </summary>
-        public long ElapsedTime
+        public long EllapsedTime
         {
             get; set;
         } = 0;
@@ -31,14 +31,14 @@ namespace Playnite.Providers
         {
         }
 
-        public GameControllerEventArgs(IGameController controller, long elapsedTime)
+        public GameControllerEventArgs(IGameController controller, long ellapsedTime)
         {
             Controller = controller;
-            ElapsedTime = elapsedTime;
+            EllapsedTime = ellapsedTime;
         }
 
-        public GameControllerEventArgs(IGameController controller, double elapsedTime)
-            : this(controller, Convert.ToInt64(elapsedTime))
+        public GameControllerEventArgs(IGameController controller, double ellapsedTime)
+            : this(controller, Convert.ToInt64(ellapsedTime))
         {
         }
     }

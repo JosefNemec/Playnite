@@ -25,6 +25,22 @@ namespace Playnite
             }
         }
 
+        public static string PluginsUserDataPath
+        {
+            get
+            {
+                return Path.Combine(ConfigRootPath, "Plugins");
+            }
+        }
+
+        public static string PluginsProgramPath
+        {
+            get
+            {
+                return Path.Combine(ProgramFolder, "Plugins");
+            }
+        }
+
         public static string ScriptsUserDataPath
         {
             get

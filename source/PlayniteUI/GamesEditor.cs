@@ -476,11 +476,11 @@ namespace PlayniteUI
         private void Controllers_Stopped(object sender, GameControllerEventArgs args)
         {
             var game = args.Controller.Game;
-            logger.Info($"Game {game.Name} stopped after {args.ElapsedTime} seconds.");
+            logger.Info($"Game {game.Name} stopped after {args.EllapsedTime} seconds.");
 
             var dbGame = database.GetGame(game.Id);
             dbGame.State.Running = false;
-            dbGame.Playtime += args.ElapsedTime;
+            dbGame.Playtime += args.EllapsedTime;
             database.UpdateGameInDatabase(dbGame);
             Controllers.RemoveController(args.Controller);
         }
@@ -488,7 +488,7 @@ namespace PlayniteUI
         private void Controllers_Installed(object sender, GameControllerEventArgs args)
         {
             var game = args.Controller.Game;
-            logger.Info($"Game {game.Name} installed after {args.ElapsedTime} seconds.");
+            logger.Info($"Game {game.Name} installed after {args.EllapsedTime} seconds.");
 
             var dbGame = database.GetGame(game.Id);
             dbGame.State.Installing = false;
@@ -512,7 +512,7 @@ namespace PlayniteUI
         private void Controllers_Uninstalled(object sender, GameControllerEventArgs args)
         {
             var game = args.Controller.Game;
-            logger.Info($"Game {game.Name} uninstalled after {args.ElapsedTime} seconds.");
+            logger.Info($"Game {game.Name} uninstalled after {args.EllapsedTime} seconds.");
 
             var dbGame = database.GetGame(game.Id);
             dbGame.State.Uninstalling = false;
