@@ -2037,6 +2037,31 @@ namespace PlayniteUI.ViewModels
                 EditingGame.BackgroundImage = game.BackgroundImage;
             }
 
+            if (game.CriticScore != null)
+            {
+                EditingGame.CriticScore = game.CriticScore;
+            }
+
+            if (game.CommunityScore != null)
+            {
+                EditingGame.CommunityScore = game.CommunityScore;
+            }
+
+            if (!string.IsNullOrEmpty(game.AgeRating))
+            {
+                EditingGame.AgeRating = game.AgeRating;
+            }
+
+            if (!string.IsNullOrEmpty(game.Region))
+            {
+                EditingGame.Region = game.Region;
+            }
+
+            if (!string.IsNullOrEmpty(game.Series))
+            {
+                EditingGame.Series = game.Series;
+            }
+
             if (!string.IsNullOrEmpty(game.Image))
             {
                 if (game.Image.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
