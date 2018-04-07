@@ -1066,6 +1066,7 @@ namespace PlayniteUI.ViewModels
 
                         var game = Programs.GetGameFromExecutable(path);
                         Database.AddGame(game);
+                        Database.AssignPcPlatform(game);
                         GamesEditor.EditGame(game);
                         SelectGame(game.ProviderId);
                     }

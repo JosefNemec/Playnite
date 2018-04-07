@@ -335,7 +335,9 @@ namespace PlayniteUI.ViewModels
                     }
                 }
 
-                database.AddGames(Games.Select(a => a.Game).ToList());
+                var games = Games.Select(a => a.Game).ToList();
+                database.AddGames(games);
+                database.AssignPcPlatform(games);
             }
 
             CloseView(true);

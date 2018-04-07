@@ -1317,6 +1317,23 @@ namespace Playnite.Database
             game.PlatformId = platform.Id;
         }
 
+        public void AssignPcPlatform(List<Game> games)
+        {
+            var platform = PlatformsCollection.FindOne(a => a.Name == "PC");
+            if (platform == null)
+            {
+                platform = new Platform("PC");
+                AddPlatform(platform);
+            }
+
+            foreach (var game in games)
+            {
+                game.PlatformId = platform.Id;
+            }
+
+            UpdateGamesInDatabase(games);
+        }
+
         public void ImportCategories(List<Game> sourceGames)
         {
             foreach (var game in sourceGames)
