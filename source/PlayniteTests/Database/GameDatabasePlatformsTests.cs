@@ -48,7 +48,7 @@ namespace PlayniteTests.Database
         [Test]
         public void PcPlatformAutoAssignTest()
         {
-            var libraryGames = new List<IGame>()
+            var libraryGames = new List<Game>()
             {
                 new Game()
                 {

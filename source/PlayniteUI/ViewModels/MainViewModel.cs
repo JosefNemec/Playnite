@@ -269,9 +269,9 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public RelayCommand<IGame> StartGameCommand
+        public RelayCommand<Game> StartGameCommand
         {
-            get => new RelayCommand<IGame>((game) =>
+            get => new RelayCommand<Game>((game) =>
             {
                 if (game != null)
                 {
@@ -672,7 +672,7 @@ namespace PlayniteUI.ViewModels
                 GlobalTaskHandler.CancelToken = new CancellationTokenSource();
                 GlobalTaskHandler.ProgressTask = Task.Factory.StartNew(() =>
                 {
-                    var addedGames = new List<IGame>();
+                    var addedGames = new List<Game>();
                     ProgressVisible = true;
                     ProgressValue = 0;
                     ProgressTotal = 1;
@@ -892,7 +892,7 @@ namespace PlayniteUI.ViewModels
 
         public async Task DownloadMetadata(MetadataDownloaderSettings settings)
         {
-            List<IGame> games = null;
+            List<Game> games = null;
             if (settings.GamesSource == MetadataGamesSource.Selected)
             {
                 if (SelectedGames != null && SelectedGames.Count() > 0)

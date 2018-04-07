@@ -78,7 +78,7 @@ namespace PlayniteUI.ViewModels
                 get; set;
             } = true;
 
-            public IGame Game
+            public Game Game
             {
                 get; set;
             }
@@ -93,7 +93,7 @@ namespace PlayniteUI.ViewModels
                 get; set;
             }
 
-            public ImportableGame(IGame game, Emulator emulator, EmulatorProfile emulatorProfile)
+            public ImportableGame(Game game, Emulator emulator, EmulatorProfile emulatorProfile)
             {
                 Game = game;
                 Emulator = emulator;

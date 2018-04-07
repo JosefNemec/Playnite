@@ -62,7 +62,6 @@
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameState.cs" />
     <Compile Include="Models\GameTask.cs" />
-    <Compile Include="Models\IGame.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\Platform.cs" />
     <Compile Include="Models\Provider.cs" />

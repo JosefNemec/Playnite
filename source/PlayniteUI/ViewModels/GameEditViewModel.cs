@@ -590,8 +590,8 @@ namespace PlayniteUI.ViewModels
 
         #endregion Field checks
 
-        private IGame editingGame;
-        public IGame EditingGame
+        private Game editingGame;
+        public Game EditingGame
         {
             get
             {
@@ -605,8 +605,8 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private IGame game;
-        public IGame Game
+        private Game game;
+        public Game Game
         {
             get
             {
@@ -620,8 +620,8 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private IEnumerable<IGame> games;
-        public IEnumerable<IGame> Games
+        private IEnumerable<Game> games;
+        public IEnumerable<Game> Games
         {
             get
             {
@@ -951,7 +951,7 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public GameEditViewModel(IGame game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public GameEditViewModel(Game game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.database = database;
             this.window = window;
@@ -959,7 +959,7 @@ namespace PlayniteUI.ViewModels
             this.resources = resources;
 
             Game = game;
-            EditingGame = (game as Game).CloneJson();
+            EditingGame = game.CloneJson();
             ShowCheckBoxes = false;
             ShowMetaDownload = true;
             ShowLinks = true;
@@ -968,7 +968,7 @@ namespace PlayniteUI.ViewModels
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
         }
 
-        public GameEditViewModel(IEnumerable<IGame> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public GameEditViewModel(IEnumerable<Game> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.database = database;
             this.window = window;
@@ -986,13 +986,13 @@ namespace PlayniteUI.ViewModels
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
         }
 
-        public GameEditViewModel(IGame game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, Settings appSettings)
+        public GameEditViewModel(Game game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, Settings appSettings)
             : this(game, database, window, dialogs, resources)
         {
             this.appSettings = appSettings;
         }
 
-        public GameEditViewModel(IEnumerable<IGame> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, Settings appSettings)
+        public GameEditViewModel(IEnumerable<Game> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, Settings appSettings)
             : this(games, database, window, dialogs, resources)
         {
             this.appSettings = appSettings;
@@ -1987,7 +1987,7 @@ namespace PlayniteUI.ViewModels
             window.Close(true);
         }
 
-        public void PreviewGameData(IGame game)
+        public void PreviewGameData(Game game)
         {
             var listConverter = new ListToStringConverter();
             var dateConverter = new NullableDateToStringConverter();
@@ -2330,7 +2330,7 @@ namespace PlayniteUI.ViewModels
                 try
                 {
                     GameMetadata metadata;
-                    var tempGame = (game as Game).CloneJson();
+                    var tempGame = game.CloneJson();
                     tempGame.Image = string.Empty;
 
                     switch (tempGame.Provider)

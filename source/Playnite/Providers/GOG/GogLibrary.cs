@@ -56,9 +56,9 @@ namespace Playnite.Providers.GOG
             return new Tuple<GameTask, ObservableCollection<GameTask>>(playTask, otherTasks.Count > 0 ? otherTasks : null);
         }
 
-        public List<IGame> GetInstalledGamesFromRegistry()
+        public List<Game> GetInstalledGamesFromRegistry()
         {
-            var games = new List<IGame>();
+            var games = new List<Game>();
             var programs = Programs.GetUnistallProgramsList();
             foreach (var program in programs)
             {
@@ -106,7 +106,7 @@ namespace Playnite.Providers.GOG
             return games;
         }
 
-        public List<IGame> GetInstalledGamesFromGalaxy()
+        public List<Game> GetInstalledGamesFromGalaxy()
         {
             if (!File.Exists(Path.Combine(GogSettings.DBStoragePath, "index.db")))
             {
@@ -116,7 +116,7 @@ namespace Playnite.Providers.GOG
             var targetIndexPath = Path.Combine(Paths.TempPath, "index.db");
             CacheGogDatabases(Paths.TempPath, "index.db");
 
-            var games = new List<IGame>();
+            var games = new List<Game>();
 
             var db = new SQLiteConnection(@"Data Source=" + targetIndexPath);
             db.Open();
@@ -190,12 +190,12 @@ namespace Playnite.Providers.GOG
             return games;
         }
 
-        public List<IGame> GetInstalledGames()
+        public List<Game> GetInstalledGames()
         {
             return GetInstalledGamesFromRegistry();
         }
 
-        public List<IGame> GetInstalledGames(InstalledGamesSource source)
+        public List<Game> GetInstalledGames(InstalledGamesSource source)
         {
             if (source == InstalledGamesSource.Galaxy)
             {
@@ -209,7 +209,7 @@ namespace Playnite.Providers.GOG
             }
         }
 
-        public List<IGame> GetLibraryGames()
+        public List<Game> GetLibraryGames()
         {
             using (var api = new WebApiClient())
             {
@@ -218,7 +218,7 @@ namespace Playnite.Providers.GOG
                     throw new Exception("User is not logged in.");
                 }
 
-                var games = new List<IGame>();
+                var games = new List<Game>();
                 var libGames = api.GetOwnedGames();
                 if (libGames == null)
                 {
@@ -285,7 +285,7 @@ namespace Playnite.Providers.GOG
             return metadata;
         }
 
-        public GogGameMetadata UpdateGameWithMetadata(IGame game)
+        public GogGameMetadata UpdateGameWithMetadata(Game game)
         {
             var currentUrl = string.Empty;
             var metadata = DownloadGameMetadata(game.ProviderId, currentUrl);

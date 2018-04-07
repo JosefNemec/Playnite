@@ -105,22 +105,22 @@ namespace Playnite.Providers
             Installed?.Invoke(this, e);
         }
 
-        public static IGameController GetGameBasedController(IGame game, Settings settings)
+        public static IGameController GetGameBasedController(Game game, Settings settings)
         {
             switch (game.Provider)
             {
                 case Provider.Custom:
-                    return new GenericGameController(game as Game);
+                    return new GenericGameController(game);
                 case Provider.GOG:
-                    return new GogGameController(game as Game, settings);
+                    return new GogGameController(game, settings);
                 case Provider.Origin:
-                    return new OriginGameController(game as Game);
+                    return new OriginGameController(game);
                 case Provider.Steam:
-                    return new SteamGameController(game as Game);
+                    return new SteamGameController(game);
                 case Provider.Uplay:
-                    return new UplayGameController(game as Game);
+                    return new UplayGameController(game);
                 case Provider.BattleNet:
-                    return new BattleNetGameController(game as Game);
+                    return new BattleNetGameController(game);
             }
 
             return null;

@@ -12,8 +12,8 @@ namespace Playnite.Providers.Uplay
     {
         GameTask GetGamePlayTask(string id);
 
-        List<IGame> GetInstalledGames();
+        List<Game> GetInstalledGames();
 
-        GameMetadata UpdateGameWithMetadata(IGame game);
+        GameMetadata UpdateGameWithMetadata(Game game);
     }
 }

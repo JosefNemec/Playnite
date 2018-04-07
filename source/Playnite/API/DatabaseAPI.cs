@@ -31,7 +31,7 @@ namespace Playnite.API
 
         public Game GetGame(int id)
         {
-            return database.GetGame(id) as Game;
+            return database.GetGame(id);
         }
 
         public List<Game> GetGames()

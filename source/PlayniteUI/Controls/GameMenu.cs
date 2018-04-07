@@ -44,7 +44,7 @@ namespace PlayniteUI.Controls
         private IResourceProvider resources;
         private GamesEditor editor;
 
-        public IGame Game
+        public Game Game
         {
             get
             {
@@ -71,7 +71,7 @@ namespace PlayniteUI.Controls
             }
         }
 
-        public List<IGame> Games
+        public List<Game> Games
         {
             get
             {

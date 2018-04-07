@@ -67,8 +67,8 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private IGame game;
-        private IEnumerable<IGame> games;
+        private Game game;
+        private IEnumerable<Game> games;
         private bool autoUpdate;
         private IWindowFactory window;
         private GameDatabase database;
@@ -98,7 +98,7 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public CategoryConfigViewModel(IWindowFactory window, GameDatabase database, IEnumerable<IGame> games, bool autoUpdate)
+        public CategoryConfigViewModel(IWindowFactory window, GameDatabase database, IEnumerable<Game> games, bool autoUpdate)
         {
             this.window = window;
             this.database = database;
@@ -109,7 +109,7 @@ namespace PlayniteUI.ViewModels
             SetCategoryStates();
         }
 
-        public CategoryConfigViewModel(IWindowFactory window, GameDatabase database, IGame game, bool autoUpdate)
+        public CategoryConfigViewModel(IWindowFactory window, GameDatabase database, Game game, bool autoUpdate)
         {
             this.window = window;
             this.database = database;

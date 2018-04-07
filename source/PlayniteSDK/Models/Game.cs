@@ -15,7 +15,7 @@ using Playnite.SDK.Converters;
 
 namespace Playnite.SDK.Models
 {
-    public class Game : IGame
+    public class Game : ObservableObject
     {
         private string backgroundImage;
         public string BackgroundImage
@@ -669,8 +669,6 @@ namespace Playnite.SDK.Models
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public Game()
         {
             Provider = Provider.Custom;
@@ -683,11 +681,6 @@ namespace Playnite.SDK.Models
             Provider = Provider.Custom;
             ProviderId = Guid.NewGuid().ToString();
         }
-
-        public void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }    
 
         public override string ToString()
         {

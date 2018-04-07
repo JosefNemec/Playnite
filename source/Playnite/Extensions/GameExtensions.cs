@@ -11,7 +11,7 @@ namespace Playnite
 {
     public static class GameExtensions
     {
-        public static string ResolveVariables(this IGame game, string inputString)
+        public static string ResolveVariables(this Game game, string inputString)
         {
             if (string.IsNullOrEmpty(inputString))
             {

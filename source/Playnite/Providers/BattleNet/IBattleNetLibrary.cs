@@ -12,10 +12,10 @@ namespace Playnite.Providers.BattleNet
     {
         GameTask GetGamePlayTask(string id);
 
-        List<IGame> GetInstalledGames();
+        List<Game> GetInstalledGames();
 
-        GameMetadata UpdateGameWithMetadata(IGame game);
+        GameMetadata UpdateGameWithMetadata(Game game);
 
-        List<IGame> GetLibraryGames();
+        List<Game> GetLibraryGames();
     }
 }

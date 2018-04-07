@@ -335,7 +335,7 @@ namespace PlayniteUI.ViewModels
                     }
                 }
 
-                database.AddGames(Games.Select(a => a.Game).ToList<IGame>());
+                database.AddGames(Games.Select(a => a.Game).ToList());
             }
 
             CloseView(true);

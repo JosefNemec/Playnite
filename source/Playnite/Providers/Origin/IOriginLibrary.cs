@@ -18,12 +18,12 @@ namespace Playnite.Providers.Origin
 
         GameTask GetGamePlayTask(GameLocalDataResponse manifest);
 
-        List<IGame> GetInstalledGames(bool useDataCache = false);
+        List<Game> GetInstalledGames(bool useDataCache = false);
 
-        List<IGame> GetLibraryGames();
+        List<Game> GetLibraryGames();
 
         OriginGameMetadata DownloadGameMetadata(string id);
 
-        OriginGameMetadata UpdateGameWithMetadata(IGame game);
+        OriginGameMetadata UpdateGameWithMetadata(Game game);
     }
 }

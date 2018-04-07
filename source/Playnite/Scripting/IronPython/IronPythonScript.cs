@@ -65,7 +65,7 @@ namespace Playnite.Scripting.IronPython
             }
         }
 
-        public override void OnGameStarted(IGame game)
+        public override void OnGameStarted(Game game)
         {
             if (Runtime.GetFunctionExits("on_game_started"))
             {
@@ -76,7 +76,7 @@ namespace Playnite.Scripting.IronPython
             }
         }
 
-        public override void OnGameStopped(IGame game, long ellapsedSeconds)
+        public override void OnGameStopped(Game game, long ellapsedSeconds)
         {
             if (Runtime.GetFunctionExits("on_game_stopped"))
             {
@@ -88,7 +88,7 @@ namespace Playnite.Scripting.IronPython
             }
         }
 
-        public override void OnGameInstalled(IGame game)
+        public override void OnGameInstalled(Game game)
         {
             if (Runtime.GetFunctionExits("on_game_installed"))
             {
@@ -99,7 +99,7 @@ namespace Playnite.Scripting.IronPython
             }
         }
 
-        public override void OnGameUninstalled(IGame game)
+        public override void OnGameUninstalled(Game game)
         {
             if (Runtime.GetFunctionExits("on_game_uninstalled"))
             {

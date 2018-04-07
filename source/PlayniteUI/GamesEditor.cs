@@ -30,7 +30,7 @@ namespace PlayniteUI
             get; private set;
         }
 
-        public List<IGame> LastGames
+        public List<Game> LastGames
         {
             get
             {
@@ -66,19 +66,19 @@ namespace PlayniteUI
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public bool? SetGameCategories(IGame game)
+        public bool? SetGameCategories(Game game)
         {
             var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, database, game, true);
             return model.OpenView();
         }
 
-        public bool? SetGamesCategories(List<IGame> games)
+        public bool? SetGamesCategories(List<Game> games)
         {
             var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, database, games, true);
             return model.OpenView();
         }
 
-        public bool? EditGame(IGame game)
+        public bool? EditGame(Game game)
         {
             var model = new GameEditViewModel(
                             game,
@@ -90,7 +90,7 @@ namespace PlayniteUI
             return model.OpenView();
         }
 
-        public bool? EditGames(List<IGame> games)
+        public bool? EditGames(List<Game> games)
         {
             var model = new GameEditViewModel(
                             games,
@@ -102,7 +102,7 @@ namespace PlayniteUI
             return model.OpenView();
         }
 
-        public void PlayGame(IGame game)
+        public void PlayGame(Game game)
         {
             // Set parent for message boxes in this method
             // because this method can be invoked from tray icon which otherwise bugs the dialog
@@ -156,11 +156,11 @@ namespace PlayniteUI
             }
         }
 
-        public void ActivateAction(IGame game, GameTask action)
+        public void ActivateAction(Game game, GameTask action)
         {
             try
             {
-                GameHandler.ActivateTask(action, game as Game, database.EmulatorsCollection.FindAll().ToList());
+                GameHandler.ActivateTask(action, game, database.EmulatorsCollection.FindAll().ToList());
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -171,7 +171,7 @@ namespace PlayniteUI
             }
         }
 
-        public void OpenGameLocation(IGame game)
+        public void OpenGameLocation(Game game)
         {
             if (string.IsNullOrEmpty(game.InstallDirectory))
             {
@@ -191,13 +191,13 @@ namespace PlayniteUI
             }
         }
 
-        public void SetHideGame(IGame game, bool state)
+        public void SetHideGame(Game game, bool state)
         {
             game.Hidden = state;
             database.UpdateGameInDatabase(game);
         }
 
-        public void SetHideGames(List<IGame> games, bool state)
+        public void SetHideGames(List<Game> games, bool state)
         {
             foreach (var game in games)
             {
@@ -205,13 +205,13 @@ namespace PlayniteUI
             }
         }
 
-        public void ToggleHideGame(IGame game)
+        public void ToggleHideGame(Game game)
         {
             game.Hidden = !game.Hidden;
             database.UpdateGameInDatabase(game);
         }
 
-        public void ToggleHideGames(List<IGame> games)
+        public void ToggleHideGames(List<Game> games)
         {
             foreach (var game in games)
             {
@@ -219,13 +219,13 @@ namespace PlayniteUI
             }
         }
 
-        public void SetFavoriteGame(IGame game, bool state)
+        public void SetFavoriteGame(Game game, bool state)
         {
             game.Favorite = state;
             database.UpdateGameInDatabase(game);
         }
 
-        public void SetFavoriteGames(List<IGame> games, bool state)
+        public void SetFavoriteGames(List<Game> games, bool state)
         {
             foreach (var game in games)
             {
@@ -233,13 +233,13 @@ namespace PlayniteUI
             }
         }
 
-        public void ToggleFavoriteGame(IGame game)
+        public void ToggleFavoriteGame(Game game)
         {
             game.Favorite = !game.Favorite;
             database.UpdateGameInDatabase(game);
         }
 
-        public void ToggleFavoriteGame(List<IGame> games)
+        public void ToggleFavoriteGame(List<Game> games)
         {
             foreach (var game in games)
             {
@@ -247,7 +247,7 @@ namespace PlayniteUI
             }
         }
 
-        public void RemoveGame(IGame game)
+        public void RemoveGame(Game game)
         {
             if (game.State.Installing || game.State.Running || game.State.Launching || game.State.Uninstalling)
             {
@@ -271,7 +271,7 @@ namespace PlayniteUI
             database.DeleteGame(game);
         }
 
-        public void RemoveGames(List<IGame> games)
+        public void RemoveGames(List<Game> games)
         {
             if (games.Exists(a => a.State.Installing || a.State.Running || a.State.Launching || a.State.Uninstalling))
             {
@@ -295,7 +295,7 @@ namespace PlayniteUI
             database.DeleteGames(games);
         }
 
-        public void CreateShortcut(IGame game)
+        public void CreateShortcut(Game game)
         {
             try
             {
@@ -332,7 +332,7 @@ namespace PlayniteUI
             }
         }
 
-        public void CreateShortcuts(List<IGame> games)
+        public void CreateShortcuts(List<Game> games)
         {
             foreach (var game in games)
             {
@@ -340,7 +340,7 @@ namespace PlayniteUI
             }
         }
 
-        public void InstallGame(IGame game)
+        public void InstallGame(Game game)
         {
             try
             {
@@ -360,7 +360,7 @@ namespace PlayniteUI
             }
         }
 
-        public void UnInstallGame(IGame game)
+        public void UnInstallGame(Game game)
         {
             if (game.State.Running || game.State.Launching)
             {
@@ -434,7 +434,7 @@ namespace PlayniteUI
             JumpList.SetJumpList(Application.Current, jumpList);
         }
 
-        public void CancelGameMonitoring(IGame game)
+        public void CancelGameMonitoring(Game game)
         {
             Controllers.RemoveController(game.Id);
             UpdateGameState(game.Id, null, false, false, false, false);

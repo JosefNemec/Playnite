@@ -100,7 +100,7 @@ namespace Playnite
             return emulators.FirstOrDefault(a => a.Id == task.EmulatorId)?.Profiles.FirstOrDefault(a => a.Id == task.EmulatorProfileId);
         }
 
-        public static Game GetMultiGameEditObject(IEnumerable<IGame> games)
+        public static Game GetMultiGameEditObject(IEnumerable<Game> games)
         {
             var dummyGame = new Game();
             if (games?.Any() != true)

@@ -23,9 +23,9 @@ namespace Playnite.Providers.Uplay
             };
         }
 
-        public List<IGame> GetInstalledGames()
+        public List<Game> GetInstalledGames()
         {
-            var games = new List<IGame>();
+            var games = new List<Game>();
 
             var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
             var installsKey = root.OpenSubKey(@"SOFTWARE\ubisoft\Launcher\Installs\");
@@ -61,7 +61,7 @@ namespace Playnite.Providers.Uplay
             return games;
         }
 
-        public GameMetadata UpdateGameWithMetadata(IGame game)
+        public GameMetadata UpdateGameWithMetadata(Game game)
         {
             var metadata = new GameMetadata();
             var program = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.RegistryKeyName == "Uplay Install " + game.ProviderId);

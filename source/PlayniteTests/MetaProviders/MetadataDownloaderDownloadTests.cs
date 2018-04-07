@@ -38,7 +38,7 @@ namespace PlayniteTests.MetaProviders
             var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
-                var games = new List<IGame>()
+                var games = new List<Game>()
                 {
                     new Game("Game1"),
                     new Game("Game2") { Provider = Provider.Steam, ProviderId = "Game2" },
@@ -123,7 +123,7 @@ namespace PlayniteTests.MetaProviders
             var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
-                var games = new List<IGame>()
+                var games = new List<Game>()
                 {
                     new Game("Game1"),
                     new Game("Game2") { Provider = Provider.Steam, ProviderId = "storeId" },
@@ -191,7 +191,7 @@ namespace PlayniteTests.MetaProviders
             var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
-                var games = new List<IGame>()
+                var games = new List<Game>()
                 {
                     new Game("Game1"),
                     new Game("Game2") { Provider = Provider.Steam, ProviderId = "Game2" },
@@ -326,7 +326,7 @@ namespace PlayniteTests.MetaProviders
             var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
             {
-                var games = new List<IGame>()
+                var games = new List<Game>()
                 {
                     new Game("Game")
                     {

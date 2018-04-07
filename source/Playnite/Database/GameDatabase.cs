@@ -101,17 +101,17 @@ namespace Playnite.Database
 
     public class GameUpdateEvent
     {
-        public IGame OldData
+        public Game OldData
         {
             get; set;
         }
 
-        public IGame NewData
+        public Game NewData
         {
             get; set;
         }
 
-        public GameUpdateEvent(IGame oldData, IGame newData)
+        public GameUpdateEvent(Game oldData, Game newData)
         {
             OldData = oldData;
             NewData = newData;
@@ -126,7 +126,7 @@ namespace Playnite.Database
             get; set;
         }
 
-        public GameUpdatedEventArgs(IGame oldData, IGame newData)
+        public GameUpdatedEventArgs(Game oldData, Game newData)
         {
             UpdatedGames = new List<GameUpdateEvent>() { new GameUpdateEvent(oldData, newData) };
         }
@@ -140,17 +140,17 @@ namespace Playnite.Database
     public delegate void GamesCollectionChangedEventHandler(object sender, GamesCollectionChangedEventArgs args);
     public class GamesCollectionChangedEventArgs : EventArgs
     {
-        public List<IGame> AddedGames
+        public List<Game> AddedGames
         {
             get; set;
         }
 
-        public List<IGame> RemovedGames
+        public List<Game> RemovedGames
         {
             get; set;
         }
 
-        public GamesCollectionChangedEventArgs(List<IGame> addedGames, List<IGame> removedGames)
+        public GamesCollectionChangedEventArgs(List<Game> addedGames, List<Game> removedGames)
         {
             AddedGames = addedGames;
             RemovedGames = removedGames;
@@ -193,8 +193,8 @@ namespace Playnite.Database
         private List<Platform> AddedPlatformsEventBuffer = new List<Platform>();
         private List<Platform> RemovedPlatformsEventBuffer = new List<Platform>();
         private List<PlatformUpdateEvent> PlatformUpdatesEventBuffer = new List<PlatformUpdateEvent>();
-        private List<IGame> AddedGamesEventBuffer = new List<IGame>();
-        private List<IGame> RemovedGamesEventBuffer = new List<IGame>();
+        private List<Game> AddedGamesEventBuffer = new List<Game>();
+        private List<Game> RemovedGamesEventBuffer = new List<Game>();
         private List<GameUpdateEvent> GameUpdatesEventBuffer = new List<GameUpdateEvent>();
 
         public LiteDatabase Database
@@ -212,7 +212,7 @@ namespace Playnite.Database
             get; private set;
         }
 
-        public LiteCollection<IGame> GamesCollection
+        public LiteCollection<Game> GamesCollection
         {
             get; private set;
         }
@@ -501,13 +501,11 @@ namespace Playnite.Database
                     // 2 to 3
                     if (db.Engine.UserVersion == 2 && DBVersion > 2)
                     {
-                        // Change "_type" field of "games" collection
-                        // From: "Playnite.Models.Game, Playnite"
-                        // To: "Playnite.SDK.Models.Game, PlayniteSDK"
+                        // Remove "_type" field of "games" collection
                         var gameCol = db.GetCollection("games");
                         foreach (var game in gameCol.FindAll().ToList())
                         {
-                            game["_type"] = "Playnite.SDK.Models.Game, PlayniteSDK";
+                            game.Remove("_type");
                             gameCol.Update(game);
                         }
 
@@ -601,7 +599,7 @@ namespace Playnite.Database
                 }
             }
 
-            GamesCollection = Database.GetCollection<IGame>("games");
+            GamesCollection = Database.GetCollection<Game>("games");
             PlatformsCollection = Database.GetCollection<Platform>("platforms");
             EmulatorsCollection = Database.GetCollection<Emulator>("emulators");
             ActiveControllersCollection = Database.GetCollection<ActiveController>("controllers");
@@ -667,19 +665,19 @@ namespace Playnite.Database
             IsOpen = false;
         }
 
-        public List<IGame> GetGames()
+        public List<Game> GetGames()
         {
             CheckDbState();
             return GamesCollection.FindAll().ToList();
         }
 
-        public IGame GetGame(int id)
+        public Game GetGame(int id)
         {
             CheckDbState();
             return GamesCollection.FindById(id);
         }
 
-        public void AddGame(IGame game)
+        public void AddGame(Game game)
         {
             CheckDbState();
 
@@ -689,10 +687,10 @@ namespace Playnite.Database
                 GamesCollection.Insert(game);
             }
 
-            OnGamesCollectionChanged(new List<IGame>() { game }, new List<IGame>());
+            OnGamesCollectionChanged(new List<Game>() { game }, new List<Game>());
         }
 
-        public void AddGames(List<IGame> games)
+        public void AddGames(List<Game> games)
         {
             CheckDbState();
             if (games == null || games.Count() == 0)
@@ -710,7 +708,7 @@ namespace Playnite.Database
                 GamesCollection.InsertBulk(games);
             }
 
-            OnGamesCollectionChanged(games.ToList(), new List<IGame>());
+            OnGamesCollectionChanged(games.ToList(), new List<Game>());
         }
 
         public void DeleteGame(int id)
@@ -719,7 +717,7 @@ namespace Playnite.Database
             DeleteGame(game.Id);
         }
 
-        public void DeleteGame(IGame game)
+        public void DeleteGame(Game game)
         {
             logger.Info("Deleting game from database {0}, {1}", game.ProviderId, game.Provider);
             CheckDbState();
@@ -731,10 +729,10 @@ namespace Playnite.Database
                 DeleteImageSafe(game.Image, game);
             }
 
-            OnGamesCollectionChanged(new List<IGame>(), new List<IGame>() { game });
+            OnGamesCollectionChanged(new List<Game>(), new List<Game>() { game });
         }
 
-        public void DeleteGames(List<IGame> games)
+        public void DeleteGames(List<Game> games)
         {
             CheckDbState();
 
@@ -749,7 +747,7 @@ namespace Playnite.Database
                 }
             }
 
-            OnGamesCollectionChanged(new List<IGame>(), games);
+            OnGamesCollectionChanged(new List<Game>(), games);
         }
 
         public void AddPlatform(Platform platform)
@@ -1108,7 +1106,7 @@ namespace Playnite.Database
         /// </summary>
         /// <param name="id"></param>
         /// <param name="game"></param>
-        public void DeleteImageSafe(string id, IGame game)
+        public void DeleteImageSafe(string id, Game game)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -1127,7 +1125,7 @@ namespace Playnite.Database
             }
         }
 
-        public void UpdateGamesInDatabase(List<IGame> games)
+        public void UpdateGamesInDatabase(List<Game> games)
         {
             CheckDbState();
             var updates = new List<GameUpdateEvent>();
@@ -1145,10 +1143,10 @@ namespace Playnite.Database
             OnGameUpdated(updates);
         }
 
-        public void UpdateGameInDatabase(IGame game)
+        public void UpdateGameInDatabase(Game game)
         {
             CheckDbState();
-            IGame oldData;
+            Game oldData;
 
             using (Database.Engine.Locker.Reserved())
             {
@@ -1159,10 +1157,10 @@ namespace Playnite.Database
             OnGameUpdated(new List<GameUpdateEvent>() { new GameUpdateEvent(oldData, game) });
         }
 
-        public List<IGame> UpdateInstalledGames(Provider provider)
+        public List<Game> UpdateInstalledGames(Provider provider)
         {
-            List<IGame> installedGames = null;
-            List<IGame> newGames = new List<IGame>();
+            List<Game> installedGames = null;
+            List<Game> newGames = new List<Game>();
 
             switch (provider)
             {
@@ -1250,10 +1248,10 @@ namespace Playnite.Database
             return newGames;
         }
 
-        public List<IGame> UpdateOwnedGames(Provider provider)
+        public List<Game> UpdateOwnedGames(Provider provider)
         {
-            List<IGame> importedGames = null;
-            List<IGame> newGames = new List<IGame>();
+            List<Game> importedGames = null;
+            List<Game> newGames = new List<Game>();
 
             switch (provider)
             {
@@ -1292,7 +1290,7 @@ namespace Playnite.Database
             return newGames;
         }
 
-        public void AssignPcPlatform(IGame game)
+        public void AssignPcPlatform(Game game)
         {
             var platform = PlatformsCollection.FindOne(a => a.Name == "PC");
             if (platform == null)
@@ -1304,7 +1302,7 @@ namespace Playnite.Database
             game.PlatformId = platform.Id;
         }
 
-        public void ImportCategories(List<IGame> sourceGames)
+        public void ImportCategories(List<Game> sourceGames)
         {
             foreach (var game in sourceGames)
             {
@@ -1385,7 +1383,7 @@ namespace Playnite.Database
             }
         }
 
-        private void OnGamesCollectionChanged(List<IGame> addedGames, List<IGame> removedGames)
+        private void OnGamesCollectionChanged(List<Game> addedGames, List<Game> removedGames)
         {
             if (!IsEventBufferEnabled)
             {

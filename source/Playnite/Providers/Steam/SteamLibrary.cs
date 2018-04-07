@@ -43,7 +43,7 @@ namespace Playnite.Providers.Steam
             return $"http://steamcommunity.com/app/{id}/workshop/";
         }
 
-        public IGame GetInstalledGameFromFile(string path)
+        public Game GetInstalledGameFromFile(string path)
         {
             var kv = new KeyValue();
             kv.ReadFileAsText(path);
@@ -81,9 +81,9 @@ namespace Playnite.Providers.Steam
             return game;
         }
 
-        public List<IGame> GetInstalledGamesFromFolder(string path)
+        public List<Game> GetInstalledGamesFromFolder(string path)
         {
-            var games = new List<IGame>();
+            var games = new List<Game>();
 
             foreach (var file in Directory.GetFiles(path, @"appmanifest*"))
             {
@@ -102,9 +102,9 @@ namespace Playnite.Providers.Steam
             return games;
         }
 
-        public List<IGame> GetInstalledGames()
+        public List<Game> GetInstalledGames()
         {
-            var games = new List<IGame>();
+            var games = new List<Game>();
 
             foreach (var folder in GetLibraryFolders())
             {
@@ -143,7 +143,7 @@ namespace Playnite.Providers.Steam
             return dbs;
         }
 
-        public List<IGame> GetLibraryGames(SteamSettings settings)
+        public List<Game> GetLibraryGames(SteamSettings settings)
         {
             var userName = string.Empty;
             if (settings.IdSource == SteamIdSource.Name)
@@ -165,7 +165,7 @@ namespace Playnite.Providers.Steam
             }
         }
 
-        public List<IGame> GetLibraryGames(string userName, string apiKey)
+        public List<Game> GetLibraryGames(string userName, string apiKey)
         {
             var userNameUrl = @"https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key={0}&vanityurl={1}";
             var libraryUrl = @"https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&include_appinfo=1&format=json&steamid={1}";
@@ -184,7 +184,7 @@ namespace Playnite.Providers.Steam
                 throw new Exception("No games found on specified Steam account.");
             }
 
-            var games = new List<IGame>();
+            var games = new List<Game>();
             foreach (var game in library.response.games)
             {
                 // Ignore games without name, like 243870
@@ -205,14 +205,14 @@ namespace Playnite.Providers.Steam
             return games;
         }
 
-        public List<IGame> GetLibraryGames(string userName)
+        public List<Game> GetLibraryGames(string userName)
         {
             if (string.IsNullOrEmpty(userName))
             {
                 throw new Exception("Steam user name cannot be empty.");
             }
 
-            var games = new List<IGame>();
+            var games = new List<Game>();
             var importedGames = (new ServicesClient()).GetSteamLibrary(userName);
             if (importedGames == null)
             {
@@ -456,7 +456,7 @@ namespace Playnite.Providers.Steam
             return metadata;
         }
 
-        public SteamGameMetadata UpdateGameWithMetadata(IGame game)
+        public SteamGameMetadata UpdateGameWithMetadata(Game game)
         {
             var metadata = DownloadGameMetadata(int.Parse(game.ProviderId));
             game.Name = metadata.ProductDetails["common"]["name"].Value ?? game.Name;
@@ -539,10 +539,10 @@ namespace Playnite.Providers.Steam
             return metadata;
         }
 
-        public List<IGame> GetCategorizedGames(ulong steamId)
+        public List<Game> GetCategorizedGames(ulong steamId)
         {
             var id = new SteamID(steamId);
-            var result = new List<IGame>();
+            var result = new List<Game>();
             var vdf = Path.Combine(SteamSettings.InstallationPath, "userdata", id.AccountID.ToString(), "7", "remote", "sharedconfig.vdf");
             var sharedconfig = new KeyValue();
             sharedconfig.ReadFileAsText(vdf);

@@ -164,10 +164,10 @@ namespace Playnite.Providers.Origin
             return playTask;
         }
 
-        public List<IGame> GetInstalledGames(bool useDataCache = false)
+        public List<Game> GetInstalledGames(bool useDataCache = false)
         {
             var contentPath = Path.Combine(OriginPaths.DataPath, "LocalContent");
-            var games = new List<IGame>();
+            var games = new List<Game>();
 
             if (Directory.Exists(contentPath))
             {
@@ -250,7 +250,7 @@ namespace Playnite.Providers.Origin
             return games;
         }
 
-        public List<IGame> GetLibraryGames()
+        public List<Game> GetLibraryGames()
         {
             using (var api = new WebApiClient())
             {
@@ -276,7 +276,7 @@ namespace Playnite.Providers.Origin
                     throw new Exception("Access error: " + info.error);
                 }
 
-                var games = new List<IGame>();
+                var games = new List<Game>();
 
                 foreach (var game in api.GetOwnedGames(info.pid.pidId, token).Where(a => a.offerType == "basegame"))
                 {
@@ -313,7 +313,7 @@ namespace Playnite.Providers.Origin
             return data;
         }
 
-        public OriginGameMetadata UpdateGameWithMetadata(IGame game)
+        public OriginGameMetadata UpdateGameWithMetadata(Game game)
         {
             var metadata = DownloadGameMetadata(game.ProviderId);
             game.Name = StringExtensions.NormalizeGameName(metadata.StoreDetails.i18n.displayName);

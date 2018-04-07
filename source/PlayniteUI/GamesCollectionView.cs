@@ -249,7 +249,7 @@ namespace PlayniteUI
             }
         }
 
-        public IGame Game
+        public Game Game
         {
             get; set;
         }
@@ -310,7 +310,7 @@ namespace PlayniteUI
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GameViewEntry(IGame game, string category, Platform platform)
+        public GameViewEntry(Game game, string category, Platform platform)
         {
             Category = new CategoryView(category);
             Game = game;
@@ -346,7 +346,7 @@ namespace PlayniteUI
 
         public static explicit operator Game(GameViewEntry entry)
         {
-            return entry.Game as Game;
+            return entry.Game;
         }
     }
 
@@ -963,7 +963,7 @@ namespace PlayniteUI
 
         private void Database_GameUpdated(object sender, GameUpdatedEventArgs args)
         {
-            var replaceList = new List<IGame>();
+            var replaceList = new List<Game>();
             foreach (var update in args.UpdatedGames)
             {
                 if (update.OldData.Categories.IsListEqual(update.NewData.Categories))

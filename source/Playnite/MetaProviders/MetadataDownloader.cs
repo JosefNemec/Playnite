@@ -369,7 +369,7 @@ namespace Playnite.MetaProviders
             return Roman.To(int.Parse(m.Value));
         }
 
-        private GameMetadata ProcessDownload(IGame game, ref GameMetadata data)
+        private GameMetadata ProcessDownload(Game game, ref GameMetadata data)
         {
             if (data == null)
             {
@@ -380,7 +380,7 @@ namespace Playnite.MetaProviders
         }
 
         private GameMetadata ProcessField(
-            IGame game,
+            Game game,
             MetadataFieldSettings field,
             ref GameMetadata storeData,
             ref GameMetadata igdbData,
@@ -495,10 +495,10 @@ namespace Playnite.MetaProviders
         }
 
         public async Task DownloadMetadataThreaded(
-            List<IGame> games,
+            List<Game> games,
             GameDatabase database,
             MetadataDownloaderSettings settings,
-            Action<IGame, int, int> processCallback,
+            Action<Game, int, int> processCallback,
             CancellationTokenSource cancelToken)
         {
             int index = 0;
@@ -508,7 +508,7 @@ namespace Playnite.MetaProviders
             await Task.Factory.StartNew(() =>
             {
                 var grouped = games.GroupBy(a => a.Provider);
-                foreach (IGrouping<Provider, IGame> group in grouped)
+                foreach (IGrouping<Provider, Game> group in grouped)
                 {
                     tasks.Add(Task.Factory.StartNew(() =>
                     {
@@ -526,10 +526,10 @@ namespace Playnite.MetaProviders
         }
 
         public async Task DownloadMetadata(
-            List<IGame> games,
+            List<Game> games,
             GameDatabase database,
             MetadataDownloaderSettings settings,
-            Action<IGame, int, int> processCallback,
+            Action<Game, int, int> processCallback,
             CancellationTokenSource cancelToken)
         {
             await Task.Factory.StartNew(() =>
@@ -763,16 +763,16 @@ namespace Playnite.MetaProviders
         }
 
         public async Task DownloadMetadata(
-            List<IGame> games,
+            List<Game> games,
             GameDatabase database,
             MetadataDownloaderSettings settings,
-            Action<IGame, int, int> processCallback)
+            Action<Game, int, int> processCallback)
         {
             await DownloadMetadata(games, database, settings, processCallback, null);
         }
 
         public async Task DownloadMetadata(
-            List<IGame> games,
+            List<Game> games,
             GameDatabase database,
             MetadataDownloaderSettings settings)
         {

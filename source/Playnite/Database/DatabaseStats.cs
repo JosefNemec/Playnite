@@ -190,7 +190,7 @@ namespace Playnite.Database
             OnPropertyChanged("Favorite");
         }
 
-        private void IncrementalUpdate(IGame game, int modifier)
+        private void IncrementalUpdate(Game game, int modifier)
         {
             if (game.Hidden)
             {

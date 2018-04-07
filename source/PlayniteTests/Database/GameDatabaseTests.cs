@@ -159,7 +159,7 @@ namespace PlayniteTests.Database
             var path = Path.Combine(Playnite.PlayniteTests.TempPath, "ownedgames.db");
             FileSystem.DeleteFile(path);
 
-            var libraryGames = new List<IGame>()
+            var libraryGames = new List<Game>()
             {
                 new Game()
                 {
@@ -307,9 +307,9 @@ namespace PlayniteTests.Database
             }
         }
 
-        private List<IGame> CreateGameList(Provider provider)
+        private List<Game> CreateGameList(Provider provider)
         {
-            return new List<IGame>()
+            return new List<Game>()
             {
                 new Game()
                 {

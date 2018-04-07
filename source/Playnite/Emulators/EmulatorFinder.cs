@@ -128,7 +128,7 @@ namespace Playnite.Emulators
             return await SearchForEmulators(new DirectoryInfo(path), definitions, cancelToken);
         }
 
-        public static async Task<List<IGame>> SearchForGames(DirectoryInfoBase path, EmulatorProfile profile, CancellationTokenSource cancelToken = null)
+        public static async Task<List<Game>> SearchForGames(DirectoryInfoBase path, EmulatorProfile profile, CancellationTokenSource cancelToken = null)
         {
             return await Task.Run(() =>
             {
@@ -138,7 +138,7 @@ namespace Playnite.Emulators
                     throw new Exception("Cannot scan for games, emulator doesn't support any file types.");
                 }
 
-                var games = new List<IGame>();
+                var games = new List<Game>();
                 var fileEnumerator = new SafeFileEnumerator(path, "*.*", SearchOption.AllDirectories);
                 foreach (var file in fileEnumerator)
                 {
@@ -172,7 +172,7 @@ namespace Playnite.Emulators
             });
         }
 
-        public static async Task<List<IGame>> SearchForGames(string path, EmulatorProfile profile, CancellationTokenSource cancelToken = null)
+        public static async Task<List<Game>> SearchForGames(string path, EmulatorProfile profile, CancellationTokenSource cancelToken = null)
         {
             return await SearchForGames(new DirectoryInfo(path), profile, cancelToken);
         }

@@ -63,7 +63,7 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
-        public override void OnGameStarted(IGame game)
+        public override void OnGameStarted(Game game)
         {
             if (Runtime.GetFunctionExits("OnGameStarted"))
             {
@@ -74,7 +74,7 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
-        public override void OnGameStopped(IGame game, long ellapsedSeconds)
+        public override void OnGameStopped(Game game, long ellapsedSeconds)
         {
             if (Runtime.GetFunctionExits("OnGameStopped"))
             {
@@ -86,7 +86,7 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
-        public override void OnGameInstalled(IGame game)
+        public override void OnGameInstalled(Game game)
         {
             if (Runtime.GetFunctionExits("OnGameInstalled"))
             {
@@ -97,7 +97,7 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
-        public override void OnGameUninstalled(IGame game)
+        public override void OnGameUninstalled(Game game)
         {
             if (Runtime.GetFunctionExits("OnGameUninstalled"))
             {
