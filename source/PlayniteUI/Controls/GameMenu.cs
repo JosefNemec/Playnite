@@ -1,4 +1,5 @@
-﻿using Playnite.SDK.Models;
+﻿using Playnite.Database;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,56 +47,12 @@ namespace PlayniteUI.Controls
 
         public Game Game
         {
-            get
-            {
-                if (DataContext is GameViewEntry entry)
-                {
-                    return entry.Game;
-                }
-                else if (DataContext is IEnumerable<GameViewEntry> entries)
-                {
-                    if (entries.Count() > 0)
-                    {
-                        return (entries.First() as GameViewEntry).Game;
-                    }
-                }
-                else if (DataContext is IList<object> entries2)
-                {
-                    if (entries2.Count() > 0)
-                    {
-                        return (entries2.First() as GameViewEntry).Game;
-                    }
-                }
-
-                return null;
-            }
+            get; set;
         }
 
         public List<Game> Games
         {
-            get
-            {
-                if (DataContext is IEnumerable<GameViewEntry> entries)
-                {
-                    if (entries.Count() == 1)
-                    {
-                        return null;
-                    }
-
-                    return entries.Select(a => (a as GameViewEntry).Game).ToList();
-                }
-                else if (DataContext is IList<object> entries2)
-                {
-                    if (entries2.Count() == 1)
-                    {
-                        return null;
-                    }
-
-                    return entries2.Select(a => (a as GameViewEntry).Game).ToList();
-                }
-
-                return null;
-            }
+            get;  set;
         }
 
         static GameMenu()
@@ -117,7 +74,75 @@ namespace PlayniteUI.Controls
 
         private void GameMenu_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            if (DataContext is GameViewEntry entry)
+            {
+                AssignGame(entry.Game);
+            }
+            else if (DataContext is IEnumerable<GameViewEntry> entries)
+            {
+                if (entries.Count() > 0)
+                {
+                    AssignGame((entries.First() as GameViewEntry).Game);
+                }
+
+                if (entries.Count() == 1)
+                {
+                    Games = null;
+                }
+                else
+                {
+                    Games = entries.Select(a => (a as GameViewEntry).Game).ToList();
+                }
+            }
+            else if (DataContext is IList<object> entries2)
+            {
+                if (entries2.Count() > 0)
+                {
+                    AssignGame((entries2.First() as GameViewEntry).Game);
+                }
+
+                if (entries2.Count() == 1)
+                {
+                    Games = null;
+                }
+                else
+                {
+                    Games = entries2.Select(a => (a as GameViewEntry).Game).ToList();
+                }
+            }
+            else
+            {
+                AssignGame(null);
+                Games = null;
+            }
+
             InitializeItems();
+        }
+
+        private void AssignGame(Game game)
+        {
+            if (Game != null)
+            {
+                Game.PropertyChanged -= Game_PropertyChanged;
+            }
+
+            Game = game;
+
+            if (Game != null)
+            {
+                Game.PropertyChanged += Game_PropertyChanged;
+            }
+        }
+
+        private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if ((new string[]
+            {
+                "State", "OtherTasks", "Links", "Favorite", "Hidden"
+            }).Contains(e.PropertyName))
+            {
+                InitializeItems();
+            }
         }
 
         public void InitializeItems()
@@ -401,7 +426,7 @@ namespace PlayniteUI.Controls
                 Items.Add(removeItem);
 
                 // Uninstall
-                if (Game.Provider != Provider.Custom)
+                if (Game.Provider != Provider.Custom && Game.IsInstalled)
                 {
                     var uninstallItem = new MenuItem()
                     {

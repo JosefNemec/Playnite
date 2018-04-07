@@ -283,7 +283,6 @@ namespace Playnite.SDK.Models
             {
                 playTask = value;
                 OnPropertyChanged("PlayTask");
-                OnPropertyChanged("IsInstalled");
             }
         }
 

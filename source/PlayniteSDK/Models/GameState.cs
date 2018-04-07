@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Playnite.SDK.Models
 {
-    public class GameState
+    public class GameState : IComparable<GameState>
     {
         public bool Installed
         {
@@ -69,6 +69,19 @@ namespace Playnite.SDK.Models
             var uninstalling = Uninstalling ? 1 : 0;
             var launch = Launching ? 1 : 0;
             return $"Inst:{inst}; Run:{run}; Instl:{installing}; Uninst:{uninstalling}; Lnch:{launch}";
+        }
+
+        public int CompareTo(GameState obj)
+        {
+            if (Installed == obj.Installed &&
+                Running == obj.Running &&
+                Installing == obj.Installing &&
+                Launching == obj.Launching)
+            {
+                return 0;
+            }
+
+            return 1;
         }
     }
 }

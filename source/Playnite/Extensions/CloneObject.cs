@@ -163,6 +163,7 @@ namespace Playnite
                     }
                 }
 
+                
                 if (sourceValue is IComparable && diffOnly)
                 {
                     var equal = ((IComparable)sourceValue).CompareTo(targetValue) == 0;
@@ -170,10 +171,22 @@ namespace Playnite
                     {
                         targetProperty.SetValue(destination, sourceValue);
                     }
-                }
+                } 
                 else
                 {
-                    targetProperty.SetValue(destination, sourceValue);
+                    var genericComparable = sourceValue.GetType().GetInterface("IComparable`1");
+                    if (genericComparable != null && genericComparable.GenericTypeArguments.Any(a => a == sourceValue.GetType()) && diffOnly)
+                    {
+                        int res = (int)genericComparable.GetMethod("CompareTo").Invoke(sourceValue, new object[] { targetValue });
+                        if (res != 0)
+                        {
+                            targetProperty.SetValue(destination, sourceValue);
+                        }
+                    }
+                    else
+                    {
+                        targetProperty.SetValue(destination, sourceValue);
+                    }
                 }
             }
         }
