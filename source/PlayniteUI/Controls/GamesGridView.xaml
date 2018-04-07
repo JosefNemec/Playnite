@@ -466,7 +466,7 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.CompletionStatus}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource PlayCountLabel}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource CompletionStatus}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
                                                     Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.CompletionStatus}}"/>
                                 </StackPanel>
