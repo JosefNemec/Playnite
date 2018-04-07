@@ -484,4 +484,5 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LastPlayed">Last played</sys:String>
     <sys:String x:Key="PlayedHours">{0}h {1}m</sys:String>
     <sys:String x:Key="PlayedMinutes">{0} minutes</sys:String>
+    <sys:String x:Key="PlayedSeconds">{0} seconds</sys:String>
 </ResourceDictionary>

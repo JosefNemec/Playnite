@@ -20,7 +20,11 @@ namespace PlayniteUI
             }
 
             var time = TimeSpan.FromSeconds(seconds);
-            if (time.TotalHours < 1)
+            if (time.TotalSeconds < 60)
+            {
+                return string.Format(ResourceProvider.Instance.FindString("PlayedSeconds"), time.Seconds);
+            }
+            else if (time.TotalHours < 1)
             {
                 return string.Format(ResourceProvider.Instance.FindString("PlayedMinutes"), time.Minutes);
             }

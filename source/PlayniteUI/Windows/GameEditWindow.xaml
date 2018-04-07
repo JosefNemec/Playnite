@@ -314,10 +314,15 @@
                     <CheckBox Grid.Column="4" Grid.Row="11"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UsePlaytimeChanges}"/>
-                    <controls:NumericBox Grid.Column="5" Grid.Row="11"
-                              LongValue="{Binding EditingGame.Playtime}"
-                              ToolTip="{DynamicResource DescriptionPlaytimeSeconds}"
-                              ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"/>
+                    <DockPanel Grid.Column="5" Grid.Row="11">
+                        <TextBlock Text="{Binding EditingGame.Playtime, Converter={pui:LongToTimePlayedConverter}}"
+                                   DockPanel.Dock="Right" />
+                        <controls:NumericBox LongValue="{Binding EditingGame.Playtime}"
+                                             MaxLongValue="9999999999"
+                                             ToolTip="{DynamicResource DescriptionPlaytimeSeconds}"
+                                             ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"
+                                             DockPanel.Dock="Left" />
+                    </DockPanel>
 
                     <!-- PlayCount -->
                     <TextBlock Grid.Column="3" Grid.Row="12" Text="{DynamicResource PlayCountLabel}"/>
@@ -325,7 +330,7 @@
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UsePlayCountChanges}"/>
                     <controls:NumericBox Grid.Column="5" Grid.Row="12"
-                              LongValue="{Binding EditingGame.PlayCount}" />
+                                         LongValue="{Binding EditingGame.PlayCount}" />
 
                     <!-- CompletionStatus -->
                     <TextBlock Grid.Column="3" Grid.Row="13" Text="{DynamicResource CompletionStatus}"/>

@@ -81,6 +81,12 @@ namespace PlayniteUI.Controls
             Text = LongValue.ToString();
             LostFocus += NumericBox_LostFocus;
             Loaded += NumericBox_Loaded;
+            TextChanged += NumericBox_TextChanged;
+        }
+
+        private void NumericBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            NumericBox_LostFocus(sender, e);
         }
 
         private void NumericBox_Loaded(object sender, RoutedEventArgs e)
@@ -90,6 +96,11 @@ namespace PlayniteUI.Controls
 
         private void NumericBox_LostFocus(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(Text))
+            {
+                Text = "0";
+            }
+
             if (!long.TryParse(Text, out var result))
             {
                 e.Handled = true;
