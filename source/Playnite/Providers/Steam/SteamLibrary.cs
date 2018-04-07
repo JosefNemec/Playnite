@@ -198,7 +198,9 @@ namespace Playnite.Providers.Steam
                     Provider = Provider.Steam,
                     Source = "Steam",
                     ProviderId = game.appid.ToString(),
-                    Name = game.name
+                    Name = game.name,
+                    Playtime = game.playtime_forever * 60,
+                    CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed
                 });
             }
 
@@ -232,7 +234,9 @@ namespace Playnite.Providers.Steam
                     Provider = Provider.Steam,
                     Source = "Steam",
                     ProviderId = game.appid.ToString(),
-                    Name = game.name
+                    Name = game.name,
+                    Playtime = game.playtime_forever * 60,
+                    CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed
                 });
             }
 

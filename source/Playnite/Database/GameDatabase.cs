@@ -1252,6 +1252,7 @@ namespace Playnite.Database
         {
             List<Game> importedGames = null;
             List<Game> newGames = new List<Game>();
+            List<Game> updatedGames = new List<Game>();
 
             switch (provider)
             {
@@ -1282,11 +1283,25 @@ namespace Playnite.Database
                 {
                     logger.Info("Adding new game {0} into library from {1} provider", game.ProviderId, game.Provider);
                     AssignPcPlatform(game);
-                    AddGame(game);
                     newGames.Add(game);
+                }
+                else
+                {
+                    if (existingGame.Playtime == 0 && game.Playtime > 0)
+                    {
+                        existingGame.Playtime = game.Playtime;
+                        if (existingGame.CompletionStatus == CompletionStatus.NotPlayed)
+                        {
+                            existingGame.CompletionStatus = CompletionStatus.Played;
+                        }
+
+                        updatedGames.Add(existingGame);
+                    }
                 }
             }
 
+            AddGames(newGames);
+            UpdateGamesInDatabase(updatedGames);
             return newGames;
         }
 
