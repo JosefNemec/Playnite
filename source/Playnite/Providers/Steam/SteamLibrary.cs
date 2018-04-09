@@ -455,7 +455,10 @@ namespace Playnite.Providers.Steam
             }
 
             // Background Image
-            metadata.BackgroundImage = string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", id);
+            if (metadata.StoreDetails.screenshots?.Any() == true)
+            {
+                metadata.BackgroundImage = Regex.Replace(metadata.StoreDetails.screenshots.First().path_full, "\\?.*$", "");
+            }
 
             return metadata;
         }

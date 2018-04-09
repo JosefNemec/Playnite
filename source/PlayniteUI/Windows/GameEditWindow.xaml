@@ -661,7 +661,8 @@
 
         <Grid Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <ProgressBar IsIndeterminate="True" Width="350" Height="40" />
-            <TextBlock Text="{DynamicResource DownloadingLabel}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{DynamicResource DownloadingLabel}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Style="{DynamicResource BaseTextBlockStyle}"/>
         </Grid>
     </Grid>
 </controls:WindowBase>

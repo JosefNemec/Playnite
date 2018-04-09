@@ -2343,7 +2343,7 @@
 
             <Border Grid.Column="0" Grid.Row="2" Padding="10" Margin="20,0,0,10"
                     CornerRadius="{DynamicResource ControlCornerRadius}"
-                    Background="#9A000000">
+                    Background="#BC000000">
                 <Border.Style>
                     <Style TargetType="Border">
                         <Style.Triggers>
@@ -2358,7 +2358,7 @@
 
             <Border Grid.Column="0" Grid.Row="3" Padding="10" Margin="20,0,0,10"
                     CornerRadius="{DynamicResource ControlCornerRadius}"
-                    Background="#9A000000" VerticalAlignment="Top"
+                    Background="#BC000000" VerticalAlignment="Top"
                     Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ScrollViewer>
                     <ContentControl Template="{StaticResource GamePropertiesView}" />
@@ -2368,7 +2368,7 @@
             <Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" 
                     Padding="5" Margin="10,0,20,10"
                     CornerRadius="{DynamicResource ControlCornerRadius}"
-                    Background="#9A000000" VerticalAlignment="Top">
+                    Background="#BC000000" VerticalAlignment="Top">
                 <Border.Style>
                     <Style TargetType="Border" BasedOn="{StaticResource {x:Type Border}}">
                         <Style.Triggers>
