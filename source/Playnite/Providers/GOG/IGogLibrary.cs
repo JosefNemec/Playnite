@@ -12,8 +12,6 @@ namespace Playnite.Providers.GOG
     {
         List<Game> GetInstalledGames();
 
-        List<Game> GetInstalledGames(InstalledGamesSource source);
-
         List<Game> GetLibraryGames();
 
         GogGameMetadata DownloadGameMetadata(string id, string storeUrl = null);

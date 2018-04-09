@@ -7,7 +7,6 @@ using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.SQLite;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -56,7 +55,7 @@ namespace Playnite.Providers.GOG
             return new Tuple<GameTask, ObservableCollection<GameTask>>(playTask, otherTasks.Count > 0 ? otherTasks : null);
         }
 
-        public List<Game> GetInstalledGamesFromRegistry()
+        public List<Game> GetInstalledGames()
         {
             var games = new List<Game>();
             var programs = Programs.GetUnistallProgramsList();
@@ -104,109 +103,6 @@ namespace Playnite.Providers.GOG
             }
 
             return games;
-        }
-
-        public List<Game> GetInstalledGamesFromGalaxy()
-        {
-            if (!File.Exists(Path.Combine(GogSettings.DBStoragePath, "index.db")))
-            {
-                throw new Exception("Cannot import GOG installed games, GOG Galaxy is not installed.");
-            }
-
-            var targetIndexPath = Path.Combine(Paths.TempPath, "index.db");
-            CacheGogDatabases(Paths.TempPath, "index.db");
-
-            var games = new List<Game>();
-
-            var db = new SQLiteConnection(@"Data Source=" + targetIndexPath);
-            db.Open();
-
-            try
-            {
-                SQLiteCommand command;
-                SQLiteDataReader reader;
-
-                var gameNames = new Dictionary<int, string>();
-                string productsNames = "select * from AvailableGameIDNames";
-                command = new SQLiteCommand(productsNames, db);
-                reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    var productId = int.Parse(reader["productId"].ToString());
-                    var gameID = int.Parse(reader["gameID"].ToString());
-
-                    // Ignore DLC
-                    if (productId == gameID)
-                    {
-                        gameNames.Add(productId, reader["name"].ToString());
-                    }
-                }
-
-                string products = "select * from Products";
-                command = new SQLiteCommand(products, db);
-                reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    int id = int.Parse(reader["productId"].ToString());
-
-                    // Load only installed games
-                    int instState = int.Parse(reader["installationState"].ToString());
-                    if (instState != 3)
-                    {
-                        logger.Info("Skipping game " + id + ", not fully installed yet.");
-                        continue;
-                    }
-
-                    var game = new Game()
-                    {
-                        InstallDirectory = reader["localpath"].ToString(),
-                        ProviderId = id.ToString(),
-                        Provider = Provider.GOG,
-                        Source = "GOG",
-                        Name = gameNames[id]
-                    };
-
-                    try
-                    {
-                        var tasks = GetGameTasks(game.ProviderId, game.InstallDirectory);
-                        game.PlayTask = tasks.Item1;
-                        game.OtherTasks = tasks.Item2;
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        logger.Error(e, $"Failed to get action for GOG game {game.ProviderId}, game not imported.");
-                    }
-
-                    games.Add(game);
-                }
-            }
-            finally
-            {
-                db.Close();
-            }
-
-            return games;
-        }
-
-        public List<Game> GetInstalledGames()
-        {
-            return GetInstalledGamesFromRegistry();
-        }
-
-        public List<Game> GetInstalledGames(InstalledGamesSource source)
-        {
-            if (source == InstalledGamesSource.Galaxy)
-            {
-                logger.Info("Importing installed GOG games via Galaxy.");
-                return GetInstalledGamesFromGalaxy();
-            }
-            else
-            {
-                logger.Info("Importing installed GOG games via registry.");
-                return GetInstalledGamesFromRegistry();
-            }
         }
 
         public List<Game> GetLibraryGames()

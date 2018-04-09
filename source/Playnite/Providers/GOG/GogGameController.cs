@@ -123,7 +123,7 @@ namespace Playnite.Providers.GOG
                         return;
                     }
 
-                    var games = gog.GetInstalledGamesFromRegistry();
+                    var games = gog.GetInstalledGames();
                     var game = games.FirstOrDefault(a => a.ProviderId == Game.ProviderId);
                     if (game != null)
                     {

@@ -17,7 +17,7 @@ namespace Playnite.Providers.GOG.Tests
         public void GetInstalledGamesRegistry()
         {
             var gogLib = new GogLibrary();
-            var games = gogLib.GetInstalledGames(InstalledGamesSource.Registry);
+            var games = gogLib.GetInstalledGames();
             Assert.AreNotEqual(0, games.Count);
             CollectionAssert.AllItemsAreUnique(games);
 
@@ -30,34 +30,6 @@ namespace Playnite.Providers.GOG.Tests
                 Assert.IsNotNull(game.PlayTask);
                 Assert.IsTrue(File.Exists(game.ResolveVariables(game.PlayTask.Path)));
             }
-        }
-
-        [Test]
-        public void GetInstalledGamesGalaxy()
-        {
-            var gogLib = new GogLibrary();
-            var games = gogLib.GetInstalledGames(InstalledGamesSource.Galaxy);
-            Assert.AreNotEqual(0, games.Count);
-            CollectionAssert.AllItemsAreUnique(games);
-
-            foreach (Game game in games)
-            {
-                Assert.IsFalse(string.IsNullOrEmpty(game.Name));
-                Assert.IsFalse(string.IsNullOrEmpty(game.ProviderId));
-                Assert.IsFalse(string.IsNullOrEmpty(game.InstallDirectory));
-                Assert.IsTrue(Directory.Exists(game.InstallDirectory));
-                Assert.IsNotNull(game.PlayTask);
-                Assert.IsTrue(File.Exists(game.ResolveVariables(game.PlayTask.Path)));
-            }
-        }
-
-        [Test]
-        public void GetInstalledGamesSourceParity()
-        {
-            var gogLib = new GogLibrary();
-            var gamesGalaxy = gogLib.GetInstalledGames(InstalledGamesSource.Galaxy);
-            var gamesRegistry = gogLib.GetInstalledGames(InstalledGamesSource.Registry);
-            Assert.AreEqual(gamesGalaxy.Count, gamesRegistry.Count);
         }
 
         [Test]
