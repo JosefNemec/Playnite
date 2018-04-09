@@ -117,6 +117,15 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LicenseLabel">License</sys:String>
     <sys:String x:Key="ContributorsLabel">Contributors</sys:String>
     <sys:String x:Key="ClosingPlaynite">Closing Playnite...</sys:String>
+    <sys:String x:Key="Today">Today</sys:String>
+    <sys:String x:Key="Yesterday">Yesterday</sys:String>
+    <sys:String x:Key="Monday">Monday</sys:String>
+    <sys:String x:Key="Tuesday">Tuesday</sys:String>
+    <sys:String x:Key="Wednesday">Wednesday</sys:String>
+    <sys:String x:Key="Thursday">Thursday</sys:String>
+    <sys:String x:Key="Friday">Friday</sys:String>
+    <sys:String x:Key="Saturday">Saturday</sys:String>
+    <sys:String x:Key="Sunday">Sunday</sys:String>
     
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
@@ -346,7 +355,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="GameIsUnInstalledTitle">Uninstalled</sys:String>
     <sys:String x:Key="GameHiddenTitle">Hidden</sys:String>
     <sys:String x:Key="GameFavoriteTitle">Favorite</sys:String>
-    <sys:String x:Key="GameLastActivityTitle">Last Activity</sys:String>
+    <sys:String x:Key="GameLastActivityTitle">Last Played</sys:String>
     <sys:String x:Key="GameCategoryTitle">Category</sys:String>
     <sys:String x:Key="GameDescriptionTitle">Description</sys:String>
     <sys:String x:Key="GameInstallDirTitle">Installation Directory</sys:String>
@@ -481,8 +490,8 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="CancelMonitoringSetupAsk">Installation monitoring is currently running, do you want to cancel the process and return game to previous state?</sys:String>
     <sys:String x:Key="CancelMonitoringExecutionAsk">Game execution monitoring is currently running, do you want to cancel the process and return game to previous state?</sys:String>
 
-    <sys:String x:Key="TimePlayed">Time played</sys:String>
-    <sys:String x:Key="LastPlayed">Last played</sys:String>
+    <sys:String x:Key="TimePlayed">Time Played</sys:String>
+    <sys:String x:Key="LastPlayed">Last Played</sys:String>
     <sys:String x:Key="PlayedHours">{0}h {1}m</sys:String>
     <sys:String x:Key="PlayedMinutes">{0} minutes</sys:String>
     <sys:String x:Key="PlayedSeconds">{0} seconds</sys:String>

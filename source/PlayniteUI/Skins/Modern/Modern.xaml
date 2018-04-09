@@ -2099,7 +2099,7 @@
                        Grid.Column="1" Grid.Row="0"/>
             <TextBlock Text="{DynamicResource LastPlayed}" Foreground="{DynamicResource GlyphBrush}" 
                        Grid.Column="0" Grid.Row="1"/>
-            <TextBlock Text="{Binding Game.LastActivity, Converter={pui:NullableDateToStringConverter}}"
+            <TextBlock Text="{Binding Game.LastActivity, Converter={pui:DateTimeToLastPlayedConverter}}"
                        Grid.Column="1" Grid.Row="1"/>
         </Grid>
     </ControlTemplate>
