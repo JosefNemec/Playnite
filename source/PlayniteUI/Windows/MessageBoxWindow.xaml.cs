@@ -192,6 +192,11 @@ namespace PlayniteUI.Windows
                     break;
             }
 
+            if (ShowOKButton)
+            {
+                ButtonOK.Focus();
+            }
+
             ShowDialog();
             return result;
         }
