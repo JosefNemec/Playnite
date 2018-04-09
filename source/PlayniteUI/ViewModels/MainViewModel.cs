@@ -480,6 +480,29 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<ExtensionFunction> InvokeExtensionFunctionCommand
+        {
+            get => new RelayCommand<ExtensionFunction>((f) =>
+            {
+                MainMenuOpened = false;
+                App.CurrentApp.Api?.InvokeExtension(f);
+            });
+        }
+
+        public RelayCommand<object> ReloadScriptsCommand
+        {
+            get => new RelayCommand<object>((f) =>
+            {
+                MainMenuOpened = false;
+                if (App.CurrentApp.Api?.LoadScripts() == true)
+                {
+                    Dialogs.ShowMessage(
+                        Resources.FindString("ReloadScriptsSuccess"),
+                        Resources.FindString("Extensions"));
+                }
+            });
+        }
+
         public MainViewModel(
             GameDatabase database,
             IWindowFactory window,

@@ -21,22 +21,6 @@ namespace PlayniteUI.Commands
             });
         }
 
-        public static RelayCommand<ExtensionFunction> InvokeExtensionFunctionCommand
-        {
-            get => new RelayCommand<ExtensionFunction>((f) =>
-            {
-                App.CurrentApp.Api?.InvokeExtension(f);
-            });
-        }
-
-        public static RelayCommand<object> ReloadScriptsCommand
-        {
-            get => new RelayCommand<object>((f) =>
-            {
-                App.CurrentApp.Api?.LoadScripts();
-            });
-        }
-
         public static void NavigateUrl(object url)
         {
             if (url is string stringUrl)

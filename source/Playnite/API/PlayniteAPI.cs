@@ -130,8 +130,9 @@ namespace Playnite.API
             ScriptFunctions = null;
         }
 
-        public void LoadScripts()
+        public bool LoadScripts()
         {
+            var allSuccess = true;
             DisposeScripts();
             scripts = new List<PlayniteScript>();
             foreach (var path in Scripts.GetScriptFiles())
@@ -144,6 +145,7 @@ namespace Playnite.API
                 }
                 catch (Exception e)
                 {
+                    allSuccess = false;
                     logger.Error(e, $"Failed to load script file {path}");
                     Dialogs.ShowMessage(
                         $"Failed to load script file {path}:\n\n" + e.Message, "Script error",
@@ -156,6 +158,7 @@ namespace Playnite.API
             }
 
             ScriptFunctions = scripts.Where(a => a.FunctionExports?.Any() == true).SelectMany(a => a.FunctionExports).ToList();
+            return allSuccess;
         }
 
         public void LoadPlugins()

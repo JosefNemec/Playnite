@@ -435,6 +435,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="Plugins">Plugins</sys:String>
     <sys:String x:Key="Extensions">Extensions</sys:String>
     <sys:String x:Key="ReloadScripts">Reload Scripts</sys:String>
+    <sys:String x:Key="ReloadScriptsSuccess">All scripts reloaded successfully.</sys:String>
 
     <sys:String x:Key="EmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>

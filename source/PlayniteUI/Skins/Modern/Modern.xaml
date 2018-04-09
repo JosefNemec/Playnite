@@ -2902,6 +2902,8 @@
                                     DockPanel.Dock="Top" />
                             <RadioButton Content="{DynamicResource MenuOpenClient}" Name="ButtonClients"
                                     DockPanel.Dock="Top" />
+                            <RadioButton Content="{DynamicResource Extensions}" Name="ButtonExtensions"
+                                    DockPanel.Dock="Top" />
                             <RadioButton Content="{DynamicResource MenuPlayniteSettingsTitle}" Command="{Binding OpenSettingsCommand}"
                                     DockPanel.Dock="Top"/>
                             <RadioButton Content="{DynamicResource ExitAppLabel}" Command="{Binding ShutdownCommand}"
@@ -2947,7 +2949,8 @@
                             Background="{DynamicResource MainMenuBackgroundBrush}">
                         <StackPanel>
                             <Button Content="{DynamicResource MenuPlatformEmulatorSettingsTitle}" Command="{Binding OpenPlatformsCommand}"/>
-                            <Button Content="{DynamicResource MenuDownloadMetadata}" Command="{Binding DownloadMetadataCommand}"/>                            
+                            <Button Content="{DynamicResource MenuDownloadMetadata}" Command="{Binding DownloadMetadataCommand}"/>
+                            <Button Content="{DynamicResource ReloadScripts}" Command="{Binding ReloadScriptsCommand}"/>
                         </StackPanel>
                     </Border>
 
@@ -2959,6 +2962,22 @@
                                 <DataTemplate>
                                     <Button Content="{Binding Name}"
                                             Command="{Binding Source={StaticResource Proxy}, Path=Data.ThridPartyToolOpenCommand}"
+                                            CommandParameter="{Binding}">
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Border>
+
+                    <Border Grid.Column="3" Padding="0,70,0,20"
+                            Visibility="{Binding IsChecked, ElementName=ButtonExtensions, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Background="{DynamicResource MainMenuBackgroundBrush}">
+                        <ItemsControl DataContext="{Binding Api, Source={x:Static pui:App.Current}}"
+                                      ItemsSource="{Binding ExportedFunctions}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Content="{Binding Name}"
+                                            Command="{Binding Source={StaticResource Proxy}, Path=Data.InvokeExtensionFunctionCommand}"
                                             CommandParameter="{Binding}">
                                     </Button>
                                 </DataTemplate>
