@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,6 +45,7 @@ namespace PlayniteUI.Controls
 
         private IResourceProvider resources;
         private GamesEditor editor;
+        private readonly SynchronizationContext context;
 
         public Game Game
         {
@@ -61,11 +63,12 @@ namespace PlayniteUI.Controls
         }
 
         public GameMenu() : this(App.GamesEditor)
-        {
+        {            
         }
 
         public GameMenu(GamesEditor editor)
         {
+            context = SynchronizationContext.Current;
             this.editor = editor;
             resources = new ResourceProvider();
             DataContextChanged += GameMenu_DataContextChanged;
@@ -141,7 +144,8 @@ namespace PlayniteUI.Controls
                 "State", "OtherTasks", "Links", "Favorite", "Hidden"
             }).Contains(e.PropertyName))
             {
-                InitializeItems();
+                //Can be called from different threads when game database update is done
+                context.Send((a) => InitializeItems(), null);
             }
         }
 
