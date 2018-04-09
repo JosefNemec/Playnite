@@ -162,7 +162,6 @@ namespace Playnite
                         continue;
                     }
                 }
-
                 
                 if (sourceValue is IComparable && diffOnly)
                 {
@@ -185,7 +184,7 @@ namespace Playnite
                                 targetProperty.SetValue(destination, sourceValue);
                             }
 
-                            return;
+                            continue;
                         }
                     }
 

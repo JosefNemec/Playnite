@@ -70,6 +70,17 @@ namespace PlayniteTests
                 }
             }
 
+            private long prop6;
+            public long Prop6
+            {
+                get => prop6;
+                set
+                {
+                    prop6 = value;
+                    OnPropertyChanged("Prop6");
+                }
+            }
+
             public event PropertyChangedEventHandler PropertyChanged;
             public void OnPropertyChanged(string name)
             {
@@ -120,22 +131,24 @@ namespace PlayniteTests
                 Prop2 = "test",
                 Prop3 = new List<int>() { 1, 2 },
                 Prop4 = new TestObject() { Prop2 = "test2" },
-                Prop5 = new GameState() { Running = true }
-                
+                Prop5 = new GameState() { Running = true },
+                Prop6 = 20
             };
 
             target = new TestObject
             {
                 Prop1 = 2,
                 Prop2 = "test",
-                Prop5 = new GameState() { Running = true }
+                Prop5 = new GameState() { Running = true },
+                Prop6 = 0
             };
 
             target.PropertyChanged += (s, e) => changed.Add(e.PropertyName);
             source.CopyProperties(target, true);
-            Assert.AreEqual(2, changed.Count);
+            Assert.AreEqual(3, changed.Count);
             Assert.AreEqual("Prop3", changed[0]);
             Assert.AreEqual("Prop4", changed[1]);
+            Assert.AreEqual("Prop6", changed[2]);
 
             changed = new List<string>();
             target = new TestObject
@@ -147,7 +160,7 @@ namespace PlayniteTests
 
             target.PropertyChanged += (s, e) => changed.Add(e.PropertyName);
             source.CopyProperties(target, false);
-            Assert.AreEqual(5, changed.Count);
+            Assert.AreEqual(6, changed.Count);
         }
     }
 }
