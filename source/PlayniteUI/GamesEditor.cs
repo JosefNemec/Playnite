@@ -34,7 +34,7 @@ namespace PlayniteUI
         {
             get
             {
-                return database.GamesCollection?.Find(Query.And(Query.Not("LastActivity", null), Query.Not("PlayTask", null))).OrderByDescending(a => a.LastActivity).Take(10).ToList();
+                return database.GamesCollection?.Find(Query.And(Query.Not("LastActivity", null), Query.EQ("State.Installed", true))).OrderByDescending(a => a.LastActivity).Take(10).ToList();              
             }
         }
 
