@@ -175,6 +175,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="API\MainViewAPI.cs" />
     <Compile Include="Behaviors\ExpanderBehaviors.cs" />
     <Compile Include="Behaviors\LeftClickContextMenuBehavior.cs" />
     <Compile Include="BindingProxy.cs" />

@@ -21,6 +21,7 @@ using System.Windows.Input;
 using System.ComponentModel;
 using Playnite.MetaProviders;
 using Playnite.API;
+using PlayniteUI.API;
 
 namespace PlayniteUI
 {
@@ -239,7 +240,7 @@ namespace PlayniteUI
 
             GamesEditor = new GamesEditor(Database, AppSettings);
             CustomImageStringToImageConverter.Database = Database;
-            Api = new PlayniteAPI(Database, GamesEditor.Controllers, new DialogsFactory());
+            Api = new PlayniteAPI(Database, GamesEditor.Controllers, new DialogsFactory(), null);
 
             // Main view startup
             if (AppSettings.StartInFullscreen)
@@ -432,6 +433,7 @@ namespace PlayniteUI
                 new ResourceProvider(),
                 AppSettings,
                 GamesEditor);
+            Api.MainView = new MainViewAPI(mainModel);
             mainModel.OpenView();
             Current.MainWindow = window.Window;
             if (AppSettings.UpdateLibStartup)
@@ -467,13 +469,10 @@ namespace PlayniteUI
                 new ResourceProvider(),
                 AppSettings,
                 GamesEditor);
-
+            Api.MainView = new MainViewAPI(mainModel);
             fullscreenModel.OpenView();
             Current.MainWindow = window.Window;
             await fullscreenModel.UpdateDatabase(AppSettings.UpdateLibStartup, 0, true);
-
-            Current.MainWindow = window.Window;
-            fullscreenModel.OpenView(false);
         }
 
         private void ApplyTheme(string name, string profile, bool fullscreen)

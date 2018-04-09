@@ -3,6 +3,7 @@ using Playnite.Database;
 using Playnite.Providers;
 using Playnite.Scripting;
 using Playnite.SDK;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,10 +73,16 @@ namespace Playnite.API
             get;
         }
 
-        public PlayniteAPI(GameDatabase database, GameControllerFactory controllers, IDialogsFactory dialogs)
+        public IMainViewAPI MainView
+        {
+            get; set;
+        }
+
+        public PlayniteAPI(GameDatabase database, GameControllerFactory controllers, IDialogsFactory dialogs, IMainViewAPI mainViewApi)
         {
             this.database = database;
             this.controllers = controllers;
+            MainView = mainViewApi;
             Dialogs = dialogs;
             Database = new DatabaseAPI(database);
             LoadScripts();
@@ -345,6 +352,11 @@ namespace Playnite.API
                     }
                 }
             }
+        }
+
+        public string ResolveGameVariables(Game game, string toResolve)
+        {
+            return game?.ResolveVariables(toResolve);
         }
     }
 }

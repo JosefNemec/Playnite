@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,11 @@ namespace Playnite.SDK
 {
     public interface IPlayniteAPI
     {
+        IMainViewAPI MainView
+        {
+            get;
+        }
+
         IGameDataseAPI Database
         {
             get;
@@ -17,5 +23,7 @@ namespace Playnite.SDK
         {
             get;
         }
+
+        string ResolveGameVariables(Game game, string toResolve);        
     }
 }

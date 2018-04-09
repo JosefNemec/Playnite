@@ -55,6 +55,7 @@
     <Compile Include="IDialogsFactory.cs" />
     <Compile Include="IExtensionFunction.cs" />
     <Compile Include="IGameDataseAPI.cs" />
+    <Compile Include="IMainViewAPI.cs" />
     <Compile Include="IPlayniteAPI.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="Models\CompletionStatus.cs" />
