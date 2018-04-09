@@ -241,7 +241,7 @@ namespace Playnite.API
             {
                 try
                 {
-                    script.OnGameStopped(args.Controller.Game, args.EllapsedTime);
+                    script.OnGameStopped(database.GetGame(args.Controller.Game.Id), args.EllapsedTime);
                 }
                     catch (Exception e)
                 {
@@ -253,7 +253,7 @@ namespace Playnite.API
             {
                 try
                 {
-                    plugin.OnGameStopped(args.Controller.Game, args.EllapsedTime);
+                    plugin.OnGameStopped(database.GetGame(args.Controller.Game.Id), args.EllapsedTime);
                 }
                 catch (Exception e)
                 {
@@ -268,7 +268,7 @@ namespace Playnite.API
             {
                 try
                 {
-                    script.OnGameStarted(args.Controller.Game);
+                    script.OnGameStarted(database.GetGame(args.Controller.Game.Id));
                 }
                 catch (Exception e)
                 {
@@ -280,7 +280,7 @@ namespace Playnite.API
             {
                 try
                 {
-                    plugin.OnGameStarted(args.Controller.Game);
+                    plugin.OnGameStarted(database.GetGame(args.Controller.Game.Id));
                 }
                 catch (Exception e)
                 {
@@ -294,8 +294,8 @@ namespace Playnite.API
             foreach (var script in scripts)
             {
                 try
-                {
-                    script.OnGameInstalled(args.Controller.Game);
+                {                    
+                    script.OnGameInstalled(database.GetGame(args.Controller.Game.Id));
                 }
                 catch (Exception e)
                 {
@@ -307,7 +307,7 @@ namespace Playnite.API
             {
                 try
                 {
-                    plugin.OnGameInstalled(args.Controller.Game);
+                    plugin.OnGameInstalled(database.GetGame(args.Controller.Game.Id));
                 }
                 catch (Exception e)
                 {
