@@ -174,19 +174,22 @@ namespace Playnite
                 } 
                 else
                 {
-                    var genericComparable = sourceValue.GetType().GetInterface("IComparable`1");
-                    if (genericComparable != null && genericComparable.GenericTypeArguments.Any(a => a == sourceValue.GetType()) && diffOnly)
+                    if (sourceValue != null)
                     {
-                        int res = (int)genericComparable.GetMethod("CompareTo").Invoke(sourceValue, new object[] { targetValue });
-                        if (res != 0)
+                        var genericComparable = sourceValue.GetType().GetInterface("IComparable`1");
+                        if (genericComparable != null && genericComparable.GenericTypeArguments.Any(a => a == sourceValue.GetType()) && diffOnly)
                         {
-                            targetProperty.SetValue(destination, sourceValue);
+                            int res = (int)genericComparable.GetMethod("CompareTo").Invoke(sourceValue, new object[] { targetValue });
+                            if (res != 0)
+                            {
+                                targetProperty.SetValue(destination, sourceValue);
+                            }
+
+                            return;
                         }
                     }
-                    else
-                    {
-                        targetProperty.SetValue(destination, sourceValue);
-                    }
+
+                    targetProperty.SetValue(destination, sourceValue);
                 }
             }
         }

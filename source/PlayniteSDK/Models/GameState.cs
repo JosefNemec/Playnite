@@ -73,6 +73,11 @@ namespace Playnite.SDK.Models
 
         public int CompareTo(GameState obj)
         {
+            if (obj == null)
+            {
+                return 1;
+            }
+
             if (Installed == obj.Installed &&
                 Running == obj.Running &&
                 Installing == obj.Installing &&
