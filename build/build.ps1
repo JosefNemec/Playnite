@@ -88,6 +88,7 @@ if (!$SkipBuild)
         if ($Sign)
         {
             Join-Path $OutputPath "Playnite.dll" | SignFile
+            Join-Path $OutputPath "PlayniteSDK.dll" | SignFile
             Join-Path $OutputPath "PlayniteUI.exe" | SignFile
         }
     }
