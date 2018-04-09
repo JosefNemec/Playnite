@@ -177,6 +177,17 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        private bool showGameSidebar = false;
+        public bool ShowGameSidebar
+        {
+            get => showGameSidebar;
+            set
+            {
+                showGameSidebar = value;
+                OnPropertyChanged("ShowGameSidebar");
+            }
+        }
+
         private bool mainMenuOpened = false;
         public bool MainMenuOpened
         {
@@ -500,6 +511,23 @@ namespace PlayniteUI.ViewModels
                         Resources.FindString("ReloadScriptsSuccess"),
                         Resources.FindString("Extensions"));
                 }
+            });
+        }
+
+        public RelayCommand<GameViewEntry> ShowGameSideBarCommand
+        {
+            get => new RelayCommand<GameViewEntry>((f) =>
+            {
+                SelectedGame = f;
+                ShowGameSidebar = true;
+            });
+        }
+
+        public RelayCommand<object> CloseGameSideBarCommand
+        {
+            get => new RelayCommand<object>((f) =>
+            {
+                ShowGameSidebar = false;
             });
         }
 

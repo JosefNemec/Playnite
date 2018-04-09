@@ -495,6 +495,11 @@ namespace PlayniteUI
         public Rect MakeVisible(Visual visual, Rect rectangle)
         {
             var index = GeneratorContainer.IndexFromContainer(visual);
+            if (index < 0)
+            {
+                return rectangle;
+            }
+
             var perRow = CalculateChildrenPerRow(_extent);
             var row = GetItemRow(index, perRow);
             var offset = GetTotalHeightForRow(row);            
@@ -564,7 +569,6 @@ namespace PlayniteUI
                 _owner.InvalidateScrollInfo();
 
             _trans.Y = -offset;
-
             InvalidateMeasure();
         }
 

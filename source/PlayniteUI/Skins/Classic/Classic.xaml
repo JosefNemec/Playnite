@@ -2057,7 +2057,7 @@
                 <pui:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
                 <pui:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
                 <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-                <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
+                <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />                
             </Grid.Resources>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -2079,7 +2079,7 @@
                         <Setter Property="Visibility" Value="Collapsed" />
                     </Style>
                     <Style TargetType="ListViewItem">
-                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="Margin" Value="8"/>
                         <Setter Property="OverridesDefaultStyle" Value="True" />
                         <Setter Property="ContextMenu">
                             <Setter.Value>
@@ -2090,30 +2090,55 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                                     <Grid Background="Transparent">
+                                        <Grid.Effect>
+                                            <DropShadowEffect BlurRadius="5" Color="#DD000000" ShadowDepth="5"
+                                                              x:Name="ShadowEffect"/>
+                                        </Grid.Effect>
                                         <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="2"
                                                 Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
                                             <Grid>
                                                 <Grid.InputBindings>
                                                     <MouseBinding MouseAction="LeftDoubleClick"
-                                                                  Command="{Binding Data.StartGameCommand, Source={StaticResource CoversProxy}}"
-                                                                  CommandParameter="{Binding Game}"/>
+                                                                    Command="{Binding Data.StartGameCommand, Source={StaticResource CoversProxy}}"
+                                                                    CommandParameter="{Binding Game}"/>
                                                 </Grid.InputBindings>
                                                 <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
                                                     <Image.Source>
                                                         <PriorityBinding>
                                                             <Binding Path="Image" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay"
-                                                                     Converter="{StaticResource CustomImageStringToImageConverter}"/>
+                                                                        Converter="{StaticResource CustomImageStringToImageConverter}"/>
                                                             <Binding Path="DefaultImage" Mode="OneWay"
-                                                                     Converter="{StaticResource CustomImageStringToImageConverter}"/>
+                                                                        Converter="{StaticResource CustomImageStringToImageConverter}"/>
                                                         </PriorityBinding>
                                                     </Image.Source>
                                                 </Image>
                                                 <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed">
                                                     <TextBlock Text="{Binding DisplayName, Mode=OneWay}" TextWrapping="Wrap" Margin="5"
-                                                                                   Style="{StaticResource BaseTextBlockStyle}"
-                                                                                   TextTrimming="CharacterEllipsis" TextAlignment="Center"
-                                                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                                                                                   FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"/>
+                                                                Style="{StaticResource BaseTextBlockStyle}"
+                                                                TextTrimming="CharacterEllipsis" TextAlignment="Center"
+                                                                HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                                FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"/>
+                                                </Border>
+                                                <Border Background="#88000000" x:Name="BorderMouseOver" Visibility="Collapsed">
+                                                    <Grid Margin="10" VerticalAlignment="Center">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto" />
+                                                        </Grid.RowDefinitions>
+                                                        <Button Background="#EE000000" Content="▶"
+                                                                Grid.Row="0" Grid.Column="0" Margin="0,0,3,0"                                                            
+                                                                FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"
+                                                                Command="{Binding Data.StartGameCommand, Source={StaticResource CoversProxy}}"
+                                                                CommandParameter="{Binding Game}" />
+                                                        <Button Background="#EE000000" Content="🛈"
+                                                                Grid.Row="0" Grid.Column="1" Margin="3,0,0,0" 
+                                                                FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"
+                                                                Command="{Binding Data.ShowGameSideBarCommand, Source={StaticResource CoversProxy}}"
+                                                                CommandParameter="{Binding}"/>
+                                                    </Grid>
                                                 </Border>
                                             </Grid>
                                         </Border>
@@ -2129,13 +2154,10 @@
                                         <Trigger Property="IsSelected" Value="True">
                                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
                                         </Trigger>
-                                        <MultiTrigger>
-                                            <MultiTrigger.Conditions>
-                                                <Condition Property="IsMouseOver" Value="True" />
-                                                <Condition Property="Selector.IsSelected" Value="False" />
-                                            </MultiTrigger.Conditions>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" TargetName="BorderMouseOver"/>
                                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
-                                        </MultiTrigger>
+                                        </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -2161,16 +2183,8 @@
             
             <ScrollViewer Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Width="350"
                           HorizontalScrollBarVisibility="Disabled"
-                          DataContext="{Binding SelectedGameDetails, Mode=OneWay}">
-                <ScrollViewer.Style>
-                    <Style TargetType="ScrollViewer">
-                        <Style.Triggers>
-                            <Trigger Property="DataContext" Value="{x:Null}">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </ScrollViewer.Style>
+                          DataContext="{Binding SelectedGameDetails, Mode=OneWay}"
+                          Visibility="{Binding Data.ShowGameSidebar, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource CoversProxy}}">
                 <Border BorderThickness="1,0,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
                     <Grid>
                         <Grid.Resources>
@@ -2189,7 +2203,7 @@
 
                         <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top"
                                    Margin="10">
-                            <Hyperlink Command="{Binding Data.RemoveGameSelectionCommand, Source={StaticResource CoversProxy}}">
+                            <Hyperlink Command="{Binding Data.CloseGameSideBarCommand, Source={StaticResource CoversProxy}}">
                                 <Run Text="r" FontFamily="Marlett" />
                             </Hyperlink>
                         </TextBlock>
@@ -2417,11 +2431,8 @@
                 <pui:ListToStringConverter x:Key="ListToStringConverter" />
                 <pui:NotificationIconConverter x:Key="NotificationIconConverter" />
             </Grid.Resources>
-            
-            <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="0">
-                <DockPanel.Resources>
 
-                </DockPanel.Resources>
+            <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="0">
                 <DockPanel Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True"
                        Opacity="{Binding IsMouseOver, Converter={StaticResource OpacityBoolConverter}, ConverterParameter={StaticResource True}, RelativeSource={RelativeSource Self}}"
                        pui:LeftClickContextMenuBehavior.Enabled="True">
