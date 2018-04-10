@@ -455,7 +455,7 @@ namespace Playnite.Providers.Steam
             }
 
             // Background Image
-            if (metadata.StoreDetails.screenshots?.Any() == true)
+            if (metadata.StoreDetails?.screenshots?.Any() == true)
             {
                 metadata.BackgroundImage = Regex.Replace(metadata.StoreDetails.screenshots.First().path_full, "\\?.*$", "");
             }

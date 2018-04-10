@@ -61,7 +61,7 @@ namespace PlayniteTests.Providers.Steam
             Assert.IsNull(nonExisting.StoreDetails);
             Assert.IsNotNull(nonExisting.Icon.Data);
             Assert.IsNotNull(nonExisting.Image.Data);
-            Assert.IsNotNull(nonExisting.BackgroundImage);
+            Assert.IsNull(nonExisting.BackgroundImage);
         }
 
         [Test]
