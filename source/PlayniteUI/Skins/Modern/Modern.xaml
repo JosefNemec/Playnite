@@ -2178,8 +2178,7 @@
             </StackPanel>
 
             <Border Grid.Column="1" Grid.Row="2" Padding="10" Margin="20,0,10,20" CornerRadius="3"
-                    VerticalAlignment="Top" MaxWidth="300"
-                    Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    VerticalAlignment="Top" MaxWidth="300">
                 <DockPanel>
                     <Border DockPanel.Dock="Top" Margin="0,0,0,20">
                         <Border.Style>
@@ -2193,7 +2192,8 @@
                         </Border.Style>
                         <ContentControl Template="{StaticResource PlayTimeInfoView}"  />
                     </Border>
-                    <ScrollViewer DockPanel.Dock="Top">
+                    <ScrollViewer DockPanel.Dock="Top"
+                                  Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <ContentControl Template="{StaticResource GamePropertiesView}" />
                     </ScrollViewer>
                 </DockPanel>
@@ -2500,7 +2500,7 @@
                     </pc:ExtendedListBox.GroupStyle>
                     <pc:ExtendedListBox.ItemTemplate>
                         <DataTemplate>
-                            <DockPanel>
+                            <DockPanel Background="Transparent">
                                 <DockPanel.InputBindings>
                                     <MouseBinding MouseAction="LeftDoubleClick"
                                                   Command="{Binding Data.StartGameCommand, Source={StaticResource Proxy}}"

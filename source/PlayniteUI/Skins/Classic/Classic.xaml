@@ -3023,12 +3023,12 @@
                                     </ListBox.GroupStyle>
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <DockPanel Margin="1">
+                                            <DockPanel Margin="1" Background="Transparent">
                                                 <DockPanel.InputBindings>
                                                     <MouseBinding MouseAction="LeftDoubleClick"
                                                                   Command="{Binding Data.StartGameCommand, Source={StaticResource Proxy}}"
                                                                   CommandParameter="{Binding Game}"/>
-                                                </DockPanel.InputBindings>
+                                                </DockPanel.InputBindings>                                                
                                                 <Image Height="32" RenderOptions.BitmapScalingMode="Fant" DockPanel.Dock="Left" Margin="0,0,8,0"
                                 Visibility="{Binding Path=Data.AppSettings.ShowIconsOnList, Source={StaticResource Proxy}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <Image.Source>
