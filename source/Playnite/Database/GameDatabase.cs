@@ -25,6 +25,23 @@ using Playnite.SDK.Models;
 
 namespace Playnite.Database
 {
+    public class DatabaseSettings
+    {
+        [BsonId]
+        public int Id
+        {
+            get; set;
+        } = 1;
+
+        /// <summary>
+        /// Indicated if game states for custom games has been fixed (during update from 3.x to 4.x)
+        /// </summary>
+        public bool InstStatesFixed
+        {
+            get; set;
+        }
+    }
+
     public class EventBufferHandler : IDisposable
     {
         private GameDatabase database;
@@ -251,6 +268,10 @@ namespace Playnite.Database
             get; set;
         }
 
+        public GameDatabase() : this(null)
+        {
+        }
+
         public GameDatabase(Settings settings, string path) : this(settings)
         {
             Path = path;
@@ -287,6 +308,24 @@ namespace Playnite.Database
             if (GamesCollection == null)
             {
                 throw new Exception("Database is not opened.");
+            }
+        }
+
+        public DatabaseSettings GetDatabaseSettings()
+        {
+            CheckDbState();
+            var coll = Database.GetCollection<DatabaseSettings>("settings");
+            return coll.FindById(1);
+        }
+
+        public void UpdateDatabaseSettings(DatabaseSettings settings)
+        {
+            CheckDbState();
+
+            using (Database.Engine.Locker.Reserved())
+            {
+                var coll = Database.GetCollection<DatabaseSettings>("settings");
+                coll.Upsert(settings);
             }
         }
 
@@ -637,6 +676,33 @@ namespace Playnite.Database
                 }
             }
 
+            var settings = GetDatabaseSettings();
+
+            // Fix for custom games
+            // Needed when updating from 3.x to 4.x because installation states are handled differently
+            if (settings?.InstStatesFixed != true)
+            {
+                foreach (var game in GamesCollection.Find(a => a.Provider == Provider.Custom).ToList())
+                {
+                    if (!string.IsNullOrEmpty(game.InstallDirectory) || !string.IsNullOrEmpty(game.IsoPath))
+                    {
+                        game.State.Installed = true;
+                        UpdateGameInDatabase(game);
+                    }
+                }
+
+                if (settings != null)
+                {
+                    settings.InstStatesFixed = true;
+                }
+            }
+
+            if (settings == null)
+            {
+                settings = new DatabaseSettings() { InstStatesFixed = true };                
+            }
+            
+            UpdateDatabaseSettings(settings);
             DatabaseOpened?.Invoke(this, null);
             IsOpen = true;
             return Database;

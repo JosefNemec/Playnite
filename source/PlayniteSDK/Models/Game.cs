@@ -396,57 +396,35 @@ namespace Playnite.SDK.Models
         [BsonIgnore]
         public bool IsInstalling
         {
-            get
-            {
-                return State.Installing;
-            }
+            get => State.Installing;
         }
 
         [JsonIgnore]
         [BsonIgnore]
         public bool IsUninstalling
         {
-            get
-            {
-                return State.Uninstalling;
-            }
+            get => State.Uninstalling;
         }
 
         [JsonIgnore]
         [BsonIgnore]
         public bool IsLaunching
         {
-            get
-            {
-                return State.Launching;
-            }
+            get => State.Launching;
         }
 
         [JsonIgnore]
         [BsonIgnore]
         public bool IsRunning
         {
-            get
-            {
-                return State.Running;
-            }
+            get => State.Running;
         }
 
         [JsonIgnore]
         [BsonIgnore]
         public bool IsInstalled
         {
-            get
-            {
-                if (Provider == Provider.Custom)
-                {
-                    return !string.IsNullOrEmpty(InstallDirectory);
-                }
-                else
-                {
-                    return State.Installed;
-                }
-            }
+            get => State.Installed;
         }
 
         private GameState state = new GameState();
@@ -465,11 +443,7 @@ namespace Playnite.SDK.Models
                 OnPropertyChanged("IsInstalling");
                 OnPropertyChanged("IsUninstalling");
                 OnPropertyChanged("IsLaunching");
-
-                if (Provider != Provider.Custom)
-                {
-                    OnPropertyChanged("IsInstalled");
-                }
+                OnPropertyChanged("IsInstalled");
             }
         }
 

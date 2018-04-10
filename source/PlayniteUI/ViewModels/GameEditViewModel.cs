@@ -1967,6 +1967,18 @@ namespace PlayniteUI.ViewModels
                         Game.Links = EditingGame.Links;
                     }
                 }
+
+                if (EditingGame.Provider == Provider.Custom &&
+                    string.IsNullOrEmpty(EditingGame.IsoPath) &&
+                    string.IsNullOrEmpty(EditingGame.InstallDirectory))
+                {
+                    // GameState is not observable so we need to change the whole object to send notify messages
+                    Game.State = new GameState(Game.State) { Installed = false };
+                }
+                else
+                {
+                    Game.State = new GameState(Game.State) { Installed = true };
+                }
             }
 
             if (Games != null)

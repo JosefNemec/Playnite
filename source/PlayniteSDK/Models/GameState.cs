@@ -33,6 +33,19 @@ namespace Playnite.SDK.Models
             get; set;
         }
 
+        public GameState()
+        {
+        }
+
+        public GameState(GameState state)
+        {
+            Installed = state.Installed;
+            Launching = state.Launching;
+            Running = state.Running;
+            Installing = state.Installing;
+            Uninstalling = state.Uninstalling;
+        }
+
         public void SetState(bool? installed, bool? running, bool? installing, bool? uninstalling, bool? launching)
         {
             if (installed != null)
