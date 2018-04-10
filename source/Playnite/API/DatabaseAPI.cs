@@ -4,6 +4,7 @@ using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,11 @@ namespace Playnite.API
         public DatabaseAPI(GameDatabase database)
         {
             this.database = database;
+        }
+
+        public void AddEmulator(Emulator emulator)
+        {
+            database.AddEmulator(emulator);
         }
 
         public Emulator GetEmulator(ObjectId id)
@@ -34,6 +40,11 @@ namespace Playnite.API
             return database.GetGame(id);
         }
 
+        public void AddGame(Game game)
+        {
+            database.AddGame(game);
+        }
+
         public List<Game> GetGames()
         {
             return database.GetGames().Cast<Game>().ToList();
@@ -47,6 +58,11 @@ namespace Playnite.API
         public List<Platform> GetPlatforms()
         {
             return database.GetPlatforms();
+        }
+
+        public void AddPlatform(Platform platform)
+        {
+            database.AddPlatform(platform);
         }
 
         public void RemoveEmulator(ObjectId id)
@@ -67,6 +83,46 @@ namespace Playnite.API
         public void UpdateGame(Game game)
         {
             database.UpdateGameInDatabase(game);
+        }
+
+        public void AddFile(string id, string path)
+        {
+            if (!File.Exists(path))
+            {
+                throw new Exception("Cannot add file to db, file not found.");
+            }
+
+            database.AddFile(id, Path.GetFileName(path), File.ReadAllBytes(path));
+        }
+
+        public string AddFileNoDuplicates(string id, string path)
+        {
+            if (!File.Exists(path))
+            {
+                throw new Exception("Cannot add file to db, file not found.");
+            }
+
+            return database.AddFileNoDuplicate(id, Path.GetFileName(path), File.ReadAllBytes(path));
+        }
+
+        public void SaveFile(string id, string path)
+        {
+            database.SaveFile(id, path);
+        }
+
+        public void RemoveFile(string id)
+        {
+            database.DeleteFile(id);
+        }
+
+        public void RemoveImage(string id, Game game)
+        {
+            database.DeleteImageSafe(id, game);
+        }
+
+        public List<DatabaseFile> GetFiles()
+        {
+            return database.Database.FileStorage.FindAll()?.Select(a => new DatabaseFile(a)).ToList();                
         }
     }
 }

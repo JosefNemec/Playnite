@@ -137,6 +137,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="API\DatabaseAPITests.cs" />
     <Compile Include="CloneObjectTests.cs" />
     <Compile Include="Converters\ObjectIdJsonConverterTests.cs" />
     <Compile Include="Database\GameDatabaseFileTests.cs" />

@@ -59,6 +59,7 @@
     <Compile Include="IPlayniteAPI.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="Models\CompletionStatus.cs" />
+    <Compile Include="Models\DatabaseFile.cs" />
     <Compile Include="Models\Emulator.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameState.cs" />

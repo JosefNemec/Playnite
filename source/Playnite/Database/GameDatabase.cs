@@ -780,7 +780,7 @@ namespace Playnite.Database
         public void DeleteGame(int id)
         {
             var game = GetGame(id);
-            DeleteGame(game.Id);
+            DeleteGame(game);
         }
 
         public void DeleteGame(Game game)
