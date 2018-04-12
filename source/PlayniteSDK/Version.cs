@@ -12,8 +12,11 @@ namespace Playnite.SDK
     public static class Version
     {
         /// <summary>
-        /// Gets SDK compatibility version. Changes when breaking changes in SDK are made.
+        /// Gets SDK version.
         /// </summary>
-        public const int CompatibilityVersion = 1;
+        public static System.Version SDKVersion
+        {
+            get => System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+        }
     }
 }

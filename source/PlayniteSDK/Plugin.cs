@@ -37,26 +37,16 @@ namespace Playnite.SDK
         }
 
         /// <summary>
-        /// Gets or sets SDK version supported by the plugin.
-        /// </summary>
-        public int SupportedSdkVersion
-        {
-            get; set;
-        }
-
-        /// <summary>
         /// Creates new instance of PluginProperties.
         /// </summary>
         /// <param name="pluginName">Plugin name.</param>
         /// <param name="author">Plugin author.</param>
         /// <param name="version">Plugin version.</param>
-        /// <param name="supportedSdkVersion">Supported Playnite SDK version.</param>
-        public PluginProperties(string pluginName, string author, string version, int supportedSdkVersion)
+        public PluginProperties(string pluginName, string author, string version)
         {
             PluginName = pluginName;
             Author = author;
             Version = version;
-            SupportedSdkVersion = supportedSdkVersion;
         }
     }
 

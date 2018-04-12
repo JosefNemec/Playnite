@@ -41,6 +41,11 @@ namespace Playnite.Plugins
         {
             var asmName = AssemblyName.GetAssemblyName(path);
             var assembly = Assembly.Load(asmName);
+            var sdkReference = assembly.GetReferencedAssemblies().FirstOrDefault(a => a.Name == "PlayniteSDK");
+            if (sdkReference.Version.Major != SDK.Version.SDKVersion.Major)
+            {
+                throw new Exception($"Plugin doesn't support this version of Playnite SDK.");
+            }
 
             var pluginTypes = new List<Type>();
             var asmTypes = assembly.GetTypes();

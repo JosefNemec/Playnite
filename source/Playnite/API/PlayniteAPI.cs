@@ -5,6 +5,7 @@ using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -154,7 +155,7 @@ namespace Playnite.API
                     allSuccess = false;
                     logger.Error(e, $"Failed to load script file {path}");
                     Dialogs.ShowMessage(
-                        $"Failed to load script file {path}:\n\n" + e.Message, "Script error",
+                        $"Failed to load script file {Path.GetFileName(path)}:\n\n" + e.Message, "Script error",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                     continue;
                 }
@@ -183,16 +184,7 @@ namespace Playnite.API
                 {
                     logger.Error(e.InnerException, $"Failed to load plugin file {path}");
                     Dialogs.ShowMessage(
-                        $"Failed to load plugin file {path}:\n\n" + e.ToString(), "Plugin error",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                    continue;
-                }
-
-                if (plugin.Any(a => a.Properties?.SupportedSdkVersion != SDK.Version.CompatibilityVersion))
-                {
-                    logger.Error($"Failed to load plugin file {path}, unsupported SDK version.");
-                    Dialogs.ShowMessage(
-                        $"Failed to load plugin file {path}:\n\nPlugin doesn't support this version of Playnite SDK.", "Plugin error",
+                        $"Failed to load plugin file {Path.GetFileName(path)}:\n\n" + e.Message, "Plugin error",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                     continue;
                 }
