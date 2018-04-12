@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Playnite.API
 {
-    public class DatabaseAPI : IGameDataseAPI
+    public class DatabaseAPI : IGameDatabaseAPI
     {
         private GameDatabase database;
 
@@ -85,17 +85,7 @@ namespace Playnite.API
             database.UpdateGameInDatabase(game);
         }
 
-        public void AddFile(string id, string path)
-        {
-            if (!File.Exists(path))
-            {
-                throw new Exception("Cannot add file to db, file not found.");
-            }
-
-            database.AddFile(id, Path.GetFileName(path), File.ReadAllBytes(path));
-        }
-
-        public string AddFileNoDuplicates(string id, string path)
+        public string AddFile(string id, string path)
         {
             if (!File.Exists(path))
             {
@@ -123,6 +113,19 @@ namespace Playnite.API
         public List<DatabaseFile> GetFiles()
         {
             return database.Database.FileStorage.FindAll()?.Select(a => new DatabaseFile(a)).ToList();                
+        }
+
+        public DatabaseFile GetFile(string id)
+        {
+            var file = database.Database.FileStorage.FindById(id);
+            if (file != null)
+            {
+                return new DatabaseFile(file);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

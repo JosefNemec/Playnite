@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\PlayniteSDK.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\PlayniteSDK.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LiteDB, Version=3.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
@@ -47,17 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseClasses\ComparableList.cs" />
-    <Compile Include="BaseClasses\ObservableConcurrentDictionary.cs" />
-    <Compile Include="BaseClasses\ObservableObject.cs" />
-    <Compile Include="BaseClasses\RangeObservableCollection.cs" />
+    <Compile Include="Collections\ComparableList.cs" />
+    <Compile Include="Collections\ObservableConcurrentDictionary.cs" />
+    <Compile Include="Collections\ObservableObject.cs" />
+    <Compile Include="Collections\RangeObservableCollection.cs" />
     <Compile Include="Converters\ObjectIdJsonConverter.cs" />
     <Compile Include="IDialogsFactory.cs" />
-    <Compile Include="IExtensionFunction.cs" />
-    <Compile Include="IGameDataseAPI.cs" />
+    <Compile Include="ExtensionFunction.cs" />
+    <Compile Include="IGameDatabaseAPI.cs" />
+    <Compile Include="ILogger.cs" />
     <Compile Include="IMainViewAPI.cs" />
     <Compile Include="IPlayniteAPI.cs" />
-    <Compile Include="IPlugin.cs" />
+    <Compile Include="Plugin.cs" />
     <Compile Include="Models\CompletionStatus.cs" />
     <Compile Include="Models\DatabaseFile.cs" />
     <Compile Include="Models\Emulator.cs" />

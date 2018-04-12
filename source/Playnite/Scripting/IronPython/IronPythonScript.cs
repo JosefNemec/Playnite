@@ -32,11 +32,10 @@ namespace Playnite.Scripting.IronPython
             if (exports != null)
             {
                 FunctionExports = new List<ScriptFunctionExport>();
-                var dict = (PythonDictionary)exports;
-                foreach (var key in dict.Keys)
+                var funcs = (IEnumerable<object>)exports;
+                foreach (PythonDictionary func in funcs)
                 {
-                    var functionProp = (PythonDictionary)dict[key];
-                    FunctionExports.Add(new ScriptFunctionExport(key.ToString(), functionProp["Function"].ToString(), this));
+                    FunctionExports.Add(new ScriptFunctionExport(func["Name"].ToString(), func["Function"].ToString(), this));
                 }
             }
         }

@@ -135,14 +135,13 @@ namespace PlayniteUI.Windows
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public MessageBoxResult ShowInput(Window owner, string messageBoxText, string caption, out string input)
+        public string ShowInput(Window owner, string messageBoxText, string caption, string defaultInput)
         {
             if (owner == null)
             {
                 WindowStartupLocation = WindowStartupLocation.CenterScreen;
             }
 
-            input = string.Empty;
             TextInputText.Focus();
             Owner = owner;
             Text = messageBoxText;
@@ -150,10 +149,16 @@ namespace PlayniteUI.Windows
             ShowInputField = true;
             ShowOKButton = true;
             ShowCancelButton = true;
-            InputText = input ?? string.Empty;
+            InputText = defaultInput ?? string.Empty;
             ShowDialog();
-            input = InputText;
-            return result;
+            if (result == MessageBoxResult.Cancel)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return InputText;
+            }
         }
 
         public MessageBoxResult Show(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)

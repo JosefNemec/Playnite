@@ -2196,12 +2196,14 @@ namespace PlayniteUI.ViewModels
 
         public void SetBackgroundUrl()
         {
-            if (dialogs.SelectString(
+            var url = dialogs.SelectString(
                 resources.FindString("URLInputInfo"),
                 resources.FindString("URLInputInfoTitile"),
-                out var input) == MessageBoxResult.OK)
+                string.Empty);
+
+            if (!string.IsNullOrEmpty(url))
             {
-                EditingGame.BackgroundImage = input;
+                EditingGame.BackgroundImage = url;
             }
         }
 

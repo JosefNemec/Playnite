@@ -14,14 +14,9 @@ namespace PlaynitePluginExample
         {
         }
 
-        public override int GetCompatibilityVersion()
-        {
-            return 1;
-        }
-
         public override PluginProperties GetPluginProperties()
         {
-            return new PluginProperties("Test Plugin", "Test Author", "0.1");
+            return new PluginProperties("Test Plugin", "Test Author", "0.1", 1);
         }
 
         public override List<ExtensionFunction> GetFunctions()
@@ -30,7 +25,12 @@ namespace PlaynitePluginExample
             {
                 new ExtensionFunction(
                     "Test Func from C#",
-                    () => PlayniteApi.Dialogs.ShowMessage("From compiled code"))
+                    () =>
+                    {
+                        var logger = PlayniteApi.CreateLogger("test");
+                        logger.Error("test");
+                        PlayniteApi.Dialogs.ShowMessage(PlayniteApi.MainView.SelectedGames.Count().ToString());
+                    })
             };
         }
 
@@ -40,6 +40,7 @@ namespace PlaynitePluginExample
 
         public override void OnGameStarted(Game game)
         {
+            PlayniteApi.Dialogs.ShowMessage(game.Name);
         }
 
         public override void OnGameStopped(Game game, long ellapsedSeconds)

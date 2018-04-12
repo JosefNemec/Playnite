@@ -58,6 +58,7 @@
         <KeyBinding Key="F5" Command="{Binding UpdateGamesCommand}" />
         <KeyBinding Key="F4" Command="{Binding OpenSettingsCommand}" />
         <KeyBinding Key="F11" Command="{Binding OpenFullScreenCommand}" />
+        <KeyBinding Key="F12" Command="{Binding ReloadScriptsCommand}" />
     </c:WindowBase.InputBindings>
 
     <Grid>

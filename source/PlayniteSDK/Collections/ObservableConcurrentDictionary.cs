@@ -163,16 +163,29 @@ namespace System.Collections.Concurrent
         #endregion
 
         #region IDictionary<TKey,TValue> Members
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void Add(TKey key, TValue value)
         {
             TryAddWithNotification(key, value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public bool ContainsKey(TKey key)
         {
             return _dictionary.ContainsKey(key);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ICollection<TKey> Keys
         {
             get
@@ -181,16 +194,30 @@ namespace System.Collections.Concurrent
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public bool Remove(TKey key)
         {
             return TryRemoveWithNotification(key, out TValue temp);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool TryGetValue(TKey key, out TValue value)
         {
             return _dictionary.TryGetValue(key, out value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ICollection<TValue> Values
         {
             get
@@ -199,6 +226,11 @@ namespace System.Collections.Concurrent
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public TValue this[TKey key]
         {
             get

@@ -505,12 +505,7 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((f) =>
             {
                 MainMenuOpened = false;
-                if (App.CurrentApp.Api?.LoadScripts() == true)
-                {
-                    Dialogs.ShowMessage(
-                        Resources.FindString("ReloadScriptsSuccess"),
-                        Resources.FindString("Extensions"));
-                }
+                App.CurrentApp.Api?.LoadScripts();
             });
         }
 

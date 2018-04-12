@@ -12,14 +12,14 @@ namespace PlayniteUI
 {
     public class Dialogs
     {
-        public static MessageBoxResult SelectString(Window owner, string messageBoxText, string caption, out string input)
+        public static string SelectString(Window owner, string messageBoxText, string caption, string defaultInput)
         {
-            return (new MessageBoxWindow()).ShowInput(owner, messageBoxText, caption, out input);
+            return (new MessageBoxWindow()).ShowInput(owner, messageBoxText, caption, defaultInput);
         }
 
-        public static MessageBoxResult SelectString(string messageBoxText, string caption, out string input)
+        public static string SelectString(string messageBoxText, string caption, string defaultInput)
         {
-            return SelectString(null, messageBoxText, caption, out input);
+            return SelectString(null, messageBoxText, caption, defaultInput);
         }
 
         public static string SaveFile(Window owner, string filter, bool promptOverwrite)

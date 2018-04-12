@@ -65,18 +65,9 @@ namespace PlayniteUI
             return Invoke(() => Dialogs.SelectImageFile(PlayniteWindows.CurrentWindow));
         }
 
-        public MessageBoxResult SelectString(string messageBoxText, string caption, out string input)
+        public string SelectString(string messageBoxText, string caption, string defaultInput)
         {
-            var result = MessageBoxResult.None;
-            input = string.Empty;
-            var inpt = input ?? string.Empty;
-            context.Send((a) =>
-            {
-                result = Dialogs.SelectString(PlayniteWindows.CurrentWindow, messageBoxText, caption, out inpt);
-            }, null);
-
-            input = inpt;
-            return result;
+            return Invoke(() => Dialogs.SelectString(PlayniteWindows.CurrentWindow, messageBoxText, caption, defaultInput));
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)

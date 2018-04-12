@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 using System.Collections.ObjectModel;
-using NLog;
+using Playnite.API;
 
 namespace Playnite.Scripting.PowerShell
 {
     public class PowerShellRuntime : IScriptRuntime
     {
-        private static NLog.Logger logger = LogManager.GetLogger("PowerShell");
+        private static NLog.Logger logger = NLog.LogManager.GetLogger("PowerShell");
         private Runspace runspace;
 
         public PowerShellRuntime()
@@ -29,7 +29,7 @@ namespace Playnite.Scripting.PowerShell
                 pipe.Invoke();
             }
 
-            SetVariable("__logger", logger);
+            SetVariable("__logger", new Logger("PowerShell"));
         }
 
         public void Dispose()

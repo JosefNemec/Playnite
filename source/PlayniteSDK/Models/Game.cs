@@ -15,9 +15,15 @@ using Playnite.SDK.Converters;
 
 namespace Playnite.SDK.Models
 {
+    /// <summary>
+    /// Represents Playnite game object.
+    /// </summary>
     public class Game : ObservableObject
     {
         private string backgroundImage;
+        /// <summary>
+        /// Gets or sets background image. Local file path, HTTP URL or database file ids are supported.
+        /// </summary>
         public string BackgroundImage
         {
             get
@@ -31,8 +37,11 @@ namespace Playnite.SDK.Models
                 OnPropertyChanged("BackgroundImage");
             }
         }       
-
+        
         private string description;
+        /// <summary>
+        /// Gets or sets HTML game description.
+        /// </summary>
         public string Description
         {
             get
@@ -49,6 +58,9 @@ namespace Playnite.SDK.Models
         }
 
         private ComparableList<string> developers;
+        /// <summary>
+        /// Gets or sets list of developers.
+        /// </summary>
         public ComparableList<string> Developers
         {
             get
@@ -64,6 +76,9 @@ namespace Playnite.SDK.Models
         }
 
         private ComparableList<string> genres;
+        /// <summary>
+        /// Gets or sets list of genres.
+        /// </summary>
         public ComparableList<string> Genres
         {
             get
@@ -79,6 +94,9 @@ namespace Playnite.SDK.Models
         }
 
         private bool hidden;
+        /// <summary>
+        /// Gets or sets value indicating if the game is hidden in library.
+        /// </summary>
         public bool Hidden
         {
             get
@@ -94,6 +112,9 @@ namespace Playnite.SDK.Models
         }
 
         private bool favorite;
+        /// <summary>
+        /// Gets or sets avlue indicating if the game is marked as favorite in library.
+        /// </summary>
         public bool Favorite
         {
             get
@@ -108,7 +129,11 @@ namespace Playnite.SDK.Models
             }
         }
 
+        
         private string icon;
+        /// <summary>
+        /// Gets or sets game icon. Local file path, HTTP URL or database file ids are supported.
+        /// </summary>
         public string Icon
         {
             get
@@ -124,6 +149,9 @@ namespace Playnite.SDK.Models
         }
 
         private int id;
+        /// <summary>
+        /// Gets or sets game database id.
+        /// </summary>
         [BsonId]
         public int Id
         {
@@ -140,6 +168,9 @@ namespace Playnite.SDK.Models
         }
 
         private string image;
+        /// <summary>
+        /// Gets or sets game cover image. Local file path, HTTP URL or database file ids are supported.
+        /// </summary>
         public string Image
         {
             get
@@ -155,6 +186,9 @@ namespace Playnite.SDK.Models
         }
 
         private string installDirectory;
+        /// <summary>
+        /// Gets or sets game installation directory path.
+        /// </summary>
         public string InstallDirectory
         {
             get
@@ -174,14 +208,13 @@ namespace Playnite.SDK.Models
             {
                 installDirectory = value;
                 OnPropertyChanged("InstallDirectory");
-                if (Provider == Provider.Custom)
-                {
-                    OnPropertyChanged("IsInstalled");
-                }
             }
         }
 
         private string isoPath;
+        /// <summary>
+        /// Gets or sets game's ISO, ROM or other type of executable image path.
+        /// </summary>
         public string IsoPath
         {
             get
@@ -197,6 +230,9 @@ namespace Playnite.SDK.Models
         }
 
         private DateTime? lastActivity;
+        /// <summary>
+        /// Gets or sets last played date.
+        /// </summary>
         public DateTime? LastActivity
         {
             get
@@ -212,6 +248,9 @@ namespace Playnite.SDK.Models
         }
 
         private string name;
+        /// <summary>
+        /// Gets or sets game name.
+        /// </summary>
         public string Name
         {
             get
@@ -227,6 +266,9 @@ namespace Playnite.SDK.Models
         }
 
         private string sortingName;
+        /// <summary>
+        /// Gets or sets optional name used for sorting the game by name.
+        /// </summary>
         public string SortingName
         {
             get
@@ -242,6 +284,9 @@ namespace Playnite.SDK.Models
         }
 
         private string providerId;
+        /// <summary>
+        /// Gets or sets provider id. For example game's Steam ID.
+        /// </summary>
         public string ProviderId
         {
             get
@@ -257,6 +302,9 @@ namespace Playnite.SDK.Models
         }
 
         private ObservableCollection<GameTask> otherTasks;
+        /// <summary>
+        /// Gets or sets list of additional game actions.
+        /// </summary>
         public ObservableCollection<GameTask> OtherTasks
         {
             get
@@ -272,6 +320,9 @@ namespace Playnite.SDK.Models
         }
 
         private GameTask playTask;
+        /// <summary>
+        /// Gets or sets game action used to starting the game.
+        /// </summary>
         public GameTask PlayTask
         {
             get
@@ -287,6 +338,9 @@ namespace Playnite.SDK.Models
         }
 
         private Provider provider;
+        /// <summary>
+        /// Gets or sets original library provider.
+        /// </summary>
         public Provider Provider
         {
             get
@@ -302,6 +356,9 @@ namespace Playnite.SDK.Models
         }
 
         private ObjectId platformId;
+        /// <summary>
+        /// Gets or sets platform id.
+        /// </summary>
         [JsonConverter(typeof(ObjectIdJsonConverter))]
         public ObjectId PlatformId
         {
@@ -318,6 +375,9 @@ namespace Playnite.SDK.Models
         }
 
         private ComparableList<string> publishers;
+        /// <summary>
+        /// Gets or sets list of publishers.
+        /// </summary>
         public ComparableList<string> Publishers
         {
             get
@@ -333,6 +393,9 @@ namespace Playnite.SDK.Models
         }
 
         private DateTime? releaseDate;
+        /// <summary>
+        /// Gets or set game's release date.
+        /// </summary>
         public DateTime? ReleaseDate
         {
             get
@@ -348,6 +411,9 @@ namespace Playnite.SDK.Models
         }
 
         private ComparableList<string> categories;
+        /// <summary>
+        /// Gets or sets game categories.
+        /// </summary>
         public ComparableList<string> Categories
         {
             get
@@ -363,6 +429,9 @@ namespace Playnite.SDK.Models
         }
 
         private ComparableList<string> tags;
+        /// <summary>
+        /// Gets or sets list of tags.
+        /// </summary>
         public ComparableList<string> Tags
         {
             get
@@ -378,6 +447,9 @@ namespace Playnite.SDK.Models
         }
 
         private ObservableCollection<Link> links;
+        /// <summary>
+        /// Gets or sets list of game related web links.
+        /// </summary>
         public ObservableCollection<Link> Links
         {
             get
@@ -392,6 +464,9 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Gets value indicating wheter a game is being installed..
+        /// </summary>
         [JsonIgnore]
         [BsonIgnore]
         public bool IsInstalling
@@ -399,6 +474,9 @@ namespace Playnite.SDK.Models
             get => State.Installing;
         }
 
+        /// <summary>
+        /// Gets value indicating wheter a game is being uninstalled.
+        /// </summary>
         [JsonIgnore]
         [BsonIgnore]
         public bool IsUninstalling
@@ -406,6 +484,9 @@ namespace Playnite.SDK.Models
             get => State.Uninstalling;
         }
 
+        /// <summary>
+        /// Gets value indicating wheter a game is being launched.
+        /// </summary>
         [JsonIgnore]
         [BsonIgnore]
         public bool IsLaunching
@@ -413,6 +494,9 @@ namespace Playnite.SDK.Models
             get => State.Launching;
         }
 
+        /// <summary>
+        /// Gets value indicating wheter a game is currently running.
+        /// </summary>
         [JsonIgnore]
         [BsonIgnore]
         public bool IsRunning
@@ -420,14 +504,20 @@ namespace Playnite.SDK.Models
             get => State.Running;
         }
 
+        /// <summary>
+        /// Gets value indicating wheter a game is installed.
+        /// </summary>
         [JsonIgnore]
         [BsonIgnore]
         public bool IsInstalled
         {
             get => State.Installed;
         }
-
+        
         private GameState state = new GameState();
+        /// <summary>
+        /// Gets or sets game state.
+        /// </summary>
         public GameState State
         {
             get
@@ -448,6 +538,9 @@ namespace Playnite.SDK.Models
         }
 
         private long playtime = 0;
+        /// <summary>
+        /// Gets or sets played time in seconds.
+        /// </summary>
         public long Playtime
         {
             get
@@ -463,6 +556,9 @@ namespace Playnite.SDK.Models
         }
 
         private DateTime? added;
+        /// <summary>
+        /// Gets or sets date when game was added into library.
+        /// </summary>
         public DateTime? Added
         {
             get
@@ -478,6 +574,9 @@ namespace Playnite.SDK.Models
         }
 
         private DateTime? modified;
+        /// <summary>
+        /// Gets or sets date of last modification made to a game.
+        /// </summary>
         public DateTime? Modified
         {
             get
@@ -493,6 +592,9 @@ namespace Playnite.SDK.Models
         }
 
         private long playCount = 0;
+        /// <summary>
+        /// Gets or sets a number indicating how many times the game has been played.
+        /// </summary>
         public long PlayCount
         {
             get
@@ -508,6 +610,9 @@ namespace Playnite.SDK.Models
         }
 
         private string series;
+        /// <summary>
+        /// Gets or sets game series.
+        /// </summary>
         public string Series
         {
             get
@@ -523,6 +628,9 @@ namespace Playnite.SDK.Models
         }
 
         private string version;
+        /// <summary>
+        /// Gets or sets game version.
+        /// </summary>
         public string Version
         {
             get
@@ -538,6 +646,9 @@ namespace Playnite.SDK.Models
         }
 
         private string ageRating;
+        /// <summary>
+        /// Gets or sets age rating for a game.
+        /// </summary>
         public string AgeRating
         {
             get
@@ -553,6 +664,9 @@ namespace Playnite.SDK.Models
         }
 
         private string region;
+        /// <summary>
+        /// Gets or sets game region.
+        /// </summary>
         public string Region
         {
             get
@@ -568,6 +682,9 @@ namespace Playnite.SDK.Models
         }
 
         private string source;
+        /// <summary>
+        /// Gets or sets source of the game.
+        /// </summary>
         public string Source
         {
             get
@@ -583,6 +700,9 @@ namespace Playnite.SDK.Models
         }
 
         private CompletionStatus completionStatus = CompletionStatus.NotPlayed;
+        /// <summary>
+        /// Gets or sets game completion status.
+        /// </summary>
         public CompletionStatus CompletionStatus
         {
             get
@@ -598,6 +718,9 @@ namespace Playnite.SDK.Models
         }
 
         private int? userScore = null;
+        /// <summary>
+        /// Gets or sets user's rating score.
+        /// </summary>
         public int? UserScore
         {
             get
@@ -613,6 +736,9 @@ namespace Playnite.SDK.Models
         }
 
         private int? criticScore = null;
+        /// <summary>
+        /// Gets or sets critic based rating score.
+        /// </summary>
         public int? CriticScore
         {
             get
@@ -628,6 +754,9 @@ namespace Playnite.SDK.Models
         }
 
         private int? communityScore = null;
+        /// <summary>
+        /// Gets or sets community rating score.
+        /// </summary>
         public int? CommunityScore
         {
             get
@@ -642,12 +771,19 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Creates new instance of a Game object.
+        /// </summary>
         public Game()
         {
             Provider = Provider.Custom;
             ProviderId = Guid.NewGuid().ToString();
         }
 
+        /// <summary>
+        /// Creates new instance of a Game object with specific name.
+        /// </summary>
+        /// <param name="name">Game name.</param>
         public Game(string name)
         {
             Name = name;
@@ -655,6 +791,10 @@ namespace Playnite.SDK.Models
             ProviderId = Guid.NewGuid().ToString();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return Name;

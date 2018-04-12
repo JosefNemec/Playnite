@@ -57,6 +57,8 @@ namespace PlayniteTests.API
                 apiGames[0].Name = "Changed Name";
                 dbApi.UpdateGame(apiGames[0]);
                 Assert.AreEqual("Changed Name", dbApi.GetGame(apiGames[0].Id).Name);
+
+                Assert.IsNull(dbApi.GetGame(999));
             }
         }
 
@@ -71,7 +73,7 @@ namespace PlayniteTests.API
             {
                 var dbApi = new DatabaseAPI(db);
                 Assert.AreEqual(0, dbApi.GetFiles().Count);
-
+                
                 db.AddFile("testid1", "testname1.png", new byte[] { 0, 1, 2 });
                 db.AddFile("testid2", "testname2.png", new byte[] { 2, 1, 0 });
 
@@ -88,18 +90,15 @@ namespace PlayniteTests.API
                 var filePath = Path.Combine(Playnite.PlayniteTests.TempPath, "testname3.png");
                 File.WriteAllBytes(filePath, new byte[] { 2, 1, 0 });
 
-                var duplId = dbApi.AddFileNoDuplicates("testid3", filePath);
+                var duplId = dbApi.AddFile("testid3", filePath);
                 Assert.AreEqual("testid2", duplId);
                 Assert.AreEqual(1, dbApi.GetFiles().Count);
-
-                dbApi.AddFile("testid3", filePath);
-                Assert.AreEqual(2, dbApi.GetFiles().Count);
 
                 filePath = Path.Combine(Playnite.PlayniteTests.TempPath, "testFile2.png");
                 FileSystem.DeleteFile(filePath);
                 dbApi.SaveFile("testid2", filePath);
                 Assert.IsTrue(File.Exists(filePath));
-                Assert.AreEqual(3, File.ReadAllBytes(filePath).Count());
+                Assert.AreEqual(3, File.ReadAllBytes(filePath).Count());                
             }
         }
     }

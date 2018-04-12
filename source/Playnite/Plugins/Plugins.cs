@@ -42,7 +42,6 @@ namespace Playnite.Plugins
             var asmName = AssemblyName.GetAssemblyName(path);
             var assembly = Assembly.Load(asmName);
 
-            var iplugin = typeof(Plugin);
             var pluginTypes = new List<Type>();
             var asmTypes = assembly.GetTypes();
             foreach (Type type in asmTypes)
@@ -53,7 +52,7 @@ namespace Playnite.Plugins
                 }
                 else
                 {
-                    if (type.GetInterface("IPlugin") != null)
+                    if (type.BaseType == typeof(Plugin))
                     {
                         pluginTypes.Add(type);
                     }

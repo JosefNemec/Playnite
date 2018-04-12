@@ -46,10 +46,9 @@ namespace PlayniteUITests
             return string.Empty;
         }
 
-        public MessageBoxResult SelectString(string messageBoxText, string caption, out string input)
+        public string SelectString(string messageBoxText, string caption, string defaultInput)
         {
-            input = string.Empty;
-            return MessageBoxResult.None;
+            return string.Empty;
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)

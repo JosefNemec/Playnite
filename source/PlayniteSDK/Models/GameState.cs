@@ -6,37 +6,62 @@ using System.Threading.Tasks;
 
 namespace Playnite.SDK.Models
 {
+    /// <summary>
+    /// Represents overall game installation and running state.
+    /// </summary>
     public class GameState : IComparable<GameState>
     {
+        /// <summary>
+        /// Gets or sets value indicating wheter a game is currently installed.
+        /// </summary>
         public bool Installed
         {
             get; set;
         }
 
+        /// <summary>
+        /// Gets or sets value indicating wheter a game is being launched.
+        /// </summary>
         public bool Launching
         {
             get; set;
         }
 
+        /// <summary>
+        /// Gets or sets value indicating wheter a game is currently running.
+        /// </summary>
         public bool Running
         {
             get; set;
         }
 
+        /// <summary>
+        /// Gets or sets value indicating wheter a game is being installed.
+        /// </summary>
         public bool Installing
         {
             get; set;
         }
 
+        /// <summary>
+        /// Gets or sets value indicating wheter a game is being uninstalled
+        /// </summary>
         public bool Uninstalling
         {
             get; set;
         }
 
+        /// <summary>
+        /// Creates new instance of GameState.
+        /// </summary>
         public GameState()
         {
         }
 
+        /// <summary>
+        /// Creates new instance of GameState with specific state.
+        /// </summary>
+        /// <param name="state"></param>
         public GameState(GameState state)
         {
             Installed = state.Installed;
@@ -46,6 +71,14 @@ namespace Playnite.SDK.Models
             Uninstalling = state.Uninstalling;
         }
 
+        /// <summary>
+        /// Sets states to specific values. Use null for parameters that should keep current value.
+        /// </summary>
+        /// <param name="installed"></param>
+        /// <param name="running"></param>
+        /// <param name="installing"></param>
+        /// <param name="uninstalling"></param>
+        /// <param name="launching"></param>
         public void SetState(bool? installed, bool? running, bool? installing, bool? uninstalling, bool? launching)
         {
             if (installed != null)
@@ -74,6 +107,10 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             var inst = Installed ? 1 : 0;
@@ -84,6 +121,11 @@ namespace Playnite.SDK.Models
             return $"Inst:{inst}; Run:{run}; Instl:{installing}; Uninst:{uninstalling}; Lnch:{launch}";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public int CompareTo(GameState obj)
         {
             if (obj == null)

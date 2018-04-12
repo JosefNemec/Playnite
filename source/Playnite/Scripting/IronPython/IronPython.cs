@@ -1,7 +1,7 @@
 ﻿using IronPython.Hosting;
 using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
-using NLog;
+using Playnite.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace Playnite.Scripting.IronPython
 {
     public class IronPythonRuntime : IScriptRuntime
     {
-        private static NLog.Logger logger = LogManager.GetLogger("Python");
+        private static NLog.Logger logger = NLog.LogManager.GetLogger("Python");
         private ScriptEngine engine;
         private ScriptScope scope;
 
@@ -20,8 +20,24 @@ namespace Playnite.Scripting.IronPython
         {
             engine = Python.CreateEngine();
             scope = engine.CreateScope();
-            scope.ImportModule("clr");
-            SetVariable("__logger", logger);
+            engine.Execute(string.Format(@"
+import clr
+import sys
+sys.path.append(r""{0}"")
+clr.AddReferenceToFile(""PlayniteSDK.dll"")
+from Playnite.SDK.Models import *
+", Paths.ProgramFolder), scope);
+
+            //scope.ImportModule("clr");
+            //scope.ImportModule("sys");
+            //engine.Execute($"sys.path.append(r\"{Paths.ProgramFolder}\")", scope);
+            //engine.Execute("clr.AddReferenceToFile(\"PlayniteSDK.dll\")", scope);
+
+
+            //engine.Execute("from Playnite.SDK.Models import *", scope);
+            //scope.ImportModule("Playnite.SDK.Models");
+
+            SetVariable("__logger", new Logger("Python"));
         }
 
         public void Dispose()

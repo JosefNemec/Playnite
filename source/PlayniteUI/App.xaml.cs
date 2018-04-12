@@ -30,7 +30,7 @@ namespace PlayniteUI
     /// </summary>
     public partial class App : Application, INotifyPropertyChanged, IPlayniteApplication
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         private string instanceMuxet = "PlayniteInstaceMutex";
         private Mutex appMutex;
         private bool resourcesReleased = false;

@@ -11,9 +11,15 @@ using System.Threading.Tasks;
 
 namespace Playnite.SDK.Models
 {
+    /// <summary>
+    /// Represents emulator profile.
+    /// </summary>
     public class EmulatorProfile : ObservableObject
     {
         private ObjectId id;
+        /// <summary>
+        /// Gets or sets profile id.
+        /// </summary>
         [JsonConverter(typeof(ObjectIdJsonConverter))]
         public ObjectId Id
         {
@@ -24,8 +30,11 @@ namespace Playnite.SDK.Models
                 OnPropertyChanged("Id");
             }
         }
-
+        
         private string name;
+        /// <summary>
+        /// Gets or sets emulator profile name.
+        /// </summary>
         public string Name
         {
             get => name;
@@ -37,6 +46,9 @@ namespace Playnite.SDK.Models
         }
 
         private List<ObjectId> platforms;
+        /// <summary>
+        /// Gets or sets platforms supported by profile.
+        /// </summary>
         public List<ObjectId> Platforms
         {
             get => platforms;
@@ -46,8 +58,11 @@ namespace Playnite.SDK.Models
                 OnPropertyChanged("Platforms");
             }
         }
-
+        
         private List<string> imageExtensions;
+        /// <summary>
+        /// Gets or sets file extension supported by profile.
+        /// </summary>
         public List<string> ImageExtensions
         {
             get => imageExtensions;
@@ -59,6 +74,9 @@ namespace Playnite.SDK.Models
         }
 
         private string executable;
+        /// <summary>
+        /// Gets or sets executable path used to launch emulator.
+        /// </summary>
         public string Executable
         {
             get => executable;
@@ -70,6 +88,9 @@ namespace Playnite.SDK.Models
         }
 
         private string arguments;
+        /// <summary>
+        /// Gets or sets arguments for emulator executable.
+        /// </summary>
         public string Arguments
         {
             get => arguments;
@@ -81,6 +102,9 @@ namespace Playnite.SDK.Models
         }
 
         private string workingDirectory;
+        /// <summary>
+        /// Gets or sets working directory of emulator process.
+        /// </summary>
         public string WorkingDirectory
         {
             get => workingDirectory;
@@ -91,20 +115,34 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return Name;
         }
 
+        /// <summary>
+        /// Creates new instance of EmulatorProfile.
+        /// </summary>
         public EmulatorProfile()
         {
             Id = ObjectId.NewObjectId();
         }
     }
 
+    /// <summary>
+    /// Represents system emulator.
+    /// </summary>
     public class Emulator : ObservableObject
     {
+
         private ObjectId id;
+        /// <summary>
+        /// Gets or sets emulator id.
+        /// </summary>
         [BsonId]
         [JsonConverter(typeof(ObjectIdJsonConverter))]
         public ObjectId Id
@@ -118,6 +156,9 @@ namespace Playnite.SDK.Models
         }
 
         private string name;
+        /// <summary>
+        /// Gets or sets emulator name.
+        /// </summary>
         public string Name
         {
             get => name;
@@ -129,6 +170,9 @@ namespace Playnite.SDK.Models
         }
 
         private ObservableCollection<EmulatorProfile> profile;
+        /// <summary>
+        /// Gets or sets list of emulator profiles.
+        /// </summary>
         public ObservableCollection<EmulatorProfile> Profiles
         {
             get => profile;
@@ -139,15 +183,26 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Creates new instance of Emulator.
+        /// </summary>
         public Emulator()
         {
         }
 
+        /// <summary>
+        /// Creates new instance of Emulator with specific name.
+        /// </summary>
+        /// <param name="name">Emulator name.</param>
         public Emulator(string name)
         {
             Name = name;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return Name;

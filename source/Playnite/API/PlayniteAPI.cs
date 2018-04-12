@@ -1,5 +1,4 @@
-﻿using NLog;
-using Playnite.Database;
+﻿using Playnite.Database;
 using Playnite.Providers;
 using Playnite.Scripting;
 using Playnite.SDK;
@@ -15,7 +14,7 @@ namespace Playnite.API
 {
     public class PlayniteAPI : ObservableObject, IDisposable, IPlayniteAPI
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         private GameDatabase database;
         private GameControllerFactory controllers;
 
@@ -68,7 +67,7 @@ namespace Playnite.API
             get;
         }
 
-        public IGameDataseAPI Database
+        public IGameDatabaseAPI Database
         {
             get;
         }
@@ -184,17 +183,18 @@ namespace Playnite.API
                 {
                     logger.Error(e.InnerException, $"Failed to load plugin file {path}");
                     Dialogs.ShowMessage(
-                        $"Failed to load plugin file {path}:\n\n" + e.InnerException.Message, "Plugin error",
+                        $"Failed to load plugin file {path}:\n\n" + e.ToString(), "Plugin error",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                     continue;
                 }
 
-                if (plugin.Any(a => a.CompatibilityVersion != SDK.Version.CompatibilityVersion))
+                if (plugin.Any(a => a.Properties?.SupportedSdkVersion != SDK.Version.CompatibilityVersion))
                 {
                     logger.Error($"Failed to load plugin file {path}, unsupported SDK version.");
                     Dialogs.ShowMessage(
-                        $"Failed to load plugin file {path}:\n\nUnsupported SDK version.", "Plugin error",
+                        $"Failed to load plugin file {path}:\n\nPlugin doesn't support this version of Playnite SDK.", "Plugin error",
                         MessageBoxButton.OK, MessageBoxImage.Error);
+                    continue;
                 }
 
                 plugins.AddRange(plugin);
@@ -357,6 +357,11 @@ namespace Playnite.API
         public string ResolveGameVariables(Game game, string toResolve)
         {
             return game?.ResolveVariables(toResolve);
+        }
+
+        public ILogger CreateLogger(string name)
+        {
+            return new Logger(name);
         }
     }
 }

@@ -30,11 +30,10 @@ namespace Playnite.Scripting.PowerShell
             if (exports != null)
             {
                 FunctionExports = new List<ScriptFunctionExport>();
-                var hash = (Hashtable)exports;
-                foreach (var key in hash.Keys)
+                var funcs = (IEnumerable<object>)exports;
+                foreach (Hashtable func in funcs)
                 {
-                    var functionProp = (Hashtable)hash[key];
-                    FunctionExports.Add(new ScriptFunctionExport(key.ToString(), functionProp["Function"].ToString(), this));
+                    FunctionExports.Add(new ScriptFunctionExport(func["Name"].ToString(), func["Function"].ToString(), this));
                 }
             }
         }
