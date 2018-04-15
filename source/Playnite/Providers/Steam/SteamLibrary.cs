@@ -585,17 +585,24 @@ namespace Playnite.Providers.Steam
             var users = new List<LocalSteamUser>();
             if (File.Exists(SteamSettings.LoginUsersPath))
             {
-                var config = new KeyValue();
-                config.ReadFileAsText(SteamSettings.LoginUsersPath);
-                foreach (var user in config.Children)
+                try
                 {
-                    users.Add(new LocalSteamUser()
+                    var config = new KeyValue();
+                    config.ReadFileAsText(SteamSettings.LoginUsersPath);
+                    foreach (var user in config.Children)
                     {
-                        Id = ulong.Parse(user.Name),
-                        AccountName = user["AccountName"].Value,
-                        PersonaName = user["PersonaName"].Value,
-                        Recent = user["mostrecent"].AsBoolean()
-                    });                    
+                        users.Add(new LocalSteamUser()
+                        {
+                            Id = ulong.Parse(user.Name),
+                            AccountName = user["AccountName"].Value,
+                            PersonaName = user["PersonaName"].Value,
+                            Recent = user["mostrecent"].AsBoolean()
+                        });
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, "Failed to get list of Steam users.");                    
                 }
             }
 
