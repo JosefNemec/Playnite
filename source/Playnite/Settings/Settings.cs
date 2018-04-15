@@ -405,7 +405,7 @@ namespace Playnite
             { "Name", true },
             { "Platform", false },
             { "Provider", false },
-            { "Developers", true },
+            { "Developers", false },
             { "Publishers", false },
             { "ReleaseDate", true },
             { "Genres", true },
@@ -425,7 +425,8 @@ namespace Playnite
             { "CompletionStatus", false },
             { "UserScore", false },
             { "CriticScore", false },
-            { "CommunityScore", false }
+            { "CommunityScore", false },
+            { "Tags", false }
         };
 
         public ObservableConcurrentDictionary<string, bool> GridViewHeaders
@@ -679,7 +680,7 @@ namespace Playnite
 
         public void CancelEdit()
         {
-            editingCopy.CopyProperties(this, false, new List<string>() { "FilterSettings" });
+            editingCopy.CopyProperties(this, false, new List<string>() { "FilterSettings", "FullScreenFilterSettings" });
             isEditing = false;
             EditedFields = new List<string>();
         }
