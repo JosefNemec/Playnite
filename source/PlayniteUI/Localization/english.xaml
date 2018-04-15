@@ -199,6 +199,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="SettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="SettingsImportInstalledLabel">Import installed games</sys:String>
     <sys:String x:Key="SettingsImportLibraryLabel">Import all games</sys:String>
+    <sys:String x:Key="SettingsImportSteamLibraryLabel">Import all games (Account privacy settings must be set to Public or API key must be provided)</sys:String>
     <sys:String x:Key="SettingsInvalidDBLocation">Invalid database file location, proper file path must be set.</sys:String>
     <sys:String x:Key="SettingsInvalidSteamAccountName">Steam account name cannot be empty.</sys:String>
     <sys:String x:Key="SettingsInvalidSteamAccountLibImport">No Steam account selected for library import.</sys:String>
