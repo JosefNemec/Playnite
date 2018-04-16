@@ -17,17 +17,12 @@ namespace Playnite
             }
         }
 
-        public static bool IsDebugBuild
+        public static string TimeUiFormat
         {
             get
             {
-#if DEBUG
-                return true;
-#else
-                return false;
-#endif
+                return CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern;
             }
         }
-
     }
 }

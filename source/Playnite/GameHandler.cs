@@ -1,7 +1,9 @@
 ﻿using NLog;
 using Playnite.Models;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,24 +14,24 @@ namespace Playnite
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static void ActivateTask(GameTask task)
+        public static Process ActivateTask(GameTask task)
         {
             switch (task.Type)
             {
                 case GameTaskType.File:
                     logger.Info($"Starting process: {task.Path}, {task.Arguments}, {task.WorkingDir}");
-                    ProcessStarter.StartProcess(task.Path, task.Arguments, task.WorkingDir);
-                    break;
+                    return ProcessStarter.StartProcess(task.Path, task.Arguments, task.WorkingDir);
                 case GameTaskType.URL:
                     logger.Info($"Opening URL {task.Path}");
-                    ProcessStarter.StartUrl(task.Path);
-                    break;
+                    return ProcessStarter.StartUrl(task.Path);
                 case GameTaskType.Emulator:
                     throw new Exception("Cannot start emulated game without emulator.");
             }
+
+            return null;
         }
 
-        public static void ActivateTask(GameTask task, Game gameData)
+        public static Process ActivateTask(GameTask task, Game gameData)
         {
             switch (task.Type)
             {
@@ -38,26 +40,25 @@ namespace Playnite
                     var arguments = gameData.ResolveVariables(task.Arguments);
                     var workdir = gameData.ResolveVariables(task.WorkingDir);
                     logger.Info($"Starting process: {path}, {arguments}, {workdir}");
-                    ProcessStarter.StartProcess(path, arguments, workdir);
-                    break;
+                    return ProcessStarter.StartProcess(path, arguments, workdir);
                 case GameTaskType.URL:
                     var url = gameData.ResolveVariables(task.Path);
                     logger.Info($"Opening URL {url}");
-                    ProcessStarter.StartUrl(url);
-                    break;
+                    return ProcessStarter.StartUrl(url);
                 case GameTaskType.Emulator:
                     throw new Exception("Cannot start emulated game without emulator.");
             }
+
+            return null;
         }
 
-        public static void ActivateTask(GameTask task, Game gameData, EmulatorProfile config)
+        public static Process ActivateTask(GameTask task, Game gameData, EmulatorProfile config)
         {
             switch (task.Type)
             {
                 case GameTaskType.File:
                 case GameTaskType.URL:
-                    ActivateTask(task, gameData);
-                    break;
+                    return ActivateTask(task, gameData);                    
                 case GameTaskType.Emulator:
                     if (config == null)
                     {
@@ -78,14 +79,15 @@ namespace Playnite
 
                     var workdir = gameData.ResolveVariables(config.WorkingDirectory);
                     logger.Info($"Starting emulator: {path}, {arguments}, {workdir}");
-                    ProcessStarter.StartProcess(path, arguments, workdir);
-                    break;
+                    return ProcessStarter.StartProcess(path, arguments, workdir);
             }
+
+            return null;
         }
 
-        public static void ActivateTask(GameTask task, Game gameData, List<Emulator> emulators)
+        public static Process ActivateTask(GameTask task, Game gameData, List<Emulator> emulators)
         {
-            ActivateTask(task, gameData, GetGameTaskEmulatorConfig(task, emulators));
+            return ActivateTask(task, gameData, GetGameTaskEmulatorConfig(task, emulators));
         }
 
         public static EmulatorProfile GetGameTaskEmulatorConfig(GameTask task, List<Emulator> emulators)
@@ -98,7 +100,7 @@ namespace Playnite
             return emulators.FirstOrDefault(a => a.Id == task.EmulatorId)?.Profiles.FirstOrDefault(a => a.Id == task.EmulatorProfileId);
         }
 
-        public static Game GetMultiGameEditObject(IEnumerable<IGame> games)
+        public static Game GetMultiGameEditObject(IEnumerable<Game> games)
         {
             var dummyGame = new Game();
             if (games?.Any() != true)
@@ -166,6 +168,96 @@ namespace Playnite
             if (games.All(a => a.PlatformId == firstPlatform) == true)
             {
                 dummyGame.PlatformId = firstPlatform;
+            }
+
+            var firstLastActivity = firstGame.LastActivity;
+            if (games.All(a => a.LastActivity == firstLastActivity) == true)
+            {
+                dummyGame.LastActivity = firstLastActivity;
+            }
+
+            var firstPlaytime = firstGame.Playtime;
+            if (games.All(a => a.Playtime == firstPlaytime) == true)
+            {
+                dummyGame.Playtime = firstPlaytime;
+            }
+
+            var firstAdded = firstGame.Added;
+            if (games.All(a => a.Added == firstAdded) == true)
+            {
+                dummyGame.Added = firstAdded;
+            }
+
+            var firstPlayCount = firstGame.PlayCount;
+            if (games.All(a => a.PlayCount == firstPlayCount) == true)
+            {
+                dummyGame.PlayCount = firstPlayCount;
+            }
+
+            var firstSeries = firstGame.Series;
+            if (games.All(a => a.Series == firstSeries) == true)
+            {
+                dummyGame.Series = firstSeries;
+            }
+
+            var firstVersion = firstGame.Version;
+            if (games.All(a => a.Version == firstVersion) == true)
+            {
+                dummyGame.Version = firstVersion;
+            }
+
+            var firstAgeRating = firstGame.AgeRating;
+            if (games.All(a => a.AgeRating == firstAgeRating) == true)
+            {
+                dummyGame.AgeRating = firstAgeRating;
+            }
+
+            var firstRegion = firstGame.Region;
+            if (games.All(a => a.Region == firstRegion) == true)
+            {
+                dummyGame.Region = firstRegion;
+            }
+
+            var firstSource = firstGame.Source;
+            if (games.All(a => a.Source == firstSource) == true)
+            {
+                dummyGame.Source = firstSource;
+            }
+
+            var firstCompletionStatus = firstGame.CompletionStatus;
+            if (games.All(a => a.CompletionStatus == firstCompletionStatus) == true)
+            {
+                dummyGame.CompletionStatus = firstCompletionStatus;
+            }
+
+            var firstUserScore = firstGame.UserScore;
+            if (games.All(a => a.UserScore == firstUserScore) == true)
+            {
+                dummyGame.UserScore = firstUserScore;
+            }
+
+            var firstCriticScore = firstGame.CriticScore;
+            if (games.All(a => a.CriticScore == firstCriticScore) == true)
+            {
+                dummyGame.CriticScore = firstCriticScore;
+            }
+
+            var firstCommunityScore = firstGame.CommunityScore;
+            if (games.All(a => a.CommunityScore == firstCommunityScore) == true)
+            {
+                dummyGame.CommunityScore = firstCommunityScore;
+            }
+
+            var firstHidden = firstGame.Hidden;
+            if (games.All(a => a.Hidden == firstHidden) == true)
+            {
+                dummyGame.Hidden = firstHidden;
+            }
+
+            var firstFavorite = firstGame.Favorite;
+            if (games.All(a => a.Favorite == firstFavorite) == true)
+            {
+                dummyGame.Favorite = firstFavorite;
             }
 
             return dummyGame;

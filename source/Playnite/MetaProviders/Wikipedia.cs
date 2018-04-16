@@ -13,6 +13,8 @@ using Newtonsoft.Json;
 using Playnite.Models;
 using Playnite.Providers;
 using NLog;
+using Playnite.SDK.Models;
+using Playnite.SDK;
 
 namespace Playnite.MetaProviders
 {

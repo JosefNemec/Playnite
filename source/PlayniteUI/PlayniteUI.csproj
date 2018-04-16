@@ -141,15 +141,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite, Version=1.0.105.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Core.1.0.105.1\lib\net46\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.EF6, Version=1.0.105.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.105.1\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq, Version=1.0.105.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.105.1\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
-    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Abstractions, Version=2.1.0.175, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.Abstractions.2.1.0.175\lib\net40\System.IO.Abstractions.dll</HintPath>
@@ -184,13 +175,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="API\MainViewAPI.cs" />
+    <Compile Include="Behaviors\FocusBahaviors.cs" />
+    <Compile Include="Behaviors\ExpanderBehaviors.cs" />
     <Compile Include="Behaviors\LeftClickContextMenuBehavior.cs" />
     <Compile Include="BindingProxy.cs" />
     <Compile Include="CmdlineCommands.cs" />
     <Compile Include="Commands\GeneralCommands.cs" />
     <Compile Include="Commands\GenericCommands.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Controls\NullableIntBox.cs" />
+    <Compile Include="Controls\NumericBox.cs" />
     <Compile Include="Controls\ExtendedListBox.cs" />
+    <Compile Include="Controls\FadeImage.xaml.cs">
+      <DependentUpon>FadeImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\HtmlTextView.cs" />
     <Compile Include="Controls\GameMenu.cs" />
     <Compile Include="Controls\GamesGridView.xaml.cs">
@@ -198,16 +197,19 @@
     </Compile>
     <Compile Include="Controls\FullscreenView.cs" />
     <Compile Include="Controls\MainView.cs" />
+    <Compile Include="Controls\VirtualKeyboard.cs" />
     <Compile Include="Controls\WindowBase.cs" />
+    <Compile Include="Converters\BooleanToHiddenConverter.cs" />
+    <Compile Include="Converters\CompletionStatusToStringConverter.cs" />
     <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />
     <Compile Include="Converters\BoolToAutoWidthConverter.cs" />
-    <Compile Include="Converters\BoolToCategoryExpander.cs" />
     <Compile Include="Converters\BoolToYesNoConverter.cs" />
     <Compile Include="Converters\EnumBooleanConverter.cs" />
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\IconToImageSourceConverter.cs" />
     <Compile Include="Converters\InvertableBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\AfterGameLaunchOptionToStringConverter.cs" />
+    <Compile Include="Converters\DateTimeToLastPlayedConverter.cs" />
     <Compile Include="Converters\MetadataSourceToStringConverter.cs" />
     <Compile Include="Converters\ListToStringConverter.cs" />
     <Compile Include="Converters\CustomImageStringToImageConverter.cs" />
@@ -220,15 +222,18 @@
     <Compile Include="Converters\OpacityBoolConverter.cs" />
     <Compile Include="Converters\EnumerableNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\LongToTimePlayedConverter.cs" />
     <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
     <Compile Include="Converters\WidthToFontSizeConverter.cs" />
     <Compile Include="Dialogs.cs" />
+    <Compile Include="ElementTreeHelper.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GamesCollectionView.cs" />
     <Compile Include="Behaviors\ScrollToSelectedBehavior.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="Themes.cs" />
+    <Compile Include="Time.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
     <Compile Include="ViewModels\MetadataDownloadViewModel.cs" />
     <Compile Include="ViewModels\ProgressViewViewModel.cs" />
@@ -243,6 +248,7 @@
     <Compile Include="ViewModels\CategoryConfigViewModel.cs" />
     <Compile Include="ViewModels\EmulatorImportViewModel.cs" />
     <Compile Include="ViewModels\MetadataLookupViewModel.cs" />
+    <Compile Include="VirtualizingGridPanel.cs" />
     <Compile Include="WindowFactory.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="MouseWheelGesture.cs" />
@@ -252,6 +258,12 @@
     <Compile Include="VirtualizingTilePanel.cs" />
     <Compile Include="WindowPositionHandler.cs" />
     <Compile Include="PlayniteWindows.cs" />
+    <Compile Include="Windows\FullscreenTextInputWindow.xaml.cs">
+      <DependentUpon>FullscreenTextInputWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FullscreenMessageBoxWindow.xaml.cs">
+      <DependentUpon>FullscreenMessageBoxWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MetadataDownloadWindow.xaml.cs">
       <DependentUpon>MetadataDownloadWindow.xaml</DependentUpon>
     </Compile>
@@ -284,7 +296,7 @@
       <DependentUpon>GameTaskView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Notifications.cs" />
-    <Compile Include="GamesLoaderHandler.cs" />
+    <Compile Include="GlobalTaskHandler.cs" />
     <Compile Include="Windows\InstalledGamesWindow.xaml.cs">
       <DependentUpon>InstalledGamesWindow.xaml</DependentUpon>
     </Compile>
@@ -310,6 +322,10 @@
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="XInputBinding.cs" />
+    <Page Include="Controls\FadeImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\GamesGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -410,7 +426,25 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SkinsFullscreen\Playnite\Playnite.Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SkinsFullscreen\Playnite\Playnite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FullscreenTextInputWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FullscreenMessageBoxWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -531,11 +565,18 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Scripts\PowerShell\LibraryExporter.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PlayniteSDK\PlayniteSDK.csproj">
+      <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
+      <Name>PlayniteSDK</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Playnite\Playnite.csproj">
       <Project>{ad271e73-8a13-4c4e-bfdc-3076646b59e3}</Project>
       <Name>Playnite</Name>
@@ -625,6 +666,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -664,18 +706,16 @@
     <Error Condition="!Exists('..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets'))" />
     <Error Condition="!Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props'))" />
     <Error Condition="!Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets'))" />
-    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.105.1\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.105.1\build\net46\System.Data.SQLite.Core.targets'))" />
   </Target>
   <Import Project="..\packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets')" />
   <Import Project="..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets')" />
   <Import Project="..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets" Condition="Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets')" />
-  <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.1\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.1\build\net46\System.Data.SQLite.Core.targets')" />
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>xcopy "$(SolutionDir)\PlayniteUI\Skins" "$(TargetDir)\Skins" /e /y
+xcopy "$(SolutionDir)\PlayniteUI\SkinsFullscreen" "$(TargetDir)\SkinsFullscreen" /e /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -1,7 +1,7 @@
 ﻿using NLog;
 using Playnite;
 using Playnite.Database;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using Playnite.SDK;
 
 namespace PlayniteUI
 {
@@ -185,6 +186,7 @@ namespace PlayniteUI
     {
         public int Id => Game.Id;
         public Provider Provider => Game.Provider;
+        public string ProviderId => Game.ProviderId;
         public List<string> Categories => Game.Categories;
         public List<string> Tags => Game.Tags;
         public List<string> Genres => Game.Genres;
@@ -204,20 +206,30 @@ namespace PlayniteUI
         public ObservableCollection<GameTask> OtherTasks => Game.OtherTasks;
         public string DisplayName => Game.Name;                
         public string Description => Game.Description;
+        public bool IsInstalling => Game.IsInstalling;
+        public bool IsUnistalling => Game.IsUninstalling;
+        public bool IsLaunching => Game.IsLaunching;
+        public bool IsRunning => Game.IsRunning;
+        public GameState State => Game.State;
+        public long Playtime => Game.Playtime;
+        public DateTime? Added => Game.Added;
+        public DateTime? Modified => Game.Modified;
+        public long PlayCount => Game.PlayCount;
+        public string Series => Game.Series;
+        public string Version => Game.Version;
+        public string AgeRating => Game.AgeRating;
+        public string Region => Game.Region;
+        public string Source => Game.Source;
+        public CompletionStatus CompletionStatus => Game.CompletionStatus;
+        public int? UserScore => Game.UserScore;
+        public int? CriticScore => Game.CriticScore;
+        public int? CommunityScore => Game.CommunityScore;
 
         public string Name
         {
             get
             {
                 return (string.IsNullOrEmpty(Game.SortingName)) ? Game.Name : Game.SortingName;
-            }
-        }
-
-        public bool IsSetupInProgress
-        {
-            get
-            {
-                return Game is Game ? (Game as Game).IsSetupInProgress : false;
             }
         }
 
@@ -237,7 +249,7 @@ namespace PlayniteUI
             }
         }
 
-        public IGame Game
+        public Game Game
         {
             get; set;
         }
@@ -298,7 +310,7 @@ namespace PlayniteUI
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GameViewEntry(IGame game, string category, Platform platform)
+        public GameViewEntry(Game game, string category, Platform platform)
         {
             Category = new CategoryView(category);
             Game = game;
@@ -334,7 +346,7 @@ namespace PlayniteUI
 
         public static explicit operator Game(GameViewEntry entry)
         {
-            return entry.Game as Game;
+            return entry.Game;
         }
     }
 
@@ -350,6 +362,11 @@ namespace PlayniteUI
 
         private GameDatabase database;
         private List<Platform> platformsCache;
+
+        public bool IsFullscreen
+        {
+            get; private set;
+        }            
 
         private ListCollectionView collectionView;
         public ListCollectionView CollectionView
@@ -389,8 +406,9 @@ namespace PlayniteUI
             get; set;
         }
 
-        public GamesCollectionView(GameDatabase database, Settings settings)
+        public GamesCollectionView(GameDatabase database, Settings settings, bool fullScreen)
         {
+            IsFullscreen = fullScreen;
             this.database = database;
             platformsCache = database.PlatformsCollection.FindAll().ToList();
             database.GamesCollectionChanged += Database_GamesCollectionChanged;
@@ -400,7 +418,15 @@ namespace PlayniteUI
             Items = new RangeObservableCollection<GameViewEntry>();
             Settings = settings;
             Settings.PropertyChanged += Settings_PropertyChanged;
-            Settings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
+            if (IsFullscreen)
+            {
+                Settings.FullScreenFilterSettings.FilterChanged += FilterSettings_FilterChanged;
+            }
+            else
+            {
+                Settings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
+            }
+
             CollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(Items);
             CollectionView.Filter = Filter;
             SetViewConfiguration();
@@ -413,15 +439,23 @@ namespace PlayniteUI
             database.PlatformsCollectionChanged -= Database_PlatformsCollectionChanged;
             database.PlatformUpdated -= Database_PlatformUpdated;
             Settings.PropertyChanged -= Settings_PropertyChanged;
-            Settings.FilterSettings.FilterChanged -= FilterSettings_FilterChanged;
+            if (IsFullscreen)
+            {
+                Settings.FullScreenFilterSettings.FilterChanged -= FilterSettings_FilterChanged;
+            }
+            else
+            {
+                Settings.FilterSettings.FilterChanged -= FilterSettings_FilterChanged;
+            }
         }
 
         private bool Filter(object item)
         {
             var entry = (GameViewEntry)item;
             var game = entry.Game;
+            var filterSettings = IsFullscreen ? Settings.FullScreenFilterSettings : Settings.FilterSettings;
 
-            if (!Settings.FilterSettings.Active)
+            if (!filterSettings.Active)
             {
                 if (game.Hidden)
                 {
@@ -435,18 +469,18 @@ namespace PlayniteUI
 
             // ------------------ Installed
             bool installedResult = false;
-            if ((Settings.FilterSettings.IsInstalled && Settings.FilterSettings.IsUnInstalled) ||
-                (!Settings.FilterSettings.IsInstalled && !Settings.FilterSettings.IsUnInstalled))
+            if ((filterSettings.IsInstalled && filterSettings.IsUnInstalled) ||
+                (!filterSettings.IsInstalled && !filterSettings.IsUnInstalled))
             {
                 installedResult = true;
             }
             else
             {
-                if (Settings.FilterSettings.IsInstalled && game.IsInstalled)
+                if (filterSettings.IsInstalled && game.IsInstalled)
                 {
                     installedResult = true;
                 }
-                else if (Settings.FilterSettings.IsUnInstalled && !game.IsInstalled)
+                else if (filterSettings.IsUnInstalled && !game.IsInstalled)
                 {
                     installedResult = true;
                 }
@@ -454,38 +488,38 @@ namespace PlayniteUI
 
             // ------------------ Hidden
             bool hiddenResult = true;
-            if (Settings.FilterSettings.Hidden && game.Hidden)
+            if (filterSettings.Hidden && game.Hidden)
             {
                 hiddenResult = true;
             }
-            else if (!Settings.FilterSettings.Hidden && game.Hidden)
+            else if (!filterSettings.Hidden && game.Hidden)
             {
                 hiddenResult = false;
             }
-            else if (Settings.FilterSettings.Hidden && !game.Hidden)
+            else if (filterSettings.Hidden && !game.Hidden)
             {
                 hiddenResult = false;
             }
 
             // ------------------ Favorite
             bool favoriteResult = false;
-            if (Settings.FilterSettings.Favorite && game.Favorite)
+            if (filterSettings.Favorite && game.Favorite)
             {
                 favoriteResult = true;
             }
-            else if (!Settings.FilterSettings.Favorite)
+            else if (!filterSettings.Favorite)
             {
                 favoriteResult = true;
             }
 
             // ------------------ Providers
             bool providersFilter = false;
-            if (Settings.FilterSettings.Steam == false &&
-                Settings.FilterSettings.Origin == false &&
-                Settings.FilterSettings.GOG == false &&
-                Settings.FilterSettings.Custom == false &&
-                Settings.FilterSettings.Uplay == false &&
-                Settings.FilterSettings.BattleNet == false)
+            if (filterSettings.Steam == false &&
+                filterSettings.Origin == false &&
+                filterSettings.GOG == false &&
+                filterSettings.Custom == false &&
+                filterSettings.Uplay == false &&
+                filterSettings.BattleNet == false)
             {
                 providersFilter = true;
             }
@@ -494,37 +528,37 @@ namespace PlayniteUI
                 switch (game.Provider)
                 {
                     case Provider.Custom:
-                        if (Settings.FilterSettings.Custom)
+                        if (filterSettings.Custom)
                         {
                             providersFilter = true;
                         }
                         break;
                     case Provider.GOG:
-                        if (Settings.FilterSettings.GOG)
+                        if (filterSettings.GOG)
                         {
                             providersFilter = true;
                         }
                         break;
                     case Provider.Origin:
-                        if (Settings.FilterSettings.Origin)
+                        if (filterSettings.Origin)
                         {
                             providersFilter = true;
                         }
                         break;
                     case Provider.Steam:
-                        if (Settings.FilterSettings.Steam)
+                        if (filterSettings.Steam)
                         {
                             providersFilter = true;
                         }
                         break;
                     case Provider.Uplay:
-                        if (Settings.FilterSettings.Uplay)
+                        if (filterSettings.Uplay)
                         {
                             providersFilter = true;
                         }
                         break;
                     case Provider.BattleNet:
-                        if (Settings.FilterSettings.BattleNet)
+                        if (filterSettings.BattleNet)
                         {
                             providersFilter = true;
                         }
@@ -533,26 +567,98 @@ namespace PlayniteUI
             }
 
             // ------------------ Name filter
-            bool textResult = false;
-            if (string.IsNullOrEmpty(Settings.FilterSettings.Name))
+            bool nameResult = false;
+            if (string.IsNullOrEmpty(filterSettings.Name))
             {
-                textResult = true;
+                nameResult = true;
             }
             else
             {
                 if (string.IsNullOrEmpty(game.Name))
                 {
-                    textResult = false;
+                    nameResult = false;
                 }
                 else
                 {
-                    textResult = (game.Name.IndexOf(Settings.FilterSettings.Name, StringComparison.OrdinalIgnoreCase) >= 0);
+                    nameResult = (game.Name.IndexOf(filterSettings.Name, StringComparison.OrdinalIgnoreCase) >= 0);
+                }
+            }
+
+            // ------------------ Series filter
+            bool seriesResult = false;
+            if (string.IsNullOrEmpty(filterSettings.Series))
+            {
+                seriesResult = true;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(game.Series))
+                {
+                    seriesResult = false;
+                }
+                else
+                {
+                    seriesResult = (game.Series.IndexOf(filterSettings.Series, StringComparison.OrdinalIgnoreCase) >= 0);
+                }
+            }
+
+            // ------------------ Region filter
+            bool regionResult = false;
+            if (string.IsNullOrEmpty(filterSettings.Region))
+            {
+                regionResult = true;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(game.Region))
+                {
+                    regionResult = false;
+                }
+                else
+                {
+                    regionResult = (game.Region.IndexOf(filterSettings.Region, StringComparison.OrdinalIgnoreCase) >= 0);
+                }
+            }
+
+            // ------------------ Source filter
+            bool sourceResult = false;
+            if (string.IsNullOrEmpty(filterSettings.Source))
+            {
+                sourceResult = true;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(game.Source))
+                {
+                    sourceResult = false;
+                }
+                else
+                {
+                    sourceResult = (game.Source.IndexOf(filterSettings.Source, StringComparison.OrdinalIgnoreCase) >= 0);
+                }
+            }
+
+            // ------------------ AgeRating filter
+            bool ageRatingResult = false;
+            if (string.IsNullOrEmpty(filterSettings.AgeRating))
+            {
+                ageRatingResult = true;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(game.AgeRating))
+                {
+                    ageRatingResult = false;
+                }
+                else
+                {
+                    ageRatingResult = (game.AgeRating.IndexOf(filterSettings.AgeRating, StringComparison.OrdinalIgnoreCase) >= 0);
                 }
             }
 
             // ------------------ Genre
             bool genreResult = false;
-            if (Settings.FilterSettings.Genres == null || Settings.FilterSettings.Genres.Count == 0)
+            if (filterSettings.Genres == null || filterSettings.Genres.Count == 0)
             {
                 genreResult = true;
             }
@@ -564,13 +670,13 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    genreResult = Settings.FilterSettings.Genres.IntersectsPartiallyWith(game.Genres);
+                    genreResult = filterSettings.Genres.IntersectsPartiallyWith(game.Genres);
                 }
             }
 
             // ------------------ Platform
             bool platformResult = false;
-            if (Settings.FilterSettings.Platforms == null || Settings.FilterSettings.Platforms.Count == 0)
+            if (filterSettings.Platforms == null || filterSettings.Platforms.Count == 0)
             {
                 platformResult = true;
             }
@@ -589,14 +695,14 @@ namespace PlayniteUI
                     }
                     else
                     {
-                        platformResult = Settings.FilterSettings.Platforms.Any(a => !string.IsNullOrEmpty(a) && platform.Name.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0);
+                        platformResult = filterSettings.Platforms.Any(a => !string.IsNullOrEmpty(a) && platform.Name.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0);
                     }
                 }
             }
 
             // ------------------ Release Date
             bool releaseDateResult = false;
-            if (string.IsNullOrEmpty(Settings.FilterSettings.ReleaseDate))
+            if (string.IsNullOrEmpty(filterSettings.ReleaseDate))
             {
                 releaseDateResult = true;
             }
@@ -609,13 +715,13 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    releaseDateResult = game.ReleaseDate.Value.ToString(Constants.DateUiFormat).IndexOf(Settings.FilterSettings.ReleaseDate, StringComparison.OrdinalIgnoreCase) >= 0;
+                    releaseDateResult = game.ReleaseDate.Value.ToString(Constants.DateUiFormat).IndexOf(filterSettings.ReleaseDate, StringComparison.OrdinalIgnoreCase) >= 0;
                 }
             }
 
             // ------------------ Publisher
             bool publisherResult = false;
-            if (Settings.FilterSettings.Publishers == null || Settings.FilterSettings.Publishers.Count == 0)
+            if (filterSettings.Publishers == null || filterSettings.Publishers.Count == 0)
             {
                 publisherResult = true;
             }
@@ -627,13 +733,13 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    publisherResult = Settings.FilterSettings.Publishers.IntersectsPartiallyWith(game.Publishers);
+                    publisherResult = filterSettings.Publishers.IntersectsPartiallyWith(game.Publishers);
                 }
             }
 
             // ------------------ Developer
             bool developerResult = false;
-            if (Settings.FilterSettings.Developers == null || Settings.FilterSettings.Developers.Count == 0)
+            if (filterSettings.Developers == null || filterSettings.Developers.Count == 0)
             {
                 developerResult = true;
             }
@@ -645,13 +751,13 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    developerResult = Settings.FilterSettings.Developers.IntersectsPartiallyWith(game.Developers);
+                    developerResult = filterSettings.Developers.IntersectsPartiallyWith(game.Developers);
                 }
             }
 
             // ------------------ Category
             bool categoryResult = false;
-            if (Settings.FilterSettings.Categories == null || Settings.FilterSettings.Categories.Count == 0)
+            if (filterSettings.Categories == null || filterSettings.Categories.Count == 0)
             {
                 categoryResult = true;
             }
@@ -665,19 +771,18 @@ namespace PlayniteUI
                 {
                     if (ViewType == GamesViewType.Standard)
                     {
-                        categoryResult = Settings.FilterSettings.Categories.IntersectsPartiallyWith(game.Categories);
+                        categoryResult = filterSettings.Categories.IntersectsPartiallyWith(game.Categories);
                     }
                     else
                     {
-                        categoryResult = Settings.FilterSettings.Categories.Any(a => entry.Category.Category.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0);
+                        categoryResult = filterSettings.Categories.Any(a => entry.Category.Category.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0);
                     }
                 }
             }
 
-
             // ------------------ Tags
             bool tagResult = false;
-            if (Settings.FilterSettings.Tags == null || Settings.FilterSettings.Tags.Count == 0)
+            if (filterSettings.Tags == null || filterSettings.Tags.Count == 0)
             {
                 tagResult = true;
             }
@@ -689,14 +794,14 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    tagResult = Settings.FilterSettings.Tags.IntersectsPartiallyWith(game.Tags);
+                    tagResult = filterSettings.Tags.IntersectsPartiallyWith(game.Tags);
                 }
             }
 
             return installedResult &&
                 hiddenResult &&
                 favoriteResult &&
-                textResult &&
+                nameResult &&
                 providersFilter &&
                 genreResult &&
                 platformResult &&
@@ -704,7 +809,11 @@ namespace PlayniteUI
                 publisherResult &&
                 developerResult &&
                 categoryResult &&
-                tagResult;
+                tagResult &&
+                seriesResult &&
+                regionResult &&
+                sourceResult &&
+                ageRatingResult;
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -725,20 +834,27 @@ namespace PlayniteUI
         {
             var sortDirection = Settings.SortingOrderDirection == SortOrderDirection.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;
 
-            switch (Settings.GroupingOrder)
+            if (IsFullscreen)
             {
-                case GroupOrder.None:
-                    ViewType = GamesViewType.Standard;
-                    break;
-                case GroupOrder.Provider:
-                    ViewType = GamesViewType.Standard;
-                    break;
-                case GroupOrder.Platform:
-                    ViewType = GamesViewType.Standard;
-                    break;
-                case GroupOrder.Category:
-                    ViewType = GamesViewType.CategoryGrouped;
-                    break;
+                ViewType = GamesViewType.Standard;
+            }
+            else
+            {
+                switch (Settings.GroupingOrder)
+                {
+                    case GroupOrder.None:
+                        ViewType = GamesViewType.Standard;
+                        break;
+                    case GroupOrder.Provider:
+                        ViewType = GamesViewType.Standard;
+                        break;
+                    case GroupOrder.Platform:
+                        ViewType = GamesViewType.Standard;
+                        break;
+                    case GroupOrder.Category:
+                        ViewType = GamesViewType.CategoryGrouped;
+                        break;
+                }
             }
 
             CollectionView.SortDescriptions.Add(new SortDescription(Settings.SortingOrder.ToString(), sortDirection));
@@ -818,34 +934,42 @@ namespace PlayniteUI
                 return;
             }
 
-            switch (viewType)
+            if (IsFullscreen)
             {
-                case GamesViewType.Standard:
-                    Items.Clear();
-                    Items.AddRange(database.GamesCollection.FindAll().Select(x => new GameViewEntry(x, string.Empty, GetPlatformFromCache(x.PlatformId))));
-                    break;
+                Items.Clear();
+                Items.AddRange(database.GamesCollection.FindAll().Select(x => new GameViewEntry(x, string.Empty, GetPlatformFromCache(x.PlatformId))));
+            }
+            else
+            {
+                switch (viewType)
+                {
+                    case GamesViewType.Standard:
+                        Items.Clear();
+                        Items.AddRange(database.GamesCollection.FindAll().Select(x => new GameViewEntry(x, string.Empty, GetPlatformFromCache(x.PlatformId))));
+                        break;
 
-                case GamesViewType.CategoryGrouped:
-                    Items.Clear();
-                    Items.AddRange(database.GamesCollection.FindAll().SelectMany(x =>
-                    {
-                        if (x.Categories == null || x.Categories.Count == 0)
+                    case GamesViewType.CategoryGrouped:
+                        Items.Clear();
+                        Items.AddRange(database.GamesCollection.FindAll().SelectMany(x =>
                         {
-                            return new List<GameViewEntry>()
+                            if (x.Categories == null || x.Categories.Count == 0)
                             {
+                                return new List<GameViewEntry>()
+                                {
                             new GameViewEntry(x, null, GetPlatformFromCache(x.PlatformId))
-                            };
-                        }
-                        else
-                        {
-                            return x.Categories.Select(c =>
+                                };
+                            }
+                            else
                             {
-                                return new GameViewEntry(x, c, GetPlatformFromCache(x.PlatformId));
-                            });
-                        }
-                    }));
+                                return x.Categories.Select(c =>
+                                {
+                                    return new GameViewEntry(x, c, GetPlatformFromCache(x.PlatformId));
+                                });
+                            }
+                        }));
 
-                    break;
+                        break;
+                }
             }
 
             this.viewType = viewType;
@@ -876,6 +1000,7 @@ namespace PlayniteUI
 
         private void Database_GameUpdated(object sender, GameUpdatedEventArgs args)
         {
+            var replaceList = new List<Game>();
             foreach (var update in args.UpdatedGames)
             {
                 if (update.OldData.Categories.IsListEqual(update.NewData.Categories))
@@ -897,10 +1022,13 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    Database_GamesCollectionChanged(this, new GamesCollectionChangedEventArgs(
-                        new List<IGame>() { update.NewData },
-                        new List<IGame>() { update.NewData }));
+                    replaceList.Add(update.NewData);
                 }
+            }
+
+            if (replaceList.Count > 0)
+            {
+                Database_GamesCollectionChanged(this, new GamesCollectionChangedEventArgs(replaceList, replaceList));
             }
         }
 
@@ -916,25 +1044,38 @@ namespace PlayniteUI
                 }
             }
 
+            var addList = new List<GameViewEntry>();
             foreach (var game in args.AddedGames)
             {
-                switch (ViewType)
+                if (IsFullscreen)
                 {
-                    case GamesViewType.Standard:
-                        Items.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game.PlatformId)));
-                        break;
-
-                    case GamesViewType.CategoryGrouped:
-                        if (game.Categories == null || game.Categories.Count == 0)
-                        {
-                            Items.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game.PlatformId)));
-                        }
-                        else
-                        {
-                            Items.AddRange(game.Categories.Select(a => new GameViewEntry(game, a, GetPlatformFromCache(game.PlatformId))));
-                        }
-                        break;
+                    addList.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game.PlatformId)));
                 }
+                else
+                {
+                    switch (ViewType)
+                    {
+                        case GamesViewType.Standard:
+                            addList.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game.PlatformId)));
+                            break;
+
+                        case GamesViewType.CategoryGrouped:
+                            if (game.Categories == null || game.Categories.Count == 0)
+                            {
+                                addList.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game.PlatformId)));
+                            }
+                            else
+                            {
+                                addList.AddRange(game.Categories.Select(a => new GameViewEntry(game, a, GetPlatformFromCache(game.PlatformId))));
+                            }
+                            break;
+                    }
+                }
+            }
+
+            if (addList.Count > 0)
+            {
+                Items.AddRange(addList);
             }
         }
     }

@@ -1,0 +1,20 @@
+- name: Introduction
+  href: intro.md
+- name: Scripting
+  items:
+    - name: Introduction
+      href: scripting.md
+    - name: Reacting to Events
+      href: scriptingEvents.md
+    - name: Writing to Log Files
+      href: scriptingLogging.md
+    - name: Working with Game Database
+      href: scriptingDatabase.md
+    - name: UI Interaction
+      href: scriptingUI.md
+    - name: Templates
+      href: scriptingTemplates.md
+- name: Plugins
+  items:
+    - name: Introduction
+      href: plugins.md

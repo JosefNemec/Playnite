@@ -86,10 +86,15 @@ namespace PlayniteUI
             } = false;
         }
 
-        public bool SimulateKeyboard
+        public bool SimulateNavigationKeys
         {
             get; set;
         } = true;
+
+        public bool SimulateAllKeys
+        {
+            get; set;
+        } = false;
 
         private int pollingRate = 40;
         private int resendDelay = 700;
@@ -127,20 +132,20 @@ namespace PlayniteUI
         private Dictionary<XInputButton, Key> keyboardMap = new Dictionary<XInputButton, Key>()
         {
             {  XInputButton.A, Key.Enter },
-            {  XInputButton.B, Key.Escape },
-            {  XInputButton.Back, Key.Back },
+            {  XInputButton.B, Key.None },
+            {  XInputButton.Back, Key.None },
             {  XInputButton.DPadDown, Key.Down },
             {  XInputButton.DPadLeft, Key.Left },
             {  XInputButton.DPadRight, Key.Right },
             {  XInputButton.DPadUp, Key.Up },
             {  XInputButton.Guide, Key.None },
-            {  XInputButton.LeftShoulder, Key.Home },
+            {  XInputButton.LeftShoulder, Key.None },
             {  XInputButton.LeftStick, Key.None },
             {  XInputButton.LeftStickDown, Key.Down },
             {  XInputButton.LeftStickLeft, Key.Left },
             {  XInputButton.LeftStickRight, Key.Right },
             {  XInputButton.LeftStickUp, Key.Up },
-            {  XInputButton.RightShoulder, Key.End },
+            {  XInputButton.RightShoulder, Key.None },
             {  XInputButton.RightStick, Key.None },
             {  XInputButton.RightStickDown, Key.None },
             {  XInputButton.RightStickLeft, Key.None },
@@ -149,8 +154,8 @@ namespace PlayniteUI
             {  XInputButton.Start, Key.None },
             {  XInputButton.TriggerLeft, Key.PageUp },
             {  XInputButton.TriggerRight, Key.PageDown },
-            {  XInputButton.X, Key.Delete },
-            {  XInputButton.Y, Key.Tab }
+            {  XInputButton.X, Key.None },
+            {  XInputButton.Y, Key.None }
         };
 
         private Dictionary<XInputButton, InputState> keyWatches = new Dictionary<XInputButton, InputState>()
@@ -266,7 +271,7 @@ namespace PlayniteUI
                     }
                 }
             }
-
+            
             return sendInput;
         }
 
@@ -283,20 +288,14 @@ namespace PlayniteUI
             {
                 SendXInput(button, true);
                 prevStates[button] = ButtonState.Pressed;
-                if (SimulateKeyboard)
-                {
-                    SendKeyInput(keyboardMap[button], true);
-                }
+                SimulateKeyInput(keyboardMap[button], true);
             }
             else if (currentState == ButtonState.Released && prevStates[button] == ButtonState.Pressed)
             {
                 ResetButtonResend(button);
                 SendXInput(button, false);
                 prevStates[button] = ButtonState.Released;
-                if (SimulateKeyboard)
-                {
-                    SendKeyInput(keyboardMap[button], false);
-                }
+                SimulateKeyInput(keyboardMap[button], false);
             }
         }
 
@@ -308,20 +307,14 @@ namespace PlayniteUI
                 {
                     SendXInput(button, true);
                     prevStates[button] = ButtonState.Pressed;
-                    if (SimulateKeyboard)
-                    {
-                        SendKeyInput(keyboardMap[button], true);
-                    }
+                    SimulateKeyInput(keyboardMap[button], true);
                 }
                 else if (currentState < 0.5f && prevStates[button] == ButtonState.Pressed)
                 {
                     ResetButtonResend(button);
                     SendXInput(button, false);
                     prevStates[button] = ButtonState.Released;
-                    if (SimulateKeyboard)
-                    {
-                        SendKeyInput(keyboardMap[button], false);
-                    }
+                    SimulateKeyInput(keyboardMap[button], false);
                 }
             }
             else
@@ -330,27 +323,21 @@ namespace PlayniteUI
                 {
                     SendXInput(button, true);
                     prevStates[button] = ButtonState.Pressed;
-                    if (SimulateKeyboard)
-                    {
-                        SendKeyInput(keyboardMap[button], true);
-                    }
+                    SimulateKeyInput(keyboardMap[button], true);
                 }
                 else if (currentState > -0.5f && prevStates[button] == ButtonState.Pressed)
                 {
                     ResetButtonResend(button);
                     SendXInput(button, false);
                     prevStates[button] = ButtonState.Released;
-                    if (SimulateKeyboard)
-                    {
-                        SendKeyInput(keyboardMap[button], false);
-                    }
+                    SimulateKeyInput(keyboardMap[button], false);
                 }
             }
         }
 
         private void SendXInput(XInputButton button, bool pressed)
         {
-            context.Send((a) =>
+            context.Post((a) =>
             {
                 var args = new XInputEventArgs(Key.None, pressed ? XInputButtonState.Pressed : XInputButtonState.Released, button);
                 inputManager.ProcessInput(args);
@@ -359,7 +346,7 @@ namespace PlayniteUI
 
         private void SendKeyInput(Key key, bool pressed)
         {
-            context.Send((a) =>
+            context.Post((a) =>
             {
                 var args = new KeyEventArgs(InputManager.Current.PrimaryKeyboardDevice, InputManager.Current.PrimaryKeyboardDevice.ActiveSource, Environment.TickCount, key)
                 {
@@ -368,6 +355,31 @@ namespace PlayniteUI
 
                 inputManager.ProcessInput(args);
             }, null);
+        }
+
+        private void SimulateKeyInput(Key key, bool pressed)
+        {
+            if (SimulateAllKeys || (SimulateNavigationKeys && IsKeysDirectionKey(key)))
+            {                
+                SendKeyInput(key, pressed);
+            }
+        }
+
+        private bool IsKeysDirectionKey(Key key)
+        {
+            switch (key)
+            {
+                case Key.Up:
+                case Key.Down:
+                case Key.Left:
+                case Key.Right:
+                case Key.PageDown:
+                case Key.PageUp:
+                case Key.Return:
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
     

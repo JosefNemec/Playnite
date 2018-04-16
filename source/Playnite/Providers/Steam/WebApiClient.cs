@@ -11,13 +11,23 @@ namespace Playnite.Providers.Steam
 {
     public class WebApiClient
     {
-        public static StoreAppDetailsResult.AppDetails GetStoreAppDetail(int appId)
+        public static StoreAppDetailsResult ParseStoreData(int appId, string data)
+        {
+            var parsedData = JsonConvert.DeserializeObject<Dictionary<string, StoreAppDetailsResult>>(data);
+            return parsedData[appId.ToString()];
+        }
+
+        public static string GetRawStoreAppDetail(int appId)
         {
             var url = @"http://store.steampowered.com/api/appdetails?appids={0}";
             url = string.Format(url, appId);
-            var data = Web.DownloadString(url);
-            var parsedData = JsonConvert.DeserializeObject<Dictionary<string, StoreAppDetailsResult>>(data);
-            var response = parsedData[appId.ToString()];
+            return Web.DownloadString(url);
+        }
+
+        public static StoreAppDetailsResult.AppDetails GetStoreAppDetail(int appId)
+        {
+            var data = GetRawStoreAppDetail(appId);
+            var response = ParseStoreData(appId, data);
 
             // No store data for this appid
             if (response.success != true)

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>PlayniteSDK</id>
+    <version>1.0.0</version>
+    <title>Playnite SDK</title>
+    <authors>Josef Nemec</authors>
+    <owners>JosefNemec</owners>
+    <licenseUrl>https://github.com/JosefNemec/Playnite/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/JosefNemec/Playnite</projectUrl>
+    <iconUrl>https://playnite.link/applogo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>SDK plugin library for Playnite video game library manager.</description>
+    <releaseNotes>First release</releaseNotes>
+    <copyright>Copyright © Josef Nemec 2018</copyright>
+    <tags>sdk gaming</tags>
+    <dependencies>
+        <dependency id="Newtonsoft.Json" version="10.0" />
+        <dependency id="LiteDB" version="[3.1.4]" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\PlayniteSDK.dll" target="lib\net462\PlayniteSDK.dll" />
+    <file src="bin\Release\PlayniteSDK.xml" target="lib\net462\PlayniteSDK.xml" />
+</files>
+</package>

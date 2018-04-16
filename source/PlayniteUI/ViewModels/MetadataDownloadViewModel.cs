@@ -1,5 +1,5 @@
 ﻿using NLog;
-using Playnite;
+using Playnite.SDK;
 using Playnite.MetaProviders;
 using PlayniteUI.Commands;
 using System;

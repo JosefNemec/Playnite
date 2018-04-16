@@ -64,6 +64,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <Choose>
@@ -88,6 +89,10 @@
     <Compile Include="ViewModels\GameEditViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PlayniteSDK\PlayniteSDK.csproj">
+      <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
+      <Name>PlayniteSDK</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PlayniteUI\PlayniteUI.csproj">
       <Project>{cb026f42-5acd-4915-a8b5-d3eb0c6ae649}</Project>
       <Name>PlayniteUI</Name>

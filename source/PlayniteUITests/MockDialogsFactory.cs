@@ -1,4 +1,5 @@
-﻿using PlayniteUI;
+﻿using Playnite.SDK;
+using PlayniteUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,10 +46,9 @@ namespace PlayniteUITests
             return string.Empty;
         }
 
-        public MessageBoxResult SelectString(string messageBoxText, string caption, out string input)
+        public StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput)
         {
-            input = string.Empty;
-            return MessageBoxResult.None;
+            return new StringSelectionDialogResult(false, string.Empty);
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)

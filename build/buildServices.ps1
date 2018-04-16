@@ -7,14 +7,14 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-if (Test-Path $OutputPath)
-{
-    Remove-Item $OutputPath -Recurse -Exclude "servicedb.db"
-}
-
 if ($LocalDeploy)
 {
     Stop-Service -Name "W3SVC"
+}
+
+if (Test-Path $OutputPath)
+{
+    Remove-Item $OutputPath -Recurse -Exclude "servicedb.db", "patreon_tokens.json"
 }
 
 if (!(Test-Path $OutputPath))

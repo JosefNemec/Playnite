@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Playnite.SDK.Models;
 
 namespace Playnite.Models.Old1
 {

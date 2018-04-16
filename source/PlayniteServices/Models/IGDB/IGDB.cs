@@ -56,9 +56,50 @@ namespace PlayniteServices.Models.IGDB
         }
     }
 
-    public class Cover
+    public class AlternativeName
+    { 
+        public string name
+        {
+            get; set;
+        }
+
+        public string comment
+        {
+            get; set;
+        }
+    }
+
+    public class Image
     {
         public string url
+        {
+            get; set;
+        }
+
+        public string cloudinary_id
+        {
+            get; set;
+        }
+
+        public uint width
+        {
+            get; set;
+        }
+
+        public uint height
+        {
+            get; set;
+        }
+    }
+
+    public class Video
+    {
+        public string name
+        {
+            get; set;
+        }
+
+        public string video_id
         {
             get; set;
         }
@@ -126,6 +167,51 @@ namespace PlayniteServices.Models.IGDB
         {
             get; set;
         }
+
+        public double rating
+        {
+            get; set;
+        }
+
+        public double aggregated_rating
+        {
+            get; set;
+        }
+
+        public double total_rating
+        {
+            get; set;
+        }
+
+        public ulong collection
+        {
+            get; set;
+        }
+
+        public ulong franchise
+        {
+            get; set;
+        }
+
+        public List<AlternativeName> alternative_names
+        {
+            get; set;
+        }
+
+        public Dictionary<string, string> external
+        {
+            get; set;
+        }
+
+        public List<Image> screenshots
+        {
+            get; set;
+        }
+
+        public List<Video> videos
+        {
+            get; set;
+        }
     }
 
     public class Game
@@ -175,7 +261,7 @@ namespace PlayniteServices.Models.IGDB
             get; set;
         }
 
-        public Cover cover
+        public Image cover
         {
             get; set;
         }
@@ -185,6 +271,50 @@ namespace PlayniteServices.Models.IGDB
             get; set;
         }
 
+        public double rating
+        {
+            get; set;
+        }
+
+        public double aggregated_rating
+        {
+            get; set;
+        }
+
+        public double total_rating
+        {
+            get; set;
+        }
+
+        public ulong collection
+        {
+            get; set;
+        }
+
+        public ulong franchise
+        {
+            get; set;
+        }
+
+        public List<AlternativeName> alternative_names
+        {
+            get; set;
+        }
+
+        public Dictionary<string, string> external
+        {
+            get; set;
+        }
+
+        public List<Image> screenshots
+        {
+            get; set;
+        }
+
+        public List<Video> videos
+        {
+            get; set;
+        }
     }
 
     public class GameMode

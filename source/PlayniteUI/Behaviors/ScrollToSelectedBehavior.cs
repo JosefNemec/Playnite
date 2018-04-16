@@ -48,16 +48,22 @@ namespace PlayniteUI
                 return;
             }
 
-            if (sender is ListBox listBox)
-            {
-                listBox.ScrollIntoView(listBox.SelectedItem);
-                return;
-            }
-
             if (sender is ListView listView)
             {
-                listView.ScrollIntoView(listView.SelectedItem);
-                return;
+                if (listView.SelectedItems?.Count == 1)
+                {                    
+                    listView.ScrollIntoView(listView.SelectedItem);
+                    return;
+                }
+            }
+
+            if (sender is ListBox listBox)
+            {
+                if (listBox.SelectedItems?.Count == 1)
+                {
+                    listBox.ScrollIntoView(listBox.SelectedItem);
+                    return;
+                }
             }
         }
     }

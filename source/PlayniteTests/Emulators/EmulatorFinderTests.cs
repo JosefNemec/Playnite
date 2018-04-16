@@ -14,7 +14,7 @@ namespace PlayniteTests.Emulators
     public class EmulatorFinderTest
     {
         [Test]
-        public void SearchForEmulatorsTest()
+        public async Task SearchForEmulatorsTest()
         {
             var fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
             {
@@ -26,12 +26,12 @@ namespace PlayniteTests.Emulators
 
             var dirInfo = new MockDirectoryInfo(fileSystem, @"c:\Emulators\");
             var defs = EmulatorDefinition.GetDefinitions();
-            var emulators = EmulatorFinder.SearchForEmulators(dirInfo, defs);
+            var emulators = await EmulatorFinder.SearchForEmulators(dirInfo, defs);
             Assert.AreEqual(4, emulators.Count);
         }
 
         [Test]
-        public void SearchForGamesTest()
+        public async Task SearchForGamesTest()
         {
             var fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
             {
@@ -43,7 +43,7 @@ namespace PlayniteTests.Emulators
 
             var dirInfo = new MockDirectoryInfo(fileSystem, @"c:\EmulatedGames\");
             var def = EmulatorDefinition.GetDefinitions().First(a => a.Name == "PCSX2");
-            var games = EmulatorFinder.SearchForGames(dirInfo, def.Profiles.First().ToEmulatorConfig());
+            var games = await EmulatorFinder.SearchForGames(dirInfo, def.Profiles.First().ToEmulatorConfig());
             Assert.AreEqual(4, games.Count);
         }
     }

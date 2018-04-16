@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using Microsoft.Win32;
 using System.IO;
+using Playnite.Models;
 
 namespace Playnite.Providers.Uplay
 {
@@ -22,9 +23,9 @@ namespace Playnite.Providers.Uplay
             };
         }
 
-        public List<IGame> GetInstalledGames()
+        public List<Game> GetInstalledGames()
         {
-            var games = new List<IGame>();
+            var games = new List<Game>();
 
             var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
             var installsKey = root.OpenSubKey(@"SOFTWARE\ubisoft\Launcher\Installs\");
@@ -48,6 +49,7 @@ namespace Playnite.Providers.Uplay
                 {
                     ProviderId = install,
                     Provider = Provider.Uplay,
+                    Source = "Uplay",
                     InstallDirectory = installDir,
                     PlayTask = GetGamePlayTask(install),
                     Name = Path.GetFileName(installDir.TrimEnd(Path.DirectorySeparatorChar))
@@ -59,7 +61,7 @@ namespace Playnite.Providers.Uplay
             return games;
         }
 
-        public GameMetadata UpdateGameWithMetadata(IGame game)
+        public GameMetadata UpdateGameWithMetadata(Game game)
         {
             var metadata = new GameMetadata();
             var program = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.RegistryKeyName == "Uplay Install " + game.ProviderId);

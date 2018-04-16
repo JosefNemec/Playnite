@@ -21,6 +21,34 @@ namespace PlayniteUI.Controls
 {
     public class HtmlTextView : HtmlPanel
     {
+        public int HtmlFontSize
+        {
+            get
+            {
+                return (int)GetValue(HtmlFontSizeProperty);
+            }
+
+            set
+            {
+                SetValue(HtmlFontSizeProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty HtmlFontSizeProperty =
+            DependencyProperty.Register("HtmlFontSize", typeof(int), typeof(HtmlTextView), new PropertyMetadata(11, OnHtmlFontSizeChange));
+
+        private static void OnHtmlFontSizeChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var obj = sender as HtmlTextView;
+            var size = (int)e.NewValue;
+            var template = Playnite.Resources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
+            template = template.Replace("{text}", obj.HtmlText);
+            template = template.Replace("{foreground}", obj.HtmlForeground.ToHtml());
+            template = template.Replace("{link_foreground}", obj.LinkForeground.ToHtml());
+            template = template.Replace("{font_size}", size.ToString());
+            obj.Text = template.Replace("{font_family}", obj.HtmlFontFamily.ToString());
+        }
+
         public FontFamily HtmlFontFamily
         {
             get
@@ -41,10 +69,11 @@ namespace PlayniteUI.Controls
         {
             var obj = sender as HtmlTextView;
             var font = e.NewValue.ToString();
-            var template = DataResources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
+            var template = Playnite.Resources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
             template = template.Replace("{text}", obj.HtmlText);
             template = template.Replace("{foreground}", obj.HtmlForeground.ToHtml());
             template = template.Replace("{link_foreground}", obj.LinkForeground.ToHtml());
+            template = template.Replace("{font_size}", obj.HtmlFontSize.ToString());
             obj.Text = template.Replace("{font_family}", font);
         }
 
@@ -68,10 +97,11 @@ namespace PlayniteUI.Controls
         {
             var obj = sender as HtmlTextView;
             var color = (Color)e.NewValue;
-            var template = DataResources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
+            var template = Playnite.Resources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
             template = template.Replace("{text}", obj.HtmlText);
             template = template.Replace("{foreground}", obj.HtmlForeground.ToHtml());
             template = template.Replace("{font_family}", obj.HtmlFontFamily.ToString());
+            template = template.Replace("{font_size}", obj.HtmlFontSize.ToString());
             obj.Text = template.Replace("{link_foreground}", color.ToHtml());
         }
 
@@ -95,10 +125,11 @@ namespace PlayniteUI.Controls
         {
             var obj = sender as HtmlTextView;
             var color = (Color)e.NewValue;
-            var template = DataResources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
+            var template = Playnite.Resources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
             template = template.Replace("{text}", obj.HtmlText);
             template = template.Replace("{link_foreground}", obj.LinkForeground.ToHtml());
             template = template.Replace("{font_family}", obj.HtmlFontFamily.ToString());
+            template = template.Replace("{font_size}", obj.HtmlFontSize.ToString());
             obj.Text = template.Replace("{foreground}", color.ToHtml());
         }
 
@@ -121,10 +152,11 @@ namespace PlayniteUI.Controls
         private static void OnHtmlTextChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var obj = sender as HtmlTextView;
-            var template = DataResources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
+            var template = Playnite.Resources.ReadFileFromResource("PlayniteUI.Resources.DescriptionView.html");
             template = template.Replace("{foreground}", obj.HtmlForeground.ToHtml());
             template = template.Replace("{link_foreground}", obj.LinkForeground.ToHtml());
             template = template.Replace("{font_family}", obj.HtmlFontFamily.ToString());
+            template = template.Replace("{font_size}", obj.HtmlFontSize.ToString());
             obj.Text = template.Replace("{text}", e.NewValue?.ToString());
         }
 

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Playnite.Providers.Steam;
-using Playnite.Models;
+using Playnite.SDK.Models;
 
 namespace PlayniteTests.Providers.Steam
 {
@@ -38,7 +38,7 @@ namespace PlayniteTests.Providers.Steam
                 Assert.IsFalse(string.IsNullOrEmpty(game.InstallDirectory));
                 Assert.IsTrue(Directory.Exists(game.InstallDirectory));
                 Assert.IsNotNull(game.PlayTask);
-                Assert.IsTrue(game.PlayTask.Type == Playnite.Models.GameTaskType.URL);
+                Assert.IsTrue(game.PlayTask.Type == GameTaskType.URL);
             }
         }
 
@@ -61,7 +61,7 @@ namespace PlayniteTests.Providers.Steam
             Assert.IsNull(nonExisting.StoreDetails);
             Assert.IsNotNull(nonExisting.Icon.Data);
             Assert.IsNotNull(nonExisting.Image.Data);
-            Assert.IsNotNull(nonExisting.BackgroundImage);
+            Assert.IsNull(nonExisting.BackgroundImage);
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace PlayniteTests.Providers.Steam
             CollectionAssert.IsNotEmpty(cats);
             CollectionAssert.IsNotEmpty(game.Categories);
             Assert.IsFalse(string.IsNullOrEmpty(game.ProviderId));
-            Assert.AreEqual(game.Provider, Playnite.Models.Provider.Steam);
+            Assert.AreEqual(game.Provider, Provider.Steam);
         }
 
         [Test]
@@ -109,14 +109,12 @@ namespace PlayniteTests.Providers.Steam
             Assert.DoesNotThrow(() => steamLib.UpdateGameWithMetadata(game));            
         }
 
-        //[Test]
-        //public void GetLibraryGamesPrivateTest()
-        //{
-        //    var steamLib = new SteamLibrary();
-        //    var games = steamLib.GetLibraryGames("playnitedb", "");
-        //    CollectionAssert.IsNotEmpty(games);
-        //    games = steamLib.GetLibraryGames("76561198358889790", "");
-        //    CollectionAssert.IsNotEmpty(games);
-        //}
+
+        [Test]
+        public void GetAppStateTest()
+        {
+            var steamLib = new SteamLibrary();
+            var state = steamLib.GetAppState(12140);
+        }
     }
 }

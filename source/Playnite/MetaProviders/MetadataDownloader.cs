@@ -12,6 +12,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Playnite.SDK.Models;
+using Playnite.SDK;
 
 namespace Playnite.MetaProviders
 {
@@ -86,6 +88,21 @@ namespace Playnite.MetaProviders
             {
                 gamesSource = value;
                 OnPropertyChanged("GamesSource");
+            }
+        }
+
+        private bool skipExistingValues = true;
+        public bool SkipExistingValues
+        {
+            get
+            {
+                return skipExistingValues;
+            }
+
+            set
+            {
+                skipExistingValues = value;
+                OnPropertyChanged("SkipExistingValues");
             }
         }
 
@@ -210,6 +227,28 @@ namespace Playnite.MetaProviders
             }
         }
 
+        private MetadataFieldSettings criticScore = new MetadataFieldSettings();
+        public MetadataFieldSettings CriticScore
+        {
+            get => criticScore;
+            set
+            {
+                criticScore = value;
+                OnPropertyChanged("CriticScore");
+            }
+        }
+
+        private MetadataFieldSettings communityScore = new MetadataFieldSettings();
+        public MetadataFieldSettings CommunityScore
+        {
+            get => communityScore;
+            set
+            {
+                communityScore = value;
+                OnPropertyChanged("CommunityScore");
+            }
+        }
+
         public void ConfigureFields(MetadataSource source, bool import)
         {
             Genre.Import = import;
@@ -232,6 +271,10 @@ namespace Playnite.MetaProviders
             Icon.Source = source;
             ReleaseDate.Import = import;
             ReleaseDate.Source = source;
+            CommunityScore.Import = import;
+            CommunityScore.Source = source;
+            CriticScore.Import = import;
+            CriticScore.Source = source;
         }
     }
 
@@ -281,20 +324,11 @@ namespace Playnite.MetaProviders
 
         public MetadataDownloader()
         {
-            steamProvider = new SteamMetadataProvider();
+            steamProvider = new SteamMetadataProvider(new Services.ServicesClient());
             originProvider = new OriginMetadataProvider();
             gogProvider = new GogMetadataProvider();
             battleNetProvider = new BattleNetMetadataProvider();
             igdbProvider = new IGDBMetadataProvider();
-        }
-
-        public MetadataDownloader(string igdbApiKey)
-        {
-            steamProvider = new SteamMetadataProvider();
-            originProvider = new OriginMetadataProvider();
-            gogProvider = new GogMetadataProvider();
-            battleNetProvider = new BattleNetMetadataProvider();
-            igdbProvider = new IGDBMetadataProvider(igdbApiKey);
         }
 
         public MetadataDownloader(
@@ -335,7 +369,7 @@ namespace Playnite.MetaProviders
             return Roman.To(int.Parse(m.Value));
         }
 
-        private GameMetadata ProcessDownload(IGame game, ref GameMetadata data)
+        private GameMetadata ProcessDownload(Game game, ref GameMetadata data)
         {
             if (data == null)
             {
@@ -346,7 +380,7 @@ namespace Playnite.MetaProviders
         }
 
         private GameMetadata ProcessField(
-            IGame game,
+            Game game,
             MetadataFieldSettings field,
             ref GameMetadata storeData,
             ref GameMetadata igdbData,
@@ -461,10 +495,10 @@ namespace Playnite.MetaProviders
         }
 
         public async Task DownloadMetadataThreaded(
-            List<IGame> games,
+            List<Game> games,
             GameDatabase database,
             MetadataDownloaderSettings settings,
-            Action<IGame, int, int> processCallback,
+            Action<Game, int, int> processCallback,
             CancellationTokenSource cancelToken)
         {
             int index = 0;
@@ -474,7 +508,7 @@ namespace Playnite.MetaProviders
             await Task.Factory.StartNew(() =>
             {
                 var grouped = games.GroupBy(a => a.Provider);
-                foreach (IGrouping<Provider, IGame> group in grouped)
+                foreach (IGrouping<Provider, Game> group in grouped)
                 {
                     tasks.Add(Task.Factory.StartNew(() =>
                     {
@@ -492,38 +526,38 @@ namespace Playnite.MetaProviders
         }
 
         public async Task DownloadMetadata(
-        List<IGame> games,
-        GameDatabase database,
-        MetadataDownloaderSettings settings,
-        Action<IGame, int, int> processCallback,
-        CancellationTokenSource cancelToken)
+            List<Game> games,
+            GameDatabase database,
+            MetadataDownloaderSettings settings,
+            Action<Game, int, int> processCallback,
+            CancellationTokenSource cancelToken)
         {
             await Task.Factory.StartNew(() =>
             {
-                if (games == null || games.Count == 0)
+            if (games == null || games.Count == 0)
+            {
+                return;
+            }
+
+            for (int i = 0; i < games.Count; i++)
+            {
+                if (cancelToken?.IsCancellationRequested == true)
                 {
                     return;
                 }
 
-                for (int i = 0; i < games.Count; i++)
-                {
-                    if (cancelToken?.IsCancellationRequested == true)
-                    {
-                        return;
-                    }
-                                        
-                    GameMetadata storeData = null;
-                    GameMetadata igdbData = null;
-                    GameMetadata gameData = null;
+                GameMetadata storeData = null;
+                GameMetadata igdbData = null;
+                GameMetadata gameData = null;
 
-                    // We need to get new instance from DB in case game got edited or deleted.
-                    // We don't want to block game editing while metadata is downloading for other games.
-                    var game = database.GamesCollection.FindOne(a => a.ProviderId == games[i].ProviderId);
-                    if (game == null)
-                    {
-                        processCallback?.Invoke(null, i, games.Count);
-                        continue;
-                    }
+                // We need to get new instance from DB in case game got edited or deleted.
+                // We don't want to block game editing while metadata is downloading for other games.
+                var game = database.GamesCollection.FindOne(a => a.ProviderId == games[i].ProviderId);
+                if (game == null)
+                {
+                    processCallback?.Invoke(null, i, games.Count);
+                    continue;
+                }
 
                     try
                     {
@@ -545,92 +579,146 @@ namespace Playnite.MetaProviders
                         // Genre
                         if (settings.Genre.Import)
                         {
-                            gameData = ProcessField(game, settings.Genre, ref storeData, ref igdbData, (a) => a.GameData?.Genres);
-                            game.Genres = ListExtensions.IsNullOrEmpty(gameData?.GameData?.Genres) ? game.Genres : gameData.GameData.Genres;
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && ListExtensions.IsNullOrEmpty(game.Genres)))
+                            {
+                                gameData = ProcessField(game, settings.Genre, ref storeData, ref igdbData, (a) => a.GameData?.Genres);
+                                game.Genres = ListExtensions.IsNullOrEmpty(gameData?.GameData?.Genres) ? game.Genres : gameData.GameData.Genres;
+                            }
                         }
 
                         // Release Date
                         if (settings.ReleaseDate.Import)
                         {
-                            gameData = ProcessField(game, settings.ReleaseDate, ref storeData, ref igdbData, (a) => a.GameData?.ReleaseDate);
-                            game.ReleaseDate = gameData?.GameData?.ReleaseDate ?? game.ReleaseDate;
+
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.ReleaseDate == null))
+                            {
+                                gameData = ProcessField(game, settings.ReleaseDate, ref storeData, ref igdbData, (a) => a.GameData?.ReleaseDate);
+                                game.ReleaseDate = gameData?.GameData?.ReleaseDate ?? game.ReleaseDate;
+                            }
                         }
 
                         // Developer
                         if (settings.Developer.Import)
                         {
-                            gameData = ProcessField(game, settings.Developer, ref storeData, ref igdbData, (a) => a.GameData?.Developers);
-                            game.Developers = ListExtensions.IsNullOrEmpty(gameData?.GameData?.Developers) ? game.Developers : gameData.GameData.Developers;
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && ListExtensions.IsNullOrEmpty(game.Developers)))
+                            {
+                                gameData = ProcessField(game, settings.Developer, ref storeData, ref igdbData, (a) => a.GameData?.Developers);
+                                game.Developers = ListExtensions.IsNullOrEmpty(gameData?.GameData?.Developers) ? game.Developers : gameData.GameData.Developers;
+                            }
                         }
 
                         // Publisher
                         if (settings.Publisher.Import)
                         {
-                            gameData = ProcessField(game, settings.Publisher, ref storeData, ref igdbData, (a) => a.GameData?.Publishers);
-                            game.Publishers = ListExtensions.IsNullOrEmpty(gameData?.GameData?.Publishers) ? game.Publishers : gameData.GameData.Publishers;
+
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && ListExtensions.IsNullOrEmpty(game.Publishers)))
+                            {
+                                gameData = ProcessField(game, settings.Publisher, ref storeData, ref igdbData, (a) => a.GameData?.Publishers);
+                                game.Publishers = ListExtensions.IsNullOrEmpty(gameData?.GameData?.Publishers) ? game.Publishers : gameData.GameData.Publishers;
+                            }
                         }
 
                         // Tags / Features
                         if (settings.Tag.Import)
                         {
-                            gameData = ProcessField(game, settings.Tag, ref storeData, ref igdbData, (a) => a.GameData?.Tags);
-                            game.Tags = ListExtensions.IsNullOrEmpty(gameData?.GameData?.Tags) ? game.Tags : gameData.GameData.Tags;
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && ListExtensions.IsNullOrEmpty(game.Tags)))
+                            {
+                                gameData = ProcessField(game, settings.Tag, ref storeData, ref igdbData, (a) => a.GameData?.Tags);
+                                game.Tags = ListExtensions.IsNullOrEmpty(gameData?.GameData?.Tags) ? game.Tags : gameData.GameData.Tags;
+                            }
                         }
 
                         // Description
                         if (settings.Description.Import)
                         {
-                            gameData = ProcessField(game, settings.Description, ref storeData, ref igdbData, (a) => a.GameData?.Description);
-                            game.Description = string.IsNullOrEmpty(gameData?.GameData?.Description) == true ? game.Description : gameData.GameData.Description;
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.Description)))
+                            {
+                                gameData = ProcessField(game, settings.Description, ref storeData, ref igdbData, (a) => a.GameData?.Description);
+                                game.Description = string.IsNullOrEmpty(gameData?.GameData?.Description) == true ? game.Description : gameData.GameData.Description;
+                            }
                         }
 
                         // Links
                         if (settings.Links.Import)
                         {
-                            gameData = ProcessField(game, settings.Links, ref storeData, ref igdbData, (a) => a.GameData?.Links);
-                            game.Links = gameData?.GameData?.Links ?? game.Links;
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.Links == null))
+                            {
+                                gameData = ProcessField(game, settings.Links, ref storeData, ref igdbData, (a) => a.GameData?.Links);
+                                game.Links = gameData?.GameData?.Links ?? game.Links;
+                            }
+                        }
+
+                        // Critic Score
+                        if (settings.CriticScore.Import)
+                        {
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.CriticScore == null))
+                            {
+                                gameData = ProcessField(game, settings.CriticScore, ref storeData, ref igdbData, (a) => a.GameData?.CriticScore);
+                                game.CriticScore = gameData?.GameData?.CriticScore == null ? game.CriticScore : gameData.GameData.CriticScore;
+                            }
+                        }
+
+                        // Community Score
+                        if (settings.CommunityScore.Import)
+                        {
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.CommunityScore == null))
+                            {
+                                gameData = ProcessField(game, settings.CommunityScore, ref storeData, ref igdbData, (a) => a.GameData?.CommunityScore);
+                                game.CommunityScore = gameData?.GameData?.CommunityScore == null ? game.CommunityScore : gameData.GameData.CommunityScore;
+                            }
                         }
 
                         // BackgroundImage
                         if (settings.BackgroundImage.Import)
                         {
-                            gameData = ProcessField(game, settings.BackgroundImage, ref storeData, ref igdbData, (a) => a.BackgroundImage);
-                            game.BackgroundImage = string.IsNullOrEmpty(gameData?.BackgroundImage) ? game.BackgroundImage : gameData.BackgroundImage;
+
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.BackgroundImage)))
+                            {
+                                gameData = ProcessField(game, settings.BackgroundImage, ref storeData, ref igdbData, (a) => a.BackgroundImage);
+                                game.BackgroundImage = string.IsNullOrEmpty(gameData?.BackgroundImage) ? game.BackgroundImage : gameData.BackgroundImage;
+                            }
                         }
 
                         // Cover
                         if (settings.CoverImage.Import)
                         {
-                            gameData = ProcessField(game, settings.CoverImage, ref storeData, ref igdbData, (a) => a.Image);
-                            if (gameData?.Image != null)
-                            {
-                                if (!string.IsNullOrEmpty(game.Image))
-                                {
-                                    database.DeleteImageSafe(game.Image, game);
-                                }
 
-                                var imageId = database.AddFileNoDuplicate(gameData.Image);
-                                game.Image = imageId;
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.Image)))
+                            {
+                                gameData = ProcessField(game, settings.CoverImage, ref storeData, ref igdbData, (a) => a.Image);
+                                if (gameData?.Image != null)
+                                {
+                                    if (!string.IsNullOrEmpty(game.Image))
+                                    {
+                                        database.DeleteImageSafe(game.Image, game);
+                                    }
+
+                                    var imageId = database.AddFileNoDuplicate(gameData.Image);
+                                    game.Image = imageId;
+                                }
                             }
                         }
 
                         // Icon
                         if (settings.Icon.Import)
                         {
-                            gameData = ProcessField(game, settings.Icon, ref storeData, ref igdbData, (a) => a.Icon);
-                            if (gameData?.Icon != null)
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.Icon)))
                             {
-                                if (!string.IsNullOrEmpty(game.Icon))
+                                gameData = ProcessField(game, settings.Icon, ref storeData, ref igdbData, (a) => a.Icon);
+                                if (gameData?.Icon != null)
                                 {
-                                    database.DeleteImageSafe(game.Icon, game);
-                                }
+                                    if (!string.IsNullOrEmpty(game.Icon))
+                                    {
+                                        database.DeleteImageSafe(game.Icon, game);
+                                    }
 
-                                var iconId = database.AddFileNoDuplicate(gameData.Icon);
-                                game.Icon = iconId;
+                                    var iconId = database.AddFileNoDuplicate(gameData.Icon);
+                                    game.Icon = iconId;
+                                }
                             }
                         }
 
-                        // We need to download and set aditional steam tasks here because they are only part of metadata
+                        // We need to download and set aditional Steam tasks here because they are only part of metadata
                         if (game.Provider == Provider.Steam)
                         {
                             // Only update them if they don't exist yet
@@ -675,16 +763,16 @@ namespace Playnite.MetaProviders
         }
 
         public async Task DownloadMetadata(
-            List<IGame> games,
+            List<Game> games,
             GameDatabase database,
             MetadataDownloaderSettings settings,
-            Action<IGame, int, int> processCallback)
+            Action<Game, int, int> processCallback)
         {
             await DownloadMetadata(games, database, settings, processCallback, null);
         }
 
         public async Task DownloadMetadata(
-            List<IGame> games,
+            List<Game> games,
             GameDatabase database,
             MetadataDownloaderSettings settings)
         {

@@ -11,12 +11,11 @@
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         xmlns:pvm="clr-namespace:PlayniteUI.ViewModels"
         xmlns:pmp="clr-namespace:Playnite.MetaProviders;assembly=Playnite"
-        xmlns:pm="clr-namespace:Playnite.Models;assembly=Playnite"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource MetaImportWindowTitle}" WindowStartupLocation="CenterOwner"
-        Height="530" Width="670" x:Name="WindowEmulatorImport"
+        Height="600" Width="700" x:Name="WindowEmulatorImport"
         AutomationProperties.AutomationId="WindowEmulatorImport">
 
     <controls:WindowBase.Resources>
@@ -29,7 +28,6 @@
         <pvm:SelectedPlatformsToStringConverter x:Key="SelectedPlatformsToStringConverter" />
         <pvm:SelectedPlatformsToListConverter x:Key="SelectedPlatformsToListConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </controls:WindowBase.Resources>
 
     <Grid>
@@ -60,12 +58,12 @@
             </TabControl.Style>
 
             <TabItem Visibility="Collapsed">
-                <DockPanel>
+                <DockPanel Margin="30,0,30,0">
                     <TextBlock Text="{DynamicResource MetaGamesSourceIntro}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"
-                               Margin="30,30,30,0"/>
+                               Margin="0,30,0,0"/>
                     <TextBlock Text="{DynamicResource MetaGamesSourceDescription}" TextWrapping="Wrap" DockPanel.Dock="Top" 
-                               Margin="30,30,30,0"/>
-                    <StackPanel Margin="50,20,0,0" DockPanel.Dock="Top" >
+                               Margin="0,30,0,0"/>
+                    <StackPanel Margin="20,20,0,0" DockPanel.Dock="Top" >
                         <RadioButton Content="{DynamicResource MetaGameSourceAll}" Margin="10"                                 
                                      IsChecked="{Binding Settings.GamesSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static pmp:MetadataGamesSource.AllFromDB}}"/>
                         <RadioButton Content="{DynamicResource MetaGameSourceFiltered}" Margin="10"                                 
@@ -74,8 +72,12 @@
                                      IsChecked="{Binding Settings.GamesSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static pmp:MetadataGamesSource.Selected}}"/>
                     </StackPanel>
 
+                    <CheckBox Content="{DynamicResource MetaSkipNonEmpty}" ToolTip="{DynamicResource MetaSkipNonEmptyTooltip}"
+                              IsChecked="{Binding Settings.SkipExistingValues}"
+                              DockPanel.Dock="Top" Margin="0,20,0,0" />
+
                     <TextBlock Text="{DynamicResource MetadownloadSingleGameTip}" TextWrapping="Wrap"
-                               DockPanel.Dock="Top" Margin="30,30,30,0"/>
+                               DockPanel.Dock="Top" Margin="0,30,0,0"/>
                 </DockPanel>
             </TabItem>
 
@@ -122,6 +124,8 @@
                                 <ColumnDefinition Width="175" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -204,21 +208,39 @@
                                             DataContext="{Binding Settings.Links}"
                                             Content="{StaticResource ComboSourceSelection}" />
 
-                            <!--Cover-->
-                            <TextBlock Text="{DynamicResource GameCoverTitle}"
+                            <!--CriticScore-->
+                            <TextBlock Text="{DynamicResource CriticScore}"
                                Grid.Column="0" Grid.Row="8"/>
                             <CheckBox Grid.Column="1" Grid.Row="8"
-                                      IsChecked="{Binding Settings.CoverImage.Import}"/>
+                                      IsChecked="{Binding Settings.CriticScore.Import}"/>
                             <ContentControl Grid.Column="2" Grid.Row="8"
+                                            DataContext="{Binding Settings.CriticScore}"
+                                            Content="{StaticResource ComboSourceSelection}" />
+
+                            <!--CommunityScore-->
+                            <TextBlock Text="{DynamicResource CommunityScore}"
+                               Grid.Column="0" Grid.Row="9"/>
+                            <CheckBox Grid.Column="1" Grid.Row="9"
+                                      IsChecked="{Binding Settings.CommunityScore.Import}"/>
+                            <ContentControl Grid.Column="2" Grid.Row="9"
+                                            DataContext="{Binding Settings.CommunityScore}"
+                                            Content="{StaticResource ComboSourceSelection}" />
+
+                            <!--Cover-->
+                            <TextBlock Text="{DynamicResource GameCoverTitle}"
+                               Grid.Column="0" Grid.Row="10"/>
+                            <CheckBox Grid.Column="1" Grid.Row="10"
+                                      IsChecked="{Binding Settings.CoverImage.Import}"/>
+                            <ContentControl Grid.Column="2" Grid.Row="10"
                                             DataContext="{Binding Settings.CoverImage}"
                                             Content="{StaticResource ComboSourceSelection}" />
 
                             <!--Icon-->
                             <TextBlock Text="{DynamicResource GameIconTitle}"
-                               Grid.Column="0" Grid.Row="9"/>
-                            <CheckBox Grid.Column="1" Grid.Row="9"
+                               Grid.Column="0" Grid.Row="11"/>
+                            <CheckBox Grid.Column="1" Grid.Row="11"
                                       IsChecked="{Binding Settings.Icon.Import}"/>
-                            <ComboBox Grid.Column="2" Grid.Row="9"
+                            <ComboBox Grid.Column="2" Grid.Row="11"
                                       SelectedValue="{Binding Settings.Icon.Source}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -230,10 +252,10 @@
 
                             <!--Background Image-->
                             <TextBlock Text="{DynamicResource GameBackgroundTitle}"
-                               Grid.Column="0" Grid.Row="10"/>
-                            <CheckBox Grid.Column="1" Grid.Row="10"
+                               Grid.Column="0" Grid.Row="12"/>
+                            <CheckBox Grid.Column="1" Grid.Row="12"
                                       IsChecked="{Binding Settings.BackgroundImage.Import}"/>
-                            <ComboBox Grid.Column="2" Grid.Row="10"
+                            <ComboBox Grid.Column="2" Grid.Row="12"
                                       SelectedValue="{Binding Settings.BackgroundImage.Source}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>

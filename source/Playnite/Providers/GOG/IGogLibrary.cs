@@ -1,5 +1,5 @@
 ﻿using Playnite.Database;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +10,13 @@ namespace Playnite.Providers.GOG
 {
     public interface IGogLibrary
     {
-        List<IGame> GetInstalledGames(InstalledGamesSource source);
+        List<Game> GetInstalledGames();
 
-        List<IGame> GetLibraryGames();
+        List<Game> GetLibraryGames();
 
         GogGameMetadata DownloadGameMetadata(string id, string storeUrl = null);
 
-        GogGameMetadata UpdateGameWithMetadata(IGame game);
+        GogGameMetadata UpdateGameWithMetadata(Game game);
 
         void CacheGogDatabases(string targetPath, string dbfile);
     }

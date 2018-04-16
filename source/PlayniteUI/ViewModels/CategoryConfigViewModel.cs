@@ -1,6 +1,6 @@
-﻿using Playnite;
-using Playnite.Database;
-using Playnite.Models;
+﻿using Playnite.Database;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -67,8 +67,8 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private IGame game;
-        private IEnumerable<IGame> games;
+        private Game game;
+        private IEnumerable<Game> games;
         private bool autoUpdate;
         private IWindowFactory window;
         private GameDatabase database;
@@ -98,7 +98,7 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public CategoryConfigViewModel(IWindowFactory window, GameDatabase database, IEnumerable<IGame> games, bool autoUpdate)
+        public CategoryConfigViewModel(IWindowFactory window, GameDatabase database, IEnumerable<Game> games, bool autoUpdate)
         {
             this.window = window;
             this.database = database;
@@ -109,7 +109,7 @@ namespace PlayniteUI.ViewModels
             SetCategoryStates();
         }
 
-        public CategoryConfigViewModel(IWindowFactory window, GameDatabase database, IGame game, bool autoUpdate)
+        public CategoryConfigViewModel(IWindowFactory window, GameDatabase database, Game game, bool autoUpdate)
         {
             this.window = window;
             this.database = database;
@@ -142,35 +142,39 @@ namespace PlayniteUI.ViewModels
         {
             if (games != null)
             {
-                foreach (var game in games)
-                {
-                    var tempCat = game.Categories;
-                    var categories = new List<string>();
-                    categories = Categories.Where(a => a.Enabled == true).Select(a => a.Name).ToList();
+                var categories = new List<string>();
+                categories = Categories.Where(a => a.Enabled == true).Select(a => a.Name).ToList();
 
-                    if (tempCat != null)
+                using (database.BufferedUpdate())
+                {
+                    foreach (var game in games)
                     {
-                        foreach (var cat in Categories.Where(a => a.Enabled == null))
+                        var tempCat = game.Categories;
+
+                        if (tempCat != null)
                         {
-                            if (tempCat.Contains(cat.Name, StringComparer.OrdinalIgnoreCase))
+                            foreach (var cat in Categories.Where(a => a.Enabled == null))
                             {
-                                categories.Add(cat.Name);
+                                if (tempCat.Contains(cat.Name, StringComparer.OrdinalIgnoreCase))
+                                {
+                                    categories.Add(cat.Name);
+                                }
                             }
                         }
-                    }
 
-                    if (categories.Count > 0)
-                    {
-                        game.Categories = new ComparableList<string>(categories.OrderBy(a => a));
-                    }
-                    else
-                    {
-                        game.Categories = null;
-                    }
+                        if (categories.Count > 0)
+                        {
+                            game.Categories = new ComparableList<string>(categories.OrderBy(a => a));
+                        }
+                        else
+                        {
+                            game.Categories = null;
+                        }
 
-                    if (autoUpdate)
-                    {
-                        database.UpdateGameInDatabase(game);
+                        if (autoUpdate)
+                        {
+                            database.UpdateGameInDatabase(game);
+                        }
                     }
                 }
             }

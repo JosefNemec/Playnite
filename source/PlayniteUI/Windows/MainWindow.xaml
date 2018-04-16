@@ -8,7 +8,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:pui="clr-namespace:PlayniteUI"
         xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
-        xmlns:m="clr-namespace:Playnite.Models;assembly=Playnite"
+        xmlns:m="clr-namespace:Playnite.SDK.Models;assembly=PlayniteSDK"
         xmlns:c="clr-namespace:PlayniteUI.Controls"
         xmlns:tray="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
@@ -19,11 +19,15 @@
         Visibility="{Binding Visibility, Mode=TwoWay}"
         WindowState="{Binding WindowState, Mode=TwoWay}"              
         x:Name="WindowMain" AutomationProperties.AutomationId="WindowMain"
-        Unloaded="WindowMain_Unloaded">
+        Unloaded="WindowMain_Unloaded"
+        AllowDrop="True">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing" >
             <prism:InvokeCommandAction Command="{Binding WindowClosingCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Drop" >
+            <prism:InvokeCommandAction Command="{Binding FileDroppedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -51,9 +55,10 @@
 
     <c:WindowBase.InputBindings>
         <KeyBinding Key="F8" Command="{Binding OpenThemeTesterCommand}" CommandParameter="{StaticResource False}" />
-        <KeyBinding Key="F5" Command="{Binding LoadGamesCommand}" />
+        <KeyBinding Key="F5" Command="{Binding UpdateGamesCommand}" />
         <KeyBinding Key="F4" Command="{Binding OpenSettingsCommand}" />
         <KeyBinding Key="F11" Command="{Binding OpenFullScreenCommand}" />
+        <KeyBinding Key="F12" Command="{Binding ReloadScriptsCommand}" />
     </c:WindowBase.InputBindings>
 
     <Grid>

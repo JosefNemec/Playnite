@@ -19,7 +19,7 @@
       "PlayniteServices": {
         "commandName": "Project",
         "launchBrowser": true,
-        "launchUrl": "http://localhost:5000/api/patreon/patrons",
+        "launchUrl": "http://localhost:5000/api/",
         "environmentVariables": {
           "ASPNETCORE_ENVIRONMENT": "Development"
         }

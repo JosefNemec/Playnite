@@ -165,10 +165,11 @@ namespace PlayniteUI
                 dictionaries.Add(LoadXaml(fullColorPath));
             }
 
-            CurrentTheme = themeName;
-            CurrentColor = color;
-            CurrentFullscreenTheme = CurrentTheme;
-            CurrentFullscreenColor = CurrentColor;
+
+            CurrentTheme = null;
+            CurrentColor = null;
+            CurrentFullscreenTheme = themeName;
+            CurrentFullscreenColor = color;
         }
 
         public static void ApplyTheme(string themeName, string color, bool forceReload = false)
@@ -183,13 +184,12 @@ namespace PlayniteUI
                 var dictionaries = Application.Current.Resources.MergedDictionaries;
                 var currentThemeDict = dictionaries.FirstOrDefault(a => a.Contains("SkinName"));
                 var currentThemeColorDict = dictionaries.FirstOrDefault(a => a.Contains("SkinColorName"));
-
                 if (currentThemeColorDict != null)
                 {
                     dictionaries.Remove(currentThemeColorDict);
                 }
 
-                var changeThemeBase = CurrentTheme != currentThemeDict["SkinName"].ToString() || string.IsNullOrEmpty(CurrentTheme);
+                var changeThemeBase = string.IsNullOrEmpty(CurrentTheme) || CurrentTheme != currentThemeDict["SkinName"].ToString();
                 if (currentThemeDict != null && changeThemeBase)
                 {
                     dictionaries.Remove(currentThemeDict);

@@ -4,6 +4,7 @@ using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
 using Playnite.Providers.Steam;
 using Playnite.Providers.Uplay;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

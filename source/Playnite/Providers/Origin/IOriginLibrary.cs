@@ -1,5 +1,5 @@
 ﻿using Playnite.Database;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +18,12 @@ namespace Playnite.Providers.Origin
 
         GameTask GetGamePlayTask(GameLocalDataResponse manifest);
 
-        List<IGame> GetInstalledGames(bool useDataCache = false);
+        List<Game> GetInstalledGames(bool useDataCache = false);
 
-        List<IGame> GetLibraryGames();
+        List<Game> GetLibraryGames();
 
         OriginGameMetadata DownloadGameMetadata(string id);
 
-        OriginGameMetadata UpdateGameWithMetadata(IGame game);
+        OriginGameMetadata UpdateGameWithMetadata(Game game);
     }
 }

@@ -2,14 +2,16 @@
 using Playnite;
 using Playnite.Database;
 using Playnite.MetaProviders;
-using Playnite.Models;
 using Playnite.Providers.Steam;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using PlayniteUI.Commands;
 using PlayniteUI.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,7 +24,7 @@ namespace PlayniteUI.ViewModels
     {
         public static Logger Logger = LogManager.GetCurrentClassLogger();
         private static object gamesLock = new object();
-        private bool ignoreCloseActions = false;
+        protected bool ignoreCloseActions = false;
         private readonly SynchronizationContext context;
         
         public IWindowFactory Window;
@@ -30,6 +32,10 @@ namespace PlayniteUI.ViewModels
         public IResourceProvider Resources;
         public GameDatabase Database;
         public GamesEditor GamesEditor;
+        public bool IsFullscreenView
+        {
+            get; protected set;
+        } = false;
 
         private GameDetailsViewModel selectedGameDetails;
         public GameDetailsViewModel SelectedGameDetails
@@ -175,6 +181,17 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        private bool showGameSidebar = false;
+        public bool ShowGameSidebar
+        {
+            get => showGameSidebar;
+            set
+            {
+                showGameSidebar = value;
+                OnPropertyChanged("ShowGameSidebar");
+            }
+        }
+
         private bool mainMenuOpened = false;
         public bool MainMenuOpened
         {
@@ -224,8 +241,8 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private GamesStats gamesStats;
-        public GamesStats GamesStats
+        private DatabaseStats gamesStats;
+        public DatabaseStats GamesStats
         {
             get => gamesStats;
             private set
@@ -267,13 +284,17 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public RelayCommand<IGame> StartGameCommand
+        public RelayCommand<Game> StartGameCommand
         {
-            get => new RelayCommand<IGame>((game) =>
+            get => new RelayCommand<Game>((game) =>
             {
                 if (game != null)
                 {
                     GamesEditor.PlayGame(game);
+                }
+                else if (SelectedGame != null)
+                {
+                    GamesEditor.PlayGame(SelectedGame.Game);
                 }
             });
         }
@@ -287,12 +308,12 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public RelayCommand<object> LoadGamesCommand
+        public RelayCommand<object> UpdateGamesCommand
         {
             get => new RelayCommand<object>((a) =>
             {
                 MainMenuOpened = false;
-                LoadGames(true);
+                UpdateDatabase(true);
             }, (a) => GameAdditionAllowed || !Database.IsOpen);
         }
 
@@ -318,6 +339,7 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 MainMenuOpened = false;
+                ignoreCloseActions = true;
                 ShutdownApp();
             });
         }
@@ -335,6 +357,14 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<CancelEventArgs>((args) =>
             {
                 OnClosing(args);
+            });
+        }
+
+        public RelayCommand<DragEventArgs> FileDroppedCommand
+        {
+            get => new RelayCommand<DragEventArgs>((args) =>
+            {
+                OnFileDropped(args);
             });
         }
 
@@ -433,7 +463,7 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 CancelProgress();
-            }, (a) => !GamesLoaderHandler.CancelToken.IsCancellationRequested);
+            }, (a) => !GlobalTaskHandler.CancelToken.IsCancellationRequested);
         }
 
         public RelayCommand<object> ClearMessagesCommand
@@ -469,6 +499,41 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<ExtensionFunction> InvokeExtensionFunctionCommand
+        {
+            get => new RelayCommand<ExtensionFunction>((f) =>
+            {
+                MainMenuOpened = false;
+                App.CurrentApp.Api?.InvokeExtension(f);
+            });
+        }
+
+        public RelayCommand<object> ReloadScriptsCommand
+        {
+            get => new RelayCommand<object>((f) =>
+            {
+                MainMenuOpened = false;
+                App.CurrentApp.Api?.LoadScripts();
+            });
+        }
+
+        public RelayCommand<GameViewEntry> ShowGameSideBarCommand
+        {
+            get => new RelayCommand<GameViewEntry>((f) =>
+            {
+                SelectedGame = f;
+                ShowGameSidebar = true;
+            });
+        }
+
+        public RelayCommand<object> CloseGameSideBarCommand
+        {
+            get => new RelayCommand<object>((f) =>
+            {
+                ShowGameSidebar = false;
+            });
+        }
+
         public MainViewModel(
             GameDatabase database,
             IWindowFactory window,
@@ -497,7 +562,7 @@ namespace PlayniteUI.ViewModels
 
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
-            GamesStats = new GamesStats(database);
+            GamesStats = new DatabaseStats(database);
         }
 
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -505,6 +570,11 @@ namespace PlayniteUI.ViewModels
             if (e.PropertyName != "Active")
             {
                 AppSettings.SaveSettings();
+
+                if (e.PropertyName != "Name")
+                {
+                    AppSettings.FilterPanelVisible = true;
+                }
             }
         }
 
@@ -548,32 +618,13 @@ namespace PlayniteUI.ViewModels
 
         public void ShutdownApp()
         {
-            Application.Current.Shutdown();
+            App.CurrentApp.Quit();
         }
 
-        public async void LoadGames(bool updateLibrary)
+        protected void InitializeView()
         {
-            await LoadGames(updateLibrary, 0, true);
-        }
-
-        public async Task LoadGames(bool updateLibrary, ulong steamImportCatId, bool metaForNewGames)
-        {
-            if (string.IsNullOrEmpty(AppSettings.DatabasePath))
-            {
-                throw new Exception("Cannot load games, database path is not set.");
-            }
-
-            if (GamesLoaderHandler.ProgressTask != null && GamesLoaderHandler.ProgressTask.Status == TaskStatus.Running)
-            {
-                GamesLoaderHandler.CancelToken.Cancel();
-                await GamesLoaderHandler.ProgressTask;
-            }
-
-            GameAdditionAllowed = false;
-
             try
             {
-                Database.CloseDatabase();
                 if (GameDatabase.GetMigrationRequired(AppSettings.DatabasePath))
                 {
                     var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(),
@@ -601,7 +652,10 @@ namespace PlayniteUI.ViewModels
                     }
                 }
 
-                Database.OpenDatabase(AppSettings.DatabasePath);
+                if (!Database.IsOpen)
+                {
+                    Database.OpenDatabase();
+                }
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -620,13 +674,12 @@ namespace PlayniteUI.ViewModels
                 GameAdditionAllowed = false;
                 return;
             }
-            
-            GamesView?.Dispose();
-            GamesView = new GamesCollectionView(Database, AppSettings);
+
+            GamesView = new GamesCollectionView(Database, AppSettings, IsFullscreenView);
             BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
             if (GamesView.CollectionView.Count > 0)
             {
-                SelectedGame = GamesView.CollectionView.GetItemAt(0) as GameViewEntry;
+                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).ProviderId);
             }
             else
             {
@@ -641,6 +694,27 @@ namespace PlayniteUI.ViewModels
             {
                 Logger.Error(exc, "Failed to set update JumpList data: ");
             }
+        }
+
+        public async void UpdateDatabase(bool updateLibrary)
+        {
+            await UpdateDatabase(updateLibrary, 0, true);
+        }
+
+        public async Task UpdateDatabase(bool updateLibrary, ulong steamImportCatId, bool metaForNewGames)
+        {
+            if (!Database.IsOpen)
+            {
+                throw new Exception("Cannot load new games, database is not loaded.");
+            }
+
+            if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
+            {
+                GlobalTaskHandler.CancelToken.Cancel();
+                await GlobalTaskHandler.ProgressTask;
+            }
+
+            GameAdditionAllowed = false;           
 
             try
             {
@@ -649,10 +723,10 @@ namespace PlayniteUI.ViewModels
                     return;
                 }
 
-                GamesLoaderHandler.CancelToken = new CancellationTokenSource();
-                GamesLoaderHandler.ProgressTask = Task.Factory.StartNew(() =>
+                GlobalTaskHandler.CancelToken = new CancellationTokenSource();
+                GlobalTaskHandler.ProgressTask = Task.Factory.StartNew(() =>
                 {
-                    var addedGames = new List<IGame>();
+                    var addedGames = new List<Game>();
                     ProgressVisible = true;
                     ProgressValue = 0;
                     ProgressTotal = 1;
@@ -851,17 +925,17 @@ namespace PlayniteUI.ViewModels
                         metaSettings.ConfigureFields(MetadataSource.Store, true);
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                        var downloader = new MetadataDownloader(AppSettings.IGDBApiKey);
+                        var downloader = new MetadataDownloader();
                         downloader.DownloadMetadataThreaded(
                             addedGames,
                             Database,
                             metaSettings,
                             (g, i, t) => ProgressValue = i + 1,
-                            GamesLoaderHandler.CancelToken).Wait();
+                            GlobalTaskHandler.CancelToken).Wait();
                     }
                 });
 
-                await GamesLoaderHandler.ProgressTask;
+                await GlobalTaskHandler.ProgressTask;
             }
             finally
             {
@@ -872,7 +946,7 @@ namespace PlayniteUI.ViewModels
 
         public async Task DownloadMetadata(MetadataDownloaderSettings settings)
         {
-            List<IGame> games = null;
+            List<Game> games = null;
             if (settings.GamesSource == MetadataGamesSource.Selected)
             {
                 if (SelectedGames != null && SelectedGames.Count() > 0)
@@ -897,21 +971,21 @@ namespace PlayniteUI.ViewModels
 
             try
             {
-                if (GamesLoaderHandler.ProgressTask != null && GamesLoaderHandler.ProgressTask.Status == TaskStatus.Running)
+                if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
                 {
-                    GamesLoaderHandler.CancelToken.Cancel();
-                    await GamesLoaderHandler.ProgressTask;
+                    GlobalTaskHandler.CancelToken.Cancel();
+                    await GlobalTaskHandler.ProgressTask;
                 }
 
-                GamesLoaderHandler.CancelToken = new CancellationTokenSource();
+                GlobalTaskHandler.CancelToken = new CancellationTokenSource();
                 ProgressVisible = true;
                 ProgressValue = 0;
                 ProgressTotal = games.Count;
                 ProgressStatus = Resources.FindString("ProgressMetadata");
-                var downloader = new MetadataDownloader(AppSettings.IGDBApiKey);
-                GamesLoaderHandler.ProgressTask =
-                    downloader.DownloadMetadataThreaded(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GamesLoaderHandler.CancelToken);
-                await GamesLoaderHandler.ProgressTask;
+                var downloader = new MetadataDownloader();
+                GlobalTaskHandler.ProgressTask =
+                    downloader.DownloadMetadataThreaded(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GlobalTaskHandler.CancelToken);
+                await GlobalTaskHandler.ProgressTask;
             }
             finally
             {
@@ -978,9 +1052,9 @@ namespace PlayniteUI.ViewModels
 
             if (model.OpenView() == true)
             {
-                if (model.ProviderIntegrationChanged || model.DatabaseLocationChanged)
+                if (model.ProviderIntegrationChanged)
                 {
-                    LoadGames(true);
+                    UpdateDatabase(true);
                 }
             }
             else
@@ -1002,7 +1076,13 @@ namespace PlayniteUI.ViewModels
             AppSettings.GamesViewType = type;
         }
 
-        private void OnClosing(CancelEventArgs args)
+        public void SelectGame(string providerId)
+        {
+            var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.ProviderId == providerId);
+            SelectedGame = viewEntry;
+        }
+
+        protected virtual void OnClosing(CancelEventArgs args)
         {
             if (ignoreCloseActions)
             {
@@ -1017,6 +1097,43 @@ namespace PlayniteUI.ViewModels
             else
             {
                 ShutdownApp();
+            }
+        }
+
+        private void OnFileDropped(DragEventArgs args)
+        {
+            if (args.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var files = (string[])args.Data.GetData(DataFormats.FileDrop);
+                if (files.Count() == 1)
+                {
+                    Window.BringToForeground();
+
+                    var path = files[0];
+                    if (File.Exists(path))
+                    {
+                        // Other file types to be added in #501
+                        if (!(new List<string>() { ".exe", ".lnk" }).Contains(Path.GetExtension(path).ToLower()))
+                        {
+                            return;
+                        }
+
+                        var game = Programs.GetGameFromExecutable(path);
+                        Database.AddGame(game);
+                        Database.AssignPcPlatform(game);
+                        GamesEditor.EditGame(game);
+                        SelectGame(game.ProviderId);
+                    }
+                    else if (Directory.Exists(path))
+                    {
+                        var instMode = new InstalledGamesViewModel(
+                           Database,
+                           InstalledGamesWindowFactory.Instance,
+                           Dialogs);
+
+                        instMode.OpenView(path);
+                    }
+                }
             }
         }
 
@@ -1055,16 +1172,18 @@ namespace PlayniteUI.ViewModels
 
         public void OpenFullScreen()
         {
-            (Application.Current as App).OpenFullscreenView();            
+            CloseView();
+            App.CurrentApp.OpenFullscreenView();            
         }
 
         public void OpenView()
         {
             Window.Show(this);
             Window.BringToForeground();
+            InitializeView();
         }
 
-        public void CloseView()
+        public virtual void CloseView()
         {
             ignoreCloseActions = true;
             Window.Close();
@@ -1074,16 +1193,16 @@ namespace PlayniteUI.ViewModels
 
         public async void CancelProgress()
         {
-            GamesLoaderHandler.CancelToken.Cancel();
-            await GamesLoaderHandler.ProgressTask;
+            GlobalTaskHandler.CancelToken.Cancel();
+            await GlobalTaskHandler.ProgressTask;
         }        
 
-        public void ClearFilters()
+        public virtual void ClearFilters()
         {
             AppSettings.FilterSettings.ClearFilters();
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             GamesView.Dispose();
             GamesStats.Dispose();

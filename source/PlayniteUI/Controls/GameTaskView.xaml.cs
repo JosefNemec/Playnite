@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using System.ComponentModel;
 
 namespace PlayniteUI
@@ -245,7 +245,7 @@ namespace PlayniteUI
                 return;
             }
 
-            if (GameTask.EmulatorId != null && Emulators.Any(a => a.Id == GameTask.EmulatorId))
+            if (GameTask?.EmulatorId != null && Emulators.Any(a => a.Id == GameTask?.EmulatorId))
             {
                 ComboEmulatorConfig.SelectedItem = Emulators.First(a => a.Id == GameTask.EmulatorId).Profiles?.FirstOrDefault();
             }
@@ -259,7 +259,7 @@ namespace PlayniteUI
                 return;
             }
             
-            if (GameTask.EmulatorId != null && Emulators.Any(a => a.Id == GameTask.EmulatorId))
+            if (GameTask?.EmulatorId != null && Emulators.Any(a => a.Id == GameTask?.EmulatorId))
             {
                 var emulator = Emulators.First(a => a.Id == GameTask.EmulatorId);
                 var emulatorProfile = emulator.Profiles?.FirstOrDefault(a => a.Id == GameTask.EmulatorProfileId);

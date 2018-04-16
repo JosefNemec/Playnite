@@ -25,4 +25,44 @@ namespace PlayniteServices.Models.Steam
             get; set;
         }
     }
+
+    public class SteamStoreAppCache
+    {
+        [BsonId(false)]
+        [BsonIndex(true)]
+        public string Id
+        {
+            get; set;
+        }
+
+        public string Data
+        {
+            get; set;
+        }
+
+        public DateTime CreationTime
+        {
+            get; set;
+        }
+    }
+
+    public class SteamAppInfoCache
+    {
+        [BsonId(false)]
+        [BsonIndex(true)]
+        public string Id
+        {
+            get; set;
+        }
+
+        public string Data
+        {
+            get; set;
+        }
+
+        public DateTime CreationTime
+        {
+            get; set;
+        }
+    }
 }

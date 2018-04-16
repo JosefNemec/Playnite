@@ -189,6 +189,7 @@ namespace Playnite.Providers.GOG
             public SluggedName developer;
             public int? releaseDate;
             public int id;
+            public int rating;
         }
 
         public ProductDetails gameProductData;

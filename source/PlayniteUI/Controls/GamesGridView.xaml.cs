@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Playnite.Database;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using Playnite;
 using System.ComponentModel;
 
@@ -172,30 +172,6 @@ namespace PlayniteUI.Controls
             else
             {
                 AppSettings.SortingOrder = sortOrder;
-            }
-        }
-
-        private void Expander_Collapsed(object sender, RoutedEventArgs e)
-        {
-            var group = (CollectionViewGroup)((Expander)sender).DataContext;
-            if (group.Name is CategoryView category)
-            {
-                if (!Settings.Instance.CollapsedCategories.Contains(category.Category))
-                {
-                    Settings.Instance.CollapsedCategories.Add(category.Category);
-                }
-            }
-        }
-
-        private void Expander_Expanded(object sender, RoutedEventArgs e)
-        {
-            var group = (CollectionViewGroup)((Expander)sender).DataContext;
-            if (group.Name is CategoryView category)
-            {
-                if (Settings.Instance.CollapsedCategories.Contains(category.Category))
-                {
-                    Settings.Instance.CollapsedCategories.Remove(category.Category);
-                }
             }
         }
     }

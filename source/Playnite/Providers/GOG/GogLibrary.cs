@@ -2,10 +2,11 @@
 using NLog;
 using Playnite.Database;
 using Playnite.Models;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.SQLite;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace Playnite.Providers.GOG
         
         public void CacheGogDatabases(string targetPath, string dbfile)
         {
-            FileSystem.CreateFolder(targetPath);
+            FileSystem.CreateDirectory(targetPath);
             var source = Path.Combine(GogSettings.DBStoragePath, dbfile);
             File.Copy(source, Path.Combine(targetPath, dbfile), true);
         }
@@ -35,7 +36,7 @@ namespace Playnite.Providers.GOG
         {
             var gameInfoPath = Path.Combine(installDir, string.Format("goggame-{0}.info", gameId));
             var gameTaskData = JsonConvert.DeserializeObject<GogGameTaskInfo>(File.ReadAllText(gameInfoPath));
-            var playTask = gameTaskData.playTasks.First(a => a.isPrimary).ConvertToGenericTask(installDir);
+            var playTask = gameTaskData.playTasks.FirstOrDefault(a => a.isPrimary)?.ConvertToGenericTask(installDir);
             var otherTasks = new ObservableCollection<GameTask>();
 
             foreach (var task in gameTaskData.playTasks.Where(a => !a.isPrimary))
@@ -54,9 +55,9 @@ namespace Playnite.Providers.GOG
             return new Tuple<GameTask, ObservableCollection<GameTask>>(playTask, otherTasks.Count > 0 ? otherTasks : null);
         }
 
-        public List<IGame> GetInstalledGamesFromRegistry()
+        public List<Game> GetInstalledGames()
         {
-            var games = new List<IGame>();
+            var games = new List<Game>();
             var programs = Programs.GetUnistallProgramsList();
             foreach (var program in programs)
             {
@@ -66,18 +67,30 @@ namespace Playnite.Providers.GOG
                     continue;
                 }
 
+                if (!Directory.Exists(program.InstallLocation))
+                {
+                    continue;
+                }
+
                 var gameId = match.Groups[1].Value;
                 var game = new Game()
                 {
-                    InstallDirectory = program.InstallLocation,
+                    InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                     ProviderId = gameId,
                     Provider = Provider.GOG,
+                    Source = "GOG",
                     Name = program.DisplayName
                 };
 
                 try
                 {
                     var tasks = GetGameTasks(game.ProviderId, game.InstallDirectory);
+                    // Empty play task = DLC
+                    if (tasks.Item1 == null)
+                    {
+                        continue;
+                    }
+
                     game.PlayTask = tasks.Item1;
                     game.OtherTasks = tasks.Item2;
                 }
@@ -92,104 +105,7 @@ namespace Playnite.Providers.GOG
             return games;
         }
 
-        public List<IGame> GetInstalledGamesFromGalaxy()
-        {
-            if (!File.Exists(Path.Combine(GogSettings.DBStoragePath, "index.db")))
-            {
-                throw new Exception("Cannot import GOG installed games, GOG Galaxy is not installed.");
-            }
-
-            var targetIndexPath = Path.Combine(Paths.TempPath, "index.db");
-            CacheGogDatabases(Paths.TempPath, "index.db");
-
-            var games = new List<IGame>();
-
-            var db = new SQLiteConnection(@"Data Source=" + targetIndexPath);
-            db.Open();
-
-            try
-            {
-                SQLiteCommand command;
-                SQLiteDataReader reader;
-
-                var gameNames = new Dictionary<int, string>();
-                string productsNames = "select * from AvailableGameIDNames";
-                command = new SQLiteCommand(productsNames, db);
-                reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    var productId = int.Parse(reader["productId"].ToString());
-                    var gameID = int.Parse(reader["gameID"].ToString());
-
-                    // Ignore DLC
-                    if (productId == gameID)
-                    {
-                        gameNames.Add(productId, reader["name"].ToString());
-                    }
-                }
-
-                string products = "select * from Products";
-                command = new SQLiteCommand(products, db);
-                reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    int id = int.Parse(reader["productId"].ToString());
-
-                    // Load only installed games
-                    int instState = int.Parse(reader["installationState"].ToString());
-                    if (instState != 3)
-                    {
-                        logger.Info("Skipping game " + id + ", not fully installed yet.");
-                        continue;
-                    }
-
-                    var game = new Game()
-                    {
-                        InstallDirectory = reader["localpath"].ToString(),
-                        ProviderId = id.ToString(),
-                        Provider = Provider.GOG,
-                        Name = gameNames[id]
-                    };
-
-                    try
-                    {
-                        var tasks = GetGameTasks(game.ProviderId, game.InstallDirectory);
-                        game.PlayTask = tasks.Item1;
-                        game.OtherTasks = tasks.Item2;
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        logger.Error(e, $"Failed to get action for GOG game {game.ProviderId}, game not imported.");
-                    }
-
-                    games.Add(game);
-                }
-            }
-            finally
-            {
-                db.Close();
-            }
-
-            return games;
-        }
-
-        public List<IGame> GetInstalledGames(InstalledGamesSource source)
-        {
-            if (source == InstalledGamesSource.Galaxy)
-            {
-                logger.Info("Importing installed GOG games via Galaxy.");
-                return GetInstalledGamesFromGalaxy();
-            }
-            else
-            {
-                logger.Info("Importing installed GOG games via registry.");
-                return GetInstalledGamesFromRegistry();
-            }
-        }
-
-        public List<IGame> GetLibraryGames()
+        public List<Game> GetLibraryGames()
         {
             using (var api = new WebApiClient())
             {
@@ -198,7 +114,7 @@ namespace Playnite.Providers.GOG
                     throw new Exception("User is not logged in.");
                 }
 
-                var games = new List<IGame>();
+                var games = new List<Game>();
                 var libGames = api.GetOwnedGames();
                 if (libGames == null)
                 {
@@ -210,6 +126,7 @@ namespace Playnite.Providers.GOG
                     games.Add(new Game()
                     {
                         Provider = Provider.GOG,
+                        Source = "GOG",
                         ProviderId = game.id.ToString(),
                         Name = game.title,
                         ReleaseDate = game.releaseDate.date,
@@ -264,7 +181,7 @@ namespace Playnite.Providers.GOG
             return metadata;
         }
 
-        public GogGameMetadata UpdateGameWithMetadata(IGame game)
+        public GogGameMetadata UpdateGameWithMetadata(Game game)
         {
             var currentUrl = string.Empty;
             var metadata = DownloadGameMetadata(game.ProviderId, currentUrl);
@@ -296,6 +213,7 @@ namespace Playnite.Providers.GOG
                 game.Genres = new ComparableList<string>(metadata.StoreDetails.genres.Select(a => a.name));
                 game.Developers = new ComparableList<string>() { metadata.StoreDetails.developer.name };
                 game.Publishers = new ComparableList<string>() { metadata.StoreDetails.publisher.name };
+                game.CommunityScore = metadata.StoreDetails.rating != 0 ? metadata.StoreDetails.rating * 2 : (int?)null;
 
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
                 game.Tags = new ComparableList<string>(metadata.StoreDetails.features?.Select(a => cultInfo.ToTitleCase(a.title)));

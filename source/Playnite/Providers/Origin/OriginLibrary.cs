@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Web;
 using NLog;
 using Playnite.Models;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using Playnite.Providers.Steam;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -106,7 +108,7 @@ namespace Playnite.Providers.Origin
             else if (useDataCache == true && !File.Exists(cacheFile))
             {
                 logger.Debug($"Downloading game manifest {id}");
-                FileSystem.CreateFolder(OriginPaths.CachePath);
+                FileSystem.CreateDirectory(OriginPaths.CachePath);
 
                 try
                 {
@@ -162,10 +164,10 @@ namespace Playnite.Providers.Origin
             return playTask;
         }
 
-        public List<IGame> GetInstalledGames(bool useDataCache = false)
+        public List<Game> GetInstalledGames(bool useDataCache = false)
         {
             var contentPath = Path.Combine(OriginPaths.DataPath, "LocalContent");
-            var games = new List<IGame>();
+            var games = new List<Game>();
 
             if (Directory.Exists(contentPath))
             {
@@ -192,6 +194,7 @@ namespace Playnite.Providers.Origin
                         var newGame = new Game()
                         {
                             Provider = Provider.Origin,
+                            Source = "Origin",
                             ProviderId = gameId
                         };
 
@@ -229,7 +232,7 @@ namespace Playnite.Providers.Origin
 
                         newGame.InstallDirectory = Path.GetDirectoryName(installPath);
                         newGame.PlayTask = GetGamePlayTask(localData);
-                        if (newGame.PlayTask.Type == GameTaskType.File)
+                        if (newGame.PlayTask?.Type == GameTaskType.File)
                         {
                             newGame.PlayTask.WorkingDir = newGame.PlayTask.WorkingDir.Replace(newGame.InstallDirectory, "{InstallDir}");
                             newGame.PlayTask.Path = newGame.PlayTask.Path.Replace(newGame.InstallDirectory, "{InstallDir}");
@@ -247,7 +250,7 @@ namespace Playnite.Providers.Origin
             return games;
         }
 
-        public List<IGame> GetLibraryGames()
+        public List<Game> GetLibraryGames()
         {
             using (var api = new WebApiClient())
             {
@@ -273,13 +276,14 @@ namespace Playnite.Providers.Origin
                     throw new Exception("Access error: " + info.error);
                 }
 
-                var games = new List<IGame>();
+                var games = new List<Game>();
 
                 foreach (var game in api.GetOwnedGames(info.pid.pidId, token).Where(a => a.offerType == "basegame"))
                 {
                     games.Add(new Game()
                     {
                         Provider = Provider.Origin,
+                        Source = "Origin",
                         ProviderId = game.offerId,
                         Name = game.offerId
                     });
@@ -309,7 +313,7 @@ namespace Playnite.Providers.Origin
             return data;
         }
 
-        public OriginGameMetadata UpdateGameWithMetadata(IGame game)
+        public OriginGameMetadata UpdateGameWithMetadata(Game game)
         {
             var metadata = DownloadGameMetadata(game.ProviderId);
             game.Name = StringExtensions.NormalizeGameName(metadata.StoreDetails.i18n.displayName);

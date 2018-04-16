@@ -117,10 +117,12 @@
                         <DockPanel Margin="0,10,0,0">
                             <TextBlock Text="{DynamicResource SettingsDBLocation}" Margin="5,0,10,0"
                                    DockPanel.Dock="Left" VerticalAlignment="Center"/>
-                            <Button Name="ButtonBrowserDbFile" Content="..." DockPanel.Dock="Right" Padding="5,0,5,0"
+                            <Button Name="ButtonBrowserDbFile" Content="{DynamicResource Change}"
+                                    DockPanel.Dock="Right" Padding="5,0,5,0"
                                     Command="{Binding SelectDbFileCommand}"/>
                             <TextBox Name="TextDatabase" Text="{Binding Settings.DatabasePath}"
-                                        DockPanel.Dock="Left" Margin="0,0,5,0"/>
+                                     DockPanel.Dock="Left" Margin="0,0,5,0"
+                                     IsReadOnly="True"/>
                         </DockPanel>
 
                         <DockPanel Margin="0,15,0,5" LastChildFill="False">
@@ -165,6 +167,7 @@
                                 <RowDefinition />
                                 <RowDefinition />
                                 <RowDefinition />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
                             <CheckBox Name="CheckEnableTray" Content="{DynamicResource SettingsShowTray}" Margin="5,0,0,0"
                                             IsChecked="{Binding Settings.EnableTray}"
@@ -183,6 +186,8 @@
                                 <TextBlock Text="{DynamicResource SettingsAfterGameStart}" Margin="0,0,5,0"
                                            VerticalAlignment="Center" />
                                 <ContentControl DataContext="{Binding Settings}"
+                                                ToolTipService.InitialShowDelay="0"
+                                                ToolTip="{DynamicResource SettingsClosePlaytimeNotif}"
                                                 Content="{StaticResource ComboAfterGameOptions}" />
                             </StackPanel>
 
@@ -190,9 +195,9 @@
                                       Content="{DynamicResource SettingsUpdateLibStartup}" ToolTip="{DynamicResource SettingsUpdateLibStartupTooltip}" 
                                       IsChecked="{Binding Settings.UpdateLibStartup}"/>
 
-                            <!--<CheckBox Name="CheckStartFullscreen" Margin="5,15,5,5" Grid.Row="2" Grid.ColumnSpan="2"
+                            <CheckBox Name="CheckStartFullscreen" Margin="5,15,5,5" Grid.Row="4" Grid.ColumnSpan="2"
                                       Content="{DynamicResource SettingsStartInFullscreen}"
-                                      IsChecked="{Binding Settings.StartInFullscreen}"/>-->
+                                      IsChecked="{Binding Settings.StartInFullscreen}"/>
                         </Grid>
                     </StackPanel>
                 </TabItem>                
@@ -227,6 +232,36 @@
                                       SelectionChanged="CombSkinColor_SelectionChanged"
                                       ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkins}" />
                         </Grid>
+
+                        <!--<Grid Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{DynamicResource SettingsSkinFullscreen}" VerticalAlignment="Center"
+                                        Grid.Row="0" Grid.Column="0"/>
+                            <ComboBox Margin="10,5,10,5" Name="ComboSkinsFullscreen"
+                                        Grid.Row="0" Grid.Column="1"
+                                        ItemsSource="{Binding AvailableFullscreenSkins}"
+                                        SelectedValue="{Binding Settings.SkinFullscreen}"
+                                        SelectionChanged="ComboSkinsFullscreen_SelectionChanged"
+                                        SelectedValuePath="Name" DisplayMemberPath="Name" />
+
+                            <TextBlock Text="{DynamicResource SettingsSkinColorFullscreen}" VerticalAlignment="Center"
+                                        Grid.Row="0" Grid.Column="2" />
+                            <ComboBox Margin="10,5,0,5" Name="CombSkinColorFullscreen"
+                                        Grid.Row="0" Grid.Column="3"
+                                        SelectedValue="{Binding Settings.SkinColorFullscreen}"
+                                        ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkinsFullscreen}">
+                            </ComboBox>
+                        </Grid>-->
+
                         <TextBlock Text="{DynamicResource SettingsSkinChangeRestart}" FontStyle="Italic" Margin="0,15,0,15"/>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock >
@@ -242,34 +277,7 @@
                                 </Hyperlink>
                             </TextBlock>
                         </StackPanel>
-
-                        <!--<Grid Margin="0,10,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="{DynamicResource SettingsSkinFullscreen}" VerticalAlignment="Center"
-                                        Grid.Row="0" Grid.Column="0"/>
-                            <ComboBox Margin="10,5,0,5" Name="ComboSkinsFullscreen"
-                                        Grid.Row="0" Grid.Column="1"
-                                        ItemsSource="{Binding AvailableFullscreenSkins}"
-                                        SelectedValue="{Binding Settings.SkinFullscreen}"
-                                        SelectionChanged="ComboSkinsFullscreen_SelectionChanged"
-                                        SelectedValuePath="Name" DisplayMemberPath="Name" />
-
-                            <TextBlock Text="{DynamicResource SettingsSkinColorFullscreen}" VerticalAlignment="Center"
-                                        Grid.Row="1" Grid.Column="0" />
-                            <ComboBox Margin="10,5,0,5" Name="CombSkinColorFullscreen"
-                                        Grid.Row="1" Grid.Column="1"
-                                        SelectedValue="{Binding Settings.SkinColorFullscreen}"
-                                        ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkinsFullscreen}">
-                            </ComboBox>
-                        </Grid>-->
+                       
                         <CheckBox Content="{DynamicResource SettingsAsyncImageLoading}" ToolTip="{DynamicResource SettingsAsyncImageLoadingTooltip}"
                                   Margin="0,40,0,0"
                                   Name="CheckAsyncImages" IsChecked="{Binding Settings.AsyncImageLoading}"/>
@@ -290,10 +298,15 @@
                                         IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
                                         DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <RadioButton Name="RadioLibrarySteam" Content="{DynamicResource SettingsImportLibraryLabel}"
+                        <RadioButton Name="RadioLibrarySteam"
                                         IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,0"/>
+                                        DockPanel.Dock="Top" Margin="20,5,5,0">
+                            <RadioButton.Content>
+                                <TextBlock Text="{DynamicResource SettingsImportSteamLibraryLabel}"
+                                       TextWrapping="Wrap" />
+                            </RadioButton.Content>
+                        </RadioButton>
 
                         <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
                             <TextBlock Text="{DynamicResource SettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5"/>

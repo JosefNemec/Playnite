@@ -10,6 +10,8 @@ using Playnite.Models;
 using System.Globalization;
 using Playnite.Database;
 using System.IO;
+using Playnite.SDK.Models;
+using Playnite.SDK;
 
 namespace Playnite.MetaProviders
 {
@@ -92,6 +94,16 @@ namespace Playnite.MetaProviders
             {
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
                 game.Tags = new ComparableList<string>(dbGame.game_modes.Select(a => cultInfo.ToTitleCase(a)));
+            }
+
+            if (dbGame.aggregated_rating != 0)
+            {
+                game.CriticScore = Convert.ToInt32(dbGame.aggregated_rating);
+            }
+
+            if (dbGame.rating != 0)
+            {
+                game.CommunityScore = Convert.ToInt32(dbGame.rating);
             }
 
             return game;

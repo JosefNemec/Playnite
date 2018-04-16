@@ -7,6 +7,15 @@
       ImageExtensions: [conf]  
       ExecutableLookup: ^dosbox\.exe
 
+- Name: PCem
+  Website: 'https://pcem-emulator.co.uk/'
+  Profiles:
+    - Name: Default
+      DefaultArguments: '--config "{ImagePath}"'
+      Platforms: [PC]
+      ImageExtensions: [cfg]  
+      ExecutableLookup: ^pcem\.exe
+
 - Name: NullDC
   Website: 'http://segaretro.org/NullDC'
   Profiles:

@@ -1,4 +1,5 @@
 ﻿using Playnite.Models;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace Playnite.Providers.Uplay
     {
         GameTask GetGamePlayTask(string id);
 
-        List<IGame> GetInstalledGames();
+        List<Game> GetInstalledGames();
 
-        GameMetadata UpdateGameWithMetadata(IGame game);
+        GameMetadata UpdateGameWithMetadata(Game game);
     }
 }

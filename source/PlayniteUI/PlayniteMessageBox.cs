@@ -1,4 +1,5 @@
-﻿using PlayniteUI.Windows;
+﻿using Playnite.SDK;
+using PlayniteUI.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,30 +10,23 @@ using System.Windows;
 
 namespace PlayniteUI
 {
-    public interface IDialogsFactory
-    {
-        MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options);
-        MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult);
-        MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon);
-        MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button);
-        MessageBoxResult ShowMessage(string messageBoxText, string caption);
-        MessageBoxResult ShowMessage(string messageBoxText);
-        string SelectFolder();
-        string SelectFile(string filter);
-        List<string> SelectFiles(string filter);
-        string SelectIconFile();
-        string SelectImagefile();
-        string SaveFile(string filter);
-        string SaveFile(string filter, bool promptOverwrite);
-        MessageBoxResult SelectString(string messageBoxText, string caption, out string input);
-    }
-
     public class DialogsFactory : IDialogsFactory
     {
         private readonly SynchronizationContext context;
 
+        public bool IsFullscreen
+        {
+            get; set;
+        }
+
         public DialogsFactory()
         {
+            context = SynchronizationContext.Current;
+        }
+
+        public DialogsFactory(bool fullscreen)
+        {
+            IsFullscreen = fullscreen;
             context = SynchronizationContext.Current;
         }
 
@@ -82,48 +76,151 @@ namespace PlayniteUI
             return Invoke(() => Dialogs.SelectImageFile(PlayniteWindows.CurrentWindow));
         }
 
-        public MessageBoxResult SelectString(string messageBoxText, string caption, out string input)
+        public StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput)
         {
-            var result = MessageBoxResult.None;
-            input = string.Empty;
-            var inpt = input ?? string.Empty;
-            context.Send((a) =>
+            if (IsFullscreen)
             {
-                result = Dialogs.SelectString(PlayniteWindows.CurrentWindow, messageBoxText, caption, out inpt);
-            }, null);
-
-            input = inpt;
-            return result;
+                return Invoke(() => Dialogs.SelectStringFullscreen(PlayniteWindows.CurrentWindow, messageBoxText, caption, defaultInput));
+            }
+            else
+            {
+                return Invoke(() => Dialogs.SelectString(PlayniteWindows.CurrentWindow, messageBoxText, caption, defaultInput));
+            }
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
         {
-            return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption, button, icon, defaultResult, options));
+            if (IsFullscreen)
+            {
+                return Invoke(() => PlayniteMessageBoxFullscreen.Show(messageBoxText, caption, button, icon, defaultResult, options));
+            }
+            else
+            {
+                return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption, button, icon, defaultResult, options));
+            }
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult)
         {
-            return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption, button, icon, defaultResult));
+            if (IsFullscreen)
+            {
+                return Invoke(() => PlayniteMessageBoxFullscreen.Show(messageBoxText, caption, button, icon, defaultResult));
+            }
+            else
+            {
+                return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption, button, icon, defaultResult));
+            }
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon)
         {
-            return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption, button, icon));
+            if (IsFullscreen)
+            {
+                return Invoke(() => PlayniteMessageBoxFullscreen.Show(messageBoxText, caption, button, icon));
+            }
+            else
+            {
+                return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption, button, icon));
+            }
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button)
         {
-            return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption, button));
+            if (IsFullscreen)
+            {
+                return Invoke(() => PlayniteMessageBoxFullscreen.Show(messageBoxText, caption, button));
+            }
+            else
+            {
+                return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption, button));
+            }
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText, string caption)
         {
-            return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption));
+            if (IsFullscreen)
+            {
+                return Invoke(() => PlayniteMessageBoxFullscreen.Show(messageBoxText, caption));
+            }
+            else
+            {
+                return Invoke(() => PlayniteMessageBox.Show(messageBoxText, caption));
+            }
         }
 
         public MessageBoxResult ShowMessage(string messageBoxText)
         {
-            return Invoke(() => PlayniteMessageBox.Show(messageBoxText));
+            if (IsFullscreen)
+            {
+                return Invoke(() => PlayniteMessageBoxFullscreen.Show(messageBoxText));
+            }
+            else
+            {
+                return Invoke(() => PlayniteMessageBox.Show(messageBoxText));
+            }
+        }
+    }
+
+    public class PlayniteMessageBoxFullscreen
+    {
+        public static MessageBoxResult Show(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
+        {
+            return Show(PlayniteWindows.CurrentWindow, messageBoxText, caption, button, icon, defaultResult, options);
+        }
+
+        public static MessageBoxResult Show(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult)
+        {
+            return Show(PlayniteWindows.CurrentWindow, messageBoxText, caption, button, icon, defaultResult);
+        }
+
+        public static MessageBoxResult Show(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon)
+        {
+            return Show(PlayniteWindows.CurrentWindow, messageBoxText, caption, button, icon);
+        }
+
+        public static MessageBoxResult Show(string messageBoxText, string caption, MessageBoxButton button)
+        {
+            return Show(PlayniteWindows.CurrentWindow, messageBoxText, caption, button);
+        }
+
+        public static MessageBoxResult Show(string messageBoxText, string caption)
+        {
+            return Show(PlayniteWindows.CurrentWindow, messageBoxText, caption);
+        }
+
+        public static MessageBoxResult Show(string messageBoxText)
+        {
+            return Show(PlayniteWindows.CurrentWindow, messageBoxText);
+        }
+
+        public static MessageBoxResult Show(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
+        {
+            return (new FullscreenMessageBoxWindow()).Show(owner, messageBoxText, caption, button, icon, defaultResult, options);
+        }
+
+        public static MessageBoxResult Show(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult)
+        {
+            return (new FullscreenMessageBoxWindow()).Show(owner, messageBoxText, caption, button, icon, defaultResult, MessageBoxOptions.None);
+        }
+
+        public static MessageBoxResult Show(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon)
+        {
+            return (new FullscreenMessageBoxWindow()).Show(owner, messageBoxText, caption, button, icon, MessageBoxResult.None, MessageBoxOptions.None);
+        }
+
+        public static MessageBoxResult Show(Window owner, string messageBoxText, string caption, MessageBoxButton button)
+        {
+            return (new FullscreenMessageBoxWindow()).Show(owner, messageBoxText, caption, button, MessageBoxImage.None, MessageBoxResult.None, MessageBoxOptions.None);
+        }
+
+        public static MessageBoxResult Show(Window owner, string messageBoxText, string caption)
+        {
+            return (new FullscreenMessageBoxWindow()).Show(owner, messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.None, MessageBoxResult.None, MessageBoxOptions.None);
+        }
+
+        public static MessageBoxResult Show(Window owner, string messageBoxText)
+        {
+            return (new FullscreenMessageBoxWindow()).Show(owner, messageBoxText, string.Empty, MessageBoxButton.OK, MessageBoxImage.None, MessageBoxResult.None, MessageBoxOptions.None);
         }
     }
 

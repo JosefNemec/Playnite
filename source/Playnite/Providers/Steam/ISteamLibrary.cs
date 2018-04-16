@@ -1,5 +1,5 @@
 ﻿using Playnite.Database;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +10,21 @@ namespace Playnite.Providers.Steam
 {
     public interface ISteamLibrary
     {
-        IGame GetInstalledGameFromFile(string path);
+        Game GetInstalledGameFromFile(string path);
 
-        List<IGame> GetInstalledGamesFromFolder(string path);
+        List<Game> GetInstalledGamesFromFolder(string path);
 
-        List<IGame> GetInstalledGames();
+        List<Game> GetInstalledGames();
 
-        List<IGame> GetLibraryGames(SteamSettings settings);
+        List<Game> GetLibraryGames(SteamSettings settings);
 
-        List<IGame> GetLibraryGames(string userName, string apiKey);
+        List<Game> GetLibraryGames(string userName, string apiKey);
 
-        List<IGame> GetLibraryGames(string userName);
+        List<Game> GetLibraryGames(string userName);
 
         SteamGameMetadata DownloadGameMetadata(int id);
 
-        SteamGameMetadata UpdateGameWithMetadata(IGame game);
+        SteamGameMetadata UpdateGameWithMetadata(Game game);
 
         List<string> GetLibraryFolders();
     }

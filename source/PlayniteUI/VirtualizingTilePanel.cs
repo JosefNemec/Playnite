@@ -14,7 +14,9 @@ namespace PlayniteUI
         public double Columns
         {
             get { return (double)GetValue(ColumnsProperty); }
-            set { SetValue(ColumnsProperty, value); }
+            set {
+                SetValue(ColumnsProperty, value);
+            }
         }
 
         public static readonly DependencyProperty ColumnsProperty 
@@ -474,12 +476,12 @@ namespace PlayniteUI
 
         public void MouseWheelUp()
         {
-            SetVerticalOffset(VerticalOffset - ItemWidth);
+            SetVerticalOffset(VerticalOffset - ItemHeight);
         }
 
         public void MouseWheelDown()
         {
-            SetVerticalOffset(VerticalOffset + ItemWidth);
+            SetVerticalOffset(VerticalOffset + ItemHeight);
         }
 
         public void LineLeft()
@@ -495,6 +497,11 @@ namespace PlayniteUI
         public Rect MakeVisible(Visual visual, Rect rectangle)
         {
             var index = GeneratorContainer.IndexFromContainer(visual);
+            if (index < 0)
+            {
+                return rectangle;
+            }
+
             var perRow = CalculateChildrenPerRow(_extent);
             var row = GetItemRow(index, perRow);
             var offset = GetTotalHeightForRow(row);            
@@ -564,7 +571,6 @@ namespace PlayniteUI
                 _owner.InvalidateScrollInfo();
 
             _trans.Y = -offset;
-
             InvalidateMeasure();
         }
 

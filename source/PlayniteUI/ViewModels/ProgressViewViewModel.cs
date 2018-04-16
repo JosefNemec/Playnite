@@ -1,6 +1,5 @@
 ﻿using NLog;
-using Playnite;
-using PlayniteUI.Commands;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +30,11 @@ namespace PlayniteUI.ViewModels
         {
             this.window = window;
             this.progresAction = progresAction;
+        }
+
+        public ProgressViewViewModel(IWindowFactory window, Action progresAction, string text) : this(window, progresAction)
+        {
+            ProgressText = text;
         }
 
         public bool? ActivateProgress()

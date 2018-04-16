@@ -34,6 +34,8 @@ Indeterminate - No changes (when editing multiple games)</sys:String>
     <sys:String x:Key="CrashClosePlaynite">Close Playnite</sys:String>
 
     <sys:String x:Key="GameRemoveAskTitle">Remove Game(s)?</sys:String>
+    <sys:String x:Key="GameRemoveRunningError">Cannot remove game that's running or being installed/uninstalled.</sys:String>
+    <sys:String x:Key="GameUninstallRunningError">Cannot uninstall game that's running.</sys:String>
     <sys:String x:Key="GameRemoveAskMessage" xml:space="preserve">Are you sure you want to remove this game?
         
 Automatically imported games may reappear in Playnite after next import procedure (depending on your settings).</sys:String>
@@ -68,6 +70,14 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="ImportLabel">Import</sys:String>
     <sys:String x:Key="SourceLabel">Source</sys:String>
     <sys:String x:Key="NameLabel">Name</sys:String>
+    <sys:String x:Key="SeriesLabel">Series</sys:String>
+    <sys:String x:Key="VersionLabel">Version</sys:String>
+    <sys:String x:Key="AgeRatingLabel">Age Rating</sys:String>
+    <sys:String x:Key="RegionLabel">Region</sys:String>
+    <sys:String x:Key="LastPlayedLabel">Last Played</sys:String>
+    <sys:String x:Key="PlayCountLabel">Play Count</sys:String>
+    <sys:String x:Key="AddedLabel">Added</sys:String>
+    <sys:String x:Key="ModifiedLabel">Modified</sys:String>
     <sys:String x:Key="WebsiteLabel">Website</sys:String>
     <sys:String x:Key="PathLabel">Path</sys:String>
     <sys:String x:Key="OKLabel">OK</sys:String>
@@ -106,6 +116,16 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="PatronsLabel">Patrons</sys:String>
     <sys:String x:Key="LicenseLabel">License</sys:String>
     <sys:String x:Key="ContributorsLabel">Contributors</sys:String>
+    <sys:String x:Key="ClosingPlaynite">Closing Playnite...</sys:String>
+    <sys:String x:Key="Today">Today</sys:String>
+    <sys:String x:Key="Yesterday">Yesterday</sys:String>
+    <sys:String x:Key="Monday">Monday</sys:String>
+    <sys:String x:Key="Tuesday">Tuesday</sys:String>
+    <sys:String x:Key="Wednesday">Wednesday</sys:String>
+    <sys:String x:Key="Thursday">Thursday</sys:String>
+    <sys:String x:Key="Friday">Friday</sys:String>
+    <sys:String x:Key="Saturday">Saturday</sys:String>
+    <sys:String x:Key="Sunday">Sunday</sys:String>
     
     <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
@@ -119,6 +139,8 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
     <sys:String x:Key="ExecIconMissingPlayAction">Cannot get icon if Play action is missing or is set to URL.</sys:String>
 
+    <sys:String x:Key="MetaSkipNonEmpty">Only download metadata for games missing them</sys:String>
+    <sys:String x:Key="MetaSkipNonEmptyTooltip" xml:space="preserve">Enabling this option will skip download for a game if some data (for specific field) are already present.</sys:String>
     <sys:String x:Key="MetaGamesSourceIntro">Games selection</sys:String>
     <sys:String x:Key="MetaGamesSourceDescription">Please select which games should to be updated with new metadata:</sys:String>
     <sys:String x:Key="MetaGameSourceAll">All games from database</sys:String>
@@ -151,6 +173,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="ProgressLibraryGames">Downloading library updates...</sys:String>
     <sys:String x:Key="ProgressSteamCategoryImport">Downloading library updates...</sys:String>
     <sys:String x:Key="ProgressLibImportFinish">Library update finished</sys:String>
+    <sys:String x:Key="ProgressReleasingResources">Releasing resources...</sys:String>
 
     <!--Menu-->
     <sys:String x:Key="MenuConfigurationTitle">Configuration</sys:String>
@@ -166,6 +189,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="MenuAddGameEmulated">Import emulated Game(s)</sys:String>
     <sys:String x:Key="MenuAbout">About Playnite</sys:String>
     <sys:String x:Key="MenuIssues">Send Feedback</sys:String>
+    <sys:String x:Key="MenuOpenFullscreen">Start Fullscreen Mode</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="SettingsGeneralLabel">General</sys:String>
@@ -175,6 +199,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="SettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="SettingsImportInstalledLabel">Import installed games</sys:String>
     <sys:String x:Key="SettingsImportLibraryLabel">Import all games</sys:String>
+    <sys:String x:Key="SettingsImportSteamLibraryLabel">Import all games (Account privacy settings must be set to Public or API key must be provided)</sys:String>
     <sys:String x:Key="SettingsInvalidDBLocation">Invalid database file location, proper file path must be set.</sys:String>
     <sys:String x:Key="SettingsInvalidSteamAccountName">Steam account name cannot be empty.</sys:String>
     <sys:String x:Key="SettingsInvalidSteamAccountLibImport">No Steam account selected for library import.</sys:String>
@@ -220,6 +245,10 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="SettingsGetThemes">Get more themes</sys:String>
     <sys:String x:Key="SettingsCreateThemes">Create new theme</sys:String>
     <sys:String x:Key="SettingsCreateLocalization">Contribute new localization</sys:String>
+    <sys:String x:Key="SettingsRestartAskMessage">Some of the changed settings require Playnite to be restarted. Do you want to restart Playnite now?</sys:String>
+    <sys:String x:Key="SettingsRestartTitle">Restart Playnite?</sys:String>
+    <sys:String x:Key="SettingsDBPathNotification">New database file location will only be used after application is restarted.</sys:String>
+    <sys:String x:Key="SettingsClosePlaytimeNotif">Gameplay time will not be recorded if "Close" action is set.</sys:String>
 
     <sys:String x:Key="ImportError">Import Error</sys:String>
     <sys:String x:Key="LoginChecking">Checking...</sys:String>
@@ -328,7 +357,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="GameIsUnInstalledTitle">Uninstalled</sys:String>
     <sys:String x:Key="GameHiddenTitle">Hidden</sys:String>
     <sys:String x:Key="GameFavoriteTitle">Favorite</sys:String>
-    <sys:String x:Key="GameLastActivityTitle">Last Activity</sys:String>
+    <sys:String x:Key="GameLastActivityTitle">Last Played</sys:String>
     <sys:String x:Key="GameCategoryTitle">Category</sys:String>
     <sys:String x:Key="GameDescriptionTitle">Description</sys:String>
     <sys:String x:Key="GameInstallDirTitle">Installation Directory</sys:String>
@@ -378,6 +407,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="OtherActions">Other Actions</sys:String>
     <sys:String x:Key="AddGames">Add Games</sys:String>
     <sys:String x:Key="ScanFolder">Scan Folder...</sys:String>
+    <sys:String x:Key="DetectInstalled">Detect Installed</sys:String>
     <sys:String x:Key="Browse">Browse...</sys:String>
     <sys:String x:Key="OpenPlaynite">Open Playnite</sys:String>
     <sys:String x:Key="ProfileSettings">Profile Settings</sys:String>
@@ -394,11 +424,29 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="StartupError">Startup Error</sys:String>
     <sys:String x:Key="SkinError">Theme Error</sys:String>
     <sys:String x:Key="ClearAll">Clear All</sys:String>
-    <sys:String x:Key="SetupRunning">Setup in progress...</sys:String>
+    <sys:String x:Key="SetupRunning">Setup in progress</sys:String>
+    <sys:String x:Key="GameLaunching">Launching</sys:String>
+    <sys:String x:Key="GameRunning">Running</sys:String>
     <sys:String x:Key="InvalidURL">Invalid URL</sys:String>
     <sys:String x:Key="DoNothing">Do nothing</sys:String>
     <sys:String x:Key="Minimize">Minimize</sys:String>
     <sys:String x:Key="Close">Close</sys:String>
+    <sys:String x:Key="Change">Change</sys:String>
+    <sys:String x:Key="Advanced">Advanced</sys:String>
+    <sys:String x:Key="Never">Never</sys:String>
+    <sys:String x:Key="NotPlayed">Not Played</sys:String>
+    <sys:String x:Key="Played">Played</sys:String>
+    <sys:String x:Key="Beaten">Beaten</sys:String>
+    <sys:String x:Key="Completed">Completed</sys:String>
+    <sys:String x:Key="CompletionStatus">Completion Status</sys:String>
+    <sys:String x:Key="UserScore">User Score</sys:String>
+    <sys:String x:Key="CriticScore">Critic Score</sys:String>
+    <sys:String x:Key="CommunityScore">Community Score</sys:String>
+    <sys:String x:Key="Scripts">Scripts</sys:String>
+    <sys:String x:Key="Plugins">Plugins</sys:String>
+    <sys:String x:Key="Extensions">Extensions</sys:String>
+    <sys:String x:Key="ReloadScripts">Reload Scripts</sys:String>
+    <sys:String x:Key="ReloadScriptsSuccess">All scripts reloaded successfully.</sys:String>
 
     <sys:String x:Key="EmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="AdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
@@ -409,6 +457,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="UpdaterWindowTitle">Update Available</sys:String>
     <sys:String x:Key="UpdaterChangesInfo">Changes since last update:</sys:String>
     <sys:String x:Key="UpdaterInstallUpdate">Install Update</sys:String>
+    <sys:String x:Key="UpdateProgressCancelAsk">Background task is currently in progress, do you want to cancel it and processed with update installation?</sys:String>
 
     <sys:String x:Key="ThemeTestReloadList">Reload theme list</sys:String>
     <sys:String x:Key="ThemeTestApplySkin">Apply selected theme</sys:String>
@@ -434,6 +483,18 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="MetadownloadSingleGameTip">Tip: You can use more advanced metadata download process while editing single game via "Edit" menu option.</sys:String>
     <sys:String x:Key="ProgreessAvailabilityMessage">Not available when some action is in progress.</sys:String>
     <sys:String x:Key="DescriptionHTMLSupportTooltip">Description text is HTML syntax sensitive</sys:String>
+    <sys:String x:Key="DescriptionPlaytimeSeconds">Playtime is tracked and stored in seconds.</sys:String>
+    <sys:String x:Key="DescriptionScoreValues">Values from 0 to 100 or empty for no score.</sys:String>
     <sys:String x:Key="PatreonDevelopMessage">Playnite's development is supported by these patrons:</sys:String>
     <sys:String x:Key="AboutContributorsMessage">Code, localization and other contributors in no particular order:</sys:String>
+
+    <sys:String x:Key="CancelMonitoringAskTitle">Cancel game monitoring?</sys:String>
+    <sys:String x:Key="CancelMonitoringSetupAsk">Installation monitoring is currently running, do you want to cancel the process and return game to previous state?</sys:String>
+    <sys:String x:Key="CancelMonitoringExecutionAsk">Game execution monitoring is currently running, do you want to cancel the process and return game to previous state?</sys:String>
+
+    <sys:String x:Key="TimePlayed">Time Played</sys:String>
+    <sys:String x:Key="LastPlayed">Last Played</sys:String>
+    <sys:String x:Key="PlayedHours">{0}h {1}m</sys:String>
+    <sys:String x:Key="PlayedMinutes">{0} minutes</sys:String>
+    <sys:String x:Key="PlayedSeconds">{0} seconds</sys:String>
 </ResourceDictionary>

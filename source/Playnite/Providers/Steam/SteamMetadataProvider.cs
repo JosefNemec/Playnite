@@ -4,13 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using Playnite.Providers.Steam;
+using Playnite.Services;
+using Playnite.Models;
 
 namespace Playnite.Providers.Steam
 {
     public class SteamMetadataProvider : IMetadataProvider
     {
+        private ServicesClient playniteServices;
+
+        public SteamMetadataProvider()
+        {
+        }
+
+        public SteamMetadataProvider(ServicesClient playniteServices)
+        {
+            this.playniteServices = playniteServices;
+        }
+
         public GameMetadata GetGameData(string gameId)
         {
             var gameData = new Game("SteamGame")
@@ -19,7 +32,7 @@ namespace Playnite.Providers.Steam
                 ProviderId = gameId
             };
 
-            var steamLib = new SteamLibrary();
+            var steamLib = new SteamLibrary(playniteServices);
             var data = steamLib.UpdateGameWithMetadata(gameData);
             return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
         }

@@ -1,48 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using LiteDB;
+using NLog;
 using Playnite;
 using Playnite.Database;
 using Playnite.Models;
-using PlayniteUI.Windows;
-using System.Windows.Shell;
-using System.Reflection;
-using System.IO;
-using System.Drawing;
-using System.Windows.Media.Imaging;
-using NLog;
-using System.ComponentModel;
-using LiteDB;
+using Playnite.Providers;
+using Playnite.Providers.Steam;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using PlayniteUI.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Windows;
+using System.Windows.Shell;
 
 namespace PlayniteUI
 {
-    public class GamesEditor : INotifyPropertyChanged
+    public class GamesEditor : INotifyPropertyChanged, IDisposable
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         private IResourceProvider resources = new ResourceProvider();
         private GameDatabase database;
+        private IDialogsFactory dialogs;
         private Settings appSettings;
 
-        public List<IGame> LastGames
+        public bool IsFullscreen
+        {
+            get; set;
+        }
+
+        public GameControllerFactory Controllers
+        {
+            get; private set;
+        }
+
+        public List<Game> LastGames
         {
             get
             {
-                return database.GamesCollection?.Find(Query.And(Query.Not("LastActivity", null), Query.Not("PlayTask", null))).OrderByDescending(a => a.LastActivity).Take(10).ToList();
+                return database.GamesCollection?.Find(Query.And(Query.Not("LastActivity", null), Query.EQ("State.Installed", true))).OrderByDescending(a => a.LastActivity).Take(10).ToList();              
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GamesEditor(GameDatabase database, Settings appSettings)
+        public GamesEditor(GameDatabase database, Settings appSettings, IDialogsFactory dialogs)
         {
+            this.dialogs = dialogs;
             this.database = database;
             this.appSettings = appSettings;
+            Controllers = new GameControllerFactory(database);
+            Controllers.Installed += Controllers_Installed;
+            Controllers.Uninstalled += Controllers_Uninstalled;
+            Controllers.Started += Controllers_Started;
+            Controllers.Stopped += Controllers_Stopped;            
+        }
+
+        public void Dispose()
+        {
+            foreach (var controller in Controllers.Controllers)
+            {                
+                UpdateGameState(controller.Game.Id, null, false, false, false, false);
+            }
+
+            Controllers?.Dispose();
         }
 
         public void OnPropertyChanged(string name)
@@ -50,19 +74,19 @@ namespace PlayniteUI
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public bool? SetGameCategories(IGame game)
+        public bool? SetGameCategories(Game game)
         {
             var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, database, game, true);
             return model.OpenView();
         }
 
-        public bool? SetGamesCategories(List<IGame> games)
+        public bool? SetGamesCategories(List<Game> games)
         {
             var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, database, games, true);
             return model.OpenView();
         }
 
-        public bool? EditGame(IGame game)
+        public bool? EditGame(Game game)
         {
             var model = new GameEditViewModel(
                             game,
@@ -74,7 +98,7 @@ namespace PlayniteUI
             return model.OpenView();
         }
 
-        public bool? EditGames(List<IGame> games)
+        public bool? EditGames(List<Game> games)
         {
             var model = new GameEditViewModel(
                             games,
@@ -86,14 +110,12 @@ namespace PlayniteUI
             return model.OpenView();
         }
 
-        public void PlayGame(IGame game)
+        public void PlayGame(Game game)
         {
-            // Set parent for message boxes in this method
-            // because this method can be invoked from tray icon which otherwise bugs the dialog
-            if (database.GamesCollection.FindOne(a => a.ProviderId == game.ProviderId) == null)
+            var dbGame = database.GetGame(game.Id);
+            if (dbGame == null)
             {
-                PlayniteMessageBox.Show(
-                    Application.Current.MainWindow,
+                dialogs.ShowMessage(
                     string.Format(resources.FindString("GameStartErrorNoGame"), game.Name),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
@@ -103,22 +125,25 @@ namespace PlayniteUI
 
             try
             {
+                var controller = GameControllerFactory.GetGameBasedController(game, appSettings);
+                Controllers.RemoveController(game.Id);
+                Controllers.AddController(controller);
+
                 if (game.IsInstalled)
                 {
-                    game.PlayGame(database.EmulatorsCollection.FindAll().ToList());
+                    UpdateGameState(game.Id, null, null, null, null, true);
+                    controller.Play(database.GetEmulators());
                 }
                 else
                 {
-                    game.InstallGame();
+                    InstallGame(game);
+                    return;
                 }
-
-                database.UpdateGameInDatabase(game);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Cannot start game: ");
-                PlayniteMessageBox.Show(
-                    Application.Current.MainWindow,
+                dialogs.ShowMessage(
                     string.Format(resources.FindString("GameStartError"), exc.Message),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
@@ -133,33 +158,24 @@ namespace PlayniteUI
             {
                 logger.Error(exc, "Failed to set jump list data: ");
             }
-
-            if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
-            {
-                Application.Current.Shutdown();
-            }
-            else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
-            {
-                Application.Current.MainWindow.WindowState = WindowState.Minimized;
-            }
         }
 
-        public void ActivateAction(IGame game, GameTask action)
+        public void ActivateAction(Game game, GameTask action)
         {
             try
             {
-                GameHandler.ActivateTask(action, game as Game, database.EmulatorsCollection.FindAll().ToList());
+                GameHandler.ActivateTask(action, game, database.EmulatorsCollection.FindAll().ToList());
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                PlayniteMessageBox.Show(
+                dialogs.ShowMessage(
                     string.Format(resources.FindString("GameStartActionError"), exc.Message),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        public void OpenGameLocation(IGame game)
+        public void OpenGameLocation(Game game)
         {
             if (string.IsNullOrEmpty(game.InstallDirectory))
             {
@@ -172,20 +188,20 @@ namespace PlayniteUI
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                PlayniteMessageBox.Show(
+                dialogs.ShowMessage(
                     string.Format(resources.FindString("GameOpenLocationError"), exc.Message),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        public void SetHideGame(IGame game, bool state)
+        public void SetHideGame(Game game, bool state)
         {
             game.Hidden = state;
             database.UpdateGameInDatabase(game);
         }
 
-        public void SetHideGames(List<IGame> games, bool state)
+        public void SetHideGames(List<Game> games, bool state)
         {
             foreach (var game in games)
             {
@@ -193,13 +209,13 @@ namespace PlayniteUI
             }
         }
 
-        public void ToggleHideGame(IGame game)
+        public void ToggleHideGame(Game game)
         {
             game.Hidden = !game.Hidden;
             database.UpdateGameInDatabase(game);
         }
 
-        public void ToggleHideGames(List<IGame> games)
+        public void ToggleHideGames(List<Game> games)
         {
             foreach (var game in games)
             {
@@ -207,13 +223,13 @@ namespace PlayniteUI
             }
         }
 
-        public void SetFavoriteGame(IGame game, bool state)
+        public void SetFavoriteGame(Game game, bool state)
         {
             game.Favorite = state;
             database.UpdateGameInDatabase(game);
         }
 
-        public void SetFavoriteGames(List<IGame> games, bool state)
+        public void SetFavoriteGames(List<Game> games, bool state)
         {
             foreach (var game in games)
             {
@@ -221,13 +237,13 @@ namespace PlayniteUI
             }
         }
 
-        public void ToggleFavoriteGame(IGame game)
+        public void ToggleFavoriteGame(Game game)
         {
             game.Favorite = !game.Favorite;
             database.UpdateGameInDatabase(game);
         }
 
-        public void ToggleFavoriteGame(List<IGame> games)
+        public void ToggleFavoriteGame(List<Game> games)
         {
             foreach (var game in games)
             {
@@ -235,9 +251,19 @@ namespace PlayniteUI
             }
         }
 
-        public void RemoveGame(IGame game)
+        public void RemoveGame(Game game)
         {
-            if (PlayniteMessageBox.Show(
+            if (game.State.Installing || game.State.Running || game.State.Launching || game.State.Uninstalling)
+            {
+                dialogs.ShowMessage(
+                    resources.FindString("GameRemoveRunningError"),
+                    resources.FindString("GameError"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return;
+            }
+
+            if (dialogs.ShowMessage(
                 resources.FindString("GameRemoveAskMessage"),
                 resources.FindString("GameRemoveAskTitle"),
                 MessageBoxButton.YesNo,
@@ -249,9 +275,19 @@ namespace PlayniteUI
             database.DeleteGame(game);
         }
 
-        public void RemoveGames(List<IGame> games)
+        public void RemoveGames(List<Game> games)
         {
-            if (PlayniteMessageBox.Show(
+            if (games.Exists(a => a.State.Installing || a.State.Running || a.State.Launching || a.State.Uninstalling))
+            {
+                dialogs.ShowMessage(
+                    resources.FindString("GameRemoveRunningError"),
+                    resources.FindString("GameError"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return;
+            }
+
+            if (dialogs.ShowMessage(
                 string.Format(resources.FindString("GamesRemoveAskMessage"), games.Count()),
                 resources.FindString("GameRemoveAskTitle"),
                 MessageBoxButton.YesNo,
@@ -263,7 +299,7 @@ namespace PlayniteUI
             database.DeleteGames(games);
         }
 
-        public void CreateShortcut(IGame game)
+        public void CreateShortcut(Game game)
         {
             try
             {
@@ -272,7 +308,7 @@ namespace PlayniteUI
 
                 if (!string.IsNullOrEmpty(game.Icon) && Path.GetExtension(game.Icon) == ".ico")
                 {
-                    FileSystem.CreateFolder(Path.Combine(Paths.DataCachePath, "icons"));
+                    FileSystem.CreateDirectory(Path.Combine(Paths.DataCachePath, "icons"));
                     icon = Path.Combine(Paths.DataCachePath, "icons", game.Id + ".ico");
                     database.SaveFile(game.Icon, icon);
                 }
@@ -293,14 +329,14 @@ namespace PlayniteUI
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Failed to create shortcut: ");
-                PlayniteMessageBox.Show(
+                dialogs.ShowMessage(
                     string.Format(resources.FindString("GameShortcutError"), exc.Message),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        public void CreateShortcuts(List<IGame> games)
+        public void CreateShortcuts(List<Game> games)
         {
             foreach (var game in games)
             {
@@ -308,34 +344,50 @@ namespace PlayniteUI
             }
         }
 
-        public void InstallGame(IGame game)
+        public void InstallGame(Game game)
         {
             try
             {
-                game.InstallGame();
-                database.UpdateGameInDatabase(game);
+                var controller = GameControllerFactory.GetGameBasedController(game, appSettings);
+                Controllers.RemoveController(game.Id);
+                Controllers.AddController(controller);
+                UpdateGameState(game.Id, null, null, true, null, null);
+                controller.Install();
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Cannot install game: ");
-                PlayniteMessageBox.Show(
+                dialogs.ShowMessage(
                     string.Format(resources.FindString("GameInstallError"), exc.Message),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        public void UnInstallGame(IGame game)
+        public void UnInstallGame(Game game)
         {
+            if (game.State.Running || game.State.Launching)
+            {
+                dialogs.ShowMessage(
+                    resources.FindString("GameUninstallRunningError"),
+                    resources.FindString("GameError"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return;
+            }
+
             try
             {
-                game.UninstallGame();
-                database.UpdateGameInDatabase(game);
+                var controller = GameControllerFactory.GetGameBasedController(game, appSettings);
+                Controllers.RemoveController(game.Id);
+                Controllers.AddController(controller);
+                UpdateGameState(game.Id, null, null, null, true, null);
+                controller.Uninstall();
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Cannot un-install game: ");
-                PlayniteMessageBox.Show(
+                dialogs.ShowMessage(
                     string.Format(resources.FindString("GameUninstallError"), exc.Message),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
@@ -383,7 +435,98 @@ namespace PlayniteUI
                 jumpList.ShowRecentCategory = false;
             }
             
-            JumpList.SetJumpList(Application.Current, jumpList);            
+            JumpList.SetJumpList(Application.Current, jumpList);
+        }
+
+        public void CancelGameMonitoring(Game game)
+        {
+            Controllers.RemoveController(game.Id);
+            UpdateGameState(game.Id, null, false, false, false, false);
+        }
+
+        private void UpdateGameState(int id, bool? installed, bool? running, bool? installing, bool? uninstalling, bool? launching)
+        {
+            var game = database.GetGame(id);
+            game.State.SetState(installed, running, installing, uninstalling, launching);
+            if (launching == true)
+            {
+                game.LastActivity = DateTime.Now;
+                game.PlayCount += 1;
+                if (game.CompletionStatus == CompletionStatus.NotPlayed)
+                {
+                    game.CompletionStatus = CompletionStatus.Played;
+                }
+            }
+
+            database.UpdateGameInDatabase(game);
+        }
+
+        private void Controllers_Started(object sender, GameControllerEventArgs args)
+        {
+            var game = args.Controller.Game;
+            logger.Info($"Started {game.Name} game.");
+            UpdateGameState(game.Id, null, true, null, null, false);
+
+            if (!IsFullscreen)
+            {
+                if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
+                {
+                    App.CurrentApp.Quit();
+                }
+                else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
+                {
+                    Application.Current.MainWindow.WindowState = WindowState.Minimized;
+                }
+            }
+        }
+
+        private void Controllers_Stopped(object sender, GameControllerEventArgs args)
+        {
+            var game = args.Controller.Game;
+            logger.Info($"Game {game.Name} stopped after {args.EllapsedTime} seconds.");
+
+            var dbGame = database.GetGame(game.Id);
+            dbGame.State.Running = false;
+            dbGame.Playtime += args.EllapsedTime;
+            database.UpdateGameInDatabase(dbGame);
+            Controllers.RemoveController(args.Controller);
+        }
+
+        private void Controllers_Installed(object sender, GameControllerEventArgs args)
+        {
+            var game = args.Controller.Game;
+            logger.Info($"Game {game.Name} installed after {args.EllapsedTime} seconds.");
+
+            var dbGame = database.GetGame(game.Id);
+            dbGame.State.Installing = false;
+            dbGame.State.Installed = true;
+            dbGame.InstallDirectory = args.Controller.Game.InstallDirectory;
+
+            if (dbGame.PlayTask == null)
+            {
+                dbGame.PlayTask = args.Controller.Game.PlayTask;
+            }
+
+            if (dbGame.OtherTasks == null)
+            {
+                dbGame.OtherTasks = args.Controller.Game.OtherTasks;
+            }
+
+            database.UpdateGameInDatabase(dbGame);
+            Controllers.RemoveController(args.Controller);
+        }
+
+        private void Controllers_Uninstalled(object sender, GameControllerEventArgs args)
+        {
+            var game = args.Controller.Game;
+            logger.Info($"Game {game.Name} uninstalled after {args.EllapsedTime} seconds.");
+
+            var dbGame = database.GetGame(game.Id);
+            dbGame.State.Uninstalling = false;
+            dbGame.State.Installed = false;
+            dbGame.InstallDirectory = string.Empty;
+            database.UpdateGameInDatabase(dbGame);
+            Controllers.RemoveController(args.Controller);
         }
     }
 }

@@ -16,6 +16,8 @@ using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
 using System.ComponentModel;
 using Playnite.Providers.BattleNet;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 
 namespace PlayniteUI.ViewModels
 {
@@ -286,6 +288,246 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        private bool useLastActivityChanges;
+        public bool UseLastActivityChanges
+        {
+            get
+            {
+                return useLastActivityChanges;
+            }
+
+            set
+            {
+                useLastActivityChanges = value;
+                OnPropertyChanged("UseLastActivityChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool usePlaytimeChanges;
+        public bool UsePlaytimeChanges
+        {
+            get
+            {
+                return usePlaytimeChanges;
+            }
+
+            set
+            {
+                usePlaytimeChanges = value;
+                OnPropertyChanged("UsePlaytimeChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useAddedChanges;
+        public bool UseAddedChanges
+        {
+            get
+            {
+                return useAddedChanges;
+            }
+
+            set
+            {
+                useAddedChanges = value;
+                OnPropertyChanged("UseAddedChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool usePlayCountChanges;
+        public bool UsePlayCountChanges
+        {
+            get
+            {
+                return usePlayCountChanges;
+            }
+
+            set
+            {
+                usePlayCountChanges = value;
+                OnPropertyChanged("UsePlayCountChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useSeriesChanges;
+        public bool UseSeriesChanges
+        {
+            get
+            {
+                return useSeriesChanges;
+            }
+
+            set
+            {
+                useSeriesChanges = value;
+                OnPropertyChanged("UseSeriesChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useVersionChanges;
+        public bool UseVersionChanges
+        {
+            get
+            {
+                return useVersionChanges;
+            }
+
+            set
+            {
+                useVersionChanges = value;
+                OnPropertyChanged("UseVersionChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useAgeRatingChanges;
+        public bool UseAgeRatingChanges
+        {
+            get
+            {
+                return useAgeRatingChanges;
+            }
+
+            set
+            {
+                useAgeRatingChanges = value;
+                OnPropertyChanged("UseAgeRatingChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useRegionChanges;
+        public bool UseRegionChanges
+        {
+            get
+            {
+                return useRegionChanges;
+            }
+
+            set
+            {
+                useRegionChanges = value;
+                OnPropertyChanged("UseRegionChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useSourceChanges;
+        public bool UseSourceChanges
+        {
+            get
+            {
+                return useSourceChanges;
+            }
+
+            set
+            {
+                useSourceChanges = value;
+                OnPropertyChanged("UseSourceChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useCompletionStatusChanges;
+        public bool UseCompletionStatusChanges
+        {
+            get
+            {
+                return useCompletionStatusChanges;
+            }
+
+            set
+            {
+                useCompletionStatusChanges = value;
+                OnPropertyChanged("UseCompletionStatusChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useUserScoreChanges;
+        public bool UseUserScoreChanges
+        {
+            get
+            {
+                return useUserScoreChanges;
+            }
+
+            set
+            {
+                useUserScoreChanges = value;
+                OnPropertyChanged("UseUserScoreChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useCriticScoreChanges;
+        public bool UseCriticScoreChanges
+        {
+            get
+            {
+                return useCriticScoreChanges;
+            }
+
+            set
+            {
+                useCriticScoreChanges = value;
+                OnPropertyChanged("UseCriticScoreChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useCommunityScoreChanges;
+        public bool UseCommunityScoreChanges
+        {
+            get
+            {
+                return useCommunityScoreChanges;
+            }
+
+            set
+            {
+                useCommunityScoreChanges = value;
+                OnPropertyChanged("UseCommunityScoreChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useHiddenChanges;
+        public bool UseHiddenChanges
+        {
+            get
+            {
+                return useHiddenChanges;
+            }
+
+            set
+            {
+                useHiddenChanges = value;
+                OnPropertyChanged("UseHiddenChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
+        private bool useFavoriteChanges;
+        public bool UseFavoriteChanges
+        {
+            get
+            {
+                return useFavoriteChanges;
+            }
+
+            set
+            {
+                useFavoriteChanges = value;
+                OnPropertyChanged("UseFavoriteChanges");
+                OnPropertyChanged("ShowGeneralChangeNotif");
+            }
+        }
+
         public bool ShowGeneralChangeNotif
         {
             get
@@ -300,7 +542,22 @@ namespace PlayniteUI.ViewModels
                     UsePlatformChanges ||
                     UsePublisherChanges ||
                     UseSortingNameChanges ||
-                    UseTagChanges);
+                    UseTagChanges ||
+                    UseLastActivityChanges ||
+                    UsePlaytimeChanges ||
+                    UseAddedChanges ||
+                    UsePlayCountChanges ||
+                    UseSeriesChanges ||
+                    UseVersionChanges ||
+                    UseAgeRatingChanges ||
+                    UseRegionChanges ||
+                    UseSourceChanges ||
+                    UseCompletionStatusChanges ||
+                    UseUserScoreChanges ||
+                    UseCriticScoreChanges ||
+                    UseCommunityScoreChanges ||
+                    UseHiddenChanges ||
+                    UseFavoriteChanges);
             }
         }
 
@@ -333,8 +590,8 @@ namespace PlayniteUI.ViewModels
 
         #endregion Field checks
 
-        private IGame editingGame;
-        public IGame EditingGame
+        private Game editingGame;
+        public Game EditingGame
         {
             get
             {
@@ -348,8 +605,8 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private IGame game;
-        public IGame Game
+        private Game game;
+        public Game Game
         {
             get
             {
@@ -363,8 +620,8 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private IEnumerable<IGame> games;
-        public IEnumerable<IGame> Games
+        private IEnumerable<Game> games;
+        public IEnumerable<Game> Games
         {
             get
             {
@@ -694,7 +951,7 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public GameEditViewModel(IGame game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public GameEditViewModel(Game game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.database = database;
             this.window = window;
@@ -702,7 +959,7 @@ namespace PlayniteUI.ViewModels
             this.resources = resources;
 
             Game = game;
-            EditingGame = (game as Game).CloneJson();
+            EditingGame = game.CloneJson();
             ShowCheckBoxes = false;
             ShowMetaDownload = true;
             ShowLinks = true;
@@ -711,7 +968,7 @@ namespace PlayniteUI.ViewModels
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
         }
 
-        public GameEditViewModel(IEnumerable<IGame> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public GameEditViewModel(IEnumerable<Game> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.database = database;
             this.window = window;
@@ -729,13 +986,13 @@ namespace PlayniteUI.ViewModels
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
         }
 
-        public GameEditViewModel(IGame game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, Settings appSettings)
+        public GameEditViewModel(Game game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, Settings appSettings)
             : this(game, database, window, dialogs, resources)
         {
             this.appSettings = appSettings;
         }
 
-        public GameEditViewModel(IEnumerable<IGame> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, Settings appSettings)
+        public GameEditViewModel(IEnumerable<Game> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, Settings appSettings)
             : this(games, database, window, dialogs, resources)
         {
             this.appSettings = appSettings;
@@ -910,6 +1167,156 @@ namespace PlayniteUI.ViewModels
                     else
                     {
                         UsePublisherChanges = true;
+                    }
+                    break;
+                case "LastActivity":
+                    if (Games == null)
+                    {
+                        UseLastActivityChanges = Game.LastActivity != EditingGame.LastActivity;
+                    }
+                    else
+                    {
+                        UseLastActivityChanges = true;
+                    }
+                    break;
+                case "Playtime":
+                    if (Games == null)
+                    {
+                        UsePlaytimeChanges = Game.Playtime != EditingGame.Playtime;
+                    }
+                    else
+                    {
+                        UsePlaytimeChanges = true;
+                    }
+                    break;
+                case "Added":
+                    if (Games == null)
+                    {
+                        UseAddedChanges = Game.Added != EditingGame.Added;
+                    }
+                    else
+                    {
+                        UseAddedChanges = true;
+                    }
+                    break;
+                case "PlayCount":
+                    if (Games == null)
+                    {
+                        UsePlayCountChanges = Game.PlayCount != EditingGame.PlayCount;
+                    }
+                    else
+                    {
+                        UsePlayCountChanges = true;
+                    }
+                    break;
+                case "Series":
+                    if (Games == null)
+                    {
+                        UseSeriesChanges = Game.Series != EditingGame.Series;
+                    }
+                    else
+                    {
+                        UseSeriesChanges = true;
+                    }
+                    break;
+                case "Version":
+                    if (Games == null)
+                    {
+                        UseVersionChanges = Game.Version != EditingGame.Version;
+                    }
+                    else
+                    {
+                        UseVersionChanges = true;
+                    }
+                    break;
+                case "AgeRating":
+                    if (Games == null)
+                    {
+                        UseAgeRatingChanges = Game.AgeRating != EditingGame.AgeRating;
+                    }
+                    else
+                    {
+                        UseAgeRatingChanges = true;
+                    }
+                    break;
+                case "Region":
+                    if (Games == null)
+                    {
+                        UseRegionChanges = Game.Region != EditingGame.Region;
+                    }
+                    else
+                    {
+                        UseRegionChanges = true;
+                    }
+                    break;
+                case "Source":
+                    if (Games == null)
+                    {
+                        UseSourceChanges = Game.Source != EditingGame.Source;
+                    }
+                    else
+                    {
+                        UseSourceChanges = true;
+                    }
+                    break;
+                case "CompletionStatus":
+                    if (Games == null)
+                    {
+                        UseCompletionStatusChanges = Game.CompletionStatus != EditingGame.CompletionStatus;
+                    }
+                    else
+                    {
+                        UseCompletionStatusChanges = true;
+                    }
+                    break;
+                case "UserScore":
+                    if (Games == null)
+                    {
+                        UseUserScoreChanges = Game.UserScore != EditingGame.UserScore;
+                    }
+                    else
+                    {
+                        UseUserScoreChanges = true;
+                    }
+                    break;
+                case "CriticScore":
+                    if (Games == null)
+                    {
+                        UseCriticScoreChanges = Game.CriticScore != EditingGame.CriticScore;
+                    }
+                    else
+                    {
+                        UseCriticScoreChanges = true;
+                    }
+                    break;
+                case "CommunityScore":
+                    if (Games == null)
+                    {
+                        UseCommunityScoreChanges = Game.CommunityScore != EditingGame.CommunityScore;
+                    }
+                    else
+                    {
+                        UseCommunityScoreChanges = true;
+                    }
+                    break; ;
+                case "Favorite":
+                    if (Games == null)
+                    {
+                        UseFavoriteChanges = Game.Favorite != EditingGame.Favorite;
+                    }
+                    else
+                    {
+                        UseFavoriteChanges = true;
+                    }
+                    break; ;
+                case "Hidden":
+                    if (Games == null)
+                    {
+                        UseHiddenChanges = Game.Hidden != EditingGame.Hidden;
+                    }
+                    else
+                    {
+                        UseHiddenChanges = true;
                     }
                     break;
             }
@@ -1102,6 +1509,231 @@ namespace PlayniteUI.ViewModels
                 else
                 {
                     Game.PlatformId = EditingGame.PlatformId;
+                }
+            }
+
+            if (UseLastActivityChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.LastActivity = EditingGame.LastActivity;
+                    }
+                }
+                else
+                {
+                    Game.LastActivity = EditingGame.LastActivity;
+                }
+            }
+
+            if (UsePlaytimeChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Playtime = EditingGame.Playtime;
+                    }
+                }
+                else
+                {
+                    Game.Playtime = EditingGame.Playtime;
+                }
+            }
+
+            if (UseAddedChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Added = EditingGame.Added;
+                    }
+                }
+                else
+                {
+                    Game.Added = EditingGame.Added;
+                }
+            }
+
+            if (UsePlayCountChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.PlayCount = EditingGame.PlayCount;
+                    }
+                }
+                else
+                {
+                    Game.PlayCount = EditingGame.PlayCount;
+                }
+            }
+
+            if (UseSeriesChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Series = EditingGame.Series;
+                    }
+                }
+                else
+                {
+                    Game.Series = EditingGame.Series;
+                }
+            }
+
+            if (UseVersionChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Version = EditingGame.Version;
+                    }
+                }
+                else
+                {
+                    Game.Version = EditingGame.Version;
+                }
+            }
+
+            if (UseAgeRatingChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.AgeRating = EditingGame.AgeRating;
+                    }
+                }
+                else
+                {
+                    Game.AgeRating = EditingGame.AgeRating;
+                }
+            }
+
+            if (UseRegionChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Region = EditingGame.Region;
+                    }
+                }
+                else
+                {
+                    Game.Region = EditingGame.Region;
+                }
+            }
+
+            if (UseSourceChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Source = EditingGame.Source;
+                    }
+                }
+                else
+                {
+                    Game.Source = EditingGame.Source;
+                }
+            }
+
+            if (UseCompletionStatusChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.CompletionStatus = EditingGame.CompletionStatus;
+                    }
+                }
+                else
+                {
+                    Game.CompletionStatus = EditingGame.CompletionStatus;
+                }
+            }
+
+            if (UseUserScoreChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.UserScore = EditingGame.UserScore;
+                    }
+                }
+                else
+                {
+                    Game.UserScore = EditingGame.UserScore;
+                }
+            }
+
+            if (UseCriticScoreChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.CriticScore = EditingGame.CriticScore;
+                    }
+                }
+                else
+                {
+                    Game.CriticScore = EditingGame.CriticScore;
+                }
+            }
+
+            if (UseCommunityScoreChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.CommunityScore = EditingGame.CommunityScore;
+                    }
+                }
+                else
+                {
+                    Game.CommunityScore = EditingGame.CommunityScore;
+                }
+            }
+
+            if (UseFavoriteChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Favorite = EditingGame.Favorite;
+                    }
+                }
+                else
+                {
+                    Game.Favorite = EditingGame.Favorite;
+                }
+            }
+
+            if (UseHiddenChanges)
+            {
+                if (Games != null)
+                {
+                    foreach (var game in Games)
+                    {
+                        game.Hidden = EditingGame.Hidden;
+                    }
+                }
+                else
+                {
+                    Game.Hidden = EditingGame.Hidden;
                 }
             }
 
@@ -1335,24 +1967,47 @@ namespace PlayniteUI.ViewModels
                         Game.Links = EditingGame.Links;
                     }
                 }
+
+                if (EditingGame.Provider == Provider.Custom &&
+                    string.IsNullOrEmpty(EditingGame.IsoPath) &&
+                    string.IsNullOrEmpty(EditingGame.InstallDirectory))
+                {
+                    // For UWP games which don't have installed dir
+                    if (EditingGame.PlayTask.Path == "explorer.exe")
+                    {
+                        Game.State = new GameState(Game.State) { Installed = true };
+                    }
+                    else
+                    {
+                        // GameState is not observable so we need to change the whole object to send notify messages
+                        Game.State = new GameState(Game.State) { Installed = false };
+                    }
+                }
+                else
+                {
+                    Game.State = new GameState(Game.State) { Installed = true };
+                }
             }
 
             if (Games != null)
             {
+                var date = DateTime.Today;
                 foreach (var game in Games)
                 {
+                    game.Modified = date;
                     database.UpdateGameInDatabase(game);
                 }
             }
             else
             {
+                game.Modified = DateTime.Today;
                 database.UpdateGameInDatabase(Game);
             }
 
             window.Close(true);
         }
 
-        public void PreviewGameData(IGame game)
+        public void PreviewGameData(Game game)
         {
             var listConverter = new ListToStringConverter();
             var dateConverter = new NullableDateToStringConverter();
@@ -1400,6 +2055,31 @@ namespace PlayniteUI.ViewModels
             if (!string.IsNullOrEmpty(game.BackgroundImage))
             {
                 EditingGame.BackgroundImage = game.BackgroundImage;
+            }
+
+            if (game.CriticScore != null)
+            {
+                EditingGame.CriticScore = game.CriticScore;
+            }
+
+            if (game.CommunityScore != null)
+            {
+                EditingGame.CommunityScore = game.CommunityScore;
+            }
+
+            if (!string.IsNullOrEmpty(game.AgeRating))
+            {
+                EditingGame.AgeRating = game.AgeRating;
+            }
+
+            if (!string.IsNullOrEmpty(game.Region))
+            {
+                EditingGame.Region = game.Region;
+            }
+
+            if (!string.IsNullOrEmpty(game.Series))
+            {
+                EditingGame.Series = game.Series;
             }
 
             if (!string.IsNullOrEmpty(game.Image))
@@ -1482,6 +2162,19 @@ namespace PlayniteUI.ViewModels
             }
 
             var path = EditingGame.ResolveVariables(EditingGame.PlayTask.Path);
+            if (!File.Exists(path))
+            {
+                path = Path.Combine(
+                    EditingGame.ResolveVariables(EditingGame.PlayTask.WorkingDir),
+                    path);
+            }
+
+            if (!File.Exists(path))
+            {
+                logger.Error($"Can't find executable for icon extraction, file {path}");
+                return;
+            }
+
             var icon = SaveFileIconToTemp(path);
             if (string.IsNullOrEmpty(icon))
             {
@@ -1511,12 +2204,14 @@ namespace PlayniteUI.ViewModels
 
         public void SetBackgroundUrl()
         {
-            if (dialogs.SelectString(
+            var url = dialogs.SelectString(
                 resources.FindString("URLInputInfo"),
                 resources.FindString("URLInputInfoTitile"),
-                out var input) == MessageBoxResult.OK)
+                string.Empty);
+
+            if (url.Result)
             {
-                EditingGame.BackgroundImage = input;
+                EditingGame.BackgroundImage = url.SelectedString;
             }
         }
 
@@ -1657,7 +2352,7 @@ namespace PlayniteUI.ViewModels
                 try
                 {
                     GameMetadata metadata;
-                    var tempGame = (game as Game).CloneJson();
+                    var tempGame = game.CloneJson();
                     tempGame.Image = string.Empty;
 
                     switch (tempGame.Provider)

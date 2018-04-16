@@ -121,7 +121,11 @@ namespace PlayniteUI
         public static void RestoreWindow(WindowBase window)
         {
             window.Show();
-            window.WindowState = WindowState.Normal;
+            if (window.WindowState == WindowState.Minimized)
+            {
+                window.WindowState = WindowState.Normal;
+            }
+
             BringToForeground(window);
         }
 

@@ -8,7 +8,6 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:pui="clr-namespace:PlayniteUI"
         xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
-        xmlns:m="clr-namespace:Playnite.Models;assembly=Playnite"
         xmlns:c="clr-namespace:PlayniteUI.Controls"
         xmlns:tray="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
@@ -27,9 +26,29 @@
         Deactivated="WindowFullscreen_Deactivated"
         AutomationProperties.AutomationId="WindowFullscreen">
 
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing" >
+            <prism:InvokeCommandAction Command="{Binding WindowClosingCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <c:WindowBase.InputBindings>
-        <KeyBinding Command="{Binding ToggleFullscreenCommand}"
-                    Gesture="ALT+ENTER"/>
+        <KeyBinding Gesture="ALT+ENTER" Command="{Binding ToggleFullscreenCommand}" />
+        <KeyBinding Key="F5" Command="{Binding UpdateGamesCommand}" />
+
+        <pui:XInputBinding Button="Back" Command="{Binding ToggleExitMenuCommand}" />
+        <pui:XInputBinding Button="Guide" Command="{Binding ToggleExitMenuCommand}" />
+        <pui:XInputBinding Button="B" Command="{Binding ToggleGameDetailsCommand}" />
+        <pui:XInputBinding Button="X" Command="{Binding ToggleGameDetailsCommand}" />
+        <pui:XInputBinding Button="Y" Command="{Binding OpenSearchCommand}" />
+        <pui:XInputBinding Button="LeftShoulder" Command="{Binding ClearFiltersCommand}" />
+        
+        <KeyBinding Key="Backspace" Command="{Binding ClearFiltersCommand}" />
+        <KeyBinding Key="Y" Command="{Binding OpenSearchCommand}" />
+        <KeyBinding Key="X" Command="{Binding ToggleGameDetailsCommand}" />
+        <KeyBinding Key="B" Command="{Binding ToggleGameDetailsCommand}" />
+        <KeyBinding Key="Esc" Command="{Binding ToggleExitMenuCommand}" />
+        <KeyBinding Key="Return" Command="{Binding StartGameCommand}" CommandParameter="{Binding SelectedGame.Game}"/>
     </c:WindowBase.InputBindings>
 
     <c:FullscreenView />

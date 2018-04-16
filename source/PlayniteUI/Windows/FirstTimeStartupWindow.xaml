@@ -95,9 +95,14 @@
                     <RadioButton Name="RadioInstalledSteam" Content="{DynamicResource SettingsImportInstalledLabel}"
                                  GroupName="steam" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}" />
-                    <RadioButton Name="RadioLibrarySteam" Content="{DynamicResource SettingsImportLibraryLabel}"
+                    <RadioButton Name="RadioLibrarySteam"
                                  GroupName="steam" DockPanel.Dock="Top" Margin="5"
-                                 IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled}" />
+                                 IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled}">
+                        <RadioButton.Content>
+                            <TextBlock Text="{DynamicResource SettingsImportSteamLibraryLabel}"
+                                       TextWrapping="Wrap" />
+                        </RadioButton.Content>
+                    </RadioButton>
                     <DockPanel DockPanel.Dock="Top" Margin="25,5,5,5"
                                IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
                         <TextBlock Text="{DynamicResource SettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5"/>

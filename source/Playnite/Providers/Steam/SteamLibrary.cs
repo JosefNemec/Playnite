@@ -19,19 +19,31 @@ using Playnite.Services;
 using Playnite.Database;
 using System.Windows;
 using System.Globalization;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 
 namespace Playnite.Providers.Steam
 {
     public class SteamLibrary : ISteamLibrary
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
+        private ServicesClient playniteServices;
+
+        public SteamLibrary()
+        {
+        }
+
+        public SteamLibrary(ServicesClient playniteServices)
+        {
+            this.playniteServices = playniteServices;
+        }
 
         private string GetGameWorkshopUrl(int id)
         {
             return $"http://steamcommunity.com/app/{id}/workshop/";
         }
 
-        public IGame GetInstalledGameFromFile(string path)
+        public Game GetInstalledGameFromFile(string path)
         {
             var kv = new KeyValue();
             kv.ReadFileAsText(path);
@@ -52,6 +64,7 @@ namespace Playnite.Providers.Steam
             var game = new Game()
             {
                 Provider = Provider.Steam,
+                Source = "Steam",
                 ProviderId = kv["appID"].Value,
                 Name = name,
                 InstallDirectory = Path.Combine((new FileInfo(path)).Directory.FullName, "common", kv["installDir"].Value),
@@ -68,9 +81,9 @@ namespace Playnite.Providers.Steam
             return game;
         }
 
-        public List<IGame> GetInstalledGamesFromFolder(string path)
+        public List<Game> GetInstalledGamesFromFolder(string path)
         {
-            var games = new List<IGame>();
+            var games = new List<Game>();
 
             foreach (var file in Directory.GetFiles(path, @"appmanifest*"))
             {
@@ -89,9 +102,9 @@ namespace Playnite.Providers.Steam
             return games;
         }
 
-        public List<IGame> GetInstalledGames()
+        public List<Game> GetInstalledGames()
         {
-            var games = new List<IGame>();
+            var games = new List<Game>();
 
             foreach (var folder in GetLibraryFolders())
             {
@@ -130,7 +143,7 @@ namespace Playnite.Providers.Steam
             return dbs;
         }
 
-        public List<IGame> GetLibraryGames(SteamSettings settings)
+        public List<Game> GetLibraryGames(SteamSettings settings)
         {
             var userName = string.Empty;
             if (settings.IdSource == SteamIdSource.Name)
@@ -152,7 +165,7 @@ namespace Playnite.Providers.Steam
             }
         }
 
-        public List<IGame> GetLibraryGames(string userName, string apiKey)
+        public List<Game> GetLibraryGames(string userName, string apiKey)
         {
             var userNameUrl = @"https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key={0}&vanityurl={1}";
             var libraryUrl = @"https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&include_appinfo=1&format=json&steamid={1}";
@@ -171,7 +184,7 @@ namespace Playnite.Providers.Steam
                 throw new Exception("No games found on specified Steam account.");
             }
 
-            var games = new List<IGame>();
+            var games = new List<Game>();
             foreach (var game in library.response.games)
             {
                 // Ignore games without name, like 243870
@@ -183,22 +196,25 @@ namespace Playnite.Providers.Steam
                 games.Add(new Game()
                 {
                     Provider = Provider.Steam,
+                    Source = "Steam",
                     ProviderId = game.appid.ToString(),
-                    Name = game.name
+                    Name = game.name,
+                    Playtime = game.playtime_forever * 60,
+                    CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed
                 });
             }
 
             return games;
         }
 
-        public List<IGame> GetLibraryGames(string userName)
+        public List<Game> GetLibraryGames(string userName)
         {
             if (string.IsNullOrEmpty(userName))
             {
                 throw new Exception("Steam user name cannot be empty.");
             }
 
-            var games = new List<IGame>();
+            var games = new List<Game>();
             var importedGames = (new ServicesClient()).GetSteamLibrary(userName);
             if (importedGames == null)
             {
@@ -216,46 +232,157 @@ namespace Playnite.Providers.Steam
                 games.Add(new Game()
                 {
                     Provider = Provider.Steam,
+                    Source = "Steam",
                     ProviderId = game.appid.ToString(),
-                    Name = game.name
+                    Name = game.name,
+                    Playtime = game.playtime_forever * 60,
+                    CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed
                 });
             }
 
             return games;
         }
 
-        public SteamGameMetadata DownloadGameMetadata(int id)
+        public StoreAppDetailsResult.AppDetails GetStoreData(int appId)
         {
-            var metadata = new SteamGameMetadata();
-            var productInfo = SteamApiClient.GetProductInfo(id).GetAwaiter().GetResult();
-            metadata.ProductDetails = productInfo;
+            var stringData = string.Empty;
 
-            // Steam may return 429 if we put too many request
-            for (int i = 0; i < 10; i++)
+            // First try to get cached data
+            try
             {
-                try
-                {
-                    metadata.StoreDetails = WebApiClient.GetStoreAppDetail(id);
-                    break;
-                }
-                catch (WebException e)
-                {
-                    if (i + 1 == 10)
-                    {
-                        throw;
-                    }
+                stringData = playniteServices?.GetSteamStoreData(appId);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "Failed to get Steam store cache data.");
+            }
 
-                    if (e.Message.Contains("429"))
+            // If no cache then download on client and push to cache
+            if (string.IsNullOrEmpty(stringData))
+            {
+                // Steam may return 429 if we put too many request
+                for (int i = 0; i < 10; i++)
+                {
+                    try
                     {
-                        Thread.Sleep(2500);
-                        continue;
+                        stringData = WebApiClient.GetRawStoreAppDetail(appId);
+                        logger.Debug($"Steam store data got from live server {appId}");
+
+                        try
+                        {
+                            playniteServices?.PostSteamStoreData(appId, stringData);
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, $"Failed to post steam store data to cache {appId}");
+                        }
+
+                        break;
                     }
-                    else
+                    catch (WebException e)
                     {
-                        throw;
+                        if (i + 1 == 10)
+                        {
+                            throw;
+                        }
+
+                        if (e.Message.Contains("429"))
+                        {
+                            Thread.Sleep(2500);
+                            continue;
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
                 }
             }
+            else
+            {
+                logger.Debug($"Steam store data got from cache {appId}");
+            }
+
+            if (!string.IsNullOrEmpty(stringData))
+            {
+                var response = WebApiClient.ParseStoreData(appId, stringData);
+                if (response.success != true)
+                {
+                    return null;
+                }
+
+                return response.data;
+            }
+
+            return null;
+        }
+
+        public KeyValue GetAppInfo(int appId)
+        {
+            KeyValue data = null;
+            var stringData = string.Empty;
+
+            // First try to get cached data
+            try
+            {
+                stringData = playniteServices?.GetSteamAppInfoData(appId);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "Failed to get Steam appinfo cache data.");
+            }
+
+            // If no cache then download on client and push to cache
+            if (string.IsNullOrEmpty(stringData))
+            {
+                data = SteamApiClient.GetProductInfo(appId).GetAwaiter().GetResult();                
+                logger.Debug($"Steam appinfo got from live server {appId}");
+
+                try
+                {
+                    if (playniteServices != null)
+                    {
+                        using (var str = new MemoryStream())
+                        {
+                            data.SaveToStream(str, false);
+                            using (var reader = new StreamReader(str, Encoding.UTF8))
+                            {
+                                str.Seek(0, SeekOrigin.Begin);
+                                stringData = reader.ReadToEnd();
+                            }
+                        }
+
+                        playniteServices.PostSteamAppInfoData(appId, stringData);
+                    }
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to post steam appinfo data to cache {appId}");
+                }
+            }
+            else
+            {
+                logger.Debug($"Steam appinfo data got from cache {appId}");
+            }
+
+            if (data != null)
+            {
+                return data;
+            }
+            else if (!string.IsNullOrEmpty(stringData))
+            {
+                return KeyValue.LoadFromString(stringData);
+            }
+
+            return null;
+        }
+
+        public SteamGameMetadata DownloadGameMetadata(int id)
+        {
+            var metadata = new SteamGameMetadata();
+            var productInfo = GetAppInfo(id);
+            metadata.ProductDetails = productInfo;
+            metadata.StoreDetails = GetStoreData(id);
 
             // Icon
             var iconRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.ico";
@@ -328,12 +455,15 @@ namespace Playnite.Providers.Steam
             }
 
             // Background Image
-            metadata.BackgroundImage = string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", id);
+            if (metadata.StoreDetails?.screenshots?.Any() == true)
+            {
+                metadata.BackgroundImage = Regex.Replace(metadata.StoreDetails.screenshots.First().path_full, "\\?.*$", "");
+            }
 
             return metadata;
         }
 
-        public SteamGameMetadata UpdateGameWithMetadata(IGame game)
+        public SteamGameMetadata UpdateGameWithMetadata(Game game)
         {
             var metadata = DownloadGameMetadata(int.Parse(game.ProviderId));
             game.Name = metadata.ProductDetails["common"]["name"].Value ?? game.Name;
@@ -358,7 +488,8 @@ namespace Playnite.Providers.Steam
                 game.Publishers = new ComparableList<string>(metadata.StoreDetails.publishers);
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
                 game.Tags = new ComparableList<string>(metadata.StoreDetails.categories?.Select(a => cultInfo.ToTitleCase(a.description)));
-                game.ReleaseDate = metadata.StoreDetails.release_date.date;                
+                game.ReleaseDate = metadata.StoreDetails.release_date.date;
+                game.CriticScore = metadata.StoreDetails.metacritic?.score;
             }
 
             var tasks = new ObservableCollection<GameTask>();
@@ -386,7 +517,7 @@ namespace Playnite.Providers.Steam
                         Arguments = task["arguments"].Value ?? string.Empty,
                         Path = task["executable"].Value,
                         IsBuiltIn = true,
-                        WorkingDir = game.InstallDirectory
+                        WorkingDir = "{InstallDir}"
                     };
 
                     tasks.Add(newTask);
@@ -415,10 +546,10 @@ namespace Playnite.Providers.Steam
             return metadata;
         }
 
-        public List<IGame> GetCategorizedGames(ulong steamId)
+        public List<Game> GetCategorizedGames(ulong steamId)
         {
             var id = new SteamID(steamId);
-            var result = new List<IGame>();
+            var result = new List<Game>();
             var vdf = Path.Combine(SteamSettings.InstallationPath, "userdata", id.AccountID.ToString(), "7", "remote", "sharedconfig.vdf");
             var sharedconfig = new KeyValue();
             sharedconfig.ReadFileAsText(vdf);
@@ -440,6 +571,7 @@ namespace Playnite.Providers.Steam
                 result.Add(new Game()
                 {
                     Provider = Provider.Steam,
+                    Source = "Steam",
                     ProviderId = app.Name,
                     Categories = new ComparableList<string>(appData)
                 });
@@ -453,21 +585,60 @@ namespace Playnite.Providers.Steam
             var users = new List<LocalSteamUser>();
             if (File.Exists(SteamSettings.LoginUsersPath))
             {
-                var config = new KeyValue();
-                config.ReadFileAsText(SteamSettings.LoginUsersPath);
-                foreach (var user in config.Children)
+                try
                 {
-                    users.Add(new LocalSteamUser()
+                    var config = new KeyValue();
+                    config.ReadFileAsText(SteamSettings.LoginUsersPath);
+                    foreach (var user in config.Children)
                     {
-                        Id = ulong.Parse(user.Name),
-                        AccountName = user["AccountName"].Value,
-                        PersonaName = user["PersonaName"].Value,
-                        Recent = user["mostrecent"].AsBoolean()
-                    });                    
+                        users.Add(new LocalSteamUser()
+                        {
+                            Id = ulong.Parse(user.Name),
+                            AccountName = user["AccountName"].Value,
+                            PersonaName = user["PersonaName"].Value,
+                            Recent = user["mostrecent"].AsBoolean()
+                        });
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, "Failed to get list of Steam users.");                    
                 }
             }
 
             return users;
+        }
+
+        public GameState GetAppState(int id)
+        {
+            var state = new GameState();
+            var rootString = @"Software\Valve\Steam\Apps\" + id.ToString();
+            var root = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Default);
+            var appKey = root.OpenSubKey(rootString);
+            if (appKey != null)
+            {
+                if (appKey.GetValue("Installed")?.ToString() == "1")
+                {
+                    state.Installed = true;
+                }
+
+                if (appKey.GetValue("Launching")?.ToString() == "1")
+                {
+                    state.Launching = true;
+                }
+
+                if (appKey.GetValue("Running")?.ToString() == "1")
+                {
+                    state.Running = true;
+                }
+
+                if (appKey.GetValue("Updating")?.ToString() == "1")
+                {
+                    state.Installing = true;
+                }
+            }
+
+            return state;
         }
     }
 

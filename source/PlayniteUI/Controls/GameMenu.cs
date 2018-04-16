@@ -1,9 +1,11 @@
-﻿using Playnite.Models;
+﻿using Playnite.Database;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,16 +25,16 @@ namespace PlayniteUI.Controls
         {
             get
             {
-                return (bool)GetValue(GameProperty);
+                return (bool)GetValue(ShowStartSectionProperty);
             }
 
             set
             {
-                SetValue(GameProperty, value);
+                SetValue(ShowStartSectionProperty, value);
             }
         }
 
-        public static readonly DependencyProperty GameProperty =
+        public static readonly DependencyProperty ShowStartSectionProperty =
             DependencyProperty.Register("ShowStartSection", typeof(bool), typeof(GameMenu), new PropertyMetadata(true, ShowStartSectionPropertyChangedCallback));
 
         private static void ShowStartSectionPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -43,59 +45,16 @@ namespace PlayniteUI.Controls
 
         private IResourceProvider resources;
         private GamesEditor editor;
+        private readonly SynchronizationContext context;
 
-        public IGame Game
+        public Game Game
         {
-            get
-            {
-                if (DataContext is GameViewEntry entry)
-                {
-                    return entry.Game;
-                }
-                else if (DataContext is IEnumerable<GameViewEntry> entries)
-                {
-                    if (entries.Count() > 0)
-                    {
-                        return (entries.First() as GameViewEntry).Game;
-                    }
-                }
-                else if (DataContext is IList<object> entries2)
-                {
-                    if (entries2.Count() > 0)
-                    {
-                        return (entries2.First() as GameViewEntry).Game;
-                    }
-                }
-
-                return null;
-            }
+            get; set;
         }
 
-        public List<IGame> Games
+        public List<Game> Games
         {
-            get
-            {
-                if (DataContext is IEnumerable<GameViewEntry> entries)
-                {
-                    if (entries.Count() == 1)
-                    {
-                        return null;
-                    }
-
-                    return entries.Select(a => (a as GameViewEntry).Game).ToList();
-                }
-                else if (DataContext is IList<object> entries2)
-                {
-                    if (entries2.Count() == 1)
-                    {
-                        return null;
-                    }
-
-                    return entries2.Select(a => (a as GameViewEntry).Game).ToList();
-                }
-
-                return null;
-            }
+            get;  set;
         }
 
         static GameMenu()
@@ -104,11 +63,12 @@ namespace PlayniteUI.Controls
         }
 
         public GameMenu() : this(App.GamesEditor)
-        {
+        {            
         }
 
         public GameMenu(GamesEditor editor)
         {
+            context = SynchronizationContext.Current;
             this.editor = editor;
             resources = new ResourceProvider();
             DataContextChanged += GameMenu_DataContextChanged;
@@ -117,7 +77,76 @@ namespace PlayniteUI.Controls
 
         private void GameMenu_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            if (DataContext is GameViewEntry entry)
+            {
+                AssignGame(entry.Game);
+            }
+            else if (DataContext is IEnumerable<GameViewEntry> entries)
+            {
+                if (entries.Count() > 0)
+                {
+                    AssignGame((entries.First() as GameViewEntry).Game);
+                }
+
+                if (entries.Count() == 1)
+                {
+                    Games = null;
+                }
+                else
+                {
+                    Games = entries.Select(a => (a as GameViewEntry).Game).ToList();
+                }
+            }
+            else if (DataContext is IList<object> entries2)
+            {
+                if (entries2.Count() > 0)
+                {
+                    AssignGame((entries2.First() as GameViewEntry).Game);
+                }
+
+                if (entries2.Count() == 1)
+                {
+                    Games = null;
+                }
+                else
+                {
+                    Games = entries2.Select(a => (a as GameViewEntry).Game).ToList();
+                }
+            }
+            else
+            {
+                AssignGame(null);
+                Games = null;
+            }
+
             InitializeItems();
+        }
+
+        private void AssignGame(Game game)
+        {
+            if (Game != null)
+            {
+                Game.PropertyChanged -= Game_PropertyChanged;
+            }
+
+            Game = game;
+
+            if (Game != null)
+            {
+                Game.PropertyChanged += Game_PropertyChanged;
+            }
+        }
+
+        private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if ((new string[]
+            {
+                "State", "OtherTasks", "Links", "Favorite", "Hidden"
+            }).Contains(e.PropertyName))
+            {
+                //Can be called from different threads when game database update is done
+                context.Send((a) => InitializeItems(), null);
+            }
         }
 
         public void InitializeItems()
@@ -282,6 +311,7 @@ namespace PlayniteUI.Controls
                     Items.Add(new Separator());
                 }
 
+                // Links
                 if (Game.Links?.Any() == true)
                 {
                     var linksItem = new MenuItem()
@@ -400,7 +430,7 @@ namespace PlayniteUI.Controls
                 Items.Add(removeItem);
 
                 // Uninstall
-                if (Game.Provider != Provider.Custom)
+                if (Game.Provider != Provider.Custom && Game.IsInstalled)
                 {
                     var uninstallItem = new MenuItem()
                     {

@@ -3,6 +3,7 @@ using NLog;
 using Playnite;
 using Playnite.Database;
 using Playnite.Providers.Steam;
+using Playnite.SDK;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -288,6 +289,21 @@ namespace PlayniteUI.ViewModels
             Settings.EndEdit();
             Settings.SaveSettings();
 
+            if (Settings.EditedFields?.Any() == true)
+            {
+                if (Settings.EditedFields.IntersectsPartiallyWith(
+                    new List<string>() { "Skin", "AsyncImageLoading", "DisableHwAcceleration", "DatabasePath" }))
+                {
+                    if (dialogs.ShowMessage(
+                        resources.FindString("SettingsRestartAskMessage"),
+                        resources.FindString("SettingsRestartTitle"),
+                        MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        App.CurrentApp.Restart();
+                    }
+                }
+            }
+
             if (origSettings.DatabasePath != Settings.DatabasePath)
             {
                 DatabaseLocationChanged = true;
@@ -324,9 +340,10 @@ namespace PlayniteUI.ViewModels
 
         public void SelectDbFile()
         {
-            var path = dialogs.SaveFile("Database file (*.db)|*.db", false);
+            var path = dialogs.SelectFile("Database file (*.db)|*.db");
             if (!string.IsNullOrEmpty(path))
             {
+                dialogs.ShowMessage(resources.FindString("SettingsDBPathNotification"));
                 Settings.DatabasePath = path;
                 Settings.OnPropertyChanged("DatabasePath", true);
             }
@@ -433,9 +450,8 @@ namespace PlayniteUI.ViewModels
             {
                 Cef.Shutdown();
                 System.IO.Directory.Delete(Paths.BrowserCachePath, true);
-                (Application.Current as App).Restart();
-            }
-
+                App.CurrentApp.Restart();
+            }            
         }
     }
 }

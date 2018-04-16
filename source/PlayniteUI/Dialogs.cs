@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Playnite.SDK;
 using PlayniteUI.Windows;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,19 @@ namespace PlayniteUI
 {
     public class Dialogs
     {
-        public static MessageBoxResult SelectString(Window owner, string messageBoxText, string caption, out string input)
+        public static StringSelectionDialogResult SelectString(Window owner, string messageBoxText, string caption, string defaultInput)
         {
-            return (new MessageBoxWindow()).ShowInput(owner, messageBoxText, caption, out input);
+            return (new MessageBoxWindow()).ShowInput(owner, messageBoxText, caption, defaultInput);
         }
 
-        public static MessageBoxResult SelectString(string messageBoxText, string caption, out string input)
+        public static StringSelectionDialogResult SelectStringFullscreen(Window owner, string messageBoxText, string caption, string defaultInput)
         {
-            return SelectString(null, messageBoxText, caption, out input);
+            return (new FullscreenTextInputWindow()).ShowInput(owner, messageBoxText, caption, defaultInput);
+        }
+
+        public static StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput)
+        {
+            return SelectString(null, messageBoxText, caption, defaultInput);
         }
 
         public static string SaveFile(Window owner, string filter, bool promptOverwrite)

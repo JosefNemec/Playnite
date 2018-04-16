@@ -1,4 +1,5 @@
-﻿using PlayniteUI.Controls;
+﻿using Playnite.SDK;
+using PlayniteUI.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -135,14 +136,13 @@ namespace PlayniteUI.Windows
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public MessageBoxResult ShowInput(Window owner, string messageBoxText, string caption, out string input)
+        public StringSelectionDialogResult ShowInput(Window owner, string messageBoxText, string caption, string defaultInput)
         {
             if (owner == null)
             {
                 WindowStartupLocation = WindowStartupLocation.CenterScreen;
             }
 
-            input = string.Empty;
             TextInputText.Focus();
             Owner = owner;
             Text = messageBoxText;
@@ -150,10 +150,17 @@ namespace PlayniteUI.Windows
             ShowInputField = true;
             ShowOKButton = true;
             ShowCancelButton = true;
-            InputText = input ?? string.Empty;
+            InputText = defaultInput ?? string.Empty;
             ShowDialog();
-            input = InputText;
-            return result;
+
+            if (result == MessageBoxResult.Cancel)
+            {
+                return new StringSelectionDialogResult(false, InputText);
+            }
+            else
+            {
+                return new StringSelectionDialogResult(true, InputText);
+            }
         }
 
         public MessageBoxResult Show(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
@@ -190,6 +197,11 @@ namespace PlayniteUI.Windows
                 default:
                     ShowOKButton = true;
                     break;
+            }
+
+            if (ShowOKButton)
+            {
+                ButtonOK.Focus();
             }
 
             ShowDialog();

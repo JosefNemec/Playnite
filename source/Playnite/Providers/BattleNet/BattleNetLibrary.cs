@@ -1,5 +1,6 @@
 ﻿using AngleSharp.Parser.Html;
 using Playnite.Models;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -291,9 +292,9 @@ namespace Playnite.Providers.BattleNet
             };
         }
 
-        public List<IGame> GetInstalledGames()
+        public List<Game> GetInstalledGames()
         {
-            var games = new List<IGame>();
+            var games = new List<Game>();
             foreach (var prog in Programs.GetUnistallProgramsList())
             {
                 if (string.IsNullOrEmpty(prog.UninstallString))
@@ -310,6 +311,7 @@ namespace Playnite.Providers.BattleNet
                         {
                             Provider = Provider.BattleNet,
                             ProviderId = product.ProductId,
+                            Source = "Battle.net",
                             Name = product.Name,
                             PlayTask = new GameTask()
                             {
@@ -342,6 +344,7 @@ namespace Playnite.Providers.BattleNet
                     {
                         Provider = Provider.BattleNet,
                         ProviderId = product.ProductId,
+                        Source = "Battle.net",
                         Name = product.Name,
                         PlayTask = GetGamePlayTask(product.ProductId),
                         InstallDirectory = prog.InstallLocation
@@ -354,7 +357,7 @@ namespace Playnite.Providers.BattleNet
             return games;
         }
 
-        public GameMetadata UpdateGameWithMetadata(IGame game)
+        public GameMetadata UpdateGameWithMetadata(Game game)
         {
             var metadata = new GameMetadata();
             var product = BattleNetProducts.FirstOrDefault(a => a.ProductId == game.ProviderId);
@@ -381,7 +384,7 @@ namespace Playnite.Providers.BattleNet
             return metadata;
         }
 
-        public List<IGame> GetLibraryGames()
+        public List<Game> GetLibraryGames()
         {
             using (var api = new WebApiClient())
             {
@@ -391,7 +394,7 @@ namespace Playnite.Providers.BattleNet
                 }
 
                 var page = api.GetOwnedGames();
-                var games = new List<IGame>();
+                var games = new List<Game>();
                 var parser = new HtmlParser();
                 var document = parser.Parse(page);
 
@@ -426,6 +429,7 @@ namespace Playnite.Providers.BattleNet
                     var game = new Game()
                     {
                         Provider = Provider.BattleNet,
+                        Source = "Battle.net",
                         ProviderId = product.ProductId,
                         Name = product.Name
                     };

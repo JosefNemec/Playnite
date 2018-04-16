@@ -11,7 +11,8 @@
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
         ShowTitle="False" ShowCloseButton="False"
         ShowMaximizeButton="False" ShowMinimizeButton="False"
-        ResizeMode="NoResize" Height="50" Width="400"
+        ResizeMode="NoResize" Width="400"
+        SizeToContent="Height"
         Title="{Binding ProgressText}"
         AutomationProperties.AutomationId="WindowProgress">
 

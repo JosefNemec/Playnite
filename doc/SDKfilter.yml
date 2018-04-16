@@ -1,0 +1,7 @@
+apiRules:
+  - exclude:
+      uidRegex: ^System\.Collections\.Concurrent$
+      type: Namespace
+  - exclude:
+      uidRegex: ^Playnite\.SDK\.Converters$
+      type: Namespace

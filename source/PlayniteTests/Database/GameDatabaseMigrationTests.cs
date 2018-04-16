@@ -3,7 +3,7 @@ using Moq;
 using NUnit.Framework;
 using Playnite;
 using Playnite.Database;
-using Playnite.Models;
+using Playnite.SDK.Models;
 using Playnite.Providers.Steam;
 using System;
 using System.Collections.Generic;
@@ -253,6 +253,59 @@ namespace PlayniteTests.Database
                     Assert.IsTrue(file.Metadata.ContainsKey("checksum"));
                     Assert.IsFalse(string.IsNullOrEmpty(file.Metadata["checksum"].AsString));
                 }
+            }
+        }
+
+        [Test]
+        public void GameStatesFixTest()
+        {
+            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "gamestatefixes.db");
+            FileSystem.DeleteFile(path);
+
+            using (var database = new LiteDatabase(path))
+            {
+                database.Engine.UserVersion = GameDatabase.DBVersion;
+                var games = new List<Game>()
+                {
+                    new Game()
+                    {
+                        Provider = Provider.Custom,
+                        Name = "Test Name 1"
+                    },
+                    new Game()
+                    {
+                        Provider = Provider.Custom,
+                        Name = "Test Name 2",
+                        InstallDirectory = "installdir"
+                    },
+                    new Game()
+                    {
+                        Provider = Provider.Custom,
+                        Name = "Test Name 3",
+                        IsoPath = "isopath"
+                    },
+                    new Game()
+                    {
+                        Provider = Provider.Custom,
+                        Name = "Test Name 4",
+                        IsoPath = "isopath",
+                        InstallDirectory = "installdir"
+                    }
+                };
+
+                var collection = database.GetCollection<Game>("games");
+                collection.Insert(games);
+            }
+
+            var db = new GameDatabase();
+            using (db.OpenDatabase(path))
+            {
+                var games = db.GetGames();
+                Assert.IsFalse(games[0].State.Installed);
+                Assert.IsTrue(games[1].State.Installed);
+                Assert.IsTrue(games[2].State.Installed);
+                Assert.IsTrue(games[3].State.Installed);
+                Assert.IsTrue(db.GetDatabaseSettings().InstStatesFixed);
             }
         }
     }
