@@ -10,7 +10,7 @@ Handling Games
 
 ### Getting Games
 
-You can get all games stored in database by calling [GetGames](xref:Playnite.SDK.IGameDatabaseAPI.GetGames) method or getting speciifc game by its Id via [GetGame](xref:Playnite.SDK.IGameDatabaseAPI.GetGame(System.Int32)) method.
+You can get all games stored in database by calling [GetGames](xref:Playnite.SDK.IGameDatabaseAPI.GetGames) method or getting specific game by its Id via [GetGame](xref:Playnite.SDK.IGameDatabaseAPI.GetGame(System.Int32)) method.
 
 **PowerShell**:
 
@@ -119,7 +119,7 @@ PlayniteApi.Database.SaveFile(cover.Id, cover.Filename)
 
 ### Changing Cover Image
 
-Changing cover image involves several step. First remove original image by calling [RemoveImage](xref:Playnite.SDK.IGameDatabaseAPI.RemoveImage(System.String,Playnite.SDK.Models.Game)) method. Then add new image file to a database using [AddFile](xref:Playnite.SDK.IGameDatabaseAPI.AddFile(System.String,System.String)). And lastly assign Id of new image to a game.
+Changing cover image involves several steps. First remove original image by calling [RemoveImage](xref:Playnite.SDK.IGameDatabaseAPI.RemoveImage(System.String,Playnite.SDK.Models.Game)) method. Then add new image file to a database using [AddFile](xref:Playnite.SDK.IGameDatabaseAPI.AddFile(System.String,System.String)). And lastly assign Id of new image to a game.
 
 > [!NOTE] 
 > [RemoveImage](xref:Playnite.SDK.IGameDatabaseAPI.RemoveImage(System.String,Playnite.SDK.Models.Game)) method will not remove image file if any other game is using it. No error is reported in that case since it's intended behavior. Similarly [AddFile](xref:Playnite.SDK.IGameDatabaseAPI.AddFile(System.String,System.String)) doesn't add new file to database if file with the same content already exits and instead returns Id of existing file.

@@ -6,7 +6,7 @@ Basics
 
 Playnite can be extended with additional functionality using scripts. Currently scripts written in [PowerShell](https://docs.microsoft.com/en-us/powershell/) and [IronPython](http://ironpython.net/) languages are supported.
 
-If you wan't to use compiled .NET languages (C#, VB.NET etc.) to extend Playnite please see documentation related to [Plugins](plugins.md).
+If you want to use compiled .NET languages (C#, VB.NET etc.) to extend Playnite please see documentation related to [Plugins](plugins.md).
 
 ### Script Location
 
