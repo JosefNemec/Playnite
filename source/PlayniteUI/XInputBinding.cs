@@ -132,20 +132,20 @@ namespace PlayniteUI
         private Dictionary<XInputButton, Key> keyboardMap = new Dictionary<XInputButton, Key>()
         {
             {  XInputButton.A, Key.Enter },
-            {  XInputButton.B, Key.Escape },
-            {  XInputButton.Back, Key.Back },
+            {  XInputButton.B, Key.None },
+            {  XInputButton.Back, Key.None },
             {  XInputButton.DPadDown, Key.Down },
             {  XInputButton.DPadLeft, Key.Left },
             {  XInputButton.DPadRight, Key.Right },
             {  XInputButton.DPadUp, Key.Up },
             {  XInputButton.Guide, Key.None },
-            {  XInputButton.LeftShoulder, Key.Home },
+            {  XInputButton.LeftShoulder, Key.None },
             {  XInputButton.LeftStick, Key.None },
             {  XInputButton.LeftStickDown, Key.Down },
             {  XInputButton.LeftStickLeft, Key.Left },
             {  XInputButton.LeftStickRight, Key.Right },
             {  XInputButton.LeftStickUp, Key.Up },
-            {  XInputButton.RightShoulder, Key.End },
+            {  XInputButton.RightShoulder, Key.None },
             {  XInputButton.RightStick, Key.None },
             {  XInputButton.RightStickDown, Key.None },
             {  XInputButton.RightStickLeft, Key.None },
@@ -154,8 +154,8 @@ namespace PlayniteUI
             {  XInputButton.Start, Key.None },
             {  XInputButton.TriggerLeft, Key.PageUp },
             {  XInputButton.TriggerRight, Key.PageDown },
-            {  XInputButton.X, Key.F2 },
-            {  XInputButton.Y, Key.Tab }
+            {  XInputButton.X, Key.None },
+            {  XInputButton.Y, Key.None }
         };
 
         private Dictionary<XInputButton, InputState> keyWatches = new Dictionary<XInputButton, InputState>()
@@ -337,7 +337,7 @@ namespace PlayniteUI
 
         private void SendXInput(XInputButton button, bool pressed)
         {
-            context.Send((a) =>
+            context.Post((a) =>
             {
                 var args = new XInputEventArgs(Key.None, pressed ? XInputButtonState.Pressed : XInputButtonState.Released, button);
                 inputManager.ProcessInput(args);
@@ -346,7 +346,7 @@ namespace PlayniteUI
 
         private void SendKeyInput(Key key, bool pressed)
         {
-            context.Send((a) =>
+            context.Post((a) =>
             {
                 var args = new KeyEventArgs(InputManager.Current.PrimaryKeyboardDevice, InputManager.Current.PrimaryKeyboardDevice.ActiveSource, Environment.TickCount, key)
                 {
@@ -360,8 +360,7 @@ namespace PlayniteUI
         private void SimulateKeyInput(Key key, bool pressed)
         {
             if (SimulateAllKeys || (SimulateNavigationKeys && IsKeysDirectionKey(key)))
-            {
-                Console.WriteLine(key);
+            {                
                 SendKeyInput(key, pressed);
             }
         }

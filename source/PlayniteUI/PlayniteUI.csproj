@@ -234,6 +234,7 @@
     <Compile Include="Behaviors\ScrollToSelectedBehavior.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="Themes.cs" />
+    <Compile Include="Time.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
     <Compile Include="ViewModels\MetadataDownloadViewModel.cs" />
     <Compile Include="ViewModels\ProgressViewViewModel.cs" />
@@ -248,7 +249,7 @@
     <Compile Include="ViewModels\CategoryConfigViewModel.cs" />
     <Compile Include="ViewModels\EmulatorImportViewModel.cs" />
     <Compile Include="ViewModels\MetadataLookupViewModel.cs" />
-    <Compile Include="VirtualizingTilePanel2.cs" />
+    <Compile Include="VirtualizingGridPanel.cs" />
     <Compile Include="WindowFactory.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="MouseWheelGesture.cs" />
@@ -715,7 +716,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(SolutionDir)PlayniteUI\Skins" "$(TargetDir)\Skins" /e /y
-xcopy "$(SolutionDir)PlayniteUI\SkinsFullscreen" "$(TargetDir)\SkinsFullscreen" /e /y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(SolutionDir)\PlayniteUI\Skins" "$(TargetDir)\Skins" /e /y
+xcopy "$(SolutionDir)\PlayniteUI\SkinsFullscreen" "$(TargetDir)\SkinsFullscreen" /e /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

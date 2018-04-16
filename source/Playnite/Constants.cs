@@ -16,5 +16,13 @@ namespace Playnite
                 return CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
             }
         }
+
+        public static string TimeUiFormat
+        {
+            get
+            {
+                return CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern;
+            }
+        }
     }
 }

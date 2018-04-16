@@ -2133,7 +2133,7 @@
                                                                 FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"
                                                                 Command="{Binding Data.StartGameCommand, Source={StaticResource CoversProxy}}"
                                                                 CommandParameter="{Binding Game}" />
-                                                        <Button Background="#EE000000" Content="🛈"
+                                                        <Button Background="#EE000000" Content="ℹ"
                                                                 Grid.Row="0" Grid.Column="1" Margin="3,0,0,0" 
                                                                 FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"
                                                                 Command="{Binding Data.ShowGameSideBarCommand, Source={StaticResource CoversProxy}}"

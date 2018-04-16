@@ -5,6 +5,7 @@ using Playnite.Database;
 using Playnite.Models;
 using Playnite.Providers;
 using Playnite.Providers.Steam;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using PlayniteUI.ViewModels;
 using System;
@@ -23,6 +24,7 @@ namespace PlayniteUI
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         private IResourceProvider resources = new ResourceProvider();
         private GameDatabase database;
+        private IDialogsFactory dialogs;
         private Settings appSettings;
 
         public bool IsFullscreen
@@ -45,8 +47,9 @@ namespace PlayniteUI
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GamesEditor(GameDatabase database, Settings appSettings)
+        public GamesEditor(GameDatabase database, Settings appSettings, IDialogsFactory dialogs)
         {
+            this.dialogs = dialogs;
             this.database = database;
             this.appSettings = appSettings;
             Controllers = new GameControllerFactory(database);
@@ -109,13 +112,10 @@ namespace PlayniteUI
 
         public void PlayGame(Game game)
         {
-            // Set parent for message boxes in this method
-            // because this method can be invoked from tray icon which otherwise bugs the dialog
             var dbGame = database.GetGame(game.Id);
             if (dbGame == null)
             {
-                PlayniteMessageBox.Show(
-                    Application.Current.MainWindow,
+                dialogs.ShowMessage(
                     string.Format(resources.FindString("GameStartErrorNoGame"), game.Name),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
@@ -143,8 +143,7 @@ namespace PlayniteUI
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Cannot start game: ");
-                PlayniteMessageBox.Show(
-                    Application.Current.MainWindow,
+                dialogs.ShowMessage(
                     string.Format(resources.FindString("GameStartError"), exc.Message),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
@@ -169,7 +168,7 @@ namespace PlayniteUI
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                PlayniteMessageBox.Show(
+                dialogs.ShowMessage(
                     string.Format(resources.FindString("GameStartActionError"), exc.Message),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
@@ -189,7 +188,7 @@ namespace PlayniteUI
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                PlayniteMessageBox.Show(
+                dialogs.ShowMessage(
                     string.Format(resources.FindString("GameOpenLocationError"), exc.Message),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
@@ -256,7 +255,7 @@ namespace PlayniteUI
         {
             if (game.State.Installing || game.State.Running || game.State.Launching || game.State.Uninstalling)
             {
-                PlayniteMessageBox.Show(
+                dialogs.ShowMessage(
                     resources.FindString("GameRemoveRunningError"),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK,
@@ -264,7 +263,7 @@ namespace PlayniteUI
                 return;
             }
 
-            if (PlayniteMessageBox.Show(
+            if (dialogs.ShowMessage(
                 resources.FindString("GameRemoveAskMessage"),
                 resources.FindString("GameRemoveAskTitle"),
                 MessageBoxButton.YesNo,
@@ -280,7 +279,7 @@ namespace PlayniteUI
         {
             if (games.Exists(a => a.State.Installing || a.State.Running || a.State.Launching || a.State.Uninstalling))
             {
-                PlayniteMessageBox.Show(
+                dialogs.ShowMessage(
                     resources.FindString("GameRemoveRunningError"),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK,
@@ -288,7 +287,7 @@ namespace PlayniteUI
                 return;
             }
 
-            if (PlayniteMessageBox.Show(
+            if (dialogs.ShowMessage(
                 string.Format(resources.FindString("GamesRemoveAskMessage"), games.Count()),
                 resources.FindString("GameRemoveAskTitle"),
                 MessageBoxButton.YesNo,
@@ -330,7 +329,7 @@ namespace PlayniteUI
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Failed to create shortcut: ");
-                PlayniteMessageBox.Show(
+                dialogs.ShowMessage(
                     string.Format(resources.FindString("GameShortcutError"), exc.Message),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
@@ -358,7 +357,7 @@ namespace PlayniteUI
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Cannot install game: ");
-                PlayniteMessageBox.Show(
+                dialogs.ShowMessage(
                     string.Format(resources.FindString("GameInstallError"), exc.Message),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
@@ -369,7 +368,7 @@ namespace PlayniteUI
         {
             if (game.State.Running || game.State.Launching)
             {
-                PlayniteMessageBox.Show(
+                dialogs.ShowMessage(
                     resources.FindString("GameUninstallRunningError"),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK,
@@ -388,7 +387,7 @@ namespace PlayniteUI
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Cannot un-install game: ");
-                PlayniteMessageBox.Show(
+                dialogs.ShowMessage(
                     string.Format(resources.FindString("GameUninstallError"), exc.Message),
                     resources.FindString("GameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);

@@ -145,6 +145,7 @@ namespace PlayniteUI
                 appMutex = new Mutex(true, instanceMuxet);
             }
 
+            Time.Instance = new Time();
             AppSettings = Settings.LoadSettings();
             Localization.SetLanguage(AppSettings.Language);
             Resources.Remove("AsyncImagesEnabled");
@@ -239,7 +240,7 @@ namespace PlayniteUI
                 AppSettings.SaveSettings();
             }
 
-            GamesEditor = new GamesEditor(Database, AppSettings);
+            GamesEditor = new GamesEditor(Database, AppSettings, dialogs);
             CustomImageStringToImageConverter.Database = Database;
             Api = new PlayniteAPI(Database, GamesEditor.Controllers, dialogs, null);
 
@@ -274,7 +275,7 @@ namespace PlayniteUI
 
             xdevice = new XInputDevice(InputManager.Current)
             {
-                SimulateAllKeys = false,
+                SimulateAllKeys = true,
                 SimulateNavigationKeys = true
             };
 
@@ -478,9 +479,9 @@ namespace PlayniteUI
                 AppSettings,
                 GamesEditor);
             Api.MainView = new MainViewAPI(mainModel);
-            fullscreenModel.OpenView(false);
+            fullscreenModel.OpenView(true);
             Current.MainWindow = window.Window;
-            //await fullscreenModel.UpdateDatabase(AppSettings.UpdateLibStartup, 0, true);
+            await fullscreenModel.UpdateDatabase(AppSettings.UpdateLibStartup, 0, true);
         }
 
         private void ApplyTheme(string name, string profile, bool fullscreen)

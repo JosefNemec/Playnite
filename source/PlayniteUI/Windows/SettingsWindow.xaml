@@ -233,7 +233,7 @@
                                       ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkins}" />
                         </Grid>
 
-                        <Grid Margin="0,10,0,0">
+                        <!--<Grid Margin="0,10,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
@@ -260,7 +260,7 @@
                                         SelectedValue="{Binding Settings.SkinColorFullscreen}"
                                         ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkinsFullscreen}">
                             </ComboBox>
-                        </Grid>
+                        </Grid>-->
 
                         <TextBlock Text="{DynamicResource SettingsSkinChangeRestart}" FontStyle="Italic" Margin="0,15,0,15"/>
                         <StackPanel Orientation="Horizontal">

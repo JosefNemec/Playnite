@@ -19,7 +19,7 @@ namespace PlayniteUI.ViewModels
         {
             get;
             private set;
-        } = false;
+        } = true;
 
         private double viewLeft = 0;
         public double ViewLeft
@@ -43,7 +43,7 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private double viewWidth = 1280;
+        private double viewWidth = Screen.PrimaryScreen.Bounds.Width;
         public double ViewWidth
         {
             get => viewWidth;
@@ -54,7 +54,7 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private double viewHeight = 720;
+        private double viewHeight = Screen.PrimaryScreen.Bounds.Height;
         public double ViewHeight
         {
             get => viewHeight;
@@ -203,11 +203,7 @@ namespace PlayniteUI.ViewModels
         {
             Window.Show(this);
             Window.BringToForeground();
-            if (fullscreen)
-            {
-                GoFullscreen();
-            }
-            else
+            if (!fullscreen)
             {
                 LeaveFullscreen();
             }

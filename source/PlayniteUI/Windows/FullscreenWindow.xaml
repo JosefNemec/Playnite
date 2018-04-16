@@ -34,13 +34,15 @@
 
     <c:WindowBase.InputBindings>
         <KeyBinding Gesture="ALT+ENTER" Command="{Binding ToggleFullscreenCommand}" />
-        
+        <KeyBinding Key="F5" Command="{Binding UpdateGamesCommand}" />
+
         <pui:XInputBinding Button="Back" Command="{Binding ToggleExitMenuCommand}" />
+        <pui:XInputBinding Button="Guide" Command="{Binding ToggleExitMenuCommand}" />
+        <pui:XInputBinding Button="B" Command="{Binding ToggleGameDetailsCommand}" />
         <pui:XInputBinding Button="X" Command="{Binding ToggleGameDetailsCommand}" />
-        <pui:XInputBinding Button="B" Command="{Binding ToggleGameDetailsCommand}" />        
         <pui:XInputBinding Button="Y" Command="{Binding OpenSearchCommand}" />
         <pui:XInputBinding Button="LeftShoulder" Command="{Binding ClearFiltersCommand}" />
-
+        
         <KeyBinding Key="Backspace" Command="{Binding ClearFiltersCommand}" />
         <KeyBinding Key="Y" Command="{Binding OpenSearchCommand}" />
         <KeyBinding Key="X" Command="{Binding ToggleGameDetailsCommand}" />

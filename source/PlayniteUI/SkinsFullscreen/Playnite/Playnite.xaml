@@ -57,13 +57,11 @@
     <Image x:Key="BackspaceImage" Source="{Binding ConverterParameter='Icons/Xbox/X.png', Converter={pui:SkinMediaPathConverter}}" />
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-
-    <SolidColorBrush x:Key="WindowBackgourndBrush" Color="#252422" />
     
-    <!--<LinearGradientBrush x:Key="WindowBackgourndBrush" StartPoint="0.5,-0.2" EndPoint="0.4,1" >
-        <GradientStop Color="#1F2933" Offset="0"/>
-        <GradientStop Color="{DynamicResource MainColorDark}" Offset="0.4"/>
-    </LinearGradientBrush>-->
+    <LinearGradientBrush x:Key="WindowBackgourndBrush" StartPoint="0.5,0.0" EndPoint="1,1" >
+        <GradientStop Color="#AA1F2933" Offset="0"/>
+        <GradientStop Color="#BB1F2933" Offset="0.2"/>
+    </LinearGradientBrush>
 
     <Style x:Key="HighlightBorder" TargetType="Border">
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
@@ -91,6 +89,38 @@
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+    </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Background" Value="{DynamicResource NormalBrushDark}" />
+        <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Padding" Value="10,5,10,5" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+                            CornerRadius="{DynamicResource ControlCornerRadius}" Style="{DynamicResource HighlightBorder}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="BottomButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Padding" Value="15,8,15,8" />
+        <Setter Property="MinWidth" Value="70" />
     </Style>
 
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}">
@@ -414,8 +444,8 @@
                     </ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="16*" />
-                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1020" />
+                    <RowDefinition Height="60" />
                 </Grid.RowDefinitions>
 
                 <Image Stretch="UniformToFill" RenderOptions.BitmapScalingMode="Fant"                       
@@ -460,6 +490,63 @@
 
                 <ContentControl Grid.Column="1" DockPanel.Dock="Left"
                                 Template="{StaticResource GameDetailsView}" />
+
+                <!--TIME -->
+                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,15,60,0"
+                           HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="LightGray"
+                           Text="{Binding CurrentTime, Source={x:Static pui:Time.Instance}, Mode=OneWay}"
+                           FontSize="32" Style="{DynamicResource BaseTextBlockStyle}">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="3" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                
+                
+                <!--BACKGROUND TASK STATUS-->
+                <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal"
+                            Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Image Source="{Binding ConverterParameter='Icons/loading.png', Converter={pui:SkinMediaPathConverter}}"
+                           IsEnabled="{Binding ProgressVisible}"
+                           Width="48" Height="48" HorizontalAlignment="Left" VerticalAlignment="Top"
+                           RenderTransformOrigin="0.5,0.5" Margin="10">
+                        <Image.Resources>
+                            <Storyboard x:Key="VisibleOn">
+                                <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)"
+                                                 To="360" Duration="0:0:1" RepeatBehavior="Forever" />
+                            </Storyboard>
+                            <Storyboard x:Key="VisibleOff">
+                                <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)"
+                                                 To="0" Duration="0:0:0"/>
+                            </Storyboard>
+                        </Image.Resources>
+                        <Image.RenderTransform>
+                            <RotateTransform x:Name="noFreeze" />
+                        </Image.RenderTransform>
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Style.Triggers>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsEnabled" Value="True"/>
+                                        </MultiTrigger.Conditions>
+                                        <MultiTrigger.EnterActions>
+                                            <BeginStoryboard Storyboard="{StaticResource VisibleOn}"/>
+                                        </MultiTrigger.EnterActions>
+                                        <MultiTrigger.ExitActions>
+                                            <BeginStoryboard Storyboard="{StaticResource VisibleOff}"/>
+                                        </MultiTrigger.ExitActions>
+                                    </MultiTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <TextBlock Text="{Binding ProgressStatus}" FontSize="32" Style="{DynamicResource BaseTextBlockStyle}"
+                               Margin="10,15,0,0">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="3" />
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </StackPanel>
 
                 <!--NOT FOUND GAMES-->
                 <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
@@ -598,15 +685,16 @@
             <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         </ControlTemplate.Resources>
-        <ListView   x:Name="test"
-                    pui:FocusBahaviors.OnVisibilityFocus="True"
-                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                    ScrollViewer.VerticalScrollBarVisibility="Disabled"                    
-                    ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Single" DockPanel.Dock="Top"
-                    pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"
-                    ItemsSource="{Binding GamesView.CollectionView}"
-                    SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
-                    Background="Transparent" Margin="30">
+        <ListView x:Name="test"
+                  pui:FocusBahaviors.OnVisibilityFocus="True"
+                  ScrollViewer.PanningMode="VerticalOnly"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  SelectionMode="Single" DockPanel.Dock="Top"
+                  pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"
+                  ItemsSource="{Binding GamesView.CollectionView}"
+                  SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
+                  Background="Transparent" Margin="20,40,20,0">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick" >
                     <i:InvokeCommandAction Command="{Binding StartGameCommand}"
@@ -618,7 +706,7 @@
                     <Setter Property="Visibility" Value="Collapsed" />
                 </Style>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="Margin" Value="4"/>
+                    <Setter Property="Margin" Value="10"/>
                     <Setter Property="OverridesDefaultStyle" Value="True" />
                     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                     <Setter Property="Template">
@@ -644,8 +732,7 @@
                                 </ControlTemplate.Resources>
                                 <Grid Background="Transparent">
                                     <Grid.Effect>
-                                        <DropShadowEffect RenderingBias="Performance" BlurRadius="20" Color="Black"
-                                                          />
+                                        <DropShadowEffect RenderingBias="Performance" BlurRadius="20" Color="Black" />
                                     </Grid.Effect>
                                     <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="5"
                                             CornerRadius="4"
@@ -654,7 +741,7 @@
                                         <Border.RenderTransform>
                                             <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1" />
                                         </Border.RenderTransform>
-                                        <Grid>                                            
+                                        <Grid>
                                             <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
                                                 <Image.Source>
                                                     <PriorityBinding>
@@ -710,9 +797,9 @@
             </ListView.Resources>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <pui:VirtualizingTilePanel2>
-                        <pui:VirtualizingTilePanel2.Style>
-                            <Style TargetType="pui:VirtualizingTilePanel2">
+                    <pui:VirtualizingGridPanel>
+                        <pui:VirtualizingGridPanel.Style>
+                            <Style TargetType="pui:VirtualizingGridPanel">
                                 <Setter Property="Columns" Value="5" />
                                 <Setter Property="Rows" Value="2" />
                                 <Setter Property="Margin" Value="20" />
@@ -723,8 +810,8 @@
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </pui:VirtualizingTilePanel2.Style>
-                    </pui:VirtualizingTilePanel2>
+                        </pui:VirtualizingGridPanel.Style>
+                    </pui:VirtualizingGridPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>

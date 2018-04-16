@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -56,10 +57,9 @@ namespace PlayniteUI
             if (control.IsVisible)
             {
                 lastFocus = Keyboard.FocusedElement;
-                Console.WriteLine("Last " + lastFocus?.GetType());
                 if (control.Focusable && control.IsVisible)
                 {
-                    Console.WriteLine($"Direct {control.GetType()} " + control.Focus());
+                    control.Focus();
                 }
                 else
                 {
@@ -67,7 +67,7 @@ namespace PlayniteUI
                     {
                         if (child.Focusable && child.IsVisible)
                         {
-                            Console.WriteLine("Child " + child.Focus());
+                            child.Focus();
                             return;
                         }
                     }
@@ -77,8 +77,6 @@ namespace PlayniteUI
             {
                 if (lastFocus != null)
                 {
-                    // poresit pokud uz control neexistuuje
-                    Console.WriteLine("Switching " + lastFocus.GetType());
                     lastFocus.Focus();
                 }
             }

@@ -21,63 +21,44 @@
     </controls:WindowBase.Resources>
 
     <Viewbox Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Stretch" >
-        <Grid Margin="20,0,20,0" Width="160" Height="50" >
+        <Grid Margin="20,0,20,0" Width="1920" MaxHeight="800" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="8*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
-            <!--<Viewbox Grid.Column="0" Grid.Row="0" 
-                 MaxWidth="32" MaxHeight="32" Margin="10,10,0,10">
-                <TextBlock>
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding DisplayIcon, ElementName=WindowMessageBox}" Value="{x:Static MessageBoxImage.None}">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding DisplayIcon, ElementName=WindowMessageBox}" Value="{x:Static MessageBoxImage.Error}">
-                                    <Setter Property="Text" Value="❌" />
-                                    <Setter Property="Foreground" Value="OrangeRed" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding DisplayIcon, ElementName=WindowMessageBox}" Value="{x:Static MessageBoxImage.Question}">
-                                    <Setter Property="Text" Value="❔" />
-                                    <Setter Property="Foreground" Value="DodgerBlue" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding DisplayIcon, ElementName=WindowMessageBox}" Value="{x:Static MessageBoxImage.Warning}">
-                                    <Setter Property="Text" Value="⚠" />
-                                    <Setter Property="Foreground" Value="Yellow" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding DisplayIcon, ElementName=WindowMessageBox}" Value="{x:Static MessageBoxImage.Information}">
-                                    <Setter Property="Text" Value="❕" />
-                                    <Setter Property="Foreground" Value="DodgerBlue" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-            </Viewbox>-->
             <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Text, ElementName=WindowMessageBox}"
-                       FontSize="6" Margin="0,0,0,5"
-                   Style="{StaticResource BaseTextBlockStyle}" VerticalAlignment="Center" TextWrapping="Wrap"
-                       HorizontalAlignment="Stretch" TextAlignment="Center"/>
-            <StackPanel Grid.Row="1" Orientation="Horizontal"
-                    KeyboardNavigation.DirectionalNavigation="Contained"
-                        HorizontalAlignment="Center"> 
-
-                <Button Content="{DynamicResource OKLabel}" Style="{DynamicResource KeyboardButton}" Name="ButtonOK" Click="ButtonOK_Click"
-                    Visibility="{Binding ShowOKButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <Button Content="{DynamicResource YesLabel}" Style="{DynamicResource KeyboardButton}" Name="ButtonYes" Click="ButtonYes_Click"
-                    Visibility="{Binding ShowYesButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <Button Content="{DynamicResource NoLabel}" Style="{DynamicResource KeyboardButton}" Name="ButtonNo" Click="ButtonNo_Click"
-                    Visibility="{Binding ShowNoButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <Button Content="{DynamicResource CancelLabel}" Style="{DynamicResource KeyboardButton}" Name="ButtonCancel" Click="ButtonCancel_Click"
-                    Visibility="{Binding ShowCancelButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            </StackPanel>
+                       FontSize="32" Width="600" Margin="0,20,0,20"
+                       Style="{StaticResource BaseTextBlockStyle}" VerticalAlignment="Center" TextWrapping="Wrap"
+                       HorizontalAlignment="Stretch" TextAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="4" />
+                </TextBlock.Effect>
+            </TextBlock>
+            <Viewbox Grid.Row="1">
+                <StackPanel Orientation="Horizontal" Margin="10"
+                            KeyboardNavigation.DirectionalNavigation="Contained"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button" BasedOn="{StaticResource KeyboardButton}">
+                            <Setter Property="FontSize" Value="32" />
+                            <Setter Property="Padding" Value="30,10,30,10" />
+                            <Setter Property="Margin" Value="10,0,10,0" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button Content="{DynamicResource OKLabel}" Name="ButtonOK" Click="ButtonOK_Click"
+                        Visibility="{Binding ShowOKButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <Button Content="{DynamicResource YesLabel}" Name="ButtonYes" Click="ButtonYes_Click"
+                        Visibility="{Binding ShowYesButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <Button Content="{DynamicResource NoLabel}" Name="ButtonNo" Click="ButtonNo_Click"
+                        Visibility="{Binding ShowNoButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <Button Content="{DynamicResource CancelLabel}" Name="ButtonCancel" Click="ButtonCancel_Click"
+                        Visibility="{Binding ShowCancelButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </StackPanel>
+            </Viewbox>
         </Grid>
-
     </Viewbox>
     
 </controls:WindowBase>

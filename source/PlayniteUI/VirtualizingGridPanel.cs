@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace PlayniteUI
 {
-    public class VirtualizingTilePanel2 : VirtualizingPanel, IScrollInfo
+    public class VirtualizingGridPanel : VirtualizingPanel, IScrollInfo
     {
         public int Columns
         {
@@ -29,10 +29,10 @@ namespace PlayniteUI
         }
 
         public static readonly DependencyProperty RowsProperty
-            = DependencyProperty.RegisterAttached("Rows", typeof(int), typeof(VirtualizingTilePanel2), new FrameworkPropertyMetadata(1, OnItemsSourceChanged));
+            = DependencyProperty.RegisterAttached("Rows", typeof(int), typeof(VirtualizingGridPanel), new FrameworkPropertyMetadata(1, OnItemsSourceChanged));
 
         public static readonly DependencyProperty ColumnsProperty
-            = DependencyProperty.RegisterAttached("Columns", typeof(int), typeof(VirtualizingTilePanel2), new FrameworkPropertyMetadata(1, OnItemsSourceChanged));
+            = DependencyProperty.RegisterAttached("Columns", typeof(int), typeof(VirtualizingGridPanel), new FrameworkPropertyMetadata(1, OnItemsSourceChanged));
 
         public double ItemWidth
         {
@@ -52,7 +52,7 @@ namespace PlayniteUI
 
         private static void OnItemsSourceChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
-            var panel = obj as VirtualizingTilePanel2;
+            var panel = obj as VirtualizingGridPanel;
             if (panel._itemsControl == null)
             {
                 return;
@@ -66,8 +66,7 @@ namespace PlayniteUI
                 var index = panel.GeneratorContainer.IndexFromContainer(panel.currentlyVisible);
                 if (index >= 0)
                 {
-                    var row = panel.GetItemRow(index, panel.Columns);
-                    panel.SetVerticalOffset(row * panel.ItemHeight);
+                    panel.MakeVisible(panel.currentlyVisible, new Rect(new Size(panel.ItemWidth, panel.ItemHeight)));
                 }
                 else
                 {
@@ -85,7 +84,7 @@ namespace PlayniteUI
 
         public ItemsControl _itemsControl;
 
-        public VirtualizingTilePanel2()
+        public VirtualizingGridPanel()
         {
 
             if (!DesignerProperties.GetIsInDesignMode(this))
@@ -297,10 +296,9 @@ namespace PlayniteUI
         /// <param name="child">The element to position</param>
         /// <param name="finalSize">The size of the panel</param>
         private void ArrangeChild(int itemIndex, UIElement child, Size finalSize)
-        {
-            int childrenPerRow = CalculateChildrenPerRow(finalSize);
-            int column = itemIndex % childrenPerRow;
-            int row = GetItemRow(itemIndex, childrenPerRow);
+        {            
+            int column = itemIndex % Columns;
+            int row = GetItemRow(itemIndex, Columns);
             var targetRect = new Rect(
                 column * ItemWidth,
                 GetTotalHeightForRow(row),
@@ -350,15 +348,8 @@ namespace PlayniteUI
         private double GetTotalHeight(Size availableSize)
         {
             int itemCount = _itemsControl.HasItems ? _itemsControl.Items.Count : 0;
-            var perRow = CalculateChildrenPerRow(availableSize);
-            var rows = Math.Ceiling(itemCount / (double)perRow);
-
-            double totalHeight = 0;
-            for (var i = 0; i < rows; i++)
-            {
-                totalHeight += ItemHeight;
-            }
-
+            var totalRows = (int)Math.Ceiling(itemCount / (double)Columns);
+            double totalHeight = totalRows * ItemHeight;
             return totalHeight;
         }
 
@@ -371,7 +362,6 @@ namespace PlayniteUI
 
             // See how many items there are
             int itemCount = _itemsControl.HasItems ? _itemsControl.Items.Count : 0;
-            var perRow = CalculateChildrenPerRow(availableSize);
             var totalHeight = GetTotalHeight(availableSize);
 
             if (_offset.Y > totalHeight)
@@ -380,7 +370,7 @@ namespace PlayniteUI
                 _trans.Y = 0;
             }
 
-            Size extent = new Size(perRow * ItemWidth, totalHeight);
+            Size extent = new Size(Columns * ItemWidth, totalHeight);            
 
             // Update extent
             if (extent != _extent)
@@ -493,6 +483,7 @@ namespace PlayniteUI
 
         public Rect MakeVisible(Visual visual, Rect rectangle)
         {
+            var defaultRect = new Rect(new Size(ItemWidth, ItemHeight)); ;
             var index = GeneratorContainer.IndexFromContainer(visual);
             if (index < 0)
             {
@@ -500,14 +491,14 @@ namespace PlayniteUI
             }
 
             currentlyVisible = visual;
-            var perRow = CalculateChildrenPerRow(_extent);
+            var perRow = Columns;
             var row = GetItemRow(index, perRow);
             var offset = GetTotalHeightForRow(row);            
             var offsetSize = offset + ItemHeight;
             var offsetBottom = _offset.Y + _viewport.Height;
             if (offset > _offset.Y && offsetSize < offsetBottom)
             {
-                return rectangle;
+                return defaultRect;
             }
             else if (offset > _offset.Y && (offsetBottom - offset < ItemHeight))
             {
@@ -515,13 +506,13 @@ namespace PlayniteUI
             }
             else if (Math.Floor((offsetBottom - offset)) == Math.Floor(ItemHeight))
             {
-                return rectangle;
+                return defaultRect;
             }
 
             _offset.Y = offset;
             _trans.Y = -offset;
             InvalidateMeasure();
-            return rectangle;
+            return defaultRect;
         }
 
         public void MouseWheelLeft()
