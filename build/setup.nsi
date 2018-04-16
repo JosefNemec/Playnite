@@ -72,6 +72,11 @@ LangString UninstLogMissing ${LANG_ENGLISH} "${UninstLog} not found!$\r$\nUninst
 Function .onInit
   ${GetOptions} $CMDLINE "/ProgressOnly" $ProgressOnly
   ${GetOptions} $CMDLINE "/Portable" $Portable
+  
+  ReadRegStr $2 HKLM "${REG_UNINSTALL_PATH}" "InstallLocation"
+  ${IfNot} $2 == ""    
+    StrCpy $INSTDIR $2
+  ${EndIf}
 FunctionEnd
 
 Function un.onInit
