@@ -1,8 +1,8 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <package >
   <metadata>
     <id>PlayniteSDK</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>Playnite SDK</title>
     <authors>Josef Nemec</authors>
     <owners>JosefNemec</owners>
