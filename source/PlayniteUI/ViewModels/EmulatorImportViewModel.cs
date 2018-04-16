@@ -456,8 +456,10 @@ namespace PlayniteUI.ViewModels
                 {
                     EmulatorId = game.Emulator.Id,
                     EmulatorProfileId = game.EmulatorProfile.Id,
-                    Type = GameTaskType.Emulator
-                };               
+                    Type = GameTaskType.Emulator                    
+                };
+
+                game.Game.State = new GameState() { Installed = true };
             }
 
             database.AddGames(GamesList.Where(a => a.Import)?.Select(a => a.Game).ToList());

@@ -1972,8 +1972,16 @@ namespace PlayniteUI.ViewModels
                     string.IsNullOrEmpty(EditingGame.IsoPath) &&
                     string.IsNullOrEmpty(EditingGame.InstallDirectory))
                 {
-                    // GameState is not observable so we need to change the whole object to send notify messages
-                    Game.State = new GameState(Game.State) { Installed = false };
+                    // For UWP games which don't have installed dir
+                    if (EditingGame.PlayTask.Path == "explorer.exe")
+                    {
+                        Game.State = new GameState(Game.State) { Installed = true };
+                    }
+                    else
+                    {
+                        // GameState is not observable so we need to change the whole object to send notify messages
+                        Game.State = new GameState(Game.State) { Installed = false };
+                    }
                 }
                 else
                 {

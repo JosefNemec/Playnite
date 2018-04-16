@@ -687,8 +687,17 @@ namespace Playnite.Database
                     if (!string.IsNullOrEmpty(game.InstallDirectory) || !string.IsNullOrEmpty(game.IsoPath))
                     {
                         game.State.Installed = true;
-                        UpdateGameInDatabase(game);
                     }
+                    else
+                    {
+                        // For UWP games which don't have installed dir
+                        if (game.PlayTask?.Path == "explorer.exe")
+                        {
+                            game.State.Installed = true;
+                        }
+                    }
+
+                    UpdateGameInDatabase(game);
                 }
 
                 if (settings != null)
