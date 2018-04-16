@@ -409,7 +409,7 @@ namespace PlayniteUI
                 GamesEditor?.Dispose();
                 Database?.CloseDatabase();
                 AppSettings?.SaveSettings();
-                Api.Dispose();
+                Api?.Dispose();
             }, ResourceProvider.Instance.FindString("ClosingPlaynite"));
 
             progressModel.ActivateProgress();

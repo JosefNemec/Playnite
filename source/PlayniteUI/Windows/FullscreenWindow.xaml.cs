@@ -1,4 +1,5 @@
-﻿using PlayniteUI.Controls;
+﻿using Playnite;
+using PlayniteUI.Controls;
 
 namespace PlayniteUI
 {
@@ -22,7 +23,10 @@ namespace PlayniteUI
 
         private void WindowFullscreen_Activated(object sender, System.EventArgs e)
         {
-            Topmost = true;
+            if (!PlayniteEnvironment.IsDebugBuild)
+            {
+                Topmost = true;
+            }
         }
 
         private void WindowFullscreen_Deactivated(object sender, System.EventArgs e)

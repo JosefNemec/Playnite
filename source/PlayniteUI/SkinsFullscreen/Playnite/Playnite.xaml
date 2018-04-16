@@ -454,6 +454,7 @@
                        Source="{Binding ConverterParameter='background.png', Converter={pui:SkinMediaPathConverter}}">
                 </Image>
 
+                <!--BACKGROUND IMAGE-->
                 <Grid Grid.ColumnSpan="20" Grid.RowSpan="20"
                       HorizontalAlignment="Center" VerticalAlignment="Top">
                     <Grid.Resources>
@@ -481,17 +482,19 @@
                             </Style.Triggers>
                         </Style>
                     </Grid.Style>
-                    
+
                     <pc:FadeImage Source="{Binding SelectedGame.BackgroundImage, Mode=OneWay, Converter={pui:CustomImageStringToImageConverter}}" />
                     <Border Background="#88151519" />
                 </Grid>
 
+                <!--GAME LIST-->
                 <ContentControl Grid.Column="0" Grid.Row="0" Template="{StaticResource GamesList}" />
 
+                <!--GAME DETAILS-->
                 <ContentControl Grid.Column="1" DockPanel.Dock="Left"
                                 Template="{StaticResource GameDetailsView}" />
 
-                <!--TIME -->
+                <!--TIME-->
                 <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,15,60,0"
                            HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="LightGray"
                            Text="{Binding CurrentTime, Source={x:Static pui:Time.Instance}, Mode=OneWay}"

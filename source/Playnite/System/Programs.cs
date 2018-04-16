@@ -1,5 +1,6 @@
 ﻿using IWshRuntimeLibrary;
 using Microsoft.Win32;
+using NLog;
 using Playnite.Models;
 using Playnite.SDK.Models;
 using System;
@@ -95,6 +96,8 @@ namespace Playnite
 
     public class Programs
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public static void CreateShortcut(string executablePath, string arguments, string iconPath, string shortuctPath)
         {
             var shell = new WshShell();
@@ -306,53 +309,60 @@ namespace Playnite
                     continue;
                 }
 
-                string manifestPath;
-                if (package.IsBundle)
+                try
                 {
-                    manifestPath = @"AppxMetadata\AppxBundleManifest.xml";
+                    string manifestPath;
+                    if (package.IsBundle)
+                    {
+                        manifestPath = @"AppxMetadata\AppxBundleManifest.xml";
+                    }
+                    else
+                    {
+                        manifestPath = "AppxManifest.xml";
+                    }
+
+                    manifestPath = Path.Combine(package.InstalledLocation.Path, manifestPath);
+                    var manifest = new XmlDocument();
+                    manifest.Load(manifestPath);
+
+                    var apxApp = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Applications']//*[local-name() = 'Application'][1]");
+                    var appId = apxApp.Attributes["Id"].Value;
+
+
+                    var visuals = apxApp.SelectSingleNode(@"//*[local-name() = 'VisualElements']");
+                    var iconPath = visuals.Attributes["Square44x44Logo"]?.Value;
+                    if (string.IsNullOrEmpty(iconPath))
+                    {
+                        iconPath = visuals.Attributes["Logo"]?.Value;
+                    }
+
+                    if (!string.IsNullOrEmpty(iconPath))
+                    {
+                        iconPath = Path.Combine(package.InstalledLocation.Path, iconPath);
+                        iconPath = GetUWPGameIcon(iconPath);
+                    }
+
+                    var name = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Properties']/*[local-name() = 'DisplayName']").InnerText;
+                    if (name.StartsWith("ms-resource"))
+                    {
+                        name = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Identity']").Attributes["Name"].Value;
+                    }
+
+                    var app = new Program()
+                    {
+                        Name = name,
+                        WorkDir = string.Empty,
+                        Path = "explorer.exe",
+                        Arguments = $"shell:AppsFolder\\{package.Id.FamilyName}!{appId}",
+                        Icon = iconPath
+                    };
+
+                    apps.Add(app);
                 }
-                else
+                catch (Exception e)
                 {
-                    manifestPath = "AppxManifest.xml";
+                    logger.Error(e, $"Failed to parse UWP game info.");
                 }
-                
-                manifestPath = Path.Combine(package.InstalledLocation.Path, manifestPath);
-                var manifest = new XmlDocument();
-                manifest.Load(manifestPath);
-
-                var apxApp = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Applications']//*[local-name() = 'Application'][1]");
-                var appId = apxApp.Attributes["Id"].Value;
-
-
-                var visuals = apxApp.SelectSingleNode(@"//*[local-name() = 'VisualElements']");
-                var iconPath = visuals.Attributes["Square44x44Logo"]?.Value;
-                if (string.IsNullOrEmpty(iconPath))
-                {
-                    iconPath = visuals.Attributes["Logo"]?.Value;
-                }
-
-                if (!string.IsNullOrEmpty(iconPath))
-                {
-                    iconPath = Path.Combine(package.InstalledLocation.Path, iconPath);
-                    iconPath = GetUWPGameIcon(iconPath);
-                }
-
-                var name = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Properties']/*[local-name() = 'DisplayName']").InnerText;
-                if (name.StartsWith("ms-resource"))
-                {
-                    name = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Identity']").Attributes["Name"].Value;
-                }
-
-                var app = new Program()
-                {
-                    Name = name,
-                    WorkDir = string.Empty,
-                    Path = "explorer.exe",
-                    Arguments = $"shell:AppsFolder\\{package.Id.FamilyName}!{appId}",
-                    Icon = iconPath
-                };
-
-                apps.Add(app);
             }
 
             return apps;
