@@ -7,6 +7,7 @@ using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 using System.Collections.ObjectModel;
 using Playnite.API;
+using Microsoft.Win32;
 
 namespace Playnite.Scripting.PowerShell
 {
@@ -14,6 +15,14 @@ namespace Playnite.Scripting.PowerShell
     {
         private static NLog.Logger logger = NLog.LogManager.GetLogger("PowerShell");
         private Runspace runspace;
+        
+        public static bool IsInstalled
+        {
+            get
+            {
+                return Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\3", "Install", null)?.ToString() == "1";
+            }
+        }
 
         public PowerShellRuntime()
         {

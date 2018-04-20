@@ -2477,8 +2477,9 @@
                                       Command="{Binding OpenSettingsCommand}"/>
                             </MenuItem>
                             <MenuItem Header="{DynamicResource Extensions}"
+                                      IsEnabled="{Binding HasExportedFunctions}"
                                       DataContext="{Binding Api, Source={x:Static pui:App.Current}}"
-                                      ItemsSource="{Binding ExportedFunctions}">
+                                      ItemsSource="{Binding ExportedFunctions}">                                
                                 <MenuItem.ItemContainerStyle>
                                     <Style TargetType="MenuItem">
                                         <Setter Property="Header" Value="{Binding Name}" />

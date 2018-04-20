@@ -2903,7 +2903,8 @@
                             <RadioButton Content="{DynamicResource MenuOpenClient}" Name="ButtonClients"
                                     DockPanel.Dock="Top" />
                             <RadioButton Content="{DynamicResource Extensions}" Name="ButtonExtensions"
-                                    DockPanel.Dock="Top" />
+                                         IsEnabled="{Binding Api.HasExportedFunctions, Source={x:Static pui:App.Current}}"
+                                         DockPanel.Dock="Top" />
                             <RadioButton Content="{DynamicResource MenuPlayniteSettingsTitle}" Command="{Binding OpenSettingsCommand}"
                                     DockPanel.Dock="Top"/>
                             <RadioButton Content="{DynamicResource MenuOpenFullscreen}" Command="{Binding OpenFullScreenCommand}"
