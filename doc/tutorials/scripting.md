@@ -8,6 +8,9 @@ Playnite can be extended with additional functionality using scripts. Currently 
 
 If you want to use compiled .NET languages (C#, VB.NET etc.) to extend Playnite please see documentation related to [Plugins](plugins.md).
 
+> [!NOTE] 
+> PowerShell support requires at least PowerShell 5.0 to be installed. If you are Windows 7 user you need to [install it manually](https://www.microsoft.com/en-us/download/details.aspx?id=54616) (Windows 8 and 10 includes it by default).
+
 ### Script Location
 
 When using portable version of Playnite script files are stored in Playnite's program folder inside `\Scripts\PowerShell` folder for PowerShell scripts and `\Scripts\IronPython` for IronPython scripts. Only scripts placed directly inside the script folder are loaded, any scripts inside additional subfolders are ignored.
