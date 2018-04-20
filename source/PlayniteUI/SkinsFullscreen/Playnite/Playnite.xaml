@@ -563,7 +563,7 @@
                             </Style.Triggers>
                         </Style>
                     </Grid.Style>
-                    <TextBlock Text="No Games Found" FontSize="50" Foreground="{DynamicResource TextBrush}"
+                    <TextBlock Text="{DynamicResource NoGamesFound}" FontSize="50" Foreground="{DynamicResource TextBrush}"
                                TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock.Effect>
                             <DropShadowEffect BlurRadius="4" Color="Black" />
@@ -586,12 +586,12 @@
                         <Button Height="64" MinWidth="200" Style="{StaticResource KeyboardButton}"
                                 pui:FocusBahaviors.OnVisibilityFocus="True"
                                 Padding="35,5,35,5"
-                                Content="Back to Desktop Mode" FontSize="30"
+                                Content="{DynamicResource BackToDesktopMode}" FontSize="30"
                                 Margin="0,0,0,25"
                                 Command="{Binding SwitchToDesktopModeCommand}"/>
                         <Button Height="64" MinWidth="200" Style="{StaticResource KeyboardButton}"
                                 Padding="35,5,35,5"
-                                Content="Exit Playnite" FontSize="30"
+                                Content="{DynamicResource ExitPlaynite}" FontSize="30"
                                 Command="{Binding ShutdownCommand}" />
                     </StackPanel>
                 </Grid>
