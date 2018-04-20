@@ -9,7 +9,7 @@
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
-        Title="{DynamicResource UpdaterWindowTitle}" Height="500" Width="600" WindowStartupLocation="CenterOwner"
+        Title="{DynamicResource LOCUpdaterWindowTitle}" Height="500" Width="600" WindowStartupLocation="CenterOwner"
         ShowInTaskbar="True">
 
     <Grid>
@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
 
         <DockPanel Background="{StaticResource ControlBackgroundBrush}" Grid.Row="0" Margin="5,5,5,0">
-            <TextBlock Text="{DynamicResource UpdaterChangesInfo}" Style="{StaticResource BaseTextBlockStyle}"
+            <TextBlock Text="{DynamicResource LOCUpdaterChangesInfo}" Style="{StaticResource BaseTextBlockStyle}"
                        Margin="10" DockPanel.Dock="Top"/>
             <ScrollViewer DockPanel.Dock="Top">
                 <ItemsControl Name="ItemsNotes" ItemsSource="{Binding ReleaseNotes}">
@@ -42,10 +42,10 @@
         </DockPanel>
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
             <DockPanel LastChildFill="False" Margin="5">
-                <Button Name="ButtonClose" Content="{DynamicResource CloseLabel}" DockPanel.Dock="Right" IsCancel="True"
+                <Button Name="ButtonClose" Content="{DynamicResource LOCCloseLabel}" DockPanel.Dock="Right" IsCancel="True"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding CloseCommand}"/>
-                <Button Name="ButtonInstall" Content="{DynamicResource UpdaterInstallUpdate}" DockPanel.Dock="Right"
+                <Button Name="ButtonInstall" Content="{DynamicResource LOCUpdaterInstallUpdate}" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding InstallUpdateCommand}"/>
             </DockPanel>

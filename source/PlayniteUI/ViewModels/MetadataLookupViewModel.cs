@@ -195,7 +195,7 @@ namespace PlayniteUI.ViewModels
 
             if (!success)
             {
-                dialogs.ShowMessage(string.Format(resources.FindString("MetadownloadNoResultsMessage"), searchTerm));
+                dialogs.ShowMessage(string.Format(resources.FindString("LOCMetadownloadNoResultsMessage"), searchTerm));
             }
             else
             {

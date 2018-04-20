@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
-        Title="{DynamicResource FirstWindowTitle}" WindowStartupLocation="CenterScreen"
+        Title="{DynamicResource LOCFirstWindowTitle}" WindowStartupLocation="CenterScreen"
         ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False"
         Height="450" Width="550" x:Name="WindowMain"
         AutomationProperties.AutomationId="WindowWizard">
@@ -47,19 +47,19 @@
             </TabControl.Style>
             <TabItem Visibility="Collapsed">
                 <DockPanel LastChildFill="False" Margin="20">
-                    <TextBlock Text="{DynamicResource WelcomeLabel}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
-                    <TextBlock Text="{DynamicResource FirstIntro}" 
+                    <TextBlock Text="{DynamicResource LOCWelcomeLabel}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
+                    <TextBlock Text="{DynamicResource LOCFirstIntro}" 
                             TextWrapping="Wrap" DockPanel.Dock="Top" Margin="0,20,0,0"/>
                 </DockPanel>
             </TabItem>
             <TabItem Visibility="Collapsed">
                 <DockPanel Margin="20" LastChildFill="False">
-                    <TextBlock Text="{DynamicResource SettingsDBLocation}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
-                    <TextBlock Text="{DynamicResource FirstDBLocation}" DockPanel.Dock="Top" Margin="5,20,5,0" TextWrapping="Wrap"/>
-                    <RadioButton Name="RadioDbDefault" Content="{DynamicResource FirstDBLocDefault}" GroupName="database"
+                    <TextBlock Text="{DynamicResource LOCSettingsDBLocation}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
+                    <TextBlock Text="{DynamicResource LOCFirstDBLocation}" DockPanel.Dock="Top" Margin="5,20,5,0" TextWrapping="Wrap"/>
+                    <RadioButton Name="RadioDbDefault" Content="{DynamicResource LOCFirstDBLocDefault}" GroupName="database"
                                 IsChecked="{Binding DatabaseLocation, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=ProgramData}"
                                 DockPanel.Dock="Top" Margin="5,20,5,5"/>
-                    <RadioButton Name="RadioDbCustom" Content="{DynamicResource FirstDBLocCustom}" GroupName="database"
+                    <RadioButton Name="RadioDbCustom" Content="{DynamicResource LOCFirstDBLocCustom}" GroupName="database"
                                 IsChecked="{Binding DatabaseLocation, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Custom}"
                                 DockPanel.Dock="Top" Margin="5"/>
                     <DockPanel DockPanel.Dock="Top" Margin="15,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioDbCustom}">
@@ -72,8 +72,8 @@
             </TabItem>
             <TabItem Visibility="Collapsed">
                 <DockPanel Margin="20" LastChildFill="False">
-                    <TextBlock Text="{DynamicResource FirstExternalTitle}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
-                    <TextBlock Text="{DynamicResource FirstImportIntroduction}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="5,20,5,20"/>
+                    <TextBlock Text="{DynamicResource LOCFirstExternalTitle}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
+                    <TextBlock Text="{DynamicResource LOCFirstImportIntroduction}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="5,20,5,20"/>
                     <CheckBox Content="Steam" IsChecked="{Binding Settings.SteamSettings.IntegrationEnabled}"
                             DockPanel.Dock="Top" Margin="5" Name="CheckEnableSteam" />
                     <CheckBox Content="GOG" IsChecked="{Binding Settings.GOGSettings.IntegrationEnabled}"
@@ -90,22 +90,22 @@
                 <DockPanel Margin="20" LastChildFill="False">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
                         <Image Source="/Images/steamicon.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
-                        <TextBlock Text="{DynamicResource FirstSteamIntegration}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
+                        <TextBlock Text="{DynamicResource LOCFirstSteamIntegration}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <RadioButton Name="RadioInstalledSteam" Content="{DynamicResource SettingsImportInstalledLabel}"
+                    <RadioButton Name="RadioInstalledSteam" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                  GroupName="steam" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}" />
                     <RadioButton Name="RadioLibrarySteam"
                                  GroupName="steam" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled}">
                         <RadioButton.Content>
-                            <TextBlock Text="{DynamicResource SettingsImportSteamLibraryLabel}"
+                            <TextBlock Text="{DynamicResource LOCSettingsImportSteamLibraryLabel}"
                                        TextWrapping="Wrap" />
                         </RadioButton.Content>
                     </RadioButton>
                     <DockPanel DockPanel.Dock="Top" Margin="25,5,5,5"
                                IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
-                        <TextBlock Text="{DynamicResource SettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5"/>
+                        <TextBlock Text="{DynamicResource LOCSettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5"/>
                         <Grid DockPanel.Dock="Top">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -116,10 +116,10 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
 
-                            <RadioButton Content="{DynamicResource NameLabel}" Name="RadioSteamLibName" GroupName="steamsource"
+                            <RadioButton Content="{DynamicResource LOCNameLabel}" Name="RadioSteamLibName" GroupName="steamsource"
                                          Grid.Column="0" Grid.Row="0" Margin="5"
                                          IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Name}"/>
-                            <RadioButton Content="{DynamicResource LocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource"
+                            <RadioButton Content="{DynamicResource LOCLocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource"
                                          Grid.Column="0" Grid.Row="1" Margin="5"
                                          IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=LocalUser}"/>
                             <DockPanel Grid.Column="1" Grid.Row="0" Margin="5">
@@ -127,7 +127,7 @@
                                     <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"
                                                Command="{Binding NavigateUrlCommand}"
                                                CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                                        <Run Text="{DynamicResource SettingsWhatsSteamName}" />
+                                        <Run Text="{DynamicResource LOCSettingsWhatsSteamName}" />
                                     </Hyperlink>
                                 </TextBlock>
                                 <TextBox Text="{Binding Settings.SteamSettings.AccountName}"
@@ -141,19 +141,19 @@
                                       IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"
                                       Grid.Column="1" Grid.Row="1" Margin="5" />
                         </Grid>
-                        <CheckBox Content="{DynamicResource PrivateAccount}" DockPanel.Dock="Top"
+                        <CheckBox Content="{DynamicResource LOCPrivateAccount}" DockPanel.Dock="Top"
                                       IsChecked="{Binding Settings.SteamSettings.PrivateAccount}"
                                       Margin="5,5,5,5" Name="CheckSteamPrivate"
-                                      ToolTip="{DynamicResource SettingsApiKeyTooltip}"/>
+                                      ToolTip="{DynamicResource LOCSettingsApiKeyTooltip}"/>
                         <DockPanel DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=CheckSteamPrivate}"
                                        Margin="30,5,5,5">
-                            <TextBlock Text="{DynamicResource APIKey}" DockPanel.Dock="Left"
+                            <TextBlock Text="{DynamicResource LOCAPIKey}" DockPanel.Dock="Left"
                                            VerticalAlignment="Center"/>
                             <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">
                                     <Hyperlink NavigateUri="https://steamcommunity.com/dev/apikey"
                                                Command="{Binding NavigateUrlCommand}"
                                                CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                                        <Run Text="{DynamicResource SettingsApiKeyUrlText}" />
+                                        <Run Text="{DynamicResource LOCSettingsApiKeyUrlText}" />
                                     </Hyperlink>
                             </TextBlock>
                             <TextBox Text="{Binding Settings.SteamSettings.APIKey}"
@@ -161,7 +161,7 @@
                         </DockPanel>
                     </DockPanel>
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,5,0,0">
-                        <CheckBox Name="CheckSteamImportCat" Content="{DynamicResource FirstSteamImportCategories}"
+                        <CheckBox Name="CheckSteamImportCat" Content="{DynamicResource LOCFirstSteamImportCategories}"
                                   DockPanel.Dock="Top" Margin="5"
                                   IsChecked="{Binding SteamImportCategories}"/>
                         <ComboBox IsReadOnly="True" Name="ComboSteamAccountCatImport" DisplayMemberPath="AccountName"
@@ -176,25 +176,25 @@
                 <DockPanel Margin="20" LastChildFill="False">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
                         <Image Source="/Images/gogicon.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
-                        <TextBlock Text="{DynamicResource FirstGOGIntegration}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
+                        <TextBlock Text="{DynamicResource LOCFirstGOGIntegration}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <RadioButton Name="RadioInstalledGOG" Content="{DynamicResource SettingsImportInstalledLabel}"
+                    <RadioButton Name="RadioInstalledGOG" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                  GroupName="gog" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding Settings.GOGSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}" />
-                    <RadioButton Name="RadioLibraryGOG" Content="{DynamicResource SettingsImportLibraryLabel}"
+                    <RadioButton Name="RadioLibraryGOG" Content="{DynamicResource LOCSettingsImportLibraryLabel}"
                                  GroupName="gog" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding Settings.GOGSettings.LibraryDownloadEnabled}" />
 
                     <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
                                IsEnabled="{Binding IsChecked, ElementName=RadioLibraryGOG}">
-                        <Button Content="{DynamicResource AuthenticateLabel}" Name="ButtonGogAuthenticate"
+                        <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonGogAuthenticate"
                                 Command="{Binding AuthGOGCommand}"/>
-                        <TextBlock Text="{DynamicResource SettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                        <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
                         <TextBlock VerticalAlignment="Center">
                             <TextBlock.Text>
                                 <PriorityBinding>
                                     <Binding Path="GogLoginStatus" IsAsync="True" Mode="OneWay" />
-                                    <Binding Source="{StaticResource LoginChecking}" />
+                                    <Binding Source="{StaticResource LOCLoginChecking}" />
                                 </PriorityBinding>
                             </TextBlock.Text>
                         </TextBlock>
@@ -205,24 +205,24 @@
                 <DockPanel Margin="20" LastChildFill="False">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
                         <Image Source="/Images/originicon.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
-                        <TextBlock Text="{DynamicResource FirstOriginIntegration}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
+                        <TextBlock Text="{DynamicResource LOCFirstOriginIntegration}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <RadioButton Name="RadioInstalledOrigin" Content="{DynamicResource SettingsImportInstalledLabel}"
+                    <RadioButton Name="RadioInstalledOrigin" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                  GroupName="origin" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding Settings.OriginSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}" />
-                    <RadioButton Name="RadioLibraryOrigin" Content="{DynamicResource SettingsImportLibraryLabel}"
+                    <RadioButton Name="RadioLibraryOrigin" Content="{DynamicResource LOCSettingsImportLibraryLabel}"
                                  GroupName="origin" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding Settings.OriginSettings.LibraryDownloadEnabled}" />
                     <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
                                IsEnabled="{Binding IsChecked, ElementName=RadioLibraryOrigin}">
-                        <Button Content="{DynamicResource AuthenticateLabel}" Name="ButtonOriginAuthenticate"
+                        <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonOriginAuthenticate"
                                 Command="{Binding AuthOriginCommand}"/>
-                        <TextBlock Text="{DynamicResource SettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                        <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
                         <TextBlock VerticalAlignment="Center">
                             <TextBlock.Text>
                                 <PriorityBinding>
                                     <Binding Path="OriginLoginStatus" IsAsync="True" Mode="OneWay" />
-                                    <Binding Source="{StaticResource LoginChecking}" />
+                                    <Binding Source="{StaticResource LOCLoginChecking}" />
                                 </PriorityBinding>
                             </TextBlock.Text>
                         </TextBlock>
@@ -233,24 +233,24 @@
                 <DockPanel Margin="20" LastChildFill="False">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
                         <Image Source="/Images/battleneticon.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
-                        <TextBlock Text="{DynamicResource FirstBattleNetIntegration}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
+                        <TextBlock Text="{DynamicResource LOCFirstBattleNetIntegration}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <RadioButton Name="RadioInstalledBattleNet" Content="{DynamicResource SettingsImportInstalledLabel}"
+                    <RadioButton Name="RadioInstalledBattleNet" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                  GroupName="battlenet" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding Settings.BattleNetSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"/>
-                    <RadioButton Name="RadioLibraryBattleNet" Content="{DynamicResource SettingsImportLibraryLabel}"
+                    <RadioButton Name="RadioLibraryBattleNet" Content="{DynamicResource LOCSettingsImportLibraryLabel}"
                                  GroupName="origin" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding Settings.BattleNetSettings.LibraryDownloadEnabled}" />
                     <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
                                IsEnabled="{Binding IsChecked, ElementName=RadioLibraryBattleNet}">
-                        <Button Content="{DynamicResource AuthenticateLabel}" Name="ButtonBattleNetAuthenticate"
+                        <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonBattleNetAuthenticate"
                                 Command="{Binding AuthBattleNetCommand}"/>
-                        <TextBlock Text="{DynamicResource SettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                        <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
                         <TextBlock VerticalAlignment="Center">
                             <TextBlock.Text>
                                 <PriorityBinding>
                                     <Binding Path="BattleNetLoginStatus" IsAsync="True" Mode="OneWay" />
-                                    <Binding Source="{StaticResource LoginChecking}" />
+                                    <Binding Source="{StaticResource LOCLoginChecking}" />
                                 </PriorityBinding>
                             </TextBlock.Text>
                         </TextBlock>
@@ -261,9 +261,9 @@
                 <DockPanel Margin="20" LastChildFill="False">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
                         <Image Source="/Images/uplayicon.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
-                        <TextBlock Text="{DynamicResource FirstUplayIntegration}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
+                        <TextBlock Text="{DynamicResource LOCFirstUplayIntegration}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <RadioButton Name="RadioInstalledUplay" Content="{DynamicResource SettingsImportInstalledLabel}"
+                    <RadioButton Name="RadioInstalledUplay" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                  GroupName="uplay" IsChecked="True" DockPanel.Dock="Top" Margin="5"/>
                 </DockPanel>
             </TabItem>
@@ -271,20 +271,20 @@
                 <DockPanel Margin="20" LastChildFill="False">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
                         <Image Source="/Images/applogo.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
-                        <TextBlock Text="{DynamicResource FirstOtherGamesTitle}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
+                        <TextBlock Text="{DynamicResource LOCFirstOtherGamesTitle}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <TextBlock Text="{DynamicResource FirstOtherGamesText}"
+                    <TextBlock Text="{DynamicResource LOCFirstOtherGamesText}"
                             DockPanel.Dock="Top" Padding="5" TextWrapping="Wrap"/>
                     <Button Name="ButtonImportGames" HorizontalAlignment="Center"
-                            Content="{DynamicResource FirstOtherGamesImportButton}"
+                            Content="{DynamicResource LOCFirstOtherGamesImportButton}"
                             DockPanel.Dock="Top" Margin="0,20,0,0"
                             Command="{Binding ImportGamesCommand}"/>
                 </DockPanel>
             </TabItem>
             <TabItem Header="Done" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
                 <DockPanel LastChildFill="False" Margin="20">
-                    <TextBlock Text="{DynamicResource FirstConfigFinishedTitle}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
-                    <TextBlock Text="{DynamicResource FirstConfigFinishedText}" 
+                    <TextBlock Text="{DynamicResource LOCFirstConfigFinishedTitle}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
+                    <TextBlock Text="{DynamicResource LOCFirstConfigFinishedText}" 
                             TextWrapping="Wrap" Margin="0,20,0,0" DockPanel.Dock="Top"/>
                 </DockPanel>
             </TabItem>
@@ -292,14 +292,14 @@
 
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
             <DockPanel LastChildFill="False" Margin="5">
-                <Button Content="{DynamicResource FinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"
+                <Button Content="{DynamicResource LOCFinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"
                         Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding FinishCommand}"/>
-                <Button Content="{DynamicResource NextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
+                <Button Content="{DynamicResource LOCNextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding NextCommand}"/>
-                <Button Content="{DynamicResource BackLabel}" Name="ButtonBack" DockPanel.Dock="Right"
+                <Button Content="{DynamicResource LOCBackLabel}" Name="ButtonBack" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding BackCommand}"/>
             </DockPanel>

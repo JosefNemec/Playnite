@@ -131,8 +131,8 @@ namespace PlayniteUI
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     PlayniteMessageBox.Show(
-                        ResourceProvider.Instance.FindString("StartGenericError"),
-                        ResourceProvider.Instance.FindString("StartupError"), MessageBoxButton.OK, MessageBoxImage.Error);
+                        ResourceProvider.Instance.FindString("LOCStartGenericError"),
+                        ResourceProvider.Instance.FindString("LOCStartupError"), MessageBoxButton.OK, MessageBoxImage.Error);
                     logger.Error(exc, "Can't process communication with other instances.");
                 }
 
@@ -410,7 +410,7 @@ namespace PlayniteUI
                 Database?.CloseDatabase();
                 AppSettings?.SaveSettings();
                 Api?.Dispose();
-            }, ResourceProvider.Instance.FindString("ClosingPlaynite"));
+            }, ResourceProvider.Instance.FindString("LOCClosingPlaynite"));
 
             progressModel.ActivateProgress();
             Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
@@ -509,8 +509,8 @@ namespace PlayniteUI
             if (themeValid.Item1 == false)
             {
                 PlayniteMessageBox.Show(
-                    string.Format(ResourceProvider.Instance.FindString("SkinApplyError"), AppSettings.Skin, AppSettings.SkinColor, themeValid.Item2),
-                    ResourceProvider.Instance.FindString("SkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
+                    string.Format(ResourceProvider.Instance.FindString("LOCSkinApplyError"), AppSettings.Skin, AppSettings.SkinColor, themeValid.Item2),
+                    ResourceProvider.Instance.FindString("LOCSkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
                 isThemeValid = false;
             }
 
@@ -518,8 +518,8 @@ namespace PlayniteUI
             if (profileValid.Item1 == false)
             {
                 PlayniteMessageBox.Show(
-                    string.Format(ResourceProvider.Instance.FindString("SkinApplyError"), AppSettings.Skin, AppSettings.SkinColor, profileValid.Item2),
-                    ResourceProvider.Instance.FindString("SkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
+                    string.Format(ResourceProvider.Instance.FindString("LOCSkinApplyError"), AppSettings.Skin, AppSettings.SkinColor, profileValid.Item2),
+                    ResourceProvider.Instance.FindString("LOCSkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
                 isThemeValid = false;
             }
 

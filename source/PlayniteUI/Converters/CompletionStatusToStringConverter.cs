@@ -20,13 +20,13 @@ namespace PlayniteUI
             switch (source)
             {
                 case CompletionStatus.NotPlayed:
-                    return resources.FindString("NotPlayed");
+                    return resources.FindString("LOCNotPlayed");
                 case CompletionStatus.Played:
-                    return resources.FindString("Played");
+                    return resources.FindString("LOCPlayed");
                 case CompletionStatus.Beaten:
-                    return resources.FindString("Beaten");
+                    return resources.FindString("LOCBeaten");
                 case CompletionStatus.Completed:
-                    return resources.FindString("Completed");
+                    return resources.FindString("LOCCompleted");
                 default:
                     return string.Empty;
             }

@@ -5,109 +5,109 @@
     <sys:String x:Key="LocalizationLanguage">русский</sys:String>
     <sys:String x:Key="LocalizationString">Русский</sys:String>
 
-    <sys:String x:Key="LanguageSettingsLabel">Язык</sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Язык</sys:String>
 
-    <sys:String x:Key="ExitAppLabel">Выход</sys:String>
-    <sys:String x:Key="FilterActiveLabel">Фильтр включён (нажмите чтобы переключить панель фильтров)</sys:String>
-    <sys:String x:Key="FilterInactiveLabel">Фильтр выключен (нажмите чтобы переключить панель фильтров)</sys:String>
+    <sys:String x:Key="LOCExitAppLabel">Выход</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Фильтр включён (нажмите чтобы переключить панель фильтров)</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Фильтр выключен (нажмите чтобы переключить панель фильтров)</sys:String>
 
-    <sys:String x:Key="InvalidDataTitle">Неверные данные</sys:String>
-    <sys:String x:Key="SaveChangesAskTitle">Сохранить изменения?</sys:String>
+    <sys:String x:Key="LOCInvalidDataTitle">Неверные данные</sys:String>
+    <sys:String x:Key="LOCSaveChangesAskTitle">Сохранить изменения?</sys:String>
     
-    <sys:String x:Key="AboutHomePageLink">Домашняя страница: www.playnite.link</sys:String>
-    <sys:String x:Key="AboutSourceLink">Исходный код на GitHub</sys:String>
-    <sys:String x:Key="AboutCreateDiagButton">Диагностика</sys:String>
-    <sys:String x:Key="AboutWindowTitle">О Playnite</sys:String>
-    <sys:String x:Key="AboutAuthor">Разработчик: Josef Němec</sys:String>
+    <sys:String x:Key="LOCAboutHomePageLink">Домашняя страница: www.playnite.link</sys:String>
+    <sys:String x:Key="LOCAboutSourceLink">Исходный код на GitHub</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">Диагностика</sys:String>
+    <sys:String x:Key="LOCAboutWindowTitle">О Playnite</sys:String>
+    <sys:String x:Key="LOCAboutAuthor">Разработчик: Josef Němec</sys:String>
 
-    <sys:String x:Key="CategoryWindowTitle">Назначить категорию</sys:String>
-    <sys:String x:Key="CategorySetButton">Выбрать категорию</sys:String>
-    <sys:String x:Key="CategoryAddCatButton">Добавить категорию</sys:String>
-    <sys:String x:Key="CategoryTooltip" xml:space="preserve">Выбрано - Категория назначена
+    <sys:String x:Key="LOCCategoryWindowTitle">Назначить категорию</sys:String>
+    <sys:String x:Key="LOCCategorySetButton">Выбрать категорию</sys:String>
+    <sys:String x:Key="LOCCategoryAddCatButton">Добавить категорию</sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Выбрано - Категория назначена
 Не выбрано - Категория не назначена
 Неопределено - Без изменений (когда редактируется несколько игр)</sys:String>
 
-    <sys:String x:Key="CrashWindowTitle">О нет, что-то пошло не так...</sys:String>
-    <sys:String x:Key="CrashDescription">Playnite столкнулась с проблемой и не может решить ее. Если вы хотите помочь нам, пожалуйста проведите диагностику и сообщите нам о проблеме. Спасибо.</sys:String>
-    <sys:String x:Key="CrashReportIssue">Сообщить о проблеме</sys:String>
-    <sys:String x:Key="CrashRestartPlaynite">Перезагрузить</sys:String>
-    <sys:String x:Key="CrashClosePlaynite">Закрыть</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">О нет, что-то пошло не так...</sys:String>
+    <sys:String x:Key="LOCCrashDescription">Playnite столкнулась с проблемой и не может решить ее. Если вы хотите помочь нам, пожалуйста проведите диагностику и сообщите нам о проблеме. Спасибо.</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">Сообщить о проблеме</sys:String>
+    <sys:String x:Key="LOCCrashRestartPlaynite">Перезагрузить</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Закрыть</sys:String>
 
-    <sys:String x:Key="GameRemoveAskTitle">Убрать игру(ы)?</sys:String>
-    <sys:String x:Key="GameRemoveAskMessage" xml:space="preserve">Вы уверены что хотите убрать эту игру?
+    <sys:String x:Key="LOCGameRemoveAskTitle">Убрать игру(ы)?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Вы уверены что хотите убрать эту игру?
         
 Автоматически импортированные игры могут появиться в Playnite после следующей процедуры импорта (в зависимости от ваших настроек).</sys:String>
-    <sys:String x:Key="GamesRemoveAskMessage" xml:space="preserve">Вы уверены что хотите убрать эти {0} игры?
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Вы уверены что хотите убрать эти {0} игры?
         
 Автоматически импортированные игры могут появиться в Playnite после следующей процедуры импорта (в зависимости от ваших настроек).</sys:String>
 
-    <sys:String x:Key="SteamFriendsTooltip">Друзья в Стиме</sys:String>
-    <sys:String x:Key="GameEditChangeNotif">Раздел содержить изменения, которые необходимо сохранить</sys:String>
-    <sys:String x:Key="DBUpgradeProgress">Обновление версии базы данных...</sys:String>
-    <sys:String x:Key="DBUpgradeFail">Не удалось обновить базу данных. Не получилось открыть файл базы данных.</sys:String>
+    <sys:String x:Key="LOCSteamFriendsTooltip">Друзья в Стиме</sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Раздел содержить изменения, которые необходимо сохранить</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Обновление версии базы данных...</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">Не удалось обновить базу данных. Не получилось открыть файл базы данных.</sys:String>
 
-    <sys:String x:Key="GameError">Ошибка игры</sys:String>
-    <sys:String x:Key="GameStartErrorNoGame">Не удалось открыть игру. '{0}' не найдена в базе данных.</sys:String>
-    <sys:String x:Key="GameStartError">Не удалось запустить игру: {0}</sys:String>
-    <sys:String x:Key="GameStartActionError">Не удалось начать действие: {0}</sys:String>
-    <sys:String x:Key="GameOpenLocationError">Не удалось открыть расположение игры: {0}</sys:String>
-    <sys:String x:Key="GameShortcutError">Не удалось создать значок: {0}</sys:String>
-    <sys:String x:Key="GameInstallError">Не удалось установить игру: {0}</sys:String>
-    <sys:String x:Key="GameUninstallError">Не удалось удалить игру: {0}</sys:String>
+    <sys:String x:Key="LOCGameError">Ошибка игры</sys:String>
+    <sys:String x:Key="LOCGameStartErrorNoGame">Не удалось открыть игру. '{0}' не найдена в базе данных.</sys:String>
+    <sys:String x:Key="LOCGameStartError">Не удалось запустить игру: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">Не удалось начать действие: {0}</sys:String>
+    <sys:String x:Key="LOCGameOpenLocationError">Не удалось открыть расположение игры: {0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">Не удалось создать значок: {0}</sys:String>
+    <sys:String x:Key="LOCGameInstallError">Не удалось установить игру: {0}</sys:String>
+    <sys:String x:Key="LOCGameUninstallError">Не удалось удалить игру: {0}</sys:String>
 
 
     <!--General-->
-    <sys:String x:Key="RemoveTitle">Убрать</sys:String>
-    <sys:String x:Key="CopyTitle">Копировать</sys:String>
-    <sys:String x:Key="AddTitle">Добавить</sys:String>
-    <sys:String x:Key="DefaultIconTitle">Стандартная иконка</sys:String>
-    <sys:String x:Key="DefaultCoverTitle">Стандартная обложка</sys:String>
-    <sys:String x:Key="FinishLabel">Закончить</sys:String>
-    <sys:String x:Key="NextLabel">Следующее</sys:String>
-    <sys:String x:Key="BackLabel">Назад</sys:String>
-    <sys:String x:Key="ImportLabel">Импорт</sys:String>
-    <sys:String x:Key="SourceLabel">Источник</sys:String>
-    <sys:String x:Key="NameLabel">Название</sys:String>
-    <sys:String x:Key="WebsiteLabel">Веб-сайт</sys:String>
-    <sys:String x:Key="PathLabel">Путь</sys:String>
-    <sys:String x:Key="OKLabel">ОК</sys:String>
-    <sys:String x:Key="SaveLabel">Сохранить</sys:String>
-    <sys:String x:Key="CloseLabel">Закрыть</sys:String>
-    <sys:String x:Key="CancelLabel">Отменить</sys:String>
-    <sys:String x:Key="YesLabel">Да</sys:String>
-    <sys:String x:Key="NoLabel">Нет</sys:String>
-    <sys:String x:Key="WelcomeLabel">Welcome</sys:String>
-    <sys:String x:Key="LocalUserLabel">Локальный пользователь</sys:String>
-    <sys:String x:Key="AuthenticateLabel">Аутентификация</sys:String>
-    <sys:String x:Key="GeneralLabel">Основное</sys:String>
-    <sys:String x:Key="MediaLabel">Медиа</sys:String>
-    <sys:String x:Key="LinksLabel">Ссылки</sys:String>
-    <sys:String x:Key="InstallationLabel">Настройки</sys:String>
-    <sys:String x:Key="ActionsLabel">Действия</sys:String>
-    <sys:String x:Key="DownloadingLabel">Скачивание...</sys:String>
-    <sys:String x:Key="TypeLabel">Тип</sys:String>
-    <sys:String x:Key="ProfileLabel">Профиль</sys:String>
-    <sys:String x:Key="ProfilesLabel">Профили</sys:String>
-    <sys:String x:Key="RemoveLabel">Убрать</sys:String>
-    <sys:String x:Key="DownloadLabel">Скачать</sys:String>
-    <sys:String x:Key="SearchLabel">Поиск</sys:String>
-    <sys:String x:Key="GenreLabel">Жанр</sys:String>
-    <sys:String x:Key="DeveloperLabel">Разработчик</sys:String>
-    <sys:String x:Key="PublisherLabel">Издатель</sys:String>
-    <sys:String x:Key="CategoryLabel">Категория</sys:String>
-    <sys:String x:Key="TagLabel">Тэг</sys:String>
-    <sys:String x:Key="TagsLabel">Тэги</sys:String>
-    <sys:String x:Key="ZoomLabel">Приблизить</sys:String>
-    <sys:String x:Key="ListLabel">Список</sys:String>
-    <sys:String x:Key="CoversLabel">Обложка</sys:String>
-    <sys:String x:Key="DetailsLabel">Подробно</sys:String>
-    <sys:String x:Key="CustomLabel">Собственные</sys:String>
-    <sys:String x:Key="URLLabel">URL</sys:String>
-    <sys:String x:Key="PatronsLabel">Меценаты</sys:String>
-    <sys:String x:Key="LicenseLabel">Лицензия</sys:String>
-    <sys:String x:Key="ContributorsLabel">Авторы</sys:String>
+    <sys:String x:Key="LOCRemoveTitle">Убрать</sys:String>
+    <sys:String x:Key="LOCCopyTitle">Копировать</sys:String>
+    <sys:String x:Key="LOCAddTitle">Добавить</sys:String>
+    <sys:String x:Key="LOCDefaultIconTitle">Стандартная иконка</sys:String>
+    <sys:String x:Key="LOCDefaultCoverTitle">Стандартная обложка</sys:String>
+    <sys:String x:Key="LOCFinishLabel">Закончить</sys:String>
+    <sys:String x:Key="LOCNextLabel">Следующее</sys:String>
+    <sys:String x:Key="LOCBackLabel">Назад</sys:String>
+    <sys:String x:Key="LOCImportLabel">Импорт</sys:String>
+    <sys:String x:Key="LOCSourceLabel">Источник</sys:String>
+    <sys:String x:Key="LOCNameLabel">Название</sys:String>
+    <sys:String x:Key="LOCWebsiteLabel">Веб-сайт</sys:String>
+    <sys:String x:Key="LOCPathLabel">Путь</sys:String>
+    <sys:String x:Key="LOCOKLabel">ОК</sys:String>
+    <sys:String x:Key="LOCSaveLabel">Сохранить</sys:String>
+    <sys:String x:Key="LOCCloseLabel">Закрыть</sys:String>
+    <sys:String x:Key="LOCCancelLabel">Отменить</sys:String>
+    <sys:String x:Key="LOCYesLabel">Да</sys:String>
+    <sys:String x:Key="LOCNoLabel">Нет</sys:String>
+    <sys:String x:Key="LOCWelcomeLabel">Welcome</sys:String>
+    <sys:String x:Key="LOCLocalUserLabel">Локальный пользователь</sys:String>
+    <sys:String x:Key="LOCAuthenticateLabel">Аутентификация</sys:String>
+    <sys:String x:Key="LOCGeneralLabel">Основное</sys:String>
+    <sys:String x:Key="LOCMediaLabel">Медиа</sys:String>
+    <sys:String x:Key="LOCLinksLabel">Ссылки</sys:String>
+    <sys:String x:Key="LOCInstallationLabel">Настройки</sys:String>
+    <sys:String x:Key="LOCActionsLabel">Действия</sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">Скачивание...</sys:String>
+    <sys:String x:Key="LOCTypeLabel">Тип</sys:String>
+    <sys:String x:Key="LOCProfileLabel">Профиль</sys:String>
+    <sys:String x:Key="LOCProfilesLabel">Профили</sys:String>
+    <sys:String x:Key="LOCRemoveLabel">Убрать</sys:String>
+    <sys:String x:Key="LOCDownloadLabel">Скачать</sys:String>
+    <sys:String x:Key="LOCSearchLabel">Поиск</sys:String>
+    <sys:String x:Key="LOCGenreLabel">Жанр</sys:String>
+    <sys:String x:Key="LOCDeveloperLabel">Разработчик</sys:String>
+    <sys:String x:Key="LOCPublisherLabel">Издатель</sys:String>
+    <sys:String x:Key="LOCCategoryLabel">Категория</sys:String>
+    <sys:String x:Key="LOCTagLabel">Тэг</sys:String>
+    <sys:String x:Key="LOCTagsLabel">Тэги</sys:String>
+    <sys:String x:Key="LOCZoomLabel">Приблизить</sys:String>
+    <sys:String x:Key="LOCListLabel">Список</sys:String>
+    <sys:String x:Key="LOCCoversLabel">Обложка</sys:String>
+    <sys:String x:Key="LOCDetailsLabel">Подробно</sys:String>
+    <sys:String x:Key="LOCCustomLabel">Собственные</sys:String>
+    <sys:String x:Key="LOCURLLabel">URL</sys:String>
+    <sys:String x:Key="LOCPatronsLabel">Меценаты</sys:String>
+    <sys:String x:Key="LOCLicenseLabel">Лицензия</sys:String>
+    <sys:String x:Key="LOCContributorsLabel">Авторы</sys:String>
     
-    <sys:String x:Key="GameVariablesTooltip" xml:space="preserve">Специальные переменные могут быть использованы при добавлении динамический строки:
+    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Специальные переменные могут быть использованы при добавлении динамический строки:
 {InstallDir} - Директория с установленной игрой
 {ImagePath} - ISO/ROM путь,если выбран
 {ImageName} - ISO/ROM название файла
@@ -116,19 +116,19 @@
 Пример: -image "{ImagePath}" -fullscreen
 Результат: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
-    <sys:String x:Key="ExecIconMissingPlayAction">Невозможно получить иконку если отсутсвует "Игровое действие" или выбран URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Невозможно получить иконку если отсутсвует "Игровое действие" или выбран URL.</sys:String>
 
-    <sys:String x:Key="MetaGamesSourceIntro">Выбор игр</sys:String>
-    <sys:String x:Key="MetaGamesSourceDescription">Пожалуйста выберите у какой игры вы хотите обновить метаданные:</sys:String>
-    <sys:String x:Key="MetaGameSourceAll">Все игры из базы данных</sys:String>
-    <sys:String x:Key="MetaGameSourceFiltered">Все отфильтрованные игры</sys:String>
-    <sys:String x:Key="MetaGameSourceSelected">Только выбранные игры</sys:String>
-    <sys:String x:Key="MetaSourceStore">Официальный магазин</sys:String>
-    <sys:String x:Key="MetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="MetaSourceIGDBOverStore">IGDB > Официальный магазин</sys:String>
-    <sys:String x:Key="MetaSourceStoreOverIGDB">Официальный магазин > IGDB</sys:String>
-    <sys:String x:Key="MetaDescriptionFields">Выберите, какие поля должны быть автоматически заполнены Playnite и какие источники должны использоваться для получения данных.</sys:String>
-    <sys:String x:Key="MetaSourceSettingsDescription" xml:space="preserve">Магазин:
+    <sys:String x:Key="LOCMetaGamesSourceIntro">Выбор игр</sys:String>
+    <sys:String x:Key="LOCMetaGamesSourceDescription">Пожалуйста выберите у какой игры вы хотите обновить метаданные:</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceAll">Все игры из базы данных</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceFiltered">Все отфильтрованные игры</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceSelected">Только выбранные игры</sys:String>
+    <sys:String x:Key="LOCMetaSourceStore">Официальный магазин</sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Официальный магазин</sys:String>
+    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Официальный магазин > IGDB</sys:String>
+    <sys:String x:Key="LOCMetaDescriptionFields">Выберите, какие поля должны быть автоматически заполнены Playnite и какие источники должны использоваться для получения данных.</sys:String>
+    <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Магазин:
 Использовать данные только из магазина.
     
 IGDB:
@@ -141,296 +141,296 @@ IGDB > Официальный магазин:
 Предпочтение данным из магазина,когда отсутствуют - использовать из IGDB.com.</sys:String>
 
     <!--Progess string-->
-    <sys:String x:Key="ProgressSteamLibImport">Скачивание обновлений Steam-библиотеки...</sys:String>
-    <sys:String x:Key="ProgressGOGLibImport">Скачивание обновлений GOG-библиотеки...</sys:String>
-    <sys:String x:Key="ProgressOriginLibImport">Скачивание обновлений Origin-библиотеки...</sys:String>
-    <sys:String x:Key="ProgressBattleNetLibImport">Скачивание обновлений Battle.net-библиотеки...</sys:String>
-    <sys:String x:Key="ProgressMetadata">Скачивание метаданных...</sys:String>
-    <sys:String x:Key="ProgressInstalledGames">Импортирование установленных игр...</sys:String>
-    <sys:String x:Key="ProgressLibraryGames">Скачивание обновлений библиотеки...</sys:String>
-    <sys:String x:Key="ProgressSteamCategoryImport">Скачивание обновлений библиотеки...</sys:String>
-    <sys:String x:Key="ProgressLibImportFinish">Обновление библиотеки завершено</sys:String>
+    <sys:String x:Key="LOCProgressSteamLibImport">Скачивание обновлений Steam-библиотеки...</sys:String>
+    <sys:String x:Key="LOCProgressGOGLibImport">Скачивание обновлений GOG-библиотеки...</sys:String>
+    <sys:String x:Key="LOCProgressOriginLibImport">Скачивание обновлений Origin-библиотеки...</sys:String>
+    <sys:String x:Key="LOCProgressBattleNetLibImport">Скачивание обновлений Battle.net-библиотеки...</sys:String>
+    <sys:String x:Key="LOCProgressMetadata">Скачивание метаданных...</sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames">Импортирование установленных игр...</sys:String>
+    <sys:String x:Key="LOCProgressLibraryGames">Скачивание обновлений библиотеки...</sys:String>
+    <sys:String x:Key="LOCProgressSteamCategoryImport">Скачивание обновлений библиотеки...</sys:String>
+    <sys:String x:Key="LOCProgressLibImportFinish">Обновление библиотеки завершено</sys:String>
 
     <!--Menu-->
-    <sys:String x:Key="MenuConfigurationTitle">Конфигурация</sys:String>
-    <sys:String x:Key="MenuPlayniteSettingsTitle">Настройки</sys:String>
-    <sys:String x:Key="MenuPlatformEmulatorSettingsTitle">Платформы и эмуляторы</sys:String>
-    <sys:String x:Key="MenuTools">Инструменты</sys:String>
-    <sys:String x:Key="MenuDownloadMetadata">Скачать метаданные</sys:String>
-    <sys:String x:Key="MenuOpenClient">Открыть сторонний клиент</sys:String>
-    <sys:String x:Key="MenuReloadLibrary">Перезагрузить игровой список</sys:String>
-    <sys:String x:Key="MenuAddGame">Добавить игру</sys:String>
-    <sys:String x:Key="MenuAddGameManual">Вручную</sys:String>
-    <sys:String x:Key="MenuAddGameInstalled">Импортировать установленные/из папки</sys:String>
-    <sys:String x:Key="MenuAddGameEmulated">Импортировать эмулированные игры</sys:String>
-    <sys:String x:Key="MenuAbout">О Playnite</sys:String>
-    <sys:String x:Key="MenuIssues">Отправить отзыв</sys:String>
+    <sys:String x:Key="LOCMenuConfigurationTitle">Конфигурация</sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Настройки</sys:String>
+    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Платформы и эмуляторы</sys:String>
+    <sys:String x:Key="LOCMenuTools">Инструменты</sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata">Скачать метаданные</sys:String>
+    <sys:String x:Key="LOCMenuOpenClient">Открыть сторонний клиент</sys:String>
+    <sys:String x:Key="LOCMenuReloadLibrary">Перезагрузить игровой список</sys:String>
+    <sys:String x:Key="LOCMenuAddGame">Добавить игру</sys:String>
+    <sys:String x:Key="LOCMenuAddGameManual">Вручную</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">Импортировать установленные/из папки</sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">Импортировать эмулированные игры</sys:String>
+    <sys:String x:Key="LOCMenuAbout">О Playnite</sys:String>
+    <sys:String x:Key="LOCMenuIssues">Отправить отзыв</sys:String>
 
     <!--Settings Window-->
-    <sys:String x:Key="SettingsGeneralLabel">Основные</sys:String>
-    <sys:String x:Key="SettingsAppearanceLabel">Внешний вид</sys:String>
-    <sys:String x:Key="SettingsAdvancedLabel">Дополнительные</sys:String>
-    <sys:String x:Key="SettingsProvidersLabel">Сторонние клиенты</sys:String>
-    <sys:String x:Key="SettingsImportLabel">Автоматически импортировать изменения</sys:String>
-    <sys:String x:Key="SettingsImportInstalledLabel">Импортировать установленные игры</sys:String>
-    <sys:String x:Key="SettingsImportLibraryLabel">Импортировать все игры</sys:String>
-    <sys:String x:Key="SettingsInvalidDBLocation">Не найдено расположение базы данных, должен быть указан верный путь.</sys:String>
-    <sys:String x:Key="SettingsInvalidSteamAccountName">Имя Steam-аккаунта не может быть пустым.</sys:String>
-    <sys:String x:Key="SettingsInvalidSteamAccountLibImport">Не выбран Steam-аккаунт для импорта библиотеки.</sys:String>
-    <sys:String x:Key="SettingsInvalidSteamAccountCatImport">Не выбран Steam-аккаунт для импорта категории.</sys:String>
-    <sys:String x:Key="SettingsUpdateLibStartup">Обновления из сторонних клиентов при запуске</sys:String>
-    <sys:String x:Key="SettingsStartInFullscreen">Запуск в полноэкранном режиме</sys:String>
-    <sys:String x:Key="SettingsUpdateLibStartupTooltip">Включает в себя Steam,Origin и прочие.</sys:String>
-    <sys:String x:Key="SettingsAsyncImageLoading">Асинхронная загрузка изображений</sys:String>
-    <sys:String x:Key="SettingsAsyncImageLoadingTooltip">Улучшает прокрутку игрового списка,но ухудшает скорость загрузки изображений.</sys:String>
-    <sys:String x:Key="SettingsShowNameEmptyCover">Показывать название игры при отсутствии обложки</sys:String>
-    <sys:String x:Key="SettingsShowIconList">Отображать иконки в режиме списка</sys:String>
-    <sys:String x:Key="SettingsDisableAcceleration">Выключить аппаратное ускорение</sys:String>
-    <sys:String x:Key="SettingsDisableAccelerationTooltip">Используйте когда присутствуют заикания или другие проблемы интерфейса.</sys:String>
-    <sys:String x:Key="SettingsSkin">Тема</sys:String>
-    <sys:String x:Key="SettingsSkinColor">Цвет текста</sys:String>
-    <sys:String x:Key="SettingsSkinFullscreen">Полноэкранная тема</sys:String>
-    <sys:String x:Key="SettingsSkinColorFullscreen">Цвет полноэкранной темы</sys:String>
-    <sys:String x:Key="SettingsDBLocation">Местоположение базы данных</sys:String>
-    <sys:String x:Key="SettingsWhatsSteamName">Имя моего аккаунта?</sys:String>
-    <sys:String x:Key="SettingsLoginStatus">Статус:</sys:String>
-    <sys:String x:Key="SettingsSteamLibrarySource">Выберите библиотеку пользователя:</sys:String>
-    <sys:String x:Key="SettingsWindowTitle">Настройки</sys:String>
-    <sys:String x:Key="SettingsSteamImportCategories">Импортировать Steam-категории:</sys:String>
-    <sys:String x:Key="SettingsSteamImportCatFrom">из аккаунта:</sys:String>
-    <sys:String x:Key="SettingsClearWebCache">Очистить веб-кэш</sys:String>
-    <sys:String x:Key="SettingsClearWebCacheTooltip">Может решить проблемы, возникающие при привязке учетных записей.</sys:String>
-    <sys:String x:Key="SettingsShowTray">Показывать трэй-иконку</sys:String>
-    <sys:String x:Key="SettingsMinimizeToTray">Свернуть в трэй</sys:String>
-    <sys:String x:Key="SettingsCloseToTray">Свернуть</sys:String>
- 	<sys:String x:Key="SettingsAfterGameStart">Во время игры:</sys:String>
-    <sys:String x:Key="SettingsGOGUseGalaxy">Интеграция с клиентом Galaxy</sys:String>
-    <sys:String x:Key="SettingsGOGUseGalaxyTooltip">Будут работать такие возможности, как: облачные сохранения, счетчик проведенного времени в игре и т.д.</sys:String>
-    <sys:String x:Key="SettingsSteamCatImportWarn">Это перезапишет текущие категории всех Steam-игр. Вы хотите продолжить?</sys:String>
-    <sys:String x:Key="SettingsSteamCatImportWarnTitle">Импортировать категории?</sys:String>
-    <sys:String x:Key="SettingsSteamCatImportErrorAccount">Не получается импортировать категории - не выбран аккаунт для импорта.</sys:String>
-    <sys:String x:Key="SettingsSteamCatImportErrorDb">Не получается импортировать категории - база данных не открыта.</sys:String>
-    <sys:String x:Key="SettingsSteamCatImportError">Не получается импортировать Steam-категории: {0}</sys:String>
-    <sys:String x:Key="SettingsClearCacheWarn"> Это приведет к выходу из всех связанных служб. Требуется перезапуск приложения, вы хотите продолжить?</sys:String>
-    <sys:String x:Key="SettingsClearCacheTitle">Очистить кэш?</sys:String>
-    <sys:String x:Key="SettingsApiKeyTooltip">API-ключ необходим для приватных Steam-аккаунтов</sys:String>
-    <sys:String x:Key="SettingsApiKeyUrlText">Получить API-ключ</sys:String>
-    <sys:String x:Key="SettingsSkinChangeRestart">Playnite требуется перезапуск при смене темы</sys:String>
-    <sys:String x:Key="SettingsGetThemes">Получить больше тем</sys:String>
-    <sys:String x:Key="SettingsCreateThemes">Создать новую тему</sys:String>
-    <sys:String x:Key="SettingsCreateLocalization">Добавить новую локализацию</sys:String>
+    <sys:String x:Key="LOCSettingsGeneralLabel">Основные</sys:String>
+    <sys:String x:Key="LOCSettingsAppearanceLabel">Внешний вид</sys:String>
+    <sys:String x:Key="LOCSettingsAdvancedLabel">Дополнительные</sys:String>
+    <sys:String x:Key="LOCSettingsProvidersLabel">Сторонние клиенты</sys:String>
+    <sys:String x:Key="LOCSettingsImportLabel">Автоматически импортировать изменения</sys:String>
+    <sys:String x:Key="LOCSettingsImportInstalledLabel">Импортировать установленные игры</sys:String>
+    <sys:String x:Key="LOCSettingsImportLibraryLabel">Импортировать все игры</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidDBLocation">Не найдено расположение базы данных, должен быть указан верный путь.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountName">Имя Steam-аккаунта не может быть пустым.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Не выбран Steam-аккаунт для импорта библиотеки.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Не выбран Steam-аккаунт для импорта категории.</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Обновления из сторонних клиентов при запуске</sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen">Запуск в полноэкранном режиме</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Включает в себя Steam,Origin и прочие.</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading">Асинхронная загрузка изображений</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Улучшает прокрутку игрового списка,но ухудшает скорость загрузки изображений.</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Показывать название игры при отсутствии обложки</sys:String>
+    <sys:String x:Key="LOCSettingsShowIconList">Отображать иконки в режиме списка</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAcceleration">Выключить аппаратное ускорение</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Используйте когда присутствуют заикания или другие проблемы интерфейса.</sys:String>
+    <sys:String x:Key="LOCSettingsSkin">Тема</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColor">Цвет текста</sys:String>
+    <sys:String x:Key="LOCSettingsSkinFullscreen">Полноэкранная тема</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColorFullscreen">Цвет полноэкранной темы</sys:String>
+    <sys:String x:Key="LOCSettingsDBLocation">Местоположение базы данных</sys:String>
+    <sys:String x:Key="LOCSettingsWhatsSteamName">Имя моего аккаунта?</sys:String>
+    <sys:String x:Key="LOCSettingsLoginStatus">Статус:</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLibrarySource">Выберите библиотеку пользователя:</sys:String>
+    <sys:String x:Key="LOCSettingsWindowTitle">Настройки</sys:String>
+    <sys:String x:Key="LOCSettingsSteamImportCategories">Импортировать Steam-категории:</sys:String>
+    <sys:String x:Key="LOCSettingsSteamImportCatFrom">из аккаунта:</sys:String>
+    <sys:String x:Key="LOCSettingsClearWebCache">Очистить веб-кэш</sys:String>
+    <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Может решить проблемы, возникающие при привязке учетных записей.</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">Показывать трэй-иконку</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray">Свернуть в трэй</sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray">Свернуть</sys:String>
+ 	<sys:String x:Key="LOCSettingsAfterGameStart">Во время игры:</sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxy">Интеграция с клиентом Galaxy</sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Будут работать такие возможности, как: облачные сохранения, счетчик проведенного времени в игре и т.д.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarn">Это перезапишет текущие категории всех Steam-игр. Вы хотите продолжить?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Импортировать категории?</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Не получается импортировать категории - не выбран аккаунт для импорта.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Не получается импортировать категории - база данных не открыта.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportError">Не получается импортировать Steam-категории: {0}</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheWarn"> Это приведет к выходу из всех связанных служб. Требуется перезапуск приложения, вы хотите продолжить?</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheTitle">Очистить кэш?</sys:String>
+    <sys:String x:Key="LOCSettingsApiKeyTooltip">API-ключ необходим для приватных Steam-аккаунтов</sys:String>
+    <sys:String x:Key="LOCSettingsApiKeyUrlText">Получить API-ключ</sys:String>
+    <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite требуется перезапуск при смене темы</sys:String>
+    <sys:String x:Key="LOCSettingsGetThemes">Получить больше тем</sys:String>
+    <sys:String x:Key="LOCSettingsCreateThemes">Создать новую тему</sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">Добавить новую локализацию</sys:String>
     
-    <sys:String x:Key="ImportError">Ошибка при импортировании</sys:String>
-    <sys:String x:Key="LoginChecking">Проверка...</sys:String>
-    <sys:String x:Key="LoginRequired">Нужна аутентификация</sys:String>
-    <sys:String x:Key="LoginFailed">Не удалось аутентифицировать</sys:String>
+    <sys:String x:Key="LOCImportError">Ошибка при импортировании</sys:String>
+    <sys:String x:Key="LOCLoginChecking">Проверка...</sys:String>
+    <sys:String x:Key="LOCLoginRequired">Нужна аутентификация</sys:String>
+    <sys:String x:Key="LOCLoginFailed">Не удалось аутентифицировать</sys:String>
 
     <!--Meta Import-->
-    <sys:String x:Key="MetaImportWindowTitle">Импорт метаданных</sys:String>
-    <sys:String x:Key="DownloadMetaButton">Скачать метаданные</sys:String>
+    <sys:String x:Key="LOCMetaImportWindowTitle">Импорт метаданных</sys:String>
+    <sys:String x:Key="LOCDownloadMetaButton">Скачать метаданные</sys:String>
     
     <!--Emulator Import-->
-    <sys:String x:Key="EmuWizardWindowTitle">Помощник импортирования эмуляторов</sys:String>
-    <sys:String x:Key="EmuWizardIntro">Этот помощник проведет вас через процесс загрузки и импорта эмулятора консоли, а также импорта эмулируемых игр.</sys:String>
-    <sys:String x:Key="EmuWizardNotice">Имейте в виду, что вы всегда можете добавить дополнительные эмуляторы и/или игры позже через главное меню (в меню "Инструменты" для настроек эмулятора и меню "Добавить игры" для эмулируемых игр).</sys:String>
-    <sys:String x:Key="EmuWizardDownloadListIntro" xml:space="preserve">Ниже приведен список эмуляторов, которые Playnite может распознавать и автоматически настраивать. Вы можете загрузить и установить их, посетив их веб-сайт. После установки эмуляторов перейдите к следующему экрану, чтобы импортировать их в Playnite.
+    <sys:String x:Key="LOCEmuWizardWindowTitle">Помощник импортирования эмуляторов</sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro">Этот помощник проведет вас через процесс загрузки и импорта эмулятора консоли, а также импорта эмулируемых игр.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Имейте в виду, что вы всегда можете добавить дополнительные эмуляторы и/или игры позже через главное меню (в меню "Инструменты" для настроек эмулятора и меню "Добавить игры" для эмулируемых игр).</sys:String>
+    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Ниже приведен список эмуляторов, которые Playnite может распознавать и автоматически настраивать. Вы можете загрузить и установить их, посетив их веб-сайт. После установки эмуляторов перейдите к следующему экрану, чтобы импортировать их в Playnite.
         
 Вы также можете настроить и импортировать любой пользовательский эмулятор позже через меню конфигурации.</sys:String>
-    <sys:String x:Key="EmuWizardEmuImportIntro">Вы можете импортировать любые эмуляторы, установленные на вашем ПК, нажав кнопку "Автообнаружение из папки...". Playnite будет искать выбранную папку для любых известных эмуляторов и даст возможность импортировать их. Вы можете импортировать из нескольких папок, используя указанную кнопку несколько раз, эмуляторы будут добавлены в нижнюю часть текущего списка.</sys:String>
-    <sys:String x:Key="EmuWizardGameImportIntro">Вы можете импортировать игры, нажав кнопку "Сканировать папку с помощью эмулятора". Выбранный эмулятор сообщит Playnite, какие типы файлов следует сканировать и импортировать. Вы можете импортировать из нескольких папок, используя указанную кнопку несколько раз, игры будут добавлены в нижнюю часть текущего списка.</sys:String>
-    <sys:String x:Key="EmuWizardNoEmulatorWarning">Нет подходящих эмуляторов для импортирования. Вы не сможете автоматически импортировать какие-либо эмулированные игры, предварительно не настроив эмулятор. Вы действительно хотите продолжить и выйти из процесса импортирования?</sys:String>
-    <sys:String x:Key="EmuWizardNoEmulatorForGamesWarning">В Playnite нет настроенных эмуляторов. Вы не можете импортировать игры без предварительной настройки эмулятора и выбора соответствующих типов файлов. Вы хотите добавить эмуляторы сейчас?</sys:String>
-    <sys:String x:Key="EmuWizardButtonScanGames">Сканировать папку с помощью эмулятора</sys:String>
-    <sys:String x:Key="EmuWizardButtonSelectFiles">Выбор файлов</sys:String>
-    <sys:String x:Key="EmuWizardButtonScanEmulator">Автообнаружение из папки...</sys:String>
-    <sys:String x:Key="EmuWizardButtonConfigureEmulator">Настройка эмуляторов...</sys:String>
-    <sys:String x:Key="EmuWizardScanning">Сканирование...</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Вы можете импортировать любые эмуляторы, установленные на вашем ПК, нажав кнопку "Автообнаружение из папки...". Playnite будет искать выбранную папку для любых известных эмуляторов и даст возможность импортировать их. Вы можете импортировать из нескольких папок, используя указанную кнопку несколько раз, эмуляторы будут добавлены в нижнюю часть текущего списка.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">Вы можете импортировать игры, нажав кнопку "Сканировать папку с помощью эмулятора". Выбранный эмулятор сообщит Playnite, какие типы файлов следует сканировать и импортировать. Вы можете импортировать из нескольких папок, используя указанную кнопку несколько раз, игры будут добавлены в нижнюю часть текущего списка.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Нет подходящих эмуляторов для импортирования. Вы не сможете автоматически импортировать какие-либо эмулированные игры, предварительно не настроив эмулятор. Вы действительно хотите продолжить и выйти из процесса импортирования?</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">В Playnite нет настроенных эмуляторов. Вы не можете импортировать игры без предварительной настройки эмулятора и выбора соответствующих типов файлов. Вы хотите добавить эмуляторы сейчас?</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanGames">Сканировать папку с помощью эмулятора</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Выбор файлов</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Автообнаружение из папки...</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Настройка эмуляторов...</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning">Сканирование...</sys:String>
 
     <!--FirstTime Wizard-->
-    <sys:String x:Key="FirstWindowTitle">Конфигурация при первом запуске</sys:String>
-    <sys:String x:Key="FirstIntro" xml:space="preserve">Этот помощник проведет вас через автоматический процесс импорта игр и настройку внешних игровых библиотек. Playnite может автоматически импортировать игры из нескольких игровых клиентов, таких как Steam или GOG, а также обновлять свою библиотеку, автоматически обновляя ее во время запуска приложения.
+    <sys:String x:Key="LOCFirstWindowTitle">Конфигурация при первом запуске</sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Этот помощник проведет вас через автоматический процесс импорта игр и настройку внешних игровых библиотек. Playnite может автоматически импортировать игры из нескольких игровых клиентов, таких как Steam или GOG, а также обновлять свою библиотеку, автоматически обновляя ее во время запуска приложения.
         
 Имейте в виду, что вы всегда можете добавить какую-либо игру для любой платформы вручную из главного меню, нажав кнопку "Playnite". 
     </sys:String>
-    <sys:String x:Key="FirstDBLocation" xml:space="preserve">Выберите местоположение для файла базы данных библиотеки. Местоположение может быть изменено позже через меню настроек.
+    <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Выберите местоположение для файла базы данных библиотеки. Местоположение может быть изменено позже через меню настроек.
 
 Совет: Если вы хотите синхронизировать свою библиотеку между несколькими компьютерами, установите местоположение базы данных в облачном хранилище (Google Drive, Dropbox и т.д.).</sys:String>
-    <sys:String x:Key="FirstDBLocDefault">Стандартное расположение базы данных</sys:String>
-    <sys:String x:Key="FirstDBLocCustom">Собственное расположение базы данных</sys:String>
-    <sys:String x:Key="FirstExternalTitle">Интеграция библиотеки</sys:String>
-    <sys:String x:Key="FirstImportIntroduction" xml:space="preserve">Автоматически импортировать игры из следующих сервисов. Любые более поздние изменения игры будут автоматически обновляться при запуске Playnite или при запуске вручную. Выбранные настройки влияют на первоначальный и все последующие импорты.</sys:String>
-    <sys:String x:Key="FirstSteamIntegration">Интеграция с Steam</sys:String>
-    <sys:String x:Key="FirstOriginIntegration">Интеграция с Origin</sys:String>
-    <sys:String x:Key="FirstGOGIntegration">Интеграция с GOG</sys:String>
-    <sys:String x:Key="FirstBattleNetIntegration">Интеграция с Battle.net</sys:String>
-    <sys:String x:Key="FirstUplayIntegration">Интеграция с Uplay</sys:String>
-    <sys:String x:Key="FirstSteamImportCategories">Импортировать категории из аккаунта:</sys:String>
-    <sys:String x:Key="FirstOtherGamesTitle">Остальные игры</sys:String>
-    <sys:String x:Key="FirstOtherGamesText">Нажмите кнопку ниже, чтобы импортировать другие установленные игры или просмотреть их вручную (включая игры в Windows Store).</sys:String>
-    <sys:String x:Key="FirstOtherGamesImportButton">Импортировать игры</sys:String>
-    <sys:String x:Key="FirstConfigFinishedTitle">Конфигурация завершена</sys:String>
-    <sys:String x:Key="FirstConfigFinishedText" xml:space="preserve">Начальная настройка завершена. Помните, что вы можете изменить все настройки позже через меню "Настройки".
+    <sys:String x:Key="LOCFirstDBLocDefault">Стандартное расположение базы данных</sys:String>
+    <sys:String x:Key="LOCFirstDBLocCustom">Собственное расположение базы данных</sys:String>
+    <sys:String x:Key="LOCFirstExternalTitle">Интеграция библиотеки</sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Автоматически импортировать игры из следующих сервисов. Любые более поздние изменения игры будут автоматически обновляться при запуске Playnite или при запуске вручную. Выбранные настройки влияют на первоначальный и все последующие импорты.</sys:String>
+    <sys:String x:Key="LOCFirstSteamIntegration">Интеграция с Steam</sys:String>
+    <sys:String x:Key="LOCFirstOriginIntegration">Интеграция с Origin</sys:String>
+    <sys:String x:Key="LOCFirstGOGIntegration">Интеграция с GOG</sys:String>
+    <sys:String x:Key="LOCFirstBattleNetIntegration">Интеграция с Battle.net</sys:String>
+    <sys:String x:Key="LOCFirstUplayIntegration">Интеграция с Uplay</sys:String>
+    <sys:String x:Key="LOCFirstSteamImportCategories">Импортировать категории из аккаунта:</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesTitle">Остальные игры</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">Нажмите кнопку ниже, чтобы импортировать другие установленные игры или просмотреть их вручную (включая игры в Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesImportButton">Импортировать игры</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedTitle">Конфигурация завершена</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Начальная настройка завершена. Помните, что вы можете изменить все настройки позже через меню "Настройки".
 
 Вы также можете добавить любую другую игру позже из главного меню, нажав на логотип приложения Playnite.</sys:String>
     
     <!--Platforms Settings-->
-    <sys:String x:Key="PlatformsWindowTitle">Настройка платформы и эмулятора</sys:String>
-    <sys:String x:Key="PlatformsTitle">Платформы</sys:String>
-    <sys:String x:Key="PlatformTitle">Платформа</sys:String>
-    <sys:String x:Key="EmulatorsTitle">Эмуляторы</sys:String>
-    <sys:String x:Key="EmulatorTitle">Эмулятор</sys:String>
-    <sys:String x:Key="AddPlatformTitle">Добавить</sys:String>
-    <sys:String x:Key="SelectIconTitle">Выбрать иконку</sys:String>
-    <sys:String x:Key="SelectCoverTitle">Выбрать обложку</sys:String>
-    <sys:String x:Key="SelectFileTitle">Выбрать файл</sys:String>
-    <sys:String x:Key="SelectUrlTitle">Выбрать URL</sys:String>
-    <sys:String x:Key="AddEmulatorTitle">Добавить</sys:String>
-    <sys:String x:Key="SupportedPlatformsTitle">Поддерживаемые платформы</sys:String>
-    <sys:String x:Key="ConfirmUnsavedPlatformsTitle">Вы хотите сохранить изменения платформы?</sys:String>
-    <sys:String x:Key="ConfirmUnsavedEmulatorsTitle">Вы хотите сохранить изменения эмулятора?</sys:String>
-    <sys:String x:Key="ExecutableTitle">Исполняемый файл</sys:String>
-    <sys:String x:Key="ArgumentsTitle">Аргументы</sys:String>
-    <sys:String x:Key="WorkingDirTitle">Рабочая директория</sys:String>
-    <sys:String x:Key="SupportedFilesTitle">Поддерживаемые типы файлов</sys:String>
-    <sys:String x:Key="ImportEmulatorsButton">Импортировать эмуляторы...</sys:String>
-    <sys:String x:Key="DownloadEmulatorsButton">Скачать эмуляторы...</sys:String>
-    <sys:String x:Key="EmuLoadArgsPresetTooltip">Загрузка предустановки с аргументами из известного профиля эмулятора</sys:String>
-    <sys:String x:Key="EmuRemovalConfirmation" xml:space="preserve">Вы уверены что хотите удалить {0} эмулятор?        
+    <sys:String x:Key="LOCPlatformsWindowTitle">Настройка платформы и эмулятора</sys:String>
+    <sys:String x:Key="LOCPlatformsTitle">Платформы</sys:String>
+    <sys:String x:Key="LOCPlatformTitle">Платформа</sys:String>
+    <sys:String x:Key="LOCEmulatorsTitle">Эмуляторы</sys:String>
+    <sys:String x:Key="LOCEmulatorTitle">Эмулятор</sys:String>
+    <sys:String x:Key="LOCAddPlatformTitle">Добавить</sys:String>
+    <sys:String x:Key="LOCSelectIconTitle">Выбрать иконку</sys:String>
+    <sys:String x:Key="LOCSelectCoverTitle">Выбрать обложку</sys:String>
+    <sys:String x:Key="LOCSelectFileTitle">Выбрать файл</sys:String>
+    <sys:String x:Key="LOCSelectUrlTitle">Выбрать URL</sys:String>
+    <sys:String x:Key="LOCAddEmulatorTitle">Добавить</sys:String>
+    <sys:String x:Key="LOCSupportedPlatformsTitle">Поддерживаемые платформы</sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">Вы хотите сохранить изменения платформы?</sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">Вы хотите сохранить изменения эмулятора?</sys:String>
+    <sys:String x:Key="LOCExecutableTitle">Исполняемый файл</sys:String>
+    <sys:String x:Key="LOCArgumentsTitle">Аргументы</sys:String>
+    <sys:String x:Key="LOCWorkingDirTitle">Рабочая директория</sys:String>
+    <sys:String x:Key="LOCSupportedFilesTitle">Поддерживаемые типы файлов</sys:String>
+    <sys:String x:Key="LOCImportEmulatorsButton">Импортировать эмуляторы...</sys:String>
+    <sys:String x:Key="LOCDownloadEmulatorsButton">Скачать эмуляторы...</sys:String>
+    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">Загрузка предустановки с аргументами из известного профиля эмулятора</sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">Вы уверены что хотите удалить {0} эмулятор?        
 В настоящий момент он используется {1} игрой(ами).</sys:String>
-    <sys:String x:Key="PlatformRemovalConfirmation" xml:space="preserve">Вы уверены что хотите удалить {0} платформу?        
+    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">Вы уверены что хотите удалить {0} платформу?        
 В настоящий момент она используется {1} игрой(ами) и {2} эмулятором(ами).</sys:String>
     
-    <sys:String x:Key="MenuSortByTitle">Сортировка по</sys:String>
-    <sys:String x:Key="MenuSortAscending">Возрастанию</sys:String>
-    <sys:String x:Key="MenuSortDescending">Убыванию</sys:String>
-    <sys:String x:Key="MenuGroupDont">Не группировать</sys:String>
-    <sys:String x:Key="MenuGroupProvider">По стороннему клиенту</sys:String>
-    <sys:String x:Key="MenuGroupCategory">По категории</sys:String>
-    <sys:String x:Key="MenuGroupPlatform">По платформе</sys:String>
+    <sys:String x:Key="LOCMenuSortByTitle">Сортировка по</sys:String>
+    <sys:String x:Key="LOCMenuSortAscending">Возрастанию</sys:String>
+    <sys:String x:Key="LOCMenuSortDescending">Убыванию</sys:String>
+    <sys:String x:Key="LOCMenuGroupDont">Не группировать</sys:String>
+    <sys:String x:Key="LOCMenuGroupProvider">По стороннему клиенту</sys:String>
+    <sys:String x:Key="LOCMenuGroupCategory">По категории</sys:String>
+    <sys:String x:Key="LOCMenuGroupPlatform">По платформе</sys:String>
 
     <!--Game fields-->
-    <sys:String x:Key="GameIconTitle">Иконка</sys:String>
-    <sys:String x:Key="GameCoverImageTitle">Обложка</sys:String>
-    <sys:String x:Key="GameBackgroundTitle">Фон</sys:String>
-    <sys:String x:Key="GameSortingNameTitle">Сортировка</sys:String>
-    <sys:String x:Key="GameProviderTitle">Сторонний клиент</sys:String>
-    <sys:String x:Key="GameNameTitle">Название игры</sys:String>
-    <sys:String x:Key="GamePlatformTitle">Платформа</sys:String>
-    <sys:String x:Key="GameCategoriesTitle">Категория</sys:String>
-    <sys:String x:Key="GameGenresTitle">Жанр</sys:String>
-    <sys:String x:Key="GameReleaseDateTitle">Дата выхода</sys:String>
-    <sys:String x:Key="GameDevelopersTitle">Разработчик</sys:String>
-    <sys:String x:Key="GameTagsTitle">Тэги</sys:String>
-    <sys:String x:Key="GamePublishersTitle">Издатель</sys:String>
-    <sys:String x:Key="GameIsInstalledTitle">Установленные</sys:String>
-    <sys:String x:Key="GameIsUnInstalledTitle">Удаленные</sys:String>
-    <sys:String x:Key="GameHiddenTitle">Скрытые</sys:String>
-    <sys:String x:Key="GameFavoriteTitle">Любимые</sys:String>
-    <sys:String x:Key="GameLastActivityTitle">Последняя активность</sys:String>
-    <sys:String x:Key="GameCategoryTitle">Категории</sys:String>
-    <sys:String x:Key="GameDescriptionTitle">Описание</sys:String>
-    <sys:String x:Key="GameInstallDirTitle">Путь установки</sys:String>
-    <sys:String x:Key="GameCoverTitle">Обложка</sys:String>
-    <sys:String x:Key="GameLinksTitle">Ссылка</sys:String>
-    <sys:String x:Key="GameROMTitle">Образ/ISO путь</sys:String>
+    <sys:String x:Key="LOCGameIconTitle">Иконка</sys:String>
+    <sys:String x:Key="LOCGameCoverImageTitle">Обложка</sys:String>
+    <sys:String x:Key="LOCGameBackgroundTitle">Фон</sys:String>
+    <sys:String x:Key="LOCGameSortingNameTitle">Сортировка</sys:String>
+    <sys:String x:Key="LOCGameProviderTitle">Сторонний клиент</sys:String>
+    <sys:String x:Key="LOCGameNameTitle">Название игры</sys:String>
+    <sys:String x:Key="LOCGamePlatformTitle">Платформа</sys:String>
+    <sys:String x:Key="LOCGameCategoriesTitle">Категория</sys:String>
+    <sys:String x:Key="LOCGameGenresTitle">Жанр</sys:String>
+    <sys:String x:Key="LOCGameReleaseDateTitle">Дата выхода</sys:String>
+    <sys:String x:Key="LOCGameDevelopersTitle">Разработчик</sys:String>
+    <sys:String x:Key="LOCGameTagsTitle">Тэги</sys:String>
+    <sys:String x:Key="LOCGamePublishersTitle">Издатель</sys:String>
+    <sys:String x:Key="LOCGameIsInstalledTitle">Установленные</sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">Удаленные</sys:String>
+    <sys:String x:Key="LOCGameHiddenTitle">Скрытые</sys:String>
+    <sys:String x:Key="LOCGameFavoriteTitle">Любимые</sys:String>
+    <sys:String x:Key="LOCGameLastActivityTitle">Последняя активность</sys:String>
+    <sys:String x:Key="LOCGameCategoryTitle">Категории</sys:String>
+    <sys:String x:Key="LOCGameDescriptionTitle">Описание</sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">Путь установки</sys:String>
+    <sys:String x:Key="LOCGameCoverTitle">Обложка</sys:String>
+    <sys:String x:Key="LOCGameLinksTitle">Ссылка</sys:String>
+    <sys:String x:Key="LOCGameROMTitle">Образ/ISO путь</sys:String>
 
     <!--Errors-->
-    <sys:String x:Key="DatabaseErroTitle">Ошибка базы данных</sys:String>
-    <sys:String x:Key="DatabaseOpenError">Не удалось открыть базу данных библиотеки.</sys:String>
-    <sys:String x:Key="DiagPackageCreationError">Не удалось создать файл с диагностикой.</sys:String>
-    <sys:String x:Key="DiagPackageCreationSuccess">Файл с диагностикой успешно создан.</sys:String>
+    <sys:String x:Key="LOCDatabaseErroTitle">Ошибка базы данных</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenError">Не удалось открыть базу данных библиотеки.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationError">Не удалось создать файл с диагностикой.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess">Файл с диагностикой успешно создан.</sys:String>
 
-    <sys:String x:Key="SteamCategoryImportError">Не удалось импортировать Steam-категории.</sys:String>
+    <sys:String x:Key="LOCSteamCategoryImportError">Не удалось импортировать Steam-категории.</sys:String>
     
-    <sys:String x:Key="BnetInstalledImportError">Не удалось импортировать установленные Battle.net игры.</sys:String>
-    <sys:String x:Key="SteamInstalledImportError">Не удалось импортировать установленные Steam игры.</sys:String>
-    <sys:String x:Key="GOGInstalledImportError">Не удалось импортировать установленные GOG игры.</sys:String>
-    <sys:String x:Key="OriginInstalledImportError">Не удалось импортировать установленные Origin игры.</sys:String>
-    <sys:String x:Key="UplayInstalledImportError">Не удалось импортировать установленные Uplay игры.</sys:String>
+    <sys:String x:Key="LOCBnetInstalledImportError">Не удалось импортировать установленные Battle.net игры.</sys:String>
+    <sys:String x:Key="LOCSteamInstalledImportError">Не удалось импортировать установленные Steam игры.</sys:String>
+    <sys:String x:Key="LOCGOGInstalledImportError">Не удалось импортировать установленные GOG игры.</sys:String>
+    <sys:String x:Key="LOCOriginInstalledImportError">Не удалось импортировать установленные Origin игры.</sys:String>
+    <sys:String x:Key="LOCUplayInstalledImportError">Не удалось импортировать установленные Uplay игры.</sys:String>
 
-    <sys:String x:Key="BnetLibraryImportError">Не удалось загрузить Battle.net библиотеку.</sys:String>
-    <sys:String x:Key="SteamLibraryImportError">Не удалось загрузить Steam библиотеку.</sys:String>
-    <sys:String x:Key="GOGLibraryImportError">Не удалось загрузить GOG библиотеку.</sys:String>
-    <sys:String x:Key="OriginLibraryImportError">Не удалось загрузить Origin библиотеку.</sys:String>
-    <sys:String x:Key="UplayLibraryImportError">Не удалось загрузить Uplay библиотеку.</sys:String>
+    <sys:String x:Key="LOCBnetLibraryImportError">Не удалось загрузить Battle.net библиотеку.</sys:String>
+    <sys:String x:Key="LOCSteamLibraryImportError">Не удалось загрузить Steam библиотеку.</sys:String>
+    <sys:String x:Key="LOCGOGLibraryImportError">Не удалось загрузить GOG библиотеку.</sys:String>
+    <sys:String x:Key="LOCOriginLibraryImportError">Не удалось загрузить Origin библиотеку.</sys:String>
+    <sys:String x:Key="LOCUplayLibraryImportError">Не удалось загрузить Uplay библиотеку.</sys:String>
     
-    <sys:String x:Key="ScanEmulatorGamesEmptyProfileError">Невозможно выполнить поиск игр по выбранному профилю эмулятора. Профиль не содержит расширений или платформ.</sys:String>
-    <sys:String x:Key="StartGenericError">Не удалось запустить Playnite. Пожалуйста закройте все запущенные экземпляры и попробуйте вновь.</sys:String>
-    <sys:String x:Key="SkinApplyError">Не удалось выбрать тему "{0}", цвет надписей "{1}"
+    <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Невозможно выполнить поиск игр по выбранному профилю эмулятора. Профиль не содержит расширений или платформ.</sys:String>
+    <sys:String x:Key="LOCStartGenericError">Не удалось запустить Playnite. Пожалуйста закройте все запущенные экземпляры и попробуйте вновь.</sys:String>
+    <sys:String x:Key="LOCSkinApplyError">Не удалось выбрать тему "{0}", цвет надписей "{1}"
         
 {1}</sys:String>
-    <sys:String x:Key="URLFormatError">Не получается открыть ссылку, URL содержит неверный формат.</sys:String>
+    <sys:String x:Key="LOCURLFormatError">Не получается открыть ссылку, URL содержит неверный формат.</sys:String>
 
     <!--GameEdit-->
-    <sys:String x:Key="GameEditWindowTitle">Редактировать данные игры</sys:String>
-    <sys:String x:Key="UseExeIcon">Exe иконка</sys:String>
-    <sys:String x:Key="ImageURL">Изображение URL</sys:String>
-    <sys:String x:Key="AddLinkButton">Добавить ссылку</sys:String>
-    <sys:String x:Key="SaveChanges">Сохранить изменения</sys:String>
-    <sys:String x:Key="PlayAction">Игровое действие</sys:String>
-    <sys:String x:Key="AddPlayAction">Добавить игровое действие</sys:String>
-    <sys:String x:Key="AddAction">Добавить действие</sys:String>
-    <sys:String x:Key="DeleteAction">Удалить действие</sys:String>
-    <sys:String x:Key="RemovePlayAction">Удалить игровое действие</sys:String>
-    <sys:String x:Key="OtherActions">Другие действия</sys:String>
-    <sys:String x:Key="AddGames">Добавить игры</sys:String>
-    <sys:String x:Key="ScanFolder">Сканировать папку...</sys:String>
-    <sys:String x:Key="Browse">Выбрать...</sys:String>
-    <sys:String x:Key="OpenPlaynite">Открыть Playnite</sys:String>
-    <sys:String x:Key="ProfileSettings">Настройки профиля</sys:String>
-    <sys:String x:Key="EmptyGameNameError">Имя игры не может быть пустым.</sys:String>
-    <sys:String x:Key="EmptyGameNameMetaSearchError">Имя игры не может быть пустым перед поиском метаданных.</sys:String>
-    <sys:String x:Key="InvalidGameData">Неверные игровые данные</sys:String>
-    <sys:String x:Key="URLInputInfo">Введите настоящую URL начинающуюся с http:// или https://</sys:String>
-    <sys:String x:Key="URLInputInfoTitile">Выбрать URL</sys:String>
-    <sys:String x:Key="MetadataDownloadError">Не удалось скачать метаданные: {0}</sys:String>
-    <sys:String x:Key="DownloadError">Ошибка загрузки</sys:String>
-    <sys:String x:Key="ClearFilters">Очистить фильтры</sys:String>
-    <sys:String x:Key="PrivateAccount">Приватный профиль</sys:String>
-    <sys:String x:Key="APIKey">API ключ</sys:String>
-    <sys:String x:Key="StartupError">Ошибка при запуске</sys:String>
-    <sys:String x:Key="SkinError">Ошибка темы</sys:String>
-    <sys:String x:Key="ClearAll">Очистить всё</sys:String>
-    <sys:String x:Key="SetupRunning">Установка...</sys:String>
-    <sys:String x:Key="InvalidURL">Неверный URL</sys:String>
-    <sys:String x:Key="DoNothing">Ничего</sys:String>
-    <sys:String x:Key="Minimize">Свернуть</sys:String>
-    <sys:String x:Key="Close">Закрыть</sys:String>
+    <sys:String x:Key="LOCGameEditWindowTitle">Редактировать данные игры</sys:String>
+    <sys:String x:Key="LOCUseExeIcon">Exe иконка</sys:String>
+    <sys:String x:Key="LOCImageURL">Изображение URL</sys:String>
+    <sys:String x:Key="LOCAddLinkButton">Добавить ссылку</sys:String>
+    <sys:String x:Key="LOCSaveChanges">Сохранить изменения</sys:String>
+    <sys:String x:Key="LOCPlayAction">Игровое действие</sys:String>
+    <sys:String x:Key="LOCAddPlayAction">Добавить игровое действие</sys:String>
+    <sys:String x:Key="LOCAddAction">Добавить действие</sys:String>
+    <sys:String x:Key="LOCDeleteAction">Удалить действие</sys:String>
+    <sys:String x:Key="LOCRemovePlayAction">Удалить игровое действие</sys:String>
+    <sys:String x:Key="LOCOtherActions">Другие действия</sys:String>
+    <sys:String x:Key="LOCAddGames">Добавить игры</sys:String>
+    <sys:String x:Key="LOCScanFolder">Сканировать папку...</sys:String>
+    <sys:String x:Key="LOCBrowse">Выбрать...</sys:String>
+    <sys:String x:Key="LOCOpenPlaynite">Открыть Playnite</sys:String>
+    <sys:String x:Key="LOCProfileSettings">Настройки профиля</sys:String>
+    <sys:String x:Key="LOCEmptyGameNameError">Имя игры не может быть пустым.</sys:String>
+    <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Имя игры не может быть пустым перед поиском метаданных.</sys:String>
+    <sys:String x:Key="LOCInvalidGameData">Неверные игровые данные</sys:String>
+    <sys:String x:Key="LOCURLInputInfo">Введите настоящую URL начинающуюся с http:// или https://</sys:String>
+    <sys:String x:Key="LOCURLInputInfoTitile">Выбрать URL</sys:String>
+    <sys:String x:Key="LOCMetadataDownloadError">Не удалось скачать метаданные: {0}</sys:String>
+    <sys:String x:Key="LOCDownloadError">Ошибка загрузки</sys:String>
+    <sys:String x:Key="LOCClearFilters">Очистить фильтры</sys:String>
+    <sys:String x:Key="LOCPrivateAccount">Приватный профиль</sys:String>
+    <sys:String x:Key="LOCAPIKey">API ключ</sys:String>
+    <sys:String x:Key="LOCStartupError">Ошибка при запуске</sys:String>
+    <sys:String x:Key="LOCSkinError">Ошибка темы</sys:String>
+    <sys:String x:Key="LOCClearAll">Очистить всё</sys:String>
+    <sys:String x:Key="LOCSetupRunning">Установка...</sys:String>
+    <sys:String x:Key="LOCInvalidURL">Неверный URL</sys:String>
+    <sys:String x:Key="LOCDoNothing">Ничего</sys:String>
+    <sys:String x:Key="LOCMinimize">Свернуть</sys:String>
+    <sys:String x:Key="LOCClose">Закрыть</sys:String>
 
-    <sys:String x:Key="EmulatorArguments">Аргументы для эмулятора</sys:String>
-    <sys:String x:Key="AdditionalEmulatorArguments">Дополнительные аргументы для эмулятора</sys:String>
-    <sys:String x:Key="OverrideEmulatorArguments">Перезаписать аргументы для эмулятора</sys:String>
+    <sys:String x:Key="LOCEmulatorArguments">Аргументы для эмулятора</sys:String>
+    <sys:String x:Key="LOCAdditionalEmulatorArguments">Дополнительные аргументы для эмулятора</sys:String>
+    <sys:String x:Key="LOCOverrideEmulatorArguments">Перезаписать аргументы для эмулятора</sys:String>
 
-    <sys:String x:Key="GameImportWindowTitle">Выбрать игры для импорта</sys:String>
-    <sys:String x:Key="MetaLookupWindowTitle">Поиск метаданных</sys:String>
-    <sys:String x:Key="UpdaterWindowTitle">Обновление доступно</sys:String>
-    <sys:String x:Key="UpdaterChangesInfo">Изменения по сравнению с предыдущим обновлением:</sys:String>
-    <sys:String x:Key="UpdaterInstallUpdate">Установить обновление</sys:String>
+    <sys:String x:Key="LOCGameImportWindowTitle">Выбрать игры для импорта</sys:String>
+    <sys:String x:Key="LOCMetaLookupWindowTitle">Поиск метаданных</sys:String>
+    <sys:String x:Key="LOCUpdaterWindowTitle">Обновление доступно</sys:String>
+    <sys:String x:Key="LOCUpdaterChangesInfo">Изменения по сравнению с предыдущим обновлением:</sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate">Установить обновление</sys:String>
 
-    <sys:String x:Key="ThemeTestReloadList">Перезагрузить список тем</sys:String>
-    <sys:String x:Key="ThemeTestApplySkin">Принять выбранную тему</sys:String>
-    <sys:String x:Key="ThemeTestWatchChanges">Посмотреть изменения файла</sys:String>
-    <sys:String x:Key="ThemeTestWatchChangesTooltip">Автоматически применить тему при изменении исходного файла</sys:String>
+    <sys:String x:Key="LOCThemeTestReloadList">Перезагрузить список тем</sys:String>
+    <sys:String x:Key="LOCThemeTestApplySkin">Принять выбранную тему</sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChanges">Посмотреть изменения файла</sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Автоматически применить тему при изменении исходного файла</sys:String>
 
     <!--Game actions-->
-    <sys:String x:Key="FavoriteGame">Добавить в любимые</sys:String>
-    <sys:String x:Key="RemoveFavoriteGame">Убрать из любимых</sys:String>
-    <sys:String x:Key="HideGame">Скрыть</sys:String>
-    <sys:String x:Key="UnHideGame">Показать</sys:String>
-    <sys:String x:Key="EditGame">Редактировать...</sys:String>
-    <sys:String x:Key="SetGameCategory">Выбрать категорию...</sys:String>
-    <sys:String x:Key="RemoveGame">Удалить</sys:String>
-    <sys:String x:Key="PlayGame">Запустить</sys:String>
-    <sys:String x:Key="InstallGame">Установить</sys:String>
-    <sys:String x:Key="UninstallGame">Установить</sys:String>
-    <sys:String x:Key="OpenGameLocation">Открыть расположение игры</sys:String>
-    <sys:String x:Key="CreateDesktopShortcut">Создать ярлык на рабочем столе</sys:String>
-    <sys:String x:Key="MoreAction">Другое</sys:String>
+    <sys:String x:Key="LOCFavoriteGame">Добавить в любимые</sys:String>
+    <sys:String x:Key="LOCRemoveFavoriteGame">Убрать из любимых</sys:String>
+    <sys:String x:Key="LOCHideGame">Скрыть</sys:String>
+    <sys:String x:Key="LOCUnHideGame">Показать</sys:String>
+    <sys:String x:Key="LOCEditGame">Редактировать...</sys:String>
+    <sys:String x:Key="LOCSetGameCategory">Выбрать категорию...</sys:String>
+    <sys:String x:Key="LOCRemoveGame">Удалить</sys:String>
+    <sys:String x:Key="LOCPlayGame">Запустить</sys:String>
+    <sys:String x:Key="LOCInstallGame">Установить</sys:String>
+    <sys:String x:Key="LOCUninstallGame">Установить</sys:String>
+    <sys:String x:Key="LOCOpenGameLocation">Открыть расположение игры</sys:String>
+    <sys:String x:Key="LOCCreateDesktopShortcut">Создать ярлык на рабочем столе</sys:String>
+    <sys:String x:Key="LOCMoreAction">Другое</sys:String>
 
-    <sys:String x:Key="MetadownloadNoResultsMessage">Не найдена соответствующая информация об игре '{0}' на конкретной странице.</sys:String>
-    <sys:String x:Key="MetadownloadSingleGameTip">Совет: Вы можете использовать более детальный процесс загрузки метаданных во время редактирования одной игры с помощью опции меню "Редактировать".</sys:String>
-    <sys:String x:Key="ProgreessAvailabilityMessage">Недоступно, когда выполняется какое-либо действие.</sys:String>
-    <sys:String x:Key="DescriptionHTMLSupportTooltip">Текст описания - синтаксис HTML</sys:String>
-    <sys:String x:Key="PatreonDevelopMessage">Разработка Playnite осуществляется благодаря средствам этих людей:</sys:String>
-    <sys:String x:Key="AboutContributorsMessage">Люди, принимающие участие в написании кода, локализаций и т.д.:</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Не найдена соответствующая информация об игре '{0}' на конкретной странице.</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">Совет: Вы можете использовать более детальный процесс загрузки метаданных во время редактирования одной игры с помощью опции меню "Редактировать".</sys:String>
+    <sys:String x:Key="LOCProgreessAvailabilityMessage">Недоступно, когда выполняется какое-либо действие.</sys:String>
+    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Текст описания - синтаксис HTML</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Разработка Playnite осуществляется благодаря средствам этих людей:</sys:String>
+    <sys:String x:Key="LOCAboutContributorsMessage">Люди, принимающие участие в написании кода, локализаций и т.д.:</sys:String>
 </ResourceDictionary>

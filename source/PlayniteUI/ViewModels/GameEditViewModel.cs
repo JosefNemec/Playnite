@@ -1339,8 +1339,8 @@ namespace PlayniteUI.ViewModels
                 if (string.IsNullOrWhiteSpace(EditingGame.Name))
                 {
                     dialogs.ShowMessage(
-                        resources.FindString("EmptyGameNameError"),
-                        resources.FindString("InvalidGameData"),
+                        resources.FindString("LOCEmptyGameNameError"),
+                        resources.FindString("LOCInvalidGameData"),
                         MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
@@ -2157,7 +2157,7 @@ namespace PlayniteUI.ViewModels
         {
             if (EditingGame.PlayTask == null || EditingGame.PlayTask.Type == GameTaskType.URL)
             {
-                dialogs.ShowMessage(resources.FindString("ExecIconMissingPlayAction"));
+                dialogs.ShowMessage(resources.FindString("LOCExecIconMissingPlayAction"));
                 return;
             }
 
@@ -2205,8 +2205,8 @@ namespace PlayniteUI.ViewModels
         public void SetBackgroundUrl()
         {
             var url = dialogs.SelectString(
-                resources.FindString("URLInputInfo"),
-                resources.FindString("URLInputInfoTitile"),
+                resources.FindString("LOCURLInputInfo"),
+                resources.FindString("LOCURLInputInfoTitile"),
                 string.Empty);
 
             if (url.Result)
@@ -2331,7 +2331,7 @@ namespace PlayniteUI.ViewModels
         {
             if (string.IsNullOrEmpty(EditingGame.Name))
             {
-                dialogs.ShowMessage(resources.FindString("EmptyGameNameMetaSearchError"), "", MessageBoxButton.OK);
+                dialogs.ShowMessage(resources.FindString("LOCEmptyGameNameMetaSearchError"), "", MessageBoxButton.OK);
                 return;
             }
             
@@ -2399,8 +2399,8 @@ namespace PlayniteUI.ViewModels
                 {
                     logger.Error(exc, "Failed to download metadata, {0}, {1}", game.Provider, game.ProviderId);
                     dialogs.ShowMessage(
-                        string.Format(resources.FindString("MetadataDownloadError"), exc.Message),
-                        resources.FindString("DownloadError"),
+                        string.Format(resources.FindString("LOCMetadataDownloadError"), exc.Message),
+                        resources.FindString("LOCDownloadError"),
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 finally

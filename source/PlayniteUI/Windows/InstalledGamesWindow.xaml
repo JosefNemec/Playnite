@@ -9,7 +9,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner"
-        Title="{DynamicResource GameImportWindowTitle}" Height="500" Width="800"
+        Title="{DynamicResource LOCGameImportWindowTitle}" Height="500" Width="800"
         AutomationProperties.AutomationId="WindowInstalledGames">
     <controls:WindowBase.Resources>
         <pui:IconToImageSourceConverter x:Key="IconToImageSourceConverter" />
@@ -37,14 +37,14 @@
                 </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="{DynamicResource ImportLabel}">
+                        <GridViewColumn Header="{DynamicResource LOCImportLabel}">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox IsChecked="{Binding Import}" Padding="5" HorizontalAlignment="Right" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="{DynamicResource NameLabel}">
+                        <GridViewColumn Header="{DynamicResource LOCNameLabel}">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -56,7 +56,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="{DynamicResource PathLabel}">
+                        <GridViewColumn Header="{DynamicResource LOCPathLabel}">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding DisplayPath, Mode=OneWay}" Padding="0,1,0,1"
@@ -69,19 +69,19 @@
             </ListView>
 
             <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="1" Margin="5,0,5,5">
-                <Button Name="ButtonBrowse" Content="{DynamicResource Browse}" DockPanel.Dock="Left"
+                <Button Name="ButtonBrowse" Content="{DynamicResource LOCBrowse}" DockPanel.Dock="Left"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding SelectExecutableCommand}"/>
-                <Button Name="ButtonScan" Content="{DynamicResource ScanFolder}" DockPanel.Dock="Left"
+                <Button Name="ButtonScan" Content="{DynamicResource LOCScanFolder}" DockPanel.Dock="Left"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding ScanFolderCommand}"/>
-                <Button Name="ButtonDetectInstalled" Content="{DynamicResource DetectInstalled}" DockPanel.Dock="Left"
+                <Button Name="ButtonDetectInstalled" Content="{DynamicResource LOCDetectInstalled}" DockPanel.Dock="Left"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding DetectInstalledCommand}"/>
-                <Button Name="ButtonCancel" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right" IsCancel="True"
+                <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding CloseCommand}"/>
-                <Button Name="ButtonOK" Content="{DynamicResource AddGames}" DockPanel.Dock="Right"
+                <Button Name="ButtonOK" Content="{DynamicResource LOCAddGames}" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding ConfirmCommand}"/>
             </DockPanel>
@@ -92,10 +92,10 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid>
                     <ProgressBar IsIndeterminate="True" Width="350" Height="40" />
-                    <TextBlock Text="{DynamicResource EmuWizardScanning}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    <TextBlock Text="{DynamicResource LOCEmuWizardScanning}" HorizontalAlignment="Center" VerticalAlignment="Center"
                                Style="{DynamicResource BaseTextBlockStyle}"/>
                 </Grid>
-                <Button Content="{DynamicResource CancelLabel}"  Margin="10,0,0,0"
+                <Button Content="{DynamicResource LOCCancelLabel}"  Margin="10,0,0,0"
                         Command="{Binding CancelProgressCommand}"/>
             </StackPanel>
         </Grid>

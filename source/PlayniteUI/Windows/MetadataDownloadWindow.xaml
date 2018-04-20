@@ -14,7 +14,7 @@
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
-        Title="{DynamicResource MetaImportWindowTitle}" WindowStartupLocation="CenterOwner"
+        Title="{DynamicResource LOCMetaImportWindowTitle}" WindowStartupLocation="CenterOwner"
         Height="600" Width="700" x:Name="WindowEmulatorImport"
         AutomationProperties.AutomationId="WindowEmulatorImport">
 
@@ -59,24 +59,24 @@
 
             <TabItem Visibility="Collapsed">
                 <DockPanel Margin="30,0,30,0">
-                    <TextBlock Text="{DynamicResource MetaGamesSourceIntro}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"
+                    <TextBlock Text="{DynamicResource LOCMetaGamesSourceIntro}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"
                                Margin="0,30,0,0"/>
-                    <TextBlock Text="{DynamicResource MetaGamesSourceDescription}" TextWrapping="Wrap" DockPanel.Dock="Top" 
+                    <TextBlock Text="{DynamicResource LOCMetaGamesSourceDescription}" TextWrapping="Wrap" DockPanel.Dock="Top" 
                                Margin="0,30,0,0"/>
                     <StackPanel Margin="20,20,0,0" DockPanel.Dock="Top" >
-                        <RadioButton Content="{DynamicResource MetaGameSourceAll}" Margin="10"                                 
+                        <RadioButton Content="{DynamicResource LOCMetaGameSourceAll}" Margin="10"                                 
                                      IsChecked="{Binding Settings.GamesSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static pmp:MetadataGamesSource.AllFromDB}}"/>
-                        <RadioButton Content="{DynamicResource MetaGameSourceFiltered}" Margin="10"                                 
+                        <RadioButton Content="{DynamicResource LOCMetaGameSourceFiltered}" Margin="10"                                 
                                      IsChecked="{Binding Settings.GamesSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static pmp:MetadataGamesSource.Filtered}}"/>
-                        <RadioButton Content="{DynamicResource MetaGameSourceSelected}" Margin="10"
+                        <RadioButton Content="{DynamicResource LOCMetaGameSourceSelected}" Margin="10"
                                      IsChecked="{Binding Settings.GamesSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static pmp:MetadataGamesSource.Selected}}"/>
                     </StackPanel>
 
-                    <CheckBox Content="{DynamicResource MetaSkipNonEmpty}" ToolTip="{DynamicResource MetaSkipNonEmptyTooltip}"
+                    <CheckBox Content="{DynamicResource LOCMetaSkipNonEmpty}" ToolTip="{DynamicResource MetaSkipNonEmptyTooltip}"
                               IsChecked="{Binding Settings.SkipExistingValues}"
                               DockPanel.Dock="Top" Margin="0,20,0,0" />
 
-                    <TextBlock Text="{DynamicResource MetadownloadSingleGameTip}" TextWrapping="Wrap"
+                    <TextBlock Text="{DynamicResource LOCMetadownloadSingleGameTip}" TextWrapping="Wrap"
                                DockPanel.Dock="Top" Margin="0,30,0,0"/>
                 </DockPanel>
             </TabItem>
@@ -84,7 +84,7 @@
             <TabItem Visibility="Collapsed">
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top" Margin="20,20,20,5" TextWrapping="Wrap"
-                               Text="{DynamicResource MetaDescriptionFields}"/>
+                               Text="{DynamicResource LOCMetaDescriptionFields}"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
                           Padding="30,0,0,0" DockPanel.Dock="Left">
                         <Grid>
@@ -140,13 +140,13 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="{DynamicResource ImportLabel}"
+                            <TextBlock Text="{DynamicResource LOCImportLabel}"
                                Grid.Column="1" Grid.Row="0"/>
-                            <TextBlock Text="{DynamicResource SourceLabel}"
+                            <TextBlock Text="{DynamicResource LOCSourceLabel}"
                                Grid.Column="2" Grid.Row="0"/>
 
                             <!--Genres-->
-                            <TextBlock Text="{DynamicResource GameGenresTitle}"
+                            <TextBlock Text="{DynamicResource LOCGameGenresTitle}"
                                Grid.Column="0" Grid.Row="1"/>
                             <CheckBox Grid.Column="1" Grid.Row="1"
                                       IsChecked="{Binding Settings.Genre.Import}"/>
@@ -155,7 +155,7 @@
                                             Content="{StaticResource ComboSourceSelection}" />
 
                             <!--Release Date-->
-                            <TextBlock Text="{DynamicResource GameReleaseDateTitle}"
+                            <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}"
                                Grid.Column="0" Grid.Row="2"/>
                             <CheckBox Grid.Column="1" Grid.Row="2"
                                       IsChecked="{Binding Settings.ReleaseDate.Import}"/>
@@ -164,7 +164,7 @@
                                             Content="{StaticResource ComboSourceSelection}" />
 
                             <!--Developers-->
-                            <TextBlock Text="{DynamicResource GameDevelopersTitle}"
+                            <TextBlock Text="{DynamicResource LOCGameDevelopersTitle}"
                                Grid.Column="0" Grid.Row="3"/>
                             <CheckBox Grid.Column="1" Grid.Row="3"
                                       IsChecked="{Binding Settings.Developer.Import}"/>
@@ -173,7 +173,7 @@
                                             Content="{StaticResource ComboSourceSelection}" />
 
                             <!--Publishers-->
-                            <TextBlock Text="{DynamicResource GamePublishersTitle}"
+                            <TextBlock Text="{DynamicResource LOCGamePublishersTitle}"
                                Grid.Column="0" Grid.Row="4"/>
                             <CheckBox Grid.Column="1" Grid.Row="4"
                                       IsChecked="{Binding Settings.Publisher.Import}"/>
@@ -182,7 +182,7 @@
                                             Content="{StaticResource ComboSourceSelection}" />
 
                             <!--Tags/Features-->
-                            <TextBlock Text="{DynamicResource GameTagsTitle}"
+                            <TextBlock Text="{DynamicResource LOCGameTagsTitle}"
                                Grid.Column="0" Grid.Row="5"/>
                             <CheckBox Grid.Column="1" Grid.Row="5"
                                       IsChecked="{Binding Settings.Tag.Import}"/>
@@ -191,7 +191,7 @@
                                             Content="{StaticResource ComboSourceSelection}" />
 
                             <!--Description-->
-                            <TextBlock Text="{DynamicResource GameDescriptionTitle}"
+                            <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}"
                                Grid.Column="0" Grid.Row="6"/>
                             <CheckBox Grid.Column="1" Grid.Row="6"
                                       IsChecked="{Binding Settings.Description.Import}"/>
@@ -200,7 +200,7 @@
                                             Content="{StaticResource ComboSourceSelection}" />
 
                             <!--Links-->
-                            <TextBlock Text="{DynamicResource GameLinksTitle}"
+                            <TextBlock Text="{DynamicResource LOCGameLinksTitle}"
                                Grid.Column="0" Grid.Row="7"/>
                             <CheckBox Grid.Column="1" Grid.Row="7"
                                       IsChecked="{Binding Settings.Links.Import}"/>
@@ -209,7 +209,7 @@
                                             Content="{StaticResource ComboSourceSelection}" />
 
                             <!--CriticScore-->
-                            <TextBlock Text="{DynamicResource CriticScore}"
+                            <TextBlock Text="{DynamicResource LOCCriticScore}"
                                Grid.Column="0" Grid.Row="8"/>
                             <CheckBox Grid.Column="1" Grid.Row="8"
                                       IsChecked="{Binding Settings.CriticScore.Import}"/>
@@ -218,7 +218,7 @@
                                             Content="{StaticResource ComboSourceSelection}" />
 
                             <!--CommunityScore-->
-                            <TextBlock Text="{DynamicResource CommunityScore}"
+                            <TextBlock Text="{DynamicResource LOCCommunityScore}"
                                Grid.Column="0" Grid.Row="9"/>
                             <CheckBox Grid.Column="1" Grid.Row="9"
                                       IsChecked="{Binding Settings.CommunityScore.Import}"/>
@@ -227,7 +227,7 @@
                                             Content="{StaticResource ComboSourceSelection}" />
 
                             <!--Cover-->
-                            <TextBlock Text="{DynamicResource GameCoverTitle}"
+                            <TextBlock Text="{DynamicResource LOCGameCoverTitle}"
                                Grid.Column="0" Grid.Row="10"/>
                             <CheckBox Grid.Column="1" Grid.Row="10"
                                       IsChecked="{Binding Settings.CoverImage.Import}"/>
@@ -236,7 +236,7 @@
                                             Content="{StaticResource ComboSourceSelection}" />
 
                             <!--Icon-->
-                            <TextBlock Text="{DynamicResource GameIconTitle}"
+                            <TextBlock Text="{DynamicResource LOCGameIconTitle}"
                                Grid.Column="0" Grid.Row="11"/>
                             <CheckBox Grid.Column="1" Grid.Row="11"
                                       IsChecked="{Binding Settings.Icon.Import}"/>
@@ -251,7 +251,7 @@
                             </ComboBox>
 
                             <!--Background Image-->
-                            <TextBlock Text="{DynamicResource GameBackgroundTitle}"
+                            <TextBlock Text="{DynamicResource LOCGameBackgroundTitle}"
                                Grid.Column="0" Grid.Row="12"/>
                             <CheckBox Grid.Column="1" Grid.Row="12"
                                       IsChecked="{Binding Settings.BackgroundImage.Import}"/>
@@ -267,7 +267,7 @@
                         </Grid>
                     </ScrollViewer>
 
-                    <TextBlock Text="{DynamicResource MetaSourceSettingsDescription}" DockPanel.Dock="Left"
+                    <TextBlock Text="{DynamicResource LOCMetaSourceSettingsDescription}" DockPanel.Dock="Left"
                                TextWrapping="Wrap" Margin="20,50,20,20"/>
                 </DockPanel>
             </TabItem>
@@ -275,19 +275,19 @@
 
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
             <DockPanel LastChildFill="False" Margin="5">
-                <Button Content="{DynamicResource CancelLabel}" Name="ButtonClose" DockPanel.Dock="Right"                        
+                <Button Content="{DynamicResource LOCCancelLabel}" Name="ButtonClose" DockPanel.Dock="Right"                        
                         Style="{StaticResource BottomButton}" Command="{Binding CancelCommand}"/>
-                <Button Content="{DynamicResource DownloadMetaButton}" Name="ButtonDownload" DockPanel.Dock="Right"                        
+                <Button Content="{DynamicResource LOCDownloadMetaButton}" Name="ButtonDownload" DockPanel.Dock="Right"                        
                         Style="{StaticResource BottomButton}" Command="{Binding DownloadCommand}"
                         Visibility="{Binding ShowDownloadButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <Button Content="{DynamicResource FinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"                        
+                <Button Content="{DynamicResource LOCFinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"                        
                         Style="{StaticResource BottomButton}" Command="{Binding DownloadCommand}"
                         Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <Button Content="{DynamicResource NextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
+                <Button Content="{DynamicResource LOCNextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
                         Command="{Binding NextCommand}"
                         Visibility="{Binding ShowNextButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource BottomButton}" />
-                <Button Content="{DynamicResource BackLabel}" Name="ButtonBack" DockPanel.Dock="Right"
+                <Button Content="{DynamicResource LOCBackLabel}" Name="ButtonBack" DockPanel.Dock="Right"
                         Command="{Binding BackCommand}"
                         Visibility="{Binding ShowBackButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource BottomButton}" />

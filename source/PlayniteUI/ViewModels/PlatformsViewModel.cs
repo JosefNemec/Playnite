@@ -55,8 +55,8 @@ namespace PlayniteUI.ViewModels
                     if (Emulators != null && !Emulators.IsEqualJson(dbEmulators))
                     {
                         var askResult = dialogs.ShowMessage(
-                            resources.FindString("ConfirmUnsavedEmulatorsTitle"),
-                            resources.FindString("SaveChangesAskTitle"),
+                            resources.FindString("LOCConfirmUnsavedEmulatorsTitle"),
+                            resources.FindString("LOCSaveChangesAskTitle"),
                             MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
                         if (askResult == MessageBoxResult.Cancel)
                         {
@@ -89,8 +89,8 @@ namespace PlayniteUI.ViewModels
                     if (Platforms != null && !Platforms.IsEqualJson(dbPlatforms))
                     {
                         var askResult = dialogs.ShowMessage(
-                            resources.FindString("ConfirmUnsavedPlatformsTitle"),
-                            resources.FindString("SaveChangesAskTitle") as string,
+                            resources.FindString("LOCConfirmUnsavedPlatformsTitle"),
+                            resources.FindString("LOCSaveChangesAskTitle") as string,
                             MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
                         if (askResult == MessageBoxResult.Cancel)
                         {
@@ -485,7 +485,7 @@ namespace PlayniteUI.ViewModels
             if (games.Count() > 0 || emus.Count() > 0)
             {
                 if (dialogs.ShowMessage(
-                    string.Format(resources.FindString("PlatformRemovalConfirmation"), platform.Name, games.Count(), emus.Count()),
+                    string.Format(resources.FindString("LOCPlatformRemovalConfirmation"), platform.Name, games.Count(), emus.Count()),
                     "",
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                 {
@@ -550,7 +550,7 @@ namespace PlayniteUI.ViewModels
             if (games.Count() > 0)
             {
                 if (dialogs.ShowMessage(
-                    string.Format(resources.FindString("EmuRemovalConfirmation"), emulator.Name, games.Count()),
+                    string.Format(resources.FindString("LOCEmuRemovalConfirmation"), emulator.Name, games.Count()),
                     "",
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                 {
@@ -624,8 +624,8 @@ namespace PlayniteUI.ViewModels
             if (Emulators != null && !Emulators.IsEqualJson(dbEmulators))
             {
                 var askResult = dialogs.ShowMessage(
-                    resources.FindString("ConfirmUnsavedEmulatorsTitle"),
-                    resources.FindString("SaveChangesAskTitle"),
+                    resources.FindString("LOCConfirmUnsavedEmulatorsTitle"),
+                    resources.FindString("LOCSaveChangesAskTitle"),
                     MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
                 if (askResult == MessageBoxResult.Yes)
                 {

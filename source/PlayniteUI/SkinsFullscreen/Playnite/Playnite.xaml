@@ -563,7 +563,7 @@
                             </Style.Triggers>
                         </Style>
                     </Grid.Style>
-                    <TextBlock Text="{DynamicResource NoGamesFound}" FontSize="50" Foreground="{DynamicResource TextBrush}"
+                    <TextBlock Text="{DynamicResource LOCNoGamesFound}" FontSize="50" Foreground="{DynamicResource TextBrush}"
                                TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock.Effect>
                             <DropShadowEffect BlurRadius="4" Color="Black" />
@@ -586,12 +586,12 @@
                         <Button Height="64" MinWidth="200" Style="{StaticResource KeyboardButton}"
                                 pui:FocusBahaviors.OnVisibilityFocus="True"
                                 Padding="35,5,35,5"
-                                Content="{DynamicResource BackToDesktopMode}" FontSize="30"
+                                Content="{DynamicResource LOCBackToDesktopMode}" FontSize="30"
                                 Margin="0,0,0,25"
                                 Command="{Binding SwitchToDesktopModeCommand}"/>
                         <Button Height="64" MinWidth="200" Style="{StaticResource KeyboardButton}"
                                 Padding="35,5,35,5"
-                                Content="{DynamicResource ExitPlaynite}" FontSize="30"
+                                Content="{DynamicResource LOCExitPlaynite}" FontSize="30"
                                 Command="{Binding ShutdownCommand}" />
                     </StackPanel>
                 </Grid>
@@ -663,11 +663,11 @@
                         </Setter>
                     </Style>
                 </Grid.Resources>
-                <TextBlock Text="{DynamicResource TimePlayed}" Foreground="{DynamicResource GlyphBrush}"
+                <TextBlock Text="{DynamicResource LOCTimePlayed}" Foreground="{DynamicResource GlyphBrush}"
                            Grid.Column="0" Grid.Row="0" Margin="0,0,10,3" />
                 <TextBlock Text="{Binding Game.Playtime, Converter={pui:LongToTimePlayedConverter}}"
                            Grid.Column="0" Grid.Row="1" />
-                <TextBlock Text="{DynamicResource LastPlayed}" Foreground="{DynamicResource GlyphBrush}" 
+                <TextBlock Text="{DynamicResource LOCLastPlayed}" Foreground="{DynamicResource GlyphBrush}" 
                            Grid.Column="1" Grid.Row="0" Margin="50,0,0,0" />
                 <TextBlock Text="{Binding Game.LastActivity, Converter={pui:DateTimeToLastPlayedConverter}}"
                            Grid.Column="1" Grid.Row="1" Margin="50,0,0,0" />
@@ -857,7 +857,7 @@
                         HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <ContentControl Content="{StaticResource ClearFiltersImage}" />
-                        <TextBlock Text="{DynamicResource ClearFilters}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
+                        <TextBlock Text="{DynamicResource LOCClearFilters}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
                                    Margin="20,0,0,0" />
                     </StackPanel>
                 </Button>
@@ -866,7 +866,7 @@
                         Command="{Binding StartGameCommand}" Style="{StaticResource CommandButton}">
                     <StackPanel Orientation="Horizontal">
                         <ContentControl Content="{StaticResource InstallImage}" />
-                        <TextBlock Text="{DynamicResource InstallGame}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
+                        <TextBlock Text="{DynamicResource LOCInstallGame}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
                                    Margin="20,0,0,0" />
                     </StackPanel>
                 </Button>
@@ -875,7 +875,7 @@
                         Command="{Binding StartGameCommand}" Style="{StaticResource CommandButton}">
                     <StackPanel Orientation="Horizontal">
                         <ContentControl Content="{StaticResource PlayImage}" />
-                        <TextBlock Text="{DynamicResource PlayGame}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
+                        <TextBlock Text="{DynamicResource LOCPlayGame}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
                                    Margin="20,0,0,0"/>
                     </StackPanel>
                 </Button>
@@ -884,7 +884,7 @@
                         Command="{Binding ToggleGameDetailsCommand}" Style="{StaticResource CommandButton}">
                     <StackPanel Orientation="Horizontal">
                         <ContentControl Content="{DynamicResource DetailsImage}" />
-                        <TextBlock Text="{DynamicResource DetailsLabel}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
+                        <TextBlock Text="{DynamicResource LOCDetailsLabel}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
                                    Margin="20,0,0,0" />
                     </StackPanel>
                 </Button>
@@ -893,7 +893,7 @@
                         Command="{Binding ToggleGameDetailsCommand}" Style="{StaticResource CommandButton}">
                     <StackPanel Orientation="Horizontal">
                         <ContentControl Content="{DynamicResource BackImage}" />
-                        <TextBlock Text="{DynamicResource BackLabel}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
+                        <TextBlock Text="{DynamicResource LOCBackLabel}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
                                    Margin="20,0,0,0" />
                     </StackPanel>
                 </Button>
@@ -901,7 +901,7 @@
                         Command="{Binding OpenSearchCommand}" Style="{StaticResource CommandButton}">
                     <StackPanel Orientation="Horizontal">
                         <ContentControl Content="{DynamicResource SearchImage}" />
-                        <TextBlock Text="{DynamicResource SearchLabel}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
+                        <TextBlock Text="{DynamicResource LOCSearchLabel}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
                                    Margin="20,0,0,0" />
                     </StackPanel>
                 </Button>

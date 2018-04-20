@@ -18,11 +18,11 @@ namespace PlayniteUI
             switch (source)
             {
                 case AfterLaunchOptions.None:
-                    return resources.FindString("DoNothing");
+                    return resources.FindString("LOCDoNothing");
                 case AfterLaunchOptions.Minimize:
-                    return resources.FindString("Minimize");
+                    return resources.FindString("LOCMinimize");
                 case AfterLaunchOptions.Close:
-                    return resources.FindString("Close");
+                    return resources.FindString("LOCClose");
                 default:
                     return string.Empty;
             }

@@ -265,7 +265,7 @@ namespace PlayniteUI.ViewModels
                 if (profile.ImageExtensions?.Any() != true)
                 {
                     dialogs.ShowMessage(
-                        resources.FindString("ScanEmulatorGamesEmptyProfileError"),
+                        resources.FindString("LOCScanEmulatorGamesEmptyProfileError"),
                         "", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
@@ -516,7 +516,7 @@ namespace PlayniteUI.ViewModels
             {
                 if (EmulatorList == null || EmulatorList.Count == 0 || EmulatorList.Where(a => a.Import).Count() == 0)
                 {
-                    if (dialogs.ShowMessage(resources.FindString("EmuWizardNoEmulatorWarning"),
+                    if (dialogs.ShowMessage(resources.FindString("LOCEmuWizardNoEmulatorWarning"),
                         "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     {
                         CloseView(false);
@@ -552,7 +552,7 @@ namespace PlayniteUI.ViewModels
             {
                 if (EmulatorList == null || EmulatorList.Count == 0 || EmulatorList.Where(a => a.Import).Count() == 0)
                 {
-                    if (dialogs.ShowMessage(resources.FindString("EmuWizardNoEmulatorForGamesWarning")
+                    if (dialogs.ShowMessage(resources.FindString("LOCEmuWizardNoEmulatorForGamesWarning")
                         , "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {                       
                         if (platforms.OpenView() == true)
