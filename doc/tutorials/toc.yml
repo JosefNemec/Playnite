@@ -12,6 +12,8 @@
       href: scriptingDatabase.md
     - name: UI Interaction
       href: scriptingUI.md
+    - name: Working With Dynamic Variables
+      href: scriptingVariables.md
     - name: Templates
       href: scriptingTemplates.md
 - name: Plugins

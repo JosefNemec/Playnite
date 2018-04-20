@@ -192,4 +192,6 @@ Check additional resources for more advanced scripting:
 
 [Writing to log files](scriptingLogging.md)
 
+[Working With Dynamic Variables](scriptingVariables.md)
+
 [Script templates](scriptingTemplates.md)
