@@ -1973,7 +1973,7 @@ namespace PlayniteUI.ViewModels
                     string.IsNullOrEmpty(EditingGame.InstallDirectory))
                 {
                     // For UWP games which don't have installed dir
-                    if (EditingGame.PlayTask.Path == "explorer.exe")
+                    if (EditingGame.PlayTask?.Path == "explorer.exe")
                     {
                         Game.State = new GameState(Game.State) { Installed = true };
                     }
