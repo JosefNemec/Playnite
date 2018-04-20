@@ -21,7 +21,6 @@ namespace PlayniteTests
             Assert.IsFalse(string.IsNullOrEmpty(firstApp.Icon));
             Assert.IsFalse(string.IsNullOrEmpty(firstApp.Name));
             Assert.IsFalse(string.IsNullOrEmpty(firstApp.Path));
-            Assert.IsFalse(string.IsNullOrEmpty(firstApp.WorkDir));
         }
 
         [Test]
