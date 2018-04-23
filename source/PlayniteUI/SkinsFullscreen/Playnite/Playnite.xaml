@@ -414,199 +414,39 @@
         </Style.Triggers>
     </Style>
 
-    <ControlTemplate x:Key="FullscreenView" TargetType="{x:Type pc:FullscreenView}">
-        <Viewbox>
-            <Grid Width="1920" Height="1080">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition>
-                        <ColumnDefinition.Style>
-                            <Style TargetType="ColumnDefinition">
-                                <Setter Property="Width" Value="1920"  />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ShowGameDetails}" Value="True">
-                                        <Setter Property="Width" Value="370"  />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ColumnDefinition.Style>
-                    </ColumnDefinition>
-                    <ColumnDefinition>
-                        <ColumnDefinition.Style>
-                            <Style TargetType="ColumnDefinition">
-                                <Setter Property="Width" Value="0"  />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ShowGameDetails}" Value="True">
-                                        <Setter Property="Width" Value="1550"  />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ColumnDefinition.Style>
-                    </ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1020" />
-                    <RowDefinition Height="60" />
-                </Grid.RowDefinitions>
-
-                <Image Stretch="UniformToFill" RenderOptions.BitmapScalingMode="Fant"                       
-                       HorizontalAlignment="Center" VerticalAlignment="Top"
-                       Grid.ColumnSpan="20" Grid.RowSpan="20"
-                       Source="{Binding ConverterParameter='background.png', Converter={pui:SkinMediaPathConverter}}">
-                </Image>
-
-                <!--BACKGROUND IMAGE-->
-                <Grid Grid.ColumnSpan="20" Grid.RowSpan="20"
-                      HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <Grid.Resources>
-                        <Storyboard x:Key="VisibleOn">
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                             From="0" To="1" Duration="0:0:0.3"/>
-                        </Storyboard>
-                        <Storyboard x:Key="VisibleOff">
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                             From="1" To="0" Duration="0:0:0.3"/>
-                        </Storyboard>
-                    </Grid.Resources>
-                    <Grid.Style>
-                        <Style TargetType="Grid">
-                            <Setter Property="Opacity" Value="0" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ShowGameDetails}" Value="True">
-                                    <DataTrigger.EnterActions>
-                                        <BeginStoryboard Storyboard="{StaticResource VisibleOn}" />
-                                    </DataTrigger.EnterActions>
-                                    <DataTrigger.ExitActions>
-                                        <BeginStoryboard Storyboard="{StaticResource VisibleOff}" />
-                                    </DataTrigger.ExitActions>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Grid.Style>
-
-                    <pc:FadeImage Source="{Binding SelectedGame.BackgroundImage, Mode=OneWay, Converter={pui:CustomImageStringToImageConverter}}" />
-                    <Border Background="#88151519" />
-                </Grid>
-
-                <!--GAME LIST-->
-                <ContentControl Grid.Column="0" Grid.Row="0" Template="{StaticResource GamesList}" />
-
-                <!--GAME DETAILS-->
-                <ContentControl Grid.Column="1" DockPanel.Dock="Left"
-                                Template="{StaticResource GameDetailsView}" />
-
-                <!--TIME-->
-                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,15,60,0"
-                           HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="LightGray"
-                           Text="{Binding CurrentTime, Source={x:Static pui:Time.Instance}, Mode=OneWay}"
-                           FontSize="32" Style="{DynamicResource BaseTextBlockStyle}">
-                    <TextBlock.Effect>
-                        <DropShadowEffect BlurRadius="3" />
-                    </TextBlock.Effect>
-                </TextBlock>
-                
-                
-                <!--BACKGROUND TASK STATUS-->
-                <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal"
-                            Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Image Source="{Binding ConverterParameter='Icons/loading.png', Converter={pui:SkinMediaPathConverter}}"
-                           IsEnabled="{Binding ProgressVisible}"
-                           Width="48" Height="48" HorizontalAlignment="Left" VerticalAlignment="Top"
-                           RenderTransformOrigin="0.5,0.5" Margin="10">
-                        <Image.Resources>
-                            <Storyboard x:Key="VisibleOn">
-                                <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)"
-                                                 To="360" Duration="0:0:1" RepeatBehavior="Forever" />
-                            </Storyboard>
-                            <Storyboard x:Key="VisibleOff">
-                                <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)"
-                                                 To="0" Duration="0:0:0"/>
-                            </Storyboard>
-                        </Image.Resources>
-                        <Image.RenderTransform>
-                            <RotateTransform x:Name="noFreeze" />
-                        </Image.RenderTransform>
-                        <Image.Style>
-                            <Style TargetType="Image">
-                                <Style.Triggers>
-                                    <MultiTrigger>
-                                        <MultiTrigger.Conditions>
-                                            <Condition Property="IsEnabled" Value="True"/>
-                                        </MultiTrigger.Conditions>
-                                        <MultiTrigger.EnterActions>
-                                            <BeginStoryboard Storyboard="{StaticResource VisibleOn}"/>
-                                        </MultiTrigger.EnterActions>
-                                        <MultiTrigger.ExitActions>
-                                            <BeginStoryboard Storyboard="{StaticResource VisibleOff}"/>
-                                        </MultiTrigger.ExitActions>
-                                    </MultiTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Image.Style>
-                    </Image>
-                    <TextBlock Text="{Binding ProgressStatus}" FontSize="32" Style="{DynamicResource BaseTextBlockStyle}"
-                               Margin="10,15,0,0">
-                        <TextBlock.Effect>
-                            <DropShadowEffect BlurRadius="3" />
-                        </TextBlock.Effect>
-                    </TextBlock>
-                </StackPanel>
-
-                <!--NOT FOUND GAMES-->
-                <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                    <Grid.Style>
-                        <Style TargetType="Grid">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding SelectedGame}" Value="{x:Null}">
-                                    <Setter Property="Visibility" Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Grid.Style>
-                    <TextBlock Text="{DynamicResource LOCNoGamesFound}" FontSize="50" Foreground="{DynamicResource TextBrush}"
-                               TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock.Effect>
-                            <DropShadowEffect BlurRadius="4" Color="Black" />
-                        </TextBlock.Effect>
-                    </TextBlock>
-                    <Border Background="#44000000" />
-                </Grid>
-
-                <!--COMMAND PANEL-->
-                <Border Background="#44000000" HorizontalAlignment="Stretch"
-                        Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4">
-                    <ContentControl Template="{StaticResource CommandPanel}" />
-                </Border>
-
-                <!--ESCPAE MENU-->
-                <Grid Background="#EE000000" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                      Visibility="{Binding ShowExitMenu, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
-                                KeyboardNavigation.DirectionalNavigation="Contained">
-                        <Button Height="64" MinWidth="200" Style="{StaticResource KeyboardButton}"
-                                pui:FocusBahaviors.OnVisibilityFocus="True"
-                                Padding="35,5,35,5"
-                                Content="{DynamicResource LOCBackToDesktopMode}" FontSize="30"
-                                Margin="0,0,0,25"
-                                Command="{Binding SwitchToDesktopModeCommand}"/>
-                        <Button Height="64" MinWidth="200" Style="{StaticResource KeyboardButton}"
-                                Padding="35,5,35,5"
-                                Content="{DynamicResource LOCExitPlaynite}" FontSize="30"
-                                Command="{Binding ShutdownCommand}" />
-                    </StackPanel>
-                </Grid>
-
-                <!--<TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
-                           HorizontalAlignment="Right"
-                           FontSize="24" Margin="0,10,40,0" Foreground="LightGray"
-                           Text="{Binding Source={x:Static sys:DateTime.Now}}">
-                    <TextBlock.Effect>
-                        <DropShadowEffect ShadowDepth="4" Color="Black"/>
-                    </TextBlock.Effect>
-                </TextBlock>-->
-            </Grid>
-        </Viewbox>
-    </ControlTemplate>
+    <Style x:Key="KeyboardButton" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource NormalBrushDark}" />
+        <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource NormalBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Padding" Value="10,2,10,2" />
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="FontSize" Value="4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+                            CornerRadius="0" Style="{DynamicResource HighlightBorder}"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
+                <Setter Property="Background" Value="{DynamicResource GlyphBrush}" />
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
+                <Setter Property="Background" Value="{DynamicResource GlyphBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
     <ControlTemplate x:Key="GameDetailsView">
         <Grid Margin="50" DataContext="{Binding SelectedGame, Mode=OneWay}">
@@ -909,42 +749,202 @@
         </Viewbox>
     </ControlTemplate>
 
+    <ControlTemplate x:Key="FullscreenView" TargetType="{x:Type pc:FullscreenView}">
+        <Viewbox>
+            <Grid Width="1920" Height="1080">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition>
+                        <ColumnDefinition.Style>
+                            <Style TargetType="ColumnDefinition">
+                                <Setter Property="Width" Value="1920"  />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ShowGameDetails}" Value="True">
+                                        <Setter Property="Width" Value="370"  />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ColumnDefinition.Style>
+                    </ColumnDefinition>
+                    <ColumnDefinition>
+                        <ColumnDefinition.Style>
+                            <Style TargetType="ColumnDefinition">
+                                <Setter Property="Width" Value="0"  />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ShowGameDetails}" Value="True">
+                                        <Setter Property="Width" Value="1550"  />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ColumnDefinition.Style>
+                    </ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1020" />
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+
+                <Image Stretch="UniformToFill" RenderOptions.BitmapScalingMode="Fant"                       
+                       HorizontalAlignment="Center" VerticalAlignment="Top"
+                       Grid.ColumnSpan="20" Grid.RowSpan="20"
+                       Source="{Binding ConverterParameter='background.png', Converter={pui:SkinMediaPathConverter}}">
+                </Image>
+
+                <!--BACKGROUND IMAGE-->
+                <Grid Grid.ColumnSpan="20" Grid.RowSpan="20"
+                      HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Grid.Resources>
+                        <Storyboard x:Key="VisibleOn">
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             From="0" To="1" Duration="0:0:0.3"/>
+                        </Storyboard>
+                        <Storyboard x:Key="VisibleOff">
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             From="1" To="0" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </Grid.Resources>
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Opacity" Value="0" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ShowGameDetails}" Value="True">
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard Storyboard="{StaticResource VisibleOn}" />
+                                    </DataTrigger.EnterActions>
+                                    <DataTrigger.ExitActions>
+                                        <BeginStoryboard Storyboard="{StaticResource VisibleOff}" />
+                                    </DataTrigger.ExitActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
+                    <pc:FadeImage Source="{Binding SelectedGame.BackgroundImage, Mode=OneWay, Converter={pui:CustomImageStringToImageConverter}}" />
+                    <Border Background="#88151519" />
+                </Grid>
+
+                <!--GAME LIST-->
+                <ContentControl Grid.Column="0" Grid.Row="0" Template="{StaticResource GamesList}" />
+
+                <!--GAME DETAILS-->
+                <ContentControl Grid.Column="1" DockPanel.Dock="Left"
+                                Template="{StaticResource GameDetailsView}" />
+
+                <!--TIME-->
+                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,15,60,0"
+                           HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="LightGray"
+                           Text="{Binding CurrentTime, Source={x:Static pui:Time.Instance}, Mode=OneWay}"
+                           FontSize="32" Style="{DynamicResource BaseTextBlockStyle}">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="3" />
+                    </TextBlock.Effect>
+                </TextBlock>
+
+
+                <!--BACKGROUND TASK STATUS-->
+                <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal"
+                            Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Image Source="{Binding ConverterParameter='Icons/loading.png', Converter={pui:SkinMediaPathConverter}}"
+                           IsEnabled="{Binding ProgressVisible}"
+                           Width="48" Height="48" HorizontalAlignment="Left" VerticalAlignment="Top"
+                           RenderTransformOrigin="0.5,0.5" Margin="10">
+                        <Image.Resources>
+                            <Storyboard x:Key="VisibleOn">
+                                <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)"
+                                                 To="360" Duration="0:0:1" RepeatBehavior="Forever" />
+                            </Storyboard>
+                            <Storyboard x:Key="VisibleOff">
+                                <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)"
+                                                 To="0" Duration="0:0:0"/>
+                            </Storyboard>
+                        </Image.Resources>
+                        <Image.RenderTransform>
+                            <RotateTransform x:Name="noFreeze" />
+                        </Image.RenderTransform>
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Style.Triggers>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsEnabled" Value="True"/>
+                                        </MultiTrigger.Conditions>
+                                        <MultiTrigger.EnterActions>
+                                            <BeginStoryboard Storyboard="{StaticResource VisibleOn}"/>
+                                        </MultiTrigger.EnterActions>
+                                        <MultiTrigger.ExitActions>
+                                            <BeginStoryboard Storyboard="{StaticResource VisibleOff}"/>
+                                        </MultiTrigger.ExitActions>
+                                    </MultiTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <TextBlock Text="{Binding ProgressStatus}" FontSize="32" Style="{DynamicResource BaseTextBlockStyle}"
+                               Margin="10,15,0,0">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="3" />
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </StackPanel>
+
+                <!--NOT FOUND GAMES-->
+                <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedGame}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <TextBlock Text="{DynamicResource LOCNoGamesFound}" FontSize="50" Foreground="{DynamicResource TextBrush}"
+                               TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="4" Color="Black" />
+                        </TextBlock.Effect>
+                    </TextBlock>
+                    <Border Background="#44000000" />
+                </Grid>
+
+                <!--COMMAND PANEL-->
+                <Border Background="#44000000" HorizontalAlignment="Stretch"
+                        Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4">
+                    <ContentControl Template="{StaticResource CommandPanel}" />
+                </Border>
+
+                <!--ESCPAE MENU-->
+                <Grid Background="#EE000000" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                      Visibility="{Binding ShowExitMenu, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                                KeyboardNavigation.DirectionalNavigation="Contained">
+                        <Button Height="64" MinWidth="200" Style="{StaticResource KeyboardButton}"
+                                pui:FocusBahaviors.OnVisibilityFocus="True"
+                                Padding="35,5,35,5"
+                                Content="{DynamicResource LOCBackToDesktopMode}" FontSize="30"
+                                Margin="0,0,0,25"
+                                Command="{Binding SwitchToDesktopModeCommand}"/>
+                        <Button Height="64" MinWidth="200" Style="{StaticResource KeyboardButton}"
+                                Padding="35,5,35,5"
+                                Content="{DynamicResource LOCExitPlaynite}" FontSize="30"
+                                Command="{Binding ShutdownCommand}" />
+                    </StackPanel>
+                </Grid>
+
+                <!--<TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                           HorizontalAlignment="Right"
+                           FontSize="24" Margin="0,10,40,0" Foreground="LightGray"
+                           Text="{Binding Source={x:Static sys:DateTime.Now}}">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="4" Color="Black"/>
+                    </TextBlock.Effect>
+                </TextBlock>-->
+            </Grid>
+        </Viewbox>
+    </ControlTemplate>
+
     <Style TargetType="{x:Type pc:FullscreenView}">
         <Setter Property="Template" Value="{StaticResource FullscreenView}"/>
         <Setter Property="Focusable" Value="False" />
-    </Style>
-
-    <Style x:Key="KeyboardButton" TargetType="Button">
-        <Setter Property="Background" Value="{DynamicResource NormalBrushDark}" />
-        <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource NormalBrush}" />
-        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Padding" Value="10,2,10,2" />
-        <Setter Property="Margin" Value="1" />
-        <Setter Property="FontSize" Value="4" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
-                            CornerRadius="0" Style="{DynamicResource HighlightBorder}"
-                            BorderBrush="{TemplateBinding BorderBrush}">
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
-                <Setter Property="Background" Value="{DynamicResource GlyphBrush}" />
-            </Trigger>
-            <Trigger Property="IsFocused" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
-                <Setter Property="Background" Value="{DynamicResource GlyphBrush}" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 </ResourceDictionary>
