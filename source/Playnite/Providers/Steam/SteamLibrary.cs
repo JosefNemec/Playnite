@@ -64,7 +64,7 @@ namespace Playnite.Providers.Steam
             var game = new Game()
             {
                 Provider = Provider.Steam,
-                Source = "Steam",
+                Source = Enums.GetEnumDescription(Provider.Steam),
                 ProviderId = kv["appID"].Value,
                 Name = name,
                 InstallDirectory = Path.Combine((new FileInfo(path)).Directory.FullName, "common", kv["installDir"].Value),
@@ -196,7 +196,7 @@ namespace Playnite.Providers.Steam
                 games.Add(new Game()
                 {
                     Provider = Provider.Steam,
-                    Source = "Steam",
+                    Source = Enums.GetEnumDescription(Provider.Steam),
                     ProviderId = game.appid.ToString(),
                     Name = game.name,
                     Playtime = game.playtime_forever * 60,
@@ -232,7 +232,7 @@ namespace Playnite.Providers.Steam
                 games.Add(new Game()
                 {
                     Provider = Provider.Steam,
-                    Source = "Steam",
+                    Source = Enums.GetEnumDescription(Provider.Steam),
                     ProviderId = game.appid.ToString(),
                     Name = game.name,
                     Playtime = game.playtime_forever * 60,
@@ -578,7 +578,7 @@ namespace Playnite.Providers.Steam
                 result.Add(new Game()
                 {
                     Provider = Provider.Steam,
-                    Source = "Steam",
+                    Source = Enums.GetEnumDescription(Provider.Steam),
                     ProviderId = app.Name,
                     Categories = new ComparableList<string>(appData)
                 });

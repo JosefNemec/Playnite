@@ -40,6 +40,19 @@ namespace Playnite.Database
         {
             get; set;
         }
+
+        /// <summary>
+        /// Indicates if games Source field has been set to default values (for example for Steam game to "Steam").
+        /// For update from 3.x to 4.x versions.
+        /// </summary>
+        public bool GameSourcesUpdated
+        {
+            get; set;
+        }
+
+        public DatabaseSettings()
+        {
+        }
     }
 
     public class EventBufferHandler : IDisposable
@@ -678,8 +691,8 @@ namespace Playnite.Database
 
             var settings = GetDatabaseSettings();
 
-            // Fix for custom games
-            // Needed when updating from 3.x to 4.x because installation states are handled differently
+            // Fix for custom games.
+            // Needed when updating from 3.x to 4.x because installation states are handled differently.
             if (settings?.InstStatesFixed != true)
             {
                 foreach (var game in GamesCollection.Find(a => a.Provider == Provider.Custom).ToList())
@@ -706,9 +719,32 @@ namespace Playnite.Database
                 }
             }
 
+            // Update game source.
+            // Needed when updating from 3.x to 4.x to retrospectively apply to non-custom games.
+            if (settings?.GameSourcesUpdated != true)
+            {
+                foreach (var game in GamesCollection.Find(a => a.Provider != Provider.Custom).ToList())
+                {
+                    if (string.IsNullOrEmpty(game.Source))
+                    {
+                        game.Source = Enums.GetEnumDescription(game.Provider);
+                        UpdateGameInDatabase(game);
+                    }
+                }
+
+                if (settings != null)
+                {
+                    settings.GameSourcesUpdated = true;
+                }
+            }
+
             if (settings == null)
             {
-                settings = new DatabaseSettings() { InstStatesFixed = true };                
+                settings = new DatabaseSettings()
+                {
+                    InstStatesFixed = true,
+                    GameSourcesUpdated = true
+                };
             }
             
             UpdateDatabaseSettings(settings);

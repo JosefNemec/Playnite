@@ -194,7 +194,7 @@ namespace Playnite.Providers.Origin
                         var newGame = new Game()
                         {
                             Provider = Provider.Origin,
-                            Source = "Origin",
+                            Source = Enums.GetEnumDescription(Provider.Origin),
                             ProviderId = gameId
                         };
 
@@ -283,7 +283,7 @@ namespace Playnite.Providers.Origin
                     games.Add(new Game()
                     {
                         Provider = Provider.Origin,
-                        Source = "Origin",
+                        Source = Enums.GetEnumDescription(Provider.Origin),
                         ProviderId = game.offerId,
                         Name = game.offerId
                     });

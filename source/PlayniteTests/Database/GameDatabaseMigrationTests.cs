@@ -308,5 +308,49 @@ namespace PlayniteTests.Database
                 Assert.IsTrue(db.GetDatabaseSettings().InstStatesFixed);
             }
         }
+
+        [Test]
+        public void SourcesFixTest()
+        {
+            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "sourcesfix.db");
+            FileSystem.DeleteFile(path);
+
+            using (var database = new LiteDatabase(path))
+            {
+                database.Engine.UserVersion = GameDatabase.DBVersion;
+                var games = new List<Game>()
+                {
+                    new Game()
+                    {
+                        Provider = Provider.BattleNet,
+                        Name = "Bnet game"
+                    },
+                    new Game()
+                    {
+                        Provider = Provider.Custom,
+                        Name = "Custom game"
+                    },
+                    new Game()
+                    {
+                        Provider = Provider.Steam,
+                        Name = "Custom game",
+                        Source = "Some source"
+                    }
+                };
+
+                var collection = database.GetCollection<Game>("games");
+                collection.Insert(games);
+            }
+
+            var db = new GameDatabase();
+            using (db.OpenDatabase(path))
+            {
+                var games = db.GetGames();
+                Assert.AreEqual(Enums.GetEnumDescription(Provider.BattleNet), games[0].Source);
+                Assert.IsTrue(string.IsNullOrEmpty(games[1].Source));
+                Assert.AreEqual("Some source", games[2].Source);
+                Assert.IsTrue(db.GetDatabaseSettings().GameSourcesUpdated);
+            }
+        }
     }
 }

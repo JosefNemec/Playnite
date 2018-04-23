@@ -147,6 +147,7 @@
     <Compile Include="Database\GameDatabaseTests.cs" />
     <Compile Include="Emulators\EmulatorFinderTests.cs" />
     <Compile Include="Emulators\EmulatorDefinitionTests.cs" />
+    <Compile Include="Extensions\EnumsTests.cs" />
     <Compile Include="GamesStatsTests.cs" />
     <Compile Include="MetaProviders\IGDBMetadataDownloaderTests.cs" />
     <Compile Include="MetaProviders\MetadataDownloaderTests.cs" />

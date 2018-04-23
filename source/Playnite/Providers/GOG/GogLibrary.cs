@@ -78,7 +78,7 @@ namespace Playnite.Providers.GOG
                     InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                     ProviderId = gameId,
                     Provider = Provider.GOG,
-                    Source = "GOG",
+                    Source = Enums.GetEnumDescription(Provider.GOG),
                     Name = program.DisplayName
                 };
 
@@ -126,7 +126,7 @@ namespace Playnite.Providers.GOG
                     games.Add(new Game()
                     {
                         Provider = Provider.GOG,
-                        Source = "GOG",
+                        Source = Enums.GetEnumDescription(Provider.GOG),
                         ProviderId = game.id.ToString(),
                         Name = game.title,
                         ReleaseDate = game.releaseDate.date,
