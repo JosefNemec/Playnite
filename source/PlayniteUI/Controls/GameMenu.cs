@@ -366,7 +366,7 @@ namespace PlayniteUI.Controls
                 // Toggle Favorites
                 var favoriteItem = new MenuItem()
                 {
-                    Header = Game.Favorite ? resources.FindString("LOCRemoveFavoriteGame") : resources.FindString("FavoriteGame")
+                    Header = Game.Favorite ? resources.FindString("LOCRemoveFavoriteGame") : resources.FindString("LOCFavoriteGame")
                 };
 
                 favoriteItem.Click += (s, e) =>
@@ -379,7 +379,7 @@ namespace PlayniteUI.Controls
                 // Toggle Hide
                 var hideItem = new MenuItem()
                 {
-                    Header = Game.Hidden ? resources.FindString("LOCUnHideGame") : resources.FindString("HideGame")
+                    Header = Game.Hidden ? resources.FindString("LOCUnHideGame") : resources.FindString("LOCHideGame")
                 };
 
                 hideItem.Click += (s, e) =>
