@@ -14,7 +14,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="{DynamicResource LOCSettingsWindowTitle}" Width="650" Height="500"                     
+        Title="{DynamicResource LOCSettingsWindowTitle}" Width="650" Height="550"                     
         AutomationProperties.AutomationId="WindowSettings">
 
     <i:Interaction.Triggers>
@@ -289,6 +289,7 @@
                                   Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"/>
                     </StackPanel>
                 </TabItem>
+                <!--STEAM-->
                 <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.SteamSettings.IntegrationEnabled}"
@@ -297,7 +298,7 @@
                         <RadioButton Name="RadioInstalledSteam" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                         IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
                         <RadioButton Name="RadioLibrarySteam"
                                         IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
@@ -364,7 +365,12 @@
                                          DockPanel.Dock="Left" Margin="10,0,10,0"/>
                             </DockPanel>
                         </DockPanel>
-                        
+
+                        <CheckBox Content="{DynamicResource LOCBackgroundImageScreenOption}"
+                                  DockPanel.Dock="Top" Margin="5,15,0,5"
+                                  ToolTip="{DynamicResource LOCBackgroundImageScreenOptionTooltip}" ToolTipService.InitialShowDelay="0"
+                                  IsChecked="{Binding Settings.SteamSettings.PreferScreenshotForBackground}"/>
+
                         <TextBlock Text="{DynamicResource LOCSettingsSteamImportCategories}" DockPanel.Dock="Top" Margin="5,20,5,5" />
                         <StackPanel DockPanel.Dock="Top" Margin="20,10,5,5" Orientation="Horizontal">
                             <Button Content="{DynamicResource LOCImportLabel}" Name="ButtonImportSteamCategories"
@@ -376,6 +382,7 @@
                         </StackPanel>
                     </DockPanel>
                 </TabItem>
+                <!--GOG-->
                 <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.GOGSettings.RunViaGalaxy}"
@@ -388,12 +395,12 @@
                         <RadioButton Name="RadioInstalledGOG" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                         IsChecked="{Binding Settings.GOGSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
                         <RadioButton Name="RadioLibraryGOG" Content="{DynamicResource LOCSettingsImportLibraryLabel}"
                                         IsChecked="{Binding Settings.GOGSettings.LibraryDownloadEnabled}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
+                                        DockPanel.Dock="Top" Margin="20,10,5,5"/>
+                        <DockPanel DockPanel.Dock="Top" Margin="20,15,5,5" LastChildFill="False"
                                    IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}">
                             <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonGogAuth"
                                     Command="{Binding AuthGOGCommand}"/>
@@ -409,6 +416,7 @@
                         </DockPanel>
                     </DockPanel>
                 </TabItem>
+                <!--ORIGIN-->
                 <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.OriginSettings.IntegrationEnabled}"
@@ -417,12 +425,12 @@
                         <RadioButton Name="RadioInstalledOrigin" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                         IsChecked="{Binding Settings.OriginSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
                         <RadioButton Name="RadioLibraryOrigin" Content="{DynamicResource LOCSettingsImportLibraryLabel}"
                                         IsChecked="{Binding Settings.OriginSettings.LibraryDownloadEnabled}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
+                                        DockPanel.Dock="Top" Margin="20,10,5,5"/>
+                        <DockPanel DockPanel.Dock="Top" Margin="20,15,5,5" LastChildFill="False"
                                    IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}">
                             <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonOriginAuth"
                                     Command="{Binding AuthOriginCommand}"/>
@@ -438,6 +446,7 @@
                         </DockPanel>
                     </DockPanel>
                 </TabItem>
+                <!--BATTLENET-->
                 <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.BattleNetSettings.IntegrationEnabled}"
@@ -446,12 +455,12 @@
                         <RadioButton Name="RadioInstalledBattleNet" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                         IsChecked="{Binding Settings.BattleNetSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckBattleNetEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
                         <RadioButton Name="RadioLibraryBattleNet" Content="{DynamicResource LOCSettingsImportLibraryLabel}"
                                         IsChecked="{Binding Settings.BattleNetSettings.LibraryDownloadEnabled}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckBattleNetEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
+                                        DockPanel.Dock="Top" Margin="20,10,5,5"/>
+                        <DockPanel DockPanel.Dock="Top" Margin="20,15,5,5" LastChildFill="False"
                                    IsEnabled="{Binding IsChecked, ElementName=CheckBattleNetEnabled}">
                             <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonBattleNetAuth"
                                     Command="{Binding AuthBattleNetCommand}"/>
@@ -467,6 +476,7 @@
                         </DockPanel>
                     </DockPanel>
                 </TabItem>
+                <!--UPLAY-->
                 <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.UplaySettings.IntegrationEnabled}"
@@ -475,13 +485,13 @@
                         <RadioButton Name="RadioInstalledUplay" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                         IsChecked="{Binding Settings.UplaySettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckUplayEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
                     </DockPanel>
                 </TabItem>
                 <TabItem Visibility="Collapsed">
                     <StackPanel Margin="20">
                         <Button Name="ButtonClearWebCace" Content="{DynamicResource LOCSettingsClearWebCache}" HorizontalAlignment="Left"
-                                ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}"
+                                ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"
                                 Command="{Binding ClearWebCacheCommand}"/>
                     </StackPanel>
                 </TabItem>

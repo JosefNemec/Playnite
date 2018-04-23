@@ -2358,7 +2358,7 @@ namespace PlayniteUI.ViewModels
                     switch (tempGame.Provider)
                     {
                         case Provider.Steam:
-                            metadata = (new SteamLibrary()).UpdateGameWithMetadata(tempGame);
+                            metadata = (new SteamLibrary()).UpdateGameWithMetadata(tempGame, appSettings.SteamSettings);
                             break;
                         case Provider.GOG:
                             metadata = (new GogLibrary()).UpdateGameWithMetadata(tempGame);

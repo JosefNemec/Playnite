@@ -48,7 +48,7 @@ namespace PlayniteTests.Providers.Steam
             var steamLib = new SteamLibrary();
 
             // Existing store
-            var existing = steamLib.DownloadGameMetadata(107410);
+            var existing = steamLib.DownloadGameMetadata(107410, false);
             Assert.IsNotNull(existing.ProductDetails);
             Assert.IsNotNull(existing.StoreDetails);
             Assert.IsNotNull(existing.Icon.Data);
@@ -56,7 +56,7 @@ namespace PlayniteTests.Providers.Steam
             Assert.IsNotNull(existing.BackgroundImage);
 
             // NonExisting store
-            var nonExisting = steamLib.DownloadGameMetadata(201280);
+            var nonExisting = steamLib.DownloadGameMetadata(201280, true);
             Assert.IsNotNull(nonExisting.ProductDetails);
             Assert.IsNull(nonExisting.StoreDetails);
             Assert.IsNotNull(nonExisting.Icon.Data);
@@ -98,7 +98,7 @@ namespace PlayniteTests.Providers.Steam
                 ProviderId = "704580"
             };
 
-            Assert.DoesNotThrow(() => steamLib.UpdateGameWithMetadata(game));
+            Assert.DoesNotThrow(() => steamLib.UpdateGameWithMetadata(game, new SteamSettings()));
 
             game = new Game()
             {
@@ -106,7 +106,7 @@ namespace PlayniteTests.Providers.Steam
                 ProviderId = "347350"
             };
 
-            Assert.DoesNotThrow(() => steamLib.UpdateGameWithMetadata(game));            
+            Assert.DoesNotThrow(() => steamLib.UpdateGameWithMetadata(game, new SteamSettings()));            
         }
 
 

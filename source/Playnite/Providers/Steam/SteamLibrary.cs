@@ -377,7 +377,7 @@ namespace Playnite.Providers.Steam
             return null;
         }
 
-        public SteamGameMetadata DownloadGameMetadata(int id)
+        public SteamGameMetadata DownloadGameMetadata(int id, bool screenAsBackground)
         {
             var metadata = new SteamGameMetadata();
             var productInfo = GetAppInfo(id);
@@ -455,17 +455,24 @@ namespace Playnite.Providers.Steam
             }
 
             // Background Image
-            if (metadata.StoreDetails?.screenshots?.Any() == true)
+            if (screenAsBackground)
             {
-                metadata.BackgroundImage = Regex.Replace(metadata.StoreDetails.screenshots.First().path_full, "\\?.*$", "");
+                if (metadata.StoreDetails?.screenshots?.Any() == true)
+                {
+                    metadata.BackgroundImage = Regex.Replace(metadata.StoreDetails.screenshots.First().path_full, "\\?.*$", "");
+                }
+            }
+            else
+            {
+                metadata.BackgroundImage = string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", id);
             }
 
             return metadata;
         }
 
-        public SteamGameMetadata UpdateGameWithMetadata(Game game)
+        public SteamGameMetadata UpdateGameWithMetadata(Game game, SteamSettings settings)
         {
-            var metadata = DownloadGameMetadata(int.Parse(game.ProviderId));
+            var metadata = DownloadGameMetadata(int.Parse(game.ProviderId), settings.PreferScreenshotForBackground);
             game.Name = metadata.ProductDetails["common"]["name"].Value ?? game.Name;
             game.Links = new ObservableCollection<Link>()
             {
