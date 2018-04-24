@@ -629,6 +629,11 @@ namespace Playnite
             }
         }
 
+        public string InstallInstanceId
+        {
+            get; set;
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -659,6 +664,7 @@ namespace Playnite
 
         public Settings()
         {
+            InstallInstanceId = Guid.NewGuid().ToString();
             GridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
         }
 
@@ -680,7 +686,7 @@ namespace Playnite
 
         public void CancelEdit()
         {
-            editingCopy.CopyProperties(this, false, new List<string>() { "FilterSettings", "FullScreenFilterSettings" });
+            editingCopy.CopyProperties(this, false, new List<string>() { "FilterSettings", "FullScreenFilterSettings", "InstallInstanceId" });
             isEditing = false;
             EditedFields = new List<string>();
         }

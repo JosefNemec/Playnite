@@ -365,7 +365,7 @@ namespace PlayniteUI
                 try
                 {
                     var client = new ServicesClient();
-                    client.PostUserUsage();
+                    client.PostUserUsage(AppSettings.InstallInstanceId);
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
