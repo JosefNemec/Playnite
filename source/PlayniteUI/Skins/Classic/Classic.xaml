@@ -854,7 +854,7 @@
             </Grid.ColumnDefinitions>
             <Border x:Name="HoverBorder" Grid.Column="0" Grid.ColumnSpan="3" 
                     Background="{DynamicResource HoverBrush}" Visibility="Collapsed"  />
-            <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,0,0"
+            <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,-5,0"
                               VerticalAlignment="Center" ContentSource="Icon" />
             <Grid x:Name="GlyphPanel" Grid.Column="0" Visibility="Collapsed"
                   Margin="5,0,-5,0" VerticalAlignment="Center">
@@ -899,7 +899,7 @@
                     <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
                     <ColumnDefinition Width="*" SharedSizeGroup="MenuItemIGTColumnGroup" />
                 </Grid.ColumnDefinitions>
-                <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,0,0" VerticalAlignment="Center" ContentSource="Icon" />
+                <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,-5,0" VerticalAlignment="Center" ContentSource="Icon" />
                 <Grid x:Name="GlyphPanel" Grid.Column="0" Visibility="Collapsed" Margin="5,0,-5,0" VerticalAlignment="Center">
                     <TextBlock FontFamily="Marlett" Text="a" VerticalAlignment="Center" Style="{DynamicResource BaseTextBlockStyle}" />
                 </Grid>
@@ -2461,10 +2461,18 @@
                                           Command="{Binding AddInstalledGamesCommand}"/>
                                 <MenuItem Header="{DynamicResource LOCMenuAddGameEmulated}"
                                           Command="{Binding AddEmulatedGamesCommand}"/>
+                                <MenuItem.Icon>
+                                    <Image Source="/Images/MenuIcons/add.png" />
+                                </MenuItem.Icon>
                             </MenuItem>
                             <Separator />
                             <MenuItem Header="{DynamicResource LOCMenuReloadLibrary}" Style="{DynamicResource ProgressMenu}"
-                                      Command="{Binding UpdateGamesCommand}"/>
+                                      Command="{Binding UpdateGamesCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="/Images/MenuIcons/refresh.png"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
                             <MenuItem Header="{DynamicResource LOCMenuTools}">                                
                                 <MenuItem Header="{DynamicResource LOCMenuPlatformEmulatorSettingsTitle}"
                                       Command="{Binding OpenPlatformsCommand}"/>
@@ -2474,7 +2482,11 @@
                                           Command="{Binding ReloadScriptsCommand}"/>
                                 <Separator />
                                 <MenuItem Header="{DynamicResource LOCMenuPlayniteSettingsTitle}"
-                                      Command="{Binding OpenSettingsCommand}"/>
+                                          Command="{Binding OpenSettingsCommand}">
+                                    <MenuItem.Icon>
+                                        <Image Source="/Images/MenuIcons/settings.png" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
                             </MenuItem>
                             <MenuItem Header="{DynamicResource LOCExtensions}"
                                       IsEnabled="{Binding HasExportedFunctions}"
@@ -2500,26 +2512,65 @@
                             </MenuItem>
                             <Separator />
                             <MenuItem Header="{DynamicResource LOCMenuOpenFullscreen}"
-                                      Command="{Binding OpenFullScreenCommand}" />
+                                      Command="{Binding OpenFullScreenCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="/Images/MenuIcons/controller.png"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                </MenuItem.Icon>
+                            </MenuItem>
                             <MenuItem Header="{DynamicResource LOCMenuAbout}">
-                                <MenuItem Header="{DynamicResource LOCMenuAbout}" Command="{Binding OpenAboutCommand}" />
+                                <MenuItem Header="{DynamicResource LOCMenuAbout}" Command="{Binding OpenAboutCommand}">
+                                    <MenuItem.Icon>
+                                        <Image Source="/Images/applogo.png" Height="16"
+                                           RenderOptions.BitmapScalingMode="Fant" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
                                 <Separator />
                                 <MenuItem Header="Discord"
                                           Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
-                                          CommandParameter="https://discord.gg/hSFvmN6"/>
+                                          CommandParameter="https://discord.gg/hSFvmN6">
+                                    <MenuItem.Icon>
+                                        <Image Source="/Images/discord.png" Height="16"
+                                           RenderOptions.BitmapScalingMode="Fant" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
                                 <MenuItem Header="Twitter" 
                                           Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
-                                          CommandParameter="https://twitter.com/AppPlaynite"/>
+                                          CommandParameter="https://twitter.com/AppPlaynite">
+                                    <MenuItem.Icon>
+                                        <Image Source="/Images/twitter.png" Height="16"
+                                               RenderOptions.BitmapScalingMode="Fant" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
                                 <MenuItem Header="Reddit" 
                                           Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
-                                          CommandParameter="https://www.reddit.com/r/playnite/"/>
+                                          CommandParameter="https://www.reddit.com/r/playnite/">
+                                    <MenuItem.Icon>
+                                        <Image Source="/Images/reddit.png" Height="16"
+                                           RenderOptions.BitmapScalingMode="Fant" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
                                 <MenuItem Header="Patreon" 
                                           Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
-                                          CommandParameter="https://www.patreon.com/playnite"/>
+                                          CommandParameter="https://www.patreon.com/playnite">
+                                    <MenuItem.Icon>
+                                        <Image Source="/Images/patreon.png" Height="16"
+                                           RenderOptions.BitmapScalingMode="Fant" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem.Icon>
+                                    <Image Source="/Images/MenuIcons/info.png"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Header="{DynamicResource LOCMenuIssues}" Command="{Binding ReportIssueCommand}" />
                             <Separator />
-                            <MenuItem Header="{DynamicResource LOCExitAppLabel}" Command="{Binding ShutdownCommand}" />
+                            <MenuItem Header="{DynamicResource LOCExitAppLabel}" Command="{Binding ShutdownCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="/Images/MenuIcons/exit.png"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                </MenuItem.Icon>
+                            </MenuItem>
                         </ContextMenu>
                     </DockPanel.ContextMenu>
                 </DockPanel>
