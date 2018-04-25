@@ -23,5 +23,10 @@ namespace Playnite.Controls
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Browser.Focus();
+        }
     }
 }
