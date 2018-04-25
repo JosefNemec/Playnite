@@ -354,6 +354,7 @@
     <Resource Include="Images\MenuIcons\install.png" />
     <Resource Include="Images\MenuIcons\controller.png" />
     <Resource Include="Images\MenuIcons\info.png" />
+    <Resource Include="Images\MenuIcons\feedback.png" />
     <Content Include="Localization\english.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

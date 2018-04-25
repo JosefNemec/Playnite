@@ -2893,26 +2893,65 @@
                     </Grid.ColumnDefinitions>
 
                     <Border Grid.Column="0" Background="{DynamicResource MainMenuBackgroundBrush}"
-                            Padding="10,70,0,20">
+                            Padding="10,70,20,20">
                         <DockPanel>
-                            <RadioButton Content="{DynamicResource LOCMenuAddGame}" Name="ButtonAddGame"
-                                    DockPanel.Dock="Top" />
-                            <RadioButton Content="{DynamicResource LOCMenuReloadLibrary}" Command="{Binding UpdateGamesCommand}"
-                                    DockPanel.Dock="Top" />
-                            <RadioButton Content="{DynamicResource LOCMenuTools}" Name="ButtonTools"
-                                    DockPanel.Dock="Top" />
-                            <RadioButton Content="{DynamicResource LOCMenuOpenClient}" Name="ButtonClients"
-                                    DockPanel.Dock="Top" />
-                            <RadioButton Content="{DynamicResource LOCExtensions}" Name="ButtonExtensions"
+                            <RadioButton Name="ButtonAddGame" DockPanel.Dock="Top">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCMenuAddGame}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Command="{Binding UpdateGamesCommand}" DockPanel.Dock="Top">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCMenuReloadLibrary}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Name="ButtonTools" DockPanel.Dock="Top">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCMenuTools}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Name="ButtonClients" DockPanel.Dock="Top">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCMenuOpenClient}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Name="ButtonExtensions"
                                          IsEnabled="{Binding Api.HasExportedFunctions, Source={x:Static pui:App.Current}}"
-                                         DockPanel.Dock="Top" />
-                            <RadioButton Content="{DynamicResource LOCMenuPlayniteSettingsTitle}" Command="{Binding OpenSettingsCommand}"
-                                    DockPanel.Dock="Top"/>
-                            <RadioButton Content="{DynamicResource LOCMenuOpenFullscreen}" Command="{Binding OpenFullScreenCommand}"
-                                    DockPanel.Dock="Top"/>
-                            <RadioButton Content="{DynamicResource LOCExitAppLabel}" Command="{Binding ShutdownCommand}"
-                                    DockPanel.Dock="Top" />
-                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="-10,0,0,0">
+                                         DockPanel.Dock="Top">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCExtensions}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Command="{Binding OpenSettingsCommand}"
+                                         DockPanel.Dock="Top">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Images/MenuIcons/settings.png" Height="16" Margin="0,0,10,0"
+                                               RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                        <TextBlock Text="{DynamicResource LOCMenuPlayniteSettingsTitle}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Command="{Binding OpenFullScreenCommand}" DockPanel.Dock="Top">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Images/applogo.png" Height="16" Margin="0,0,10,0"
+                                               RenderOptions.BitmapScalingMode="Fant"/>
+                                        <TextBlock Text="{DynamicResource LOCMenuOpenFullscreen}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="0,30,0,0">
                                 <Button Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
                                         CommandParameter="https://discord.gg/hSFvmN6" Cursor="Hand">
                                     <Image Height="24" Source="/Images/discord.png" RenderOptions.BitmapScalingMode="Fant" />
@@ -2930,10 +2969,31 @@
                                     <Image Height="24" Source="/Images/patreon.png" RenderOptions.BitmapScalingMode="Fant" />
                                 </Button>
                             </StackPanel>
-                            <RadioButton Content="{DynamicResource LOCMenuIssues}" Command="{Binding ReportIssueCommand}"
-                                    DockPanel.Dock="Bottom" />
-                            <RadioButton Content="{DynamicResource LOCMenuAbout}" Command="{Binding OpenAboutCommand}"
-                                    DockPanel.Dock="Bottom" />
+                            <RadioButton Command="{Binding ShutdownCommand}" DockPanel.Dock="Bottom">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Images/MenuIcons/exit.png" Height="16" Margin="0,0,10,0"
+                                               RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                                        <TextBlock Text="{DynamicResource LOCExitAppLabel}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Command="{Binding ReportIssueCommand}" DockPanel.Dock="Bottom">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Images/MenuIcons/feedback.png" Height="16" Margin="0,0,10,0"
+                                               RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                                        <TextBlock Text="{DynamicResource LOCMenuIssues}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Command="{Binding OpenAboutCommand}" DockPanel.Dock="Bottom">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCMenuAbout}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
                             <Grid DockPanel.Dock="Top" />
                         </DockPanel>
                     </Border>

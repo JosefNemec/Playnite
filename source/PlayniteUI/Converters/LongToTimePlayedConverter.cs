@@ -16,7 +16,7 @@ namespace PlayniteUI
             var seconds = (long)value;
             if (seconds == 0)
             {
-                return string.Empty;
+                return ResourceProvider.Instance.FindString("LOCPlayedNone");
             }
 
             var time = TimeSpan.FromSeconds(seconds);

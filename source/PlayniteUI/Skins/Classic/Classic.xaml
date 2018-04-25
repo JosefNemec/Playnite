@@ -2515,8 +2515,8 @@
                             <MenuItem Header="{DynamicResource LOCMenuOpenFullscreen}"
                                       Command="{Binding OpenFullScreenCommand}">
                                 <MenuItem.Icon>
-                                    <Image Source="/Images/MenuIcons/controller.png"
-                                           RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                    <Image Source="/Images/applogo.png" Height="16"
+                                           RenderOptions.BitmapScalingMode="Fant" />
                                 </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Header="{DynamicResource LOCMenuAbout}">
@@ -2564,7 +2564,12 @@
                                            RenderOptions.BitmapScalingMode="NearestNeighbor" />
                                 </MenuItem.Icon>
                             </MenuItem>
-                            <MenuItem Header="{DynamicResource LOCMenuIssues}" Command="{Binding ReportIssueCommand}" />
+                            <MenuItem Header="{DynamicResource LOCMenuIssues}" Command="{Binding ReportIssueCommand}">
+                                <MenuItem.Icon>
+                                    <Image Source="/Images/MenuIcons/feedback.png"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                </MenuItem.Icon>
+                            </MenuItem>
                             <Separator />
                             <MenuItem Header="{DynamicResource LOCExitAppLabel}" Command="{Binding ShutdownCommand}">
                                 <MenuItem.Icon>
