@@ -5,9 +5,90 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Playnite.Providers.GOG
 {
+    public class AccountBasicRespose
+    {
+        public string accessToken;
+        public int accessTokenExpires;
+        public string avatar;
+        public int cacheExpires;
+        public string clientId;
+        public bool isLoggedIn;
+        public string userId;
+        public string username;
+    }
+
+    public class LibraryGameResponse
+    {
+        // For some reason game stats are returned as empty array if no stats exist for a game.
+        // But single object representation is returned instead if stats do exits, so we need to handle this special case.
+        class StatsCollectionConverter : JsonConverter
+        {
+            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
+                JsonSerializer serializer)
+            {
+                var token = JToken.ReadFrom(reader);
+                if (token.Type == JTokenType.Object)
+                {
+                    var result = token.ToObject<Dictionary<string, Stats>>();
+                    serializer.Populate(token.CreateReader(), result);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }               
+            }
+
+            public override bool CanConvert(Type objectType)
+            {
+                return true;
+            }
+        }
+
+
+        public class Game
+        {
+            public string id;
+            public bool achievementSupport;
+            public string image;
+            public string title;
+            public string url;
+        }
+
+        public class Stats
+        {
+            public DateTime? lastSession;
+            public int playtime;
+        }
+
+        public Game game;
+        [JsonConverter(typeof(StatsCollectionConverter))]
+        public Dictionary<string, Stats> stats;
+    }
+
+    public class PagedResponse<T>
+    {
+        public class Embedded
+        {
+            public List<T> items;
+        }
+
+        public int page;
+        public int pages;
+        public int total;
+        public int limit;
+        public Embedded _embedded;
+    }
+
     public class GetOwnedGamesResult
     {
         // Release date can sometimes contains invalid date if game is not released yet.        
@@ -52,7 +133,6 @@ namespace Playnite.Providers.GOG
                 }
             }
         }
-
 
         public class Tag
         {

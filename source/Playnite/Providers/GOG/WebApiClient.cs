@@ -172,6 +172,56 @@ namespace Playnite.Providers.GOG
 
         #endregion GetLoginRequired
 
+        #region GetAccountInfo
+        private async void getAccountInfo_StateChanged(object sender, LoadingStateChangedEventArgs e)
+        {
+            if (e.IsLoading == false)
+            {
+                var getGames = false;
+                var b = (CefSharp.OffScreen.ChromiumWebBrowser)sender;
+
+                if (b.Address.Contains("account/basic"))
+                {
+                    getGames = true;
+                }
+
+                if (getGames == true)
+                {
+                    accountInfo = await b.GetTextAsync();
+                    accountGotEvent.Set();
+                }
+            }
+        }
+
+        private string accountInfo = string.Empty;
+        private AutoResetEvent accountGotEvent = new AutoResetEvent(false);
+        public AccountBasicRespose GetAccountInfo()
+        {
+            if (!browser.IsBrowserInitialized)
+            {
+                browserInitializedEvent.WaitOne(5000);
+            }
+
+            var baseUrl = @"https://menu.gog.com/v1/account/basic";
+
+            try
+            {
+                gamesList = string.Empty;
+                browser.LoadingStateChanged += getAccountInfo_StateChanged;
+                browser.Load(string.Format(baseUrl, 1));
+                accountGotEvent.WaitOne(10000);
+
+                var accountData = JsonConvert.DeserializeObject<AccountBasicRespose>(accountInfo);
+                return accountData;
+            }
+            finally
+            {
+                browser.LoadingStateChanged -= getOwnedGames_StateChanged;
+            }
+        }
+
+        #endregion GetAccountInfo
+
         #region GetOwnedGames
         private async void getOwnedGames_StateChanged(object sender, LoadingStateChangedEventArgs e)
         {
@@ -180,7 +230,7 @@ namespace Playnite.Providers.GOG
                 var getGames = false;
                 var b = (CefSharp.OffScreen.ChromiumWebBrowser)sender;
 
-                    if (b.Address.Contains("getFilteredProducts"))
+                    if (b.Address.Contains("games/stats"))
                     {
                         getGames = true;
                     }  
@@ -195,7 +245,7 @@ namespace Playnite.Providers.GOG
 
         private string gamesList = string.Empty;
         private AutoResetEvent gamesGotEvent = new AutoResetEvent(false);
-        public List<GetOwnedGamesResult.Product> GetOwnedGames()
+        public List<LibraryGameResponse> GetOwnedGames(AccountBasicRespose account)
         {
             if (!browser.IsBrowserInitialized)
             {
@@ -203,35 +253,38 @@ namespace Playnite.Providers.GOG
             }
 
             ForceLanguage("en");
-            var baseUrl = @"https://www.gog.com/account/getFilteredProducts?hiddenFlag=0&mediaType=1&page={0}&sortBy=title";
+            var baseUrl = @"https://www.gog.com/u/{0}/games/stats?sort=recent_playtime&order=desc&page={1}";
 
             try
             {
                 gamesList = string.Empty;
                 browser.LoadingStateChanged += getOwnedGames_StateChanged;
-                browser.Load(string.Format(baseUrl, 1));
+                browser.Load(string.Format(baseUrl, account.username, 1));
                 gamesGotEvent.WaitOne(10000);
 
-                var libraryData = JsonConvert.DeserializeObject<GetOwnedGamesResult>(gamesList);
+                var games = new List<LibraryGameResponse>();
+                var libraryData = JsonConvert.DeserializeObject<PagedResponse<LibraryGameResponse>>(gamesList);
                 if (libraryData == null)
                 {
                     logger.Error("GOG library content is empty.");
                     return null;
                 }
 
-                if (libraryData.totalPages > 1)
+                games.AddRange(libraryData._embedded.items);
+
+                if (libraryData.pages > 1)
                 {
-                    for (int i = 2; i <= libraryData.totalPages; i++)
+                    for (int i = 2; i <= libraryData.pages; i++)
                     {
                         gamesList = string.Empty;
-                        browser.Load(string.Format(baseUrl, i));
+                        browser.Load(string.Format(baseUrl, account.username, i));
                         gamesGotEvent.WaitOne(10000);
-                        var pageData = JsonConvert.DeserializeObject<GetOwnedGamesResult>(gamesList);
-                        libraryData.products.AddRange(pageData.products);
+                        var pageData = JsonConvert.DeserializeObject<PagedResponse<LibraryGameResponse>>(gamesList);
+                        games.AddRange(pageData._embedded.items);
                     }
                 }
 
-                return libraryData.products;
+                return games;
             }
             finally
             {

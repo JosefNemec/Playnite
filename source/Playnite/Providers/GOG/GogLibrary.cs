@@ -115,7 +115,8 @@ namespace Playnite.Providers.GOG
                 }
 
                 var games = new List<Game>();
-                var libGames = api.GetOwnedGames();
+                var acc = api.GetAccountInfo();
+                var libGames = api.GetOwnedGames(acc);
                 if (libGames == null)
                 {
                     throw new Exception("Failed to obtain libary data.");
@@ -123,18 +124,25 @@ namespace Playnite.Providers.GOG
 
                 foreach (var game in libGames)
                 {
-                    games.Add(new Game()
+                    var newGame = new Game()
                     {
                         Provider = Provider.GOG,
                         Source = Enums.GetEnumDescription(Provider.GOG),
-                        ProviderId = game.id.ToString(),
-                        Name = game.title,
-                        ReleaseDate = game.releaseDate.date,
+                        ProviderId = game.game.id,
+                        Name = game.game.title,
                         Links = new ObservableCollection<Link>()
+                        {
+                            new Link("Store", @"https://www.gog.com" + game.game.url)
+                        }
+                    };                    
+
+                    if (game.stats != null && game.stats.ContainsKey(acc.userId))
                     {
-                        new Link("Store", @"https://www.gog.com" + game.url)
+                        newGame.Playtime = game.stats[acc.userId].playtime * 60;
+                        newGame.LastActivity = game.stats[acc.userId].lastSession;
                     }
-                    });
+
+                    games.Add(newGame);
                 }
 
                 return games;

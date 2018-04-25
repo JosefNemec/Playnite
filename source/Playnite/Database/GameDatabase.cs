@@ -1406,6 +1406,11 @@ namespace Playnite.Database
                             existingGame.CompletionStatus = CompletionStatus.Played;
                         }
 
+                        if (existingGame.LastActivity == null && game.LastActivity != null)
+                        {
+                            existingGame.LastActivity = game.LastActivity;
+                        }
+
                         updatedGames.Add(existingGame);
                     }
                 }
