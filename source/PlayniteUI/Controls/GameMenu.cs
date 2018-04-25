@@ -170,7 +170,7 @@ namespace PlayniteUI.Controls
             }).Contains(e.PropertyName))
             {
                 //Can be called from different threads when game database update is done
-                context.Send((a) => InitializeItems(), null);
+                context.Post((a) => InitializeItems(), null);
             }
         }
 
