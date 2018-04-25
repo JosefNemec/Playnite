@@ -34,6 +34,7 @@
     <SolidColorBrush x:Key="PopupBorderBrush" Color="{DynamicResource PopupBorderColor}" />
     <SolidColorBrush x:Key="TooltipBackgroundBrush" Color="{DynamicResource BackgroundToneColor}" />
     <SolidColorBrush x:Key="GamesListPanelBrush" Color="{DynamicResource GamesListPanelColor}" />
+    <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#0a0e1e" />
 
     <sys:Double x:Key="FontSize">14</sys:Double>
     <FontFamily x:Key="FontFamily">Trebuchet MS</FontFamily>

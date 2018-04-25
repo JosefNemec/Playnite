@@ -33,6 +33,7 @@
     <SolidColorBrush x:Key="HighlightGlyphBrush" Color="{DynamicResource HighlightGlyphColor}" />
     <SolidColorBrush x:Key="PopupBorderBrush" Color="{DynamicResource MainColor}" />
     <SolidColorBrush x:Key="TooltipBackgroundBrush" Color="{DynamicResource BackgroundToneColor}" />
+    <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#161616" />
 
     <sys:Double x:Key="FontSize">14</sys:Double>
     <FontFamily x:Key="FontFamily">Trebuchet MS</FontFamily>
