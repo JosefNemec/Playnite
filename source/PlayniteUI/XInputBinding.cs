@@ -72,7 +72,8 @@ namespace PlayniteUI
 
     public class XInputDevice
     {
-
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+        
         public class InputState
         {
             public Stopwatch Watch
@@ -348,12 +349,20 @@ namespace PlayniteUI
         {
             context.Post((a) =>
             {
-                var args = new KeyEventArgs(InputManager.Current.PrimaryKeyboardDevice, InputManager.Current.PrimaryKeyboardDevice.ActiveSource, Environment.TickCount, key)
+                if (InputManager.Current == null)
                 {
-                    RoutedEvent = pressed ? Keyboard.KeyDownEvent : Keyboard.KeyUpEvent
-                };
+                    // Should happen only in very rare cases
+                    logger.Warn("Can't send key input, no input manager exits right now.");
+                }
+                else
+                {
+                    var args = new KeyEventArgs(InputManager.Current.PrimaryKeyboardDevice, InputManager.Current.PrimaryKeyboardDevice.ActiveSource, Environment.TickCount, key)
+                    {
+                        RoutedEvent = pressed ? Keyboard.KeyDownEvent : Keyboard.KeyUpEvent
+                    };
 
-                inputManager.ProcessInput(args);
+                    inputManager.ProcessInput(args);
+                }
             }, null);
         }
 
