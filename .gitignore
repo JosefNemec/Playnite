@@ -267,4 +267,4 @@ build/TestPackage/*
 build/PlayniteServices/*
 
 # Don't share API keys with anyone :)
-source/PlayniteServices/apikeys.json
+source/PlayniteServices/customSettings.json

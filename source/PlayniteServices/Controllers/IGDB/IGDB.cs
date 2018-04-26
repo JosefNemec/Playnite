@@ -12,51 +12,23 @@ namespace PlayniteServices.Controllers.IGDB
         {
             get
             {
-                return Startup.Configuration.GetSection("IGDBEndpoint").Value;
+                return Startup.Configuration.GetSection("IGDB")["ApiEndpoint"];
             }
         }
 
-        private static string apiKey;
         public static string ApiKey
         {
             get
             {
-                if (!string.IsNullOrEmpty(apiKey))
-                {
-                    return apiKey;
-                }
-
-                var key = Startup.Configuration.GetSection("IGBDKey");
-                if (key != null)
-                {
-                    apiKey = key.Value;
-                }
-
-                if (string.IsNullOrEmpty(apiKey))
-                {
-                    throw new Exception("Missing IGDB API Key.");
-                }
-
-                return apiKey;
-            }
-
-            set
-            {
-                apiKey = value;
+                return Startup.Configuration.GetSection("IGDB")["ApiKey"];
             }
         }
 
-        private static int? cacheTimeout;
         public static int CacheTimeout
         {
             get
             {
-                if (cacheTimeout == null)
-                {
-                    cacheTimeout = int.Parse(Startup.Configuration.GetSection("IGDBCacheTimeout").Value);
-                }
-
-                return cacheTimeout.Value;
+                return int.Parse(Startup.Configuration.GetSection("IGDB")["CacheTimeout"]);
             }
         }
 

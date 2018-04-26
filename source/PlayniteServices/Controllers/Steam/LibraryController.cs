@@ -13,31 +13,11 @@ namespace PlayniteServices.Controllers.Steam
     [Route("api/steam/library")]
     public class LibraryController : Controller
     {
-        private static string apiKey;
         private static HttpClient httpClient = new HttpClient();
         private static double requestDelay = 1500;
         private static DateTime lastRequest = DateTime.Now.AddMilliseconds(-requestDelay);
         private static object dateLock = new object();
         private static object userIdLock = new object();
-
-        private void VerifyApiKey()
-        {
-            if (!string.IsNullOrEmpty(apiKey))
-            {
-                return;
-            }
-
-            var key = Startup.Configuration.GetSection("SteamKey");
-            if (key != null)
-            {
-                apiKey = key.Value;
-            }
-            
-            if (string.IsNullOrEmpty(apiKey))
-            {
-                throw new Exception("Missing Steam API Key on server.");
-            }
-        }
 
         // Steam API has limit one request per second, so we need to slow requests down
         // TODO: change this to something more sophisticated like proper queue
@@ -73,7 +53,7 @@ namespace PlayniteServices.Controllers.Steam
                 
                 var idUrl = string.Format(
                     @"http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key={0}&vanityurl={1}",
-                    apiKey, userName);
+                    Steam.ApiKey, userName);
                 var idStringResult = httpClient.GetStringAsync(idUrl).GetAwaiter().GetResult();
                 var idResult = JsonConvert.DeserializeObject<ResolveVanityResult>(idStringResult);
 
@@ -95,15 +75,13 @@ namespace PlayniteServices.Controllers.Steam
                 
         [HttpGet("{userName}")]
         public async Task<ServicesResponse<List<GetOwnedGamesResult.Game>>> Get(string userName)
-        {            
-            VerifyApiKey();
-
+        {
             // ID can be passed directly
             var steamId = ulong.TryParse(userName, out var directId) ? directId.ToString() : GetUserId(userName);
 
             var libraryUrl = string.Format(
                 @"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&include_appinfo=1&format=json&steamid={1}",
-                apiKey, steamId);
+                Steam.ApiKey, steamId);
             WaitRequest();
 
             var libraryStringResult = await httpClient.GetStringAsync(libraryUrl);
