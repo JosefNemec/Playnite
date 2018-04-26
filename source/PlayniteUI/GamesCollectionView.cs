@@ -184,6 +184,8 @@ namespace PlayniteUI
 
     public class GameViewEntry : INotifyPropertyChanged
     {
+        private CustomImageStringToImageConverter imageConverter = new CustomImageStringToImageConverter();
+
         public int Id => Game.Id;
         public Provider Provider => Game.Provider;
         public string ProviderId => Game.ProviderId;
@@ -224,6 +226,13 @@ namespace PlayniteUI
         public int? UserScore => Game.UserScore;
         public int? CriticScore => Game.CriticScore;
         public int? CommunityScore => Game.CommunityScore;
+
+        public object IconObject => GetImageObject(Game.Icon);
+        public object ImageObject => GetImageObject(Game.Image);
+        public object BackgroundImageObject => GetImageObject(Game.BackgroundImage);
+        public object DefaultIconObject => GetImageObject(DefaultIcon);
+        public object DefaultImageObject => GetImageObject(DefaultImage);
+
 
         public string Name
         {
@@ -337,6 +346,26 @@ namespace PlayniteUI
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DisplayName"));
             }
+
+            if (propertyName == "Icon")
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IconObject"));
+            }
+
+            if (propertyName == "Image")
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ImageObject"));
+            }
+
+            if (propertyName == "BackgroundImage")
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BackgroundImageObject"));
+            }
+        }
+
+        private object GetImageObject(string data)
+        {
+            return imageConverter.Convert(data, null, null, System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public override string ToString()

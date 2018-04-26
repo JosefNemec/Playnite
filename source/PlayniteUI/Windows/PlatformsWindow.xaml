@@ -11,7 +11,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="{DynamicResource LOCPlatformsWindowTitle}" Width="780" Height="700"
+        Title="{DynamicResource LOCPlatformsWindowTitle}" Width="830" Height="700"
         AutomationProperties.AutomationId="WindowPlatforms"
         x:Name="WindowPlatforms">
 

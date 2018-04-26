@@ -588,10 +588,8 @@
                                             <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
                                                 <Image.Source>
                                                     <PriorityBinding>
-                                                        <Binding Path="Image" Mode="OneWay"
-                                                                     Converter="{StaticResource CustomImageStringToImageConverter}"/>
-                                                        <Binding Path="DefaultImage" Mode="OneWay"
-                                                                     Converter="{StaticResource CustomImageStringToImageConverter}"/>
+                                                        <Binding Path="ImageObject" IsAsync="True" Mode="OneWay" />
+                                                        <Binding Path="DefaultImageObject" Mode="OneWay" />
                                                     </PriorityBinding>
                                                 </Image.Source>
                                             </Image>
@@ -786,8 +784,7 @@
                 <Image Stretch="UniformToFill" RenderOptions.BitmapScalingMode="Fant"                       
                        HorizontalAlignment="Center" VerticalAlignment="Top"
                        Grid.ColumnSpan="20" Grid.RowSpan="20"
-                       Source="{Binding ConverterParameter='background.png', Converter={pui:SkinMediaPathConverter}}">
-                </Image>
+                       Source="{Binding ConverterParameter='background.png', Converter={pui:SkinMediaPathConverter}}" />
 
                 <!--BACKGROUND IMAGE-->
                 <Grid Grid.ColumnSpan="20" Grid.RowSpan="20"
@@ -818,7 +815,8 @@
                         </Style>
                     </Grid.Style>
 
-                    <pc:FadeImage Source="{Binding SelectedGame.BackgroundImage, Mode=OneWay, Converter={pui:CustomImageStringToImageConverter}}" />
+                    <pc:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
+                                  Source="{Binding SelectedGame.BackgroundImageObject, IsAsync=True, Mode=OneWay}" />
                     <Border Background="#88151519" />
                 </Grid>
 

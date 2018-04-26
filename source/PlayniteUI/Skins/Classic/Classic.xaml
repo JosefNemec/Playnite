@@ -2106,10 +2106,8 @@
                                                 <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
                                                     <Image.Source>
                                                         <PriorityBinding>
-                                                            <Binding Path="Image" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay"
-                                                                        Converter="{StaticResource CustomImageStringToImageConverter}"/>
-                                                            <Binding Path="DefaultImage" Mode="OneWay"
-                                                                        Converter="{StaticResource CustomImageStringToImageConverter}"/>
+                                                            <Binding Path="ImageObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" />
+                                                            <Binding Path="DefaultImageObject" Mode="OneWay" />
                                                         </PriorityBinding>
                                                     </Image.Source>
                                                 </Image>
@@ -2211,7 +2209,7 @@
 
                         <DockPanel Grid.Column="0" Grid.Row="0" Margin="10,20,10,0">
                             <Image DockPanel.Dock="Left" MaxHeight="32" MaxWidth="32" RenderOptions.BitmapScalingMode="Fant"
-                                Source="{Binding Game.Icon, Mode=OneWay,Converter={StaticResource CustomImageStringToImageConverter}}" />
+                                   Source="{Binding Game.IconObject, Mode=OneWay}" />
                             <TextBlock Text="{Binding Game.DisplayName, Mode=OneWay}" FontSize="20" Margin="10,10,0,10" TextWrapping="Wrap"
                                    DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
                                 <TextBlock.Effect>
@@ -2310,15 +2308,14 @@
                 </Style>
             </Grid.Style>
 
-            <Image Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Top"
-                   RenderOptions.BitmapScalingMode="Fant"
-                   Grid.ColumnSpan="2" Grid.RowSpan="4"
-                   Source="{Binding Game.BackgroundImage, IsAsync=True, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}" />
+            <pc:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
+                          Grid.ColumnSpan="2" Grid.RowSpan="4"
+                          Source="{Binding Game.BackgroundImageObject, IsAsync=True, Mode=OneWay}" />
 
             <DockPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
                        Margin="20,20,0,0">
                 <Image DockPanel.Dock="Left" MaxHeight="32" MaxWidth="32" RenderOptions.BitmapScalingMode="Fant"
-                       Source="{Binding Game.Icon, Mode=OneWay,Converter={StaticResource CustomImageStringToImageConverter}}" />
+                       Source="{Binding Game.IconObject, Mode=OneWay}" />
                 <TextBlock Text="{Binding Game.DisplayName, Mode=OneWay}" FontSize="20" Margin="10,10,0,10" TextWrapping="Wrap"
                            DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
                     <TextBlock.Effect>
@@ -2462,9 +2459,6 @@
                                           Command="{Binding AddInstalledGamesCommand}"/>
                                 <MenuItem Header="{DynamicResource LOCMenuAddGameEmulated}"
                                           Command="{Binding AddEmulatedGamesCommand}"/>
-                                <MenuItem.Icon>
-                                    <Image Source="/Images/MenuIcons/add.png" />
-                                </MenuItem.Icon>
                             </MenuItem>
                             <Separator />
                             <MenuItem Header="{DynamicResource LOCMenuReloadLibrary}" Style="{DynamicResource ProgressMenu}"
@@ -2520,12 +2514,7 @@
                                 </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Header="{DynamicResource LOCMenuAbout}">
-                                <MenuItem Header="{DynamicResource LOCMenuAbout}" Command="{Binding OpenAboutCommand}">
-                                    <MenuItem.Icon>
-                                        <Image Source="/Images/applogo.png" Height="16"
-                                           RenderOptions.BitmapScalingMode="Fant" />
-                                    </MenuItem.Icon>
-                                </MenuItem>
+                                <MenuItem Header="{DynamicResource LOCMenuAbout}" Command="{Binding OpenAboutCommand}" />
                                 <Separator />
                                 <MenuItem Header="Discord"
                                           Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
@@ -2559,10 +2548,6 @@
                                            RenderOptions.BitmapScalingMode="Fant" />
                                     </MenuItem.Icon>
                                 </MenuItem>
-                                <MenuItem.Icon>
-                                    <Image Source="/Images/MenuIcons/info.png"
-                                           RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                                </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Header="{DynamicResource LOCMenuIssues}" Command="{Binding ReportIssueCommand}">
                                 <MenuItem.Icon>
@@ -3093,8 +3078,8 @@
                                 Visibility="{Binding Path=Data.AppSettings.ShowIconsOnList, Source={StaticResource Proxy}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <Image.Source>
                                                         <PriorityBinding>
-                                                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}" ConverterParameter="Icon"/>
-                                                            <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
+                                                            <Binding Path="IconObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" />
+                                                            <Binding Path="DefaultIconObject" Mode="OneWay" />
                                                         </PriorityBinding>
                                                     </Image.Source>
                                                 </Image>

@@ -1358,14 +1358,13 @@
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                     <Grid>
                         <Rectangle x:Name="HoverRectangle" Visibility="Collapsed" Fill="{DynamicResource HoverBrush}" />
-                        <Rectangle x:Name="SelectedRectangle" Visibility="Collapsed" Fill="{DynamicResource GlyphBrush}" />
                         <Border Padding="{TemplateBinding Padding}" Background="Transparent" >
                             <GridViewRowPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Stretch" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Selector.IsSelected" Value="True">
-                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedRectangle" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="HoverRectangle" />
                             <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -2141,7 +2140,7 @@
                         Margin="40,10,0,0">
                 <Image Margin="0,0,0,10" VerticalAlignment="Top"          
                        RenderOptions.BitmapScalingMode="Fant"
-                       Source="{Binding Game.Image, IsAsync=True, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}" />
+                       Source="{Binding Game.ImageObject, Mode=OneWay}" />
                 <Button Height="40" Content="{DynamicResource LOCPlayGame}" Style="{StaticResource PlayButton}"
                         Visibility="{Binding IsPlayAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding PlayCommand}"/>
@@ -2224,17 +2223,17 @@
                 <pui:EnumConverter x:Key="EnumConverter" />
             </DockPanel.Resources>
             <CheckBox Name="CheckFilterView" DockPanel.Dock="Left" Height="28"
-                              IsChecked="{Binding AppSettings.FilterPanelVisible}">
+                      IsChecked="{Binding AppSettings.FilterPanelVisible}">
                 <CheckBox.Style>
                     <Style TargetType="CheckBox">
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <Border Background="Transparent" Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
-                                                    CornerRadius="{StaticResource ControlCornerRadius}" BorderThickness="{StaticResource ControlBorderThickness}"
-                                                    Cursor="Hand">
+                                    <Border Background="#44000000" Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
+                                            CornerRadius="{StaticResource ControlCornerRadius}" BorderThickness="{StaticResource ControlBorderThickness}"
+                                            Cursor="Hand">
                                         <TextBlock Text="∇" VerticalAlignment="Center" FontWeight="Bold" FontSize="18"
-                                                           Margin="8,0,8,0" Foreground="{TemplateBinding Foreground}"/>
+                                                   Margin="8,0,8,0" Foreground="{TemplateBinding Foreground}"/>
                                     </Border>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -2252,10 +2251,10 @@
                     </Style>
                 </CheckBox.Style>
             </CheckBox>
-            <Border CornerRadius="{StaticResource ControlCornerRadius}" Background="Transparent" Style="{StaticResource HighlightBorder}"
-                            pui:LeftClickContextMenuBehavior.Enabled="True"
-                            SnapsToDevicePixels="True" BorderThickness="{StaticResource ControlBorderThickness}"
-                            Width="35" Height="28" Cursor="Hand" DockPanel.Dock="Right">
+            <Border CornerRadius="{StaticResource ControlCornerRadius}" Style="{StaticResource HighlightBorder}"
+                    Background="#44000000" pui:LeftClickContextMenuBehavior.Enabled="True"
+                    SnapsToDevicePixels="True" BorderThickness="{StaticResource ControlBorderThickness}"
+                    Width="35" Height="28" Cursor="Hand" DockPanel.Dock="Right">
                 <TextBlock Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
                            Foreground="{StaticResource TextBrush}"/>
                 <Border.ContextMenu>
@@ -2338,7 +2337,8 @@
                 </Border.ContextMenu>
             </Border>
             <pc:SearchBox x:Name="SearchBoxFilter" Padding="0" DockPanel.Dock="Left" Margin="1,0,1,0"
-                                  Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}" />
+                          Background="#33000000"
+                          Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}" />
         </DockPanel>
     </ControlTemplate>
 
@@ -2352,7 +2352,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="CoversView">
-        <Grid Background="#99000000">
+        <Grid Background="#77000000">
             <Grid.Resources>
                 <pui:BindingProxy x:Key="CoversProxy" Data="{Binding}" />
                 <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
@@ -2409,10 +2409,8 @@
                                                 <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
                                                     <Image.Source>
                                                         <PriorityBinding>
-                                                            <Binding Path="Image" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay"
-                                                                        Converter="{StaticResource CustomImageStringToImageConverter}"/>
-                                                            <Binding Path="DefaultImage" Mode="OneWay"
-                                                                        Converter="{StaticResource CustomImageStringToImageConverter}"/>
+                                                            <Binding Path="ImageObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay"/>
+                                                            <Binding Path="DefaultImageObject" Mode="OneWay" />
                                                         </PriorityBinding>
                                                     </Image.Source>
                                                 </Image>
@@ -2511,7 +2509,7 @@
 
                     <DockPanel Grid.Column="0" Grid.Row="0" Margin="10,20,10,0">
                         <Image DockPanel.Dock="Left" MaxHeight="32" MaxWidth="32" RenderOptions.BitmapScalingMode="Fant"
-                            Source="{Binding Game.Icon, Mode=OneWay,Converter={StaticResource CustomImageStringToImageConverter}}" />
+                               Source="{Binding Game.IconObject, Mode=OneWay, IsAsync={StaticResource AsyncImagesEnabled}}" />
                         <TextBlock Text="{Binding Game.DisplayName, Mode=OneWay}" FontSize="20" Margin="10,10,0,10" TextWrapping="Wrap"
                                 DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
                             <TextBlock.Effect>
@@ -2700,11 +2698,10 @@
                 <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
                 <pui:ListToStringConverter x:Key="ListToStringConverter" />
             </Grid.Resources>
-
-            <Image Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Top"
-                   RenderOptions.BitmapScalingMode="Fant"
-                   Grid.ColumnSpan="10" Grid.RowSpan="10"
-                   Source="{Binding SelectedGameDetails.Game.BackgroundImage, IsAsync=True, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}" />
+            
+            <pc:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
+                          Grid.ColumnSpan="10" Grid.RowSpan="10"
+                          Source="{Binding SelectedGameDetails.Game.BackgroundImageObject, IsAsync=True}" />
 
             <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
                        IsEnabled="{Binding Data.AppSettings.GamesViewType, Source={StaticResource Proxy}, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"
@@ -2758,8 +2755,8 @@
                                        Visibility="{Binding Path=Data.AppSettings.ShowIconsOnList, Source={StaticResource Proxy}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <Image.Source>
                                         <PriorityBinding>
-                                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}" ConverterParameter="Icon"/>
-                                            <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
+                                            <Binding Path="IconObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" />
+                                            <Binding Path="DefaultIconObject" Mode="OneWay"/>
                                         </PriorityBinding>
                                     </Image.Source>
                                 </Image>

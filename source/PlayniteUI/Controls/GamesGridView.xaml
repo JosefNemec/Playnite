@@ -70,7 +70,7 @@
                         <Setter Property="Foreground" Value="{StaticResource TextBrushDarker}" />
                     </DataTrigger>
                     <Trigger Property="IsSelected" Value="True">
-                        <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+                        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
@@ -172,8 +172,8 @@
                                     RenderOptions.BitmapScalingMode="HighQuality">
                                 <Image.Source>
                                     <PriorityBinding>
-                                        <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}" ConverterParameter="Icon"/>
-                                        <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
+                                        <Binding Path="IconObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" />
+                                        <Binding Path="DefaultIconObject" Mode="OneWay" />
                                     </PriorityBinding>
                                 </Image.Source>
                             </Image>

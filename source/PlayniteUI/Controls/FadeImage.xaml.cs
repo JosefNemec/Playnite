@@ -24,7 +24,7 @@ namespace PlayniteUI.Controls
         public FadeImage()
         {
             InitializeComponent();
-            
+
         }
 
         public static readonly DependencyProperty SourceProperty =
@@ -44,13 +44,22 @@ namespace PlayniteUI.Controls
             var oldSource = (ImageSource)args.OldValue;
 
             control.StagingImage.Visibility = Visibility.Visible;
-            control.StagingImage.Source = oldSource;
+            if (oldSource != null)
+            {
+                control.StagingImage.Source = oldSource;
+            }
+
             control.MainImage.Source = newSource;
 
-            var story = (Storyboard)control.TryFindResource("Anim");
-            story.Begin();
-            story = (Storyboard)control.TryFindResource("Anim2");
-            story.Begin();
+
+            var mainAnim = (Storyboard)control.TryFindResource("Anim");
+            mainAnim.Begin();
+        
+            if (oldSource != null)
+            {
+                var stateAnim = (Storyboard)control.TryFindResource("Anim2");
+                stateAnim.Begin();
+            }
         }
     }
 }
