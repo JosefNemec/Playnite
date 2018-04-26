@@ -59,6 +59,8 @@
         <KeyBinding Key="F4" Command="{Binding OpenSettingsCommand}" />
         <KeyBinding Key="F11" Command="{Binding OpenFullScreenCommand}" />
         <KeyBinding Key="F12" Command="{Binding ReloadScriptsCommand}" />
+
+        <pui:XInputBinding Button="Guide" Command="{Binding OpenFullScreenCommand}" />
     </c:WindowBase.InputBindings>
 
     <Grid>
