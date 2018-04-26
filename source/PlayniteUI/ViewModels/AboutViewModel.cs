@@ -26,6 +26,14 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        public string SDKVersion
+        {
+            get
+            {
+                return "SDK " + Playnite.SDK.Version.SDKVersion.ToString(3);
+            }
+        }
+
         private string patronsList;
         public string PatronsList
         {
