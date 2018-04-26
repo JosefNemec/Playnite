@@ -527,6 +527,7 @@
             <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
             <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <pui:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
         </ControlTemplate.Resources>
         <ListView x:Name="test"
                   pui:FocusBahaviors.OnVisibilityFocus="True"
@@ -588,7 +589,7 @@
                                             <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
                                                 <Image.Source>
                                                     <PriorityBinding>
-                                                        <Binding Path="ImageObject" IsAsync="True" Mode="OneWay" />
+                                                        <Binding Path="ImageObject" IsAsync="True" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
                                                         <Binding Path="DefaultImageObject" Mode="OneWay" />
                                                     </PriorityBinding>
                                                 </Image.Source>

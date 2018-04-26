@@ -215,6 +215,7 @@
     <Compile Include="Converters\CustomImageStringToImageConverter.cs" />
     <Compile Include="Converters\NotificationIconConverter.cs" />
     <Compile Include="Converters\NullToBoolConverter.cs" />
+    <Compile Include="Converters\NullToDependencyPropertyUnsetConverter.cs" />
     <Compile Include="Converters\SelectablePlatformsListToStringConverter.cs" />
     <Compile Include="Converters\SkinMediaPathConverter.cs" />
     <Compile Include="Converters\NegateConverter.cs" />

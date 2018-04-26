@@ -2362,6 +2362,7 @@
                 <pui:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
                 <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
                 <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
+                <pui:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
             </Grid.Resources>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -2409,7 +2410,7 @@
                                                 <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
                                                     <Image.Source>
                                                         <PriorityBinding>
-                                                            <Binding Path="ImageObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay"/>
+                                                            <Binding Path="ImageObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}"/>
                                                             <Binding Path="DefaultImageObject" Mode="OneWay" />
                                                         </PriorityBinding>
                                                     </Image.Source>
@@ -2697,6 +2698,7 @@
                 <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
                 <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
                 <pui:ListToStringConverter x:Key="ListToStringConverter" />
+                <pui:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
             </Grid.Resources>
             
             <pc:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
@@ -2755,7 +2757,7 @@
                                        Visibility="{Binding Path=Data.AppSettings.ShowIconsOnList, Source={StaticResource Proxy}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <Image.Source>
                                         <PriorityBinding>
-                                            <Binding Path="IconObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" />
+                                            <Binding Path="IconObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
                                             <Binding Path="DefaultIconObject" Mode="OneWay"/>
                                         </PriorityBinding>
                                     </Image.Source>

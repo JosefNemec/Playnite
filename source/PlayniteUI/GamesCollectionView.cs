@@ -184,8 +184,6 @@ namespace PlayniteUI
 
     public class GameViewEntry : INotifyPropertyChanged
     {
-        private CustomImageStringToImageConverter imageConverter = new CustomImageStringToImageConverter();
-
         public int Id => Game.Id;
         public Provider Provider => Game.Provider;
         public string ProviderId => Game.ProviderId;
@@ -365,7 +363,7 @@ namespace PlayniteUI
 
         private object GetImageObject(string data)
         {
-            return imageConverter.Convert(data, null, null, System.Globalization.CultureInfo.InvariantCulture);
+            return CustomImageStringToImageConverter.GetImageFromSource(data);
         }
 
         public override string ToString()

@@ -23,22 +23,17 @@ namespace PlayniteUI
             get; set;
         }
 
-        public static Dictionary<string, BitmapImage> Cache
+        public static object GetImageFromSource(string source)
         {
-            get; set;
-        } = new Dictionary<string, BitmapImage>();
-
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            if (value == null)
+            if (string.IsNullOrEmpty(source))
             {
-                return DependencyProperty.UnsetValue;
-            }            
+                return null;
+            }
 
-            var imageId = (string)value;
+            var imageId = source;
             if (string.IsNullOrEmpty(imageId))
             {
-                return DependencyProperty.UnsetValue;
+                return null;
             }
 
             if (imageId.StartsWith("resources:"))
@@ -54,7 +49,7 @@ namespace PlayniteUI
                     if (string.IsNullOrEmpty(cachedFile))
                     {
                         logger.Warn("Web file not found: " + imageId);
-                        return DependencyProperty.UnsetValue;
+                        return null;
                     }
 
                     return BitmapExtensions.BitmapFromFile(cachedFile);
@@ -62,7 +57,7 @@ namespace PlayniteUI
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(exc, $"Failed to create bitmap from {imageId} file.");
-                    return DependencyProperty.UnsetValue;
+                    return null;
                 }
             }
 
@@ -75,7 +70,7 @@ namespace PlayniteUI
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(e, "Failed to create bitmap from " + imageId);
-                    return DependencyProperty.UnsetValue;
+                    return null;
                 }
             }
 
@@ -84,7 +79,7 @@ namespace PlayniteUI
                 if (Database == null)
                 {
                     logger.Error("Cannot load database image, database not found.");
-                    return DependencyProperty.UnsetValue;
+                    return null;
                 }
 
                 try
@@ -93,7 +88,7 @@ namespace PlayniteUI
                     if (imageData == null)
                     {
                         logger.Warn("Image not found in database: " + imageId);
-                        return DependencyProperty.UnsetValue;
+                        return null;
                     }
                     else
                     {
@@ -103,14 +98,25 @@ namespace PlayniteUI
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(exc, $"Failed to get bitmap from {imageId} database file.");
-                    return DependencyProperty.UnsetValue;
+                    return null;
                 }
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Failed to load image from database.");
+                return null;
+            }
+        }
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value == null)
+            {
                 return DependencyProperty.UnsetValue;
             }
+
+            var image = GetImageFromSource((string)value);
+            return image ?? DependencyProperty.UnsetValue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

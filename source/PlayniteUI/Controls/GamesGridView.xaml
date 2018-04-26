@@ -19,6 +19,7 @@
         <pui:BoolToAutoWidthConverter x:Key="BoolToAutoWidthConverter" />        
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <pui:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
+        <pui:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
         <pui:ValueConverterGroup x:Key="EnumCompVisibilityConverter">
             <pui:EnumConverter/>
             <pui:BooleanToHiddenConverter />
@@ -172,7 +173,7 @@
                                     RenderOptions.BitmapScalingMode="HighQuality">
                                 <Image.Source>
                                     <PriorityBinding>
-                                        <Binding Path="IconObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" />
+                                        <Binding Path="IconObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
                                         <Binding Path="DefaultIconObject" Mode="OneWay" />
                                     </PriorityBinding>
                                 </Image.Source>
