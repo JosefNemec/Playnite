@@ -291,7 +291,7 @@ namespace PlayniteUI.ViewModels
 
             if (Settings.EditedFields?.Any() == true)
             {
-                if (Settings.EditedFields.IntersectsPartiallyWith(
+                if (Settings.EditedFields.IntersectsExactlyWith(
                     new List<string>() { "Skin", "AsyncImageLoading", "DisableHwAcceleration", "DatabasePath" }))
                 {
                     if (dialogs.ShowMessage(
