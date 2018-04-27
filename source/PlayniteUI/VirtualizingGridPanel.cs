@@ -86,7 +86,6 @@ namespace PlayniteUI
 
         public VirtualizingGridPanel()
         {
-
             if (!DesignerProperties.GetIsInDesignMode(this))
             {
                 Dispatcher.BeginInvoke((Action)delegate
@@ -96,7 +95,6 @@ namespace PlayniteUI
                     InvalidateMeasure();
                 });
             }
-
 
             // For use in the IScrollInfo implementation
             this.RenderTransform = _trans;
@@ -228,7 +226,7 @@ namespace PlayniteUI
         /// <param name="sender"></param>
         /// <param name="args"></param>
         protected override void OnItemsChanged(object sender, ItemsChangedEventArgs args)
-        {
+        {            
             switch (args.Action)
             {
                 case NotifyCollectionChangedAction.Remove:
@@ -237,6 +235,11 @@ namespace PlayniteUI
                     break;
                 case NotifyCollectionChangedAction.Move:
                     RemoveInternalChildRange(args.OldPosition.Index, args.ItemUICount);
+                    break;
+                case NotifyCollectionChangedAction.Reset:
+                    InvalidateMeasure();
+                    _owner?.InvalidateScrollInfo();
+                    SetVerticalOffset(0);
                     break;
             }
         }
@@ -296,7 +299,7 @@ namespace PlayniteUI
         /// <param name="child">The element to position</param>
         /// <param name="finalSize">The size of the panel</param>
         private void ArrangeChild(int itemIndex, UIElement child, Size finalSize)
-        {            
+        {
             int column = itemIndex % Columns;
             int row = GetItemRow(itemIndex, Columns);
             var targetRect = new Rect(
@@ -371,7 +374,7 @@ namespace PlayniteUI
             }
 
             Size extent = new Size(Columns * ItemWidth, totalHeight);            
-
+            
             // Update extent
             if (extent != _extent)
             {
@@ -437,16 +440,14 @@ namespace PlayniteUI
             get { return _viewport.Width; }
         }
 
-        private const double ScrollLineAmount = 16;
-
         public void LineUp()
         {
-            SetVerticalOffset(VerticalOffset - ScrollLineAmount);
+            SetVerticalOffset(VerticalOffset - ItemHeight);
         }
 
         public void LineDown()
         {
-            SetVerticalOffset(VerticalOffset + ScrollLineAmount);
+            SetVerticalOffset(VerticalOffset + ItemHeight);
         }
 
         public void PageUp()
@@ -513,7 +514,7 @@ namespace PlayniteUI
             _trans.Y = -offset;
             InvalidateMeasure();
             return defaultRect;
-        }
+        }        
 
         public void MouseWheelLeft()
         {

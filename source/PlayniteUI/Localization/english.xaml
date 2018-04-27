@@ -75,6 +75,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCAgeRatingLabel">Age Rating</sys:String>
     <sys:String x:Key="LOCRegionLabel">Region</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">Last Played</sys:String>
+    <sys:String x:Key="LOCMostPlayedLabel">Most Played</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Play Count</sys:String>
     <sys:String x:Key="LOCAddedLabel">Added</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Modified</sys:String>

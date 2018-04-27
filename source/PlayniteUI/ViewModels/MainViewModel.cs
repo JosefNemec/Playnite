@@ -1071,11 +1071,6 @@ namespace PlayniteUI.ViewModels
             model.OpenView();
         }
 
-        public void SetViewType(ViewType type)
-        {
-            AppSettings.GamesViewType = type;
-        }
-
         public void SelectGame(string providerId)
         {
             var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.ProviderId == providerId);

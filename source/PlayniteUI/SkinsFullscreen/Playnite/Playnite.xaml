@@ -50,6 +50,7 @@
     <Image x:Key="DeleteImage" Source="{Binding ConverterParameter='Icons/Xbox/X.png', Converter={pui:SkinMediaPathConverter}}" />
     <Image x:Key="SearchImage" Source="{Binding ConverterParameter='Icons/Xbox/Y.png', Converter={pui:SkinMediaPathConverter}}" />
     <Image x:Key="ClearFiltersImage" Source="{Binding ConverterParameter='Icons/Xbox/LB.png', Converter={pui:SkinMediaPathConverter}}" />
+    <Image x:Key="ToggleSorting" Source="{Binding ConverterParameter='Icons/Xbox/RB.png', Converter={pui:SkinMediaPathConverter}}" />
     
     <Image x:Key="CancelImage" Source="{Binding ConverterParameter='Icons/Xbox/B.png', Converter={pui:SkinMediaPathConverter}}" />
     <Image x:Key="ConfirmImage" Source="{Binding ConverterParameter='Icons/Xbox/RB.png', Converter={pui:SkinMediaPathConverter}}" />
@@ -157,7 +158,8 @@
     </Style>
     
     <Style TargetType="{x:Type Thumb}">
-        <Setter Property="Background" Value="{DynamicResource NormalBrush}" />
+        <Setter Property="Background" Value="LightGray" />
+        <Setter Property="Opacity" Value="0.3" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
@@ -214,25 +216,25 @@
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
                     <Grid Background="{TemplateBinding Background}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <ScrollContentPresenter Grid.Column="0" Grid.Row="0"
+                        <ScrollContentPresenter Grid.Column="1" Grid.Row="0"
                                                 Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}"
                                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                                 CanContentScroll="{TemplateBinding CanContentScroll}" />
-                        <Rectangle Grid.Column="1" Grid.Row="1" Fill="{DynamicResource ControlBackgroundBrush}" />
-                        <ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Column="0" Grid.Row="1"
+                        <Rectangle Grid.Column="0" Grid.Row="1" Fill="{DynamicResource ControlBackgroundBrush}" />
+                        <ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Column="1" Grid.Row="1"
                                    Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" 
                                    Value="{Binding Path=HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                    ViewportSize="{TemplateBinding ViewportWidth}"
                                    Minimum="0" Maximum="{TemplateBinding ScrollableWidth}" Orientation="Horizontal"
                                    AutomationProperties.AutomationId="HorizontalScrollBar" />
-                        <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="1" Grid.Row="0"
+                        <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="0" Grid.Row="0"
                                    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
                                    Value="{Binding Path=VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                    ViewportSize="{TemplateBinding ViewportHeight}"
@@ -522,6 +524,86 @@
         </Grid>
     </ControlTemplate>
 
+    <Style TargetType="ListViewItem" x:Key="ImageCoverItem">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="FocusedOn">
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                             Storyboard.TargetProperty="ScaleX"
+                                                             From="1" To="1.06" Duration="0:0:0.2"/>
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                             Storyboard.TargetProperty="ScaleY"
+                                                             From="1" To="1.06" Duration="0:0:0.2"/>
+                        </Storyboard>
+                        <Storyboard x:Key="FocusedOff">
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                             Storyboard.TargetProperty="ScaleX"
+                                                             From="1.06" To="1" Duration="0:0:0.2"/>
+                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                             Storyboard.TargetProperty="ScaleY"
+                                                             From="1.06" To="1" Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid Background="Transparent" Margin="10">
+                        <Grid.Effect>
+                            <DropShadowEffect RenderingBias="Performance" BlurRadius="20" Color="Black" />
+                        </Grid.Effect>
+                        <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="5"
+                                            CornerRadius="4"
+                                            Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                            RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1" />
+                            </Border.RenderTransform>
+                            <Grid>
+                                <ContentPresenter />
+                                <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed">
+                                    <TextBlock Text="{Binding DisplayName, Mode=OneWay}" TextWrapping="Wrap" Margin="5"
+                                                           Style="{StaticResource BaseTextBlockStyle}"
+                                                           TextTrimming="CharacterEllipsis" TextAlignment="Center"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                           FontSize="28"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Image}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Visible" TargetName="TextGameName"/>
+                        </DataTrigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource FocusedOff}" />
+                            </Trigger.ExitActions>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource FocusedOn}" />
+                            </Trigger.EnterActions>
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
+                            <Setter Property="Canvas.ZIndex" Value="90" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource FocusedOff}" />
+                            </MultiTrigger.ExitActions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource FocusedOn}" />
+                            </MultiTrigger.EnterActions>
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
+                            <Setter Property="Canvas.ZIndex" Value="90" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <ControlTemplate x:Key="GamesList">
         <ControlTemplate.Resources>
             <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
@@ -533,11 +615,12 @@
                   pui:FocusBahaviors.OnVisibilityFocus="True"
                   ScrollViewer.PanningMode="VerticalOnly"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                   SelectionMode="Single" DockPanel.Dock="Top"
                   pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"
                   ItemsSource="{Binding GamesView.CollectionView}"
                   SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
+                  ItemContainerStyle="{StaticResource ImageCoverItem}"
                   Background="Transparent" Margin="20,40,20,0">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick" >
@@ -548,95 +631,20 @@
             <ListView.Resources>
                 <Style TargetType="GridViewColumnHeader">
                     <Setter Property="Visibility" Value="Collapsed" />
-                </Style>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Margin" Value="10"/>
-                    <Setter Property="OverridesDefaultStyle" Value="True" />
-                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                <ControlTemplate.Resources>
-                                    <Storyboard x:Key="FocusedOn">
-                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform"
-                                                             Storyboard.TargetProperty="ScaleX"
-                                                             From="1" To="1.06" Duration="0:0:0.2"/>
-                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform"
-                                                             Storyboard.TargetProperty="ScaleY"
-                                                             From="1" To="1.06" Duration="0:0:0.2"/>
-                                    </Storyboard>
-                                    <Storyboard x:Key="FocusedOff">
-                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform"
-                                                             Storyboard.TargetProperty="ScaleX"
-                                                             From="1.06" To="1" Duration="0:0:0.2"/>
-                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform"
-                                                             Storyboard.TargetProperty="ScaleY"
-                                                             From="1.06" To="1" Duration="0:0:0.2"/>
-                                    </Storyboard>
-                                </ControlTemplate.Resources>
-                                <Grid Background="Transparent">
-                                    <Grid.Effect>
-                                        <DropShadowEffect RenderingBias="Performance" BlurRadius="20" Color="Black" />
-                                    </Grid.Effect>
-                                    <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="5"
-                                            CornerRadius="4"
-                                            Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                            RenderTransformOrigin="0.5,0.5">
-                                        <Border.RenderTransform>
-                                            <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1" />
-                                        </Border.RenderTransform>
-                                        <Grid>
-                                            <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
-                                                <Image.Source>
-                                                    <PriorityBinding>
-                                                        <Binding Path="ImageObject" IsAsync="True" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
-                                                        <Binding Path="DefaultImageObject" Mode="OneWay" />
-                                                    </PriorityBinding>
-                                                </Image.Source>
-                                            </Image>
-                                            <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed">
-                                                <TextBlock Text="{Binding DisplayName, Mode=OneWay}" TextWrapping="Wrap" Margin="5"
-                                                           Style="{StaticResource BaseTextBlockStyle}"
-                                                           TextTrimming="CharacterEllipsis" TextAlignment="Center"
-                                                           HorizontalAlignment="Center" VerticalAlignment="Center"
-                                                           FontSize="28"/>
-                                            </Border>
-                                        </Grid>
-                                    </Border>
-                                </Grid>
-                                <ControlTemplate.Triggers>
-                                    <DataTrigger Binding="{Binding Image}" Value="{x:Null}">                                          
-                                        <Setter Property="Visibility" Value="Visible" TargetName="TextGameName"/>
-                                    </DataTrigger>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Trigger.ExitActions>
-                                            <BeginStoryboard Storyboard="{StaticResource FocusedOff}" />
-                                        </Trigger.ExitActions>
-                                        <Trigger.EnterActions>
-                                            <BeginStoryboard Storyboard="{StaticResource FocusedOn}" />
-                                        </Trigger.EnterActions>
-                                        <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
-                                        <Setter Property="Canvas.ZIndex" Value="90" />
-                                    </Trigger>
-                                    <MultiTrigger>
-                                        <MultiTrigger.Conditions>
-                                            <Condition Property="IsMouseOver" Value="True" />
-                                        </MultiTrigger.Conditions>
-                                        <MultiTrigger.ExitActions>
-                                            <BeginStoryboard Storyboard="{StaticResource FocusedOff}" />
-                                        </MultiTrigger.ExitActions>
-                                        <MultiTrigger.EnterActions>
-                                            <BeginStoryboard Storyboard="{StaticResource FocusedOn}" />
-                                        </MultiTrigger.EnterActions>
-                                        <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
-                                        <Setter Property="Canvas.ZIndex" Value="90" />
-                                    </MultiTrigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
+                </Style>                
             </ListView.Resources>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
+                        <Image.Source>
+                            <PriorityBinding>
+                                <Binding Path="ImageObject" IsAsync="True" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
+                                <Binding Path="DefaultImageObject" Mode="OneWay" />
+                            </PriorityBinding>
+                        </Image.Source>
+                    </Image>
+                </DataTemplate>
+            </ListView.ItemTemplate>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <pui:VirtualizingGridPanel>
@@ -660,92 +668,101 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="CommandPanel">
-        <Viewbox Margin="0,10,0,10">
-            <Grid HorizontalAlignment="Stretch">
-                <Grid.Resources>
-                    <Style TargetType="Button" x:Key="CommandButton">
-                        <Setter Property="Foreground" Value="White" />
-                        <Setter Property="BorderThickness" Value="0" />
-                        <Setter Property="Margin" Value="80,0,0,0" />
-                        <Setter Property="Focusable" Value="False" />
-                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border Background="Transparent">
-                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Grid.Resources>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Button Grid.Column="0" Grid.Row="0"
-                        Visibility="{Binding AppSettings.FullScreenFilterSettings.Active, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Command="{Binding ClearFiltersCommand}" Style="{StaticResource CommandButton}"
-                        HorizontalAlignment="Left">
-                    <StackPanel Orientation="Horizontal">
-                        <ContentControl Content="{StaticResource ClearFiltersImage}" />
-                        <TextBlock Text="{DynamicResource LOCClearFilters}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
-                                   Margin="20,0,0,0" />
-                    </StackPanel>
-                </Button>
-                <Button Grid.Column="1" Grid.Row="0"
-                        Visibility="{Binding ShowInstallOption, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Command="{Binding StartGameCommand}" Style="{StaticResource CommandButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <ContentControl Content="{StaticResource InstallImage}" />
-                        <TextBlock Text="{DynamicResource LOCInstallGame}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
-                                   Margin="20,0,0,0" />
-                    </StackPanel>
-                </Button>
-                <Button Grid.Column="1" Grid.Row="0"
-                        Visibility="{Binding ShowPlayOption, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Command="{Binding StartGameCommand}" Style="{StaticResource CommandButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <ContentControl Content="{StaticResource PlayImage}" />
-                        <TextBlock Text="{DynamicResource LOCPlayGame}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
-                                   Margin="20,0,0,0"/>
-                    </StackPanel>
-                </Button>
-                <Button Grid.Column="2" Grid.Row="0"
-                        Visibility="{Binding ShowDetailsOption, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Command="{Binding ToggleGameDetailsCommand}" Style="{StaticResource CommandButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <ContentControl Content="{DynamicResource DetailsImage}" />
-                        <TextBlock Text="{DynamicResource LOCDetailsLabel}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
-                                   Margin="20,0,0,0" />
-                    </StackPanel>
-                </Button>
-                <Button Grid.Column="2" Grid.Row="0"
-                        Visibility="{Binding ShowBackOption, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Command="{Binding ToggleGameDetailsCommand}" Style="{StaticResource CommandButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <ContentControl Content="{DynamicResource BackImage}" />
-                        <TextBlock Text="{DynamicResource LOCBackLabel}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
-                                   Margin="20,0,0,0" />
-                    </StackPanel>
-                </Button>
-                <Button Grid.Column="3" Grid.Row="0"
-                        Command="{Binding OpenSearchCommand}" Style="{StaticResource CommandButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <ContentControl Content="{DynamicResource SearchImage}" />
-                        <TextBlock Text="{DynamicResource LOCSearchLabel}" FontStretch="Expanded" FontSize="40" VerticalAlignment="Center"
-                                   Margin="20,0,0,0" />
-                    </StackPanel>
-                </Button>
-            </Grid>
-        </Viewbox>
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="Button" x:Key="CommandButton">
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="Foreground" Value="LightGray" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Margin" Value="20,0,0,0" />
+                    <Setter Property="Focusable" Value="False" />
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="Transparent">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="30" />
+                    <Setter Property="Margin" Value="20,0,0,0" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0" Grid.Row="0"
+                    Visibility="{Binding AppSettings.FullScreenFilterSettings.Active, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Command="{Binding ClearFiltersCommand}" Style="{StaticResource CommandButton}"
+                    HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <ContentControl Content="{StaticResource ClearFiltersImage}" />
+                    <TextBlock Text="{DynamicResource LOCClearFilters}" />
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="1" Grid.Row="0"
+                    Visibility="{Binding ShowInstallOption, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Command="{Binding StartGameCommand}" Style="{StaticResource CommandButton}">
+                <StackPanel Orientation="Horizontal">
+                    <ContentControl Content="{StaticResource InstallImage}" />
+                    <TextBlock Text="{DynamicResource LOCInstallGame}" />
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="1" Grid.Row="0"
+                    Visibility="{Binding ShowPlayOption, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Command="{Binding StartGameCommand}" Style="{StaticResource CommandButton}">
+                <StackPanel Orientation="Horizontal">
+                    <ContentControl Content="{StaticResource PlayImage}" />
+                    <TextBlock Text="{DynamicResource LOCPlayGame}" />
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="2" Grid.Row="0"
+                    Visibility="{Binding ShowDetailsOption, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Command="{Binding ToggleGameDetailsCommand}" Style="{StaticResource CommandButton}">
+                <StackPanel Orientation="Horizontal">
+                    <ContentControl Content="{DynamicResource DetailsImage}" />
+                    <TextBlock Text="{DynamicResource LOCDetailsLabel}" />
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="2" Grid.Row="0"
+                    Visibility="{Binding ShowBackOption, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Command="{Binding ToggleGameDetailsCommand}" Style="{StaticResource CommandButton}">
+                <StackPanel Orientation="Horizontal">
+                    <ContentControl Content="{DynamicResource BackImage}" />
+                    <TextBlock Text="{DynamicResource LOCBackLabel}" />
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="3" Grid.Row="0"
+                    Command="{Binding OpenSearchCommand}" Style="{StaticResource CommandButton}">
+                <StackPanel Orientation="Horizontal">
+                    <ContentControl Content="{DynamicResource SearchImage}" />
+                    <TextBlock Text="{DynamicResource LOCSearchLabel}" />
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="4" Grid.Row="0" Margin="20,0,20,0"
+                    HorizontalAlignment="Right"
+                    Command="{Binding ToggleSortingOrderCommand}" Style="{StaticResource CommandButton}">
+                <StackPanel Orientation="Horizontal">
+                    <ContentControl Content="{DynamicResource ToggleSorting}" />
+                    <TextBlock Text="{DynamicResource LOCMenuSortByTitle}" />
+                    <TextBlock Text="{Binding AppSettings.FullscreenViewSettings.SortingOrder, StringFormat=': {0}', Converter={pui:SortingOrderToStringConverter}}"
+                               Margin="0"/>
+                </StackPanel>
+            </Button>
+        </Grid>
     </ControlTemplate>
 
     <ControlTemplate x:Key="FullscreenView" TargetType="{x:Type pc:FullscreenView}">
@@ -908,8 +925,9 @@
 
                 <!--COMMAND PANEL-->
                 <Border Background="#44000000" HorizontalAlignment="Stretch"
-                        Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4">
-                    <ContentControl Template="{StaticResource CommandPanel}" />
+                        Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                    <ContentControl Template="{StaticResource CommandPanel}" Margin="5,10,5,10"
+                                    Opacity="0.8"/>
                 </Border>
 
                 <!--ESCPAE MENU-->

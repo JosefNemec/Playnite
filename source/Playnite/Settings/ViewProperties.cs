@@ -54,16 +54,88 @@ namespace Playnite
         Platform
     }
 
-    public enum GameImageSize
-    {
-        Icon,
-        Image
-    }
-
     public enum ViewType : int
     {
         List = 0,
         Images = 1,
         Grid = 2
     }
+
+    public class ViewSettings : ObservableObject
+    {
+        private SortOrder sortingOrder = SortOrder.Name;
+        public SortOrder SortingOrder
+        {
+            get
+            {
+                return sortingOrder;
+            }
+
+            set
+            {
+                sortingOrder = value;
+                OnPropertyChanged("SortingOrder");
+            }
+        }
+
+        private SortOrderDirection sortingOrderDirection = SortOrderDirection.Descending;
+        public SortOrderDirection SortingOrderDirection
+        {
+            get
+            {
+                return sortingOrderDirection;
+            }
+
+            set
+            {
+                sortingOrderDirection = value;
+                OnPropertyChanged("SortingOrderDirection");
+            }
+        }
+
+        private GroupOrder groupingOrder = GroupOrder.None;
+        public GroupOrder GroupingOrder
+        {
+            get
+            {
+                return groupingOrder;
+            }
+
+            set
+            {
+                groupingOrder = value;
+                OnPropertyChanged("GroupingOrder");
+            }
+        }
+
+        private ViewType gamesViewType;
+        public ViewType GamesViewType
+        {
+            get
+            {
+                return gamesViewType;
+            }
+
+            set
+            {
+                gamesViewType = value;
+                OnPropertyChanged("GamesViewType");
+            }
+        }
+
+        private double coversZoom = 180;
+        public double CoversZoom
+        {
+            get
+            {
+                return coversZoom;
+            }
+
+            set
+            {
+                coversZoom = value;
+                OnPropertyChanged("CoversZoom");
+            }
+        }
+    }        
 }

@@ -176,6 +176,14 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<object> ToggleSortingOrderCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ToggleSortingOrder();
+            });
+        }
+
         public FullscreenViewModel(
             GameDatabase database,
             IWindowFactory window,
@@ -210,6 +218,7 @@ namespace PlayniteUI.ViewModels
 
             InitializeView();
             AppSettings.FullScreenFilterSettings.FilterChanged += FullScreenFilterSettings_FilterChanged;
+            AppSettings.FullscreenViewSettings.PropertyChanged += FullscreenViewSettings_PropertyChanged;
         }
 
         public void ToggleFullscreen()
@@ -255,6 +264,22 @@ namespace PlayniteUI.ViewModels
         public void ToggleExitMenu()
         {
             ShowExitMenu = !ShowExitMenu;
+        }
+
+        public void ToggleSortingOrder()
+        {
+            if (AppSettings.FullscreenViewSettings.SortingOrder == Playnite.SortOrder.Name)
+            {
+                AppSettings.FullscreenViewSettings.SortingOrder = Playnite.SortOrder.LastActivity;
+            }
+            else if (AppSettings.FullscreenViewSettings.SortingOrder == Playnite.SortOrder.LastActivity)
+            {
+                AppSettings.FullscreenViewSettings.SortingOrder = Playnite.SortOrder.Playtime;
+            }
+            else if (AppSettings.FullscreenViewSettings.SortingOrder == Playnite.SortOrder.Playtime)
+            {
+                AppSettings.FullscreenViewSettings.SortingOrder = Playnite.SortOrder.Name;
+            }
         }
 
         protected override void OnClosing(CancelEventArgs args)
@@ -304,6 +329,18 @@ namespace PlayniteUI.ViewModels
         }
 
         private void FullScreenFilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
+        {
+            if (GamesView.CollectionView.Count > 0)
+            {
+                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).ProviderId);
+            }
+            else
+            {
+                SelectedGame = null;
+            }
+        }
+
+        private void FullscreenViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {            
             if (GamesView.CollectionView.Count > 0)
             {
@@ -319,6 +356,7 @@ namespace PlayniteUI.ViewModels
         {
             base.Dispose();
             AppSettings.FullScreenFilterSettings.FilterChanged -= FullScreenFilterSettings_FilterChanged;
+            AppSettings.FullscreenViewSettings.PropertyChanged -= FullscreenViewSettings_PropertyChanged;
         }
     }
 }

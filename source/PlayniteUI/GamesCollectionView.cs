@@ -444,13 +444,14 @@ namespace PlayniteUI
             database.PlatformUpdated += Database_PlatformUpdated;
             Items = new RangeObservableCollection<GameViewEntry>();
             Settings = settings;
-            Settings.PropertyChanged += Settings_PropertyChanged;
             if (IsFullscreen)
             {
+                Settings.FullscreenViewSettings.PropertyChanged += Settings_PropertyChanged;
                 Settings.FullScreenFilterSettings.FilterChanged += FilterSettings_FilterChanged;
             }
             else
             {
+                Settings.ViewSettings.PropertyChanged += Settings_PropertyChanged;
                 Settings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             }
 
@@ -468,10 +469,12 @@ namespace PlayniteUI
             Settings.PropertyChanged -= Settings_PropertyChanged;
             if (IsFullscreen)
             {
+                Settings.FullscreenViewSettings.PropertyChanged -= Settings_PropertyChanged;
                 Settings.FullScreenFilterSettings.FilterChanged -= FilterSettings_FilterChanged;
             }
             else
             {
+                Settings.ViewSettings.PropertyChanged -= Settings_PropertyChanged;
                 Settings.FilterSettings.FilterChanged -= FilterSettings_FilterChanged;
             }
         }
@@ -859,7 +862,8 @@ namespace PlayniteUI
 
         private void SetViewDescriptions()
         {
-            var sortDirection = Settings.SortingOrderDirection == SortOrderDirection.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;
+            ViewSettings viewSettings = IsFullscreen ? Settings.FullscreenViewSettings : Settings.ViewSettings;            
+            var sortDirection = viewSettings.SortingOrderDirection == SortOrderDirection.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;
 
             if (IsFullscreen)
             {
@@ -867,7 +871,7 @@ namespace PlayniteUI
             }
             else
             {
-                switch (Settings.GroupingOrder)
+                switch (viewSettings.GroupingOrder)
                 {
                     case GroupOrder.None:
                         ViewType = GamesViewType.Standard;
@@ -884,18 +888,23 @@ namespace PlayniteUI
                 }
             }
 
-            CollectionView.SortDescriptions.Add(new SortDescription(Settings.SortingOrder.ToString(), sortDirection));
-            if (Settings.SortingOrder != SortOrder.Name)
+            if (viewSettings.SortingOrder == SortOrder.Name)
+            {
+                sortDirection = sortDirection == ListSortDirection.Ascending ? ListSortDirection.Descending : ListSortDirection.Ascending;
+            }
+
+            CollectionView.SortDescriptions.Add(new SortDescription(viewSettings.SortingOrder.ToString(), sortDirection));
+            if (viewSettings.SortingOrder != SortOrder.Name)
             {
                 CollectionView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             }
 
-            if (Settings.GroupingOrder != GroupOrder.None)
+            if (viewSettings.GroupingOrder != GroupOrder.None)
             {
-                CollectionView.GroupDescriptions.Add(new PropertyGroupDescription(Settings.GroupingOrder.ToString()));
-                if (CollectionView.SortDescriptions.First().PropertyName != Settings.GroupingOrder.ToString())
+                CollectionView.GroupDescriptions.Add(new PropertyGroupDescription(viewSettings.GroupingOrder.ToString()));
+                if (CollectionView.SortDescriptions.First().PropertyName != viewSettings.GroupingOrder.ToString())
                 {
-                    CollectionView.SortDescriptions.Insert(0, new SortDescription(Settings.GroupingOrder.ToString(), ListSortDirection.Ascending));
+                    CollectionView.SortDescriptions.Insert(0, new SortDescription(viewSettings.GroupingOrder.ToString(), ListSortDirection.Ascending));
                 }
             }
         }

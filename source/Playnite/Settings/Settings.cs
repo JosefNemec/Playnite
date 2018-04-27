@@ -226,126 +226,6 @@ namespace Playnite
             }
         }
 
-        private SortOrder sortingOrder = SortOrder.Name;
-        public SortOrder SortingOrder
-        {
-            get
-            {
-                return sortingOrder;
-            }
-
-            set
-            {
-                sortingOrder = value;
-                OnPropertyChanged("SortingOrder");
-            }
-        }
-
-        private SortOrderDirection sortingOrderDirection = SortOrderDirection.Ascending;
-        public SortOrderDirection SortingOrderDirection
-        {
-            get
-            {
-                return sortingOrderDirection;
-            }
-
-            set
-            {
-                sortingOrderDirection = value;
-                OnPropertyChanged("SortingOrderDirection");
-            }
-        }
-
-        private GroupOrder groupingOrder = GroupOrder.None;
-        public GroupOrder GroupingOrder
-        {
-            get
-            {
-                return groupingOrder;
-            }
-
-            set
-            {
-                groupingOrder = value;
-                OnPropertyChanged("GroupingOrder");
-            }
-        }
-
-        private GameImageSize imageViewSize;
-        public GameImageSize ImageViewSize
-        {
-            get
-            {
-                return imageViewSize;
-            }
-
-            set
-            {
-                imageViewSize = value;
-                OnPropertyChanged("ImageViewSize");
-            }
-        }
-
-        private ViewType gamesViewType;
-        public ViewType GamesViewType
-        {
-            get
-            {
-                return gamesViewType;
-            }
-
-            set
-            {
-                gamesViewType = value;
-                OnPropertyChanged("GamesViewType");
-                OnPropertyChanged("IsListViewSet");
-                OnPropertyChanged("IsImagesViewSet");
-                OnPropertyChanged("IsGridViewSet");
-            }
-        }
-
-        private double coversZoom = 180;
-        public double CoversZoom
-        {
-            get
-            {
-                return coversZoom;
-            }
-
-            set
-            {
-                coversZoom = value;
-                OnPropertyChanged("CoversZoom");
-            }
-        }
-
-        [JsonIgnore]
-        public bool IsListViewSet
-        {
-            get
-            {
-                return GamesViewType == ViewType.List;
-            }
-        }
-
-        [JsonIgnore]
-        public bool IsImagesViewSet
-        {
-            get
-            {
-                return GamesViewType == ViewType.Images;
-            }
-        }
-
-        [JsonIgnore]
-        public bool IsGridViewSet
-        {
-            get
-            {
-                return GamesViewType == ViewType.Grid;
-            }
-        }
-
         public GogSettings GOGSettings
         {
             get; set;
@@ -396,6 +276,34 @@ namespace Playnite
             set
             {
                 fullScreenFilterSettings = value;
+            }
+        }
+
+        private ViewSettings desktopViewSettings = new ViewSettings();
+        public ViewSettings ViewSettings
+        {
+            get
+            {
+                return desktopViewSettings;
+            }
+
+            set
+            {
+                desktopViewSettings = value;
+            }
+        }
+
+        private ViewSettings fullscreenViewSettings = new ViewSettings();
+        public ViewSettings FullscreenViewSettings
+        {
+            get
+            {
+                return fullscreenViewSettings;
+            }
+
+            set
+            {
+                fullscreenViewSettings = value;
             }
         }
 
@@ -644,6 +552,8 @@ namespace Playnite
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        [JsonIgnore]
         public List<string> EditedFields;
         private bool isEditing = false;
         private Settings editingCopy;
@@ -686,7 +596,10 @@ namespace Playnite
 
         public void CancelEdit()
         {
-            editingCopy.CopyProperties(this, false, new List<string>() { "FilterSettings", "FullScreenFilterSettings", "InstallInstanceId" });
+            editingCopy.CopyProperties(this, false, new List<string>()
+            {
+                "FilterSettings", "FullScreenFilterSettings", "InstallInstanceId", "ViewSettings", "FullscreenViewSettings"
+            });
             isEditing = false;
             EditedFields = new List<string>();
         }

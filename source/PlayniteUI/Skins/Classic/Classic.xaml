@@ -2083,6 +2083,7 @@
                     <Style TargetType="ListViewItem">
                         <Setter Property="Margin" Value="8"/>
                         <Setter Property="OverridesDefaultStyle" Value="True" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                         <Setter Property="ContextMenu">
                             <Setter.Value>
                                 <pc:GameMenu />
@@ -2176,7 +2177,7 @@
                     BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
                 <StackPanel Margin="5" Orientation="Horizontal">
                     <Label Content="{DynamicResource LOCZoomLabel}" DockPanel.Dock="Right" Margin="10,0,10,0"/>
-                    <Slider Name="SliderZoom" SmallChange="1" Value="{Binding Path=AppSettings.CoversZoom}" Maximum="260" Minimum="100"
+                    <Slider Name="SliderZoom" SmallChange="1" Value="{Binding Path=AppSettings.ViewSettings.CoversZoom}" Maximum="260" Minimum="100"
                             IsSnapToTickEnabled="True" Width="150" DockPanel.Dock="Right" VerticalAlignment="Center"/>
                 </StackPanel>
             </Border>
@@ -2584,70 +2585,70 @@
                                  DataContext="{Binding Source={StaticResource Proxy}, Path=Data.AppSettings}">
                             <MenuItem Header="{DynamicResource LOCMenuSortByTitle}">
                                 <MenuItem Header="{DynamicResource LOCMenuSortAscending}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrderDirection, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrderDirection.Ascending}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrderDirection, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrderDirection.Ascending}}"/>
                                 <MenuItem Header="{DynamicResource LOCMenuSortDescending}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrderDirection, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrderDirection.Descending}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrderDirection, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrderDirection.Descending}}"/>
                                 <Separator />
                                 <MenuItem Header="{DynamicResource LOCGameNameTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Name}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Name}}"/>
                                 <MenuItem Header="{DynamicResource LOCGamePlatformTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Platform}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Platform}}"/>
                                 <MenuItem Header="{DynamicResource LOCGameProviderTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Provider}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Provider}}"/>
                                 <MenuItem Header="{DynamicResource LOCGameDevelopersTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Developers}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Developers}}"/>
                                 <MenuItem Header="{DynamicResource LOCGamePublishersTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Publishers}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Publishers}}"/>
                                 <MenuItem Header="{DynamicResource LOCGameReleaseDateTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.ReleaseDate}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.ReleaseDate}}"/>
                                 <MenuItem Header="{DynamicResource LOCGameGenresTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Genres}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Genres}}"/>
                                 <MenuItem Header="{DynamicResource LOCGameCategoriesTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Categories}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Categories}}"/>
                                 <MenuItem Header="{DynamicResource LOCGameTagsTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Tags}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Tags}}"/>
                                 <MenuItem Header="{DynamicResource LOCGameIsInstalledTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.IsInstalled}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.IsInstalled}}"/>
                                 <MenuItem Header="{DynamicResource LOCGameInstallDirTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.InstallDirectory}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.InstallDirectory}}"/>
                                 <MenuItem Header="{DynamicResource LOCGameLastActivityTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.LastActivity}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.LastActivity}}"/>
                                 <MenuItem Header="{DynamicResource LOCTimePlayed}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Playtime}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Playtime}}"/>
                                 <MenuItem Header="{DynamicResource LOCPlayCountLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.PlayCount}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.PlayCount}}"/>
                                 <MenuItem Header="{DynamicResource LOCCompletionStatus}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CompletionStatus}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CompletionStatus}}"/>
                                 <MenuItem Header="{DynamicResource LOCSeriesLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Series}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Series}}"/>
                                 <MenuItem Header="{DynamicResource LOCVersionLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Version}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Version}}"/>
                                 <MenuItem Header="{DynamicResource LOCAgeRatingLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.AgeRating}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.AgeRating}}"/>
                                 <MenuItem Header="{DynamicResource LOCRegionLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Region}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Region}}"/>
                                 <MenuItem Header="{DynamicResource LOCSourceLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Source}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Source}}"/>
                                 <MenuItem Header="{DynamicResource LOCAddedLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Added}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Added}}"/>
                                 <MenuItem Header="{DynamicResource LOCModifiedLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Modified}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Modified}}"/>
                                 <MenuItem Header="{DynamicResource LOCUserScore}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.UserScore}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.UserScore}}"/>
                                 <MenuItem Header="{DynamicResource LOCCriticScore}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CriticScore}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CriticScore}}"/>
                                 <MenuItem Header="{DynamicResource LOCCommunityScore}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CommunityScore}}"/>
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CommunityScore}}"/>
                             </MenuItem>
                             <Separator />
                             <MenuItem Header="{DynamicResource LOCMenuGroupDont}" IsCheckable="True"
-                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.None}}"/>
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.None}}"/>
                             <MenuItem Header="{DynamicResource LOCMenuGroupProvider}" IsCheckable="True"
-                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Provider}}"/>
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Provider}}"/>
                             <MenuItem Header="{DynamicResource LOCMenuGroupCategory}" IsCheckable="True"
-                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Category}}"/>
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Category}}"/>
                             <MenuItem Header="{DynamicResource LOCMenuGroupPlatform}" IsCheckable="True"
-                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Platform}}"/>
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Platform}}"/>
                         </ContextMenu>
                     </Border.ContextMenu>
                 </Border>
@@ -3016,7 +3017,7 @@
                     </Border>
 
                     <TabControl Name="TabControlView" DockPanel.Dock="Left" TabStripPlacement="Bottom"
-                                SelectedIndex="{Binding AppSettings.GamesViewType, Converter={StaticResource BidirectionalEnumAndNumberConverter}}">
+                                SelectedIndex="{Binding AppSettings.ViewSettings.GamesViewType, Converter={StaticResource BidirectionalEnumAndNumberConverter}}">
                         <TabItem Header="{DynamicResource LOCListLabel}" >
                             <DockPanel>
                                 <pc:ExtendedListBox SelectionMode="Extended" BorderThickness="0,0,1,0"
