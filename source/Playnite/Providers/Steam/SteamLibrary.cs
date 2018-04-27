@@ -329,7 +329,7 @@ namespace Playnite.Providers.Steam
             }
             catch (Exception e)
             {
-                logger.Error(e, "Failed to get Steam appinfo cache data.");
+                logger.Error(e, $"Failed to get Steam appinfo cache data {appId}.");
             }
 
             // If no cache then download on client and push to cache
