@@ -19,7 +19,7 @@ namespace PlayniteServices.Controllers.Steam
         {
             get
             {
-                return int.Parse(Startup.Configuration.GetSection("Stean")["AppInfoCacheTimeout"]);
+                return int.Parse(Startup.Configuration.GetSection("Steam")["AppInfoCacheTimeout"]);
             }
         }
 
