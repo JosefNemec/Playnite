@@ -47,6 +47,19 @@ namespace PlayniteUI.Controls
         private GamesEditor editor;
         private readonly SynchronizationContext context;
 
+        private Image startIcon;
+        private Image removeIcon;
+        private Image linksIcon;
+        private Image favoriteIcon;
+        private Image unFavoriteIcon;
+        private Image hideIcon;
+        private Image unHideIcon;
+        private Image browseIcon;
+        private Image shortcutIcon;
+        private Image installIcon;
+        private Image editIcon;
+
+
         public Game Game
         {
             get; set;
@@ -68,6 +81,18 @@ namespace PlayniteUI.Controls
 
         public GameMenu(GamesEditor editor)
         {
+            startIcon = Images.GetImageFromResource("Images/MenuIcons/start.png");
+            removeIcon = Images.GetImageFromResource("Images/MenuIcons/remove.png");
+            linksIcon = Images.GetImageFromResource("Images/MenuIcons/link.png");
+            favoriteIcon = Images.GetImageFromResource("Images/MenuIcons/favorite.png");
+            unFavoriteIcon = Images.GetImageFromResource("Images/MenuIcons/favoriteEmpty.png");
+            hideIcon = Images.GetImageFromResource("Images/MenuIcons/hideCrosed.png");
+            unHideIcon = Images.GetImageFromResource("Images/MenuIcons/hide.png");
+            browseIcon = Images.GetImageFromResource("Images/MenuIcons/folder.png");
+            shortcutIcon = Images.GetImageFromResource("Images/MenuIcons/shortcut.png");
+            installIcon = Images.GetImageFromResource("Images/MenuIcons/install.png");
+            editIcon = Images.GetImageFromResource("Images/MenuIcons/edit.png");
+
             context = SynchronizationContext.Current;
             this.editor = editor;
             resources = new ResourceProvider();
@@ -145,7 +170,7 @@ namespace PlayniteUI.Controls
             }).Contains(e.PropertyName))
             {
                 //Can be called from different threads when game database update is done
-                context.Send((a) => InitializeItems(), null);
+                context.Post((a) => InitializeItems(), null);
             }
         }
 
@@ -158,7 +183,8 @@ namespace PlayniteUI.Controls
                 // Set Favorites
                 var favoriteItem = new MenuItem()
                 {
-                    Header = resources.FindString("FavoriteGame")
+                    Header = resources.FindString("LOCFavoriteGame"),
+                    Icon = favoriteIcon
                 };
 
                 favoriteItem.Click += (s, e) =>
@@ -170,7 +196,8 @@ namespace PlayniteUI.Controls
 
                 var unFavoriteItem = new MenuItem()
                 {
-                    Header = resources.FindString("RemoveFavoriteGame")
+                    Header = resources.FindString("LOCRemoveFavoriteGame"),
+                    Icon = unFavoriteIcon
                 };
 
                 unFavoriteItem.Click += (s, e) =>
@@ -183,7 +210,8 @@ namespace PlayniteUI.Controls
                 // Set Hide
                 var hideItem = new MenuItem()
                 {
-                    Header = resources.FindString("HideGame")
+                    Header = resources.FindString("LOCHideGame"),
+                    Icon = hideIcon
                 };
 
                 hideItem.Click += (s, e) =>
@@ -195,7 +223,8 @@ namespace PlayniteUI.Controls
 
                 var unHideItem = new MenuItem()
                 {
-                    Header = resources.FindString("UnHideGame")
+                    Header = resources.FindString("LOCUnHideGame"),
+                    Icon = unHideIcon
                 };
 
                 unHideItem.Click += (s, e) =>
@@ -208,7 +237,8 @@ namespace PlayniteUI.Controls
                 // Edit
                 var editItem = new MenuItem()
                 {
-                    Header = resources.FindString("EditGame")
+                    Header = resources.FindString("LOCEditGame"),
+                    Icon = editIcon
                 };
 
                 editItem.Click += (s, e) =>
@@ -221,7 +251,8 @@ namespace PlayniteUI.Controls
                 // Set Category
                 var categoryItem = new MenuItem()
                 {
-                    Header = resources.FindString("SetGameCategory")
+                    Header = resources.FindString("LOCSetGameCategory"),
+                    Icon = Images.GetEmptyImage()
                 };
 
                 categoryItem.Click += (s, e) =>
@@ -235,7 +266,8 @@ namespace PlayniteUI.Controls
                 // Remove
                 var removeItem = new MenuItem()
                 {
-                    Header = resources.FindString("RemoveGame")
+                    Header = resources.FindString("LOCRemoveGame"),
+                    Icon = removeIcon
                 };
 
                 removeItem.Click += (s, e) =>
@@ -255,7 +287,8 @@ namespace PlayniteUI.Controls
                     {
                         var playItem = new MenuItem()
                         {
-                            Header = resources.FindString("PlayGame"),
+                            Header = resources.FindString("LOCPlayGame"),
+                            Icon = startIcon,
                             FontWeight = FontWeights.Bold
                         };
 
@@ -271,7 +304,8 @@ namespace PlayniteUI.Controls
                     {
                         var installItem = new MenuItem()
                         {
-                            Header = resources.FindString("InstallGame"),
+                            Header = resources.FindString("LOCInstallGame"),
+                            Icon = installIcon,
                             FontWeight = FontWeights.Bold
                         };
 
@@ -297,7 +331,8 @@ namespace PlayniteUI.Controls
                     {
                         var taskItem = new MenuItem()
                         {
-                            Header = task.Name
+                            Header = task.Name,
+                            Icon = Images.GetEmptyImage()
                         };
 
                         taskItem.Click += (s, e) =>
@@ -316,7 +351,8 @@ namespace PlayniteUI.Controls
                 {
                     var linksItem = new MenuItem()
                     {
-                        Header = resources.FindString("LinksLabel")
+                        Header = resources.FindString("LOCLinksLabel"),
+                        Icon = linksIcon
                     };
 
                     foreach (var link in Game.Links)
@@ -338,7 +374,8 @@ namespace PlayniteUI.Controls
                 {
                     var locationItem = new MenuItem()
                     {
-                        Header = resources.FindString("OpenGameLocation")
+                        Header = resources.FindString("LOCOpenGameLocation"),
+                        Icon = browseIcon
                     };
 
                     locationItem.Click += (s, e) =>
@@ -352,7 +389,8 @@ namespace PlayniteUI.Controls
                 // Create Desktop Shortcut
                 var shortcutItem = new MenuItem()
                 {
-                    Header = resources.FindString("CreateDesktopShortcut")
+                    Header = resources.FindString("LOCCreateDesktopShortcut"),
+                    Icon = shortcutIcon
                 };
 
                 shortcutItem.Click += (s, e) =>
@@ -366,7 +404,8 @@ namespace PlayniteUI.Controls
                 // Toggle Favorites
                 var favoriteItem = new MenuItem()
                 {
-                    Header = Game.Favorite ? resources.FindString("RemoveFavoriteGame") : resources.FindString("FavoriteGame")
+                    Header = Game.Favorite ? resources.FindString("LOCRemoveFavoriteGame") : resources.FindString("LOCFavoriteGame"),
+                    Icon = Game.Favorite ? unFavoriteIcon : favoriteIcon
                 };
 
                 favoriteItem.Click += (s, e) =>
@@ -379,7 +418,8 @@ namespace PlayniteUI.Controls
                 // Toggle Hide
                 var hideItem = new MenuItem()
                 {
-                    Header = Game.Hidden ? resources.FindString("UnHideGame") : resources.FindString("HideGame")
+                    Header = Game.Hidden ? resources.FindString("LOCUnHideGame") : resources.FindString("LOCHideGame"),
+                    Icon = Game.Hidden ? unHideIcon : hideIcon
                 };
 
                 hideItem.Click += (s, e) =>
@@ -392,7 +432,8 @@ namespace PlayniteUI.Controls
                 // Edit
                 var editItem = new MenuItem()
                 {
-                    Header = resources.FindString("EditGame")
+                    Header = resources.FindString("LOCEditGame"),
+                    Icon = editIcon
                 };
 
                 editItem.Click += (s, e) =>
@@ -405,7 +446,8 @@ namespace PlayniteUI.Controls
                 // Set Category
                 var categoryItem = new MenuItem()
                 {
-                    Header = resources.FindString("SetGameCategory")
+                    Header = resources.FindString("LOCSetGameCategory"),
+                    Icon = Images.GetEmptyImage()
                 };
 
                 categoryItem.Click += (s, e) =>
@@ -415,11 +457,12 @@ namespace PlayniteUI.Controls
 
                 Items.Add(categoryItem);
                 Items.Add(new Separator());
-
+                
                 // Remove
                 var removeItem = new MenuItem()
                 {
-                    Header = resources.FindString("RemoveGame")
+                    Header = resources.FindString("LOCRemoveGame"),
+                    Icon = removeIcon
                 };
 
                 removeItem.Click += (s, e) =>
@@ -434,7 +477,8 @@ namespace PlayniteUI.Controls
                 {
                     var uninstallItem = new MenuItem()
                     {
-                        Header = resources.FindString("UninstallGame")
+                        Header = resources.FindString("LOCUninstallGame"),
+                        Icon = Images.GetEmptyImage()
                     };
 
                     uninstallItem.Click += (s, e) =>

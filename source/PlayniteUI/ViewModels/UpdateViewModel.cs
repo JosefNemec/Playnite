@@ -64,7 +64,7 @@ namespace PlayniteUI.ViewModels
         {
             if (GlobalTaskHandler.IsActive)
             {
-                if (dialogs.ShowMessage(resources.FindString("UpdateProgressCancelAsk"), "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (dialogs.ShowMessage(resources.FindString("LOCUpdateProgressCancelAsk"), "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), () =>
                     {
@@ -77,7 +77,7 @@ namespace PlayniteUI.ViewModels
                             logger.Error(exc, "Failed to cancel global progress task.");
                             throw;
                         }
-                    }, resources.FindString("ProgressReleasingResources"));
+                    }, resources.FindString("LOCProgressReleasingResources"));
 
                     progressModel.ActivateProgress();
                     update.InstallUpdate();

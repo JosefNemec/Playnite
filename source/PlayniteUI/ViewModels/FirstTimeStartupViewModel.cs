@@ -63,17 +63,17 @@ namespace PlayniteUI.ViewModels
                 {
                     if (gogApiClient.GetLoginRequired())
                     {
-                        return resources.FindString("LoginRequired");
+                        return resources.FindString("LOCLoginRequired");
                     }
                     else
                     {
-                        return resources.FindString("OKLabel");
+                        return resources.FindString("LOCOKLabel");
                     }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(e, "Failed to test GOG login status.");
-                    return resources.FindString("LoginFailed");
+                    return resources.FindString("LOCLoginFailed");
                 }
             }
         }
@@ -88,17 +88,17 @@ namespace PlayniteUI.ViewModels
                 {
                     if (originApiClient.GetLoginRequired())
                     {
-                        return resources.FindString("LoginRequired");
+                        return resources.FindString("LOCLoginRequired");
                     }
                     else
                     {
-                        return resources.FindString("OKLabel");
+                        return resources.FindString("LOCOKLabel");
                     }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(e, "Failed to test Origin login status.");
-                    return resources.FindString("LoginFailed");
+                    return resources.FindString("LOCLoginFailed");
                 }
             }
         }
@@ -113,17 +113,17 @@ namespace PlayniteUI.ViewModels
                 {
                     if (battleNetApiClient.GetLoginRequired())
                     {
-                        return resources.FindString("LoginRequired");
+                        return resources.FindString("LOCLoginRequired");
                     }
                     else
                     {
-                        return resources.FindString("OKLabel");
+                        return resources.FindString("LOCOKLabel");
                     }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(e, "Failed to test BattleNet login status.");
-                    return resources.FindString("LoginFailed");
+                    return resources.FindString("LOCLoginFailed");
                 }
             }
         }
@@ -295,23 +295,23 @@ namespace PlayniteUI.ViewModels
                 {
                     if (model.Settings.SteamSettings.IdSource == SteamIdSource.Name && string.IsNullOrEmpty(model.Settings.SteamSettings.AccountName))
                     {
-                        dialogs.ShowMessage(resources.FindString("SettingsInvalidSteamAccountName"),
-                            resources.FindString("InvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                        dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidSteamAccountName"),
+                            resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                         return false;
                     }
 
                     if (model.Settings.SteamSettings.IdSource == SteamIdSource.LocalUser && model.Settings.SteamSettings.AccountId == 0)
                     {
-                        dialogs.ShowMessage(resources.FindString("SettingsInvalidSteamAccountLibImport"),
-                            resources.FindString("InvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                        dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidSteamAccountLibImport"),
+                            resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                         return false;
                     }
                 }
 
                 if (model.SteamImportCategories && model.SteamIdCategoryImport == 0)
                 {
-                    dialogs.ShowMessage(resources.FindString("SettingsInvalidSteamAccountCatImport"),
-                        resources.FindString("InvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                    dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidSteamAccountCatImport"),
+                        resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
 
@@ -324,8 +324,8 @@ namespace PlayniteUI.ViewModels
                 {
                     if (!Paths.GetValidFilePath(model.Settings.DatabasePath))
                     {
-                        dialogs.ShowMessage(resources.FindString("SettingsInvalidDBLocation"),
-                            resources.FindString("InvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                        dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidDBLocation"),
+                            resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                         return false;
                     }
                 }
@@ -442,7 +442,7 @@ namespace PlayniteUI.ViewModels
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, "GOG auth failed.");
-                dialogs.ShowMessage(resources.FindString("LoginFailed"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                dialogs.ShowMessage(resources.FindString("LOCLoginFailed"), "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -456,7 +456,7 @@ namespace PlayniteUI.ViewModels
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, "Origin auth failed.");
-                dialogs.ShowMessage(resources.FindString("LoginFailed"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                dialogs.ShowMessage(resources.FindString("LOCLoginFailed"), "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -470,7 +470,7 @@ namespace PlayniteUI.ViewModels
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, "BattleNet auth failed.");
-                dialogs.ShowMessage(resources.FindString("LoginFailed"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                dialogs.ShowMessage(resources.FindString("LOCLoginFailed"), "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

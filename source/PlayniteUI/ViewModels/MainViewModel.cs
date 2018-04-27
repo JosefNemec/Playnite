@@ -641,12 +641,12 @@ namespace PlayniteUI.ViewModels
                         }
                     })
                     {
-                        ProgressText = Resources.FindString("DBUpgradeProgress")
+                        ProgressText = Resources.FindString("LOCDBUpgradeProgress")
                     };
 
                     if (progressModel.ActivateProgress() == false)
                     {
-                        Dialogs.ShowMessage(Resources.FindString("DBUpgradeFail"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                        Dialogs.ShowMessage(Resources.FindString("LOCDBUpgradeFail"), "", MessageBoxButton.OK, MessageBoxImage.Error);
                         GameAdditionAllowed = true;
                         return;
                     }
@@ -660,15 +660,15 @@ namespace PlayniteUI.ViewModels
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 Logger.Error(exc, "Failed to open database.");
-                var message = Resources.FindString("DatabaseOpenError") + $" {exc.Message}";
+                var message = Resources.FindString("LOCDatabaseOpenError") + $" {exc.Message}";
                 if (exc is System.IO.IOException || exc is UnauthorizedAccessException)
                 {
-                    message = string.Format(Resources.FindString("DatabaseOpenAccessError"), AppSettings.DatabasePath);
+                    message = string.Format(Resources.FindString("LOCDatabaseOpenAccessError"), AppSettings.DatabasePath);
                 }
 
                 Dialogs.ShowMessage(
                         message,
-                        Resources.FindString("DatabaseErroTitle"),
+                        Resources.FindString("LOCDatabaseErroTitle"),
                         MessageBoxButton.OK,
                         MessageBoxImage.Error);
                 GameAdditionAllowed = false;
@@ -730,7 +730,7 @@ namespace PlayniteUI.ViewModels
                     ProgressVisible = true;
                     ProgressValue = 0;
                     ProgressTotal = 1;
-                    ProgressStatus = Resources.FindString("ProgressInstalledGames");
+                    ProgressStatus = Resources.FindString("LOCProgressInstalledGames");
 
                     try
                     {
@@ -745,7 +745,7 @@ namespace PlayniteUI.ViewModels
                         Logger.Error(e, "Failed to import installed Battle.net games.");
                         AddMessage(new NotificationMessage(
                             NotificationCodes.BattleNetInstalledImportError,
-                            Resources.FindString("BnetInstalledImportError") + $" {e.Message}",
+                            Resources.FindString("LOCBnetInstalledImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
 
@@ -762,7 +762,7 @@ namespace PlayniteUI.ViewModels
                         Logger.Error(e, "Failed to import installed Uplay games.");
                         AddMessage(new NotificationMessage(
                             NotificationCodes.UplayInstalledImportError,
-                            Resources.FindString("UplayInstalledImportError") + $" {e.Message}",
+                            Resources.FindString("LOCUplayInstalledImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
 
@@ -779,7 +779,7 @@ namespace PlayniteUI.ViewModels
                         Logger.Error(e, "Failed to import installed GOG games.");
                         AddMessage(new NotificationMessage(
                             NotificationCodes.GOGLInstalledImportError,
-                            Resources.FindString("GOGInstalledImportError") + $" {e.Message}",
+                            Resources.FindString("LOCGOGInstalledImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
 
@@ -796,7 +796,7 @@ namespace PlayniteUI.ViewModels
                         Logger.Error(e, "Failed to import installed Steam games.");
                         AddMessage(new NotificationMessage(
                             NotificationCodes.SteamInstalledImportError,
-                            Resources.FindString("SteamInstalledImportError") + $" {e.Message}",
+                            Resources.FindString("LOCSteamInstalledImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
 
@@ -813,11 +813,11 @@ namespace PlayniteUI.ViewModels
                         Logger.Error(e, "Failed to import installed Origin games.");
                         AddMessage(new NotificationMessage(
                             NotificationCodes.OriginInstalledImportError,
-                            Resources.FindString("OriginInstalledImportError") + $" {e.Message}",
+                            Resources.FindString("LOCOriginInstalledImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
 
-                    ProgressStatus = Resources.FindString("ProgressGOGLibImport");
+                    ProgressStatus = Resources.FindString("LOCProgressGOGLibImport");
 
                     try
                     {
@@ -832,11 +832,11 @@ namespace PlayniteUI.ViewModels
                         Logger.Error(e, "Failed to download GOG library updates.");
                         AddMessage(new NotificationMessage(
                             NotificationCodes.GOGLibDownloadError,
-                            Resources.FindString("GOGLibraryImportError") + $" {e.Message}",
+                            Resources.FindString("LOCGOGLibraryImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
 
-                    ProgressStatus = Resources.FindString("ProgressSteamLibImport");
+                    ProgressStatus = Resources.FindString("LOCProgressSteamLibImport");
 
                     try
                     {
@@ -851,13 +851,13 @@ namespace PlayniteUI.ViewModels
                         Logger.Error(e, "Failed to download Steam library updates.");
                         AddMessage(new NotificationMessage(
                             NotificationCodes.SteamLibDownloadError,
-                            Resources.FindString("SteamLibraryImportError") + $" {e.Message}",
+                            Resources.FindString("LOCSteamLibraryImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
                                         
                     if (steamImportCatId > 0)
                     {
-                        ProgressStatus = Resources.FindString("ProgressSteamCategoryImport");
+                        ProgressStatus = Resources.FindString("LOCProgressSteamCategoryImport");
 
                         try
                         {
@@ -869,12 +869,12 @@ namespace PlayniteUI.ViewModels
                             Logger.Error(e, "Failed to import Steam categories.");
                             AddMessage(new NotificationMessage(
                                 NotificationCodes.SteamCatImportError,
-                                Resources.FindString("SteamCategoryImportError") + $" {e.Message}",
+                                Resources.FindString("LOCSteamCategoryImportError") + $" {e.Message}",
                                 NotificationType.Error, null));
                         }
                     }
 
-                    ProgressStatus = Resources.FindString("ProgressOriginLibImport");
+                    ProgressStatus = Resources.FindString("LOCProgressOriginLibImport");
 
                     try
                     {
@@ -889,11 +889,11 @@ namespace PlayniteUI.ViewModels
                         Logger.Error(e, "Failed to download Origin library updates.");
                         AddMessage(new NotificationMessage(
                             NotificationCodes.OriginLibDownloadError,
-                            Resources.FindString("OriginLibraryImportError") + $" {e.Message}",
+                            Resources.FindString("LOCOriginLibraryImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
 
-                    ProgressStatus = Resources.FindString("ProgressBattleNetLibImport");
+                    ProgressStatus = Resources.FindString("LOCProgressBattleNetLibImport");
 
                     try
                     {
@@ -908,11 +908,11 @@ namespace PlayniteUI.ViewModels
                         Logger.Error(e, "Failed to download Battle.net library updates.");
                         AddMessage(new NotificationMessage(
                             NotificationCodes.BattleNetLibDownloadImportError,
-                            Resources.FindString("BnetLibraryImportError") + $" {e.Message}",
+                            Resources.FindString("LOCBnetLibraryImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
                                         
-                    ProgressStatus = Resources.FindString("ProgressLibImportFinish");
+                    ProgressStatus = Resources.FindString("LOCProgressLibImportFinish");
                     Thread.Sleep(1500);
 
                     if (addedGames.Any() && metaForNewGames)
@@ -920,12 +920,12 @@ namespace PlayniteUI.ViewModels
                         Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
                         ProgressValue = 0;
                         ProgressTotal = addedGames.Count;
-                        ProgressStatus = Resources.FindString("ProgressMetadata");
+                        ProgressStatus = Resources.FindString("LOCProgressMetadata");
                         var metaSettings = new MetadataDownloaderSettings();
                         metaSettings.ConfigureFields(MetadataSource.Store, true);
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                        var downloader = new MetadataDownloader();
+                        var downloader = new MetadataDownloader(AppSettings);
                         downloader.DownloadMetadataThreaded(
                             addedGames,
                             Database,
@@ -981,8 +981,8 @@ namespace PlayniteUI.ViewModels
                 ProgressVisible = true;
                 ProgressValue = 0;
                 ProgressTotal = games.Count;
-                ProgressStatus = Resources.FindString("ProgressMetadata");
-                var downloader = new MetadataDownloader();
+                ProgressStatus = Resources.FindString("LOCProgressMetadata");
+                var downloader = new MetadataDownloader(AppSettings);
                 GlobalTaskHandler.ProgressTask =
                     downloader.DownloadMetadataThreaded(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GlobalTaskHandler.CancelToken);
                 await GlobalTaskHandler.ProgressTask;
@@ -1069,11 +1069,6 @@ namespace PlayniteUI.ViewModels
         public void ConfigurePlatforms(PlatformsViewModel model)
         {
             model.OpenView();
-        }
-
-        public void SetViewType(ViewType type)
-        {
-            AppSettings.GamesViewType = type;
         }
 
         public void SelectGame(string providerId)

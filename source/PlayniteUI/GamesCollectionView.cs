@@ -225,6 +225,13 @@ namespace PlayniteUI
         public int? CriticScore => Game.CriticScore;
         public int? CommunityScore => Game.CommunityScore;
 
+        public object IconObject => GetImageObject(Game.Icon);
+        public object ImageObject => GetImageObject(Game.Image);
+        public object BackgroundImageObject => GetImageObject(Game.BackgroundImage);
+        public object DefaultIconObject => GetImageObject(DefaultIcon);
+        public object DefaultImageObject => GetImageObject(DefaultImage);
+
+
         public string Name
         {
             get
@@ -337,6 +344,26 @@ namespace PlayniteUI
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DisplayName"));
             }
+
+            if (propertyName == "Icon")
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IconObject"));
+            }
+
+            if (propertyName == "Image")
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ImageObject"));
+            }
+
+            if (propertyName == "BackgroundImage")
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BackgroundImageObject"));
+            }
+        }
+
+        private object GetImageObject(string data)
+        {
+            return CustomImageStringToImageConverter.GetImageFromSource(data);
         }
 
         public override string ToString()
@@ -417,13 +444,14 @@ namespace PlayniteUI
             database.PlatformUpdated += Database_PlatformUpdated;
             Items = new RangeObservableCollection<GameViewEntry>();
             Settings = settings;
-            Settings.PropertyChanged += Settings_PropertyChanged;
             if (IsFullscreen)
             {
+                Settings.FullscreenViewSettings.PropertyChanged += Settings_PropertyChanged;
                 Settings.FullScreenFilterSettings.FilterChanged += FilterSettings_FilterChanged;
             }
             else
             {
+                Settings.ViewSettings.PropertyChanged += Settings_PropertyChanged;
                 Settings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             }
 
@@ -441,10 +469,12 @@ namespace PlayniteUI
             Settings.PropertyChanged -= Settings_PropertyChanged;
             if (IsFullscreen)
             {
+                Settings.FullscreenViewSettings.PropertyChanged -= Settings_PropertyChanged;
                 Settings.FullScreenFilterSettings.FilterChanged -= FilterSettings_FilterChanged;
             }
             else
             {
+                Settings.ViewSettings.PropertyChanged -= Settings_PropertyChanged;
                 Settings.FilterSettings.FilterChanged -= FilterSettings_FilterChanged;
             }
         }
@@ -832,7 +862,8 @@ namespace PlayniteUI
 
         private void SetViewDescriptions()
         {
-            var sortDirection = Settings.SortingOrderDirection == SortOrderDirection.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;
+            ViewSettings viewSettings = IsFullscreen ? Settings.FullscreenViewSettings : Settings.ViewSettings;            
+            var sortDirection = viewSettings.SortingOrderDirection == SortOrderDirection.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;
 
             if (IsFullscreen)
             {
@@ -840,7 +871,7 @@ namespace PlayniteUI
             }
             else
             {
-                switch (Settings.GroupingOrder)
+                switch (viewSettings.GroupingOrder)
                 {
                     case GroupOrder.None:
                         ViewType = GamesViewType.Standard;
@@ -857,18 +888,23 @@ namespace PlayniteUI
                 }
             }
 
-            CollectionView.SortDescriptions.Add(new SortDescription(Settings.SortingOrder.ToString(), sortDirection));
-            if (Settings.SortingOrder != SortOrder.Name)
+            if (viewSettings.SortingOrder == SortOrder.Name)
+            {
+                sortDirection = sortDirection == ListSortDirection.Ascending ? ListSortDirection.Descending : ListSortDirection.Ascending;
+            }
+
+            CollectionView.SortDescriptions.Add(new SortDescription(viewSettings.SortingOrder.ToString(), sortDirection));
+            if (viewSettings.SortingOrder != SortOrder.Name)
             {
                 CollectionView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             }
 
-            if (Settings.GroupingOrder != GroupOrder.None)
+            if (viewSettings.GroupingOrder != GroupOrder.None)
             {
-                CollectionView.GroupDescriptions.Add(new PropertyGroupDescription(Settings.GroupingOrder.ToString()));
-                if (CollectionView.SortDescriptions.First().PropertyName != Settings.GroupingOrder.ToString())
+                CollectionView.GroupDescriptions.Add(new PropertyGroupDescription(viewSettings.GroupingOrder.ToString()));
+                if (CollectionView.SortDescriptions.First().PropertyName != viewSettings.GroupingOrder.ToString())
                 {
-                    CollectionView.SortDescriptions.Insert(0, new SortDescription(Settings.GroupingOrder.ToString(), ListSortDirection.Ascending));
+                    CollectionView.SortDescriptions.Insert(0, new SortDescription(viewSettings.GroupingOrder.ToString(), ListSortDirection.Ascending));
                 }
             }
         }

@@ -19,6 +19,7 @@
         <pui:BoolToAutoWidthConverter x:Key="BoolToAutoWidthConverter" />        
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <pui:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
+        <pui:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
         <pui:ValueConverterGroup x:Key="EnumCompVisibilityConverter">
             <pui:EnumConverter/>
             <pui:BooleanToHiddenConverter />
@@ -36,9 +37,9 @@
                     <DataTemplate>
                         <Grid>
                             <TextBlock FontFamily="Marlett" Text="5" Style="{StaticResource BaseTextBlockStyle}"
-                       Visibility="{Binding Path=AppSettings.SortingOrderDirection, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrderDirection.Ascending}}"/>
+                       Visibility="{Binding Path=AppSettings.ViewSettings.SortingOrderDirection, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrderDirection.Ascending}}"/>
                             <TextBlock FontFamily="Marlett" Text="6" Style="{StaticResource BaseTextBlockStyle}"
-                       Visibility="{Binding Path=AppSettings.SortingOrderDirection, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrderDirection.Descending}}"/>
+                       Visibility="{Binding Path=AppSettings.ViewSettings.SortingOrderDirection, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrderDirection.Descending}}"/>
                         </Grid>
                     </DataTemplate>
                 </Setter.Value>
@@ -70,7 +71,7 @@
                         <Setter Property="Foreground" Value="{StaticResource TextBrushDarker}" />
                     </DataTrigger>
                     <Trigger Property="IsSelected" Value="True">
-                        <Setter Property="Foreground" Value="{StaticResource TextBrushDark}" />
+                        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
@@ -106,57 +107,57 @@
                 <GridView.ColumnHeaderContextMenu>
                     <ContextMenu Name="HeaderMenu"
                                  DataContext="{Binding Data,Source={StaticResource SettingsProxy}}">
-                        <MenuItem Header="{DynamicResource GameIconTitle}"
+                        <MenuItem Header="{DynamicResource LOCGameIconTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Icon]}" />
-                        <MenuItem Header="{DynamicResource GameNameTitle}"
+                        <MenuItem Header="{DynamicResource LOCGameNameTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Name]}" />
-                        <MenuItem Header="{DynamicResource GamePlatformTitle}"
+                        <MenuItem Header="{DynamicResource LOCGamePlatformTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Platform]}" />
-                        <MenuItem Header="{DynamicResource GameProviderTitle}"
+                        <MenuItem Header="{DynamicResource LOCGameProviderTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Provider]}" />
-                        <MenuItem Header="{DynamicResource GameDevelopersTitle}"
+                        <MenuItem Header="{DynamicResource LOCGameDevelopersTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Developers]}" />
-                        <MenuItem Header="{DynamicResource GamePublishersTitle}"
+                        <MenuItem Header="{DynamicResource LOCGamePublishersTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Publishers]}" />
-                        <MenuItem Header="{DynamicResource GameReleaseDateTitle}"
+                        <MenuItem Header="{DynamicResource LOCGameReleaseDateTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[ReleaseDate]}" />
-                        <MenuItem Header="{DynamicResource GameGenresTitle}"
+                        <MenuItem Header="{DynamicResource LOCGameGenresTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Genres]}" />
-                        <MenuItem Header="{DynamicResource GameCategoriesTitle}"
+                        <MenuItem Header="{DynamicResource LOCGameCategoriesTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Categories]}" />
-                        <MenuItem Header="{DynamicResource GameTagsTitle}"
+                        <MenuItem Header="{DynamicResource LOCGameTagsTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Tags]}" />
-                        <MenuItem Header="{DynamicResource GameIsInstalledTitle}"
+                        <MenuItem Header="{DynamicResource LOCGameIsInstalledTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[IsInstalled]}" />
-                        <MenuItem Header="{DynamicResource GameInstallDirTitle}"
+                        <MenuItem Header="{DynamicResource LOCGameInstallDirTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[InstallDirectory]}" />
-                        <MenuItem Header="{DynamicResource GameLastActivityTitle}"
+                        <MenuItem Header="{DynamicResource LOCGameLastActivityTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[LastActivity]}" />
-                        <MenuItem Header="{DynamicResource TimePlayed}"
+                        <MenuItem Header="{DynamicResource LOCTimePlayed}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Playtime]}" />
-                        <MenuItem Header="{DynamicResource PlayCountLabel}"
+                        <MenuItem Header="{DynamicResource LOCPlayCountLabel}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[PlayCount]}" />
-                        <MenuItem Header="{DynamicResource CompletionStatus}"
+                        <MenuItem Header="{DynamicResource LOCCompletionStatus}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[CompletionStatus]}" />
-                        <MenuItem Header="{DynamicResource SeriesLabel}"
+                        <MenuItem Header="{DynamicResource LOCSeriesLabel}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Series]}" />
-                        <MenuItem Header="{DynamicResource VersionLabel}"
+                        <MenuItem Header="{DynamicResource LOCVersionLabel}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Version]}" />
-                        <MenuItem Header="{DynamicResource AgeRatingLabel}"
+                        <MenuItem Header="{DynamicResource LOCAgeRatingLabel}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[AgeRating]}" />
-                        <MenuItem Header="{DynamicResource RegionLabel}"
+                        <MenuItem Header="{DynamicResource LOCRegionLabel}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Region]}" />
-                        <MenuItem Header="{DynamicResource SourceLabel}"
+                        <MenuItem Header="{DynamicResource LOCSourceLabel}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Source]}" />
-                        <MenuItem Header="{DynamicResource AddedLabel}"
+                        <MenuItem Header="{DynamicResource LOCAddedLabel}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Added]}" />
-                        <MenuItem Header="{DynamicResource ModifiedLabel}"
+                        <MenuItem Header="{DynamicResource LOCModifiedLabel}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Modified]}" />
-                        <MenuItem Header="{DynamicResource UserScore}"
+                        <MenuItem Header="{DynamicResource LOCUserScore}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[UserScore]}" />
-                        <MenuItem Header="{DynamicResource CriticScore}"
+                        <MenuItem Header="{DynamicResource LOCCriticScore}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[CriticScore]}" />
-                        <MenuItem Header="{DynamicResource CommunityScore}"
+                        <MenuItem Header="{DynamicResource LOCCommunityScore}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[CommunityScore]}" />
                     </ContextMenu>
                 </GridView.ColumnHeaderContextMenu>
@@ -172,8 +173,8 @@
                                     RenderOptions.BitmapScalingMode="HighQuality">
                                 <Image.Source>
                                     <PriorityBinding>
-                                        <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}" ConverterParameter="Icon"/>
-                                        <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
+                                        <Binding Path="IconObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
+                                        <Binding Path="DefaultIconObject" Mode="OneWay" />
                                     </PriorityBinding>
                                 </Image.Source>
                             </Image>
@@ -187,9 +188,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Name}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GameNameTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCGameNameTitle}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Name}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Name}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -207,9 +208,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Platform}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GamePlatformTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCGamePlatformTitle}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Platform}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Platform}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -227,9 +228,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Provider}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GameProviderTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCGameProviderTitle}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Provider}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Provider}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -247,9 +248,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Developers}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GameDevelopersTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCGameDevelopersTitle}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Developers}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Developers}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -267,9 +268,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Publishers}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GamePublishersTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCGamePublishersTitle}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Publishers}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Publishers}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -287,9 +288,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.ReleaseDate}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GameReleaseDateTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.ReleaseDate}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.ReleaseDate}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -307,9 +308,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Genres}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GameGenresTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCGameGenresTitle}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Genres}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Genres}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -327,9 +328,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Categories}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GameCategoriesTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCGameCategoriesTitle}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Categories}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Categories}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -347,9 +348,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Tags}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GameTagsTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCGameTagsTitle}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Tags}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Tags}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -367,9 +368,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.IsInstalled}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GameIsInstalledTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCGameIsInstalledTitle}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.IsInstalled}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.IsInstalled}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -387,9 +388,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.InstallDirectory}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GameInstallDirTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCGameInstallDirTitle}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.InstallDirectory}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.InstallDirectory}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -407,9 +408,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.LastActivity}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GameLastActivityTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCGameLastActivityTitle}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.LastActivity}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.LastActivity}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -427,9 +428,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Playtime}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource TimePlayed}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCTimePlayed}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Playtime}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Playtime}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -447,9 +448,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.PlayCount}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource PlayCountLabel}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCPlayCountLabel}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.PlayCount}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.PlayCount}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -467,9 +468,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.CompletionStatus}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource CompletionStatus}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCCompletionStatus}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.CompletionStatus}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.CompletionStatus}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -487,9 +488,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Series}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource SeriesLabel}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCSeriesLabel}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Series}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Series}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -507,9 +508,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Version}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource VersionLabel}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCVersionLabel}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Version}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Version}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -527,9 +528,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.AgeRating}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource AgeRatingLabel}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCAgeRatingLabel}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.AgeRating}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.AgeRating}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -547,9 +548,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Region}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource RegionLabel}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCRegionLabel}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Region}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Region}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -567,9 +568,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Source}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource SourceLabel}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCSourceLabel}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Source}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Source}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -587,9 +588,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Added}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource AddedLabel}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCAddedLabel}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Added}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Added}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -607,9 +608,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Modified}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource ModifiedLabel}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCModifiedLabel}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Modified}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.Modified}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -627,9 +628,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.UserScore}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource UserScore}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCUserScore}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.UserScore}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.UserScore}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -647,9 +648,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.CriticScore}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource CriticScore}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCCriticScore}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.CriticScore}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.CriticScore}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
@@ -667,9 +668,9 @@
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.CommunityScore}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource CommunityScore}" Style="{StaticResource BaseTextBlockStyle}" />
+                                    <TextBlock Text="{DynamicResource LOCCommunityScore}" Style="{StaticResource BaseTextBlockStyle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.CommunityScore}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static playnite:SortOrder.CommunityScore}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>

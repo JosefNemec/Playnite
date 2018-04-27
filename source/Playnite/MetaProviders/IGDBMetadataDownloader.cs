@@ -80,7 +80,7 @@ namespace Playnite.MetaProviders
                 game.Publishers = new ComparableList<string>(dbGame.publishers);
             }
 
-            if (dbGame.developers?.Any() == true)
+            if (dbGame.genres?.Any() == true)
             {
                 game.Genres = new ComparableList<string>(dbGame.genres);
             }

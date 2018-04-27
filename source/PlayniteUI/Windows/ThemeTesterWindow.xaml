@@ -176,7 +176,7 @@ ItemsSource="{Binding MyListBoxItems}"
                         </StackPanel>
                     </ScrollViewer>
                     <StackPanel Grid.Column="1" Margin="10" Width="200">
-                        <Button Content="{DynamicResource ThemeTestReloadList}" Name="ButtonReloadSkinList"
+                        <Button Content="{DynamicResource LOCThemeTestReloadList}" Name="ButtonReloadSkinList"
                                 Click="ButtonReloadSkinList_Click" Margin="5"/>
                         <ListBox Margin="5"
                                  ItemsSource="{Binding SkinList}"
@@ -187,10 +187,10 @@ ItemsSource="{Binding MyListBoxItems}"
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <Button Content="{DynamicResource ThemeTestApplySkin}" Name="ButtonApplySkin" Margin="5"
+                        <Button Content="{DynamicResource LOCThemeTestApplySkin}" Name="ButtonApplySkin" Margin="5"
                                 Click="ButtonApplySkin_Click" />
-                        <CheckBox Content="{DynamicResource ThemeTestWatchChanges}" Margin="5"
-                                  ToolTip="{DynamicResource ThemeTestWatchChangesTooltip}"
+                        <CheckBox Content="{DynamicResource LOCThemeTestWatchChanges}" Margin="5"
+                                  ToolTip="{DynamicResource LOCThemeTestWatchChangesTooltip}"
                                   IsChecked="{Binding WatchSkinFile}"/>
                         <TextBox Margin="5" TextWrapping="Wrap" AcceptsReturn="True"
                                  Height="100" Text="{Binding ValidationError, Mode=OneWay}"

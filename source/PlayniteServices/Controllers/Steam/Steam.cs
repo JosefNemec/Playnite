@@ -7,31 +7,27 @@ namespace PlayniteServices.Controllers.Steam
 {
     public class Steam
     {
-        private static int? storeCacheTimeout;
         public static int StoreCacheTimeout
         {
             get
             {
-                if (storeCacheTimeout == null)
-                {
-                    storeCacheTimeout = int.Parse(Startup.Configuration.GetSection("SteamStoreCacheTimeout").Value);
-                }
-
-                return storeCacheTimeout.Value;
+                return int.Parse(Startup.Configuration.GetSection("Steam")["StoreCacheTimeout"]);
             }
         }
 
-        private static int? appInfoCacheTimeout;
         public static int AppInfoCacheTimeout
         {
             get
             {
-                if (appInfoCacheTimeout == null)
-                {
-                    appInfoCacheTimeout = int.Parse(Startup.Configuration.GetSection("SteamAppInfoCacheTimeout").Value);
-                }
+                return int.Parse(Startup.Configuration.GetSection("Steam")["AppInfoCacheTimeout"]);
+            }
+        }
 
-                return appInfoCacheTimeout.Value;
+        public static string ApiKey
+        {
+            get
+            {
+                return Startup.Configuration.GetSection("Steam")["ApiKey"];
             }
         }
     }

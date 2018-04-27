@@ -311,7 +311,7 @@ namespace Playnite.Providers.BattleNet
                         {
                             Provider = Provider.BattleNet,
                             ProviderId = product.ProductId,
-                            Source = "Battle.net",
+                            Source = Enums.GetEnumDescription(Provider.BattleNet),
                             Name = product.Name,
                             PlayTask = new GameTask()
                             {
@@ -344,7 +344,7 @@ namespace Playnite.Providers.BattleNet
                     {
                         Provider = Provider.BattleNet,
                         ProviderId = product.ProductId,
-                        Source = "Battle.net",
+                        Source = Enums.GetEnumDescription(Provider.BattleNet),
                         Name = product.Name,
                         PlayTask = GetGamePlayTask(product.ProductId),
                         InstallDirectory = prog.InstallLocation
@@ -429,7 +429,7 @@ namespace Playnite.Providers.BattleNet
                     var game = new Game()
                     {
                         Provider = Provider.BattleNet,
-                        Source = "Battle.net",
+                        Source = Enums.GetEnumDescription(Provider.BattleNet),
                         ProviderId = product.ProductId,
                         Name = product.Name
                     };

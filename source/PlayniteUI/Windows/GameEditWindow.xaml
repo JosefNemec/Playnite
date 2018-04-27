@@ -11,7 +11,7 @@
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
-        Title="{DynamicResource GameEditWindowTitle}"
+        Title="{DynamicResource LOCGameEditWindowTitle}"
         Height="720" Width="850"
         WindowStartupLocation="CenterOwner"
         x:Name="mainWindow" Loaded="Window_Loaded"
@@ -45,9 +45,9 @@
             <TabItem Name="TabGeneral">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource GameEditChangeNotif}"
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
                                     Visibility="{Binding ShowGeneralChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{DynamicResource GeneralLabel}"
+                        <TextBlock Text="{DynamicResource LOCGeneralLabel}"
                                     Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
                     </StackPanel>
                 </TabItem.Header>
@@ -132,7 +132,7 @@
                                 Visibility="{Binding Source={x:Static playnite:PlayniteEnvironment.IsDebugBuild}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <!-- Name -->
-                    <TextBlock Grid.Column="0" Grid.Row="1" Text="{DynamicResource NameLabel}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="{DynamicResource LOCNameLabel}"/>
                     <CheckBox Grid.Column="1" Grid.Row="1" Name="CheckName"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseNameChanges}"/>
@@ -140,7 +140,7 @@
                                 Text="{Binding EditingGame.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <!-- Sorting Name -->
-                    <TextBlock Grid.Column="0" Grid.Row="2" Text="{DynamicResource GameSortingNameTitle}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="{DynamicResource LOCGameSortingNameTitle}"/>
                     <CheckBox Grid.Column="1" Grid.Row="2" Name="CheckSortingName"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseSortingNameChanges}"/>
@@ -148,7 +148,7 @@
                                 Text="{Binding EditingGame.SortingName, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <!-- Platform -->
-                    <TextBlock Grid.Column="0" Grid.Row="3" Text="{DynamicResource GamePlatformTitle}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="{DynamicResource LOCGamePlatformTitle}"/>
                     <CheckBox Grid.Column="1" Grid.Row="3" Name="CheckPlatform"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UsePlatformChanges}"/>
@@ -163,7 +163,7 @@
                     </ComboBox>
 
                     <!-- Genres -->
-                    <TextBlock Grid.Column="0" Grid.Row="4" Text="{DynamicResource GameGenresTitle}" />
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="{DynamicResource LOCGameGenresTitle}" />
                     <CheckBox Grid.Column="1" Grid.Row="4" Name="CheckGenres"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseGenresChanges}"/>
@@ -171,7 +171,7 @@
                                 Text="{Binding EditingGame.Genres, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}, Delay=1000}"/>
 
                     <!-- Release Date -->
-                    <TextBlock Grid.Column="0" Grid.Row="5" Text="{DynamicResource GameReleaseDateTitle}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="{DynamicResource LOCGameReleaseDateTitle}"/>
                     <CheckBox Grid.Column="1" Grid.Row="5" Name="CheckReleaseDate"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseReleaseDateChanges}"/>
@@ -179,7 +179,7 @@
                                 SelectedDate="{Binding EditingGame.ReleaseDate}"/>
 
                     <!-- Developers -->
-                    <TextBlock Grid.Column="0" Grid.Row="6" Text="{DynamicResource GameDevelopersTitle}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="6" Text="{DynamicResource LOCGameDevelopersTitle}"/>
                     <CheckBox Grid.Column="1" Grid.Row="6" Name="CheckDeveloper"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseDeveloperChanges}"/>
@@ -187,7 +187,7 @@
                                 Text="{Binding EditingGame.Developers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}, Delay=1000}"/>
 
                     <!-- Publishers -->
-                    <TextBlock Grid.Column="0" Grid.Row="7" Text="{DynamicResource GamePublishersTitle}" />
+                    <TextBlock Grid.Column="0" Grid.Row="7" Text="{DynamicResource LOCGamePublishersTitle}" />
                     <CheckBox Grid.Column="1" Grid.Row="7" Name="CheckPublisher"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UsePublisherChanges}"/>
@@ -195,7 +195,7 @@
                                 Text="{Binding EditingGame.Publishers, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}, Delay=1000}"/>
 
                     <!-- Categories -->
-                    <TextBlock Grid.Column="0" Grid.Row="8" Text="{DynamicResource GameCategoriesTitle}" />
+                    <TextBlock Grid.Column="0" Grid.Row="8" Text="{DynamicResource LOCGameCategoriesTitle}" />
                     <CheckBox Grid.Column="1" Grid.Row="8" Name="CheckCategories"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseCategoryChanges}"/>
@@ -208,7 +208,7 @@
                     </DockPanel>
 
                     <!-- Tags -->
-                    <TextBlock Grid.Column="0" Grid.Row="9" Text="{DynamicResource GameTagsTitle}" />
+                    <TextBlock Grid.Column="0" Grid.Row="9" Text="{DynamicResource LOCGameTagsTitle}" />
                     <CheckBox Grid.Column="1" Grid.Row="9" Name="CheckTag"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseTagChanges}"/>
@@ -216,7 +216,7 @@
                                 Text="{Binding EditingGame.Tags, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}, Delay=1000}"/>
 
                     <!-- Description -->
-                    <TextBlock Grid.Column="0" Grid.Row="10" Text="{DynamicResource GameDescriptionTitle}" />
+                    <TextBlock Grid.Column="0" Grid.Row="10" Text="{DynamicResource LOCGameDescriptionTitle}" />
                     <CheckBox Grid.Column="1" Grid.Row="10" Name="CheckDescription" 
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseDescriptionChanges}"/>
@@ -225,11 +225,11 @@
                              TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
                              ScrollViewer.VerticalScrollBarVisibility="Auto"
                              Text="{Binding EditingGame.Description, UpdateSourceTrigger=PropertyChanged}"
-                             ToolTip="{DynamicResource DescriptionHTMLSupportTooltip}"
+                             ToolTip="{DynamicResource LOCDescriptionHTMLSupportTooltip}"
                              ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"/>                    
                     
                     <!-- Series -->
-                    <TextBlock Grid.Column="3" Grid.Row="1" Text="{DynamicResource SeriesLabel}"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" Text="{DynamicResource LOCSeriesLabel}"/>
                     <CheckBox Grid.Column="4" Grid.Row="1"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseSeriesChanges}"/>
@@ -237,7 +237,7 @@
                              Text="{Binding EditingGame.Series, UpdateSourceTrigger=PropertyChanged}"/>
                     
                     <!-- Version -->
-                    <TextBlock Grid.Column="3" Grid.Row="2" Text="{DynamicResource VersionLabel}"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" Text="{DynamicResource LOCVersionLabel}"/>
                     <CheckBox Grid.Column="4" Grid.Row="2"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseVersionChanges}"/>
@@ -245,7 +245,7 @@
                              Text="{Binding EditingGame.Version, UpdateSourceTrigger=PropertyChanged}"/>
                     
                     <!-- AgeRating -->
-                    <TextBlock Grid.Column="3" Grid.Row="3" Text="{DynamicResource AgeRatingLabel}"/>
+                    <TextBlock Grid.Column="3" Grid.Row="3" Text="{DynamicResource LOCAgeRatingLabel}"/>
                     <CheckBox Grid.Column="4" Grid.Row="3"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseAgeRatingChanges}"/>
@@ -253,7 +253,7 @@
                              Text="{Binding EditingGame.AgeRating, UpdateSourceTrigger=PropertyChanged}"/>
                     
                     <!-- Region -->
-                    <TextBlock Grid.Column="3" Grid.Row="4" Text="{DynamicResource RegionLabel}"/>
+                    <TextBlock Grid.Column="3" Grid.Row="4" Text="{DynamicResource LOCRegionLabel}"/>
                     <CheckBox Grid.Column="4" Grid.Row="4"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseRegionChanges}"/>
@@ -261,7 +261,7 @@
                              Text="{Binding EditingGame.Region, UpdateSourceTrigger=PropertyChanged}"/>
                     
                     <!-- Source -->
-                    <TextBlock Grid.Column="3" Grid.Row="5" Text="{DynamicResource SourceLabel}"/>
+                    <TextBlock Grid.Column="3" Grid.Row="5" Text="{DynamicResource LOCSourceLabel}"/>
                     <CheckBox Grid.Column="4" Grid.Row="5"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseSourceChanges}"/>
@@ -269,40 +269,40 @@
                              Text="{Binding EditingGame.Source, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <!-- UserScore -->
-                    <TextBlock Grid.Column="3" Grid.Row="6" Text="{DynamicResource UserScore}"/>
+                    <TextBlock Grid.Column="3" Grid.Row="6" Text="{DynamicResource LOCUserScore}"/>
                     <CheckBox Grid.Column="4" Grid.Row="6"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseUserScoreChanges}"/>
                     <controls:NullableIntBox Grid.Column="5" Grid.Row="6" Width="50" HorizontalAlignment="Left"
                                              MinValue="0" MaxValue="100"
                                              Value="{Binding EditingGame.UserScore}"
-                                             ToolTip="{DynamicResource DescriptionScoreValues}"
+                                             ToolTip="{DynamicResource LOCDescriptionScoreValues}"
                                              ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0" />
 
                     <!-- CriticScore -->
-                    <TextBlock Grid.Column="3" Grid.Row="7" Text="{DynamicResource CriticScore}"/>
+                    <TextBlock Grid.Column="3" Grid.Row="7" Text="{DynamicResource LOCCriticScore}"/>
                     <CheckBox Grid.Column="4" Grid.Row="7"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseCriticScoreChanges}"/>
                     <controls:NullableIntBox Grid.Column="5" Grid.Row="7" Width="50" HorizontalAlignment="Left"
                                              MinValue="0" MaxValue="100"
                                              Value="{Binding EditingGame.CriticScore}"
-                                             ToolTip="{DynamicResource DescriptionScoreValues}"
+                                             ToolTip="{DynamicResource LOCDescriptionScoreValues}"
                                              ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0" />          
 
                     <!-- CommunityScore -->
-                    <TextBlock Grid.Column="3" Grid.Row="8" Text="{DynamicResource CommunityScore}"/>
+                    <TextBlock Grid.Column="3" Grid.Row="8" Text="{DynamicResource LOCCommunityScore}"/>
                     <CheckBox Grid.Column="4" Grid.Row="8"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseCommunityScoreChanges}"/>
                     <controls:NullableIntBox Grid.Column="5" Grid.Row="8" Width="50" HorizontalAlignment="Left"
                                              MinValue="0" MaxValue="100"
                                              Value="{Binding EditingGame.CommunityScore}"
-                                             ToolTip="{DynamicResource DescriptionScoreValues}"
+                                             ToolTip="{DynamicResource LOCDescriptionScoreValues}"
                                              ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0" />
 
                     <!-- Last Played -->
-                    <TextBlock Grid.Column="3" Grid.Row="10" Text="{DynamicResource LastPlayedLabel}"/>
+                    <TextBlock Grid.Column="3" Grid.Row="10" Text="{DynamicResource LOCLastPlayedLabel}"/>
                     <CheckBox Grid.Column="4" Grid.Row="10"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseLastActivityChanges}"/>
@@ -310,7 +310,7 @@
                                 SelectedDate="{Binding EditingGame.LastActivity}"/>
 
                     <!-- PlayTime -->
-                    <TextBlock Grid.Column="3" Grid.Row="11" Text="{DynamicResource TimePlayed}"/>
+                    <TextBlock Grid.Column="3" Grid.Row="11" Text="{DynamicResource LOCTimePlayed}"/>
                     <CheckBox Grid.Column="4" Grid.Row="11"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UsePlaytimeChanges}"/>
@@ -319,13 +319,13 @@
                                    DockPanel.Dock="Right" />
                         <controls:NumericBox LongValue="{Binding EditingGame.Playtime}"
                                              MaxLongValue="9999999999"
-                                             ToolTip="{DynamicResource DescriptionPlaytimeSeconds}"
+                                             ToolTip="{DynamicResource LOCDescriptionPlaytimeSeconds}"
                                              ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"
                                              DockPanel.Dock="Left" />
                     </DockPanel>
 
                     <!-- PlayCount -->
-                    <TextBlock Grid.Column="3" Grid.Row="12" Text="{DynamicResource PlayCountLabel}"/>
+                    <TextBlock Grid.Column="3" Grid.Row="12" Text="{DynamicResource LOCPlayCountLabel}"/>
                     <CheckBox Grid.Column="4" Grid.Row="12"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UsePlayCountChanges}"/>
@@ -333,7 +333,7 @@
                                          LongValue="{Binding EditingGame.PlayCount}" />
 
                     <!-- CompletionStatus -->
-                    <TextBlock Grid.Column="3" Grid.Row="13" Text="{DynamicResource CompletionStatus}"/>
+                    <TextBlock Grid.Column="3" Grid.Row="13" Text="{DynamicResource LOCCompletionStatus}"/>
                     <CheckBox Grid.Column="4" Grid.Row="13"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseCompletionStatusChanges}"/>
@@ -344,7 +344,7 @@
                     <Grid Height="20" Grid.Column="3" Grid.Row="14" />
 
                     <!-- Hidden -->
-                    <TextBlock Grid.Column="3" Grid.Row="15" Text="{DynamicResource GameHiddenTitle}" />
+                    <TextBlock Grid.Column="3" Grid.Row="15" Text="{DynamicResource LOCGameHiddenTitle}" />
                     <CheckBox Grid.Column="4" Grid.Row="15"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseHiddenChanges}"/>
@@ -352,7 +352,7 @@
                               IsChecked="{Binding EditingGame.Hidden}"/>
 
                     <!-- Favorite -->
-                    <TextBlock Grid.Column="3" Grid.Row="16" Text="{DynamicResource GameFavoriteTitle}" />
+                    <TextBlock Grid.Column="3" Grid.Row="16" Text="{DynamicResource LOCGameFavoriteTitle}" />
                     <CheckBox Grid.Column="4" Grid.Row="16"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseFavoriteChanges}"/>
@@ -362,7 +362,7 @@
                     <Grid Height="20" Grid.Column="3" Grid.Row="17" />
 
                     <!-- Added -->
-                    <TextBlock Grid.Column="3" Grid.Row="18" Text="{DynamicResource AddedLabel}"/>
+                    <TextBlock Grid.Column="3" Grid.Row="18" Text="{DynamicResource LOCAddedLabel}"/>
                     <CheckBox Grid.Column="4" Grid.Row="18"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseAddedChanges}"/>
@@ -370,7 +370,7 @@
                                 SelectedDate="{Binding EditingGame.Added}"/>
 
                     <!-- Modified -->
-                    <TextBlock Grid.Column="3" Grid.Row="19" Text="{DynamicResource ModifiedLabel}" />
+                    <TextBlock Grid.Column="3" Grid.Row="19" Text="{DynamicResource LOCModifiedLabel}" />
                     <TextBlock Grid.Column="5" Grid.Row="19" Margin="3,6,3,6"
                              Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>
                 </Grid>
@@ -380,9 +380,9 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource GameEditChangeNotif}"
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
                                    Visibility="{Binding ShowMediaChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{DynamicResource MediaLabel}"
+                        <TextBlock Text="{DynamicResource LOCMediaLabel}"
                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
                     </StackPanel>
                 </TabItem.Header>
@@ -395,7 +395,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <GroupBox Grid.Column="0" Grid.Row="0" Header="{DynamicResource GameIconTitle}">
+                    <GroupBox Grid.Column="0" Grid.Row="0" Header="{DynamicResource LOCGameIconTitle}">
                         <GroupBox.HeaderTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -408,13 +408,13 @@
                         </GroupBox.HeaderTemplate>
                         <DockPanel LastChildFill="True">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5" DockPanel.Dock="Top">
-                                <Button Name="ButtonSelectIcon" Content="{DynamicResource SelectIconTitle}"
+                                <Button Name="ButtonSelectIcon" Content="{DynamicResource LOCSelectIconTitle}"
                                         Command="{Binding SelectIconCommand}" />
-                                <Button Name="ButtonUseExeIcon" Content="{DynamicResource UseExeIcon}" 
+                                <Button Name="ButtonUseExeIcon" Content="{DynamicResource LOCUseExeIcon}" 
                                         Command="{Binding UseExeIconCommand}"
                                         Visibility="{Binding Game, Converter={StaticResource NullToVisibilityConverter}}"
                                         Margin="5,0,0,0"/>
-                                <Button Content="{DynamicResource RemoveLabel}" Margin="5,0,0,0"
+                                <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
                                         Command="{Binding RemoveIconCommand}" />
                             </StackPanel>
                             <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
@@ -423,7 +423,7 @@
                                        AutomationProperties.HelpText="{Binding EditingGame.Icon, TargetNullValue=''}"/>
                         </DockPanel>
                     </GroupBox>
-                    <GroupBox Grid.Column="0" Grid.Row="1" Header="{DynamicResource GameCoverImageTitle}" Margin="0,5,0,0">
+                    <GroupBox Grid.Column="0" Grid.Row="1" Header="{DynamicResource LOCGameCoverImageTitle}" Margin="0,5,0,0">
                         <GroupBox.HeaderTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -436,10 +436,10 @@
                         </GroupBox.HeaderTemplate>
                         <DockPanel LastChildFill="True">
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
-                                <Button Name="ButtonSelectImage" Content="{DynamicResource SelectCoverTitle}" 
+                                <Button Name="ButtonSelectImage" Content="{DynamicResource LOCSelectCoverTitle}" 
                                         HorizontalAlignment="Left"
                                         Command="{Binding SelectCoverCommand}"/>
-                                <Button Content="{DynamicResource RemoveLabel}" Margin="5,0,0,0"
+                                <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
                                         Command="{Binding RemoveImageCommand}" />
                             </StackPanel>
                             <Image Source="{Binding EditingGame.Image, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
@@ -449,7 +449,7 @@
                         </DockPanel>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
-                              Header="{DynamicResource GameBackgroundTitle}" Margin="5,0,0,0">
+                              Header="{DynamicResource LOCGameBackgroundTitle}" Margin="5,0,0,0">
                         <GroupBox.HeaderTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -462,16 +462,16 @@
                         </GroupBox.HeaderTemplate>
                         <DockPanel DockPanel.Dock="Top">
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
-                                <Button Content="{DynamicResource SelectFileTitle}" HorizontalAlignment="Left"
+                                <Button Content="{DynamicResource LOCSelectFileTitle}" HorizontalAlignment="Left"
                                         Command="{Binding SelectBackgroundCommand}"/>
-                                <Button Content="{DynamicResource SelectUrlTitle}" Margin="5,0,0,0" HorizontalAlignment="Left"
+                                <Button Content="{DynamicResource LOCSelectUrlTitle}" Margin="5,0,0,0" HorizontalAlignment="Left"
                                         Command="{Binding SetBackgroundUrlCommand}"/>
-                                <Button Content="{DynamicResource RemoveLabel}" Margin="5,0,0,0"
+                                <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
                                         Command="{Binding RemoveBackgroundCommand}" />
                             </StackPanel>
                             <DockPanel DockPanel.Dock="Top" Margin="5,5,0,5"
                                        Visibility="{Binding ShowBackgroundUrl, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <TextBlock Text="{DynamicResource ImageURL}" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                                <TextBlock Text="{DynamicResource LOCImageURL}" DockPanel.Dock="Left" VerticalAlignment="Center"/>
                                 <TextBox IsReadOnly="True" DockPanel.Dock="Left" Margin="5,0,0,0"
                                          Text="{Binding EditingGame.BackgroundImage}" />
                             </DockPanel>
@@ -488,16 +488,16 @@
                      Visibility="{Binding ShowLinks, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource GameEditChangeNotif}"
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
                                    Visibility="{Binding ShowLinksChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{DynamicResource LinksLabel}"
+                        <TextBlock Text="{DynamicResource LOCLinksLabel}"
                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
                     </StackPanel>
                 </TabItem.Header>
                 <DockPanel>
-                    <Button Name="ButtonAddLink" Content="{DynamicResource AddLinkButton}" HorizontalAlignment="Left" Margin="10,10,0,0"
+                    <Button Name="ButtonAddLink" Content="{DynamicResource LOCAddLinkButton}" HorizontalAlignment="Left" Margin="10,10,0,0"
                             Command="{Binding AddLinkCommand}" DockPanel.Dock="Top"/>
-                    <CheckBox Name="CheckLinks" Content="{DynamicResource SaveChanges}" Margin="10,5,5,5" DockPanel.Dock="Top"
+                    <CheckBox Name="CheckLinks" Content="{DynamicResource LOCSaveChanges}" Margin="10,5,5,5" DockPanel.Dock="Top"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseLinksChanges}" />
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10" DockPanel.Dock="Top">
@@ -518,7 +518,7 @@
 
                                             <TextBox Text="{Binding Name}" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5" />
                                             <TextBox Text="{Binding Url}" Grid.Column="1" Grid.Row="0" Margin="5" />
-                                            <Button Name="ButtonRemoveLink" Content="{DynamicResource RemoveLabel}" Grid.Column="2" Grid.Row="1"  Margin="5"
+                                            <Button Name="ButtonRemoveLink" Content="{DynamicResource LOCRemoveLabel}" Grid.Column="2" Grid.Row="1"  Margin="5"
                                                     Command="{Binding Data.RemoveLinkCommand,Source={StaticResource Proxy}}"
                                                     CommandParameter="{Binding}"/>
                                         </Grid>
@@ -534,9 +534,9 @@
                      Visibility="{Binding ShowInstallation, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource GameEditChangeNotif}"
+                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
                                    Visibility="{Binding ShowInstallChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{DynamicResource InstallationLabel}"
+                        <TextBlock Text="{DynamicResource LOCInstallationLabel}"
                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
                     </StackPanel>
                 </TabItem.Header>
@@ -551,12 +551,12 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="{DynamicResource GameInstallDirTitle}" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
+                    <TextBlock Text="{DynamicResource LOCGameInstallDirTitle}" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
                     <TextBox Grid.Column="1" Margin="5" Name="TextInstallDir"
                              Text="{Binding EditingGame.InstallDirectory, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button Content="..." Grid.Column="2" Margin="5" Name="ButtonBrowseInstallDir"
                             Command="{Binding SelectInstallDirCommand}"/>
-                    <TextBlock Text="{DynamicResource GameROMTitle}" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
+                    <TextBlock Text="{DynamicResource LOCGameROMTitle}" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
                     <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Name="TextIso"
                              Text="{Binding EditingGame.IsoPath, UpdateSourceTrigger=PropertyChanged}"  />
                     <Button Content="..." Grid.Row="1" Grid.Column="2" Margin="5" Name="ButtonBrowseIso"
@@ -564,13 +564,13 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="{DynamicResource ActionsLabel}" Name="TabActions"
+            <TabItem Header="{DynamicResource LOCActionsLabel}" Name="TabActions"
                      Visibility="{Binding ShowActions, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <GroupBox Header="{DynamicResource PlayAction}" Margin="10">
+                        <GroupBox Header="{DynamicResource LOCPlayAction}" Margin="10">
                             <StackPanel>
-                                <Button Name="ButtonAddPlay" Content="{DynamicResource AddPlayAction}" HorizontalAlignment="Left"
+                                <Button Name="ButtonAddPlay" Content="{DynamicResource LOCAddPlayAction}" HorizontalAlignment="Left"
                                         Margin="0,5,0,5" Command="{Binding AddPlayActionCommand}">
                                     <Button.Style>                                        
                                         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -583,7 +583,7 @@
                                         </Style>
                                     </Button.Style>
                                 </Button>
-                                <Button Name="ButtonRemovePlay" Content="{DynamicResource RemovePlayAction}" HorizontalAlignment="Left"
+                                <Button Name="ButtonRemovePlay" Content="{DynamicResource LOCRemovePlayAction}" HorizontalAlignment="Left"
                                         Margin="0,5,0,5" Command="{Binding DeletePlayActionCommand}">
                                     <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -602,7 +602,7 @@
                                                   Emulators="{Binding Data.Emulators, Source={StaticResource Proxy}}"/>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="{DynamicResource OtherActions}" Margin="10">
+                        <GroupBox Header="{DynamicResource LOCOtherActions}" Margin="10">
                             <StackPanel>
                                 <ItemsControl Name="OtherTasksItems" ItemsSource="{Binding EditingGame.OtherTasks}">
                                     <ItemsControl.ItemTemplate>
@@ -618,7 +618,7 @@
                                                         <Button Name="ButtonMoveDownAction" FontFamily="Marlett" Content="6" Margin="0,0,5,0"
                                                                 Command="{Binding Data.MoveDownActionCommand, Source={StaticResource Proxy}}"
                                                                 CommandParameter="{Binding }"/>
-                                                        <Button Name="ButtonDeleteAction" Content="{DynamicResource DeleteAction}"
+                                                        <Button Name="ButtonDeleteAction" Content="{DynamicResource LOCDeleteAction}"
                                                                 Command="{Binding Data.DeleteActionCommand, Source={StaticResource Proxy}}"
                                                                 CommandParameter="{Binding }"/>
                                                     </StackPanel>
@@ -627,7 +627,7 @@
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
-                                <Button Name="ButtonAddAction" Content="{DynamicResource AddAction}" HorizontalAlignment="Left" Margin="0,5,0,5"
+                                <Button Name="ButtonAddAction" Content="{DynamicResource LOCAddAction}" HorizontalAlignment="Left" Margin="0,5,0,5"
                                         Command="{Binding AddActionCommand}"/>
                             </StackPanel>
                         </GroupBox>
@@ -638,22 +638,22 @@
 
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
             <DockPanel LastChildFill="False" Margin="5">
-                <Button Name="ButtonDownload" Content="{DynamicResource MenuDownloadMetadata}" DockPanel.Dock="Left"
+                <Button Name="ButtonDownload" Content="{DynamicResource LOCMenuDownloadMetadata}" DockPanel.Dock="Left"
                         Style="{StaticResource BottomButton}"
                         pui:LeftClickContextMenuBehavior.Enabled="True">
                     <Button.ContextMenu>
                         <ContextMenu Placement="Top" Width="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}">
                             <MenuItem Header="IGDB" Command="{Binding DownloadIGDBMetadataCommand}"/>
                             <MenuItem Header="Wiki" Command="{Binding DownloadWikiMetadataCommand}"/>
-                            <MenuItem Header="{DynamicResource MetaSourceStore}" Command="{Binding DownloadStoreCommand}"
+                            <MenuItem Header="{DynamicResource LOCMetaSourceStore}" Command="{Binding DownloadStoreCommand}"
                                       Visibility="{Binding EditingGame.Provider, Converter={StaticResource EnumCompVisibilityConverterInverted}, ConverterParameter={x:Static pm:Provider.Custom}}"/>
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>
-                <Button Name="ButtonCancel" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right" IsCancel="True"
+                <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding CancelCommand}"/>
-                <Button Name="ButtonOK" Content="{DynamicResource SaveLabel}" DockPanel.Dock="Right"
+                <Button Name="ButtonOK" Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding ConfirmCommand}"/>
             </DockPanel>
@@ -661,7 +661,7 @@
 
         <Grid Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <ProgressBar IsIndeterminate="True" Width="350" Height="40" />
-            <TextBlock Text="{DynamicResource DownloadingLabel}" HorizontalAlignment="Center" VerticalAlignment="Center"
+            <TextBlock Text="{DynamicResource LOCDownloadingLabel}" HorizontalAlignment="Center" VerticalAlignment="Center"
                        Style="{DynamicResource BaseTextBlockStyle}"/>
         </Grid>
     </Grid>

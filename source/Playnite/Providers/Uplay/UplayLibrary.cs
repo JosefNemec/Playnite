@@ -49,7 +49,7 @@ namespace Playnite.Providers.Uplay
                 {
                     ProviderId = install,
                     Provider = Provider.Uplay,
-                    Source = "Uplay",
+                    Source = Enums.GetEnumDescription(Provider.Uplay),
                     InstallDirectory = installDir,
                     PlayTask = GetGamePlayTask(install),
                     Name = Path.GetFileName(installDir.TrimEnd(Path.DirectorySeparatorChar))

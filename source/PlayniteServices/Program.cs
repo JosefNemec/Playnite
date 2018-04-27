@@ -39,8 +39,8 @@ namespace PlayniteServices
                 .UseStartup<Startup>()
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
-                    config.AddJsonFile("apikeys.json", optional: false, reloadOnChange: true);
-                    config.AddJsonFile("patreon_tokens.json", optional: true, reloadOnChange: true);
+                    config.AddJsonFile("customSettings.json", optional: true, reloadOnChange: true);
+                    config.AddJsonFile("patreonTokens.json", optional: true, reloadOnChange: true);
                 })
                 .Build();
 

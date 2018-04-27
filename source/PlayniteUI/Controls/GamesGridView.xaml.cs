@@ -165,13 +165,13 @@ namespace PlayniteUI.Controls
                 return;
             }
 
-            if (AppSettings.SortingOrder == sortOrder)
+            if (AppSettings.ViewSettings.SortingOrder == sortOrder)
             {
-                AppSettings.SortingOrderDirection = AppSettings.SortingOrderDirection == SortOrderDirection.Ascending ? SortOrderDirection.Descending : SortOrderDirection.Ascending;
+                AppSettings.ViewSettings.SortingOrderDirection = AppSettings.ViewSettings.SortingOrderDirection == SortOrderDirection.Ascending ? SortOrderDirection.Descending : SortOrderDirection.Ascending;
             }
             else
             {
-                AppSettings.SortingOrder = sortOrder;
+                AppSettings.ViewSettings.SortingOrder = sortOrder;
             }
         }
     }

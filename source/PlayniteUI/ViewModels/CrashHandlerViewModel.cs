@@ -99,12 +99,12 @@ namespace PlayniteUI.ViewModels
                 try
                 {
                     Diagnostic.CreateDiagPackage(path);
-                    dialogs.ShowMessage(resources.FindString("DiagPackageCreationSuccess"));
+                    dialogs.ShowMessage(resources.FindString("LOCDiagPackageCreationSuccess"));
                 }
                 catch (Exception exc)
                 {
                     logger.Error(exc, "Faild to created diagnostics package.");
-                    dialogs.ShowMessage(resources.FindString("DiagPackageCreationError"));
+                    dialogs.ShowMessage(resources.FindString("LOCDiagPackageCreationError"));
                 }
             }
         }

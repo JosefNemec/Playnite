@@ -41,7 +41,7 @@ namespace PlayniteServicesTests
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
                     config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-                    config.AddJsonFile("apikeys.json", optional: false, reloadOnChange: true);
+                    config.AddJsonFile("customSettings.json", optional: false, reloadOnChange: true);
                 });
 
             server = new TestServer(builder);

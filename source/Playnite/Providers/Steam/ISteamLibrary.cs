@@ -22,9 +22,9 @@ namespace Playnite.Providers.Steam
 
         List<Game> GetLibraryGames(string userName);
 
-        SteamGameMetadata DownloadGameMetadata(int id);
+        SteamGameMetadata DownloadGameMetadata(int id, bool screenAsBackground);
 
-        SteamGameMetadata UpdateGameWithMetadata(Game game);
+        SteamGameMetadata UpdateGameWithMetadata(Game game, SteamSettings settings);
 
         List<string> GetLibraryFolders();
     }

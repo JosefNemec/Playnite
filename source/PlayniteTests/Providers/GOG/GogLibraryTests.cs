@@ -7,8 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Playnite.SDK.Models;
+using Playnite;
 
-namespace Playnite.Providers.GOG.Tests
+namespace PlayniteTests.Providers.GOG
 {
     [TestFixture]
     public class GogLibraryTests

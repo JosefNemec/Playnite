@@ -8,29 +8,29 @@
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
-        Title="{DynamicResource CrashWindowTitle}" Height="400" Width="600"
+        Title="{DynamicResource LOCCrashWindowTitle}" Height="400" Width="600"
         WindowStartupLocation="CenterScreen"
         AutomationProperties.AutomationId="WindowCrash">
 
     <DockPanel Margin="5">
         <DockPanel LastChildFill="False" DockPanel.Dock="Bottom">
-            <Button Name="ButtonClose" Content="{DynamicResource CrashClosePlaynite}" DockPanel.Dock="Right" 
+            <Button Name="ButtonClose" Content="{DynamicResource LOCCrashClosePlaynite}" DockPanel.Dock="Right" 
                 Style="{StaticResource BottomButton}"
                     Command="{Binding CloseCommand}"/>
-            <Button Name="ButtonRestart" Content="{DynamicResource CrashRestartPlaynite}" DockPanel.Dock="Right" 
+            <Button Name="ButtonRestart" Content="{DynamicResource LOCCrashRestartPlaynite}" DockPanel.Dock="Right" 
                 Style="{StaticResource BottomButton}"
                     Command="{Binding RestartCommand}"/>
-            <Button Name="ButtonSaveDiag" Content="{DynamicResource AboutCreateDiagButton}" DockPanel.Dock="Left"
+            <Button Name="ButtonSaveDiag" Content="{DynamicResource LOCAboutCreateDiagButton}" DockPanel.Dock="Left"
                 Style="{StaticResource BottomButton}"
                     Command="{Binding CreateDiagPackageCommand}"/>
-            <Button Name="ButtonReportIssue" Content="{DynamicResource CrashReportIssue}" DockPanel.Dock="Left"
+            <Button Name="ButtonReportIssue" Content="{DynamicResource LOCCrashReportIssue}" DockPanel.Dock="Left"
                 Style="{StaticResource BottomButton}"
                     Command="{Binding ReportIssueCommand}"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Top" Margin="10">
             <Image Source="/Images/Icons/warn_big.png" Width="64" RenderOptions.BitmapScalingMode="Fant" />
             <StackPanel Margin="20,10,10,10">
-                <TextBlock Text="{DynamicResource CrashDescription}" 
+                <TextBlock Text="{DynamicResource LOCCrashDescription}" 
                         FontSize="14" TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
             </StackPanel>
         </DockPanel>

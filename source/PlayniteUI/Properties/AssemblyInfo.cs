@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Josef Nemec")]
 [assembly: AssemblyProduct("PlayniteUI")]
-[assembly: AssemblyCopyright("Copyright © Josef Nemec 2017")]
+[assembly: AssemblyCopyright("Copyright © Josef Nemec 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

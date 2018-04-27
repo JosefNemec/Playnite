@@ -22,6 +22,11 @@ namespace Playnite.API
         private List<PlayniteScript> scripts;
         private List<Plugin> plugins;
 
+        public bool HasExportedFunctions
+        {
+            get => ExportedFunctions?.Any() == true;
+        }
+
         private List<ScriptFunctionExport> scriptFunctions;
         public List<ScriptFunctionExport> ScriptFunctions
         {
@@ -30,6 +35,7 @@ namespace Playnite.API
             {
                 scriptFunctions = value;
                 OnPropertyChanged("ExportedFunctions");
+                OnPropertyChanged("HasExportedFunctions");
             }
         }
 
@@ -41,6 +47,7 @@ namespace Playnite.API
             {
                 pluginFunctions = value;
                 OnPropertyChanged("ExportedFunctions");
+                OnPropertyChanged("HasExportedFunctions");
             }
         }
 
@@ -149,6 +156,10 @@ namespace Playnite.API
                 try
                 {
                     script = PlayniteScript.FromFile(path);
+                    if (script == null)
+                    {
+                        continue;
+                    }
                 }
                 catch (Exception e)
                 {

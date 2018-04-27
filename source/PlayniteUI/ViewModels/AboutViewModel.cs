@@ -26,6 +26,14 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        public string SDKVersion
+        {
+            get
+            {
+                return "SDK " + Playnite.SDK.Version.SDKVersion.ToString(3);
+            }
+        }
+
         private string patronsList;
         public string PatronsList
         {
@@ -42,7 +50,7 @@ namespace PlayniteUI.ViewModels
 
         public string PatronsListDownloading
         {
-            get => resources.FindString("DownloadingLabel");
+            get => resources.FindString("LOCDownloadingLabel");
         }
 
         public RelayCommand<object> CreateDiagPackageCommand
@@ -99,12 +107,12 @@ namespace PlayniteUI.ViewModels
                 try
                 {
                     Diagnostic.CreateDiagPackage(path);
-                    dialogs.ShowMessage(resources.FindString("DiagPackageCreationSuccess"));
+                    dialogs.ShowMessage(resources.FindString("LOCDiagPackageCreationSuccess"));
                 }
                 catch (Exception exc)
                 {
                     logger.Error(exc, "Faild to created diagnostics package.");
-                    dialogs.ShowMessage(resources.FindString("DiagPackageCreationError"));
+                    dialogs.ShowMessage(resources.FindString("LOCDiagPackageCreationError"));
                 }
             }
         }

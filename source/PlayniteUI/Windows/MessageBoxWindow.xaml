@@ -76,13 +76,13 @@
                     </Style.Triggers>
                 </Style>
             </StackPanel.Style>
-            <Button Content="{DynamicResource OKLabel}" Style="{StaticResource BottomButton}" Name="ButtonOK" Click="ButtonOK_Click"
+            <Button Content="{DynamicResource LOCOKLabel}" Style="{StaticResource BottomButton}" Name="ButtonOK" Click="ButtonOK_Click"
                     Visibility="{Binding ShowOKButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Button Content="{DynamicResource YesLabel}" Style="{StaticResource BottomButton}" Name="ButtonYes" Click="ButtonYes_Click"
+            <Button Content="{DynamicResource LOCYesLabel}" Style="{StaticResource BottomButton}" Name="ButtonYes" Click="ButtonYes_Click"
                     Visibility="{Binding ShowYesButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Button Content="{DynamicResource NoLabel}" Style="{StaticResource BottomButton}" Name="ButtonNo" Click="ButtonNo_Click"
+            <Button Content="{DynamicResource LOCNoLabel}" Style="{StaticResource BottomButton}" Name="ButtonNo" Click="ButtonNo_Click"
                     Visibility="{Binding ShowNoButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Button Content="{DynamicResource CancelLabel}" Style="{StaticResource BottomButton}" Name="ButtonCancel" Click="ButtonCancel_Click"
+            <Button Content="{DynamicResource LOCCancelLabel}" Style="{StaticResource BottomButton}" Name="ButtonCancel" Click="ButtonCancel_Click"
                     Visibility="{Binding ShowCancelButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </StackPanel>
     </Grid>

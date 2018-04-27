@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlayniteUI.Controls"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             mc:Ignorable="d"              
+             mc:Ignorable="d"
              d:DesignWidth="300" Height="28">
 
     <Grid>
@@ -29,7 +29,8 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox Name="TextFilter" VerticalContentAlignment="Center" FontSize="14" Background="Transparent"         
+        <TextBox Name="TextFilter" VerticalContentAlignment="Center" FontSize="14"
+                 Background="{Binding Background, RelativeSource={RelativeSource AncestorType=UserControl}}"
                  Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}">
             <TextBox.Style>
                 <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">

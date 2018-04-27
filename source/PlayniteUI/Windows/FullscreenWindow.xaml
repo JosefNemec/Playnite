@@ -42,8 +42,10 @@
         <pui:XInputBinding Button="X" Command="{Binding ToggleGameDetailsCommand}" />
         <pui:XInputBinding Button="Y" Command="{Binding OpenSearchCommand}" />
         <pui:XInputBinding Button="LeftShoulder" Command="{Binding ClearFiltersCommand}" />
+        <pui:XInputBinding Button="RightShoulder" Command="{Binding ToggleSortingOrderCommand}" />
         
         <KeyBinding Key="Backspace" Command="{Binding ClearFiltersCommand}" />
+        <KeyBinding Key="Tab" Command="{Binding ToggleSortingOrderCommand}" />
         <KeyBinding Key="Y" Command="{Binding OpenSearchCommand}" />
         <KeyBinding Key="X" Command="{Binding ToggleGameDetailsCommand}" />
         <KeyBinding Key="B" Command="{Binding ToggleGameDetailsCommand}" />

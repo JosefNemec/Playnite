@@ -239,8 +239,8 @@ namespace PlayniteUI.ViewModels
             catch
             {
                 dialogs.ShowMessage(
-                    resources.FindString("URLFormatError"),
-                    resources.FindString("InvalidURL"),
+                    resources.FindString("LOCURLFormatError"),
+                    resources.FindString("LOCInvalidURL"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -288,8 +288,8 @@ namespace PlayniteUI.ViewModels
         public void CheckSetup()
         {
             if (dialogs.ShowMessage(
-                resources.FindString("CancelMonitoringSetupAsk"),
-                resources.FindString("CancelMonitoringAskTitle"),
+                resources.FindString("LOCCancelMonitoringSetupAsk"),
+                resources.FindString("LOCCancelMonitoringAskTitle"),
                 MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 editor.CancelGameMonitoring(game.Game);
@@ -299,8 +299,8 @@ namespace PlayniteUI.ViewModels
         public void CheckExecution()
         {
             if (dialogs.ShowMessage(
-                resources.FindString("CancelMonitoringExecutionAsk"),
-                resources.FindString("CancelMonitoringAskTitle"),
+                resources.FindString("LOCCancelMonitoringExecutionAsk"),
+                resources.FindString("LOCCancelMonitoringAskTitle"),
                 MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 editor.CancelGameMonitoring(game.Game);

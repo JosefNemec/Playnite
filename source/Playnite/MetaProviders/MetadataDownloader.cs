@@ -316,15 +316,17 @@ namespace Playnite.MetaProviders
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        IMetadataProvider steamProvider;
-        IMetadataProvider originProvider;
-        IMetadataProvider gogProvider;
-        IMetadataProvider battleNetProvider;
-        IMetadataProvider igdbProvider;
+        private IMetadataProvider steamProvider;
+        private IMetadataProvider originProvider;
+        private IMetadataProvider gogProvider;
+        private IMetadataProvider battleNetProvider;
+        private IMetadataProvider igdbProvider;
+        private Settings appSettings;
 
-        public MetadataDownloader()
+        public MetadataDownloader(Settings appSettings)
         {
-            steamProvider = new SteamMetadataProvider(new Services.ServicesClient());
+            this.appSettings = appSettings;
+            steamProvider = new SteamMetadataProvider(new Services.ServicesClient(), appSettings.SteamSettings);
             originProvider = new OriginMetadataProvider();
             gogProvider = new GogMetadataProvider();
             battleNetProvider = new BattleNetMetadataProvider();

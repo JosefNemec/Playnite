@@ -14,7 +14,7 @@ namespace PlayniteServices.Controllers.Patreon
         {
             get
             {
-                return Startup.Configuration.GetSection("PatreonEndpoint").Value;
+                return GetConfig("ApiEndpoint");
             }
         }
 
@@ -73,7 +73,7 @@ namespace PlayniteServices.Controllers.Patreon
 
         private static void SaveTokens()
         {
-            var path = Path.Combine(Paths.ExecutingDirectory, "patreon_tokens.json");
+            var path = Path.Combine(Paths.ExecutingDirectory, "patreonTokens.json");
             var config = new Dictionary<string, object>()
             {
                 { "Patreon", new Dictionary<string, string>()

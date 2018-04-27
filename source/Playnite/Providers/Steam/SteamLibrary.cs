@@ -64,7 +64,7 @@ namespace Playnite.Providers.Steam
             var game = new Game()
             {
                 Provider = Provider.Steam,
-                Source = "Steam",
+                Source = Enums.GetEnumDescription(Provider.Steam),
                 ProviderId = kv["appID"].Value,
                 Name = name,
                 InstallDirectory = Path.Combine((new FileInfo(path)).Directory.FullName, "common", kv["installDir"].Value),
@@ -196,7 +196,7 @@ namespace Playnite.Providers.Steam
                 games.Add(new Game()
                 {
                     Provider = Provider.Steam,
-                    Source = "Steam",
+                    Source = Enums.GetEnumDescription(Provider.Steam),
                     ProviderId = game.appid.ToString(),
                     Name = game.name,
                     Playtime = game.playtime_forever * 60,
@@ -232,7 +232,7 @@ namespace Playnite.Providers.Steam
                 games.Add(new Game()
                 {
                     Provider = Provider.Steam,
-                    Source = "Steam",
+                    Source = Enums.GetEnumDescription(Provider.Steam),
                     ProviderId = game.appid.ToString(),
                     Name = game.name,
                     Playtime = game.playtime_forever * 60,
@@ -329,7 +329,7 @@ namespace Playnite.Providers.Steam
             }
             catch (Exception e)
             {
-                logger.Error(e, "Failed to get Steam appinfo cache data.");
+                logger.Error(e, $"Failed to get Steam appinfo cache data {appId}.");
             }
 
             // If no cache then download on client and push to cache
@@ -377,7 +377,7 @@ namespace Playnite.Providers.Steam
             return null;
         }
 
-        public SteamGameMetadata DownloadGameMetadata(int id)
+        public SteamGameMetadata DownloadGameMetadata(int id, bool screenAsBackground)
         {
             var metadata = new SteamGameMetadata();
             var productInfo = GetAppInfo(id);
@@ -455,17 +455,24 @@ namespace Playnite.Providers.Steam
             }
 
             // Background Image
-            if (metadata.StoreDetails?.screenshots?.Any() == true)
+            if (screenAsBackground)
             {
-                metadata.BackgroundImage = Regex.Replace(metadata.StoreDetails.screenshots.First().path_full, "\\?.*$", "");
+                if (metadata.StoreDetails?.screenshots?.Any() == true)
+                {
+                    metadata.BackgroundImage = Regex.Replace(metadata.StoreDetails.screenshots.First().path_full, "\\?.*$", "");
+                }
+            }
+            else
+            {
+                metadata.BackgroundImage = string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", id);
             }
 
             return metadata;
         }
 
-        public SteamGameMetadata UpdateGameWithMetadata(Game game)
+        public SteamGameMetadata UpdateGameWithMetadata(Game game, SteamSettings settings)
         {
-            var metadata = DownloadGameMetadata(int.Parse(game.ProviderId));
+            var metadata = DownloadGameMetadata(int.Parse(game.ProviderId), settings.PreferScreenshotForBackground);
             game.Name = metadata.ProductDetails["common"]["name"].Value ?? game.Name;
             game.Links = new ObservableCollection<Link>()
             {
@@ -571,7 +578,7 @@ namespace Playnite.Providers.Steam
                 result.Add(new Game()
                 {
                     Provider = Provider.Steam,
-                    Source = "Steam",
+                    Source = Enums.GetEnumDescription(Provider.Steam),
                     ProviderId = app.Name,
                     Categories = new ComparableList<string>(appData)
                 });

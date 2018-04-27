@@ -41,6 +41,7 @@
     <SolidColorBrush x:Key="PopupBorderBrush" Color="{DynamicResource PopupBorderColor}" />
     <SolidColorBrush x:Key="TooltipBackgroundBrush" Color="{DynamicResource BackgroundToneColor}" />
     <SolidColorBrush x:Key="GamesListPanelBrush" Color="{DynamicResource GamesListPanelColor}" />
+    <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#0a0e1e" />
 
     <sys:Double x:Key="FontSize">14</sys:Double>
     <FontFamily x:Key="FontFamily">Trebuchet MS</FontFamily>
@@ -105,7 +106,7 @@
     </Style>
 
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
-        <Setter Property="Background" Value="{DynamicResource NormalBrushDark}" />
+        <Setter Property="Background" Value="{DynamicResource ButtonBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
@@ -592,7 +593,6 @@
                 <ControlTemplate TargetType="{x:Type ComboBoxItem}">
                     <Grid>
                         <Rectangle x:Name="HoverRectangle" IsHitTestVisible="False" Visibility="Collapsed" Fill="{DynamicResource HoverBrush}" />
-                        <Rectangle x:Name="SelectedRectangle" IsHitTestVisible="False" Visibility="Collapsed" Fill="{DynamicResource GlyphBrush}" />
                         <Border Background="Transparent" Padding="{TemplateBinding Padding}">
                             <ContentPresenter VerticalAlignment="Center" />
                         </Border>
@@ -605,20 +605,12 @@
                             <Setter Property="Visibility" Value="Visible" TargetName="HoverRectangle" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedRectangle" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="HoverRectangle" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="Selector.IsSelected" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
-            </Trigger>
-            <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type ProgressBar}">
@@ -861,7 +853,7 @@
             </Grid.ColumnDefinitions>
             <Border x:Name="HoverBorder" Grid.Column="0" Grid.ColumnSpan="3" 
                     Background="{DynamicResource HoverBrush}" Visibility="Collapsed"  />
-            <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,0,0"
+            <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,-4,0"
                               VerticalAlignment="Center" ContentSource="Icon" />
             <Grid x:Name="GlyphPanel" Grid.Column="0" Visibility="Collapsed"
                   Margin="5,0,-5,0" VerticalAlignment="Center">
@@ -906,7 +898,7 @@
                     <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
                     <ColumnDefinition Width="*" SharedSizeGroup="MenuItemIGTColumnGroup" />
                 </Grid.ColumnDefinitions>
-                <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,0,0" VerticalAlignment="Center" ContentSource="Icon" />
+                <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,-4,0" VerticalAlignment="Center" ContentSource="Icon" />
                 <Grid x:Name="GlyphPanel" Grid.Column="0" Visibility="Collapsed" Margin="5,0,-5,0" VerticalAlignment="Center">
                     <TextBlock FontFamily="Marlett" Text="a" VerticalAlignment="Center" Style="{DynamicResource BaseTextBlockStyle}" />
                 </Grid>
@@ -1366,14 +1358,13 @@
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                     <Grid>
                         <Rectangle x:Name="HoverRectangle" Visibility="Collapsed" Fill="{DynamicResource HoverBrush}" />
-                        <Rectangle x:Name="SelectedRectangle" Visibility="Collapsed" Fill="{DynamicResource GlyphBrush}" />
                         <Border Padding="{TemplateBinding Padding}" Background="Transparent" >
                             <GridViewRowPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Stretch" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Selector.IsSelected" Value="True">
-                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedRectangle" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="HoverRectangle" />
                             <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -2008,25 +1999,25 @@
 
             <StackPanel>
                 <!-- Genres -->
-                <Label Content="{DynamicResource GenreLabel}" Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}" />
+                <Label Content="{DynamicResource LOCGenreLabel}" Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}" />
                 <ItemsControl ItemsSource="{Binding Game.Genres, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Genres"/>
 
                 <!-- Developers -->
-                <Label Content="{DynamicResource DeveloperLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource LOCDeveloperLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Developers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Developers"/>
 
                 <!-- Publishers -->
-                <Label Content="{DynamicResource PublisherLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource LOCPublisherLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Publishers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Publishers"/>
 
                 <!-- Release Date -->
-                <Label Content="{DynamicResource GameReleaseDateTitle}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource LOCGameReleaseDateTitle}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"/>
                 <TextBlock Visibility="{Binding Game.ReleaseDate, Converter={StaticResource NullToVisibilityConverter}}"
                                Style="{StaticResource ListTextBlock}">
                             <Hyperlink NavigateUri="{Binding Game.ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}"
@@ -2037,19 +2028,19 @@
                 </TextBlock>
 
                 <!-- Categories -->
-                <Label Content="{DynamicResource GameCategoriesTitle}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource LOCGameCategoriesTitle}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Categories, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Categories"/>
 
                 <!-- Tags -->
-                <Label Content="{DynamicResource TagsLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <Label Content="{DynamicResource LOCTagsLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Tags, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Tags"/>
 
                 <!-- Platform -->
-                <Label Content="{DynamicResource PlatformTitle}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
+                <Label Content="{DynamicResource LOCPlatformTitle}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
                 <TextBlock Visibility="{Binding Game.Platform.Name, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
                                    Style="{StaticResource ListTextBlock}">
                             <Hyperlink NavigateUri="{Binding Game.Platform.Name}"
@@ -2060,7 +2051,7 @@
                 </TextBlock>
 
                 <!-- Links -->
-                <Label Content="{DynamicResource LinksLabel}" Style="{StaticResource PropertyListLabel}"
+                <Label Content="{DynamicResource LOCLinksLabel}" Style="{StaticResource PropertyListLabel}"
                            Visibility="{Binding Game.Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Links}"
                                   Visibility="{Binding Game.Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}">
@@ -2093,14 +2084,14 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{DynamicResource TimePlayed}" Foreground="{DynamicResource GlyphBrush}"
+            <TextBlock Text="{DynamicResource LOCTimePlayed}" Foreground="{DynamicResource GlyphBrush}"
                        Grid.Column="0" Grid.Row="0" Margin="0,0,10,3"/>
             <TextBlock Text="{Binding Game.Playtime, Converter={pui:LongToTimePlayedConverter}}"
-                       Grid.Column="1" Grid.Row="0"/>
-            <TextBlock Text="{DynamicResource LastPlayed}" Foreground="{DynamicResource GlyphBrush}" 
+                       Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" />
+            <TextBlock Text="{DynamicResource LOCLastPlayed}" Foreground="{DynamicResource GlyphBrush}" 
                        Grid.Column="0" Grid.Row="1"/>
             <TextBlock Text="{Binding Game.LastActivity, Converter={pui:DateTimeToLastPlayedConverter}}"
-                       Grid.Column="1" Grid.Row="1"/>
+                       Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" />
         </Grid>
     </ControlTemplate>
 
@@ -2149,26 +2140,26 @@
                         Margin="40,10,0,0">
                 <Image Margin="0,0,0,10" VerticalAlignment="Top"          
                        RenderOptions.BitmapScalingMode="Fant"
-                       Source="{Binding Game.Image, IsAsync=True, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}" />
-                <Button Height="40" Content="{DynamicResource PlayGame}" Style="{StaticResource PlayButton}"
+                       Source="{Binding Game.ImageObject, Mode=OneWay}" />
+                <Button Height="40" Content="{DynamicResource LOCPlayGame}" Style="{StaticResource PlayButton}"
                         Visibility="{Binding IsPlayAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding PlayCommand}"/>
-                <Button Height="40" Content="{DynamicResource InstallGame}"
+                <Button Height="40" Content="{DynamicResource LOCInstallGame}"
                         Visibility="{Binding IsInstallAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding InstallCommand}"/>
-                <Button Height="40" Content="{DynamicResource SetupRunning}"
+                <Button Height="40" Content="{DynamicResource LOCSetupRunning}"
                         Visibility="{Binding IsInstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding CheckSetupCommand}"/>
-                <Button Height="40" Content="{DynamicResource SetupRunning}"  
+                <Button Height="40" Content="{DynamicResource LOCSetupRunning}"  
                         Visibility="{Binding IsUninstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding CheckSetupCommand}"/>
-                <Button Height="40" Content="{DynamicResource GameRunning}" 
+                <Button Height="40" Content="{DynamicResource LOCGameRunning}" 
                         Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding CheckExecutionCommand}"/>
-                <Button Height="40" Content="{DynamicResource GameLaunching}"
+                <Button Height="40" Content="{DynamicResource LOCGameLaunching}"
                         Visibility="{Binding IsLaunching, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding CheckExecutionCommand}"/>
-                <Button Content="{DynamicResource MoreAction}" Height="40"
+                <Button Content="{DynamicResource LOCMoreAction}" Height="40"
                         Margin="0,5,0,0" pui:LeftClickContextMenuBehavior.Enabled="True">
                     <Button.ContextMenu>
                         <pc:GameMenu Placement="Bottom" DataContext="{Binding Data.Game, Source={StaticResource Proxy}}"
@@ -2225,6 +2216,368 @@
         </Grid>
     </ControlTemplate>
 
+    <ControlTemplate x:Key="SearchPanel">
+        <DockPanel>
+            <DockPanel.Resources>
+                <pui:BindingProxy x:Key="SearchPanelProxy" Data="{Binding}" />
+                <pui:EnumConverter x:Key="EnumConverter" />
+            </DockPanel.Resources>
+            <CheckBox Name="CheckFilterView" DockPanel.Dock="Left" Height="28"
+                      IsChecked="{Binding AppSettings.FilterPanelVisible}">
+                <CheckBox.Style>
+                    <Style TargetType="CheckBox">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Border Background="#44000000" Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
+                                            CornerRadius="{StaticResource ControlCornerRadius}" BorderThickness="{StaticResource ControlBorderThickness}"
+                                            Cursor="Hand">
+                                        <TextBlock Text="∇" VerticalAlignment="Center" FontWeight="Bold" FontSize="18"
+                                                   Margin="8,0,8,0" Foreground="{TemplateBinding Foreground}"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding AppSettings.FilterSettings.Active}" Value="True">
+                                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+                                <Setter Property="ToolTip" Value="{DynamicResource LOCFilterActiveLabel}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding AppSettings.FilterSettings.Active}" Value="False">
+                                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                                <Setter Property="ToolTip" Value="{DynamicResource LOCFilterInactiveLabel}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </CheckBox.Style>
+            </CheckBox>
+            <Border CornerRadius="{StaticResource ControlCornerRadius}" Style="{StaticResource HighlightBorder}"
+                    Background="#44000000" pui:LeftClickContextMenuBehavior.Enabled="True"
+                    SnapsToDevicePixels="True" BorderThickness="{StaticResource ControlBorderThickness}"
+                    Width="35" Height="28" Cursor="Hand" DockPanel.Dock="Right">
+                <TextBlock Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
+                           Foreground="{StaticResource TextBrush}"/>
+                <Border.ContextMenu>
+                    <ContextMenu StaysOpen="False" Name="MenuViewSettings" Placement="Bottom"
+                                 DataContext="{Binding Source={StaticResource SearchPanelProxy}, Path=Data.AppSettings}">
+                        <MenuItem Header="{DynamicResource LOCMenuSortByTitle}">
+                            <MenuItem Header="{DynamicResource LOCMenuSortAscending}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrderDirection, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrderDirection.Ascending}}"/>
+                            <MenuItem Header="{DynamicResource LOCMenuSortDescending}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrderDirection, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrderDirection.Descending}}"/>
+                            <Separator />
+                            <MenuItem Header="{DynamicResource LOCGameNameTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Name}}"/>
+                            <MenuItem Header="{DynamicResource LOCGamePlatformTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Platform}}"/>
+                            <MenuItem Header="{DynamicResource LOCGameProviderTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Provider}}"/>
+                            <MenuItem Header="{DynamicResource LOCGameDevelopersTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Developers}}"/>
+                            <MenuItem Header="{DynamicResource LOCGamePublishersTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Publishers}}"/>
+                            <MenuItem Header="{DynamicResource LOCGameReleaseDateTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.ReleaseDate}}"/>
+                            <MenuItem Header="{DynamicResource LOCGameGenresTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Genres}}"/>
+                            <MenuItem Header="{DynamicResource LOCGameCategoriesTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Categories}}"/>
+                            <MenuItem Header="{DynamicResource LOCGameTagsTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Tags}}"/>
+                            <MenuItem Header="{DynamicResource LOCGameIsInstalledTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.IsInstalled}}"/>
+                            <MenuItem Header="{DynamicResource LOCGameInstallDirTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.InstallDirectory}}"/>
+                            <MenuItem Header="{DynamicResource LOCGameLastActivityTitle}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.LastActivity}}"/>
+                            <MenuItem Header="{DynamicResource LOCTimePlayed}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Playtime}}"/>
+                            <MenuItem Header="{DynamicResource LOCPlayCountLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.PlayCount}}"/>
+                            <MenuItem Header="{DynamicResource LOCCompletionStatus}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CompletionStatus}}"/>
+                            <MenuItem Header="{DynamicResource LOCSeriesLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Series}}"/>
+                            <MenuItem Header="{DynamicResource LOCVersionLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Version}}"/>
+                            <MenuItem Header="{DynamicResource LOCAgeRatingLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.AgeRating}}"/>
+                            <MenuItem Header="{DynamicResource LOCRegionLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Region}}"/>
+                            <MenuItem Header="{DynamicResource LOCSourceLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Source}}"/>
+                            <MenuItem Header="{DynamicResource LOCAddedLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Added}}"/>
+                            <MenuItem Header="{DynamicResource LOCModifiedLabel}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Modified}}"/>
+                            <MenuItem Header="{DynamicResource LOCUserScore}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.UserScore}}"/>
+                            <MenuItem Header="{DynamicResource LOCCriticScore}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CriticScore}}"/>
+                            <MenuItem Header="{DynamicResource LOCCommunityScore}" IsCheckable="True"
+                                      IsChecked="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CommunityScore}}"/>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Header="{DynamicResource LOCMenuGroupDont}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.None}}"/>
+                        <MenuItem Header="{DynamicResource LOCMenuGroupProvider}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Provider}}"/>
+                        <MenuItem Header="{DynamicResource LOCMenuGroupCategory}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Category}}"/>
+                        <MenuItem Header="{DynamicResource LOCMenuGroupPlatform}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Platform}}"/>
+                        <Separator />
+                        <MenuItem Header="{DynamicResource LOCListLabel}" IsCheckable="True"
+                                          IsChecked="{Binding Path=ViewSettings.GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"/>
+                        <MenuItem Header="{DynamicResource LOCCoversLabel}" IsCheckable="True"
+                                          IsChecked="{Binding Path=ViewSettings.GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.Images}}"/>
+                        <MenuItem Header="{DynamicResource LOCDetailsLabel}" IsCheckable="True"
+                                          IsChecked="{Binding Path=ViewSettings.GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.Grid}}"/>
+                    </ContextMenu>
+                </Border.ContextMenu>
+            </Border>
+            <pc:SearchBox x:Name="SearchBoxFilter" Padding="0" DockPanel.Dock="Left" Margin="1,0,1,0"
+                          Background="#33000000"
+                          Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}" />
+        </DockPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="DetailsView">
+        <Border Background="{DynamicResource WindowBackgourndBrush}">
+            <pc:GamesGridView ItemsSource="{Binding GamesView.CollectionView}" Margin="0,40,0,0"                          
+                              SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
+                              SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
+                              AppSettings="{Binding AppSettings}"/>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="CoversView">
+        <Grid Background="#77000000">
+            <Grid.Resources>
+                <pui:BindingProxy x:Key="CoversProxy" Data="{Binding}" />
+                <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
+                <pui:EnumerableNullOrEmptyToVisibilityConverter x:Key="EnumerableNullOrEmptyToVisibilityConverter" />
+                <pui:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+                <pui:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
+                <pui:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+                <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
+                <pui:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ListView Grid.Row="0" Grid.Column="0" Margin="15,50,0,0"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="ItemsView"
+                      ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Single"
+                      pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"
+                      ItemsSource="{Binding GamesView.CollectionView}"
+                      SelectedItem="{Binding SelectedGame, Mode=TwoWay}">
+                <ListView.Resources>
+                    <Style TargetType="GridViewColumnHeader">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Style>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Margin" Value="8"/>
+                        <Setter Property="OverridesDefaultStyle" Value="True" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="ContextMenu">
+                            <Setter.Value>
+                                <pc:GameMenu />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <Grid Background="Transparent">
+                                        <Grid.Effect>
+                                            <DropShadowEffect BlurRadius="5" Color="#DD000000" ShadowDepth="5"
+                                                              x:Name="ShadowEffect"/>
+                                        </Grid.Effect>
+                                        <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="2"
+                                                Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Grid>
+                                                <Grid.InputBindings>
+                                                    <MouseBinding MouseAction="LeftDoubleClick"
+                                                                    Command="{Binding Data.StartGameCommand, Source={StaticResource CoversProxy}}"
+                                                                    CommandParameter="{Binding Game}"/>
+                                                </Grid.InputBindings>
+                                                <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
+                                                    <Image.Source>
+                                                        <PriorityBinding>
+                                                            <Binding Path="ImageObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}"/>
+                                                            <Binding Path="DefaultImageObject" Mode="OneWay" />
+                                                        </PriorityBinding>
+                                                    </Image.Source>
+                                                </Image>
+                                                <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed">
+                                                    <TextBlock Text="{Binding DisplayName, Mode=OneWay}" TextWrapping="Wrap" Margin="5"
+                                                                Style="{StaticResource BaseTextBlockStyle}"
+                                                                TextTrimming="CharacterEllipsis" TextAlignment="Center"
+                                                                HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                                FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"/>
+                                                </Border>
+                                                <Border Background="#88000000" x:Name="BorderMouseOver" Visibility="Collapsed">
+                                                    <Grid Margin="10" VerticalAlignment="Center">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto" />
+                                                        </Grid.RowDefinitions>
+                                                        <Button Background="#EE000000" Content="▶"
+                                                                Grid.Row="0" Grid.Column="0" Margin="0,0,3,0"                                                            
+                                                                FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"
+                                                                Command="{Binding Data.StartGameCommand, Source={StaticResource CoversProxy}}"
+                                                                CommandParameter="{Binding Game}" />
+                                                        <Button Background="#EE000000" Content="ℹ"
+                                                                Grid.Row="0" Grid.Column="1" Margin="3,0,0,0" 
+                                                                FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"
+                                                                Command="{Binding Data.ShowGameSideBarCommand, Source={StaticResource CoversProxy}}"
+                                                                CommandParameter="{Binding}"/>
+                                                    </Grid>
+                                                </Border>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Image}" Value="{x:Null}" />
+                                                <Condition Binding="{Binding Path=Data.AppSettings.ShowNameEmptyCover, Source={StaticResource CoversProxy}}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Visibility" Value="Visible" TargetName="TextGameName"/>
+                                        </MultiDataTrigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" TargetName="BorderMouseOver"/>
+                                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="SelectionBorder"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.Resources>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <pui:VirtualizingTilePanel ItemWidth="{Binding Path=Value, ElementName=SliderZoom}"
+                                                   ItemHeightModifier="{DynamicResource GameCoverViewRation}"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+            
+            <StackPanel Margin="5" Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
+                <Label Content="{DynamicResource LOCZoomLabel}" DockPanel.Dock="Right" Margin="10,0,10,0"/>
+                <Slider Name="SliderZoom" SmallChange="1" Value="{Binding Path=AppSettings.ViewSettings.CoversZoom}" Maximum="260" Minimum="100"
+                        IsSnapToTickEnabled="True" Width="150" DockPanel.Dock="Right" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <ScrollViewer Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Width="350"
+                          HorizontalScrollBarVisibility="Disabled" Margin="0,50,0,0"
+                          DataContext="{Binding SelectedGameDetails, Mode=OneWay}"
+                          Visibility="{Binding Data.ShowGameSidebar, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource CoversProxy}}">
+
+                <Grid>
+                    <Grid.Resources>
+                        <pui:BindingProxy x:Key="Proxy" Data="{Binding}" />
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top"
+                                Margin="10">
+                        <Hyperlink Command="{Binding Data.CloseGameSideBarCommand, Source={StaticResource CoversProxy}}">
+                            <Run Text="r" FontFamily="Marlett" />
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <DockPanel Grid.Column="0" Grid.Row="0" Margin="10,20,10,0">
+                        <Image DockPanel.Dock="Left" MaxHeight="32" MaxWidth="32" RenderOptions.BitmapScalingMode="Fant"
+                               Source="{Binding Game.IconObject, Mode=OneWay, IsAsync={StaticResource AsyncImagesEnabled}}" />
+                        <TextBlock Text="{Binding Game.DisplayName, Mode=OneWay}" FontSize="20" Margin="10,10,0,10" TextWrapping="Wrap"
+                                DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}">
+                            <TextBlock.Effect>
+                                <DropShadowEffect ShadowDepth="3"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                    </DockPanel>
+
+                    <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
+                            Margin="10,20,10,0" Orientation="Horizontal" Height="35">
+                        <Button MinWidth="120" Content="{DynamicResource LOCPlayGame}" Style="{StaticResource PlayButton}"
+                            Visibility="{Binding IsPlayAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{Binding PlayCommand}"/>
+                        <Button MinWidth="120" Content="{DynamicResource LOCInstallGame}"
+                            Visibility="{Binding IsInstallAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{Binding InstallCommand}"/>
+                        <Button MinWidth="120" Content="{DynamicResource LOCSetupRunning}"
+                            Visibility="{Binding IsInstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{Binding CheckSetupCommand}"/>
+                        <Button MinWidth="120" Content="{DynamicResource LOCSetupRunning}"  
+                            Visibility="{Binding IsUninstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{Binding CheckSetupCommand}"/>
+                        <Button MinWidth="120" Content="{DynamicResource LOCGameRunning}" 
+                            Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{Binding CheckExecutionCommand}"/>
+                        <Button MinWidth="120" Content="{DynamicResource LOCGameLaunching}"
+                            Visibility="{Binding IsLaunching, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{Binding CheckExecutionCommand}"/>
+                        <Button MinWidth="120" Content="{DynamicResource LOCMoreAction}"
+                            Margin="15,0,0,0" pui:LeftClickContextMenuBehavior.Enabled="True">
+                            <Button.ContextMenu>
+                                <pc:GameMenu Placement="Bottom" DataContext="{Binding Data.Game, Source={StaticResource Proxy}}"
+                                            ShowStartSection="False" />
+                            </Button.ContextMenu>
+                        </Button>
+                    </StackPanel>
+
+                    <Border Grid.Column="0" Grid.Row="2" Margin="10,20,10,0">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Game.Playtime}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <ContentControl Template="{StaticResource PlayTimeInfoView}"  />
+                    </Border>
+
+                    <ContentControl Grid.Column="0" Grid.Row="3" Margin="10,20,10,0"
+                                    Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Template="{StaticResource GamePropertiesView}" />
+
+                    <pc:HtmlTextView Grid.Column="0" Grid.Row="4" Margin="5,10,5,10" 
+                                    Background="Transparent" HtmlText="{Binding Game.Description, Mode=OneWay}"
+                                    HtmlForeground="{DynamicResource TextColor}"
+                                    LinkForeground="{DynamicResource GlyphColor}"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                    ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </ControlTemplate>
+
     <ControlTemplate x:Key="ProgressView">
         <Grid>
             <Grid.Resources>
@@ -2245,7 +2598,7 @@
             </Grid>
             <Button Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Command="{Binding CancelProgressCommand}" Background="#AA000000"
-                    Content="{DynamicResource CancelLabel}"
+                    Content="{DynamicResource LOCCancelLabel}"
                     Height="27" Grid.Column="1" Margin="10,0,0,0"
                     WindowChrome.IsHitTestVisibleInChrome="True"/>
         </Grid>
@@ -2312,7 +2665,7 @@
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
-                                <Button Content="{DynamicResource ClearAll}" FontSize="10" Margin="5"
+                                <Button Content="{DynamicResource LOCClearAll}" FontSize="10" Margin="5"
                                     HorizontalAlignment="Right"
                                     Command="{Binding ClearMessagesCommand}"/>
                             </StackPanel>
@@ -2321,8 +2674,8 @@
                 </Grid>
             </ToggleButton.Content>
         </ToggleButton>
-    </ControlTemplate>
-    
+    </ControlTemplate>    
+
     <ControlTemplate x:Key="MainView" TargetType="{x:Type pc:MainView}">
         <Grid d:DesignWidth="900" d:DesignHeight="500">
             <Grid.ColumnDefinitions>
@@ -2341,130 +2694,25 @@
                 <pui:OpacityBoolConverter x:Key="OpacityBoolConverter" />
                 <pui:EnumConverter x:Key="EnumConverter" />
                 <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+                <pui:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
                 <pui:BidirectionalEnumAndNumberConverter x:Key="BidirectionalEnumAndNumberConverter" />
                 <pui:CustomImageStringToImageConverter x:Key="CustomImageStringToImageConverter" />
                 <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
                 <pui:ListToStringConverter x:Key="ListToStringConverter" />
+                <pui:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
             </Grid.Resources>
-
-            <Image Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Top"
-                   RenderOptions.BitmapScalingMode="Fant"
-                   Grid.ColumnSpan="10" Grid.RowSpan="10"
-                   Source="{Binding SelectedGameDetails.Game.BackgroundImage, IsAsync=True, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}" />
+            
+            <pc:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
+                          Grid.ColumnSpan="10" Grid.RowSpan="10"
+                          Source="{Binding SelectedGameDetails.Game.BackgroundImageObject, IsAsync=True}" />
 
             <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                       IsEnabled="{Binding Data.AppSettings.ViewSettings.GamesViewType, Source={StaticResource Proxy}, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"
+                       Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
                        Background="{DynamicResource GamesListPanelBrush}">
-                <DockPanel DockPanel.Dock="Top" Margin="10,45,10,5">
-                    <CheckBox Name="CheckFilterView" DockPanel.Dock="Left" Height="28"
-                              IsChecked="{Binding AppSettings.FilterPanelVisible}">
-                        <CheckBox.Style>
-                            <Style TargetType="CheckBox">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate>
-                                            <Border Background="Transparent" Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
-                                                    CornerRadius="{StaticResource ControlCornerRadius}" BorderThickness="{StaticResource ControlBorderThickness}"
-                                                    Cursor="Hand">
-                                                <TextBlock Text="∇" VerticalAlignment="Center" FontWeight="Bold" FontSize="18"
-                                                           Margin="8,0,8,0" Foreground="{TemplateBinding Foreground}"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Active}" Value="True">
-                                        <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
-                                        <Setter Property="ToolTip" Value="{DynamicResource FilterActiveLabel}" />
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Active}" Value="False">
-                                        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-                                        <Setter Property="ToolTip" Value="{DynamicResource FilterInactiveLabel}" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </CheckBox.Style>
-                    </CheckBox>
-                    <Border CornerRadius="{StaticResource ControlCornerRadius}" Background="Transparent" Style="{StaticResource HighlightBorder}"
-                            pui:LeftClickContextMenuBehavior.Enabled="True"
-                            SnapsToDevicePixels="True" BorderThickness="{StaticResource ControlBorderThickness}"
-                            Width="35" Height="28" Cursor="Hand" DockPanel.Dock="Right">
-                        <TextBlock Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
-                           Foreground="{StaticResource TextBrush}"/>
-                        <Border.ContextMenu>
-                            <ContextMenu StaysOpen="False" Name="MenuViewSettings" Placement="Bottom"
-                                 DataContext="{Binding Source={StaticResource Proxy}, Path=Data.AppSettings}">
-                                <MenuItem Header="{DynamicResource MenuSortByTitle}">
-                                    <MenuItem Header="{DynamicResource MenuSortAscending}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrderDirection, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrderDirection.Ascending}}"/>
-                                    <MenuItem Header="{DynamicResource MenuSortDescending}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrderDirection, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrderDirection.Descending}}"/>
-                                    <Separator />
-                                    <MenuItem Header="{DynamicResource GameNameTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Name}}"/>
-                                    <MenuItem Header="{DynamicResource GamePlatformTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Platform}}"/>
-                                    <MenuItem Header="{DynamicResource GameProviderTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Provider}}"/>
-                                    <MenuItem Header="{DynamicResource GameDevelopersTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Developers}}"/>
-                                    <MenuItem Header="{DynamicResource GamePublishersTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Publishers}}"/>
-                                    <MenuItem Header="{DynamicResource GameReleaseDateTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.ReleaseDate}}"/>
-                                    <MenuItem Header="{DynamicResource GameGenresTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Genres}}"/>
-                                    <MenuItem Header="{DynamicResource GameCategoriesTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Categories}}"/>
-                                    <MenuItem Header="{DynamicResource GameTagsTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Tags}}"/>
-                                    <MenuItem Header="{DynamicResource GameIsInstalledTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.IsInstalled}}"/>
-                                    <MenuItem Header="{DynamicResource GameInstallDirTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.InstallDirectory}}"/>
-                                    <MenuItem Header="{DynamicResource GameLastActivityTitle}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.LastActivity}}"/>
-                                    <MenuItem Header="{DynamicResource TimePlayed}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Playtime}}"/>
-                                    <MenuItem Header="{DynamicResource PlayCountLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.PlayCount}}"/>
-                                    <MenuItem Header="{DynamicResource CompletionStatus}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CompletionStatus}}"/>
-                                    <MenuItem Header="{DynamicResource SeriesLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Series}}"/>
-                                    <MenuItem Header="{DynamicResource VersionLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Version}}"/>
-                                    <MenuItem Header="{DynamicResource AgeRatingLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.AgeRating}}"/>
-                                    <MenuItem Header="{DynamicResource RegionLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Region}}"/>
-                                    <MenuItem Header="{DynamicResource SourceLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Source}}"/>
-                                    <MenuItem Header="{DynamicResource AddedLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Added}}"/>
-                                    <MenuItem Header="{DynamicResource ModifiedLabel}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.Modified}}"/>
-                                    <MenuItem Header="{DynamicResource UserScore}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.UserScore}}"/>
-                                    <MenuItem Header="{DynamicResource CriticScore}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CriticScore}}"/>
-                                    <MenuItem Header="{DynamicResource CommunityScore}" IsCheckable="True"
-                                      IsChecked="{Binding Path=SortingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:SortOrder.CommunityScore}}"/>
-                                </MenuItem>
-                                <Separator />
-                                <MenuItem Header="{DynamicResource MenuGroupDont}" IsCheckable="True"
-                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.None}}"/>
-                                <MenuItem Header="{DynamicResource MenuGroupProvider}" IsCheckable="True"
-                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Provider}}"/>
-                                <MenuItem Header="{DynamicResource MenuGroupCategory}" IsCheckable="True"
-                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Category}}"/>
-                                <MenuItem Header="{DynamicResource MenuGroupPlatform}" IsCheckable="True"
-                                  IsChecked="{Binding Path=GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Platform}}"/>
-                            </ContextMenu>
-                        </Border.ContextMenu>
-                    </Border>
-                    <pc:SearchBox x:Name="SearchBoxFilter" Padding="0" DockPanel.Dock="Left" Margin="1,0,1,0"
-                                  Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}" />                    
-                </DockPanel>
+                
+                <ContentControl DockPanel.Dock="Top" Margin="10,45,10,5"
+                                Template="{StaticResource SearchPanel}" />
 
                 <pc:ExtendedListBox SelectionMode="Extended" BorderThickness="0"
                                     BorderBrush="{StaticResource NormalBorderBrush}" Width="350"
@@ -2510,8 +2758,8 @@
                                        Visibility="{Binding Path=Data.AppSettings.ShowIconsOnList, Source={StaticResource Proxy}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <Image.Source>
                                         <PriorityBinding>
-                                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}" ConverterParameter="Icon"/>
-                                            <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
+                                            <Binding Path="IconObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
+                                            <Binding Path="DefaultIconObject" Mode="OneWay"/>
                                         </PriorityBinding>
                                     </Image.Source>
                                 </Image>
@@ -2526,7 +2774,19 @@
 
             <ContentControl Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
                             DockPanel.Dock="Left" DataContext="{Binding SelectedGameDetails, Mode=OneWay}"
+                            IsEnabled="{Binding Data.AppSettings.ViewSettings.GamesViewType, Source={StaticResource Proxy}, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"
+                            Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Template="{StaticResource GameDetailsView}" />
+
+            <ContentControl Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
+                            IsEnabled="{Binding AppSettings.ViewSettings.GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.Images}}"
+                            Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Template="{StaticResource CoversView}" />
+
+            <ContentControl Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
+                            IsEnabled="{Binding AppSettings.ViewSettings.GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.Grid}}"
+                            Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Template="{StaticResource DetailsView}" />
 
             <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Background="{DynamicResource NormalBrushDark}"
                     IsEnabled="{Binding AppSettings.FilterPanelVisible}">
@@ -2562,7 +2822,7 @@
                         </TextBlock>
                         <TextBlock DockPanel.Dock="Left">
                                 <Hyperlink Command="{Binding Data.ClearFiltersCommand, Source={StaticResource Proxy}}">
-                                    <Run Text="{DynamicResource ClearFilters}" />
+                                    <Run Text="{DynamicResource LOCClearFilters}" />
                                 </Hyperlink>
                         </TextBlock>
                     </DockPanel>
@@ -2588,28 +2848,28 @@
                             
                             <CheckBox Name="CheckFilterInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GameIsInstalledTitle}" Margin="0,0,5,0" />
+                                    <TextBlock Text="{DynamicResource LOCGameIsInstalledTitle}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.Installed, Mode=OneWay, StringFormat=({0})}" />
                                 </StackPanel>
                             </CheckBox>
 
                             <CheckBox Name="CheckFilterUnInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsUnInstalled}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GameIsUnInstalledTitle}" Margin="0,0,5,0" />
+                                    <TextBlock Text="{DynamicResource LOCGameIsUnInstalledTitle}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.UnInstalled, Mode=OneWay, StringFormat=({0})}" />
                                 </StackPanel>
                             </CheckBox>
 
                             <CheckBox Name="CheckFilterHidden" IsChecked="{Binding AppSettings.FilterSettings.Hidden}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GameHiddenTitle}" Margin="0,0,5,0" />
+                                    <TextBlock Text="{DynamicResource LOCGameHiddenTitle}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.Hidden, Mode=OneWay, StringFormat=({0})}" />
                                 </StackPanel>
                             </CheckBox>
 
                             <CheckBox Name="CheckFilterFavorite" IsChecked="{Binding AppSettings.FilterSettings.Favorite}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource GameFavoriteTitle}" Margin="0,0,5,0" />
+                                    <TextBlock Text="{DynamicResource LOCGameFavoriteTitle}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.Favorite, Mode=OneWay, StringFormat=({0})}" />
                                 </StackPanel>
                             </CheckBox>
@@ -2638,14 +2898,14 @@
 
                             <CheckBox Name="CheckFilterCustom" IsChecked="{Binding AppSettings.FilterSettings.Custom}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{DynamicResource CustomLabel}" Margin="0,0,5,0" />
+                                    <TextBlock Text="{DynamicResource LOCCustomLabel}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.Custom, Mode=OneWay, StringFormat=({0})}" />
                                 </StackPanel>
                             </CheckBox>
 
                             <Border Height="10" />
 
-                            <Label Content="{DynamicResource NameLabel}">
+                            <Label Content="{DynamicResource LOCNameLabel}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                         <Style.Triggers>
@@ -2658,7 +2918,7 @@
                             </Label>
                             <pc:SearchBox x:Name="TextFilterName" Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
 
-                            <Label Content="{DynamicResource GenreLabel}">
+                            <Label Content="{DynamicResource LOCGenreLabel}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                         <Style.Triggers>
@@ -2671,7 +2931,7 @@
                             </Label>
                             <pc:SearchBox x:Name="TextFilterGenre" Text="{Binding AppSettings.FilterSettings.Genres, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
-                            <Label Content="{DynamicResource PlatformTitle}">
+                            <Label Content="{DynamicResource LOCPlatformTitle}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                         <Style.Triggers>
@@ -2684,7 +2944,7 @@
                             </Label>
                             <pc:SearchBox x:Name="TextFilterPlatform" Text="{Binding AppSettings.FilterSettings.Platforms, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
-                            <Label Content="{DynamicResource GameReleaseDateTitle}">
+                            <Label Content="{DynamicResource LOCGameReleaseDateTitle}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                         <Style.Triggers>
@@ -2697,7 +2957,7 @@
                             </Label>
                             <pc:SearchBox x:Name="TextFilterReleaseDate" Text="{Binding AppSettings.FilterSettings.ReleaseDate, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
 
-                            <Label Content="{DynamicResource DeveloperLabel}">
+                            <Label Content="{DynamicResource LOCDeveloperLabel}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                         <Style.Triggers>
@@ -2710,7 +2970,7 @@
                             </Label>
                             <pc:SearchBox x:Name="TextFilterDeveloper" Text="{Binding AppSettings.FilterSettings.Developers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
-                            <Label Content="{DynamicResource PublisherLabel}">
+                            <Label Content="{DynamicResource LOCPublisherLabel}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                         <Style.Triggers>
@@ -2723,7 +2983,7 @@
                             </Label>
                             <pc:SearchBox x:Name="TextFilterPublisher" Text="{Binding AppSettings.FilterSettings.Publishers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
-                            <Label Content="{DynamicResource CategoryLabel}">
+                            <Label Content="{DynamicResource LOCCategoryLabel}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                         <Style.Triggers>
@@ -2736,7 +2996,7 @@
                             </Label>
                             <pc:SearchBox x:Name="TextFilterCategory" Text="{Binding AppSettings.FilterSettings.Categories, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
-                            <Label Content="{DynamicResource TagLabel}">
+                            <Label Content="{DynamicResource LOCTagLabel}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                         <Style.Triggers>
@@ -2748,7 +3008,7 @@
                                 </Label.Style>
                             </Label>
                             <pc:SearchBox x:Name="TextFilterTag" Text="{Binding AppSettings.FilterSettings.Tags, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
-                            <Label Content="{DynamicResource SeriesLabel}">
+                            <Label Content="{DynamicResource LOCSeriesLabel}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                         <Style.Triggers>
@@ -2761,7 +3021,7 @@
                             </Label>
                             <pc:SearchBox x:Name="TextFilterSeries" Text="{Binding AppSettings.FilterSettings.Series, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
 
-                            <Label Content="{DynamicResource RegionLabel}">
+                            <Label Content="{DynamicResource LOCRegionLabel}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                         <Style.Triggers>
@@ -2774,7 +3034,7 @@
                             </Label>
                             <pc:SearchBox x:Name="TextFilterRegion" Text="{Binding AppSettings.FilterSettings.Region, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
 
-                            <Label Content="{DynamicResource SourceLabel}">
+                            <Label Content="{DynamicResource LOCSourceLabel}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                         <Style.Triggers>
@@ -2787,7 +3047,7 @@
                             </Label>
                             <pc:SearchBox x:Name="TextFilterSource" Text="{Binding AppSettings.FilterSettings.Source, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
 
-                            <Label Content="{DynamicResource AgeRatingLabel}">
+                            <Label Content="{DynamicResource LOCAgeRatingLabel}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                         <Style.Triggers>
@@ -2816,10 +3076,17 @@
                         </Border>
                     </Button>
 
+                    <Border MinWidth="285" DockPanel.Dock="Left">
+                        <ContentControl Template="{StaticResource SearchPanel}" 
+                                        Width="285" WindowChrome.IsHitTestVisibleInChrome="True"                                    
+                                        IsTabStop="{Binding AppSettings.ViewSettings.GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"
+                                        Visibility="{Binding IsTabStop, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                    </Border>
+                    
                     <ContentControl Template="{StaticResource NotificationIcon}" Margin="0,0,130,0"
                                     HorizontalAlignment="Right" DockPanel.Dock="Right"/>
 
-                    <ContentControl Template="{StaticResource ProgressView}" Margin="290,0,30,0"
+                    <ContentControl Template="{StaticResource ProgressView}" Margin="20,0,30,0"
                                     HorizontalAlignment="Stretch" DockPanel.Dock="Left" />
                 </DockPanel>
             </Border>
@@ -2892,25 +3159,66 @@
                     </Grid.ColumnDefinitions>
 
                     <Border Grid.Column="0" Background="{DynamicResource MainMenuBackgroundBrush}"
-                            Padding="10,70,0,20">
+                            Padding="10,70,20,20">
                         <DockPanel>
-                            <RadioButton Content="{DynamicResource MenuAddGame}" Name="ButtonAddGame"
-                                    DockPanel.Dock="Top" />
-                            <RadioButton Content="{DynamicResource MenuReloadLibrary}" Command="{Binding UpdateGamesCommand}"
-                                    DockPanel.Dock="Top" />
-                            <RadioButton Content="{DynamicResource MenuTools}" Name="ButtonTools"
-                                    DockPanel.Dock="Top" />
-                            <RadioButton Content="{DynamicResource MenuOpenClient}" Name="ButtonClients"
-                                    DockPanel.Dock="Top" />
-                            <RadioButton Content="{DynamicResource Extensions}" Name="ButtonExtensions"
-                                    DockPanel.Dock="Top" />
-                            <RadioButton Content="{DynamicResource MenuPlayniteSettingsTitle}" Command="{Binding OpenSettingsCommand}"
-                                    DockPanel.Dock="Top"/>
-                            <RadioButton Content="{DynamicResource MenuOpenFullscreen}" Command="{Binding OpenFullScreenCommand}"
-                                    DockPanel.Dock="Top"/>
-                            <RadioButton Content="{DynamicResource ExitAppLabel}" Command="{Binding ShutdownCommand}"
-                                    DockPanel.Dock="Top" />
-                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="-10,0,0,0">
+                            <RadioButton Name="ButtonAddGame" DockPanel.Dock="Top">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCMenuAddGame}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Command="{Binding UpdateGamesCommand}" DockPanel.Dock="Top">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCMenuReloadLibrary}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Name="ButtonTools" DockPanel.Dock="Top">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCMenuTools}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Name="ButtonClients" DockPanel.Dock="Top">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCMenuOpenClient}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Name="ButtonExtensions"
+                                         IsEnabled="{Binding Api.HasExportedFunctions, Source={x:Static pui:App.Current}}"
+                                         DockPanel.Dock="Top">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCExtensions}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Command="{Binding OpenSettingsCommand}"
+                                         DockPanel.Dock="Top">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Images/MenuIcons/settings.png" Height="16" Margin="0,0,10,0"
+                                               RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                        <TextBlock Text="{DynamicResource LOCMenuPlayniteSettingsTitle}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Command="{Binding OpenFullScreenCommand}" DockPanel.Dock="Top"
+                                         Margin="5,30,0,0">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Images/applogo.png" Height="16" Margin="0,0,10,0"
+                                               RenderOptions.BitmapScalingMode="Fant"/>
+                                        <TextBlock Text="{DynamicResource LOCMenuOpenFullscreen}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="0,30,0,0">
                                 <Button Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
                                         CommandParameter="https://discord.gg/hSFvmN6" Cursor="Hand">
                                     <Image Height="24" Source="/Images/discord.png" RenderOptions.BitmapScalingMode="Fant" />
@@ -2928,10 +3236,43 @@
                                     <Image Height="24" Source="/Images/patreon.png" RenderOptions.BitmapScalingMode="Fant" />
                                 </Button>
                             </StackPanel>
-                            <RadioButton Content="{DynamicResource MenuIssues}" Command="{Binding ReportIssueCommand}"
-                                    DockPanel.Dock="Bottom" />
-                            <RadioButton Content="{DynamicResource MenuAbout}" Command="{Binding OpenAboutCommand}"
-                                    DockPanel.Dock="Bottom" />
+                            <RadioButton Command="{Binding ShutdownCommand}" DockPanel.Dock="Bottom">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCExitAppLabel}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+
+
+                            <RadioButton Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                         CommandParameter="https://playnite.link/docs/"
+                                         DockPanel.Dock="Bottom">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Images/MenuIcons/script.png" Height="16" Margin="0,0,10,0"
+                                               RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                                        <TextBlock Text="{DynamicResource LOCSDKDocumentation}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+
+                            <RadioButton Command="{Binding ReportIssueCommand}" DockPanel.Dock="Bottom">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Images/MenuIcons/feedback.png" Height="16" Margin="0,0,10,0"
+                                               RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                                        <TextBlock Text="{DynamicResource LOCMenuIssues}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton Command="{Binding OpenAboutCommand}" DockPanel.Dock="Bottom">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCMenuAbout}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
                             <Grid DockPanel.Dock="Top" />
                         </DockPanel>
                     </Border>
@@ -2940,9 +3281,9 @@
                             Visibility="{Binding IsChecked, ElementName=ButtonAddGame, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Background="{DynamicResource MainMenuBackgroundBrush}">
                         <StackPanel>
-                            <Button Content="{DynamicResource MenuAddGameManual}" Command="{Binding AddCustomGameCommand}"/>
-                            <Button Content="{DynamicResource MenuAddGameInstalled}" Command="{Binding AddInstalledGamesCommand}"/>
-                            <Button Content="{DynamicResource MenuAddGameEmulated}" Command="{Binding AddEmulatedGamesCommand}"/>
+                            <Button Content="{DynamicResource LOCMenuAddGameManual}" Command="{Binding AddCustomGameCommand}"/>
+                            <Button Content="{DynamicResource LOCMenuAddGameInstalled}" Command="{Binding AddInstalledGamesCommand}"/>
+                            <Button Content="{DynamicResource LOCMenuAddGameEmulated}" Command="{Binding AddEmulatedGamesCommand}"/>
                         </StackPanel>
                     </Border>
 
@@ -2950,9 +3291,9 @@
                             Visibility="{Binding IsChecked, ElementName=ButtonTools, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Background="{DynamicResource MainMenuBackgroundBrush}">
                         <StackPanel>
-                            <Button Content="{DynamicResource MenuPlatformEmulatorSettingsTitle}" Command="{Binding OpenPlatformsCommand}"/>
-                            <Button Content="{DynamicResource MenuDownloadMetadata}" Command="{Binding DownloadMetadataCommand}"/>
-                            <Button Content="{DynamicResource ReloadScripts}" Command="{Binding ReloadScriptsCommand}"/>
+                            <Button Content="{DynamicResource LOCMenuPlatformEmulatorSettingsTitle}" Command="{Binding OpenPlatformsCommand}"/>
+                            <Button Content="{DynamicResource LOCMenuDownloadMetadata}" Command="{Binding DownloadMetadataCommand}"/>
+                            <Button Content="{DynamicResource LOCReloadScripts}" Command="{Binding ReloadScriptsCommand}"/>
                         </StackPanel>
                     </Border>
 

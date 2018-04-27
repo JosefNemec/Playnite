@@ -9,14 +9,14 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="{DynamicResource AboutWindowTitle}" ResizeMode="NoResize" Height="400" Width="500"
+        Title="{DynamicResource LOCAboutWindowTitle}" ResizeMode="NoResize" Height="400" Width="500"
         AutomationProperties.AutomationId="WindowAbout" ShowMinimizeButton="False" ShowMaximizeButton="False">
 
     <DockPanel Margin="5">
         <DockPanel LastChildFill="False" DockPanel.Dock="Bottom">
-            <Button Name="ButtonCreatePackage" Content="{DynamicResource AboutCreateDiagButton}" Style="{StaticResource BottomButton}"
+            <Button Name="ButtonCreatePackage" Content="{DynamicResource LOCAboutCreateDiagButton}" Style="{StaticResource BottomButton}"
                     Command="{Binding CreateDiagPackageCommand}"/>
-            <Button Name="ButtonClose" Content="{DynamicResource CloseLabel}" DockPanel.Dock="Right" IsCancel="True"
+            <Button Name="ButtonClose" Content="{DynamicResource LOCCloseLabel}" DockPanel.Dock="Right" IsCancel="True"
                     Style="{StaticResource BottomButton}" Command="{Binding CloseCommand}"/>
         </DockPanel>
 
@@ -24,27 +24,31 @@
             <Image Source="/Images/applogo.png" Width="64" Height="64" RenderOptions.BitmapScalingMode="Fant"/>
 
             <StackPanel Margin="15,0,0,0">
-                <Label Name="TextVersionInfo" Content="{Binding VersionInfo}" Foreground="{StaticResource TextBrush}" FontSize="20"/>
-                <TextBlock Text="{DynamicResource AboutAuthor}" Foreground="LightGray"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Name="TextVersionInfo" Content="{Binding VersionInfo}" Foreground="{StaticResource TextBrush}" FontSize="20"/>
+                    <Label Content="{Binding SDKVersion}" Foreground="{StaticResource TextBrush}" FontSize="20"
+                           Margin="160,0,0,0"/>
+                </StackPanel>                
+                <TextBlock Text="{DynamicResource LOCAboutAuthor}" Foreground="LightGray"/>
                 <TextBlock>
                 <Hyperlink Name="HyperlinkHomepage" FontSize="12" NavigateUri="http://www.playnite.link"
                            Command="{Binding NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                    <Run Text="{DynamicResource AboutHomePageLink}"/>
+                    <Run Text="{DynamicResource LOCAboutHomePageLink}"/>
                 </Hyperlink>
                 </TextBlock>
                 <TextBlock>
                 <Hyperlink Name="HyperlinkSource" FontSize="12" NavigateUri="https://github.com/JosefNemec/Playnite/"
                            Command="{Binding NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                    <Run Text="{DynamicResource AboutSourceLink}"/>
+                    <Run Text="{DynamicResource LOCAboutSourceLink}"/>
                 </Hyperlink>
                 </TextBlock>
             </StackPanel>
         </StackPanel>
 
         <TabControl DockPanel.Dock="Top">
-            <TabItem Header="{DynamicResource PatronsLabel}">
+            <TabItem Header="{DynamicResource LOCPatronsLabel}">
                 <DockPanel>
-                    <TextBlock DockPanel.Dock="Top" Text="{DynamicResource PatreonDevelopMessage}"
+                    <TextBlock DockPanel.Dock="Top" Text="{DynamicResource LOCPatreonDevelopMessage}"
                                HorizontalAlignment="Center" Margin="0,5,0,5" />
                     <TextBox IsReadOnly="True" DockPanel.Dock="Top" BorderThickness="0"
                              HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto">
@@ -58,9 +62,9 @@
                 </DockPanel>
             </TabItem>
 
-            <TabItem Header="{DynamicResource ContributorsLabel}">
+            <TabItem Header="{DynamicResource LOCContributorsLabel}">
                 <DockPanel>
-                    <TextBlock DockPanel.Dock="Top" Text="{DynamicResource AboutContributorsMessage}"
+                    <TextBlock DockPanel.Dock="Top" Text="{DynamicResource LOCAboutContributorsMessage}"
                                HorizontalAlignment="Center" Margin="0,5,0,5" />
                     <TextBox IsReadOnly="True" DockPanel.Dock="Top" BorderThickness="0"
                          HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -84,7 +88,7 @@ zygzak&#x0a;
 
             </TabItem>
 
-            <TabItem Header="{DynamicResource LicenseLabel}">
+            <TabItem Header="{DynamicResource LOCLicenseLabel}">
                 <TextBox AcceptsReturn="True" IsReadOnly="True" TextWrapping="Wrap" BorderThickness="0"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                 Text="MIT License&#x0a;&#x0a;Copyright (c) 2017 Josef Nemec&#x0a;&#x0a;Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal

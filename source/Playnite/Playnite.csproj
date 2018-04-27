@@ -170,6 +170,7 @@
     <Compile Include="API\PlayniteAPI.cs" />
     <Compile Include="Extensions\BitmapExtensions.cs" />
     <Compile Include="Database\GameDatabase.cs" />
+    <Compile Include="Extensions\Enums.cs" />
     <Compile Include="Models\ActiveController.cs" />
     <Compile Include="Plugins\Plugins.cs" />
     <Compile Include="Scripting\IronPython\IronPython.cs" />

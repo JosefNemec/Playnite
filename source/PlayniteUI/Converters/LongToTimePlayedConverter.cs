@@ -16,21 +16,21 @@ namespace PlayniteUI
             var seconds = (long)value;
             if (seconds == 0)
             {
-                return string.Empty;
+                return ResourceProvider.Instance.FindString("LOCPlayedNone");
             }
 
             var time = TimeSpan.FromSeconds(seconds);
             if (time.TotalSeconds < 60)
             {
-                return string.Format(ResourceProvider.Instance.FindString("PlayedSeconds"), time.Seconds);
+                return string.Format(ResourceProvider.Instance.FindString("LOCPlayedSeconds"), time.Seconds);
             }
             else if (time.TotalHours < 1)
             {
-                return string.Format(ResourceProvider.Instance.FindString("PlayedMinutes"), time.Minutes);
+                return string.Format(ResourceProvider.Instance.FindString("LOCPlayedMinutes"), time.Minutes);
             }
             else
             {
-                return string.Format(ResourceProvider.Instance.FindString("PlayedHours"), Math.Floor(time.TotalHours), time.Minutes);
+                return string.Format(ResourceProvider.Instance.FindString("LOCPlayedHours"), Math.Floor(time.TotalHours), time.Minutes);
             }
         }
 

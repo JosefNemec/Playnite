@@ -116,8 +116,8 @@ namespace PlayniteUI
             if (dbGame == null)
             {
                 dialogs.ShowMessage(
-                    string.Format(resources.FindString("GameStartErrorNoGame"), game.Name),
-                    resources.FindString("GameError"),
+                    string.Format(resources.FindString("LOCGameStartErrorNoGame"), game.Name),
+                    resources.FindString("LOCGameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 UpdateJumpList();
                 return;
@@ -144,8 +144,8 @@ namespace PlayniteUI
             {
                 logger.Error(exc, "Cannot start game: ");
                 dialogs.ShowMessage(
-                    string.Format(resources.FindString("GameStartError"), exc.Message),
-                    resources.FindString("GameError"),
+                    string.Format(resources.FindString("LOCGameStartError"), exc.Message),
+                    resources.FindString("LOCGameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -169,8 +169,8 @@ namespace PlayniteUI
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 dialogs.ShowMessage(
-                    string.Format(resources.FindString("GameStartActionError"), exc.Message),
-                    resources.FindString("GameError"),
+                    string.Format(resources.FindString("LOCGameStartActionError"), exc.Message),
+                    resources.FindString("LOCGameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -189,8 +189,8 @@ namespace PlayniteUI
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 dialogs.ShowMessage(
-                    string.Format(resources.FindString("GameOpenLocationError"), exc.Message),
-                    resources.FindString("GameError"),
+                    string.Format(resources.FindString("LOCGameOpenLocationError"), exc.Message),
+                    resources.FindString("LOCGameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -256,16 +256,16 @@ namespace PlayniteUI
             if (game.State.Installing || game.State.Running || game.State.Launching || game.State.Uninstalling)
             {
                 dialogs.ShowMessage(
-                    resources.FindString("GameRemoveRunningError"),
-                    resources.FindString("GameError"),
+                    resources.FindString("LOCGameRemoveRunningError"),
+                    resources.FindString("LOCGameError"),
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return;
             }
 
             if (dialogs.ShowMessage(
-                resources.FindString("GameRemoveAskMessage"),
-                resources.FindString("GameRemoveAskTitle"),
+                resources.FindString("LOCGameRemoveAskMessage"),
+                resources.FindString("LOCGameRemoveAskTitle"),
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question) != MessageBoxResult.Yes)
             {
@@ -280,16 +280,16 @@ namespace PlayniteUI
             if (games.Exists(a => a.State.Installing || a.State.Running || a.State.Launching || a.State.Uninstalling))
             {
                 dialogs.ShowMessage(
-                    resources.FindString("GameRemoveRunningError"),
-                    resources.FindString("GameError"),
+                    resources.FindString("LOCGameRemoveRunningError"),
+                    resources.FindString("LOCGameError"),
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return;
             }
 
             if (dialogs.ShowMessage(
-                string.Format(resources.FindString("GamesRemoveAskMessage"), games.Count()),
-                resources.FindString("GameRemoveAskTitle"),
+                string.Format(resources.FindString("LOCGamesRemoveAskMessage"), games.Count()),
+                resources.FindString("LOCGameRemoveAskTitle"),
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question) != MessageBoxResult.Yes)
             {
@@ -330,8 +330,8 @@ namespace PlayniteUI
             {
                 logger.Error(exc, "Failed to create shortcut: ");
                 dialogs.ShowMessage(
-                    string.Format(resources.FindString("GameShortcutError"), exc.Message),
-                    resources.FindString("GameError"),
+                    string.Format(resources.FindString("LOCGameShortcutError"), exc.Message),
+                    resources.FindString("LOCGameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -358,8 +358,8 @@ namespace PlayniteUI
             {
                 logger.Error(exc, "Cannot install game: ");
                 dialogs.ShowMessage(
-                    string.Format(resources.FindString("GameInstallError"), exc.Message),
-                    resources.FindString("GameError"),
+                    string.Format(resources.FindString("LOCGameInstallError"), exc.Message),
+                    resources.FindString("LOCGameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -369,8 +369,8 @@ namespace PlayniteUI
             if (game.State.Running || game.State.Launching)
             {
                 dialogs.ShowMessage(
-                    resources.FindString("GameUninstallRunningError"),
-                    resources.FindString("GameError"),
+                    resources.FindString("LOCGameUninstallRunningError"),
+                    resources.FindString("LOCGameError"),
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return;
@@ -388,8 +388,8 @@ namespace PlayniteUI
             {
                 logger.Error(exc, "Cannot un-install game: ");
                 dialogs.ShowMessage(
-                    string.Format(resources.FindString("GameUninstallError"), exc.Message),
-                    resources.FindString("GameError"),
+                    string.Format(resources.FindString("LOCGameUninstallError"), exc.Message),
+                    resources.FindString("LOCGameError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

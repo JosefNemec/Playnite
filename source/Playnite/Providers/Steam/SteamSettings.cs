@@ -73,6 +73,11 @@ namespace Playnite.Providers.Steam
             get; set;
         } = false;
 
+        public bool PreferScreenshotForBackground
+        {
+            get; set;
+        } = false;
+
         public static bool IsInstalled
         {
             get

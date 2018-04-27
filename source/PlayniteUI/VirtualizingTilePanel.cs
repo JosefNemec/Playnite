@@ -63,10 +63,22 @@ namespace PlayniteUI
             {
                 return;
             }
-            
+
             panel.InvalidateMeasure();
             panel._owner?.InvalidateScrollInfo();
-            panel.SetVerticalOffset(0);
+
+            if (panel.currentlyVisible != null)
+            {
+                var index = panel.GeneratorContainer.IndexFromContainer(panel.currentlyVisible);
+                if (index >= 0)
+                {
+                    panel.MakeVisible(panel.currentlyVisible, new Rect(new Size(panel.ItemWidth, panel.ItemHeight)));
+                }
+                else
+                {
+                    panel.SetVerticalOffset(0);
+                }
+            }
         }
 
         private IRecyclingItemContainerGenerator Generator;
@@ -90,7 +102,6 @@ namespace PlayniteUI
                     InvalidateMeasure();
                 });
             }
-
 
             // For use in the IScrollInfo implementation
             this.RenderTransform = _trans;
@@ -452,16 +463,14 @@ namespace PlayniteUI
             get { return _viewport.Width; }
         }
 
-        private const double ScrollLineAmount = 16;
-
         public void LineUp()
         {
-            SetVerticalOffset(VerticalOffset - ScrollLineAmount);
+            SetVerticalOffset(VerticalOffset - ItemHeight);
         }
 
         public void LineDown()
         {
-            SetVerticalOffset(VerticalOffset + ScrollLineAmount);
+            SetVerticalOffset(VerticalOffset + ItemHeight);
         }
 
         public void PageUp()
@@ -494,6 +503,8 @@ namespace PlayniteUI
 
         }
 
+        private Visual currentlyVisible;
+
         public Rect MakeVisible(Visual visual, Rect rectangle)
         {
             var index = GeneratorContainer.IndexFromContainer(visual);
@@ -502,6 +513,7 @@ namespace PlayniteUI
                 return rectangle;
             }
 
+            currentlyVisible = visual;
             var perRow = CalculateChildrenPerRow(_extent);
             var row = GetItemRow(index, perRow);
             var offset = GetTotalHeightForRow(row);            

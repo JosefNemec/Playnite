@@ -210,11 +210,13 @@
     <Compile Include="Converters\InvertableBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\AfterGameLaunchOptionToStringConverter.cs" />
     <Compile Include="Converters\DateTimeToLastPlayedConverter.cs" />
+    <Compile Include="Converters\SortingOrderToStringConverter.cs" />
     <Compile Include="Converters\MetadataSourceToStringConverter.cs" />
     <Compile Include="Converters\ListToStringConverter.cs" />
     <Compile Include="Converters\CustomImageStringToImageConverter.cs" />
     <Compile Include="Converters\NotificationIconConverter.cs" />
     <Compile Include="Converters\NullToBoolConverter.cs" />
+    <Compile Include="Converters\NullToDependencyPropertyUnsetConverter.cs" />
     <Compile Include="Converters\SelectablePlatformsListToStringConverter.cs" />
     <Compile Include="Converters\SkinMediaPathConverter.cs" />
     <Compile Include="Converters\NegateConverter.cs" />
@@ -229,6 +231,7 @@
     <Compile Include="Dialogs.cs" />
     <Compile Include="ElementTreeHelper.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Extensions\Images.cs" />
     <Compile Include="GamesCollectionView.cs" />
     <Compile Include="Behaviors\ScrollToSelectedBehavior.cs" />
     <Compile Include="Resources.cs" />
@@ -335,6 +338,26 @@
     <Resource Include="Images\patreon.png" />
     <Resource Include="Images\reddit.png" />
     <Resource Include="Images\twitter.png" />
+    <Resource Include="Images\MenuIcons\settings.png" />
+    <Resource Include="Images\MenuIcons\refresh.png" />
+    <Resource Include="Images\MenuIcons\add.png" />
+    <Resource Include="Images\MenuIcons\exit.png" />
+    <Resource Include="Images\MenuIcons\fullscreen.png" />
+    <Resource Include="Images\MenuIcons\link.png" />
+    <Resource Include="Images\MenuIcons\favorite.png" />
+    <Resource Include="Images\MenuIcons\hide.png" />
+    <Resource Include="Images\MenuIcons\remove.png" />
+    <Resource Include="Images\MenuIcons\edit.png" />
+    <Resource Include="Images\MenuIcons\folder.png" />
+    <Resource Include="Images\MenuIcons\shortcut.png" />
+    <Resource Include="Images\MenuIcons\start.png" />
+    <Resource Include="Images\MenuIcons\favoriteEmpty.png" />
+    <Resource Include="Images\MenuIcons\hideCrosed.png" />
+    <Resource Include="Images\MenuIcons\install.png" />
+    <Resource Include="Images\MenuIcons\controller.png" />
+    <Resource Include="Images\MenuIcons\info.png" />
+    <Resource Include="Images\MenuIcons\feedback.png" />
+    <Resource Include="Images\MenuIcons\script.png" />
     <Content Include="Localization\english.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -432,6 +455,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SkinsFullscreen\Playnite\Playnite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SkinsFullscreen\Playnite\Playnite.PlayStation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

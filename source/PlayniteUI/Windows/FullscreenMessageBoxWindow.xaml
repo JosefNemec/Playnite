@@ -48,13 +48,13 @@
                             <Setter Property="Margin" Value="10,0,10,0" />
                         </Style>
                     </StackPanel.Resources>
-                    <Button Content="{DynamicResource OKLabel}" Name="ButtonOK" Click="ButtonOK_Click"
+                    <Button Content="{DynamicResource LOCOKLabel}" Name="ButtonOK" Click="ButtonOK_Click"
                         Visibility="{Binding ShowOKButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <Button Content="{DynamicResource YesLabel}" Name="ButtonYes" Click="ButtonYes_Click"
+                    <Button Content="{DynamicResource LOCYesLabel}" Name="ButtonYes" Click="ButtonYes_Click"
                         Visibility="{Binding ShowYesButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <Button Content="{DynamicResource NoLabel}" Name="ButtonNo" Click="ButtonNo_Click"
+                    <Button Content="{DynamicResource LOCNoLabel}" Name="ButtonNo" Click="ButtonNo_Click"
                         Visibility="{Binding ShowNoButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <Button Content="{DynamicResource CancelLabel}" Name="ButtonCancel" Click="ButtonCancel_Click"
+                    <Button Content="{DynamicResource LOCCancelLabel}" Name="ButtonCancel" Click="ButtonCancel_Click"
                         Visibility="{Binding ShowCancelButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
             </Viewbox>

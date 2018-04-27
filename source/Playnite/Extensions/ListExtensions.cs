@@ -42,5 +42,20 @@ namespace Playnite
 
             return intersects;
         }
+
+        public static bool IntersectsExactlyWith(this List<string> source, List<string> target)
+        {
+            var intersects = false;
+
+            foreach (var sourceItem in source)
+            {
+                if (target.Any(a => a != null && a.Equals(sourceItem, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    return true;
+                }
+            }
+
+            return intersects;
+        }
     }
 }

@@ -12,8 +12,6 @@
                 <ResourceDictionary Source="Themes/Generic.xaml"/>
                 <ResourceDictionary Source="Skins/Classic/Classic.xaml"/>
                 <ResourceDictionary Source="Skins/Classic/Classic.Default.xaml"/>
-                <ResourceDictionary Source="SkinsFullScreen/Playnite/Playnite.xaml"/>
-                <ResourceDictionary Source="SkinsFullScreen/Playnite/Playnite.Default.xaml"/>
                 <ResourceDictionary Source="Localization/english.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <sys:Boolean x:Key="AsyncImagesEnabled">True</sys:Boolean>

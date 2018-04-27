@@ -14,7 +14,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="{DynamicResource SettingsWindowTitle}" Width="650" Height="500"                     
+        Title="{DynamicResource LOCSettingsWindowTitle}" Width="650" Height="550"                     
         AutomationProperties.AutomationId="WindowSettings">
 
     <i:Interaction.Triggers>
@@ -34,10 +34,10 @@
         <DockPanel>
             <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
                 <DockPanel LastChildFill="False" Margin="5">
-                    <Button Name="ButtonCancel" Content="{DynamicResource CancelLabel}" DockPanel.Dock="Right"
+                    <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right"
                             Style="{StaticResource BottomButton}" IsCancel="True"
                             Command="{Binding CancelCommand}"/>
-                    <Button Name="ButtonOK" Content="{DynamicResource SaveLabel}" DockPanel.Dock="Right" 
+                    <Button Name="ButtonOK" Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right" 
                             Style="{StaticResource BottomButton}"
                             Command="{Binding ConfirmCommand}"/>
                 </DockPanel>
@@ -52,22 +52,22 @@
                         <Setter Property="Padding" Value="0,3,3,3" />
                     </Style>
                 </TreeView.Resources>
-                <TreeViewItem Header="{DynamicResource SettingsGeneralLabel}" IsSelected="True">
+                <TreeViewItem Header="{DynamicResource LOCSettingsGeneralLabel}" IsSelected="True">
                     <TreeViewItem.Tag>
                         <sys:Int32>0</sys:Int32>
                     </TreeViewItem.Tag>
                 </TreeViewItem>
-                <TreeViewItem Header="{DynamicResource SettingsAppearanceLabel}">
+                <TreeViewItem Header="{DynamicResource LOCSettingsAppearanceLabel}">
                     <TreeViewItem.Tag>
                         <sys:Int32>1</sys:Int32>
                     </TreeViewItem.Tag>
                 </TreeViewItem>
-                <TreeViewItem Header="{DynamicResource SettingsAdvancedLabel}">
+                <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}">
                     <TreeViewItem.Tag>
                         <sys:Int32>7</sys:Int32>
                     </TreeViewItem.Tag>
                 </TreeViewItem>
-                <TreeViewItem Header="{DynamicResource SettingsProvidersLabel}" IsExpanded="True" Focusable="False">
+                <TreeViewItem Header="{DynamicResource LOCSettingsProvidersLabel}" IsExpanded="True" Focusable="False">
                     <TreeViewItem Header="Steam">
                         <TreeViewItem.Tag>
                             <sys:Int32>2</sys:Int32>
@@ -115,9 +115,9 @@
                 <TabItem Visibility="Collapsed">
                     <StackPanel Margin="20">
                         <DockPanel Margin="0,10,0,0">
-                            <TextBlock Text="{DynamicResource SettingsDBLocation}" Margin="5,0,10,0"
+                            <TextBlock Text="{DynamicResource LOCSettingsDBLocation}" Margin="5,0,10,0"
                                    DockPanel.Dock="Left" VerticalAlignment="Center"/>
-                            <Button Name="ButtonBrowserDbFile" Content="{DynamicResource Change}"
+                            <Button Name="ButtonBrowserDbFile" Content="{DynamicResource LOCChange}"
                                     DockPanel.Dock="Right" Padding="5,0,5,0"
                                     Command="{Binding SelectDbFileCommand}"/>
                             <TextBox Name="TextDatabase" Text="{Binding Settings.DatabasePath}"
@@ -126,7 +126,7 @@
                         </DockPanel>
 
                         <DockPanel Margin="0,15,0,5" LastChildFill="False">
-                            <TextBlock Text="{DynamicResource LanguageSettingsLabel}" VerticalAlignment="Center" Margin="5,0,10,0" />
+                            <TextBlock Text="{DynamicResource LOCLanguageSettingsLabel}" VerticalAlignment="Center" Margin="5,0,10,0" />
                             <ComboBox Name="ComboLanguage"
                                       SelectedValue="{Binding Settings.Language}"
                                       SelectedValuePath="Id" DisplayMemberPath="LocaleString"
@@ -134,7 +134,7 @@
                             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                                 <Hyperlink Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
                                            CommandParameter="https://github.com/JosefNemec/Playnite/wiki/How-to:-Translations">
-                                    <Run Text="{DynamicResource SettingsCreateLocalization}" />
+                                    <Run Text="{DynamicResource LOCSettingsCreateLocalization}" />
                                 </Hyperlink>
                             </TextBlock>
                         </DockPanel>
@@ -169,34 +169,34 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <CheckBox Name="CheckEnableTray" Content="{DynamicResource SettingsShowTray}" Margin="5,0,0,0"
+                            <CheckBox Name="CheckEnableTray" Content="{DynamicResource LOCSettingsShowTray}" Margin="5,0,0,0"
                                             IsChecked="{Binding Settings.EnableTray}"
                                       Grid.Column="0" Grid.Row="0"/>
-                            <CheckBox Name="CheckMinimizeToTray" Content="{DynamicResource SettingsMinimizeToTray}" Margin="20,10,5,5"
+                            <CheckBox Name="CheckMinimizeToTray" Content="{DynamicResource LOCSettingsMinimizeToTray}" Margin="20,10,5,5"
                                         IsChecked="{Binding Settings.MinimizeToTray}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"
                                       Grid.Column="0" Grid.Row="1"/>
-                            <CheckBox Name="CheckCloseToTray" Content="{DynamicResource SettingsCloseToTray}" Margin="20,5,5,5"
+                            <CheckBox Name="CheckCloseToTray" Content="{DynamicResource LOCSettingsCloseToTray}" Margin="20,5,5,5"
                                         IsChecked="{Binding Settings.CloseToTray}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"
                                       Grid.Column="0" Grid.Row="2"/>                
 
                             <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal"
                                         Margin="40,0,0,0">
-                                <TextBlock Text="{DynamicResource SettingsAfterGameStart}" Margin="0,0,5,0"
+                                <TextBlock Text="{DynamicResource LOCSettingsAfterGameStart}" Margin="0,0,5,0"
                                            VerticalAlignment="Center" />
                                 <ContentControl DataContext="{Binding Settings}"
                                                 ToolTipService.InitialShowDelay="0"
-                                                ToolTip="{DynamicResource SettingsClosePlaytimeNotif}"
+                                                ToolTip="{DynamicResource LOCSettingsClosePlaytimeNotif}"
                                                 Content="{StaticResource ComboAfterGameOptions}" />
                             </StackPanel>
 
                             <CheckBox Name="CheckUpdateLibStartup" Margin="5,15,5,5" Grid.Row="3" Grid.ColumnSpan="2"
-                                      Content="{DynamicResource SettingsUpdateLibStartup}" ToolTip="{DynamicResource SettingsUpdateLibStartupTooltip}" 
+                                      Content="{DynamicResource LOCSettingsUpdateLibStartup}" ToolTip="{DynamicResource SettingsUpdateLibStartupTooltip}" 
                                       IsChecked="{Binding Settings.UpdateLibStartup}"/>
 
                             <CheckBox Name="CheckStartFullscreen" Margin="5,15,5,5" Grid.Row="4" Grid.ColumnSpan="2"
-                                      Content="{DynamicResource SettingsStartInFullscreen}"
+                                      Content="{DynamicResource LOCSettingsStartInFullscreen}"
                                       IsChecked="{Binding Settings.StartInFullscreen}"/>
                         </Grid>
                     </StackPanel>
@@ -215,7 +215,7 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
                             
-                            <TextBlock Text="{DynamicResource SettingsSkin}" VerticalAlignment="Center"
+                            <TextBlock Text="{DynamicResource LOCSettingsSkin}" VerticalAlignment="Center"
                                        Grid.Row="0" Grid.Column="0"/>
                             <ComboBox Margin="10,5,20,5" Name="ComboSkins"
                                         Grid.Row="0" Grid.Column="1"
@@ -224,7 +224,7 @@
                                         SelectionChanged="ComboSkins_SelectionChanged"
                                         SelectedValuePath="Name" DisplayMemberPath="Name" />
 
-                            <TextBlock Text="{DynamicResource SettingsSkinColor}" VerticalAlignment="Center"
+                            <TextBlock Text="{DynamicResource LOCSettingsSkinColor}" VerticalAlignment="Center"
                                        Grid.Row="0" Grid.Column="2" />
                             <ComboBox Margin="10,5,10,5" Name="CombSkinColor"
                                       Grid.Row="0" Grid.Column="3"
@@ -233,83 +233,83 @@
                                       ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkins}" />
                         </Grid>
 
-                        <!--<Grid Margin="0,10,0,0">
+                        <Grid Margin="0,10,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="{DynamicResource SettingsSkinFullscreen}" VerticalAlignment="Center"
+                            <TextBlock Text="{DynamicResource LOCSettingsSkinFullscreen}" VerticalAlignment="Center"
                                         Grid.Row="0" Grid.Column="0"/>
                             <ComboBox Margin="10,5,10,5" Name="ComboSkinsFullscreen"
+                                      Visibility="Collapsed"
                                         Grid.Row="0" Grid.Column="1"
                                         ItemsSource="{Binding AvailableFullscreenSkins}"
                                         SelectedValue="{Binding Settings.SkinFullscreen}"
                                         SelectionChanged="ComboSkinsFullscreen_SelectionChanged"
                                         SelectedValuePath="Name" DisplayMemberPath="Name" />
 
-                            <TextBlock Text="{DynamicResource SettingsSkinColorFullscreen}" VerticalAlignment="Center"
-                                        Grid.Row="0" Grid.Column="2" />
+                            <TextBlock Text="{DynamicResource LOCSettingsSkinColorFullscreen}" VerticalAlignment="Center"
+                                        Grid.Row="0" Grid.Column="0" />
                             <ComboBox Margin="10,5,0,5" Name="CombSkinColorFullscreen"
-                                        Grid.Row="0" Grid.Column="3"
+                                        Grid.Row="0" Grid.Column="1"
                                         SelectedValue="{Binding Settings.SkinColorFullscreen}"
                                         ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkinsFullscreen}">
                             </ComboBox>
-                        </Grid>-->
+                        </Grid>
 
-                        <TextBlock Text="{DynamicResource SettingsSkinChangeRestart}" FontStyle="Italic" Margin="0,15,0,15"/>
+                        <TextBlock Text="{DynamicResource LOCSettingsSkinChangeRestart}" FontStyle="Italic" Margin="0,15,0,15"/>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock >
                                 <Hyperlink Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
                                            CommandParameter="https://www.reddit.com/r/playnite/comments/7o2bd2/custom_themes_database/">
-                                    <Run Text="{DynamicResource SettingsGetThemes}" />
+                                    <Run Text="{DynamicResource LOCSettingsGetThemes}" />
                                 </Hyperlink>
                             </TextBlock>
                             <TextBlock Margin="20,0,0,0">
                                 <Hyperlink Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
                                            CommandParameter="https://github.com/JosefNemec/Playnite/wiki/How-to:-Themes">
-                                    <Run Text="{DynamicResource SettingsCreateThemes}" />
+                                    <Run Text="{DynamicResource LOCSettingsCreateThemes}" />
                                 </Hyperlink>
                             </TextBlock>
                         </StackPanel>
                        
-                        <CheckBox Content="{DynamicResource SettingsAsyncImageLoading}" ToolTip="{DynamicResource SettingsAsyncImageLoadingTooltip}"
+                        <CheckBox Content="{DynamicResource LOCSettingsAsyncImageLoading}" ToolTip="{DynamicResource SettingsAsyncImageLoadingTooltip}"
                                   Margin="0,40,0,0"
                                   Name="CheckAsyncImages" IsChecked="{Binding Settings.AsyncImageLoading}"/>
-                        <CheckBox Content="{DynamicResource SettingsShowNameEmptyCover}" Margin="0,15,0,0"
+                        <CheckBox Content="{DynamicResource LOCSettingsShowNameEmptyCover}" Margin="0,15,0,0"
                                   Name="CheckNameEmptyCover" IsChecked="{Binding Settings.ShowNameEmptyCover}"/>
-                        <CheckBox Content="{DynamicResource SettingsShowIconList}" Margin="0,15,0,0"
+                        <CheckBox Content="{DynamicResource LOCSettingsShowIconList}" Margin="0,15,0,0"
                                   Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
-                        <CheckBox Content="{DynamicResource SettingsDisableAcceleration}" Margin="0,15,0,0" ToolTip="{DynamicResource SettingsDisableAccelerationTooltip}"
+                        <CheckBox Content="{DynamicResource LOCSettingsDisableAcceleration}" Margin="0,15,0,0" ToolTip="{DynamicResource SettingsDisableAccelerationTooltip}"
                                   Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"/>
                     </StackPanel>
                 </TabItem>
+                <!--STEAM-->
                 <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.SteamSettings.IntegrationEnabled}"
-                                    Name="CheckSteamEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                    Name="CheckSteamEnabled" Content="{DynamicResource LOCSettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top"/>
-                        <RadioButton Name="RadioInstalledSteam" Content="{DynamicResource SettingsImportInstalledLabel}"
+                        <RadioButton Name="RadioInstalledSteam" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                         IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
                         <RadioButton Name="RadioLibrarySteam"
                                         IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
                                         DockPanel.Dock="Top" Margin="20,5,5,0">
                             <RadioButton.Content>
-                                <TextBlock Text="{DynamicResource SettingsImportSteamLibraryLabel}"
+                                <TextBlock Text="{DynamicResource LOCSettingsImportSteamLibraryLabel}"
                                        TextWrapping="Wrap" />
                             </RadioButton.Content>
                         </RadioButton>
 
                         <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
-                            <TextBlock Text="{DynamicResource SettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5"/>
+                            <TextBlock Text="{DynamicResource LOCSettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5"/>
                             <Grid DockPanel.Dock="Top">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -320,10 +320,10 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
 
-                                <RadioButton Content="{DynamicResource NameLabel}" Name="RadioSteamLibName" GroupName="steamsource"
+                                <RadioButton Content="{DynamicResource LOCNameLabel}" Name="RadioSteamLibName" GroupName="steamsource"
                                                 IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.Name}}"
                                                 Grid.Column="0" Grid.Row="0" Margin="5"/>
-                                <RadioButton Content="{DynamicResource LocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource" 
+                                <RadioButton Content="{DynamicResource LOCLocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource" 
                                                 IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.LocalUser}}"
                                                 Grid.Column="0" Grid.Row="1" Margin="5"/>
 
@@ -332,7 +332,7 @@
                                         <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"
                                                    Command="{Binding NavigateUrlCommand}"
                                                    CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                                            <Run Text="{DynamicResource SettingsWhatsSteamName}" />
+                                            <Run Text="{DynamicResource LOCSettingsWhatsSteamName}" />
                                         </Hyperlink>
                                     </TextBlock>
                                     <TextBox Text="{Binding Settings.SteamSettings.AccountName}"
@@ -345,143 +345,152 @@
                                             IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"
                                             Grid.Column="1" Grid.Row="1" Margin="5" />
                             </Grid>
-                            <CheckBox Content="{DynamicResource PrivateAccount}" DockPanel.Dock="Top"
+                            <CheckBox Content="{DynamicResource LOCPrivateAccount}" DockPanel.Dock="Top"
                                       IsChecked="{Binding Settings.SteamSettings.PrivateAccount}"
                                       Margin="5,5,5,5" Name="CheckSteamPrivate"
-                                      ToolTip="{DynamicResource SettingsApiKeyTooltip}"/>
+                                      ToolTip="{DynamicResource LOCSettingsApiKeyTooltip}"/>
                             <DockPanel DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=CheckSteamPrivate}"
                                        Margin="30,5,5,5">
-                                <TextBlock Text="{DynamicResource APIKey}" DockPanel.Dock="Left"
+                                <TextBlock Text="{DynamicResource LOCAPIKey}" DockPanel.Dock="Left"
                                            VerticalAlignment="Center"/>
                                 <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">
                                     <Hyperlink NavigateUri="https://steamcommunity.com/dev/apikey"
                                                Command="{Binding NavigateUrlCommand}"
                                                CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                                        <Run Text="{DynamicResource SettingsApiKeyUrlText}" />
+                                        <Run Text="{DynamicResource LOCSettingsApiKeyUrlText}" />
                                     </Hyperlink>
                                 </TextBlock>
                                 <TextBox Text="{Binding Settings.SteamSettings.APIKey}"
                                          DockPanel.Dock="Left" Margin="10,0,10,0"/>
                             </DockPanel>
                         </DockPanel>
-                        
-                        <TextBlock Text="{DynamicResource SettingsSteamImportCategories}" DockPanel.Dock="Top" Margin="5,20,5,5" />
+
+                        <CheckBox Content="{DynamicResource LOCBackgroundImageScreenOption}"
+                                  DockPanel.Dock="Top" Margin="5,15,0,5"
+                                  ToolTip="{DynamicResource LOCBackgroundImageScreenOptionTooltip}" ToolTipService.InitialShowDelay="0"
+                                  IsChecked="{Binding Settings.SteamSettings.PreferScreenshotForBackground}"/>
+
+                        <TextBlock Text="{DynamicResource LOCSettingsSteamImportCategories}" DockPanel.Dock="Top" Margin="5,20,5,5" />
                         <StackPanel DockPanel.Dock="Top" Margin="20,10,5,5" Orientation="Horizontal">
-                            <Button Content="{DynamicResource ImportLabel}" Name="ButtonImportSteamCategories"
+                            <Button Content="{DynamicResource LOCImportLabel}" Name="ButtonImportSteamCategories"
                                     Command="{Binding ImportSteamCategoriesCommand}"/>
-                            <TextBlock Text="{DynamicResource SettingsSteamImportCatFrom}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <TextBlock Text="{DynamicResource LOCSettingsSteamImportCatFrom}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                             <ComboBox Name="ComboSteamCatImport" IsReadOnly="True" Margin="10,0,0,0"
                                         DisplayMemberPath="AccountName" SelectedValuePath="Id" SelectedIndex="0"
                                         ItemsSource="{Binding SteamUsers}" />
                         </StackPanel>
                     </DockPanel>
                 </TabItem>
+                <!--GOG-->
                 <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.GOGSettings.RunViaGalaxy}"
-                                  Name="CheckGogRunGalaxy" Content="{DynamicResource SettingsGOGUseGalaxy}"
-                                  ToolTip="{DynamicResource SettingsGOGUseGalaxyTooltip}"
+                                  Name="CheckGogRunGalaxy" Content="{DynamicResource LOCSettingsGOGUseGalaxy}"
+                                  ToolTip="{DynamicResource LOCSettingsGOGUseGalaxyTooltip}"
                                   DockPanel.Dock="Top" Margin="0,0,0,15"/>
                         <CheckBox IsChecked="{Binding Settings.GOGSettings.IntegrationEnabled}"
-                                    Name="CheckGogEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                    Name="CheckGogEnabled" Content="{DynamicResource LOCSettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top"/>
-                        <RadioButton Name="RadioInstalledGOG" Content="{DynamicResource SettingsImportInstalledLabel}"
+                        <RadioButton Name="RadioInstalledGOG" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                         IsChecked="{Binding Settings.GOGSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <RadioButton Name="RadioLibraryGOG" Content="{DynamicResource SettingsImportLibraryLabel}"
+                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
+                        <RadioButton Name="RadioLibraryGOG" Content="{DynamicResource LOCSettingsImportLibraryLabel}"
                                         IsChecked="{Binding Settings.GOGSettings.LibraryDownloadEnabled}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
+                                        DockPanel.Dock="Top" Margin="20,10,5,5"/>
+                        <DockPanel DockPanel.Dock="Top" Margin="20,15,5,5" LastChildFill="False"
                                    IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}">
-                            <Button Content="{DynamicResource AuthenticateLabel}" Name="ButtonGogAuth"
+                            <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonGogAuth"
                                     Command="{Binding AuthGOGCommand}"/>
-                            <TextBlock Text="{DynamicResource SettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                            <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
                             <TextBlock VerticalAlignment="Center">
                                 <TextBlock.Text>
                                     <PriorityBinding>
                                         <Binding Path="GogLoginStatus" IsAsync="True" Mode="OneWay" />
-                                        <Binding Source="{StaticResource LoginChecking}" />
+                                        <Binding Source="{StaticResource LOCLoginChecking}" />
                                     </PriorityBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                         </DockPanel>
                     </DockPanel>
                 </TabItem>
+                <!--ORIGIN-->
                 <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.OriginSettings.IntegrationEnabled}"
-                                    Name="CheckOriginEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                    Name="CheckOriginEnabled" Content="{DynamicResource LOCSettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top" />
-                        <RadioButton Name="RadioInstalledOrigin" Content="{DynamicResource SettingsImportInstalledLabel}"
+                        <RadioButton Name="RadioInstalledOrigin" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                         IsChecked="{Binding Settings.OriginSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <RadioButton Name="RadioLibraryOrigin" Content="{DynamicResource SettingsImportLibraryLabel}"
+                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
+                        <RadioButton Name="RadioLibraryOrigin" Content="{DynamicResource LOCSettingsImportLibraryLabel}"
                                         IsChecked="{Binding Settings.OriginSettings.LibraryDownloadEnabled}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
+                                        DockPanel.Dock="Top" Margin="20,10,5,5"/>
+                        <DockPanel DockPanel.Dock="Top" Margin="20,15,5,5" LastChildFill="False"
                                    IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}">
-                            <Button Content="{DynamicResource AuthenticateLabel}" Name="ButtonOriginAuth"
+                            <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonOriginAuth"
                                     Command="{Binding AuthOriginCommand}"/>
-                            <TextBlock Text="{DynamicResource SettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                            <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
                             <TextBlock VerticalAlignment="Center">
                                 <TextBlock.Text>
                                     <PriorityBinding>
                                         <Binding Path="OriginLoginStatus" IsAsync="True" Mode="OneWay" />
-                                        <Binding Source="{StaticResource LoginChecking}" />
+                                        <Binding Source="{StaticResource LOCLoginChecking}" />
                                     </PriorityBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                         </DockPanel>
                     </DockPanel>
                 </TabItem>
+                <!--BATTLENET-->
                 <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.BattleNetSettings.IntegrationEnabled}"
-                                    Name="CheckBattleNetEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                    Name="CheckBattleNetEnabled" Content="{DynamicResource LOCSettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top" />
-                        <RadioButton Name="RadioInstalledBattleNet" Content="{DynamicResource SettingsImportInstalledLabel}"
+                        <RadioButton Name="RadioInstalledBattleNet" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                         IsChecked="{Binding Settings.BattleNetSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckBattleNetEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <RadioButton Name="RadioLibraryBattleNet" Content="{DynamicResource SettingsImportLibraryLabel}"
+                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
+                        <RadioButton Name="RadioLibraryBattleNet" Content="{DynamicResource LOCSettingsImportLibraryLabel}"
                                         IsChecked="{Binding Settings.BattleNetSettings.LibraryDownloadEnabled}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckBattleNetEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
-                        <DockPanel DockPanel.Dock="Top" Margin="20,5,5,5" LastChildFill="False"
+                                        DockPanel.Dock="Top" Margin="20,10,5,5"/>
+                        <DockPanel DockPanel.Dock="Top" Margin="20,15,5,5" LastChildFill="False"
                                    IsEnabled="{Binding IsChecked, ElementName=CheckBattleNetEnabled}">
-                            <Button Content="{DynamicResource AuthenticateLabel}" Name="ButtonBattleNetAuth"
+                            <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonBattleNetAuth"
                                     Command="{Binding AuthBattleNetCommand}"/>
-                            <TextBlock Text="{DynamicResource SettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                            <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
                             <TextBlock VerticalAlignment="Center">
                                 <TextBlock.Text>
                                     <PriorityBinding>
                                         <Binding Path="BattleNetLoginStatus" IsAsync="True" Mode="OneWay" />
-                                        <Binding Source="{StaticResource LoginChecking}" />
+                                        <Binding Source="{StaticResource LOCLoginChecking}" />
                                     </PriorityBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                         </DockPanel>
                     </DockPanel>
                 </TabItem>
+                <!--UPLAY-->
                 <TabItem Visibility="Collapsed">
                     <DockPanel Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.UplaySettings.IntegrationEnabled}"
-                                    Name="CheckUplayEnabled" Content="{DynamicResource SettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                    Name="CheckUplayEnabled" Content="{DynamicResource LOCSettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top"/>
-                        <RadioButton Name="RadioInstalledUplay" Content="{DynamicResource SettingsImportInstalledLabel}"
+                        <RadioButton Name="RadioInstalledUplay" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                         IsChecked="{Binding Settings.UplaySettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckUplayEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,5"/>
+                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
                     </DockPanel>
                 </TabItem>
                 <TabItem Visibility="Collapsed">
                     <StackPanel Margin="20">
-                        <Button Name="ButtonClearWebCace" Content="{DynamicResource SettingsClearWebCache}" HorizontalAlignment="Left"
-                                ToolTip="{DynamicResource SettingsClearWebCacheTooltip}"
+                        <Button Name="ButtonClearWebCace" Content="{DynamicResource LOCSettingsClearWebCache}" HorizontalAlignment="Left"
+                                ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"
                                 Command="{Binding ClearWebCacheCommand}"/>
                     </StackPanel>
                 </TabItem>

@@ -59,6 +59,8 @@
         <KeyBinding Key="F4" Command="{Binding OpenSettingsCommand}" />
         <KeyBinding Key="F11" Command="{Binding OpenFullScreenCommand}" />
         <KeyBinding Key="F12" Command="{Binding ReloadScriptsCommand}" />
+
+        <pui:XInputBinding Button="Guide" Command="{Binding OpenFullScreenCommand}" />
     </c:WindowBase.InputBindings>
 
     <Grid>
@@ -91,12 +93,12 @@
                         </HierarchicalDataTemplate>
                         <Style x:Key="OpenUIItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
                             <Setter Property="OverridesDefaultStyle" Value="True" />
-                            <Setter Property="Header" Value="{DynamicResource OpenPlaynite}" />
+                            <Setter Property="Header" Value="{DynamicResource LOCOpenPlaynite}" />
                             <Setter Property="Command" Value="{Binding Source={StaticResource Proxy}, Path=Data.ShowWindowCommand}" />
                         </Style>
                         <Style x:Key="ExitItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
                             <Setter Property="OverridesDefaultStyle" Value="True" />
-                            <Setter Property="Header" Value="{DynamicResource ExitAppLabel}" />
+                            <Setter Property="Header" Value="{DynamicResource LOCExitAppLabel}" />
                             <Setter Property="Command" Value="{Binding Source={StaticResource Proxy}, Path=Data.ShutdownCommand}" />
                         </Style>
                     </ContextMenu.Resources>
@@ -105,7 +107,7 @@
                             <CollectionContainer Collection="{Binding Path=LastGames, Source={x:Static pui:App.GamesEditor}}" />
                             <Separator Style="{StaticResource {x:Type Separator}}"/>
                             <MenuItem Style="{StaticResource OpenUIItem}" />
-                            <MenuItem Header="{DynamicResource MenuOpenClient}" ItemsSource="{Binding ThirdPartyTools}"
+                            <MenuItem Header="{DynamicResource LOCMenuOpenClient}" ItemsSource="{Binding ThirdPartyTools}"
                                       OverridesDefaultStyle="True" Style="{StaticResource {x:Type MenuItem}}">
                                 <MenuItem.ItemContainerStyle>
                                     <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">

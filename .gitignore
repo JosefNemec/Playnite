@@ -265,6 +265,8 @@ build/PlayniteInstaller.exe
 build/PlaynitePortable.zip
 build/TestPackage/*
 build/PlayniteServices/*
+build/ReleaseSDK/*
+build/DebugSDK/*
 
 # Don't share API keys with anyone :)
-source/PlayniteServices/apikeys.json
+source/PlayniteServices/customSettings.json

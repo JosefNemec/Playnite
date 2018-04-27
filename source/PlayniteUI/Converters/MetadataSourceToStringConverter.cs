@@ -18,13 +18,13 @@ namespace PlayniteUI
             switch (source)
             {
                 case MetadataSource.Store:
-                    return resources.FindString("MetaSourceStore");
+                    return resources.FindString("LOCMetaSourceStore");
                 case MetadataSource.IGDB:
-                    return resources.FindString("MetaSourceIGDB");
+                    return resources.FindString("LOCMetaSourceIGDB");
                 case MetadataSource.IGDBOverStore:
-                    return resources.FindString("MetaSourceIGDBOverStore");
+                    return resources.FindString("LOCMetaSourceIGDBOverStore");
                 case MetadataSource.StoreOverIGDB:
-                    return resources.FindString("MetaSourceStoreOverIGDB");
+                    return resources.FindString("LOCMetaSourceStoreOverIGDB");
                 default:
                     return string.Empty;
             }

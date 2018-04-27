@@ -1,4 +1,5 @@
-﻿using Playnite.Models;
+﻿using NLog;
+using Playnite.Models;
 using Playnite.Scripting.IronPython;
 using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
@@ -50,6 +51,8 @@ namespace Playnite.Scripting
 
     public abstract class PlayniteScript: IDisposable
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public Dictionary<string, string> Attributes
         {
             get; set;
@@ -90,7 +93,15 @@ namespace Playnite.Scripting
             }
             else if (extension == ".ps1")
             {
-                return new PowerShellScript(path);
+                if (PowerShellRuntime.IsInstalled)
+                {
+                    return new PowerShellScript(path);
+                }
+                else
+                {
+                    logger.Warn("Cannot load PowerShell script, PowerShell 3+ not installed.");
+                    return null;
+                }
             }
             else
             {
