@@ -479,7 +479,7 @@ namespace PlayniteUI
                 AppSettings,
                 GamesEditor);
             Api.MainView = new MainViewAPI(mainModel);
-            fullscreenModel.OpenView(false);
+            fullscreenModel.OpenView(true);
             Current.MainWindow = window.Window;
             await fullscreenModel.UpdateDatabase(AppSettings.UpdateLibStartup, 0, true);
         }

@@ -234,7 +234,16 @@ namespace PlayniteUI
                     RemoveInternalChildRange(args.Position.Index, args.ItemUICount);
                     break;
                 case NotifyCollectionChangedAction.Move:
-                    RemoveInternalChildRange(args.OldPosition.Index, args.ItemUICount);
+                    if (args.Position.Index < 0)
+                    {
+                        InvalidateMeasure();
+                        _owner?.InvalidateScrollInfo();
+                        SetVerticalOffset(0);
+                    }
+                    else
+                    {
+                        RemoveInternalChildRange(args.OldPosition.Index, args.ItemUICount);
+                    }
                     break;
                 case NotifyCollectionChangedAction.Reset:
                     InvalidateMeasure();
