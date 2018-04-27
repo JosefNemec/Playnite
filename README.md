@@ -18,6 +18,12 @@ Requirements: Windows 7, 8 or 10 and [.Net 4.6](https://www.microsoft.com/en-us/
 
 Portable version requires [Microsoft Visual C++ 2013 Redistributable (x86)](https://www.microsoft.com/en-us/download/details.aspx?id=40784) to be installed manually.
 
+Extensions
+---------
+Playnite can be extended with plugins (written in .NET languages) or by scripts (PowerShell and IronPython are currently supported).
+
+See [extensions portal](https://playnite.link/docs/) for tutorials and full API documentation.
+
 Known Issues
 ---------
 List of known issues and solutions can be found [on wiki](https://github.com/JosefNemec/Playnite/wiki/Known-Issues).
