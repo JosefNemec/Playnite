@@ -2461,7 +2461,11 @@
                                 <MenuItem Header="{DynamicResource LOCMenuAddGameInstalled}"
                                           Command="{Binding AddInstalledGamesCommand}"/>
                                 <MenuItem Header="{DynamicResource LOCMenuAddGameEmulated}"
-                                          Command="{Binding AddEmulatedGamesCommand}"/>
+                                          Command="{Binding AddEmulatedGamesCommand}" />
+                                <MenuItem.Icon>
+                                    <Image Source="/Images/MenuIcons/add.png" Height="16"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                </MenuItem.Icon>
                             </MenuItem>
                             <Separator />
                             <MenuItem Header="{DynamicResource LOCMenuReloadLibrary}" Style="{DynamicResource ProgressMenu}"
@@ -2489,7 +2493,11 @@
                             <MenuItem Header="{DynamicResource LOCExtensions}"
                                       IsEnabled="{Binding HasExportedFunctions}"
                                       DataContext="{Binding Api, Source={x:Static pui:App.Current}}"
-                                      ItemsSource="{Binding ExportedFunctions}">                                
+                                      ItemsSource="{Binding ExportedFunctions}">
+                                <MenuItem.Icon>
+                                    <Image Source="/Images/MenuIcons/script.png" Height="16"
+                                               RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                </MenuItem.Icon>
                                 <MenuItem.ItemContainerStyle>
                                     <Style TargetType="MenuItem">
                                         <Setter Property="Header" Value="{Binding Name}" />
@@ -2516,8 +2524,26 @@
                                            RenderOptions.BitmapScalingMode="Fant" />
                                 </MenuItem.Icon>
                             </MenuItem>
+                            <Separator />
                             <MenuItem Header="{DynamicResource LOCMenuAbout}">
-                                <MenuItem Header="{DynamicResource LOCMenuAbout}" Command="{Binding OpenAboutCommand}" />
+                                <MenuItem.Icon>
+                                    <Image Source="/Images/MenuIcons/info.png" Height="16"
+                                               RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                </MenuItem.Icon>
+                                <MenuItem Header="{DynamicResource LOCMenuAbout}" Command="{Binding OpenAboutCommand}">
+                                    <MenuItem.Icon>
+                                        <Image Source="/Images/icon_dark.png" Height="16"
+                                               RenderOptions.BitmapScalingMode="Fant" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem Header="{DynamicResource LOCSDKDocumentation}"
+                                          Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                          CommandParameter="https://playnite.link/docs/">
+                                    <MenuItem.Icon>
+                                        <Image Source="/Images/MenuIcons/script.png" Height="16"
+                                               RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
                                 <Separator />
                                 <MenuItem Header="Discord"
                                           Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"

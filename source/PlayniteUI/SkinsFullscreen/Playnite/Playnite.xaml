@@ -43,19 +43,31 @@
     <sys:Double x:Key="EllipseBorderThickness">1</sys:Double>
     <CornerRadius x:Key="ControlCornerRadius">0</CornerRadius>
 
-    <Image x:Key="BackImage" Source="{Binding ConverterParameter='Icons/Xbox/B.png', Converter={pui:SkinMediaPathConverter}}" />
-    <Image x:Key="InstallImage" Source="{Binding ConverterParameter='Icons/Xbox/A.png', Converter={pui:SkinMediaPathConverter}}" />
-    <Image x:Key="PlayImage" Source="{Binding ConverterParameter='Icons/Xbox/A.png', Converter={pui:SkinMediaPathConverter}}" />
-    <Image x:Key="DetailsImage" Source="{Binding ConverterParameter='Icons/Xbox/X.png', Converter={pui:SkinMediaPathConverter}}" />
-    <Image x:Key="DeleteImage" Source="{Binding ConverterParameter='Icons/Xbox/X.png', Converter={pui:SkinMediaPathConverter}}" />
-    <Image x:Key="SearchImage" Source="{Binding ConverterParameter='Icons/Xbox/Y.png', Converter={pui:SkinMediaPathConverter}}" />
-    <Image x:Key="ClearFiltersImage" Source="{Binding ConverterParameter='Icons/Xbox/LB.png', Converter={pui:SkinMediaPathConverter}}" />
-    <Image x:Key="ToggleSorting" Source="{Binding ConverterParameter='Icons/Xbox/RB.png', Converter={pui:SkinMediaPathConverter}}" />
-    
-    <Image x:Key="CancelImage" Source="{Binding ConverterParameter='Icons/Xbox/B.png', Converter={pui:SkinMediaPathConverter}}" />
-    <Image x:Key="ConfirmImage" Source="{Binding ConverterParameter='Icons/Xbox/RB.png', Converter={pui:SkinMediaPathConverter}}" />
-    <Image x:Key="ClearImage" Source="{Binding ConverterParameter='Icons/Xbox/LB.png', Converter={pui:SkinMediaPathConverter}}" />
-    <Image x:Key="BackspaceImage" Source="{Binding ConverterParameter='Icons/Xbox/X.png', Converter={pui:SkinMediaPathConverter}}" />
+    <Image x:Key="BackImage" Source="{Binding ConverterParameter='Icons/Xbox/B.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant" />
+    <Image x:Key="InstallImage" Source="{Binding ConverterParameter='Icons/Xbox/A.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant"  />
+    <Image x:Key="PlayImage" Source="{Binding ConverterParameter='Icons/Xbox/A.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant"  />
+    <Image x:Key="DetailsImage" Source="{Binding ConverterParameter='Icons/Xbox/X.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant"  />
+    <Image x:Key="DeleteImage" Source="{Binding ConverterParameter='Icons/Xbox/X.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant"  />
+    <Image x:Key="SearchImage" Source="{Binding ConverterParameter='Icons/Xbox/Y.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant"  />
+    <Image x:Key="ClearFiltersImage" Source="{Binding ConverterParameter='Icons/Xbox/LB.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant"  />
+    <Image x:Key="ToggleSorting" Source="{Binding ConverterParameter='Icons/Xbox/RB.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant"  />
+
+    <Image x:Key="CancelImage" Source="{Binding ConverterParameter='Icons/Xbox/B.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant"  />
+    <Image x:Key="ConfirmImage" Source="{Binding ConverterParameter='Icons/Xbox/RB.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant"  />
+    <Image x:Key="ClearImage" Source="{Binding ConverterParameter='Icons/Xbox/LB.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant"  />
+    <Image x:Key="BackspaceImage" Source="{Binding ConverterParameter='Icons/Xbox/X.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant"  />
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     
@@ -638,7 +650,7 @@
                     <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
                         <Image.Source>
                             <PriorityBinding>
-                                <Binding Path="ImageObject" IsAsync="True" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
+                                <Binding Path="ImageObject" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
                                 <Binding Path="DefaultImageObject" Mode="OneWay" />
                             </PriorityBinding>
                         </Image.Source>
@@ -693,6 +705,9 @@
                     <Setter Property="Margin" Value="20,0,0,0" />
                     <Setter Property="VerticalAlignment" Value="Center" />
                 </Style>
+                <Style TargetType="ContentControl">
+                    <Setter Property="Height" Value="40" />
+                </Style>
             </Grid.Resources>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -709,7 +724,7 @@
                     Command="{Binding ClearFiltersCommand}" Style="{StaticResource CommandButton}"
                     HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal">
-                    <ContentControl Content="{StaticResource ClearFiltersImage}" />
+                    <ContentControl Content="{DynamicResource ClearFiltersImage}" />
                     <TextBlock Text="{DynamicResource LOCClearFilters}" />
                 </StackPanel>
             </Button>
@@ -717,7 +732,7 @@
                     Visibility="{Binding ShowInstallOption, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Command="{Binding StartGameCommand}" Style="{StaticResource CommandButton}">
                 <StackPanel Orientation="Horizontal">
-                    <ContentControl Content="{StaticResource InstallImage}" />
+                    <ContentControl Content="{DynamicResource InstallImage}" />
                     <TextBlock Text="{DynamicResource LOCInstallGame}" />
                 </StackPanel>
             </Button>
@@ -725,7 +740,7 @@
                     Visibility="{Binding ShowPlayOption, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Command="{Binding StartGameCommand}" Style="{StaticResource CommandButton}">
                 <StackPanel Orientation="Horizontal">
-                    <ContentControl Content="{StaticResource PlayImage}" />
+                    <ContentControl Content="{DynamicResource PlayImage}" />
                     <TextBlock Text="{DynamicResource LOCPlayGame}" />
                 </StackPanel>
             </Button>
@@ -855,9 +870,8 @@
                     </TextBlock.Effect>
                 </TextBlock>
 
-
                 <!--BACKGROUND TASK STATUS-->
-                <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal"
+                <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="60,0,0,0"
                             Visibility="{Binding ProgressVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image Source="{Binding ConverterParameter='Icons/loading.png', Converter={pui:SkinMediaPathConverter}}"
                            IsEnabled="{Binding ProgressVisible}"

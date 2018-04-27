@@ -853,7 +853,7 @@
             </Grid.ColumnDefinitions>
             <Border x:Name="HoverBorder" Grid.Column="0" Grid.ColumnSpan="3" 
                     Background="{DynamicResource HoverBrush}" Visibility="Collapsed"  />
-            <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,0,0"
+            <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,-4,0"
                               VerticalAlignment="Center" ContentSource="Icon" />
             <Grid x:Name="GlyphPanel" Grid.Column="0" Visibility="Collapsed"
                   Margin="5,0,-5,0" VerticalAlignment="Center">
@@ -898,7 +898,7 @@
                     <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
                     <ColumnDefinition Width="*" SharedSizeGroup="MenuItemIGTColumnGroup" />
                 </Grid.ColumnDefinitions>
-                <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,0,0" VerticalAlignment="Center" ContentSource="Icon" />
+                <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,-4,0" VerticalAlignment="Center" ContentSource="Icon" />
                 <Grid x:Name="GlyphPanel" Grid.Column="0" Visibility="Collapsed" Margin="5,0,-5,0" VerticalAlignment="Center">
                     <TextBlock FontFamily="Marlett" Text="a" VerticalAlignment="Center" Style="{DynamicResource BaseTextBlockStyle}" />
                 </Grid>
@@ -3208,7 +3208,8 @@
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
-                            <RadioButton Command="{Binding OpenFullScreenCommand}" DockPanel.Dock="Top">
+                            <RadioButton Command="{Binding OpenFullScreenCommand}" DockPanel.Dock="Top"
+                                         Margin="5,30,0,0">
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="/Images/applogo.png" Height="16" Margin="0,0,10,0"
@@ -3242,6 +3243,20 @@
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
+
+
+                            <RadioButton Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                         CommandParameter="https://playnite.link/docs/"
+                                         DockPanel.Dock="Bottom">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Images/MenuIcons/script.png" Height="16" Margin="0,0,10,0"
+                                               RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                                        <TextBlock Text="{DynamicResource LOCSDKDocumentation}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+
                             <RadioButton Command="{Binding ReportIssueCommand}" DockPanel.Dock="Bottom">
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal">

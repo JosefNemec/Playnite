@@ -463,16 +463,14 @@ namespace PlayniteUI
             get { return _viewport.Width; }
         }
 
-        private const double ScrollLineAmount = 16;
-
         public void LineUp()
         {
-            SetVerticalOffset(VerticalOffset - ScrollLineAmount);
+            SetVerticalOffset(VerticalOffset - ItemHeight);
         }
 
         public void LineDown()
         {
-            SetVerticalOffset(VerticalOffset + ScrollLineAmount);
+            SetVerticalOffset(VerticalOffset + ItemHeight);
         }
 
         public void PageUp()

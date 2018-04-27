@@ -357,6 +357,7 @@
     <Resource Include="Images\MenuIcons\controller.png" />
     <Resource Include="Images\MenuIcons\info.png" />
     <Resource Include="Images\MenuIcons\feedback.png" />
+    <Resource Include="Images\MenuIcons\script.png" />
     <Content Include="Localization\english.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -454,6 +455,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SkinsFullscreen\Playnite\Playnite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SkinsFullscreen\Playnite\Playnite.PlayStation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
