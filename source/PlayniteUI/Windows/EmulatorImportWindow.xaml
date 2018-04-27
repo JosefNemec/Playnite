@@ -273,7 +273,7 @@
                 <Button Content="{DynamicResource LOCCloseLabel}" Name="ButtonClose" DockPanel.Dock="Right"
                         Command="{Binding CloseCommand}" Visibility="{Binding ShowCloseButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource BottomButton}" />
-                <Button Content="{DynamicResource FinishLabel }" Name="ButtonFinish" DockPanel.Dock="Right"
+                <Button Content="{DynamicResource LOCFinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"
                         Command="{Binding FinishCommand}" Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource BottomButton}" />
                 <Button Content="{DynamicResource LOCNextLabel}" Name="ButtonNext" DockPanel.Dock="Right"

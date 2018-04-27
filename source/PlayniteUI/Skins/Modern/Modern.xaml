@@ -2087,11 +2087,11 @@
             <TextBlock Text="{DynamicResource LOCTimePlayed}" Foreground="{DynamicResource GlyphBrush}"
                        Grid.Column="0" Grid.Row="0" Margin="0,0,10,3"/>
             <TextBlock Text="{Binding Game.Playtime, Converter={pui:LongToTimePlayedConverter}}"
-                       Grid.Column="1" Grid.Row="0"/>
+                       Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" />
             <TextBlock Text="{DynamicResource LOCLastPlayed}" Foreground="{DynamicResource GlyphBrush}" 
                        Grid.Column="0" Grid.Row="1"/>
             <TextBlock Text="{Binding Game.LastActivity, Converter={pui:DateTimeToLastPlayedConverter}}"
-                       Grid.Column="1" Grid.Row="1"/>
+                       Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" />
         </Grid>
     </ControlTemplate>
 
