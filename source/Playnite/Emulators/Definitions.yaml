@@ -11,7 +11,7 @@
   Website: 'http://dfendreloaded.sourceforge.net/'
   Profiles:
     - Name: Default
-      DefaultArguments: '"{ImageNameNoExt}"'
+      DefaultArguments: '"{Game}"'
       Platforms: [PC, DOS]
       ImageExtensions: [prof]  
       ExecutableLookup: ^DFend\.exe
