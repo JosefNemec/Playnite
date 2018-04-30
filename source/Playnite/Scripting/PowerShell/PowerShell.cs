@@ -8,6 +8,7 @@ using System.Management.Automation.Runspaces;
 using System.Collections.ObjectModel;
 using Playnite.API;
 using Microsoft.Win32;
+using System.IO;
 
 namespace Playnite.Scripting.PowerShell
 {
@@ -82,7 +83,8 @@ namespace Playnite.Scripting.PowerShell
 
         public object ExecuteFile(string path)
         {
-            return Execute($"& \"{path}\"");
+            var content = File.ReadAllText(path);
+            return Execute(content);
         }
 
         public void SetVariable(string name, object value)
