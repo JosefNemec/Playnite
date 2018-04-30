@@ -37,11 +37,13 @@ namespace Playnite.Scripting.IronPython
 
             engine.SetSearchPaths(paths);
             scope = engine.CreateScope();
-            engine.Execute(@"
+            engine.Execute(string.Format(@"
 import clr
+import os
+os.chdir('{0}')
 clr.AddReferenceToFile(""PlayniteSDK.dll"")
 from Playnite.SDK.Models import *
-", scope);
+", Paths.ProgramFolder.Replace(Path.DirectorySeparatorChar, '/')), scope);
 
             SetVariable("__logger", new Logger("Python"));
         }
