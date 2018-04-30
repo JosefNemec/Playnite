@@ -24,6 +24,7 @@ namespace Playnite
             result = result.Replace("{ImageNameNoExt}", Path.GetFileNameWithoutExtension(game.IsoPath));
             result = result.Replace("{ImageName}", Path.GetFileName(game.IsoPath));
             result = result.Replace("{PlayniteDir}", Paths.ProgramFolder);
+            result = result.Replace("{Name}", game.Name);
             return result;
         }
     }

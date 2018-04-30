@@ -19,6 +19,7 @@ namespace PlayniteTests.Models
             var dir = @"c:\test\test2\";
             var game = new Game()
             {
+                Name = "test game",
                 InstallDirectory = dir,
                 IsoPath = Path.Combine(dir, "test.iso")
             };
@@ -31,6 +32,7 @@ namespace PlayniteTests.Models
             Assert.AreEqual("test", game.ResolveVariables("{ImageNameNoExt}"));
             Assert.AreEqual("test.iso", game.ResolveVariables("{ImageName}"));
             Assert.AreEqual(Paths.ProgramFolder, game.ResolveVariables("{PlayniteDir}"));
+            Assert.AreEqual("test game", game.ResolveVariables("{Name}"));
         }
     }
 }
