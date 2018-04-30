@@ -185,13 +185,18 @@ namespace Playnite.API
             plugins = new List<Plugin>();
             foreach (var path in Plugins.Plugins.GetPluginFiles())
             {
+                if (Path.GetFileNameWithoutExtension(path).Equals("PlayniteSDK", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    continue;
+                }
+
                 List<Plugin> plugin = null;
 
                 try
                 {
                     plugin = Plugins.Plugins.LoadPlugin(path, this);
                 }
-                catch (Exception e)
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(e.InnerException, $"Failed to load plugin file {path}");
                     Dialogs.ShowMessage(
