@@ -478,7 +478,7 @@ namespace Playnite
             }
         }
 
-        private string skin = "Classic";
+        private string skin = "Modern";
         public string Skin
         {
             get
