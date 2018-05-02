@@ -4,6 +4,8 @@ Open source video game library manager and launcher with support for 3rd party l
 
 Screenshots on [Homepage](http://playnite.link/)
 
+*If you find Playnite useful please consider supporting the lead developer [Josef Nemec](https://github.com/JosefNemec) on [Patreon](https://www.patreon.com/playnite).*
+
 Features
 ---------
 
@@ -28,9 +30,9 @@ Known Issues
 ---------
 List of known issues and solutions can be found [on wiki](https://github.com/JosefNemec/Playnite/wiki/Known-Issues).
 
-Security Concerns
+Privacy Statement
 ---------
-Playnite doesn't store any user information and you don't need to provide any information to import installed games. Login is required only for full library import of GOG and Origin games and in that case only web session cookie is stored, the same way when you login to those services via web browser.
+Playnite doesn't store any user information and you don't need to provide any information to import installed games. Login is required only for full library import of GOG, Origin and Battle.net games and in that case only web session cookie is stored, the same way when you login to those services via web browser.
 
 Questions, issues etc.
 ---------
@@ -72,55 +74,9 @@ if (true)
 Roadmap
 ---------
 
-You can see planned version with their feature in [projects overview](https://github.com/JosefNemec/Playnite/projects).
-
-
-Building
----------
-
-Solution will properly load only in Visual Studio 2017 because it contains ASP.NET Core project with .csproj project configuration, which is not supported in 2015. Otherwise there are no other requirements to build from VS, all references should be downloaded from NuGet.
-
-### Build scripts
-To build from cmdline run **build.ps1** in PowerShell, script builds Release configuration by default into the same directory. Script accepts *Configuration*, *OutputPath*, *Setup*, *Portable* and *SkipBuild* parameters.
-
-### Building installer
-[NSIS 3+](http://nsis.sourceforge.net/Main_Page) with [NsProcess plugin](http://nsis.sourceforge.net/NsProcess_plugin) is required to build installer. To build installer run build script with **-Setup** parameter:
-``` .\build.ps1 -Setup ```
-
-Portable zip package can be built when using **-Portable** parameter.
+You can see planned version with their features in [projects overview](https://github.com/JosefNemec/Playnite/projects).
 
 Development
 ---------
 
-Playnite runs in development environment without extra configuration with exception of Steam library import, IGDB integration and auto-update features.
-
-### Auto-Update
-Requires simple web server serving **update.json** file with information about available version. URL with update.json has to be configured in **app.(Debug|Release).config** file, **UpdateUrl** key.
-
-Example file:
-```
-{
-    "stable" : {
-        "version" : "0.70.0.0",
-        "url" : "https://localhost/build/PlayniteInstaller.exe"
-    }
-}
-```
-
-### Steam import
-In order to download information about full Steam library (installed games can be imported without this), Steam API has to be used with proper API key obtained from Valve. Since API access comes with some limitations (1 request per second and 100k requests per day), Playnite doesn't directly access Steam API, but uses caching service. This also prevents distribution of API keys to end users.
-
-To deploy caching service in development environment, you must do following:
-* Build **PlayniteServices** project, either manually from VS, using **buildServices.ps1** script or via ```dotnet publish```
-* Create configuration file with Steam API key called **apikeys.json** inside service folder
-* Deploy project to [web server](https://docs.microsoft.com/en-us/aspnet/core/publishing/) or run it directly via ```dotnet .\PlayniteServices.dll```
-* Configure root endpoint inside **app.(Debug|Release).config** file, **ServicesUrl** key.
-
-apikeys.json example:
-```
-{
-    "SteamKey" : "25SSE201224DEE54F732DDDC2BA21690C"
-}
-```
-### IGDB integration
-Similarly to Steam integration, IGDB services require API key to be configured in `apikeys.json` file under `IGBDKey` property.
+See [wiki](https://github.com/JosefNemec/Playnite/wiki/Building) about building and settings up development environment.
