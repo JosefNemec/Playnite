@@ -11,6 +11,15 @@ namespace Playnite.Plugins
 {
     public class Plugins
     {
+        public static void CreatePluginFolders()
+        {
+            FileSystem.CreateDirectory(Paths.PluginsProgramPath);
+            if (!Settings.IsPortable)
+            {
+                FileSystem.CreateDirectory(Paths.PluginsUserDataPath);
+            }
+        }
+
         public static List<string> GetPluginFiles()
         {
             var plugins = new List<string>();
@@ -22,9 +31,8 @@ namespace Playnite.Plugins
                 }
             }
 
-            if (!Paths.AreEqual(Paths.PluginsProgramPath, Paths.PluginsUserDataPath))
+            if (!Settings.IsPortable)
             {
-
                 if (Directory.Exists(Paths.PluginsUserDataPath))
                 {
                     foreach (var file in Directory.GetFiles(Paths.PluginsUserDataPath, "*.dll", SearchOption.TopDirectoryOnly))

@@ -22,6 +22,8 @@ using System.ComponentModel;
 using Playnite.MetaProviders;
 using Playnite.API;
 using PlayniteUI.API;
+using Playnite.Plugins;
+using Playnite.Scripting;
 
 namespace PlayniteUI
 {
@@ -158,6 +160,17 @@ namespace PlayniteUI
             Settings.ConfigureLogger();
             Settings.ConfigureCef();
             dialogs = new DialogsFactory(AppSettings.StartInFullscreen);
+
+            // Create directories
+            try
+            {
+                Plugins.CreatePluginFolders();
+                Scripts.CreateScriptFolders();
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to script and plugin directories.");
+            }
 
             // Load theme
             ApplyTheme(AppSettings.Skin, AppSettings.SkinColor, false);
