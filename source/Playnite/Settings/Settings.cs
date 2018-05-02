@@ -166,6 +166,22 @@ namespace Playnite
             }
         }
 
+
+        private bool showNamesUnderCovers = false;
+        public bool ShowNamesUnderCovers
+        {
+            get
+            {
+                return showNamesUnderCovers;
+            }
+
+            set
+            {
+                showNamesUnderCovers = value;
+                OnPropertyChanged("ShowNamesUnderCovers");
+            }
+        }
+
         private bool migrationV2PcPlatformAdded = false;
         public bool MigrationV2PcPlatformAdded
         {

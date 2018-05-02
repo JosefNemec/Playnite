@@ -192,7 +192,7 @@
                             </StackPanel>
 
                             <CheckBox Name="CheckUpdateLibStartup" Margin="5,15,5,5" Grid.Row="3" Grid.ColumnSpan="2"
-                                      Content="{DynamicResource LOCSettingsUpdateLibStartup}" ToolTip="{DynamicResource SettingsUpdateLibStartupTooltip}" 
+                                      Content="{DynamicResource LOCSettingsUpdateLibStartup}" ToolTip="{DynamicResource LOCSettingsUpdateLibStartupTooltip}" 
                                       IsChecked="{Binding Settings.UpdateLibStartup}"/>
 
                             <CheckBox Name="CheckStartFullscreen" Margin="5,15,5,5" Grid.Row="4" Grid.ColumnSpan="2"
@@ -277,14 +277,16 @@
                             </TextBlock>
                         </StackPanel>
                        
-                        <CheckBox Content="{DynamicResource LOCSettingsAsyncImageLoading}" ToolTip="{DynamicResource SettingsAsyncImageLoadingTooltip}"
+                        <CheckBox Content="{DynamicResource LOCSettingsAsyncImageLoading}" ToolTip="{DynamicResource LOCSettingsAsyncImageLoadingTooltip}"
                                   Margin="0,40,0,0"
                                   Name="CheckAsyncImages" IsChecked="{Binding Settings.AsyncImageLoading}"/>
                         <CheckBox Content="{DynamicResource LOCSettingsShowNameEmptyCover}" Margin="0,15,0,0"
                                   Name="CheckNameEmptyCover" IsChecked="{Binding Settings.ShowNameEmptyCover}"/>
+                        <CheckBox Content="{DynamicResource LOCSettingsShowNamesUnderCover}" Margin="0,15,0,0"
+                                  Name="CheckNameUnderCover" IsChecked="{Binding Settings.ShowNamesUnderCovers}"/>
                         <CheckBox Content="{DynamicResource LOCSettingsShowIconList}" Margin="0,15,0,0"
                                   Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
-                        <CheckBox Content="{DynamicResource LOCSettingsDisableAcceleration}" Margin="0,15,0,0" ToolTip="{DynamicResource SettingsDisableAccelerationTooltip}"
+                        <CheckBox Content="{DynamicResource LOCSettingsDisableAcceleration}" Margin="0,15,0,0" ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
                                   Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"/>
                     </StackPanel>
                 </TabItem>

@@ -2093,12 +2093,17 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                                     <Grid Background="Transparent">
-                                        <Grid.Effect>
-                                            <DropShadowEffect BlurRadius="5" Color="#DD000000" ShadowDepth="5"
-                                                              x:Name="ShadowEffect"/>
-                                        </Grid.Effect>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
                                         <Border x:Name="SelectionBorder" SnapsToDevicePixels="True" BorderThickness="2"
-                                                Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                Grid.Row="0">
+                                            <Border.Effect>
+                                                <DropShadowEffect BlurRadius="5" Color="#DD000000" ShadowDepth="5"
+                                                              x:Name="ShadowEffect"/>
+                                            </Border.Effect>
                                             <Grid>
                                                 <Grid.InputBindings>
                                                     <MouseBinding MouseAction="LeftDoubleClick"
@@ -2143,6 +2148,10 @@
                                                 </Border>
                                             </Grid>
                                         </Border>
+                                        <TextBlock Text="{Binding Name}" Style="{DynamicResource BaseTextBlockStyle}"
+                                                   TextAlignment="Center" TextTrimming="CharacterEllipsis" 
+                                                   Margin="0,10,0,0" Grid.Row="1"
+                                                   Visibility="{Binding Data.AppSettings.ShowNamesUnderCovers, Source={StaticResource CoversProxy}, Converter={StaticResource BooleanToVisibilityConverter}}" />
                                     </Grid>
                                     <ControlTemplate.Triggers>
                                         <MultiDataTrigger>
