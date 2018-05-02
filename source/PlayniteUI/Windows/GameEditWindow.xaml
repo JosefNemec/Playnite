@@ -549,6 +549,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="{DynamicResource LOCGameInstallDirTitle}" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
@@ -561,6 +562,12 @@
                              Text="{Binding EditingGame.IsoPath, UpdateSourceTrigger=PropertyChanged}"  />
                     <Button Content="..." Grid.Row="1" Grid.Column="2" Margin="5" Name="ButtonBrowseIso"
                             Command="{Binding SelectGameImageCommand}"/>
+
+                    <TextBlock Text="{DynamicResource LOCGameIsInstalledTitle}"
+                               VerticalAlignment="Center"
+                               Grid.Column="0" Grid.Row="2" Margin="5,10,5,5" />
+                    <CheckBox Grid.Row="2" Grid.Column="1" Margin="5,10,5,5"
+                              IsChecked="{Binding EditingGame.State.Installed}"/>
                 </Grid>
             </TabItem>
 
