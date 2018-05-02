@@ -83,7 +83,7 @@ By6r9&#x0a;
 MrCraigen&#x0a;
 wilco375&#x0a;
 zygzak&#x0a;
-"/>
+Wargzaxk&#x0a;"/>
                 </DockPanel>
 
             </TabItem>
@@ -91,7 +91,7 @@ zygzak&#x0a;
             <TabItem Header="{DynamicResource LOCLicenseLabel}">
                 <TextBox AcceptsReturn="True" IsReadOnly="True" TextWrapping="Wrap" BorderThickness="0"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
-                Text="MIT License&#x0a;&#x0a;Copyright (c) 2017 Josef Nemec&#x0a;&#x0a;Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal
+                Text="MIT License&#x0a;&#x0a;Copyright (c) 2018 Josef Nemec&#x0a;&#x0a;Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal
 in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:&#x0a;&#x0a;The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.&#x0a;&#x0a;THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
