@@ -53,7 +53,7 @@ namespace Playnite.MetaProviders
             var game = new Game()
             {
                 Name = dbGame.name,
-                Description = dbGame.summary
+                Description = dbGame.summary.Replace("\n", "\n<br>")
             };
 
             if (dbGame.cover != null)
