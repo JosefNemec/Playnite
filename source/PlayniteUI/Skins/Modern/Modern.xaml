@@ -2726,6 +2726,7 @@
                                     SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
                                     ItemContainerStyle="{StaticResource MainListItemStyle}"
                                     DockPanel.Dock="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                    ScrollViewer.PanningMode="VerticalOnly"
                                     pui:ScrollToSelectedBehavior.Enabled="True"
                                     VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
                                     VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Recycling">

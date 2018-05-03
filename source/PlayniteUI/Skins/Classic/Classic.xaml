@@ -2073,7 +2073,7 @@
             <ListView Grid.Row="0" Grid.Column="0"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="ItemsView"
                       ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Single"
-                      pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"
+                      pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"                      
                       ItemsSource="{Binding GamesView.CollectionView}"
                       SelectedItem="{Binding SelectedGame, Mode=TwoWay}">
                 <ListView.Resources>
@@ -3061,6 +3061,7 @@
                                          SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
                                          SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
                                          DockPanel.Dock="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                         ScrollViewer.PanningMode="VerticalOnly"
                                          pui:ScrollToSelectedBehavior.Enabled="True"
                                          VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
                                          VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Recycling">
