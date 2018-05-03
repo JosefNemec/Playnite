@@ -112,6 +112,13 @@ namespace PlayniteUI
 
         public void PlayGame(Game game)
         {
+            if (!game.IsInstalled)
+            {
+                InstallGame(game);
+                return;
+            }
+
+            logger.Info($"Starting {game.GetIdentifierInfo()}");
             var dbGame = database.GetGame(game.Id);
             if (dbGame == null)
             {
@@ -123,25 +130,24 @@ namespace PlayniteUI
                 return;
             }
 
+            IGameController controller = null;
+
             try
             {
-                var controller = GameControllerFactory.GetGameBasedController(game, appSettings);
+                controller = GameControllerFactory.GetGameBasedController(game, appSettings);
                 Controllers.RemoveController(game.Id);
                 Controllers.AddController(controller);
-
-                if (game.IsInstalled)
-                {
-                    UpdateGameState(game.Id, null, null, null, null, true);
-                    controller.Play(database.GetEmulators());
-                }
-                else
-                {
-                    InstallGame(game);
-                    return;
-                }
+                UpdateGameState(game.Id, null, null, null, null, true);
+                controller.Play(database.GetEmulators());
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
+                if (controller != null)
+                {
+                    Controllers.RemoveController(game.Id);
+                    UpdateGameState(game.Id, null, null, null, null, false);
+                }
+
                 logger.Error(exc, "Cannot start game: ");
                 dialogs.ShowMessage(
                     string.Format(resources.FindString("LOCGameStartError"), exc.Message),
@@ -346,9 +352,11 @@ namespace PlayniteUI
 
         public void InstallGame(Game game)
         {
+            logger.Info($"Installing {game.GetIdentifierInfo()}");
+            IGameController controller = null;
             try
             {
-                var controller = GameControllerFactory.GetGameBasedController(game, appSettings);
+                controller = GameControllerFactory.GetGameBasedController(game, appSettings);
                 Controllers.RemoveController(game.Id);
                 Controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, true, null, null);
@@ -356,6 +364,12 @@ namespace PlayniteUI
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
+                if (controller != null)
+                {
+                    Controllers.RemoveController(game.Id);
+                    UpdateGameState(game.Id, null, null, false, null, null);
+                }
+
                 logger.Error(exc, "Cannot install game: ");
                 dialogs.ShowMessage(
                     string.Format(resources.FindString("LOCGameInstallError"), exc.Message),
@@ -376,9 +390,12 @@ namespace PlayniteUI
                 return;
             }
 
+            logger.Info($"Uninstalling {game.GetIdentifierInfo()}");
+            IGameController controller = null;
+
             try
             {
-                var controller = GameControllerFactory.GetGameBasedController(game, appSettings);
+                controller = GameControllerFactory.GetGameBasedController(game, appSettings);
                 Controllers.RemoveController(game.Id);
                 Controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, true, null);
@@ -386,6 +403,12 @@ namespace PlayniteUI
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
+                if (controller != null)
+                {
+                    Controllers.RemoveController(game.Id);
+                    UpdateGameState(game.Id, null, null, null, false, null);
+                }
+
                 logger.Error(exc, "Cannot un-install game: ");
                 dialogs.ShowMessage(
                     string.Format(resources.FindString("LOCGameUninstallError"), exc.Message),

@@ -27,5 +27,10 @@ namespace Playnite
             result = result.Replace("{Name}", game.Name);
             return result;
         }
+
+        public static string GetIdentifierInfo(this Game game)
+        {
+            return $"{game.Name}, {game.Id}, {game.ProviderId}, {game.Provider}";
+        }
     }
 }
