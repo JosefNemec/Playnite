@@ -11,6 +11,8 @@ namespace PlayniteUI
 {
     public class VirtualizingGridPanel : VirtualizingPanel, IScrollInfo
     {
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         public int Columns
         {
             get { return (int)GetValue(ColumnsProperty); }
@@ -271,13 +273,26 @@ namespace PlayniteUI
                 lastVisibleItemIndex = -1;
                 return;
             }
-           
-            var previousRows = Math.Ceiling(_offset.Y / ItemHeight);            
+
+            var previousRows = Math.Ceiling(_offset.Y / ItemHeight);
             firstVisibleItemIndex = (int)Math.Ceiling(previousRows * Columns);
             lastVisibleItemIndex = (firstVisibleItemIndex - 1) + (Columns * Rows);
             if (lastVisibleItemIndex >= itemCount)
             {
                 lastVisibleItemIndex = itemCount;
+            }
+
+            if (Rows == 1)
+            {
+                if (firstVisibleItemIndex - Columns >= 0)
+                {
+                    firstVisibleItemIndex -= Columns;
+                }
+
+                if (lastVisibleItemIndex + Columns <= itemCount)
+                {
+                    lastVisibleItemIndex += Columns;
+                }
             }
         }
 
@@ -317,7 +332,7 @@ namespace PlayniteUI
                 ItemWidth,
                 ItemHeight);
 
-            child.Arrange(targetRect);            
+            child.Arrange(targetRect);
             var item = GeneratorContainer.ItemFromContainer(child);
         }
 
@@ -519,8 +534,17 @@ namespace PlayniteUI
                 return defaultRect;
             }
 
-            _offset.Y = offset;
-            _trans.Y = -offset;
+            var maxOffset = GetTotalHeight(new Size(1, 1)) - (Rows * ItemHeight);
+            if (offset > maxOffset)
+            {
+                _offset.Y = maxOffset;
+            }
+            else
+            {
+                _offset.Y = offset;
+            }
+
+            _trans.Y = -_offset.Y;
             InvalidateMeasure();
             return defaultRect;
         }        

@@ -538,18 +538,18 @@ namespace Playnite
             }
         }
 
-        private string igdbApiKey;
-        public string IGDBApiKey
+        private FullscreenSettings fullscreenSettings = new FullscreenSettings();
+        public FullscreenSettings FullscreenSettings
         {
             get
             {
-                return igdbApiKey;
+                return fullscreenSettings;
             }
 
             set
             {
-                igdbApiKey = value;
-                OnPropertyChanged("IGDBApiKey");
+                fullscreenSettings = value;
+                OnPropertyChanged("FullscreenSettings");
             }
         }
 

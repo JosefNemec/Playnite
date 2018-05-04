@@ -44,11 +44,11 @@
             </Border>
 
             <TreeView DockPanel.Dock="Left" BorderThickness="0,0,1,0" BorderBrush="{StaticResource NormalBorderBrush}"
-                      Name="TreeSections">
+                      Name="TreeSections" MinWidth="140">
                 <TreeView.Resources>
                     <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
                         <Setter Property="FontSize" Value="16" />
-                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="Margin" Value="0,2,0,2" />
                         <Setter Property="Padding" Value="0,3,3,3" />
                     </Style>
                 </TreeView.Resources>
@@ -62,9 +62,9 @@
                         <sys:Int32>1</sys:Int32>
                     </TreeViewItem.Tag>
                 </TreeViewItem>
-                <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}">
+                <TreeViewItem Header="{DynamicResource LOCSettingsFullscreenLabel}">
                     <TreeViewItem.Tag>
-                        <sys:Int32>7</sys:Int32>
+                        <sys:Int32>8</sys:Int32>
                     </TreeViewItem.Tag>
                 </TreeViewItem>
                 <TreeViewItem Header="{DynamicResource LOCSettingsProvidersLabel}" IsExpanded="True" Focusable="False">
@@ -93,6 +93,11 @@
                             <sys:Int32>6</sys:Int32>
                         </TreeViewItem.Tag>
                     </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}">
+                    <TreeViewItem.Tag>
+                        <sys:Int32>7</sys:Int32>
+                    </TreeViewItem.Tag>
                 </TreeViewItem>
             </TreeView>
 
@@ -191,7 +196,7 @@
                                                 Content="{StaticResource ComboAfterGameOptions}" />
                             </StackPanel>
 
-                            <CheckBox Name="CheckUpdateLibStartup" Margin="5,15,5,5" Grid.Row="3" Grid.ColumnSpan="2"
+                            <CheckBox Name="CheckUpdateLibStartup" Margin="5,25,5,5" Grid.Row="3" Grid.ColumnSpan="2"
                                       Content="{DynamicResource LOCSettingsUpdateLibStartup}" ToolTip="{DynamicResource LOCSettingsUpdateLibStartupTooltip}" 
                                       IsChecked="{Binding Settings.UpdateLibStartup}"/>
 
@@ -231,35 +236,7 @@
                                       SelectedValue="{Binding Settings.SkinColor}"
                                       SelectionChanged="CombSkinColor_SelectionChanged"
                                       ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkins}" />
-                        </Grid>
-
-                        <Grid Margin="0,10,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="{DynamicResource LOCSettingsSkinFullscreen}" VerticalAlignment="Center"
-                                        Grid.Row="0" Grid.Column="0"/>
-                            <ComboBox Margin="10,5,10,5" Name="ComboSkinsFullscreen"
-                                      Visibility="Collapsed"
-                                        Grid.Row="0" Grid.Column="1"
-                                        ItemsSource="{Binding AvailableFullscreenSkins}"
-                                        SelectedValue="{Binding Settings.SkinFullscreen}"
-                                        SelectionChanged="ComboSkinsFullscreen_SelectionChanged"
-                                        SelectedValuePath="Name" DisplayMemberPath="Name" />
-
-                            <TextBlock Text="{DynamicResource LOCSettingsSkinColorFullscreen}" VerticalAlignment="Center"
-                                        Grid.Row="0" Grid.Column="0" />
-                            <ComboBox Margin="10,5,0,5" Name="CombSkinColorFullscreen"
-                                        Grid.Row="0" Grid.Column="1"
-                                        SelectedValue="{Binding Settings.SkinColorFullscreen}"
-                                        ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkinsFullscreen}">
-                            </ComboBox>
-                        </Grid>
+                        </Grid>                        
 
                         <TextBlock Text="{DynamicResource LOCSettingsSkinChangeRestart}" FontStyle="Italic" Margin="0,15,0,15"/>
                         <StackPanel Orientation="Horizontal">
@@ -494,6 +471,76 @@
                         <Button Name="ButtonClearWebCace" Content="{DynamicResource LOCSettingsClearWebCache}" HorizontalAlignment="Left"
                                 ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"
                                 Command="{Binding ClearWebCacheCommand}"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Visibility="Collapsed">
+                    <StackPanel Margin="20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{DynamicResource LOCSettingsSkinFullscreen}" VerticalAlignment="Center"
+                                        Grid.Row="0" Grid.Column="0"/>
+                            <ComboBox Margin="10,5,10,5" Name="ComboSkinsFullscreen"
+                                      Visibility="Collapsed"
+                                        Grid.Row="0" Grid.Column="1"
+                                        ItemsSource="{Binding AvailableFullscreenSkins}"
+                                        SelectedValue="{Binding Settings.SkinFullscreen}"
+                                        SelectionChanged="ComboSkinsFullscreen_SelectionChanged"
+                                        SelectedValuePath="Name" DisplayMemberPath="Name" />
+
+                            <TextBlock Text="{DynamicResource LOCSettingsSkinColorFullscreen}" VerticalAlignment="Center"
+                                        Grid.Row="0" Grid.Column="0" />
+                            <ComboBox Margin="10,5,0,5" Name="CombSkinColorFullscreen"
+                                        Grid.Row="0" Grid.Column="1"
+                                        SelectedValue="{Binding Settings.SkinColorFullscreen}"
+                                        ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkinsFullscreen}">
+                            </ComboBox>
+                        </Grid>
+
+                        <Grid Margin="0,15,0,0">
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                    <Setter Property="Margin" Value="0,5,5,5" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                                <Style TargetType="controls:NumericBox" BasedOn="{StaticResource {x:Type controls:NumericBox}}">
+                                    <Setter Property="Margin" Value="5" />
+                                    <Setter Property="ToolTip" Value="{DynamicResource LOCSettingsColumnRowRangeTooltip}" />
+                                    <Setter Property="ToolTipService.InitialShowDelay" Value="0" />
+                                    <Setter Property="MinLongValue" Value="1" />
+                                    <Setter Property="MaxLongValue" Value="10" />
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{DynamicResource LOCSettingsFullscreenRows}"
+                                       Grid.Column="0" Grid.Row="0" />
+                            <TextBlock Text="{DynamicResource LOCSettingsFullscreenColumns}"
+                                       Grid.Column="0" Grid.Row="1" />
+                            <TextBlock Text="{DynamicResource LOCSettingsFullscreenRowDetails}"
+                                       Grid.Column="0" Grid.Row="2" />
+
+                            <controls:NumericBox LongValue="{Binding Settings.FullscreenSettings.ColumnCount, UpdateSourceTrigger=LostFocus}"
+                                                 Grid.Column="1" Grid.Row="0"  />
+                            <controls:NumericBox LongValue="{Binding Settings.FullscreenSettings.RowCount, UpdateSourceTrigger=LostFocus}"
+                                                 Grid.Column="1" Grid.Row="1"  />
+                            <controls:NumericBox LongValue="{Binding Settings.FullscreenSettings.DetailsRowCount, UpdateSourceTrigger=LostFocus}"
+                                                 Grid.Column="1" Grid.Row="2"  />
+                        </Grid>
                     </StackPanel>
                 </TabItem>
             </TabControl>
