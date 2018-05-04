@@ -1168,7 +1168,7 @@ namespace PlayniteUI.ViewModels
         public void OpenFullScreen()
         {
             CloseView();
-            App.CurrentApp.OpenFullscreenView();            
+            App.CurrentApp.OpenFullscreenView(false);            
         }
 
         public void OpenView()

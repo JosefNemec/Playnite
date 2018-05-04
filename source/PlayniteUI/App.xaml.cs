@@ -261,7 +261,7 @@ namespace PlayniteUI
             // Main view startup
             if (AppSettings.StartInFullscreen)
             {
-                OpenFullscreenView();
+                OpenFullscreenView(true);
             }
             else
             {
@@ -473,7 +473,7 @@ namespace PlayniteUI
             }
         }
 
-        public async void OpenFullscreenView()
+        public async void OpenFullscreenView(bool updateDb)
         {
             if (Database.IsOpen)
             {
@@ -493,9 +493,13 @@ namespace PlayniteUI
                 AppSettings,
                 GamesEditor);
             Api.MainView = new MainViewAPI(mainModel);
-            fullscreenModel.OpenView(true);
+            fullscreenModel.OpenView(!PlayniteEnvironment.IsDebugBuild);
             Current.MainWindow = window.Window;
-            await fullscreenModel.UpdateDatabase(AppSettings.UpdateLibStartup, 0, true);
+
+            if (updateDb)
+            {
+                await fullscreenModel.UpdateDatabase(AppSettings.UpdateLibStartup, 0, true);
+            }            
         }
 
         private void ApplyTheme(string name, string profile, bool fullscreen)

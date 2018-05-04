@@ -180,6 +180,7 @@
     <Compile Include="Scripting\PowerShell\PowerShell.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellScript.cs" />
     <Compile Include="Scripting\Scripts.cs" />
+    <Compile Include="Settings\FullscreenSettings.cs" />
     <Compile Include="System\ProcessMonitor.cs" />
     <Compile Include="Providers\GenericGameController.cs" />
     <Compile Include="Resources.cs" />
