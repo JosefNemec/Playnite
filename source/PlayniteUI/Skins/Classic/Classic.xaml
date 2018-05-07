@@ -1895,6 +1895,10 @@
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
     </Style>
 
+    <Style TargetType="{x:Type pc:ExtendedListView}" BasedOn="{StaticResource {x:Type ListView}}">
+        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+    </Style>
+
     <Style TargetType="{x:Type pc:NumericBox}" BasedOn="{StaticResource {x:Type TextBox}}">
     </Style>
 
@@ -2085,13 +2089,14 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <ListView Grid.Row="0" Grid.Column="0"
+            <pc:ExtendedListView Grid.Row="0" Grid.Column="0"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="ItemsView"
-                      ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Single"
+                      ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Extended"
                       pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"                      
                       ItemsSource="{Binding GamesView.CollectionView}"
-                      SelectedItem="{Binding SelectedGame, Mode=TwoWay}">
-                <ListView.InputBindings>
+                      SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
+                      SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}">
+                <pc:ExtendedListView.InputBindings>
                     <KeyBinding Command="{Binding EditSelectedGamesCommand}"
                                 Key ="{Binding EditSelectedGamesCommand.Gesture.Key}"
                                 Modifiers="{Binding EditSelectedGamesCommand.Gesture.Modifiers}" />
@@ -2101,8 +2106,11 @@
                     <KeyBinding Command="{Binding StartSelectedGameCommand}"
                                 Key ="{Binding StartSelectedGameCommand.Gesture.Key}"
                                 Modifiers="{Binding StartSelectedGameCommand.Gesture.Modifiers}" />
-                </ListView.InputBindings>
-                <ListView.Resources>
+                </pc:ExtendedListView.InputBindings>
+                <pc:ExtendedListView.ContextMenu>
+                    <pc:GameMenu DataContext="{Binding Data.SelectedGames, Source={StaticResource CoversProxy}}" />
+                </pc:ExtendedListView.ContextMenu>
+                <pc:ExtendedListView.Resources>
                     <Style TargetType="GridViewColumnHeader">
                         <Setter Property="Visibility" Value="Collapsed" />
                     </Style>
@@ -2110,11 +2118,6 @@
                         <Setter Property="Margin" Value="8"/>
                         <Setter Property="OverridesDefaultStyle" Value="True" />
                         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                        <Setter Property="ContextMenu">
-                            <Setter.Value>
-                                <pc:GameMenu />
-                            </Setter.Value>
-                        </Setter>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -2199,14 +2202,14 @@
                             </Setter.Value>
                         </Setter>
                     </Style>
-                </ListView.Resources>
-                <ListView.ItemsPanel>
+                </pc:ExtendedListView.Resources>
+                <pc:ExtendedListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <pui:VirtualizingTilePanel ItemWidth="{Binding Path=Value, ElementName=SliderZoom}"
                                                    ItemHeightModifier="{DynamicResource GameCoverViewRation}"/>
                     </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
+                </pc:ExtendedListView.ItemsPanel>
+            </pc:ExtendedListView>
 
             <Border Grid.Column="0" Grid.Row="1"
                     BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
