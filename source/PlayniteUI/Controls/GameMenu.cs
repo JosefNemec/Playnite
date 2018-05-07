@@ -1,5 +1,6 @@
 ﻿using Playnite.Database;
 using Playnite.SDK.Models;
+using PlayniteUI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,7 +45,7 @@ namespace PlayniteUI.Controls
         }
 
         private IResourceProvider resources;
-        private GamesEditor editor;
+        private MainViewModel model;
         private readonly SynchronizationContext context;
 
         private Image startIcon;
@@ -75,11 +76,11 @@ namespace PlayniteUI.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(GameMenu), new FrameworkPropertyMetadata(typeof(GameMenu)));
         }
 
-        public GameMenu() : this(App.GamesEditor)
+        public GameMenu() : this(App.MainModel)
         {            
         }
 
-        public GameMenu(GamesEditor editor)
+        public GameMenu(MainViewModel model)
         {
             startIcon = Images.GetImageFromResource("Images/MenuIcons/start.png");
             removeIcon = Images.GetImageFromResource("Images/MenuIcons/remove.png");
@@ -94,7 +95,7 @@ namespace PlayniteUI.Controls
             editIcon = Images.GetImageFromResource("Images/MenuIcons/edit.png");
 
             context = SynchronizationContext.Current;
-            this.editor = editor;
+            this.model = model;
             resources = new ResourceProvider();
             DataContextChanged += GameMenu_DataContextChanged;
             InitializeItems();
@@ -178,18 +179,20 @@ namespace PlayniteUI.Controls
         {
             Items.Clear();
 
+            if (Games?.Count == 0 && Game == null)
+            {
+                return;
+            }
+
             if (Games != null)
             {
                 // Set Favorites
                 var favoriteItem = new MenuItem()
                 {
                     Header = resources.FindString("LOCFavoriteGame"),
-                    Icon = favoriteIcon
-                };
-
-                favoriteItem.Click += (s, e) =>
-                {
-                    editor.SetFavoriteGames(Games, true);
+                    Icon = favoriteIcon,
+                    Command = model.SetAsFavoritesCommand,
+                    CommandParameter = Games
                 };
 
                 Items.Add(favoriteItem);
@@ -197,12 +200,9 @@ namespace PlayniteUI.Controls
                 var unFavoriteItem = new MenuItem()
                 {
                     Header = resources.FindString("LOCRemoveFavoriteGame"),
-                    Icon = unFavoriteIcon
-                };
-
-                unFavoriteItem.Click += (s, e) =>
-                {
-                    editor.SetFavoriteGames(Games, false);
+                    Icon = unFavoriteIcon,
+                    Command = model.RemoveAsFavoritesCommand,
+                    CommandParameter = Games
                 };
 
                 Items.Add(unFavoriteItem);
@@ -211,12 +211,9 @@ namespace PlayniteUI.Controls
                 var hideItem = new MenuItem()
                 {
                     Header = resources.FindString("LOCHideGame"),
-                    Icon = hideIcon
-                };
-
-                hideItem.Click += (s, e) =>
-                {
-                    editor.SetHideGames(Games, true);
+                    Icon = hideIcon,
+                    Command = model.SetAsHiddensCommand,
+                    CommandParameter = Games
                 };
 
                 Items.Add(hideItem);
@@ -224,12 +221,9 @@ namespace PlayniteUI.Controls
                 var unHideItem = new MenuItem()
                 {
                     Header = resources.FindString("LOCUnHideGame"),
-                    Icon = unHideIcon
-                };
-
-                unHideItem.Click += (s, e) =>
-                {
-                    editor.SetHideGames(Games, false);
+                    Icon = unHideIcon,
+                    Command = model.RemoveAsHiddensCommand,
+                    CommandParameter = Games
                 };
 
                 Items.Add(unHideItem);
@@ -238,12 +232,10 @@ namespace PlayniteUI.Controls
                 var editItem = new MenuItem()
                 {
                     Header = resources.FindString("LOCEditGame"),
-                    Icon = editIcon
-                };
-
-                editItem.Click += (s, e) =>
-                {
-                    editor.EditGames(Games);
+                    Icon = editIcon,
+                    Command = model.EditGamesCommand,
+                    CommandParameter = Games,
+                    InputGestureText = model.EditSelectedGamesCommand.GestureText
                 };
 
                 Items.Add(editItem);
@@ -252,12 +244,9 @@ namespace PlayniteUI.Controls
                 var categoryItem = new MenuItem()
                 {
                     Header = resources.FindString("LOCSetGameCategory"),
-                    Icon = Images.GetEmptyImage()
-                };
-
-                categoryItem.Click += (s, e) =>
-                {
-                    editor.SetGamesCategories(Games);
+                    Icon = Images.GetEmptyImage(),
+                    Command = model.AssignGamesCategoryCommand,
+                    CommandParameter = Games
                 };
 
                 Items.Add(categoryItem);
@@ -267,12 +256,10 @@ namespace PlayniteUI.Controls
                 var removeItem = new MenuItem()
                 {
                     Header = resources.FindString("LOCRemoveGame"),
-                    Icon = removeIcon
-                };
-
-                removeItem.Click += (s, e) =>
-                {
-                    editor.RemoveGames(Games);
+                    Icon = removeIcon,
+                    Command = model.RemoveGamesCommand,
+                    CommandParameter = Games,
+                    InputGestureText = model.RemoveSelectedGamesCommand.GestureText
                 };
 
                 Items.Add(removeItem);
@@ -289,12 +276,10 @@ namespace PlayniteUI.Controls
                         {
                             Header = resources.FindString("LOCPlayGame"),
                             Icon = startIcon,
-                            FontWeight = FontWeights.Bold
-                        };
-
-                        playItem.Click += (s, e) =>
-                        {
-                            editor.PlayGame(Game);
+                            FontWeight = FontWeights.Bold,
+                            Command = model.StartGameCommand,
+                            CommandParameter = Game,
+                            InputGestureText = model.StartSelectedGameCommand.GestureText
                         };
 
                         Items.Add(playItem);
@@ -306,12 +291,9 @@ namespace PlayniteUI.Controls
                         {
                             Header = resources.FindString("LOCInstallGame"),
                             Icon = installIcon,
-                            FontWeight = FontWeights.Bold
-                        };
-
-                        installItem.Click += (s, e) =>
-                        {
-                            editor.InstallGame(Game);
+                            FontWeight = FontWeights.Bold,
+                            Command = model.InstallGameCommand,
+                            CommandParameter = Game
                         };
 
                         Items.Add(installItem);
@@ -337,7 +319,7 @@ namespace PlayniteUI.Controls
 
                         taskItem.Click += (s, e) =>
                         {
-                            editor.ActivateAction(Game, task);
+                            model.GamesEditor.ActivateAction(Game, task);
                         };
 
                         Items.Add(taskItem);
@@ -375,12 +357,9 @@ namespace PlayniteUI.Controls
                     var locationItem = new MenuItem()
                     {
                         Header = resources.FindString("LOCOpenGameLocation"),
-                        Icon = browseIcon
-                    };
-
-                    locationItem.Click += (s, e) =>
-                    {
-                        editor.OpenGameLocation(Game);
+                        Icon = browseIcon,
+                        Command = model.OpenGameLocationCommand,
+                        CommandParameter = Game
                     };
 
                     Items.Add(locationItem);
@@ -390,12 +369,9 @@ namespace PlayniteUI.Controls
                 var shortcutItem = new MenuItem()
                 {
                     Header = resources.FindString("LOCCreateDesktopShortcut"),
-                    Icon = shortcutIcon
-                };
-
-                shortcutItem.Click += (s, e) =>
-                {
-                    editor.CreateShortcut(Game);
+                    Icon = shortcutIcon,
+                    Command = model.CreateGameShortcutCommand,
+                    CommandParameter = Game
                 };
 
                 Items.Add(shortcutItem);
@@ -405,12 +381,9 @@ namespace PlayniteUI.Controls
                 var favoriteItem = new MenuItem()
                 {
                     Header = Game.Favorite ? resources.FindString("LOCRemoveFavoriteGame") : resources.FindString("LOCFavoriteGame"),
-                    Icon = Game.Favorite ? unFavoriteIcon : favoriteIcon
-                };
-
-                favoriteItem.Click += (s, e) =>
-                {
-                    editor.ToggleFavoriteGame(Game);
+                    Icon = Game.Favorite ? unFavoriteIcon : favoriteIcon,
+                    Command = model.ToggleFavoritesCommand,
+                    CommandParameter = Game                    
                 };
 
                 Items.Add(favoriteItem);
@@ -419,12 +392,9 @@ namespace PlayniteUI.Controls
                 var hideItem = new MenuItem()
                 {
                     Header = Game.Hidden ? resources.FindString("LOCUnHideGame") : resources.FindString("LOCHideGame"),
-                    Icon = Game.Hidden ? unHideIcon : hideIcon
-                };
-
-                hideItem.Click += (s, e) =>
-                {
-                    editor.ToggleHideGame(Game);
+                    Icon = Game.Hidden ? unHideIcon : hideIcon,
+                    Command = model.ToggleVisibilityCommand,
+                    CommandParameter = Game
                 };
 
                 Items.Add(hideItem);
@@ -433,12 +403,10 @@ namespace PlayniteUI.Controls
                 var editItem = new MenuItem()
                 {
                     Header = resources.FindString("LOCEditGame"),
-                    Icon = editIcon
-                };
-
-                editItem.Click += (s, e) =>
-                {
-                    editor.EditGame(Game);
+                    Icon = editIcon,
+                    Command = model.EditGameCommand,
+                    CommandParameter = Game,
+                    InputGestureText = model.EditSelectedGamesCommand.GestureText
                 };
 
                 Items.Add(editItem);
@@ -447,12 +415,9 @@ namespace PlayniteUI.Controls
                 var categoryItem = new MenuItem()
                 {
                     Header = resources.FindString("LOCSetGameCategory"),
-                    Icon = Images.GetEmptyImage()
-                };
-
-                categoryItem.Click += (s, e) =>
-                {
-                    editor.SetGameCategories(Game);
+                    Icon = Images.GetEmptyImage(),
+                    Command = model.AssignGameCategoryCommand,
+                    CommandParameter = Game
                 };
 
                 Items.Add(categoryItem);
@@ -462,12 +427,10 @@ namespace PlayniteUI.Controls
                 var removeItem = new MenuItem()
                 {
                     Header = resources.FindString("LOCRemoveGame"),
-                    Icon = removeIcon
-                };
-
-                removeItem.Click += (s, e) =>
-                {
-                    editor.RemoveGame(Game);
+                    Icon = removeIcon,
+                    Command = model.RemoveGameCommand,
+                    CommandParameter = Game,
+                    InputGestureText = model.RemoveGameCommand.GestureText
                 };
 
                 Items.Add(removeItem);
@@ -478,12 +441,9 @@ namespace PlayniteUI.Controls
                     var uninstallItem = new MenuItem()
                     {
                         Header = resources.FindString("LOCUninstallGame"),
-                        Icon = Images.GetEmptyImage()
-                    };
-
-                    uninstallItem.Click += (s, e) =>
-                    {
-                        editor.UnInstallGame(Game);
+                        Icon = Images.GetEmptyImage(),
+                        Command = model.UninstallGameCommand,
+                        CommandParameter = Game
                     };
 
                     Items.Add(uninstallItem);

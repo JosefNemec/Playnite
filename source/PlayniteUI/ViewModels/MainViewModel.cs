@@ -17,6 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace PlayniteUI.ViewModels
 {
@@ -26,7 +27,7 @@ namespace PlayniteUI.ViewModels
         private static object gamesLock = new object();
         protected bool ignoreCloseActions = false;
         private readonly SynchronizationContext context;
-        
+
         public IWindowFactory Window;
         public IDialogsFactory Dialogs;
         public IResourceProvider Resources;
@@ -67,7 +68,7 @@ namespace PlayniteUI.ViewModels
                 OnPropertyChanged("SelectedGame");
             }
         }
-        
+
         public IEnumerable<GameViewEntry> SelectedGames
         {
             get
@@ -177,7 +178,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressVisible = value;
-                context.Post((a) => OnPropertyChanged("ProgressVisible"), null );
+                context.Post((a) => OnPropertyChanged("ProgressVisible"), null);
             }
         }
 
@@ -200,6 +201,17 @@ namespace PlayniteUI.ViewModels
             {
                 mainMenuOpened = value;
                 OnPropertyChanged("MainMenuOpened");
+            }
+        }
+
+        private bool searchOpened = false;
+        public bool SearchOpened
+        {
+            get => searchOpened;
+            set
+            {
+                searchOpened = value;
+                OnPropertyChanged("SearchOpened");
             }
         }
 
@@ -252,287 +264,62 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public RelayCommand<object> OpenFilterPanelCommand
-        {
-            get => new RelayCommand<object>((game) =>
-            {
-                AppSettings.FilterPanelVisible = true;
-            });
-        }
+        #region General Commands
+        public RelayCommand<object> OpenFilterPanelCommand { get; private set; }
+        public RelayCommand<object> CloseFilterPanelCommand { get; private set; }
+        public RelayCommand<object> OpenMainMenuCommand { get; private set; }
+        public RelayCommand<object> CloseMainMenuCommand { get; private set; }
+        public RelayCommand<ThirdPartyTool> ThridPartyToolOpenCommand { get; private set; }
+        public RelayCommand<object> UpdateGamesCommand { get; private set; }
+        public RelayCommand<object> OpenSteamFriendsCommand { get; private set; }
+        public RelayCommand<object> ReportIssueCommand { get; private set; }
+        public RelayCommand<object> ShutdownCommand { get; private set; }
+        public RelayCommand<object> ShowWindowCommand { get; private set; }
+        public RelayCommand<CancelEventArgs> WindowClosingCommand { get; private set; }
+        public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
+        public RelayCommand<object> OpenAboutCommand { get; private set; }
+        public RelayCommand<object> OpenPlatformsCommand { get; private set; }
+        public RelayCommand<object> OpenSettingsCommand { get; private set; }
+        public RelayCommand<object> AddCustomGameCommand { get; private set; }
+        public RelayCommand<object> AddInstalledGamesCommand { get; private set; }
+        public RelayCommand<object> AddEmulatedGamesCommand { get; private set; }
+        public RelayCommand<bool> OpenThemeTesterCommand { get; private set; }
+        public RelayCommand<object> OpenFullScreenCommand { get; private set; }
+        public RelayCommand<object> CancelProgressCommand { get; private set; }
+        public RelayCommand<object> ClearMessagesCommand { get; private set; }
+        public RelayCommand<object> DownloadMetadataCommand { get; private set; }
+        public RelayCommand<object> ClearFiltersCommand { get; private set; }
+        public RelayCommand<object> RemoveGameSelectionCommand { get; private set; }
+        public RelayCommand<ExtensionFunction> InvokeExtensionFunctionCommand { get; private set; }
+        public RelayCommand<object> ReloadScriptsCommand { get; private set; }
+        public RelayCommand<GameViewEntry> ShowGameSideBarCommand { get; private set; }
+        public RelayCommand<object> CloseGameSideBarCommand { get; private set; }
+        public RelayCommand<object> OpenSearchCommand { get; private set; }
+        public RelayCommand<object> ToggleFilterPanelCommand { get; private set; }
+        #endregion
 
-        public RelayCommand<object> CloseFilterPanelCommand
-        {
-            get => new RelayCommand<object>((game) =>
-            {
-                AppSettings.FilterPanelVisible = false;
-            });
-        }
-
-        public RelayCommand<object> OpenMainMenuCommand
-        {
-            get => new RelayCommand<object>((game) =>
-            {
-                MainMenuOpened = true;
-            });
-        }
-
-        public RelayCommand<object> CloseMainMenuCommand
-        {
-            get => new RelayCommand<object>((game) =>
-            {
-                MainMenuOpened = false;
-            });
-        }
-
-        public RelayCommand<Game> StartGameCommand
-        {
-            get => new RelayCommand<Game>((game) =>
-            {
-                if (game != null)
-                {
-                    GamesEditor.PlayGame(game);
-                }
-                else if (SelectedGame != null)
-                {
-                    GamesEditor.PlayGame(SelectedGame.Game);
-                }
-            });
-        }
-
-        public RelayCommand<ThirdPartyTool> ThridPartyToolOpenCommand
-        {
-            get => new RelayCommand<ThirdPartyTool>((tool) =>
-            {
-                MainMenuOpened = false;
-                StartThirdPartyTool(tool);
-            });
-        }
-
-        public RelayCommand<object> UpdateGamesCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                MainMenuOpened = false;
-                UpdateDatabase(true);
-            }, (a) => GameAdditionAllowed || !Database.IsOpen);
-        }
-
-        public RelayCommand<object> OpenSteamFriendsCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                OpenSteamFriends();
-            });
-        }
-
-        public RelayCommand<object> ReportIssueCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                MainMenuOpened = false;
-                ReportIssue();
-            });
-        }
-
-        public RelayCommand<object> ShutdownCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                MainMenuOpened = false;
-                ignoreCloseActions = true;
-                ShutdownApp();
-            });
-        }
-
-        public RelayCommand<object> ShowWindowCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                RestoreWindow();
-            });
-        }
-
-        public RelayCommand<CancelEventArgs> WindowClosingCommand
-        {
-            get => new RelayCommand<CancelEventArgs>((args) =>
-            {
-                OnClosing(args);
-            });
-        }
-
-        public RelayCommand<DragEventArgs> FileDroppedCommand
-        {
-            get => new RelayCommand<DragEventArgs>((args) =>
-            {
-                OnFileDropped(args);
-            });
-        }
-
-        public RelayCommand<object> OpenAboutCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                MainMenuOpened = false;
-                OpenAboutWindow(new AboutViewModel(AboutWindowFactory.Instance, Dialogs, Resources));
-            });
-        }
-
-        public RelayCommand<object> OpenPlatformsCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                MainMenuOpened = false;
-                ConfigurePlatforms(
-                    new PlatformsViewModel(Database,
-                    PlatformsWindowFactory.Instance,
-                    Dialogs,
-                    Resources));
-            }, (a) => Database.IsOpen);
-        }
-
-        public RelayCommand<object> OpenSettingsCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                MainMenuOpened = false;
-                OpenSettings(
-                    new SettingsViewModel(Database,
-                    AppSettings,
-                    SettingsWindowFactory.Instance,
-                    Dialogs,
-                    Resources));
-            });
-        }
-
-        public RelayCommand<object> AddCustomGameCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                MainMenuOpened = false;
-                AddCustomGame(GameEditWindowFactory.Instance);
-            }, (a) => Database.IsOpen);
-        }
-
-        public RelayCommand<object> AddInstalledGamesCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                MainMenuOpened = false;
-                ImportInstalledGames(
-                    new InstalledGamesViewModel(
-                    Database,
-                    InstalledGamesWindowFactory.Instance,
-                    Dialogs));
-            }, (a) => Database.IsOpen);
-        }
-
-        public RelayCommand<object> AddEmulatedGamesCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                MainMenuOpened = false;
-                ImportEmulatedGames(
-                    new EmulatorImportViewModel(Database,
-                    EmulatorImportViewModel.DialogType.GameImport,
-                    EmulatorImportWindowFactory.Instance,
-                    Dialogs,
-                    Resources));
-            }, (a) => Database.IsOpen);
-        }
-
-        public RelayCommand<bool> OpenThemeTesterCommand
-        {
-            get => new RelayCommand<bool>((fullscreen) =>
-            {
-                var window = new ThemeTesterWindow();
-                window.SkinType = fullscreen ? ThemeTesterWindow.SourceType.Fullscreen : ThemeTesterWindow.SourceType.Normal;
-                window.Show();
-            });
-        }
-
-        public RelayCommand<object> OpenFullScreenCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                OpenFullScreen();
-            });
-        }
-
-        public RelayCommand<object> CancelProgressCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                CancelProgress();
-            }, (a) => !GlobalTaskHandler.CancelToken.IsCancellationRequested);
-        }
-
-        public RelayCommand<object> ClearMessagesCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                ClearMessages();
-            }, (a) => Messages.Count > 0);
-        }
-
-        public RelayCommand<object> DownloadMetadataCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                MainMenuOpened = false;
-                DownloadMetadata(new MetadataDownloadViewModel(MetadataDownloadWindowFactory.Instance));
-            }, (a) => GameAdditionAllowed);
-        }
-
-        public RelayCommand<object> ClearFiltersCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                ClearFilters();
-            });
-        }
-
-        public RelayCommand<object> RemoveGameSelectionCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                RemoveGameSelection();
-            });
-        }
-
-        public RelayCommand<ExtensionFunction> InvokeExtensionFunctionCommand
-        {
-            get => new RelayCommand<ExtensionFunction>((f) =>
-            {
-                MainMenuOpened = false;
-                App.CurrentApp.Api?.InvokeExtension(f);
-            });
-        }
-
-        public RelayCommand<object> ReloadScriptsCommand
-        {
-            get => new RelayCommand<object>((f) =>
-            {
-                MainMenuOpened = false;
-                App.CurrentApp.Api?.LoadScripts();
-            });
-        }
-
-        public RelayCommand<GameViewEntry> ShowGameSideBarCommand
-        {
-            get => new RelayCommand<GameViewEntry>((f) =>
-            {
-                SelectedGame = f;
-                ShowGameSidebar = true;
-            });
-        }
-
-        public RelayCommand<object> CloseGameSideBarCommand
-        {
-            get => new RelayCommand<object>((f) =>
-            {
-                ShowGameSidebar = false;
-            });
-        }
+        #region Game Commands
+        public RelayCommand<Game> StartGameCommand { get; private set; }
+        public RelayCommand<Game> InstallGameCommand { get; private set; }
+        public RelayCommand<Game> UninstallGameCommand { get; private set; }
+        public RelayCommand<object> StartSelectedGameCommand { get; private set; }
+        public RelayCommand<object> EditSelectedGamesCommand { get; private set; }
+        public RelayCommand<object> RemoveSelectedGamesCommand { get; private set; }
+        public RelayCommand<Game> EditGameCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> EditGamesCommand { get; private set; }
+        public RelayCommand<Game> OpenGameLocationCommand { get; private set; }
+        public RelayCommand<Game> CreateGameShortcutCommand { get; private set; }
+        public RelayCommand<Game> ToggleFavoritesCommand { get; private set; }
+        public RelayCommand<Game> ToggleVisibilityCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> SetAsFavoritesCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> RemoveAsFavoritesCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> SetAsHiddensCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> RemoveAsHiddensCommand { get; private set; }
+        public RelayCommand<Game> AssignGameCategoryCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> AssignGamesCategoryCommand { get; private set; }
+        public RelayCommand<Game> RemoveGameCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> RemoveGamesCommand { get; private set; }
+        #endregion
 
         public MainViewModel(
             GameDatabase database,
@@ -543,11 +330,11 @@ namespace PlayniteUI.ViewModels
             GamesEditor gamesEditor)
         {
             context = SynchronizationContext.Current;
-            this.Window = window;
-            this.Dialogs = dialogs;
-            this.Resources = resources;
-            this.Database = database;
-            this.GamesEditor = gamesEditor;
+            Window = window;
+            Dialogs = dialogs;
+            Resources = resources;
+            Database = database;
+            GamesEditor = gamesEditor;
             Messages = new ObservableCollection<NotificationMessage>();
             AppSettings = settings;
 
@@ -563,6 +350,349 @@ namespace PlayniteUI.ViewModels
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             GamesStats = new DatabaseStats(database);
+
+            InitializeCommands();
+        }
+
+        private void InitializeCommands()
+        {
+            OpenSearchCommand = new RelayCommand<object>((game) =>
+            {
+                SearchOpened = true;
+            }, new KeyGesture(Key.F, ModifierKeys.Control));
+
+            ToggleFilterPanelCommand = new RelayCommand<object>((game) =>
+            {
+                AppSettings.FilterPanelVisible = !AppSettings.FilterPanelVisible;
+            }, new KeyGesture(Key.G, ModifierKeys.Control));
+
+            OpenFilterPanelCommand = new RelayCommand<object>((game) =>
+            {
+                AppSettings.FilterPanelVisible = true;
+            });        
+
+            CloseFilterPanelCommand = new RelayCommand<object>((game) =>
+            {
+                AppSettings.FilterPanelVisible = false;
+            });
+        
+            OpenMainMenuCommand = new RelayCommand<object>((game) =>
+            {
+                MainMenuOpened = true;
+            });
+
+            CloseMainMenuCommand = new RelayCommand<object>((game) =>
+            {
+                MainMenuOpened = false;
+            });
+
+            ThridPartyToolOpenCommand = new RelayCommand<ThirdPartyTool>((tool) =>
+            {
+                MainMenuOpened = false;
+                StartThirdPartyTool(tool);
+            });
+
+            UpdateGamesCommand = new RelayCommand<object>((a) =>
+            {
+                MainMenuOpened = false;
+                UpdateDatabase(true);
+            }, (a) => GameAdditionAllowed || !Database.IsOpen,
+            new KeyGesture(Key.F5));
+
+            OpenSteamFriendsCommand = new RelayCommand<object>((a) =>
+            {
+                OpenSteamFriends();
+            });
+
+            ReportIssueCommand = new RelayCommand<object>((a) =>
+            {
+                MainMenuOpened = false;
+                ReportIssue();
+            });
+
+            ShutdownCommand = new RelayCommand<object>((a) =>
+            {
+                MainMenuOpened = false;
+                ignoreCloseActions = true;
+                ShutdownApp();
+            }, new KeyGesture(Key.Q, ModifierKeys.Alt));
+
+            ShowWindowCommand = new RelayCommand<object>((a) =>
+            {
+                RestoreWindow();
+            });
+
+            WindowClosingCommand = new RelayCommand<CancelEventArgs>((args) =>
+            {
+                OnClosing(args);
+            });
+
+            FileDroppedCommand = new RelayCommand<DragEventArgs>((args) =>
+            {
+                OnFileDropped(args);
+            });
+
+            OpenAboutCommand = new RelayCommand<object>((a) =>
+            {
+                MainMenuOpened = false;
+                OpenAboutWindow(new AboutViewModel(AboutWindowFactory.Instance, Dialogs, Resources));
+            }, new KeyGesture(Key.F1));
+
+            OpenPlatformsCommand = new RelayCommand<object>((a) =>
+            {
+                MainMenuOpened = false;
+                ConfigurePlatforms(
+                    new PlatformsViewModel(Database,
+                    PlatformsWindowFactory.Instance,
+                    Dialogs,
+                    Resources));
+            }, (a) => Database.IsOpen,
+            new KeyGesture(Key.T, ModifierKeys.Control));
+
+            AddCustomGameCommand = new RelayCommand<object>((a) =>
+            {
+                MainMenuOpened = false;
+                AddCustomGame(GameEditWindowFactory.Instance);
+            }, (a) => Database.IsOpen,
+            new KeyGesture(Key.Insert));
+
+            AddInstalledGamesCommand = new RelayCommand<object>((a) =>
+            {
+                MainMenuOpened = false;
+                ImportInstalledGames(
+                    new InstalledGamesViewModel(
+                    Database,
+                    InstalledGamesWindowFactory.Instance,
+                    Dialogs));
+            }, (a) => Database.IsOpen);
+
+            AddEmulatedGamesCommand = new RelayCommand<object>((a) =>
+            {
+                MainMenuOpened = false;
+                ImportEmulatedGames(
+                    new EmulatorImportViewModel(Database,
+                    EmulatorImportViewModel.DialogType.GameImport,
+                    EmulatorImportWindowFactory.Instance,
+                    Dialogs,
+                    Resources));
+            }, (a) => Database.IsOpen,
+            new KeyGesture(Key.E, ModifierKeys.Control));
+
+            OpenThemeTesterCommand = new RelayCommand<bool>((fullscreen) =>
+            {
+                var window = new ThemeTesterWindow();
+                window.SkinType = fullscreen ? ThemeTesterWindow.SourceType.Fullscreen : ThemeTesterWindow.SourceType.Normal;
+                window.Show();
+            }, new KeyGesture(Key.F8));
+
+            OpenFullScreenCommand = new RelayCommand<object>((a) =>
+            {
+                OpenFullScreen();
+            }, new KeyGesture(Key.F11));
+
+            CancelProgressCommand = new RelayCommand<object>((a) =>
+            {
+                CancelProgress();
+            }, (a) => !GlobalTaskHandler.CancelToken.IsCancellationRequested);
+
+            ClearMessagesCommand = new RelayCommand<object>((a) =>
+            {
+                ClearMessages();
+            }, (a) => Messages.Count > 0);
+
+            DownloadMetadataCommand = new RelayCommand<object>((a) =>
+            {
+                MainMenuOpened = false;
+                DownloadMetadata(new MetadataDownloadViewModel(MetadataDownloadWindowFactory.Instance));
+            }, (a) => GameAdditionAllowed,
+            new KeyGesture(Key.D, ModifierKeys.Control));
+
+            ClearFiltersCommand = new RelayCommand<object>((a) =>
+            {
+                ClearFilters();
+            });
+
+            RemoveGameSelectionCommand = new RelayCommand<object>((a) =>
+            {
+                RemoveGameSelection();
+            });
+
+            InvokeExtensionFunctionCommand = new RelayCommand<ExtensionFunction>((f) =>
+            {
+                MainMenuOpened = false;
+                App.CurrentApp.Api?.InvokeExtension(f);
+            });
+
+            ReloadScriptsCommand = new RelayCommand<object>((f) =>
+            {
+                MainMenuOpened = false;
+                App.CurrentApp.Api?.LoadScripts();
+            }, new KeyGesture(Key.F12));
+
+            ShowGameSideBarCommand = new RelayCommand<GameViewEntry>((f) =>
+            {
+                SelectedGame = f;
+                ShowGameSidebar = true;
+            });
+
+            CloseGameSideBarCommand = new RelayCommand<object>((f) =>
+            {
+                ShowGameSidebar = false;
+            });
+
+            OpenSettingsCommand = new RelayCommand<object>((a) =>
+            {
+                MainMenuOpened = false;
+                OpenSettings(
+                    new SettingsViewModel(Database,
+                    AppSettings,
+                    SettingsWindowFactory.Instance,
+                    Dialogs,
+                    Resources));
+            }, new KeyGesture(Key.F4));
+
+            StartGameCommand = new RelayCommand<Game>((game) =>
+            {
+                if (game != null)
+                {
+                    GamesEditor.PlayGame(game);
+                }
+                else if (SelectedGame != null)
+                {
+                    GamesEditor.PlayGame(SelectedGame.Game);
+                }
+            });
+
+            InstallGameCommand = new RelayCommand<Game>((game) =>
+            {
+                if (game != null)
+                {
+                    GamesEditor.InstallGame(game);
+                }
+                else if (SelectedGame != null)
+                {
+                    GamesEditor.InstallGame(SelectedGame.Game);
+                }
+            });
+
+            UninstallGameCommand = new RelayCommand<Game>((game) =>
+            {
+                if (game != null)
+                {
+                    GamesEditor.UnInstallGame(game);
+                }
+                else if (SelectedGame != null)
+                {
+                    GamesEditor.UnInstallGame(SelectedGame.Game);
+                }
+            });
+
+            EditSelectedGamesCommand = new RelayCommand<object>((a) =>
+            {
+                if (SelectedGames?.Count() > 1)
+                {
+                    GamesEditor.EditGames(SelectedGames.Select(g => g.Game).ToList());
+                }
+                else
+                {
+                    GamesEditor.EditGame(SelectedGame.Game);
+                }
+            },
+            (a) => SelectedGame != null,
+            new KeyGesture(Key.F3));
+
+            StartSelectedGameCommand = new RelayCommand<object>((a) =>
+            {
+                GamesEditor.PlayGame(SelectedGame.Game);
+            },
+            (a) => SelectedGames?.Count() == 1,
+            new KeyGesture(Key.Enter));
+
+            RemoveSelectedGamesCommand = new RelayCommand<object>((a) =>
+            {
+                if (SelectedGames?.Count() > 1)
+                {
+                    GamesEditor.RemoveGames(SelectedGames.Select(g => g.Game).ToList());
+                }
+                else
+                {
+                    GamesEditor.RemoveGame(SelectedGame.Game);
+                }
+            },
+            (a) => SelectedGame != null,
+            new KeyGesture(Key.Delete));
+
+            EditGameCommand = new RelayCommand<Game>((a) =>
+            {
+                GamesEditor.EditGame(a);
+            });
+
+            EditGamesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.EditGames(a.ToList());
+            });
+
+            OpenGameLocationCommand = new RelayCommand<Game>((a) =>
+            {
+                GamesEditor.OpenGameLocation(a);
+            });
+
+            CreateGameShortcutCommand = new RelayCommand<Game>((a) =>
+            {
+                GamesEditor.CreateShortcut(a);
+            });
+
+            ToggleFavoritesCommand = new RelayCommand<Game>((a) =>
+            {
+                GamesEditor.ToggleFavoriteGame(a);
+            });
+
+            ToggleVisibilityCommand = new RelayCommand<Game>((a) =>
+            {
+                GamesEditor.ToggleHideGame(a);
+            });
+
+            AssignGameCategoryCommand = new RelayCommand<Game>((a) =>
+            {
+                GamesEditor.SetGameCategories(a);
+            });
+
+            AssignGamesCategoryCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.SetGamesCategories(a.ToList());
+            });
+
+            RemoveGameCommand = new RelayCommand<Game>((a) =>
+            {
+                GamesEditor.RemoveGame(a);
+            },
+            new KeyGesture(Key.Delete));
+
+            RemoveGamesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.RemoveGames(a.ToList());
+            },
+            new KeyGesture(Key.Delete));
+
+            SetAsFavoritesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.SetFavoriteGames(a.ToList(), true);
+            });
+
+            RemoveAsFavoritesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.SetFavoriteGames(a.ToList(), false);
+            });
+
+            SetAsHiddensCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.SetHideGames(a.ToList(), true);
+            });
+
+            RemoveAsHiddensCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.SetHideGames(a.ToList(), false);
+            });
         }
 
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

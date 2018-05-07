@@ -56,6 +56,17 @@
         <ListView.Resources>
             <pui:BindingProxy x:Key="SettingsProxy" Data="{Binding}" />
         </ListView.Resources>
+        <ListView.InputBindings>
+            <KeyBinding Command="{Binding Data.EditSelectedGamesCommand, Source={StaticResource MainProxy}}"
+                        Key ="{Binding Data.EditSelectedGamesCommand.Gesture.Key, Source={StaticResource MainProxy}}"
+                        Modifiers="{Binding Data.EditSelectedGamesCommand.Gesture.Modifiers, Source={StaticResource MainProxy}}" />
+            <KeyBinding Command="{Binding Data.RemoveSelectedGamesCommand, Source={StaticResource MainProxy}}"
+                        Key ="{Binding Data.RemoveSelectedGamesCommand.Gesture.Key, Source={StaticResource MainProxy}}"
+                        Modifiers="{Binding Data.RemoveSelectedGamesCommand.Gesture.Modifiers, Source={StaticResource MainProxy}}" />
+            <KeyBinding Command="{Binding Data.StartSelectedGameCommand, Source={StaticResource MainProxy}}"
+                        Key ="{Binding Data.StartSelectedGameCommand.Gesture.Key, Source={StaticResource MainProxy}}"
+                        Modifiers="{Binding Data.StartSelectedGameCommand.Gesture.Modifiers, Source={StaticResource MainProxy}}" />
+        </ListView.InputBindings>
         <ListView.ContextMenu>
             <pc:GameMenu DataContext="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource Self}}" />
         </ListView.ContextMenu>

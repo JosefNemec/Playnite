@@ -38,8 +38,6 @@ namespace PlayniteUI
         private bool resourcesReleased = false;
         private PipeService pipeService;
         private PipeServer pipeServer;
-        private MainViewModel mainModel;
-        private FullscreenViewModel fullscreenModel;
         private XInputDevice xdevice;
         private DialogsFactory dialogs;
 
@@ -49,6 +47,19 @@ namespace PlayniteUI
         }
         
         public event PropertyChangedEventHandler PropertyChanged;
+
+
+        public static MainViewModel MainModel
+        {
+            get;
+            private set;
+        }
+
+        public static FullscreenViewModel FullscreenModel
+        {
+            get;
+            private set;
+        }
 
         public static GameDatabase Database
         {
@@ -303,8 +314,8 @@ namespace PlayniteUI
             switch (args.Command)
             {
                 case CmdlineCommands.Focus:                    
-                    mainModel?.RestoreWindow();
-                    fullscreenModel?.RestoreWindow();
+                    MainModel?.RestoreWindow();
+                    FullscreenModel?.RestoreWindow();
                     break;
 
                 case CmdlineCommands.Launch:
@@ -440,7 +451,7 @@ namespace PlayniteUI
         {
             if (Database.IsOpen)
             {
-                fullscreenModel = null;
+                FullscreenModel = null;
                 Database.CloseDatabase();
             }
 
@@ -448,19 +459,19 @@ namespace PlayniteUI
             dialogs.IsFullscreen = false;
             ApplyTheme(AppSettings.Skin, AppSettings.SkinColor, false);
             var window = new MainWindowFactory();
-            mainModel = new MainViewModel(
+            MainModel = new MainViewModel(
                 Database,
                 window,
                 dialogs,
                 new ResourceProvider(),
                 AppSettings,
                 GamesEditor);
-            Api.MainView = new MainViewAPI(mainModel);
-            mainModel.OpenView();
+            Api.MainView = new MainViewAPI(MainModel);
+            MainModel.OpenView();
             Current.MainWindow = window.Window;
             if (AppSettings.UpdateLibStartup)
             {
-                await mainModel.UpdateDatabase(AppSettings.UpdateLibStartup, steamCatImportId, !isFirstStart);
+                await MainModel.UpdateDatabase(AppSettings.UpdateLibStartup, steamCatImportId, !isFirstStart);
             }
 
             if (isFirstStart)
@@ -469,7 +480,7 @@ namespace PlayniteUI
                 metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
                 metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                 metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                await mainModel.DownloadMetadata(metaSettings);
+                await MainModel.DownloadMetadata(metaSettings);
             }
         }
 
@@ -477,7 +488,7 @@ namespace PlayniteUI
         {
             if (Database.IsOpen)
             {
-                mainModel = null;
+                MainModel = null;
                 Database.CloseDatabase();
             }
 
@@ -485,20 +496,20 @@ namespace PlayniteUI
             dialogs.IsFullscreen = true;
             ApplyTheme(AppSettings.SkinFullscreen, AppSettings.SkinColorFullscreen, true);
             var window = new FullscreenWindowFactory();
-            fullscreenModel = new FullscreenViewModel(
+            FullscreenModel = new FullscreenViewModel(
                 Database,
                 window,
                 dialogs,
                 new ResourceProvider(),
                 AppSettings,
                 GamesEditor);
-            Api.MainView = new MainViewAPI(mainModel);
-            fullscreenModel.OpenView(!PlayniteEnvironment.IsDebugBuild);
+            Api.MainView = new MainViewAPI(MainModel);
+            FullscreenModel.OpenView(!PlayniteEnvironment.IsDebugBuild);
             Current.MainWindow = window.Window;
 
             if (updateDb)
             {
-                await fullscreenModel.UpdateDatabase(AppSettings.UpdateLibStartup, 0, true);
+                await FullscreenModel.UpdateDatabase(AppSettings.UpdateLibStartup, 0, true);
             }            
         }
 

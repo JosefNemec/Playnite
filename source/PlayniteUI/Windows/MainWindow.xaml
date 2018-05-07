@@ -53,12 +53,46 @@
         <pui:BindingProxy x:Key="Proxy" Data="{Binding}" />
     </c:WindowBase.Resources>
 
-    <c:WindowBase.InputBindings>
-        <KeyBinding Key="F8" Command="{Binding OpenThemeTesterCommand}" CommandParameter="{StaticResource False}" />
-        <KeyBinding Key="F5" Command="{Binding UpdateGamesCommand}" />
-        <KeyBinding Key="F4" Command="{Binding OpenSettingsCommand}" />
-        <KeyBinding Key="F11" Command="{Binding OpenFullScreenCommand}" />
-        <KeyBinding Key="F12" Command="{Binding ReloadScriptsCommand}" />
+    <c:WindowBase.InputBindings>        
+        <KeyBinding Command="{Binding OpenThemeTesterCommand}" CommandParameter="{StaticResource False}"
+                    Key ="{Binding OpenThemeTesterCommand.Gesture.Key}"
+                    Modifiers="{Binding OpenThemeTesterCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding UpdateGamesCommand}"
+                    Key ="{Binding UpdateGamesCommand.Gesture.Key}"
+                    Modifiers="{Binding UpdateGamesCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding OpenSettingsCommand}"
+                    Key ="{Binding OpenSettingsCommand.Gesture.Key}"
+                    Modifiers="{Binding OpenSettingsCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding OpenFullScreenCommand}"
+                    Key ="{Binding OpenFullScreenCommand.Gesture.Key}"
+                    Modifiers="{Binding OpenFullScreenCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding ReloadScriptsCommand}"
+                    Key ="{Binding ReloadScriptsCommand.Gesture.Key}"
+                    Modifiers="{Binding ReloadScriptsCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding AddCustomGameCommand}"
+                    Key ="{Binding AddCustomGameCommand.Gesture.Key}"
+                    Modifiers="{Binding AddCustomGameCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding OpenAboutCommand}"
+                    Key ="{Binding OpenAboutCommand.Gesture.Key}"
+                    Modifiers="{Binding OpenAboutCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding ShutdownCommand}"
+                    Key ="{Binding ShutdownCommand.Gesture.Key}"
+                    Modifiers="{Binding ShutdownCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding DownloadMetadataCommand}"
+                    Key ="{Binding DownloadMetadataCommand.Gesture.Key}"
+                    Modifiers="{Binding DownloadMetadataCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding OpenPlatformsCommand}"
+                    Key ="{Binding OpenPlatformsCommand.Gesture.Key}"
+                    Modifiers="{Binding OpenPlatformsCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding AddEmulatedGamesCommand}"
+                    Key ="{Binding AddEmulatedGamesCommand.Gesture.Key}"
+                    Modifiers="{Binding AddEmulatedGamesCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding OpenSearchCommand}"
+                    Key ="{Binding OpenSearchCommand.Gesture.Key}"
+                    Modifiers="{Binding OpenSearchCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding ToggleFilterPanelCommand}"
+                    Key ="{Binding ToggleFilterPanelCommand.Gesture.Key}"
+                    Modifiers="{Binding ToggleFilterPanelCommand.Gesture.Modifiers}" />
 
         <pui:XInputBinding Button="Guide" Command="{Binding OpenFullScreenCommand}" />
     </c:WindowBase.InputBindings>
@@ -83,7 +117,7 @@
                                 <Image Width="16" Margin="-5,0,5,0" RenderOptions.BitmapScalingMode="Fant">
                                     <Image.Source>
                                         <PriorityBinding>
-                                            <Binding Path="Icon" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
+                                            <Binding Path="Icon" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
                                             <Binding Path="DefaultIcon" Mode="OneWay" Converter="{StaticResource CustomImageStringToImageConverter}"/>
                                         </PriorityBinding>
                                     </Image.Source>

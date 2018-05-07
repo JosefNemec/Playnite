@@ -21,6 +21,8 @@ namespace PlayniteUI.Controls
     /// </summary>
     public partial class SearchBox : UserControl
     {
+        internal IInputElement previousFocus;
+
         public string Text
         {
             get
@@ -51,9 +53,48 @@ namespace PlayniteUI.Controls
         
         public static readonly DependencyProperty ShowImageProperty = DependencyProperty.Register("ShowImage", typeof(bool), typeof(SearchBox), new PropertyMetadata(true, ShowImagePropertyChangedCallback));
 
+        public new bool IsFocused
+        {
+            get
+            {
+                return (bool)GetValue(IsFocusedProperty);
+            }
+
+            set
+            {
+                SetValue(IsFocusedProperty, value);
+            }
+        }
+
+        public new static readonly DependencyProperty IsFocusedProperty = DependencyProperty.Register("IsFocused", typeof(bool), typeof(SearchBox), new PropertyMetadata(false, IsFocusedPropertyChangedCallback));
+
         public SearchBox()
         {
             InitializeComponent();
+            TextFilter.KeyUp += TextFilter_KeyUp;
+        }
+
+        public void ClearFocus()
+        {
+            if (previousFocus != null)
+            {                
+                Keyboard.Focus(previousFocus);
+            }
+            else
+            {
+                TextFilter.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+            }
+
+            previousFocus = null;
+            IsFocused = false;
+        }
+
+        private void TextFilter_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape || e.Key == Key.Enter)
+            {
+                ClearFocus();
+            }
         }
 
         private void ClearImage_MouseUp(object sender, MouseButtonEventArgs e)
@@ -72,6 +113,27 @@ namespace PlayniteUI.Controls
         {
             var obj = sender as SearchBox;
             obj.ShowImage = (bool)e.NewValue;
+        }
+
+        private static void IsFocusedPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var obj = sender as SearchBox;
+            var shouldFocus = (bool)e.NewValue;
+
+            if (!shouldFocus && !obj.TextFilter.IsFocused)
+            {
+                return;
+            }
+
+            if (shouldFocus == true)
+            {
+                obj.previousFocus = Keyboard.FocusedElement;
+                obj.TextFilter.Focus();
+            }
+            else
+            {
+                obj.ClearFocus();
+            }
         }
     }
 }

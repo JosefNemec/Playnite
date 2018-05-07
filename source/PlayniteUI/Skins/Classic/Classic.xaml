@@ -847,13 +847,14 @@
 
     <!-- SubmenuHeader -->
     <ControlTemplate x:Key="{x:Static MenuItem.SubmenuHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
-        <Grid>
+        <Grid Background="Transparent">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
                 <ColumnDefinition Width="*" SharedSizeGroup="MenuItemIGTColumnGroup" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemShortcutColumnGroup" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Border x:Name="HoverBorder" Grid.Column="0" Grid.ColumnSpan="3" 
+            <Border x:Name="HoverBorder" Grid.Column="0" Grid.ColumnSpan="4" 
                     Background="{DynamicResource HoverBrush}" Visibility="Collapsed"  />
             <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,-5,0"
                               VerticalAlignment="Center" ContentSource="Icon" />
@@ -865,7 +866,10 @@
                        Foreground="{TemplateBinding Foreground}">
                 <ContentPresenter RecognizesAccessKey="True" Margin="5,0,5,0" ContentSource="Header"/>
             </TextBlock>
-            <Grid Grid.Column="2" Margin="0,0,5,0" VerticalAlignment="Center">
+            <TextBlock x:Name="GestureText" Grid.Column="2" Text="{TemplateBinding InputGestureText}"
+                       TextAlignment="Left" HorizontalAlignment="Stretch" Margin="20,5,10,5"
+                       VerticalAlignment="Center" Background="Transparent"/>
+            <Grid Grid.Column="3" Margin="0,0,5,0">
                 <TextBlock FontFamily="Marlett" Text="4" VerticalAlignment="Center" Style="{DynamicResource BaseTextBlockStyle}" />
             </Grid>
             <Popup IsOpen="{Binding Path=IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Right"
@@ -889,6 +893,9 @@
             <Trigger Property="IsHighlighted" Value="True">
                 <Setter Property="Visibility" Value="Visible" TargetName="HoverBorder" />
             </Trigger>
+            <Trigger Property="InputGestureText" Value="">
+                <Setter Property="Visibility" Value="Collapsed" TargetName="GestureText" />
+            </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -899,6 +906,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIconColumnGroup" />
                     <ColumnDefinition Width="*" SharedSizeGroup="MenuItemIGTColumnGroup" />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemShortcutColumnGroup" />
                 </Grid.ColumnDefinitions>
                 <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,-5,0" VerticalAlignment="Center" ContentSource="Icon" />
                 <Grid x:Name="GlyphPanel" Grid.Column="0" Visibility="Collapsed" Margin="5,0,-5,0" VerticalAlignment="Center">
@@ -908,6 +916,9 @@
                            Foreground="{TemplateBinding Foreground}">
                     <ContentPresenter RecognizesAccessKey="True" ContentSource="Header"/>
                 </TextBlock>
+                <TextBlock x:Name="GestureText" Grid.Column="2" Text="{TemplateBinding InputGestureText}"
+                           TextAlignment="Left" HorizontalAlignment="Stretch"
+                           VerticalAlignment="Center" Margin="20,5,10,5" />
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
@@ -920,6 +931,9 @@
             </Trigger>
             <Trigger Property="IsHighlighted" Value="False">
                 <Setter Property="Background" Value="Transparent" TargetName="HoverBorder" />
+            </Trigger>
+            <Trigger Property="InputGestureText" Value="">
+                <Setter Property="Visibility" Value="Collapsed" TargetName="GestureText" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -1868,7 +1882,8 @@
                 <ControlTemplate TargetType="{x:Type pc:GameMenu}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}">
+                            Background="{TemplateBinding Background}"
+                            Grid.IsSharedSizeScope="True">
                         <ItemsPresenter />
                     </Border>
                 </ControlTemplate>
@@ -2076,6 +2091,17 @@
                       pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"                      
                       ItemsSource="{Binding GamesView.CollectionView}"
                       SelectedItem="{Binding SelectedGame, Mode=TwoWay}">
+                <ListView.InputBindings>
+                    <KeyBinding Command="{Binding EditSelectedGamesCommand}"
+                                Key ="{Binding EditSelectedGamesCommand.Gesture.Key}"
+                                Modifiers="{Binding EditSelectedGamesCommand.Gesture.Modifiers}" />
+                    <KeyBinding Command="{Binding RemoveSelectedGamesCommand}"
+                                Key ="{Binding RemoveSelectedGamesCommand.Gesture.Key}"
+                                Modifiers="{Binding RemoveSelectedGamesCommand.Gesture.Modifiers}" />
+                    <KeyBinding Command="{Binding StartSelectedGameCommand}"
+                                Key ="{Binding StartSelectedGameCommand.Gesture.Key}"
+                                Modifiers="{Binding StartSelectedGameCommand.Gesture.Modifiers}" />
+                </ListView.InputBindings>
                 <ListView.Resources>
                     <Style TargetType="GridViewColumnHeader">
                         <Setter Property="Visibility" Value="Collapsed" />
@@ -2466,11 +2492,13 @@
                             </ContextMenu.Resources>
                             <MenuItem Header="{DynamicResource LOCMenuAddGame}">
                                 <MenuItem Header="{DynamicResource LOCMenuAddGameManual}"
-                                          Command="{Binding AddCustomGameCommand}"/>
+                                          Command="{Binding AddCustomGameCommand}"
+                                          InputGestureText="{Binding AddCustomGameCommand.GestureText}"/>
                                 <MenuItem Header="{DynamicResource LOCMenuAddGameInstalled}"
                                           Command="{Binding AddInstalledGamesCommand}"/>
                                 <MenuItem Header="{DynamicResource LOCMenuAddGameEmulated}"
-                                          Command="{Binding AddEmulatedGamesCommand}" />
+                                          Command="{Binding AddEmulatedGamesCommand}"
+                                          InputGestureText="{Binding AddEmulatedGamesCommand.GestureText}"/>
                                 <MenuItem.Icon>
                                     <Image Source="/Images/MenuIcons/add.png" Height="16"
                                            RenderOptions.BitmapScalingMode="NearestNeighbor" />
@@ -2478,7 +2506,8 @@
                             </MenuItem>
                             <Separator />
                             <MenuItem Header="{DynamicResource LOCMenuReloadLibrary}" Style="{DynamicResource ProgressMenu}"
-                                      Command="{Binding UpdateGamesCommand}">
+                                      Command="{Binding UpdateGamesCommand}"
+                                      InputGestureText="{Binding UpdateGamesCommand.GestureText}">
                                 <MenuItem.Icon>
                                     <Image Source="/Images/MenuIcons/refresh.png"
                                            RenderOptions.BitmapScalingMode="NearestNeighbor"/>
@@ -2486,14 +2515,18 @@
                             </MenuItem>
                             <MenuItem Header="{DynamicResource LOCMenuTools}">                                
                                 <MenuItem Header="{DynamicResource LOCMenuPlatformEmulatorSettingsTitle}"
-                                      Command="{Binding OpenPlatformsCommand}"/>
+                                          Command="{Binding OpenPlatformsCommand}"
+                                          InputGestureText="{Binding OpenPlatformsCommand.GestureText}"/>
                                 <MenuItem Header="{DynamicResource LOCMenuDownloadMetadata}" Style="{DynamicResource ProgressMenu}"
-                                          Command="{Binding DownloadMetadataCommand}"/>
+                                          Command="{Binding DownloadMetadataCommand}"
+                                          InputGestureText="{Binding DownloadMetadataCommand.GestureText}" />
                                 <MenuItem Header="{DynamicResource LOCReloadScripts}"
-                                          Command="{Binding ReloadScriptsCommand}"/>
+                                          Command="{Binding ReloadScriptsCommand}"
+                                          InputGestureText="{Binding ReloadScriptsCommand.GestureText}"/>
                                 <Separator />
                                 <MenuItem Header="{DynamicResource LOCMenuPlayniteSettingsTitle}"
-                                          Command="{Binding OpenSettingsCommand}">
+                                          Command="{Binding OpenSettingsCommand}"
+                                          InputGestureText="{Binding OpenSettingsCommand.GestureText}">
                                     <MenuItem.Icon>
                                         <Image Source="/Images/MenuIcons/settings.png" />
                                     </MenuItem.Icon>
@@ -2527,7 +2560,8 @@
                             </MenuItem>
                             <Separator />
                             <MenuItem Header="{DynamicResource LOCMenuOpenFullscreen}"
-                                      Command="{Binding OpenFullScreenCommand}">
+                                      Command="{Binding OpenFullScreenCommand}"
+                                      InputGestureText="{Binding OpenFullScreenCommand.GestureText}">
                                 <MenuItem.Icon>
                                     <Image Source="/Images/applogo.png" Height="16"
                                            RenderOptions.BitmapScalingMode="Fant" />
@@ -2539,7 +2573,9 @@
                                     <Image Source="/Images/MenuIcons/info.png" Height="16"
                                                RenderOptions.BitmapScalingMode="NearestNeighbor" />
                                 </MenuItem.Icon>
-                                <MenuItem Header="{DynamicResource LOCMenuAbout}" Command="{Binding OpenAboutCommand}">
+                                <MenuItem Header="{DynamicResource LOCMenuAbout}"
+                                          Command="{Binding OpenAboutCommand}"
+                                          InputGestureText="{Binding OpenAboutCommand.GestureText}">
                                     <MenuItem.Icon>
                                         <Image Source="/Images/icon_dark.png" Height="16"
                                                RenderOptions.BitmapScalingMode="Fant" />
@@ -2594,7 +2630,9 @@
                                 </MenuItem.Icon>
                             </MenuItem>
                             <Separator />
-                            <MenuItem Header="{DynamicResource LOCExitAppLabel}" Command="{Binding ShutdownCommand}">
+                            <MenuItem Header="{DynamicResource LOCExitAppLabel}"
+                                      Command="{Binding ShutdownCommand}"
+                                      InputGestureText="{Binding ShutdownCommand.GestureText}">
                                 <MenuItem.Icon>
                                     <Image Source="/Images/MenuIcons/exit.png"
                                            RenderOptions.BitmapScalingMode="NearestNeighbor" />
@@ -2605,8 +2643,9 @@
                 </DockPanel>
 
                 <pc:SearchBox x:Name="SearchBoxFilter" Margin="5,8,10,8" DockPanel.Dock="Left" Padding="0" Width="235"
-                                Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}"
-                                WindowChrome.IsHitTestVisibleInChrome="True" />
+                              Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}"
+                              IsFocused="{Binding SearchOpened, Mode=TwoWay}"
+                              WindowChrome.IsHitTestVisibleInChrome="True" />
 
                 <Border CornerRadius="{StaticResource ControlCornerRadius}" Background="Transparent" Style="{StaticResource HighlightBorder}"
                     pui:LeftClickContextMenuBehavior.Enabled="True"
@@ -3065,6 +3104,17 @@
                                          pui:ScrollToSelectedBehavior.Enabled="True"
                                          VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
                                          VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Recycling">
+                                    <ListBox.InputBindings>
+                                        <KeyBinding Command="{Binding EditSelectedGamesCommand}"
+                                                    Key ="{Binding EditSelectedGamesCommand.Gesture.Key}"
+                                                    Modifiers="{Binding EditSelectedGamesCommand.Gesture.Modifiers}" />
+                                        <KeyBinding Command="{Binding RemoveSelectedGamesCommand}"
+                                                    Key ="{Binding RemoveSelectedGamesCommand.Gesture.Key}"
+                                                    Modifiers="{Binding RemoveSelectedGamesCommand.Gesture.Modifiers}" />
+                                        <KeyBinding Command="{Binding StartSelectedGameCommand}"
+                                                    Key ="{Binding StartSelectedGameCommand.Gesture.Key}"
+                                                    Modifiers="{Binding StartSelectedGameCommand.Gesture.Modifiers}" />
+                                    </ListBox.InputBindings>
                                     <ListBox.ItemContainerStyle>
                                         <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                                             <Style.Triggers>
