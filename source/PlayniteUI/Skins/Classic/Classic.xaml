@@ -2266,7 +2266,7 @@
                             <Button MinWidth="120" Content="{DynamicResource LOCSetupRunning}"
                                 Visibility="{Binding IsInstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 Command="{Binding CheckSetupCommand}"/>
-                            <Button MinWidth="120" Content="{DynamicResource LOCSetupRunning}"  
+                            <Button MinWidth="120" Content="{DynamicResource LOCUninstalling}"  
                                 Visibility="{Binding IsUninstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 Command="{Binding CheckSetupCommand}"/>
                             <Button MinWidth="120" Content="{DynamicResource LOCGameRunning}" 
@@ -2372,7 +2372,7 @@
                 <Button MinWidth="120" Content="{DynamicResource LOCSetupRunning}"
                         Visibility="{Binding IsInstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding CheckSetupCommand}"/>
-                <Button MinWidth="120" Content="{DynamicResource LOCSetupRunning}"  
+                <Button MinWidth="120" Content="{DynamicResource LOCUninstalling}"  
                         Visibility="{Binding IsUninstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding CheckSetupCommand}"/>
                 <Button MinWidth="120" Content="{DynamicResource LOCGameRunning}" 

@@ -136,7 +136,8 @@ namespace Playnite.SDK.Models
             if (Installed == obj.Installed &&
                 Running == obj.Running &&
                 Installing == obj.Installing &&
-                Launching == obj.Launching)
+                Launching == obj.Launching &&
+                Uninstalling == obj.Uninstalling)
             {
                 return 0;
             }
