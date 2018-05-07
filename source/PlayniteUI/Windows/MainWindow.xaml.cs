@@ -28,7 +28,8 @@ namespace PlayniteUI
 
         private void Window_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            positionManager?.RestoreSizeAndLocation();            
+            positionManager?.RestoreSizeAndLocation();
+            ViewMainView.Focus();
         }
 
         private void WindowMain_Unloaded(object sender, System.Windows.RoutedEventArgs e)

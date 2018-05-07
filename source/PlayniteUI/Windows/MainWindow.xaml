@@ -54,47 +54,7 @@
     </c:WindowBase.Resources>
 
     <c:WindowBase.InputBindings>        
-        <KeyBinding Command="{Binding OpenThemeTesterCommand}" CommandParameter="{StaticResource False}"
-                    Key ="{Binding OpenThemeTesterCommand.Gesture.Key}"
-                    Modifiers="{Binding OpenThemeTesterCommand.Gesture.Modifiers}" />
-        <KeyBinding Command="{Binding UpdateGamesCommand}"
-                    Key ="{Binding UpdateGamesCommand.Gesture.Key}"
-                    Modifiers="{Binding UpdateGamesCommand.Gesture.Modifiers}" />
-        <KeyBinding Command="{Binding OpenSettingsCommand}"
-                    Key ="{Binding OpenSettingsCommand.Gesture.Key}"
-                    Modifiers="{Binding OpenSettingsCommand.Gesture.Modifiers}" />
-        <KeyBinding Command="{Binding OpenFullScreenCommand}"
-                    Key ="{Binding OpenFullScreenCommand.Gesture.Key}"
-                    Modifiers="{Binding OpenFullScreenCommand.Gesture.Modifiers}" />
-        <KeyBinding Command="{Binding ReloadScriptsCommand}"
-                    Key ="{Binding ReloadScriptsCommand.Gesture.Key}"
-                    Modifiers="{Binding ReloadScriptsCommand.Gesture.Modifiers}" />
-        <KeyBinding Command="{Binding AddCustomGameCommand}"
-                    Key ="{Binding AddCustomGameCommand.Gesture.Key}"
-                    Modifiers="{Binding AddCustomGameCommand.Gesture.Modifiers}" />
-        <KeyBinding Command="{Binding OpenAboutCommand}"
-                    Key ="{Binding OpenAboutCommand.Gesture.Key}"
-                    Modifiers="{Binding OpenAboutCommand.Gesture.Modifiers}" />
-        <KeyBinding Command="{Binding ShutdownCommand}"
-                    Key ="{Binding ShutdownCommand.Gesture.Key}"
-                    Modifiers="{Binding ShutdownCommand.Gesture.Modifiers}" />
-        <KeyBinding Command="{Binding DownloadMetadataCommand}"
-                    Key ="{Binding DownloadMetadataCommand.Gesture.Key}"
-                    Modifiers="{Binding DownloadMetadataCommand.Gesture.Modifiers}" />
-        <KeyBinding Command="{Binding OpenPlatformsCommand}"
-                    Key ="{Binding OpenPlatformsCommand.Gesture.Key}"
-                    Modifiers="{Binding OpenPlatformsCommand.Gesture.Modifiers}" />
-        <KeyBinding Command="{Binding AddEmulatedGamesCommand}"
-                    Key ="{Binding AddEmulatedGamesCommand.Gesture.Key}"
-                    Modifiers="{Binding AddEmulatedGamesCommand.Gesture.Modifiers}" />
-        <KeyBinding Command="{Binding OpenSearchCommand}"
-                    Key ="{Binding OpenSearchCommand.Gesture.Key}"
-                    Modifiers="{Binding OpenSearchCommand.Gesture.Modifiers}" />
-        <KeyBinding Command="{Binding ToggleFilterPanelCommand}"
-                    Key ="{Binding ToggleFilterPanelCommand.Gesture.Key}"
-                    Modifiers="{Binding ToggleFilterPanelCommand.Gesture.Modifiers}" />
-
-        <pui:XInputBinding Button="Guide" Command="{Binding OpenFullScreenCommand}" />
+        
     </c:WindowBase.InputBindings>
 
     <Grid>
@@ -160,6 +120,50 @@
             </tray:TaskbarIcon.ContextMenu>
         </tray:TaskbarIcon>
 
-        <c:MainView />
+        <c:MainView x:Name="ViewMainView">
+            <c:MainView.InputBindings>
+                <KeyBinding Command="{Binding OpenThemeTesterCommand}" CommandParameter="{StaticResource False}"
+                    Key ="{Binding OpenThemeTesterCommand.Gesture.Key}"
+                    Modifiers="{Binding OpenThemeTesterCommand.Gesture.Modifiers}" />
+                <KeyBinding Command="{Binding UpdateGamesCommand}"
+                    Key ="{Binding UpdateGamesCommand.Gesture.Key}"
+                    Modifiers="{Binding UpdateGamesCommand.Gesture.Modifiers}" />
+                <KeyBinding Command="{Binding OpenSettingsCommand}"
+                    Key ="{Binding OpenSettingsCommand.Gesture.Key}"
+                    Modifiers="{Binding OpenSettingsCommand.Gesture.Modifiers}" />
+                <KeyBinding Command="{Binding OpenFullScreenCommand}"
+                    Key ="{Binding OpenFullScreenCommand.Gesture.Key}"
+                    Modifiers="{Binding OpenFullScreenCommand.Gesture.Modifiers}" />
+                <KeyBinding Command="{Binding ReloadScriptsCommand}"
+                    Key ="{Binding ReloadScriptsCommand.Gesture.Key}"
+                    Modifiers="{Binding ReloadScriptsCommand.Gesture.Modifiers}" />
+                <KeyBinding Command="{Binding AddCustomGameCommand}"
+                    Key ="{Binding AddCustomGameCommand.Gesture.Key}"
+                    Modifiers="{Binding AddCustomGameCommand.Gesture.Modifiers}" />
+                <KeyBinding Command="{Binding OpenAboutCommand}"
+                    Key ="{Binding OpenAboutCommand.Gesture.Key}"
+                    Modifiers="{Binding OpenAboutCommand.Gesture.Modifiers}" />
+                <KeyBinding Command="{Binding ShutdownCommand}"
+                    Key ="{Binding ShutdownCommand.Gesture.Key}"
+                    Modifiers="{Binding ShutdownCommand.Gesture.Modifiers}" />
+                <KeyBinding Command="{Binding DownloadMetadataCommand}"
+                    Key ="{Binding DownloadMetadataCommand.Gesture.Key}"
+                    Modifiers="{Binding DownloadMetadataCommand.Gesture.Modifiers}" />
+                <KeyBinding Command="{Binding OpenPlatformsCommand}"
+                    Key ="{Binding OpenPlatformsCommand.Gesture.Key}"
+                    Modifiers="{Binding OpenPlatformsCommand.Gesture.Modifiers}" />
+                <KeyBinding Command="{Binding AddEmulatedGamesCommand}"
+                    Key ="{Binding AddEmulatedGamesCommand.Gesture.Key}"
+                    Modifiers="{Binding AddEmulatedGamesCommand.Gesture.Modifiers}" />
+                <KeyBinding Command="{Binding OpenSearchCommand}"
+                    Key ="{Binding OpenSearchCommand.Gesture.Key}"
+                    Modifiers="{Binding OpenSearchCommand.Gesture.Modifiers}" />
+                <KeyBinding Command="{Binding ToggleFilterPanelCommand}"
+                    Key ="{Binding ToggleFilterPanelCommand.Gesture.Key}"
+                    Modifiers="{Binding ToggleFilterPanelCommand.Gesture.Modifiers}" />
+
+                <pui:XInputBinding Button="Guide" Command="{Binding OpenFullScreenCommand}" />
+            </c:MainView.InputBindings>
+        </c:MainView>
     </Grid>
 </c:WindowBase>
