@@ -449,6 +449,7 @@ namespace Playnite
                 };
             };
 
+            game.State.Installed = true;
             return game;
         }
 
