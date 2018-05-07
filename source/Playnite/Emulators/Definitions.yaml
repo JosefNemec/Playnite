@@ -5,7 +5,15 @@
       DefaultArguments: '-conf "{ImagePath}" -exit'
       Platforms: [PC, DOS]
       ImageExtensions: [conf]  
-      ExecutableLookup: ^dosbox\.exe
+      ExecutableLookup: ^dosbox\.exe$
+
+- Name: ScummVM
+  Website: 'https://www.scummvm.org/'
+  Profiles:
+    - Name: Default
+      DefaultArguments: '-f'
+      Platforms: [PC, DOS]
+      ExecutableLookup: ^scummvm\.exe$
 
 - Name: PCem
   Website: 'https://pcem-emulator.co.uk/'
@@ -14,7 +22,7 @@
       DefaultArguments: '--config "{ImagePath}"'
       Platforms: [PC]
       ImageExtensions: [cfg]  
-      ExecutableLookup: ^pcem\.exe
+      ExecutableLookup: ^pcem\.exe$
 
 - Name: NullDC
   Website: 'http://segaretro.org/NullDC'
