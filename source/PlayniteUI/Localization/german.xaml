@@ -130,10 +130,12 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Es können folgende Variablen verwendet werden:
 {InstallDir} - Installationspfad des Spiels
+{InstallDirName} - Name des Installationsverzeichnisses
 {ImagePath} - Pfad zur ISO/ROM des Spiels, falls vorhanden
-{ImageName} - Name des ISO/ROM des Spiels
-{ImageNameNoExt} - Dateiname des ISO/ROM ohne Dateiendung
+{ImageName} - Dateiname vom ISO/ROM des Spiels
+{ImageNameNoExt} - Dateiname vom ISO/ROM des Spiels (ohne Dateiendung)
 {PlayniteDir} - Playnite Installationspfad
+{Name} - Name des Spiels
         
 Beispiel: -image "{ImagePath}" -fullscreen
 Ergebnis: -image "c:\folder\image.iso" -fullscreen</sys:String>
@@ -258,12 +260,11 @@ Alle laufenden Hintergrundprozesse (z.B. der Download von Metadaten) werden abge
     <sys:String x:Key="LOCSettingsFullscreenRows">Anzahl der Zeilen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Anzahl der Spalten</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Anzahl der Zeilen in der Detailansicht</sys:String>
-    <sys:String x:Key="LOCSettingsColumnRowRangeTooltip">Du kannst zwischen 1 und 10 Zeilen wählen.</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOption">Verwende bevorzugt Screenshots als Hintergrundbild</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Wenn du diese Option aktivierst wird Playnite nicht das vom Steam Store
 verwendete Hintergrundbild importieren, sondern stattdessen einen Screenshot
 vom Spiel verwenden. Das Verändern dieser Option hat keinen Einfluss auf
-bereits in deiner Bibliothek befindlichen Spiele.</sys:String>
+bereits in deiner Bibliothek befindliche Spiele.</sys:String>
     
     <sys:String x:Key="LOCImportError">Import fehlgeschlagen</sys:String>
     <sys:String x:Key="LOCLoginChecking">Überprüfe...</sys:String>
