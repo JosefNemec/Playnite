@@ -509,17 +509,17 @@
                                     <Setter Property="Margin" Value="0,5,5,5" />
                                     <Setter Property="VerticalAlignment" Value="Center" />
                                 </Style>
-                                <Style TargetType="controls:NumericBox" BasedOn="{StaticResource {x:Type controls:NumericBox}}">
+                                <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
                                     <Setter Property="Margin" Value="5" />
-                                    <Setter Property="ToolTip" Value="{DynamicResource LOCSettingsColumnRowRangeTooltip}" />
-                                    <Setter Property="ToolTipService.InitialShowDelay" Value="0" />
-                                    <Setter Property="MinLongValue" Value="1" />
-                                    <Setter Property="MaxLongValue" Value="10" />
+                                    <Setter Property="Width" Value="70" />
+                                </Style>
+                                <Style TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                                    <Setter Property="Padding" Value="5,0,0,0" />
                                 </Style>
                             </Grid.Resources>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition />
@@ -527,19 +527,54 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="{DynamicResource LOCSettingsFullscreenRows}"
-                                       Grid.Column="0" Grid.Row="0" />
                             <TextBlock Text="{DynamicResource LOCSettingsFullscreenColumns}"
+                                       Grid.Column="0" Grid.Row="0" />
+                            <TextBlock Text="{DynamicResource LOCSettingsFullscreenRows}"
                                        Grid.Column="0" Grid.Row="1" />
                             <TextBlock Text="{DynamicResource LOCSettingsFullscreenRowDetails}"
                                        Grid.Column="0" Grid.Row="2" />
 
-                            <controls:NumericBox LongValue="{Binding Settings.FullscreenSettings.ColumnCount, UpdateSourceTrigger=LostFocus}"
-                                                 Grid.Column="1" Grid.Row="0"  />
-                            <controls:NumericBox LongValue="{Binding Settings.FullscreenSettings.RowCount, UpdateSourceTrigger=LostFocus}"
-                                                 Grid.Column="1" Grid.Row="1"  />
-                            <controls:NumericBox LongValue="{Binding Settings.FullscreenSettings.DetailsRowCount, UpdateSourceTrigger=LostFocus}"
-                                                 Grid.Column="1" Grid.Row="2"  />
+                            <ComboBox Grid.Column="1" Grid.Row="0"
+                                      SelectedValue="{Binding Settings.FullscreenSettings.ColumnCount}">
+                                <sys:Int32>1</sys:Int32>
+                                <sys:Int32>2</sys:Int32>
+                                <sys:Int32>3</sys:Int32>
+                                <sys:Int32>4</sys:Int32>
+                                <sys:Int32>5</sys:Int32>
+                                <sys:Int32>6</sys:Int32>
+                                <sys:Int32>7</sys:Int32>
+                                <sys:Int32>8</sys:Int32>
+                                <sys:Int32>9</sys:Int32>
+                                <sys:Int32>10</sys:Int32>
+                            </ComboBox>
+
+                            <ComboBox Grid.Column="1" Grid.Row="1"
+                                      SelectedValue="{Binding Settings.FullscreenSettings.RowCount}">
+                                <sys:Int32>1</sys:Int32>
+                                <sys:Int32>2</sys:Int32>
+                                <sys:Int32>3</sys:Int32>
+                                <sys:Int32>4</sys:Int32>
+                                <sys:Int32>5</sys:Int32>
+                                <sys:Int32>6</sys:Int32>
+                                <sys:Int32>7</sys:Int32>
+                                <sys:Int32>8</sys:Int32>
+                                <sys:Int32>9</sys:Int32>
+                                <sys:Int32>10</sys:Int32>
+                            </ComboBox>
+
+                            <ComboBox Grid.Column="1" Grid.Row="2"
+                                      SelectedValue="{Binding Settings.FullscreenSettings.DetailsRowCount}">
+                                <sys:Int32>1</sys:Int32>
+                                <sys:Int32>2</sys:Int32>
+                                <sys:Int32>3</sys:Int32>
+                                <sys:Int32>4</sys:Int32>
+                                <sys:Int32>5</sys:Int32>
+                                <sys:Int32>6</sys:Int32>
+                                <sys:Int32>7</sys:Int32>
+                                <sys:Int32>8</sys:Int32>
+                                <sys:Int32>9</sys:Int32>
+                                <sys:Int32>10</sys:Int32>
+                            </ComboBox>
                         </Grid>
                     </StackPanel>
                 </TabItem>

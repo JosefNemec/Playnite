@@ -120,7 +120,7 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public RelayCommand<object> OpenSearchCommand
+        public new RelayCommand<object> OpenSearchCommand
         {
             get => new RelayCommand<object>((a) =>
             {

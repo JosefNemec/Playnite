@@ -255,10 +255,9 @@ Any currently active tasks (metadata downloads) will be canceled.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Restart Playnite?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification">New database file location will only be used after application is restarted.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Gameplay time will not be recorded if "Close" action is set.</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenRows">Number of columns</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenColumns">Number of rows</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRows">Number of rows</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenColumns">Number of columns</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Number of detail view rows</sys:String>
-    <sys:String x:Key="LOCSettingsColumnRowRangeTooltip">Minimum 1, Maximum 10</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOption">Prefer game screenshot instead of store background image</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite will use available game screenshots as background instead of store background image.
 Doesn't apply retrospectively to existing games.</sys:String>

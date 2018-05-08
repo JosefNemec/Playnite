@@ -8,8 +8,8 @@ namespace Playnite
 {
     public class FullscreenSettings : ObservableObject
     {
-        private long columnCount = 5;
-        public long ColumnCount
+        private int columnCount = 5;
+        public int ColumnCount
         {
             get
             {
@@ -23,8 +23,8 @@ namespace Playnite
             }
         }
 
-        private long rowCount = 2;
-        public long RowCount
+        private int rowCount = 2;
+        public int RowCount
         {
             get
             {
@@ -38,8 +38,8 @@ namespace Playnite
             }
         }
 
-        private long detailsRowCount = 3;
-        public long DetailsRowCount
+        private int detailsRowCount = 3;
+        public int DetailsRowCount
         {
             get
             {
