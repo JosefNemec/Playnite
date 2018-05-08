@@ -72,7 +72,7 @@
                                      IsChecked="{Binding Settings.GamesSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static pmp:MetadataGamesSource.Selected}}"/>
                     </StackPanel>
 
-                    <CheckBox Content="{DynamicResource LOCMetaSkipNonEmpty}" ToolTip="{DynamicResource MetaSkipNonEmptyTooltip}"
+                    <CheckBox Content="{DynamicResource LOCMetaSkipNonEmpty}" ToolTip="{DynamicResource LOCMetaSkipNonEmptyTooltip}"
                               IsChecked="{Binding Settings.SkipExistingValues}"
                               DockPanel.Dock="Top" Margin="0,20,0,0" />
 
