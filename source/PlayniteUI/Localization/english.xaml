@@ -130,10 +130,12 @@ Automatically imported games may reappear in Playnite after next import procedur
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
+{InstallDirName} - Name of installation folder
 {ImagePath} - Game ISO/ROM path if set
 {ImageName} - Game ISO/ROM file name
 {ImageNameNoExt} - Game ISO/ROM file name without extension
 {PlayniteDir} - Playnite's installation directory
+{Name} - Game name
         
 Example: -image "{ImagePath}" -fullscreen
 Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>

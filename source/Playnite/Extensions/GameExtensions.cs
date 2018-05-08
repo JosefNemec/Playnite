@@ -20,6 +20,7 @@ namespace Playnite
 
             var result = inputString;
             result = result.Replace("{InstallDir}", game.InstallDirectory);
+            result = result.Replace("{InstallDirName}", Path.GetFileName(Path.GetDirectoryName(game.InstallDirectory)));
             result = result.Replace("{ImagePath}", game.IsoPath);
             result = result.Replace("{ImageNameNoExt}", Path.GetFileNameWithoutExtension(game.IsoPath));
             result = result.Replace("{ImageName}", Path.GetFileName(game.IsoPath));
