@@ -91,9 +91,6 @@ if (!$SkipBuild)
             Join-Path $OutputPath "PlayniteSDK.dll" | SignFile
             Join-Path $OutputPath "PlayniteUI.exe" | SignFile
         }
-
-        # Copy IronPython standard library
-        Copy-Item "..\references\IronPythonStdLib.zip" $OutputPath
     }
 }
 
