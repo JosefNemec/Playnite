@@ -284,7 +284,7 @@ namespace PlayniteUI.ViewModels
                 {
                     Name = program.Name,
                     Provider = Provider.Custom,
-                    InstallDirectory = program.Type == ProgramType.Win32 ? program.WorkDir : string.Empty,
+                    InstallDirectory = program.WorkDir,
                     Source = program.Type == ProgramType.UWP ? "Windows Store" : string.Empty
                 };
 

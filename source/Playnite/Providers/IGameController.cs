@@ -113,7 +113,18 @@ namespace Playnite.Providers
                 stopWatch = Stopwatch.StartNew();
                 procMon = new ProcessMonitor();
                 procMon.TreeDestroyed += Monitor_TreeDestroyed;
-                procMon.WatchProcessTree(proc);
+
+                // Handle Windows store apps
+                if (Game.PlayTask.Path == "explorer.exe" &&
+                    Game.PlayTask.Arguments.StartsWith("shell:") &&
+                    !string.IsNullOrEmpty(Game.InstallDirectory))
+                {
+                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                }
+                else
+                {
+                    procMon.WatchProcessTree(proc);
+                }
             }
             else
             {

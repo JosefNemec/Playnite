@@ -351,10 +351,10 @@ namespace Playnite
                     var app = new Program()
                     {
                         Name = name,
-                        WorkDir = string.Empty,
+                        WorkDir = package.InstalledLocation.Path,
                         Path = "explorer.exe",
                         Arguments = $"shell:AppsFolder\\{package.Id.FamilyName}!{appId}",
-                        Icon = iconPath
+                        Icon = iconPath                        
                     };
 
                     apps.Add(app);
