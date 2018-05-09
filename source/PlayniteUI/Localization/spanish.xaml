@@ -135,7 +135,7 @@ Los juegos importados automáticamente pueden volver a aparecer en Playnite desp
 {ImagePath} - Ruta ISO/ROM del juego si se establece
 {ImageName} - Nombre del archivo ISO/ROM del juego
 {ImageNameNoExt} - Nombre de archivo ISO/ROM del juego sin extensión
-{PlayniteDir} - Directorio de intalación de Playnite
+{PlayniteDir} - Directorio de instalación de Playnite
 {Name} - Nombre del juego
         
 Ejemplo: -image "{ImagePath}" -fullscreen
