@@ -609,9 +609,6 @@
             <Trigger Property="Selector.IsSelected" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
             </Trigger>
-            <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
-            </Trigger>
         </Style.Triggers>
     </Style>
 
