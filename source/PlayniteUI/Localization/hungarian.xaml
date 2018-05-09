@@ -3,7 +3,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <sys:String x:Key="LocalizationLanguage">hungarian</sys:String>
-    <sys:String x:Key="LocalizationString">Hungarian</sys:String>
+    <sys:String x:Key="LocalizationString">Magyar</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Nyelv</sys:String>
 
@@ -25,7 +25,7 @@
     <sys:String x:Key="LOCCategoryAddCatButton">Új kategória létrehozása</sys:String>
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Pipálva - Kategóriához adás
 Üres - Kategória eltávolítása
-Egyik sem - Nincs változás (több játék állításakor)</sys:String>
+Négyzet - Ne változzon (több játék állításakor)</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh ne, valami hiba történt...</sys:String>
     <sys:String x:Key="LOCCrashDescription">Playnite problémába ütközött és nem tudta megoldani. Ha szeretnél benne segíteni, kérlek készíts egy diagnosztiai jelentést. Köszönjük.</sys:String>
@@ -33,10 +33,10 @@ Egyik sem - Nincs változás (több játék állításakor)</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite újraindítása</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite bezárása</sys:String>
 
-    <sys:String x:Key="LOCGameRemoveAskTitle">Törlöd a játék(okat)?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskTitle">Listából való törlés megerősítése</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Nem törölhetsz játékot ami fut vagy települ/törlődik.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Nem távolíthatsz el játékot ami fut.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Biztos eltávolítod ezt a játékot?
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Biztos eltávolítod ezt a játékot a listából?
         
 Automatikusan importált játékok lehet újra megjelennek következő importálási műveletnél (beállításaidtól függ).</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Biztos hogy eltávolítod ezt a {0} játékot?
@@ -110,7 +110,7 @@ Automatikusan importált játékok lehet újra megjelennek következő importál
     <sys:String x:Key="LOCTagsLabel">Címkék</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
     <sys:String x:Key="LOCListLabel">Lista</sys:String>
-    <sys:String x:Key="LOCCoversLabel">Borítáok</sys:String>
+    <sys:String x:Key="LOCCoversLabel">Boritók</sys:String>
     <sys:String x:Key="LOCDetailsLabel">Részletek</sys:String>
     <sys:String x:Key="LOCCustomLabel">Egyedi</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
@@ -212,8 +212,8 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Aszinkronizált kép töltés (Újraindítás szükséges)</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Játékok listájának görgetése simább, de a képek ezért lassabban töltenek.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Játék nevének kiírása ha a borítókép hiányzik</sys:String>
-    <sys:String x:Key="LOCSettingsShowIconList">Játékonok ikonjainak kijelzése a lista nézetben</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAcceleration">Hardware acceleration kikapcsolása (Újraindítás szükséges)</sys:String>
+    <sys:String x:Key="LOCSettingsShowIconList">Játékok ikonjainak kijelzése a lista nézetben</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAcceleration">Hardware gyorsítás kikapcsolása (Újraindítás szükséges)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Használja ha akadozik, vagy egyéb UI hibákat észlel</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Téma</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Téma profil</sys:String>
@@ -326,12 +326,12 @@ Tip: Ha több számítógépre szeretné ugyan azt a könyvtárat használni, ak
     <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">Menti a platform változásokat?</sys:String>
     <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">Menti az emulátor változásokat?</sys:String>
     <sys:String x:Key="LOCExecutableTitle">Executable</sys:String>
-    <sys:String x:Key="LOCArgumentsTitle">Arguments</sys:String>
-    <sys:String x:Key="LOCWorkingDirTitle">Working Directory</sys:String>
+    <sys:String x:Key="LOCArgumentsTitle">Parancsok</sys:String>
+    <sys:String x:Key="LOCWorkingDirTitle">Munkakönyvtár</sys:String>
     <sys:String x:Key="LOCSupportedFilesTitle">Támogatott fájl típusok</sys:String>
     <sys:String x:Key="LOCImportEmulatorsButton">Emulátorok importálása...</sys:String>
     <sys:String x:Key="LOCDownloadEmulatorsButton">Emulátorok letöltése...</sys:String>
-    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">Load arguments preset from known emulator profile</sys:String>
+    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">Parancs séma betöltése meglévő emulátor profilból</sys:String>
     <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">Biztos hogy eltávolít {0} emulátort?        
 Jelenleg használja {1} játék.</sys:String>
     <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">Biztos hogy eltávolít {0} platformot?        
@@ -402,16 +402,16 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">játék részletek szerkesztése</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">exe ikonjának használata</sys:String>
+    <sys:String x:Key="LOCUseExeIcon">Fájl ikon használata</sys:String>
     <sys:String x:Key="LOCImageURL">Kép URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Link hozzáadása</sys:String>
     <sys:String x:Key="LOCSaveChanges">Változások mentése</sys:String>
     <sys:String x:Key="LOCPlayAction">Játék folyamat</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Játék folyamat hozzáadása</sys:String>
-    <sys:String x:Key="LOCAddAction">Folyamat hozzáadása</sys:String>
+    <sys:String x:Key="LOCAddAction">Parancs hozzáadása</sys:String>
     <sys:String x:Key="LOCDeleteAction">Folyamat eltávolítása</sys:String>
-    <sys:String x:Key="LOCRemovePlayAction">Játék folyamat eltávolítása</sys:String>
-    <sys:String x:Key="LOCOtherActions">Más folyamatok</sys:String>
+    <sys:String x:Key="LOCRemovePlayAction">Játék parancs eltávolítása</sys:String>
+    <sys:String x:Key="LOCOtherActions">Más parancsok</sys:String>
     <sys:String x:Key="LOCAddGames">Játékok hozzáadása</sys:String>
     <sys:String x:Key="LOCScanFolder">Mappa beolvasása...</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Telepített észlelése</sys:String>
@@ -458,9 +458,9 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Visszalépés asztali módba</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite bezárása</sys:String>
 
-    <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
-    <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
-    <sys:String x:Key="LOCOverrideEmulatorArguments">Override Emulator Arguments</sys:String>
+    <sys:String x:Key="LOCEmulatorArguments">Emulátor parancsok</sys:String>
+    <sys:String x:Key="LOCAdditionalEmulatorArguments">Egyéb emulátor parancsok</sys:String>
+    <sys:String x:Key="LOCOverrideEmulatorArguments">Emulátor parancsok felülírása</sys:String>
 
     <sys:String x:Key="LOCGameImportWindowTitle">Játékok kiválasztása importáláshoz</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metaadatok keresése</sys:String>
@@ -481,10 +481,10 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCUnHideGame">Mutatás a könyvtárban</sys:String>
     <sys:String x:Key="LOCEditGame">Szerkesztés...</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Kategória állítása...</sys:String>
-    <sys:String x:Key="LOCRemoveGame">Eltávolítás</sys:String>
+    <sys:String x:Key="LOCRemoveGame">Listából törlés</sys:String>
     <sys:String x:Key="LOCPlayGame">Játék</sys:String>
     <sys:String x:Key="LOCInstallGame">Telepítés</sys:String>
-    <sys:String x:Key="LOCUninstallGame">Eltávolítás</sys:String>
+    <sys:String x:Key="LOCUninstallGame">Játék törlése</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Telepítési hely megnyitása</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Parancsikon készítés</sys:String>
     <sys:String x:Key="LOCMoreAction">Egyéb</sys:String>
@@ -507,5 +507,5 @@ Jelenleg használja {1} jtáék és {2} emulátor.</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} perc</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} másodperc</sys:String>
-    <sys:String x:Key="LOCPlayedNone">Nem játszva</sys:String>
+    <sys:String x:Key="LOCPlayedNone">Nem játszott</sys:String>
 </ResourceDictionary>
