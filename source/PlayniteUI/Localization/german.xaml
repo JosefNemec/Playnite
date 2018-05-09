@@ -34,6 +34,8 @@ Unentschieden - Keine Änderung (mehrere Spiele)</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Beenden</sys:String>
 
     <sys:String x:Key="LOCGameRemoveAskTitle">Spiel entfernen?</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Fehler beim Entfernen des Spiels: Das Spiel oder eine Installation läuft gerade.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Fehler beim Deinstallieren des Spiels: Das Spiel oder eine Installation läuft gerade.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Bist du sicher, dass du dieses Spiel entfernen möchtest?
         
 Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, beim nächsten Import wieder automatisch in deiner Spieleliste erscheinen.</sys:String>
@@ -68,6 +70,15 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCImportLabel">Importieren</sys:String>
     <sys:String x:Key="LOCSourceLabel">Quelle</sys:String>
     <sys:String x:Key="LOCNameLabel">Name</sys:String>
+    <sys:String x:Key="LOCSeriesLabel">Serie</sys:String>
+    <sys:String x:Key="LOCVersionLabel">Version</sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">Alterseinstufung</sys:String>
+    <sys:String x:Key="LOCRegionLabel">Region</sys:String>
+    <sys:String x:Key="LOCLastPlayedLabel">Zuletzt gespielt am</sys:String>
+    <sys:String x:Key="LOCMostPlayedLabel">Spielzeit</sys:String>
+    <sys:String x:Key="LOCPlayCountLabel">Spielhäufigkeit</sys:String>
+    <sys:String x:Key="LOCAddedLabel">Hinzugefügt am</sys:String>
+    <sys:String x:Key="LOCModifiedLabel">Zuletzt bearbeitet</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Webseite</sys:String>
     <sys:String x:Key="LOCPathLabel">Pfad</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
@@ -106,19 +117,33 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
     <sys:String x:Key="LOCLicenseLabel">License</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Contributors</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Playnite wird beendet...</sys:String>
+    <sys:String x:Key="LOCToday">Heute</sys:String>
+    <sys:String x:Key="LOCYesterday">Gestern</sys:String>
+    <sys:String x:Key="LOCMonday">Montag</sys:String>
+    <sys:String x:Key="LOCTuesday">Dienstag</sys:String>
+    <sys:String x:Key="LOCWednesday">Mittwoch</sys:String>
+    <sys:String x:Key="LOCThursday">Donnerstag</sys:String>
+    <sys:String x:Key="LOCFriday">Freitag</sys:String>
+    <sys:String x:Key="LOCSaturday">Samstag</sys:String>
+    <sys:String x:Key="LOCSunday">Sonntag</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Es können folgende Variablen verwendet werden:
 {InstallDir} - Installationspfad des Spiels
+{InstallDirName} - Name des Installationsverzeichnisses
 {ImagePath} - Pfad zur ISO/ROM des Spiels, falls vorhanden
-{ImageName} - Name des ISO/ROM des Spiels
-{ImageNameNoExt} - Dateiname des ISO/ROM ohne Dateiendung
+{ImageName} - Dateiname vom ISO/ROM des Spiels
+{ImageNameNoExt} - Dateiname vom ISO/ROM des Spiels (ohne Dateiendung)
 {PlayniteDir} - Playnite Installationspfad
+{Name} - Name des Spiels
         
 Beispiel: -image "{ImagePath}" -fullscreen
 Ergebnis: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Ohne "Spielen"-Aktion oder beim Verwenden einer URL kann kein Icon automatisch ausgewählt werden.</sys:String>
-
+   
+    <sys:String x:Key="LOCMetaSkipNonEmpty">Lade nur fehlende Metadaten</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Das Aktivieren dieser Option führt dazu, dass bereits befüllte Felder nicht überschrieben werden.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Spielauswahl</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Bitte wähle die Spiele für die Metadaten aktualisiert werden sollen:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Alle Spiele in Datenbank</sys:String>
@@ -151,6 +176,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCProgressLibraryGames">Lade Bibliothek-Update herunter...</sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport">Lade Bibliothek-Update herunter...</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Bibliothek-Update abgeschlossen</sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources">Ressourcen werden freigegeben...</sys:String>
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Konfiguration</sys:String>
@@ -166,15 +192,19 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCMenuAddGameEmulated">Emuliertes Spiel</sys:String>
     <sys:String x:Key="LOCMenuAbout">Über Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Sende Feedback</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Öffne Vollbildmodus</sys:String>
+    <sys:String x:Key="LOCSDKDocumentation">SDK Dokumentation</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsGeneralLabel">Allgemein</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Erscheinungsbild</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Erweitert</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLabel">Vollbildmodus</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Anbieter</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importiere Bibliothek automatisch</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importiere installierte Spiele</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Importiere alle Spiele</sys:String>
+    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importiere alle Spiele (Privatsphäre des Profils muss auf Öffentlich gestellt oder ein API-Key verwendet werden)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Ungültiger Pfad zur Datenbank.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountName">Steam-Name darf nicht leer sein.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Kein Steam-Account für Bibliothek-Import ausgewählt.</sys:String>
@@ -184,14 +214,15 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Aktualisiert automatisch die Bibliothek von Steam, Origin und anderen.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Lade Bilder asynchron (erfordert Neustart)</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Ermöglicht weicheres Scrolling zum Preis einer längeren Ladezeit.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Zeige Name des Spiels wenn kein Cover gefunden wurde</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Zeige den Namen des Spiels wenn kein Cover gefunden wurde</sys:String>
+    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Zeige den Namen des Spiels unter dem Cover</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Zeige Icons in der Spieleliste</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Deaktiviere Hardwarebeschleunigung (erfordert Neustart)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Wähle diese Option bei Problemen mit der Oberfläche.</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Theme</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Farbe</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Vollbild</sys:String>
-    <sys:String x:Key="LOCSettingsSkinColorFullscreen">Vollbild-Farbe</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColorFullscreen">Vollbild Theme</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">Datenbank</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Name des Accounts</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Login-Status:</sys:String>
@@ -220,6 +251,20 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsGetThemes">Themes herunterladen</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Neues Theme erstellen</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Playnite übersetzen</sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Um die Änderungen anzuwenden muss Playnite neu gestartet werden. Soll Planite jetzt neu gestartet werden?
+
+Alle laufenden Hintergrundprozesse (z.B. der Download von Metadaten) werden abgebrochen.</sys:String>
+    <sys:String x:Key="LOCSettingsRestartTitle">Playnite neu starten?</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification">Die neue Datenbank wird erst nach einem Neustart von Playnite verwendet.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Die Spielzeit wird nicht erfasst wenn die "Schließen"-Aktion gewählt wurde.</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRows">Anzahl der Zeilen</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenColumns">Anzahl der Spalten</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRowDetails">Anzahl der Zeilen in der Detailansicht</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOption">Verwende bevorzugt Screenshots als Hintergrundbild</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Wenn du diese Option aktivierst wird Playnite nicht das vom Steam Store
+verwendete Hintergrundbild importieren, sondern stattdessen einen Screenshot
+vom Spiel verwenden. Das Verändern dieser Option hat keinen Einfluss auf
+bereits in deiner Bibliothek befindliche Spiele.</sys:String>
     
     <sys:String x:Key="LOCImportError">Import fehlgeschlagen</sys:String>
     <sys:String x:Key="LOCLoginChecking">Überprüfe...</sys:String>
@@ -329,7 +374,7 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Nicht installiert</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Versteckt</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favorit</sys:String>
-    <sys:String x:Key="LOCGameLastActivityTitle">Letzte Aktivität</sys:String>
+    <sys:String x:Key="LOCGameLastActivityTitle">Zuletzt gespielt</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Kategorie</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Beschreibung</sys:String>
     <sys:String x:Key="LOCGameInstallDirTitle">Installationspfad</sys:String>
@@ -377,6 +422,7 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCOtherActions">Andere Aktionen</sys:String>
     <sys:String x:Key="LOCAddGames">Spiele hinzufügen</sys:String>
     <sys:String x:Key="LOCScanFolder">Verzeichnis durchsuchen</sys:String>
+    <sys:String x:Key="LOCDetectInstalled">Suchen...</sys:String>
     <sys:String x:Key="LOCBrowse">Datei auswählen</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Öffne Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Profileinstellungen</sys:String>
@@ -393,11 +439,33 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCStartupError">Fehler beim Starten von Playnite</sys:String>
     <sys:String x:Key="LOCSkinError">Ungültiges Theme</sys:String>
     <sys:String x:Key="LOCClearAll">Zurücksetzen</sys:String>
-    <sys:String x:Key="LOCSetupRunning">Installation wird durchgeführt...</sys:String>
+    <sys:String x:Key="LOCSetupRunning">Installiere...</sys:String>
+    <sys:String x:Key="LOCUninstalling">Deinstalliere...</sys:String>
+    <sys:String x:Key="LOCGameLaunching">Starte...</sys:String>
+    <sys:String x:Key="LOCGameRunning">Im Spiel</sys:String>
     <sys:String x:Key="LOCInvalidURL">Ungültige URL</sys:String>
     <sys:String x:Key="LOCDoNothing">Nichts unternehmen</sys:String>
     <sys:String x:Key="LOCMinimize">Minimieren</sys:String>
     <sys:String x:Key="LOCClose">Schließen</sys:String>
+    <sys:String x:Key="LOCChange">Ändern</sys:String>
+    <sys:String x:Key="LOCAdvanced">[UNUSED]</sys:String>
+    <sys:String x:Key="LOCNever">Nie</sys:String>
+    <sys:String x:Key="LOCNotPlayed">Nicht gespielt</sys:String>
+    <sys:String x:Key="LOCPlayed">Gespielt</sys:String>
+    <sys:String x:Key="LOCBeaten">Geschlagen</sys:String>
+    <sys:String x:Key="LOCCompleted">Abgeschlossen</sys:String>
+    <sys:String x:Key="LOCCompletionStatus">Spielfortschritt</sys:String>
+    <sys:String x:Key="LOCUserScore">Benutzerbewertung</sys:String>
+    <sys:String x:Key="LOCCriticScore">Expertenbewertung</sys:String>
+    <sys:String x:Key="LOCCommunityScore">Communitybewertung</sys:String>
+    <sys:String x:Key="LOCScripts">[UNUSED]</sys:String>
+    <sys:String x:Key="LOCPlugins">[UNUSED]</sys:String>
+    <sys:String x:Key="LOCExtensions">Erweiterungen</sys:String>
+    <sys:String x:Key="LOCReloadScripts">Skripte neu laden</sys:String>
+    <sys:String x:Key="LOCReloadScriptsSuccess">[UNUSED]</sys:String>
+    <sys:String x:Key="LOCNoGamesFound">Keine Spiele gefunden</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Zurück zum Desktop</sys:String>
+    <sys:String x:Key="LOCExitPlaynite">Playnite beenden</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator-Argumente</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Zusätzliche Emulator-Argumente</sys:String>
@@ -408,6 +476,7 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCUpdaterWindowTitle">Aktualisierung verfügbar</sys:String>
     <sys:String x:Key="LOCUpdaterChangesInfo">Änderungen seit der letzten Aktualisierung:</sys:String>
     <sys:String x:Key="LOCUpdaterInstallUpdate">Aktualisieren</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Im Hintergrund wird gerade ein Prozess ausgeführt, soll dieser beendet und mit dem Update fortgefahren werden?</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Themes-Liste neu laden</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Theme anwenden</sys:String>
@@ -433,6 +502,19 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Tipp: Du kannst einen erweiterten Dialog zum Import von Metadaten verwenden wenn du den Menüpunkt "Metadaten bearbeiten" eines einzelnen Spiels anwählst.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Es wird gerade eine andere Aktion ausgeführt...</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Für die Beschreibung muss HTML verwendet werden.</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Spielzeit wird in Sekunden gemessen.</sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues">Bewertung zwischen 0 (schlechteste) und 100 (beste).</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Die Entwicklung von Playnite wurde finanziell unterstützt durch:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Die Entwicklung von Playnite wurde mit Quellcodebeiträgen, Übersetzungen, etc. unterstützt durch:</sys:String>
+
+    <sys:String x:Key="LOCCancelMonitoringAskTitle">Spielüberwachung beenden?</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringSetupAsk">Das Spiel wird gerade installiert. Soll die Spielüberwachung beendet und der alte Spielstatus wiederhergestellt werden?</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Das Spiel läuft gerade. Soll die Spielüberwachung beendet und der alte Spielstatus wiederhergestellt werden?</sys:String>
+
+    <sys:String x:Key="LOCTimePlayed">Spielzeit</sys:String>
+    <sys:String x:Key="LOCLastPlayed">Zuletzt gespielt</sys:String>
+    <sys:String x:Key="LOCPlayedHours">{0} Std.</sys:String>
+    <sys:String x:Key="LOCPlayedMinutes">{0} Min.</sys:String>
+    <sys:String x:Key="LOCPlayedSeconds">Nicht gespielt</sys:String>
+    <sys:String x:Key="LOCPlayedNone">Nicht gespielt</sys:String>
 </ResourceDictionary>
