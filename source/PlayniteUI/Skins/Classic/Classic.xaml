@@ -2086,14 +2086,14 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <pc:ExtendedListView Grid.Row="0" Grid.Column="0"
+            <pc:ExtendedListBox Grid.Row="0" Grid.Column="0"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="ItemsView"
                       ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Extended"
                       pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"                      
                       ItemsSource="{Binding GamesView.CollectionView}"
                       SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
-                      SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}">
-                <pc:ExtendedListView.InputBindings>
+                      SelectedItemsList="{Binding SelectedGamesBinder, Mode=OneWayToSource}">
+                <pc:ExtendedListBox.InputBindings>
                     <KeyBinding Command="{Binding EditSelectedGamesCommand}"
                                 Key ="{Binding EditSelectedGamesCommand.Gesture.Key}"
                                 Modifiers="{Binding EditSelectedGamesCommand.Gesture.Modifiers}" />
@@ -2103,21 +2103,18 @@
                     <KeyBinding Command="{Binding StartSelectedGameCommand}"
                                 Key ="{Binding StartSelectedGameCommand.Gesture.Key}"
                                 Modifiers="{Binding StartSelectedGameCommand.Gesture.Modifiers}" />
-                </pc:ExtendedListView.InputBindings>
-                <pc:ExtendedListView.ContextMenu>
+                </pc:ExtendedListBox.InputBindings>
+                <pc:ExtendedListBox.ContextMenu>
                     <pc:GameMenu DataContext="{Binding Data.SelectedGames, Source={StaticResource CoversProxy}}" />
-                </pc:ExtendedListView.ContextMenu>
-                <pc:ExtendedListView.Resources>
-                    <Style TargetType="GridViewColumnHeader">
-                        <Setter Property="Visibility" Value="Collapsed" />
-                    </Style>
-                    <Style TargetType="ListViewItem">
+                </pc:ExtendedListBox.ContextMenu>
+                <pc:ExtendedListBox.Resources>
+                    <Style TargetType="ListBoxItem">
                         <Setter Property="Margin" Value="8"/>
                         <Setter Property="OverridesDefaultStyle" Value="True" />
                         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                         <Setter Property="Template">
                             <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                     <Grid Background="Transparent">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*" />
@@ -2199,14 +2196,14 @@
                             </Setter.Value>
                         </Setter>
                     </Style>
-                </pc:ExtendedListView.Resources>
-                <pc:ExtendedListView.ItemsPanel>
+                </pc:ExtendedListBox.Resources>
+                <pc:ExtendedListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <pui:VirtualizingTilePanel ItemWidth="{Binding Path=Value, ElementName=SliderZoom}"
                                                    ItemHeightModifier="{DynamicResource GameCoverViewRation}"/>
                     </ItemsPanelTemplate>
-                </pc:ExtendedListView.ItemsPanel>
-            </pc:ExtendedListView>
+                </pc:ExtendedListBox.ItemsPanel>
+            </pc:ExtendedListBox>
 
             <Border Grid.Column="0" Grid.Row="1"
                     BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">

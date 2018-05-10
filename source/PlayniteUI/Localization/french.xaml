@@ -28,7 +28,7 @@ Non sélectionné - Retire une catégorie
 Indeterminé - Aucun changement</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh non, quelque chose s'est mal passé...</sys:String>
-    <sys:String x:Key="LOCCrashDescription">Playnite a rencontré un problème et n'a pas pu le resoudre. Si vous voulez nous aider, merci d'envoyer un rapport de bug et de signaler le problème. Merci beaucoup !</sys:String>
+    <sys:String x:Key="LOCCrashDescription">Playnite a rencontré un problème et n'a pas pu le resoudre. Si vous voulez nous aider, vous pouvez envoyer un rapport de bug et signaler le problème. Merci beaucoup !</sys:String>
  
     <sys:String x:Key="LOCCrashReportIssue">Signaler un problème</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Redémarrer Playnite</sys:String>
@@ -130,11 +130,12 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Des variables spéciales peuvent être utilisées pour ajouter une chaîne dynamique:
 {InstallDir} - Répertoire d'installation du jeu
+{InstallDirName} - Nom du dossier d'installation
 {ImagePath} - Chemin de ISO / ROM du jeu si défini
 {ImageName} - Nom du fichier ISO / ROM du jeu
 {ImageNameNoExt} - Nom du fichier ISO / ROM du jeu sans extension
 {PlayniteDir} - Le répertoire d'installation de Playnite
-
+{Name} - Nom du jeu
 Exemple: -image "{ImagePath}" -fullscreen
 Résultats dans: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
@@ -196,6 +197,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsGeneralLabel">Général</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Apparence</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avancé</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLabel">Plein écran</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Fournisseurs</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importer les modifications dans la bibliothèque automatiquement</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importer les jeux installés</sys:String>
@@ -252,6 +254,9 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsRestartTitle">Redémarrer Playnite ?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification">Le nouvel emplacement sera utilisé au prochain démarrage de l'application.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">La durée de la session ne sera pas enregistrée si Playnite est fermé après le lancement du jeu.</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRows">Nombre de rangées</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenColumns">Nombre de colonnes</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRowDetails">Nombre de rangées détaillées</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOption">Préférer les screenshots aux images fournies par la plateforme</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite utilisera les captures d'écran locales comme image de fond à la place de celles fournies par l'éditeur.
 Ne peut s'appliquer rétroactivement.</sys:String>
@@ -429,7 +434,8 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCStartupError">Erreur de démarrage</sys:String>
     <sys:String x:Key="LOCSkinError">Erreur de thème</sys:String>
     <sys:String x:Key="LOCClearAll">Tout effacer</sys:String>
-    <sys:String x:Key="LOCSetupRunning">Configuration en cours...</sys:String>
+    <sys:String x:Key="LOCSetupRunning">Installation en cours</sys:String>
+    <sys:String x:Key="LOCUninstalling">Désinstallation en cours</sys:String>
     <sys:String x:Key="LOCGameLaunching">En cours de démarrage</sys:String>
     <sys:String x:Key="LOCGameRunning">En cours d'exécution</sys:String>
     <sys:String x:Key="LOCInvalidURL">URL invalide</sys:String>
