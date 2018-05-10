@@ -1,10 +1,14 @@
 ﻿{
     "stable":  {
-                   "version":  "4.1",
-                   "url":  "http://playnite.cz/update/4.1/PlayniteInstaller.exe",
+                   "version":  "4.2",
+                   "url":  "http://playnite.cz/update/4.2/PlayniteInstaller.exe",
                    "url2":  "https://github.com/JosefNemec/Playnite/releases/download/4.2/PlayniteInstaller.exe",
                    "notesUrlRoot":  "http://playnite.cz/update/",
                    "releases":  [
+                                    {
+                                        "version":  "4.2",
+                                        "file":  "4.2.html"
+                                    },
                                     {
                                         "version":  "4.1",
                                         "file":  "4and41.html"
@@ -123,20 +127,20 @@
                                     }
                                 ]
                },
-    "patreon": {
-                "version":  "4.1",
-                "url":  "http://playnite.cz/update/4.1/PlayniteInstaller.exe",
-                "url2":  "https://github.com/JosefNemec/Playnite/releases/download/4.2/PlayniteInstaller.exe",
-                "notesUrlRoot":  "http://playnite.cz/update/",
-                "releases":  [
-                                {
-                                    "version":  "4.1",
-                                    "file":  "4.1.html"
-                                },
-                                {
-                                    "version":  "4.0",
-                                    "file":  "4.0.html"
-                                }
-                            ]
+    "patreon":  {
+                    "version":  "4.1",
+                    "url":  "http://playnite.cz/update/4.1/PlayniteInstaller.exe",
+                    "url2":  "https://github.com/JosefNemec/Playnite/releases/download/4.2/PlayniteInstaller.exe",
+                    "notesUrlRoot":  "http://playnite.cz/update/",
+                    "releases":  [
+                                     {
+                                         "version":  "4.1",
+                                         "file":  "4.1.html"
+                                     },
+                                     {
+                                         "version":  "4.0",
+                                         "file":  "4.0.html"
+                                     }
+                                 ]
                 }
 }
