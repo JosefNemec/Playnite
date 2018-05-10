@@ -276,10 +276,10 @@ Ne peut s'appliquer rétroactivement.</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Voici la liste des émulateurs que Playnite peut reconnaître et configurer automatiquement. Vous pouvez les télécharger et les installer en visitant leur site Web. Une fois que vous avez installé les émulateurs, passez à l'écran suivant pour les importer dans Playnite.
 
 Vous pouvez également configurer et importer tout émulateur personnalisé plus tard via le menu de configuration.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Vous pouvez importer les émulateurs installés sur votre PC en appuyant sur le bouton "Scanner un dossier...". Playnite analysera le dossier sélectionné ainsi que ses sous-dossiers à la recherche d'émulateurs reconnus par l'application et vous permettra de les importer automatiquement. Vous pouvez importer à partir de plusieurs dossiers en utilisant ce bouton plusieurs fois, les jeux seront ajoutés au bas de la liste actuelle.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Vous pouvez importer les émulateurs installés sur votre PC en appuyant sur le bouton "Scanner un dossier...". Playnite analysera le dossier sélectionné ainsi que ses sous-dossiers à la recherche d'émulateurs reconnus par l'application et vous permettra de les importer automatiquement. Vous pouvez importer à partir de plusieurs dossiers en utilisant ce bouton plusieurs fois, les émulateurs seront ajoutés au bas de la liste actuelle.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">Vous pouvez importer des jeux en appuyant sur le bouton "Scanner un dossier à l'aide d'un émulateur...". La sélection de l'émulateur approprié indique à Playnite quels types de fichiers doivent être analysés et importés. Vous pouvez importer à partir de plusieurs dossiers en utilisant ce bouton plusieurs fois, les jeux seront ajoutés au bas de la liste actuelle.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Aucun émulateur n'est sélectionné pour l'importation. Vous ne pourrez pas importer automatiquement les jeux émulés sans d'abord configurer les émulateurs. Êtes-vous sûr de vouloir continuer et quitter le processus d'importation ?</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Aucun émulateur n'est configuré dans Playnite. Vous ne pouvez pas importer de jeux sans configurer d'abord l'émulateur et en sélectionnant les types de fichiers appropriés. Voulez-vous ajouter des émulateurs maintenant ?</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Aucun émulateur n'est configuré dans Playnite. Vous ne pouvez pas importer de jeux sans d'abord configurer l'émulateur et les types de fichiers appropriés. Voulez-vous ajouter des émulateurs maintenant ?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Scanner un dossier à l'aide d'un émulateur...</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Sélectionner les fichiers</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Scanner un dossier...</sys:String>
@@ -323,7 +323,7 @@ Vous pouvez également ajouter d'autres jeux plus tard dans le menu principal en
     <sys:String x:Key="LOCSelectIconTitle">Sélectionner</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Sélectionner</sys:String>
     <sys:String x:Key="LOCSelectFileTitle">Sélectionner le Fichier</sys:String>
-    <sys:String x:Key="LOCSelectUrlTitle">Sélectionner l'URL</sys:String>
+    <sys:String x:Key="LOCSelectUrlTitle">Ajouter l'URL</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">Ajouter un émulateur</sys:String>
     <sys:String x:Key="LOCSupportedPlatformsTitle">Plateforme(s) compatible(s)</sys:String>
     <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">Voulez-vous enregistrer les modifications de la plateforme ?</sys:String>
@@ -425,7 +425,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Le nom du jeu ne peut pas être vide avant de rechercher des métadonnées...</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Données invalides</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Entrez une adresse URL commençant par http:// ou https://</sys:String>
-    <sys:String x:Key="LOCURLInputInfoTitile">Sélectionner l'URL</sys:String>
+    <sys:String x:Key="LOCURLInputInfoTitile">Ajouter l'URL</sys:String>
     <sys:String x:Key="LOCMetadataDownloadError">Échec du téléchargement des métadonnées: {0}</sys:String>
     <sys:String x:Key="LOCDownloadError">Erreur de téléchargement</sys:String>
     <sys:String x:Key="LOCClearFilters">Effacer les filtres</sys:String>
@@ -434,8 +434,8 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCStartupError">Erreur de démarrage</sys:String>
     <sys:String x:Key="LOCSkinError">Erreur de thème</sys:String>
     <sys:String x:Key="LOCClearAll">Tout effacer</sys:String>
-    <sys:String x:Key="LOCSetupRunning">Installation en cours</sys:String>
-    <sys:String x:Key="LOCUninstalling">Désinstallation en cours</sys:String>
+    <sys:String x:Key="LOCSetupRunning">Installation en cours...</sys:String>
+    <sys:String x:Key="LOCUninstalling">Désinstallation en cours...</sys:String>
     <sys:String x:Key="LOCGameLaunching">En cours de démarrage</sys:String>
     <sys:String x:Key="LOCGameRunning">En cours d'exécution</sys:String>
     <sys:String x:Key="LOCInvalidURL">URL invalide</sys:String>
@@ -491,7 +491,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCUninstallGame">Désinstaller</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Ouvrir l'emplacement du jeu</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Créer un raccourci sur le bureau</sys:String>
-    <sys:String x:Key="LOCMoreAction">Plus</sys:String>
+    <sys:String x:Key="LOCMoreAction">Détails</sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">Pas d'informations pertinentes trouvées pour le jeu'{0}'sur la page specifiée.</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Conseil: Vous pouvez utiliser un processus de téléchargement des métadonnées plus poussé via l'option "Modifier les propriétés".</sys:String>
