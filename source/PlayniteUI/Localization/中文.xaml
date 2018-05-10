@@ -75,8 +75,9 @@
     <sys:String x:Key="LOCAgeRatingLabel">年龄分级</sys:String>
     <sys:String x:Key="LOCRegionLabel">地区</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">上次启动</sys:String>
-    <sys:String x:Key="LOCPlayCountLabel">启动次数</sys:String>
-    <sys:String x:Key="LOCAddedLabel">已添加</sys:String>
+    <sys:String x:Key="LOCMostPlayedLabel">启动最多</sys:String>
+	<sys:String x:Key="LOCPlayCountLabel">启动次数</sys:String>
+	<sys:String x:Key="LOCAddedLabel">已添加</sys:String>
     <sys:String x:Key="LOCModifiedLabel">已修改</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">网站</sys:String>
     <sys:String x:Key="LOCPathLabel">路径</sys:String>
@@ -129,10 +130,12 @@
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">特殊变量可以用来添加动态字符串：
 {InstallDir} - 游戏安装目录
+{InstallDirName} - 安装文件夹的名称
 {ImagePath} - 游戏ISO / ROM路径（如果设置）
 {ImageName} - 游戏ISO / ROM文件名
 {ImageNameNoExt} - 没有扩展名的游戏ISO / ROM文件名
 {PlayniteDir} - Playnite的安装目录
+{Name} - 游戏名称
         
 例如： -image "{ImagePath}" -fullscreen
 结果在： -image "c:\folder\image.iso" -fullscreen</sys:String>
@@ -190,11 +193,13 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCMenuAbout">关于Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">发送反馈</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">启动全屏模式</sys:String>
+    <sys:String x:Key="LOCSDKDocumentation">SDK文档</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsGeneralLabel">通用</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">外观</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">高级设置</sys:String>
+	<sys:String x:Key="LOCSettingsFullscreenLabel">全屏</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">提供商</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">自动导入游戏库中的更改</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">导入已安装的游戏</sys:String>
@@ -210,7 +215,8 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsAsyncImageLoading">异步图像加载（需要重新启动）</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">提高游戏列表的滚动平滑度，以换取较慢的图片加载时间</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">封面缺失时显示游戏名</sys:String>
-    <sys:String x:Key="LOCSettingsShowIconList">在列表视图上显示游戏图标</sys:String>
+    <sys:String x:Key="LOCSettingsShowNamesUnderCover">在封面视图中显示游戏名称</sys:String>
+	<sys:String x:Key="LOCSettingsShowIconList">在列表视图上显示游戏图标</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">禁用硬件加速（需要重新启动）</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">遇到卡顿或类似的用户界面问题时使用</sys:String>
     <sys:String x:Key="LOCSettingsSkin">主题</sys:String>
@@ -245,10 +251,18 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsGetThemes">获取更多主题</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">创建新的主题</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">贡献新的本地化翻译</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage">一些设置更改需要重新启动Playnite。 你想现在重新启动Playnite吗？</sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">一些设置更改需要重新启动Playnite。你想现在重新启动Playnite吗？
+    
+任何当前活动的任务（数据下载）都将被取消。</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">重新启动Playnite？</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification">新的数据库文件位置将仅在重新启动应用程序后使用。</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">如果设置了“关闭”动作，游戏时间将不会被记录。</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRows">行数</sys:String>
+	<sys:String x:Key="LOCSettingsFullscreenColumns">列数</sys:String>
+	<sys:String x:Key="LOCSettingsFullscreenRowDetails">详细视图行数</sys:String>
+	<sys:String x:Key="LOCBackgroundImageScreenOption">首选游戏截图而不是商店背景图片</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite将使用可用的游戏截图作为背景，而不是商店的背景图片。
+不适用于现有游戏。</sys:String>
 
     <sys:String x:Key="LOCImportError">导入错误</sys:String>
     <sys:String x:Key="LOCLoginChecking">正在检查...</sys:String>
@@ -424,7 +438,8 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCStartupError">启动错误</sys:String>
     <sys:String x:Key="LOCSkinError">主题错误</sys:String>
     <sys:String x:Key="LOCClearAll">全部清除</sys:String>
-    <sys:String x:Key="LOCSetupRunning">安装正在进行中</sys:String>
+    <sys:String x:Key="LOCSetupRunning">正在安装</sys:String>
+	<sys:String x:Key="LOCUninstalling">正在卸载</sys:String>
     <sys:String x:Key="LOCGameLaunching">正在启动</sys:String>
     <sys:String x:Key="LOCGameRunning">正在运行</sys:String>
     <sys:String x:Key="LOCInvalidURL">无效的网址</sys:String>
@@ -447,7 +462,10 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCExtensions">扩展</sys:String>
     <sys:String x:Key="LOCReloadScripts">重新加载脚本</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">所有脚本都成功重新加载。</sys:String>
-
+    <sys:String x:Key="LOCNoGamesFound">没有找到游戏</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">返回桌面模式</sys:String>
+    <sys:String x:Key="LOCExitPlaynite">退出Playnite</sys:String>
+	
     <sys:String x:Key="LOCEmulatorArguments">模拟器参数</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">模拟器其他参数</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">覆盖模拟器参数</sys:String>
@@ -497,4 +515,5 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCPlayedHours">{0}小时 {1}分钟</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} 分钟</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} 秒</sys:String>
+	<sys:String x:Key="LOCPlayedNone">未启动</sys:String>
 </ResourceDictionary>
