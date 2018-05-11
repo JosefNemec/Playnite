@@ -15,6 +15,15 @@
       Platforms: [PC, DOS]
       ExecutableLookup: ^scummvm\.exe$
 
+﻿- Name: D-Fend Reloaded (DOSBOX frontend)
+  Website: 'http://dfendreloaded.sourceforge.net/'
+  Profiles:
+    - Name: Default
+      DefaultArguments: '"{Name}"'
+      Platforms: [PC, DOS]
+      ImageExtensions: [prof]  
+      ExecutableLookup: ^DFend\.exe
+
 - Name: PCem
   Website: 'https://pcem-emulator.co.uk/'
   Profiles:
