@@ -42,6 +42,7 @@ namespace PlayniteServices.Controllers.Stats
                 stats.UsersByWinVersion.Add(winGroup.Key, winGroup.Count());
             }
 
+            stats.RecentUsers = users.OrderBy(a => a.LastLaunch).TakeLast(20).ToList();
             return new ServicesResponse<ServiceStats>(stats, string.Empty);
         }
     }
