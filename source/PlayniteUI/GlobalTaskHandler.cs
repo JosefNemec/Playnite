@@ -19,8 +19,20 @@ namespace PlayniteUI
 
         public static void CancelAndWait()
         {
-            CancelToken?.Cancel();
-            ProgressTask?.Wait();
+            if (IsActive)
+            {
+                CancelToken?.Cancel();
+                ProgressTask?.Wait();
+            }
+        }
+
+        public async static Task CancelAndWaitAsync()
+        {
+            if (IsActive)
+            {
+                CancelToken?.Cancel();
+                await ProgressTask;
+            }
         }
 
         public static void Wait()

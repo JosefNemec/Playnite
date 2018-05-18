@@ -53,5 +53,11 @@ namespace PlayniteUI.ViewModels
                 });
             return window.CreateAndOpenDialog(this);
         }
+
+        public static bool? ActivateProgress(Action progresAction, string progressText)
+        {
+            var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), progresAction, progressText);
+            return progressModel.ActivateProgress();
+        }
     }
 }

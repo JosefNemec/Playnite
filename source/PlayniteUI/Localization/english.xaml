@@ -516,4 +516,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minutes</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} seconds</sys:String>
     <sys:String x:Key="LOCPlayedNone">Not Played</sys:String>
+
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">Opening Desktop mode...</sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Opening Fullscreen mode...</sys:String>
 </ResourceDictionary>

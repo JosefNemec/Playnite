@@ -1297,6 +1297,11 @@ namespace PlayniteUI.ViewModels
 
         public void OpenFullScreen()
         {
+            if (GlobalTaskHandler.IsActive)
+            {
+                ProgressViewViewModel.ActivateProgress(() => GlobalTaskHandler.CancelAndWait(), Resources.FindString("LOCOpeningFullscreenModeMessage"));
+            }
+
             CloseView();
             App.CurrentApp.OpenFullscreenView(false);            
         }
@@ -1318,8 +1323,7 @@ namespace PlayniteUI.ViewModels
 
         public async void CancelProgress()
         {
-            GlobalTaskHandler.CancelToken.Cancel();
-            await GlobalTaskHandler.ProgressTask;
+            await GlobalTaskHandler.CancelAndWaitAsync();
         }        
 
         public virtual void ClearFilters()

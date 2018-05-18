@@ -301,7 +301,12 @@ namespace PlayniteUI.ViewModels
         }
 
         public void SwitchToDesktopMode(bool closeView)
-        {            
+        {
+            if (GlobalTaskHandler.IsActive)
+            {
+                ProgressViewViewModel.ActivateProgress(() => GlobalTaskHandler.CancelAndWait(), Resources.FindString("LOCOpeningDesktopModeMessage"));
+            }
+
             if (closeView)
             {
                 CloseView();
