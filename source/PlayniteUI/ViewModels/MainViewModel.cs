@@ -3,6 +3,7 @@ using Playnite;
 using Playnite.Database;
 using Playnite.MetaProviders;
 using Playnite.Providers.Steam;
+using Playnite.Scripting;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using PlayniteUI.Commands;
@@ -296,6 +297,7 @@ namespace PlayniteUI.ViewModels
         public RelayCommand<object> CloseGameSideBarCommand { get; private set; }
         public RelayCommand<object> OpenSearchCommand { get; private set; }
         public RelayCommand<object> ToggleFilterPanelCommand { get; private set; }
+        public RelayCommand<object> InstallScriptCommand { get; private set; }
         #endregion
 
         #region Game Commands
@@ -356,6 +358,28 @@ namespace PlayniteUI.ViewModels
 
         private void InitializeCommands()
         {
+            InstallScriptCommand = new RelayCommand<object>((game) =>
+            {
+                MainMenuOpened = false;
+                var script = Dialogs.SelectFile("Script File|*.py;*.ps1");
+                if (!string.IsNullOrEmpty(script))
+                {
+                    try
+                    {
+                        Scripts.InstallScript(script);
+                        Dialogs.ShowMessage(Resources.FindString("LOCScriptInstallSuccess"));
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Error(e, $"Failed to install {script} file.");
+                        Dialogs.ShowMessage(Resources.FindString("LOCScriptInstallFail"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
+                    App.CurrentApp.Api.LoadScripts();
+                }
+            });
+
             OpenSearchCommand = new RelayCommand<object>((game) =>
             {
                 SearchOpened = true;

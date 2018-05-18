@@ -3404,6 +3404,12 @@
                             <Button Content="{DynamicResource LOCMenuDownloadMetadata}"
                                     Command="{Binding DownloadMetadataCommand}"
                                     Tag="{Binding DownloadMetadataCommand.GestureText}"/>
+
+                            <Canvas Margin="0,35,0,0" />
+
+                            <Button Content="{DynamicResource LOCInstallScript}"
+                                    Command="{Binding InstallScriptCommand}"
+                                    Tag="{Binding InstallScriptCommand.GestureText}"/>
                             <Button Content="{DynamicResource LOCReloadScripts}"
                                     Command="{Binding ReloadScriptsCommand}"
                                     Tag="{Binding ReloadScriptsCommand.GestureText}"/>

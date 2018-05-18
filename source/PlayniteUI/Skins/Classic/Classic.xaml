@@ -2270,6 +2270,10 @@
                                 <MenuItem Header="{DynamicResource LOCMenuDownloadMetadata}" Style="{DynamicResource ProgressMenu}"
                                           Command="{Binding DownloadMetadataCommand}"
                                           InputGestureText="{Binding DownloadMetadataCommand.GestureText}" />
+                                <Separator />
+                                <MenuItem Header="{DynamicResource LOCInstallScript}"
+                                          Command="{Binding InstallScriptCommand}"
+                                          InputGestureText="{Binding InstallScriptCommand.GestureText}"/>
                                 <MenuItem Header="{DynamicResource LOCReloadScripts}"
                                           Command="{Binding ReloadScriptsCommand}"
                                           InputGestureText="{Binding ReloadScriptsCommand.GestureText}"/>

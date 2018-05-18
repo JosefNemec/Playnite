@@ -519,4 +519,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
 
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Opening Desktop mode...</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Opening Fullscreen mode...</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">Failed to install script file.</sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">Script installed successfully.</sys:String>
+    <sys:String x:Key="LOCInstallScript">Install Script</sys:String>
 </ResourceDictionary>
