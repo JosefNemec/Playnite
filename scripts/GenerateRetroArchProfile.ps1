@@ -31,7 +31,7 @@ function ParseInfoFile()
     return $properties
 }
 
-$ignoreList = @(
+$ignoreList = @( 
     "00_example_libretro.info",
     "2048_libretro.info",
     "3dengine_libretro.info",
@@ -123,7 +123,7 @@ foreach ($infoFile in $infoFiles)
     }
     
     $profile = ParseInfoFile $infoFile.FullName
-    $name = $profile.display_name
+    $name = $profile.corename
     if ($profile.database)
     {
         $platforms = $profile.database.Split("|", [System.StringSplitOptions]::RemoveEmptyEntries) | Foreach {
