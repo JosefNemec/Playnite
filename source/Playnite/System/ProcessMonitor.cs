@@ -99,7 +99,7 @@ namespace Playnite
                             return;
                         }
 
-                        Thread.Sleep(1000);
+                        Thread.Sleep(3000);
                     }
                 }
             });
@@ -161,7 +161,7 @@ namespace Playnite
                         }
                     }
 
-                    Thread.Sleep(1000);
+                    Thread.Sleep(500);
                 }
             });
         }
