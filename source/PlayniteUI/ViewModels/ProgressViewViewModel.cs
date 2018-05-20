@@ -39,7 +39,7 @@ namespace PlayniteUI.ViewModels
 
         public bool? ActivateProgress()
         {
-            Task.Factory.StartNew(progresAction).
+            Task.Run(progresAction).
                 ContinueWith((a) =>
                 {
                     if (a.Exception == null)

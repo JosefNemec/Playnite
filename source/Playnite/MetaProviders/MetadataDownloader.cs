@@ -507,12 +507,12 @@ namespace Playnite.MetaProviders
             int total = games.Count;
             var tasks = new List<Task>();
 
-            await Task.Factory.StartNew(() =>
+            await Task.Run(() =>
             {
                 var grouped = games.GroupBy(a => a.Provider);
                 foreach (IGrouping<Provider, Game> group in grouped)
                 {
-                    tasks.Add(Task.Factory.StartNew(() =>
+                    tasks.Add(Task.Run(() =>
                     {
                         var gms = group.ToList();
                         DownloadMetadata(gms, database, settings, (g, i, t) =>
@@ -534,7 +534,7 @@ namespace Playnite.MetaProviders
             Action<Game, int, int> processCallback,
             CancellationTokenSource cancelToken)
         {
-            await Task.Factory.StartNew(() =>
+            await Task.Run(() =>
             {
             if (games == null || games.Count == 0)
             {

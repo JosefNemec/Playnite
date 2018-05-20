@@ -98,7 +98,7 @@ namespace Playnite.Providers.BattleNet
         public async void StartInstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Factory.StartNew(() =>
+            await Task.Run(async () =>
             {
                 var app = BattleNetLibrary.GetAppDefinition(Game.ProviderId);
 
@@ -112,7 +112,7 @@ namespace Playnite.Providers.BattleNet
                     var install = BattleNetLibrary.GetUninstallEntry(app);
                     if (install == null)
                     {
-                        Thread.Sleep(2000);
+                        await Task.Delay(2000);
                         continue;
                     }
                     else
@@ -146,7 +146,7 @@ namespace Playnite.Providers.BattleNet
         public async void StartUninstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Factory.StartNew(() =>
+            await Task.Run(async () =>
             {
                 var app = BattleNetLibrary.GetAppDefinition(Game.ProviderId);
 
@@ -164,7 +164,7 @@ namespace Playnite.Providers.BattleNet
                         return;
                     }
 
-                    Thread.Sleep(2000);
+                    await Task.Delay(2000);
                 }
             });
         }

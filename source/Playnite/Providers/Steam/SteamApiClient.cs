@@ -98,7 +98,7 @@ namespace Playnite.Providers.Steam
             var result = EResult.OK;
 
 #pragma warning disable CS4014
-            Task.Factory.StartNew(() =>
+            Task.Run(() =>
             {
                 while (isRunning)
                 {
@@ -107,7 +107,7 @@ namespace Playnite.Providers.Steam
             });
 #pragma warning restore CS4014
 
-            await Task.Factory.StartNew(() =>
+            await Task.Run(() =>
             {
                 onConnectedEvent.WaitOne(10000);
                 if (onConnectedResult != EResult.OK)
@@ -129,7 +129,7 @@ namespace Playnite.Providers.Steam
             var result = EResult.OK;
             steamUser.LogOnAnonymous();
 
-            await Task.Factory.StartNew(() =>
+            await Task.Run(() =>
             {
                 onLoggedOnEvent.WaitOne(10000);
                 if (onLoggedOnResult != EResult.OK)

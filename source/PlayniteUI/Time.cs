@@ -29,12 +29,12 @@ namespace PlayniteUI
 
         private void StartTime()
         {
-            Task.Factory.StartNew(() =>
+            Task.Run(async () =>
             {
                 while (true)
                 {
                     context.Post((a) => OnPropertyChanged("CurrentTime"), null);
-                    Thread.Sleep(10000);
+                    await Task.Delay(10000);
                 }
             });
         }
