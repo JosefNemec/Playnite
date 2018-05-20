@@ -197,14 +197,14 @@ namespace PlayniteUI
             inputManager = input;
             context = SynchronizationContext.Current;           
             
-            Task.Factory.StartNew(() =>
+            Task.Run(async () =>
             {
                 while (true)
                 {
                     var state = GamePad.GetState(PlayerIndex.One);                    
                     if (!state.IsConnected || App.CurrentApp?.IsActive == false)
                     {
-                        Thread.Sleep(pollingRate);
+                        await Task.Delay(pollingRate);
                         continue;
                     }
 
@@ -236,7 +236,7 @@ namespace PlayniteUI
                     ProcessAxisState(state.ThumbSticks.Right.Y, XInputButton.RightStickUp, true);
                     ProcessAxisState(state.ThumbSticks.Right.Y, XInputButton.RightStickDown, false);
                     
-                    Thread.Sleep(pollingRate);                    
+                    await Task.Delay(pollingRate);                    
                 }
             });
         }

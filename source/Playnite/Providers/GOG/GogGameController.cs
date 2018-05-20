@@ -112,7 +112,7 @@ namespace Playnite.Providers.GOG
         public async void StartInstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Factory.StartNew(() =>
+            await Task.Run(async () =>
             {               
                 var stopWatch = Stopwatch.StartNew();
                 
@@ -135,7 +135,7 @@ namespace Playnite.Providers.GOG
                         return;
                     }
 
-                    Thread.Sleep(2000);
+                    await Task.Delay(2000);
                 }
             });
         }

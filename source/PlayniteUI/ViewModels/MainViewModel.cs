@@ -854,7 +854,7 @@ namespace PlayniteUI.ViewModels
                 }
 
                 GlobalTaskHandler.CancelToken = new CancellationTokenSource();
-                GlobalTaskHandler.ProgressTask = Task.Factory.StartNew(() =>
+                GlobalTaskHandler.ProgressTask = Task.Run(async () =>
                 {
                     var addedGames = new List<Game>();
                     ProgressVisible = true;
@@ -1043,7 +1043,7 @@ namespace PlayniteUI.ViewModels
                     }
                                         
                     ProgressStatus = Resources.FindString("LOCProgressLibImportFinish");
-                    Thread.Sleep(1500);
+                    await Task.Delay(1500);
 
                     if (addedGames.Any() && metaForNewGames)
                     {

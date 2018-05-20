@@ -58,9 +58,9 @@ namespace Playnite
             }
 
             var procNames = executables.Select(a => Path.GetFileName(a)).ToList();
-            watcherToken = new CancellationTokenSource();            
+            watcherToken = new CancellationTokenSource();
 
-            await Task.Factory.StartNew(() =>
+            await Task.Run(async () =>
             {
                 var query = $"Select * From Win32_Process";
                 using (var mos = new ManagementObjectSearcher(query))
@@ -99,7 +99,7 @@ namespace Playnite
                             return;
                         }
 
-                        Thread.Sleep(1000);
+                        await Task.Delay(1000);
                     }
                 }
             });
@@ -109,7 +109,7 @@ namespace Playnite
         {
             watcherToken = new CancellationTokenSource();
 
-            await Task.Factory.StartNew(() =>
+            await Task.Run(async () =>
             {
                 var ids = new List<int>() { process.Id };
 
@@ -161,7 +161,7 @@ namespace Playnite
                         }
                     }
 
-                    Thread.Sleep(1000);
+                    await Task.Delay(1000);
                 }
             });
         }
