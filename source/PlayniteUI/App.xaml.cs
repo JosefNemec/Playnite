@@ -339,9 +339,9 @@ namespace PlayniteUI
 
         private async void CheckUpdate()
         {
-            await Task.Factory.StartNew(() =>
+            await Task.Run(async () =>
             {
-                Thread.Sleep(10000);
+                await Task.Delay(10000);
                 if (GlobalTaskHandler.IsActive)
                 {
                     GlobalTaskHandler.Wait();
@@ -378,14 +378,14 @@ namespace PlayniteUI
                         logger.Error(exc, "Failed to process update.");
                     }
 
-                    Thread.Sleep(4 * 60 * 60 * 1000);
+                    await Task.Delay(4 * 60 * 60 * 1000);
                 }
             });
         }
 
         private async void SendUsageData()
         {
-            await Task.Factory.StartNew(() =>
+            await Task.Run(() =>
             {
                 try
                 {
