@@ -14,7 +14,7 @@ if ($LocalDeploy)
 
 if (Test-Path $OutputPath)
 {
-    Remove-Item $OutputPath -Recurse -Exclude "servicedb.db", "patreon_tokens.json"
+    Remove-Item $OutputPath -Recurse -Exclude "servicedb.db", "patreon_tokens.json", "customSettings.json"
 }
 
 if (!(Test-Path $OutputPath))

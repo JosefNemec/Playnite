@@ -99,7 +99,7 @@ namespace Playnite
                             return;
                         }
 
-                        await Task.Delay(1000);
+                        await Task.Delay(3000);
                     }
                 }
             });
@@ -160,8 +160,7 @@ namespace Playnite
                             }
                         }
                     }
-
-                    await Task.Delay(1000);
+                    await Task.Delay(500);
                 }
             });
         }

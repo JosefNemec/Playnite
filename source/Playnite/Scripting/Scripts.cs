@@ -78,5 +78,26 @@ namespace Playnite.Scripting
 
             return scripts;
         }
+
+        public static void InstallScript(string scriptPath)
+        {
+            var extension = Path.GetExtension(scriptPath);
+            var scriptFolder = Settings.IsPortable ? Paths.ScriptsProgramPath : Paths.ScriptsUserDataPath;
+
+            if (extension.Equals(".ps1", StringComparison.InvariantCultureIgnoreCase))
+            {
+                scriptFolder = Path.Combine(scriptFolder, powerShellFolder);
+            }
+            else if (extension.Equals(".py", StringComparison.InvariantCultureIgnoreCase))
+            {
+                scriptFolder = Path.Combine(scriptFolder, pythonFolder);
+            }
+            else
+            {
+                throw new Exception("Uknown script file specified.");
+            }
+
+            File.Copy(scriptPath, Path.Combine(scriptFolder, Path.GetFileName(scriptPath)), true);
+        }
     }
 }

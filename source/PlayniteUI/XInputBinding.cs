@@ -340,6 +340,11 @@ namespace PlayniteUI
         {
             context.Post((a) =>
             {
+                if (InputManager.Current.PrimaryKeyboardDevice.ActiveSource == null)
+                {
+                    return;
+                }
+
                 var args = new XInputEventArgs(Key.None, pressed ? XInputButtonState.Pressed : XInputButtonState.Released, button);
                 inputManager.ProcessInput(args);
             }, null);
@@ -349,6 +354,11 @@ namespace PlayniteUI
         {
             context.Post((a) =>
             {
+                if (InputManager.Current.PrimaryKeyboardDevice.ActiveSource == null)
+                {
+                    return;
+                }
+
                 if (InputManager.Current == null)
                 {
                     // Should happen only in very rare cases

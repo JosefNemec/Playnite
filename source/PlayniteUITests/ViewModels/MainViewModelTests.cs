@@ -71,6 +71,7 @@ namespace PlayniteUITests.ViewModels
             Assert.IsNotNull(model.EditGamesCommand);
             Assert.IsNotNull(model.OpenSearchCommand);
             Assert.IsNotNull(model.ToggleFilterPanelCommand);
+            Assert.IsNotNull(model.InstallScriptCommand);            
         }
     }
 }

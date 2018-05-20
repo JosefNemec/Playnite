@@ -709,5 +709,17 @@ namespace Playnite
         {
             return ConfigurationManager.AppSettings[key];
         }
+
+        public static bool GetAppConfigBoolValue(string key)
+        {
+            if (bool.TryParse(ConfigurationManager.AppSettings[key], out var result))
+            {
+                return result;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

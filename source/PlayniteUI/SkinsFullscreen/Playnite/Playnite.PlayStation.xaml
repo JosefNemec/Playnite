@@ -7,7 +7,7 @@
                     xmlns:pui="clr-namespace:PlayniteUI;assembly=PlayniteUI"
                     mc:Ignorable="d">    
 
-    <sys:String x:Key="SkinFullscreenColorName">Default</sys:String>
+    <sys:String x:Key="SkinFullscreenColorName">PlayStation</sys:String>
 
     <Color x:Key="GlyphColor">#019fcb</Color>
     <SolidColorBrush x:Key="GlyphBrush" Color="{DynamicResource GlyphColor}" />
