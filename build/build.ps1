@@ -119,7 +119,7 @@ if ($Setup)
     $installerTempScript = "setup.temp.nsi"
 
     $buildNumber = (Get-ChildItem (Join-Path $OutputPath "PlayniteUI.exe")).VersionInfo.ProductVersion
-    $buildNumber = $buildNumber -replace "\.0\.0", ""
+    $buildNumber = $buildNumber -replace "\.0\.\d+$", ""
 
     $scriptContent = Get-Content $installerScript
     $files = Get-ChildItem $OutputPath -Recurse
