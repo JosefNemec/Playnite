@@ -123,6 +123,7 @@ namespace PlayniteUI
 #if !DEBUG
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 #endif
+            Settings.ConfigureLogger();
 
             // Multi-instance checking
             if (Mutex.TryOpenExisting(instanceMuxet, out var mutex))
@@ -167,8 +168,7 @@ namespace PlayniteUI
             {
                 System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
             }
-
-            Settings.ConfigureLogger();
+            
             Settings.ConfigureCef();
             dialogs = new DialogsFactory(AppSettings.StartInFullscreen);
 
