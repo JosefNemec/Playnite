@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using Playnite.Database;
 using System.Net;
+using System.Xml.Linq;
 
 namespace Playnite.Providers.Origin
 {
@@ -157,8 +158,24 @@ namespace Playnite.Providers.Origin
             else
             {
                 var executePath = GetPathFromPlatformPath(platform.fulfillmentAttributes.executePathOverride);
-                playTask.WorkingDir = Path.GetDirectoryName(GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride));
-                playTask.Path = executePath;
+                if (executePath.EndsWith("installerdata.xml", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    var doc = XDocument.Load(executePath);
+                    var root = XElement.Parse(doc.ToString());
+                    var elem = root.Element("runtime")?.Element("launcher")?.Element("filePath");
+                    var path = elem?.Value;
+                    if (path != null)
+                    {
+                        executePath = GetPathFromPlatformPath(path);
+                        playTask.WorkingDir = Path.GetDirectoryName(executePath);
+                        playTask.Path = executePath;
+                    }
+                }
+                else
+                {
+                    playTask.WorkingDir = Path.GetDirectoryName(GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride));
+                    playTask.Path = executePath;
+                }
             }
 
             return playTask;
@@ -229,13 +246,17 @@ namespace Playnite.Providers.Origin
                         {
                             continue;
                         }
-
-                        newGame.InstallDirectory = Path.GetDirectoryName(installPath);
+                                                
                         newGame.PlayTask = GetGamePlayTask(localData);
                         if (newGame.PlayTask?.Type == GameTaskType.File)
                         {
+                            newGame.InstallDirectory = newGame.PlayTask.WorkingDir;
                             newGame.PlayTask.WorkingDir = newGame.PlayTask.WorkingDir.Replace(newGame.InstallDirectory, "{InstallDir}");
                             newGame.PlayTask.Path = newGame.PlayTask.Path.Replace(newGame.InstallDirectory, "{InstallDir}");
+                        }
+                        else
+                        {
+                            newGame.InstallDirectory = Path.GetDirectoryName(installPath);
                         }
 
                         games.Add(newGame);
