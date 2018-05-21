@@ -12,8 +12,8 @@
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCFirstWindowTitle}" WindowStartupLocation="CenterScreen"
         ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False"
-        Height="450" Width="550" x:Name="WindowMain"
-        AutomationProperties.AutomationId="WindowWizard" MinHeight="205" MinWidth="260">
+        Height="425" Width="470" x:Name="WindowMain" 
+        AutomationProperties.AutomationId="WindowWizard" MinHeight="250" MinWidth="390">
 
     <controls:WindowBase.Resources>
         <pui:NegateConverter x:Key="NegateConverter" />
@@ -200,7 +200,7 @@
                         <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonGogAuthenticate"
                                 Command="{Binding AuthGOGCommand}"/>
                         <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
-                        <TextBlock VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap">
                             <TextBlock.Text>
                                 <PriorityBinding>
                                     <Binding Path="GogLoginStatus" IsAsync="True" Mode="OneWay" />
@@ -228,7 +228,7 @@
                         <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonOriginAuthenticate"
                                 Command="{Binding AuthOriginCommand}"/>
                         <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
-                        <TextBlock VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap">
                             <TextBlock.Text>
                                 <PriorityBinding>
                                     <Binding Path="OriginLoginStatus" IsAsync="True" Mode="OneWay" />
@@ -256,7 +256,7 @@
                         <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonBattleNetAuthenticate"
                                 Command="{Binding AuthBattleNetCommand}"/>
                         <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
-                        <TextBlock VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap">
                             <TextBlock.Text>
                                 <PriorityBinding>
                                     <Binding Path="BattleNetLoginStatus" IsAsync="True" Mode="OneWay" />
