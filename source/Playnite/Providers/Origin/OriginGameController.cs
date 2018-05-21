@@ -63,7 +63,7 @@ namespace Playnite.Providers.Origin
         public async void StartInstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Factory.StartNew(() =>
+            await Task.Run(async () =>
             {
                 var manifest = origin.GetLocalManifest(Game.ProviderId, null, true);
                 var platform = manifest.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
@@ -101,7 +101,7 @@ namespace Playnite.Providers.Origin
                         return;
                     }
 
-                    Thread.Sleep(2000);
+                    await Task.Delay(2000);
                 }
             });
         }
@@ -109,7 +109,7 @@ namespace Playnite.Providers.Origin
         public async void StartUninstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Factory.StartNew(() =>
+            await Task.Run(async () =>
             {
                 var manifest = origin.GetLocalManifest(Game.ProviderId, null, true);
                 var platform = manifest.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
@@ -136,7 +136,7 @@ namespace Playnite.Providers.Origin
                         }
                     }
 
-                    Thread.Sleep(2000);
+                    await Task.Delay(2000);
                 }
             });
         }

@@ -164,7 +164,7 @@ namespace PlayniteUI.ViewModels
             var success = false;
             IsLoading = true;
 
-            await Task.Factory.StartNew(() =>
+            await Task.Run(() =>
             {
                 try
                 {
@@ -206,7 +206,7 @@ namespace PlayniteUI.ViewModels
         public async void Search()
         {
             IsLoading = true;
-            await Task.Factory.StartNew(() =>
+            await Task.Run(() =>
             {
                 try
                 {

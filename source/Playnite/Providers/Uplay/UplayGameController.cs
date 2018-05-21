@@ -71,7 +71,7 @@ namespace Playnite.Providers.Uplay
         public async void StartInstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Factory.StartNew(() =>
+            await Task.Run(async () =>
             {
                 while (true)
                 {
@@ -93,7 +93,7 @@ namespace Playnite.Providers.Uplay
                         return;
                     }
 
-                    Thread.Sleep(2000);
+                    await Task.Delay(2000);
                 }
             });
         }
@@ -101,7 +101,7 @@ namespace Playnite.Providers.Uplay
         public async void StartUninstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Factory.StartNew(() =>
+            await Task.Run(async () =>
             {
                 while (true)
                 {
@@ -116,7 +116,7 @@ namespace Playnite.Providers.Uplay
                         return;
                     }
 
-                    Thread.Sleep(2000);
+                    await Task.Delay(2000);
                 }
             });
         }

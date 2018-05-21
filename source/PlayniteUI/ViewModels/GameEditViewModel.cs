@@ -2333,7 +2333,7 @@ namespace PlayniteUI.ViewModels
         {
             ProgressVisible = true;
 
-            await Task.Factory.StartNew(() =>
+            await Task.Run(() =>
             {
                 try
                 {

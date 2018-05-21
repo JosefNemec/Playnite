@@ -57,7 +57,7 @@ namespace Playnite.Providers.Steam
         public async void StartInstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Factory.StartNew(() =>
+            await Task.Run(async () =>
             {
                 var stopWatch = Stopwatch.StartNew();
                 var id = int.Parse(Game.ProviderId);
@@ -77,7 +77,7 @@ namespace Playnite.Providers.Steam
                         return;
                     }
 
-                    Thread.Sleep(2000);
+                    await Task.Delay(2000);
                 }
             });
         }
@@ -85,7 +85,7 @@ namespace Playnite.Providers.Steam
         public async void StartUninstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Factory.StartNew(() =>
+            await Task.Run(async () =>
             {
                 var stopWatch = Stopwatch.StartNew();
                 var id = int.Parse(Game.ProviderId);
@@ -105,7 +105,7 @@ namespace Playnite.Providers.Steam
                         return;
                     }
 
-                    Thread.Sleep(2000);
+                    await Task.Delay(2000);
                 }
             });
         }
@@ -113,7 +113,7 @@ namespace Playnite.Providers.Steam
         public async void StartRunningWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Factory.StartNew(() =>
+            await Task.Run(async () =>
             {
                 var stopWatch = Stopwatch.StartNew();
                 var id = int.Parse(Game.ProviderId);
@@ -134,7 +134,7 @@ namespace Playnite.Providers.Steam
                         break;
                     }
 
-                    Thread.Sleep(1000);
+                    await Task.Delay(1000);
                 }
 
                 while (true)
@@ -152,7 +152,7 @@ namespace Playnite.Providers.Steam
                         return;
                     }
 
-                    Thread.Sleep(1000);
+                    await Task.Delay(1000);
                 }
             });
         }

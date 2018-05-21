@@ -216,7 +216,7 @@ namespace Playnite
             var portable = Settings.IsPortable ? "/Portable 1" : "/Portable 0";
             logger.Info("Installing new update to {0}, in {1} mode", Paths.ProgramFolder, portable);
 
-            Task.Factory.StartNew(() =>
+            Task.Run(() =>
             {
                 Process.Start(updaterPath, string.Format(@"/ProgressOnly 1 {0} /D={1}", portable, Paths.ProgramFolder));
             });
