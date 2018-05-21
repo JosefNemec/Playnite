@@ -46,5 +46,10 @@ namespace PlayniteServices.Databases
         {
             return liteDB.GetCollection<T>(name);
         }
+
+        public bool DropCollection(string name)
+        {
+            return liteDB.DropCollection(name);
+        }
     }
 }
