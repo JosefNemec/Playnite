@@ -66,5 +66,14 @@ namespace Playnite
 
             return newName.Trim();
         }
+
+        public static string GetSHA256Hash(this string input)
+        {
+            using (var sha = System.Security.Cryptography.SHA256.Create())
+            {
+                var hash = sha.ComputeHash(Encoding.UTF8.GetBytes(input));
+                return BitConverter.ToString(hash).Replace("-", "");
+            }
+        }
     }
 }

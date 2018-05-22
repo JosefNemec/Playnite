@@ -8,14 +8,14 @@
     <sys:String x:Key="LOCLanguageSettingsLabel">Langue</sys:String>
 
     <sys:String x:Key="LOCExitAppLabel">Quitter</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">Le filtre est activé (Cliquez pour basculer le panneau filtre)</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">Le filtre est désactivé (Cliquez pour basculer le panneau filtre)</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Le filtre est activé (cliquez pour basculer le panneau filtre)</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Le filtre est désactivé (cliquez pour basculer le panneau filtre)</sys:String>
 
     <sys:String x:Key="LOCInvalidDataTitle">Données invalides</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Enregistrer les modifications ?</sys:String>
 
     <sys:String x:Key="LOCAboutHomePageLink">www.playnite.link</sys:String>
-    <sys:String x:Key="LOCAboutSourceLink">Code Source sur GitHub</sys:String>
+    <sys:String x:Key="LOCAboutSourceLink">Code source sur GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Rapport de bug</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">A propos de Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Créé par Josef Nemec</sys:String>
@@ -202,7 +202,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsImportLabel">Importer les modifications dans la bibliothèque automatiquement</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importer les jeux installés</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Importer tous les jeux</sys:String>
-    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importer tous les jeux (Nécessite un compte publique ou une clé API)</sys:String>
+    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importer tous les jeux (nécessite un compte publique ou une clé API)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">L'emplacement du fichier de base de données n'est pas valide, le chemin de fichier correct doit être défini.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountName">Le nom du profil Steam ne peut pas être vide.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Aucun profil de Steam n'a été sélectionné pour l'importation de la bibliothèque.</sys:String>
@@ -210,12 +210,12 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Actualiser la bibliothèque au démarrage</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Activer le mode plein écran au démarrage</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Inclut Steam, Origin et autres.</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoading">Chargement d'image asynchrone (Redémarrage nécessaire)</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading">Chargement d'image asynchrone (redémarrage nécessaire)</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Améliore la fluidité du défilement des listes de jeux en chargeant les images plus lentement.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Afficher le nom des jeux à la place des couvertures manquantes</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Afficher le nom des jeux dans la vue Couvertures</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Afficher les icônes des jeux dans la vue Liste</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAcceleration">Désactiver l'accélération matérielle (Redémarrage nécessaire)</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAcceleration">Désactiver l'accélération matérielle (redémarrage nécessaire)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Cocher cette option en cas de ralentissement ou de malfonctionnement de l'interface.</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Thème</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Profil du thème</sys:String>
@@ -250,7 +250,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsCreateLocalization">Contribuer à la traduction</sys:String>
 
     <sys:String x:Key="LOCSettingsGetThemes">Chercher des thèmes</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Les paramètres modifiés nécessitent le redémarrage de l'application. Voulez-vous continuer ? (Les tâches en cours d'exécution seront annulées)</sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Les paramètres modifiés nécessitent le redémarrage de l'application. Voulez-vous continuer ? (les tâches en cours d'exécution seront annulées)</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Redémarrer Playnite ?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification">Le nouvel emplacement sera utilisé au prochain démarrage de l'application.</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">La durée de la session ne sera pas enregistrée si Playnite est fermé après le lancement du jeu.</sys:String>
@@ -464,7 +464,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Arguments de l'émulateur</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Arguments d'émulateur supplémentaires</sys:String>
-    <sys:String x:Key="LOCOverrideEmulatorArguments">Outrepasser l'Arguments de l'émulateur</sys:String>
+    <sys:String x:Key="LOCOverrideEmulatorArguments">Outrepasser les paramètres de l'émulateur</sys:String>
 
     <sys:String x:Key="LOCGameImportWindowTitle">Recherche de jeux</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Recherche de métadonnées</sys:String>
@@ -511,4 +511,9 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minutes</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} secondes</sys:String>
     <sys:String x:Key="LOCPlayedNone">Pas encore lancé</sys:String>
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">Retour au bureau...</sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Ouverture du mode plein écran...</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">Impossible d'installer le script.</sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">Le script a été installé avec succès.</sys:String>
+    <sys:String x:Key="LOCInstallScript">Installer un script</sys:String>
 </ResourceDictionary>

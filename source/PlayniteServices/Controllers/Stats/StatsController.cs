@@ -7,13 +7,13 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.Stats
-{
-
-    [Route("api/stats")]
+{    
     public class StatsController : Controller
     {
-        [HttpGet("{serviceKey}")]
-        public ServicesResponse<ServiceStats> Get(string serviceKey)
+        private const string UsersCollection = "PlayniteUsers";
+
+        [HttpGet("api/stats/{serviceKey}")]
+        public ServicesResponse<ServiceStats> GetStarts(string serviceKey)
         {
             var key = Startup.Configuration.GetSection("ServiceKey");
             if (key == null || key.Value != serviceKey)
@@ -22,7 +22,7 @@ namespace PlayniteServices.Controllers.Stats
             }
 
             var stats = new ServiceStats();
-            var users = Program.DatabaseCache.GetCollection<User>("PlayniteUsers").FindAll().ToList();
+            var users = Program.DatabaseCache.GetCollection<User>(UsersCollection).FindAll().ToList();
             stats.UserCount = users.Count;
 
             var now = DateTime.Now;
@@ -44,6 +44,18 @@ namespace PlayniteServices.Controllers.Stats
 
             stats.RecentUsers = users.OrderBy(a => a.LastLaunch).TakeLast(20).ToList();
             return new ServicesResponse<ServiceStats>(stats, string.Empty);
+        }
+
+        [HttpGet("api/stats/drop/{serviceKey}")]
+        public ServicesResponse<bool> DropStats(string serviceKey)
+        {
+            var key = Startup.Configuration.GetSection("ServiceKey");
+            if (key == null || key.Value != serviceKey)
+            {
+                return new ServicesResponse<bool>(false, "Invalid service key.");
+            }            
+
+            return new ServicesResponse<bool>(Program.DatabaseCache.DropCollection(UsersCollection), string.Empty);
         }
     }
 }

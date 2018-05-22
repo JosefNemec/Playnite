@@ -115,9 +115,11 @@ namespace Playnite.Services
 
         public void PostUserUsage(string instId)
         {
+            var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+            var winId = root.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", false).GetValue("ProductId").ToString().GetSHA256Hash();
             var user = new PlayniteServices.Models.Playnite.User()
             {
-                Id = instId,
+                Id = winId,
                 WinVersion = Environment.OSVersion.VersionString,
                 PlayniteVersion = Update.GetCurrentVersion().ToString()
             };
