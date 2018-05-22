@@ -517,4 +517,10 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCPlayedMinutes">{0} Min.</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">Nicht gespielt</sys:String>
     <sys:String x:Key="LOCPlayedNone">Nicht gespielt</sys:String>
+
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">Beende Vollbildmodus...</sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Starte Vollbildmodus...</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">Fehler beim Installieren des Skripts.</sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">Skript wurde erfolgreich installiert.</sys:String>
+    <sys:String x:Key="LOCInstallScript">Skript installieren</sys:String>
 </ResourceDictionary>
