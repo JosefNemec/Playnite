@@ -64,9 +64,9 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCAddTitle">Add</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Default Icon</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Default Cover Image</sys:String>
-    <sys:String x:Key="LOCFinishLabel">Finish</sys:String>
-    <sys:String x:Key="LOCNextLabel">Next</sys:String>
-    <sys:String x:Key="LOCBackLabel">Back</sys:String>
+    <sys:String x:Key="LOCFinishLabel">_Finish</sys:String>
+    <sys:String x:Key="LOCNextLabel">_Next</sys:String>
+    <sys:String x:Key="LOCBackLabel">_Back</sys:String>
     <sys:String x:Key="LOCImportLabel">Import</sys:String>
     <sys:String x:Key="LOCSourceLabel">Source</sys:String>
     <sys:String x:Key="LOCNameLabel">Name</sys:String>

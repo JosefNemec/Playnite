@@ -12,8 +12,8 @@
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCFirstWindowTitle}" WindowStartupLocation="CenterScreen"
         ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False"
-        Height="425" Width="470" x:Name="WindowMain" 
-        AutomationProperties.AutomationId="WindowWizard" MinHeight="250" MinWidth="390"
+         x:Name="WindowMain" 
+        AutomationProperties.AutomationId="WindowWizard"
         FocusManager.FocusedElement="{Binding ElementName=ButtonNext}" >
 
     <controls:WindowBase.Resources>
@@ -29,7 +29,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TabControl DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0" Name="TabMain"
+        <TabControl TabIndex="0" DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0" Name="TabMain"
                     OverridesDefaultStyle="True"
                     SelectedIndex="{Binding SelectedIndex}">
             <TabControl.Style>
@@ -303,14 +303,14 @@
 
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
             <DockPanel LastChildFill="False" Margin="5">
-                <Button Content="{DynamicResource LOCFinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"
+                <Button TabIndex="3" Content="{DynamicResource LOCFinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"
                         Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding FinishCommand}"/>
-                <Button Content="{DynamicResource LOCNextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
+                <Button TabIndex="2" Content="{DynamicResource LOCNextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding NextCommand}"/>
-                <Button Content="{DynamicResource LOCBackLabel}" Name="ButtonBack" DockPanel.Dock="Right"
+                <Button TabIndex="1" Content="{DynamicResource LOCBackLabel}" Name="ButtonBack" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding BackCommand}"/>
             </DockPanel>
