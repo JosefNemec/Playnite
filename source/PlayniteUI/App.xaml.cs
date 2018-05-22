@@ -241,9 +241,8 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    AppSettings.DatabasePath = Path.Combine(Paths.UserProgramDataPath, "games.db");
-                    AppSettings.SaveSettings();
-                    Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
+                    Shutdown(0);
+                    return;
                 }
             }
             else
