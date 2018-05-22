@@ -13,7 +13,8 @@
         Title="{DynamicResource LOCFirstWindowTitle}" WindowStartupLocation="CenterScreen"
         ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False"
         Height="425" Width="470" x:Name="WindowMain" 
-        AutomationProperties.AutomationId="WindowWizard" MinHeight="250" MinWidth="390">
+        AutomationProperties.AutomationId="WindowWizard" MinHeight="250" MinWidth="390"
+        FocusManager.FocusedElement="{Binding ElementName=ButtonNext}" >
 
     <controls:WindowBase.Resources>
         <pui:NegateConverter x:Key="NegateConverter" />
