@@ -37,7 +37,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="TabControl">
-                                <ScrollViewer x:Name="TabControlScroller" HorizontalScrollBarVisibility="Disabled"  VerticalScrollBarVisibility="Auto" >
+                                <ScrollViewer IsTabStop="True" x:Name="TabControlScroller" HorizontalScrollBarVisibility="Disabled"  VerticalScrollBarVisibility="Auto" >
                                     <Grid>
                                         <TabPanel IsItemsHost="True" />
                                         <ContentPresenter ContentSource="SelectedContent" />
