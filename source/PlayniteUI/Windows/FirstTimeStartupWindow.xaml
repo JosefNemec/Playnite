@@ -98,15 +98,15 @@
                 </DockPanel>
             </TabItem>
             <TabItem Visibility="Collapsed">
-                <DockPanel Margin="20" LastChildFill="False">
+                <DockPanel KeyboardNavigation.TabNavigation="Local" Margin="20" LastChildFill="False">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
                         <Image Source="/Images/steamicon.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
                         <TextBlock Text="{DynamicResource LOCFirstSteamIntegration}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <RadioButton Name="RadioInstalledSteam" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
+                    <RadioButton TabIndex="1" Name="RadioInstalledSteam" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                  GroupName="steam" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}" />
-                    <RadioButton Name="RadioLibrarySteam"
+                    <RadioButton TabIndex="2" Name="RadioLibrarySteam"
                                  GroupName="steam" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled}">
                         <RadioButton.Content>
@@ -114,10 +114,10 @@
                                        TextWrapping="Wrap" />
                         </RadioButton.Content>
                     </RadioButton>
-                    <DockPanel DockPanel.Dock="Top" Margin="25,5,5,5"
+                    <DockPanel KeyboardNavigation.TabIndex="3" KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top" Margin="25,5,5,5"
                                IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
                         <TextBlock Text="{DynamicResource LOCSettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5"/>
-                        <Grid KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top">
+                        <Grid KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
@@ -130,52 +130,50 @@
                             <RadioButton TabIndex="1" Content="{DynamicResource LOCNameLabel}" Name="RadioSteamLibName" GroupName="steamsource"
                                          Grid.Column="0" Grid.Row="0" Margin="5"
                                          IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Name}"/>
-                            <RadioButton TabIndex="3" Content="{DynamicResource LOCLocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource"
+                            <RadioButton TabIndex="4" Content="{DynamicResource LOCLocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource"
                                          Grid.Column="0" Grid.Row="1" Margin="5"
                                          IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=LocalUser}"/>
-                            <DockPanel Grid.Column="1" Grid.Row="0" Margin="5">
+                            <DockPanel IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}" Grid.Column="1" Grid.Row="0" Margin="5">
                                 <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">           
-                                    <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"
+                                    <Hyperlink KeyboardNavigation.TabIndex="3" NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"
                                                Command="{Binding NavigateUrlCommand}"
                                                CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                                         <Run Text="{DynamicResource LOCSettingsWhatsSteamName}" />
                                     </Hyperlink>
                                 </TextBlock>
-                                <TextBox TabIndex="2" Text="{Binding Settings.SteamSettings.AccountName}"
-                                         IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}"
-                                         Name="TextSteamAccount" DockPanel.Dock="Left" Margin="0,0,10,0" />
+                                <TextBox TabIndex="2" Text="{Binding Settings.SteamSettings.AccountName}" Name="TextSteamAccount" DockPanel.Dock="Left" Margin="0,0,10,0" />
                             </DockPanel>
-                            <ComboBox IsReadOnly="True" Name="ComboSteamAccount" DisplayMemberPath="AccountName"
+                            <ComboBox TabIndex="5" IsReadOnly="True" Name="ComboSteamAccount" DisplayMemberPath="AccountName"
                                       SelectedValuePath="Id"
                                       ItemsSource="{Binding SteamUsers}"
                                       SelectedValue="{Binding Settings.SteamSettings.AccountId}"
                                       IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"
                                       Grid.Column="1" Grid.Row="1" Margin="5" />
                         </Grid>
-                        <CheckBox Content="{DynamicResource LOCPrivateAccount}" DockPanel.Dock="Top"
+                        <CheckBox TabIndex="2" Content="{DynamicResource LOCPrivateAccount}" DockPanel.Dock="Top"
                                       IsChecked="{Binding Settings.SteamSettings.PrivateAccount}"
                                       Margin="5,5,5,5" Name="CheckSteamPrivate"
                                       ToolTip="{DynamicResource LOCSettingsApiKeyTooltip}"/>
-                        <DockPanel DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=CheckSteamPrivate}"
+                        <DockPanel KeyboardNavigation.TabIndex="3" KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=CheckSteamPrivate}"
                                        Margin="30,5,5,5">
                             <TextBlock Text="{DynamicResource LOCAPIKey}" DockPanel.Dock="Left"
                                            VerticalAlignment="Center"/>
                             <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">
-                                    <Hyperlink NavigateUri="https://steamcommunity.com/dev/apikey"
+                                    <Hyperlink KeyboardNavigation.TabIndex="2" NavigateUri="https://steamcommunity.com/dev/apikey"
                                                Command="{Binding NavigateUrlCommand}"
                                                CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                                         <Run Text="{DynamicResource LOCSettingsApiKeyUrlText}" />
                                     </Hyperlink>
                             </TextBlock>
-                            <TextBox Text="{Binding Settings.SteamSettings.APIKey}"
+                            <TextBox TabIndex="1" Text="{Binding Settings.SteamSettings.APIKey}"
                                          DockPanel.Dock="Left" Margin="10,0,10,0"/>
                         </DockPanel>
                     </DockPanel>
-                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,5,0,0">
-                        <CheckBox Name="CheckSteamImportCat" Content="{DynamicResource LOCFirstSteamImportCategories}"
+                    <StackPanel KeyboardNavigation.TabIndex="4" DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,5,0,0">
+                        <CheckBox TabIndex="11" Name="CheckSteamImportCat" Content="{DynamicResource LOCFirstSteamImportCategories}"
                                   DockPanel.Dock="Top" Margin="5"
                                   IsChecked="{Binding SteamImportCategories}"/>
-                        <ComboBox IsReadOnly="True" Name="ComboSteamAccountCatImport" DisplayMemberPath="AccountName"
+                        <ComboBox TabIndex="12" IsReadOnly="True" Name="ComboSteamAccountCatImport" DisplayMemberPath="AccountName"
                                   SelectedValuePath="Id"
                                   ItemsSource="{Binding SteamUsers}"
                                   SelectedValue="{Binding SteamIdCategoryImport}"
