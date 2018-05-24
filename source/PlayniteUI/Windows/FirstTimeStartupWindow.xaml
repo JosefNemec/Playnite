@@ -37,7 +37,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="TabControl">
-                                <ScrollViewer IsTabStop="True" x:Name="TabControlScroller" HorizontalScrollBarVisibility="Disabled"  VerticalScrollBarVisibility="Auto" >
+                                <ScrollViewer x:Name="TabControlScroller" HorizontalScrollBarVisibility="Disabled"  VerticalScrollBarVisibility="Auto" >
                                     <Grid>
                                         <TabPanel IsItemsHost="True" />
                                         <ContentPresenter ContentSource="SelectedContent" />
@@ -73,10 +73,10 @@
                             <TextBlock Text="{DynamicResource LOCFirstDBLocCustom}" TextWrapping="Wrap" />
                         </RadioButton.Content>
                     </RadioButton>
-                    <DockPanel DockPanel.Dock="Top" Margin="15,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioDbCustom}">
-                        <Button Content=" ... " DockPanel.Dock="Right" Padding="5,0,5,0" Name="ButtonBrowserDbFile"
+                    <DockPanel KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top" Margin="15,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioDbCustom}">
+                        <Button TabIndex="2" Content=" ... " DockPanel.Dock="Right" Padding="5,0,5,0" Name="ButtonBrowserDbFile"
                                 Command="{Binding SelectDbFileCommand}" />
-                        <TextBox AcceptsReturn="False" Margin="10,0,5,0" DockPanel.Dock="Left"
+                        <TextBox TabIndex="1" AcceptsReturn="False" Margin="10,0,5,0" DockPanel.Dock="Left"
                                  Name="TextDbFile" Text="{Binding Settings.DatabasePath}"/>
                     </DockPanel>
                 </DockPanel>
@@ -117,7 +117,7 @@
                     <DockPanel DockPanel.Dock="Top" Margin="25,5,5,5"
                                IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
                         <TextBlock Text="{DynamicResource LOCSettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5"/>
-                        <Grid DockPanel.Dock="Top">
+                        <Grid KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
@@ -127,10 +127,10 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
 
-                            <RadioButton Content="{DynamicResource LOCNameLabel}" Name="RadioSteamLibName" GroupName="steamsource"
+                            <RadioButton TabIndex="1" Content="{DynamicResource LOCNameLabel}" Name="RadioSteamLibName" GroupName="steamsource"
                                          Grid.Column="0" Grid.Row="0" Margin="5"
                                          IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Name}"/>
-                            <RadioButton Content="{DynamicResource LOCLocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource"
+                            <RadioButton TabIndex="3" Content="{DynamicResource LOCLocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource"
                                          Grid.Column="0" Grid.Row="1" Margin="5"
                                          IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=LocalUser}"/>
                             <DockPanel Grid.Column="1" Grid.Row="0" Margin="5">
@@ -141,7 +141,7 @@
                                         <Run Text="{DynamicResource LOCSettingsWhatsSteamName}" />
                                     </Hyperlink>
                                 </TextBlock>
-                                <TextBox Text="{Binding Settings.SteamSettings.AccountName}"
+                                <TextBox TabIndex="2" Text="{Binding Settings.SteamSettings.AccountName}"
                                          IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}"
                                          Name="TextSteamAccount" DockPanel.Dock="Left" Margin="0,0,10,0" />
                             </DockPanel>

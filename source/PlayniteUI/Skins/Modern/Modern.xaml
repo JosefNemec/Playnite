@@ -302,7 +302,7 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Fill" Value="{DynamicResource GlyphBrush}" TargetName="HoverRectangle" />
                         </Trigger>
-                        <DataTrigger Binding="{Binding IsFocused, RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollViewer}}" Value="True">
+                        <DataTrigger Binding="{Binding IsFocused, RelativeSource={RelativeSource AncestorType=ScrollViewer}}" Value="True">
                             <Setter Property="Fill" Value="{DynamicResource GlyphBrush}" TargetName="HoverRectangle" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
@@ -372,6 +372,11 @@
                                    Minimum="0" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical"
                                    AutomationProperties.AutomationId="VerticalScrollBar" />
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="PART_VerticalScrollBar" Property="Visibility" Value="Visible">
+                            <Setter Property="IsTabStop" Value="True"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
