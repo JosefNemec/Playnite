@@ -311,7 +311,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCFirstSteamImportCategories">Import categories from account:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Other games</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesText">Click on the button bellow to import other installed games or browse for them manually (including Windows Store games).</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesImportButton">Import Games</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesImportButton">_Import Games</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuration Finished</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Initial setup has been completed. Remember that you can change all settings later via 'Settings' menu.
 
