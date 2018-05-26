@@ -1,4 +1,5 @@
-﻿using PlayniteUI.Controls;
+﻿using System.Windows.Input;
+using PlayniteUI.Controls;
 
 namespace PlayniteUI.Windows
 {
@@ -23,6 +24,22 @@ namespace PlayniteUI.Windows
         public FirstTimeStartupWindow()
         {
             InitializeComponent();
+        }
+
+        private void ButtonFinish_IsVisibleChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        {
+            if (ButtonFinish.IsVisible)
+            {
+                ButtonFinish.Focus();
+            }
+        }
+
+        private void ButtonBack_IsEnabledChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        {
+            if (!ButtonBack.IsEnabled)
+            {
+                ButtonNext.Focus();
+            }
         }
     }
 }

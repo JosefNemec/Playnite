@@ -13,8 +13,7 @@
         Title="{DynamicResource LOCFirstWindowTitle}" WindowStartupLocation="CenterScreen"
         ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False"
          x:Name="WindowMain" 
-        AutomationProperties.AutomationId="WindowWizard"
-        FocusManager.FocusedElement="{Binding ElementName=ButtonNext}" >
+        AutomationProperties.AutomationId="WindowWizard">
 
     <controls:WindowBase.Resources>
         <pui:NegateConverter x:Key="NegateConverter" />
@@ -23,7 +22,7 @@
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </controls:WindowBase.Resources>
 
-    <Grid>
+    <Grid FocusManager.FocusedElement="{Binding ElementName=ButtonNext}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
@@ -304,13 +303,13 @@
                 <Button TabIndex="3" Content="{DynamicResource LOCFinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"
                         Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource BottomButton}"
-                        Command="{Binding FinishCommand}"/>
+                        Command="{Binding FinishCommand}" IsVisibleChanged="ButtonFinish_IsVisibleChanged"/>
                 <Button TabIndex="2" Content="{DynamicResource LOCNextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding NextCommand}"/>
                 <Button TabIndex="1" Content="{DynamicResource LOCBackLabel}" Name="ButtonBack" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}"
-                        Command="{Binding BackCommand}"/>
+                        Command="{Binding BackCommand}" IsEnabledChanged="ButtonBack_IsEnabledChanged"/>
             </DockPanel>
         </Border>
     </Grid>

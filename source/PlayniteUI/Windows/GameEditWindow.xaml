@@ -576,8 +576,8 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <GroupBox Header="{DynamicResource LOCPlayAction}" Margin="10">
-                            <StackPanel>
-                                <Button Name="ButtonAddPlay" Content="{DynamicResource LOCAddPlayAction}" HorizontalAlignment="Left"
+                            <StackPanel KeyboardNavigation.TabNavigation="Local">
+                                <Button TabIndex="1" Name="ButtonAddPlay" Content="{DynamicResource LOCAddPlayAction}" HorizontalAlignment="Left"
                                         Margin="0,5,0,5" Command="{Binding AddPlayActionCommand}">
                                     <Button.Style>                                        
                                         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -590,7 +590,7 @@
                                         </Style>
                                     </Button.Style>
                                 </Button>
-                                <Button Name="ButtonRemovePlay" Content="{DynamicResource LOCRemovePlayAction}" HorizontalAlignment="Left"
+                                <Button TabIndex="2" Name="ButtonRemovePlay" Content="{DynamicResource LOCRemovePlayAction}" HorizontalAlignment="Left"
                                         Margin="0,5,0,5" Command="{Binding DeletePlayActionCommand}">
                                     <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
