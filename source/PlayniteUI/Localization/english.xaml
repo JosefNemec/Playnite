@@ -82,11 +82,11 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCWebsiteLabel">Website</sys:String>
     <sys:String x:Key="LOCPathLabel">Path</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
-    <sys:String x:Key="LOCSaveLabel">Save</sys:String>
-    <sys:String x:Key="LOCCloseLabel">Close</sys:String>
-    <sys:String x:Key="LOCCancelLabel">Cancel</sys:String>
-    <sys:String x:Key="LOCYesLabel">Yes</sys:String>
-    <sys:String x:Key="LOCNoLabel">No</sys:String>
+    <sys:String x:Key="LOCSaveLabel">_Save</sys:String>
+    <sys:String x:Key="LOCCloseLabel">_Close</sys:String>
+    <sys:String x:Key="LOCCancelLabel">C_ancel</sys:String>
+    <sys:String x:Key="LOCYesLabel">_Yes</sys:String>
+    <sys:String x:Key="LOCNoLabel">_No</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Welcome</sys:String>
     <sys:String x:Key="LOCLocalUserLabel">Local User</sys:String>
     <sys:String x:Key="LOCAuthenticateLabel">Authenticate</sys:String>
