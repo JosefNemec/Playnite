@@ -110,12 +110,17 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
                             CornerRadius="{DynamicResource ControlCornerRadius}" Style="{DynamicResource HighlightBorder}">
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -292,6 +297,9 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Fill" Value="{DynamicResource GlyphBrush}" TargetName="HoverRectangle" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding IsFocused, RelativeSource={RelativeSource AncestorType=ScrollViewer}}" Value="True">
+                            <Setter Property="Fill" Value="{DynamicResource GlyphBrush}" TargetName="HoverRectangle" />
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -359,6 +367,11 @@
                                    Minimum="0" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical"
                                    AutomationProperties.AutomationId="VerticalScrollBar" />
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="PART_VerticalScrollBar" Property="Visibility" Value="Visible">
+                            <Setter Property="IsTabStop" Value="True"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -524,7 +537,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource ControlCornerRadius}"
+                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource ControlCornerRadius}"
                             Style="{DynamicResource HighlightBorder}">
                         <Grid>
                             <ToggleButton x:Name="ToggleButton" Focusable="False" ClickMode="Press" Margin="0,0,2,0"
@@ -565,6 +578,9 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                        </Trigger>
                         <Trigger Property="IsEditable" Value="True">
                             <Setter Property="IsTabStop" Value="False" />
                             <Setter Property="Visibility" Value="Visible" TargetName="PART_EditableTextBox" />
@@ -1109,6 +1125,11 @@
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
                             <Setter Property="Opacity" Value="1" TargetName="TextContent"/>
                         </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
+                            <Setter Property="BorderThickness" Value="1,1,1,2" TargetName="SelectedBorder" />
+                            <Setter Property="Opacity" Value="1" TargetName="TextContent"/>
+                        </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
                             <Setter Property="Opacity" Value="1" TargetName="TextContent"/>
@@ -1431,6 +1452,9 @@
         <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
         <Setter Property="TextDecorations" Value="{x:Null}" />
         <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+            </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
             </Trigger>
@@ -1649,7 +1673,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DatePicker">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                    <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{DynamicResource ControlCornerRadius}"
                             Padding="{TemplateBinding Padding}">
@@ -1666,10 +1690,13 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
                         </Trigger>
-                        <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" />
+                        <Trigger SourceName="PART_TextBox"  Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                        </Trigger>
+                        <Trigger SourceName="PART_Button"  Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1689,7 +1716,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}"
+                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}" CornerRadius="{DynamicResource ControlCornerRadius}"
                             Style="{DynamicResource HighlightBorder}">
                         <Grid>
@@ -1796,6 +1823,9 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
             </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -1819,7 +1849,7 @@
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome CaptionHeight="25" CornerRadius="0" ResizeBorderThickness="4"
-                              NonClientFrameEdges ="None" UseAeroCaptionButtons="False" GlassFrameThickness="0"/>
+                              NonClientFrameEdges ="Bottom" UseAeroCaptionButtons="False" GlassFrameThickness="1"/>
             </Setter.Value>
         </Setter>
         <Setter Property="Template">
