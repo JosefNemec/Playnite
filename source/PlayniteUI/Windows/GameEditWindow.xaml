@@ -199,11 +199,11 @@
                     <CheckBox Grid.Column="1" Grid.Row="8" Name="CheckCategories"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseCategoryChanges}"/>
-                    <DockPanel KeyboardNavigation.TabNavigation="Local" Grid.Column="2" Grid.Row="8">
-                            <Button TabIndex="2" Name="ButtonPickCat" Content="..."  DockPanel.Dock="Right" Margin="2"
+                    <DockPanel Grid.Column="2" Grid.Row="8">
+                        <Button Name="ButtonPickCat" Content="..."  DockPanel.Dock="Right" Margin="2"
                                 Height="{Binding ActualHeight, ElementName=TextCategories}"
                                 Command="{Binding SelectCategoryCommand}"/>
-                        <TextBox TabIndex="1" Name="TextCategories" DockPanel.Dock="Left"
+                        <TextBox Name="TextCategories" DockPanel.Dock="Left"
                                     Text="{Binding EditingGame.Categories, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}, Delay=1000}"/>
                     </DockPanel>
 
@@ -337,7 +337,7 @@
                     <CheckBox Grid.Column="4" Grid.Row="13"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseCompletionStatusChanges}"/>
-                    <ContentControl IsTabStop="False" Grid.Column="5" Grid.Row="13"
+                    <ContentControl Grid.Column="5" Grid.Row="13"
                                     DataContext="{Binding EditingGame}"
                                     Content="{StaticResource ComboCompletionStatusOptions}" />
 
@@ -576,8 +576,8 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <GroupBox Header="{DynamicResource LOCPlayAction}" Margin="10">
-                            <StackPanel KeyboardNavigation.TabNavigation="Local">
-                                <Button TabIndex="1" Name="ButtonAddPlay" Content="{DynamicResource LOCAddPlayAction}" HorizontalAlignment="Left"
+                            <StackPanel>
+                                <Button Name="ButtonAddPlay" Content="{DynamicResource LOCAddPlayAction}" HorizontalAlignment="Left"
                                         Margin="0,5,0,5" Command="{Binding AddPlayActionCommand}">
                                     <Button.Style>                                        
                                         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -590,7 +590,7 @@
                                         </Style>
                                     </Button.Style>
                                 </Button>
-                                <Button TabIndex="2" Name="ButtonRemovePlay" Content="{DynamicResource LOCRemovePlayAction}" HorizontalAlignment="Left"
+                                <Button Name="ButtonRemovePlay" Content="{DynamicResource LOCRemovePlayAction}" HorizontalAlignment="Left"
                                         Margin="0,5,0,5" Command="{Binding DeletePlayActionCommand}">
                                     <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -644,8 +644,8 @@
         </TabControl>
 
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
-            <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="False" Margin="5">
-                <Button TabIndex="1" Name="ButtonDownload" Content="{DynamicResource LOCMenuDownloadMetadata}" DockPanel.Dock="Left"
+            <DockPanel LastChildFill="False" Margin="5">
+                <Button Name="ButtonDownload" Content="{DynamicResource LOCMenuDownloadMetadata}" DockPanel.Dock="Left"
                         Style="{StaticResource BottomButton}"
                         pui:LeftClickContextMenuBehavior.Enabled="True">
                     <Button.ContextMenu>
@@ -657,10 +657,10 @@
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>
-                <Button TabIndex="3" Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
+                <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding CancelCommand}"/>
-                <Button TabIndex="2" Name="ButtonOK" Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right"
+                <Button Name="ButtonOK" Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding ConfirmCommand}"/>
             </DockPanel>

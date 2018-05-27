@@ -41,10 +41,10 @@
         </Grid.RowDefinitions>
 
         <Label Content="{DynamicResource LOCNameLabel}" Grid.Column="0" Grid.Row="0"/>
-        <TextBox IsEnabled="{Binding ShowNameRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" TabIndex="1" Name="TextName" Grid.Column="1" Grid.Row="0" Text="{Binding Name}"/>
+        <TextBox Name="TextName" Grid.Column="1" Grid.Row="0" Text="{Binding Name}"/>
 
         <Label Content="{DynamicResource LOCTypeLabel}" Grid.Column="0" Grid.Row="1"/>
-        <ComboBox TabIndex="2" Name="ComboType" Grid.Column="1" Grid.Row="1" SelectedIndex="{Binding Type, Converter={StaticResource BidirectionalEnumAndNumberConverter}}"
+        <ComboBox Name="ComboType" Grid.Column="1" Grid.Row="1" SelectedIndex="{Binding Type, Converter={StaticResource BidirectionalEnumAndNumberConverter}}"
                   SelectionChanged="ComboType_SelectionChanged">
             <ComboBoxItem Content="{DynamicResource LOCExecutableTitle}" />
             <ComboBoxItem Content="{DynamicResource LOCURLLabel}" />
@@ -52,35 +52,35 @@
         </ComboBox>
 
         <Label Content="{DynamicResource LOCPathLabel}" Grid.Column="0" Grid.Row="2" />
-        <DockPanel IsEnabled="{Binding ShowPathRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" KeyboardNavigation.TabIndex="3" KeyboardNavigation.TabNavigation="Local" Grid.Column="1" Grid.Row="2" LastChildFill="True" >
-            <Button TabIndex="2" Name="ButtonBrowse" Content="..." DockPanel.Dock="Right" Click="ButtonBrowsePath_Click" 
+        <DockPanel Grid.Column="1" Grid.Row="2" LastChildFill="True" >
+            <Button Name="ButtonBrowse" Content="..." DockPanel.Dock="Right" Click="ButtonBrowsePath_Click" 
                     Height="{Binding ActualHeight, ElementName=TextPath}" Margin="0,0,3,0"/>
-            <TextBox TabIndex="1" Name="TextPath" Text="{Binding Path, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left"
+            <TextBox Name="TextPath" Text="{Binding Path, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left"
                      ToolTip="{DynamicResource LOCGameVariablesTooltip}"/>
         </DockPanel>
 
         <Label Content="{DynamicResource LOCArgumentsTitle}" Grid.Column="0" Grid.Row="5" />
-        <TextBox IsEnabled="{Binding ShowArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" TabIndex="7" Name="TextArguments" Grid.Column="1" Grid.Row="5" Text="{Binding Arguments}" ToolTip="{DynamicResource LOCGameVariablesTooltip}"/>
+        <TextBox Name="TextArguments" Grid.Column="1" Grid.Row="5" Text="{Binding Arguments}" ToolTip="{DynamicResource LOCGameVariablesTooltip}"/>
 
         <Label Content="{DynamicResource LOCEmulatorArguments}" Grid.Column="0" Grid.Row="6" />
-        <TextBox TabIndex="8" Name="TextEmulatorArguments" Grid.Column="1" Grid.Row="6" 
+        <TextBox Name="TextEmulatorArguments" Grid.Column="1" Grid.Row="6" 
                  Text="{Binding SelectedEmulatorArguments, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
                  ToolTip="{DynamicResource LOCGameVariablesTooltip}" IsEnabled="False"/>
 
         <Label Content="{DynamicResource LOCWorkingDirTitle}" Grid.Column="0" Grid.Row="8" />
-        <TextBox IsEnabled="{Binding ShowWorkingDirRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Name="TextWorkDir" Grid.Column="1" Grid.Row="8" Text="{Binding WorkingDir}"
+        <TextBox Name="TextWorkDir" Grid.Column="1" Grid.Row="8" Text="{Binding WorkingDir}"
                  ToolTip="{DynamicResource LOCGameVariablesTooltip}"/>
 
         <Label Content="{DynamicResource LOCAdditionalEmulatorArguments}" Grid.Column="0" Grid.Row="7" />
-        <TextBox IsEnabled="{Binding ShowAdditionalArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Name="TextAdditionalArguments" Grid.Column="1" Grid.Row="7" Text="{Binding AdditionalArguments}"
+        <TextBox Name="TextAdditionalArguments" Grid.Column="1" Grid.Row="7" Text="{Binding AdditionalArguments}"
                  ToolTip="{DynamicResource LOCGameVariablesTooltip}"/>
 
         <Label Content="{DynamicResource LOCOverrideEmulatorArguments}" Grid.Column="0" Grid.Row="4"  />
-        <CheckBox IsEnabled="{Binding ShowOverrideArgsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" TabIndex="6" Name="CheckOverrideArgs" Grid.Column="1" Grid.Row="4" Margin="3,5,3,5"
+        <CheckBox Name="CheckOverrideArgs" Grid.Column="1" Grid.Row="4" Margin="3,5,3,5"
                   IsChecked="{Binding OverrideDefaultArgs}" Checked="CheckOverrideArgs_Checked" Unchecked="CheckOverrideArgs_Checked"/>
 
         <Label Content="{DynamicResource LOCEmulatorTitle}" Grid.Column="0" Grid.Row="3" />
-        <Grid IsEnabled="{Binding ShowEmulatorRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Grid.Column="1" Grid.Row="3" Margin="3,5,3,5">
+        <Grid Grid.Column="1" Grid.Row="3" Margin="3,5,3,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -89,13 +89,13 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label Content="{DynamicResource LOCTypeLabel}" Grid.Column="0"/>
-            <ComboBox TabIndex="4" Name="ComboEmulator" SelectionChanged="ComboEmulator_SelectionChanged"
+            <ComboBox Name="ComboEmulator" SelectionChanged="ComboEmulator_SelectionChanged"
                       Grid.Column="1" Margin="5,0,15,0"
                       ItemsSource="{Binding Emulators, RelativeSource={RelativeSource AncestorType=UserControl}}"
                       SelectedValuePath="Id" SelectedValue="{Binding EmulatorId}"/>
 
             <Label Content="{DynamicResource LOCProfileLabel}" Grid.Column="2"/>
-            <ComboBox TabIndex="5" Name="ComboEmulatorConfig" SelectionChanged="ComboEmulatorConfig_SelectionChanged"
+            <ComboBox Name="ComboEmulatorConfig" SelectionChanged="ComboEmulatorConfig_SelectionChanged"
                       Grid.Column="3" Margin="5,0,5,0"
                       ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboEmulator}"
                       SelectedValuePath="Id" SelectedValue="{Binding EmulatorProfileId}"/>
