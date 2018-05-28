@@ -502,7 +502,7 @@
                               IsChecked="{Binding UseLinksChanges}" />
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10" DockPanel.Dock="Top">
                         <StackPanel>
-                            <ItemsControl Name="ItemsLinks" Grid.IsSharedSizeScope="True"
+                            <ItemsControl IsTabStop="False" Name="ItemsLinks" Grid.IsSharedSizeScope="True"
                                           ItemsSource="{Binding EditingGame.Links}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
@@ -611,7 +611,7 @@
                         </GroupBox>
                         <GroupBox Header="{DynamicResource LOCOtherActions}" Margin="10">
                             <StackPanel>
-                                <ItemsControl Name="OtherTasksItems" ItemsSource="{Binding EditingGame.OtherTasks}">
+                                <ItemsControl IsTabStop="False" Name="OtherTasksItems" ItemsSource="{Binding EditingGame.OtherTasks}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <Border BorderThickness="1" BorderBrush="{StaticResource NormalBrush}" CornerRadius="3" Padding="5" Margin="0,0,0,10">
