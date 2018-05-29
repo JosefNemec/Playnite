@@ -268,5 +268,7 @@ build/PlayniteServices/*
 build/ReleaseSDK/*
 build/DebugSDK/*
 
+tests/TestConfig.yaml
+
 # Don't share API keys with anyone :)
 source/PlayniteServices/customSettings.json

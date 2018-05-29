@@ -1,7 +1,12 @@
+$global:Is64BitOS = [System.Environment]::Is64BitOperatingSystem
+$global:TestVariables = @{
+    MutexTesterPath = Join-Path $PWD "_Tools\MutexTester.exe"
+}
+
 function global:Get-TestProperties()
 {
     param(
-        $path = "testConfig.json"
+        $path = "TestConfig.yaml"
     )
 
     if (-not (Test-Path $path))
@@ -9,7 +14,7 @@ function global:Get-TestProperties()
         throw "Test config not found."
     }
 
-    return ConvertFrom-Json (Get-Content $path -Raw)
+    return ConvertFrom-Yaml (Get-Content $path -Raw)
 }
 
 function global:Get-NewTempFolder()
@@ -21,7 +26,7 @@ function global:WaitFor
 {
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true)]
         [ScriptBlock]$Condition,
         [int]$Timeout = 10000,
         [int]$CheckPeriod = 1000    
@@ -110,4 +115,50 @@ function global:Remove-FolderClean()
     }
 
     New-Item $Path -ItemType Directory | Out-Null
+}
+
+function global:Remove-ItemSafe()
+{
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]$Path
+    )
+
+    if (Test-Path $Path)
+    {
+        Remove-Item $Path -Recurse
+    }
+}
+
+function global:Start-ProcessAndWait()
+{
+    param(
+        [string]$Path,
+        [string]$Arguments,
+        [string]$WorkingDir
+    )
+
+    if ($WorkingDir)
+    {
+        $proc = Start-Process $Path $Arguments -PassThru -NoNewWindow -WorkingDirectory $WorkingDir
+    }
+    else
+    { 
+        $proc = Start-Process $Path $Arguments -PassThru -NoNewWindow
+    }
+
+    $handle = $proc.Handle # cache proc.Handle http://stackoverflow.com/a/23797762/1479211
+    $proc.WaitForExit()
+    return $proc.ExitCode
+}
+
+function global:Start-MutexProcess()
+{
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Name
+    )
+
+    return Start-Process $TestVariables.MutexTesterPath $Name -NoNewWindow -PassThru
 }

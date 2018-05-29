@@ -213,12 +213,12 @@ namespace Playnite
 
         public void InstallUpdate()
         {            
-            var portable = Settings.IsPortable ? "/Portable 1" : "/Portable 0";
+            var portable = Settings.IsPortable ? "/PORTABLE" : "";
             logger.Info("Installing new update to {0}, in {1} mode", Paths.ProgramFolder, portable);
 
             Task.Run(() =>
             {
-                Process.Start(updaterPath, string.Format(@"/ProgressOnly 1 {0} /D={1}", portable, Paths.ProgramFolder));
+                Process.Start(updaterPath, string.Format(@"/SILENT /NOCANCEL /DIR=""{0}"" /UPDATE {1}", portable, Paths.ProgramFolder));
             });
 
             playniteApp.Quit();

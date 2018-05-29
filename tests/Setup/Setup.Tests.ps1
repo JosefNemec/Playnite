@@ -1,4 +1,108 @@
-Describe "Silent install" {
+function CleanSetupFiles()
+{
+    Remove-ItemSafe $PlayniteVariables.DefaultAppDir
+    Remove-ItemSafe $PlayniteVariables.StartMenuDir
+    Remove-ItemSafe $PlayniteVariables.DesktopIconPath
+    Remove-ItemSafe $PlayniteVariables.UninstallRegKey32
+    Remove-ItemSafe $PlayniteVariables.UninstallRegKey64   
+}
+
+Describe "Setup - Parameters test" {
+    BeforeEach {
+        Stop-PlayniteProcesses
+        CleanSetupFiles
+    }
+
+    It "Standard silent" {
+        $config = Get-TestProperties
+        Start-ProcessAndWait $config.InstallerPath "/SILENT"
+        $PlayniteVariables.DefaultAppDir | Should Exist
+        $PlayniteVariables.DefaultUiExecutablePath | Should Exist
+        $PlayniteVariables.StartMenuDir | Should Exist
+        $PlayniteVariables.DesktopIconPath | Should Exist
+        $PlayniteVariables.DefaultUinstallerExecutablePath | Should Exist
+        if ($Is64BitOS)
+        {
+            $PlayniteVariables.UninstallRegKey64 | Should Exist
+        } 
+        else
+        {
+            $PlayniteVariables.UninstallRegKey32 | Should Exist
+        }
+    }
+
+    It "Portable install" {
+        $config = Get-TestProperties
+        Start-ProcessAndWait $config.InstallerPath "/SILENT /PORTABLE"
+        $PlayniteVariables.DefaultAppDir | Should Exist
+        $PlayniteVariables.DefaultUiExecutablePath | Should Exist
+        $PlayniteVariables.StartMenuDir | Should Not Exist
+        $PlayniteVariables.DesktopIconPath | Should Not Exist
+        $PlayniteVariables.DefaultUinstallerExecutablePath | Should Not Exist
+        $PlayniteVariables.UninstallRegKey64 | Should Not Exist
+        $PlayniteVariables.UninstallRegKey32 | Should Not Exist
+    }
+
+    It "Update install" {
+        $config = Get-TestProperties
+        Start-ProcessAndWait $config.InstallerPath "/SILENT /UPDATE"
+        $PlayniteVariables.DefaultAppDir | Should Exist
+        $PlayniteVariables.DefaultUiExecutablePath | Should Exist
+        $PlayniteVariables.StartMenuDir | Should Not Exist
+        $PlayniteVariables.DesktopIconPath | Should Not Exist
+        $PlayniteVariables.DefaultUinstallerExecutablePath | Should Exist
+        if ($Is64BitOS)
+        {
+            $PlayniteVariables.UninstallRegKey64 | Should Exist
+        } 
+        else
+        {
+            $PlayniteVariables.UninstallRegKey32 | Should Exist
+        }
+    } 
+
+    It "Update portable install" {
+        $config = Get-TestProperties
+        Start-ProcessAndWait $config.InstallerPath "/SILENT /PORTABLE /UPDATE"
+        $PlayniteVariables.DefaultAppDir | Should Exist
+        $PlayniteVariables.DefaultUiExecutablePath | Should Exist
+        $PlayniteVariables.StartMenuDir | Should Not Exist
+        $PlayniteVariables.DesktopIconPath | Should Not Exist
+        $PlayniteVariables.DefaultUinstallerExecutablePath | Should Not Exist
+        $PlayniteVariables.UninstallRegKey64 | Should Not Exist
+        $PlayniteVariables.UninstallRegKey32 | Should Not Exist
+    } 
+}
+
+Describe "Update install" {
+    BeforeEach {
+        Stop-PlayniteProcesses
+        CleanSetupFiles
+    }
+
+    It "Update install waits for Playnite exit first" {
+        $mutex = Start-MutexProcess $PlayniteVariables.AppMutex
+
+        try
+        {
+            $config = Get-TestProperties
+            Start-Process $config.InstallerPath "/SILENT /UPDATE"
+            Sleep -s 5
+            $PlayniteVariables.DefaultAppDir | Should Not Exist            
+            Stop-Process $mutex 
+            Sleep -s 2
+            $proc = Get-Process -Name ([System.IO.Path]::GetFileNameWithoutExtension($config.InstallerPath))
+            $proc.WaitForExit()
+            $PlayniteVariables.DefaultUiExecutablePath | Should Exist
+        }
+        finally
+        {
+            Stop-Process $mutex   
+        }
+    }
+}
+
+<# Describe "Silent install" {
     It "Setup installs files and shortcuts" {
         $path = "C:\Program Files (x86)\Playnite"
         $data = Get-TestProperties
@@ -51,4 +155,6 @@ Describe "Uninstall" {
         Join-Path $dektop "Playnite.lnk" | Should Not Exist
         $startMenu | Should Not Exist
     }
-}
+} #>
+
+
