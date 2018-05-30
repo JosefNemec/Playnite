@@ -32,7 +32,7 @@ namespace PlayniteTests.Database
         [Test]
         public void ListUpdateTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "updatedb.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "updatedb.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);
@@ -87,7 +87,7 @@ namespace PlayniteTests.Database
         [Test]
         public void DeleteImageSafeTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "deleteimagetest.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "deleteimagetest.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);
@@ -126,7 +126,7 @@ namespace PlayniteTests.Database
         [Test]
         public void DeleteGameImageCleanupTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "deleteimagecleanuptest.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "deleteimagecleanuptest.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);
@@ -156,7 +156,7 @@ namespace PlayniteTests.Database
         [TestCase(Provider.Origin)]
         public void UpdateOwnedGamesTest(Provider provider)
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "ownedgames.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "ownedgames.db");
             FileSystem.DeleteFile(path);
 
             var libraryGames = new List<Game>()
@@ -229,7 +229,7 @@ namespace PlayniteTests.Database
         [TestCase(Provider.Uplay)]
         public void UpdateInstalledGamesTest(Provider provider)
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "installedgames.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "installedgames.db");
             FileSystem.DeleteFile(path);
 
             var installedGames = CreateGameList(provider);
@@ -367,7 +367,7 @@ namespace PlayniteTests.Database
         [Test]
         public void UpdateGogInstalledGamesCleanImportTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "goginstalledimportclean.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "goginstalledimportclean.db");
             FileSystem.DeleteFile(path);
             var settings = new Settings();
             settings.GOGSettings.RunViaGalaxy = false;
@@ -382,7 +382,7 @@ namespace PlayniteTests.Database
         [Test]
         public void UpdateGogInstalledGamesUpdateImportTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "goginstalledimportupdate.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "goginstalledimportupdate.db");
             FileSystem.DeleteFile(path);
             var settings = new Settings();
             settings.GOGSettings.RunViaGalaxy = false;
@@ -420,7 +420,7 @@ namespace PlayniteTests.Database
         [Test]
         public void UpdateSteamInstalledGamesCleanImportTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "steaminstalledimportclean.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "steaminstalledimportclean.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);
@@ -434,7 +434,7 @@ namespace PlayniteTests.Database
         [Test]
         public void UpdateSteamInstalledGamesUpdateImportTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "steaminstalledimportupdate.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "steaminstalledimportupdate.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);
@@ -469,7 +469,7 @@ namespace PlayniteTests.Database
         [Test]
         public void UpdateOriginInstalledGamesCleanImportTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "origininstalledimportclean.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "origininstalledimportclean.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);
@@ -483,7 +483,7 @@ namespace PlayniteTests.Database
         [Test]
         public void UpdateOriginInstalledGamesUpdateImportTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "origininstalledimportupdate.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "origininstalledimportupdate.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);
@@ -518,7 +518,7 @@ namespace PlayniteTests.Database
         [Test]
         public void UpdateUplayInstalledGamesCleanImportTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "uplayinstalledimportclean.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "uplayinstalledimportclean.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);
@@ -532,7 +532,7 @@ namespace PlayniteTests.Database
         [Test]
         public void UpdateUplayInstalledGamesUpdateImportTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "uplayinstalledimportupdate.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "uplayinstalledimportupdate.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);

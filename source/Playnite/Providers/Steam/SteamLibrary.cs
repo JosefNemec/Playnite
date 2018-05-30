@@ -21,6 +21,7 @@ using System.Windows;
 using System.Globalization;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.Web;
 
 namespace Playnite.Providers.Steam
 {
@@ -173,11 +174,11 @@ namespace Playnite.Providers.Steam
             ulong userId = 0;
             if (!ulong.TryParse(userName, out userId))
             {
-                var stringData = Web.DownloadString(string.Format(userNameUrl, apiKey, userName));
+                var stringData = HttpDownloader.DownloadString(string.Format(userNameUrl, apiKey, userName));
                 userId = ulong.Parse(JsonConvert.DeserializeObject<ResolveVanityResult>(stringData).response.steamid);
             }
 
-            var stringLibrary = Web.DownloadString(string.Format(libraryUrl, apiKey, userId));
+            var stringLibrary = HttpDownloader.DownloadString(string.Format(libraryUrl, apiKey, userId));
             var library = JsonConvert.DeserializeObject<GetOwnedGamesResult>(stringLibrary);
             if (library.response.games == null)
             {
@@ -406,7 +407,7 @@ namespace Playnite.Providers.Steam
             if (!string.IsNullOrEmpty(iconUrl))
             {
                 var iconName = Path.GetFileName(new Uri(iconUrl).AbsolutePath);
-                var iconData = Web.DownloadData(iconUrl);
+                var iconData = HttpDownloader.DownloadData(iconUrl);
                 metadata.Icon = new FileDefinition(
 
                     string.Format("images/steam/{0}/{1}", id.ToString(), iconName),
@@ -423,7 +424,7 @@ namespace Playnite.Providers.Steam
 
             try
             {
-                imageData = Web.DownloadData(imageUrl);
+                imageData = HttpDownloader.DownloadData(imageUrl);
             }
             catch (WebException e)
             {
@@ -435,7 +436,7 @@ namespace Playnite.Providers.Steam
                     if (image.Name != null)
                     {
                         imageUrl = string.Format(imageRoot, id, image.Value);
-                        imageData = Web.DownloadData(imageUrl);
+                        imageData = HttpDownloader.DownloadData(imageUrl);
                     }
                 }
                 else

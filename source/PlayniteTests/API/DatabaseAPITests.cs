@@ -20,7 +20,7 @@ namespace PlayniteTests.API
         [Test]
         public void GamesTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "dbapigames.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "dbapigames.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase();
@@ -65,7 +65,7 @@ namespace PlayniteTests.API
         [Test]
         public void FilesTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "dbapifiles.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "dbapifiles.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase();
@@ -87,14 +87,14 @@ namespace PlayniteTests.API
                 dbApi.RemoveFile(dbFiles[0].Id);
                 Assert.AreEqual(1, dbApi.GetFiles().Count);
 
-                var filePath = Path.Combine(Playnite.PlayniteTests.TempPath, "testname3.png");
+                var filePath = Path.Combine(PlayniteTests.TempPath, "testname3.png");
                 File.WriteAllBytes(filePath, new byte[] { 2, 1, 0 });
 
                 var duplId = dbApi.AddFile("testid3", filePath);
                 Assert.AreEqual("testid2", duplId);
                 Assert.AreEqual(1, dbApi.GetFiles().Count);
 
-                filePath = Path.Combine(Playnite.PlayniteTests.TempPath, "testFile2.png");
+                filePath = Path.Combine(PlayniteTests.TempPath, "testFile2.png");
                 FileSystem.DeleteFile(filePath);
                 dbApi.SaveFile("testid2", filePath);
                 Assert.IsTrue(File.Exists(filePath));

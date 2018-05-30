@@ -1,0 +1,41 @@
+{
+    "latestVersion":  "4.21",
+    "downloadServers": [
+        "http://localhost/build/",
+        "http://localhost/mirror/"
+    ],
+    "releaseNotesUrlRoots" : [ 
+        "http://localhost/update/"
+    ],
+    "packages": [
+        {
+            "baseVersion" : "4.21",
+            "fileName": "421.exe",
+            "checksum": "C4CEEA6981242B9087FF9065CE8E5AFD"
+        },
+        {
+            "baseVersion" : "4.2",
+            "fileName": "42to421.exe",
+            "checksum": "EECEEA6981242B9087FF9065CE8E5AFD"
+        },
+        {
+            "baseVersion" : "4.1",
+            "fileName": "41to421.exe",
+            "checksum": "BBBEEA6981242B9087FF9065CE8E5AFD"
+        }
+    ],
+    "releaseNotes" : [
+        {
+            "version" : "4.21",
+            "fileName" : "4.21.html"
+        },
+        {
+            "version" : "4.2",
+            "fileName" : "4.2.html"
+        },
+        {
+            "version" : "4.1",
+            "fileName" : "4.1.html"
+        }
+    ]
+}

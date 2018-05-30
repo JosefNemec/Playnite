@@ -1,32 +1,79 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 
-namespace Playnite
+namespace Playnite.Web
 {
-    public class Web
+    public interface IDownloader
     {
-        public static string DownloadString(string url)
+        string DownloadString(IEnumerable<string> mirrors);
+
+        string DownloadString(string url);
+
+        string DownloadString(string url, Encoding encoding);
+
+        string DownloadString(string url, List<Cookie> cookies);
+
+        string DownloadString(string url, List<Cookie> cookies, Encoding encoding);
+
+        void DownloadString(string url, string path);
+
+        void DownloadString(string url, string path, Encoding encoding);
+
+        byte[] DownloadData(string url);
+
+        void DownloadFile(string url, string path);
+
+        string GetCachedWebFile(string url);
+    }
+
+    public class Downloader : IDownloader
+    {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
+        public Downloader()
+        {
+        }
+
+        public string DownloadString(IEnumerable<string> mirrors)
+        {
+            foreach (var mirror in mirrors)
+            {
+                try
+                {
+                    return DownloadString(mirror);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to download {mirror} file.");
+                }
+            }
+
+            throw new Exception("Failed to download string from all mirrors.");
+        }
+
+        public string DownloadString(string url)
         {
             return DownloadString(url, Encoding.UTF8);
         }
 
-        public static string DownloadString(string url, Encoding encoding)
+        public string DownloadString(string url, Encoding encoding)
         {
             var webClient = new WebClient { Encoding = encoding };
-            return webClient.DownloadString(url);            
+            return webClient.DownloadString(url);
         }
 
-        public static string DownloadString(string url, List<Cookie> cookies)
+        public string DownloadString(string url, List<Cookie> cookies)
         {
             return DownloadString(url, cookies, Encoding.UTF8);
         }
 
-        public static string DownloadString(string url, List<Cookie> cookies, Encoding encoding)
+        public string DownloadString(string url, List<Cookie> cookies, Encoding encoding)
         {
             var webClient = new WebClient { Encoding = encoding };
             if (cookies?.Any() == true)
@@ -38,32 +85,32 @@ namespace Playnite
             return webClient.DownloadString(url);
         }
 
-        public static void DownloadString(string url, string path)
+        public void DownloadString(string url, string path)
         {
             DownloadString(url, path, Encoding.UTF8);
         }
 
-        public static void DownloadString(string url, string path, Encoding encoding)
+        public void DownloadString(string url, string path, Encoding encoding)
         {
             var webClient = new WebClient { Encoding = Encoding.UTF8 };
             var data = webClient.DownloadString(url);
             File.WriteAllText(path, data);
         }
 
-        public static byte[] DownloadData(string url)
+        public byte[] DownloadData(string url)
         {
             var webClient = new WebClient();
             return webClient.DownloadData(url);
         }
 
-        public static void DownloadFile(string url, string path)
+        public void DownloadFile(string url, string path)
         {
             FileSystem.CreateDirectory(Path.GetDirectoryName(path));
             var webClient = new WebClient();
             webClient.DownloadFile(url, path);
         }
 
-        public static string GetCachedWebFile(string url)
+        public string GetCachedWebFile(string url)
         {
             if (string.IsNullOrEmpty(url))
             {

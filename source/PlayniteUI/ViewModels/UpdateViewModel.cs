@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Playnite;
+using Playnite.App;
 using Playnite.SDK;
 using PlayniteUI.Commands;
 using System;
@@ -15,7 +16,7 @@ namespace PlayniteUI.ViewModels
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IWindowFactory window;
-        private Update update;
+        private Updater update;
         private IResourceProvider resources;
         private IDialogsFactory dialogs;
 
@@ -35,19 +36,19 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public List<Update.ReleaseNoteData> ReleaseNotes
+        public List<ReleaseNoteData> ReleaseNotes
         {
             get;
             private set;
         }
 
-        public UpdateViewModel(Update update, IWindowFactory window, IResourceProvider resources, IDialogsFactory dialogs)
+        public UpdateViewModel(Updater update, IWindowFactory window, IResourceProvider resources, IDialogsFactory dialogs)
         {
             this.window = window;
             this.update = update;
             this.resources = resources;
             this.dialogs = dialogs;
-            ReleaseNotes = update.LatestReleaseNotes.OrderBy(a => a.Version).ToList();
+            //ReleaseNotes = update.LatestReleaseNotes.OrderBy(a => a.Version).ToList();
         }
 
         public void OpenView()

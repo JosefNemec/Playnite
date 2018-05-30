@@ -17,6 +17,7 @@ using System.Collections.ObjectModel;
 using Playnite.Database;
 using System.Net;
 using System.Xml.Linq;
+using Playnite.Web;
 
 namespace Playnite.Providers.Origin
 {
@@ -322,7 +323,7 @@ namespace Playnite.Providers.Origin
             };
 
             var imageUrl = data.StoreDetails.imageServer + data.StoreDetails.i18n.packArtLarge;
-            var imageData = Web.DownloadData(imageUrl);
+            var imageData = HttpDownloader.DownloadData(imageUrl);
             var imageName = Guid.NewGuid() + Path.GetExtension(new Uri(imageUrl).AbsolutePath);
 
             data.Image = new FileDefinition(          

@@ -18,6 +18,7 @@ using System.ComponentModel;
 using Playnite.Providers.BattleNet;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.Web;
 
 namespace PlayniteUI.ViewModels
 {
@@ -2078,7 +2079,7 @@ namespace PlayniteUI.ViewModels
 
                     try
                     {
-                        Web.DownloadFile(game.Image, tempPath);
+                        HttpDownloader.DownloadFile(game.Image, tempPath);
                         EditingGame.Image = tempPath;
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)

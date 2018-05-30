@@ -138,6 +138,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="API\DatabaseAPITests.cs" />
+    <Compile Include="App\UpdateTests.cs" />
     <Compile Include="CloneObjectTests.cs" />
     <Compile Include="Converters\ObjectIdJsonConverterTests.cs" />
     <Compile Include="Database\GameDatabaseFileTests.cs" />
@@ -196,6 +197,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Resources\GOG\library_unreleased.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\TestUpdateManifest.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

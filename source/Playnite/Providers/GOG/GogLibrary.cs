@@ -4,6 +4,7 @@ using Playnite.Database;
 using Playnite.Models;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.Web;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -166,9 +167,9 @@ namespace Playnite.Providers.GOG
                     metadata.StoreDetails = WebApiClient.GetGameStoreData(storeUrl);
                 }
 
-                var icon = Web.DownloadData("http:" + gameDetail.images.icon);
+                var icon = HttpDownloader.DownloadData("http:" + gameDetail.images.icon);
                 var iconName = Path.GetFileName(new Uri(gameDetail.images.icon).AbsolutePath);
-                var image = Web.DownloadData("http:" + gameDetail.images.logo2x);
+                var image = HttpDownloader.DownloadData("http:" + gameDetail.images.logo2x);
                 var imageName = Path.GetFileName(new Uri(gameDetail.images.logo2x).AbsolutePath);
 
                 metadata.Icon = new FileDefinition(
