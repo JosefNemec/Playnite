@@ -1,6 +1,6 @@
 ﻿using PlayniteUI.Controls;
 
-namespace PlayniteUI.Windows
+namespace PlayniteUI
 {
     public class UpdateWindowFactory : WindowFactory
     {

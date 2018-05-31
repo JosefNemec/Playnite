@@ -12,6 +12,7 @@ using System.Windows;
 using Playnite.App;
 using Flurl;
 using Playnite.Web;
+using System.Net;
 
 namespace Playnite.App
 {
@@ -29,7 +30,7 @@ namespace Playnite.App
         {
             get
             {
-                return ConfigurationManager.AppSettings["UpdateUrl"];
+                return string.Format(ConfigurationManager.AppSettings["UpdateUrl"] ?? "", updateBranch);
             }
         }
 
@@ -37,7 +38,7 @@ namespace Playnite.App
         {
             get
             {
-                return ConfigurationManager.AppSettings["UpdateUrl2"];
+                return string.Format(ConfigurationManager.AppSettings["UpdateUrl2"] ?? "", updateBranch);
             }
         }
 
@@ -75,7 +76,6 @@ namespace Playnite.App
         public List<ReleaseNoteData> DownloadReleaseNotes(Version currentVersion)
         {
             var notes = new List<ReleaseNoteData>();
-
             if (updateManifest == null)
             {
                 DownloadManifest();
@@ -98,9 +98,19 @@ namespace Playnite.App
             return notes;
         }
 
+        public UpdateManifest.Package GetUpdatePackage(Version currentVersion)
+        {
+            if (updateManifest == null)
+            {
+                DownloadManifest();
+            }
+
+            return GetUpdatePackage(updateManifest, currentVersion);
+        }
+
         public UpdateManifest.Package GetUpdatePackage(UpdateManifest manifest, Version currentVersion)
         {
-            var diff = manifest.Packages.FirstOrDefault(a => a.BaseVersion == currentVersion);
+            var diff = manifest.Packages.FirstOrDefault(a => a.BaseVersion.ToString(2) == currentVersion.ToString(2));
             if (diff != null)
             {
                 return diff;
@@ -109,37 +119,37 @@ namespace Playnite.App
             return manifest.Packages.First(a => a.BaseVersion == manifest.LatestVersion);
         }
 
-        public void DownloadUpdate()
+        public async Task DownloadUpdate(UpdateManifest.Package package, Action<DownloadProgressChangedEventArgs> progressHandler)
         {
             if (updateManifest == null)
             {
                 DownloadManifest();
             }
 
-            //try
-            //{
-            //    DownloadUpdate(updateManifest.url);
-            //    return;
-            //}
-            //catch (Exception e)
-            //{
-            //    logger.Warn(e, "Failed to download update from main URL");
-            //}
+            if (File.Exists(updaterPath))
+            {
+                var md5 = FileSystem.GetMD5(updaterPath);
+                if (md5 == package.Checksum)
+                {
+                    return;
+                }
+            }
 
-            //try
-            //{
-            //    if (!string.IsNullOrEmpty(updateManifest.url2))
-            //    {
-            //        DownloadUpdate(updateManifest.url2);
-            //        return;
-            //    }
-            //}
-            //catch (Exception e)
-            //{
-            //    logger.Warn(e, "Failed to download update from secondary URL");
-            //}
-
-            //throw new Exception("Failed to download update from provided URLs.");
+            try
+            {
+                var downloadUrls = updateManifest.DownloadServers.Select(a => Url.Combine(a, updateManifest.LatestVersion.ToString(), package.FileName));
+                await downloader.DownloadFileAsync(downloadUrls, updaterPath, progressHandler);
+                var md5 = FileSystem.GetMD5(updaterPath);
+                if (md5 != package.Checksum)
+                {
+                    throw new Exception($"Checksum of downloaded file doesn't match: {md5} vs {package.Checksum}");
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Warn(e, "Failed to download update file.");
+                throw new Exception("Failed to download update file.");
+            }
         }
 
         public void InstallUpdate()
@@ -149,7 +159,7 @@ namespace Playnite.App
 
             Task.Run(() =>
             {
-                Process.Start(updaterPath, string.Format(@"/SILENT /NOCANCEL /DIR=""{0}"" /UPDATE {1}", portable, Paths.ProgramFolder));
+                Process.Start(updaterPath, string.Format(@"/SILENT /NOCANCEL /DIR=""{0}"" /UPDATE {1}", Paths.ProgramFolder, portable));
             });
 
             playniteApp.Quit();

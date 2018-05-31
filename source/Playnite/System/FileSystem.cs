@@ -85,6 +85,14 @@ namespace Playnite
             }
         }
 
+        public static string GetMD5(string filePath)
+        {
+            using (var stream = File.OpenRead(filePath))
+            {
+                return GetMD5(stream);
+            }
+        }
+
         public static void AddFolderToZip(ZipArchive archive, string zipRoot, string path, string filter, SearchOption searchOption)
         {
             IEnumerable<string> files;

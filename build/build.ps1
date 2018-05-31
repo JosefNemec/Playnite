@@ -337,11 +337,12 @@ if ($UpdateDiffs)
     {
         Write-Host "Building diff package from version $diffVersion..." -ForegroundColor Green
 
-        $diffDir = Join-Path $InstallerDir ("{0}to{1}" -f $diffVersion, $buildNumberPlain)
+        $diffString = "{0}to{1}" -f $diffVersion.Replace(".", ""), $buildNumberPlain.Replace(".", "")
+        $diffDir = Join-Path $InstallerDir $diffString
         CreateDirectoryDiff (Join-Path $BuildsStorageDir $diffVersion) $OutputDir $diffDir
 
         $includeVcredist = (Get-ChildItem $diffDir | Where { $_.Name -match "CefSharp|libcef" }) -ne $null
-        $installerPath = Join-Path $InstallerDir ("{0}to{1}.exe" -f $diffVersion, $buildNumberPlain)
+        $installerPath = Join-Path $InstallerDir "$diffString.exe"
         BuildInnoInstaller $diffDir $installerPath $buildNumber -IncludeVcredist:$includeVcredist
 
         if ($Sign)

@@ -2959,7 +2959,7 @@
                                 </Grid.RowDefinitions>
 
                                 <pc:ExtendedListBox Grid.Row="0" Grid.Column="0"
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="ItemsView"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ItemsView"
                       ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Extended"
                       pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"                      
                       ItemsSource="{Binding GamesView.CollectionView}"

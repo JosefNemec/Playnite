@@ -29,7 +29,11 @@ namespace Playnite.Web
 
         void DownloadFile(string url, string path);
 
-        string GetCachedWebFile(string url);
+        void DownloadFile(IEnumerable<string> mirrors, string path);
+
+        Task DownloadFileAsync(string url, string path, Action<DownloadProgressChangedEventArgs> progressHandler);
+
+        Task DownloadFileAsync(IEnumerable<string> mirrors, string path, Action<DownloadProgressChangedEventArgs> progressHandler);
     }
 
     public class Downloader : IDownloader
@@ -50,7 +54,7 @@ namespace Playnite.Web
                 }
                 catch (Exception e)
                 {
-                    logger.Error(e, $"Failed to download {mirror} file.");
+                    logger.Error(e, $"Failed to download {mirror} string.");
                 }
             }
 
@@ -107,7 +111,52 @@ namespace Playnite.Web
         {
             FileSystem.CreateDirectory(Path.GetDirectoryName(path));
             var webClient = new WebClient();
-            webClient.DownloadFile(url, path);
+            webClient.DownloadFile(url, path);            
+        }
+
+        public async Task DownloadFileAsync(string url, string path, Action<DownloadProgressChangedEventArgs> progressHandler)
+        {
+            FileSystem.CreateDirectory(Path.GetDirectoryName(path));
+            var webClient = new WebClient();
+            webClient.DownloadProgressChanged += (s, e) => progressHandler(e);
+            webClient.DownloadFileCompleted += (s, e) => webClient.Dispose();
+            await webClient.DownloadFileTaskAsync(url, path);
+        }
+
+        public async Task DownloadFileAsync(IEnumerable<string> mirrors, string path, Action<DownloadProgressChangedEventArgs> progressHandler)
+        {
+            foreach (var mirror in mirrors)
+            {
+                try
+                {
+                    await DownloadFileAsync(mirror, path, progressHandler);
+                    return;
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to download {mirror} file.");
+                }
+            }
+
+            throw new Exception("Failed to download file from all mirrors.");
+        }
+
+        public void DownloadFile(IEnumerable<string> mirrors, string path)
+        {
+            foreach (var mirror in mirrors)
+            {
+                try
+                {
+                    DownloadFile(mirror, path);
+                    return;
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to download {mirror} file.");
+                }
+            }
+
+            throw new Exception("Failed to download file from all mirrors.");
         }
 
         public string GetCachedWebFile(string url)

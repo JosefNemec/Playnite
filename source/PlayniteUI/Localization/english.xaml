@@ -474,7 +474,9 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metadata search</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Update Available</sys:String>
     <sys:String x:Key="LOCUpdaterChangesInfo">Changes since last update:</sys:String>
-    <sys:String x:Key="LOCUpdaterInstallUpdate">Install Update</sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate">Download and Install Update</sys:String>
+    <sys:String x:Key="LOCUpdateError">Update Error</sys:String>
+    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Failed to download and install update.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Background task is currently in progress, do you want to cancel it and processed with update installation?</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Reload theme list</sys:String>

@@ -24,6 +24,7 @@ using Playnite.API;
 using PlayniteUI.API;
 using Playnite.Plugins;
 using Playnite.Scripting;
+using Playnite.App;
 
 namespace PlayniteUI
 {
@@ -341,45 +342,34 @@ namespace PlayniteUI
         {
             await Task.Run(async () =>
             {
-                //await Task.Delay(10000);
-                //if (GlobalTaskHandler.IsActive)
-                //{
-                //    GlobalTaskHandler.Wait();
-                //}
+                await Task.Delay(10000);
+                if (GlobalTaskHandler.IsActive)
+                {
+                    GlobalTaskHandler.Wait();
+                }
 
-                //var update = new Update(this);
+                var updater = new Updater(this);
 
-                //while (true)
-                //{
-                //    try
-                //    {
-                //        if (update.IsUpdateAvailable)
-                //        {
-                //            update.DownloadUpdate();
+                while (true)
+                {
+                    try
+                    {
+                        if (updater.IsUpdateAvailable)
+                        {
+                            Dispatcher.Invoke(() =>
+                            {
+                                var model = new UpdateViewModel(updater, UpdateWindowFactory.Instance, new ResourceProvider(), dialogs);
+                                model.OpenView();
+                            });
+                        }
+                    }
+                    catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(exc, "Failed to process update.");
+                    }
 
-                //            try
-                //            {
-                //                update.DownloadReleaseNotes();
-                //            }
-                //            catch (Exception exc)
-                //            {
-                //                logger.Warn(exc, "Failed to download release notes.");
-                //            }
-
-                //            Dispatcher.Invoke(() =>
-                //            {
-                //                var model = new UpdateViewModel(update, UpdateWindowFactory.Instance, new ResourceProvider(), dialogs);
-                //                model.OpenView();
-                //            });
-                //        }
-                //    }
-                //    catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                //    {
-                //        logger.Error(exc, "Failed to process update.");
-                //    }
-
-                //    await Task.Delay(4 * 60 * 60 * 1000);
-                //}
+                    await Task.Delay(4 * 60 * 60 * 1000);
+                }
             });
         }
 

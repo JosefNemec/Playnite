@@ -68,9 +68,9 @@ namespace PlayniteTests.App
                 }
             };
 
-            var ver = new Version("4.2");
+            var ver = new Version("4.2.0.0");
             var package = update.GetUpdatePackage(manifest, ver);
-            Assert.AreEqual(ver, package.BaseVersion);
+            Assert.AreEqual(ver.ToString(2), package.BaseVersion.ToString());
             Assert.AreEqual("42to42.exe", package.FileName);
         }
 

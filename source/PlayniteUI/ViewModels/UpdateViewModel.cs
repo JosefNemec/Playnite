@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -16,9 +17,32 @@ namespace PlayniteUI.ViewModels
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IWindowFactory window;
-        private Updater update;
+        private Updater updater;
         private IResourceProvider resources;
         private IDialogsFactory dialogs;
+        private readonly SynchronizationContext context;
+
+        private int updateProgress;
+        public int UpdateProgress
+        {
+            get => updateProgress;
+            set
+            {
+                updateProgress = value;
+                OnPropertyChanged("UpdateProgress");
+            }
+        }
+
+        private bool showProgress;
+        public bool ShowProgress
+        {
+            get => showProgress;
+            set
+            {
+                showProgress = value;
+                OnPropertyChanged("ShowProgress");
+            }
+        }
 
         public RelayCommand<object> CloseCommand
         {
@@ -42,13 +66,22 @@ namespace PlayniteUI.ViewModels
             private set;
         }
 
-        public UpdateViewModel(Updater update, IWindowFactory window, IResourceProvider resources, IDialogsFactory dialogs)
+        public UpdateViewModel(Updater updater, IWindowFactory window, IResourceProvider resources, IDialogsFactory dialogs)
         {
+            context = SynchronizationContext.Current;
             this.window = window;
-            this.update = update;
+            this.updater = updater;
             this.resources = resources;
             this.dialogs = dialogs;
-            //ReleaseNotes = update.LatestReleaseNotes.OrderBy(a => a.Version).ToList();
+
+            try
+            {
+                ReleaseNotes = updater.DownloadReleaseNotes(Updater.GetCurrentVersion());
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to download release notes.");
+            }
         }
 
         public void OpenView()
@@ -61,7 +94,7 @@ namespace PlayniteUI.ViewModels
             window.Close();
         }
 
-        public void InstallUpdate()
+        public async void InstallUpdate()
         {
             if (GlobalTaskHandler.IsActive)
             {
@@ -79,18 +112,37 @@ namespace PlayniteUI.ViewModels
                             throw;
                         }
                     }, resources.FindString("LOCProgressReleasingResources"));
-
-                    progressModel.ActivateProgress();
-                    update.InstallUpdate();
+                    progressModel.ActivateProgress();                    
                 }
                 else
                 {
                     window.Close();
+                    return;
                 }
             }
-            else
+
+            try
             {
-                update.InstallUpdate();
+                ShowProgress = true;
+                var package = updater.GetUpdatePackage(Updater.GetCurrentVersion());
+                await updater.DownloadUpdate(package, (e) =>
+                {
+                    context.Post((a) => UpdateProgress = e.ProgressPercentage, null);
+                });
+                updater.InstallUpdate();
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                ShowProgress = false;
+                logger.Error(exc, "Failed to download and install update.");
+                dialogs.ShowMessage(
+                    resources.FindString("LOCUGeneralUpdateFailMessage") + $"\n{exc.Message}",
+                    resources.FindString("LOCUpdateError"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+
+                window.Close();
+                return;
             }
         }
     }
