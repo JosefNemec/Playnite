@@ -43,48 +43,7 @@
 )
 
 $ErrorActionPreference = "Stop"
-$NugetUrl = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
-
-function StartAndWait()
-{
-    param(
-        [string]$Path,
-        [string]$Arguments,
-        [string]$WorkingDir
-    )
-
-    if ($WorkingDir)
-    {
-        $proc = Start-Process $Path $Arguments -PassThru -NoNewWindow -WorkingDirectory $WorkingDir
-    }
-    else
-    { 
-        $proc = Start-Process $Path $Arguments -PassThru -NoNewWindow
-    }
-
-    $handle = $proc.Handle # cache proc.Handle http://stackoverflow.com/a/23797762/1479211
-    $proc.WaitForExit()
-    return $proc.ExitCode
-}
-
-function SignFile()
-{
-    param(
-        [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true)]
-        [string]$Path        
-    )
-
-    process
-    {
-        Write-Host "Signing file `"$Path`"" -ForegroundColor Green
-        $signToolPath = "c:\Program Files (x86)\Windows Kits\10\bin\10.0.16299.0\x86\signtool.exe"
-        $res = StartAndWait $signToolPath ('sign /n "Open Source Developer, Josef Němec" /t http://time.certum.pl /v ' + "`"$Path`"")
-        if ($res -ne 0)
-        {        
-            throw "Failed to sign file."
-        }
-    }
-}
+& .\common.ps1
 
 function BuildNsisInstaller()
 {
@@ -97,17 +56,14 @@ function BuildNsisInstaller()
         [string]$Version
     )
 
-    Write-Host "Building NSIS setup..." -ForegroundColor Green
+    Write-OperationLog "Building NSIS setup..."
         
     $nsisCompiler = "c:\Program Files (x86)\NSIS\makensis.exe"
     $installerScript = "NsisSetup.nsi"
     $installerTempScript = "NsisSetup.temp.nsi"
 
     $destinationDir = Split-Path $DestinationFile -Parent
-    if (!(Test-Path $destinationDir))
-    {
-        mkdir $destinationDir | Out-Null
-    }
+    New-Folder $destinationDir
 
     $scriptContent = Get-Content $installerScript
     $files = Get-ChildItem $SourceDir -Recurse
@@ -158,17 +114,13 @@ function BuildInnoInstaller()
     $destinationExe = Split-Path $DestinationFile -Leaf
     $destinationDir = Split-Path $DestinationFile -Parent
 
-    Write-Host "Building Inno Setup $destinationExe..." -ForegroundColor Green
+    Write-OperationLog "Building Inno Setup $destinationExe..."
     if ($IncludeVcredist)
     {
-        Write-Host "Including vcredist into install package." -ForegroundColor Gray
+        Write-DebugLog "Including vcredist into install package."
     }
 
-    if (!(Test-Path $destinationDir))
-    {
-        mkdir $destinationDir | Out-Null
-    }
-
+    New-Folder $destinationDir
     $scriptContent = Get-Content $innoScript
     $scriptContent = $scriptContent -replace "{source_path}", $SourceDir
     $scriptContent = $scriptContent -replace "{version}", $Version
@@ -204,33 +156,19 @@ function CreateDirectoryDiff()
     
     $baseDirFiles = Get-ChildItem $BaseDir -Recurse | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
     $targetDirFiles = Get-ChildItem $TargetDir -Recurse | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
-    $diffs = Compare-Object -ReferenceObject $baseDirFiles -DifferenceObject $targetDirFiles -Property Hash -PassThru | Where { $_.SideIndicator -eq "=>" } | Select-Object Path
-    
-    if (Test-Path $OutPath)
-    {
-        Remove-Item $OutPath -Force -Recurse
-    }
-    
-    mkdir $OutPath | Out-Null
+    $diffs = Compare-Object -ReferenceObject $baseDirFiles -DifferenceObject $targetDirFiles -Property Hash -PassThru | Where { $_.SideIndicator -eq "=>" } | Select-Object Path        
+    New-EmptyFolder $OutPath
+
     foreach ($file in $diffs)
     {
         $target = [Regex]::Replace($file.Path, [Regex]::Escape($TargetDir), $OutPath, "IgnoreCase")
         $targetFileDir = (Split-Path $target -Parent)
-        if (!(Test-Path $targetFileDir))
-        {
-            mkdir $targetFileDir | Out-Null
-        }
-    
+        New-Folder $targetFileDir    
         Copy-Item $file.Path $target
     }
 
     $tempPath = Join-Path $TempDir (Split-Path $OutPath -Leaf)
-    if (Test-Path $tempPath)
-    {
-        Remove-Item $tempPath -Recurse
-    }
-
-    mkdir $tempPath | Out-Null
+    New-EmptyFolder $tempPath
     Copy-Item (Join-Path $BaseDir "*") $tempPath -Recurse -Force
     Copy-Item (Join-Path $OutPath "*")  $tempPath -Recurse -Force
     $tempPathFiles = Get-ChildItem $tempPath -Recurse | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
@@ -238,7 +176,7 @@ function CreateDirectoryDiff()
 
     if ($tempDiff -ne $null)
     {
-        $tempDiff | ForEach { Write-Host "Diff fail: $($_.Path)" -ForegroundColor Red }
+        $tempDiff | ForEach { Write-ErrorLog "Diff fail: $($_.Path)" }
         throw "Diff build failed, some files are not included (or different) in diff package."
     }    
 
@@ -289,7 +227,7 @@ if (!$SkipBuild)
 # -------------------------------------------
 if ($ConfigUpdatePath)
 {
-    Write-Host "Updating config values..." -ForegroundColor Green
+    Write-OperationLog "Updating config values..."
     $configPath = Join-Path $OutputDir "PlayniteUI.exe.config"
     [xml]$configXml = Get-Content $configPath
     $customConfigContent = Get-Content $ConfigUpdatePath
@@ -304,7 +242,7 @@ if ($ConfigUpdatePath)
             continue
         }
 
-        Write-Host "Settings config value $proName : $proValue" -ForegroundColor Gray
+        Write-DebugLog "Settings config value $proName : $proValue"
 
         if ($configXml.configuration.appSettings.add.key -contains $proName)
         {
@@ -356,7 +294,7 @@ if ($UpdateDiffs)
 {
     foreach ($diffVersion in $UpdateDiffs)
     {
-        Write-Host "Building diff package from version $diffVersion..." -ForegroundColor Green
+        Write-OperationLog "Building diff package from version $diffVersion..."
 
         $diffString = "{0}to{1}" -f $diffVersion.Replace(".", ""), $buildNumberPlain.Replace(".", "")
         $diffDir = Join-Path $InstallerDir $diffString
@@ -378,10 +316,8 @@ if ($UpdateDiffs)
 # -------------------------------------------
 if ($Portable)
 {
-    Write-Host "Building portable package..." -ForegroundColor Green
-
-    $packageName = "PlaynitePortable.zip"
-
+    Write-OperationLog "Building portable package..."
+    $packageName = Join-Path $BuildsStorageDir "Playnite$buildNumberPlain.zip"
     if (Test-path $packageName)
     {
         Remove-Item $packageName

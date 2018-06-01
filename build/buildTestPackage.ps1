@@ -6,6 +6,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+& .\common.ps1
 
 if (Test-Path $OutputPath)
 {
