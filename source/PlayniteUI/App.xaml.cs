@@ -101,6 +101,11 @@ namespace PlayniteUI
             InitializeComponent();
         }
 
+        private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
+        {
+            Quit();
+        }
+
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             ReleaseResources();
