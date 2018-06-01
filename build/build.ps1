@@ -36,7 +36,10 @@
     [switch]$SkipBuild = $false,
 
     # Sign binary files
-    [switch]$Sign = $false
+    [switch]$Sign = $false,
+
+    # Temp directory for build process
+    [string]$TempDir = (Join-Path $env:TEMP "PlayniteBuild")
 )
 
 $ErrorActionPreference = "Stop"
@@ -199,9 +202,9 @@ function CreateDirectoryDiff()
         [string]$OutPath
     )
     
-    $BaseDirFiles = Get-ChildItem $BaseDir -Recurse | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
-    $TargetDirFiles = Get-ChildItem $TargetDir -Recurse | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
-    $diffs = Compare-Object -ReferenceObject $BaseDirFiles -DifferenceObject $TargetDirFiles -Property Hash -PassThru | Where { $_.SideIndicator -eq "=>" } | Select-Object Path
+    $baseDirFiles = Get-ChildItem $BaseDir -Recurse | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
+    $targetDirFiles = Get-ChildItem $TargetDir -Recurse | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
+    $diffs = Compare-Object -ReferenceObject $baseDirFiles -DifferenceObject $targetDirFiles -Property Hash -PassThru | Where { $_.SideIndicator -eq "=>" } | Select-Object Path
     
     if (Test-Path $OutPath)
     {
@@ -221,7 +224,25 @@ function CreateDirectoryDiff()
         Copy-Item $file.Path $target
     }
 
-    # TODO Add verification of target path
+    $tempPath = Join-Path $TempDir (Split-Path $OutPath -Leaf)
+    if (Test-Path $tempPath)
+    {
+        Remove-Item $tempPath -Recurse
+    }
+
+    mkdir $tempPath | Out-Null
+    Copy-Item (Join-Path $BaseDir "*") $tempPath -Recurse -Force
+    Copy-Item (Join-Path $OutPath "*")  $tempPath -Recurse -Force
+    $tempPathFiles = Get-ChildItem $tempPath -Recurse | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
+    $tempDiff = Compare-Object -ReferenceObject $targetDirFiles -DifferenceObject $tempPathFiles -Property Hash -PassThru
+
+    if ($tempDiff -ne $null)
+    {
+        $tempDiff | ForEach { Write-Host "Diff fail: $($_.Path)" -ForegroundColor Red }
+        throw "Diff build failed, some files are not included (or different) in diff package."
+    }    
+
+    Remove-Item $tempPath -Recurse -Force
 }
 
 # -------------------------------------------
