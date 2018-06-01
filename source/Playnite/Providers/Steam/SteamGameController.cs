@@ -82,7 +82,7 @@ namespace Playnite.Providers.Steam
                         return;
                     }
 
-                    await Task.Delay(2000);
+                    await Task.Delay(Timer.SecondsToMilliseconds(5));
                 }
             });
         }
@@ -110,7 +110,7 @@ namespace Playnite.Providers.Steam
                         return;
                     }
 
-                    await Task.Delay(2000);
+                    await Task.Delay(Timer.SecondsToMilliseconds(5));
                 }
             });
         }
@@ -139,7 +139,7 @@ namespace Playnite.Providers.Steam
                         break;
                     }
 
-                    await Task.Delay(1000);
+                    await Task.Delay(Timer.SecondsToMilliseconds(2));
                 }
 
                 while (true)
@@ -157,7 +157,7 @@ namespace Playnite.Providers.Steam
                         return;
                     }
 
-                    await Task.Delay(1000);
+                    await Task.Delay(Timer.SecondsToMilliseconds(5));
                 }
             });
         }
