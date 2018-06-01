@@ -82,7 +82,7 @@ namespace Playnite.Providers.Origin
                         {
                             if (Game.PlayTask == null)
                             {
-                                origin.GetGamePlayTask(manifest);
+                                Game.PlayTask = origin.GetGamePlayTask(manifest);
                             }
 
                             Game.InstallDirectory = Path.GetDirectoryName(executablePath);

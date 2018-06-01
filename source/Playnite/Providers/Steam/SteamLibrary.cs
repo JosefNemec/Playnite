@@ -44,6 +44,18 @@ namespace Playnite.Providers.Steam
             return $"http://steamcommunity.com/app/{id}/workshop/";
         }
 
+        public GameTask GetPlayTask(int appId)
+        {
+            return new GameTask()
+            {
+                Name = "Play",
+                Type = GameTaskType.URL,
+                Path = @"steam://run/" + appId,
+                IsPrimary = true,
+                IsBuiltIn = true
+            };
+        }       
+
         public Game GetInstalledGameFromFile(string path)
         {
             var kv = new KeyValue();
@@ -69,14 +81,7 @@ namespace Playnite.Providers.Steam
                 ProviderId = kv["appID"].Value,
                 Name = name,
                 InstallDirectory = Path.Combine((new FileInfo(path)).Directory.FullName, "common", kv["installDir"].Value),
-                PlayTask = new GameTask()
-                {
-                    Name = "Play",
-                    Type = GameTaskType.URL,
-                    Path = @"steam://run/" + kv["appID"].Value,
-                    IsPrimary = true,
-                    IsBuiltIn = true
-                }
+                PlayTask = GetPlayTask(int.Parse(kv["appID"].Value))
             };
 
             return game;

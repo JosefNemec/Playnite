@@ -121,7 +121,6 @@ namespace Playnite.Providers.BattleNet
                         {
                             if (app.Type == BattleNetLibrary.BNetAppType.Classic)
                             {
-
                                 Game.PlayTask = new GameTask()
                                 {
                                     Type = GameTaskType.File,

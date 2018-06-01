@@ -72,6 +72,11 @@ namespace Playnite.Providers.Steam
                     var gameState = steam.GetAppState(id);
                     if (gameState.Installed == true)
                     {
+                        if (Game.PlayTask == null)
+                        {
+                            Game.PlayTask = steam.GetPlayTask(int.Parse(Game.ProviderId));
+                        }
+
                         stopWatch.Stop();
                         OnInstalled(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
                         return;
