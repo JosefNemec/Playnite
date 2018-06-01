@@ -12,7 +12,7 @@
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCFirstWindowTitle}" WindowStartupLocation="CenterScreen"
         ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False"
-        Height="450" Width="550" x:Name="WindowMain"
+        Height="450" Width="550" MinHeight="250" MinWidth="390" x:Name="WindowMain" 
         AutomationProperties.AutomationId="WindowWizard">
 
     <controls:WindowBase.Resources>
@@ -22,13 +22,13 @@
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </controls:WindowBase.Resources>
 
-    <Grid>
+    <Grid FocusManager.FocusedElement="{Binding ElementName=ButtonNext}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TabControl DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0" Name="TabMain"
+        <TabControl TabIndex="0" DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0" Name="TabMain"
                     OverridesDefaultStyle="True"
                     SelectedIndex="{Binding SelectedIndex}">
             <TabControl.Style>
@@ -36,10 +36,12 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="TabControl">
-                                <Grid>
-                                    <TabPanel IsItemsHost="True" />
-                                    <ContentPresenter ContentSource="SelectedContent" />
-                                </Grid>                                    
+                                <ScrollViewer x:Name="TabControlScroller" HorizontalScrollBarVisibility="Disabled"  VerticalScrollBarVisibility="Auto" >
+                                    <Grid>
+                                        <TabPanel IsItemsHost="True" />
+                                        <ContentPresenter ContentSource="SelectedContent" />
+                                    </Grid>
+                                </ScrollViewer>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>                        
@@ -56,16 +58,24 @@
                 <DockPanel Margin="20" LastChildFill="False">
                     <TextBlock Text="{DynamicResource LOCSettingsDBLocation}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
                     <TextBlock Text="{DynamicResource LOCFirstDBLocation}" DockPanel.Dock="Top" Margin="5,20,5,0" TextWrapping="Wrap"/>
-                    <RadioButton Name="RadioDbDefault" Content="{DynamicResource LOCFirstDBLocDefault}" GroupName="database"
+                    <RadioButton Name="RadioDbDefault" GroupName="database"
                                 IsChecked="{Binding DatabaseLocation, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=ProgramData}"
-                                DockPanel.Dock="Top" Margin="5,20,5,5"/>
-                    <RadioButton Name="RadioDbCustom" Content="{DynamicResource LOCFirstDBLocCustom}" GroupName="database"
+                                DockPanel.Dock="Top" Margin="5,20,5,5">
+                        <RadioButton.Content>
+                            <TextBlock Text="{DynamicResource LOCFirstDBLocDefault}" TextWrapping="Wrap" />
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton Name="RadioDbCustom" GroupName="database"
                                 IsChecked="{Binding DatabaseLocation, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Custom}"
-                                DockPanel.Dock="Top" Margin="5"/>
-                    <DockPanel DockPanel.Dock="Top" Margin="15,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioDbCustom}">
-                        <Button Content=" ... " DockPanel.Dock="Right" Padding="5,0,5,0" Name="ButtonBrowserDbFile"
+                                DockPanel.Dock="Top" Margin="5">
+                        <RadioButton.Content>
+                            <TextBlock Text="{DynamicResource LOCFirstDBLocCustom}" TextWrapping="Wrap" />
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <DockPanel KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top" Margin="15,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioDbCustom}">
+                        <Button TabIndex="2" Content=" ... " DockPanel.Dock="Right" Padding="5,0,5,0" Name="ButtonBrowserDbFile"
                                 Command="{Binding SelectDbFileCommand}" />
-                        <TextBox AcceptsReturn="False" Margin="10,0,5,0" DockPanel.Dock="Left"
+                        <TextBox TabIndex="1" AcceptsReturn="False" Margin="10,0,5,0" DockPanel.Dock="Left"
                                  Name="TextDbFile" Text="{Binding Settings.DatabasePath}"/>
                     </DockPanel>
                 </DockPanel>
@@ -87,15 +97,15 @@
                 </DockPanel>
             </TabItem>
             <TabItem Visibility="Collapsed">
-                <DockPanel Margin="20" LastChildFill="False">
+                <DockPanel KeyboardNavigation.TabNavigation="Local" Margin="20" LastChildFill="False">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
                         <Image Source="/Images/steamicon.png" Width="32" RenderOptions.BitmapScalingMode="Fant"/>
                         <TextBlock Text="{DynamicResource LOCFirstSteamIntegration}" VerticalAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
                     </StackPanel>
-                    <RadioButton Name="RadioInstalledSteam" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
+                    <RadioButton TabIndex="1" Name="RadioInstalledSteam" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
                                  GroupName="steam" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}" />
-                    <RadioButton Name="RadioLibrarySteam"
+                    <RadioButton TabIndex="2" Name="RadioLibrarySteam"
                                  GroupName="steam" DockPanel.Dock="Top" Margin="5"
                                  IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled}">
                         <RadioButton.Content>
@@ -103,10 +113,10 @@
                                        TextWrapping="Wrap" />
                         </RadioButton.Content>
                     </RadioButton>
-                    <DockPanel DockPanel.Dock="Top" Margin="25,5,5,5"
+                    <DockPanel KeyboardNavigation.TabIndex="3" KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top" Margin="25,5,5,5"
                                IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
                         <TextBlock Text="{DynamicResource LOCSettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5"/>
-                        <Grid DockPanel.Dock="Top">
+                        <Grid KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
@@ -116,55 +126,53 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
 
-                            <RadioButton Content="{DynamicResource LOCNameLabel}" Name="RadioSteamLibName" GroupName="steamsource"
+                            <RadioButton TabIndex="1" Content="{DynamicResource LOCNameLabel}" Name="RadioSteamLibName" GroupName="steamsource"
                                          Grid.Column="0" Grid.Row="0" Margin="5"
                                          IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Name}"/>
-                            <RadioButton Content="{DynamicResource LOCLocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource"
+                            <RadioButton TabIndex="4" Content="{DynamicResource LOCLocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource"
                                          Grid.Column="0" Grid.Row="1" Margin="5"
                                          IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=LocalUser}"/>
-                            <DockPanel Grid.Column="1" Grid.Row="0" Margin="5">
+                            <DockPanel IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}" Grid.Column="1" Grid.Row="0" Margin="5">
                                 <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">           
-                                    <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"
+                                    <Hyperlink KeyboardNavigation.TabIndex="3" NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"
                                                Command="{Binding NavigateUrlCommand}"
                                                CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                                         <Run Text="{DynamicResource LOCSettingsWhatsSteamName}" />
                                     </Hyperlink>
                                 </TextBlock>
-                                <TextBox Text="{Binding Settings.SteamSettings.AccountName}"
-                                         IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}"
-                                         Name="TextSteamAccount" DockPanel.Dock="Left" Margin="0,0,10,0" />
+                                <TextBox TabIndex="2" Text="{Binding Settings.SteamSettings.AccountName}" Name="TextSteamAccount" DockPanel.Dock="Left" Margin="0,0,10,0" />
                             </DockPanel>
-                            <ComboBox IsReadOnly="True" Name="ComboSteamAccount" DisplayMemberPath="AccountName"
+                            <ComboBox TabIndex="5" IsReadOnly="True" Name="ComboSteamAccount" DisplayMemberPath="AccountName"
                                       SelectedValuePath="Id"
                                       ItemsSource="{Binding SteamUsers}"
                                       SelectedValue="{Binding Settings.SteamSettings.AccountId}"
                                       IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"
                                       Grid.Column="1" Grid.Row="1" Margin="5" />
                         </Grid>
-                        <CheckBox Content="{DynamicResource LOCPrivateAccount}" DockPanel.Dock="Top"
+                        <CheckBox TabIndex="2" Content="{DynamicResource LOCPrivateAccount}" DockPanel.Dock="Top"
                                       IsChecked="{Binding Settings.SteamSettings.PrivateAccount}"
                                       Margin="5,5,5,5" Name="CheckSteamPrivate"
                                       ToolTip="{DynamicResource LOCSettingsApiKeyTooltip}"/>
-                        <DockPanel DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=CheckSteamPrivate}"
+                        <DockPanel KeyboardNavigation.TabIndex="3" KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=CheckSteamPrivate}"
                                        Margin="30,5,5,5">
                             <TextBlock Text="{DynamicResource LOCAPIKey}" DockPanel.Dock="Left"
                                            VerticalAlignment="Center"/>
                             <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">
-                                    <Hyperlink NavigateUri="https://steamcommunity.com/dev/apikey"
+                                    <Hyperlink KeyboardNavigation.TabIndex="2" NavigateUri="https://steamcommunity.com/dev/apikey"
                                                Command="{Binding NavigateUrlCommand}"
                                                CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                                         <Run Text="{DynamicResource LOCSettingsApiKeyUrlText}" />
                                     </Hyperlink>
                             </TextBlock>
-                            <TextBox Text="{Binding Settings.SteamSettings.APIKey}"
+                            <TextBox TabIndex="1" Text="{Binding Settings.SteamSettings.APIKey}"
                                          DockPanel.Dock="Left" Margin="10,0,10,0"/>
                         </DockPanel>
                     </DockPanel>
-                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,5,0,0">
-                        <CheckBox Name="CheckSteamImportCat" Content="{DynamicResource LOCFirstSteamImportCategories}"
+                    <StackPanel KeyboardNavigation.TabIndex="4" DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,5,0,0">
+                        <CheckBox TabIndex="11" Name="CheckSteamImportCat" Content="{DynamicResource LOCFirstSteamImportCategories}"
                                   DockPanel.Dock="Top" Margin="5"
                                   IsChecked="{Binding SteamImportCategories}"/>
-                        <ComboBox IsReadOnly="True" Name="ComboSteamAccountCatImport" DisplayMemberPath="AccountName"
+                        <ComboBox TabIndex="12" IsReadOnly="True" Name="ComboSteamAccountCatImport" DisplayMemberPath="AccountName"
                                   SelectedValuePath="Id"
                                   ItemsSource="{Binding SteamUsers}"
                                   SelectedValue="{Binding SteamIdCategoryImport}"
@@ -190,7 +198,7 @@
                         <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonGogAuthenticate"
                                 Command="{Binding AuthGOGCommand}"/>
                         <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
-                        <TextBlock VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap">
                             <TextBlock.Text>
                                 <PriorityBinding>
                                     <Binding Path="GogLoginStatus" IsAsync="True" Mode="OneWay" />
@@ -218,7 +226,7 @@
                         <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonOriginAuthenticate"
                                 Command="{Binding AuthOriginCommand}"/>
                         <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
-                        <TextBlock VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap">
                             <TextBlock.Text>
                                 <PriorityBinding>
                                     <Binding Path="OriginLoginStatus" IsAsync="True" Mode="OneWay" />
@@ -246,7 +254,7 @@
                         <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonBattleNetAuthenticate"
                                 Command="{Binding AuthBattleNetCommand}"/>
                         <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
-                        <TextBlock VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap">
                             <TextBlock.Text>
                                 <PriorityBinding>
                                     <Binding Path="BattleNetLoginStatus" IsAsync="True" Mode="OneWay" />
@@ -292,16 +300,16 @@
 
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
             <DockPanel LastChildFill="False" Margin="5">
-                <Button Content="{DynamicResource LOCFinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"
+                <Button TabIndex="3" Content="{DynamicResource LOCFinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"
                         Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource BottomButton}"
-                        Command="{Binding FinishCommand}"/>
-                <Button Content="{DynamicResource LOCNextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
+                        Command="{Binding FinishCommand}" IsVisibleChanged="ButtonFinish_IsVisibleChanged"/>
+                <Button TabIndex="2" Content="{DynamicResource LOCNextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding NextCommand}"/>
-                <Button Content="{DynamicResource LOCBackLabel}" Name="ButtonBack" DockPanel.Dock="Right"
+                <Button TabIndex="1" Content="{DynamicResource LOCBackLabel}" Name="ButtonBack" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}"
-                        Command="{Binding BackCommand}"/>
+                        Command="{Binding BackCommand}" IsEnabledChanged="ButtonBack_IsEnabledChanged"/>
             </DockPanel>
         </Border>
     </Grid>
