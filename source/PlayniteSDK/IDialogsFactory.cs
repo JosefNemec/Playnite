@@ -46,6 +46,14 @@ namespace Playnite.SDK
     public interface IDialogsFactory
     {
         /// <summary>
+        /// Displays errod dialog window with text message.
+        /// </summary>
+        /// <param name="messageBoxText">Dialog message text.</param>
+        /// <param name="caption">Dialog window caption.</param>
+        /// <returns></returns>
+        MessageBoxResult ShowErrorMessage(string messageBoxText, string caption);
+
+        /// <summary>
         /// Displays dialog window with text message.
         /// </summary>
         /// <param name="messageBoxText">Dialog message text.</param>

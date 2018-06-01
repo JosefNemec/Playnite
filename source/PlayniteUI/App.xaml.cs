@@ -342,7 +342,7 @@ namespace PlayniteUI
         {
             await Task.Run(async () =>
             {
-                await Task.Delay(10000);
+                await Task.Delay(Playnite.Timer.SecondsToMilliseconds(10));
                 if (GlobalTaskHandler.IsActive)
                 {
                     GlobalTaskHandler.Wait();
@@ -352,23 +352,26 @@ namespace PlayniteUI
 
                 while (true)
                 {
-                    try
+                    if (!UpdateViewModel.InstanceInUse)
                     {
-                        if (updater.IsUpdateAvailable)
+                        try
                         {
-                            Dispatcher.Invoke(() =>
+                            if (updater.IsUpdateAvailable)
                             {
-                                var model = new UpdateViewModel(updater, UpdateWindowFactory.Instance, new ResourceProvider(), dialogs);
-                                model.OpenView();
-                            });
+                                Dispatcher.Invoke(() =>
+                                {
+                                    var model = new UpdateViewModel(updater, UpdateWindowFactory.Instance, new ResourceProvider(), dialogs);
+                                    model.OpenView();
+                                });
+                            }
+                        }
+                        catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            logger.Error(exc, "Failed to process update.");
                         }
                     }
-                    catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        logger.Error(exc, "Failed to process update.");
-                    }
 
-                    await Task.Delay(4 * 60 * 60 * 1000);
+                    await Task.Delay(Playnite.Timer.HoursToMilliseconds(4));
                 }
             });
         }

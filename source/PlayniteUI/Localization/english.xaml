@@ -475,7 +475,10 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Update Available</sys:String>
     <sys:String x:Key="LOCUpdaterChangesInfo">Changes since last update:</sys:String>
     <sys:String x:Key="LOCUpdaterInstallUpdate">Download and Install Update</sys:String>
+    <sys:String x:Key="LOCCheckForUpdates">Check for Updates</sys:String>
     <sys:String x:Key="LOCUpdateError">Update Error</sys:String>
+    <sys:String x:Key="LOCUpdateCheckFailMessage">Failed to check for new version.</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">No new version found, you are up to date.</sys:String>
     <sys:String x:Key="LOCUGeneralUpdateFailMessage">Failed to download and install update.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Background task is currently in progress, do you want to cancel it and processed with update installation?</sys:String>
 

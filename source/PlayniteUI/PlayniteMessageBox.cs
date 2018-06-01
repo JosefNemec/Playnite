@@ -159,6 +159,11 @@ namespace PlayniteUI
                 return Invoke(() => PlayniteMessageBox.Show(messageBoxText));
             }
         }
+
+        public MessageBoxResult ShowErrorMessage(string messageBoxText, string caption)
+        {
+            return ShowMessage(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 
     public class PlayniteMessageBoxFullscreen

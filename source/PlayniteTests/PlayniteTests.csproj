@@ -178,6 +178,7 @@
     <Compile Include="Scripting\IronPython\IronPythonScriptTests.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellScriptTests.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellTests.cs" />
+    <Compile Include="TimerTests.cs" />
     <Compile Include="SettingsTests.cs" />
     <Compile Include="ListExtensionsTests.cs" />
     <Compile Include="StringExtensionsTests.cs" />

@@ -2383,6 +2383,8 @@
                                            RenderOptions.BitmapScalingMode="NearestNeighbor" />
                                 </MenuItem.Icon>
                             </MenuItem>
+                            <MenuItem Header="{DynamicResource LOCCheckForUpdates}"
+                                      Command="{Binding CheckForUpdateCommand}" />
                             <Separator />
                             <MenuItem Header="{DynamicResource LOCExitAppLabel}"
                                       Command="{Binding ShutdownCommand}"
