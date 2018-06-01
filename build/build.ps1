@@ -139,7 +139,6 @@ function BuildInnoInstaller()
         throw "Inno build failed."
     }
 
-    (Get-FileHash $DestinationFile -Algorithm MD5).Hash + " $destinationExe" | Out-File ($DestinationFile + ".md5")
     Remove-Item $innoTempScript
 }
 
@@ -264,6 +263,7 @@ if ($ConfigUpdatePath)
 $buildNumber = (Get-ChildItem (Join-Path $OutputDir "PlayniteUI.exe")).VersionInfo.ProductVersion
 $buildNumber = $buildNumber -replace "\.0\.\d+$", ""
 $buildNumberPlain = $buildNumber.Replace(".", "")
+New-Folder $InstallerDir
 
 # -------------------------------------------
 #            Build installer
@@ -285,6 +285,10 @@ if ($Installers)
     {
         SignFile $installerPath
     }
+            
+    $infoFile = Join-Path $InstallerDir "Playnite$buildNumberPlain.exe.info"
+    $buildNumber | Out-File $infoFile
+    (Get-FileHash $installerPath -Algorithm MD5).Hash | Out-File $infoFile -Append
 }
 
 # -------------------------------------------
@@ -303,11 +307,16 @@ if ($UpdateDiffs)
         $includeVcredist = (Get-ChildItem $diffDir | Where { $_.Name -match "CefSharp|libcef" }) -ne $null
         $installerPath = Join-Path $InstallerDir "$diffString.exe"
         BuildInnoInstaller $diffDir $installerPath $buildNumber -IncludeVcredist:$includeVcredist
-
+        Remove-Item $diffDir -Recurse -Force
+        
         if ($Sign)
         {
             SignFile $installerPath
-        }
+        }        
+        
+        $infoFile = Join-Path $InstallerDir "$diffString.exe.info"
+        $diffVersion | Out-File $infoFile
+        (Get-FileHash $installerPath -Algorithm MD5).Hash | Out-File $infoFile -Append
     }
 }
 
