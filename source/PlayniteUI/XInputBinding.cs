@@ -201,44 +201,74 @@ namespace PlayniteUI
             {
                 while (true)
                 {
-                    var state = GamePad.GetState(PlayerIndex.One);                    
-                    if (!state.IsConnected || App.CurrentApp?.IsActive == false)
+                    if (App.CurrentApp?.IsActive != true)
                     {
                         await Task.Delay(pollingRate);
                         continue;
                     }
 
-                    lastState = state.PacketNumber;
+                    var state = GamePad.GetState(PlayerIndex.One);
+                    if (state.IsConnected)
+                    {
+                        ProcessState(state);
+                        await Task.Delay(pollingRate);
+                    }
 
-                    ProcessButtonState(state.Buttons.A, XInputButton.A);
-                    ProcessButtonState(state.Buttons.B, XInputButton.B);
-                    ProcessButtonState(state.Buttons.Back, XInputButton.Back);
-                    ProcessButtonState(state.Buttons.Guide, XInputButton.Guide);
-                    ProcessButtonState(state.Buttons.LeftShoulder, XInputButton.LeftShoulder);
-                    ProcessButtonState(state.Buttons.LeftStick, XInputButton.LeftStick);
-                    ProcessButtonState(state.Buttons.RightShoulder, XInputButton.RightShoulder);
-                    ProcessButtonState(state.Buttons.RightStick, XInputButton.RightStick);
-                    ProcessButtonState(state.Buttons.Start, XInputButton.Start);
-                    ProcessButtonState(state.Buttons.X, XInputButton.X);
-                    ProcessButtonState(state.Buttons.Y, XInputButton.Y);
-                    ProcessButtonState(state.DPad.Down, XInputButton.DPadDown);
-                    ProcessButtonState(state.DPad.Left, XInputButton.DPadLeft);
-                    ProcessButtonState(state.DPad.Right, XInputButton.DPadRight);
-                    ProcessButtonState(state.DPad.Up, XInputButton.DPadUp);
-                    ProcessAxisState(state.Triggers.Left, XInputButton.TriggerLeft, true);
-                    ProcessAxisState(state.Triggers.Right, XInputButton.TriggerRight, true);
-                    ProcessAxisState(state.ThumbSticks.Left.X, XInputButton.LeftStickLeft, false);
-                    ProcessAxisState(state.ThumbSticks.Left.X, XInputButton.LeftStickRight, true);
-                    ProcessAxisState(state.ThumbSticks.Left.Y, XInputButton.LeftStickUp, true);
-                    ProcessAxisState(state.ThumbSticks.Left.Y, XInputButton.LeftStickDown, false);
-                    ProcessAxisState(state.ThumbSticks.Right.X, XInputButton.RightStickLeft, false);
-                    ProcessAxisState(state.ThumbSticks.Right.X, XInputButton.RightStickRight, true);
-                    ProcessAxisState(state.ThumbSticks.Right.Y, XInputButton.RightStickUp, true);
-                    ProcessAxisState(state.ThumbSticks.Right.Y, XInputButton.RightStickDown, false);
-                    
-                    await Task.Delay(pollingRate);                    
+                    state = GamePad.GetState(PlayerIndex.Two);
+                    if (state.IsConnected)
+                    {
+                        ProcessState(state);
+                        await Task.Delay(pollingRate);
+                    }
+
+                    state = GamePad.GetState(PlayerIndex.Three);
+                    if (state.IsConnected)
+                    {
+                        ProcessState(state);
+                        await Task.Delay(pollingRate);
+                    }
+
+                    state = GamePad.GetState(PlayerIndex.Four);
+                    if (state.IsConnected)
+                    {
+                        ProcessState(state);
+                        await Task.Delay(pollingRate);
+                    }
+
+                    await Task.Delay(pollingRate);
                 }
             });
+        }
+
+        private void ProcessState(GamePadState state)
+        {
+            lastState = state.PacketNumber;
+
+            ProcessButtonState(state.Buttons.A, XInputButton.A);
+            ProcessButtonState(state.Buttons.B, XInputButton.B);
+            ProcessButtonState(state.Buttons.Back, XInputButton.Back);
+            ProcessButtonState(state.Buttons.Guide, XInputButton.Guide);
+            ProcessButtonState(state.Buttons.LeftShoulder, XInputButton.LeftShoulder);
+            ProcessButtonState(state.Buttons.LeftStick, XInputButton.LeftStick);
+            ProcessButtonState(state.Buttons.RightShoulder, XInputButton.RightShoulder);
+            ProcessButtonState(state.Buttons.RightStick, XInputButton.RightStick);
+            ProcessButtonState(state.Buttons.Start, XInputButton.Start);
+            ProcessButtonState(state.Buttons.X, XInputButton.X);
+            ProcessButtonState(state.Buttons.Y, XInputButton.Y);
+            ProcessButtonState(state.DPad.Down, XInputButton.DPadDown);
+            ProcessButtonState(state.DPad.Left, XInputButton.DPadLeft);
+            ProcessButtonState(state.DPad.Right, XInputButton.DPadRight);
+            ProcessButtonState(state.DPad.Up, XInputButton.DPadUp);
+            ProcessAxisState(state.Triggers.Left, XInputButton.TriggerLeft, true);
+            ProcessAxisState(state.Triggers.Right, XInputButton.TriggerRight, true);
+            ProcessAxisState(state.ThumbSticks.Left.X, XInputButton.LeftStickLeft, false);
+            ProcessAxisState(state.ThumbSticks.Left.X, XInputButton.LeftStickRight, true);
+            ProcessAxisState(state.ThumbSticks.Left.Y, XInputButton.LeftStickUp, true);
+            ProcessAxisState(state.ThumbSticks.Left.Y, XInputButton.LeftStickDown, false);
+            ProcessAxisState(state.ThumbSticks.Right.X, XInputButton.RightStickLeft, false);
+            ProcessAxisState(state.ThumbSticks.Right.X, XInputButton.RightStickRight, true);
+            ProcessAxisState(state.ThumbSticks.Right.Y, XInputButton.RightStickUp, true);
+            ProcessAxisState(state.ThumbSticks.Right.Y, XInputButton.RightStickDown, false);
         }
 
         private bool ShouldResendKey(XInputButton button)
