@@ -867,7 +867,9 @@ namespace PlayniteUI.ViewModels
         {
             if (!Database.IsOpen)
             {
-                throw new Exception("Cannot load new games, database is not loaded.");
+                Logger.Error("Cannot load new games, database is not loaded.");
+                Dialogs.ShowErrorMessage(Resources.FindString("LOCDatabaseNotOpenedError"), Resources.FindString("LOCDatabaseErroTitle"));
+                return;
             }
 
             if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
@@ -1387,8 +1389,8 @@ namespace PlayniteUI.ViewModels
 
         public virtual void Dispose()
         {
-            GamesView.Dispose();
-            GamesStats.Dispose();
+            GamesView?.Dispose();
+            GamesStats?.Dispose();
             AppSettings.PropertyChanged -= AppSettings_PropertyChanged;
             AppSettings.FilterSettings.PropertyChanged -= FilterSettings_PropertyChanged;
         }

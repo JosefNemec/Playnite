@@ -386,6 +386,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Database Error</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Failed to open library database.</sys:String>
+    <sys:String x:Key="LOCDatabaseNotOpenedError">Database is not opened.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Cannot access library database. File "{0}" is being used by another process or it's in inaccessible location.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Failed to create diagnostics package.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess">Diagnostics package created successfully.</sys:String>
