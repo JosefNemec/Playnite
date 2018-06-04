@@ -173,7 +173,7 @@
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <ContentControl Content="{StaticResource ClearImage}" Height="14" />
-                                <TextBlock Text="CLEAR" VerticalAlignment="Center" Margin="5,0,0,0" />
+                                <TextBlock Text="{DynamicResource LOCClearCapLabel}" VerticalAlignment="Center" Margin="5,0,0,0" />
                             </StackPanel>
                         </Button.Content>
                     </Button>
@@ -189,7 +189,7 @@
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <ContentControl Content="{StaticResource CancelImage}" Height="14" />
-                                <TextBlock Text="BACK" VerticalAlignment="Center" Margin="5,0,0,0" />
+                                <TextBlock Text="{DynamicResource LOCBackCapLabel}" VerticalAlignment="Center" Margin="5,0,0,0" />
                             </StackPanel>
                         </Button.Content>
                     </Button>
@@ -200,7 +200,7 @@
                             HorizontalAlignment="Right" Width="64">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="DONE" VerticalAlignment="Center" />
+                                <TextBlock Text="{DynamicResource LOCDoneCapLabel}" VerticalAlignment="Center" />
                                 <ContentControl Content="{StaticResource ConfirmImage}" Height="14"
                                                 Margin="5,0,0,0"/>
                             </StackPanel>

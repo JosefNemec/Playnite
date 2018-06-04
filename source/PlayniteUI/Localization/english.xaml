@@ -67,6 +67,9 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCFinishLabel">_Finish</sys:String>
     <sys:String x:Key="LOCNextLabel">_Next</sys:String>
     <sys:String x:Key="LOCBackLabel">_Back</sys:String>
+    <sys:String x:Key="LOCDoneCapLabel">DONE</sys:String>
+    <sys:String x:Key="LOCBackCapLabel">BACK</sys:String>
+    <sys:String x:Key="LOCClearCapLabel">CLEAR</sys:String>
     <sys:String x:Key="LOCImportLabel">Import</sys:String>
     <sys:String x:Key="LOCSourceLabel">Source</sys:String>
     <sys:String x:Key="LOCNameLabel">Name</sys:String>
@@ -127,6 +130,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCFriday">Friday</sys:String>
     <sys:String x:Key="LOCSaturday">Saturday</sys:String>
     <sys:String x:Key="LOCSunday">Sunday</sys:String>
+    <sys:String x:Key="LOCImportCompleted">Import completed successfully.</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
