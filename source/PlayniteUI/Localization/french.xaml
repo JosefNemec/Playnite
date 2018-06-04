@@ -67,6 +67,9 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCFinishLabel">Terminer</sys:String>
     <sys:String x:Key="LOCNextLabel">Suivant</sys:String>
     <sys:String x:Key="LOCBackLabel">Retour</sys:String>
+    <sys:String x:Key="LOCDoneCapLabel">FIN</sys:String>
+    <sys:String x:Key="LOCBackCapLabel">RET.</sys:String>
+    <sys:String x:Key="LOCClearCapLabel">EFF.</sys:String>
     <sys:String x:Key="LOCImportLabel">Importer</sys:String>
     <sys:String x:Key="LOCSourceLabel">Source</sys:String>
     <sys:String x:Key="LOCNameLabel">Nom</sys:String>
@@ -127,6 +130,7 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCFriday">Vendredi</sys:String>
     <sys:String x:Key="LOCSaturday">Samedi</sys:String>
     <sys:String x:Key="LOCSunday">Dimanche</sys:String>
+    <sys:String x:Key="LOCImportCompleted">Succès de l'importation</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Des variables spéciales peuvent être utilisées pour ajouter une chaîne dynamique:
 {InstallDir} - Répertoire d'installation du jeu
