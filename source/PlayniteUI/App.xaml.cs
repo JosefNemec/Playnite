@@ -429,10 +429,10 @@ namespace PlayniteUI
                     throw;
                 }
 
-                GamesEditor?.Dispose();
-                Database?.CloseDatabase();
                 AppSettings?.SaveSettings();
                 Api?.Dispose();
+                GamesEditor?.Dispose();
+                Database?.CloseDatabase();
             }, ResourceProvider.Instance.FindString("LOCClosingPlaynite"));
 
             progressModel.ActivateProgress();

@@ -64,6 +64,17 @@ namespace Playnite.Scripting.IronPython
             }
         }
 
+        public override void OnGameStarting(Game game)
+        {
+            if (Runtime.GetFunctionExits("on_game_starting"))
+            {
+                Runtime.Execute("on_game_starting(__game)", new Dictionary<string, object>()
+                {
+                    { "__game", game }
+                });
+            }
+        }
+
         public override void OnGameStarted(Game game)
         {
             if (Runtime.GetFunctionExits("on_game_started"))

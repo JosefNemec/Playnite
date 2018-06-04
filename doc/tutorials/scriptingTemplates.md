@@ -21,6 +21,13 @@ function global:OnScriptLoaded()
 {
 }
 
+function global:OnGameStarting()
+{
+    param(
+        $game
+    )
+}
+
 function global:OnGameStarted()
 {
     param(
@@ -70,6 +77,9 @@ __exports = [
 ]
 
 def on_script_loaded():
+    pass
+
+def on_game_starting(game):
     pass
 
 def on_game_started(game):

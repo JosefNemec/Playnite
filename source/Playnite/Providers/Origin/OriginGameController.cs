@@ -26,7 +26,8 @@ namespace Playnite.Providers.Origin
 
         public override void Play(List<Emulator> emulators)
         {
-            Dispose();
+            ReleaseResources();
+            OnStarting(this, new GameControllerEventArgs(this, 0));
             stopWatch = Stopwatch.StartNew();
             procMon = new ProcessMonitor();
             procMon.TreeDestroyed += ProcMon_TreeDestroyed;
@@ -37,14 +38,14 @@ namespace Playnite.Providers.Origin
 
         public override void Install()
         {
-            Dispose();
+            ReleaseResources();
             ProcessStarter.StartUrl($"origin2://game/launch?offerIds={Game.ProviderId}&autoDownload=true");
             StartInstallWatcher();
         }
 
         public override void Uninstall()
         {
-            Dispose();
+            ReleaseResources();
             ProcessStarter.StartProcess("appwiz.cpl", string.Empty);
             StartUninstallWatcher();
         }

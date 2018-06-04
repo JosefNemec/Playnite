@@ -30,17 +30,18 @@ namespace Playnite.Providers.GOG
             this.settings = settings;
         }
 
-        public override void Dispose()
+        public override void ReleaseResources()
         {
-            base.Dispose();
+            base.ReleaseResources();
             fileWatcher?.Dispose();
         }
 
         public override void Play(List<Emulator> emulators)
         {
-            Dispose();
+            ReleaseResources();
             if (settings?.GOGSettings.RunViaGalaxy == true)
             {
+                OnStarting(this, new GameControllerEventArgs(this, 0));
                 stopWatch = Stopwatch.StartNew();
                 procMon = new ProcessMonitor();
                 procMon.TreeStarted += ProcMon_TreeStarted;
@@ -57,14 +58,14 @@ namespace Playnite.Providers.GOG
 
         public override void Install()
         {
-            Dispose();
+            ReleaseResources();
             Process.Start(@"goggalaxy://openGameView/" + Game.ProviderId);
             StartInstallWatcher();
         }
 
         public override void Uninstall()
         {
-            Dispose();
+            ReleaseResources();
             var uninstaller = Path.Combine(Game.InstallDirectory, "unins000.exe");
             if (!File.Exists(uninstaller))
             {

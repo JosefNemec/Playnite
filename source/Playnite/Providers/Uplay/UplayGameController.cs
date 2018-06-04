@@ -26,9 +26,10 @@ namespace Playnite.Providers.Uplay
 
         public override void Play(List<Emulator> emulators)
         {
-            Dispose();
+            ReleaseResources();
             if (Game.PlayTask.Type == GameTaskType.URL && Game.PlayTask.Path.StartsWith("uplay", StringComparison.InvariantCultureIgnoreCase))
             {
+                OnStarting(this, new GameControllerEventArgs(this, 0));
                 stopWatch = Stopwatch.StartNew();
                 procMon = new ProcessMonitor();
                 procMon.TreeStarted += ProcMon_TreeStarted;
@@ -45,14 +46,14 @@ namespace Playnite.Providers.Uplay
 
         public override void Install()
         {
-            Dispose();
+            ReleaseResources();
             ProcessStarter.StartUrl("uplay://install/" + Game.ProviderId);
             StartInstallWatcher();
         }
 
         public override void Uninstall()
         {
-            Dispose();
+            ReleaseResources();
             ProcessStarter.StartUrl("uplay://uninstall/" + Game.ProviderId);
             StartUninstallWatcher();
         }

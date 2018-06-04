@@ -110,6 +110,14 @@ namespace Playnite.SDK
         }
 
         /// <summary>
+        /// Called before game is started.
+        /// </summary>
+        /// <param name="game">Game that will be started.</param>
+        public virtual void OnGameStarting(Game game)
+        {
+        }
+
+        /// <summary>
         /// Called when game has started.
         /// </summary>
         /// <param name="game">Game that started.</param>

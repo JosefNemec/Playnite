@@ -60,6 +60,8 @@ namespace Playnite.Providers
 
         void ActivateAction(GameTask action);
 
+        event GameControllerEventHandler Starting;
+
         event GameControllerEventHandler Started;
 
         event GameControllerEventHandler Stopped;
@@ -82,6 +84,7 @@ namespace Playnite.Providers
             get; private set;
         }
 
+        public event GameControllerEventHandler Starting;
         public event GameControllerEventHandler Started;
         public event GameControllerEventHandler Stopped;
         public event GameControllerEventHandler Uninstalled;
@@ -105,6 +108,8 @@ namespace Playnite.Providers
                 throw new Exception("Cannot start game without play task");
             }
 
+            Dispose();
+            OnStarting(this, new GameControllerEventArgs(this, 0));
             var proc = GameHandler.ActivateTask(Game.PlayTask, Game, emulators);
             OnStarted(this, new GameControllerEventArgs(this, 0));
 
@@ -138,8 +143,19 @@ namespace Playnite.Providers
 
         public virtual void Dispose()
         {
+            ReleaseResources();
+        }
+
+        public virtual void ReleaseResources()
+        {
             watcherToken?.Cancel();
             procMon?.Dispose();
+
+        }
+
+        public virtual void OnStarting(object sender, GameControllerEventArgs args)
+        {
+            execContext.Post((a) => Starting?.Invoke(sender, args), null);
         }
 
         public virtual void OnStarted(object sender, GameControllerEventArgs args)

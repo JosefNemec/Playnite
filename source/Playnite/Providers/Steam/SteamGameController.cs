@@ -28,9 +28,10 @@ namespace Playnite.Providers.Steam
 
         public override void Play(List<Emulator> emulators)
         {
-            Dispose();
+            ReleaseResources();
             if (Game.PlayTask.Type == GameTaskType.URL && Game.PlayTask.Path.StartsWith("steam", StringComparison.InvariantCultureIgnoreCase))
             {
+                OnStarting(this, new GameControllerEventArgs(this, 0));
                 GameHandler.ActivateTask(Game.PlayTask, Game);
                 StartRunningWatcher();
             }
@@ -42,14 +43,14 @@ namespace Playnite.Providers.Steam
 
         public override void Install()
         {
-            Dispose();
+            ReleaseResources();
             Process.Start(@"steam://install/" + Game.ProviderId);
             StartInstallWatcher();
         }
 
         public override void Uninstall()
         {
-            Dispose();
+            ReleaseResources();
             Process.Start(@"steam://uninstall/" + Game.ProviderId);
             StartUninstallWatcher();
         }
