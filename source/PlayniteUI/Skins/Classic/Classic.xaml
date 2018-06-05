@@ -2589,9 +2589,9 @@
                 </Grid>
             </DockPanel>
             
-            <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" Grid.Row="1" Grid.Column="0">
+            <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}" Grid.Row="1" Grid.Column="0">
                 <DockPanel>
-                    <Border BorderThickness="1,0,0,1" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Right" Margin="0,0,0,36"                    
+                    <Border BorderThickness="1,0,0,1" BorderBrush="{DynamicResource NormalBorderBrush}" DockPanel.Dock="Right" Margin="0,0,0,36"                    
                             Visibility="{Binding IsChecked, ElementName=CheckFilterView, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <DockPanel>
                             <DockPanel Margin="10,5,5,5" DockPanel.Dock="Top">
@@ -2851,7 +2851,7 @@
                         <TabItem Header="{DynamicResource LOCListLabel}" >
                             <DockPanel>
                                 <pc:ExtendedListBox SelectionMode="Extended" BorderThickness="0,0,1,0"
-                                         BorderBrush="{StaticResource NormalBorderBrush}" Width="310"
+                                         BorderBrush="{DynamicResource NormalBorderBrush}" Width="310"
                                          ItemsSource="{Binding GamesView.CollectionView}"
                                          SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
                                          SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"

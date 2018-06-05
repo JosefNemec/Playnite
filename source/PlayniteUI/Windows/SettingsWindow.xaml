@@ -30,9 +30,9 @@
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </controls:WindowBase.Resources>
 
-    <Border Margin="0,10,0,0" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+    <Border Margin="0,10,0,0" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
         <DockPanel>
-            <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+            <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
                 <DockPanel LastChildFill="False" Margin="5">
                     <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right"
                             Style="{StaticResource BottomButton}" IsCancel="True"
@@ -43,7 +43,7 @@
                 </DockPanel>
             </Border>
 
-            <TreeView DockPanel.Dock="Left" BorderThickness="0,0,1,0" BorderBrush="{StaticResource NormalBorderBrush}"
+            <TreeView DockPanel.Dock="Left" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}"
                       Name="TreeSections" MinWidth="140">
                 <TreeView.Resources>
                     <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
