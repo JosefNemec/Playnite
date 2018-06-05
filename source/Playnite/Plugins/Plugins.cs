@@ -20,14 +20,22 @@ namespace Playnite.Plugins
             }
         }
 
+        public static IEnumerable<string> GetDllsFromFolder(string path)
+        {
+            foreach (var file in Directory.GetFiles(path, "*.dll", SearchOption.TopDirectoryOnly))
+            {
+                yield return file;
+            }
+        }
+
         public static List<string> GetPluginFiles()
         {
             var plugins = new List<string>();
             if (Directory.Exists(Paths.PluginsProgramPath))
             {
-                foreach (var file in Directory.GetFiles(Paths.PluginsProgramPath, "*.dll", SearchOption.TopDirectoryOnly))
+                foreach (var dir in Directory.GetDirectories(Paths.PluginsProgramPath))
                 {
-                    plugins.Add(file);
+                    plugins.AddRange(GetDllsFromFolder(dir));
                 }
             }
 
@@ -35,9 +43,9 @@ namespace Playnite.Plugins
             {
                 if (Directory.Exists(Paths.PluginsUserDataPath))
                 {
-                    foreach (var file in Directory.GetFiles(Paths.PluginsUserDataPath, "*.dll", SearchOption.TopDirectoryOnly))
+                    foreach (var dir in Directory.GetDirectories(Paths.PluginsUserDataPath))
                     {
-                        plugins.Add(file);
+                        plugins.AddRange(GetDllsFromFolder(dir));
                     }
                 }
             }

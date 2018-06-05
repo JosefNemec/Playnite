@@ -15,7 +15,11 @@ Following examples will focus on use of C# and Visual Studio, but use with other
 
 ### Plugin Location
 
-When using portable version of Playnite plugin files (dll files) are stored in Playnite's program folder inside `Plugins`. Only plugins placed directly inside the plugins folder are loaded, any plugins inside additional subfolders are ignored. When using installed version of Playnite place plugins inside `%AppData%\Playnite\Plugins\` folder.
+When using portable version of Playnite plugin files (dll files) are stored in Playnite's program folder inside `Plugins`. Plugins must be placed inside subfolder for them to be loaded. When using installed version of Playnite place plugins inside `%AppData%\Playnite\Plugins\` folder.
+
+Example plugin location:
+
+```%AppData%\Playnite\Plugins\TestPlugin\TestPlugin.dll```
 
 When distributing plugins only distribute plugin dll and additional references except `Json.Net` and `LiteDB`, which are automatically referenced by Playnite.
 

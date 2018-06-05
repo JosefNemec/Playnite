@@ -13,9 +13,13 @@ If you want to use compiled .NET languages (C#, VB.NET etc.) to extend Playnite 
 
 ### Script Location
 
-When using portable version of Playnite script files are stored in Playnite's program folder inside `\Scripts\PowerShell` folder for PowerShell scripts and `\Scripts\IronPython` for IronPython scripts. Only scripts placed directly inside the script folder are loaded, any scripts inside additional subfolders are ignored.
+When using portable version of Playnite script files are stored in Playnite's program folder inside `\Scripts\PowerShell` folder for PowerShell scripts and `\Scripts\IronPython` for IronPython scripts. Scripts must be placed inside subfolder for them to be loaded.
 
 When using installed version of Playnite place scripts inside `%AppData%\Playnite\` folder instead of program folder while keeping the same structure based on used script language.
+
+Example script location:
+
+```%AppData%\Playnite\Scripts\IronPython\TestScript\TestScript.py```
 
 ### Reloading Scripts
 
