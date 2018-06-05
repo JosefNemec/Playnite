@@ -67,6 +67,9 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCFinishLabel">Fertig</sys:String>
     <sys:String x:Key="LOCNextLabel">Weiter</sys:String>
     <sys:String x:Key="LOCBackLabel">Zurück</sys:String>
+    <sys:String x:Key="LOCDoneCapLabel">Fertig</sys:String>
+    <sys:String x:Key="LOCBackCapLabel">Zurück</sys:String>
+    <sys:String x:Key="LOCClearCapLabel">Leeren</sys:String>
     <sys:String x:Key="LOCImportLabel">Importieren</sys:String>
     <sys:String x:Key="LOCSourceLabel">Quelle</sys:String>
     <sys:String x:Key="LOCNameLabel">Name</sys:String>
@@ -127,6 +130,7 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCFriday">Freitag</sys:String>
     <sys:String x:Key="LOCSaturday">Samstag</sys:String>
     <sys:String x:Key="LOCSunday">Sonntag</sys:String>
+    <sys:String x:Key="LOCImportCompleted">Import erfolgreich abgeschlossen.</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Es können folgende Variablen verwendet werden:
 {InstallDir} - Installationspfad des Spiels
@@ -385,6 +389,7 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Datenbankfehler</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Fehler beim Öffnen der Datenbank.</sys:String>
+    <sys:String x:Key="LOCDatabaseNotOpenedError">Fehler beim Import: Datenbank ist nicht geöffnet.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Fehler beim Öffnen der Datenbank: Datei "{0}" wird von einem anderen Prozess verwendet oder ist nicht lesbar.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Fehler beim Erstellen von Diagnosedaten.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess">Diagnosedaten erfolgreich erstellt.</sys:String>
@@ -395,7 +400,7 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCSteamInstalledImportError">Fehler beim Import der installierten Steam-Spiele.</sys:String>
     <sys:String x:Key="LOCGOGInstalledImportError">Fehler beim Import der installierten GOG-Spiele.</sys:String>
     <sys:String x:Key="LOCOriginInstalledImportError">Fehler beim Import der installierten Origin-Spiele.</sys:String>
-    <sys:String x:Key="LOCUplayInstalledImportError">Fehler beim Import der installiertne Uplay-Spiele.</sys:String>
+    <sys:String x:Key="LOCUplayInstalledImportError">Fehler beim Import der installierten Uplay-Spiele.</sys:String>
 
     <sys:String x:Key="LOCBnetLibraryImportError">Fehler beim Import der Battle.net-Bibliothek.</sys:String>
     <sys:String x:Key="LOCSteamLibraryImportError">Fehler beim Import der Steam-Bibliothek.</sys:String>
@@ -475,7 +480,12 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metadaten importieren</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Aktualisierung verfügbar</sys:String>
     <sys:String x:Key="LOCUpdaterChangesInfo">Änderungen seit der letzten Aktualisierung:</sys:String>
-    <sys:String x:Key="LOCUpdaterInstallUpdate">Aktualisieren</sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate">Playnite aktualisieren</sys:String>
+    <sys:String x:Key="LOCCheckForUpdates">Suche nach Aktualisierungen</sys:String>
+    <sys:String x:Key="LOCUpdateError">Fehler beim Aktualisieren</sys:String>
+    <sys:String x:Key="LOCUpdateCheckFailMessage">Fehler bei der Suche nach Aktualisierungen.</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Keine neue Version gefunden, Playnite ist aktuell.</sys:String>
+    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Fehler beim Aktualisieren von Playnite:</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Im Hintergrund wird gerade ein Prozess ausgeführt, soll dieser beendet und mit dem Update fortgefahren werden?</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Themes-Liste neu laden</sys:String>
