@@ -11,7 +11,7 @@
     <iconUrl>https://playnite.link/applogo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>SDK plugin library for Playnite video game library manager.</description>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>https://playnite.link/docs/changelog.html</releaseNotes>
     <copyright>Copyright © Josef Nemec 2018</copyright>
     <tags>sdk gaming</tags>
     <dependencies>
