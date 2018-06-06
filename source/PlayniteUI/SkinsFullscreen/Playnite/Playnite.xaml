@@ -649,13 +649,13 @@
                     <pui:VirtualizingGridPanel>
                         <pui:VirtualizingGridPanel.Style>
                             <Style TargetType="pui:VirtualizingGridPanel">
-                                <Setter Property="Columns" Value="{Binding AppSettings.FullscreenSettings.ColumnCount}" />
                                 <Setter Property="Rows" Value="{Binding AppSettings.FullscreenSettings.RowCount}" />
+                                <Setter Property="Columns" Value="{Binding AppSettings.FullscreenSettings.ColumnCount}" />
                                 <Setter Property="Margin" Value="20" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ShowGameDetails}" Value="True">
-                                        <Setter Property="Columns" Value="1" />
                                         <Setter Property="Rows" Value="{Binding AppSettings.FullscreenSettings.DetailsRowCount}" />
+                                        <Setter Property="Columns" Value="1" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
