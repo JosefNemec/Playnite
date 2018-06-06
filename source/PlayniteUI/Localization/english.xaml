@@ -64,9 +64,9 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCAddTitle">Add</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Default Icon</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Default Cover Image</sys:String>
-    <sys:String x:Key="LOCFinishLabel">_Finish</sys:String>
-    <sys:String x:Key="LOCNextLabel">_Next</sys:String>
-    <sys:String x:Key="LOCBackLabel">_Back</sys:String>
+    <sys:String x:Key="LOCFinishLabel">Finish</sys:String>
+    <sys:String x:Key="LOCNextLabel">Next</sys:String>
+    <sys:String x:Key="LOCBackLabel">Back</sys:String>
     <sys:String x:Key="LOCDoneCapLabel">DONE</sys:String>
     <sys:String x:Key="LOCBackCapLabel">BACK</sys:String>
     <sys:String x:Key="LOCClearCapLabel">CLEAR</sys:String>
@@ -85,11 +85,11 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCWebsiteLabel">Website</sys:String>
     <sys:String x:Key="LOCPathLabel">Path</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
-    <sys:String x:Key="LOCSaveLabel">_Save</sys:String>
-    <sys:String x:Key="LOCCloseLabel">_Close</sys:String>
-    <sys:String x:Key="LOCCancelLabel">C_ancel</sys:String>
-    <sys:String x:Key="LOCYesLabel">_Yes</sys:String>
-    <sys:String x:Key="LOCNoLabel">_No</sys:String>
+    <sys:String x:Key="LOCSaveLabel">Save</sys:String>
+    <sys:String x:Key="LOCCloseLabel">Close</sys:String>
+    <sys:String x:Key="LOCCancelLabel">Cancel</sys:String>
+    <sys:String x:Key="LOCYesLabel">Yes</sys:String>
+    <sys:String x:Key="LOCNoLabel">No</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Welcome</sys:String>
     <sys:String x:Key="LOCLocalUserLabel">Local User</sys:String>
     <sys:String x:Key="LOCAuthenticateLabel">Authenticate</sys:String>
@@ -315,7 +315,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCFirstSteamImportCategories">Import categories from account:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Other games</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesText">Click on the button bellow to import other installed games or browse for them manually (including Windows Store games).</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesImportButton">_Import Games</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesImportButton">Import Games</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuration Finished</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Initial setup has been completed. Remember that you can change all settings later via 'Settings' menu.
 
