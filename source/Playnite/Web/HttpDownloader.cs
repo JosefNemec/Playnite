@@ -30,7 +30,7 @@ namespace Playnite.Web
 
         public static string DownloadString(string url, List<Cookie> cookies)
         {
-            return DownloadString(url, cookies);
+            return downloader.DownloadString(url, cookies);
         }
 
         public static string DownloadString(string url, List<Cookie> cookies, Encoding encoding)
