@@ -91,16 +91,6 @@ namespace Playnite.Providers.Origin
                             return;
                         }
                     }
-                    else
-                    {
-                        if (PlayniteEnvironment.ThrowAllErrors)
-                        {
-                            throw new Exception($"Cannot start installation of {Game.Name} Origin game, cannot determine install location.");
-                        }
-
-                        logger.Error($"Cannot start installation of {Game.Name} Origin game, cannot determine install location.");
-                        return;
-                    }
 
                     await Task.Delay(2000);
                 }
