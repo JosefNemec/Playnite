@@ -563,7 +563,7 @@ namespace Playnite
         {
             get
             {
-                return !File.Exists(Paths.UninstallerPath);
+                return !File.Exists(Paths.UninstallerNsisPath) && !File.Exists(Paths.UninstallerInnoPath);
             }
         }
 

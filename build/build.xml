@@ -1,4 +1,4 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="PreparePackage">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
     <Target Name="BeforeBuild">
         <RemoveDir Directories="$(OutputPath)" />
         <MakeDir Directories="$(OutputPath)" />

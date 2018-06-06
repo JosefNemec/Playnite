@@ -429,7 +429,7 @@ namespace PlayniteUI.ViewModels
                 var games = steamLib.GetCategorizedGames(Settings.SteamSettings.AccountId);
 
                 database.ImportCategories(games);
-                dialogs.ShowMessage("Import finished.", "Import Successful");
+                dialogs.ShowMessage(resources.FindString("LOCImportCompleted"));
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {

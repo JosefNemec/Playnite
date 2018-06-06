@@ -9,65 +9,15 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NLog;
 using System.Windows;
+using Playnite.App;
+using Flurl;
+using Playnite.Web;
+using System.Net;
 
-namespace Playnite
+namespace Playnite.App
 {
-    public class Update
+    public class Updater
     {
-        public class UpdateData
-        {
-            public class ReleaseNote
-            {
-                public string version
-                {
-                    get; set;
-                }
-
-                public string file
-                {
-                    get; set;
-                }
-            }
-
-            public string version
-            {
-                get; set;
-            }
-
-            public string url
-            {
-                get; set;
-            }
-
-            public string url2
-            {
-                get; set;
-            }
-
-            public string notesUrlRoot
-            {
-                get; set;
-            }
-
-            public List<ReleaseNote> releases
-            {
-                get; set;
-            }
-        }
-
-        public class ReleaseNoteData
-        {
-            public string Version
-            {
-                get; set;
-            }
-
-            public string Note
-            {
-                get; set;
-            }
-        }
-
         private static string updateBranch
         {
             get
@@ -80,7 +30,7 @@ namespace Playnite
         {
             get
             {
-                return ConfigurationManager.AppSettings["UpdateUrl"];
+                return string.Format(ConfigurationManager.AppSettings["UpdateUrl"] ?? "", updateBranch);
             }
         }
 
@@ -88,13 +38,14 @@ namespace Playnite
         {
             get
             {
-                return ConfigurationManager.AppSettings["UpdateUrl2"];
+                return string.Format(ConfigurationManager.AppSettings["UpdateUrl2"] ?? "", updateBranch);
             }
         }
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private UpdateData updateManifest;
+        private UpdateManifest updateManifest;
         private IPlayniteApplication playniteApp;
+        private IDownloader downloader;
 
         private string updaterPath
         {
@@ -102,19 +53,6 @@ namespace Playnite
             {
                 return Path.Combine(Paths.TempPath, "update.exe");
             }
-        }
-
-        private string downloadCompletePath
-        {
-            get
-            {
-                return Path.Combine(Paths.TempPath, "download.done");
-            }
-        }
-
-        public List<ReleaseNoteData> LatestReleaseNotes
-        {
-            get; set;
         }
 
         public bool IsUpdateAvailable
@@ -125,111 +63,109 @@ namespace Playnite
             }
         }
 
-        public Update(IPlayniteApplication app)
+        public Updater(IPlayniteApplication app) : this(app, new Downloader())
         {
-            playniteApp = app;
         }
 
-        public void DownloadReleaseNotes()
+        public Updater(IPlayniteApplication app, IDownloader webDownloader)
         {
-            LatestReleaseNotes = new List<ReleaseNoteData>();
-            var current = GetCurrentVersion();
+            playniteApp = app;
+            downloader = webDownloader;
+        }
 
+        public List<ReleaseNoteData> DownloadReleaseNotes(Version currentVersion)
+        {
+            var notes = new List<ReleaseNoteData>();
             if (updateManifest == null)
             {
                 DownloadManifest();
             }
 
-            foreach (var version in updateManifest.releases)
+            foreach (var version in updateManifest.ReleaseNotes)
             {
-                if ((new Version(version.version)).CompareTo(current) > 0)
+                if (version.Version.CompareTo(currentVersion) > 0)
                 {
-                    var noteUrl = updateManifest.notesUrlRoot + version.file;
-                    var note = Web.DownloadString(noteUrl);
-                    LatestReleaseNotes.Add(new ReleaseNoteData()
+                    var noteUrls = updateManifest.ReleaseNotesUrlRoots.Select(a => Url.Combine(a,version.FileName));
+                    var note = downloader.DownloadString(noteUrls);
+                    notes.Add(new ReleaseNoteData()
                     {
-                        Version = version.version,
+                        Version = version.Version,
                         Note = note
                     });
                 }
             }
-        }           
 
-        public void DownloadUpdate()
+            return notes;
+        }
+
+        public UpdateManifest.Package GetUpdatePackage(Version currentVersion)
         {
             if (updateManifest == null)
             {
                 DownloadManifest();
             }
 
-            try
-            {
-                DownloadUpdate(updateManifest.url);
-                return;
-            }
-            catch (Exception e)
-            {
-                logger.Warn(e, "Failed to download update from main URL");
-            }
-
-            try
-            {
-                if (!string.IsNullOrEmpty(updateManifest.url2))
-                {
-                    DownloadUpdate(updateManifest.url2);
-                    return;
-                }
-            }
-            catch (Exception e)
-            {
-                logger.Warn(e, "Failed to download update from secondary URL");
-            }
-
-            throw new Exception("Failed to download update from provided URLs.");
+            return GetUpdatePackage(updateManifest, currentVersion);
         }
 
-        public void DownloadUpdate(string url)
+        public UpdateManifest.Package GetUpdatePackage(UpdateManifest manifest, Version currentVersion)
         {
-            logger.Info("Downloading new update from " + url);
-            Directory.CreateDirectory(Paths.TempPath);
+            var diff = manifest.Packages.FirstOrDefault(a => a.BaseVersion.ToString(2) == currentVersion.ToString(2));
+            if (diff != null)
+            {
+                return diff;
+            }
 
-            if (File.Exists(downloadCompletePath) && File.Exists(updaterPath))
-            {                
-                var info = FileVersionInfo.GetVersionInfo(updaterPath);
-                if (info.FileVersion == GetLatestVersion().ToString())
+            return manifest.Packages.First(a => a.BaseVersion == manifest.LatestVersion);
+        }
+
+        public async Task DownloadUpdate(UpdateManifest.Package package, Action<DownloadProgressChangedEventArgs> progressHandler)
+        {
+            if (updateManifest == null)
+            {
+                DownloadManifest();
+            }
+
+            if (File.Exists(updaterPath))
+            {
+                var md5 = FileSystem.GetMD5(updaterPath);
+                if (md5 == package.Checksum)
                 {
-                    logger.Info("Update already ready to install");
                     return;
-                }
-                else
-                {
-                    File.Delete(downloadCompletePath);
                 }
             }
 
-            Web.DownloadFile(url, updaterPath);
-            File.Create(downloadCompletePath);
+            try
+            {
+                var downloadUrls = updateManifest.DownloadServers.Select(a => Url.Combine(a, updateManifest.LatestVersion.ToString(), package.FileName));
+                await downloader.DownloadFileAsync(downloadUrls, updaterPath, progressHandler);
+                var md5 = FileSystem.GetMD5(updaterPath);
+                if (md5 != package.Checksum)
+                {
+                    throw new Exception($"Checksum of downloaded file doesn't match: {md5} vs {package.Checksum}");
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Warn(e, "Failed to download update file.");
+                throw new Exception("Failed to download update file.");
+            }
         }
 
         public void InstallUpdate()
         {            
-            var portable = Settings.IsPortable ? "/Portable 1" : "/Portable 0";
+            var portable = Settings.IsPortable ? "/PORTABLE" : "";
             logger.Info("Installing new update to {0}, in {1} mode", Paths.ProgramFolder, portable);
 
             Task.Run(() =>
             {
-                Process.Start(updaterPath, string.Format(@"/ProgressOnly 1 {0} /D={1}", portable, Paths.ProgramFolder));
+                Process.Start(updaterPath, string.Format(@"/SILENT /NOCANCEL /DIR=""{0}"" /UPDATE {1}", Paths.ProgramFolder, portable));
             });
 
             playniteApp.Quit();
         }
 
-        private string GetUpdateManifestData(string url)
-        {
-            return Web.DownloadString(url);
-        }
-
-        public UpdateData DownloadManifest()
+        public UpdateManifest DownloadManifest()
         {
             var dataString = string.Empty;
 
@@ -259,7 +195,7 @@ namespace Playnite
                 throw new Exception("Failed to download update manifest.");
             }
 
-            updateManifest = JsonConvert.DeserializeObject<Dictionary<string, UpdateData>>(dataString)[updateBranch];
+            updateManifest = JsonConvert.DeserializeObject<UpdateManifest>(dataString);
             return updateManifest;
         }
 
@@ -270,12 +206,17 @@ namespace Playnite
                 DownloadManifest();
             }
 
-            return new Version(updateManifest.version);
+            return updateManifest.LatestVersion;
         }
 
         public static Version GetCurrentVersion()
         {
             return System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
+        }
+
+        private string GetUpdateManifestData(string url)
+        {
+            return downloader.DownloadString(url);
         }
     }
 }

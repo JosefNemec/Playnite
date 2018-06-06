@@ -20,7 +20,8 @@ namespace Playnite.Providers
         {
             get; private set;
         }
-                
+
+        public event GameControllerEventHandler Starting;
         public event GameControllerEventHandler Started;
         public event GameControllerEventHandler Stopped;
         public event GameControllerEventHandler Uninstalled;
@@ -50,6 +51,7 @@ namespace Playnite.Providers
             controller.Installed += Controller_Installed;
             controller.Uninstalled += Controller_Uninstalled;
             controller.Started += Controller_Started;
+            controller.Starting += Controller_Starting;
             controller.Stopped += Controller_Stopped;
             Controllers.Add(controller);
             database?.AddActiveController(controller);
@@ -76,6 +78,7 @@ namespace Playnite.Providers
             controller.Installed -= Controller_Installed;
             controller.Uninstalled -= Controller_Uninstalled;
             controller.Started -= Controller_Started;
+            controller.Starting -= Controller_Starting;
             controller.Stopped -= Controller_Stopped;
             controller.Dispose();
         }
@@ -88,6 +91,11 @@ namespace Playnite.Providers
         private void Controller_Stopped(object sender, GameControllerEventArgs e)
         {
             Stopped?.Invoke(this, e);
+        }
+
+        private void Controller_Starting(object sender, GameControllerEventArgs e)
+        {
+            Starting?.Invoke(this, e);
         }
 
         private void Controller_Started(object sender, GameControllerEventArgs e)

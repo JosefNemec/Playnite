@@ -64,9 +64,12 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCAddTitle">Add</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle">Default Icon</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Default Cover Image</sys:String>
-    <sys:String x:Key="LOCFinishLabel">_Finish</sys:String>
-    <sys:String x:Key="LOCNextLabel">_Next</sys:String>
-    <sys:String x:Key="LOCBackLabel">_Back</sys:String>
+    <sys:String x:Key="LOCFinishLabel">Finish</sys:String>
+    <sys:String x:Key="LOCNextLabel">Next</sys:String>
+    <sys:String x:Key="LOCBackLabel">Back</sys:String>
+    <sys:String x:Key="LOCDoneCapLabel">DONE</sys:String>
+    <sys:String x:Key="LOCBackCapLabel">BACK</sys:String>
+    <sys:String x:Key="LOCClearCapLabel">CLEAR</sys:String>
     <sys:String x:Key="LOCImportLabel">Import</sys:String>
     <sys:String x:Key="LOCSourceLabel">Source</sys:String>
     <sys:String x:Key="LOCNameLabel">Name</sys:String>
@@ -82,11 +85,11 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCWebsiteLabel">Website</sys:String>
     <sys:String x:Key="LOCPathLabel">Path</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
-    <sys:String x:Key="LOCSaveLabel">_Save</sys:String>
-    <sys:String x:Key="LOCCloseLabel">_Close</sys:String>
-    <sys:String x:Key="LOCCancelLabel">C_ancel</sys:String>
-    <sys:String x:Key="LOCYesLabel">_Yes</sys:String>
-    <sys:String x:Key="LOCNoLabel">_No</sys:String>
+    <sys:String x:Key="LOCSaveLabel">Save</sys:String>
+    <sys:String x:Key="LOCCloseLabel">Close</sys:String>
+    <sys:String x:Key="LOCCancelLabel">Cancel</sys:String>
+    <sys:String x:Key="LOCYesLabel">Yes</sys:String>
+    <sys:String x:Key="LOCNoLabel">No</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Welcome</sys:String>
     <sys:String x:Key="LOCLocalUserLabel">Local User</sys:String>
     <sys:String x:Key="LOCAuthenticateLabel">Authenticate</sys:String>
@@ -127,6 +130,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCFriday">Friday</sys:String>
     <sys:String x:Key="LOCSaturday">Saturday</sys:String>
     <sys:String x:Key="LOCSunday">Sunday</sys:String>
+    <sys:String x:Key="LOCImportCompleted">Import completed successfully.</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
@@ -311,7 +315,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCFirstSteamImportCategories">Import categories from account:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Other games</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesText">Click on the button bellow to import other installed games or browse for them manually (including Windows Store games).</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesImportButton">_Import Games</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesImportButton">Import Games</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuration Finished</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Initial setup has been completed. Remember that you can change all settings later via 'Settings' menu.
 
@@ -382,6 +386,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Database Error</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Failed to open library database.</sys:String>
+    <sys:String x:Key="LOCDatabaseNotOpenedError">Database is not opened.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Cannot access library database. File "{0}" is being used by another process or it's in inaccessible location.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Failed to create diagnostics package.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess">Diagnostics package created successfully.</sys:String>
@@ -474,7 +479,12 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metadata search</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Update Available</sys:String>
     <sys:String x:Key="LOCUpdaterChangesInfo">Changes since last update:</sys:String>
-    <sys:String x:Key="LOCUpdaterInstallUpdate">Install Update</sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate">Download and Install Update</sys:String>
+    <sys:String x:Key="LOCCheckForUpdates">Check for Updates</sys:String>
+    <sys:String x:Key="LOCUpdateError">Update Error</sys:String>
+    <sys:String x:Key="LOCUpdateCheckFailMessage">Failed to check for new version.</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">No new version found, you are up to date.</sys:String>
+    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Failed to download and install update.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Background task is currently in progress, do you want to cancel it and processed with update installation?</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Reload theme list</sys:String>

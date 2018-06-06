@@ -41,7 +41,7 @@ namespace PlayniteTests.Providers.Origin
         public void GetInstalledGamesCacheTest()
         {
             var originLib = new OriginLibrary();
-            OriginPaths.CachePath = Path.Combine(Playnite.PlayniteTests.TempPath, "origincache");
+            OriginPaths.CachePath = Path.Combine(PlayniteTests.TempPath, "origincache");
             FileSystem.CreateDirectory(OriginPaths.CachePath, true);
 
             var games = originLib.GetInstalledGames(true);

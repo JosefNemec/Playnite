@@ -21,7 +21,7 @@ namespace PlayniteTests.Database
         [Test]
         public void PlatformGeneratorTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "defaultplatforms.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "defaultplatforms.db");
             FileSystem.DeleteFile(path);
             var db = new GameDatabase(null);
             using (db.OpenDatabase(path))
@@ -46,7 +46,7 @@ namespace PlayniteTests.Database
         [Test]
         public void Migration0toCurrentTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "migration_0_Current.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "migration_0_Current.db");
             FileSystem.DeleteFile(path);
 
             var games = new List<Playnite.Models.Old0.Game>()
@@ -107,7 +107,7 @@ namespace PlayniteTests.Database
         [Test]
         public void Migration1toCurrentTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "migration_1_Current.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "migration_1_Current.db");
             FileSystem.DeleteFile(path);
 
             var emulators = new List<Playnite.Models.Old1.Emulator>()
@@ -198,9 +198,9 @@ namespace PlayniteTests.Database
                     genericCollection.Update(game.AsDocument);
                 }
 
-                var file = Playnite.PlayniteTests.CreateFakeFile();
+                var file = PlayniteTests.CreateFakeFile();
                 database.FileStorage.Upload(file.Name, file.Path);
-                file = Playnite.PlayniteTests.CreateFakeFile();
+                file = PlayniteTests.CreateFakeFile();
                 database.FileStorage.Upload(file.Name, file.Path);
             }
 
@@ -259,7 +259,7 @@ namespace PlayniteTests.Database
         [Test]
         public void GameStatesFixTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "gamestatefixes.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "gamestatefixes.db");
             FileSystem.DeleteFile(path);
 
             using (var database = new LiteDatabase(path))
@@ -312,7 +312,7 @@ namespace PlayniteTests.Database
         [Test]
         public void SourcesFixTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "sourcesfix.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "sourcesfix.db");
             FileSystem.DeleteFile(path);
 
             using (var database = new LiteDatabase(path))

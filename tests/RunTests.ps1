@@ -4,9 +4,11 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-Import-Module "Pester"
-Import-Module "PSNativeAutomation"
+Import-Module Pester
+Import-Module PSNativeAutomation
+Import-Module powershell-yaml
 Invoke-Expression ".\TestExtensions.ps1"
+Invoke-Expression ".\PlayniteCommon.ps1"
 
 if ($TestName)
 {

@@ -1,10 +1,14 @@
 ﻿{
     "stable":  {
-                   "version":  "4.21",
-                   "url":  "http://playnite.cz/update/4.21/PlayniteInstaller.exe",
-                   "url2":  "https://github.com/JosefNemec/Playnite/releases/download/4.21/PlayniteInstaller.exe",
+                   "version":  "4.30",
+                   "url":  "http://playnite.cz/update/4.30/PlayniteInstaller.exe",
+                   "url2":  "https://github.com/JosefNemec/Playnite/releases/download/4.30/PlayniteInstaller.exe",
                    "notesUrlRoot":  "http://playnite.cz/update/",
                    "releases":  [
+                                    {
+                                        "version":  "4.30",
+                                        "file":  "4.30.html"
+                                    },
                                     {
                                         "version":  "4.21",
                                         "file":  "4.21.html"

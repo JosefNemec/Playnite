@@ -3341,7 +3341,14 @@
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
-
+                            <RadioButton Command="{Binding CheckForUpdateCommand}" 
+                                         DockPanel.Dock="Bottom" Margin="5,5,0,30">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCCheckForUpdates}" />
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
                             <RadioButton Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
                                          CommandParameter="https://playnite.link/docs/"
                                          DockPanel.Dock="Bottom">
@@ -3353,7 +3360,6 @@
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
-
                             <RadioButton Command="{Binding ReportIssueCommand}" DockPanel.Dock="Bottom">
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal">

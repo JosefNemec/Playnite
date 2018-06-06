@@ -27,7 +27,7 @@ namespace Playnite.Providers.BattleNet
 
         public override void Play(List<Emulator> emulators)
         {
-            Dispose();
+            ReleaseResources();
             stopWatch = Stopwatch.StartNew();
             procMon = new ProcessMonitor();
             procMon.TreeDestroyed += Monitor_TreeDestroyed;
@@ -35,12 +35,14 @@ namespace Playnite.Providers.BattleNet
 
             if (Game.PlayTask.Type == GameTaskType.URL && Game.PlayTask.Path.StartsWith("battlenet", StringComparison.InvariantCultureIgnoreCase))
             {
+                OnStarting(this, new GameControllerEventArgs(this, 0));
                 GameHandler.ActivateTask(Game.PlayTask, Game, emulators);
                 procMon.TreeStarted += ProcMon_TreeStarted;
                 procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
             }
             else if (app.Type == BattleNetLibrary.BNetAppType.Classic && Game.PlayTask.Path.Contains(app.ClassicExecutable))
             {
+                OnStarting(this, new GameControllerEventArgs(this, 0));
                 var proc = GameHandler.ActivateTask(Game.PlayTask, Game, emulators);
                 procMon.WatchDirectoryProcesses(Game.InstallDirectory, true);
                 OnStarted(this, new GameControllerEventArgs(this, 0));
@@ -53,7 +55,7 @@ namespace Playnite.Providers.BattleNet
 
         public override void Install()
         {
-            Dispose();
+            ReleaseResources();
             var product = BattleNetLibrary.GetAppDefinition(Game.ProviderId);
             if (product.Type == BattleNetLibrary.BNetAppType.Classic)
             {
@@ -69,7 +71,7 @@ namespace Playnite.Providers.BattleNet
 
         public override void Uninstall()
         {
-            Dispose();
+            ReleaseResources();
             var product = BattleNetLibrary.GetAppDefinition(Game.ProviderId);
             var entry = BattleNetLibrary.GetUninstallEntry(product);
             if (entry != null)
@@ -121,7 +123,6 @@ namespace Playnite.Providers.BattleNet
                         {
                             if (app.Type == BattleNetLibrary.BNetAppType.Classic)
                             {
-
                                 Game.PlayTask = new GameTask()
                                 {
                                     Type = GameTaskType.File,

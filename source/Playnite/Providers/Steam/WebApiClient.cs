@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NLog;
+using Playnite.Web;
 
 namespace Playnite.Providers.Steam
 {
@@ -21,7 +22,7 @@ namespace Playnite.Providers.Steam
         {
             var url = @"http://store.steampowered.com/api/appdetails?appids={0}";
             url = string.Format(url, appId);
-            return Web.DownloadString(url);
+            return HttpDownloader.DownloadString(url);
         }
 
         public static StoreAppDetailsResult.AppDetails GetStoreAppDetail(int appId)

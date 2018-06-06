@@ -12,6 +12,7 @@ using Playnite.Database;
 using System.IO;
 using Playnite.SDK.Models;
 using Playnite.SDK;
+using Playnite.Web;
 
 namespace Playnite.MetaProviders
 {
@@ -131,7 +132,7 @@ namespace Playnite.MetaProviders
             if (!string.IsNullOrEmpty(game.Image))
             {
                 var name = Path.GetFileName(game.Image);
-                image = new FileDefinition($"images/custom/{name}", name, Web.DownloadData(game.Image));
+                image = new FileDefinition($"images/custom/{name}", name, HttpDownloader.DownloadData(game.Image));
             }
 
             return new GameMetadata(game, null, image, string.Empty);

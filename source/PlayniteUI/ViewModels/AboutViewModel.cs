@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Playnite;
+using Playnite.App;
 using Playnite.SDK;
 using Playnite.Services;
 using PlayniteUI.Commands;
@@ -22,7 +23,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                return "Playnite " + Update.GetCurrentVersion().ToString(2);
+                return "Playnite " + Updater.GetCurrentVersion().ToString(2);
             }
         }
 

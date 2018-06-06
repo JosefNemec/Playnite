@@ -16,7 +16,7 @@ namespace PlayniteTests.Database
     [TestFixture]
     public class GameDatabasePlatformsTests
     {
-        private string dbPath = Path.Combine(Playnite.PlayniteTests.TempPath, "platformstest.db");
+        private string dbPath = Path.Combine(PlayniteTests.TempPath, "platformstest.db");
 
         [SetUp]
         public void Init()

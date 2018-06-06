@@ -51,6 +51,11 @@ namespace PlayniteUITests
             return new StringSelectionDialogResult(false, string.Empty);
         }
 
+        public MessageBoxResult ShowErrorMessage(string messageBoxText, string caption)
+        {
+            return MessageBoxResult.None;
+        }
+
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
         {
             return MessageBoxResult.None;

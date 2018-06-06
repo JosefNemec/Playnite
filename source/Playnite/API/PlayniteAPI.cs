@@ -95,6 +95,7 @@ namespace Playnite.API
             LoadScripts();
             LoadPlugins();
             controllers.Installed += Controllers_Installed;
+            controllers.Starting += Controllers_Starting;
             controllers.Started += Controllers_Started;
             controllers.Stopped += Controllers_Stopped;
             controllers.Uninstalled += Controllers_Uninstalled;
@@ -106,6 +107,7 @@ namespace Playnite.API
             DisposeScripts();
             DisposePlugins();
             controllers.Installed -= Controllers_Installed;
+            controllers.Starting -= Controllers_Starting;
             controllers.Started -= Controllers_Installed;
             controllers.Stopped -= Controllers_Installed;
             controllers.Uninstalled -= Controllers_Installed;
@@ -280,6 +282,33 @@ namespace Playnite.API
             }
         }
 
+        private void Controllers_Starting(object sender, GameControllerEventArgs args)
+        {
+            foreach (var script in scripts)
+            {
+                try
+                {
+                    script.OnGameStarting(database.GetGame(args.Controller.Game.Id));
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnGameStarting method from {script.Name} script.");
+                }
+            }
+
+            foreach (var plugin in plugins)
+            {
+                try
+                {
+                    plugin.OnGameStarting(database.GetGame(args.Controller.Game.Id));
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnGameStarting method from {plugin.Properties.PluginName} plugin.");
+                }
+            }
+        }
+
         private void Controllers_Started(object sender, GameControllerEventArgs args)
         {
             foreach (var script in scripts)
@@ -347,17 +376,17 @@ namespace Playnite.API
                     logger.Error(e, $"Failed to load execute OnScriptLoaded method from {script.Name} script.");
                     continue;
                 }
+            }
 
-                foreach (var plugin in plugins)
+            foreach (var plugin in plugins)
+            {
+                try
                 {
-                    try
-                    {
-                        plugin.OnLoaded();
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, $"Failed to load execute OnLoaded method from {plugin.Properties.PluginName} plugin.");
-                    }
+                    plugin.OnLoaded();
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to load execute OnLoaded method from {plugin.Properties.PluginName} plugin.");
                 }
             }
         }

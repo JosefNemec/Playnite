@@ -21,7 +21,7 @@ namespace PlayniteTests.Database
         public void CheckSumCreationTest()
         {
             var image = Path.Combine(Paths.ProgramFolder, "Resources", "Images", "applogo.png");
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "filechecksum.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "filechecksum.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);
@@ -37,7 +37,7 @@ namespace PlayniteTests.Database
         public void MultiAddtionTest()
         {
             var image = Path.Combine(Paths.ProgramFolder, "Resources", "Images", "applogo.png");
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "filemulti.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "filemulti.db");
 
             FileSystem.DeleteFile(path);
             var db = new GameDatabase(null);

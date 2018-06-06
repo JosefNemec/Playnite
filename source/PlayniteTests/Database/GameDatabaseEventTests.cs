@@ -14,7 +14,7 @@ namespace PlayniteTests.Database
     [TestFixture]
     public class GameDatabaseEventTests
     {
-        private string dbPath = Path.Combine(Playnite.PlayniteTests.TempPath, "events.db");
+        private string dbPath = Path.Combine(PlayniteTests.TempPath, "events.db");
         private GameDatabase db;
         [SetUp]
         public void Init()

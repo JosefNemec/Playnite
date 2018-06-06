@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using Newtonsoft.Json;
 using NLog;
+using Playnite.App;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -121,7 +122,7 @@ namespace Playnite.Services
             {
                 Id = winId,
                 WinVersion = Environment.OSVersion.VersionString,
-                PlayniteVersion = Update.GetCurrentVersion().ToString()
+                PlayniteVersion = Updater.GetCurrentVersion().ToString()
             };
 
             var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");

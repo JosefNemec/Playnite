@@ -121,6 +121,7 @@ namespace Playnite.Scripting
         public abstract void InvokeExportedFunction(ScriptFunctionExport function);
         public abstract void SetVariable(string name, object value);
         public abstract void OnScriptLoaded();
+        public abstract void OnGameStarting(Game game);
         public abstract void OnGameStarted(Game game);
         public abstract void OnGameStopped(Game game, long ellapsedSeconds);
         public abstract void OnGameInstalled(Game game);

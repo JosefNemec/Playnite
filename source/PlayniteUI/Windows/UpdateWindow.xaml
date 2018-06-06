@@ -1,17 +1,17 @@
-﻿<controls:WindowBase x:Class="PlayniteUI.Windows.UpdateWindow"
+﻿<controls:WindowBase x:Class="PlayniteUI.UpdateWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PlayniteUI.Windows"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         xmlns:html="clr-namespace:TheArtOfDev.HtmlRenderer.WPF;assembly=HtmlRenderer.WPF"
+        xmlns:pui="clr-namespace:PlayniteUI"
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCUpdaterWindowTitle}" Height="500" Width="600" WindowStartupLocation="CenterOwner"
-        ShowInTaskbar="True">
-
+        ShowInTaskbar="True" ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -42,10 +42,15 @@
         </DockPanel>
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
             <DockPanel LastChildFill="False" Margin="5">
+                <ProgressBar Value="{Binding UpdateProgress}" Maximum="100"
+                             Visibility="{Binding ShowProgress, Converter={pui:BooleanToVisibilityConverter}}"
+                             DockPanel.Dock="Top" Margin="5"/>
                 <Button Name="ButtonClose" Content="{DynamicResource LOCCloseLabel}" DockPanel.Dock="Right" IsCancel="True"
+                        IsEnabled="{Binding ShowProgress, Converter={pui:NegateConverter}}"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding CloseCommand}"/>
                 <Button Name="ButtonInstall" Content="{DynamicResource LOCUpdaterInstallUpdate}" DockPanel.Dock="Right"
+                        IsEnabled="{Binding ShowProgress, Converter={pui:NegateConverter}}"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding InstallUpdateCommand}"/>
             </DockPanel>

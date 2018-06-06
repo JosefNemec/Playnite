@@ -15,6 +15,7 @@ using Playnite.Providers;
 using NLog;
 using Playnite.SDK.Models;
 using Playnite.SDK;
+using Playnite.Web;
 
 namespace Playnite.MetaProviders
 {
@@ -97,7 +98,7 @@ namespace Playnite.MetaProviders
         public List<SearchResult> Search(string searchTerm)
         {
             var url = string.Format(@"https://en.wikipedia.org/w/api.php?action=query&srsearch={0}&format=json&list=search&srlimit=50", HttpUtility.UrlEncode(searchTerm));
-            var stringResult = Web.DownloadString(url);
+            var stringResult = HttpDownloader.DownloadString(url);
             var result = JsonConvert.DeserializeObject<SearchResponse>(stringResult);
 
             if (result.error != null)
@@ -119,7 +120,7 @@ namespace Playnite.MetaProviders
         public WikiPage GetPage(string pageTitle)
         {
             var url = string.Format(@"https://en.wikipedia.org/w/api.php?action=parse&page={0}&format=json", HttpUtility.UrlEncode(pageTitle));
-            var stringResult = Web.DownloadString(url);
+            var stringResult = HttpDownloader.DownloadString(url);
             var result = JsonConvert.DeserializeObject<ParseResponse>(stringResult);
 
             if (result.error != null)

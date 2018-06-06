@@ -4,8 +4,10 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:PlayniteUI"
              Exit="Application_Exit"
-             Startup="Application_Startup" ShutdownMode="OnExplicitShutdown"
-             Activated="Application_Activated" Deactivated="Application_Deactivated">
+             Startup="Application_Startup" ShutdownMode="OnExplicitShutdown"             
+             Activated="Application_Activated"
+             Deactivated="Application_Deactivated"
+             SessionEnding="Application_SessionEnding">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

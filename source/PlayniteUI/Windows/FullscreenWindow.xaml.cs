@@ -23,15 +23,10 @@ namespace PlayniteUI
 
         private void WindowFullscreen_Activated(object sender, System.EventArgs e)
         {
-            if (!PlayniteEnvironment.IsDebugBuild)
-            {
-                Topmost = true;
-            }
         }
 
         private void WindowFullscreen_Deactivated(object sender, System.EventArgs e)
         {
-            Topmost = false;
         }
     }
 }

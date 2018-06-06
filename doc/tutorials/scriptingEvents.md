@@ -12,6 +12,7 @@ Available Events
 |PowerShell Name | Python Name | Event | Passed Arguments |
 | - | - | - | - |
 | OnScriptLoaded | on_script_loaded | Script is loaded by Playnite. | None |
+| OnGameStarting | on_game_starting | Before game is started. | [Game](xref:Playnite.SDK.Models.Game) |
 | OnGameStarted | on_game_started | Game started running. | [Game](xref:Playnite.SDK.Models.Game) |
 | OnGameStopped | on_game_stopped | Game stopped running.  | [Game](xref:Playnite.SDK.Models.Game) and session length in seconds |
 | OnGameInstalled | on_game_installed | Game is installed. | [Game](xref:Playnite.SDK.Models.Game) |

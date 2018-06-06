@@ -11,6 +11,7 @@ using System.Threading;
 using System.Text.RegularExpressions;
 using System.Windows;
 using Playnite.Controls;
+using Playnite.Web;
 
 namespace Playnite.Providers.Origin
 {
@@ -38,14 +39,14 @@ namespace Playnite.Providers.Origin
         public static GameStoreDataResponse GetGameStoreData(string gameId)
         {
             var url = string.Format(@"https://api2.origin.com/ecommerce2/public/supercat/{0}/en_IE?country=IE", gameId);
-            var stringData = Encoding.UTF8.GetString(Web.DownloadData(url));
+            var stringData = Encoding.UTF8.GetString(HttpDownloader.DownloadData(url));
             return JsonConvert.DeserializeObject<GameStoreDataResponse>(stringData);
         }
 
         public static GameLocalDataResponse GetGameLocalData(string gameId)
         {
             var url = string.Format(@"https://api1.origin.com/ecommerce2/public/{0}/en_US", gameId);
-            var stringData = Encoding.UTF8.GetString(Web.DownloadData(url));
+            var stringData = Encoding.UTF8.GetString(HttpDownloader.DownloadData(url));
             return JsonConvert.DeserializeObject<GameLocalDataResponse>(stringData);
         }
 

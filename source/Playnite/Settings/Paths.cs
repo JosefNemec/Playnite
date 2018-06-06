@@ -81,7 +81,15 @@ namespace Playnite
             }
         }
 
-        public static string UninstallerPath
+        public static string UninstallerInnoPath
+        {
+            get
+            {
+                return Path.Combine(ProgramFolder, "unins000.exe");
+            }
+        }
+
+        public static string UninstallerNsisPath
         {
             get
             {

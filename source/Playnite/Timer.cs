@@ -33,5 +33,20 @@ namespace Playnite
         {
             return new ExecutionTimer(name);
         }
+
+        public static int HoursToMilliseconds(int hours)
+        {
+            return MinutesToMilliseconds(hours * 60);
+        }
+
+        public static int MinutesToMilliseconds(int minutes)
+        {
+            return SecondsToMilliseconds(minutes * 60);
+        }
+
+        public static int SecondsToMilliseconds(int seconds)
+        {
+            return seconds * 1000;
+        }
     }
 }

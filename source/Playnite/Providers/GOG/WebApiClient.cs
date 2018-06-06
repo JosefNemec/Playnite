@@ -3,6 +3,7 @@ using CefSharp.Wpf;
 using Newtonsoft.Json;
 using NLog;
 using Playnite.Controls;
+using Playnite.Web;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -43,7 +44,7 @@ namespace Playnite.Providers.GOG
 
             try
             {
-                data = Web.DownloadString(gameUrl, new List<System.Net.Cookie>() { new System.Net.Cookie("gog_lc", localeString) }).Split('\n');
+                data = HttpDownloader.DownloadString(gameUrl, new List<System.Net.Cookie>() { new System.Net.Cookie("gog_lc", localeString) }).Split('\n');
             }
             catch (WebException e)
             {
@@ -86,7 +87,7 @@ namespace Playnite.Providers.GOG
 
             try
             {
-                var stringData = Web.DownloadString(string.Format(baseUrl, id), new List<System.Net.Cookie>() { new System.Net.Cookie("gog_lc", localeString) });
+                var stringData = HttpDownloader.DownloadString(string.Format(baseUrl, id), new List<System.Net.Cookie>() { new System.Net.Cookie("gog_lc", localeString) });
                 return JsonConvert.DeserializeObject<ProductApiDetail>(stringData);
             }
             catch (WebException exc)
@@ -326,7 +327,7 @@ namespace Playnite.Providers.GOG
         public bool Login(Window parent = null)
         {
             var loginUrl = string.Empty;
-            var mainPage = Web.DownloadString("https://www.gog.com/").Split('\n');
+            var mainPage = HttpDownloader.DownloadString("https://www.gog.com/").Split('\n');
             foreach (var line in mainPage)
             {
                 if (line.TrimStart().StartsWith("var galaxyAccounts"))

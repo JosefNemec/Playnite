@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Playnite;
+using Playnite.App;
 using Playnite.Database;
 using Playnite.MetaProviders;
 using Playnite.Providers.Steam;
@@ -298,6 +299,7 @@ namespace PlayniteUI.ViewModels
         public RelayCommand<object> OpenSearchCommand { get; private set; }
         public RelayCommand<object> ToggleFilterPanelCommand { get; private set; }
         public RelayCommand<object> InstallScriptCommand { get; private set; }
+        public RelayCommand<object> CheckForUpdateCommand { get; private set; }
         #endregion
 
         #region Game Commands
@@ -534,6 +536,12 @@ namespace PlayniteUI.ViewModels
             ClearFiltersCommand = new RelayCommand<object>((a) =>
             {
                 ClearFilters();
+            });
+
+            CheckForUpdateCommand = new RelayCommand<object>((a) =>
+            {
+                MainMenuOpened = false;
+                CheckForUpdate();
             });
 
             RemoveGameSelectionCommand = new RelayCommand<object>((a) =>
@@ -859,7 +867,9 @@ namespace PlayniteUI.ViewModels
         {
             if (!Database.IsOpen)
             {
-                throw new Exception("Cannot load new games, database is not loaded.");
+                Logger.Error("Cannot load new games, database is not loaded.");
+                Dialogs.ShowErrorMessage(Resources.FindString("LOCDatabaseNotOpenedError"), Resources.FindString("LOCDatabaseErroTitle"));
+                return;
             }
 
             if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
@@ -1319,6 +1329,28 @@ namespace PlayniteUI.ViewModels
             context.Send((c => Messages.Clear()), null);
         }
 
+        public void CheckForUpdate()
+        {
+            try
+            {
+                var updater = new Updater(App.CurrentApp);
+                if (updater.IsUpdateAvailable)
+                {
+                    var model = new UpdateViewModel(updater, UpdateWindowFactory.Instance, Resources, Dialogs);
+                    model.OpenView();
+                }
+                else
+                {
+                    Dialogs.ShowMessage(Resources.FindString("LOCUpdateNoNewUpdateMessage"), string.Empty);                    
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(e, "Failed to check for update.");
+                Dialogs.ShowErrorMessage(Resources.FindString("LOCUpdateCheckFailMessage"), Resources.FindString("LOCUpdateError"));
+            }
+        }
+
         public void OpenFullScreen()
         {
             if (GlobalTaskHandler.IsActive)
@@ -1357,8 +1389,8 @@ namespace PlayniteUI.ViewModels
 
         public virtual void Dispose()
         {
-            GamesView.Dispose();
-            GamesStats.Dispose();
+            GamesView?.Dispose();
+            GamesStats?.Dispose();
             AppSettings.PropertyChanged -= AppSettings_PropertyChanged;
             AppSettings.FilterSettings.PropertyChanged -= FilterSettings_PropertyChanged;
         }

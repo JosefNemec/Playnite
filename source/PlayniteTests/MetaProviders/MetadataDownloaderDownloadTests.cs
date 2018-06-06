@@ -32,7 +32,7 @@ namespace PlayniteTests.MetaProviders
         [Test]
         public async Task IGDBSourceTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "metadownload.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "metadownload.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);
@@ -117,7 +117,7 @@ namespace PlayniteTests.MetaProviders
         [Test]
         public async Task StoreSourceTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "metadownload.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "metadownload.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);
@@ -185,7 +185,7 @@ namespace PlayniteTests.MetaProviders
         [Test]
         public async Task IGDBStoreCombinedTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "metadownload.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "metadownload.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);
@@ -320,7 +320,7 @@ namespace PlayniteTests.MetaProviders
         public async Task MissingDataTest()
         {
             // Test that downloader doesn't change existing values to null when missing by provider
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "metadownload.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "metadownload.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);
@@ -388,7 +388,7 @@ namespace PlayniteTests.MetaProviders
         [Test]
         public async Task SkipExistingTest()
         {
-            var path = Path.Combine(Playnite.PlayniteTests.TempPath, "metadownload.db");
+            var path = Path.Combine(PlayniteTests.TempPath, "metadownload.db");
             FileSystem.DeleteFile(path);
 
             var db = new GameDatabase(null);

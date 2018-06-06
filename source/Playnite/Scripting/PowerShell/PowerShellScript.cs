@@ -62,6 +62,17 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
+        public override void OnGameStarting(Game game)
+        {
+            if (Runtime.GetFunctionExits("OnGameStarting"))
+            {
+                Runtime.Execute("OnGameStarting $__game", new Dictionary<string, object>()
+                {
+                    { "__game", game }
+                });
+            }
+        }
+
         public override void OnGameStarted(Game game)
         {
             if (Runtime.GetFunctionExits("OnGameStarted"))

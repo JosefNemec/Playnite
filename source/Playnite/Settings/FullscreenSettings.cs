@@ -23,7 +23,7 @@ namespace Playnite
             }
         }
 
-        private int rowCount = 2;
+        private int rowCount = 3;
         public int RowCount
         {
             get

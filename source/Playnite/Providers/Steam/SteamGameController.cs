@@ -28,9 +28,10 @@ namespace Playnite.Providers.Steam
 
         public override void Play(List<Emulator> emulators)
         {
-            Dispose();
+            ReleaseResources();
             if (Game.PlayTask.Type == GameTaskType.URL && Game.PlayTask.Path.StartsWith("steam", StringComparison.InvariantCultureIgnoreCase))
             {
+                OnStarting(this, new GameControllerEventArgs(this, 0));
                 GameHandler.ActivateTask(Game.PlayTask, Game);
                 StartRunningWatcher();
             }
@@ -42,14 +43,14 @@ namespace Playnite.Providers.Steam
 
         public override void Install()
         {
-            Dispose();
+            ReleaseResources();
             Process.Start(@"steam://install/" + Game.ProviderId);
             StartInstallWatcher();
         }
 
         public override void Uninstall()
         {
-            Dispose();
+            ReleaseResources();
             Process.Start(@"steam://uninstall/" + Game.ProviderId);
             StartUninstallWatcher();
         }
@@ -72,12 +73,17 @@ namespace Playnite.Providers.Steam
                     var gameState = steam.GetAppState(id);
                     if (gameState.Installed == true)
                     {
+                        if (Game.PlayTask == null)
+                        {
+                            Game.PlayTask = steam.GetPlayTask(int.Parse(Game.ProviderId));
+                        }
+
                         stopWatch.Stop();
                         OnInstalled(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
                         return;
                     }
 
-                    await Task.Delay(2000);
+                    await Task.Delay(Timer.SecondsToMilliseconds(5));
                 }
             });
         }
@@ -105,7 +111,7 @@ namespace Playnite.Providers.Steam
                         return;
                     }
 
-                    await Task.Delay(2000);
+                    await Task.Delay(Timer.SecondsToMilliseconds(5));
                 }
             });
         }
@@ -134,7 +140,7 @@ namespace Playnite.Providers.Steam
                         break;
                     }
 
-                    await Task.Delay(1000);
+                    await Task.Delay(Timer.SecondsToMilliseconds(2));
                 }
 
                 while (true)
@@ -152,7 +158,7 @@ namespace Playnite.Providers.Steam
                         return;
                     }
 
-                    await Task.Delay(1000);
+                    await Task.Delay(Timer.SecondsToMilliseconds(5));
                 }
             });
         }

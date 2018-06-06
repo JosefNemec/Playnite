@@ -123,6 +123,11 @@ namespace Playnite
                         return null;
                     }
 
+                    if (file.Attributes.HasFlag(FileAttributes.Directory))
+                    {
+                        continue;
+                    }
+
                     var versionInfo = FileVersionInfo.GetVersionInfo(file.FullName);
                     var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(Path.GetDirectoryName(file.FullName)).Name;
 
@@ -175,6 +180,11 @@ namespace Playnite
                     if (cancelToken?.IsCancellationRequested == true)
                     {
                         return null;
+                    }
+
+                    if (shortcut.Attributes.HasFlag(FileAttributes.Directory))
+                    {
+                        continue;
                     }
 
                     var fileName = shortcut.Name;

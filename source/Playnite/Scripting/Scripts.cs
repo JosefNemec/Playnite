@@ -23,24 +23,32 @@ namespace Playnite.Scripting
             }
         }
 
+        public static IEnumerable<string> GetScriptFilesFromFolder(string path, string pattern)
+        {
+            foreach (var file in Directory.GetFiles(path, pattern, SearchOption.TopDirectoryOnly))
+            {
+                yield return file;
+            }
+        }
+
         public static List<string> GetScriptFiles()
         {
             var scripts = new List<string>();
             var psScripts = Path.Combine(Paths.ScriptsProgramPath, powerShellFolder);
             if (Directory.Exists(psScripts))
             {
-                foreach (var file in Directory.GetFiles(psScripts, "*.ps1", SearchOption.TopDirectoryOnly))
+                foreach (var dir in Directory.GetDirectories(psScripts))
                 {
-                    scripts.Add(file);
+                    scripts.AddRange(GetScriptFilesFromFolder(dir, "*.ps1"));
                 }
             }
 
             var pyScripts = Path.Combine(Paths.ScriptsProgramPath, pythonFolder);
             if (Directory.Exists(pyScripts))
             {
-                foreach (var file in Directory.GetFiles(pyScripts, "*.py", SearchOption.TopDirectoryOnly))
+                foreach (var dir in Directory.GetDirectories(pyScripts))
                 {
-                    scripts.Add(file);
+                    scripts.AddRange(GetScriptFilesFromFolder(dir, "*.py"));
                 }
             }
 
@@ -49,18 +57,18 @@ namespace Playnite.Scripting
                 psScripts = Path.Combine(Paths.ScriptsUserDataPath, powerShellFolder);
                 if (Directory.Exists(psScripts))
                 {
-                    foreach (var file in Directory.GetFiles(psScripts, "*.ps1", SearchOption.TopDirectoryOnly))
+                    foreach (var dir in Directory.GetDirectories(psScripts))
                     {
-                        scripts.Add(file);
+                        scripts.AddRange(GetScriptFilesFromFolder(dir, "*.ps1"));
                     }
                 }
 
                 pyScripts = Path.Combine(Paths.ScriptsUserDataPath, pythonFolder);
                 if (Directory.Exists(pyScripts))
                 {
-                    foreach (var file in Directory.GetFiles(pyScripts, "*.py", SearchOption.TopDirectoryOnly))
+                    foreach (var dir in Directory.GetDirectories(pyScripts))
                     {
-                        scripts.Add(file);
+                        scripts.AddRange(GetScriptFilesFromFolder(dir, "*.py"));
                     }
                 }
             }
@@ -86,17 +94,18 @@ namespace Playnite.Scripting
 
             if (extension.Equals(".ps1", StringComparison.InvariantCultureIgnoreCase))
             {
-                scriptFolder = Path.Combine(scriptFolder, powerShellFolder);
+                scriptFolder = Path.Combine(scriptFolder, powerShellFolder, Path.GetFileNameWithoutExtension(scriptPath));
             }
             else if (extension.Equals(".py", StringComparison.InvariantCultureIgnoreCase))
             {
-                scriptFolder = Path.Combine(scriptFolder, pythonFolder);
+                scriptFolder = Path.Combine(scriptFolder, pythonFolder, Path.GetFileNameWithoutExtension(scriptPath));
             }
             else
             {
                 throw new Exception("Uknown script file specified.");
             }
 
+            FileSystem.CreateDirectory(scriptFolder);
             File.Copy(scriptPath, Path.Combine(scriptFolder, Path.GetFileName(scriptPath)), true);
         }
     }
