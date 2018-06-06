@@ -67,6 +67,9 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCFinishLabel">Finalizar</sys:String>
     <sys:String x:Key="LOCNextLabel">Próximo</sys:String>
     <sys:String x:Key="LOCBackLabel">Anterior</sys:String>
+    <sys:String x:Key="LOCDoneCapLabel">PRONTO</sys:String>
+    <sys:String x:Key="LOCBackCapLabel">VOLTAR</sys:String>
+    <sys:String x:Key="LOCClearCapLabel">LIMPAR</sys:String>
     <sys:String x:Key="LOCImportLabel">Importar</sys:String>
     <sys:String x:Key="LOCSourceLabel">Fonte</sys:String>
     <sys:String x:Key="LOCNameLabel">Nome</sys:String>
@@ -127,6 +130,7 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCFriday">Sexta-feira</sys:String>
     <sys:String x:Key="LOCSaturday">Sábado</sys:String>
     <sys:String x:Key="LOCSunday">Domingo</sys:String>
+    <sys:String x:Key="LOCImportCompleted">Importação concluída com sucesso.</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Variáveis especiais podem ser usadas para criar cadeias de caracteres dinâmicas:
 {InstallDir} - Diretório de instalação do jogo
@@ -382,6 +386,7 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Erro no Banco de Dados</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Não foi possível abrir o banco de dados.</sys:String>
+    <sys:String x:Key="LOCDatabaseNotOpenedError">O banco de dados não está aberto.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Não foi possível acessar o banco de dados da biblioteca. O arquivo "{0}" está sendo usado por outro processo ou está em um local inacessível.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Não foi possível criar o pacote de diagnóstico.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess">Pacote de diagnóstico criado com sucesso.</sys:String>
@@ -473,8 +478,13 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCGameImportWindowTitle">Selecione Jogos para Importar</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Buscar por Metadados</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Atualização Disponível</sys:String>
-    <sys:String x:Key="LOCUpdaterChangesInfo">Alterações desde a última atualização:</sys:String>
-    <sys:String x:Key="LOCUpdaterInstallUpdate">Instalar atualização</sys:String>
+    <sys:String x:Key="LOCUpdaterChangesInfo">Alterações desde a última versão:</sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate">Baixar e instalar atualização</sys:String>
+    <sys:String x:Key="LOCCheckForUpdates">Verificar se há atualizações</sys:String>
+    <sys:String x:Key="LOCUpdateError">Erro na atualização</sys:String>
+    <sys:String x:Key="LOCUpdateCheckFailMessage">Falha ao verificar se há uma nova versão.</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Nenhuma nova versão encontrada, você está na mais recente.</sys:String>
+    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Falha ao baixar e instalar a atualização.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Uma tarefa está sendo executada em segundo plano. Deseja cancelá-la e continuar com a instalação da atualização?</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Recarregar lista de temas</sys:String>
@@ -516,4 +526,10 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minutos</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} segundos</sys:String>
     <sys:String x:Key="LOCPlayedNone">Não jogado</sys:String>
+
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">Abrindo modo janela...</sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Abrindo modo tela cheia...</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">Falha ao instalar o arquivo de script.</sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">Script instalado com sucesso.</sys:String>
+    <sys:String x:Key="LOCInstallScript">Instalar script</sys:String>
 </ResourceDictionary>
