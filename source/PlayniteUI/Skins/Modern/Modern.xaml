@@ -1834,10 +1834,6 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
-        <Setter Property="Height" Value="425" />
-        <Setter Property="Width" Value="470" />
-        <Setter Property="MinHeight" Value="250" />
-        <Setter Property="MinWidth" Value="390" />
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome CaptionHeight="25" CornerRadius="0" ResizeBorderThickness="4"
