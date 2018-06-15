@@ -1688,13 +1688,13 @@
                         </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
-                        </Trigger>
                         <Trigger SourceName="PART_TextBox"  Property="IsFocused" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
                         </Trigger>
                         <Trigger SourceName="PART_Button"  Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -2412,6 +2412,8 @@
                                            RenderOptions.BitmapScalingMode="NearestNeighbor" />
                                 </MenuItem.Icon>
                             </MenuItem>
+                            <MenuItem Header="{DynamicResource LOCCheckForUpdates}"
+                                      Command="{Binding CheckForUpdateCommand}" />
                             <Separator />
                             <MenuItem Header="{DynamicResource LOCExitAppLabel}"
                                       Command="{Binding ShutdownCommand}"
@@ -2616,9 +2618,9 @@
                 </Grid>
             </DockPanel>
 
-            <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}" Grid.Row="1" Grid.Column="0">
+            <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}" Grid.Row="1" Grid.Column="0">
                 <DockPanel>
-                    <Border BorderThickness="1,0,0,1" BorderBrush="{StaticResource NormalBorderBrush}" DockPanel.Dock="Right" Margin="0,0,0,36"                    
+                    <Border BorderThickness="1,0,0,1" BorderBrush="{DynamicResource NormalBorderBrush}" DockPanel.Dock="Right" Margin="0,0,0,36"                    
                             Visibility="{Binding IsChecked, ElementName=CheckFilterView, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <DockPanel>
                             <DockPanel Margin="10,5,5,5" DockPanel.Dock="Top">
@@ -2878,7 +2880,7 @@
                         <TabItem Header="{DynamicResource LOCListLabel}" >
                             <DockPanel>
                                 <pc:ExtendedListBox SelectionMode="Extended" BorderThickness="0,0,1,0"
-                                         BorderBrush="{StaticResource NormalBorderBrush}" Width="310"
+                                                    BorderBrush="{DynamicResource NormalBorderBrush}" Width="310"
                                          ItemsSource="{Binding GamesView.CollectionView}"
                                          SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
                                          SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
@@ -2988,7 +2990,7 @@
                                 </Grid.RowDefinitions>
 
                                 <pc:ExtendedListBox Grid.Row="0" Grid.Column="0"
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="ItemsView"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ItemsView"
                       ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Extended"
                       pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"                      
                       ItemsSource="{Binding GamesView.CollectionView}"
