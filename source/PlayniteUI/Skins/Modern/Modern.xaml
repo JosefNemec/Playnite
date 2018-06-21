@@ -115,12 +115,17 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
                             CornerRadius="{DynamicResource ControlCornerRadius}" Style="{DynamicResource HighlightBorder}">
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -297,6 +302,9 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Fill" Value="{DynamicResource GlyphBrush}" TargetName="HoverRectangle" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding IsFocused, RelativeSource={RelativeSource AncestorType=ScrollViewer}}" Value="True">
+                            <Setter Property="Fill" Value="{DynamicResource GlyphBrush}" TargetName="HoverRectangle" />
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -364,6 +372,11 @@
                                    Minimum="0" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical"
                                    AutomationProperties.AutomationId="VerticalScrollBar" />
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="PART_VerticalScrollBar" Property="Visibility" Value="Visible">
+                            <Setter Property="IsTabStop" Value="True"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -524,7 +537,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource ControlCornerRadius}"
+                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource ControlCornerRadius}"
                             Style="{DynamicResource HighlightBorder}">
                         <Grid>
                             <ToggleButton x:Name="ToggleButton" Focusable="False" ClickMode="Press" Margin="0,0,2,0"
@@ -565,6 +578,9 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                        </Trigger>
                         <Trigger Property="IsEditable" Value="True">
                             <Setter Property="IsTabStop" Value="False" />
                             <Setter Property="Visibility" Value="Visible" TargetName="PART_EditableTextBox" />
@@ -1103,6 +1119,11 @@
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
                             <Setter Property="Opacity" Value="1" TargetName="TextContent"/>
                         </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
+                            <Setter Property="BorderThickness" Value="1,1,1,2" TargetName="SelectedBorder" />
+                            <Setter Property="Opacity" Value="1" TargetName="TextContent"/>
+                        </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
                             <Setter Property="Opacity" Value="1" TargetName="TextContent"/>
@@ -1423,6 +1444,9 @@
         <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
         <Setter Property="TextDecorations" Value="{x:Null}" />
         <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+            </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
             </Trigger>
@@ -1657,7 +1681,13 @@
                         </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsFocused" Value="True">
+                        <Trigger SourceName="PART_TextBox"  Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                        </Trigger>
+                        <Trigger SourceName="PART_Button"  Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -1678,7 +1708,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}"
+                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}" CornerRadius="{DynamicResource ControlCornerRadius}"
                             Style="{DynamicResource HighlightBorder}">
                         <Grid>
@@ -1785,6 +1815,9 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
             </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -1855,7 +1888,7 @@
            BasedOn="{StaticResource ResourceKey=StandardWindowStyle}">
         <Setter Property="BorderThickness" Value="1" />
     </Style>
-    
+
     <Style TargetType="{x:Type pc:GameMenu}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
@@ -2366,7 +2399,7 @@
     <ControlTemplate x:Key="ProgressView">
         <Grid>
             <Grid.Resources>
-                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />                
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             </Grid.Resources>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -2459,7 +2492,7 @@
                 </Grid>
             </ToggleButton.Content>
         </ToggleButton>
-    </ControlTemplate>    
+    </ControlTemplate>
 
     <ControlTemplate x:Key="MainView" TargetType="{x:Type pc:MainView}">
         <Grid d:DesignWidth="900" d:DesignHeight="500">
@@ -2486,7 +2519,7 @@
                 <pui:ListToStringConverter x:Key="ListToStringConverter" />
                 <pui:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
             </Grid.Resources>
-            
+
             <pc:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
                           Grid.ColumnSpan="10" Grid.RowSpan="10"
                           Source="{Binding SelectedGameDetails.Game.BackgroundImageObject, IsAsync=True}" />
@@ -2495,7 +2528,7 @@
                        IsEnabled="{Binding Data.AppSettings.ViewSettings.GamesViewType, Source={StaticResource Proxy}, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"
                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
                        Background="{DynamicResource GamesListPanelBrush}">
-                
+
                 <ContentControl DockPanel.Dock="Top" Margin="10,45,10,5"
                                 Template="{StaticResource SearchPanel}" />
 
@@ -2574,7 +2607,7 @@
                             IsEnabled="{Binding Data.AppSettings.ViewSettings.GamesViewType, Source={StaticResource Proxy}, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"
                             Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Template="{StaticResource GameDetailsView}" />
-            
+
             <Grid Background="#77000000"
                   Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
                   IsEnabled="{Binding AppSettings.ViewSettings.GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.Images}}"
@@ -2888,7 +2921,7 @@
                                     <Setter Property="ShowImage" Value="False" />
                                 </Style>
                             </StackPanel.Resources>
-                            
+
                             <CheckBox Name="CheckFilterInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameIsInstalledTitle}" Margin="0,0,5,0" />
@@ -3104,16 +3137,16 @@
                             <pc:SearchBox x:Name="TextFilterAgeRating" Text="{Binding AppSettings.FilterSettings.AgeRating, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
                         </StackPanel>
                     </ScrollViewer>
-                </DockPanel>                
+                </DockPanel>
             </Border>
 
             <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
                     VerticalAlignment="Top" Background="#33000000" Height="38">
                 <DockPanel>
                     <Button DockPanel.Dock="Left" Command="{Binding OpenMainMenuCommand}"
-                            HorizontalContentAlignment="Left" BorderThickness="0" Background="Transparent">                    
+                            HorizontalContentAlignment="Left" BorderThickness="0" Background="Transparent">
                         <Border DockPanel.Dock="Left" Background="Transparent"
-                                Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True">                           
+                                Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True">
                             <TextBlock Text="☰" VerticalAlignment="Center" FontWeight="Bold" Opacity="0.9"
                                         FontSize="20" Foreground="{StaticResource TextBrush}" />
                         </Border>
@@ -3125,7 +3158,7 @@
                                         IsTabStop="{Binding AppSettings.ViewSettings.GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"
                                         Visibility="{Binding IsTabStop, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
                     </Border>
-                    
+
                     <ContentControl Template="{StaticResource NotificationIcon}" Margin="0,0,130,0"
                                     HorizontalAlignment="Right" DockPanel.Dock="Right"/>
 
@@ -3172,7 +3205,7 @@
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*" SharedSizeGroup="RadioButtonMenuItem" />
-                                                    <ColumnDefinition Width="Auto" SharedSizeGroup="RadioButtonMenuItemShortCut" /> 
+                                                    <ColumnDefinition Width="Auto" SharedSizeGroup="RadioButtonMenuItemShortCut" />
                                                 </Grid.ColumnDefinitions>
 
                                                 <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -3465,7 +3498,7 @@
             </Border>
         </Grid>
     </ControlTemplate>
-    
+
     <Style TargetType="{x:Type pc:MainView}">
         <Setter Property="Margin" Value="0,-25,0,0" />
         <Setter Property="Template" Value="{StaticResource MainView}"/>
