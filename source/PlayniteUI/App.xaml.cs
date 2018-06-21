@@ -421,21 +421,21 @@ namespace PlayniteUI
             {
                 try
                 {
-                    GlobalTaskHandler.CancelAndWait();
+                    GlobalTaskHandler.CancelAndWait();                    
+                    GamesEditor?.Dispose();
+                    AppSettings?.SaveSettings();
+                    Api?.Dispose();
+                    Database?.CloseDatabase();
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(exc, "Failed to cancel global progress task.");
-                    throw;
+                    logger.Error(exc, "Failed to dispose Playnite objects.");
                 }
-
-                AppSettings?.SaveSettings();
-                Api?.Dispose();
-                GamesEditor?.Dispose();
-                Database?.CloseDatabase();
             }, ResourceProvider.Instance.FindString("LOCClosingPlaynite"));
 
             progressModel.ActivateProgress();
+
+            // These must run on main thread
             Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
             if (Cef.IsInitialized)
             {
