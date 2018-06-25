@@ -19,7 +19,7 @@ When using installed version of Playnite place scripts inside `%AppData%\Playnit
 
 Example script location:
 
-```%AppData%\Playnite\Scripts\IronPython\TestScript\TestScript.py```
+`%AppData%\Playnite\Scripts\IronPython\TestScript\TestScript.py`
 
 ### Reloading Scripts
 
