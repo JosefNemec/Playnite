@@ -342,6 +342,50 @@ namespace Playnite.Database
             }
         }
 
+        public static void CloneLibrary(string dbPath, string targetPath)
+        {
+            using (var sourceDb = new LiteDatabase($"Filename={dbPath};Mode=Exclusive"))
+            {
+                using (var targetDb = new LiteDatabase($"Filename={targetPath};Mode=Exclusive"))
+                {
+                    var games = sourceDb.GetCollection<Game>("games").FindAll();
+                    var targetGames = targetDb.GetCollection<Game>("games");
+                    foreach (var game in games)
+                    {
+                        targetGames.Insert(game);
+                    }
+
+                    var targetPlatforms = targetDb.GetCollection<Platform>("platforms");
+                    foreach (var platform in sourceDb.GetCollection<Platform>("platforms").FindAll())
+                    {
+                        targetPlatforms.Insert(platform);
+                    }
+
+                    var targetEmulators = targetDb.GetCollection<Emulator>("emulators");
+                    foreach (var emulator in sourceDb.GetCollection<Emulator>("emulators").FindAll())
+                    {
+                        targetEmulators.Insert(emulator);
+                    }
+
+                    var targetSettings = targetDb.GetCollection<DatabaseSettings>("settings");
+                    foreach (var setting in sourceDb.GetCollection<DatabaseSettings>("settings").FindAll())
+                    {
+                        targetSettings.Insert(setting);
+                    }
+
+                    foreach (var file in sourceDb.FileStorage.FindAll())
+                    {
+                        using (var fileStream = file.OpenRead())
+                        {
+                            targetDb.FileStorage.Upload(file.Id, file.Filename, fileStream);
+                        }
+                    }
+
+                    targetDb.Engine.UserVersion = sourceDb.Engine.UserVersion;
+                }
+            }
+        }
+
         public static void MigrateDatabase(string path)
         {
             using (var db = new LiteDatabase(path))
