@@ -1,0 +1,57 @@
+﻿<Window x:Class="Playnite.Installer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Background="{DynamicResource WindowBackgourndBrush}"
+        Title="Playnite Installer" Width="600" SizeToContent="Height">
+    <Grid Margin="10">
+        <Grid.Resources>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+        </Grid.Resources>
+        
+        <Grid.ColumnDefinitions>
+            
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="15,10,10,10">
+            <Image Source="Resources\installer.ico" Height="32" RenderOptions.BitmapScalingMode="Fant" />
+            <TextBlock Text="Choose Install Location for Playnite" FontSize="20"                   
+                        VerticalAlignment="Center" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <DockPanel Grid.Row="1" Margin="5">
+            <TextBlock Text="Destionation Folder" DockPanel.Dock="Left" Margin="10,5,10,5" />
+            <Button Content="Browse..." DockPanel.Dock="Right"
+                    Command="{Binding BrowseCommand}"
+                    Padding="10,0,10,0" Margin="10,0,10,0"/>
+            <TextBox DockPanel.Dock="Left" VerticalContentAlignment="Center"
+                     Text="{Binding DestionationFolder}" />
+        </DockPanel>
+        
+        <CheckBox Content="Portable" Grid.Row="2" HorizontalAlignment="Left"
+                  IsChecked="{Binding Portable}"
+                  ToolTipService.InitialShowDelay="0"
+                  ToolTip="Installs Playnite in Portable mode.&#x0a;All configuration files and game database will be stored in program folder."
+                  Margin="15,10,10,10"/> 
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right"
+                    Margin="20,0,15,10">            
+            <Button Content="Install" Padding="20,5,20,5" Margin="0,0,10,0"
+                    IsDefault="True"
+                    Command="{Binding InstallCommand}"/>
+            <Button Content="Cancel" Padding="20,5,20,5"
+                    IsCancel="True"
+                    Command="{Binding CancelCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>
