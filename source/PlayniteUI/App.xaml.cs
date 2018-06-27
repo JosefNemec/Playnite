@@ -19,7 +19,7 @@ using System.Windows.Markup;
 using System.IO;
 using System.Windows.Input;
 using System.ComponentModel;
-using Playnite.MetaProviders;
+using Playnite.Metadata;
 using Playnite.API;
 using PlayniteUI.API;
 using Playnite.Plugins;

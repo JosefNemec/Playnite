@@ -57,5 +57,10 @@ namespace Playnite
 
             return intersects;
         }
+
+        public static bool ContainsInsensitive(this List<string> source, string value)
+        {
+            return source.Any(a => a.Equals(value, StringComparison.InvariantCultureIgnoreCase)) == true;
+        }
     }
 }

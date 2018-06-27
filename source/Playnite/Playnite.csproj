@@ -175,6 +175,10 @@
     <Compile Include="Extensions\BitmapExtensions.cs" />
     <Compile Include="Database\GameDatabase.cs" />
     <Compile Include="Extensions\Enums.cs" />
+    <Compile Include="Metadata\IMetadataProvider.cs" />
+    <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
+    <Compile Include="Metadata\MetadataFile.cs" />
+    <Compile Include="Metadata\MetadataSearchResult.cs" />
     <Compile Include="Models\ActiveController.cs" />
     <Compile Include="Plugins\Plugins.cs" />
     <Compile Include="Scripting\IronPython\IronPython.cs" />
@@ -197,8 +201,8 @@
     <Compile Include="InteropMethods.cs" />
     <Compile Include="App\IPlayniteApplication.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
-    <Compile Include="MetaProviders\IGDBMetadataDownloader.cs" />
-    <Compile Include="MetaProviders\MetadataDownloader.cs" />
+    <Compile Include="Metadata\Providers\IGDBMetadataProvider.cs" />
+    <Compile Include="Metadata\MetadataDownloader.cs" />
     <Compile Include="Models\Old\1\Emulator.cs" />
     <Compile Include="Models\Old\1\Game.cs" />
     <Compile Include="Models\Old\1\GameTask.cs" />
@@ -215,11 +219,11 @@
     <Compile Include="Diagnostic.cs" />
     <Compile Include="Settings\FilterSettings.cs" />
     <Compile Include="Extensions\IconExtension.cs" />
-    <Compile Include="MetaProviders\Wikipedia.cs" />
+    <Compile Include="Metadata\Providers\WikipediaMetadataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BattleNet\BattleNetLibrary.cs" />
     <Compile Include="Providers\BattleNet\BattleNetSettings.cs" />
-    <Compile Include="Models\GameMetadata.cs" />
+    <Compile Include="Metadata\GameMetadata.cs" />
     <Compile Include="Providers\BattleNet\BattleNetMetadataProvider.cs" />
     <Compile Include="Providers\BattleNet\IBattleNetLibrary.cs" />
     <Compile Include="Providers\BattleNet\BattleNetGameController.cs" />

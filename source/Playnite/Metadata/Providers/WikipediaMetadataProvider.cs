@@ -6,20 +6,16 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
-using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharp.Parser.Html;
 using Newtonsoft.Json;
-using Playnite.Models;
-using Playnite.Providers;
 using NLog;
 using Playnite.SDK.Models;
-using Playnite.SDK;
 using Playnite.Web;
 
-namespace Playnite.MetaProviders
+namespace Playnite.Metadata.Providers
 {
-    public class Wikipedia
+    public class WikipediaMetadataProvider
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -91,7 +87,7 @@ namespace Playnite.MetaProviders
             }
         }
 
-        public Wikipedia()
+        public WikipediaMetadataProvider()
         {
         }
 

@@ -3,24 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Playnite.Database;
 using Playnite.SDK.Models;
 
-namespace Playnite.Models
+namespace Playnite.Metadata
 {
     public class GameMetadata
     {
+        public static GameMetadata Empty
+        {
+            get => new GameMetadata();
+        }
+
+        public bool IsEmpty
+        {
+            get => GameData == null;
+        }
+
         public Game GameData
         {
             get; set;
         }
 
-        public FileDefinition Icon
+        public MetadataFile Icon
         {
             get; set;
         }
 
-        public FileDefinition Image
+        public MetadataFile Image
         {
             get; set;
         }
@@ -34,7 +43,7 @@ namespace Playnite.Models
         {
         }
 
-        public GameMetadata(Game gameData, FileDefinition icon, FileDefinition image, string background)
+        public GameMetadata(Game gameData, MetadataFile icon, MetadataFile image, string background)
         {
             GameData = gameData;
             Icon = icon;

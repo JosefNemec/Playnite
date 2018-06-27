@@ -23,6 +23,26 @@ namespace PlayniteServices.Models.IGDB
         Steam = 13
     }
 
+    public class SteamIdGame
+    {
+        [BsonId(false)]
+        [BsonIndex(true)]
+        public ulong steamId
+        {
+            get; set;
+        }
+
+        public ulong igdbId
+        {
+            get; set;
+        }
+
+        public DateTime creation_time
+        {
+            get; set;
+        }
+    }
+
     public class GamesSearch
     {
         [BsonId(false)]

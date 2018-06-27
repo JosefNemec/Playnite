@@ -150,11 +150,9 @@
     <Compile Include="Emulators\EmulatorDefinitionTests.cs" />
     <Compile Include="Extensions\EnumsTests.cs" />
     <Compile Include="GamesStatsTests.cs" />
-    <Compile Include="MetaProviders\IGDBMetadataDownloaderTests.cs" />
-    <Compile Include="MetaProviders\MetadataDownloaderTests.cs" />
-    <Compile Include="MetaProviders\MetadataDownloaderDownloadTests.cs" />
-    <Compile Include="MetaProviders\MockMetadataDownloader.cs" />
-    <Compile Include="MetaProviders\WikipediaTests.cs" />
+    <Compile Include="Metadata\IGDBMetadataProviderTests.cs" />
+    <Compile Include="Metadata\MetadataDownloaderDownloadTests.cs" />
+    <Compile Include="Metadata\WikipediaMetadataProviderTests.cs" />
     <Compile Include="Models\GameTests.cs" />
     <Compile Include="PlayniteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

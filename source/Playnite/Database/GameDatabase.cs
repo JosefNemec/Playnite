@@ -22,6 +22,7 @@ using Playnite.Providers.BattleNet;
 using Playnite.Emulators;
 using System.Security.Cryptography;
 using Playnite.SDK.Models;
+using Playnite.Metadata;
 
 namespace Playnite.Database
 {
@@ -184,35 +185,6 @@ namespace Playnite.Database
         {
             AddedGames = addedGames;
             RemovedGames = removedGames;
-        }
-    }
-
-    public class FileDefinition
-    {
-        public string Path
-        {
-            get; set;
-        }
-
-        public string Name
-        {
-            get; set;
-        }
-
-        public byte[] Data
-        {
-            get; set;
-        }
-
-        public FileDefinition()
-        {
-        }
-
-        public FileDefinition(string path, string name, byte[] data)
-        {
-            Path = path;
-            Name = name;
-            Data = data;
         }
     }
 
@@ -1127,9 +1099,9 @@ namespace Playnite.Database
             return EmulatorsCollection.FindAll().ToList();
         }
 
-        public string AddFileNoDuplicate(FileDefinition file)
+        public string AddFileNoDuplicate(MetadataFile file)
         {
-            return AddFileNoDuplicate(file.Path, file.Name, file.Data);
+            return AddFileNoDuplicate(file.FileId, file.FileName, file.Content);
         }
 
         public string AddFileNoDuplicate(string id, string name, byte[] data)

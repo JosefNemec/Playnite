@@ -1,4 +1,5 @@
 ﻿using AngleSharp.Parser.Html;
+using Playnite.Metadata;
 using Playnite.Models;
 using Playnite.SDK.Models;
 using Playnite.Web;
@@ -375,10 +376,10 @@ namespace Playnite.Providers.BattleNet
             game.Name = product.Name;
             var icon = HttpDownloader.DownloadData(product.IconUrl);
             var iconFile = Path.GetFileName(product.IconUrl);
-            metadata.Icon = new Database.FileDefinition($"images/battlenet/{game.ProviderId}/{iconFile}", iconFile, icon);
+            metadata.Icon = new MetadataFile($"images/battlenet/{game.ProviderId}/{iconFile}", iconFile, icon);
             var cover = HttpDownloader.DownloadData(product.CoverUrl);
             var coverFile = Path.GetFileName(product.CoverUrl);
-            metadata.Image = new Database.FileDefinition($"images/battlenet/{game.ProviderId}/{coverFile}", coverFile, cover);
+            metadata.Image = new MetadataFile($"images/battlenet/{game.ProviderId}/{coverFile}", coverFile, cover);
             game.BackgroundImage = product.BackgroundUrl;
             metadata.BackgroundImage = product.BackgroundUrl;
             game.Links = new ObservableCollection<Link>(product.Links);

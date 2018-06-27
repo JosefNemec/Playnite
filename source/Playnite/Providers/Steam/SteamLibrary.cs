@@ -12,16 +12,14 @@ using System.Threading.Tasks;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using NLog;
-using Playnite.Models;
-using Playnite.Providers.Steam;
 using SteamKit2;
 using Playnite.Services;
-using Playnite.Database;
 using System.Windows;
 using System.Globalization;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.Web;
+using Playnite.Metadata;
 
 namespace Playnite.Providers.Steam
 {
@@ -413,7 +411,7 @@ namespace Playnite.Providers.Steam
             {
                 var iconName = Path.GetFileName(new Uri(iconUrl).AbsolutePath);
                 var iconData = HttpDownloader.DownloadData(iconUrl);
-                metadata.Icon = new FileDefinition(
+                metadata.Icon = new MetadataFile(
 
                     string.Format("images/steam/{0}/{1}", id.ToString(), iconName),
                     iconName,
@@ -453,7 +451,7 @@ namespace Playnite.Providers.Steam
             if (imageData != null)
             {
                 var imageName = Path.GetFileName(new Uri(imageUrl).AbsolutePath);
-                metadata.Image = new FileDefinition(
+                metadata.Image = new MetadataFile(
                     string.Format("images/steam/{0}/{1}", id.ToString(), imageName),
                     imageName,
                     imageData

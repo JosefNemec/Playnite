@@ -1,5 +1,5 @@
 ﻿using Playnite.SDK.Models;
-using Playnite.Models;
+using Playnite.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;

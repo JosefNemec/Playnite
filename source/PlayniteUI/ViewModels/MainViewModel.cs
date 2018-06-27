@@ -2,7 +2,7 @@
 using Playnite;
 using Playnite.App;
 using Playnite.Database;
-using Playnite.MetaProviders;
+using Playnite.Metadata;
 using Playnite.Providers.Steam;
 using Playnite.Scripting;
 using Playnite.SDK;
@@ -1090,7 +1090,7 @@ namespace PlayniteUI.ViewModels
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
                         var downloader = new MetadataDownloader(AppSettings);
-                        downloader.DownloadMetadataThreaded(
+                        downloader.DownloadMetadataGroupedAsync(
                             addedGames,
                             Database,
                             metaSettings,
@@ -1148,7 +1148,7 @@ namespace PlayniteUI.ViewModels
                 ProgressStatus = Resources.FindString("LOCProgressMetadata");
                 var downloader = new MetadataDownloader(AppSettings);
                 GlobalTaskHandler.ProgressTask =
-                    downloader.DownloadMetadataThreaded(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GlobalTaskHandler.CancelToken);
+                    downloader.DownloadMetadataGroupedAsync(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GlobalTaskHandler.CancelToken);
                 await GlobalTaskHandler.ProgressTask;
             }
             finally
