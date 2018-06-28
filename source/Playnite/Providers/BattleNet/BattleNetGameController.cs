@@ -36,7 +36,13 @@ namespace Playnite.Providers.BattleNet
             if (Game.PlayTask.Type == GameTaskType.URL && Game.PlayTask.Path.StartsWith("battlenet", StringComparison.InvariantCultureIgnoreCase))
             {
                 OnStarting(this, new GameControllerEventArgs(this, 0));
-                GameHandler.ActivateTask(Game.PlayTask, Game, emulators);
+                var task = new GameTask()
+                {
+                    Path = BattleNetSettings.ClientExecPath,
+                    Arguments = string.Format("--exec=\"launch {0}\"", Game.ProviderId)
+                };
+
+                GameHandler.ActivateTask(task, Game, emulators);
                 procMon.TreeStarted += ProcMon_TreeStarted;
                 procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
             }
