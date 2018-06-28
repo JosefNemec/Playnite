@@ -1803,7 +1803,7 @@
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
         <Setter Property="TryToBeFlickerFree" Value="True" />
-        <Setter Property="CaptionHeight" Value="25" />
+        <Setter Property="CaptionHeight" Value="39" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type pc:WindowBase}">

@@ -7,6 +7,7 @@
                     xmlns:pc="clr-namespace:PlayniteUI.Controls;assembly=PlayniteUI"
                     xmlns:pcmd="clr-namespace:PlayniteUI.Commands;assembly=PlayniteUI"
                     xmlns:pui="clr-namespace:PlayniteUI;assembly=PlayniteUI"
+                    xmlns:controlzEx="urn:controlzex"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
                     mc:Ignorable="d" >
@@ -2215,7 +2216,7 @@
             </Grid.Resources>
 
             <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="0">
-                <DockPanel Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True"
+                <DockPanel Cursor="Hand" Margin="10,0,5,0" controlzEx:WindowChrome.IsHitTestVisibleInChrome="True"
                        Opacity="{Binding IsMouseOver, Converter={StaticResource OpacityBoolConverter}, ConverterParameter={StaticResource True}, RelativeSource={RelativeSource Self}}"
                        pui:LeftClickContextMenuBehavior.Enabled="True">
                     <Border DockPanel.Dock="Left" Background="Transparent">
@@ -2397,13 +2398,13 @@
                 <pc:SearchBox x:Name="SearchBoxFilter" Margin="5,8,10,8" DockPanel.Dock="Left" Padding="0" Width="235"
                               Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}"
                               IsFocused="{Binding SearchOpened, Mode=TwoWay}"
-                              WindowChrome.IsHitTestVisibleInChrome="True" />
+                              controlzEx:WindowChrome.IsHitTestVisibleInChrome="True" />
 
                 <Border CornerRadius="{StaticResource ControlCornerRadius}" Background="Transparent" Style="{StaticResource HighlightBorder}"
                     pui:LeftClickContextMenuBehavior.Enabled="True"
                     SnapsToDevicePixels="True" BorderThickness="{StaticResource ControlBorderThickness}"
                     Width="35" Height="28" Cursor="Hand"
-                    WindowChrome.IsHitTestVisibleInChrome="True">
+                    controlzEx:WindowChrome.IsHitTestVisibleInChrome="True">
                     <TextBlock Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
                            Foreground="{StaticResource TextBrush}"/>
                     <Border.ContextMenu>
@@ -2479,7 +2480,7 @@
                     </Border.ContextMenu>
                 </Border>
 
-                <CheckBox Name="CheckFilterView" DockPanel.Dock="Left" Margin="10,0,10,0" Height="28" WindowChrome.IsHitTestVisibleInChrome="True"
+                <CheckBox Name="CheckFilterView" DockPanel.Dock="Left" Margin="10,0,10,0" Height="28" controlzEx:WindowChrome.IsHitTestVisibleInChrome="True"
                       IsChecked="{Binding AppSettings.FilterPanelVisible}">
                     <CheckBox.Style>
                         <Style TargetType="CheckBox">
@@ -2487,7 +2488,7 @@
                                 <Setter.Value>
                                     <ControlTemplate>
                                         <Border Background="Transparent" Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
-                                            CornerRadius="{StaticResource ControlCornerRadius}" BorderThickness="{StaticResource ControlBorderThickness}" Cursor="Hand" WindowChrome.IsHitTestVisibleInChrome="True">
+                                            CornerRadius="{StaticResource ControlCornerRadius}" BorderThickness="{StaticResource ControlBorderThickness}" Cursor="Hand" controlzEx:WindowChrome.IsHitTestVisibleInChrome="True">
                                             <TextBlock Text="∇" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="8,0,8,0" Foreground="{TemplateBinding Foreground}"/>
                                         </Border>
                                     </ControlTemplate>
@@ -2509,7 +2510,7 @@
                 
                 <ToggleButton FontWeight="Bold" DockPanel.Dock="Right" Height="30"
                         Name="ButtonMessages" Margin="0,0,130,0" Padding="0"
-                        WindowChrome.IsHitTestVisibleInChrome="True" BorderThickness="0"
+                        controlzEx:WindowChrome.IsHitTestVisibleInChrome="True" BorderThickness="0"
                         Background="Transparent">
                     <ToggleButton.Style>
                         <Style TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
@@ -2581,7 +2582,7 @@
                             Command="{Binding CancelProgressCommand}"
                             Content="{DynamicResource LOCCancelLabel}"
                             Height="27" Grid.Column="2" Margin="10,0,20,0"
-                            WindowChrome.IsHitTestVisibleInChrome="True"/>
+                            controlzEx:WindowChrome.IsHitTestVisibleInChrome="True"/>
                 </Grid>
             </DockPanel>
             
