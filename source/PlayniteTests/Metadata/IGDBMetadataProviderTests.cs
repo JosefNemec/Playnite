@@ -14,7 +14,7 @@ namespace PlayniteTests.Metadata
     [TestFixture]
     public class IGDBMetadataProviderTests
     {        
-        private IGDBMetadataProvider provider = new IGDBMetadataProvider(new ServicesClient("http://localhost:5000/"));
+        private IGDBMetadataProvider provider = new IGDBMetadataProvider(new ServicesClient("http://localhost:8080/"));
 
         [Test]
         public void StandardDownloadTest()

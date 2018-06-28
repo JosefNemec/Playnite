@@ -33,11 +33,8 @@ namespace PlayniteTests.Metadata
         [Test]
         public async Task IGDBSourceTest()
         {
-            var path = Path.Combine(PlayniteTests.TempPath, "metadownload.db");
-            FileSystem.DeleteFile(path);
-            
             var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            using (db.OpenDatabase(new MemoryStream()))
             {
                 int callCount = 0;
                 var storeCalled = false;
@@ -117,11 +114,8 @@ namespace PlayniteTests.Metadata
         [Test]
         public async Task StoreSourceTest()
         {
-            var path = Path.Combine(PlayniteTests.TempPath, "metadownload.db");
-            FileSystem.DeleteFile(path);
-
             var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            using (db.OpenDatabase(new MemoryStream()))
             {
                 int callCount = 0;
 
@@ -192,11 +186,8 @@ namespace PlayniteTests.Metadata
         [Test]
         public async Task IGDBStoreCombinedTest()
         {
-            var path = Path.Combine(PlayniteTests.TempPath, "metadownload.db");
-            FileSystem.DeleteFile(path);
-
             var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            using (db.OpenDatabase(new MemoryStream()))
             {
                 int callCount = 0;
                 var games = new List<Game>()
@@ -317,12 +308,8 @@ namespace PlayniteTests.Metadata
         [Test]
         public async Task MissingDataTest()
         {
-            // Test that downloader doesn't change existing values to null when missing by provider
-            var path = Path.Combine(PlayniteTests.TempPath, "metadownload.db");
-            FileSystem.DeleteFile(path);
-
             var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            using (db.OpenDatabase(new MemoryStream()))
             {
                 int callCount = 0;
                 var games = new List<Game>()
@@ -392,11 +379,8 @@ namespace PlayniteTests.Metadata
         [Test]
         public async Task SkipExistingTest()
         {
-            var path = Path.Combine(PlayniteTests.TempPath, "metadownload.db");
-            FileSystem.DeleteFile(path);
-
             var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            using (db.OpenDatabase(new MemoryStream()))
             {
                 int callCount = 0;
                 db.AddGame(new Game("Game1")

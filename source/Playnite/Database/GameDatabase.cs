@@ -629,6 +629,17 @@ namespace Playnite.Database
             return OpenDatabase();
         }
 
+        public LiteDatabase OpenDatabase(MemoryStream stream)
+        {
+            Database = new LiteDatabase(stream);
+            GamesCollection = Database.GetCollection<Game>("games");
+            PlatformsCollection = Database.GetCollection<Platform>("platforms");
+            EmulatorsCollection = Database.GetCollection<Emulator>("emulators");
+            ActiveControllersCollection = Database.GetCollection<ActiveController>("controllers");
+            IsOpen = true;
+            return Database;
+        }
+
         public LiteDatabase OpenDatabase()
         {
             if (string.IsNullOrEmpty(Path))
