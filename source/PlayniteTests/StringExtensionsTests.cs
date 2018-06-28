@@ -21,10 +21,10 @@ namespace PlayniteTests
                 StringExtensions.NormalizeGameName("Witcher 3, The"));
 
             Assert.AreEqual("Pokemon Red Test",
-                 StringExtensions.NormalizeGameName("Pokemon.Red.[US].[l33th4xor].Test.[22]"));
+                StringExtensions.NormalizeGameName("Pokemon.Red.[US].[l33th4xor].Test.[22]"));
 
             Assert.AreEqual("Pokemon Red Test",
-     StringExtensions.NormalizeGameName("Pokemon.Red.[US].(l33th 4xor).Test.(22)"));
+                StringExtensions.NormalizeGameName("Pokemon.Red.[US].(l33th 4xor).Test.(22)"));
         }
 
         [Test]
@@ -35,6 +35,14 @@ namespace PlayniteTests
             Assert.AreEqual("Game", StringExtensions.ConvertToSortableName("A Game"));
             Assert.AreEqual("Usual Game", StringExtensions.ConvertToSortableName("An Usual Game"));
             Assert.AreEqual("AnUsual Game", StringExtensions.ConvertToSortableName("AnUsual Game"));
+        }
+
+        [Test]
+        public void GetPathWithoutAllExtensionsTest()
+        {
+            Assert.AreEqual(@"c:\test\SomeFile", StringExtensions.GetPathWithoutAllExtensions(@"c:\test\SomeFile.zip"));
+            Assert.AreEqual(@"SomeFile", StringExtensions.GetPathWithoutAllExtensions(@"SomeFile.r888s.42rar.zip1"));
+            Assert.AreEqual(@"SomeFile", StringExtensions.GetPathWithoutAllExtensions(@"SomeFile"));
         }
     }
 }

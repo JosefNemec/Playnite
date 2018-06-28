@@ -1205,10 +1205,13 @@ namespace PlayniteUI.ViewModels
                 var addedGames = InstalledGamesViewModel.AddImportableGamesToDb(model.Games, Database);
                 if (!GlobalTaskHandler.IsActive)
                 {
-                    Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
                     var settings = new MetadataDownloaderSettings();
                     settings.ConfigureFields(MetadataSource.IGDB, true);
                     await DownloadMetadata(settings, addedGames);
+                }
+                else
+                {
+                    Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
                 }
             }
         }
@@ -1219,10 +1222,13 @@ namespace PlayniteUI.ViewModels
             {
                 if (!GlobalTaskHandler.IsActive)
                 {
-                    Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
                     var settings = new MetadataDownloaderSettings();
                     settings.ConfigureFields(MetadataSource.IGDB, true);
                     await DownloadMetadata(settings, model.ImportedGames);
+                }
+                else
+                {
+                    Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
                 }
             }
         }
