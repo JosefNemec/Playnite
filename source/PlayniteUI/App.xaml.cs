@@ -34,7 +34,7 @@ namespace PlayniteUI
     public partial class App : Application, INotifyPropertyChanged, IPlayniteApplication
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        private string instanceMuxet = "PlayniteInstaceMutex";
+        private const string instanceMuxet = "PlayniteInstaceMutex";
         private Mutex appMutex;
         private bool resourcesReleased = false;
         private PipeService pipeService;
@@ -42,13 +42,17 @@ namespace PlayniteUI
         private XInputDevice xdevice;
         private DialogsFactory dialogs;
 
+        public Version CurrentVersion
+        {
+            get => Updater.GetCurrentVersion();
+        }
+
         public PlayniteAPI Api
         {
             get; set;
         }
         
         public event PropertyChangedEventHandler PropertyChanged;
-
 
         public static MainViewModel MainModel
         {
@@ -103,6 +107,7 @@ namespace PlayniteUI
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
         {
+            logger.Info("Shutting down application because of session ending.");
             Quit();
         }
 
@@ -310,7 +315,7 @@ namespace PlayniteUI
                 SimulateNavigationKeys = true
             };
 
-            logger.Info("Application started");
+            logger.Info($"Application {CurrentVersion} started");
         }
 
         private void PipeService_CommandExecuted(object sender, CommandExecutedEventArgs args)
@@ -406,12 +411,14 @@ namespace PlayniteUI
 
         public void Quit()
         {
+            logger.Info("Shutting down Playnite");
             ReleaseResources();
             Shutdown(0);
         }
 
         private void ReleaseResources()
         {
+            logger.Debug("Releasing Playnite resources...");
             if (resourcesReleased)
             {
                 return;
@@ -447,6 +454,7 @@ namespace PlayniteUI
 
         public async void OpenNormalView(ulong steamCatImportId, bool isFirstStart)
         {
+            logger.Debug("Opening Desktop view");
             if (Database.IsOpen)
             {
                 FullscreenModel = null;
@@ -484,6 +492,7 @@ namespace PlayniteUI
 
         public async void OpenFullscreenView(bool updateDb)
         {
+            logger.Debug("Opening Fullscreen view");
             if (Database.IsOpen)
             {
                 MainModel = null;
@@ -555,6 +564,8 @@ namespace PlayniteUI
                 themeName = name;
                 themeProfile = profile;
             }
+
+            logger.Debug($"Applying theme {themeName}, {themeProfile}, {fullscreen}");
 
             if (fullscreen)
             {

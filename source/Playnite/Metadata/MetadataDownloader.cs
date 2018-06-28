@@ -216,6 +216,7 @@ namespace Playnite.Metadata
             await Task.Run(() =>
             {
                 var grouped = games.GroupBy(a => a.Provider);
+                logger.Info($"Downloading metadata using {grouped.Count()} threads.");
                 foreach (IGrouping<Provider, Game> group in grouped)
                 {
                     tasks.Add(Task.Run(() =>
@@ -242,33 +243,36 @@ namespace Playnite.Metadata
         {
             await Task.Run(() =>
             {
-            if (games == null || games.Count == 0)
-            {
-                return;
-            }
-
-            for (int i = 0; i < games.Count; i++)
-            {
-                if (cancelToken?.IsCancellationRequested == true)
+                if (games == null || games.Count == 0)
                 {
                     return;
                 }
 
-                GameMetadata storeData = null;
-                GameMetadata igdbData = null;
-                GameMetadata gameData = null;
-
-                // We need to get new instance from DB in case game got edited or deleted.
-                // We don't want to block game editing while metadata is downloading for other games.
-                var game = database.GamesCollection.FindOne(a => a.ProviderId == games[i].ProviderId);
-                if (game == null)
+                for (int i = 0; i < games.Count; i++)
                 {
-                    processCallback?.Invoke(null, i, games.Count);
-                    continue;
-                }
+                    if (cancelToken?.IsCancellationRequested == true)
+                    {
+                        return;
+                    }
+
+                    GameMetadata storeData = null;
+                    GameMetadata igdbData = null;
+                    GameMetadata gameData = null;
+
+                    // We need to get new instance from DB in case game got edited or deleted.
+                    // We don't want to block game editing while metadata is downloading for other games.
+                    var game = database.GamesCollection.FindOne(a => a.ProviderId == games[i].ProviderId);
+                    if (game == null)
+                    {
+                        logger.Warn($"Game {game.ProviderId} no longer in DB, skipping metadata download.");
+                        processCallback?.Invoke(null, i, games.Count);
+                        continue;
+                    }
 
                     try
                     {
+                        logger.Debug($"Downloading metadata for {game.Provider} game {game.Name}, {game.ProviderId}");
+
                         // Name
                         if (game.Provider != Provider.Custom && settings.Name.Import)
                         {
@@ -457,6 +461,10 @@ namespace Playnite.Metadata
                         {
                             database.UpdateGameInDatabase(game);
                         }
+                        else
+                        {
+                            logger.Warn($"Game {game.ProviderId} no longer in DB, skipping metadata update in DB.");
+                        }
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -469,17 +477,5 @@ namespace Playnite.Metadata
                 }
             });
         }
-
-        //public virtual GameMetadata DownloadGameData(string gameName, string id, IMetadataProvider provider)
-        //{
-        //    if (provider.GetSupportsIdSearch())
-        //    {
-        //        return provider.GetGameData(id);
-        //    }
-        //    else
-        //    {
-                
-        //    }
-        //}
     }
 }

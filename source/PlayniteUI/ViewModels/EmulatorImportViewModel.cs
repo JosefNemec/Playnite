@@ -278,18 +278,6 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public RelayCommand<object> SelectGameFilesCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                var files = dialogs.SelectFiles("All files|*.*");
-                if (files != null)
-                {
-                    ImportGamesFiles(files);
-                }
-            });
-        }
-
         public RelayCommand<object> ScanGamesOpeningCommand
         {
             get => new RelayCommand<object>((args) =>
@@ -377,6 +365,8 @@ namespace PlayniteUI.ViewModels
 
         public async void SearchEmulators(string path)
         {
+            logger.Info($"Scanning {path} for emulators.");
+
             try
             {
                 IsLoading = true;
@@ -400,6 +390,8 @@ namespace PlayniteUI.ViewModels
 
         public async void SearchGames(string path, EmulatorProfile profile)
         {
+            logger.Info($"Scanning {path} for emulated games using {profile} profile.");
+
             try
             {
                 IsLoading = true;
@@ -433,11 +425,6 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public void ImportGamesFiles(List<string> files)
-        {
-
-        }
-
         public void AddSelectedGamesToDB()
         {
             if (GamesList == null || GamesList.Count == 0)
@@ -445,6 +432,7 @@ namespace PlayniteUI.ViewModels
                 return;
             }
 
+            logger.Info($"Adding {GamesList.Count} new emulated games to DB.");
             foreach (var game in GamesList)
             {
                 if (!game.Import)
@@ -472,6 +460,8 @@ namespace PlayniteUI.ViewModels
                 return;
             }
 
+
+            logger.Info($"Adding {EmulatorList.Count} new emulators to DB.");
             foreach (var emulator in EmulatorList)
             {
                 if (emulator.Import)

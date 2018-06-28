@@ -193,5 +193,21 @@ namespace Playnite.SDK.Models
                 OnPropertyChanged("EmulatorProfileId");
             }
         }
+        
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            switch (Type)
+            {
+                case GameTaskType.File:
+                    return $"File: {Path}, {Arguments}, {WorkingDir}";
+                case GameTaskType.URL:
+                    return $"Url: {Path}";
+                case GameTaskType.Emulator:
+                    return $"Emulator: {EmulatorId}, {EmulatorProfileId}, {OverrideDefaultArgs}, {AdditionalArguments}";
+                default:
+                    return Path;
+            }
+        }
     }
 }

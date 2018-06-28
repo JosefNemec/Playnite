@@ -270,7 +270,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="ThridPartyToolsList.cs" />
     <Compile Include="Timer.cs" />
-    <Compile Include="App\Update.cs" />
+    <Compile Include="App\Updater.cs" />
     <Compile Include="Settings\ViewProperties.cs" />
     <Compile Include="Web\Downloader.cs" />
     <Compile Include="Web\HttpDownloader.cs" />

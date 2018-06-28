@@ -173,6 +173,7 @@ namespace Playnite.API
                     continue;
                 }
 
+                logger.Info($"Loaded script extension {path}");
                 script.SetVariable("PlayniteApi", this);
                 scripts.Add(script);                
             }
@@ -207,6 +208,7 @@ namespace Playnite.API
                     continue;
                 }
 
+                logger.Info($"Loaded plugin extension {path}");
                 plugins.AddRange(plugin);
             }
 
@@ -217,6 +219,7 @@ namespace Playnite.API
         {
             try
             {
+                logger.Debug($"Invoking extension function {function}");
                 function.Invoke();
             }
             catch (Exception e)

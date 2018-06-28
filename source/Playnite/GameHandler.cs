@@ -16,13 +16,12 @@ namespace Playnite
 
         public static Process ActivateTask(GameTask task)
         {
+            logger.Info($"Activating game task {task}");
             switch (task.Type)
             {
                 case GameTaskType.File:
-                    logger.Info($"Starting process: {task.Path}, {task.Arguments}, {task.WorkingDir}");
                     return ProcessStarter.StartProcess(task.Path, task.Arguments, task.WorkingDir);
                 case GameTaskType.URL:
-                    logger.Info($"Opening URL {task.Path}");
                     return ProcessStarter.StartUrl(task.Path);
                 case GameTaskType.Emulator:
                     throw new Exception("Cannot start emulated game without emulator.");
@@ -33,17 +32,16 @@ namespace Playnite
 
         public static Process ActivateTask(GameTask task, Game gameData)
         {
+            logger.Info($"Activating game task {task}");
             switch (task.Type)
             {
                 case GameTaskType.File:
                     var path = gameData.ResolveVariables(task.Path);
                     var arguments = gameData.ResolveVariables(task.Arguments);
                     var workdir = gameData.ResolveVariables(task.WorkingDir);
-                    logger.Info($"Starting process: {path}, {arguments}, {workdir}");
                     return ProcessStarter.StartProcess(path, arguments, workdir);
                 case GameTaskType.URL:
                     var url = gameData.ResolveVariables(task.Path);
-                    logger.Info($"Opening URL {url}");
                     return ProcessStarter.StartUrl(url);
                 case GameTaskType.Emulator:
                     throw new Exception("Cannot start emulated game without emulator.");
@@ -54,6 +52,7 @@ namespace Playnite
 
         public static Process ActivateTask(GameTask task, Game gameData, EmulatorProfile config)
         {
+            logger.Info($"Activating game task {task}");
             switch (task.Type)
             {
                 case GameTaskType.File:
@@ -78,7 +77,6 @@ namespace Playnite
                     }
 
                     var workdir = gameData.ResolveVariables(config.WorkingDirectory);
-                    logger.Info($"Starting emulator: {path}, {arguments}, {workdir}");
                     return ProcessStarter.StartProcess(path, arguments, workdir);
             }
 
