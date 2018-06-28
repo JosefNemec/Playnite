@@ -230,19 +230,9 @@ namespace PlayniteUI
                     Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
                     Database.OpenDatabase();
 
-                    if (wizardModel.ImportedGames.Count > 0)
+                    if (wizardModel.ImportedGames?.Any() == true)
                     {
-                        foreach (var game in wizardModel.ImportedGames)
-                        {
-                            if (game.Icon != null)
-                            {
-                                var iconId = "images/custom/" + game.Icon.Name;
-                                game.Game.Icon = Database.AddFileNoDuplicate(iconId, game.Icon.Name, game.Icon.Data); ;
-                            }
-
-                            Database.AssignPcPlatform(game.Game);
-                            Database.AddGame(game.Game);
-                        }
+                        InstalledGamesViewModel.AddImportableGamesToDb(wizardModel.ImportedGames, Database);
                     }
 
                     if (wizardModel.SteamImportCategories)

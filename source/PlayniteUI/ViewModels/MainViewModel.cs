@@ -487,9 +487,8 @@ namespace PlayniteUI.ViewModels
                 MainMenuOpened = false;
                 ImportInstalledGames(
                     new InstalledGamesViewModel(
-                    Database,
                     InstalledGamesWindowFactory.Instance,
-                    Dialogs));
+                    Dialogs), null);
             }, (a) => Database.IsOpen);
 
             AddEmulatedGamesCommand = new RelayCommand<object>((a) =>
@@ -1108,29 +1107,8 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public async Task DownloadMetadata(MetadataDownloaderSettings settings)
+        public async Task DownloadMetadata(MetadataDownloaderSettings settings, List<Game> games)
         {
-            List<Game> games = null;
-            if (settings.GamesSource == MetadataGamesSource.Selected)
-            {
-                if (SelectedGames != null && SelectedGames.Count() > 0)
-                {
-                    games = SelectedGames.Select(a => a.Game).Distinct().ToList();
-                }
-                else
-                {
-                    return;
-                }
-            }
-            else if (settings.GamesSource == MetadataGamesSource.AllFromDB)
-            {
-                games = Database.GamesCollection.FindAll().ToList();
-            }
-            else if (settings.GamesSource == MetadataGamesSource.Filtered)
-            {
-                games = GamesView.CollectionView.Cast<GameViewEntry>().Select(a => a.Game).Distinct().ToList();
-            }
-
             GameAdditionAllowed = false;
 
             try
@@ -1156,6 +1134,32 @@ namespace PlayniteUI.ViewModels
                 ProgressVisible = false;
                 GameAdditionAllowed = true;
             }
+        }
+
+        public async Task DownloadMetadata(MetadataDownloaderSettings settings)
+        {
+            List<Game> games = null;
+            if (settings.GamesSource == MetadataGamesSource.Selected)
+            {
+                if (SelectedGames != null && SelectedGames.Count() > 0)
+                {
+                    games = SelectedGames.Select(a => a.Game).Distinct().ToList();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else if (settings.GamesSource == MetadataGamesSource.AllFromDB)
+            {
+                games = Database.GamesCollection.FindAll().ToList();
+            }
+            else if (settings.GamesSource == MetadataGamesSource.Filtered)
+            {
+                games = GamesView.CollectionView.Cast<GameViewEntry>().Select(a => a.Game).Distinct().ToList();
+            }
+
+            await DownloadMetadata(settings, games);
         }
 
 
@@ -1194,14 +1198,33 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public void ImportInstalledGames(InstalledGamesViewModel model)
+        public async void ImportInstalledGames(InstalledGamesViewModel model, string path)
         {
-            model.OpenView();
+            if (model.OpenView(path) == true && model.Games?.Any() == true)
+            {
+                var addedGames = InstalledGamesViewModel.AddImportableGamesToDb(model.Games, Database);
+                if (!GlobalTaskHandler.IsActive)
+                {
+                    Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
+                    var settings = new MetadataDownloaderSettings();
+                    settings.ConfigureFields(MetadataSource.IGDB, true);
+                    await DownloadMetadata(settings, addedGames);
+                }
+            }
         }
 
-        public void ImportEmulatedGames(EmulatorImportViewModel model)
+        public async void ImportEmulatedGames(EmulatorImportViewModel model)
         {
-            model.OpenView();
+            if (model.OpenView() == true && model.ImportedGames?.Any() == true)
+            {
+                if (!GlobalTaskHandler.IsActive)
+                {
+                    Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
+                    var settings = new MetadataDownloaderSettings();
+                    settings.ConfigureFields(MetadataSource.IGDB, true);
+                    await DownloadMetadata(settings, model.ImportedGames);
+                }
+            }
         }
         
         public void OpenAboutWindow(AboutViewModel model)
@@ -1285,12 +1308,10 @@ namespace PlayniteUI.ViewModels
                     }
                     else if (Directory.Exists(path))
                     {
-                        var instMode = new InstalledGamesViewModel(
-                           Database,
+                        var instModel = new InstalledGamesViewModel(
                            InstalledGamesWindowFactory.Instance,
                            Dialogs);
-
-                        instMode.OpenView(path);
+                        ImportInstalledGames(instModel, path);
                     }
                 }
             }

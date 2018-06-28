@@ -67,7 +67,7 @@ namespace PlayniteUI.ViewModels
             } = true;
 
             public ImportableEmulator(ScannedEmulator emulator) : base(emulator.Name, emulator.Profiles)
-            {                
+            {
             }
         }
 
@@ -180,6 +180,11 @@ namespace PlayniteUI.ViewModels
                 gamesList = value;
                 OnPropertyChanged("GamesList");
             }
+        }
+
+        public List<Game> ImportedGames
+        {
+            get; private set;
         }
 
         public List<Emulator> AvailableEmulators
@@ -425,7 +430,7 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public void AddSelectedGamesToDB()
+        private void AddSelectedGamesToDB()
         {
             if (GamesList == null || GamesList.Count == 0)
             {
@@ -450,16 +455,16 @@ namespace PlayniteUI.ViewModels
                 game.Game.State = new GameState() { Installed = true };
             }
 
-            database.AddGames(GamesList.Where(a => a.Import)?.Select(a => a.Game).ToList());
+            ImportedGames = GamesList.Where(a => a.Import)?.Select(a => a.Game).ToList();
+            database.AddGames(ImportedGames);
         }
 
-        public void AddSelectedEmulatorsToDB()
+        private void AddSelectedEmulatorsToDB()
         {
             if (EmulatorList == null || EmulatorList.Count == 0)
             {
                 return;
             }
-
 
             logger.Info($"Adding {EmulatorList.Count} new emulators to DB.");
             foreach (var emulator in EmulatorList)
