@@ -125,110 +125,60 @@ namespace PlayniteServices.Models.IGDB
         }
     }
 
-    public class ParsedGame
+    public class ReleaseDate
     {
-        public ulong id
-        {
-            get; set;
-        }
+        public ulong id { get; set; }
+        public ulong game { get; set; }
+        public ulong category { get; set; }
+        public ulong platform { get; set; }
+        public string human { get; set; }
+        public long updated_at { get; set; }
+        public long created_at { get; set; }
+        public long date { get; set; }
+        public uint region { get; set; }
+        public uint y { get; set; }
+        public uint m { get; set; }
+    }
 
-        public string name
-        {
-            get; set;
-        }
-
-        public string summary
-        {
-            get; set;
-        }
-
-        public List<string> developers
-        {
-            get; set;
-        }
-
-        public List<string> publishers
-        {
-            get; set;
-        }
-
-        public List<string> genres
-        {
-            get; set;
-        }
-
-        public List<string> themes
-        {
-            get; set;
-        }
-
-        public List<string> game_modes
-        {
-            get; set;
-        }
-
-        public long first_release_date
-        {
-            get; set;
-        }
-
-        public string cover
-        {
-            get; set;
-        }
-
-        public List<Website> websites
-        {
-            get; set;
-        }
-
+    public class ParsedGame : Game
+    {
         [JsonIgnore]
         public DateTime creation_time
         {
             get; set;
         }
 
-        public double rating
+        public new List<string> developers
         {
             get; set;
         }
 
-        public double aggregated_rating
+        public new List<string> publishers
         {
             get; set;
         }
 
-        public double total_rating
+        public new List<string> genres
         {
             get; set;
         }
 
-        public ulong collection
+        public new List<string> themes
         {
             get; set;
         }
 
-        public ulong franchise
+        public new List<string> game_modes
         {
             get; set;
         }
 
-        public List<AlternativeName> alternative_names
+        public new string cover
         {
             get; set;
         }
 
-        public Dictionary<string, string> external
-        {
-            get; set;
-        }
-
-        public List<Image> screenshots
-        {
-            get; set;
-        }
-
-        public List<Video> videos
+        public new List<string> platforms
         {
             get; set;
         }
@@ -306,16 +256,6 @@ namespace PlayniteServices.Models.IGDB
             get; set;
         }
 
-        public ulong collection
-        {
-            get; set;
-        }
-
-        public ulong franchise
-        {
-            get; set;
-        }
-
         public List<AlternativeName> alternative_names
         {
             get; set;
@@ -331,10 +271,34 @@ namespace PlayniteServices.Models.IGDB
             get; set;
         }
 
+        public List<Image> artworks
+        {
+            get; set;
+        }
+
         public List<Video> videos
         {
             get; set;
         }
+
+        public List<ulong> platforms
+        {
+            get; set;
+        }
+
+        public List<ReleaseDate> release_dates
+        {
+            get; set;
+        }
+    }
+
+    public class Platform
+    {
+        [BsonId(false)]
+        [BsonIndex(true)]
+        public ulong id { get; set; }
+        public string name { get; set; }
+        public string url { get; set; }
     }
 
     public class GameMode
