@@ -83,7 +83,7 @@ namespace Playnite
                 return string.Empty;
             }
 
-            return Regex.Replace(path, @"\.[a-z0-9]+", "");
+            return Regex.Replace(path, @"(\.[a-z0-9]+)+$", "");
         }
     }
 }
