@@ -335,6 +335,11 @@ namespace Playnite.Providers.BattleNet
                         continue;
                     }
 
+                    if (prog.DisplayName.EndsWith("Test"))
+                    {
+                        continue;
+                    }
+
                     var iId = match.Groups[1].Value;
                     var product = BattleNetProducts.FirstOrDefault(a => a.Type == BNetAppType.Default && iId.StartsWith(a.InternalId));
                     if (product == null)
