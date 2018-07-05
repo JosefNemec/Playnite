@@ -1802,7 +1802,6 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
-        <Setter Property="TryToBeFlickerFree" Value="True" />
         <Setter Property="CaptionHeight" Value="39" />
         <Setter Property="Template">
             <Setter.Value>

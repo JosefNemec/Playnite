@@ -82,6 +82,7 @@ namespace PlayniteUI.Controls
         static WindowBase()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(WindowBase), new FrameworkPropertyMetadata(typeof(WindowBase)));
+            AllowsTransparencyProperty.OverrideMetadata(typeof(WindowBase), new FrameworkPropertyMetadata(false));
         }
 
         public WindowBase() : base()
@@ -108,7 +109,6 @@ namespace PlayniteUI.Controls
         private void InitializeWindowChromeBehavior()
         {
             var behavior = new WindowChromeBehavior();
-            BindingOperations.SetBinding(behavior, WindowChromeBehavior.TryToBeFlickerFreeProperty, new Binding { Path = new PropertyPath(TryToBeFlickerFreeProperty), Source = this });
             BindingOperations.SetBinding(behavior, WindowChromeBehavior.ResizeBorderThicknessProperty, new Binding { Path = new PropertyPath(ResizeBorderThicknessProperty), Source = this });
             BindingOperations.SetBinding(behavior, WindowChromeBehavior.IgnoreTaskbarOnMaximizeProperty, new Binding { Path = new PropertyPath(IgnoreTaskbarOnMaximizeProperty), Source = this });
             BindingOperations.SetBinding(behavior, WindowChromeBehavior.GlowBrushProperty, new Binding { Path = new PropertyPath(GlowBrushProperty), Source = this });
@@ -130,14 +130,6 @@ namespace PlayniteUI.Controls
             Interaction.GetBehaviors(this).Add(behavior);
         }
 
-        public static readonly DependencyProperty TryToBeFlickerFreeProperty = DependencyProperty.Register(nameof(TryToBeFlickerFree), typeof(bool), typeof(WindowBase), new PropertyMetadata(false));
-
-        public bool TryToBeFlickerFree
-        {
-            get { return (bool)this.GetValue(TryToBeFlickerFreeProperty); }
-            set { this.SetValue(TryToBeFlickerFreeProperty, value); }
-        }
-
         public static readonly DependencyProperty CaptionHeightProperty = DependencyProperty.Register(nameof(CaptionHeight), typeof(double), typeof(WindowBase), new PropertyMetadata(WindowChromeBehavior.CaptionHeightProperty.DefaultMetadata.DefaultValue));
 
         /// <summary>The extent of the top of the window to treat as the caption.</summary>
@@ -146,7 +138,6 @@ namespace PlayniteUI.Controls
             get { return (double)this.GetValue(CaptionHeightProperty); }
             set { this.SetValue(CaptionHeightProperty, value); }
         }
-
 
         public Thickness ResizeBorderThickness
         {
