@@ -1777,28 +1777,6 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="WindowBarButton" TargetType="Button">
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-        <Setter Property="Margin" Value="5,0,5,0" />
-        <Setter Property="Padding" Value="3" />
-        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <TextBlock FontFamily="Marlett" Foreground="{TemplateBinding Foreground}" FontSize="16" Padding="{TemplateBinding Padding}">
-                        <ContentPresenter />
-                    </TextBlock>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
 
     <Style x:Key="PopupBorder" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
@@ -1863,6 +1841,29 @@
 
     <Style x:Key="MainWindowStyle" TargetType="pc:WindowBase"
            BasedOn="{StaticResource ResourceKey=StandardWindowStyle}">
+    </Style>
+
+    <Style x:Key="WindowBarButton" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Margin" Value="5,0,5,0" />
+        <Setter Property="Padding" Value="3" />
+        <Setter Property="controlzEx:WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <TextBlock FontFamily="Marlett" Foreground="{TemplateBinding Foreground}" FontSize="16" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter />
+                    </TextBlock>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type pc:GameMenu}">

@@ -1766,29 +1766,6 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="WindowBarButton" TargetType="Button">
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-        <Setter Property="Margin" Value="5,0,5,0" />
-        <Setter Property="Padding" Value="3" />
-        <Setter Property="controlzEx:WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <TextBlock FontFamily="Marlett" Foreground="{TemplateBinding Foreground}" FontSize="16" Padding="{TemplateBinding Padding}">
-                        <ContentPresenter />
-                    </TextBlock>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
     <Style x:Key="PopupBorder" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush}" />
@@ -1839,7 +1816,6 @@
                         </MultiDataTrigger>
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter Property="Content" Value="2" TargetName="PART_ButtonMaximize"/>
-                            <Setter Property="Padding" Value="8" TargetName="WindowBorder"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1851,7 +1827,30 @@
            BasedOn="{StaticResource ResourceKey=StandardWindowStyle}">
         <Setter Property="BorderThickness" Value="1" />
     </Style>
-    
+
+    <Style x:Key="WindowBarButton" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Margin" Value="5,0,5,0" />
+        <Setter Property="Padding" Value="3" />
+        <Setter Property="controlzEx:WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <TextBlock FontFamily="Marlett" Foreground="{TemplateBinding Foreground}" FontSize="16" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter />
+                    </TextBlock>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style TargetType="{x:Type pc:GameMenu}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
@@ -3109,7 +3108,7 @@
                     <Button DockPanel.Dock="Left" Command="{Binding OpenMainMenuCommand}"
                             HorizontalContentAlignment="Left" BorderThickness="0" Background="Transparent">                    
                         <Border DockPanel.Dock="Left" Background="Transparent"
-                                Cursor="Hand" Margin="10,0,5,0" controlzEx:WindowChrome.IsHitTestVisibleInChrome="True">                           
+                                Cursor="Hand" Margin="10,0,5,0" controlzEx:WindowChrome.IsHitTestVisibleInChrome="True">
                             <TextBlock Text="☰" VerticalAlignment="Center" FontWeight="Bold" Opacity="0.9"
                                         FontSize="20" Foreground="{StaticResource TextBrush}" />
                         </Border>
@@ -3454,7 +3453,7 @@
                     <Button Grid.Column="4" Command="{Binding CloseMainMenuCommand}"
                             Background="Transparent"/>
 
-                    <Button Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Marlett"
+                    <Button controlzEx:WindowChrome.IsHitTestVisibleInChrome="True" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Marlett"
                             FontSize="18" Content="r" Margin="15,20,0,0" Command="{Binding CloseMainMenuCommand}" >
                     </Button>
                 </Grid>
