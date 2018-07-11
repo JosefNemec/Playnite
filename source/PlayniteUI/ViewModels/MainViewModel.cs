@@ -439,6 +439,17 @@ namespace PlayniteUI.ViewModels
             ShutdownCommand = new RelayCommand<object>((a) =>
             {
                 MainMenuOpened = false;
+                if (GlobalTaskHandler.IsActive)
+                {
+                    if (Dialogs.ShowMessage(
+                        Resources.FindString("LOCBackgroundProgressCancelAskExit"),
+                        Resources.FindString("LOCCrashClosePlaynite"),
+                        MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                    {
+                        return;
+                    }
+                }
+
                 ignoreCloseActions = true;
                 ShutdownApp();
             }, new KeyGesture(Key.Q, ModifierKeys.Alt));
@@ -1284,6 +1295,18 @@ namespace PlayniteUI.ViewModels
             }
             else
             {
+                if (GlobalTaskHandler.IsActive)
+                {
+                    if (Dialogs.ShowMessage(
+                        Resources.FindString("LOCBackgroundProgressCancelAskExit"),
+                        Resources.FindString("LOCCrashClosePlaynite"),
+                        MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                    {
+                        args.Cancel = true;
+                        return;
+                    }
+                }
+
                 ShutdownApp();
             }
         }
