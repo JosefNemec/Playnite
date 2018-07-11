@@ -14,7 +14,7 @@ namespace PlayniteTests.Metadata
     [TestFixture]
     public class IGDBMetadataProviderTests
     {        
-        private IGDBMetadataProvider provider = new IGDBMetadataProvider(new ServicesClient("http://localhost:8080/"));
+        private IGDBMetadataProvider provider = new IGDBMetadataProvider(new ServicesClient("http://localhost:5000/"));
 
         [Test]
         public void StandardDownloadTest()
@@ -119,6 +119,12 @@ namespace PlayniteTests.Metadata
             Assert.IsNotNull(result.GameData);
             Assert.IsNotNull(result.Image);
             Assert.AreEqual("The Witcher 3: Wild Hunt", result.GameData.Name);
+
+            // Apostrophe test
+            result = provider.GetMetadata(new Game("Dragons Lair"));
+            Assert.IsNotNull(result.GameData);
+            Assert.IsNotNull(result.Image);
+            Assert.AreEqual("Dragon's Lair", result.GameData.Name);
         }
     }
 }

@@ -213,9 +213,18 @@ namespace Playnite.Metadata.Providers
                 return data;
             }
 
+            // Try removing apostrophes
+            var resCopy = results.CloneJson();
+            resCopy.ForEach(a => a.Name = a.Name.Replace("'", ""));
+            data = matchFun(name, resCopy);
+            if (data != null)
+            {
+                return data;
+            }
+
             // Try removing all ":"
             testName = Regex.Replace(testName, @"\s*:\s*", " ");
-            var resCopy = results.CloneJson();
+            resCopy = results.CloneJson();
             resCopy.ForEach(a => a.Name = Regex.Replace(a.Name, @"\s*:\s*", " "));
             data = matchFun(testName, resCopy);
             if (data != null)
