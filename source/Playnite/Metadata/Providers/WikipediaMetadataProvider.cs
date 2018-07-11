@@ -247,7 +247,8 @@ namespace Playnite.Metadata.Providers
 
                 if (rowName.IndexOf("release", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    List<string> dates= rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                    rowValue = Regex.Replace(rowValue, "[A-Z]+:", "\n");
+                    var dates = rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
                     // Take first valid date we find
                     foreach (var stringDate in dates)
