@@ -184,6 +184,22 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<object> ToggleInstallFilterCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ToggleInstallFilter();
+            });
+        }
+
+        public RelayCommand<object> ClearSearchCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ClearSearch();
+            });
+        }
+
         public FullscreenViewModel(
             GameDatabase database,
             IWindowFactory window,
@@ -280,6 +296,33 @@ namespace PlayniteUI.ViewModels
             {
                 AppSettings.FullscreenViewSettings.SortingOrder = Playnite.SortOrder.Name;
             }
+        }
+
+        public void ToggleInstallFilter()
+        {
+            if (!AppSettings.FullScreenFilterSettings.IsInstalled && !AppSettings.FullScreenFilterSettings.IsUnInstalled)
+            {                
+                AppSettings.FullScreenFilterSettings.IsInstalled = true;
+                AppSettings.FullScreenFilterSettings.IsUnInstalled = false;
+            }
+            else if (AppSettings.FullScreenFilterSettings.IsInstalled)
+            {
+                AppSettings.FullScreenFilterSettings.IsInstalled = false;
+                AppSettings.FullScreenFilterSettings.IsUnInstalled = true;
+            }
+            else if (AppSettings.FullScreenFilterSettings.IsUnInstalled)
+            {
+                AppSettings.FullScreenFilterSettings.IsInstalled = false;
+                AppSettings.FullScreenFilterSettings.IsUnInstalled = false;
+            }
+
+            // TODO: Handle this properly inside of Settings class.
+            AppSettings.OnPropertyChanged("FullScreenFilterSettings");
+        }
+
+        public void ClearSearch()
+        {
+            AppSettings.FullScreenFilterSettings.Name = null;
         }
 
         protected override void OnClosing(CancelEventArgs args)

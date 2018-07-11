@@ -131,6 +131,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCSaturday">Saturday</sys:String>
     <sys:String x:Key="LOCSunday">Sunday</sys:String>
     <sys:String x:Key="LOCImportCompleted">Import completed successfully.</sys:String>
+    <sys:String x:Key="LOCAllGames">All Games</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory

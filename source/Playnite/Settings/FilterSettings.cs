@@ -30,6 +30,12 @@ namespace Playnite
     public class FilterSettings : INotifyPropertyChanged
     {
         [JsonIgnore]
+        public bool SearchActive
+        {
+            get => !string.IsNullOrEmpty(Name);
+        }
+
+        [JsonIgnore]
         public bool Active
         {
             get
@@ -74,6 +80,7 @@ namespace Playnite
                 OnPropertyChanged("Name");
                 OnFilterChanged("Name");
                 OnPropertyChanged("Active");
+                OnPropertyChanged("SearchActive");
             }
         }
 

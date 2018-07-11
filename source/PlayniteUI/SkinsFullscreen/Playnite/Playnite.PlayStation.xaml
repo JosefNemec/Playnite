@@ -28,6 +28,8 @@
            RenderOptions.BitmapScalingMode="Fant" />
     <Image x:Key="ToggleSorting" Source="{Binding ConverterParameter='Icons/PS/R1.png', Converter={pui:SkinMediaPathConverter}}"
            RenderOptions.BitmapScalingMode="Fant" />
+    <Image x:Key="ToggleInstalled" Source="{Binding ConverterParameter='Icons/PS/Options.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant"  />
 
     <Image x:Key="CancelImage" Source="{Binding ConverterParameter='Icons/PS/Circle.png', Converter={pui:SkinMediaPathConverter}}"
            RenderOptions.BitmapScalingMode="Fant" />
