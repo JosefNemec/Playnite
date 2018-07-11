@@ -200,13 +200,11 @@ namespace PlayniteUI
             // First run wizard
             ulong steamCatImportId = 0;
             bool isFirstStart = !AppSettings.FirstTimeWizardComplete;
+            bool existingDb = false;
             if (!AppSettings.FirstTimeWizardComplete)
             {
                 var wizardWindow = FirstTimeStartupWindowFactory.Instance;
-                var wizardModel = new FirstTimeStartupViewModel(
-                    wizardWindow,
-                    dialogs,
-                    new ResourceProvider());
+                var wizardModel = new FirstTimeStartupViewModel(wizardWindow, dialogs, new ResourceProvider());
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
@@ -226,7 +224,7 @@ namespace PlayniteUI
                     AppSettings.BattleNetSettings = settings.BattleNetSettings;
                     AppSettings.UplaySettings = settings.UplaySettings;
                     AppSettings.SaveSettings();
-
+                    existingDb = File.Exists(AppSettings.DatabasePath);
                     Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
                     Database.OpenDatabase();
 
@@ -244,6 +242,7 @@ namespace PlayniteUI
                 {
                     AppSettings.DatabasePath = Path.Combine(Paths.UserProgramDataPath, "games.db");
                     AppSettings.SaveSettings();
+                    existingDb = File.Exists(AppSettings.DatabasePath);
                     Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
                 }
             }
@@ -277,7 +276,7 @@ namespace PlayniteUI
             }
             else
             {
-                OpenNormalView(steamCatImportId, isFirstStart);
+                OpenNormalView(steamCatImportId, isFirstStart, existingDb);
             }
 
             // Update and stats
@@ -442,7 +441,7 @@ namespace PlayniteUI
             resourcesReleased = true;
         }
 
-        public async void OpenNormalView(ulong steamCatImportId, bool isFirstStart)
+        public async void OpenNormalView(ulong steamCatImportId, bool isFirstStart, bool existingDb)
         {
             logger.Debug("Opening Desktop view");
             if (Database.IsOpen)
@@ -470,7 +469,7 @@ namespace PlayniteUI
                 await MainModel.UpdateDatabase(AppSettings.UpdateLibStartup, steamCatImportId, !isFirstStart);
             }
 
-            if (isFirstStart)
+            if (isFirstStart && !existingDb)
             {
                 var metaSettings = new MetadataDownloaderSettings();
                 metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);

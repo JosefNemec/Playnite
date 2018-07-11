@@ -359,7 +359,7 @@ namespace PlayniteUI.ViewModels
                 Dispose();
             }
 
-            App.CurrentApp.OpenNormalView(0, false);
+            App.CurrentApp.OpenNormalView(0, false, true);
         }
 
         public void OpenSearch()
