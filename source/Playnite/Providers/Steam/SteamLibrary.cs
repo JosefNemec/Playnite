@@ -389,36 +389,38 @@ namespace Playnite.Providers.Steam
             metadata.StoreDetails = GetStoreData(id);
 
             // Icon
-            var iconRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.ico";
-            var icon = productInfo["common"]["clienticon"];
-            var iconUrl = string.Empty;
-            if (icon.Name != null)
+            if (productInfo != null)
             {
-                iconUrl = string.Format(iconRoot, id, icon.Value);
-            }
-            else
-            {
-                var newIcon = productInfo["common"]["icon"];
-                if (newIcon.Name != null)
+                var iconRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.ico";
+                var icon = productInfo["common"]["clienticon"];
+                var iconUrl = string.Empty;
+                if (icon.Name != null)
                 {
-                    iconRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
-                    iconUrl = string.Format(iconRoot, id, newIcon.Value);
+                    iconUrl = string.Format(iconRoot, id, icon.Value);
+                }
+                else
+                {
+                    var newIcon = productInfo["common"]["icon"];
+                    if (newIcon.Name != null)
+                    {
+                        iconRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
+                        iconUrl = string.Format(iconRoot, id, newIcon.Value);
+                    }
+                }
+
+                // There might be no icon assigned to game
+                if (!string.IsNullOrEmpty(iconUrl))
+                {
+                    var iconName = Path.GetFileName(new Uri(iconUrl).AbsolutePath);
+                    var iconData = HttpDownloader.DownloadData(iconUrl);
+                    metadata.Icon = new MetadataFile(
+
+                        string.Format("images/steam/{0}/{1}", id.ToString(), iconName),
+                        iconName,
+                        iconData
+                    );
                 }
             }
-
-            // There might be no icon assigned to game
-            if (!string.IsNullOrEmpty(iconUrl))
-            {
-                var iconName = Path.GetFileName(new Uri(iconUrl).AbsolutePath);
-                var iconData = HttpDownloader.DownloadData(iconUrl);
-                metadata.Icon = new MetadataFile(
-
-                    string.Format("images/steam/{0}/{1}", id.ToString(), iconName),
-                    iconName,
-                    iconData
-                );
-            }
-
 
             // Image
             var imageRoot = @"http://cdn.akamai.steamstatic.com/steam/apps/{0}/header.jpg";
@@ -434,12 +436,15 @@ namespace Playnite.Providers.Steam
                 var response = (HttpWebResponse)e.Response;
                 if (response.StatusCode == HttpStatusCode.NotFound)
                 {
-                    imageRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
-                    var image = productInfo["common"]["logo"];
-                    if (image.Name != null)
+                    if (productInfo != null)
                     {
-                        imageUrl = string.Format(imageRoot, id, image.Value);
-                        imageData = HttpDownloader.DownloadData(imageUrl);
+                        imageRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
+                        var image = productInfo["common"]["logo"];
+                        if (image.Name != null)
+                        {
+                            imageUrl = string.Format(imageRoot, id, image.Value);
+                            imageData = HttpDownloader.DownloadData(imageUrl);
+                        }
                     }
                 }
                 else
@@ -477,7 +482,7 @@ namespace Playnite.Providers.Steam
         public SteamGameMetadata UpdateGameWithMetadata(Game game, SteamSettings settings)
         {
             var metadata = DownloadGameMetadata(int.Parse(game.ProviderId), settings.PreferScreenshotForBackground);
-            game.Name = metadata.ProductDetails["common"]["name"].Value ?? game.Name;
+            game.Name = metadata.ProductDetails?["common"]["name"]?.Value ?? game.Name;
             game.Links = new ObservableCollection<Link>()
             {
                 new Link("Forum", @"https://steamcommunity.com/app/" + game.ProviderId),
@@ -503,51 +508,54 @@ namespace Playnite.Providers.Steam
                 game.CriticScore = metadata.StoreDetails.metacritic?.score;
             }
 
-            var tasks = new ObservableCollection<GameTask>();
-            var launchList = metadata.ProductDetails["config"]["launch"].Children;
-            foreach (var task in launchList.Skip(1))
+            if (metadata.ProductDetails != null)
             {
-                var properties = task["config"];
-                if (properties.Name != null)
+                var tasks = new ObservableCollection<GameTask>();
+                var launchList = metadata.ProductDetails["config"]["launch"].Children;
+                foreach (var task in launchList.Skip(1))
                 {
-                    if (properties["oslist"].Name != null)
+                    var properties = task["config"];
+                    if (properties.Name != null)
                     {
-                        if (properties["oslist"].Value != "windows")
+                        if (properties["oslist"].Name != null)
                         {
-                            continue;
+                            if (properties["oslist"].Value != "windows")
+                            {
+                                continue;
+                            }
                         }
+                    }
+
+                    // Ignore action without name  - shoudn't be visible to end user
+                    if (task["description"].Name != null)
+                    {
+                        var newTask = new GameTask()
+                        {
+                            Name = task["description"].Value,
+                            Arguments = task["arguments"].Value ?? string.Empty,
+                            Path = task["executable"].Value,
+                            IsBuiltIn = true,
+                            WorkingDir = "{InstallDir}"
+                        };
+
+                        tasks.Add(newTask);
                     }
                 }
 
-                // Ignore action without name  - shoudn't be visible to end user
-                if (task["description"].Name != null)
+                var manual = metadata.ProductDetails["extended"]["gamemanualurl"];
+                if (manual.Name != null)
                 {
-                    var newTask = new GameTask()
+                    tasks.Add((new GameTask()
                     {
-                        Name = task["description"].Value,
-                        Arguments = task["arguments"].Value ?? string.Empty,
-                        Path = task["executable"].Value,
-                        IsBuiltIn = true,
-                        WorkingDir = "{InstallDir}"
-                    };
-
-                    tasks.Add(newTask);
+                        Name = "Manual",
+                        Type = GameTaskType.URL,
+                        Path = manual.Value,
+                        IsBuiltIn = true
+                    }));
                 }
-            }
 
-            var manual = metadata.ProductDetails["extended"]["gamemanualurl"];
-            if (manual.Name != null)
-            {
-                tasks.Add((new GameTask()
-                {
-                    Name = "Manual",
-                    Type = GameTaskType.URL,
-                    Path = manual.Value,
-                    IsBuiltIn = true
-                }));
+                game.OtherTasks = tasks;
             }
-
-            game.OtherTasks = tasks;
 
             if (!string.IsNullOrEmpty(metadata.BackgroundImage))
             {
