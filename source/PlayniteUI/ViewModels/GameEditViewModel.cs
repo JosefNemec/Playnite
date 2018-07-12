@@ -2150,7 +2150,7 @@ namespace PlayniteUI.ViewModels
             }
 
             var path = EditingGame.ResolveVariables(EditingGame.PlayTask.Path);
-            if (!File.Exists(path))
+            if (!File.Exists(path) && !string.IsNullOrEmpty(EditingGame.PlayTask.WorkingDir))
             {
                 path = Path.Combine(
                     EditingGame.ResolveVariables(EditingGame.PlayTask.WorkingDir),
