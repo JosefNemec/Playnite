@@ -44,14 +44,14 @@ namespace Playnite.Providers.Steam
         public override void Install()
         {
             ReleaseResources();
-            Process.Start(@"steam://install/" + Game.ProviderId);
+            ProcessStarter.StartUrl(@"steam://install/" + Game.ProviderId);
             StartInstallWatcher();
         }
 
         public override void Uninstall()
         {
             ReleaseResources();
-            Process.Start(@"steam://uninstall/" + Game.ProviderId);
+            ProcessStarter.StartUrl(@"steam://uninstall/" + Game.ProviderId);
             StartUninstallWatcher();
         }
 

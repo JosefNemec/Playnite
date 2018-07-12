@@ -60,7 +60,7 @@ namespace Playnite.Providers.GOG
         public override void Install()
         {
             ReleaseResources();
-            Process.Start(@"goggalaxy://openGameView/" + Game.ProviderId);
+            ProcessStarter.StartUrl(@"goggalaxy://openGameView/" + Game.ProviderId);
             StartInstallWatcher();
         }
 
