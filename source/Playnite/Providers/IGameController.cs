@@ -47,6 +47,8 @@ namespace Playnite.Providers
 
     public interface IGameController : IDisposable
     {
+        bool IsGameRunning { get; }
+
         Game Game
         {
             get;
@@ -78,6 +80,11 @@ namespace Playnite.Providers
         protected CancellationTokenSource watcherToken;
         protected Stopwatch stopWatch;
         protected ProcessMonitor procMon;
+
+        public bool IsGameRunning
+        {
+            get; private set;
+        }
 
         public Game Game
         {
@@ -160,11 +167,13 @@ namespace Playnite.Providers
 
         public virtual void OnStarted(object sender, GameControllerEventArgs args)
         {
+            IsGameRunning = true;
             execContext.Post((a) => Started?.Invoke(sender, args), null);
         }
 
         public virtual void OnStopped(object sender, GameControllerEventArgs args)
         {
+            IsGameRunning = false;
             execContext.Post((a) => Stopped?.Invoke(sender, args), null);
         }
 

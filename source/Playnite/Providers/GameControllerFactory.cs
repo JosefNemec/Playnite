@@ -41,8 +41,7 @@ namespace Playnite.Providers
         {
             foreach (var controller in Controllers.ToList())
             {
-                DisposeController(controller);
-                database?.RemoveActiveController(controller.Game.Id);
+                RemoveController(controller);
             }
         }
 

@@ -131,6 +131,7 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCSaturday">Samstag</sys:String>
     <sys:String x:Key="LOCSunday">Sonntag</sys:String>
     <sys:String x:Key="LOCImportCompleted">Import erfolgreich abgeschlossen.</sys:String>
+    <sys:String x:Key="LOCAllGames">Alle Spiele</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Es können folgende Variablen verwendet werden:
 {InstallDir} - Installationspfad des Spiels
@@ -487,6 +488,7 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Keine neue Version gefunden, Playnite ist aktuell.</sys:String>
     <sys:String x:Key="LOCUGeneralUpdateFailMessage">Fehler beim Aktualisieren von Playnite:</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Im Hintergrund wird gerade ein Prozess ausgeführt, soll dieser beendet und mit dem Update fortgefahren werden?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Im Hintergrund wird gerade ein Prozess ausgeführt, soll Playnite wirklich beendet werden?</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Themes-Liste neu laden</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Theme anwenden</sys:String>

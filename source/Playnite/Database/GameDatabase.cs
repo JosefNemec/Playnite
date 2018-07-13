@@ -1560,7 +1560,11 @@ namespace Playnite.Database
         {
             CheckDbState();
             var ctrl = new ActiveController(controller);
-            ActiveControllersCollection.Upsert(ctrl);
+            using (Database.Engine.Locker.Reserved())
+            {
+                ActiveControllersCollection.Upsert(ctrl);
+            }
+
             return ctrl;
         }
 
@@ -1573,7 +1577,10 @@ namespace Playnite.Database
         public void RemoveActiveController(int gameId)
         {
             CheckDbState();
-            ActiveControllersCollection.Delete(a => a.Game.Id == gameId);
+            using (Database.Engine.Locker.Reserved())
+            {
+                ActiveControllersCollection.Delete(a => a.Game.Id == gameId);
+            }
         }
     }
 }

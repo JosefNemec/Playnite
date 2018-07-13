@@ -26,6 +26,10 @@ Playnite can be extended with plugins (written in .NET languages) or by scripts 
 
 See [extensions portal](https://playnite.link/docs/) for tutorials and full API documentation.
 
+FAQ
+---------
+Can be found [on wiki](https://github.com/JosefNemec/Playnite/wiki/Frequently-Asked-Questions)
+
 Known Issues
 ---------
 List of known issues and solutions can be found [on wiki](https://github.com/JosefNemec/Playnite/wiki/Known-Issues).
