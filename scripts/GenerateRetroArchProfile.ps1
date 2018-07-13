@@ -72,7 +72,11 @@ $ignoreList = @(
     "cruzes_libretro.info",
     "chaigame_libretro.info",
     "chailove_libretro.info",
-    "freej2me_libretro.info"
+    "freej2me_libretro.info",
+    "thepowdertoy_libretro.info",
+    "reminiscence_libretro.info",
+    "mpv_libretro.info",
+    "cannonball_libretro.info"
 )
 
 $platformsTranslate = @{

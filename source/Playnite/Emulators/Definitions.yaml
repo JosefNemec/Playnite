@@ -591,7 +591,7 @@
 
 - Name: RetroArch
   Website: 'http://www.retroarch.com/'
-  Profiles:
+  Profiles:  
     - Name: 4DO
       DefaultArguments: '-L ".\cores\4do_libretro.dll" "{ImagePath}"'
       Platforms: [3DO Interactive Multiplayer]
@@ -746,6 +746,13 @@
       RequiredFiles: ['cores\dosbox_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
+    - Name: DOSBox-SVN
+      DefaultArguments: '-L ".\cores\dosbox_svn_libretro.dll" "{ImagePath}"'
+      Platforms: [DOS]
+      ImageExtensions: [exe, com, bat, conf]
+      RequiredFiles: ['cores\dosbox_svn_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
     - Name: EasyRPG
       DefaultArguments: '-L ".\cores\easyrpg_libretro.dll" "{ImagePath}"'
       Platforms: [RPG Maker]
@@ -828,6 +835,20 @@
       Platforms: [Nintendo Entertainment System, Nintendo Family Computer Disk System]
       ImageExtensions: [fds, nes, unif, unf]
       RequiredFiles: ['cores\fceumm_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: fixGB
+      DefaultArguments: '-L ".\cores\fixgb_libretro.dll" "{ImagePath}"'
+      Platforms: [Nintendo Game Boy, Nintendo Game Boy Color]
+      ImageExtensions: [gb, gbc, gbs]
+      RequiredFiles: ['cores\fixgb_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: fixNES
+      DefaultArguments: '-L ".\cores\fixnes_libretro.dll" "{ImagePath}"'
+      Platforms: [Nintendo Entertainment System, Nintendo Family Computer Disk System]
+      ImageExtensions: [nes, fds, qd, nsf]
+      RequiredFiles: ['cores\fixnes_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: fMSX
@@ -1229,13 +1250,6 @@
       RequiredFiles: ['cores\prosystem_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: PSP1
-      DefaultArguments: '-L ".\cores\psp1_libretro.dll" "{ImagePath}"'
-      Platforms: [Sony PSP]
-      ImageExtensions: [elf, iso, cso, prx, pbp]
-      RequiredFiles: ['cores\psp1_libretro.dll']
-      ExecutableLookup: ^retroarch\.exe$
-
     - Name: PUAE
       DefaultArguments: '-L ".\cores\puae_libretro.dll" "{ImagePath}"'
       Platforms: [Commodore Amiga]
@@ -1266,8 +1280,8 @@
 
     - Name: Reicast
       DefaultArguments: '-L ".\cores\reicast_libretro.dll" "{ImagePath}"'
-      Platforms: [Sega Dreamcast]
-      ImageExtensions: [cdi, gdi, chd, cue]
+      Platforms: [Sega Dreamcast, Sega NAOMI]
+      ImageExtensions: [chd, cdi, iso, elf, bin, cue, gdi, lst]
       RequiredFiles: ['cores\reicast_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -1278,11 +1292,11 @@
       RequiredFiles: ['cores\reicast_naomi_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
-    - Name: REminiscence
-      DefaultArguments: '-L ".\cores\reminiscence_libretro.dll" "{ImagePath}"'
-      Platforms: [Flashback]
-      ImageExtensions: [map]
-      RequiredFiles: ['cores\reminiscence_libretro.dll']
+    - Name: Reicast OIT
+      DefaultArguments: '-L ".\cores\reicast_oit_libretro.dll" "{ImagePath}"'
+      Platforms: [Sega Dreamcast, Sega NAOMI]
+      ImageExtensions: [chd, cdi, iso, elf, bin, cue, gdi, lst]
+      RequiredFiles: ['cores\reicast_oit_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: Rustation
@@ -1360,13 +1374,6 @@
       Platforms: [Thomson TO8D]
       ImageExtensions: [fd, sap, k7, m7, rom]
       RequiredFiles: ['cores\theodore_libretro.dll']
-      ExecutableLookup: ^retroarch\.exe$
-
-    - Name: ThePowderToy
-      DefaultArguments: '-L ".\cores\thepowdertoy_libretro.dll" "{ImagePath}"'
-      Platforms: [ Physics Toy]
-      ImageExtensions: [cps]
-      RequiredFiles: ['cores\thepowdertoy_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: UAE4ARM
@@ -1451,6 +1458,13 @@
       Platforms: [Atari Jaguar]
       ImageExtensions: [j64, jag, rom, abs, cof, bin, prg]
       RequiredFiles: ['cores\virtualjaguar_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: VICE SDL
+      DefaultArguments: '-L ".\cores\x64sdl_libretro.dll" "{ImagePath}"'
+      Platforms: [Commodore 64]
+      ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z]
+      RequiredFiles: ['cores\x64sdl_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: Yabause
