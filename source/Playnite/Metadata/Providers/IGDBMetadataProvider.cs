@@ -141,49 +141,13 @@ namespace Playnite.Metadata.Providers
             copyGame.Name = StringExtensions.NormalizeGameName(game.Name);
             var name = copyGame.Name;
             var results = SearchMetadata(copyGame).ToList();
-            results.ForEach(a => a.Name = StringExtensions.NormalizeGameName(a.Name));
-
-            GameMetadata matchFun(string matchName, IEnumerable<MetadataSearchResult> list)
-            {
-                var res = list.Where(a => string.Equals(matchName, a.Name, StringComparison.InvariantCultureIgnoreCase));
-                if (!res.Any())
-                {
-                    res = list.Where(a => a.AlternativeNames?.ContainsInsensitive(matchName) == true);
-                }
-
-                if (res.Any())
-                {
-                    if (res.Count() == 1)
-                    {
-                        return GetMetadata(res.First().Id);
-                    }
-                    else
-                    {
-                        if (game.ReleaseDate != null)
-                        {
-                            var igdbGame = res.FirstOrDefault(a => a.ReleaseDate?.Year == game.ReleaseDate.Value.Year);
-                            if (igdbGame != null)
-                            {
-                                return GetMetadata(igdbGame.Id);
-                            }
-                        }
-                        else
-                        {
-                            // If multiple matches are found and we don't have release date then prioritize older game
-                            var igdbGame = res.OrderBy(a => a.ReleaseDate?.Year).First();
-                            return GetMetadata(igdbGame.Id);
-                        }
-                    }                    
-                }
-
-                return null;
-            }
+            results.ForEach(a => a.Name = StringExtensions.NormalizeGameName(a.Name));            
 
             GameMetadata data = null;
             string testName = string.Empty;
 
             // Direct comparison
-            data = matchFun(name, results);
+            data = matchFun(game, name, results);
             if (data != null)
             {
                 return data;
@@ -191,7 +155,7 @@ namespace Playnite.Metadata.Providers
 
             // Try replacing roman numerals: 3 => III
             testName = Regex.Replace(name, @"\d+", ReplaceNumsForRomans);
-            data = matchFun(testName, results);
+            data = matchFun(game, testName, results);
             if (data != null)
             {
                 return data;
@@ -199,7 +163,7 @@ namespace Playnite.Metadata.Providers
 
             // Try adding The
             testName = "The " + name;
-            data = matchFun(testName, results);
+            data = matchFun(game, testName, results);
             if (data != null)
             {
                 return data;
@@ -207,7 +171,7 @@ namespace Playnite.Metadata.Providers
 
             // Try chaning & / and
             testName = Regex.Replace(name, @"\s+and\s+", " & ", RegexOptions.IgnoreCase);
-            data = matchFun(testName, results);
+            data = matchFun(game, testName, results);
             if (data != null)
             {
                 return data;
@@ -216,7 +180,7 @@ namespace Playnite.Metadata.Providers
             // Try removing apostrophes
             var resCopy = results.CloneJson();
             resCopy.ForEach(a => a.Name = a.Name.Replace("'", ""));
-            data = matchFun(name, resCopy);
+            data = matchFun(game, name, resCopy);
             if (data != null)
             {
                 return data;
@@ -226,7 +190,7 @@ namespace Playnite.Metadata.Providers
             testName = Regex.Replace(testName, @"\s*:\s*", " ");
             resCopy = results.CloneJson();
             resCopy.ForEach(a => a.Name = Regex.Replace(a.Name, @"\s*:\s*", " "));
-            data = matchFun(testName, resCopy);
+            data = matchFun(game, testName, resCopy);
             if (data != null)
             {
                 return data;
@@ -261,6 +225,49 @@ namespace Playnite.Metadata.Providers
             {
                 return GameMetadata.Empty;
             }            
+        }
+
+        private GameMetadata matchFun(Game game, string matchName, IEnumerable<MetadataSearchResult> list)
+        {
+            var res = list.Where(a => string.Equals(matchName, a.Name, StringComparison.InvariantCultureIgnoreCase));
+            if (!res.Any())
+            {
+                res = list.Where(a => a.AlternativeNames?.ContainsInsensitive(matchName) == true);
+            }
+
+            if (res.Any())
+            {
+                if (res.Count() == 1)
+                {
+                    return GetMetadata(res.First().Id);
+                }
+                else
+                {
+                    if (game.ReleaseDate != null)
+                    {
+                        var igdbGame = res.FirstOrDefault(a => a.ReleaseDate?.Year == game.ReleaseDate.Value.Year);
+                        if (igdbGame != null)
+                        {
+                            return GetMetadata(igdbGame.Id);
+                        }
+                    }
+                    else
+                    {
+                        // If multiple matches are found and we don't have release date then prioritize older game
+                        if (res.All(a => a.ReleaseDate == null))
+                        {
+                            return GetMetadata(res.First().Id);
+                        }
+                        else
+                        {
+                            var igdbGame = res.OrderBy(a => a.ReleaseDate?.Year).First(a => a.ReleaseDate != null);
+                            return GetMetadata(igdbGame.Id);
+                        }                        
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }
