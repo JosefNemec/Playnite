@@ -767,7 +767,8 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(SolutionDir)\PlayniteUI\Skins" "$(TargetDir)\Skins" /e /y
-xcopy "$(SolutionDir)\PlayniteUI\SkinsFullscreen" "$(TargetDir)\SkinsFullscreen" /e /y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(SolutionDir)\PlayniteUI\Skins" "$(TargetDir)\Skins\" /e /y
+xcopy "$(SolutionDir)\PlayniteUI\SkinsFullscreen" "$(TargetDir)\SkinsFullscreen\" /e /y
+xcopy "$(SolutionDir)\Plugins\Playnite.SteamLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Plugins\SteamLibrary\" /e /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
