@@ -55,7 +55,7 @@ namespace PlayniteTests.Providers.Origin
             var originLib = new OriginLibrary();
             var existingStore = originLib.DownloadGameMetadata("OFB-EAST:60108");
             Assert.IsNotNull(existingStore.StoreDetails);
-            Assert.IsNotNull(existingStore.Image.Data);
+            Assert.IsNotNull(existingStore.Image.Content);
         }
 
         [Test]

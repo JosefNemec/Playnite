@@ -7,8 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using NLog;
-using Playnite.Models;
-using Playnite.SDK;
+using Playnite.Metadata;
 using Playnite.SDK.Models;
 using Playnite.Providers.Steam;
 using Microsoft.Win32;
@@ -326,7 +325,7 @@ namespace Playnite.Providers.Origin
             var imageData = HttpDownloader.DownloadData(imageUrl);
             var imageName = Guid.NewGuid() + Path.GetExtension(new Uri(imageUrl).AbsolutePath);
 
-            data.Image = new FileDefinition(          
+            data.Image = new MetadataFile(          
                 string.Format("images/origin/{0}/{1}", id.Replace(":", ""), imageName),
                 imageName,
                 imageData
@@ -378,7 +377,7 @@ namespace Playnite.Providers.Origin
                 {
                     var iconName = Guid.NewGuid() + ".png";
 
-                    metadata.Icon = new FileDefinition(
+                    metadata.Icon = new MetadataFile(
                         string.Format("images/origin/{0}/{1}", game.ProviderId.Replace(":", ""), iconName),
                         iconName,
                         exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png)

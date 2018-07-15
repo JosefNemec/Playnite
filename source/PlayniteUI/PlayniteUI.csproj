@@ -102,7 +102,8 @@
       <HintPath>..\..\references\HtmlRenderer.WPF.dll</HintPath>
     </Reference>
     <Reference Include="LiteDB, Version=3.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiteDB.3.1.4\lib\net462\LiteDB.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\LiteDB.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -212,6 +213,7 @@
     <Compile Include="Converters\InvertableBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\AfterGameLaunchOptionToStringConverter.cs" />
     <Compile Include="Converters\DateTimeToLastPlayedConverter.cs" />
+    <Compile Include="Converters\FilterToStringConverter.cs" />
     <Compile Include="Converters\SortingOrderToStringConverter.cs" />
     <Compile Include="Converters\MetadataSourceToStringConverter.cs" />
     <Compile Include="Converters\ListToStringConverter.cs" />
@@ -477,6 +479,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Skins\Classic\Classic.Modern.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Localization\italian.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

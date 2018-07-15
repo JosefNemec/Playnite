@@ -46,6 +46,7 @@ namespace Playnite.Web
 
         public string DownloadString(IEnumerable<string> mirrors)
         {
+            logger.Debug($"Downloading string content from multiple mirrors.");
             foreach (var mirror in mirrors)
             {
                 try
@@ -68,6 +69,7 @@ namespace Playnite.Web
 
         public string DownloadString(string url, Encoding encoding)
         {
+            logger.Debug($"Downloading string content from {url} using {encoding} encoding.");
             var webClient = new WebClient { Encoding = encoding };
             return webClient.DownloadString(url);
         }
@@ -79,6 +81,7 @@ namespace Playnite.Web
 
         public string DownloadString(string url, List<Cookie> cookies, Encoding encoding)
         {
+            logger.Debug($"Downloading string content from {url} using cookies and {encoding} encoding.");
             var webClient = new WebClient { Encoding = encoding };
             if (cookies?.Any() == true)
             {
@@ -96,19 +99,22 @@ namespace Playnite.Web
 
         public void DownloadString(string url, string path, Encoding encoding)
         {
-            var webClient = new WebClient { Encoding = Encoding.UTF8 };
+            logger.Debug($"Downloading string content from {url} to {path} using {encoding} encoding.");
+            var webClient = new WebClient { Encoding = encoding };
             var data = webClient.DownloadString(url);
             File.WriteAllText(path, data);
         }
 
         public byte[] DownloadData(string url)
         {
+            logger.Debug($"Downloading data from {url}.");
             var webClient = new WebClient();
             return webClient.DownloadData(url);
         }
 
         public void DownloadFile(string url, string path)
         {
+            logger.Debug($"Downloading data from {url} to {path}.");
             FileSystem.CreateDirectory(Path.GetDirectoryName(path));
             var webClient = new WebClient();
             webClient.DownloadFile(url, path);            
@@ -116,6 +122,7 @@ namespace Playnite.Web
 
         public async Task DownloadFileAsync(string url, string path, Action<DownloadProgressChangedEventArgs> progressHandler)
         {
+            logger.Debug($"Downloading data async from {url} to {path}.");
             FileSystem.CreateDirectory(Path.GetDirectoryName(path));
             var webClient = new WebClient();
             webClient.DownloadProgressChanged += (s, e) => progressHandler(e);
@@ -125,6 +132,7 @@ namespace Playnite.Web
 
         public async Task DownloadFileAsync(IEnumerable<string> mirrors, string path, Action<DownloadProgressChangedEventArgs> progressHandler)
         {
+            logger.Debug($"Downloading data async from multiple mirrors.");
             foreach (var mirror in mirrors)
             {
                 try
@@ -143,6 +151,7 @@ namespace Playnite.Web
 
         public void DownloadFile(IEnumerable<string> mirrors, string path)
         {
+            logger.Debug($"Downloading data from multiple mirrors.");
             foreach (var mirror in mirrors)
             {
                 try
@@ -161,6 +170,7 @@ namespace Playnite.Web
 
         public string GetCachedWebFile(string url)
         {
+            logger.Debug($"Getting cached web file from {url}.");
             if (string.IsNullOrEmpty(url))
             {
                 return string.Empty;
@@ -170,13 +180,19 @@ namespace Playnite.Web
             var md5 = url.MD5();
             var cacheFile = Path.Combine(Paths.ImagesCachePath, md5 + extension);
 
-            if (!File.Exists(cacheFile))
+            if (File.Exists(cacheFile))
+            {
+                logger.Debug($"Returning {url} from file cache {cacheFile}.");
+                return cacheFile;
+            }
+            else
             {
                 FileSystem.CreateDirectory(Paths.ImagesCachePath);
 
                 try
                 {
                     DownloadFile(url, cacheFile);
+                    return cacheFile;
                 }
                 catch (WebException e)
                 {
@@ -195,9 +211,7 @@ namespace Playnite.Web
                         return string.Empty;
                     }
                 }
-            }
-
-            return cacheFile;
+            }            
         }
     }
 }

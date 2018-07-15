@@ -478,6 +478,7 @@ namespace PlayniteUI.ViewModels
         {
             if (model.OpenView() == true)
             {
+                logger.Debug($"Selected {model.Games} custom games from first time wizard.");
                 ImportedGames = model.Games;
             }
         }

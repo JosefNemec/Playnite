@@ -15,8 +15,7 @@ namespace PlayniteTests.MetaProviders
         public void StandardDownloadTest()
         {
             var provider = new SteamMetadataProvider();
-            Assert.IsTrue(provider.GetSupportsIdSearch());
-            var data = provider.GetGameData("578080");
+            var data = provider.GetMetadata("578080");
             Assert.IsNotNull(data.GameData);
             Assert.IsNotNull(data.Icon);
             Assert.IsNotNull(data.Image);

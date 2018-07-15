@@ -22,6 +22,7 @@ using Playnite.Providers.BattleNet;
 using Playnite.Emulators;
 using System.Security.Cryptography;
 using Playnite.SDK.Models;
+using Playnite.Metadata;
 
 namespace Playnite.Database
 {
@@ -187,35 +188,6 @@ namespace Playnite.Database
         }
     }
 
-    public class FileDefinition
-    {
-        public string Path
-        {
-            get; set;
-        }
-
-        public string Name
-        {
-            get; set;
-        }
-
-        public byte[] Data
-        {
-            get; set;
-        }
-
-        public FileDefinition()
-        {
-        }
-
-        public FileDefinition(string path, string name, byte[] data)
-        {
-            Path = path;
-            Name = name;
-            Data = data;
-        }
-    }
-
     public class GameDatabase
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
@@ -339,6 +311,50 @@ namespace Playnite.Database
             {
                 var coll = Database.GetCollection<DatabaseSettings>("settings");
                 coll.Upsert(settings);
+            }
+        }
+
+        public static void CloneLibrary(string dbPath, string targetPath)
+        {
+            using (var sourceDb = new LiteDatabase($"Filename={dbPath};Mode=Exclusive"))
+            {
+                using (var targetDb = new LiteDatabase($"Filename={targetPath};Mode=Exclusive"))
+                {
+                    var games = sourceDb.GetCollection<Game>("games").FindAll();
+                    var targetGames = targetDb.GetCollection<Game>("games");
+                    foreach (var game in games)
+                    {
+                        targetGames.Insert(game);
+                    }
+
+                    var targetPlatforms = targetDb.GetCollection<Platform>("platforms");
+                    foreach (var platform in sourceDb.GetCollection<Platform>("platforms").FindAll())
+                    {
+                        targetPlatforms.Insert(platform);
+                    }
+
+                    var targetEmulators = targetDb.GetCollection<Emulator>("emulators");
+                    foreach (var emulator in sourceDb.GetCollection<Emulator>("emulators").FindAll())
+                    {
+                        targetEmulators.Insert(emulator);
+                    }
+
+                    var targetSettings = targetDb.GetCollection<DatabaseSettings>("settings");
+                    foreach (var setting in sourceDb.GetCollection<DatabaseSettings>("settings").FindAll())
+                    {
+                        targetSettings.Insert(setting);
+                    }
+
+                    foreach (var file in sourceDb.FileStorage.FindAll())
+                    {
+                        using (var fileStream = file.OpenRead())
+                        {
+                            targetDb.FileStorage.Upload(file.Id, file.Filename, fileStream);
+                        }
+                    }
+
+                    targetDb.Engine.UserVersion = sourceDb.Engine.UserVersion;
+                }
             }
         }
 
@@ -611,6 +627,17 @@ namespace Playnite.Database
         {
             Path = path;
             return OpenDatabase();
+        }
+
+        public LiteDatabase OpenDatabase(MemoryStream stream)
+        {
+            Database = new LiteDatabase(stream);
+            GamesCollection = Database.GetCollection<Game>("games");
+            PlatformsCollection = Database.GetCollection<Platform>("platforms");
+            EmulatorsCollection = Database.GetCollection<Emulator>("emulators");
+            ActiveControllersCollection = Database.GetCollection<ActiveController>("controllers");
+            IsOpen = true;
+            return Database;
         }
 
         public LiteDatabase OpenDatabase()
@@ -1083,9 +1110,9 @@ namespace Playnite.Database
             return EmulatorsCollection.FindAll().ToList();
         }
 
-        public string AddFileNoDuplicate(FileDefinition file)
+        public string AddFileNoDuplicate(MetadataFile file)
         {
-            return AddFileNoDuplicate(file.Path, file.Name, file.Data);
+            return AddFileNoDuplicate(file.FileId, file.FileName, file.Content);
         }
 
         public string AddFileNoDuplicate(string id, string name, byte[] data)

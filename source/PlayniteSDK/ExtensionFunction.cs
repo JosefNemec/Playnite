@@ -47,5 +47,11 @@ namespace Playnite.SDK
         {
             func?.Invoke();
         }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

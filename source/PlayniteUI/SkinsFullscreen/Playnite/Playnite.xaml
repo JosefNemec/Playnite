@@ -59,6 +59,8 @@
            RenderOptions.BitmapScalingMode="Fant"  />
     <Image x:Key="ToggleSorting" Source="{Binding ConverterParameter='Icons/Xbox/RB.png', Converter={pui:SkinMediaPathConverter}}"
            RenderOptions.BitmapScalingMode="Fant"  />
+    <Image x:Key="ToggleInstalled" Source="{Binding ConverterParameter='Icons/Xbox/Start.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant"  />
 
     <Image x:Key="CancelImage" Source="{Binding ConverterParameter='Icons/Xbox/B.png', Converter={pui:SkinMediaPathConverter}}"
            RenderOptions.BitmapScalingMode="Fant"  />
@@ -707,8 +709,8 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Button Grid.Column="0" Grid.Row="0"
-                    Visibility="{Binding AppSettings.FullScreenFilterSettings.Active, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Command="{Binding ClearFiltersCommand}" Style="{StaticResource CommandButton}"
+                    Visibility="{Binding AppSettings.FullScreenFilterSettings.SearchActive, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Command="{Binding ClearSearchCommand}" Style="{StaticResource CommandButton}"
                     HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal">
                     <ContentControl Content="{DynamicResource ClearFiltersImage}" />
@@ -754,16 +756,25 @@
                     <TextBlock Text="{DynamicResource LOCSearchLabel}" />
                 </StackPanel>
             </Button>
-            <Button Grid.Column="4" Grid.Row="0" Margin="20,0,20,0"
-                    HorizontalAlignment="Right"
-                    Command="{Binding ToggleSortingOrderCommand}" Style="{StaticResource CommandButton}">
-                <StackPanel Orientation="Horizontal">
-                    <ContentControl Content="{DynamicResource ToggleSorting}" />
-                    <TextBlock Text="{DynamicResource LOCMenuSortByTitle}" />
-                    <TextBlock Text="{Binding AppSettings.FullscreenViewSettings.SortingOrder, StringFormat=': {0}', Converter={pui:SortingOrderToStringConverter}}"
-                               Margin="0"/>
-                </StackPanel>
-            </Button>
+            <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="0" HorizontalAlignment="Right">
+                <Button Margin="20,0,20,0" HorizontalAlignment="Right"
+                        Command="{Binding ToggleInstallFilterCommand}" Style="{StaticResource CommandButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentControl Content="{DynamicResource ToggleInstalled}" />
+                        <TextBlock Text="{Binding AppSettings.FullScreenFilterSettings, Converter={pui:FilterToStringConverter}}"/>
+                    </StackPanel>
+                </Button>
+                <Button Margin="20,0,20,0" HorizontalAlignment="Right"
+                        Command="{Binding ToggleSortingOrderCommand}" Style="{StaticResource CommandButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentControl Content="{DynamicResource ToggleSorting}" />
+                        <TextBlock Text="{DynamicResource LOCMenuSortByTitle}" />
+                        <TextBlock Text="{Binding AppSettings.FullscreenViewSettings.SortingOrder, StringFormat=': {0}', Converter={pui:SortingOrderToStringConverter}}"
+                                   Margin="0"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
         </Grid>
     </ControlTemplate>
 

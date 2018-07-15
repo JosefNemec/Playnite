@@ -1,4 +1,4 @@
-﻿using Playnite.Database;
+﻿using Playnite.Metadata;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,14 +34,14 @@ namespace PlayniteTests
 
         private static Random random = new Random();
 
-        public static FileDefinition CreateFakeFile()
+        public static MetadataFile CreateFakeFile()
         {
             var file = new byte[20];
             random.NextBytes(file);
             var fileName = Guid.NewGuid().ToString() + ".file";
             var filePath = Path.Combine(TempPath, fileName);
             File.WriteAllBytes(filePath, file);
-            return new FileDefinition(filePath, fileName, file);
+            return new MetadataFile(filePath, fileName, file);
         }
     }
 }

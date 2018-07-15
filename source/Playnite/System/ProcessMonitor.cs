@@ -41,7 +41,7 @@ namespace Playnite
 
         public void StopWatching()
         {
-            watcherToken.Cancel();
+            watcherToken?.Cancel();
         }
 
         private async void WatchDirectory(string directory, bool alreadyRunning)

@@ -1,6 +1,6 @@
 ﻿using NLog;
 using Playnite.SDK;
-using Playnite.MetaProviders;
+using Playnite.Metadata;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
