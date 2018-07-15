@@ -167,6 +167,15 @@ foreach ($infoFile in $infoFiles)
     if ($profile.supported_extensions)
     {
         $extensions = [System.String]::Join(", ", $profile.supported_extensions.Split("|", [System.StringSplitOptions]::RemoveEmptyEntries))
+        if ($extensions -notmatch "zip")
+        {
+            $extensions += ", zip"
+        }
+
+        if ($extensions -notmatch "7z")
+        {
+            $extensions += ", 7z"
+        }
     }
 
     $profileString = $profileTemplate -f $name, $infoFile.BaseName, $platforms, $extensions, $infoFile.BaseName
