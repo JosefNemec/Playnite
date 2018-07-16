@@ -28,8 +28,8 @@ namespace Playnite.Scripting.IronPython
         {
             engine = Python.CreateEngine();
             var paths = engine.GetSearchPaths();
-            paths.Add(Paths.ProgramFolder);
-            var stdLibPath = Path.Combine(Paths.ProgramFolder, "IronPythonStdLib.zip");
+            paths.Add(Paths.ProgramPath);
+            var stdLibPath = Path.Combine(Paths.ProgramPath, "IronPythonStdLib.zip");
             if (File.Exists(stdLibPath))
             {
                 paths.Add(stdLibPath);
@@ -43,7 +43,7 @@ import os
 os.chdir('{0}')
 clr.AddReferenceToFile(""PlayniteSDK.dll"")
 from Playnite.SDK.Models import *
-", Paths.ProgramFolder.Replace(Path.DirectorySeparatorChar, '/')), scope);
+", Paths.ProgramPath.Replace(Path.DirectorySeparatorChar, '/')), scope);
 
             SetVariable("__logger", new Logger("Python"));
         }

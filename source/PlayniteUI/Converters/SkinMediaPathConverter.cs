@@ -31,7 +31,7 @@ namespace PlayniteUI
                 return DependencyProperty.UnsetValue;
             }
 
-            var filePath = Path.Combine(Paths.ProgramFolder, skinFolder, skinName, path);
+            var filePath = Path.Combine(Paths.ProgramPath, skinFolder, skinName, path);
             if (File.Exists(filePath))
             {
                 return filePath;

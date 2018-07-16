@@ -156,11 +156,11 @@ namespace Playnite.App
         public void InstallUpdate()
         {            
             var portable = Settings.IsPortable ? "/PORTABLE" : "";
-            logger.Info("Installing new update to {0}, in {1} mode", Paths.ProgramFolder, portable);
+            logger.Info("Installing new update to {0}, in {1} mode", Paths.ProgramPath, portable);
 
             Task.Run(() =>
             {
-                Process.Start(updaterPath, string.Format(@"/SILENT /NOCANCEL /DIR=""{0}"" /UPDATE {1}", Paths.ProgramFolder, portable));
+                Process.Start(updaterPath, string.Format(@"/SILENT /NOCANCEL /DIR=""{0}"" /UPDATE {1}", Paths.ProgramPath, portable));
             });
 
             playniteApp.Quit();

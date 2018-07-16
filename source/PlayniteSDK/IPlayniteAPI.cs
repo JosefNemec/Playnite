@@ -15,26 +15,21 @@ namespace Playnite.SDK
         /// <summary>
         /// Gest main view API.
         /// </summary>
-        IMainViewAPI MainView
-        {
-            get;
-        }
+        IMainViewAPI MainView { get; }
 
         /// <summary>
         /// Gets database API.
         /// </summary>
-        IGameDatabaseAPI Database
-        {
-            get;
-        }
+        IGameDatabaseAPI Database { get; }
 
         /// <summary>
         /// Gets dialog API.
         /// </summary>
-        IDialogsFactory Dialogs
-        {
-            get;
-        }
+        IDialogsFactory Dialogs { get; }
+
+        IPlaynitePathsAPI Paths { get; }
+
+        IPlayniteInfoAPI ApplicationInfo { get; }
 
         /// <summary>
         /// Returns string while resolving any dynamic variables supported by Playnite.

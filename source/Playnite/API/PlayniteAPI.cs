@@ -1,8 +1,10 @@
 ﻿using Playnite.Database;
+using Playnite.Plugins;
 using Playnite.Providers;
 using Playnite.Scripting;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,11 +18,13 @@ namespace Playnite.API
     public class PlayniteAPI : ObservableObject, IDisposable, IPlayniteAPI
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         private GameDatabase database;
         private GameControllerFactory controllers;
+        private List<PlayniteScript> scripts = new List<PlayniteScript>();
+        private List<Plugin> plugins = new List<Plugin>();
 
-        private List<PlayniteScript> scripts;
-        private List<Plugin> plugins;
+        public List<IGameLibrary> LibraryProviders { get; private set; }
 
         public bool HasExportedFunctions
         {
@@ -70,30 +74,24 @@ namespace Playnite.API
             }
         }
 
-        public IDialogsFactory Dialogs
-        {
-            get;
-        }
-
-        public IGameDatabaseAPI Database
-        {
-            get;
-        }
-
-        public IMainViewAPI MainView
-        {
-            get; set;
-        }
-
-        public PlayniteAPI(GameDatabase database, GameControllerFactory controllers, IDialogsFactory dialogs, IMainViewAPI mainViewApi)
+        public PlayniteAPI(
+            GameDatabase database,
+            GameControllerFactory controllers,
+            IDialogsFactory dialogs,
+            IMainViewAPI mainViewApi,
+            IPlayniteInfoAPI infoApi,
+            IPlaynitePathsAPI pathsApi)
         {
             this.database = database;
             this.controllers = controllers;
+            Paths = pathsApi;
+            ApplicationInfo = infoApi;
             MainView = mainViewApi;
             Dialogs = dialogs;
             Database = new DatabaseAPI(database);
             LoadScripts();
-            LoadPlugins();
+            //LoadPlugins();
+            LoadLibraryProviders();
             controllers.Installed += Controllers_Installed;
             controllers.Starting += Controllers_Starting;
             controllers.Started += Controllers_Started;
@@ -106,12 +104,24 @@ namespace Playnite.API
         {
             DisposeScripts();
             DisposePlugins();
+            DisposeLibraryProviders();
             controllers.Installed -= Controllers_Installed;
             controllers.Starting -= Controllers_Starting;
             controllers.Started -= Controllers_Installed;
             controllers.Stopped -= Controllers_Installed;
             controllers.Uninstalled -= Controllers_Installed;
             database.DatabaseOpened -= Database_DatabaseOpened;
+        }
+
+        private void DisposeLibraryProviders()
+        {
+            if (LibraryProviders?.Any() == true)
+            {
+                foreach (var provider in LibraryProviders)
+                {
+                    provider.Dispose();
+                }
+            }
         }
 
         private void DisposePlugins()
@@ -173,7 +183,7 @@ namespace Playnite.API
                     continue;
                 }
 
-                logger.Info($"Loaded script extension {path}");
+                logger.Info($"Loaded script extension: {path}");
                 script.SetVariable("PlayniteApi", this);
                 scripts.Add(script);                
             }
@@ -182,11 +192,53 @@ namespace Playnite.API
             return allSuccess;
         }
 
+        private List<PluginDescription> GetPluginDescriptors()
+        {
+            var descs = new List<PluginDescription>();
+            foreach (var file in PluginFactory.GetPluginDescriptorFiles())
+            {
+                try
+                {
+                    descs.Add(PluginDescription.FromFile(file));
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e.InnerException, $"Failed to parse plugin description: {file}");
+                    continue;
+                }
+            }
+
+            return descs;
+        }
+
+        public void LoadLibraryProviders()
+        {
+            DisposeLibraryProviders();
+            LibraryProviders = new List<IGameLibrary>();
+            foreach (var desc in GetPluginDescriptors().Where(a => a.Type == PluginType.GameLibrary))
+            {
+                try
+                {
+                    LibraryProviders.AddRange(PluginFactory.LoadGameLibraryPlugin(desc, this));
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e.InnerException, $"Failed to load library plugin: {desc.Name}");
+                    Dialogs.ShowMessage(
+                        $"Failed to load library plugin \"{Path.GetFileName(desc.Name)}\":\n\n" + e.Message, "Plugin error",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    continue;
+                }
+
+                logger.Info($"Loaded library plugin: {desc.Name}");
+            }
+        }
+
         public void LoadPlugins()
         {
             DisposePlugins();
             plugins = new List<Plugin>();
-            foreach (var path in Plugins.Plugins.GetPluginFiles())
+            foreach (var path in PluginFactory.GetPluginDescriptorFiles())
             {
                 if (Path.GetFileNameWithoutExtension(path).Equals("PlayniteSDK", StringComparison.InvariantCultureIgnoreCase))
                 {
@@ -197,18 +249,18 @@ namespace Playnite.API
 
                 try
                 {
-                    plugin = Plugins.Plugins.LoadPlugin(path, this);
+                    plugin = PluginFactory.LoadGenericPlugin(path, this);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(e.InnerException, $"Failed to load plugin file {path}");
+                    logger.Error(e.InnerException, $"Failed to load plugin file: {path}");
                     Dialogs.ShowMessage(
                         $"Failed to load plugin file {Path.GetFileName(path)}:\n\n" + e.Message, "Plugin error",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                     continue;
                 }
 
-                logger.Info($"Loaded plugin extension {path}");
+                logger.Info($"Loaded generic plugin: {path}");
                 plugins.AddRange(plugin);
             }
 
@@ -394,6 +446,18 @@ namespace Playnite.API
             }
         }
 
+        #region IPlayniteAPI
+
+        public IDialogsFactory Dialogs { get; }
+
+        public IGameDatabaseAPI Database { get; }
+
+        public IMainViewAPI MainView { get; set; }
+
+        public IPlaynitePathsAPI Paths { get; }
+
+        public IPlayniteInfoAPI ApplicationInfo { get; }
+
         public string ResolveGameVariables(Game game, string toResolve)
         {
             return game?.ResolveVariables(toResolve);
@@ -403,5 +467,7 @@ namespace Playnite.API
         {
             return new Logger(name);
         }
+
+        #endregion IPlayniteAPI
     }
 }

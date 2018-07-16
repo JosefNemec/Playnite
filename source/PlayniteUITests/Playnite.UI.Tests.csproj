@@ -91,13 +91,13 @@
     <Compile Include="ViewModels\GameEditViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PlayniteSDK\PlayniteSDK.csproj">
+    <ProjectReference Include="..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
-      <Name>PlayniteSDK</Name>
+      <Name>Playnite.SDK</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PlayniteUI\PlayniteUI.csproj">
+    <ProjectReference Include="..\PlayniteUI\Playnite.UI.csproj">
       <Project>{cb026f42-5acd-4915-a8b5-d3eb0c6ae649}</Project>
-      <Name>PlayniteUI</Name>
+      <Name>Playnite.UI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Playnite\Playnite.csproj">
       <Project>{ad271e73-8a13-4c4e-bfdc-3076646b59e3}</Project>

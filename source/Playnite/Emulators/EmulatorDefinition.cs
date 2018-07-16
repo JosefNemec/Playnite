@@ -81,7 +81,7 @@ namespace Playnite.Emulators
 
         public static string DefinitionsPath
         {
-            get => Path.Combine(Paths.ProgramFolder, "Emulators", "Definitions.yaml");
+            get => Path.Combine(Paths.ProgramPath, "Emulators", "Definitions.yaml");
         }        
 
         public override string ToString()

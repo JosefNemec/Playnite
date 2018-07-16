@@ -20,7 +20,7 @@ namespace PlayniteUITests.Converters
         public void LocalFileTest()
         {
             var converter = new CustomImageStringToImageConverter();
-            var image = Path.Combine(Paths.ProgramFolder, "Resources", "Images", "applogo.png");
+            var image = Path.Combine(Paths.ProgramPath, "Resources", "Images", "applogo.png");
             var result = converter.Convert(image, null, null, CultureInfo.CurrentCulture);
             Assert.AreEqual(typeof(BitmapImage), result.GetType());
         }
@@ -47,7 +47,7 @@ namespace PlayniteUITests.Converters
         public void DatabaseTest()
         {
             var converter = new CustomImageStringToImageConverter();
-            var file = Path.Combine(Paths.ProgramFolder, "Resources", "Images", "applogo.png");
+            var file = Path.Combine(Paths.ProgramPath, "Resources", "Images", "applogo.png");
             var path = Path.Combine(PlayniteUITests.TempPath, "imageconverttest.db");
             FileSystem.DeleteFile(path);
             var db = new GameDatabase(null);

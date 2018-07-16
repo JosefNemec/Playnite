@@ -5,18 +5,21 @@ VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayniteUI", "PlayniteUI\PlayniteUI.csproj", "{CB026F42-5ACD-4915-A8B5-D3EB0C6AE649}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.UI", "PlayniteUI\Playnite.UI.csproj", "{CB026F42-5ACD-4915-A8B5-D3EB0C6AE649}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0A13CBC8-ECD4-4B9F-961E-E6462F7D2DC0} = {0A13CBC8-ECD4-4B9F-961E-E6462F7D2DC0}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite", "Playnite\Playnite.csproj", "{AD271E73-8A13-4C4E-BFDC-3076646B59E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayniteTests", "PlayniteTests\PlayniteTests.csproj", "{3BB5A3D4-B998-4D0F-9B7A-B133905AA5C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.Tests", "PlayniteTests\Playnite.Tests.csproj", "{3BB5A3D4-B998-4D0F-9B7A-B133905AA5C9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DB0E5B51-2960-4869-899D-5E0C65A697A6} = {DB0E5B51-2960-4869-899D-5E0C65A697A6}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayniteUITests", "PlayniteUITests\PlayniteUITests.csproj", "{59D0C141-64A8-4D86-8156-4BEF8472CB8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.UI.Tests", "PlayniteUITests\Playnite.UI.Tests.csproj", "{59D0C141-64A8-4D86-8156-4BEF8472CB8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayniteSDK", "PlayniteSDK\PlayniteSDK.csproj", "{19BC9097-5705-4352-90E2-99F0C63230D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.SDK", "PlayniteSDK\Playnite.SDK.csproj", "{19BC9097-5705-4352-90E2-99F0C63230D0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{214A3A6E-C961-405E-8F5E-96314B672CF2}"
 EndProject
@@ -31,6 +34,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.SteamLibrary", "Plugins\Playnite.SteamLibrary\Playnite.SteamLibrary.csproj", "{0A13CBC8-ECD4-4B9F-961E-E6462F7D2DC0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.SteamLibrary.Tests", "Plugins\Playnite.SteamLibrary.Tests\Playnite.SteamLibrary.Tests.csproj", "{D43257A7-488F-471A-83D1-BD5F9FD0E8DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGameLibrary", "Tests\TestGameLibrary\TestGameLibrary.csproj", "{DB0E5B51-2960-4869-899D-5E0C65A697A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -108,6 +113,14 @@ Global
 		{D43257A7-488F-471A-83D1-BD5F9FD0E8DE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D43257A7-488F-471A-83D1-BD5F9FD0E8DE}.Release|x86.ActiveCfg = Release|Any CPU
 		{D43257A7-488F-471A-83D1-BD5F9FD0E8DE}.Release|x86.Build.0 = Release|Any CPU
+		{DB0E5B51-2960-4869-899D-5E0C65A697A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB0E5B51-2960-4869-899D-5E0C65A697A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB0E5B51-2960-4869-899D-5E0C65A697A6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DB0E5B51-2960-4869-899D-5E0C65A697A6}.Debug|x86.Build.0 = Debug|Any CPU
+		{DB0E5B51-2960-4869-899D-5E0C65A697A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB0E5B51-2960-4869-899D-5E0C65A697A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB0E5B51-2960-4869-899D-5E0C65A697A6}.Release|x86.ActiveCfg = Release|Any CPU
+		{DB0E5B51-2960-4869-899D-5E0C65A697A6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,6 +133,7 @@ Global
 		{EF71DAD8-1951-4E2D-8B02-4896F0164539} = {799A52BB-1932-4CAB-B4DD-B3F3146756E3}
 		{0A13CBC8-ECD4-4B9F-961E-E6462F7D2DC0} = {EF71DAD8-1951-4E2D-8B02-4896F0164539}
 		{D43257A7-488F-471A-83D1-BD5F9FD0E8DE} = {EF71DAD8-1951-4E2D-8B02-4896F0164539}
+		{DB0E5B51-2960-4869-899D-5E0C65A697A6} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3300FF38-9F6F-4C0F-87F3-776D6C64846D}

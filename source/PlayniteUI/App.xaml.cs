@@ -186,7 +186,7 @@ namespace PlayniteUI
             // Create directories
             try
             {
-                Plugins.CreatePluginFolders();
+                PluginFactory.CreatePluginFolders();
                 Scripts.CreateScriptFolders();
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -267,7 +267,7 @@ namespace PlayniteUI
 
             GamesEditor = new GamesEditor(Database, AppSettings, dialogs);
             CustomImageStringToImageConverter.Database = Database;
-            Api = new PlayniteAPI(Database, GamesEditor.Controllers, dialogs, null);
+            Api = new PlayniteAPI(Database, GamesEditor.Controllers, dialogs, null, new PlayniteInfoAPI(), new PlaynitePathsAPI());
 
             // Main view startup
             if (AppSettings.StartInFullscreen)

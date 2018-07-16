@@ -82,14 +82,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
     </Reference>
@@ -625,9 +617,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PlayniteSDK\PlayniteSDK.csproj">
+    <ProjectReference Include="..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
-      <Name>PlayniteSDK</Name>
+      <Name>Playnite.SDK</Name>
     </ProjectReference>
     <ProjectReference Include="..\Playnite\Playnite.csproj">
       <Project>{ad271e73-8a13-4c4e-bfdc-3076646b59e3}</Project>
@@ -769,6 +761,6 @@
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(SolutionDir)\PlayniteUI\Skins" "$(TargetDir)\Skins\" /e /y
 xcopy "$(SolutionDir)\PlayniteUI\SkinsFullscreen" "$(TargetDir)\SkinsFullscreen\" /e /y
-xcopy "$(SolutionDir)\Plugins\Playnite.SteamLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Plugins\SteamLibrary\" /e /y</PostBuildEvent>
+xcopy "$(SolutionDir)\Plugins\Playnite.SteamLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Plugins\SteamLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\Playnite.SteamLibrary\BuildCopyExclude.txt</PostBuildEvent>
   </PropertyGroup>
 </Project>

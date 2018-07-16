@@ -7,7 +7,7 @@
     <ProjectGuid>{19BC9097-5705-4352-90E2-99F0C63230D0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PlayniteSDK</RootNamespace>
+    <RootNamespace>Playnite.SDK</RootNamespace>
     <AssemblyName>PlayniteSDK</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -62,6 +62,8 @@
     <Compile Include="ILogger.cs" />
     <Compile Include="IMainViewAPI.cs" />
     <Compile Include="IPlayniteAPI.cs" />
+    <Compile Include="IPlayniteInfoAPI.cs" />
+    <Compile Include="IPlaynitePathsAPI.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Models\CompletionStatus.cs" />
     <Compile Include="Models\DatabaseFile.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\Platform.cs" />
     <Compile Include="Models\Provider.cs" />
+    <Compile Include="Plugins\IGameLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Version.cs" />
   </ItemGroup>

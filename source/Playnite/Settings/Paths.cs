@@ -9,7 +9,7 @@ namespace Playnite
 {
     public class Paths
     {
-        public static string ProgramFolder
+        public static string ProgramPath
         {
             get
             {
@@ -37,7 +37,7 @@ namespace Playnite
         {
             get
             {
-                return Path.Combine(ProgramFolder, "Plugins");
+                return Path.Combine(ProgramPath, "Plugins");
             }
         }
 
@@ -53,7 +53,7 @@ namespace Playnite
         {
             get
             {
-                return Path.Combine(ProgramFolder, "Scripts");
+                return Path.Combine(ProgramPath, "Scripts");
             }
         }
 
@@ -61,7 +61,7 @@ namespace Playnite
         {
             get
             {
-                return Path.Combine(ProgramFolder, "Localization");
+                return Path.Combine(ProgramPath, "Localization");
             }
         }
 
@@ -69,7 +69,7 @@ namespace Playnite
         {
             get
             {
-                return Path.Combine(ProgramFolder, "Skins");
+                return Path.Combine(ProgramPath, "Skins");
             }
         }
 
@@ -77,7 +77,7 @@ namespace Playnite
         {
             get
             {
-                return Path.Combine(ProgramFolder, "SkinsFullscreen");
+                return Path.Combine(ProgramPath, "SkinsFullscreen");
             }
         }
 
@@ -85,7 +85,7 @@ namespace Playnite
         {
             get
             {
-                return Path.Combine(ProgramFolder, "unins000.exe");
+                return Path.Combine(ProgramPath, "unins000.exe");
             }
         }
 
@@ -93,7 +93,7 @@ namespace Playnite
         {
             get
             {
-                return Path.Combine(ProgramFolder, "uninstall.exe");
+                return Path.Combine(ProgramPath, "uninstall.exe");
             }
         }
 
@@ -143,7 +143,7 @@ namespace Playnite
             {
                 if (Settings.IsPortable)
                 {
-                    return ProgramFolder;
+                    return ProgramPath;
                 }
                 else
                 {
@@ -192,7 +192,7 @@ namespace Playnite
             return newPath.Replace('/', Path.DirectorySeparatorChar);
         }
 
-        public static string Normalize(string path)
+        private static string Normalize(string path)
         {
             return Path.GetFullPath(new Uri(path).LocalPath).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar).ToUpperInvariant();
         }

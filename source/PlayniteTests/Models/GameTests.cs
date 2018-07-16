@@ -31,7 +31,7 @@ namespace PlayniteTests.Models
             Assert.AreEqual(game.IsoPath, game.ResolveVariables("{ImagePath}"));
             Assert.AreEqual("test", game.ResolveVariables("{ImageNameNoExt}"));
             Assert.AreEqual("test.iso", game.ResolveVariables("{ImageName}"));
-            Assert.AreEqual(Paths.ProgramFolder, game.ResolveVariables("{PlayniteDir}"));
+            Assert.AreEqual(Paths.ProgramPath, game.ResolveVariables("{PlayniteDir}"));
             Assert.AreEqual("test game", game.ResolveVariables("{Name}"));
             Assert.AreEqual("test2", game.ResolveVariables("{InstallDirName}"));
         }
