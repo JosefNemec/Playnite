@@ -13,6 +13,8 @@ namespace Playnite.Plugins
 {
     public class PluginFactory
     {
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         public static void CreatePluginFolders()
         {
             FileSystem.CreateDirectory(Paths.PluginsProgramPath);
@@ -20,6 +22,25 @@ namespace Playnite.Plugins
             {
                 FileSystem.CreateDirectory(Paths.PluginsUserDataPath);
             }
+        }
+
+        public static List<PluginDescription> GetPluginDescriptors()
+        {
+            var descs = new List<PluginDescription>();
+            foreach (var file in GetPluginDescriptorFiles())
+            {
+                try
+                {
+                    descs.Add(PluginDescription.FromFile(file));
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e.InnerException, $"Failed to parse plugin description: {file}");
+                    continue;
+                }
+            }
+
+            return descs;
         }
 
         public static List<string> GetPluginDescriptorFiles()

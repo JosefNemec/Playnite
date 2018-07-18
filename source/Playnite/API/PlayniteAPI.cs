@@ -18,7 +18,7 @@ namespace Playnite.API
     public class PlayniteAPI : ObservableObject, IDisposable, IPlayniteAPI
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-
+                
         private GameDatabase database;
         private GameControllerFactory controllers;
         private List<PlayniteScript> scripts = new List<PlayniteScript>();
@@ -192,30 +192,11 @@ namespace Playnite.API
             return allSuccess;
         }
 
-        private List<PluginDescription> GetPluginDescriptors()
-        {
-            var descs = new List<PluginDescription>();
-            foreach (var file in PluginFactory.GetPluginDescriptorFiles())
-            {
-                try
-                {
-                    descs.Add(PluginDescription.FromFile(file));
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(e.InnerException, $"Failed to parse plugin description: {file}");
-                    continue;
-                }
-            }
-
-            return descs;
-        }
-
         public void LoadLibraryProviders()
         {
             DisposeLibraryProviders();
             LibraryProviders = new List<IGameLibrary>();
-            foreach (var desc in GetPluginDescriptors().Where(a => a.Type == PluginType.GameLibrary))
+            foreach (var desc in PluginFactory.GetPluginDescriptors().Where(a => a.Type == PluginType.GameLibrary))
             {
                 try
                 {
@@ -466,6 +447,18 @@ namespace Playnite.API
         public ILogger CreateLogger(string name)
         {
             return new Logger(name);
+        }
+
+        public string GetPluginConfigPath(IGameLibrary libraryPlugin)
+        {
+            var path = Path.Combine(Paths.ConfigurationPath, "PluginSettings", libraryPlugin.Id.ToString());
+            FileSystem.CreateDirectory(path);
+            return path;
+        }
+
+        public string GetPluginConfigPath(Plugin libraryPlugin)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion IPlayniteAPI

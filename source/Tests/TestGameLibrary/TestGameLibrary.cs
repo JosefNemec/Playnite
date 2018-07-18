@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace TestGameLibrary
 {
@@ -13,7 +14,11 @@ namespace TestGameLibrary
     {
         public IEditableObject Settings => null;
 
-        public Guid LibraryId { get; } = Guid.Parse("D625A3B7-1AA4-41CB-9CD7-74448D28E99B");
+        public Guid Id { get; } = Guid.Parse("D625A3B7-1AA4-41CB-9CD7-74448D28E99B");
+
+        public string Name { get; } = "Test";
+
+        public UserControl SettingsView { get; }
 
         public TestGameLibrary(IPlayniteAPI api)
         {

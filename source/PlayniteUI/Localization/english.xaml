@@ -208,6 +208,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsProvidersLabel">Providers</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Import installed games</sys:String>
+    <sys:String x:Key="LOCSettingsImportUninstalledLabel">Import uninstalled games</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Import all games</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Import all games (Public account or API key must be provided)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Invalid database file location, proper file path must be set.</sys:String>
@@ -471,6 +472,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCNoGamesFound">No Games Found</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Back to Desktop Mode</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Exit Playnite</sys:String>
+    <sys:String x:Key="LOCLibraries">Libraries</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>

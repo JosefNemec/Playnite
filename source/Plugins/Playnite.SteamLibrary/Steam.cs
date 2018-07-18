@@ -10,6 +10,11 @@ namespace Playnite.SteamLibrary
 {
     public class Steam
     {
+        public static string LoginUsersPath
+        {
+            get => Path.Combine(InstallationPath, "config", "loginusers.vdf");
+        }
+
         public static string InstallationPath
         {
             get

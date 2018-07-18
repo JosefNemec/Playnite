@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Playnite;
+using Playnite.API;
 using Playnite.App;
 using Playnite.Database;
 using Playnite.Metadata;
@@ -25,11 +26,12 @@ namespace PlayniteUI.ViewModels
 {
     public class MainViewModel : ObservableObject, IDisposable
     {
-        public static Logger Logger = LogManager.GetCurrentClassLogger();
+        public static NLog.Logger Logger = LogManager.GetCurrentClassLogger();
         private static object gamesLock = new object();
         protected bool ignoreCloseActions = false;
         private readonly SynchronizationContext context;
 
+        public PlayniteAPI PlayniteApi { get; }
         public IWindowFactory Window;
         public IDialogsFactory Dialogs;
         public IResourceProvider Resources;
@@ -331,7 +333,8 @@ namespace PlayniteUI.ViewModels
             IDialogsFactory dialogs,
             IResourceProvider resources,
             Settings settings,
-            GamesEditor gamesEditor)
+            GamesEditor gamesEditor,
+            PlayniteAPI playniteApi)
         {
             context = SynchronizationContext.Current;
             Window = window;
@@ -341,6 +344,7 @@ namespace PlayniteUI.ViewModels
             GamesEditor = gamesEditor;
             Messages = new ObservableCollection<NotificationMessage>();
             AppSettings = settings;
+            PlayniteApi = playniteApi;
 
             try
             {
@@ -590,7 +594,8 @@ namespace PlayniteUI.ViewModels
                     AppSettings,
                     SettingsWindowFactory.Instance,
                     Dialogs,
-                    Resources));
+                    Resources,
+                    PlayniteApi));
             }, new KeyGesture(Key.F4));
 
             StartGameCommand = new RelayCommand<Game>((game) =>

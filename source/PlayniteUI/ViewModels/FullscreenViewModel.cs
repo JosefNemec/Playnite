@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Playnite;
+using Playnite.API;
 using Playnite.Database;
 using Playnite.SDK;
 using PlayniteUI.Commands;
@@ -206,7 +207,8 @@ namespace PlayniteUI.ViewModels
             IDialogsFactory dialogs,
             IResourceProvider resources,
             Settings settings,
-            GamesEditor gamesEditor) : base(database, window, dialogs, resources, settings, gamesEditor)
+            GamesEditor gamesEditor,
+            PlayniteAPI playniteApi) : base(database, window, dialogs, resources, settings, gamesEditor, playniteApi)
         {
             IsFullscreenView = true;
             PropertyChanged += FullscreenViewModel_PropertyChanged;

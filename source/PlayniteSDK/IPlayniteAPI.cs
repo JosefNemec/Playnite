@@ -1,4 +1,5 @@
 ﻿using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,10 @@ namespace Playnite.SDK
         IPlaynitePathsAPI Paths { get; }
 
         IPlayniteInfoAPI ApplicationInfo { get; }
+
+        string GetPluginConfigPath(IGameLibrary libraryPlugin);
+
+        string GetPluginConfigPath(Plugin libraryPlugin);
 
         /// <summary>
         /// Returns string while resolving any dynamic variables supported by Playnite.

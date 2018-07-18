@@ -24,7 +24,7 @@ namespace PlayniteTests.Plugins
             var descriptor = PluginDescription.FromFile(descriptors[0]);
             var libraries = PluginFactory.LoadGameLibraryPlugin(descriptor, api.Object);
             Assert.AreEqual(1, libraries.Count);
-            Assert.IsNotNull(libraries[0].LibraryId);
+            Assert.IsNotNull(libraries[0].Id);
         }
     }
 }

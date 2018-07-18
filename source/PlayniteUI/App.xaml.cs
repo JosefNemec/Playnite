@@ -460,7 +460,8 @@ namespace PlayniteUI
                 dialogs,
                 new ResourceProvider(),
                 AppSettings,
-                GamesEditor);
+                GamesEditor,
+                Api);
             Api.MainView = new MainViewAPI(MainModel);
             MainModel.OpenView();
             Current.MainWindow = window.Window;
@@ -498,7 +499,8 @@ namespace PlayniteUI
                 dialogs,
                 new ResourceProvider(),
                 AppSettings,
-                GamesEditor);
+                GamesEditor,
+                Api);
             Api.MainView = new MainViewAPI(MainModel);
             FullscreenModel.OpenView(!PlayniteEnvironment.IsDebugBuild);
             Current.MainWindow = window.Window;

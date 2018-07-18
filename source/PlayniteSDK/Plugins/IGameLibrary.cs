@@ -4,13 +4,16 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Playnite.SDK.Plugins
 {
-    public interface IGameLibrary : IDisposable
+    public interface IGameLibrary : IPlugin
     {
+        UserControl SettingsView { get; }
+
         IEditableObject Settings { get; }
 
-        Guid LibraryId { get; }
+        string Name { get; }
     }
 }
