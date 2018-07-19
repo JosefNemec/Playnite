@@ -31,7 +31,7 @@ namespace Playnite
 
         public static string GetIdentifierInfo(this Game game)
         {
-            return $"{game.Name}, {game.Id}, {game.ProviderId}, {game.Provider}";
+            return $"{game.Name}, {game.Id}, {game.GameId}, {game.PluginId}";
         }
     }
 }

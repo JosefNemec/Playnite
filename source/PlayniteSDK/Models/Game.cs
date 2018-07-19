@@ -283,21 +283,58 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private string providerId;
+        private string gameId;
         /// <summary>
         /// Gets or sets provider id. For example game's Steam ID.
         /// </summary>
-        public string ProviderId
+        public string GameId
         {
             get
             {
-                return providerId;
+                return gameId;
             }
 
             set
             {
-                providerId = value;
-                OnPropertyChanged("ProviderId");
+                gameId = value;
+                OnPropertyChanged("GameId");
+            }
+        }
+
+
+        private Dictionary<string, object> pluginMetadata = new Dictionary<string, object>();
+        /// <summary>
+        /// Gets or sets metadata assigned by the plugin responsible for handling this game.
+        /// </summary>
+        public Dictionary<string, object> PluginMetadata
+        {
+            get
+            {
+                return pluginMetadata;
+            }
+
+            set
+            {
+                pluginMetadata = value;
+                OnPropertyChanged("PluginMetadata");
+            }
+        }
+
+        private Guid pluginId;
+        /// <summary>
+        /// Gets or sets id of plugin responsible for handling this game.
+        /// </summary>
+        public Guid PluginId
+        {
+            get
+            {
+                return pluginId;
+            }
+
+            set
+            {
+                pluginId = value;
+                OnPropertyChanged("PluginId");
             }
         }
 
@@ -337,23 +374,23 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private Provider provider;
-        /// <summary>
-        /// Gets or sets original library provider.
-        /// </summary>
-        public Provider Provider
-        {
-            get
-            {
-                return provider;
-            }
+        //private Provider provider;
+        ///// <summary>
+        ///// Gets or sets original library provider.
+        ///// </summary>
+        //public Provider Provider
+        //{
+        //    get
+        //    {
+        //        return provider;
+        //    }
 
-            set
-            {
-                provider = value;
-                OnPropertyChanged("Provider");
-            }
-        }
+        //    set
+        //    {
+        //        provider = value;
+        //        OnPropertyChanged("Provider");
+        //    }
+        //}
 
         private ObjectId platformId;
         /// <summary>
@@ -776,8 +813,6 @@ namespace Playnite.SDK.Models
         /// </summary>
         public Game()
         {
-            Provider = Provider.Custom;
-            ProviderId = Guid.NewGuid().ToString();
         }
 
         /// <summary>
@@ -787,8 +822,6 @@ namespace Playnite.SDK.Models
         public Game(string name)
         {
             Name = name;
-            Provider = Provider.Custom;
-            ProviderId = Guid.NewGuid().ToString();
         }
 
         /// <summary>

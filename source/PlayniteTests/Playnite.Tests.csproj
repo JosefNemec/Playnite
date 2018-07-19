@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -96,8 +97,8 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
@@ -108,8 +109,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.IO.Abstractions, Version=2.1.0.175, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Abstractions.2.1.0.175\lib\net40\System.IO.Abstractions.dll</HintPath>
+    <Reference Include="System.IO.Abstractions, Version=2.1.0.208, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.2.1.0.208\lib\net40\System.IO.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="TestingHelpers, Version=2.1.0.175, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.Abstractions.TestingHelpers.2.1.0.175\lib\net40\TestingHelpers.dll</HintPath>
@@ -149,6 +150,11 @@
     <Compile Include="Metadata\MetadataDownloaderDownloadTests.cs" />
     <Compile Include="Metadata\WikipediaMetadataProviderTests.cs" />
     <Compile Include="Models\GameTests.cs" />
+    <Compile Include="Models\Old\0\Game.cs" />
+    <Compile Include="Models\Old\1\Emulator.cs" />
+    <Compile Include="Models\Old\1\Game.cs" />
+    <Compile Include="Models\Old\1\GameTask.cs" />
+    <Compile Include="Models\Old\1\Platform.cs" />
     <Compile Include="PlayniteTests.cs" />
     <Compile Include="Plugins\PluginFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -179,6 +185,10 @@
     <Compile Include="TestsSetupClass.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Playnite.Common\Playnite.Common.csproj">
+      <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
+      <Name>Playnite.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
       <Name>Playnite.SDK</Name>
@@ -231,6 +241,12 @@
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(SolutionDir)\Tests\TestGameLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Plugins\TestGameLibrary\" /e /y /exclude:$(SolutionDir)\Tests\TestGameLibrary\BuildCopyExclude.txt</PostBuildEvent>
   </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.10.1\build\NUnit.props'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

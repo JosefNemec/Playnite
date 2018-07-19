@@ -142,7 +142,7 @@ namespace PlayniteUI.ViewModels
             this.resources = resources;
 
             PluginsList = PluginFactory.GetPluginDescriptors();
-            foreach (var provider in PlayniteApi.LibraryProviders)
+            foreach (var provider in PlayniteApi.LibraryPlugins)
             {
                 var provSetting = provider.Settings;
                 var provView = provider.SettingsView;

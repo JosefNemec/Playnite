@@ -41,7 +41,7 @@ namespace Playnite.Scripting.IronPython
 import clr
 import os
 os.chdir('{0}')
-clr.AddReferenceToFile(""PlayniteSDK.dll"")
+clr.AddReferenceToFile(""Playnite.SDK.dll"")
 from Playnite.SDK.Models import *
 ", Paths.ProgramPath.Replace(Path.DirectorySeparatorChar, '/')), scope);
 

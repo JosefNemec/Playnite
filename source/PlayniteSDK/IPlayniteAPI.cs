@@ -32,9 +32,9 @@ namespace Playnite.SDK
 
         IPlayniteInfoAPI ApplicationInfo { get; }
 
-        string GetPluginConfigPath(IGameLibrary libraryPlugin);
+        string GetPluginStoragePath(IPlugin plugin);
 
-        string GetPluginConfigPath(Plugin libraryPlugin);
+        TConfig GetPluginConfiguration<TConfig>(IPlugin plugin) where TConfig : class;
 
         /// <summary>
         /// Returns string while resolving any dynamic variables supported by Playnite.

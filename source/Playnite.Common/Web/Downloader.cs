@@ -168,7 +168,7 @@ namespace Playnite.Web
             throw new Exception("Failed to download file from all mirrors.");
         }
 
-        public string GetCachedWebFile(string url)
+        public string GetCachedWebFile(string url, string cachePath)
         {
             logger.Debug($"Getting cached web file from {url}.");
             if (string.IsNullOrEmpty(url))
@@ -178,7 +178,7 @@ namespace Playnite.Web
 
             var extension = Path.GetExtension(url);
             var md5 = url.MD5();
-            var cacheFile = Path.Combine(Paths.ImagesCachePath, md5 + extension);
+            var cacheFile = Path.Combine(cachePath, md5 + extension);
 
             if (File.Exists(cacheFile))
             {
@@ -187,7 +187,7 @@ namespace Playnite.Web
             }
             else
             {
-                FileSystem.CreateDirectory(Paths.ImagesCachePath);
+                FileSystem.CreateDirectory(cachePath);
 
                 try
                 {

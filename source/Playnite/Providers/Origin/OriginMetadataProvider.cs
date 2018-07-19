@@ -1,42 +1,42 @@
-﻿using Playnite.Metadata;
-using Playnite.SDK.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Playnite.Models;
+﻿//using Playnite.Metadata;
+//using Playnite.SDK.Models;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
+//using Playnite.Models;
 
-namespace Playnite.Providers.Origin
-{
-    public class OriginMetadataProvider : IMetadataProvider
-    {
-        public GameMetadata GetMetadata(string metadataId)
-        {
-            var gameData = new Game("OriginGame")
-            {
-                Provider = Provider.Origin,
-                ProviderId = metadataId
-            };
+//namespace Playnite.Providers.Origin
+//{
+//    public class OriginMetadataProvider : IMetadataProvider
+//    {
+//        public GameMetadata GetMetadata(string metadataId)
+//        {
+//            var gameData = new Game("OriginGame")
+//            {
+//                Provider = Provider.Origin,
+//                GameId = metadataId
+//            };
 
-            var originLib = new OriginLibrary();
-            var data = originLib.UpdateGameWithMetadata(gameData);
-            return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
-        }
+//            var originLib = new OriginLibrary();
+//            var data = originLib.UpdateGameWithMetadata(gameData);
+//            return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
+//        }
 
-        public GameMetadata GetMetadata(Game game)
-        {
-            if (game.Provider == Provider.Origin)
-            {
-                return GetMetadata(game.ProviderId);
-            }
+//        public GameMetadata GetMetadata(Game game)
+//        {
+//            if (game.Provider == Provider.Origin)
+//            {
+//                return GetMetadata(game.GameId);
+//            }
 
-            throw new NotImplementedException();
-        }
+//            throw new NotImplementedException();
+//        }
 
-        public ICollection<MetadataSearchResult> SearchMetadata(Game game)
-        {
-            throw new NotImplementedException();
-        }
-    }
-}
+//        public ICollection<MetadataSearchResult> SearchMetadata(Game game)
+//        {
+//            throw new NotImplementedException();
+//        }
+//    }
+//}

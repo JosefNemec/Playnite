@@ -285,7 +285,7 @@ namespace PlayniteUI.Controls
                         Items.Add(playItem);
                         added = true;
                     }
-                    else if (Game.Provider != Provider.Custom)
+                    else if (Game.PluginId != null)
                     {
                         var installItem = new MenuItem()
                         {
@@ -436,7 +436,7 @@ namespace PlayniteUI.Controls
                 Items.Add(removeItem);
 
                 // Uninstall
-                if (Game.Provider != Provider.Custom && Game.IsInstalled)
+                if (Game.PluginId != null && Game.IsInstalled)
                 {
                     var uninstallItem = new MenuItem()
                     {

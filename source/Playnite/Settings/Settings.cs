@@ -242,31 +242,6 @@ namespace Playnite
             }
         }
 
-        public GogSettings GOGSettings
-        {
-            get; set;
-        } = new GogSettings();
-
-        public SteamSettings SteamSettings
-        {
-            get; set;
-        } = new SteamSettings();
-
-        public OriginSettings OriginSettings
-        {
-            get; set;
-        } = new OriginSettings();
-
-        public UplaySettings UplaySettings
-        {
-            get; set;
-        } = new UplaySettings();
-
-        public BattleNetSettings BattleNetSettings
-        {
-            get; set;
-        } = new BattleNetSettings();
-
         private FilterSettings filterSettings = new FilterSettings();
         public FilterSettings FilterSettings
         {

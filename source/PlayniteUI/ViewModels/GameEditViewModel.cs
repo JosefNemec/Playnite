@@ -966,7 +966,7 @@ namespace PlayniteUI.ViewModels
             ShowMetaDownload = true;
             ShowLinks = true;
             ShowActions = true;
-            ShowInstallation = Game.Provider == Provider.Custom;
+            ShowInstallation = true;
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
         }
 
@@ -2343,26 +2343,27 @@ namespace PlayniteUI.ViewModels
                     var tempGame = game.CloneJson();
                     tempGame.Image = string.Empty;
 
-                    switch (tempGame.Provider)
-                    {
-                        case Provider.Steam:
-                            metadata = (new SteamLibrary()).UpdateGameWithMetadata(tempGame, appSettings.SteamSettings);
-                            break;
-                        case Provider.GOG:
-                            metadata = (new GogLibrary()).UpdateGameWithMetadata(tempGame);
-                            break;
-                        case Provider.Origin:
-                            metadata = (new OriginLibrary()).UpdateGameWithMetadata(tempGame);
-                            break;
-                        case Provider.BattleNet:
-                            metadata = (new BattleNetLibrary()).UpdateGameWithMetadata(tempGame);
-                            break;
-                        case Provider.Uplay:
-                            return;
-                        case Provider.Custom:
-                        default:
-                            return;
-                    }
+                    return;
+                    //switch (tempGame.Provider)
+                    //{
+                    //    case Provider.Steam:
+                    //        metadata = (new SteamLibrary()).UpdateGameWithMetadata(tempGame, appSettings.SteamSettings);
+                    //        break;
+                    //    case Provider.GOG:
+                    //        metadata = (new GogLibrary()).UpdateGameWithMetadata(tempGame);
+                    //        break;
+                    //    case Provider.Origin:
+                    //        metadata = (new OriginLibrary()).UpdateGameWithMetadata(tempGame);
+                    //        break;
+                    //    case Provider.BattleNet:
+                    //        metadata = (new BattleNetLibrary()).UpdateGameWithMetadata(tempGame);
+                    //        break;
+                    //    case Provider.Uplay:
+                    //        return;
+                    //    case Provider.Custom:
+                    //    default:
+                    //        return;
+                    //}
                     
                     if (metadata.Image != null)
                     {
@@ -2385,7 +2386,7 @@ namespace PlayniteUI.ViewModels
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(exc, "Failed to download metadata, {0}, {1}", game.Provider, game.ProviderId);
+                    logger.Error(exc, "Failed to download metadata, {0}, {1}", game.PluginId, game.GameId);
                     dialogs.ShowMessage(
                         string.Format(resources.FindString("LOCMetadataDownloadError"), exc.Message),
                         resources.FindString("LOCDownloadError"),

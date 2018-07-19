@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,12 +9,18 @@ using System.Windows.Controls;
 
 namespace Playnite.SDK.Plugins
 {
-    public interface IGameLibrary : IPlugin
+    public interface ILibraryPlugin : IPlugin
     {
         UserControl SettingsView { get; }
 
         IEditableObject Settings { get; }
 
         string Name { get; }
+
+        IEnumerable<Game> GetGames();
+
+        IGameController GetGameController();
+
+        ILibraryMetadataDownloader GetMetadataDownloader();
     }
 }

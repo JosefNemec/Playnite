@@ -135,8 +135,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Abstractions, Version=2.1.0.175, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Abstractions.2.1.0.175\lib\net40\System.IO.Abstractions.dll</HintPath>
+    <Reference Include="System.IO.Abstractions, Version=2.1.0.208, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.2.1.0.208\lib\net40\System.IO.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
@@ -617,6 +617,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Playnite.Common\Playnite.Common.csproj">
+      <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
+      <Name>Playnite.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
       <Name>Playnite.SDK</Name>

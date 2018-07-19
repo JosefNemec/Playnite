@@ -58,9 +58,9 @@ namespace Playnite.Web
             downloader.DownloadFile(url, path);
         }
 
-        public static string GetCachedWebFile(string url)
+        public static string GetCachedWebFile(string url, string cachePath)
         {
-            return downloader.GetCachedWebFile(url);
+            return downloader.GetCachedWebFile(url, cachePath);
         }
     }
 }

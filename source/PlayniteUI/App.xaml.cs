@@ -198,7 +198,6 @@ namespace PlayniteUI
             ApplyTheme(AppSettings.Skin, AppSettings.SkinColor, false);
 
             // First run wizard
-            ulong steamCatImportId = 0;
             bool isFirstStart = !AppSettings.FirstTimeWizardComplete;
             bool existingDb = false;
             if (!AppSettings.FirstTimeWizardComplete)
@@ -218,24 +217,14 @@ namespace PlayniteUI
                         AppSettings.DatabasePath = Path.Combine(Paths.UserProgramDataPath, "games.db");
                     }
 
-                    AppSettings.SteamSettings = settings.SteamSettings;
-                    AppSettings.GOGSettings = settings.GOGSettings;
-                    AppSettings.OriginSettings = settings.OriginSettings;
-                    AppSettings.BattleNetSettings = settings.BattleNetSettings;
-                    AppSettings.UplaySettings = settings.UplaySettings;
                     AppSettings.SaveSettings();
                     existingDb = File.Exists(AppSettings.DatabasePath);
-                    Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
+                    Database = new GameDatabase(AppSettings.DatabasePath);
                     Database.OpenDatabase();
 
                     if (wizardModel.ImportedGames?.Any() == true)
                     {
                         InstalledGamesViewModel.AddImportableGamesToDb(wizardModel.ImportedGames, Database);
-                    }
-
-                    if (wizardModel.SteamImportCategories)
-                    {
-                        steamCatImportId = wizardModel.SteamIdCategoryImport;
                     }
                 }
                 else
@@ -243,12 +232,12 @@ namespace PlayniteUI
                     AppSettings.DatabasePath = Path.Combine(Paths.UserProgramDataPath, "games.db");
                     AppSettings.SaveSettings();
                     existingDb = File.Exists(AppSettings.DatabasePath);
-                    Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
+                    Database = new GameDatabase(AppSettings.DatabasePath);
                 }
             }
             else
             {
-                Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
+                Database = new GameDatabase(AppSettings.DatabasePath);
             }
 
             // Emulator wizard
@@ -276,7 +265,7 @@ namespace PlayniteUI
             }
             else
             {
-                OpenNormalView(steamCatImportId, isFirstStart, existingDb);
+                OpenNormalView(isFirstStart, existingDb);
             }
 
             // Update and stats
@@ -441,7 +430,7 @@ namespace PlayniteUI
             resourcesReleased = true;
         }
 
-        public async void OpenNormalView(ulong steamCatImportId, bool isFirstStart, bool existingDb)
+        public async void OpenNormalView(bool isFirstStart, bool existingDb)
         {
             logger.Debug("Opening Desktop view");
             if (Database.IsOpen)
@@ -467,7 +456,7 @@ namespace PlayniteUI
             Current.MainWindow = window.Window;
             if (AppSettings.UpdateLibStartup)
             {
-                await MainModel.UpdateDatabase(AppSettings.UpdateLibStartup, steamCatImportId, !isFirstStart);
+                await MainModel.UpdateDatabase(AppSettings.UpdateLibStartup, !isFirstStart);
             }
 
             if (isFirstStart && !existingDb)
@@ -507,7 +496,7 @@ namespace PlayniteUI
 
             if (updateDb)
             {
-                await FullscreenModel.UpdateDatabase(AppSettings.UpdateLibStartup, 0, true);
+                await FullscreenModel.UpdateDatabase(AppSettings.UpdateLibStartup, true);
             }            
         }
 

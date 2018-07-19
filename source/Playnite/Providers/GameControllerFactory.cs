@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Playnite.SDK;
+using Playnite.SDK.Events;
 
 namespace Playnite.Providers
 {
@@ -114,21 +116,21 @@ namespace Playnite.Providers
 
         public static IGameController GetGameBasedController(Game game, Settings settings)
         {
-            switch (game.Provider)
-            {
-                case Provider.Custom:
-                    return new GenericGameController(game);
-                case Provider.GOG:
-                    return new GogGameController(game, settings);
-                case Provider.Origin:
-                    return new OriginGameController(game);
-                case Provider.Steam:
-                    return new SteamGameController(game);
-                case Provider.Uplay:
-                    return new UplayGameController(game);
-                case Provider.BattleNet:
-                    return new BattleNetGameController(game);
-            }
+            //switch (game.Provider)
+            //{
+            //    case Provider.Custom:
+            //        return new GenericGameController(game);
+            //    case Provider.GOG:
+            //        return new GogGameController(game, settings);
+            //    case Provider.Origin:
+            //        return new OriginGameController(game);
+            //    case Provider.Steam:
+            //        return new SteamGameController(game);
+            //    case Provider.Uplay:
+            //        return new UplayGameController(game);
+            //    case Provider.BattleNet:
+            //        return new BattleNetGameController(game);
+            //}
 
             return null;
         }

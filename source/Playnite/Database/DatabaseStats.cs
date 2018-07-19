@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Playnite.SDK.Models;
 using Playnite.Database;
 using NLog;
+using Playnite.Database.Events;
 
 namespace Playnite.Database
 {
@@ -93,30 +94,6 @@ namespace Playnite.Database
                 if (game.Favorite)
                 {
                     Favorite++;
-                }
-
-                switch (game.Provider)
-                {
-                    case Provider.Custom:
-                        Custom++;
-                        break;
-                    case Provider.GOG:
-                        GOG++;
-                        break;
-                    case Provider.Origin:
-                        Origin++;
-                        break;
-                    case Provider.Steam:
-                        Steam++;
-                        break;
-                    case Provider.Uplay:
-                        Uplay++;
-                        break;
-                    case Provider.BattleNet:
-                        BattleNet++;
-                        break;
-                    default:
-                        break;
                 }
             }
 
@@ -209,28 +186,6 @@ namespace Playnite.Database
             else
             {
                 UnInstalled = UnInstalled + (1 * modifier);
-            }
-
-            switch (game.Provider)
-            {
-                case Provider.Custom:
-                    Custom = Custom + (1 * modifier);
-                    break;
-                case Provider.GOG:
-                    GOG = GOG + (1 * modifier);
-                    break;
-                case Provider.Origin:
-                    Origin = Origin + (1 * modifier);
-                    break;
-                case Provider.Steam:
-                    Steam = Steam + (1 * modifier);
-                    break;
-                case Provider.Uplay:
-                    Uplay = Uplay + (1 * modifier);
-                    break;
-                case Provider.BattleNet:
-                    BattleNet = BattleNet + (1 * modifier);
-                    break;
             }
         }
 

@@ -8,7 +8,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:pui="clr-namespace:PlayniteUI"
         xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
-        xmlns:m="clr-namespace:Playnite.SDK.Models;assembly=PlayniteSDK"
+        xmlns:m="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
         xmlns:c="clr-namespace:PlayniteUI.Controls"
         xmlns:tray="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"

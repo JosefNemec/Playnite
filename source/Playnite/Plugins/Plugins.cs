@@ -78,7 +78,7 @@ namespace Playnite.Plugins
 
         private static void VerifySdkReference(Assembly asm)
         {
-            var sdkReference = asm.GetReferencedAssemblies().FirstOrDefault(a => a.Name == "PlayniteSDK");
+            var sdkReference = asm.GetReferencedAssemblies().FirstOrDefault(a => a.Name == "Playnite.SDK");
             if (sdkReference == null)
             {
                 throw new Exception($"Assembly doesn't reference Playnite SDK.");
@@ -90,9 +90,9 @@ namespace Playnite.Plugins
             }
         }
 
-        public static List<IGameLibrary> LoadGameLibraryPlugin(PluginDescription descriptor, IPlayniteAPI injectingApi)
+        public static List<ILibraryPlugin> LoadGameLibraryPlugin(PluginDescription descriptor, IPlayniteAPI injectingApi)
         {
-            var plugins = new List<IGameLibrary>();
+            var plugins = new List<ILibraryPlugin>();
             var asmPath = Path.Combine(Path.GetDirectoryName(descriptor.Path), descriptor.Assembly);
             var asmName = AssemblyName.GetAssemblyName(asmPath);
             var assembly = Assembly.Load(asmName);
@@ -108,7 +108,7 @@ namespace Playnite.Plugins
                 }
                 else
                 {
-                    if (typeof(IGameLibrary).IsAssignableFrom(type))
+                    if (typeof(ILibraryPlugin).IsAssignableFrom(type))
                     {
                         pluginTypes.Add(type);
                     }
@@ -117,7 +117,7 @@ namespace Playnite.Plugins
 
             foreach (var type in pluginTypes)
             {
-                IGameLibrary plugin = (IGameLibrary)Activator.CreateInstance(type, new object[] { injectingApi });
+                ILibraryPlugin plugin = (ILibraryPlugin)Activator.CreateInstance(type, new object[] { injectingApi });
                 plugins.Add(plugin);
             }
 

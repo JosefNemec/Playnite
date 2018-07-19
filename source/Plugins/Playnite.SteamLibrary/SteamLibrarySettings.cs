@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PlayniteUI.Commands;
+using Playnite.SteamLibrary.Models;
 
 namespace Playnite.SteamLibrary
 {

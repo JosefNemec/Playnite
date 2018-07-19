@@ -129,8 +129,8 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Abstractions, Version=2.1.0.175, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Abstractions.2.1.0.175\lib\net40\System.IO.Abstractions.dll</HintPath>
+    <Reference Include="System.IO.Abstractions, Version=2.1.0.208, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.2.1.0.208\lib\net40\System.IO.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -168,9 +168,14 @@
     <Compile Include="API\PlaynitePathsAPI.cs" />
     <Compile Include="API\PluginDescription.cs" />
     <Compile Include="App\UpdateManifest.cs" />
-    <Compile Include="Extensions\BitmapExtensions.cs" />
+    <Compile Include="Database\DatabaseSettings.cs" />
+    <Compile Include="Database\EventBufferHandler.cs" />
+    <Compile Include="Database\Events\GamesCollectionChangedEvent.cs" />
+    <Compile Include="Database\Events\GameUpdateEvent.cs" />
+    <Compile Include="Database\Events\PlatformsCollectionChangedEvent.cs" />
+    <Compile Include="Database\Events\PlatformUpdateEvent.cs" />
     <Compile Include="Database\GameDatabase.cs" />
-    <Compile Include="Extensions\Enums.cs" />
+    <Compile Include="Extensions\GameExtensions.cs" />
     <Compile Include="Metadata\IMetadataProvider.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
     <Compile Include="Metadata\MetadataFile.cs" />
@@ -185,36 +190,20 @@
     <Compile Include="Scripting\PowerShell\PowerShellScript.cs" />
     <Compile Include="Scripting\Scripts.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />
-    <Compile Include="System\ProcessMonitor.cs" />
     <Compile Include="Providers\GenericGameController.cs" />
-    <Compile Include="Resources.cs" />
     <Compile Include="Emulators\EmulatorDefinition.cs" />
     <Compile Include="Emulators\EmulatorFinder.cs" />
-    <Compile Include="Extensions\GameExtensions.cs" />
     <Compile Include="GameHandler.cs" />
     <Compile Include="Database\DatabaseStats.cs" />
     <Compile Include="Providers\GameControllerFactory.cs" />
-    <Compile Include="InteropMethods.cs" />
     <Compile Include="App\IPlayniteApplication.cs" />
-    <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Metadata\Providers\IGDBMetadataProvider.cs" />
     <Compile Include="Metadata\MetadataDownloader.cs" />
-    <Compile Include="Models\Old\1\Emulator.cs" />
-    <Compile Include="Models\Old\1\Game.cs" />
-    <Compile Include="Models\Old\1\GameTask.cs" />
-    <Compile Include="Models\Old\1\Platform.cs" />
-    <Compile Include="Models\Old\0\Game.cs" />
     <Compile Include="Settings\Paths.cs" />
     <Compile Include="PipeServer.cs" />
     <Compile Include="PlayniteEnvironment.cs" />
-    <Compile Include="System\ProcessStarter.cs" />
-    <Compile Include="System\Programs.cs" />
-    <Compile Include="System\FileSystem.cs" />
-    <Compile Include="Extensions\CloneObject.cs" />
-    <Compile Include="Constants.cs" />
     <Compile Include="Diagnostic.cs" />
     <Compile Include="Settings\FilterSettings.cs" />
-    <Compile Include="Extensions\IconExtension.cs" />
     <Compile Include="Metadata\Providers\WikipediaMetadataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BattleNet\BattleNetLibrary.cs" />
@@ -258,18 +247,12 @@
     <Compile Include="Providers\Uplay\UplayGameController.cs" />
     <Compile Include="Providers\Uplay\UplayLibrary.cs" />
     <Compile Include="Providers\Uplay\UplaySettings.cs" />
-    <Compile Include="Roman.cs" />
-    <Compile Include="System\SafeFileEnumerator.cs" />
-    <Compile Include="Services\GenericResponse.cs" />
     <Compile Include="Services\ServicesClient.cs" />
     <Compile Include="Settings\Settings.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="System\Programs.cs" />
     <Compile Include="ThridPartyToolsList.cs" />
-    <Compile Include="Timer.cs" />
     <Compile Include="App\Updater.cs" />
     <Compile Include="Settings\ViewProperties.cs" />
-    <Compile Include="Web\Downloader.cs" />
-    <Compile Include="Web\HttpDownloader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\references\IronPythonStdLib.zip">
@@ -300,11 +283,16 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Playnite.Common\Playnite.Common.csproj">
+      <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
+      <Name>Playnite.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
       <Name>Playnite.SDK</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

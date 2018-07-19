@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite.SteamLibrary
+namespace Playnite.SteamLibrary.Models
 {
     public class LocalSteamUser
     {

@@ -34,7 +34,7 @@ namespace PlayniteUITests.ViewModels
 
                 var game = new Game()
                 {
-                    ProviderId = "testid",
+                    GameId = "testid",
                     Name = "Test Game",
                     Image = origImage.FileName,
                     Icon = origIcon.FileName,
@@ -115,7 +115,7 @@ namespace PlayniteUITests.ViewModels
                 db.AddFile(origBackground.FileName, origBackground.FileName, origBackground.Content);
                 db.AddGame(new Game()
                 {
-                    ProviderId = "testid",
+                    GameId = "testid",
                     Name = "Test Game",
                     Image = origImage.FileName,
                     Icon = origIcon.FileName,
@@ -130,7 +130,7 @@ namespace PlayniteUITests.ViewModels
                 db.AddFile(origBackground.FileName, origBackground.FileName, origBackground.Content);
                 db.AddGame(new Game()
                 {
-                    ProviderId = "testid2",
+                    GameId = "testid2",
                     Name = "Test Game 2",
                     Image = origImage.FileName,
                     Icon = origIcon.FileName,

@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using Playnite.SDK;
+using Playnite.Database.Events;
 
 namespace PlayniteUI
 {
@@ -185,8 +186,8 @@ namespace PlayniteUI
     public class GameViewEntry : INotifyPropertyChanged
     {
         public int Id => Game.Id;
-        public Provider Provider => Game.Provider;
-        public string ProviderId => Game.ProviderId;
+        public Guid PluginId => Game.PluginId;
+        public string GameId => Game.GameId;
         public List<string> Categories => Game.Categories;
         public List<string> Tags => Game.Tags;
         public List<string> Genres => Game.Genres;
@@ -271,22 +272,24 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    switch (Game.Provider)
-                    {
-                        case Provider.GOG:
-                            return @"resources:/Images/gogicon.png";
-                        case Provider.Origin:
-                            return @"resources:/Images/originicon.png";
-                        case Provider.Steam:
-                            return @"resources:/Images/steamicon.png";
-                        case Provider.Uplay:
-                            return @"resources:/Images/uplayicon.png";
-                        case Provider.BattleNet:
-                            return @"resources:/Images/battleneticon.png";
-                        case Provider.Custom:
-                        default:
-                            return @"resources:/Images/icon_dark.png";
-                    }
+                    //switch (Game.Provider)
+                    //{
+                    //    case Provider.GOG:
+                    //        return @"resources:/Images/gogicon.png";
+                    //    case Provider.Origin:
+                    //        return @"resources:/Images/originicon.png";
+                    //    case Provider.Steam:
+                    //        return @"resources:/Images/steamicon.png";
+                    //    case Provider.Uplay:
+                    //        return @"resources:/Images/uplayicon.png";
+                    //    case Provider.BattleNet:
+                    //        return @"resources:/Images/battleneticon.png";
+                    //    case Provider.Custom:
+                    //    default:
+                    //        return @"resources:/Images/icon_dark.png";
+                    //}
+
+                    return @"resources:/Images/icon_dark.png";
                 }
             }
         }
@@ -301,16 +304,17 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    switch (Game.Provider)
-                    {
-                        case Provider.GOG:
-                        case Provider.Origin:
-                        case Provider.Steam:
-                        case Provider.Uplay:
-                        case Provider.Custom:
-                        default:
-                            return @"resources:/Images/custom_cover_background.png";
-                    }
+                    //switch (Game.Provider)
+                    //{
+                    //    case Provider.GOG:
+                    //    case Provider.Origin:
+                    //    case Provider.Steam:
+                    //    case Provider.Uplay:
+                    //    case Provider.Custom:
+                    //    default:
+                    //        return @"resources:/Images/custom_cover_background.png";
+                    //}
+                    return @"resources:/Images/custom_cover_background.png";
                 }
             }
         }
@@ -543,58 +547,58 @@ namespace PlayniteUI
             }
 
             // ------------------ Providers
-            bool providersFilter = false;
-            if (filterSettings.Steam == false &&
-                filterSettings.Origin == false &&
-                filterSettings.GOG == false &&
-                filterSettings.Custom == false &&
-                filterSettings.Uplay == false &&
-                filterSettings.BattleNet == false)
-            {
-                providersFilter = true;
-            }
-            else
-            {
-                switch (game.Provider)
-                {
-                    case Provider.Custom:
-                        if (filterSettings.Custom)
-                        {
-                            providersFilter = true;
-                        }
-                        break;
-                    case Provider.GOG:
-                        if (filterSettings.GOG)
-                        {
-                            providersFilter = true;
-                        }
-                        break;
-                    case Provider.Origin:
-                        if (filterSettings.Origin)
-                        {
-                            providersFilter = true;
-                        }
-                        break;
-                    case Provider.Steam:
-                        if (filterSettings.Steam)
-                        {
-                            providersFilter = true;
-                        }
-                        break;
-                    case Provider.Uplay:
-                        if (filterSettings.Uplay)
-                        {
-                            providersFilter = true;
-                        }
-                        break;
-                    case Provider.BattleNet:
-                        if (filterSettings.BattleNet)
-                        {
-                            providersFilter = true;
-                        }
-                        break;
-                }
-            }
+            bool providersFilter = true;
+            //if (filterSettings.Steam == false &&
+            //    filterSettings.Origin == false &&
+            //    filterSettings.GOG == false &&
+            //    filterSettings.Custom == false &&
+            //    filterSettings.Uplay == false &&
+            //    filterSettings.BattleNet == false)
+            //{
+            //    providersFilter = true;
+            //}
+            //else
+            //{
+            //    switch (game.Provider)
+            //    {
+            //        case Provider.Custom:
+            //            if (filterSettings.Custom)
+            //            {
+            //                providersFilter = true;
+            //            }
+            //            break;
+            //        case Provider.GOG:
+            //            if (filterSettings.GOG)
+            //            {
+            //                providersFilter = true;
+            //            }
+            //            break;
+            //        case Provider.Origin:
+            //            if (filterSettings.Origin)
+            //            {
+            //                providersFilter = true;
+            //            }
+            //            break;
+            //        case Provider.Steam:
+            //            if (filterSettings.Steam)
+            //            {
+            //                providersFilter = true;
+            //            }
+            //            break;
+            //        case Provider.Uplay:
+            //            if (filterSettings.Uplay)
+            //            {
+            //                providersFilter = true;
+            //            }
+            //            break;
+            //        case Provider.BattleNet:
+            //            if (filterSettings.BattleNet)
+            //            {
+            //                providersFilter = true;
+            //            }
+            //            break;
+            //    }
+            //}
 
             // ------------------ Name filter
             bool nameResult = false;

@@ -1,5 +1,7 @@
 ﻿using NLog;
 using Playnite.Models;
+using Playnite.SDK;
+using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -11,68 +13,6 @@ using System.Threading.Tasks;
 
 namespace Playnite.Providers
 {
-    public class GameControllerEventArgs : EventArgs
-    {
-        public IGameController Controller
-        {
-            get; set;
-        }
-
-        /// <summary>
-        /// Time in seconds for event to be finished.
-        /// For example in case of Stopped event it indicates how long was game running until stopped.
-        /// </summary>
-        public long EllapsedTime
-        {
-            get; set;
-        } = 0;
-
-        public GameControllerEventArgs()
-        {
-        }
-
-        public GameControllerEventArgs(IGameController controller, long ellapsedTime)
-        {
-            Controller = controller;
-            EllapsedTime = ellapsedTime;
-        }
-
-        public GameControllerEventArgs(IGameController controller, double ellapsedTime)
-            : this(controller, Convert.ToInt64(ellapsedTime))
-        {
-        }
-    }
-
-    public delegate void GameControllerEventHandler(object sender, GameControllerEventArgs controller);
-
-    public interface IGameController : IDisposable
-    {
-        bool IsGameRunning { get; }
-
-        Game Game
-        {
-            get;
-        }
-
-        void Install();
-
-        void Uninstall();
-
-        void Play(List<Emulator> emulators);
-
-        void ActivateAction(GameTask action);
-
-        event GameControllerEventHandler Starting;
-
-        event GameControllerEventHandler Started;
-
-        event GameControllerEventHandler Stopped;
-
-        event GameControllerEventHandler Uninstalled;
-
-        event GameControllerEventHandler Installed;
-    }
-
     public abstract class GameController : IGameController
     {
         protected readonly Logger logger = LogManager.GetCurrentClassLogger();

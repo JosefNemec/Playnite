@@ -67,11 +67,13 @@
     <Compile Include="..\..\PlayniteUI\Converters\NegateConverter.cs">
       <Link>Converters\NegateConverter.cs</Link>
     </Compile>
-    <Compile Include="..\..\Playnite\Extensions\CloneObject.cs">
-      <Link>Extensions\CloneObject.cs</Link>
-    </Compile>
+    <Compile Include="Configuration.cs" />
     <Compile Include="Environment.cs" />
-    <Compile Include="LocalSteamUser.cs" />
+    <Compile Include="Models\GetOwnedGamesResult.cs" />
+    <Compile Include="Models\LocalSteamUser.cs" />
+    <Compile Include="Models\ResolveVanityResult.cs" />
+    <Compile Include="Models\StoreAppDetailsResult.cs" />
+    <Compile Include="Services\SteamServicesClient.cs" />
     <Compile Include="SteamLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steam.cs" />
@@ -81,6 +83,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Playnite.Common\Playnite.Common.csproj">
+      <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
+      <Name>Playnite.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
       <Name>Playnite.SDK</Name>
@@ -88,6 +94,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="plugin.cfg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="plugin.info">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -97,6 +106,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BuildCopyExclude.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

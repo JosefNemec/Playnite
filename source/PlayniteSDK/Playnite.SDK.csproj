@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Playnite.SDK</RootNamespace>
-    <AssemblyName>PlayniteSDK</AssemblyName>
+    <AssemblyName>Playnite.SDK</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\PlayniteSDK.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Playnite.SDK.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -29,7 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\PlayniteSDK.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Playnite.SDK.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LiteDB, Version=3.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
@@ -56,9 +56,12 @@
     <Compile Include="Collections\ObservableObject.cs" />
     <Compile Include="Collections\RangeObservableCollection.cs" />
     <Compile Include="Converters\ObjectIdJsonConverter.cs" />
+    <Compile Include="Events\GameControllerEvent.cs" />
     <Compile Include="IDialogsFactory.cs" />
     <Compile Include="ExtensionFunction.cs" />
+    <Compile Include="IGameController.cs" />
     <Compile Include="IGameDatabaseAPI.cs" />
+    <Compile Include="ILibraryMetadataDownloader.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="IMainViewAPI.cs" />
     <Compile Include="IPlayniteAPI.cs" />

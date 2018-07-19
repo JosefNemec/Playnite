@@ -856,7 +856,7 @@ namespace PlayniteUI.ViewModels
             BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
             if (GamesView.CollectionView.Count > 0)
             {
-                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).ProviderId);
+                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).Id);
             }
             else
             {
@@ -875,10 +875,10 @@ namespace PlayniteUI.ViewModels
 
         public async void UpdateDatabase(bool updateLibrary)
         {
-            await UpdateDatabase(updateLibrary, 0, true);
+            await UpdateDatabase(updateLibrary, true);
         }
 
-        public async Task UpdateDatabase(bool updateLibrary, ulong steamImportCatId, bool metaForNewGames)
+        public async Task UpdateDatabase(bool updateLibrary, bool metaForNewGames)
         {
             if (!Database.IsOpen)
             {
@@ -909,209 +909,270 @@ namespace PlayniteUI.ViewModels
                     ProgressVisible = true;
                     ProgressValue = 0;
                     ProgressTotal = 1;
-                    ProgressStatus = Resources.FindString("LOCProgressInstalledGames");
 
-                    try
+                    foreach (var plugin in PlayniteApi.LibraryPlugins)
                     {
-                        if (AppSettings.BattleNetSettings.IntegrationEnabled)
+                        // TODO LOC
+                        ProgressStatus = Resources.FindString($"Importing games from {plugin.Name}");
+                        var newGames = new List<Game>();
+                        foreach (var newGame in plugin.GetGames())
                         {
-                            addedGames.AddRange(Database.UpdateInstalledGames(Provider.BattleNet));
-                            RemoveMessage(NotificationCodes.BattleNetInstalledImportError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to import installed Battle.net games.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.BattleNetInstalledImportError,
-                            Resources.FindString("LOCBnetInstalledImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
+                            var existingGame = Database.GamesCollection.FindOne(a => a.GameId == newGame.GameId && a.PluginId == plugin.Id);
+                            if (existingGame == null)
+                            {
+                                Logger.Info("Adding new game {0} from {1} provider", newGame.GameId, newGame.PluginId);
+                                newGame.State.Installed = true;
+                                Database.AssignPcPlatform(newGame);
+                                Database.AddGame(newGame);
+                                newGames.Add(newGame);
+                            }
+                            else
+                            {
+                                existingGame.State.Installed = newGame.State.Installed;
+                                existingGame.InstallDirectory = newGame.InstallDirectory;
+                                if (existingGame.PlayTask == null)
+                                {
+                                    existingGame.PlayTask = newGame.PlayTask;
+                                }
 
-                    try
-                    {
-                        if (AppSettings.UplaySettings.IntegrationEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateInstalledGames(Provider.Uplay));
-                            RemoveMessage(NotificationCodes.UplayInstalledImportError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to import installed Uplay games.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.UplayInstalledImportError,
-                            Resources.FindString("LOCUplayInstalledImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
+                                if (existingGame.Playtime == 0 && newGame.Playtime > 0)
+                                {
+                                    existingGame.Playtime = newGame.Playtime;
+                                    if (existingGame.CompletionStatus == CompletionStatus.NotPlayed)
+                                    {
+                                        existingGame.CompletionStatus = CompletionStatus.Played;
+                                    }
 
-                    try
-                    {
-                        if (AppSettings.GOGSettings.IntegrationEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateInstalledGames(Provider.GOG));
-                            RemoveMessage(NotificationCodes.GOGLInstalledImportError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to import installed GOG games.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.GOGLInstalledImportError,
-                            Resources.FindString("LOCGOGInstalledImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
+                                    if (existingGame.LastActivity == null && newGame.LastActivity != null)
+                                    {
+                                        existingGame.LastActivity = newGame.LastActivity;
+                                    }
+                                }
 
-                    try
-                    {
-                        if (AppSettings.SteamSettings.IntegrationEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateInstalledGames(Provider.Steam));
-                            RemoveMessage(NotificationCodes.SteamInstalledImportError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to import installed Steam games.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.SteamInstalledImportError,
-                            Resources.FindString("LOCSteamInstalledImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
+                                // Don't import custom action if imported already (user may changed them manually and this would overwrite it)
+                                if (existingGame.OtherTasks?.FirstOrDefault(a => a.IsBuiltIn) == null && newGame.OtherTasks != null)
+                                {
+                                    if (existingGame.OtherTasks == null)
+                                    {
+                                        existingGame.OtherTasks = new ObservableCollection<GameTask>();
+                                    }
+                                    else
+                                    {
+                                        existingGame.OtherTasks = new ObservableCollection<GameTask>(existingGame.OtherTasks.Where(a => !a.IsBuiltIn));
+                                    }
 
-                    try
-                    {
-                        if (AppSettings.OriginSettings.IntegrationEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateInstalledGames(Provider.Origin));
-                            RemoveMessage(NotificationCodes.OriginInstalledImportError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to import installed Origin games.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.OriginInstalledImportError,
-                            Resources.FindString("LOCOriginInstalledImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
+                                    foreach (var task in newGame.OtherTasks.Reverse())
+                                    {
+                                        existingGame.OtherTasks.Insert(0, task);
+                                    }                                    
+                                }
 
-                    ProgressStatus = Resources.FindString("LOCProgressGOGLibImport");
-
-                    try
-                    {
-                        if (AppSettings.GOGSettings.IntegrationEnabled && AppSettings.GOGSettings.LibraryDownloadEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateOwnedGames(Provider.GOG));
-                            RemoveMessage(NotificationCodes.GOGLibDownloadError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to download GOG library updates.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.GOGLibDownloadError,
-                            Resources.FindString("LOCGOGLibraryImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
-
-                    ProgressStatus = Resources.FindString("LOCProgressSteamLibImport");
-
-                    try
-                    {
-                        if (AppSettings.SteamSettings.IntegrationEnabled && AppSettings.SteamSettings.LibraryDownloadEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateOwnedGames(Provider.Steam));
-                            RemoveMessage(NotificationCodes.SteamLibDownloadError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to download Steam library updates.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.SteamLibDownloadError,
-                            Resources.FindString("LOCSteamLibraryImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
-                                        
-                    if (steamImportCatId > 0)
-                    {
-                        ProgressStatus = Resources.FindString("LOCProgressSteamCategoryImport");
-
-                        try
-                        {
-                            var steamLib = new SteamLibrary();
-                            Database.ImportCategories(steamLib.GetCategorizedGames(steamImportCatId));
-                        }
-                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                        {
-                            Logger.Error(e, "Failed to import Steam categories.");
-                            AddMessage(new NotificationMessage(
-                                NotificationCodes.SteamCatImportError,
-                                Resources.FindString("LOCSteamCategoryImportError") + $" {e.Message}",
-                                NotificationType.Error, null));
+                                Database.UpdateGameInDatabase(existingGame);
+                            }
                         }
                     }
 
-                    ProgressStatus = Resources.FindString("LOCProgressOriginLibImport");
+                    //try
+                    //{
+                    //    if (AppSettings.BattleNetSettings.IntegrationEnabled)
+                    //    {
+                    //        addedGames.AddRange(Database.UpdateInstalledGames(Provider.BattleNet));
+                    //        RemoveMessage(NotificationCodes.BattleNetInstalledImportError);
+                    //    }
+                    //}
+                    //catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    //{
+                    //    Logger.Error(e, "Failed to import installed Battle.net games.");
+                    //    AddMessage(new NotificationMessage(
+                    //        NotificationCodes.BattleNetInstalledImportError,
+                    //        Resources.FindString("LOCBnetInstalledImportError") + $" {e.Message}",
+                    //        NotificationType.Error, null));
+                    //}
 
-                    try
-                    {
-                        if (AppSettings.OriginSettings.IntegrationEnabled && AppSettings.OriginSettings.LibraryDownloadEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateOwnedGames(Provider.Origin));
-                            RemoveMessage(NotificationCodes.OriginLibDownloadError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to download Origin library updates.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.OriginLibDownloadError,
-                            Resources.FindString("LOCOriginLibraryImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
+                    //try
+                    //{
+                    //    if (AppSettings.UplaySettings.IntegrationEnabled)
+                    //    {
+                    //        addedGames.AddRange(Database.UpdateInstalledGames(Provider.Uplay));
+                    //        RemoveMessage(NotificationCodes.UplayInstalledImportError);
+                    //    }
+                    //}
+                    //catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    //{
+                    //    Logger.Error(e, "Failed to import installed Uplay games.");
+                    //    AddMessage(new NotificationMessage(
+                    //        NotificationCodes.UplayInstalledImportError,
+                    //        Resources.FindString("LOCUplayInstalledImportError") + $" {e.Message}",
+                    //        NotificationType.Error, null));
+                    //}
 
-                    ProgressStatus = Resources.FindString("LOCProgressBattleNetLibImport");
+                    //try
+                    //{
+                    //    if (AppSettings.GOGSettings.IntegrationEnabled)
+                    //    {
+                    //        addedGames.AddRange(Database.UpdateInstalledGames(Provider.GOG));
+                    //        RemoveMessage(NotificationCodes.GOGLInstalledImportError);
+                    //    }
+                    //}
+                    //catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    //{
+                    //    Logger.Error(e, "Failed to import installed GOG games.");
+                    //    AddMessage(new NotificationMessage(
+                    //        NotificationCodes.GOGLInstalledImportError,
+                    //        Resources.FindString("LOCGOGInstalledImportError") + $" {e.Message}",
+                    //        NotificationType.Error, null));
+                    //}
 
-                    try
-                    {
-                        if (AppSettings.BattleNetSettings.IntegrationEnabled && AppSettings.BattleNetSettings.LibraryDownloadEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateOwnedGames(Provider.BattleNet));
-                            RemoveMessage(NotificationCodes.BattleNetLibDownloadImportError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to download Battle.net library updates.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.BattleNetLibDownloadImportError,
-                            Resources.FindString("LOCBnetLibraryImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
-                                        
-                    ProgressStatus = Resources.FindString("LOCProgressLibImportFinish");
-                    await Task.Delay(1500);
+                    //try
+                    //{
+                    //    if (AppSettings.SteamSettings.IntegrationEnabled)
+                    //    {
+                    //        addedGames.AddRange(Database.UpdateInstalledGames(Provider.Steam));
+                    //        RemoveMessage(NotificationCodes.SteamInstalledImportError);
+                    //    }
+                    //}
+                    //catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    //{
+                    //    Logger.Error(e, "Failed to import installed Steam games.");
+                    //    AddMessage(new NotificationMessage(
+                    //        NotificationCodes.SteamInstalledImportError,
+                    //        Resources.FindString("LOCSteamInstalledImportError") + $" {e.Message}",
+                    //        NotificationType.Error, null));
+                    //}
 
-                    if (addedGames.Any() && metaForNewGames)
-                    {
-                        Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
-                        ProgressValue = 0;
-                        ProgressTotal = addedGames.Count;
-                        ProgressStatus = Resources.FindString("LOCProgressMetadata");
-                        var metaSettings = new MetadataDownloaderSettings();
-                        metaSettings.ConfigureFields(MetadataSource.Store, true);
-                        metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
-                        metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                        var downloader = new MetadataDownloader(AppSettings);
-                        downloader.DownloadMetadataGroupedAsync(
-                            addedGames,
-                            Database,
-                            metaSettings,
-                            (g, i, t) => ProgressValue = i + 1,
-                            GlobalTaskHandler.CancelToken).Wait();
-                    }
+                    //try
+                    //{
+                    //    if (AppSettings.OriginSettings.IntegrationEnabled)
+                    //    {
+                    //        addedGames.AddRange(Database.UpdateInstalledGames(Provider.Origin));
+                    //        RemoveMessage(NotificationCodes.OriginInstalledImportError);
+                    //    }
+                    //}
+                    //catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    //{
+                    //    Logger.Error(e, "Failed to import installed Origin games.");
+                    //    AddMessage(new NotificationMessage(
+                    //        NotificationCodes.OriginInstalledImportError,
+                    //        Resources.FindString("LOCOriginInstalledImportError") + $" {e.Message}",
+                    //        NotificationType.Error, null));
+                    //}
+
+                    //ProgressStatus = Resources.FindString("LOCProgressGOGLibImport");
+
+                    //try
+                    //{
+                    //    if (AppSettings.GOGSettings.IntegrationEnabled && AppSettings.GOGSettings.LibraryDownloadEnabled)
+                    //    {
+                    //        addedGames.AddRange(Database.UpdateOwnedGames(Provider.GOG));
+                    //        RemoveMessage(NotificationCodes.GOGLibDownloadError);
+                    //    }
+                    //}
+                    //catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    //{
+                    //    Logger.Error(e, "Failed to download GOG library updates.");
+                    //    AddMessage(new NotificationMessage(
+                    //        NotificationCodes.GOGLibDownloadError,
+                    //        Resources.FindString("LOCGOGLibraryImportError") + $" {e.Message}",
+                    //        NotificationType.Error, null));
+                    //}
+
+                    //ProgressStatus = Resources.FindString("LOCProgressSteamLibImport");
+
+                    //try
+                    //{
+                    //    if (AppSettings.SteamSettings.IntegrationEnabled && AppSettings.SteamSettings.LibraryDownloadEnabled)
+                    //    {
+                    //        addedGames.AddRange(Database.UpdateOwnedGames(Provider.Steam));
+                    //        RemoveMessage(NotificationCodes.SteamLibDownloadError);
+                    //    }
+                    //}
+                    //catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    //{
+                    //    Logger.Error(e, "Failed to download Steam library updates.");
+                    //    AddMessage(new NotificationMessage(
+                    //        NotificationCodes.SteamLibDownloadError,
+                    //        Resources.FindString("LOCSteamLibraryImportError") + $" {e.Message}",
+                    //        NotificationType.Error, null));
+                    //}
+
+                    //if (steamImportCatId > 0)
+                    //{
+                    //    ProgressStatus = Resources.FindString("LOCProgressSteamCategoryImport");
+
+                    //    try
+                    //    {
+                    //        var steamLib = new SteamLibrary();
+                    //        Database.ImportCategories(steamLib.GetCategorizedGames(steamImportCatId));
+                    //    }
+                    //    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    //    {
+                    //        Logger.Error(e, "Failed to import Steam categories.");
+                    //        AddMessage(new NotificationMessage(
+                    //            NotificationCodes.SteamCatImportError,
+                    //            Resources.FindString("LOCSteamCategoryImportError") + $" {e.Message}",
+                    //            NotificationType.Error, null));
+                    //    }
+                    //}
+
+                    //ProgressStatus = Resources.FindString("LOCProgressOriginLibImport");
+
+                    //try
+                    //{
+                    //    if (AppSettings.OriginSettings.IntegrationEnabled && AppSettings.OriginSettings.LibraryDownloadEnabled)
+                    //    {
+                    //        addedGames.AddRange(Database.UpdateOwnedGames(Provider.Origin));
+                    //        RemoveMessage(NotificationCodes.OriginLibDownloadError);
+                    //    }
+                    //}
+                    //catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    //{
+                    //    Logger.Error(e, "Failed to download Origin library updates.");
+                    //    AddMessage(new NotificationMessage(
+                    //        NotificationCodes.OriginLibDownloadError,
+                    //        Resources.FindString("LOCOriginLibraryImportError") + $" {e.Message}",
+                    //        NotificationType.Error, null));
+                    //}
+
+                    //ProgressStatus = Resources.FindString("LOCProgressBattleNetLibImport");
+
+                    //try
+                    //{
+                    //    if (AppSettings.BattleNetSettings.IntegrationEnabled && AppSettings.BattleNetSettings.LibraryDownloadEnabled)
+                    //    {
+                    //        addedGames.AddRange(Database.UpdateOwnedGames(Provider.BattleNet));
+                    //        RemoveMessage(NotificationCodes.BattleNetLibDownloadImportError);
+                    //    }
+                    //}
+                    //catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    //{
+                    //    Logger.Error(e, "Failed to download Battle.net library updates.");
+                    //    AddMessage(new NotificationMessage(
+                    //        NotificationCodes.BattleNetLibDownloadImportError,
+                    //        Resources.FindString("LOCBnetLibraryImportError") + $" {e.Message}",
+                    //        NotificationType.Error, null));
+                    //}
+
+                    //ProgressStatus = Resources.FindString("LOCProgressLibImportFinish");
+                    //await Task.Delay(1500);
+
+                    //if (addedGames.Any() && metaForNewGames)
+                    //{
+                    //    Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
+                    //    ProgressValue = 0;
+                    //    ProgressTotal = addedGames.Count;
+                    //    ProgressStatus = Resources.FindString("LOCProgressMetadata");
+                    //    var metaSettings = new MetadataDownloaderSettings();
+                    //    metaSettings.ConfigureFields(MetadataSource.Store, true);
+                    //    metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
+                    //    metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
+                    //    var downloader = new MetadataDownloader(AppSettings);
+                    //    downloader.DownloadMetadataGroupedAsync(
+                    //        addedGames,
+                    //        Database,
+                    //        metaSettings,
+                    //        (g, i, t) => ProgressValue = i + 1,
+                    //        GlobalTaskHandler.CancelToken).Wait();
+                    //}
                 });
 
                 await GlobalTaskHandler.ProgressTask;
@@ -1140,10 +1201,12 @@ namespace PlayniteUI.ViewModels
                 ProgressValue = 0;
                 ProgressTotal = games.Count;
                 ProgressStatus = Resources.FindString("LOCProgressMetadata");
-                var downloader = new MetadataDownloader(AppSettings);
-                GlobalTaskHandler.ProgressTask =
-                    downloader.DownloadMetadataGroupedAsync(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GlobalTaskHandler.CancelToken);
-                await GlobalTaskHandler.ProgressTask;
+                return;
+
+                //var downloader = new MetadataDownloader(AppSettings);
+                //GlobalTaskHandler.ProgressTask =
+                //    downloader.DownloadMetadataGroupedAsync(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GlobalTaskHandler.CancelToken);
+                //await GlobalTaskHandler.ProgressTask;
             }
             finally
             {
@@ -1198,14 +1261,13 @@ namespace PlayniteUI.ViewModels
         {
             var newGame = new Game()
             {
-                Name = "New Game",
-                Provider = Provider.Custom
+                Name = "New Game"
             };
 
             Database.AddGame(newGame);
             if (GamesEditor.EditGame(newGame) == true)
             {
-                var viewEntry = GamesView.Items.First(a => a.Game.ProviderId == newGame.ProviderId);
+                var viewEntry = GamesView.Items.First(a => a.Game.GameId == newGame.GameId);
                 SelectedGame = viewEntry;
             }
             else
@@ -1280,9 +1342,9 @@ namespace PlayniteUI.ViewModels
             model.OpenView();
         }
 
-        public void SelectGame(string providerId)
+        public void SelectGame(int id)
         {
-            var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.ProviderId == providerId);
+            var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
             SelectedGame = viewEntry;
         }
 
@@ -1338,7 +1400,7 @@ namespace PlayniteUI.ViewModels
                         Database.AddGame(game);
                         Database.AssignPcPlatform(game);
                         GamesEditor.EditGame(game);
-                        SelectGame(game.ProviderId);
+                        SelectGame(game.Id);
                     }
                     else if (Directory.Exists(path))
                     {

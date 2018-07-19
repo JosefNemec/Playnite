@@ -279,7 +279,6 @@ namespace PlayniteUI.ViewModels
                 var newGame = new Game()
                 {
                     Name = program.Name,
-                    Provider = Provider.Custom,
                     InstallDirectory = program.WorkDir,
                     Source = program.Type == ProgramType.UWP ? "Windows Store" : string.Empty
                 };

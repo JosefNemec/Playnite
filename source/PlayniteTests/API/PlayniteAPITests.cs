@@ -28,7 +28,7 @@ namespace PlayniteTests.API
                 new Mock<IPlaynitePathsAPI>().Object);
 
             api.LoadLibraryProviders();
-            Assert.AreEqual(1, api.LibraryProviders.Count);
+            Assert.AreEqual(1, api.LibraryPlugins.Count);
         }
     }
 }

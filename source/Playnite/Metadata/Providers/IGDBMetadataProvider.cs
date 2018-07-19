@@ -123,9 +123,9 @@ namespace Playnite.Metadata.Providers
 
         public GameMetadata GetMetadata(Game game)
         {
-            if (game.Provider == Provider.Steam)
+            if (game.PluginId == Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB"))
             {
-                var igdbId = client.GetIGDBGameBySteamId(game.ProviderId);
+                var igdbId = client.GetIGDBGameBySteamId(game.GameId);
                 if (igdbId != 0)
                 {
                     return GetMetadata(igdbId.ToString());

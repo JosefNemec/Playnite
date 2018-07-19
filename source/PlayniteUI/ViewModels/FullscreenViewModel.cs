@@ -361,7 +361,7 @@ namespace PlayniteUI.ViewModels
                 Dispose();
             }
 
-            App.CurrentApp.OpenNormalView(0, false, true);
+            App.CurrentApp.OpenNormalView(false, true);
         }
 
         public void OpenSearch()
@@ -382,7 +382,7 @@ namespace PlayniteUI.ViewModels
         {
             if (GamesView.CollectionView.Count > 0)
             {
-                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).ProviderId);
+                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).Id);
             }
             else
             {
@@ -394,7 +394,7 @@ namespace PlayniteUI.ViewModels
         {            
             if (GamesView.CollectionView.Count > 0)
             {
-                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).ProviderId);
+                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).Id);
             }
             else
             {

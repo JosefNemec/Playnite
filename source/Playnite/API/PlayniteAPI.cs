@@ -1,8 +1,10 @@
-﻿using Playnite.Database;
+﻿using Newtonsoft.Json;
+using Playnite.Database;
 using Playnite.Plugins;
 using Playnite.Providers;
 using Playnite.Scripting;
 using Playnite.SDK;
+using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
@@ -24,7 +26,10 @@ namespace Playnite.API
         private List<PlayniteScript> scripts = new List<PlayniteScript>();
         private List<Plugin> plugins = new List<Plugin>();
 
-        public List<IGameLibrary> LibraryProviders { get; private set; }
+        public List<ILibraryPlugin> LibraryPlugins
+        {
+            get;
+        } = new List<ILibraryPlugin>();
 
         public bool HasExportedFunctions
         {
@@ -115,13 +120,15 @@ namespace Playnite.API
 
         private void DisposeLibraryProviders()
         {
-            if (LibraryProviders?.Any() == true)
+            if (LibraryPlugins?.Any() == true)
             {
-                foreach (var provider in LibraryProviders)
+                foreach (var provider in LibraryPlugins)
                 {
                     provider.Dispose();
                 }
             }
+
+            LibraryPlugins.Clear();
         }
 
         private void DisposePlugins()
@@ -195,12 +202,12 @@ namespace Playnite.API
         public void LoadLibraryProviders()
         {
             DisposeLibraryProviders();
-            LibraryProviders = new List<IGameLibrary>();
             foreach (var desc in PluginFactory.GetPluginDescriptors().Where(a => a.Type == PluginType.GameLibrary))
             {
                 try
                 {
-                    LibraryProviders.AddRange(PluginFactory.LoadGameLibraryPlugin(desc, this));
+                    var libPlugins = PluginFactory.LoadGameLibraryPlugin(desc, this);
+                    LibraryPlugins.AddRange(libPlugins);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -221,16 +228,20 @@ namespace Playnite.API
             plugins = new List<Plugin>();
             foreach (var path in PluginFactory.GetPluginDescriptorFiles())
             {
-                if (Path.GetFileNameWithoutExtension(path).Equals("PlayniteSDK", StringComparison.InvariantCultureIgnoreCase))
+                if (Path.GetFileNameWithoutExtension(path).Equals("Playnite.SDK", StringComparison.InvariantCultureIgnoreCase))
                 {
                     continue;
                 }
 
-                List<Plugin> plugin = null;
-
                 try
                 {
-                    plugin = PluginFactory.LoadGenericPlugin(path, this);
+                    var plugin = PluginFactory.LoadGenericPlugin(path, this);
+                    logger.Info($"Loaded generic plugin: {path}");
+                    plugins.AddRange(plugin);
+                    //foreach (var plg in plugin)
+                    //{
+                    //    LoadedPlugins.Add(plg.Id, desc);
+                    //}
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -240,9 +251,6 @@ namespace Playnite.API
                         MessageBoxButton.OK, MessageBoxImage.Error);
                     continue;
                 }
-
-                logger.Info($"Loaded generic plugin: {path}");
-                plugins.AddRange(plugin);
             }
 
             PluginFunctions = plugins.Where(a => a.GetFunctions()?.Any() == true).SelectMany(a => a.GetFunctions()).ToList();
@@ -449,16 +457,31 @@ namespace Playnite.API
             return new Logger(name);
         }
 
-        public string GetPluginConfigPath(IGameLibrary libraryPlugin)
+        public string GetPluginStoragePath(IPlugin plugin)
         {
-            var path = Path.Combine(Paths.ConfigurationPath, "PluginSettings", libraryPlugin.Id.ToString());
+            var path = Path.Combine(Paths.ConfigurationPath, "PluginSettings", plugin.Id.ToString());
             FileSystem.CreateDirectory(path);
             return path;
         }
 
-        public string GetPluginConfigPath(Plugin libraryPlugin)
+        public TConfig GetPluginConfiguration<TConfig>(IPlugin plugin) where TConfig : class
         {
-            throw new NotImplementedException();
+            var pluginDir = Path.GetDirectoryName(plugin.GetType().Assembly.Location);
+            //var pluginDir = Path.GetDirectoryName(AvailablePlugins[plugin.Id].Path);
+            var pluginConfig = Path.Combine(pluginDir, "plugin.cfg");
+            if (File.Exists(pluginConfig))
+            {
+                try
+                {
+                    return JsonConvert.DeserializeObject<TConfig>(File.ReadAllText(pluginConfig));
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to load plugin config: {pluginConfig}");
+                }
+            }
+
+            return null;
         }
 
         #endregion IPlayniteAPI

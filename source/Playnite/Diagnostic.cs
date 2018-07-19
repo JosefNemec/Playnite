@@ -64,19 +64,19 @@ namespace Playnite
                     }
 
                     // Steam data
-                    if (SteamSettings.IsInstalled)
-                    {
-                        foreach (var folder in (new SteamLibrary()).GetLibraryFolders())
-                        {
-                            var appsFolder = Path.Combine(folder, "steamapps");
-                            FileSystem.AddFolderToZip(archive, "Steam", appsFolder, "appmanifest*", SearchOption.TopDirectoryOnly);
-                        }
+                    //if (SteamSettings.IsInstalled)
+                    //{
+                    //    foreach (var folder in (new SteamLibrary()).GetLibraryFolders())
+                    //    {
+                    //        var appsFolder = Path.Combine(folder, "steamapps");
+                    //        FileSystem.AddFolderToZip(archive, "Steam", appsFolder, "appmanifest*", SearchOption.TopDirectoryOnly);
+                    //    }
 
-                        if (File.Exists(SteamSettings.LoginUsersPath))
-                        {
-                            archive.CreateEntryFromFile(SteamSettings.LoginUsersPath, "loginusers.vdf");
-                        }
-                    }
+                    //    if (File.Exists(SteamSettings.LoginUsersPath))
+                    //    {
+                    //        archive.CreateEntryFromFile(SteamSettings.LoginUsersPath, "loginusers.vdf");
+                    //    }
+                    //}
 
                     // dxdiag
                     var diagPath = Path.Combine(diagTemp, "dxdiag.txt");

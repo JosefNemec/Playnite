@@ -38,95 +38,7 @@ namespace PlayniteUI.ViewModels
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
-        private IResourceProvider resources;
-
-        public List<LocalSteamUser> SteamUsers
-        {
-            get
-            {
-                return new SteamLibrary().GetSteamUsers();
-            }
-        }
-        
-        public ulong SteamIdCategoryImport
-        {
-            get; set;
-        }
-
-        private Playnite.Providers.GOG.WebApiClient gogApiClient = new Playnite.Providers.GOG.WebApiClient();
-
-        public string GogLoginStatus
-        {
-            get
-            {
-                try
-                {
-                    if (gogApiClient.GetLoginRequired())
-                    {
-                        return resources.FindString("LOCLoginRequired");
-                    }
-                    else
-                    {
-                        return resources.FindString("LOCOKLabel");
-                    }
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(e, "Failed to test GOG login status.");
-                    return resources.FindString("LOCLoginFailed");
-                }
-            }
-        }
-
-        private Playnite.Providers.Origin.WebApiClient originApiClient = new Playnite.Providers.Origin.WebApiClient();
-
-        public string OriginLoginStatus
-        {
-            get
-            {
-                try
-                {
-                    if (originApiClient.GetLoginRequired())
-                    {
-                        return resources.FindString("LOCLoginRequired");
-                    }
-                    else
-                    {
-                        return resources.FindString("LOCOKLabel");
-                    }
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(e, "Failed to test Origin login status.");
-                    return resources.FindString("LOCLoginFailed");
-                }
-            }
-        }
-
-        private Playnite.Providers.BattleNet.WebApiClient battleNetApiClient = new Playnite.Providers.BattleNet.WebApiClient();
-
-        public string BattleNetLoginStatus
-        {
-            get
-            {
-                try
-                {
-                    if (battleNetApiClient.GetLoginRequired())
-                    {
-                        return resources.FindString("LOCLoginRequired");
-                    }
-                    else
-                    {
-                        return resources.FindString("LOCOKLabel");
-                    }
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(e, "Failed to test BattleNet login status.");
-                    return resources.FindString("LOCLoginFailed");
-                }
-            }
-        }
+        private IResourceProvider resources;        
 
         private DbLocation databaseLocation = DbLocation.ProgramData;
         public DbLocation DatabaseLocation
@@ -147,11 +59,6 @@ namespace PlayniteUI.ViewModels
         {
             get => SelectedIndex == (int)Page.Finish;
         }
-
-        public bool SteamImportCategories
-        {
-            get; set;
-        } = true;
         
         public List<InstalledGameMetadata> ImportedGames
         {
@@ -233,30 +140,6 @@ namespace PlayniteUI.ViewModels
             }, (a) => SelectedIndex > 0);
         }
 
-        public RelayCommand<object> AuthGOGCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                AuthenticateGOG();
-            }, (a) => Settings.GOGSettings.LibraryDownloadEnabled);
-        }
-
-        public RelayCommand<object> AuthOriginCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                AuthenticateOrigin();
-            }, (a) => Settings.OriginSettings.LibraryDownloadEnabled);
-        }
-
-        public RelayCommand<object> AuthBattleNetCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                AuthenticateBattleNet();
-            }, (a) => Settings.BattleNetSettings.LibraryDownloadEnabled);
-        }
-
         public RelayCommand<object> ImportGamesCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -276,44 +159,35 @@ namespace PlayniteUI.ViewModels
 
         public FirstTimeStartupViewModel(IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
-            SteamIdCategoryImport = SteamUsers?.FirstOrDefault()?.Id ?? 0;
-            Settings.SteamSettings.IntegrationEnabled = true;
-            Settings.SteamSettings.AccountId = SteamIdCategoryImport;
-            Settings.GOGSettings.IntegrationEnabled = true;
-            Settings.GOGSettings.RunViaGalaxy = Playnite.Providers.GOG.GogSettings.IsInstalled;
-            Settings.OriginSettings.IntegrationEnabled = true;
-            Settings.UplaySettings.IntegrationEnabled = true;
-            Settings.BattleNetSettings.IntegrationEnabled = true;
-
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
 
             pageValidators.Add(Page.Steam, (model) =>
             {
-                if (model.Settings.SteamSettings.IntegrationEnabled && model.Settings.SteamSettings.LibraryDownloadEnabled)
-                {
-                    if (model.Settings.SteamSettings.IdSource == SteamIdSource.Name && string.IsNullOrEmpty(model.Settings.SteamSettings.AccountName))
-                    {
-                        dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidSteamAccountName"),
-                            resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
-                        return false;
-                    }
+                //if (model.Settings.SteamSettings.IntegrationEnabled && model.Settings.SteamSettings.LibraryDownloadEnabled)
+                //{
+                //    if (model.Settings.SteamSettings.IdSource == SteamIdSource.Name && string.IsNullOrEmpty(model.Settings.SteamSettings.AccountName))
+                //    {
+                //        dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidSteamAccountName"),
+                //            resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                //        return false;
+                //    }
 
-                    if (model.Settings.SteamSettings.IdSource == SteamIdSource.LocalUser && model.Settings.SteamSettings.AccountId == 0)
-                    {
-                        dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidSteamAccountLibImport"),
-                            resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
-                        return false;
-                    }
-                }
+                //    if (model.Settings.SteamSettings.IdSource == SteamIdSource.LocalUser && model.Settings.SteamSettings.AccountId == 0)
+                //    {
+                //        dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidSteamAccountLibImport"),
+                //            resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                //        return false;
+                //    }
+                //}
 
-                if (model.SteamImportCategories && model.SteamIdCategoryImport == 0)
-                {
-                    dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidSteamAccountCatImport"),
-                        resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
-                    return false;
-                }
+                //if (model.SteamImportCategories && model.SteamIdCategoryImport == 0)
+                //{
+                //    dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidSteamAccountCatImport"),
+                //        resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                //    return false;
+                //}
 
                 return true;
             });
@@ -347,12 +221,6 @@ namespace PlayniteUI.ViewModels
 
         public void Dispose()
         {
-            battleNetApiClient?.Dispose();
-            originApiClient?.Dispose();
-            gogApiClient?.Dispose();
-            battleNetApiClient = null;
-            originApiClient = null;
-            gogApiClient = null;
         }
 
         public void NavigateNext()
@@ -366,61 +234,11 @@ namespace PlayniteUI.ViewModels
             }
 
             SelectedIndex++;
-
-            if (SelectedIndex == (int)Page.Steam && !Settings.SteamSettings.IntegrationEnabled)
-            {
-                SelectedIndex++;
-            }
-
-            if (SelectedIndex == (int)Page.GOG && !Settings.GOGSettings.IntegrationEnabled)
-            {
-                SelectedIndex++;
-            }
-
-            if (SelectedIndex == (int)Page.Origin && !Settings.OriginSettings.IntegrationEnabled)
-            {
-                SelectedIndex++;
-            }
-
-            if (SelectedIndex == (int)Page.BattleNet && !Settings.BattleNetSettings.IntegrationEnabled)
-            {
-                SelectedIndex++;
-            }
-
-            if (SelectedIndex == (int)Page.Uplay && !Settings.UplaySettings.IntegrationEnabled)
-            {
-                SelectedIndex++;
-            }
         }
 
         public void NavigateBack()
         {
             SelectedIndex--;
-
-            if (SelectedIndex == (int)Page.Uplay && !Settings.UplaySettings.IntegrationEnabled)
-            {
-                SelectedIndex--;
-            }
-
-            if (SelectedIndex == (int)Page.BattleNet && !Settings.BattleNetSettings.IntegrationEnabled)
-            {
-                SelectedIndex--;
-            }
-
-            if (SelectedIndex == (int)Page.Origin && !Settings.OriginSettings.IntegrationEnabled)
-            {
-                SelectedIndex--;
-            }
-
-            if (SelectedIndex == (int)Page.GOG && !Settings.GOGSettings.IntegrationEnabled)
-            {
-                SelectedIndex--;
-            }
-
-            if (SelectedIndex == (int)Page.Steam && !Settings.SteamSettings.IntegrationEnabled)
-            {
-                SelectedIndex--;
-            }
         }
 
         public void SelectDbFile()
@@ -430,49 +248,7 @@ namespace PlayniteUI.ViewModels
             {
                 Settings.DatabasePath = path;
             }
-        }
-
-        public void AuthenticateGOG()
-        {
-            try
-            {
-                gogApiClient.Login();
-                OnPropertyChanged("GogLoginStatus");
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, "GOG auth failed.");
-                dialogs.ShowMessage(resources.FindString("LOCLoginFailed"), "", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        public void AuthenticateOrigin()
-        {
-            try
-            {
-                originApiClient.Login();
-                OnPropertyChanged("OriginLoginStatus");
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, "Origin auth failed.");
-                dialogs.ShowMessage(resources.FindString("LOCLoginFailed"), "", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        public void AuthenticateBattleNet()
-        {
-            try
-            {
-                battleNetApiClient.Login();
-                OnPropertyChanged("BattleNetLoginStatus");
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, "BattleNet auth failed.");
-                dialogs.ShowMessage(resources.FindString("LOCLoginFailed"), "", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
+        }        
 
         public void ImportGames(InstalledGamesViewModel model)
         {

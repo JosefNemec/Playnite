@@ -1,4 +1,5 @@
 ﻿using Playnite.SDK;
+using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Windows.Controls;
 
 namespace TestGameLibrary
 {
-    public class TestGameLibrary : IGameLibrary
+    public class TestGameLibrary : ILibraryPlugin
     {
         public IEditableObject Settings => null;
 
@@ -27,6 +28,21 @@ namespace TestGameLibrary
         public void Dispose()
         {
 
+        }
+
+        public IEnumerable<Game> GetGames()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IGameController GetGameController()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ILibraryMetadataDownloader GetMetadataDownloader()
+        {
+            throw new NotImplementedException();
         }
     }
 }
