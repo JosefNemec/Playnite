@@ -35,7 +35,7 @@ namespace TestGameLibrary
             throw new NotImplementedException();
         }
 
-        public IGameController GetGameController()
+        public IGameController GetGameController(Game game)
         {
             throw new NotImplementedException();
         }

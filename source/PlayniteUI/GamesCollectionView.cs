@@ -204,7 +204,8 @@ namespace PlayniteUI
         public bool Favorite => Game.Favorite;
         public string InstallDirectory => Game.InstallDirectory;
         public LiteDB.ObjectId PlatformId => Game.PlatformId;
-        public ObservableCollection<GameTask> OtherTasks => Game.OtherTasks;
+        public ObservableCollection<GameAction> OtherActions => Game.OtherActions;
+        public GameAction PlayAction => Game.PlayAction;
         public string DisplayName => Game.Name;                
         public string Description => Game.Description;
         public bool IsInstalling => Game.IsInstalling;

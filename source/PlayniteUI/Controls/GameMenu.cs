@@ -307,9 +307,9 @@ namespace PlayniteUI.Controls
                 }
 
                 // Custom Actions
-                if (Game.OtherTasks != null && Game.OtherTasks.Count > 0)
+                if (Game.OtherActions != null && Game.OtherActions.Count > 0)
                 {
-                    foreach (var task in Game.OtherTasks)
+                    foreach (var task in Game.OtherActions)
                     {
                         var taskItem = new MenuItem()
                         {

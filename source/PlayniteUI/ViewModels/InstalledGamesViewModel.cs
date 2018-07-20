@@ -289,11 +289,11 @@ namespace PlayniteUI.ViewModels
                     path = @"{InstallDir}\" + program.Path.Replace(program.WorkDir, string.Empty).TrimStart('\\');
                 }
 
-                newGame.PlayTask = new GameTask()
+                newGame.PlayAction = new GameAction()
                 {
                     Path = path,
                     Arguments = program.Arguments,
-                    Type = GameTaskType.File,
+                    Type = GameActionType.File,
                     WorkingDir = program.Type == ProgramType.Win32 ? "{InstallDir}" : string.Empty,
                     Name = "Play"                    
                 };

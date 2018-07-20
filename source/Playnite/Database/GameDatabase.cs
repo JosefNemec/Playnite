@@ -535,7 +535,7 @@ namespace Playnite.Database
                     else
                     {
                         // For UWP games which don't have installed dir
-                        if (game.PlayTask?.Path == "explorer.exe")
+                        if (game.PlayAction?.Path == "explorer.exe")
                         {
                             game.State.Installed = true;
                         }

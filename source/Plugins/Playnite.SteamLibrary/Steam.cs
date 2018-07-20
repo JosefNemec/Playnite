@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,6 +45,38 @@ namespace Playnite.SteamLibrary
                     return true;
                 }
             }
+        }
+
+        public static GameState GetAppState(int id)
+        {
+            var state = new GameState();
+            var rootString = @"Software\Valve\Steam\Apps\" + id.ToString();
+            var root = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Default);
+            var appKey = root.OpenSubKey(rootString);
+            if (appKey != null)
+            {
+                if (appKey.GetValue("Installed")?.ToString() == "1")
+                {
+                    state.Installed = true;
+                }
+
+                if (appKey.GetValue("Launching")?.ToString() == "1")
+                {
+                    state.Launching = true;
+                }
+
+                if (appKey.GetValue("Running")?.ToString() == "1")
+                {
+                    state.Running = true;
+                }
+
+                if (appKey.GetValue("Updating")?.ToString() == "1")
+                {
+                    state.Installing = true;
+                }
+            }
+
+            return state;
         }
     }
 }

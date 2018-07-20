@@ -19,7 +19,7 @@ namespace Playnite.SDK.Plugins
 
         IEnumerable<Game> GetGames();
 
-        IGameController GetGameController();
+        IGameController GetGameController(Game game);
 
         ILibraryMetadataDownloader GetMetadataDownloader();
     }

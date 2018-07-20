@@ -27,17 +27,15 @@ namespace Playnite.Providers.GOG
             public string link;
             public string name;
 
-            public GameTask ConvertToGenericTask(string installDirectory)
+            public GameAction ConvertToGenericTask(string installDirectory)
             {
-                return new GameTask()
+                return new GameAction()
                 {
-                    IsPrimary = isPrimary,
                     Arguments = arguments,
                     Name = string.IsNullOrEmpty(name) ? "Play" : name,
                     Path = type == GogGameTaskInfo.TaskType.FileTask ? Paths.FixSeparators(Path.Combine(@"{InstallDir}", path)) : link,
                     WorkingDir = Paths.FixSeparators(Path.Combine(@"{InstallDir}", (workingDir ?? string.Empty))),
-                    Type = type == GogGameTaskInfo.TaskType.FileTask ? GameTaskType.File : GameTaskType.URL,
-                    IsBuiltIn = true
+                    Type = type == GogGameTaskInfo.TaskType.FileTask ? GameActionType.File : GameActionType.URL
                 };
             }
         }

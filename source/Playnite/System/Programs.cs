@@ -436,9 +436,9 @@ namespace Playnite
                 var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(file.DirectoryName).Name;
                 game.Name = programName;
                 game.InstallDirectory = prog.WorkDir;
-                game.PlayTask = new GameTask()
+                game.PlayAction = new GameAction()
                 {
-                    Type = GameTaskType.File,
+                    Type = GameActionType.File,
                     WorkingDir = "{InstallDir}",
                     Path = prog.Path.Replace(game.InstallDirectory, "").Trim(Path.DirectorySeparatorChar),
                     Arguments = prog.Arguments
@@ -451,9 +451,9 @@ namespace Playnite
                 var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(file.DirectoryName).Name;
                 game.Name = programName;
                 game.InstallDirectory = file.DirectoryName;
-                game.PlayTask = new GameTask()
+                game.PlayAction = new GameAction()
                 {
-                    Type = GameTaskType.File,
+                    Type = GameActionType.File,
                     WorkingDir = "{InstallDir}",
                     Path = file.Name
                 };

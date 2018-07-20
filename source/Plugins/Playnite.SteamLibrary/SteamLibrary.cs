@@ -43,15 +43,14 @@ namespace Playnite.SteamLibrary
 
         }
 
-        private GameTask GetPlayTask(int appId)
+        internal static GameAction CreatePlayTask(int appId)
         {
-            return new GameTask()
+            return new GameAction()
             {
                 Name = "Play",
-                Type = GameTaskType.URL,
+                Type = GameActionType.URL,
                 Path = @"steam://run/" + appId,
-                IsPrimary = true,
-                IsBuiltIn = true
+                IsHandledByPlugin = true
             };
         }
 
@@ -80,7 +79,7 @@ namespace Playnite.SteamLibrary
                 GameId = kv["appID"].Value,
                 Name = name,
                 InstallDirectory = Path.Combine((new FileInfo(path)).Directory.FullName, "common", kv["installDir"].Value),
-                PlayTask = GetPlayTask(int.Parse(kv["appID"].Value))
+                PlayAction = CreatePlayTask(int.Parse(kv["appID"].Value))
             };
 
             //if (provider == Provider.Steam)
@@ -290,6 +289,40 @@ namespace Playnite.SteamLibrary
             return games;
         }
 
+        public List<Game> GetCategorizedGames(ulong steamId)
+        {
+            var id = new SteamID(steamId);
+            var result = new List<Game>();
+            var vdf = Path.Combine(Steam.InstallationPath, "userdata", id.AccountID.ToString(), "7", "remote", "sharedconfig.vdf");
+            var sharedconfig = new KeyValue();
+            sharedconfig.ReadFileAsText(vdf);
+
+            var apps = sharedconfig["Software"]["Valve"]["Steam"]["apps"];
+            foreach (var app in apps.Children)
+            {
+                if (app["tags"].Children.Count == 0)
+                {
+                    continue;
+                }
+
+                var appData = new List<string>();
+                foreach (var tag in app["tags"].Children)
+                {
+                    appData.Add(tag.Value);
+                }
+
+                result.Add(new Game()
+                {
+                    PluginId = Id,
+                    Source = Enums.GetEnumDescription(Provider.Steam),
+                    GameId = app.Name,
+                    Categories = new ComparableList<string>(appData)
+                });
+            }
+
+            return result;
+        }
+
         #region IGameLibrary
 
         public Guid Id { get; } = Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB");
@@ -308,9 +341,9 @@ namespace Playnite.SteamLibrary
             return GetInstalledGames();
         }
 
-        public IGameController GetGameController()
+        public IGameController GetGameController(Game game)
         {
-            throw new NotImplementedException();
+            return new SteamGameController(game);
         }
 
         public ILibraryMetadataDownloader GetMetadataDownloader()

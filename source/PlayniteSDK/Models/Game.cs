@@ -195,9 +195,9 @@ namespace Playnite.SDK.Models
             {
                 if (string.IsNullOrEmpty(installDirectory))
                 {
-                    if (PlayTask != null)
+                    if (PlayAction != null)
                     {
-                        return PlayTask.WorkingDir;
+                        return PlayAction.WorkingDir;
                     }
                 }
 
@@ -338,39 +338,39 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private ObservableCollection<GameTask> otherTasks;
+        private ObservableCollection<GameAction> otherActions;
         /// <summary>
         /// Gets or sets list of additional game actions.
         /// </summary>
-        public ObservableCollection<GameTask> OtherTasks
+        public ObservableCollection<GameAction> OtherActions
         {
             get
             {
-                return otherTasks;
+                return otherActions;
             }
 
             set
             {
-                otherTasks = value;
-                OnPropertyChanged("OtherTasks");
+                otherActions = value;
+                OnPropertyChanged("OtherActions");
             }
         }
 
-        private GameTask playTask;
+        private GameAction playAction;
         /// <summary>
         /// Gets or sets game action used to starting the game.
         /// </summary>
-        public GameTask PlayTask
+        public GameAction PlayAction
         {
             get
             {
-                return playTask;
+                return playAction;
             }
 
             set
             {
-                playTask = value;
-                OnPropertyChanged("PlayTask");
+                playAction = value;
+                OnPropertyChanged("PlayAction");
             }
         }
 

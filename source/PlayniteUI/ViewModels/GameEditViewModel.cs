@@ -879,25 +879,25 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public RelayCommand<GameTask> MoveUpActionCommand
+        public RelayCommand<GameAction> MoveUpActionCommand
         {
-            get => new RelayCommand<GameTask>((action) =>
+            get => new RelayCommand<GameAction>((action) =>
             {
                 MoveActionUp(action);
             });
         }
 
-        public RelayCommand<GameTask> MoveDownActionCommand
+        public RelayCommand<GameAction> MoveDownActionCommand
         {
-            get => new RelayCommand<GameTask>((action) =>
+            get => new RelayCommand<GameAction>((action) =>
             {
                 MoveActionDown(action);
             });
         }
 
-        public RelayCommand<GameTask> DeleteActionCommand
+        public RelayCommand<GameAction> DeleteActionCommand
         {
-            get => new RelayCommand<GameTask>((action) =>
+            get => new RelayCommand<GameAction>((action) =>
             {
                 RemoveAction(action);
             });
@@ -1952,14 +1952,14 @@ namespace PlayniteUI.ViewModels
 
             if (Games == null)
             {
-                if (!Game.PlayTask.IsEqualJson(EditingGame.PlayTask))
+                if (!Game.PlayAction.IsEqualJson(EditingGame.PlayAction))
                 {
-                    Game.PlayTask = EditingGame.PlayTask;
+                    Game.PlayAction = EditingGame.PlayAction;
                 }
 
-                if (!Game.OtherTasks.IsEqualJson(EditingGame.OtherTasks))
+                if (!Game.OtherActions.IsEqualJson(EditingGame.OtherActions))
                 {
-                    Game.OtherTasks = EditingGame.OtherTasks;
+                    Game.OtherActions = EditingGame.OtherActions;
                 }
 
                 if (!Game.Links.IsEqualJson(EditingGame.Links))
@@ -2143,17 +2143,17 @@ namespace PlayniteUI.ViewModels
 
         public void UseExeIcon()
         {
-            if (EditingGame.PlayTask == null || EditingGame.PlayTask.Type == GameTaskType.URL)
+            if (EditingGame.PlayAction == null || EditingGame.PlayAction.Type == GameActionType.URL)
             {
                 dialogs.ShowMessage(resources.FindString("LOCExecIconMissingPlayAction"));
                 return;
             }
 
-            var path = EditingGame.ResolveVariables(EditingGame.PlayTask.Path);
-            if (!File.Exists(path) && !string.IsNullOrEmpty(EditingGame.PlayTask.WorkingDir))
+            var path = EditingGame.ExpandVariables(EditingGame.PlayAction.Path);
+            if (!File.Exists(path) && !string.IsNullOrEmpty(EditingGame.PlayAction.WorkingDir))
             {
                 path = Path.Combine(
-                    EditingGame.ResolveVariables(EditingGame.PlayTask.WorkingDir),
+                    EditingGame.ExpandVariables(EditingGame.PlayAction.WorkingDir),
                     path);
             }
 
@@ -2205,60 +2205,60 @@ namespace PlayniteUI.ViewModels
 
         public void AddPlayAction()
         {
-            EditingGame.PlayTask = new GameTask()
+            EditingGame.PlayAction = new GameAction()
             {
                 Name = "Play",
-                IsBuiltIn = false
+                IsHandledByPlugin = false
             };
         }
 
         public void RemovePlayAction()
         {
-            EditingGame.PlayTask = null;
+            EditingGame.PlayAction = null;
         }
 
         public void AddAction()
         {
-            if (EditingGame.OtherTasks == null)
+            if (EditingGame.OtherActions == null)
             {
-                EditingGame.OtherTasks = new ObservableCollection<GameTask>();
+                EditingGame.OtherActions = new ObservableCollection<GameAction>();
             }
 
-            var newTask = new GameTask()
+            var newTask = new GameAction()
             {
                 Name = "New Action",
-                IsBuiltIn = false
+                IsHandledByPlugin = false
             };
 
-            if (EditingGame.PlayTask != null && EditingGame.PlayTask.Type == GameTaskType.File)
+            if (EditingGame.PlayAction != null && EditingGame.PlayAction.Type == GameActionType.File)
             {
-                newTask.WorkingDir = EditingGame.PlayTask.WorkingDir;
-                newTask.Path = EditingGame.PlayTask.Path;
+                newTask.WorkingDir = EditingGame.PlayAction.WorkingDir;
+                newTask.Path = EditingGame.PlayAction.Path;
             }
 
-            EditingGame.OtherTasks.Add(newTask);
+            EditingGame.OtherActions.Add(newTask);
         }
 
-        public void RemoveAction(GameTask action)
+        public void RemoveAction(GameAction action)
         {
-            EditingGame.OtherTasks.Remove(action);
+            EditingGame.OtherActions.Remove(action);
         }
 
-        public void MoveActionUp(GameTask action)
+        public void MoveActionUp(GameAction action)
         {
-            var index = EditingGame.OtherTasks.IndexOf(action);
+            var index = EditingGame.OtherActions.IndexOf(action);
             if (index != 0)
             {
-                EditingGame.OtherTasks.Move(index, index - 1);
+                EditingGame.OtherActions.Move(index, index - 1);
             }
         }
 
-        public void MoveActionDown(GameTask action)
+        public void MoveActionDown(GameAction action)
         {
-            var index = EditingGame.OtherTasks.IndexOf(action);
-            if (index != EditingGame.OtherTasks.Count - 1)
+            var index = EditingGame.OtherActions.IndexOf(action);
+            if (index != EditingGame.OtherActions.Count - 1)
             {
-                EditingGame.OtherTasks.Move(index, index + 1);
+                EditingGame.OtherActions.Move(index, index + 1);
             }
         }
 

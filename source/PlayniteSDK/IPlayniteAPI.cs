@@ -40,9 +40,11 @@ namespace Playnite.SDK
         /// Returns string while resolving any dynamic variables supported by Playnite.
         /// </summary>
         /// <param name="game">Game to use dynamic variables from.</param>
-        /// <param name="toResolve">String containing dynamic variables.</param>
+        /// <param name="inputString">String containing dynamic variables.</param>
         /// <returns>String with replaces variables.</returns>
-        string ResolveGameVariables(Game game, string toResolve);
+        string ExpandGameVariables(Game game, string inputString);
+
+        GameAction ExpandGameVariables(GameAction action, Game game);
 
         /// <summary>
         /// Returns new instance of Playnite logger.

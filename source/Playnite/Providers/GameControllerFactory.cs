@@ -12,12 +12,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Playnite.SDK;
 using Playnite.SDK.Events;
+using Playnite.SDK.Plugins;
+using NLog;
 
 namespace Playnite.Providers
 {
     public class GameControllerFactory : IDisposable
     {
-        private GameDatabase database;
+        private readonly GameDatabase database;
+
         public List<IGameController> Controllers
         {
             get; private set;
@@ -114,25 +117,24 @@ namespace Playnite.Providers
             Installed?.Invoke(this, e);
         }
 
-        public static IGameController GetGameBasedController(Game game, Settings settings)
+        public static IGameController GetGameBasedController(Game game, List<ILibraryPlugin> libraryPlugins)
         {
-            //switch (game.Provider)
-            //{
-            //    case Provider.Custom:
-            //        return new GenericGameController(game);
-            //    case Provider.GOG:
-            //        return new GogGameController(game, settings);
-            //    case Provider.Origin:
-            //        return new OriginGameController(game);
-            //    case Provider.Steam:
-            //        return new SteamGameController(game);
-            //    case Provider.Uplay:
-            //        return new UplayGameController(game);
-            //    case Provider.BattleNet:
-            //        return new BattleNetGameController(game);
-            //}
+            if (game.PluginId == null)
+            {
+                return new GenericGameController(game);
+            }
+            else
+            {
+                foreach (var plugin in libraryPlugins)
+                {
+                    if (plugin.Id == game.PluginId)
+                    {
+                        return plugin.GetGameController(game);
+                    }
+                }
+            }
 
-            return null;
+            throw new Exception($"Unable to find controller responseposible for {game.Name} game.");
         }
     }
 }

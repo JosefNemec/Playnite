@@ -930,9 +930,9 @@ namespace PlayniteUI.ViewModels
                             {
                                 existingGame.State.Installed = newGame.State.Installed;
                                 existingGame.InstallDirectory = newGame.InstallDirectory;
-                                if (existingGame.PlayTask == null)
+                                if (existingGame.PlayAction == null)
                                 {
-                                    existingGame.PlayTask = newGame.PlayTask;
+                                    existingGame.PlayAction = newGame.PlayAction;
                                 }
 
                                 if (existingGame.Playtime == 0 && newGame.Playtime > 0)
@@ -950,20 +950,20 @@ namespace PlayniteUI.ViewModels
                                 }
 
                                 // Don't import custom action if imported already (user may changed them manually and this would overwrite it)
-                                if (existingGame.OtherTasks?.FirstOrDefault(a => a.IsBuiltIn) == null && newGame.OtherTasks != null)
+                                if (existingGame.OtherActions?.FirstOrDefault(a => a.IsHandledByPlugin) == null && newGame.OtherActions != null)
                                 {
-                                    if (existingGame.OtherTasks == null)
+                                    if (existingGame.OtherActions == null)
                                     {
-                                        existingGame.OtherTasks = new ObservableCollection<GameTask>();
+                                        existingGame.OtherActions = new ObservableCollection<GameAction>();
                                     }
                                     else
                                     {
-                                        existingGame.OtherTasks = new ObservableCollection<GameTask>(existingGame.OtherTasks.Where(a => !a.IsBuiltIn));
+                                        existingGame.OtherActions = new ObservableCollection<GameAction>(existingGame.OtherActions.Where(a => !a.IsHandledByPlugin));
                                     }
 
-                                    foreach (var task in newGame.OtherTasks.Reverse())
+                                    foreach (var task in newGame.OtherActions.Reverse())
                                     {
-                                        existingGame.OtherTasks.Insert(0, task);
+                                        existingGame.OtherActions.Insert(0, task);
                                     }                                    
                                 }
 

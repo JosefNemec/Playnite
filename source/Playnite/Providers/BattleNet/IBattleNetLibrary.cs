@@ -10,7 +10,7 @@ namespace Playnite.Providers.BattleNet
 {
     public interface IBattleNetLibrary
     {
-        GameTask GetGamePlayTask(string id);
+        GameAction GetGamePlayTask(string id);
 
         List<Game> GetInstalledGames();
 

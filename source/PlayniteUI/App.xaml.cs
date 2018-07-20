@@ -25,6 +25,7 @@ using PlayniteUI.API;
 using Playnite.Plugins;
 using Playnite.Scripting;
 using Playnite.App;
+using Playnite.Providers;
 
 namespace PlayniteUI
 {
@@ -41,6 +42,7 @@ namespace PlayniteUI
         private PipeServer pipeServer;
         private XInputDevice xdevice;
         private DialogsFactory dialogs;
+        private GameControllerFactory controllers;
 
         public Version CurrentVersion
         {
@@ -254,9 +256,10 @@ namespace PlayniteUI
                 AppSettings.SaveSettings();
             }
 
-            GamesEditor = new GamesEditor(Database, AppSettings, dialogs);
+            controllers = new GameControllerFactory(Database);
+            Api = new PlayniteAPI(Database, controllers, dialogs, null, new PlayniteInfoAPI(), new PlaynitePathsAPI());
+            GamesEditor = new GamesEditor(Database, controllers, AppSettings, dialogs, Api);
             CustomImageStringToImageConverter.Database = Database;
-            Api = new PlayniteAPI(Database, GamesEditor.Controllers, dialogs, null, new PlayniteInfoAPI(), new PlaynitePathsAPI());
 
             // Main view startup
             if (AppSettings.StartInFullscreen)
@@ -411,6 +414,7 @@ namespace PlayniteUI
                     AppSettings?.SaveSettings();
                     Api?.Dispose();
                     Database?.CloseDatabase();
+                    controllers?.Dispose();
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {

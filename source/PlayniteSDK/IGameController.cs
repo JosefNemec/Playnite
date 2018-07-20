@@ -21,9 +21,9 @@ namespace Playnite.SDK
 
         void Uninstall();
 
-        void Play(List<Emulator> emulators);
+        void Play();
 
-        void ActivateAction(GameTask action);
+        void ActivateAction(GameAction action);
 
         event GameControllerEventHandler Starting;
 

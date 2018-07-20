@@ -13,55 +13,40 @@ using System.Threading.Tasks;
 namespace Playnite.SDK.Models
 {
     /// <summary>
-    /// Represents game task type.
+    /// Represents game action type.
     /// </summary>
-    public enum GameTaskType : int
+    public enum GameActionType : int
     {
         /// <summary>
-        /// Game task executes a file.
+        /// Game action executes a file.
         /// </summary>
         File = 0,
         /// <summary>
-        /// Game task navigates to a web based URL.
+        /// Game action navigates to a web based URL.
         /// </summary>
         URL = 1,
         /// <summary>
-        /// Game task starts an emulator.
+        /// Game action starts an emulator.
         /// </summary>
         Emulator = 2
     }
 
     /// <summary>
-    /// Represents executable game task.
+    /// Represents executable game action.
     /// </summary>
-    public class GameTask : ObservableObject
+    public class GameAction : ObservableObject
     {
-        private GameTaskType type;
+        private GameActionType type;
         /// <summary>
         /// Gets or sets task type.
         /// </summary>
-        public GameTaskType Type
+        public GameActionType Type
         {
             get => type;
             set
             {
                 type = value;
                 OnPropertyChanged("Type");
-            }
-        }
-
-        private bool isPrimary;
-        /// <summary>
-        /// Gets or sets value indicating wheter a task is used to launch a game.
-        /// Used only during game import to generate Play task.
-        /// </summary>
-        public bool IsPrimary
-        {
-            get => isPrimary;
-            set
-            {
-                isPrimary = value;
-                OnPropertyChanged("IsPrimary");
             }
         }
 
@@ -81,7 +66,7 @@ namespace Playnite.SDK.Models
 
         private string additionalArguments;
         /// <summary>
-        /// Gets or sets additional executable arguments used for Emulator task type.
+        /// Gets or sets additional executable arguments used for Emulator action type.
         /// </summary>
         public string AdditionalArguments
         {
@@ -95,8 +80,8 @@ namespace Playnite.SDK.Models
 
         private bool overrideDefaultArgs;
         /// <summary>
-        /// Gets or sets value indicating wheter emulator arguments should be completely overwritten with task arguments.
-        /// Applies only to Emulator task type.
+        /// Gets or sets value indicating wheter emulator arguments should be completely overwritten with action arguments.
+        /// Applies only to Emulator action type.
         /// </summary>
         public bool OverrideDefaultArgs
         {
@@ -110,7 +95,7 @@ namespace Playnite.SDK.Models
 
         private string path;
         /// <summary>
-        /// Gets or sets executable path for File task type or URL for URL task type.
+        /// Gets or sets executable path for File action type or URL for URL action type.
         /// </summary>
         public string Path
         {
@@ -124,7 +109,7 @@ namespace Playnite.SDK.Models
 
         private string workingDir;
         /// <summary>
-        /// Gets or sets working directory for File task type executable.
+        /// Gets or sets working directory for File action type executable.
         /// </summary>
         public string WorkingDir
         {
@@ -138,7 +123,7 @@ namespace Playnite.SDK.Models
 
         private string name;
         /// <summary>
-        /// Gets or sets task name.
+        /// Gets or sets action name.
         /// </summary>
         public string Name
         {
@@ -150,23 +135,23 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private bool isBuiltIn;
+        private bool isHandledByPlugin;
         /// <summary>
-        /// Gets or sets value indicating wheter a task is from original library provider.
+        /// Gets or sets value indicating wheter a action's execution should be handled by a plugin.
         /// </summary>        
-        public bool IsBuiltIn
+        public bool IsHandledByPlugin
         {
-            get => isBuiltIn;
+            get => isHandledByPlugin;
             set
             {
-                isBuiltIn = value;
-                OnPropertyChanged("IsBuiltIn");
+                isHandledByPlugin = value;
+                OnPropertyChanged("IsHandledByPlugin");
             }
         }
 
         private ObjectId emulatorId;
         /// <summary>
-        /// Gets or sets emulator id for Emulator task type execution.
+        /// Gets or sets emulator id for Emulator action type execution.
         /// </summary>
         [JsonConverter(typeof(ObjectIdJsonConverter))]       
         public ObjectId EmulatorId
@@ -181,7 +166,7 @@ namespace Playnite.SDK.Models
 
         private ObjectId emulatorProfileId;
         /// <summary>
-        /// Gets or sets emulator profile id for Emulator task type execution.
+        /// Gets or sets emulator profile id for Emulator action type execution.
         /// </summary>
         [JsonConverter(typeof(ObjectIdJsonConverter))]
         public ObjectId EmulatorProfileId
@@ -199,11 +184,11 @@ namespace Playnite.SDK.Models
         {
             switch (Type)
             {
-                case GameTaskType.File:
+                case GameActionType.File:
                     return $"File: {Path}, {Arguments}, {WorkingDir}";
-                case GameTaskType.URL:
+                case GameActionType.URL:
                     return $"Url: {Path}";
-                case GameTaskType.Emulator:
+                case GameActionType.Emulator:
                     return $"Emulator: {EmulatorId}, {EmulatorProfileId}, {OverrideDefaultArgs}, {AdditionalArguments}";
                 default:
                     return Path;

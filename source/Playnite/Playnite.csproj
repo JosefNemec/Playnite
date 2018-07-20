@@ -168,6 +168,7 @@
     <Compile Include="API\PlaynitePathsAPI.cs" />
     <Compile Include="API\PluginDescription.cs" />
     <Compile Include="App\UpdateManifest.cs" />
+    <Compile Include="BaseGameController.cs" />
     <Compile Include="Database\DatabaseSettings.cs" />
     <Compile Include="Database\EventBufferHandler.cs" />
     <Compile Include="Database\Events\GamesCollectionChangedEvent.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Database\Events\PlatformUpdateEvent.cs" />
     <Compile Include="Database\GameDatabase.cs" />
     <Compile Include="Extensions\GameExtensions.cs" />
+    <Compile Include="GameActionActivator.cs" />
     <Compile Include="Metadata\IMetadataProvider.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
     <Compile Include="Metadata\MetadataFile.cs" />

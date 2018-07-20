@@ -10,7 +10,7 @@ namespace Playnite.Providers.Uplay
 {
     public interface IUplayLibrary
     {
-        GameTask GetGamePlayTask(string id);
+        GameAction GetGamePlayTask(string id);
 
         List<Game> GetInstalledGames();
 

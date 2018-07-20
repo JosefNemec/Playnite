@@ -1,6 +1,7 @@
 ﻿using LiteDB;
 using NLog;
 using Playnite;
+using Playnite.API;
 using Playnite.Database;
 using Playnite.Models;
 using Playnite.Providers;
@@ -27,16 +28,14 @@ namespace PlayniteUI
         private GameDatabase database;
         private IDialogsFactory dialogs;
         private Settings appSettings;
+        private PlayniteAPI playniteApi;
 
         public bool IsFullscreen
         {
             get; set;
         }
 
-        public GameControllerFactory Controllers
-        {
-            get; private set;
-        }
+        private readonly GameControllerFactory controllers;
 
         public List<Game> LastGames
         {
@@ -48,26 +47,30 @@ namespace PlayniteUI
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GamesEditor(GameDatabase database, Settings appSettings, IDialogsFactory dialogs)
+        public GamesEditor(GameDatabase database, GameControllerFactory controllerFactory, Settings appSettings, IDialogsFactory dialogs, PlayniteAPI playniteApi)
         {
             this.dialogs = dialogs;
             this.database = database;
             this.appSettings = appSettings;
-            Controllers = new GameControllerFactory(database);
-            Controllers.Installed += Controllers_Installed;
-            Controllers.Uninstalled += Controllers_Uninstalled;
-            Controllers.Started += Controllers_Started;
-            Controllers.Stopped += Controllers_Stopped;            
+            this.playniteApi = playniteApi;
+            controllers = controllerFactory;
+            controllers.Installed += Controllers_Installed;
+            controllers.Uninstalled += Controllers_Uninstalled;
+            controllers.Started += Controllers_Started;
+            controllers.Stopped += Controllers_Stopped;            
         }
 
         public void Dispose()
         {
-            foreach (var controller in Controllers.Controllers)
+            foreach (var controller in controllers.Controllers)
             {                
                 UpdateGameState(controller.Game.Id, null, false, false, false, false);
             }
 
-            Controllers?.Dispose();
+            controllers.Installed -= Controllers_Installed;
+            controllers.Uninstalled -= Controllers_Uninstalled;
+            controllers.Started -= Controllers_Started;
+            controllers.Stopped -= Controllers_Stopped;
         }
 
         public void OnPropertyChanged(string name)
@@ -135,9 +138,9 @@ namespace PlayniteUI
 
             try
             {
-                controller = GameControllerFactory.GetGameBasedController(game, appSettings);
-                Controllers.RemoveController(game.Id);
-                Controllers.AddController(controller);
+                controller = GameControllerFactory.GetGameBasedController(game, playniteApi.LibraryPlugins);
+                controllers.RemoveController(game.Id);
+                controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, null, true);
                 controller.Play(database.GetEmulators());
             }
@@ -145,7 +148,7 @@ namespace PlayniteUI
             {
                 if (controller != null)
                 {
-                    Controllers.RemoveController(game.Id);
+                    controllers.RemoveController(game.Id);
                     UpdateGameState(game.Id, null, null, null, null, false);
                 }
 
@@ -167,7 +170,7 @@ namespace PlayniteUI
             }
         }
 
-        public void ActivateAction(Game game, GameTask action)
+        public void ActivateAction(Game game, GameAction action)
         {
             try
             {
@@ -191,7 +194,7 @@ namespace PlayniteUI
 
             try
             {
-                Process.Start(game.ResolveVariables(game.InstallDirectory));
+                Process.Start(game.ExpandVariables(game.InstallDirectory));
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -319,15 +322,15 @@ namespace PlayniteUI
                     icon = Path.Combine(Paths.DataCachePath, "icons", game.Id + ".ico");
                     database.SaveFile(game.Icon, icon);
                 }
-                else if (game.PlayTask?.Type == GameTaskType.File)
+                else if (game.PlayAction?.Type == GameActionType.File)
                 {
-                    if (Path.IsPathRooted(game.ResolveVariables(game.PlayTask.Path)))
+                    if (Path.IsPathRooted(game.ExpandVariables(game.PlayAction.Path)))
                     {
-                        icon = game.ResolveVariables(game.PlayTask.Path);
+                        icon = game.ExpandVariables(game.PlayAction.Path);
                     }
                     else
                     {
-                        icon = Path.Combine(game.ResolveVariables(game.PlayTask.WorkingDir), game.ResolveVariables(game.PlayTask.Path));
+                        icon = Path.Combine(game.ExpandVariables(game.PlayAction.WorkingDir), game.ExpandVariables(game.PlayAction.Path));
                     }
                 }
 
@@ -357,9 +360,9 @@ namespace PlayniteUI
             IGameController controller = null;
             try
             {
-                controller = GameControllerFactory.GetGameBasedController(game, appSettings);
-                Controllers.RemoveController(game.Id);
-                Controllers.AddController(controller);
+                controller = GameControllerFactory.GetGameBasedController(game, playniteApi.LibraryPlugins);
+                controllers.RemoveController(game.Id);
+                controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, true, null, null);
                 controller.Install();
             }
@@ -367,7 +370,7 @@ namespace PlayniteUI
             {
                 if (controller != null)
                 {
-                    Controllers.RemoveController(game.Id);
+                    controllers.RemoveController(game.Id);
                     UpdateGameState(game.Id, null, null, false, null, null);
                 }
 
@@ -396,9 +399,9 @@ namespace PlayniteUI
 
             try
             {
-                controller = GameControllerFactory.GetGameBasedController(game, appSettings);
-                Controllers.RemoveController(game.Id);
-                Controllers.AddController(controller);
+                controller = GameControllerFactory.GetGameBasedController(game, playniteApi.LibraryPlugins);
+                controllers.RemoveController(game.Id);
+                controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, true, null);
                 controller.Uninstall();
             }
@@ -406,7 +409,7 @@ namespace PlayniteUI
             {
                 if (controller != null)
                 {
-                    Controllers.RemoveController(game.Id);
+                    controllers.RemoveController(game.Id);
                     UpdateGameState(game.Id, null, null, null, false, null);
                 }
 
@@ -433,16 +436,16 @@ namespace PlayniteUI
                     ApplicationPath = Paths.ExecutablePath
                 };
 
-                if (lastGame.PlayTask?.Type == GameTaskType.File)
+                if (lastGame.PlayAction?.Type == GameActionType.File)
                 {
-                    if (Path.IsPathRooted(lastGame.ResolveVariables(lastGame.PlayTask.Path)))
+                    if (Path.IsPathRooted(lastGame.ExpandVariables(lastGame.PlayAction.Path)))
                     {
-                        task.IconResourcePath = lastGame.ResolveVariables(lastGame.PlayTask.Path);
+                        task.IconResourcePath = lastGame.ExpandVariables(lastGame.PlayAction.Path);
                     }
                     else
                     {
-                        var workDir = lastGame.ResolveVariables(lastGame.PlayTask.WorkingDir);
-                        var path = lastGame.ResolveVariables(lastGame.PlayTask.Path);
+                        var workDir = lastGame.ExpandVariables(lastGame.PlayAction.WorkingDir);
+                        var path = lastGame.ExpandVariables(lastGame.PlayAction.Path);
                         if (string.IsNullOrEmpty(workDir))
                         {
                             task.IconResourcePath = path;
@@ -464,7 +467,7 @@ namespace PlayniteUI
 
         public void CancelGameMonitoring(Game game)
         {
-            Controllers.RemoveController(game.Id);
+            controllers.RemoveController(game.Id);
             UpdateGameState(game.Id, null, false, false, false, false);
         }
 
@@ -513,7 +516,7 @@ namespace PlayniteUI
             dbGame.State.Running = false;
             dbGame.Playtime += args.EllapsedTime;
             database.UpdateGameInDatabase(dbGame);
-            Controllers.RemoveController(args.Controller);
+            controllers.RemoveController(args.Controller);
         }
 
         private void Controllers_Installed(object sender, GameControllerEventArgs args)
@@ -526,18 +529,18 @@ namespace PlayniteUI
             dbGame.State.Installed = true;
             dbGame.InstallDirectory = args.Controller.Game.InstallDirectory;
 
-            if (dbGame.PlayTask == null)
+            if (dbGame.PlayAction == null)
             {
-                dbGame.PlayTask = args.Controller.Game.PlayTask;
+                dbGame.PlayAction = args.Controller.Game.PlayAction;
             }
 
-            if (dbGame.OtherTasks == null)
+            if (dbGame.OtherActions == null)
             {
-                dbGame.OtherTasks = args.Controller.Game.OtherTasks;
+                dbGame.OtherActions = args.Controller.Game.OtherActions;
             }
 
             database.UpdateGameInDatabase(dbGame);
-            Controllers.RemoveController(args.Controller);
+            controllers.RemoveController(args.Controller);
         }
 
         private void Controllers_Uninstalled(object sender, GameControllerEventArgs args)
@@ -550,7 +553,7 @@ namespace PlayniteUI
             dbGame.State.Installed = false;
             dbGame.InstallDirectory = string.Empty;
             database.UpdateGameInDatabase(dbGame);
-            Controllers.RemoveController(args.Controller);
+            controllers.RemoveController(args.Controller);
         }
     }
 }

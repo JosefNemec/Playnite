@@ -85,12 +85,12 @@ namespace Playnite.Models.Old0
             get; set;
         }
 
-        public ObservableCollection<GameTask> OtherTasks
+        public ObservableCollection<GameAction> OtherTasks
         {
             get; set;
         }
 
-        public GameTask PlayTask
+        public GameAction PlayTask
         {
             get; set;
         }

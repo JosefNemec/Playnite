@@ -24,16 +24,16 @@ namespace PlayniteTests.Models
                 IsoPath = Path.Combine(dir, "test.iso")
             };
 
-            Assert.AreEqual(string.Empty, game.ResolveVariables(string.Empty));
-            Assert.AreEqual("teststring", game.ResolveVariables("teststring"));
-            Assert.AreEqual(dir + "teststring", game.ResolveVariables("{InstallDir}teststring"));
-            Assert.AreEqual(game.InstallDirectory, game.ResolveVariables("{InstallDir}"));
-            Assert.AreEqual(game.IsoPath, game.ResolveVariables("{ImagePath}"));
-            Assert.AreEqual("test", game.ResolveVariables("{ImageNameNoExt}"));
-            Assert.AreEqual("test.iso", game.ResolveVariables("{ImageName}"));
-            Assert.AreEqual(Paths.ProgramPath, game.ResolveVariables("{PlayniteDir}"));
-            Assert.AreEqual("test game", game.ResolveVariables("{Name}"));
-            Assert.AreEqual("test2", game.ResolveVariables("{InstallDirName}"));
+            Assert.AreEqual(string.Empty, game.ExpandVariables(string.Empty));
+            Assert.AreEqual("teststring", game.ExpandVariables("teststring"));
+            Assert.AreEqual(dir + "teststring", game.ExpandVariables("{InstallDir}teststring"));
+            Assert.AreEqual(game.InstallDirectory, game.ExpandVariables("{InstallDir}"));
+            Assert.AreEqual(game.IsoPath, game.ExpandVariables("{ImagePath}"));
+            Assert.AreEqual("test", game.ExpandVariables("{ImageNameNoExt}"));
+            Assert.AreEqual("test.iso", game.ExpandVariables("{ImageName}"));
+            Assert.AreEqual(Paths.ProgramPath, game.ExpandVariables("{PlayniteDir}"));
+            Assert.AreEqual("test game", game.ExpandVariables("{Name}"));
+            Assert.AreEqual("test2", game.ExpandVariables("{InstallDirName}"));
         }
 
         [Test]
@@ -41,8 +41,8 @@ namespace PlayniteTests.Models
         {
             // Should not throw
             var game = new Game();
-            game.ResolveVariables(string.Empty);
-            game.ResolveVariables(null);
+            game.ExpandVariables(string.Empty);
+            game.ExpandVariables(null);
         }
     }
 }

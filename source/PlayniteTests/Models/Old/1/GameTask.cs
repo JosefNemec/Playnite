@@ -12,8 +12,8 @@ namespace Playnite.Models.Old1
 {
     public class GameTask : INotifyPropertyChanged
     {
-        private GameTaskType type;
-        public GameTaskType Type
+        private GameActionType type;
+        public GameActionType Type
         {
             get => type;
             set

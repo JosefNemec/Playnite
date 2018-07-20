@@ -1,4 +1,5 @@
 ﻿using NLog;
+using Playnite.Database;
 using Playnite.Models;
 using Playnite.SDK;
 using Playnite.SDK.Events;
@@ -15,11 +16,11 @@ namespace Playnite.Providers
 {
     public abstract class GameController : IGameController
     {
-        protected readonly Logger logger = LogManager.GetCurrentClassLogger();
         protected readonly SynchronizationContext execContext;
         protected CancellationTokenSource watcherToken;
         protected Stopwatch stopWatch;
         protected ProcessMonitor procMon;
+        private GameDatabase database;
 
         public bool IsGameRunning
         {
@@ -37,38 +38,40 @@ namespace Playnite.Providers
         public event GameControllerEventHandler Uninstalled;
         public event GameControllerEventHandler Installed;
 
-        public GameController(Game game)
+        public GameController(GameDatabase db, Game game)
         {
             Game = game;
             execContext = SynchronizationContext.Current;
+            database = db;
         }
 
-        public virtual void ActivateAction(GameTask action)
+        public virtual void ActivateAction(GameAction action)
         {
             GameHandler.ActivateTask(action, Game);
         }
 
-        public virtual void Play(List<Emulator> emulators)
-        {
-            if (Game.PlayTask == null)
+        public virtual void Play()
+        {            
+            if (Game.PlayAction == null)
             {
                 throw new Exception("Cannot start game without play task");
             }
 
             Dispose();
             OnStarting(this, new GameControllerEventArgs(this, 0));
-            var proc = GameHandler.ActivateTask(Game.PlayTask, Game, emulators);
+            var emulators = database.GetEmulators();
+            var proc = GameHandler.ActivateTask(Game.PlayAction, Game, emulators);
             OnStarted(this, new GameControllerEventArgs(this, 0));
 
-            if (Game.PlayTask.Type != GameTaskType.URL)
+            if (Game.PlayAction.Type != GameActionType.URL)
             {
                 stopWatch = Stopwatch.StartNew();
                 procMon = new ProcessMonitor();
                 procMon.TreeDestroyed += Monitor_TreeDestroyed;
 
                 // Handle Windows store apps
-                if (Game.PlayTask.Path == "explorer.exe" &&
-                    Game.PlayTask.Arguments.StartsWith("shell:") &&
+                if (Game.PlayAction.Path == "explorer.exe" &&
+                    Game.PlayAction.Arguments.StartsWith("shell:") &&
                     !string.IsNullOrEmpty(Game.InstallDirectory))
                 {
                     procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);

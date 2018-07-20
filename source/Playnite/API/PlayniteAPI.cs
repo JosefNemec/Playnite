@@ -447,9 +447,16 @@ namespace Playnite.API
 
         public IPlayniteInfoAPI ApplicationInfo { get; }
 
-        public string ResolveGameVariables(Game game, string toResolve)
+        public string ExpandGameVariables(Game game, string inputString)
         {
-            return game?.ResolveVariables(toResolve);
+            return game?.ExpandVariables(inputString);
+        }
+
+        public GameAction ExpandGameVariables(GameAction action, Game game)
+        {
+            throw new NotImplementedException();
+            var newAction = action.CloneJson();
+            return newAction;
         }
 
         public ILogger CreateLogger(string name)

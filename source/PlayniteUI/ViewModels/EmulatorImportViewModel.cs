@@ -445,11 +445,11 @@ namespace PlayniteUI.ViewModels
                     continue;
                 }
 
-                game.Game.PlayTask = new GameTask()
+                game.Game.PlayAction = new GameAction()
                 {
                     EmulatorId = game.Emulator.Id,
                     EmulatorProfileId = game.EmulatorProfile.Id,
-                    Type = GameTaskType.Emulator                    
+                    Type = GameActionType.Emulator                    
                 };
 
                 game.Game.State = new GameState() { Installed = true };
