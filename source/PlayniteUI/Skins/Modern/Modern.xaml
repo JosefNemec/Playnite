@@ -3147,8 +3147,22 @@
                             HorizontalContentAlignment="Left" BorderThickness="0" Background="Transparent">
                         <Border DockPanel.Dock="Left" Background="Transparent"
                                 Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True">
-                            <TextBlock Text="☰" VerticalAlignment="Center" FontWeight="Bold" Opacity="0.9"
-                                        FontSize="20" Foreground="{StaticResource TextBrush}" />
+                            <TextBlock Focusable="True" x:Name="HamburgerMenu"  Text="☰" VerticalAlignment="Center" FontWeight="Bold" Opacity="0.9"
+                                        FontSize="20">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property= "Foreground" Value="{StaticResource TextBrush}" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+                                            </Trigger>
+                                            <Trigger Property="IsFocused" Value="True">
+                                                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
                         </Border>
                     </Button>
 

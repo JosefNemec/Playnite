@@ -149,7 +149,7 @@
                                       IsChecked="{Binding Settings.Genre.Import}"/>
                             <ContentControl Grid.Column="2" Grid.Row="1"
                                             DataContext="{Binding Settings.Genre}"
-                                            Content="{StaticResource ComboSourceSelection}" />
+                                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
                             <!--Release Date-->
                             <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}"
@@ -158,7 +158,7 @@
                                       IsChecked="{Binding Settings.ReleaseDate.Import}"/>
                             <ContentControl Grid.Column="2" Grid.Row="2"
                                             DataContext="{Binding Settings.ReleaseDate}"
-                                            Content="{StaticResource ComboSourceSelection}" />
+                                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
                             <!--Developers-->
                             <TextBlock Text="{DynamicResource LOCGameDevelopersTitle}"
@@ -167,7 +167,7 @@
                                       IsChecked="{Binding Settings.Developer.Import}"/>
                             <ContentControl Grid.Column="2" Grid.Row="3"
                                             DataContext="{Binding Settings.Developer}"
-                                            Content="{StaticResource ComboSourceSelection}" />
+                                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
                             <!--Publishers-->
                             <TextBlock Text="{DynamicResource LOCGamePublishersTitle}"
@@ -176,7 +176,7 @@
                                       IsChecked="{Binding Settings.Publisher.Import}"/>
                             <ContentControl Grid.Column="2" Grid.Row="4"
                                             DataContext="{Binding Settings.Publisher}"
-                                            Content="{StaticResource ComboSourceSelection}" />
+                                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
                             <!--Tags/Features-->
                             <TextBlock Text="{DynamicResource LOCGameTagsTitle}"
@@ -185,7 +185,7 @@
                                       IsChecked="{Binding Settings.Tag.Import}"/>
                             <ContentControl Grid.Column="2" Grid.Row="5"
                                             DataContext="{Binding Settings.Tag}"
-                                            Content="{StaticResource ComboSourceSelection}" />
+                                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
                             <!--Description-->
                             <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}"
@@ -194,7 +194,7 @@
                                       IsChecked="{Binding Settings.Description.Import}"/>
                             <ContentControl Grid.Column="2" Grid.Row="6"
                                             DataContext="{Binding Settings.Description}"
-                                            Content="{StaticResource ComboSourceSelection}" />
+                                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
                             <!--Links-->
                             <TextBlock Text="{DynamicResource LOCGameLinksTitle}"
@@ -203,7 +203,7 @@
                                       IsChecked="{Binding Settings.Links.Import}"/>
                             <ContentControl Grid.Column="2" Grid.Row="7"
                                             DataContext="{Binding Settings.Links}"
-                                            Content="{StaticResource ComboSourceSelection}" />
+                                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
                             <!--CriticScore-->
                             <TextBlock Text="{DynamicResource LOCCriticScore}"
@@ -212,7 +212,7 @@
                                       IsChecked="{Binding Settings.CriticScore.Import}"/>
                             <ContentControl Grid.Column="2" Grid.Row="8"
                                             DataContext="{Binding Settings.CriticScore}"
-                                            Content="{StaticResource ComboSourceSelection}" />
+                                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
                             <!--CommunityScore-->
                             <TextBlock Text="{DynamicResource LOCCommunityScore}"
@@ -221,7 +221,7 @@
                                       IsChecked="{Binding Settings.CommunityScore.Import}"/>
                             <ContentControl Grid.Column="2" Grid.Row="9"
                                             DataContext="{Binding Settings.CommunityScore}"
-                                            Content="{StaticResource ComboSourceSelection}" />
+                                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
                             <!--Cover-->
                             <TextBlock Text="{DynamicResource LOCGameCoverTitle}"
@@ -230,7 +230,7 @@
                                       IsChecked="{Binding Settings.CoverImage.Import}"/>
                             <ContentControl Grid.Column="2" Grid.Row="10"
                                             DataContext="{Binding Settings.CoverImage}"
-                                            Content="{StaticResource ComboSourceSelection}" />
+                                            Content="{StaticResource ComboSourceSelection}" IsTabStop="False" />
 
                             <!--Icon-->
                             <TextBlock Text="{DynamicResource LOCGameIconTitle}"
