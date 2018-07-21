@@ -38,7 +38,7 @@
         </Grid.RowDefinitions>
         <TabControl DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0" 
                     Name="TabMain" OverridesDefaultStyle="True"
-                    SelectedIndex="{Binding ViewTabIndex, Mode=OneWay}">
+                    SelectedIndex="{Binding ViewTabIndex, Mode=OneWay}" TabIndex="1">
             <TabControl.Style>
             <Style TargetType="TabControl">
                 <Setter Property="Template">
@@ -54,24 +54,24 @@
             </Style>
             </TabControl.Style>
 
-            <TabItem Visibility="Collapsed">
-                <DockPanel Margin="30,0,30,0">
+            <TabItem Visibility="Collapsed" IsTabStop="False">
+                <DockPanel KeyboardNavigation.TabNavigation="Local" Margin="30,0,30,0">
                     <TextBlock Text="{DynamicResource LOCMetaGamesSourceIntro}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"
                                Margin="0,30,0,0"/>
                     <TextBlock Text="{DynamicResource LOCMetaGamesSourceDescription}" TextWrapping="Wrap" DockPanel.Dock="Top" 
                                Margin="0,30,0,0"/>
                     <StackPanel Margin="20,20,0,0" DockPanel.Dock="Top" >
-                        <RadioButton Content="{DynamicResource LOCMetaGameSourceAll}" Margin="10"                                 
+                        <RadioButton TabIndex="1" Content="{DynamicResource LOCMetaGameSourceAll}" Margin="10"                                 
                                      IsChecked="{Binding Settings.GamesSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static pmp:MetadataGamesSource.AllFromDB}}"/>
-                        <RadioButton Content="{DynamicResource LOCMetaGameSourceFiltered}" Margin="10"                                 
+                        <RadioButton TabIndex="2" Content="{DynamicResource LOCMetaGameSourceFiltered}" Margin="10"                                 
                                      IsChecked="{Binding Settings.GamesSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static pmp:MetadataGamesSource.Filtered}}"/>
-                        <RadioButton Content="{DynamicResource LOCMetaGameSourceSelected}" Margin="10"
+                        <RadioButton TabIndex="3" Content="{DynamicResource LOCMetaGameSourceSelected}" Margin="10"
                                      IsChecked="{Binding Settings.GamesSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static pmp:MetadataGamesSource.Selected}}"/>
                     </StackPanel>
 
                     <CheckBox Content="{DynamicResource LOCMetaSkipNonEmpty}" ToolTip="{DynamicResource LOCMetaSkipNonEmptyTooltip}"
                               IsChecked="{Binding Settings.SkipExistingValues}"
-                              DockPanel.Dock="Top" Margin="0,20,0,0" />
+                              DockPanel.Dock="Top" Margin="0,20,0,0" TabIndex="4" />
 
                     <TextBlock Text="{DynamicResource LOCMetadownloadSingleGameTip}" TextWrapping="Wrap"
                                DockPanel.Dock="Top" Margin="0,30,0,0"/>
@@ -271,23 +271,23 @@
         </TabControl>        
 
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
-            <DockPanel LastChildFill="False" Margin="5">
+            <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="False" Margin="5">
                 <Button Content="{DynamicResource LOCCancelLabel}" Name="ButtonClose" DockPanel.Dock="Right"                        
-                        Style="{StaticResource BottomButton}" Command="{Binding CancelCommand}"/>
+                        Style="{StaticResource BottomButton}" Command="{Binding CancelCommand}" TabIndex="6"/>
                 <Button Content="{DynamicResource LOCDownloadMetaButton}" Name="ButtonDownload" DockPanel.Dock="Right"                        
                         Style="{StaticResource BottomButton}" Command="{Binding DownloadCommand}"
-                        Visibility="{Binding ShowDownloadButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        Visibility="{Binding ShowDownloadButton, Converter={StaticResource BooleanToVisibilityConverter}}" TabIndex="5"/>
                 <Button Content="{DynamicResource LOCFinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"                        
                         Style="{StaticResource BottomButton}" Command="{Binding DownloadCommand}"
-                        Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}" TabIndex="4"/>
                 <Button Content="{DynamicResource LOCNextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
                         Command="{Binding NextCommand}"
                         Visibility="{Binding ShowNextButton, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Style="{StaticResource BottomButton}" />
+                        Style="{StaticResource BottomButton}" TabIndex="3" />
                 <Button Content="{DynamicResource LOCBackLabel}" Name="ButtonBack" DockPanel.Dock="Right"
                         Command="{Binding BackCommand}"
                         Visibility="{Binding ShowBackButton, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Style="{StaticResource BottomButton}" />
+                        Style="{StaticResource BottomButton}" TabIndex="2" />
             </DockPanel>
         </Border>
     </Grid>
