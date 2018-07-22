@@ -269,7 +269,7 @@
     <Compile Include="Services\ServicesClient.cs" />
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="ThridPartyToolsList.cs" />
+    <Compile Include="ThirdPartyToolsList.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="App\Updater.cs" />
     <Compile Include="Settings\ViewProperties.cs" />
@@ -333,7 +333,7 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
