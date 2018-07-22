@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              d:DesignWidth="300" Height="28">
 
-    <Grid KeyboardNavigation.TabNavigation="Local">
+    <Grid>
         <TextBlock Text="⌕" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"
                    Foreground="{DynamicResource TextBrushDarker}">
             <TextBlock.Style>
@@ -29,7 +29,7 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox TabIndex="1" Name="TextFilter" VerticalContentAlignment="Center" FontSize="14"
+        <TextBox TabIndex="{Binding Path=TabIndex, RelativeSource={RelativeSource AncestorType={x:Type local:SearchBox}}}" Name="TextFilter" VerticalContentAlignment="Center" FontSize="14"
                  Background="{Binding Background, RelativeSource={RelativeSource AncestorType=UserControl}}"
                  Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}">
             <TextBox.Style>
