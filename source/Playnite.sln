@@ -31,9 +31,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{799A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SteamLibrary", "SteamLibrary", "{EF71DAD8-1951-4E2D-8B02-4896F0164539}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.SteamLibrary", "Plugins\Playnite.SteamLibrary\Playnite.SteamLibrary.csproj", "{0A13CBC8-ECD4-4B9F-961E-E6462F7D2DC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamLibrary", "Plugins\SteamLibrary\SteamLibrary.csproj", "{0A13CBC8-ECD4-4B9F-961E-E6462F7D2DC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.SteamLibrary.Tests", "Plugins\Playnite.SteamLibrary.Tests\Playnite.SteamLibrary.Tests.csproj", "{D43257A7-488F-471A-83D1-BD5F9FD0E8DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamLibrary.Tests", "Plugins\SteamLibrary.Tests\SteamLibrary.Tests.csproj", "{D43257A7-488F-471A-83D1-BD5F9FD0E8DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGameLibrary", "Tests\TestGameLibrary\TestGameLibrary.csproj", "{DB0E5B51-2960-4869-899D-5E0C65A697A6}"
 EndProject

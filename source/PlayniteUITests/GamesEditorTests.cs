@@ -104,7 +104,7 @@ namespace PlayniteUITests
                 }
             };
 
-            var gameCommon = GameHandler.GetMultiGameEditObject(gamesCommon);
+            var gameCommon = GameTools.GetMultiGameEditObject(gamesCommon);
             var firstGame = gamesCommon.First();
             Assert.AreEqual(firstGame.Name, gameCommon.Name);
             CollectionAssert.AreEqual(firstGame.Genres, gameCommon.Genres);
@@ -217,7 +217,7 @@ namespace PlayniteUITests
                 }
             };
 
-            var gameNoCommon = GameHandler.GetMultiGameEditObject(gamesNoCommon);
+            var gameNoCommon = GameTools.GetMultiGameEditObject(gamesNoCommon);
             Assert.IsNull(gameNoCommon.Name);
             Assert.IsNull(gameNoCommon.ReleaseDate);
             Assert.IsNull(gameNoCommon.Description);

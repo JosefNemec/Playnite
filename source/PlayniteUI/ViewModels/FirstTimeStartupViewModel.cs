@@ -1,6 +1,5 @@
 ﻿using NLog;
 using Playnite;
-using Playnite.Providers.Steam;
 using Playnite.SDK;
 using PlayniteUI.Commands;
 using System;

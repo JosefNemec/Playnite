@@ -11,15 +11,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using Playnite.Providers.Steam;
-using Playnite.Providers.GOG;
-using Playnite.Providers.Origin;
 using System.ComponentModel;
-using Playnite.Providers.BattleNet;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.Web;
 using Playnite.Metadata;
+using Playnite.SDK.Metadata;
 
 namespace PlayniteUI.ViewModels
 {
@@ -978,7 +975,7 @@ namespace PlayniteUI.ViewModels
             this.resources = resources;
 
             Games = games;
-            var previewGame = GameHandler.GetMultiGameEditObject(games);
+            var previewGame = GameTools.GetMultiGameEditObject(games);
             EditingGame = previewGame;
             ShowCheckBoxes = true;
             ShowMetaDownload = false;

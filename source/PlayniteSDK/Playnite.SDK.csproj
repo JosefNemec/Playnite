@@ -61,12 +61,15 @@
     <Compile Include="ExtensionFunction.cs" />
     <Compile Include="IGameController.cs" />
     <Compile Include="IGameDatabaseAPI.cs" />
-    <Compile Include="ILibraryMetadataDownloader.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="IMainViewAPI.cs" />
+    <Compile Include="IMetadataProvider.cs" />
     <Compile Include="IPlayniteAPI.cs" />
     <Compile Include="IPlayniteInfoAPI.cs" />
     <Compile Include="IPlaynitePathsAPI.cs" />
+    <Compile Include="Models\Metadata\GameMetadata.cs" />
+    <Compile Include="Models\Metadata\MetadataFile.cs" />
+    <Compile Include="Models\Metadata\MetadataSearchResult.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Models\CompletionStatus.cs" />
     <Compile Include="Models\DatabaseFile.cs" />

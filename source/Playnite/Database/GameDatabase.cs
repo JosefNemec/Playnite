@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using LiteDB;
 using Playnite.Models;
 using Playnite.Providers.GOG;
-using Playnite.Providers.Steam;
 using Playnite.Providers.Origin;
 using System.Windows;
 using Playnite.Providers;
@@ -25,6 +24,7 @@ using Playnite.SDK.Models;
 using Playnite.Metadata;
 using Playnite.Database.Events;
 using Playnite.SDK;
+using Playnite.SDK.Metadata;
 
 namespace Playnite.Database
 {

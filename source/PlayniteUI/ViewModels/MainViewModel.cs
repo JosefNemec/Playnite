@@ -4,7 +4,6 @@ using Playnite.API;
 using Playnite.App;
 using Playnite.Database;
 using Playnite.Metadata;
-using Playnite.Providers.Steam;
 using Playnite.Scripting;
 using Playnite.SDK;
 using Playnite.SDK.Models;
@@ -893,7 +892,7 @@ namespace PlayniteUI.ViewModels
                 await GlobalTaskHandler.ProgressTask;
             }
 
-            GameAdditionAllowed = false;           
+            GameAdditionAllowed = false;
 
             try
             {
@@ -914,62 +913,17 @@ namespace PlayniteUI.ViewModels
                     {
                         // TODO LOC
                         ProgressStatus = Resources.FindString($"Importing games from {plugin.Name}");
-                        var newGames = new List<Game>();
-                        foreach (var newGame in plugin.GetGames())
+
+                        try
                         {
-                            var existingGame = Database.GamesCollection.FindOne(a => a.GameId == newGame.GameId && a.PluginId == plugin.Id);
-                            if (existingGame == null)
-                            {
-                                Logger.Info("Adding new game {0} from {1} provider", newGame.GameId, newGame.PluginId);
-                                newGame.State.Installed = true;
-                                Database.AssignPcPlatform(newGame);
-                                Database.AddGame(newGame);
-                                newGames.Add(newGame);
-                            }
-                            else
-                            {
-                                existingGame.State.Installed = newGame.State.Installed;
-                                existingGame.InstallDirectory = newGame.InstallDirectory;
-                                if (existingGame.PlayAction == null)
-                                {
-                                    existingGame.PlayAction = newGame.PlayAction;
-                                }
-
-                                if (existingGame.Playtime == 0 && newGame.Playtime > 0)
-                                {
-                                    existingGame.Playtime = newGame.Playtime;
-                                    if (existingGame.CompletionStatus == CompletionStatus.NotPlayed)
-                                    {
-                                        existingGame.CompletionStatus = CompletionStatus.Played;
-                                    }
-
-                                    if (existingGame.LastActivity == null && newGame.LastActivity != null)
-                                    {
-                                        existingGame.LastActivity = newGame.LastActivity;
-                                    }
-                                }
-
-                                // Don't import custom action if imported already (user may changed them manually and this would overwrite it)
-                                if (existingGame.OtherActions?.FirstOrDefault(a => a.IsHandledByPlugin) == null && newGame.OtherActions != null)
-                                {
-                                    if (existingGame.OtherActions == null)
-                                    {
-                                        existingGame.OtherActions = new ObservableCollection<GameAction>();
-                                    }
-                                    else
-                                    {
-                                        existingGame.OtherActions = new ObservableCollection<GameAction>(existingGame.OtherActions.Where(a => !a.IsHandledByPlugin));
-                                    }
-
-                                    foreach (var task in newGame.OtherActions.Reverse())
-                                    {
-                                        existingGame.OtherActions.Insert(0, task);
-                                    }                                    
-                                }
-
-                                Database.UpdateGameInDatabase(existingGame);
-                            }
+                            addedGames.AddRange(GameLibrary.ImportGames(plugin, Database));
                         }
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            Logger.Error(e, $"Failed to import games from plugin: {plugin.Name}");
+                            // TODO report notification here
+                        }
+
                     }
 
                     //try
@@ -1152,27 +1106,27 @@ namespace PlayniteUI.ViewModels
                     //        NotificationType.Error, null));
                     //}
 
-                    //ProgressStatus = Resources.FindString("LOCProgressLibImportFinish");
-                    //await Task.Delay(1500);
+                    ProgressStatus = Resources.FindString("LOCProgressLibImportFinish");
+                    await Task.Delay(1500);
 
-                    //if (addedGames.Any() && metaForNewGames)
-                    //{
-                    //    Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
-                    //    ProgressValue = 0;
-                    //    ProgressTotal = addedGames.Count;
-                    //    ProgressStatus = Resources.FindString("LOCProgressMetadata");
-                    //    var metaSettings = new MetadataDownloaderSettings();
-                    //    metaSettings.ConfigureFields(MetadataSource.Store, true);
-                    //    metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
-                    //    metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                    //    var downloader = new MetadataDownloader(AppSettings);
-                    //    downloader.DownloadMetadataGroupedAsync(
-                    //        addedGames,
-                    //        Database,
-                    //        metaSettings,
-                    //        (g, i, t) => ProgressValue = i + 1,
-                    //        GlobalTaskHandler.CancelToken).Wait();
-                    //}
+                    if (addedGames.Any() && metaForNewGames)
+                    {
+                        Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
+                        ProgressValue = 0;
+                        ProgressTotal = addedGames.Count;
+                        ProgressStatus = Resources.FindString("LOCProgressMetadata");
+                        var metaSettings = new MetadataDownloaderSettings();
+                        metaSettings.ConfigureFields(MetadataSource.Store, true);
+                        metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
+                        metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
+                        var downloader = new MetadataDownloader(PlayniteApi.LibraryPlugins);
+                        downloader.DownloadMetadataGroupedAsync(
+                            addedGames,
+                            Database,
+                            metaSettings,
+                            (g, i, t) => ProgressValue = i + 1,
+                            GlobalTaskHandler.CancelToken).Wait();
+                    }
                 });
 
                 await GlobalTaskHandler.ProgressTask;
@@ -1201,12 +1155,11 @@ namespace PlayniteUI.ViewModels
                 ProgressValue = 0;
                 ProgressTotal = games.Count;
                 ProgressStatus = Resources.FindString("LOCProgressMetadata");
-                return;
 
-                //var downloader = new MetadataDownloader(AppSettings);
-                //GlobalTaskHandler.ProgressTask =
-                //    downloader.DownloadMetadataGroupedAsync(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GlobalTaskHandler.CancelToken);
-                //await GlobalTaskHandler.ProgressTask;
+                var downloader = new MetadataDownloader(PlayniteApi.LibraryPlugins);
+                GlobalTaskHandler.ProgressTask =
+                    downloader.DownloadMetadataGroupedAsync(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GlobalTaskHandler.CancelToken);
+                await GlobalTaskHandler.ProgressTask;
             }
             finally
             {

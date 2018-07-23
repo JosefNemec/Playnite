@@ -40,7 +40,7 @@ namespace TestGameLibrary
             throw new NotImplementedException();
         }
 
-        public ILibraryMetadataDownloader GetMetadataDownloader()
+        public IMetadataProvider GetMetadataDownloader()
         {
             throw new NotImplementedException();
         }

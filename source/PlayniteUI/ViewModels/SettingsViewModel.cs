@@ -4,7 +4,6 @@ using Playnite;
 using Playnite.API;
 using Playnite.Database;
 using Playnite.Plugins;
-using Playnite.Providers.Steam;
 using Playnite.SDK;
 using PlayniteUI.Commands;
 using System;

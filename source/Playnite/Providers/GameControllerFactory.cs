@@ -1,10 +1,5 @@
 ﻿using Playnite.Database;
 using Playnite.SDK.Models;
-using Playnite.Providers.BattleNet;
-using Playnite.Providers.GOG;
-using Playnite.Providers.Origin;
-using Playnite.Providers.Steam;
-using Playnite.Providers.Uplay;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -117,11 +112,11 @@ namespace Playnite.Providers
             Installed?.Invoke(this, e);
         }
 
-        public static IGameController GetGameBasedController(Game game, List<ILibraryPlugin> libraryPlugins)
+        public IGameController GetGameBasedController(Game game, List<ILibraryPlugin> libraryPlugins)
         {
             if (game.PluginId == null)
             {
-                return new GenericGameController(game);
+                return new GenericGameController(database, game);
             }
             else
             {

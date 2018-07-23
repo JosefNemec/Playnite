@@ -2,7 +2,6 @@
 using Playnite.Providers.EpicLauncher;
 using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
-using Playnite.Providers.Steam;
 using Playnite.Providers.Uplay;
 using Playnite.SDK;
 using System;
@@ -67,16 +66,17 @@ namespace Playnite
         {
             var tools = new List<ThirdPartyTool>();
 
-            if (SteamSettings.IsInstalled)
-            {
-                var tool = new ThirdPartyTool()
-                {
-                    Path = Path.Combine(SteamSettings.InstallationPath, "steam.exe"),
-                    Name = "Steam"
-                };
+            // TODO
+            //if (SteamSettings.IsInstalled)
+            //{
+            //    var tool = new ThirdPartyTool()
+            //    {
+            //        Path = Path.Combine(SteamSettings.InstallationPath, "steam.exe"),
+            //        Name = "Steam"
+            //    };
 
-                tools.Add(tool);
-            }
+            //    tools.Add(tool);
+            //}
 
             if (OriginSettings.IsInstalled)
             {

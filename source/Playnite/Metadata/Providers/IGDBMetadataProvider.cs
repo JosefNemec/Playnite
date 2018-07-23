@@ -14,6 +14,7 @@ using Playnite.SDK.Models;
 using Playnite.SDK;
 using Playnite.Web;
 using System.Text.RegularExpressions;
+using Playnite.SDK.Metadata;
 
 namespace Playnite.Metadata.Providers
 {

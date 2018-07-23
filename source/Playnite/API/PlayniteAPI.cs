@@ -454,9 +454,7 @@ namespace Playnite.API
 
         public GameAction ExpandGameVariables(GameAction action, Game game)
         {
-            throw new NotImplementedException();
-            var newAction = action.CloneJson();
-            return newAction;
+            return action?.ExpandVariables(game);
         }
 
         public ILogger CreateLogger(string name)

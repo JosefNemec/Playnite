@@ -5,7 +5,6 @@ using Playnite.API;
 using Playnite.Database;
 using Playnite.Models;
 using Playnite.Providers;
-using Playnite.Providers.Steam;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -138,11 +137,11 @@ namespace PlayniteUI
 
             try
             {
-                controller = GameControllerFactory.GetGameBasedController(game, playniteApi.LibraryPlugins);
+                controller = controllers.GetGameBasedController(game, playniteApi.LibraryPlugins);
                 controllers.RemoveController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, null, true);
-                controller.Play(database.GetEmulators());
+                controller.Play();
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -174,7 +173,7 @@ namespace PlayniteUI
         {
             try
             {
-                GameHandler.ActivateTask(action, game, database.EmulatorsCollection.FindAll().ToList());
+                GameActionActivator.ActivateTask(action, game, database.EmulatorsCollection.FindAll().ToList());
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -360,7 +359,7 @@ namespace PlayniteUI
             IGameController controller = null;
             try
             {
-                controller = GameControllerFactory.GetGameBasedController(game, playniteApi.LibraryPlugins);
+                controller = controllers.GetGameBasedController(game, playniteApi.LibraryPlugins);
                 controllers.RemoveController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, true, null, null);
@@ -399,7 +398,7 @@ namespace PlayniteUI
 
             try
             {
-                controller = GameControllerFactory.GetGameBasedController(game, playniteApi.LibraryPlugins);
+                controller = controllers.GetGameBasedController(game, playniteApi.LibraryPlugins);
                 controllers.RemoveController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, true, null);

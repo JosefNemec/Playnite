@@ -425,7 +425,6 @@ namespace PlayniteUI
             progressModel.ActivateProgress();
 
             // These must run on main thread
-            Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
             if (Cef.IsInitialized)
             {
                 Cef.Shutdown();

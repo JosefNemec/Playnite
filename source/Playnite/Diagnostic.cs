@@ -7,8 +7,6 @@ using System.IO;
 using System.IO.Compression;
 using NLog;
 using Playnite.Providers.GOG;
-using Playnite.Providers.Steam;
-using Playnite.Providers.Origin;
 using System.Diagnostics;
 using YamlDotNet.Serialization;
 using Newtonsoft.Json;

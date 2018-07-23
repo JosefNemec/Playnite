@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using LiteDB;
-using Playnite.Providers.GOG;
-using Playnite.Providers.Origin;
-using Playnite.Providers.Steam;
-using Playnite.Providers;
 using Playnite.SDK.Models;
 
 namespace Playnite.Models.Old0
