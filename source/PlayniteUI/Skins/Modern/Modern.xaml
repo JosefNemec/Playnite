@@ -2044,19 +2044,19 @@
             <StackPanel>
                 <!-- Genres -->
                 <Label Content="{DynamicResource LOCGenreLabel}" Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}" />
-                <ItemsControl ItemsSource="{Binding Game.Genres, Mode=OneWay}" Style="{StaticResource ListItems}"
+                <ItemsControl IsTabStop="False" ItemsSource="{Binding Game.Genres, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Genres"/>
 
                 <!-- Developers -->
                 <Label Content="{DynamicResource LOCDeveloperLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
-                <ItemsControl ItemsSource="{Binding Game.Developers, Mode=OneWay}" Style="{StaticResource ListItems}"
+                <ItemsControl IsTabStop="False" ItemsSource="{Binding Game.Developers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Developers"/>
 
                 <!-- Publishers -->
                 <Label Content="{DynamicResource LOCPublisherLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
-                <ItemsControl ItemsSource="{Binding Game.Publishers, Mode=OneWay}" Style="{StaticResource ListItems}"
+                <ItemsControl IsTabStop="False" ItemsSource="{Binding Game.Publishers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Publishers"/>
 
@@ -2073,13 +2073,13 @@
 
                 <!-- Categories -->
                 <Label Content="{DynamicResource LOCGameCategoriesTitle}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
-                <ItemsControl ItemsSource="{Binding Game.Categories, Mode=OneWay}" Style="{StaticResource ListItems}"
+                <ItemsControl IsTabStop="False" ItemsSource="{Binding Game.Categories, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Categories"/>
 
                 <!-- Tags -->
                 <Label Content="{DynamicResource LOCTagsLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
-                <ItemsControl ItemsSource="{Binding Game.Tags, Mode=OneWay}" Style="{StaticResource ListItems}"
+                <ItemsControl IsTabStop="False" ItemsSource="{Binding Game.Tags, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Tags"/>
 
@@ -2097,7 +2097,7 @@
                 <!-- Links -->
                 <Label Content="{DynamicResource LOCLinksLabel}" Style="{StaticResource PropertyListLabel}"
                            Visibility="{Binding Game.Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
-                <ItemsControl ItemsSource="{Binding Game.Links}"
+                <ItemsControl IsTabStop="False" ItemsSource="{Binding Game.Links}"
                                   Visibility="{Binding Game.Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -2229,7 +2229,7 @@
                     </Border>
                     <ScrollViewer DockPanel.Dock="Top"
                                   Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <ContentControl Template="{StaticResource GamePropertiesView}" />
+                        <ContentControl IsTabStop="False" Template="{StaticResource GamePropertiesView}" />
                     </ScrollViewer>
                 </DockPanel>
             </Border>
@@ -2545,7 +2545,7 @@
                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
                        Background="{DynamicResource GamesListPanelBrush}">
 
-                <ContentControl DockPanel.Dock="Top" Margin="10,45,10,5"
+                <ContentControl IsTabStop="False"  DockPanel.Dock="Top" Margin="10,45,10,5"
                                 Template="{StaticResource SearchPanel}" />
 
                 <pc:ExtendedListBox SelectionMode="Extended" BorderThickness="0"
@@ -3163,7 +3163,7 @@
                             HorizontalContentAlignment="Left" BorderThickness="0" Background="Transparent">
                         <Border DockPanel.Dock="Left" Background="Transparent"
                                 Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True">
-                            <TextBlock Focusable="True" x:Name="HamburgerMenu"  Text="☰" VerticalAlignment="Center" FontWeight="Bold" Opacity="0.9"
+                            <TextBlock x:Name="HamburgerMenu"  Text="☰" VerticalAlignment="Center" FontWeight="Bold" Opacity="0.9"
                                         FontSize="20">
                                 <TextBlock.Style>
                                     <Style TargetType="TextBlock">
@@ -3172,9 +3172,9 @@
                                             <Trigger Property="IsMouseOver" Value="True">
                                                 <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
                                             </Trigger>
-                                            <Trigger Property="IsFocused" Value="True">
+                                            <DataTrigger Binding="{Binding IsFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
                                                 <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
-                                            </Trigger>
+                                            </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </TextBlock.Style>
