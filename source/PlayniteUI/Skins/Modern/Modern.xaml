@@ -3159,7 +3159,6 @@
                     <Border MinWidth="285" DockPanel.Dock="Left">
                         <ContentControl Template="{StaticResource SearchPanel}" 
                                         Width="285" controlzEx:WindowChrome.IsHitTestVisibleInChrome="True"                                    
-
                                         IsTabStop="{Binding AppSettings.ViewSettings.GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"
                                         Visibility="{Binding IsTabStop, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
                     </Border>
