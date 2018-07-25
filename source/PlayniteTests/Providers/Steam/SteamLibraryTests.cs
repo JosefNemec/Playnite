@@ -51,16 +51,16 @@ namespace PlayniteTests.Providers.Steam
             var existing = steamLib.DownloadGameMetadata(107410, false);
             Assert.IsNotNull(existing.ProductDetails);
             Assert.IsNotNull(existing.StoreDetails);
-            Assert.IsNotNull(existing.Icon.Data);
-            Assert.IsNotNull(existing.Image.Data);
+            Assert.IsNotNull(existing.Icon.Content);
+            Assert.IsNotNull(existing.Image.Content);
             Assert.IsNotNull(existing.BackgroundImage);
 
             // NonExisting store
             var nonExisting = steamLib.DownloadGameMetadata(201280, true);
             Assert.IsNotNull(nonExisting.ProductDetails);
             Assert.IsNull(nonExisting.StoreDetails);
-            Assert.IsNotNull(nonExisting.Icon.Data);
-            Assert.IsNotNull(nonExisting.Image.Data);
+            Assert.IsNotNull(nonExisting.Icon.Content);
+            Assert.IsNotNull(nonExisting.Image.Content);
             Assert.IsNull(nonExisting.BackgroundImage);
         }
 

@@ -42,24 +42,24 @@ namespace PlayniteTests.Providers.GOG
             var existingStore = gogLib.DownloadGameMetadata("1207658645");
             Assert.IsNotNull(existingStore.GameDetails);
             Assert.IsNotNull(existingStore.StoreDetails);
-            Assert.IsNotNull(existingStore.Icon.Data);
-            Assert.IsNotNull(existingStore.Image.Data);
+            Assert.IsNotNull(existingStore.Icon.Content);
+            Assert.IsNotNull(existingStore.Image.Content);
             Assert.IsNotNull(existingStore.BackgroundImage);
 
             // Game with missing store link in api data
             var customStore = gogLib.DownloadGameMetadata("1207662223", "https://www.gog.com/game/commandos_2_3");
             Assert.IsNotNull(customStore.GameDetails);
             Assert.IsNotNull(customStore.StoreDetails);
-            Assert.IsNotNull(customStore.Icon.Data);
-            Assert.IsNotNull(customStore.Image.Data);
+            Assert.IsNotNull(customStore.Icon.Content);
+            Assert.IsNotNull(customStore.Image.Content);
             Assert.IsNotNull(customStore.BackgroundImage);
 
             // Existing game not present on store
             var nonStore = gogLib.DownloadGameMetadata("2");
             Assert.IsNotNull(nonStore.GameDetails);
             Assert.IsNull(nonStore.StoreDetails);
-            Assert.IsNotNull(nonStore.Icon.Data);
-            Assert.IsNotNull(nonStore.Image.Data);
+            Assert.IsNotNull(nonStore.Icon.Content);
+            Assert.IsNotNull(nonStore.Image.Content);
             Assert.IsNotNull(nonStore.BackgroundImage);
         }
 

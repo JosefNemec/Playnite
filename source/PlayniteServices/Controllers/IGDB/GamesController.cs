@@ -28,7 +28,7 @@ namespace PlayniteServices.Controllers.IGDB
                 }
             }
 
-            var url = string.Format(@"games/?fields=name,first_release_date&limit=40&offset=0&search={0}", gameName);
+            var url = string.Format(@"games/?fields=*&limit=40&offset=0&search={0}", gameName);
             var libraryStringResult = await IGDB.SendStringRequest(url, apiKey);
             var games = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult);
             cacheCollection.Upsert(new GamesSearch()

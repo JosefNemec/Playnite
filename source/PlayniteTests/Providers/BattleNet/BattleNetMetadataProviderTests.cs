@@ -15,8 +15,7 @@ namespace PlayniteTests.MetaProviders
         public void StandardDownloadTest()
         {
             var provider = new BattleNetMetadataProvider();
-            Assert.IsTrue(provider.GetSupportsIdSearch());
-            var data = provider.GetGameData("D3");
+            var data = provider.GetMetadata("D3");
             Assert.IsNotNull(data.GameData);
             Assert.IsNotNull(data.Icon);
             Assert.IsNotNull(data.Image);

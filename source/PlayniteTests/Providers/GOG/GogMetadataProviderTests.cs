@@ -15,8 +15,7 @@ namespace PlayniteTests.MetaProviders
         public void StandardDownloadTest()
         {
             var provider = new GogMetadataProvider();
-            Assert.IsTrue(provider.GetSupportsIdSearch());
-            var data = provider.GetGameData("1207659012");
+            var data = provider.GetMetadata("1207659012");
             Assert.IsNotNull(data.GameData);
             Assert.IsNotNull(data.Icon);
             Assert.IsNotNull(data.Image);

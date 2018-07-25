@@ -199,9 +199,9 @@ namespace PlayniteTests.Database
                 }
 
                 var file = PlayniteTests.CreateFakeFile();
-                database.FileStorage.Upload(file.Name, file.Path);
+                database.FileStorage.Upload(file.FileName, file.FileId);
                 file = PlayniteTests.CreateFakeFile();
-                database.FileStorage.Upload(file.Name, file.Path);
+                database.FileStorage.Upload(file.FileName, file.FileId);
             }
 
             GameDatabase.MigrateDatabase(path);

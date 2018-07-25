@@ -21,11 +21,8 @@ namespace PlayniteTests.Database
         public void CheckSumCreationTest()
         {
             var image = Path.Combine(Paths.ProgramFolder, "Resources", "Images", "applogo.png");
-            var path = Path.Combine(PlayniteTests.TempPath, "filechecksum.db");
-            FileSystem.DeleteFile(path);
-
             var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            using (db.OpenDatabase(new MemoryStream()))
             {
                 db.AddFile("test.png", "test.png", File.ReadAllBytes(image));
                 var dbImage = db.GetFile("test.png");
@@ -37,11 +34,8 @@ namespace PlayniteTests.Database
         public void MultiAddtionTest()
         {
             var image = Path.Combine(Paths.ProgramFolder, "Resources", "Images", "applogo.png");
-            var path = Path.Combine(PlayniteTests.TempPath, "filemulti.db");
-
-            FileSystem.DeleteFile(path);
             var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            using (db.OpenDatabase(new MemoryStream()))
             {
                 db.AddFile("test.png", "test.png", File.ReadAllBytes(image));
                 var id = db.AddFileNoDuplicate("test2.png", "test2.png", File.ReadAllBytes(image));
@@ -49,9 +43,8 @@ namespace PlayniteTests.Database
                 Assert.AreEqual(1, db.Database.FileStorage.FindAll().Count());
             }
 
-            FileSystem.DeleteFile(path);
             db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            using (db.OpenDatabase(new MemoryStream()))
             {
                 db.AddFileNoDuplicate("test.png", "test.png", File.ReadAllBytes(image));
                 var id = db.AddFileNoDuplicate("test2.png", "test2.png", File.ReadAllBytes(image));
@@ -59,9 +52,8 @@ namespace PlayniteTests.Database
                 Assert.AreEqual(1, db.Database.FileStorage.FindAll().Count());
             }
 
-            FileSystem.DeleteFile(path);
             db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            using (db.OpenDatabase(new MemoryStream()))
             {
                 db.AddFileNoDuplicate("test.png", "test.png", File.ReadAllBytes(image));
                 db.AddFile("test2.png", "test2.png", File.ReadAllBytes(image));

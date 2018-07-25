@@ -32,20 +32,10 @@ namespace PlayniteServices.Controllers.IGDB
             }
         }
 
-        private static HttpClient httpClient;
         public static HttpClient HttpClient
         {
-            get
-            {
-                if (httpClient == null)
-                {
-                    httpClient = new HttpClient();
-                    
-                }
-
-                return httpClient;
-            }
-        }
+            get;
+        } = new HttpClient();
 
         private static HttpRequestMessage CreateRequest(string url, string apiKey)
         {
@@ -75,6 +65,18 @@ namespace PlayniteServices.Controllers.IGDB
             var sharedRequest = CreateRequest(url, ApiKey);
             var sharedResponse = await HttpClient.SendAsync(sharedRequest);
             return await sharedResponse.Content.ReadAsStringAsync();
+        }
+
+        public static async Task<string> SendDirectRequest(string url)
+        {
+            var request = new HttpRequestMessage()
+            {
+                RequestUri = new Uri(url),
+                Method = HttpMethod.Get
+            };
+
+            var response = await HttpClient.SendAsync(request);           
+            return await response.Content.ReadAsStringAsync();           
         }
     }
 }

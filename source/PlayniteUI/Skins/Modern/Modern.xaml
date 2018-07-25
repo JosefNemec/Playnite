@@ -116,12 +116,17 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
                             CornerRadius="{DynamicResource ControlCornerRadius}" Style="{DynamicResource HighlightBorder}">
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -298,6 +303,9 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Fill" Value="{DynamicResource GlyphBrush}" TargetName="HoverRectangle" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding IsFocused, RelativeSource={RelativeSource AncestorType=Track}}" Value="True">
+                            <Setter Property="Fill" Value="{DynamicResource GlyphBrush}" TargetName="HoverRectangle" />
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -320,6 +328,9 @@
                         </Track.Thumb>
                     </Track>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="PART_Track" Property="FocusManager.FocusedElement" Value="{Binding ElementName=PART_Track}" />
+                        </Trigger>
                         <Trigger Property="Orientation" Value="Horizontal">
                             <Setter Property="LayoutTransform" TargetName="PART_Track">
                                 <Setter.Value>
@@ -353,7 +364,7 @@
                                                 CanContentScroll="{TemplateBinding CanContentScroll}" />
                         <Rectangle Grid.Column="1" Grid.Row="1" Fill="{DynamicResource ControlBackgroundBrush}" />
                         <ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Column="0" Grid.Row="1"
-                                   Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" 
+                                   Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
                                    Value="{Binding Path=HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                    ViewportSize="{TemplateBinding ViewportWidth}"
                                    Minimum="0" Maximum="{TemplateBinding ScrollableWidth}" Orientation="Horizontal"
@@ -365,6 +376,17 @@
                                    Minimum="0" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical"
                                    AutomationProperties.AutomationId="VerticalScrollBar" />
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="PART_VerticalScrollBar" Property="Visibility" Value="Visible">
+                            <Setter Property="IsTabStop" Value="True"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="PART_VerticalScrollBar" Property="FocusManager.FocusedElement" Value="{Binding ElementName=PART_VerticalScrollBar}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="PART_HorizontalScrollBar" Property="FocusManager.FocusedElement" Value="{Binding ElementName=PART_HorizontalScrollBar}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -495,11 +517,11 @@
                     <DockPanel>
                         <ToggleButton BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
                                       Style="{DynamicResource ExpanderDownHeaderStyle}"
-                                      Padding="{TemplateBinding Padding}"                                      
-                                      MinHeight="25" DockPanel.Dock="Top" Background="Transparent"                                      
+                                      Padding="{TemplateBinding Padding}"
+                                      MinHeight="25" DockPanel.Dock="Top" Background="Transparent"
                                       Content="{TemplateBinding Header}"
                                       IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
-                        <Border x:Name="Border" DockPanel.Dock="Top" Visibility="Collapsed" 
+                        <Border x:Name="Border" DockPanel.Dock="Top" Visibility="Collapsed"
                                 BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter Focusable="False"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -525,7 +547,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource ControlCornerRadius}"
+                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource ControlCornerRadius}"
                             Style="{DynamicResource HighlightBorder}">
                         <Grid>
                             <ToggleButton x:Name="ToggleButton" Focusable="False" ClickMode="Press" Margin="0,0,2,0"
@@ -566,6 +588,9 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                        </Trigger>
                         <Trigger Property="IsEditable" Value="True">
                             <Setter Property="IsTabStop" Value="False" />
                             <Setter Property="Visibility" Value="Visible" TargetName="PART_EditableTextBox" />
@@ -846,7 +871,7 @@
                 <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemShortcutColumnGroup" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Border x:Name="HoverBorder" Grid.Column="0" Grid.ColumnSpan="4" 
+            <Border x:Name="HoverBorder" Grid.Column="0" Grid.ColumnSpan="4"
                     Background="{DynamicResource HoverBrush}" Visibility="Collapsed"  />
             <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="4,0,-5,0"
                               VerticalAlignment="Center" ContentSource="Icon" />
@@ -1051,7 +1076,7 @@
                                 BorderThickness="0,0,0,2" BorderBrush="{DynamicResource GlyphBrush}"/>
                         <TextBlock x:Name="TextContent" Padding="5" Style="{DynamicResource BaseTextBlockStyle}"
                                    Foreground="{TemplateBinding Foreground}">
-                            <ContentPresenter x:Name="ContentSite" RecognizesAccessKey="True" ContentSource="Header" 
+                            <ContentPresenter x:Name="ContentSite" RecognizesAccessKey="True" ContentSource="Header"
                                               HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center" />
                         </TextBlock>
                     </Grid>
@@ -1104,6 +1129,11 @@
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
                             <Setter Property="Opacity" Value="1" TargetName="TextContent"/>
                         </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
+                            <Setter Property="BorderThickness" Value="1,1,1,2" TargetName="SelectedBorder" />
+                            <Setter Property="Opacity" Value="1" TargetName="TextContent"/>
+                        </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
                             <Setter Property="Opacity" Value="1" TargetName="TextContent"/>
@@ -1134,13 +1164,16 @@
                                 BorderThickness="{DynamicResource ControlBorderThickness}" />
                         <Track Grid.Row="1" x:Name="PART_Track">
                             <Track.Thumb>
-                                <Thumb Background="{DynamicResource GlyphBrush}" Width="25" />
+                                <Thumb Width="25" />
                             </Track.Thumb>
                         </Track>
-                        <TickBar x:Name="BottomTick" Visibility="Collapsed" Grid.Row="2" Height="4" Placement="Bottom" 
+                        <TickBar x:Name="BottomTick" Visibility="Collapsed" Grid.Row="2" Height="4" Placement="Bottom"
                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Fill="{TemplateBinding Foreground}" />
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="PART_Track" Property="FocusManager.FocusedElement" Value="{Binding ElementName=PART_Track}" />
+                        </Trigger>
                         <Trigger Property="TickPlacement" Value="TopLeft">
                             <Setter Property="Visibility" Value="Visible" TargetName="TopTick" />
                         </Trigger>
@@ -1424,6 +1457,9 @@
         <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
         <Setter Property="TextDecorations" Value="{x:Null}" />
         <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+            </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
             </Trigger>
@@ -1453,7 +1489,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Separator}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}"  BorderThickness="{TemplateBinding BorderThickness}" 
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"  BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}" Height="1" SnapsToDevicePixels="true"/>
                 </ControlTemplate>
             </Setter.Value>
@@ -1478,10 +1514,10 @@
                                     FontWeight="Bold" FontFamily="Marlett" Padding="4,2,4,2"
                                     Content="3" Focusable="False" BorderThickness="0"
                                     Background="Transparent"/>
-                            <Button x:Name="PART_NextButton" DockPanel.Dock="Right" 
+                            <Button x:Name="PART_NextButton" DockPanel.Dock="Right"
                                     FontWeight="Bold" FontFamily="Marlett" Padding="4,2,4,2"
                                     Content="4" BorderThickness="0"
-                                    Focusable="False" 
+                                    Focusable="False"
                                     Background="Transparent"/>
                             <Button x:Name="PART_HeaderButton" DockPanel.Dock="Top"
                                     Padding="2" Height="30" Focusable="False"
@@ -1648,7 +1684,7 @@
                             Padding="{TemplateBinding Padding}">
                         <DockPanel>
                             <Popup x:Name="PART_Popup" StaysOpen="False"
-                                   AllowsTransparency="True" Placement="Bottom"                                   
+                                   AllowsTransparency="True" Placement="Bottom"
                                    PlacementTarget="{Binding ElementName=PART_TextBox}" />
                             <ToggleButton x:Name="PART_Button" DockPanel.Dock="Right" Content="🗓"
                                           BorderThickness="0" Padding="5,0,5,0"
@@ -1658,7 +1694,13 @@
                         </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsFocused" Value="True">
+                        <Trigger SourceName="PART_TextBox"  Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                        </Trigger>
+                        <Trigger SourceName="PART_Button"  Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -1679,7 +1721,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}"
+                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}" CornerRadius="{DynamicResource ControlCornerRadius}"
                             Style="{DynamicResource HighlightBorder}">
                         <Grid>
@@ -1956,7 +1998,7 @@
                         <Setter.Value>
                             <DataTemplate>
                                 <TextBlock Style="{StaticResource ListTextBlock}">
-                                        <Hyperlink NavigateUri="{Binding Mode=OneWay}" 
+                                        <Hyperlink NavigateUri="{Binding Mode=OneWay}"
                                                    Tag="{Binding Tag, RelativeSource={RelativeSource AncestorType=ItemsControl}}">
                                             <Hyperlink.Style>
                                                 <Style TargetType="Hyperlink" BasedOn="{StaticResource {x:Type Hyperlink}}">
@@ -2094,7 +2136,7 @@
                        Grid.Column="0" Grid.Row="0" Margin="0,0,10,3"/>
             <TextBlock Text="{Binding Game.Playtime, Converter={pui:LongToTimePlayedConverter}}"
                        Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" />
-            <TextBlock Text="{DynamicResource LOCLastPlayed}" Foreground="{DynamicResource GlyphBrush}" 
+            <TextBlock Text="{DynamicResource LOCLastPlayed}" Foreground="{DynamicResource GlyphBrush}"
                        Grid.Column="0" Grid.Row="1"/>
             <TextBlock Text="{Binding Game.LastActivity, Converter={pui:DateTimeToLastPlayedConverter}}"
                        Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" />
@@ -2144,7 +2186,7 @@
 
             <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top"
                         Margin="40,10,0,0">
-                <Image Margin="0,0,0,10" VerticalAlignment="Top"          
+                <Image Margin="0,0,0,10" VerticalAlignment="Top"
                        RenderOptions.BitmapScalingMode="Fant"
                        Source="{Binding Game.ImageObject, Mode=OneWay}" />
                 <Button Height="40" Content="{DynamicResource LOCPlayGame}" Style="{StaticResource PlayButton}"
@@ -2156,10 +2198,10 @@
                 <Button Height="40" Content="{DynamicResource LOCSetupRunning}"
                         Visibility="{Binding IsInstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding CheckSetupCommand}"/>
-                <Button Height="40" Content="{DynamicResource LOCUninstalling}"  
+                <Button Height="40" Content="{DynamicResource LOCUninstalling}"
                         Visibility="{Binding IsUninstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding CheckSetupCommand}"/>
-                <Button Height="40" Content="{DynamicResource LOCGameRunning}" 
+                <Button Height="40" Content="{DynamicResource LOCGameRunning}"
                         Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding CheckExecutionCommand}"/>
                 <Button Height="40" Content="{DynamicResource LOCGameLaunching}"
@@ -2351,7 +2393,7 @@
 
     <ControlTemplate x:Key="DetailsView">
         <Border Background="{DynamicResource WindowBackgourndBrush}">
-            <pc:GamesGridView ItemsSource="{Binding GamesView.CollectionView}" Margin="0,40,0,0"                          
+            <pc:GamesGridView ItemsSource="{Binding GamesView.CollectionView}" Margin="0,40,0,0"
                               SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
                               SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
                               AppSettings="{Binding AppSettings}"/>
@@ -2361,7 +2403,7 @@
     <ControlTemplate x:Key="ProgressView">
         <Grid>
             <Grid.Resources>
-                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />                
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             </Grid.Resources>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -2416,7 +2458,7 @@
                            Placement="Bottom" StaysOpen="False">
                         <Border Style="{StaticResource PopupBorder}">
                             <StackPanel>
-                                <ItemsControl Name="ListNotifications" BorderThickness="0" Margin="0,5,0,0" 
+                                <ItemsControl Name="ListNotifications" BorderThickness="0" Margin="0,5,0,0"
                                           ItemsSource="{Binding Messages}" MaxWidth="350">
                                     <ItemsControl.Resources>
                                     </ItemsControl.Resources>
@@ -2454,7 +2496,7 @@
                 </Grid>
             </ToggleButton.Content>
         </ToggleButton>
-    </ControlTemplate>    
+    </ControlTemplate>
 
     <ControlTemplate x:Key="MainView" TargetType="{x:Type pc:MainView}">
         <Grid d:DesignWidth="900" d:DesignHeight="500">
@@ -2481,7 +2523,7 @@
                 <pui:ListToStringConverter x:Key="ListToStringConverter" />
                 <pui:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
             </Grid.Resources>
-            
+
             <pc:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
                           Grid.ColumnSpan="10" Grid.RowSpan="10"
                           Source="{Binding SelectedGameDetails.Game.BackgroundImageObject, IsAsync=True}" />
@@ -2490,7 +2532,7 @@
                        IsEnabled="{Binding Data.AppSettings.ViewSettings.GamesViewType, Source={StaticResource Proxy}, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"
                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
                        Background="{DynamicResource GamesListPanelBrush}">
-                
+
                 <ContentControl DockPanel.Dock="Top" Margin="10,45,10,5"
                                 Template="{StaticResource SearchPanel}" />
 
@@ -2569,7 +2611,7 @@
                             IsEnabled="{Binding Data.AppSettings.ViewSettings.GamesViewType, Source={StaticResource Proxy}, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"
                             Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Template="{StaticResource GameDetailsView}" />
-            
+
             <Grid Background="#77000000"
                   Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
                   IsEnabled="{Binding AppSettings.ViewSettings.GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.Images}}"
@@ -2669,12 +2711,12 @@
                                                                 <RowDefinition Height="Auto" />
                                                             </Grid.RowDefinitions>
                                                             <Button Background="#EE000000" Content="▶"
-                                                                Grid.Row="0" Grid.Column="0" Margin="0,0,3,0"                                                            
+                                                                Grid.Row="0" Grid.Column="0" Margin="0,0,3,0"
                                                                 FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"
                                                                 Command="{Binding Data.StartGameCommand, Source={StaticResource CoversProxy}}"
                                                                 CommandParameter="{Binding Game}" />
                                                             <Button Background="#EE000000" Content="ℹ"
-                                                                Grid.Row="0" Grid.Column="1" Margin="3,0,0,0" 
+                                                                Grid.Row="0" Grid.Column="1" Margin="3,0,0,0"
                                                                 FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"
                                                                 Command="{Binding Data.ShowGameSideBarCommand, Source={StaticResource CoversProxy}}"
                                                                 CommandParameter="{Binding}"/>
@@ -2683,7 +2725,7 @@
                                                 </Grid>
                                             </Border>
                                             <TextBlock Text="{Binding Name}" Style="{DynamicResource BaseTextBlockStyle}"
-                                                   TextAlignment="Center" TextTrimming="CharacterEllipsis" 
+                                                   TextAlignment="Center" TextTrimming="CharacterEllipsis"
                                                    Margin="0,10,0,0" Grid.Row="1"
                                                    Visibility="{Binding Data.AppSettings.ShowNamesUnderCovers, Source={StaticResource CoversProxy}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                 <TextBlock.Effect>
@@ -2775,10 +2817,10 @@
                             <Button MinWidth="120" Content="{DynamicResource LOCSetupRunning}"
                             Visibility="{Binding IsInstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding CheckSetupCommand}"/>
-                            <Button MinWidth="120" Content="{DynamicResource LOCUninstalling}"  
+                            <Button MinWidth="120" Content="{DynamicResource LOCUninstalling}"
                             Visibility="{Binding IsUninstalling, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding CheckSetupCommand}"/>
-                            <Button MinWidth="120" Content="{DynamicResource LOCGameRunning}" 
+                            <Button MinWidth="120" Content="{DynamicResource LOCGameRunning}"
                             Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding CheckExecutionCommand}"/>
                             <Button MinWidth="120" Content="{DynamicResource LOCGameLaunching}"
@@ -2810,7 +2852,7 @@
                                     Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     Template="{StaticResource GamePropertiesView}" />
 
-                        <pc:HtmlTextView Grid.Column="0" Grid.Row="4" Margin="5,10,5,10" 
+                        <pc:HtmlTextView Grid.Column="0" Grid.Row="4" Margin="5,10,5,10"
                                     Background="Transparent" HtmlText="{Binding Game.Description, Mode=OneWay}"
                                     HtmlForeground="{DynamicResource TextColor}"
                                     LinkForeground="{DynamicResource GlyphColor}"
@@ -2883,7 +2925,7 @@
                                     <Setter Property="ShowImage" Value="False" />
                                 </Style>
                             </StackPanel.Resources>
-                            
+
                             <CheckBox Name="CheckFilterInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameIsInstalledTitle}" Margin="0,0,5,0" />
@@ -3099,14 +3141,14 @@
                             <pc:SearchBox x:Name="TextFilterAgeRating" Text="{Binding AppSettings.FilterSettings.AgeRating, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
                         </StackPanel>
                     </ScrollViewer>
-                </DockPanel>                
+                </DockPanel>
             </Border>
 
             <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
                     VerticalAlignment="Top" Background="#33000000" Height="38">
                 <DockPanel>
                     <Button DockPanel.Dock="Left" Command="{Binding OpenMainMenuCommand}"
-                            HorizontalContentAlignment="Left" BorderThickness="0" Background="Transparent">                    
+                            HorizontalContentAlignment="Left" BorderThickness="0" Background="Transparent">
                         <Border DockPanel.Dock="Left" Background="Transparent"
                                 Cursor="Hand" Margin="10,0,5,0" controlzEx:WindowChrome.IsHitTestVisibleInChrome="True">
                             <TextBlock Text="☰" VerticalAlignment="Center" FontWeight="Bold" Opacity="0.9"
@@ -3120,7 +3162,7 @@
                                         IsTabStop="{Binding AppSettings.ViewSettings.GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"
                                         Visibility="{Binding IsTabStop, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
                     </Border>
-                    
+
                     <ContentControl Template="{StaticResource NotificationIcon}" Margin="0,0,130,0"
                                     HorizontalAlignment="Right" DockPanel.Dock="Right"/>
 
@@ -3130,7 +3172,7 @@
             </Border>
 
             <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
-                    Visibility="{Binding MainMenuOpened, Converter={StaticResource BooleanToVisibilityConverter}}"                    
+                    Visibility="{Binding MainMenuOpened, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Background="#AA000000">
                 <Border.Style>
                     <Style TargetType="Border">
@@ -3167,7 +3209,7 @@
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*" SharedSizeGroup="RadioButtonMenuItem" />
-                                                    <ColumnDefinition Width="Auto" SharedSizeGroup="RadioButtonMenuItemShortCut" /> 
+                                                    <ColumnDefinition Width="Auto" SharedSizeGroup="RadioButtonMenuItemShortCut" />
                                                 </Grid.ColumnDefinitions>
 
                                                 <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -3336,7 +3378,7 @@
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
-                            <RadioButton Command="{Binding CheckForUpdateCommand}" 
+                            <RadioButton Command="{Binding CheckForUpdateCommand}"
                                          DockPanel.Dock="Bottom" Margin="5,5,0,30">
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
@@ -3425,7 +3467,7 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Button Content="{Binding Name}"
-                                            Command="{Binding Source={StaticResource Proxy}, Path=Data.ThridPartyToolOpenCommand}"
+                                            Command="{Binding Source={StaticResource Proxy}, Path=Data.ThirdPartyToolOpenCommand}"
                                             CommandParameter="{Binding}">
                                     </Button>
                                 </DataTemplate>
@@ -3460,7 +3502,7 @@
             </Border>
         </Grid>
     </ControlTemplate>
-    
+
     <Style TargetType="{x:Type pc:MainView}">
         <Setter Property="Margin" Value="0,-25,0,0" />
         <Setter Property="Template" Value="{StaticResource MainView}"/>

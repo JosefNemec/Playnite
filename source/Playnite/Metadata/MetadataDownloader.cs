@@ -5,6 +5,7 @@ using Playnite.Providers.BattleNet;
 using Playnite.Providers.GOG;
 using Playnite.Providers.Origin;
 using Playnite.Providers.Steam;
+using Playnite.Metadata.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,303 +16,8 @@ using System.Threading.Tasks;
 using Playnite.SDK.Models;
 using Playnite.SDK;
 
-namespace Playnite.MetaProviders
+namespace Playnite.Metadata
 {
-    public interface IMetadataProvider
-    {
-        bool GetSupportsIdSearch();
-        List<MetadataSearchResult> SearchGames(string gameName);
-        GameMetadata GetGameData(string gameId);
-    }
-
-    public enum MetadataGamesSource
-    {
-        AllFromDB,
-        Selected,
-        Filtered
-    }
-
-    public enum MetadataSource
-    {
-        Store,
-        IGDB,
-        IGDBOverStore,
-        StoreOverIGDB
-    }
-
-    public class MetadataFieldSettings : ObservableObject
-    {
-        private bool import = true;
-        public bool Import
-        {
-            get => import;
-            set
-            {
-                import = value;
-                OnPropertyChanged("Import");
-            }
-        }
-
-        private MetadataSource source = MetadataSource.StoreOverIGDB;
-        public MetadataSource Source
-        {
-            get => source;
-            set
-            {
-                source = value;
-                OnPropertyChanged("Source");
-            }
-        }
-
-        public MetadataFieldSettings()
-        {
-        }
-
-        public MetadataFieldSettings(bool import, MetadataSource source)
-        {
-            Import = import;
-            Source = source;
-        }
-    }
-
-    public class MetadataDownloaderSettings : ObservableObject
-    {
-        private MetadataGamesSource gamesSource = MetadataGamesSource.AllFromDB;
-        public MetadataGamesSource GamesSource
-        {
-            get
-            {
-                return gamesSource;
-            }
-
-            set
-            {
-                gamesSource = value;
-                OnPropertyChanged("GamesSource");
-            }
-        }
-
-        private bool skipExistingValues = true;
-        public bool SkipExistingValues
-        {
-            get
-            {
-                return skipExistingValues;
-            }
-
-            set
-            {
-                skipExistingValues = value;
-                OnPropertyChanged("SkipExistingValues");
-            }
-        }
-
-        private MetadataFieldSettings name = new MetadataFieldSettings(false, MetadataSource.Store);
-        public MetadataFieldSettings Name
-        {
-            get => name;
-            set
-            {
-                name = value;
-                OnPropertyChanged("Name");
-            }
-        }
-
-        private MetadataFieldSettings genre = new MetadataFieldSettings();
-        public MetadataFieldSettings Genre
-        {
-            get => genre;
-            set
-            {
-                genre = value;
-                OnPropertyChanged("Genre");
-            }
-        }
-
-        private MetadataFieldSettings releaseDate = new MetadataFieldSettings();
-        public MetadataFieldSettings ReleaseDate
-        {
-            get => releaseDate;
-            set
-            {
-                releaseDate = value;
-                OnPropertyChanged("ReleaseDate");
-            }
-        }
-
-        private MetadataFieldSettings developer = new MetadataFieldSettings();
-        public MetadataFieldSettings Developer
-        {
-            get => developer;
-            set
-            {
-                developer = value;
-                OnPropertyChanged("Developer");
-            }
-        }
-
-        private MetadataFieldSettings publisher = new MetadataFieldSettings();
-        public MetadataFieldSettings Publisher
-        {
-            get => publisher;
-            set
-            {
-                publisher = value;
-                OnPropertyChanged("Publisher");
-            }
-        }
-
-        private MetadataFieldSettings tag = new MetadataFieldSettings();
-        public MetadataFieldSettings Tag
-        {
-            get => tag;
-            set
-            {
-                tag = value;
-                OnPropertyChanged("Tag");
-            }
-        }
-
-        private MetadataFieldSettings description = new MetadataFieldSettings();
-        public MetadataFieldSettings Description
-        {
-            get => description;
-            set
-            {
-                description = value;
-                OnPropertyChanged("Description");
-            }
-        }
-
-        private MetadataFieldSettings coverImage = new MetadataFieldSettings() { Source = MetadataSource.IGDBOverStore };
-        public MetadataFieldSettings CoverImage
-        {
-            get => coverImage;
-            set
-            {
-                coverImage = value;
-                OnPropertyChanged("CoverImage");
-            }
-        }
-
-        private MetadataFieldSettings backgroundImage = new MetadataFieldSettings() { Source = MetadataSource.Store };
-        public MetadataFieldSettings BackgroundImage
-        {
-            get => backgroundImage;
-            set
-            {
-                backgroundImage = value;
-                OnPropertyChanged("BackgroundImage");
-            }
-        }
-
-        private MetadataFieldSettings icon = new MetadataFieldSettings() { Source = MetadataSource.Store };
-        public MetadataFieldSettings Icon
-        {
-            get => icon;
-            set
-            {
-                icon = value;
-                OnPropertyChanged("Icon");
-            }
-        }
-
-        private MetadataFieldSettings links = new MetadataFieldSettings();
-        public MetadataFieldSettings Links
-        {
-            get => links;
-            set
-            {
-                links = value;
-                OnPropertyChanged("Links");
-            }
-        }
-
-        private MetadataFieldSettings criticScore = new MetadataFieldSettings();
-        public MetadataFieldSettings CriticScore
-        {
-            get => criticScore;
-            set
-            {
-                criticScore = value;
-                OnPropertyChanged("CriticScore");
-            }
-        }
-
-        private MetadataFieldSettings communityScore = new MetadataFieldSettings();
-        public MetadataFieldSettings CommunityScore
-        {
-            get => communityScore;
-            set
-            {
-                communityScore = value;
-                OnPropertyChanged("CommunityScore");
-            }
-        }
-
-        public void ConfigureFields(MetadataSource source, bool import)
-        {
-            Genre.Import = import;
-            Genre.Source = source;
-            Description.Import = import;
-            Description.Source = source;
-            Developer.Import = import;
-            Developer.Source = source;
-            Publisher.Import = import;
-            Publisher.Source = source;
-            Tag.Import = import;
-            Tag.Source = source;
-            Links.Import = import;
-            Links.Source = source;
-            CoverImage.Import = import;
-            CoverImage.Source = source;
-            BackgroundImage.Import = import;
-            BackgroundImage.Source = source;
-            Icon.Import = import;
-            Icon.Source = source;
-            ReleaseDate.Import = import;
-            ReleaseDate.Source = source;
-            CommunityScore.Import = import;
-            CommunityScore.Source = source;
-            CriticScore.Import = import;
-            CriticScore.Source = source;
-        }
-    }
-
-    public class MetadataSearchResult
-    {
-        public string Id
-        {
-            get; set;
-        }
-
-        public string Name
-        {
-            get; set;
-        }
-
-        public DateTime? ReleaseDate
-        {
-            get; set;
-        }
-
-        public MetadataSearchResult()
-        {
-        }
-
-        public MetadataSearchResult(string id, string name, DateTime? releaseDate)
-        {
-            Id = id;
-            Name = name;
-            ReleaseDate = releaseDate;
-        }
-
-        public override string ToString()
-        {
-            return Name;
-        }
-    }
-
     public class MetadataDownloader
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -347,7 +53,7 @@ namespace Playnite.MetaProviders
             this.igdbProvider = igdbProvider;
         }
 
-        private IMetadataProvider GetMetaProviderByProvider(Provider provider)
+        internal IMetadataProvider GetMetaProviderByProvider(Provider provider)
         {
             switch (provider)
             {
@@ -375,7 +81,7 @@ namespace Playnite.MetaProviders
         {
             if (data == null)
             {
-                data = DownloadGameData(game.Name, game.ProviderId, GetMetaProviderByProvider(game.Provider));
+                data = GetMetaProviderByProvider(game.Provider).GetMetadata(game);
             }
 
             return data;
@@ -399,7 +105,7 @@ namespace Playnite.MetaProviders
                 {
                     if (igdbData == null)
                     {
-                        igdbData = DownloadGameData(game.Name, "", igdbProvider);
+                        igdbData = igdbProvider.GetMetadata(game);
                     }
 
                     return igdbData;
@@ -408,7 +114,7 @@ namespace Playnite.MetaProviders
                 {
                     if (igdbData == null)
                     {
-                        igdbData = DownloadGameData(game.Name, "", igdbProvider);
+                        igdbData = igdbProvider.GetMetadata(game);
                     }
 
                     if (igdbData.GameData == null && game.Provider != Provider.Custom && game.Provider != Provider.Uplay)
@@ -458,7 +164,7 @@ namespace Playnite.MetaProviders
                         {
                             if (igdbData == null)
                             {
-                                igdbData = DownloadGameData(game.Name, "", igdbProvider);
+                                igdbData = igdbProvider.GetMetadata(game);
                             }
 
                             return igdbData;
@@ -474,7 +180,7 @@ namespace Playnite.MetaProviders
                             {
                                 if (igdbData == null)
                                 {
-                                    igdbData = DownloadGameData(game.Name, "", igdbProvider);
+                                    igdbData = igdbProvider.GetMetadata(game);
                                 }
 
                                 return igdbData;
@@ -485,7 +191,7 @@ namespace Playnite.MetaProviders
                     {
                         if (igdbData == null)
                         {
-                            igdbData = DownloadGameData(game.Name, "", igdbProvider);
+                            igdbData = igdbProvider.GetMetadata(game);
                         }
 
                         return igdbData;
@@ -496,7 +202,7 @@ namespace Playnite.MetaProviders
             return null;
         }
 
-        public async Task DownloadMetadataThreaded(
+        public async Task DownloadMetadataGroupedAsync(
             List<Game> games,
             GameDatabase database,
             MetadataDownloaderSettings settings,
@@ -510,12 +216,13 @@ namespace Playnite.MetaProviders
             await Task.Run(() =>
             {
                 var grouped = games.GroupBy(a => a.Provider);
+                logger.Info($"Downloading metadata using {grouped.Count()} threads.");
                 foreach (IGrouping<Provider, Game> group in grouped)
                 {
                     tasks.Add(Task.Run(() =>
                     {
                         var gms = group.ToList();
-                        DownloadMetadata(gms, database, settings, (g, i, t) =>
+                        DownloadMetadataAsync(gms, database, settings, (g, i, t) =>
                         {
                             index++;
                             processCallback?.Invoke(g, index, total);
@@ -527,7 +234,7 @@ namespace Playnite.MetaProviders
             });
         }
 
-        public async Task DownloadMetadata(
+        public async Task DownloadMetadataAsync(
             List<Game> games,
             GameDatabase database,
             MetadataDownloaderSettings settings,
@@ -536,33 +243,36 @@ namespace Playnite.MetaProviders
         {
             await Task.Run(() =>
             {
-            if (games == null || games.Count == 0)
-            {
-                return;
-            }
-
-            for (int i = 0; i < games.Count; i++)
-            {
-                if (cancelToken?.IsCancellationRequested == true)
+                if (games == null || games.Count == 0)
                 {
                     return;
                 }
 
-                GameMetadata storeData = null;
-                GameMetadata igdbData = null;
-                GameMetadata gameData = null;
-
-                // We need to get new instance from DB in case game got edited or deleted.
-                // We don't want to block game editing while metadata is downloading for other games.
-                var game = database.GamesCollection.FindOne(a => a.ProviderId == games[i].ProviderId);
-                if (game == null)
+                for (int i = 0; i < games.Count; i++)
                 {
-                    processCallback?.Invoke(null, i, games.Count);
-                    continue;
-                }
+                    if (cancelToken?.IsCancellationRequested == true)
+                    {
+                        return;
+                    }
+
+                    GameMetadata storeData = null;
+                    GameMetadata igdbData = null;
+                    GameMetadata gameData = null;
+
+                    // We need to get new instance from DB in case game got edited or deleted.
+                    // We don't want to block game editing while metadata is downloading for other games.
+                    var game = database.GamesCollection.FindOne(a => a.ProviderId == games[i].ProviderId);
+                    if (game == null)
+                    {
+                        logger.Warn($"Game {game.ProviderId} no longer in DB, skipping metadata download.");
+                        processCallback?.Invoke(null, i, games.Count);
+                        continue;
+                    }
 
                     try
                     {
+                        logger.Debug($"Downloading metadata for {game.Provider} game {game.Name}, {game.ProviderId}");
+
                         // Name
                         if (game.Provider != Provider.Custom && settings.Name.Import)
                         {
@@ -728,7 +438,7 @@ namespace Playnite.MetaProviders
                             {
                                 if (storeData == null)
                                 {
-                                    storeData = steamProvider.GetGameData(game.ProviderId);
+                                    storeData = steamProvider.GetMetadata(game.ProviderId);
                                 }
 
                                 if (storeData?.GameData?.OtherTasks != null)
@@ -751,6 +461,10 @@ namespace Playnite.MetaProviders
                         {
                             database.UpdateGameInDatabase(game);
                         }
+                        else
+                        {
+                            logger.Warn($"Game {game.ProviderId} no longer in DB, skipping metadata update in DB.");
+                        }
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -762,117 +476,6 @@ namespace Playnite.MetaProviders
                     }
                 }
             });
-        }
-
-        public async Task DownloadMetadata(
-            List<Game> games,
-            GameDatabase database,
-            MetadataDownloaderSettings settings,
-            Action<Game, int, int> processCallback)
-        {
-            await DownloadMetadata(games, database, settings, processCallback, null);
-        }
-
-        public async Task DownloadMetadata(
-            List<Game> games,
-            GameDatabase database,
-            MetadataDownloaderSettings settings)
-        {
-            await DownloadMetadata(games, database, settings, null, null);
-        }
-
-        public virtual GameMetadata DownloadGameData(string gameName, string id, IMetadataProvider provider)
-        {
-            if (provider.GetSupportsIdSearch())
-            {
-                return provider.GetGameData(id);
-            }
-            else
-            {
-                var name = StringExtensions.NormalizeGameName(gameName);
-                var results = provider.SearchGames(name);
-                results.ForEach(a => a.Name = StringExtensions.NormalizeGameName(a.Name));
-
-                GameMetadata matchFun(string matchName, List<MetadataSearchResult> list)
-                {
-                    var res = list.FirstOrDefault(a => string.Equals(matchName, a.Name, StringComparison.InvariantCultureIgnoreCase));
-                    if (res != null)
-                    {
-                        return provider.GetGameData(res.Id);
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-
-                GameMetadata data = null;
-                string testName = string.Empty;
-
-                // Direct comparison
-                data = matchFun(name, results);
-                if (data != null)
-                {
-                    return data;
-                }
-
-                // Try replacing roman numerals: 3 => III
-                testName = Regex.Replace(name, @"\d+", ReplaceNumsForRomans);
-                data = matchFun(testName, results);
-                if (data != null)
-                {
-                    return data;
-                }
-
-                // Try adding The
-                testName = "The " + name;
-                data = matchFun(testName, results);
-                if (data != null)
-                {
-                    return data;
-                }
-
-                // Try chaning & / and
-                testName = Regex.Replace(name, @"\s+and\s+", " & ", RegexOptions.IgnoreCase);
-                data = matchFun(testName, results);
-                if (data != null)
-                {
-                    return data;
-                }
-
-                // Try removing all ":"
-                testName = Regex.Replace(testName, @"\s*:\s*", " ");
-                var resCopy = results.CloneJson();
-                resCopy.ForEach(a => a.Name = Regex.Replace(a.Name, @"\s*:\s*", " "));
-                data = matchFun(testName, resCopy);
-                if (data != null)
-                {
-                    return data;
-                }
-
-                // Try without subtitle
-                var testResult = results.OrderBy(a => a.ReleaseDate).FirstOrDefault(a =>
-                {
-                    if (a.ReleaseDate == null)
-                    {
-                        return false;
-                    }
-
-                    if (!string.IsNullOrEmpty(a.Name) && a.Name.Contains(":"))
-                    {
-                        return string.Equals(name, a.Name.Split(':')[0], StringComparison.InvariantCultureIgnoreCase);
-                    }
-                    
-                    return false;
-                });
-
-                if (testResult != null)
-                {
-                    return provider.GetGameData(testResult.Id);
-                }
-
-                return data ?? new GameMetadata();
-            }
         }
     }
 }

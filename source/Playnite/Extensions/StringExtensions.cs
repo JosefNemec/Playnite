@@ -75,5 +75,15 @@ namespace Playnite
                 return BitConverter.ToString(hash).Replace("-", "");
             }
         }
+
+        public static string GetPathWithoutAllExtensions(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                return string.Empty;
+            }
+
+            return Regex.Replace(path, @"(\.[a-z0-9]+)+$", "");
+        }
     }
 }

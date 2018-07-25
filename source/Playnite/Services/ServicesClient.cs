@@ -85,6 +85,12 @@ namespace Playnite.Services
             return ExecuteGetRequest<List<PlayniteServices.Models.IGDB.Game>>(url);
         }
 
+        public ulong GetIGDBGameBySteamId(string id, string apiKey = null)
+        {
+            var url = $"/api/igdb/gamesBySteamId/{id}";
+            return ExecuteGetRequest<ulong>(url);
+        }
+
         public PlayniteServices.Models.IGDB.Game GetIGDBGame(UInt64 id, string apiKey = null)
         {
             var url = string.IsNullOrEmpty(apiKey) ? $"/api/igdb/game/{id}" : $"/api/igdb/game/{id}?apikey={apiKey}";

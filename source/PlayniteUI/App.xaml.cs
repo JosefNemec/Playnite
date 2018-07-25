@@ -19,7 +19,7 @@ using System.Windows.Markup;
 using System.IO;
 using System.Windows.Input;
 using System.ComponentModel;
-using Playnite.MetaProviders;
+using Playnite.Metadata;
 using Playnite.API;
 using PlayniteUI.API;
 using Playnite.Plugins;
@@ -34,7 +34,7 @@ namespace PlayniteUI
     public partial class App : Application, INotifyPropertyChanged, IPlayniteApplication
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        private string instanceMuxet = "PlayniteInstaceMutex";
+        private const string instanceMuxet = "PlayniteInstaceMutex";
         private Mutex appMutex;
         private bool resourcesReleased = false;
         private PipeService pipeService;
@@ -42,13 +42,17 @@ namespace PlayniteUI
         private XInputDevice xdevice;
         private DialogsFactory dialogs;
 
+        public Version CurrentVersion
+        {
+            get => Updater.GetCurrentVersion();
+        }
+
         public PlayniteAPI Api
         {
             get; set;
         }
         
         public event PropertyChangedEventHandler PropertyChanged;
-
 
         public static MainViewModel MainModel
         {
@@ -103,6 +107,7 @@ namespace PlayniteUI
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
         {
+            logger.Info("Shutting down application because of session ending.");
             Quit();
         }
 
@@ -195,13 +200,11 @@ namespace PlayniteUI
             // First run wizard
             ulong steamCatImportId = 0;
             bool isFirstStart = !AppSettings.FirstTimeWizardComplete;
+            bool existingDb = false;
             if (!AppSettings.FirstTimeWizardComplete)
             {
                 var wizardWindow = FirstTimeStartupWindowFactory.Instance;
-                var wizardModel = new FirstTimeStartupViewModel(
-                    wizardWindow,
-                    dialogs,
-                    new ResourceProvider());
+                var wizardModel = new FirstTimeStartupViewModel(wizardWindow, dialogs, new ResourceProvider());
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
@@ -221,23 +224,13 @@ namespace PlayniteUI
                     AppSettings.BattleNetSettings = settings.BattleNetSettings;
                     AppSettings.UplaySettings = settings.UplaySettings;
                     AppSettings.SaveSettings();
-
+                    existingDb = File.Exists(AppSettings.DatabasePath);
                     Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
                     Database.OpenDatabase();
 
-                    if (wizardModel.ImportedGames.Count > 0)
+                    if (wizardModel.ImportedGames?.Any() == true)
                     {
-                        foreach (var game in wizardModel.ImportedGames)
-                        {
-                            if (game.Icon != null)
-                            {
-                                var iconId = "images/custom/" + game.Icon.Name;
-                                game.Game.Icon = Database.AddFileNoDuplicate(iconId, game.Icon.Name, game.Icon.Data); ;
-                            }
-
-                            Database.AssignPcPlatform(game.Game);
-                            Database.AddGame(game.Game);
-                        }
+                        InstalledGamesViewModel.AddImportableGamesToDb(wizardModel.ImportedGames, Database);
                     }
 
                     if (wizardModel.SteamImportCategories)
@@ -249,6 +242,7 @@ namespace PlayniteUI
                 {
                     AppSettings.DatabasePath = Path.Combine(Paths.UserProgramDataPath, "games.db");
                     AppSettings.SaveSettings();
+                    existingDb = File.Exists(AppSettings.DatabasePath);
                     Database = new GameDatabase(AppSettings, AppSettings.DatabasePath);
                 }
             }
@@ -282,7 +276,7 @@ namespace PlayniteUI
             }
             else
             {
-                OpenNormalView(steamCatImportId, isFirstStart);
+                OpenNormalView(steamCatImportId, isFirstStart, existingDb);
             }
 
             // Update and stats
@@ -310,7 +304,7 @@ namespace PlayniteUI
                 SimulateNavigationKeys = true
             };
 
-            logger.Info("Application started");
+            logger.Info($"Application {CurrentVersion} started");
         }
 
         private void PipeService_CommandExecuted(object sender, CommandExecutedEventArgs args)
@@ -406,12 +400,14 @@ namespace PlayniteUI
 
         public void Quit()
         {
+            logger.Info("Shutting down Playnite");
             ReleaseResources();
             Shutdown(0);
         }
 
         private void ReleaseResources()
         {
+            logger.Debug("Releasing Playnite resources...");
             if (resourcesReleased)
             {
                 return;
@@ -421,21 +417,21 @@ namespace PlayniteUI
             {
                 try
                 {
-                    GlobalTaskHandler.CancelAndWait();
+                    GlobalTaskHandler.CancelAndWait();                    
+                    GamesEditor?.Dispose();
+                    AppSettings?.SaveSettings();
+                    Api?.Dispose();
+                    Database?.CloseDatabase();
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(exc, "Failed to cancel global progress task.");
-                    throw;
+                    logger.Error(exc, "Failed to dispose Playnite objects.");
                 }
-
-                AppSettings?.SaveSettings();
-                Api?.Dispose();
-                GamesEditor?.Dispose();
-                Database?.CloseDatabase();
             }, ResourceProvider.Instance.FindString("LOCClosingPlaynite"));
 
             progressModel.ActivateProgress();
+
+            // These must run on main thread
             Playnite.Providers.Steam.SteamApiClient.Instance.Logout();
             if (Cef.IsInitialized)
             {
@@ -445,8 +441,9 @@ namespace PlayniteUI
             resourcesReleased = true;
         }
 
-        public async void OpenNormalView(ulong steamCatImportId, bool isFirstStart)
+        public async void OpenNormalView(ulong steamCatImportId, bool isFirstStart, bool existingDb)
         {
+            logger.Debug("Opening Desktop view");
             if (Database.IsOpen)
             {
                 FullscreenModel = null;
@@ -472,7 +469,7 @@ namespace PlayniteUI
                 await MainModel.UpdateDatabase(AppSettings.UpdateLibStartup, steamCatImportId, !isFirstStart);
             }
 
-            if (isFirstStart)
+            if (isFirstStart && !existingDb)
             {
                 var metaSettings = new MetadataDownloaderSettings();
                 metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
@@ -484,6 +481,7 @@ namespace PlayniteUI
 
         public async void OpenFullscreenView(bool updateDb)
         {
+            logger.Debug("Opening Fullscreen view");
             if (Database.IsOpen)
             {
                 MainModel = null;
@@ -555,6 +553,8 @@ namespace PlayniteUI
                 themeName = name;
                 themeProfile = profile;
             }
+
+            logger.Debug($"Applying theme {themeName}, {themeProfile}, {fullscreen}");
 
             if (fullscreen)
             {

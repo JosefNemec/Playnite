@@ -57,7 +57,9 @@ namespace PlayniteServices.Controllers.IGDB
                 alternative_names = game.alternative_names,
                 external = game.external,
                 screenshots = game.screenshots,
-                videos = game.videos
+                videos = game.videos,
+                artworks = game.artworks,
+                release_dates = game.release_dates                
             };
         
             if (game.developers?.Any() == true)
@@ -103,10 +105,20 @@ namespace PlayniteServices.Controllers.IGDB
             if (game.themes?.Any() == true)
             {
                 parsedGame.themes = new List<string>();
-                foreach (var genre in game.themes)
+                foreach (var theme in game.themes)
                 {
-                    var dbTheme = (await (new ThemeController()).Get(genre, apiKey)).Data;
+                    var dbTheme = (await (new ThemeController()).Get(theme, apiKey)).Data;
                     parsedGame.themes.Add(dbTheme.name);
+                }
+            }
+
+            if (game.platforms?.Any() == true)
+            {
+                parsedGame.platforms = new List<string>();
+                foreach (var platform in game.platforms)
+                {
+                    var dbPlatform = (await (new PlatformController()).Get(platform, apiKey)).Data;
+                    parsedGame.platforms.Add(dbPlatform.name);
                 }
             }
 

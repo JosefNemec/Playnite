@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NLog;
-using Playnite.Database;
-using Playnite.Models;
-using Playnite.SDK;
+using Playnite.Metadata;
 using Playnite.SDK.Models;
 using Playnite.Web;
 using System;
@@ -172,13 +170,13 @@ namespace Playnite.Providers.GOG
                 var image = HttpDownloader.DownloadData("http:" + gameDetail.images.logo2x);
                 var imageName = Path.GetFileName(new Uri(gameDetail.images.logo2x).AbsolutePath);
 
-                metadata.Icon = new FileDefinition(
+                metadata.Icon = new MetadataFile(
                     string.Format("images/gog/{0}/{1}", id, iconName),
                     iconName,
                     icon
                 );
 
-                metadata.Image = new FileDefinition(
+                metadata.Image = new MetadataFile(
                     string.Format("images/gog/{0}/{1}", id, imageName),
                     imageName,
                     image
