@@ -1,6 +1,6 @@
 ﻿using NLog;
 using Playnite;
-using Playnite.MetaProviders;
+using Playnite.Metadata;
 using Playnite.SDK.Models;
 using Playnite.SDK;
 using PlayniteUI.Commands;
@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Playnite.Metadata.Providers;
 
 namespace PlayniteUI.ViewModels
 {
@@ -128,16 +129,6 @@ namespace PlayniteUI.ViewModels
         private IDialogsFactory dialogs;
         private MetadataProvider provider;
         private IResourceProvider resources;
-        private string igdbApiKey;
-
-        public MetadataLookupViewModel(MetadataProvider provider, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, string igdbApiKey)
-        {
-            this.provider = provider;
-            this.window = window;
-            this.dialogs = dialogs;
-            this.resources = resources;
-            this.igdbApiKey = igdbApiKey;
-        }
 
         public MetadataLookupViewModel(MetadataProvider provider, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
@@ -171,13 +162,13 @@ namespace PlayniteUI.ViewModels
                     switch (provider)
                     {
                         case MetadataProvider.Wiki:
-                            var wiki = new Wikipedia();
+                            var wiki = new WikipediaMetadataProvider();
                             var page = wiki.GetPage(id);
                             MetadataData = wiki.ParseGamePage(page, searchTerm);
                             break;
                         case MetadataProvider.IGDB:
-                            var igdb = new IGDBMetadataProvider(igdbApiKey);
-                            MetadataData = igdb.GetParsedGame(UInt64.Parse(id));
+                            var igdb = new IGDBMetadataProvider();
+                            MetadataData = igdb.GetMetadata(id).GameData;
                             break;
                     }
 
@@ -230,7 +221,7 @@ namespace PlayniteUI.ViewModels
             switch (provider)
             {
                 case MetadataProvider.Wiki:
-                    var wiki = new Wikipedia();
+                    var wiki = new WikipediaMetadataProvider();
                     foreach (var page in wiki.Search(keyword))
                     {
                         searchList.Add(new SearchResult(page.title, page.title, page.snippet));
@@ -239,12 +230,12 @@ namespace PlayniteUI.ViewModels
                     break;
 
                 case MetadataProvider.IGDB:
-                    var igdb = new IGDBMetadataProvider(igdbApiKey);
-                    foreach (var page in igdb.Search(keyword))
+                    var igdb = new IGDBMetadataProvider();
+                    foreach (var page in igdb.SearchMetadata(new Game(keyword)))
                     {
                         searchList.Add(new SearchResult(
-                            page.id.ToString(), 
-                            page.name + (page.first_release_date == 0 ? "" : $" ({DateTimeOffset.FromUnixTimeMilliseconds(page.first_release_date).DateTime.Year.ToString()})"),
+                            page.Id, 
+                            page.Name + (page.ReleaseDate == null ? "" : $" ({page.ReleaseDate.Value.Year})"),
                             string.Empty));
                     }
 

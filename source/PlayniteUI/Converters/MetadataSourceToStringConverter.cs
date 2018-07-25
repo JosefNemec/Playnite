@@ -1,5 +1,5 @@
 ﻿using Playnite;
-using Playnite.MetaProviders;
+using Playnite.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;

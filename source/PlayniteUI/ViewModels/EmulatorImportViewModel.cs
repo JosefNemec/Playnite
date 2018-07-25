@@ -67,7 +67,7 @@ namespace PlayniteUI.ViewModels
             } = true;
 
             public ImportableEmulator(ScannedEmulator emulator) : base(emulator.Name, emulator.Profiles)
-            {                
+            {
             }
         }
 
@@ -182,6 +182,11 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        public List<Game> ImportedGames
+        {
+            get; private set;
+        }
+
         public List<Emulator> AvailableEmulators
         {
             get
@@ -278,18 +283,6 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public RelayCommand<object> SelectGameFilesCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                var files = dialogs.SelectFiles("All files|*.*");
-                if (files != null)
-                {
-                    ImportGamesFiles(files);
-                }
-            });
-        }
-
         public RelayCommand<object> ScanGamesOpeningCommand
         {
             get => new RelayCommand<object>((args) =>
@@ -377,6 +370,8 @@ namespace PlayniteUI.ViewModels
 
         public async void SearchEmulators(string path)
         {
+            logger.Info($"Scanning {path} for emulators.");
+
             try
             {
                 IsLoading = true;
@@ -400,6 +395,8 @@ namespace PlayniteUI.ViewModels
 
         public async void SearchGames(string path, EmulatorProfile profile)
         {
+            logger.Info($"Scanning {path} for emulated games using {profile} profile.");
+
             try
             {
                 IsLoading = true;
@@ -433,18 +430,14 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public void ImportGamesFiles(List<string> files)
-        {
-
-        }
-
-        public void AddSelectedGamesToDB()
+        private void AddSelectedGamesToDB()
         {
             if (GamesList == null || GamesList.Count == 0)
             {
                 return;
             }
 
+            logger.Info($"Adding {GamesList.Count} new emulated games to DB.");
             foreach (var game in GamesList)
             {
                 if (!game.Import)
@@ -462,16 +455,18 @@ namespace PlayniteUI.ViewModels
                 game.Game.State = new GameState() { Installed = true };
             }
 
-            database.AddGames(GamesList.Where(a => a.Import)?.Select(a => a.Game).ToList());
+            ImportedGames = GamesList.Where(a => a.Import)?.Select(a => a.Game).ToList();
+            database.AddGames(ImportedGames);
         }
 
-        public void AddSelectedEmulatorsToDB()
+        private void AddSelectedEmulatorsToDB()
         {
             if (EmulatorList == null || EmulatorList.Count == 0)
             {
                 return;
             }
 
+            logger.Info($"Adding {EmulatorList.Count} new emulators to DB.");
             foreach (var emulator in EmulatorList)
             {
                 if (emulator.Import)

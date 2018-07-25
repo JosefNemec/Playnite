@@ -41,6 +41,7 @@ namespace Playnite.Providers.GOG
             ReleaseResources();
             if (settings?.GOGSettings.RunViaGalaxy == true)
             {
+                logger.Info($"Starting game {Game.ProviderId} via GOG Galaxy from {Game.InstallDirectory}");
                 OnStarting(this, new GameControllerEventArgs(this, 0));
                 stopWatch = Stopwatch.StartNew();
                 procMon = new ProcessMonitor();
@@ -59,7 +60,7 @@ namespace Playnite.Providers.GOG
         public override void Install()
         {
             ReleaseResources();
-            Process.Start(@"goggalaxy://openGameView/" + Game.ProviderId);
+            ProcessStarter.StartUrl(@"goggalaxy://openGameView/" + Game.ProviderId);
             StartInstallWatcher();
         }
 

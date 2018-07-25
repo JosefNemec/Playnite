@@ -186,7 +186,6 @@ namespace PlayniteUI.ViewModels
         }
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private GameDatabase database;
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private CancellationTokenSource cancelToken;
@@ -239,13 +238,6 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public InstalledGamesViewModel(GameDatabase database, IWindowFactory window, IDialogsFactory dialogs)
-        {
-            this.database = database;
-            this.window = window;
-            this.dialogs = dialogs;
-        }
-
         public InstalledGamesViewModel(IWindowFactory window, IDialogsFactory dialogs)
         {
             this.window = window;
@@ -259,9 +251,13 @@ namespace PlayniteUI.ViewModels
 
         public bool? OpenView(string directory)
         {
+            if (!string.IsNullOrEmpty(directory))
+            {
 #pragma warning disable CS4014
-            ScanFolder(directory);
+                ScanFolder(directory);
 #pragma warning restore CS4014
+            }
+
             return window.CreateAndOpenDialog(this);
         }
 
@@ -325,22 +321,6 @@ namespace PlayniteUI.ViewModels
                 };
 
                 Games.Add(data);
-            }
-
-            if (database != null)
-            {
-                foreach (var game in Games)
-                {
-                    if (game.Icon != null)
-                    {
-                        var iconId = "images/custom/" + game.Icon.Name;                        
-                        game.Game.Icon = database.AddFileNoDuplicate(iconId, game.Icon.Name, game.Icon.Data);
-                    }
-                }
-
-                var games = Games.Select(a => a.Game).ToList();
-                database.AddGames(games);
-                database.AssignPcPlatform(games);
             }
 
             CloseView(true);
@@ -436,6 +416,23 @@ namespace PlayniteUI.ViewModels
         public void CancelProgress()
         {
             cancelToken?.Cancel();
+        }
+
+        public static List<Game> AddImportableGamesToDb(List<InstalledGameMetadata> games, GameDatabase database)
+        {
+            foreach (var game in games)
+            {
+                if (game.Icon != null)
+                {
+                    var iconId = "images/custom/" + game.Icon.Name;
+                    game.Game.Icon = database.AddFileNoDuplicate(iconId, game.Icon.Name, game.Icon.Data);
+                }
+            }
+
+            var insertGames = games.Select(a => a.Game).ToList();
+            database.AddGames(insertGames);
+            database.AssignPcPlatform(insertGames);
+            return insertGames;
         }
     }
 }

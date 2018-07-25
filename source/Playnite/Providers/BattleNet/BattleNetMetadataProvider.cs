@@ -1,37 +1,42 @@
-﻿using Playnite.MetaProviders;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Playnite.Models;
 using Playnite.SDK.Models;
+using Playnite.Metadata;
 
 namespace Playnite.Providers.BattleNet
 {
     public class BattleNetMetadataProvider : IMetadataProvider
     {
-        public GameMetadata GetGameData(string gameId)
+        public GameMetadata GetMetadata(string metadataId)
         {
             var gameData = new Game("BattleNetGame")
             {
-                Provider = Provider.Steam,
-                ProviderId = gameId
+                Provider = Provider.BattleNet,
+                ProviderId = metadataId
             };
 
-            var steamLib = new BattleNetLibrary();
-            var data = steamLib.UpdateGameWithMetadata(gameData);
+            var bnetLib = new BattleNetLibrary();
+            var data = bnetLib.UpdateGameWithMetadata(gameData);
             return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
         }
 
-        public bool GetSupportsIdSearch()
+        public GameMetadata GetMetadata(Game game)
         {
-            return true;
+            if (game.Provider == Provider.BattleNet)
+            {
+                return GetMetadata(game.ProviderId);
+            }
+
+            throw new NotImplementedException();
         }
 
-        public List<MetadataSearchResult> SearchGames(string gameName)
+        public ICollection<MetadataSearchResult> SearchMetadata(Game game)
         {
-            throw new NotSupportedException();
+            throw new NotImplementedException();
         }
     }
 }

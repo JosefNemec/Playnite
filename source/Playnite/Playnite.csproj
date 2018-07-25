@@ -84,7 +84,8 @@
       <HintPath>..\packages\IronPython.2.7.8.1\lib\net45\IronPython.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="LiteDB, Version=3.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiteDB.3.1.4\lib\net462\LiteDB.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\LiteDB.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Dynamic, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicLanguageRuntime.1.2.1\lib\net45\Microsoft.Dynamic.dll</HintPath>
@@ -175,6 +176,10 @@
     <Compile Include="Extensions\BitmapExtensions.cs" />
     <Compile Include="Database\GameDatabase.cs" />
     <Compile Include="Extensions\Enums.cs" />
+    <Compile Include="Metadata\IMetadataProvider.cs" />
+    <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
+    <Compile Include="Metadata\MetadataFile.cs" />
+    <Compile Include="Metadata\MetadataSearchResult.cs" />
     <Compile Include="Models\ActiveController.cs" />
     <Compile Include="Plugins\Plugins.cs" />
     <Compile Include="Scripting\IronPython\IronPython.cs" />
@@ -197,8 +202,8 @@
     <Compile Include="InteropMethods.cs" />
     <Compile Include="App\IPlayniteApplication.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
-    <Compile Include="MetaProviders\IGDBMetadataDownloader.cs" />
-    <Compile Include="MetaProviders\MetadataDownloader.cs" />
+    <Compile Include="Metadata\Providers\IGDBMetadataProvider.cs" />
+    <Compile Include="Metadata\MetadataDownloader.cs" />
     <Compile Include="Models\Old\1\Emulator.cs" />
     <Compile Include="Models\Old\1\Game.cs" />
     <Compile Include="Models\Old\1\GameTask.cs" />
@@ -215,11 +220,11 @@
     <Compile Include="Diagnostic.cs" />
     <Compile Include="Settings\FilterSettings.cs" />
     <Compile Include="Extensions\IconExtension.cs" />
-    <Compile Include="MetaProviders\Wikipedia.cs" />
+    <Compile Include="Metadata\Providers\WikipediaMetadataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BattleNet\BattleNetLibrary.cs" />
     <Compile Include="Providers\BattleNet\BattleNetSettings.cs" />
-    <Compile Include="Models\GameMetadata.cs" />
+    <Compile Include="Metadata\GameMetadata.cs" />
     <Compile Include="Providers\BattleNet\BattleNetMetadataProvider.cs" />
     <Compile Include="Providers\BattleNet\IBattleNetLibrary.cs" />
     <Compile Include="Providers\BattleNet\BattleNetGameController.cs" />
@@ -264,9 +269,9 @@
     <Compile Include="Services\ServicesClient.cs" />
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="ThridPartyToolsList.cs" />
+    <Compile Include="ThirdPartyToolsList.cs" />
     <Compile Include="Timer.cs" />
-    <Compile Include="App\Update.cs" />
+    <Compile Include="App\Updater.cs" />
     <Compile Include="Settings\ViewProperties.cs" />
     <Compile Include="Web\Downloader.cs" />
     <Compile Include="Web\HttpDownloader.cs" />
@@ -328,7 +333,7 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

@@ -15,8 +15,7 @@ namespace PlayniteTests.MetaProviders
         public void StandardDownloadTest()
         {
             var provider = new OriginMetadataProvider();
-            Assert.IsTrue(provider.GetSupportsIdSearch());
-            var data = provider.GetGameData("Origin.OFR.50.0000557");
+            var data = provider.GetMetadata("Origin.OFR.50.0000557");
             Assert.IsNotNull(data.GameData);
             Assert.IsNotNull(data.Image);
             Assert.IsNotNull(data.GameData.ReleaseDate);

@@ -1,4 +1,4 @@
-﻿using Playnite.MetaProviders;
+﻿using Playnite.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,12 +27,12 @@ namespace Playnite.Providers.Steam
             this.playniteServices = playniteServices;
         }
 
-        public GameMetadata GetGameData(string gameId)
+        public GameMetadata GetMetadata(string metadataId)
         {
             var gameData = new Game("SteamGame")
             {
                 Provider = Provider.Steam,
-                ProviderId = gameId
+                ProviderId = metadataId
             };
 
             var steamLib = new SteamLibrary(playniteServices);
@@ -40,14 +40,19 @@ namespace Playnite.Providers.Steam
             return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
         }
 
-        public bool GetSupportsIdSearch()
+        public GameMetadata GetMetadata(Game game)
         {
-            return true;
+            if (game.Provider == Provider.Steam)
+            {
+                return GetMetadata(game.ProviderId);
+            }
+
+            throw new NotImplementedException();
         }
 
-        public List<MetadataSearchResult> SearchGames(string gameName)
+        public ICollection<MetadataSearchResult> SearchMetadata(Game game)
         {
-            throw new NotSupportedException();
+            throw new NotImplementedException();
         }
     }
 }

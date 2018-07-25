@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Playnite.MetaProviders;
+using Playnite.Metadata.Providers;
 using Playnite.SDK.Models;
 
-namespace PlayniteTests.MetaProviders
+namespace PlayniteTests.Metadata
 {
     [TestFixture]
-    public class WikipediaTests
+    public class WikipediaMetadataProviderTests
     {
         private void ValidateGameDate(Game game)
         {
@@ -28,7 +28,7 @@ namespace PlayniteTests.MetaProviders
         [Test]
         public void ParseGamePage_MetadataParsingTest()
         {
-            var wiki = new Wikipedia();
+            var wiki = new WikipediaMetadataProvider();
 
             // Standard page
             var game = wiki.ParseGamePage(wiki.GetPage("Guild Wars 2"));

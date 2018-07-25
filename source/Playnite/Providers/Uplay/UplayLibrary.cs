@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Playnite.SDK.Models;
 using Microsoft.Win32;
 using System.IO;
-using Playnite.Models;
+using Playnite.Metadata;
 
 namespace Playnite.Providers.Uplay
 {
@@ -75,7 +75,7 @@ namespace Playnite.Providers.Uplay
                 var iconPath = program.DisplayIcon;
                 var iconFile = Path.GetFileName(iconPath);
                 var data = File.ReadAllBytes(iconPath);
-                metadata.Icon = new Database.FileDefinition($"images/uplay/{game.ProviderId}/{iconFile}", iconFile, data);
+                metadata.Icon = new MetadataFile($"images/uplay/{game.ProviderId}/{iconFile}", iconFile, data);
             }
 
             game.Name = StringExtensions.NormalizeGameName(program.DisplayName);

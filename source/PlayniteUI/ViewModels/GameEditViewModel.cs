@@ -19,6 +19,7 @@ using Playnite.Providers.BattleNet;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.Web;
+using Playnite.Metadata;
 
 namespace PlayniteUI.ViewModels
 {
@@ -2149,7 +2150,7 @@ namespace PlayniteUI.ViewModels
             }
 
             var path = EditingGame.ResolveVariables(EditingGame.PlayTask.Path);
-            if (!File.Exists(path))
+            if (!File.Exists(path) && !string.IsNullOrEmpty(EditingGame.PlayTask.WorkingDir))
             {
                 path = Path.Combine(
                     EditingGame.ResolveVariables(EditingGame.PlayTask.WorkingDir),
@@ -2365,17 +2366,17 @@ namespace PlayniteUI.ViewModels
                     
                     if (metadata.Image != null)
                     {
-                        var path = Path.Combine(Paths.TempPath, metadata.Image.Name);
+                        var path = Path.Combine(Paths.TempPath, metadata.Image.FileName);
                         FileSystem.PrepareSaveFile(path);
-                        File.WriteAllBytes(path, metadata.Image.Data);
+                        File.WriteAllBytes(path, metadata.Image.Content);
                         tempGame.Image = path;
                     }
 
                     if (metadata.Icon != null)
                     {
-                        var path = Path.Combine(Paths.TempPath, metadata.Icon.Name);
+                        var path = Path.Combine(Paths.TempPath, metadata.Icon.FileName);
                         FileSystem.PrepareSaveFile(path);
-                        File.WriteAllBytes(path, metadata.Icon.Data);
+                        File.WriteAllBytes(path, metadata.Icon.Content);
                         tempGame.Icon = path;
                     }
 

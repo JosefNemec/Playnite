@@ -1,4 +1,4 @@
-﻿using Playnite.MetaProviders;
+﻿using Playnite.Metadata;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -11,27 +11,32 @@ namespace Playnite.Providers.GOG
 {
     public class GogMetadataProvider : IMetadataProvider
     {
-        public GameMetadata GetGameData(string gameId)
+        public GameMetadata GetMetadata(string metadataId)
         {
             var gameData = new Game("GOGGame")
             {
-                Provider = Provider.Steam,
-                ProviderId = gameId
+                Provider = Provider.GOG,
+                ProviderId = metadataId
             };
 
-            var steamLib = new GogLibrary();
-            var data = steamLib.UpdateGameWithMetadata(gameData);
+            var gogLib = new GogLibrary();
+            var data = gogLib.UpdateGameWithMetadata(gameData);
             return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
         }
 
-        public bool GetSupportsIdSearch()
+        public GameMetadata GetMetadata(Game game)
         {
-            return true;
+            if (game.Provider == Provider.GOG)
+            {
+                return GetMetadata(game.ProviderId);
+            }
+
+            throw new NotImplementedException();
         }
 
-        public List<MetadataSearchResult> SearchGames(string gameName)
+        public ICollection<MetadataSearchResult> SearchMetadata(Game game)
         {
-            throw new NotSupportedException();
+            throw new NotImplementedException();
         }
     }
 }

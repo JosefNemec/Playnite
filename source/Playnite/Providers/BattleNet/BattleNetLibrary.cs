@@ -1,4 +1,5 @@
 ﻿using AngleSharp.Parser.Html;
+using Playnite.Metadata;
 using Playnite.Models;
 using Playnite.SDK.Models;
 using Playnite.Web;
@@ -334,6 +335,11 @@ namespace Playnite.Providers.BattleNet
                         continue;
                     }
 
+                    if (prog.DisplayName.EndsWith("Test"))
+                    {
+                        continue;
+                    }
+
                     var iId = match.Groups[1].Value;
                     var product = BattleNetProducts.FirstOrDefault(a => a.Type == BNetAppType.Default && iId.StartsWith(a.InternalId));
                     if (product == null)
@@ -375,10 +381,10 @@ namespace Playnite.Providers.BattleNet
             game.Name = product.Name;
             var icon = HttpDownloader.DownloadData(product.IconUrl);
             var iconFile = Path.GetFileName(product.IconUrl);
-            metadata.Icon = new Database.FileDefinition($"images/battlenet/{game.ProviderId}/{iconFile}", iconFile, icon);
+            metadata.Icon = new MetadataFile($"images/battlenet/{game.ProviderId}/{iconFile}", iconFile, icon);
             var cover = HttpDownloader.DownloadData(product.CoverUrl);
             var coverFile = Path.GetFileName(product.CoverUrl);
-            metadata.Image = new Database.FileDefinition($"images/battlenet/{game.ProviderId}/{coverFile}", coverFile, cover);
+            metadata.Image = new MetadataFile($"images/battlenet/{game.ProviderId}/{coverFile}", coverFile, cover);
             game.BackgroundImage = product.BackgroundUrl;
             metadata.BackgroundImage = product.BackgroundUrl;
             game.Links = new ObservableCollection<Link>(product.Links);

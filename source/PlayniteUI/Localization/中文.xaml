@@ -131,8 +131,9 @@
     <sys:String x:Key="LOCSaturday">星期六</sys:String>
     <sys:String x:Key="LOCSunday">星期日</sys:String>
     <sys:String x:Key="LOCImportCompleted">导入已成功完成。</sys:String>
-	
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">特殊变量可以用来添加动态字符串：
+	<sys:String x:Key="LOCAllGames">所有游戏</sys:String>
+    
+	<sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">特殊变量可以用来添加动态字符串：
 {InstallDir} - 游戏安装目录
 {InstallDirName} - 安装文件夹的名称
 {ImagePath} - 游戏ISO / ROM路径（如果设置）
@@ -485,9 +486,10 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCUpdateCheckFailMessage">无法检查新版本。</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">找不到新版本，您已是最新版本。</sys:String>
     <sys:String x:Key="LOCUGeneralUpdateFailMessage">无法下载并安装更新。</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">后台任务目前正在进行中，您是否要取消它并安装更新？</sys:String>
-
-    <sys:String x:Key="LOCThemeTestReloadList">重新加载主题列表</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">后台任务当前正在运行，是否要取消它并使用更新安装进行处理？</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">后台任务当前正在运行，您要取消它并关闭Playnite吗？</sys:String>
+	   
+	<sys:String x:Key="LOCThemeTestReloadList">重新加载主题列表</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">应用选定的主题</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">观看文件更改</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">源文件更改时自动应用主题</sys:String>
@@ -506,7 +508,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCOpenGameLocation">打开安装位置</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">>创建桌面快捷方式</sys:String>
     <sys:String x:Key="LOCMoreAction">更多</sys:String>
-
+   
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">在指定页面上没有找到关于游戏“{0}”的任何相关信息。</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">提示：您可以通过“编辑”菜单选项编辑单个游戏时使用更高级的数据下载过程</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">某些操作正在进行时不可用</sys:String>

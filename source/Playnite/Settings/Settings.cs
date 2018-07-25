@@ -197,7 +197,7 @@ namespace Playnite
             }
         }
 
-        private bool showIconsOnList = false;
+        private bool showIconsOnList = true;
         public bool ShowIconsOnList
         {
             get

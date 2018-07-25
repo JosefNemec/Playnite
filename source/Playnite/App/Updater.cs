@@ -131,6 +131,7 @@ namespace Playnite.App
                 var md5 = FileSystem.GetMD5(updaterPath);
                 if (md5 == package.Checksum)
                 {
+                    logger.Info("Update already downloaded skipping download.");
                     return;
                 }
             }

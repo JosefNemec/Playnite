@@ -41,15 +41,17 @@
         <pui:XInputBinding Button="B" Command="{Binding ToggleGameDetailsCommand}" />
         <pui:XInputBinding Button="X" Command="{Binding ToggleGameDetailsCommand}" />
         <pui:XInputBinding Button="Y" Command="{Binding OpenSearchCommand}" />
-        <pui:XInputBinding Button="LeftShoulder" Command="{Binding ClearFiltersCommand}" />
+        <pui:XInputBinding Button="LeftShoulder" Command="{Binding ClearSearchCommand}" />
         <pui:XInputBinding Button="RightShoulder" Command="{Binding ToggleSortingOrderCommand}" />
-        
-        <KeyBinding Key="Backspace" Command="{Binding ClearFiltersCommand}" />
+        <pui:XInputBinding Button="Start" Command="{Binding ToggleInstallFilterCommand}" />
+
+        <KeyBinding Key="Backspace" Command="{Binding ClearSearchCommand}" />
         <KeyBinding Key="Tab" Command="{Binding ToggleSortingOrderCommand}" />
         <KeyBinding Key="Y" Command="{Binding OpenSearchCommand}" />
         <KeyBinding Key="X" Command="{Binding ToggleGameDetailsCommand}" />
         <KeyBinding Key="B" Command="{Binding ToggleGameDetailsCommand}" />
         <KeyBinding Key="Esc" Command="{Binding ToggleExitMenuCommand}" />
+        <KeyBinding Key="Insert" Command="{Binding ToggleInstallFilterCommand}" />
         <KeyBinding Key="Return" Command="{Binding StartGameCommand}" CommandParameter="{Binding SelectedGame.Game}"/>
     </c:WindowBase.InputBindings>
 

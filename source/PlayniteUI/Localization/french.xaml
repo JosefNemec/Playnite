@@ -130,7 +130,8 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCFriday">Vendredi</sys:String>
     <sys:String x:Key="LOCSaturday">Samedi</sys:String>
     <sys:String x:Key="LOCSunday">Dimanche</sys:String>
-    <sys:String x:Key="LOCImportCompleted">Succès de l'importation</sys:String>
+    <sys:String x:Key="LOCImportCompleted">Les catégories ont été importées avec succès.</sys:String>
+    <sys:String x:Key="LOCAllGames">Tous</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Des variables spéciales peuvent être utilisées pour ajouter une chaîne dynamique:
 {InstallDir} - Répertoire d'installation du jeu
@@ -475,7 +476,13 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Mise à jour disponible</sys:String>
     <sys:String x:Key="LOCUpdaterChangesInfo">Changements depuis la dernière mise à jour:</sys:String>
     <sys:String x:Key="LOCUpdaterInstallUpdate">Installer la mise à jour</sys:String>
+    <sys:String x:Key="LOCCheckForUpdates">Mises à jour</sys:String>
+    <sys:String x:Key="LOCUpdateError">Erreur lors de la mise à jour.</sys:String>
+    <sys:String x:Key="LOCUpdateCheckFailMessage">Erreur lors de la recherche.</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Vous possédez déjà la dernière version de Playnite.</sys:String>
+    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Erreur lors de l'installation.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Une tâche de fond est en cours d'exécution, voulez-vous l'annuler ?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Une tâche de fond est en cours d'exécution, voulez-vous l'annuler et fermer Playnite ?</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Actualiser la liste des thèmes</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Appliquer le thème sélectionnée</sys:String>

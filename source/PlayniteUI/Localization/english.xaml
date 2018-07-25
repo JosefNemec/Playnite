@@ -131,6 +131,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCSaturday">Saturday</sys:String>
     <sys:String x:Key="LOCSunday">Sunday</sys:String>
     <sys:String x:Key="LOCImportCompleted">Import completed successfully.</sys:String>
+    <sys:String x:Key="LOCAllGames">All Games</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
@@ -485,7 +486,8 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Failed to check for new version.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">No new version found, you are up to date.</sys:String>
     <sys:String x:Key="LOCUGeneralUpdateFailMessage">Failed to download and install update.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Background task is currently in progress, do you want to cancel it and processed with update installation?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Background task is currently running, do you want to cancel it and processed with update installation?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Background task is currently running, do you want to cancel it and close Playnite?</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Reload theme list</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Apply selected theme</sys:String>
