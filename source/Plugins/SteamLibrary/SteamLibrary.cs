@@ -331,7 +331,7 @@ namespace SteamLibrary
         }
 
 
-        #region IGameLibrary
+        #region ILibraryPlugin
 
         public Guid Id { get; } = Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB");
 
@@ -359,6 +359,6 @@ namespace SteamLibrary
             return new SteamMetadataProvider(servicesClient, (SteamLibrarySettings)Settings, apiClient, playniteApi.CreateLogger("SteamMetadataProvider"));
         }
 
-        #endregion IGameLibrary
+        #endregion ILibraryPlugin
     }
 }
