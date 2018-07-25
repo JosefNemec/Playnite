@@ -1828,7 +1828,6 @@
                         </MultiDataTrigger>
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter Property="Content" Value="2" TargetName="PART_ButtonMaximize"/>
-                            <Setter Property="Padding" Value="8" TargetName="WindowBorder"/>
                         </Trigger>
                         <Trigger Property="IsActive" Value="False">
                             <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" TargetName="WindowBorder"/>
