@@ -271,7 +271,7 @@ namespace PlayniteUI.ViewModels
         public RelayCommand<object> CloseFilterPanelCommand { get; private set; }
         public RelayCommand<object> OpenMainMenuCommand { get; private set; }
         public RelayCommand<object> CloseMainMenuCommand { get; private set; }
-        public RelayCommand<ThirdPartyTool> ThridPartyToolOpenCommand { get; private set; }
+        public RelayCommand<ThirdPartyTool> ThirdPartyToolOpenCommand { get; private set; }
         public RelayCommand<object> UpdateGamesCommand { get; private set; }
         public RelayCommand<object> OpenSteamFriendsCommand { get; private set; }
         public RelayCommand<object> ReportIssueCommand { get; private set; }
@@ -395,13 +395,13 @@ namespace PlayniteUI.ViewModels
             OpenFilterPanelCommand = new RelayCommand<object>((game) =>
             {
                 AppSettings.FilterPanelVisible = true;
-            });        
+            });
 
             CloseFilterPanelCommand = new RelayCommand<object>((game) =>
             {
                 AppSettings.FilterPanelVisible = false;
             });
-        
+
             OpenMainMenuCommand = new RelayCommand<object>((game) =>
             {
                 MainMenuOpened = true;
@@ -412,7 +412,7 @@ namespace PlayniteUI.ViewModels
                 MainMenuOpened = false;
             });
 
-            ThridPartyToolOpenCommand = new RelayCommand<ThirdPartyTool>((tool) =>
+            ThirdPartyToolOpenCommand = new RelayCommand<ThirdPartyTool>((tool) =>
             {
                 MainMenuOpened = false;
                 StartThirdPartyTool(tool);
@@ -888,7 +888,7 @@ namespace PlayniteUI.ViewModels
                 await GlobalTaskHandler.ProgressTask;
             }
 
-            GameAdditionAllowed = false;           
+            GameAdditionAllowed = false;
 
             try
             {
@@ -1028,7 +1028,7 @@ namespace PlayniteUI.ViewModels
                             Resources.FindString("LOCSteamLibraryImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
-                                        
+
                     if (steamImportCatId > 0)
                     {
                         ProgressStatus = Resources.FindString("LOCProgressSteamCategoryImport");
@@ -1085,7 +1085,7 @@ namespace PlayniteUI.ViewModels
                             Resources.FindString("LOCBnetLibraryImportError") + $" {e.Message}",
                             NotificationType.Error, null));
                     }
-                                        
+
                     ProgressStatus = Resources.FindString("LOCProgressLibImportFinish");
                     await Task.Delay(1500);
 
@@ -1243,7 +1243,7 @@ namespace PlayniteUI.ViewModels
                 }
             }
         }
-        
+
         public void OpenAboutWindow(AboutViewModel model)
         {
             model.OpenView();
@@ -1371,7 +1371,7 @@ namespace PlayniteUI.ViewModels
 
         public void RemoveMessage(NotificationMessage message)
         {
-            context.Send((c => Messages.Remove(message)), null);            
+            context.Send((c => Messages.Remove(message)), null);
         }
 
         public void ClearMessages()
@@ -1391,7 +1391,7 @@ namespace PlayniteUI.ViewModels
                 }
                 else
                 {
-                    Dialogs.ShowMessage(Resources.FindString("LOCUpdateNoNewUpdateMessage"), string.Empty);                    
+                    Dialogs.ShowMessage(Resources.FindString("LOCUpdateNoNewUpdateMessage"), string.Empty);
                 }
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -1409,7 +1409,7 @@ namespace PlayniteUI.ViewModels
             }
 
             CloseView();
-            App.CurrentApp.OpenFullscreenView(false);            
+            App.CurrentApp.OpenFullscreenView(false);
         }
 
         public void OpenView()
@@ -1430,7 +1430,7 @@ namespace PlayniteUI.ViewModels
         public async void CancelProgress()
         {
             await GlobalTaskHandler.CancelAndWaitAsync();
-        }        
+        }
 
         public virtual void ClearFilters()
         {
