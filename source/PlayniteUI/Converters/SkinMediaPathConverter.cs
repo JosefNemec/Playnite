@@ -11,6 +11,7 @@ using NLog;
 using System.IO;
 using Playnite;
 using System.Windows.Markup;
+using Playnite.Settings;
 
 namespace PlayniteUI
 {
@@ -31,7 +32,7 @@ namespace PlayniteUI
                 return DependencyProperty.UnsetValue;
             }
 
-            var filePath = Path.Combine(Paths.ProgramPath, skinFolder, skinName, path);
+            var filePath = Path.Combine(PlaynitePaths.ProgramPath, skinFolder, skinName, path);
             if (File.Exists(filePath))
             {
                 return filePath;

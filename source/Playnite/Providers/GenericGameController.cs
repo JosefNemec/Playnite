@@ -28,20 +28,20 @@ namespace Playnite.Providers
 
         public override void ActivateAction(GameAction action)
         {
-            GameActionActivator.ActivateTask(action, Game);
+            GameActionActivator.ActivateAction(action, Game);
         }
 
         public override void Play()
         {            
             if (Game.PlayAction == null)
             {
-                throw new Exception("Cannot start game without play task");
+                throw new Exception("Cannot start game without play action.");
             }
 
             Dispose();
             OnStarting(this, new GameControllerEventArgs(this, 0));
             var emulators = database.GetEmulators();
-            var proc = GameActionActivator.ActivateTask(Game.PlayAction, Game, emulators);
+            var proc = GameActionActivator.ActivateAction(Game.PlayAction, Game, emulators);
             OnStarted(this, new GameControllerEventArgs(this, 0));
 
             if (Game.PlayAction.Type != GameActionType.URL)

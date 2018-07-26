@@ -7,8 +7,6 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using CefSharp;
-using NLog;
-using NLog.Config;
 using Playnite;
 using Playnite.Database;
 using PlayniteUI.Windows;
@@ -26,6 +24,8 @@ using Playnite.Plugins;
 using Playnite.Scripting;
 using Playnite.App;
 using Playnite.Providers;
+using Playnite.Settings;
+using Playnite.SDK;
 
 namespace PlayniteUI
 {
@@ -34,7 +34,7 @@ namespace PlayniteUI
     /// </summary>
     public partial class App : Application, INotifyPropertyChanged, IPlayniteApplication
     {
-        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private const string instanceMuxet = "PlayniteInstaceMutex";
         private Mutex appMutex;
         private bool resourcesReleased = false;
@@ -44,7 +44,7 @@ namespace PlayniteUI
         private DialogsFactory dialogs;
         private GameControllerFactory controllers;
 
-        public Version CurrentVersion
+        public System.Version CurrentVersion
         {
             get => Updater.GetCurrentVersion();
         }
@@ -80,7 +80,7 @@ namespace PlayniteUI
             private set;
         }
 
-        public static Settings AppSettings
+        public static PlayniteSettings AppSettings
         {
             get;
             private set;
@@ -135,15 +135,14 @@ namespace PlayniteUI
         {
 #if !DEBUG
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-#endif
-            Settings.ConfigureLogger();
+#endif    
 
             // Multi-instance checking
             if (Mutex.TryOpenExisting(instanceMuxet, out var mutex))
             {
                 try
                 {
-                    var client = new PipeClient(Settings.GetAppConfigValue("PipeEndpoint"));
+                    var client = new PipeClient(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
                     if (e.Args.Count() > 0 && e.Args.Contains("-command"))
                     {
                         var commandArgs = e.Args[1].Split(new char[] { ':' });
@@ -173,7 +172,7 @@ namespace PlayniteUI
             }
 
             Time.Instance = new Time();
-            AppSettings = Settings.LoadSettings();
+            AppSettings = PlayniteSettings.LoadSettings();
             Localization.SetLanguage(AppSettings.Language);
             Resources.Remove("AsyncImagesEnabled");
             Resources.Add("AsyncImagesEnabled", AppSettings.AsyncImageLoading);
@@ -181,9 +180,13 @@ namespace PlayniteUI
             {
                 System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
             }
-            
-            Settings.ConfigureCef();
+
+            CefTools.ConfigureCef();
             dialogs = new DialogsFactory(AppSettings.StartInFullscreen);
+
+            var view = new PlayniteUI.WebView.OffscreenWebView();
+            view.Navigate("www.google.com");
+            Console.WriteLine(view.GetPageSource());
 
             // Create directories
             try
@@ -216,7 +219,7 @@ namespace PlayniteUI
                     }
                     else
                     {
-                        AppSettings.DatabasePath = Path.Combine(Paths.UserProgramDataPath, "games.db");
+                        AppSettings.DatabasePath = Path.Combine(PlaynitePaths.UserProgramDataPath, "games.db");
                     }
 
                     AppSettings.SaveSettings();
@@ -231,7 +234,7 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    AppSettings.DatabasePath = Path.Combine(Paths.UserProgramDataPath, "games.db");
+                    AppSettings.DatabasePath = Path.Combine(PlaynitePaths.UserProgramDataPath, "games.db");
                     AppSettings.SaveSettings();
                     existingDb = File.Exists(AppSettings.DatabasePath);
                     Database = new GameDatabase(AppSettings.DatabasePath);
@@ -278,7 +281,7 @@ namespace PlayniteUI
             // Pipe server
             pipeService = new PipeService();
             pipeService.CommandExecuted += PipeService_CommandExecuted;
-            pipeServer = new PipeServer(Settings.GetAppConfigValue("PipeEndpoint"));
+            pipeServer = new PipeServer(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
             pipeServer.StartServer(pipeService);
 
             var args = Environment.GetCommandLineArgs();
@@ -301,7 +304,7 @@ namespace PlayniteUI
 
         private void PipeService_CommandExecuted(object sender, CommandExecutedEventArgs args)
         {
-            logger.Info(@"Executing command ""{0}"" from pipe with arguments ""{1}""", args.Command, args.Args);
+            logger.Info($"Executing command \"{args.Command}\" from pipe with arguments \"{args.Args}\"");
 
             switch (args.Command)
             {
@@ -314,7 +317,7 @@ namespace PlayniteUI
                     var game = Database.GamesCollection.FindById(int.Parse(args.Args));
                     if (game == null)
                     {
-                        logger.Error("Cannot start game, game {0} not found.", args.Args);
+                        logger.Error($"Cannot start game, game {args.Args} not found.");
                     }
                     else
                     {
@@ -386,7 +389,7 @@ namespace PlayniteUI
         public void Restart()
         {
             ReleaseResources();
-            Process.Start(Paths.ExecutablePath);
+            Process.Start(PlaynitePaths.ExecutablePath);
             Shutdown(0);
         }
 

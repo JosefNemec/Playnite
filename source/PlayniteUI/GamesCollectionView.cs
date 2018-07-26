@@ -1,5 +1,4 @@
-﻿using NLog;
-using Playnite;
+﻿using Playnite;
 using Playnite.Database;
 using Playnite.SDK.Models;
 using System;
@@ -13,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using Playnite.SDK;
 using Playnite.Database.Events;
+using Playnite.Settings;
 
 namespace PlayniteUI
 {
@@ -390,7 +390,7 @@ namespace PlayniteUI
 
     public class GamesCollectionView : ObservableObject, IDisposable
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
 
         private GameDatabase database;
         private List<Platform> platformsCache;
@@ -411,7 +411,7 @@ namespace PlayniteUI
             }
         }
 
-        public Settings Settings
+        public PlayniteSettings Settings
         {
             get;
             private set;
@@ -438,7 +438,7 @@ namespace PlayniteUI
             get; set;
         }
 
-        public GamesCollectionView(GameDatabase database, Settings settings, bool fullScreen)
+        public GamesCollectionView(GameDatabase database, PlayniteSettings settings, bool fullScreen)
         {
             IsFullscreen = fullScreen;
             this.database = database;

@@ -4,23 +4,23 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Playnite.Models;
+using Playnite.Common.System;
 using Playnite.SDK.Models;
 
-namespace Playnite.Providers.GOG
+namespace GogLibrary.Models
 {
-    public class GogGameTaskInfo
+    public enum ActionType
     {
-        public enum TaskType
-        {
-            FileTask,
-            URLTask
-        }
+        FileTask,
+        URLTask
+    }
 
+    public class GogGameActionInfo
+    {
         public class Task
         {
             public bool isPrimary;
-            public TaskType type;
+            public ActionType type;
             public string path;
             public string workingDir;
             public string arguments;
@@ -33,9 +33,9 @@ namespace Playnite.Providers.GOG
                 {
                     Arguments = arguments,
                     Name = string.IsNullOrEmpty(name) ? "Play" : name,
-                    Path = type == GogGameTaskInfo.TaskType.FileTask ? Paths.FixSeparators(Path.Combine(@"{InstallDir}", path)) : link,
+                    Path = type == ActionType.FileTask ? Paths.FixSeparators(Path.Combine(@"{InstallDir}", path)) : link,
                     WorkingDir = Paths.FixSeparators(Path.Combine(@"{InstallDir}", (workingDir ?? string.Empty))),
-                    Type = type == GogGameTaskInfo.TaskType.FileTask ? GameActionType.File : GameActionType.URL
+                    Type = type == ActionType.FileTask ? GameActionType.File : GameActionType.URL
                 };
             }
         }

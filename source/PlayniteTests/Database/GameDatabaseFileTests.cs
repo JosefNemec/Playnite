@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Playnite;
 using Playnite.Database;
 using Playnite.Models;
+using Playnite.Settings;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,7 +20,7 @@ namespace PlayniteTests.Database
         [Test]
         public void CheckSumCreationTest()
         {
-            var image = Path.Combine(Paths.ProgramPath, "Resources", "Images", "applogo.png");
+            var image = Path.Combine(PlaynitePaths.ProgramPath, "Resources", "Images", "applogo.png");
             var db = new GameDatabase(null);
             using (db.OpenDatabase(new MemoryStream()))
             {
@@ -32,7 +33,7 @@ namespace PlayniteTests.Database
         [Test]
         public void MultiAddtionTest()
         {
-            var image = Path.Combine(Paths.ProgramPath, "Resources", "Images", "applogo.png");
+            var image = Path.Combine(PlaynitePaths.ProgramPath, "Resources", "Images", "applogo.png");
             var db = new GameDatabase(null);
             using (db.OpenDatabase(new MemoryStream()))
             {

@@ -1,6 +1,7 @@
 ﻿using Playnite.API;
 using Playnite.SDK;
 using Playnite.SDK.Plugins;
+using Playnite.Settings;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,10 +18,10 @@ namespace Playnite.Plugins
 
         public static void CreatePluginFolders()
         {
-            FileSystem.CreateDirectory(Paths.PluginsProgramPath);
-            if (!Settings.IsPortable)
+            FileSystem.CreateDirectory(PlaynitePaths.PluginsProgramPath);
+            if (!PlayniteSettings.IsPortable)
             {
-                FileSystem.CreateDirectory(Paths.PluginsUserDataPath);
+                FileSystem.CreateDirectory(PlaynitePaths.PluginsUserDataPath);
             }
         }
 
@@ -46,9 +47,9 @@ namespace Playnite.Plugins
         public static List<string> GetPluginDescriptorFiles()
         {
             var plugins = new List<string>();
-            if (Directory.Exists(Paths.PluginsProgramPath))
+            if (Directory.Exists(PlaynitePaths.PluginsProgramPath))
             {
-                foreach (var dir in Directory.GetDirectories(Paths.PluginsProgramPath))
+                foreach (var dir in Directory.GetDirectories(PlaynitePaths.PluginsProgramPath))
                 {
                     var descriptorPath = Path.Combine(dir, "plugin.info");
                     if (File.Exists(descriptorPath))
@@ -58,11 +59,11 @@ namespace Playnite.Plugins
                 }
             }
 
-            if (!Settings.IsPortable)
+            if (!PlayniteSettings.IsPortable)
             {
-                if (Directory.Exists(Paths.PluginsUserDataPath))
+                if (Directory.Exists(PlaynitePaths.PluginsUserDataPath))
                 {
-                    foreach (var dir in Directory.GetDirectories(Paths.PluginsUserDataPath))
+                    foreach (var dir in Directory.GetDirectories(PlaynitePaths.PluginsUserDataPath))
                     {
                         var descriptorPath = Path.Combine(dir, "plugin.info");
                         if (File.Exists(descriptorPath))

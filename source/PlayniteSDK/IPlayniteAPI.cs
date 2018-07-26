@@ -44,7 +44,7 @@ namespace Playnite.SDK
         /// <returns>String with replaces variables.</returns>
         string ExpandGameVariables(Game game, string inputString);
 
-        GameAction ExpandGameVariables(GameAction action, Game game);
+        GameAction ExpandGameVariables(Game game, GameAction action);
 
         /// <summary>
         /// Returns new instance of Playnite logger.

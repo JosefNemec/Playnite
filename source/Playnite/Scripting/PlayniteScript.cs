@@ -1,5 +1,4 @@
-﻿using NLog;
-using Playnite.Models;
+﻿using Playnite.Models;
 using Playnite.Scripting.IronPython;
 using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
@@ -51,7 +50,7 @@ namespace Playnite.Scripting
 
     public abstract class PlayniteScript: IDisposable
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
 
         public Dictionary<string, string> Attributes
         {

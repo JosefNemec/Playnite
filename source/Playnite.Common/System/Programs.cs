@@ -1,8 +1,5 @@
-﻿using IWshRuntimeLibrary;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using NLog;
-using Playnite.Models;
-using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,7 +13,7 @@ using System.Xml;
 using Windows.ApplicationModel;
 using Windows.Management.Deployment;
 
-namespace Playnite
+namespace Playnite.Common.System
 {
     public class Program
     {
@@ -100,8 +97,8 @@ namespace Playnite
 
         public static void CreateShortcut(string executablePath, string arguments, string iconPath, string shortuctPath)
         {
-            var shell = new WshShell();
-            var link = (IWshShortcut)shell.CreateShortcut(shortuctPath);
+            var shell = new IWshRuntimeLibrary.WshShell();
+            var link = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(shortuctPath);
             link.TargetPath = executablePath;
             link.WorkingDirectory = Path.GetDirectoryName(executablePath);
             link.Arguments = arguments;
@@ -171,7 +168,7 @@ namespace Playnite
                 @"\windows\",
                 };
 
-                var shell = new WshShell();
+                var shell = new IWshRuntimeLibrary.WshShell();
                 var apps = new List<Program>();
                 var shortucts = new SafeFileEnumerator(path, "*.lnk", SearchOption.AllDirectories);
 
@@ -200,7 +197,7 @@ namespace Playnite
                         continue;
                     }
 
-                    var link = (IWshShortcut)shell.CreateShortcut(shortcut.FullName);
+                    var link = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(shortcut.FullName);
                     var target = link.TargetPath;
 
                     if (pathExceptions.FirstOrDefault(a => target.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
@@ -268,7 +265,7 @@ namespace Playnite
 
         private static string GetUWPGameIcon(string defPath)
         {
-            if (System.IO.File.Exists(defPath))
+            if (File.Exists(defPath))
             {
                 return defPath;
             }
@@ -364,7 +361,7 @@ namespace Playnite
                         WorkDir = package.InstalledLocation.Path,
                         Path = "explorer.exe",
                         Arguments = $"shell:AppsFolder\\{package.Id.FamilyName}!{appId}",
-                        Icon = iconPath                        
+                        Icon = iconPath
                     };
 
                     apps.Add(app);
@@ -419,54 +416,10 @@ namespace Playnite
             return progs;
         }
 
-        public static Game GetGameFromExecutable(string path)
+        public static Program ParseShortcut(string path)
         {
-            if (!System.IO.File.Exists(path))
-            {
-                throw new FileNotFoundException($"Cannot create game from executable, {path} not found.");
-            }
-
-            var game = new Game();
-
-            if (string.Equals(Path.GetExtension(path), ".lnk", StringComparison.InvariantCultureIgnoreCase))
-            {
-                var prog = ParseShortcut(path);
-                var file = new FileInfo(prog.Path);
-                var versionInfo = FileVersionInfo.GetVersionInfo(prog.Path);
-                var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(file.DirectoryName).Name;
-                game.Name = programName;
-                game.InstallDirectory = prog.WorkDir;
-                game.PlayAction = new GameAction()
-                {
-                    Type = GameActionType.File,
-                    WorkingDir = "{InstallDir}",
-                    Path = prog.Path.Replace(game.InstallDirectory, "").Trim(Path.DirectorySeparatorChar),
-                    Arguments = prog.Arguments
-                };
-            }
-            else
-            {
-                var file = new FileInfo(path);
-                var versionInfo = FileVersionInfo.GetVersionInfo(path);
-                var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(file.DirectoryName).Name;
-                game.Name = programName;
-                game.InstallDirectory = file.DirectoryName;
-                game.PlayAction = new GameAction()
-                {
-                    Type = GameActionType.File,
-                    WorkingDir = "{InstallDir}",
-                    Path = file.Name
-                };
-            };
-
-            game.State.Installed = true;
-            return game;
-        }
-
-        private static Program ParseShortcut(string path)
-        {
-            var shell = new WshShell();
-            var link = (IWshShortcut)shell.CreateShortcut(path);
+            var shell = new IWshRuntimeLibrary.WshShell();
+            var link = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(path);
 
             return new Program()
             {

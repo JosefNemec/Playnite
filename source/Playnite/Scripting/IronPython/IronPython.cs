@@ -3,6 +3,7 @@ using IronPython.Modules;
 using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
 using Playnite.API;
+using Playnite.Settings;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,8 +29,8 @@ namespace Playnite.Scripting.IronPython
         {
             engine = Python.CreateEngine();
             var paths = engine.GetSearchPaths();
-            paths.Add(Paths.ProgramPath);
-            var stdLibPath = Path.Combine(Paths.ProgramPath, "IronPythonStdLib.zip");
+            paths.Add(PlaynitePaths.ProgramPath);
+            var stdLibPath = Path.Combine(PlaynitePaths.ProgramPath, "IronPythonStdLib.zip");
             if (File.Exists(stdLibPath))
             {
                 paths.Add(stdLibPath);
@@ -43,7 +44,7 @@ import os
 os.chdir('{0}')
 clr.AddReferenceToFile(""Playnite.SDK.dll"")
 from Playnite.SDK.Models import *
-", Paths.ProgramPath.Replace(Path.DirectorySeparatorChar, '/')), scope);
+", PlaynitePaths.ProgramPath.Replace(Path.DirectorySeparatorChar, '/')), scope);
 
             SetVariable("__logger", new Logger("Python"));
         }

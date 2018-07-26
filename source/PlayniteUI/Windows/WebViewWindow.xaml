@@ -1,15 +1,14 @@
-﻿<Window x:Class="Playnite.Controls.LoginWindow"
+﻿<Window x:Class="PlayniteUI.Windows.WebViewWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Playnite.Controls"
+        xmlns:local="clr-namespace:PlayniteUI.Windows"
         xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
-        mc:Ignorable="d"
-        Title="Service Login" Height="465" Width="400"
-        Loaded="Window_Loaded"
-        WindowStartupLocation="CenterOwner">
+        mc:Ignorable="d" Loaded="Window_Loaded"
+        Title="" Height="450" Width="800">
     <Grid>
         <cefSharp:ChromiumWebBrowser Name="Browser"/>
+        
     </Grid>
 </Window>

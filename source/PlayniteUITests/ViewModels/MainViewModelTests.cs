@@ -2,6 +2,7 @@
 using Playnite;
 using Playnite.Database;
 using Playnite.SDK.Models;
+using Playnite.Settings;
 using PlayniteUI;
 using PlayniteUI.ViewModels;
 using System;
@@ -19,7 +20,7 @@ namespace PlayniteUITests.ViewModels
         [Test]
         public void InitializeCommandsTest()
         {
-            var model = new MainViewModel(new GameDatabase(), null, null, null, new Settings(), new GamesEditor(new GameDatabase(), null, new Settings(), null, null), null);
+            var model = new MainViewModel(new GameDatabase(), null, null, null, new PlayniteSettings(), new GamesEditor(new GameDatabase(), null, new PlayniteSettings(), null, null), null);
             throw new Exception("Change this to reflection testing");
             Assert.IsNotNull(model.OpenFilterPanelCommand);
             Assert.IsNotNull(model.CloseFilterPanelCommand);

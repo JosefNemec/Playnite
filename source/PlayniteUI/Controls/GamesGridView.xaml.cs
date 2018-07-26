@@ -17,6 +17,7 @@ using Playnite.Database;
 using Playnite.SDK.Models;
 using Playnite;
 using System.ComponentModel;
+using Playnite.Settings;
 
 namespace PlayniteUI.Controls
 {
@@ -78,11 +79,11 @@ namespace PlayniteUI.Controls
 
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(GamesGridView));
         
-        public Settings AppSettings
+        public PlayniteSettings AppSettings
         {
             get
             {
-                return (Settings)GetValue(AppSettingsProperty);
+                return (PlayniteSettings)GetValue(AppSettingsProperty);
             }
 
             set
@@ -91,7 +92,7 @@ namespace PlayniteUI.Controls
             }
         }
 
-        public static readonly DependencyProperty AppSettingsProperty = DependencyProperty.Register("AppSettings", typeof(Settings), typeof(GamesGridView));
+        public static readonly DependencyProperty AppSettingsProperty = DependencyProperty.Register("AppSettings", typeof(PlayniteSettings), typeof(GamesGridView));
 
         public GamesGridView()
         {

@@ -8,6 +8,7 @@
                     xmlns:pui="clr-namespace:PlayniteUI;assembly=PlayniteUI"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
+                    xmlns:pset="clr-namespace:Playnite.Settings;assembly=Playnite"
                     mc:Ignorable="d" >
 
     <sys:String x:Key="SkinName">Classic</sys:String>
@@ -2903,7 +2904,7 @@
                                     <ListBox.ItemContainerStyle>
                                         <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Path=ShowIconsOnList, Source={x:Static shared:Settings.Instance}}" Value="False">
+                                                <DataTrigger Binding="{Binding Path=ShowIconsOnList, Source={x:Static pset:PlayniteSettings.Instance}}" Value="False">
                                                     <Setter Property="Padding" Value="3,5,3,5" />
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding IsInstalled}" Value="True">

@@ -7,21 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using LiteDB;
 using Playnite.Models;
-using Playnite.Providers.GOG;
-using Playnite.Providers.Origin;
-using System.Windows;
-using Playnite.Providers;
-using NLog;
-using System.Collections.Concurrent;
 using System.Windows.Media.Imaging;
-using System.Threading;
-using System.Windows.Threading;
-using Playnite.Providers.Uplay;
-using Playnite.Providers.BattleNet;
 using Playnite.Emulators;
-using System.Security.Cryptography;
 using Playnite.SDK.Models;
-using Playnite.Metadata;
 using Playnite.Database.Events;
 using Playnite.SDK;
 using Playnite.SDK.Metadata;
@@ -30,7 +18,7 @@ namespace Playnite.Database
 {
     public class GameDatabase
     {
-        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private bool IsEventBufferEnabled = false;
         private List<Platform> AddedPlatformsEventBuffer = new List<Platform>();
         private List<Platform> RemovedPlatformsEventBuffer = new List<Platform>();
@@ -642,7 +630,7 @@ namespace Playnite.Database
 
         public void DeleteGame(Game game)
         {
-            logger.Info("Deleting game from database {0}, {1}", game.GameId, game.PluginId);
+            logger.Info(string.Format("Deleting game from database {0}, {1}", game.GameId, game.PluginId));
             CheckDbState();
 
             using (Database.Engine.Locker.Reserved())
@@ -663,7 +651,7 @@ namespace Playnite.Database
             {
                 foreach (var game in games)
                 {
-                    logger.Info("Deleting game from database {0}, {1}", game.GameId, game.PluginId);
+                    logger.Info(string.Format("Deleting game from database {0}, {1}", game.GameId, game.PluginId));
                     GamesCollection.Delete(game.Id);
                     DeleteImageSafe(game.Icon, game);
                     DeleteImageSafe(game.Image, game);

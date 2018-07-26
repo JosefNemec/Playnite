@@ -1,12 +1,13 @@
-﻿using NLog;
-using Playnite;
+﻿using Playnite;
 using Playnite.API;
 using Playnite.App;
+using Playnite.Common.System;
 using Playnite.Database;
 using Playnite.Metadata;
 using Playnite.Scripting;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.Settings;
 using PlayniteUI.Commands;
 using PlayniteUI.Windows;
 using System;
@@ -25,7 +26,7 @@ namespace PlayniteUI.ViewModels
 {
     public class MainViewModel : ObservableObject, IDisposable
     {
-        public static NLog.Logger Logger = LogManager.GetCurrentClassLogger();
+        public static ILogger Logger = LogManager.GetLogger();
         private static object gamesLock = new object();
         protected bool ignoreCloseActions = false;
         private readonly SynchronizationContext context;
@@ -245,8 +246,8 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private Settings appSettings;
-        public Settings AppSettings
+        private PlayniteSettings appSettings;
+        public PlayniteSettings AppSettings
         {
             get => appSettings;
             private set
@@ -331,7 +332,7 @@ namespace PlayniteUI.ViewModels
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources,
-            Settings settings,
+            PlayniteSettings settings,
             GamesEditor gamesEditor,
             PlayniteAPI playniteApi)
         {
@@ -1349,7 +1350,7 @@ namespace PlayniteUI.ViewModels
                             return;
                         }
 
-                        var game = Programs.GetGameFromExecutable(path);
+                        var game = GameExtensions.GetGameFromExecutable(path);
                         Database.AddGame(game);
                         Database.AssignPcPlatform(game);
                         GamesEditor.EditGame(game);

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using NUnit.Framework;
 using Playnite;
+using Playnite.Settings;
 
 namespace PlayniteTests
 {
@@ -15,49 +16,49 @@ namespace PlayniteTests
         [SetUp]
         public void TestInit()
         {
-            FileSystem.DeleteFile(Paths.UninstallerInnoPath);
-            FileSystem.DeleteFile(Paths.UninstallerNsisPath);
+            FileSystem.DeleteFile(PlaynitePaths.UninstallerInnoPath);
+            FileSystem.DeleteFile(PlaynitePaths.UninstallerNsisPath);
         }
 
         [OneTimeTearDown]
         public void Cleanup()
         {
-            FileSystem.DeleteFile(Paths.UninstallerInnoPath);
-            FileSystem.DeleteFile(Paths.UninstallerNsisPath);
+            FileSystem.DeleteFile(PlaynitePaths.UninstallerInnoPath);
+            FileSystem.DeleteFile(PlaynitePaths.UninstallerNsisPath);
         }
 
         [Test]
         public void PortableInnoPathsTest()
         {
-            Assert.IsTrue(Settings.IsPortable);
-            Assert.AreNotEqual(Paths.UserProgramDataPath, Paths.ConfigRootPath);
+            Assert.IsTrue(PlayniteSettings.IsPortable);
+            Assert.AreNotEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
 
-            File.WriteAllText(Paths.UninstallerInnoPath, "");
-            Assert.IsFalse(Settings.IsPortable);
-            Assert.AreEqual(Paths.UserProgramDataPath, Paths.ConfigRootPath);
+            File.WriteAllText(PlaynitePaths.UninstallerInnoPath, "");
+            Assert.IsFalse(PlayniteSettings.IsPortable);
+            Assert.AreEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
         }
 
         [Test]
         public void PortableNsisPathsTest()
         {
-            Assert.IsTrue(Settings.IsPortable);
-            Assert.AreNotEqual(Paths.UserProgramDataPath, Paths.ConfigRootPath);
+            Assert.IsTrue(PlayniteSettings.IsPortable);
+            Assert.AreNotEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
 
-            File.WriteAllText(Paths.UninstallerNsisPath, "");
-            Assert.IsFalse(Settings.IsPortable);
-            Assert.AreEqual(Paths.UserProgramDataPath, Paths.ConfigRootPath);
+            File.WriteAllText(PlaynitePaths.UninstallerNsisPath, "");
+            Assert.IsFalse(PlayniteSettings.IsPortable);
+            Assert.AreEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
         }
 
         [Test]
         public void PortableBothPathsTest()
         {
-            Assert.IsTrue(Settings.IsPortable);
-            Assert.AreNotEqual(Paths.UserProgramDataPath, Paths.ConfigRootPath);
+            Assert.IsTrue(PlayniteSettings.IsPortable);
+            Assert.AreNotEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
 
-            File.WriteAllText(Paths.UninstallerNsisPath, "");
-            File.WriteAllText(Paths.UninstallerInnoPath, "");
-            Assert.IsFalse(Settings.IsPortable);
-            Assert.AreEqual(Paths.UserProgramDataPath, Paths.ConfigRootPath);
+            File.WriteAllText(PlaynitePaths.UninstallerNsisPath, "");
+            File.WriteAllText(PlaynitePaths.UninstallerInnoPath, "");
+            Assert.IsFalse(PlayniteSettings.IsPortable);
+            Assert.AreEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
         }
     }
 }

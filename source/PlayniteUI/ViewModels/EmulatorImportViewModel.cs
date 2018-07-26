@@ -1,5 +1,4 @@
-﻿using NLog;
-using Playnite;
+﻿using Playnite;
 using Playnite.Database;
 using Playnite.Emulators;
 using Playnite.SDK.Models;
@@ -15,7 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using static PlayniteUI.ViewModels.PlatformsViewModel;
+using Playnite.Common.System;
 
 namespace PlayniteUI.ViewModels
 {
@@ -236,7 +235,7 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;

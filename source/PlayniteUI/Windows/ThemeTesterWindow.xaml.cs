@@ -1,4 +1,6 @@
 ﻿using Playnite;
+using Playnite.Common.System;
+using Playnite.Settings;
 using PlayniteUI.Controls;
 using System;
 using System.Collections.Generic;
@@ -123,11 +125,11 @@ namespace PlayniteUI.Windows
                 {
                     if (SkinType == SourceType.Normal)
                     {
-                        watcher = new FileSystemWatcher(Paths.ThemesPath, "*.xaml");
+                        watcher = new FileSystemWatcher(PlaynitePaths.ThemesPath, "*.xaml");
                     }
                     else
                     {
-                        watcher = new FileSystemWatcher(Paths.ThemesFullscreenPath, "*.xaml");
+                        watcher = new FileSystemWatcher(PlaynitePaths.ThemesFullscreenPath, "*.xaml");
                     }
 
                     watcher.Changed += Watcher_Changed;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using Playnite;
+using Playnite.Settings;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -32,7 +33,7 @@ namespace PlayniteUI
         {
             get
             {
-                return GetLanguagesFromFolder(Paths.LocalizationsPath);
+                return GetLanguagesFromFolder(PlaynitePaths.LocalizationsPath);
             }
         }
 
@@ -88,7 +89,7 @@ namespace PlayniteUI
                 dictionaries.Remove(currentLang);
             }
 
-            var langFile = Path.Combine(Paths.LocalizationsPath, language + ".xaml");
+            var langFile = Path.Combine(PlaynitePaths.LocalizationsPath, language + ".xaml");
             if (File.Exists(langFile) && language != "english")
             {
                 var newLang = new ResourceDictionary() { Source = new Uri(langFile) };

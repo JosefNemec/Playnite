@@ -17,6 +17,9 @@ namespace GogLibrary
 
         #region Settings
 
+        public bool ImportUninstalledGames { get; set; } = false;
+
+        public bool StartGamesUsingGalaxy { get; set; } = false;
 
         #endregion Settings
 
@@ -52,7 +55,8 @@ namespace GogLibrary
 
         private void LoadValues(GogLibrarySettings source)
         {
-
+            ImportUninstalledGames = source.ImportUninstalledGames;
+            StartGamesUsingGalaxy = source.StartGamesUsingGalaxy;
         }
     }
 }

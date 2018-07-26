@@ -67,6 +67,8 @@
     <Compile Include="IPlayniteAPI.cs" />
     <Compile Include="IPlayniteInfoAPI.cs" />
     <Compile Include="IPlaynitePathsAPI.cs" />
+    <Compile Include="IWebView.cs" />
+    <Compile Include="LogManager.cs" />
     <Compile Include="Models\Metadata\GameMetadata.cs" />
     <Compile Include="Models\Metadata\MetadataFile.cs" />
     <Compile Include="Models\Metadata\MetadataSearchResult.cs" />

@@ -10,13 +10,9 @@ using Newtonsoft.Json;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
-using Playnite.Providers;
-using CefSharp;
 using System.Configuration;
-using Playnite.Providers.Uplay;
-using Playnite.Providers.BattleNet;
 
-namespace Playnite
+namespace Playnite.Settings
 {
     public enum AfterLaunchOptions
     {
@@ -25,7 +21,7 @@ namespace Playnite
         Close
     }
 
-    public class Settings : INotifyPropertyChanged, IEditableObject
+    public class PlayniteSettings : INotifyPropertyChanged, IEditableObject
     {
         public class WindowPosition
         {
@@ -535,7 +531,7 @@ namespace Playnite
         {
             get
             {
-                return !File.Exists(Paths.UninstallerNsisPath) && !File.Exists(Paths.UninstallerInnoPath);
+                return !File.Exists(PlaynitePaths.UninstallerNsisPath) && !File.Exists(PlaynitePaths.UninstallerInnoPath);
             }
         }
 
@@ -544,23 +540,23 @@ namespace Playnite
         [JsonIgnore]
         public List<string> EditedFields;
         private bool isEditing = false;
-        private Settings editingCopy;
+        private PlayniteSettings editingCopy;
 
-        private static Settings instance;
-        public static Settings Instance
+        private static PlayniteSettings instance;
+        public static PlayniteSettings Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new Settings();
+                    instance = new PlayniteSettings();
                 }
 
                 return instance;
             }   
         }
 
-        public Settings()
+        public PlayniteSettings()
         {
             InstallInstanceId = Guid.NewGuid().ToString();
             GridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
@@ -615,11 +611,11 @@ namespace Playnite
             }
         }
 
-        public static Settings LoadSettings()
+        public static PlayniteSettings LoadSettings()
         {
-            if (File.Exists(Paths.ConfigFilePath))
+            if (File.Exists(PlaynitePaths.ConfigFilePath))
             {
-                var settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Paths.ConfigFilePath));
+                var settings = JsonConvert.DeserializeObject<PlayniteSettings>(File.ReadAllText(PlaynitePaths.ConfigFilePath));
                 instance = settings;
             }
 
@@ -628,8 +624,8 @@ namespace Playnite
 
         public void SaveSettings()
         {
-            FileSystem.CreateDirectory(Paths.ConfigRootPath);
-            File.WriteAllText(Paths.ConfigFilePath, JsonConvert.SerializeObject(this, Formatting.Indented));
+            FileSystem.CreateDirectory(PlaynitePaths.ConfigRootPath);
+            File.WriteAllText(PlaynitePaths.ConfigFilePath, JsonConvert.SerializeObject(this, Formatting.Indented));
         }
 
         public static void ConfigureLogger()
@@ -648,10 +644,10 @@ namespace Playnite
 #endif
             var fileTarget = new FileTarget()
             {
-                FileName = Path.Combine(Paths.ConfigRootPath, "playnite.log"),
+                FileName = Path.Combine(PlaynitePaths.ConfigRootPath, "playnite.log"),
                 Layout = "${longdate}|${level:uppercase=true}:${message}${exception:format=toString}",
                 KeepFileOpen = false,
-                ArchiveFileName = Path.Combine(Paths.ConfigRootPath, "playnite.{#####}.log"),
+                ArchiveFileName = Path.Combine(PlaynitePaths.ConfigRootPath, "playnite.{#####}.log"),
                 ArchiveAboveSize = 4096000,
                 ArchiveNumbering = ArchiveNumberingMode.Sequence,
                 MaxArchiveFiles = 2
@@ -663,18 +659,6 @@ namespace Playnite
             config.LoggingRules.Add(rule2);
 
             LogManager.Configuration = config;
-        }
-
-        public static void ConfigureCef()
-        {
-            FileSystem.CreateDirectory(Paths.BrowserCachePath);
-            var settings = new CefSettings();
-            settings.CefCommandLineArgs.Add("disable-gpu", "1");
-            settings.CefCommandLineArgs.Add("disable-gpu-compositing", "1");
-            settings.CachePath = Paths.BrowserCachePath;
-            settings.PersistSessionCookies = true;
-            settings.LogFile = Path.Combine(Paths.ConfigRootPath, "cef.log");
-            Cef.Initialize(settings);
         }
 
         public static string GetAppConfigValue(string key)

@@ -1,7 +1,9 @@
 ﻿using Playnite.Models;
 using Playnite.SDK.Models;
+using Playnite.Settings;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,50 @@ namespace Playnite
 {
     public static class GameExtensions
     {
+        public static Game GetGameFromExecutable(string path)
+        {
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException($"Cannot create game from executable, {path} not found.");
+            }
+
+            var game = new Game();
+
+            if (string.Equals(Path.GetExtension(path), ".lnk", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var prog = Common.System.Programs.ParseShortcut(path);
+                var file = new FileInfo(prog.Path);
+                var versionInfo = FileVersionInfo.GetVersionInfo(prog.Path);
+                var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(file.DirectoryName).Name;
+                game.Name = programName;
+                game.InstallDirectory = prog.WorkDir;
+                game.PlayAction = new GameAction()
+                {
+                    Type = GameActionType.File,
+                    WorkingDir = "{InstallDir}",
+                    Path = prog.Path.Replace(game.InstallDirectory, "").Trim(Path.DirectorySeparatorChar),
+                    Arguments = prog.Arguments
+                };
+            }
+            else
+            {
+                var file = new FileInfo(path);
+                var versionInfo = FileVersionInfo.GetVersionInfo(path);
+                var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(file.DirectoryName).Name;
+                game.Name = programName;
+                game.InstallDirectory = file.DirectoryName;
+                game.PlayAction = new GameAction()
+                {
+                    Type = GameActionType.File,
+                    WorkingDir = "{InstallDir}",
+                    Path = file.Name
+                };
+            };
+
+            game.State.Installed = true;
+            return game;
+        }
+
         public static string ExpandVariables(this Game game, string inputString)
         {
             if (string.IsNullOrEmpty(inputString))
@@ -24,7 +70,7 @@ namespace Playnite
             result = result.Replace("{ImagePath}", game.IsoPath);
             result = result.Replace("{ImageNameNoExt}", Path.GetFileNameWithoutExtension(game.IsoPath));
             result = result.Replace("{ImageName}", Path.GetFileName(game.IsoPath));
-            result = result.Replace("{PlayniteDir}", Paths.ProgramPath);
+            result = result.Replace("{PlayniteDir}", PlaynitePaths.ProgramPath);
             result = result.Replace("{Name}", game.Name);
             return result;
         }

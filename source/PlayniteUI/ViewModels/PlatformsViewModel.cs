@@ -17,6 +17,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using Playnite.Common.System;
+using Playnite.Settings;
 
 namespace PlayniteUI.ViewModels
 {
@@ -400,12 +402,12 @@ namespace PlayniteUI.ViewModels
                         database.DeleteFile(dbPlatform.Icon);
                     }
 
-                    var extension = System.IO.Path.GetExtension(platform.Icon);
+                    var extension = Path.GetExtension(platform.Icon);
                     var name = Guid.NewGuid() + extension;
                     var id = string.Format(fileIdMask, platform.Id, name);
                     database.AddFile(id, name, File.ReadAllBytes(platform.Icon));
 
-                    if (Paths.AreEqual(System.IO.Path.GetDirectoryName(platform.Icon), Paths.TempPath))
+                    if (Paths.AreEqual(Path.GetDirectoryName(platform.Icon), PlaynitePaths.TempPath))
                     {
                         File.Delete(platform.Icon);
                     }
@@ -420,7 +422,7 @@ namespace PlayniteUI.ViewModels
                         database.DeleteFile(dbPlatform.Cover);
                     }
 
-                    var extension = System.IO.Path.GetExtension(platform.Cover);
+                    var extension = Path.GetExtension(platform.Cover);
                     var name = Guid.NewGuid() + extension;
                     var id = string.Format(fileIdMask, platform.Id, name);
                     database.AddFile(id, name, File.ReadAllBytes(platform.Cover));
@@ -520,7 +522,7 @@ namespace PlayniteUI.ViewModels
                     return;
                 }
 
-                path = System.IO.Path.Combine(Paths.TempPath, Guid.NewGuid() + ".png");
+                path = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".png");
                 FileSystem.PrepareSaveFile(path);
                 ico.ToBitmap().Save(path, System.Drawing.Imaging.ImageFormat.Png);
             }

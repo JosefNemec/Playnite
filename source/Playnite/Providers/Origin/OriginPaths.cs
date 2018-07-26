@@ -11,7 +11,7 @@ namespace Playnite.Providers.Origin
     {
         public const string DataPath = @"c:\ProgramData\Origin\";
 
-        private static string cachePath = Path.Combine(Playnite.Paths.DataCachePath, "origincache");
+        private static string cachePath = Path.Combine(Settings.PlaynitePaths.DataCachePath, "origincache");
         public static string CachePath
         {            
             get

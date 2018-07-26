@@ -1,5 +1,4 @@
-﻿using NLog;
-using Playnite;
+﻿using Playnite;
 using Playnite.App;
 using Playnite.SDK;
 using PlayniteUI.Commands;
@@ -15,7 +14,7 @@ namespace PlayniteUI.ViewModels
 {
     public class UpdateViewModel : ObservableObject
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private Updater updater;
         private IResourceProvider resources;

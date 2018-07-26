@@ -346,6 +346,7 @@ namespace SteamLibrary
 
         public IEnumerable<Game> GetGames()
         {
+            // TODO return owned games
             return GetInstalledGames();
         }
 

@@ -1,5 +1,4 @@
-﻿using NLog;
-using Playnite.Database;
+﻿using Playnite.Database;
 using Playnite.Models;
 using Playnite.Metadata.Providers;
 using System;
@@ -18,7 +17,7 @@ namespace Playnite.Metadata
 {
     public class MetadataDownloader
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
 
         private IMetadataProvider igdbProvider;
         private readonly IList<ILibraryPlugin> plugins;

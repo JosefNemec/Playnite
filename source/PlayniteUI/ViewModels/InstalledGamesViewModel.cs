@@ -1,5 +1,4 @@
-﻿using NLog;
-using Playnite;
+﻿using Playnite;
 using Playnite.Database;
 using Playnite.SDK.Models;
 using Playnite.SDK;
@@ -15,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Playnite.Common.System;
 
 namespace PlayniteUI.ViewModels
 {
@@ -185,7 +185,7 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private CancellationTokenSource cancelToken;
@@ -354,14 +354,14 @@ namespace PlayniteUI.ViewModels
             try
             {
                 var allApps = new List<ImportableProgram>();
-                var installed = await Playnite.Programs.GetInstalledPrograms(cancelToken);
+                var installed = await Playnite.Common.System.Programs.GetInstalledPrograms(cancelToken);
                 if (installed != null)
                 {
                     allApps.AddRange(installed.Select(a => new ImportableProgram(a, ProgramType.Win32)));
 
                     if (Environment.OSVersion.Version.Major == 10)
                     {
-                        allApps.AddRange(Playnite.Programs.GetUWPApps().Select(a => new ImportableProgram(a, ProgramType.UWP)));
+                        allApps.AddRange(Playnite.Common.System.Programs.GetUWPApps().Select(a => new ImportableProgram(a, ProgramType.UWP)));
                     }
 
                     Programs = new ObservableCollection<ImportableProgram>(allApps.OrderBy(a => a.Name));
@@ -395,7 +395,7 @@ namespace PlayniteUI.ViewModels
 
             try
             {
-                var executables = await Playnite.Programs.GetExecutablesFromFolder(path, SearchOption.AllDirectories, cancelToken);
+                var executables = await Playnite.Common.System.Programs.GetExecutablesFromFolder(path, SearchOption.AllDirectories, cancelToken);
                 if (executables != null)
                 {
                     var apps = executables.Select(a => new ImportableProgram(a, ProgramType.Win32)).OrderBy(a => a.Name);

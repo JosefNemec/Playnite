@@ -1,10 +1,11 @@
 ﻿using CefSharp;
-using NLog;
 using Playnite;
 using Playnite.API;
+using Playnite.Common.System;
 using Playnite.Database;
 using Playnite.Plugins;
 using Playnite.SDK;
+using Playnite.Settings;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace PlayniteUI.ViewModels
             public string Name { get; set; }
         }
 
-        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
@@ -34,8 +35,8 @@ namespace PlayniteUI.ViewModels
 
         public PlayniteAPI PlayniteApi { get; set; }
 
-        private Settings settings;
-        public Settings Settings
+        private PlayniteSettings settings;
+        public PlayniteSettings Settings
         {
             get
             {
@@ -126,7 +127,7 @@ namespace PlayniteUI.ViewModels
 
         public SettingsViewModel(
             GameDatabase database,
-            Settings settings,
+            PlayniteSettings settings,
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources,
@@ -236,7 +237,7 @@ namespace PlayniteUI.ViewModels
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 Cef.Shutdown();
-                System.IO.Directory.Delete(Paths.BrowserCachePath, true);
+                System.IO.Directory.Delete(PlaynitePaths.BrowserCachePath, true);
                 App.CurrentApp.Restart();
             }            
         }

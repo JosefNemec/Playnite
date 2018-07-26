@@ -1,5 +1,4 @@
-﻿using NLog;
-using Playnite;
+﻿using Playnite;
 using Playnite.Database;
 using Playnite.Models;
 using PlayniteUI.Commands;
@@ -17,17 +16,18 @@ using Playnite.SDK.Models;
 using Playnite.Web;
 using Playnite.Metadata;
 using Playnite.SDK.Metadata;
+using Playnite.Settings;
 
 namespace PlayniteUI.ViewModels
 {
     public class GameEditViewModel : ObservableObject
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
         private GameDatabase database;
-        private Settings appSettings;
+        private PlayniteSettings appSettings;
 
         #region Field checks
 
@@ -985,13 +985,13 @@ namespace PlayniteUI.ViewModels
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
         }
 
-        public GameEditViewModel(Game game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, Settings appSettings)
+        public GameEditViewModel(Game game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, PlayniteSettings appSettings)
             : this(game, database, window, dialogs, resources)
         {
             this.appSettings = appSettings;
         }
 
-        public GameEditViewModel(IEnumerable<Game> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, Settings appSettings)
+        public GameEditViewModel(IEnumerable<Game> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, PlayniteSettings appSettings)
             : this(games, database, window, dialogs, resources)
         {
             this.appSettings = appSettings;
@@ -1789,7 +1789,7 @@ namespace PlayniteUI.ViewModels
                         Game.Icon = iconId;
                     }
 
-                    if (Path.GetDirectoryName(iconPath) == Paths.TempPath)
+                    if (Path.GetDirectoryName(iconPath) == PlaynitePaths.TempPath)
                     {
                         File.Delete(iconPath);
                     }
@@ -1849,7 +1849,7 @@ namespace PlayniteUI.ViewModels
                         Game.Image = imageId;
                     }
 
-                    if (Path.GetDirectoryName(imagePath) == Paths.TempPath)
+                    if (Path.GetDirectoryName(imagePath) == PlaynitePaths.TempPath)
                     {
                         File.Delete(imagePath);
                     }
@@ -1939,7 +1939,7 @@ namespace PlayniteUI.ViewModels
                             Game.BackgroundImage = imageId;
                         }
 
-                        if (Path.GetDirectoryName(imagePath) == Paths.TempPath)
+                        if (Path.GetDirectoryName(imagePath) == PlaynitePaths.TempPath)
                         {
                             File.Delete(imagePath);
                         }
@@ -2072,7 +2072,7 @@ namespace PlayniteUI.ViewModels
                 if (game.Image.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
                 {
                     var extension = Path.GetExtension(game.Image);
-                    var tempPath = Path.Combine(Paths.TempPath, "tempimage" + extension);
+                    var tempPath = Path.Combine(PlaynitePaths.TempPath, "tempimage" + extension);
                     FileSystem.PrepareSaveFile(tempPath);
 
                     try
@@ -2110,7 +2110,7 @@ namespace PlayniteUI.ViewModels
                 return string.Empty;
             }
 
-            var tempPath = Path.Combine(Paths.TempPath, "tempico.png");
+            var tempPath = Path.Combine(PlaynitePaths.TempPath, "tempico.png");
             if (ico != null)
             {
                 FileSystem.PrepareSaveFile(tempPath);
@@ -2364,7 +2364,7 @@ namespace PlayniteUI.ViewModels
                     
                     if (metadata.Image != null)
                     {
-                        var path = Path.Combine(Paths.TempPath, metadata.Image.FileName);
+                        var path = Path.Combine(PlaynitePaths.TempPath, metadata.Image.FileName);
                         FileSystem.PrepareSaveFile(path);
                         File.WriteAllBytes(path, metadata.Image.Content);
                         tempGame.Image = path;
@@ -2372,7 +2372,7 @@ namespace PlayniteUI.ViewModels
 
                     if (metadata.Icon != null)
                     {
-                        var path = Path.Combine(Paths.TempPath, metadata.Icon.FileName);
+                        var path = Path.Combine(PlaynitePaths.TempPath, metadata.Icon.FileName);
                         FileSystem.PrepareSaveFile(path);
                         File.WriteAllBytes(path, metadata.Icon.Content);
                         tempGame.Icon = path;
@@ -2383,7 +2383,7 @@ namespace PlayniteUI.ViewModels
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(exc, "Failed to download metadata, {0}, {1}", game.PluginId, game.GameId);
+                    logger.Error(exc, string.Format("Failed to download metadata, {0}, {1}", game.PluginId, game.GameId));
                     dialogs.ShowMessage(
                         string.Format(resources.FindString("LOCMetadataDownloadError"), exc.Message),
                         resources.FindString("LOCDownloadError"),

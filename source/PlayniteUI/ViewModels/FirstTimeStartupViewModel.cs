@@ -1,6 +1,7 @@
-﻿using NLog;
-using Playnite;
+﻿using Playnite;
+using Playnite.Common.System;
 using Playnite.SDK;
+using Playnite.Settings;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace PlayniteUI.ViewModels
             Finish = 9
         }
 
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;        
@@ -65,8 +66,8 @@ namespace PlayniteUI.ViewModels
             private set;
         } = new List<InstalledGameMetadata>();
 
-        private Settings settings = new Settings();
-        public Settings Settings
+        private PlayniteSettings settings = new PlayniteSettings();
+        public PlayniteSettings Settings
         {
             get
             {

@@ -1,4 +1,4 @@
-﻿using NLog;
+﻿using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -11,17 +11,17 @@ namespace Playnite
 {
     public class GameActionActivator
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
 
-        public static Process ActivateTask(GameAction task)
+        public static Process ActivateAction(GameAction action)
         {
-            logger.Info($"Activating game task {task}");
-            switch (task.Type)
+            logger.Info($"Activating game action {action}");
+            switch (action.Type)
             {
                 case GameActionType.File:
-                    return ProcessStarter.StartProcess(task.Path, task.Arguments, task.WorkingDir);
+                    return ProcessStarter.StartProcess(action.Path, action.Arguments, action.WorkingDir);
                 case GameActionType.URL:
-                    return ProcessStarter.StartUrl(task.Path);
+                    return ProcessStarter.StartUrl(action.Path);
                 case GameActionType.Emulator:
                     throw new Exception("Cannot start emulated game without emulator.");
             }
@@ -29,18 +29,18 @@ namespace Playnite
             return null;
         }
 
-        public static Process ActivateTask(GameAction task, Game gameData)
+        public static Process ActivateAction(GameAction action, Game gameData)
         {
-            logger.Info($"Activating game task {task}");
-            switch (task.Type)
+            logger.Info($"Activating game task {action}");
+            switch (action.Type)
             {
                 case GameActionType.File:
-                    var path = gameData.ExpandVariables(task.Path);
-                    var arguments = gameData.ExpandVariables(task.Arguments);
-                    var workdir = gameData.ExpandVariables(task.WorkingDir);
+                    var path = action.Path;
+                    var arguments = action.Arguments;
+                    var workdir = action.WorkingDir;
                     return ProcessStarter.StartProcess(path, arguments, workdir);
                 case GameActionType.URL:
-                    var url = gameData.ExpandVariables(task.Path);
+                    var url = action.Path;
                     return ProcessStarter.StartUrl(url);
                 case GameActionType.Emulator:
                     throw new Exception("Cannot start emulated game without emulator.");
@@ -49,52 +49,55 @@ namespace Playnite
             return null;
         }
 
-        public static Process ActivateTask(GameAction task, Game gameData, EmulatorProfile config)
+        public static Process ActivateAction(GameAction action, Game gameData, EmulatorProfile config)
         {
-            logger.Info($"Activating game task {task}");
-            switch (task.Type)
+            logger.Info($"Activating game task {action}");
+            switch (action.Type)
             {
                 case GameActionType.File:
                 case GameActionType.URL:
-                    return ActivateTask(task, gameData);
+                    return ActivateAction(action, gameData);
                 case GameActionType.Emulator:
                     if (config == null)
                     {
                         throw new Exception("Cannot start emulated game without emulator.");
                     }
 
-                    var path = gameData.ExpandVariables(config.Executable);
-                    var arguments = gameData.ExpandVariables(config.Arguments);
-                    if (!string.IsNullOrEmpty(task.AdditionalArguments))
+                    var path = config.Executable;
+                    var arguments = config.Arguments;
+                    if (!string.IsNullOrEmpty(action.AdditionalArguments))
                     {
-                        arguments += " " + gameData.ExpandVariables(task.AdditionalArguments);
+                        arguments += " " + action.AdditionalArguments;
                     }
 
-                    if (task.OverrideDefaultArgs)
+                    if (action.OverrideDefaultArgs)
                     {
-                        arguments = gameData.ExpandVariables(task.Arguments);
+                        arguments = action.Arguments;
                     }
 
-                    var workdir = gameData.ExpandVariables(config.WorkingDirectory);
+                    var workdir = config.WorkingDirectory;
                     return ProcessStarter.StartProcess(path, arguments, workdir);
             }
 
             return null;
         }
 
-        public static Process ActivateTask(GameAction task, Game gameData, List<Emulator> emulators)
+        public static Process ActivateAction(GameAction action, Game gameData, List<Emulator> emulators)
         {
-            return ActivateTask(task, gameData, GetGameTaskEmulatorConfig(task, emulators));
+            return ActivateAction(action, gameData, GetGameActionEmulatorConfig(action, emulators));
         }
 
-        public static EmulatorProfile GetGameTaskEmulatorConfig(GameAction task, List<Emulator> emulators)
+        public static EmulatorProfile GetGameActionEmulatorConfig(GameAction action, List<Emulator> emulators)
         {
-            if (task.EmulatorId == null || emulators == null)
-            {
-                return null;
-            }
+            return null;
 
-            return emulators.FirstOrDefault(a => a.Id == task.EmulatorId)?.Profiles.FirstOrDefault(a => a.Id == task.EmulatorProfileId);
+            // TODO
+            //if (action.EmulatorId == null || emulators == null)
+            //{
+            //    return null;
+            //}
+
+            //return emulators.FirstOrDefault(a => a.Id == action.EmulatorId)?.Profiles.FirstOrDefault(a => a.Id == action.EmulatorProfileId);
         }
     }
 }

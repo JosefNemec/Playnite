@@ -1,8 +1,4 @@
-﻿using Playnite.Providers.BattleNet;
-using Playnite.Providers.EpicLauncher;
-using Playnite.Providers.GOG;
-using Playnite.Providers.Origin;
-using Playnite.Providers.Uplay;
+﻿using Playnite.Providers.EpicLauncher;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -78,49 +74,49 @@ namespace Playnite
             //    tools.Add(tool);
             //}
 
-            if (OriginSettings.IsInstalled)
-            {
-                var tool = new ThirdPartyTool()
-                {
-                    Path = OriginSettings.ClientExecPath,
-                    Name = "Origin"
-                };
+            //if (OriginSettings.IsInstalled)
+            //{
+            //    var tool = new ThirdPartyTool()
+            //    {
+            //        Path = OriginSettings.ClientExecPath,
+            //        Name = "Origin"
+            //    };
 
-                tools.Add(tool);
-            }
+            //    tools.Add(tool);
+            //}
 
-            if (GogSettings.IsInstalled)
-            {
-                var tool = new ThirdPartyTool()
-                {
-                    Path = Path.Combine(GogSettings.InstallationPath, "GalaxyClient.exe"),
-                    Name = "GOG Galaxy"
-                };
+            //if (GogSettings.IsInstalled)
+            //{
+            //    var tool = new ThirdPartyTool()
+            //    {
+            //        Path = Path.Combine(GogSettings.InstallationPath, "GalaxyClient.exe"),
+            //        Name = "GOG Galaxy"
+            //    };
 
-                tools.Add(tool);
-            }
+            //    tools.Add(tool);
+            //}
 
-            if (BattleNetSettings.IsInstalled)
-            {
-                var tool = new ThirdPartyTool()
-                {
-                    Path = BattleNetSettings.ClientExecPath,
-                    Name = "Battle.net"
-                };
+            //if (BattleNetSettings.IsInstalled)
+            //{
+            //    var tool = new ThirdPartyTool()
+            //    {
+            //        Path = BattleNetSettings.ClientExecPath,
+            //        Name = "Battle.net"
+            //    };
 
-                tools.Add(tool);
-            }
+            //    tools.Add(tool);
+            //}
 
-            if (UplaySettings.IsInstalled)
-            {
-                var tool = new ThirdPartyTool()
-                {
-                    Path = UplaySettings.ClientExecPath,
-                    Name = "Uplay"
-                };
+            //if (UplaySettings.IsInstalled)
+            //{
+            //    var tool = new ThirdPartyTool()
+            //    {
+            //        Path = UplaySettings.ClientExecPath,
+            //        Name = "Uplay"
+            //    };
 
-                tools.Add(tool);
-            }
+            //    tools.Add(tool);
+            //}
 
             if (EpicLauncherSettings.IsInstalled)
             {

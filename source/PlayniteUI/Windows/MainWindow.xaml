@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:pui="clr-namespace:PlayniteUI"
-        xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
+        xmlns:pset="clr-namespace:Playnite.Settings;assembly=Playnite"
         xmlns:m="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
         xmlns:c="clr-namespace:PlayniteUI.Controls"
         xmlns:tray="http://www.hardcodet.net/taskbar"
@@ -60,7 +60,7 @@
     <Grid>
         <tray:TaskbarIcon x:Name="TrayPlaynite" ToolTipText="Playnite" IconSource="/Images/applogo.ico"
                           MenuActivation="LeftOrRightClick"
-                          Visibility="{Binding Path=EnableTray, Source={x:Static shared:Settings.Instance}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          Visibility="{Binding Path=EnableTray, Source={x:Static pset:PlayniteSettings.Instance}, Converter={StaticResource BooleanToVisibilityConverter}}"
                           DoubleClickCommand="{Binding Source={StaticResource Proxy}, Path=Data.ShowWindowCommand}">
             <tray:TaskbarIcon.ContextMenu>
                 <ContextMenu >

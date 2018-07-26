@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.Settings;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,12 +15,12 @@ namespace Playnite.Scripting
 
         public static void CreateScriptFolders()
         {
-            FileSystem.CreateDirectory(Path.Combine(Paths.ScriptsProgramPath, powerShellFolder));
-            FileSystem.CreateDirectory(Path.Combine(Paths.ScriptsProgramPath, pythonFolder));
-            if (!Settings.IsPortable)
+            FileSystem.CreateDirectory(Path.Combine(PlaynitePaths.ScriptsProgramPath, powerShellFolder));
+            FileSystem.CreateDirectory(Path.Combine(PlaynitePaths.ScriptsProgramPath, pythonFolder));
+            if (!PlayniteSettings.IsPortable)
             {
-                FileSystem.CreateDirectory(Path.Combine(Paths.ScriptsUserDataPath, powerShellFolder));
-                FileSystem.CreateDirectory(Path.Combine(Paths.ScriptsUserDataPath, pythonFolder));
+                FileSystem.CreateDirectory(Path.Combine(PlaynitePaths.ScriptsUserDataPath, powerShellFolder));
+                FileSystem.CreateDirectory(Path.Combine(PlaynitePaths.ScriptsUserDataPath, pythonFolder));
             }
         }
 
@@ -34,7 +35,7 @@ namespace Playnite.Scripting
         public static List<string> GetScriptFiles()
         {
             var scripts = new List<string>();
-            var psScripts = Path.Combine(Paths.ScriptsProgramPath, powerShellFolder);
+            var psScripts = Path.Combine(PlaynitePaths.ScriptsProgramPath, powerShellFolder);
             if (Directory.Exists(psScripts))
             {
                 foreach (var dir in Directory.GetDirectories(psScripts))
@@ -43,7 +44,7 @@ namespace Playnite.Scripting
                 }
             }
 
-            var pyScripts = Path.Combine(Paths.ScriptsProgramPath, pythonFolder);
+            var pyScripts = Path.Combine(PlaynitePaths.ScriptsProgramPath, pythonFolder);
             if (Directory.Exists(pyScripts))
             {
                 foreach (var dir in Directory.GetDirectories(pyScripts))
@@ -52,9 +53,9 @@ namespace Playnite.Scripting
                 }
             }
 
-            if (!Settings.IsPortable)
+            if (!PlayniteSettings.IsPortable)
             {
-                psScripts = Path.Combine(Paths.ScriptsUserDataPath, powerShellFolder);
+                psScripts = Path.Combine(PlaynitePaths.ScriptsUserDataPath, powerShellFolder);
                 if (Directory.Exists(psScripts))
                 {
                     foreach (var dir in Directory.GetDirectories(psScripts))
@@ -63,7 +64,7 @@ namespace Playnite.Scripting
                     }
                 }
 
-                pyScripts = Path.Combine(Paths.ScriptsUserDataPath, pythonFolder);
+                pyScripts = Path.Combine(PlaynitePaths.ScriptsUserDataPath, pythonFolder);
                 if (Directory.Exists(pyScripts))
                 {
                     foreach (var dir in Directory.GetDirectories(pyScripts))
@@ -90,7 +91,7 @@ namespace Playnite.Scripting
         public static void InstallScript(string scriptPath)
         {
             var extension = Path.GetExtension(scriptPath);
-            var scriptFolder = Settings.IsPortable ? Paths.ScriptsProgramPath : Paths.ScriptsUserDataPath;
+            var scriptFolder = PlayniteSettings.IsPortable ? PlaynitePaths.ScriptsProgramPath : PlaynitePaths.ScriptsUserDataPath;
 
             if (extension.Equals(".ps1", StringComparison.InvariantCultureIgnoreCase))
             {

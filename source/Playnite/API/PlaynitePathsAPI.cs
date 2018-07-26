@@ -1,4 +1,5 @@
 ﻿using Playnite.SDK;
+using Playnite.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace Playnite.API
 {
     public class PlaynitePathsAPI : IPlaynitePathsAPI
     {
-        public bool IsPortable { get => Settings.IsPortable; }
+        public bool IsPortable { get => PlayniteSettings.IsPortable; }
 
-        public string ApplicationPath { get => Paths.ProgramPath; }
+        public string ApplicationPath { get => PlaynitePaths.ProgramPath; }
 
-        public string ConfigurationPath { get => Paths.ConfigRootPath; }
+        public string ConfigurationPath { get => PlaynitePaths.ConfigRootPath; }
     }
 }

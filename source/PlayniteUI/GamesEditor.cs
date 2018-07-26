@@ -1,13 +1,14 @@
 ﻿using LiteDB;
-using NLog;
 using Playnite;
 using Playnite.API;
+using Playnite.Common.System;
 using Playnite.Database;
 using Playnite.Models;
 using Playnite.Providers;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
+using Playnite.Settings;
 using PlayniteUI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -22,11 +23,11 @@ namespace PlayniteUI
 {
     public class GamesEditor : INotifyPropertyChanged, IDisposable
     {
-        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private IResourceProvider resources = new ResourceProvider();
         private GameDatabase database;
         private IDialogsFactory dialogs;
-        private Settings appSettings;
+        private PlayniteSettings appSettings;
         private PlayniteAPI playniteApi;
 
         public bool IsFullscreen
@@ -46,7 +47,7 @@ namespace PlayniteUI
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GamesEditor(GameDatabase database, GameControllerFactory controllerFactory, Settings appSettings, IDialogsFactory dialogs, PlayniteAPI playniteApi)
+        public GamesEditor(GameDatabase database, GameControllerFactory controllerFactory, PlayniteSettings appSettings, IDialogsFactory dialogs, PlayniteAPI playniteApi)
         {
             this.dialogs = dialogs;
             this.database = database;
@@ -173,7 +174,7 @@ namespace PlayniteUI
         {
             try
             {
-                GameActionActivator.ActivateTask(action, game, database.EmulatorsCollection.FindAll().ToList());
+                GameActionActivator.ActivateAction(action, game, database.EmulatorsCollection.FindAll().ToList());
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -317,8 +318,8 @@ namespace PlayniteUI
 
                 if (!string.IsNullOrEmpty(game.Icon) && Path.GetExtension(game.Icon) == ".ico")
                 {
-                    FileSystem.CreateDirectory(Path.Combine(Paths.DataCachePath, "icons"));
-                    icon = Path.Combine(Paths.DataCachePath, "icons", game.Id + ".ico");
+                    FileSystem.CreateDirectory(Path.Combine(PlaynitePaths.DataCachePath, "icons"));
+                    icon = Path.Combine(PlaynitePaths.DataCachePath, "icons", game.Id + ".ico");
                     database.SaveFile(game.Icon, icon);
                 }
                 else if (game.PlayAction?.Type == GameActionType.File)
@@ -333,7 +334,7 @@ namespace PlayniteUI
                     }
                 }
 
-                Programs.CreateShortcut(Paths.ExecutablePath, "-command launch:" + game.Id, icon, path);
+                Programs.CreateShortcut(PlaynitePaths.ExecutablePath, "-command launch:" + game.Id, icon, path);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -432,7 +433,7 @@ namespace PlayniteUI
                     Arguments = "-command launch:" + lastGame.Id,
                     Description = string.Empty,
                     CustomCategory = "Recent",
-                    ApplicationPath = Paths.ExecutablePath
+                    ApplicationPath = PlaynitePaths.ExecutablePath
                 };
 
                 if (lastGame.PlayAction?.Type == GameActionType.File)

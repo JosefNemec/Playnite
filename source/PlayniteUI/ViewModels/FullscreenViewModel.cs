@@ -3,6 +3,7 @@ using Playnite;
 using Playnite.API;
 using Playnite.Database;
 using Playnite.SDK;
+using Playnite.Settings;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -206,7 +207,7 @@ namespace PlayniteUI.ViewModels
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources,
-            Settings settings,
+            PlayniteSettings settings,
             GamesEditor gamesEditor,
             PlayniteAPI playniteApi) : base(database, window, dialogs, resources, settings, gamesEditor, playniteApi)
         {

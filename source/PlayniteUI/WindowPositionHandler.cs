@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using Playnite;
+using Playnite.Settings;
 
 namespace PlayniteUI
 {
@@ -15,9 +16,9 @@ namespace PlayniteUI
         private Window Window;
         private string WindowName;
         private bool IgnoreChanges = false;
-        private Settings Configuration;
+        private PlayniteSettings Configuration;
 
-        public WindowPositionHandler(Window window, string windowName, Settings settings)
+        public WindowPositionHandler(Window window, string windowName, PlayniteSettings settings)
         {
             Window = window;
             WindowName = windowName;
@@ -86,7 +87,7 @@ namespace PlayniteUI
         {
             if (!Configuration.WindowPositions.ContainsKey(WindowName))
             {
-                Configuration.WindowPositions[WindowName] = new Settings.WindowPosition();
+                Configuration.WindowPositions[WindowName] = new PlayniteSettings.WindowPosition();
             }
         }
 
@@ -123,7 +124,7 @@ namespace PlayniteUI
             }
 
             MakeSureConfigEntryExists();
-            Configuration.WindowPositions[WindowName].Size = new Settings.WindowPosition.Point()
+            Configuration.WindowPositions[WindowName].Size = new PlayniteSettings.WindowPosition.Point()
             {
                 X = Window.Width,
                 Y = Window.Height
@@ -143,7 +144,7 @@ namespace PlayniteUI
             }
 
             MakeSureConfigEntryExists();
-            Configuration.WindowPositions[WindowName].Position = new Settings.WindowPosition.Point()
+            Configuration.WindowPositions[WindowName].Position = new PlayniteSettings.WindowPosition.Point()
             {
                 X = Window.Left,
                 Y = Window.Top

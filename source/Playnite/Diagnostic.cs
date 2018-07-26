@@ -5,11 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.IO.Compression;
-using NLog;
-using Playnite.Providers.GOG;
 using System.Diagnostics;
-using YamlDotNet.Serialization;
 using Newtonsoft.Json;
+using Playnite.Settings;
 
 namespace Playnite
 {
@@ -17,7 +15,7 @@ namespace Playnite
     {
         public static void CreateDiagPackage(string path)
         {
-            var diagTemp = Path.Combine(Paths.TempPath, "diag");
+            var diagTemp = Path.Combine(PlaynitePaths.TempPath, "diag");
             FileSystem.CreateDirectory(diagTemp, true);
             FileSystem.DeleteFile(path);    
             
@@ -27,7 +25,7 @@ namespace Playnite
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
                 {
                     // Add log files
-                    foreach (var logFile in Directory.GetFiles(Paths.ConfigRootPath, "*.log", SearchOption.TopDirectoryOnly))
+                    foreach (var logFile in Directory.GetFiles(PlaynitePaths.ConfigRootPath, "*.log", SearchOption.TopDirectoryOnly))
                     {
                         if (Path.GetFileName(logFile) == "cef.log")
                         {
@@ -39,9 +37,9 @@ namespace Playnite
 
 
                     // Config 
-                    if (File.Exists(Paths.ConfigFilePath))
+                    if (File.Exists(PlaynitePaths.ConfigFilePath))
                     {
-                        archive.CreateEntryFromFile(Paths.ConfigFilePath, Path.GetFileName(Paths.ConfigFilePath));
+                        archive.CreateEntryFromFile(PlaynitePaths.ConfigFilePath, Path.GetFileName(PlaynitePaths.ConfigFilePath));
                     }
 
                     // Origin data
@@ -52,14 +50,16 @@ namespace Playnite
                     }
 
                     // GOG data
-                    if (GogSettings.IsInstalled)
-                    {
-                        var dbPath = Path.Combine(GogSettings.DBStoragePath, "index.db");
-                        if (File.Exists(dbPath))
-                        {
-                            archive.CreateEntryFromFile(dbPath, "index.db");
-                        }
-                    }
+                    //if (GogSettings.IsInstalled)
+                    //{
+                    //    var dbPath = Path.Combine(GogSettings.DBStoragePath, "index.db");
+                    //    if (File.Exists(dbPath))
+                    //    {
+                    //        archive.CreateEntryFromFile(dbPath, "index.db");
+                    //    }
+                    //}
+
+                    // TODO
 
                     // Steam data
                     //if (SteamSettings.IsInstalled)
@@ -83,7 +83,7 @@ namespace Playnite
 
                     // Uninstall regkey export
                     var regKeyPath = Path.Combine(diagTemp, "uninstall.json");
-                    var programs = Programs.GetUnistallProgramsList();
+                    var programs = Common.System.Programs.GetUnistallProgramsList();
                     File.WriteAllText(regKeyPath, JsonConvert.SerializeObject(programs, Formatting.Indented));
                     archive.CreateEntryFromFile(regKeyPath, Path.GetFileName(regKeyPath));
                 }

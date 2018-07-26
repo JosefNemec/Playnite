@@ -13,6 +13,7 @@ using Playnite.App;
 using Flurl;
 using Playnite.Web;
 using System.Net;
+using Playnite.Settings;
 
 namespace Playnite.App
 {
@@ -51,7 +52,7 @@ namespace Playnite.App
         {
             get
             {
-                return Path.Combine(Paths.TempPath, "update.exe");
+                return Path.Combine(PlaynitePaths.TempPath, "update.exe");
             }
         }
 
@@ -155,12 +156,12 @@ namespace Playnite.App
 
         public void InstallUpdate()
         {            
-            var portable = Settings.IsPortable ? "/PORTABLE" : "";
-            logger.Info("Installing new update to {0}, in {1} mode", Paths.ProgramPath, portable);
+            var portable = PlayniteSettings.IsPortable ? "/PORTABLE" : "";
+            logger.Info("Installing new update to {0}, in {1} mode", PlaynitePaths.ProgramPath, portable);
 
             Task.Run(() =>
             {
-                Process.Start(updaterPath, string.Format(@"/SILENT /NOCANCEL /DIR=""{0}"" /UPDATE {1}", Paths.ProgramPath, portable));
+                Process.Start(updaterPath, string.Format(@"/SILENT /NOCANCEL /DIR=""{0}"" /UPDATE {1}", PlaynitePaths.ProgramPath, portable));
             });
 
             playniteApp.Quit();

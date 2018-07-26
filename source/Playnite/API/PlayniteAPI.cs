@@ -452,7 +452,7 @@ namespace Playnite.API
             return game?.ExpandVariables(inputString);
         }
 
-        public GameAction ExpandGameVariables(GameAction action, Game game)
+        public GameAction ExpandGameVariables(Game game, GameAction action)
         {
             return action?.ExpandVariables(game);
         }

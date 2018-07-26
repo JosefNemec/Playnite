@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Playnite.Controls
+namespace PlayniteUI.Windows
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for WebViewWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
-    {        
-        public LoginWindow()
+    public partial class WebViewWindow : Window
+    {
+        public WebViewWindow()
         {
             InitializeComponent();
         }

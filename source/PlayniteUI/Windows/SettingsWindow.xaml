@@ -7,6 +7,7 @@
         xmlns:pui="clr-namespace:PlayniteUI"
         xmlns:pcmd="clr-namespace:PlayniteUI.Commands"
         xmlns:pn="clr-namespace:Playnite;assembly=Playnite"
+        xmlns:pset="clr-namespace:Playnite.Settings;assembly=Playnite"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
@@ -124,7 +125,7 @@
                                         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
                                                     x:Key="AfterLaunchOptionsEnumValues">
                                             <ObjectDataProvider.MethodParameters>
-                                                <x:Type TypeName="pn:AfterLaunchOptions" />
+                                                <x:Type TypeName="pset:AfterLaunchOptions" />
                                             </ObjectDataProvider.MethodParameters>
                                         </ObjectDataProvider>
                                         <pui:AfterGameLaunchOptionToStringConverter x:Key="AfterGameLaunchOptionToStringConverter" />
