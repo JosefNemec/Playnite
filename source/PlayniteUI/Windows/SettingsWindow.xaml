@@ -208,7 +208,7 @@
                 </TabItem>                
                 
                 <TabItem Visibility="Collapsed">
-                    <StackPanel Margin="20">
+                    <StackPanel KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" Margin="20">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -269,7 +269,7 @@
                 </TabItem>
                 <!--STEAM-->
                 <TabItem Visibility="Collapsed">
-                    <DockPanel Margin="20" LastChildFill="False">
+                    <DockPanel KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.SteamSettings.IntegrationEnabled}"
                                     Name="CheckSteamEnabled" Content="{DynamicResource LOCSettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top"/>
@@ -287,9 +287,9 @@
                             </RadioButton.Content>
                         </RadioButton>
 
-                        <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
+                        <DockPanel KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top" Margin="40,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
                             <TextBlock Text="{DynamicResource LOCSettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5"/>
-                            <Grid DockPanel.Dock="Top">
+                            <Grid KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
@@ -299,22 +299,22 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
 
-                                <RadioButton Content="{DynamicResource LOCNameLabel}" Name="RadioSteamLibName" GroupName="steamsource"
+                                <RadioButton TabIndex="1" Content="{DynamicResource LOCNameLabel}" Name="RadioSteamLibName" GroupName="steamsource"
                                                 IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.Name}}"
                                                 Grid.Column="0" Grid.Row="0" Margin="5"/>
-                                <RadioButton Content="{DynamicResource LOCLocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource" 
+                                <RadioButton TabIndex="4" Content="{DynamicResource LOCLocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource" 
                                                 IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.LocalUser}}"
                                                 Grid.Column="0" Grid.Row="1" Margin="5"/>
 
-                                <DockPanel Grid.Column="1" Grid.Row="0" Margin="5">
-                                    <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">           
+                                <DockPanel KeyboardNavigation.TabIndex="3" KeyboardNavigation.TabNavigation="Local" Grid.Column="1" Grid.Row="0" Margin="5">
+                                    <TextBlock KeyboardNavigation.TabIndex="1" DockPanel.Dock="Right" VerticalAlignment="Center">           
                                         <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"
                                                    Command="{Binding NavigateUrlCommand}"
                                                    CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                                             <Run Text="{DynamicResource LOCSettingsWhatsSteamName}" />
                                         </Hyperlink>
                                     </TextBlock>
-                                    <TextBox Text="{Binding Settings.SteamSettings.AccountName}"
+                                    <TextBox TabIndex="2" Text="{Binding Settings.SteamSettings.AccountName}"
                                                 IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}"
                                                 Name="TextSteamAccountName" DockPanel.Dock="Left" Margin="0,0,10,0" />
                                 </DockPanel>
@@ -324,22 +324,22 @@
                                             IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"
                                             Grid.Column="1" Grid.Row="1" Margin="5" />
                             </Grid>
-                            <CheckBox Content="{DynamicResource LOCPrivateAccount}" DockPanel.Dock="Top"
+                            <CheckBox TabIndex="2" Content="{DynamicResource LOCPrivateAccount}" DockPanel.Dock="Top"
                                       IsChecked="{Binding Settings.SteamSettings.PrivateAccount}"
                                       Margin="5,5,5,5" Name="CheckSteamPrivate"
                                       ToolTip="{DynamicResource LOCSettingsApiKeyTooltip}"/>
-                            <DockPanel DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=CheckSteamPrivate}"
+                            <DockPanel KeyboardNavigation.TabIndex="3" KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=CheckSteamPrivate}"
                                        Margin="30,5,5,5">
                                 <TextBlock Text="{DynamicResource LOCAPIKey}" DockPanel.Dock="Left"
                                            VerticalAlignment="Center"/>
-                                <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">
+                                <TextBlock KeyboardNavigation.TabIndex="2" DockPanel.Dock="Right" VerticalAlignment="Center">
                                     <Hyperlink NavigateUri="https://steamcommunity.com/dev/apikey"
                                                Command="{Binding NavigateUrlCommand}"
                                                CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                                         <Run Text="{DynamicResource LOCSettingsApiKeyUrlText}" />
                                     </Hyperlink>
                                 </TextBlock>
-                                <TextBox Text="{Binding Settings.SteamSettings.APIKey}"
+                                <TextBox TabIndex="1" Text="{Binding Settings.SteamSettings.APIKey}"
                                          DockPanel.Dock="Left" Margin="10,0,10,0"/>
                             </DockPanel>
                         </DockPanel>
@@ -362,7 +362,7 @@
                 </TabItem>
                 <!--GOG-->
                 <TabItem Visibility="Collapsed">
-                    <DockPanel Margin="20" LastChildFill="False">
+                    <DockPanel KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.GOGSettings.RunViaGalaxy}"
                                   Name="CheckGogRunGalaxy" Content="{DynamicResource LOCSettingsGOGUseGalaxy}"
                                   ToolTip="{DynamicResource LOCSettingsGOGUseGalaxyTooltip}"
@@ -396,7 +396,7 @@
                 </TabItem>
                 <!--ORIGIN-->
                 <TabItem Visibility="Collapsed">
-                    <DockPanel Margin="20" LastChildFill="False">
+                    <DockPanel KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.OriginSettings.IntegrationEnabled}"
                                     Name="CheckOriginEnabled" Content="{DynamicResource LOCSettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top" />
@@ -426,7 +426,7 @@
                 </TabItem>
                 <!--BATTLENET-->
                 <TabItem Visibility="Collapsed">
-                    <DockPanel Margin="20" LastChildFill="False">
+                    <DockPanel KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.BattleNetSettings.IntegrationEnabled}"
                                     Name="CheckBattleNetEnabled" Content="{DynamicResource LOCSettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top" />
@@ -456,7 +456,7 @@
                 </TabItem>
                 <!--UPLAY-->
                 <TabItem Visibility="Collapsed">
-                    <DockPanel Margin="20" LastChildFill="False">
+                    <DockPanel KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" Margin="20" LastChildFill="False">
                         <CheckBox IsChecked="{Binding Settings.UplaySettings.IntegrationEnabled}"
                                     Name="CheckUplayEnabled" Content="{DynamicResource LOCSettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                                     DockPanel.Dock="Top"/>
@@ -467,14 +467,14 @@
                     </DockPanel>
                 </TabItem>
                 <TabItem Visibility="Collapsed">
-                    <StackPanel Margin="20">
+                    <StackPanel KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" Margin="20">
                         <Button Name="ButtonClearWebCace" Content="{DynamicResource LOCSettingsClearWebCache}" HorizontalAlignment="Left"
                                 ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"
                                 Command="{Binding ClearWebCacheCommand}"/>
                     </StackPanel>
                 </TabItem>
                 <TabItem Visibility="Collapsed">
-                    <StackPanel Margin="20">
+                    <StackPanel KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" Margin="20">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
