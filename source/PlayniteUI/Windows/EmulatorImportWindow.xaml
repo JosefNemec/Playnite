@@ -269,17 +269,17 @@
 
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource NegateConverter}}">
-            <DockPanel LastChildFill="False" Margin="5">
-                <Button Content="{DynamicResource LOCCloseLabel}" Name="ButtonClose" DockPanel.Dock="Right"
+            <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="False" Margin="5">
+                <Button TabIndex="4" Content="{DynamicResource LOCCloseLabel}" Name="ButtonClose" DockPanel.Dock="Right"
                         Command="{Binding CloseCommand}" Visibility="{Binding ShowCloseButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource BottomButton}" />
-                <Button Content="{DynamicResource LOCFinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"
+                <Button TabIndex="3" Content="{DynamicResource LOCFinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"
                         Command="{Binding FinishCommand}" Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource BottomButton}" />
-                <Button Content="{DynamicResource LOCNextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
+                <Button TabIndex="2" Content="{DynamicResource LOCNextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
                         Command="{Binding NextCommand}" Visibility="{Binding ShowNextButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource BottomButton}" />
-                <Button Content="{DynamicResource LOCImportLabel}" Name="ButtonImport" DockPanel.Dock="Right"
+                <Button TabIndex="1" Content="{DynamicResource LOCImportLabel}" Name="ButtonImport" DockPanel.Dock="Right"
                         Command="{Binding ImportCommand}" Visibility="{Binding ShowImportButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource BottomButton}" />
             </DockPanel>
