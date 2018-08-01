@@ -2247,7 +2247,7 @@
                 <pui:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
             </Grid.Resources>
 
-            <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="0">
+            <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="True" Grid.Row="0" Grid.Column="0">
                 <DockPanel Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True"
                        Opacity="{Binding IsMouseOver, Converter={StaticResource OpacityBoolConverter}, ConverterParameter={StaticResource True}, RelativeSource={RelativeSource Self}}"
                        pui:LeftClickContextMenuBehavior.Enabled="True">
@@ -2427,17 +2427,17 @@
                     </DockPanel.ContextMenu>
                 </DockPanel>
 
-                <pc:SearchBox x:Name="SearchBoxFilter" Margin="5,8,10,8" DockPanel.Dock="Left" Padding="0" Width="235"
+                <pc:SearchBox KeyboardNavigation.TabIndex="1" x:Name="SearchBoxFilter" Margin="5,8,10,8" DockPanel.Dock="Left" Padding="0" Width="235"
                               Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}"
                               IsFocused="{Binding SearchOpened, Mode=TwoWay}"
                               WindowChrome.IsHitTestVisibleInChrome="True" />
 
-                <Border CornerRadius="{StaticResource ControlCornerRadius}" Background="Transparent" Style="{StaticResource HighlightBorder}"
+                <Border x:Name="TextGroupBorder" CornerRadius="{StaticResource ControlCornerRadius}" Background="Transparent" Style="{StaticResource HighlightBorder}"
                     pui:LeftClickContextMenuBehavior.Enabled="True"
                     SnapsToDevicePixels="True" BorderThickness="{StaticResource ControlBorderThickness}"
                     Width="35" Height="28" Cursor="Hand"
                     WindowChrome.IsHitTestVisibleInChrome="True">
-                    <TextBlock Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
+                    <TextBlock KeyboardNavigation.TabIndex="2"  Focusable="True"  Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
                            Foreground="{StaticResource TextBrush}"/>
                     <Border.ContextMenu>
                         <ContextMenu StaysOpen="False" Name="MenuViewSettings" Placement="Bottom"
@@ -2512,17 +2512,25 @@
                     </Border.ContextMenu>
                 </Border>
 
-                <CheckBox Name="CheckFilterView" DockPanel.Dock="Left" Margin="10,0,10,0" Height="28" WindowChrome.IsHitTestVisibleInChrome="True"
+                <CheckBox KeyboardNavigation.TabIndex="3" Name="CheckFilterView" DockPanel.Dock="Left" Margin="10,0,10,0" Height="28" WindowChrome.IsHitTestVisibleInChrome="True"
                       IsChecked="{Binding AppSettings.FilterPanelVisible}">
                     <CheckBox.Style>
                         <Style TargetType="CheckBox">
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate>
-                                        <Border Background="Transparent" Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
+                                        <Border x:Name="CheckFilterViewBorder" Background="Transparent" Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
                                             CornerRadius="{StaticResource ControlCornerRadius}" BorderThickness="{StaticResource ControlBorderThickness}" Cursor="Hand" WindowChrome.IsHitTestVisibleInChrome="True">
                                             <TextBlock Text="∇" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="8,0,8,0" Foreground="{TemplateBinding Foreground}"/>
                                         </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="CheckFilterViewBorder" />
+                                            </Trigger>
+                                            <Trigger Property="IsFocused" Value="True">
+                                                <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="CheckFilterViewBorder" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
@@ -3238,6 +3246,14 @@
                 </Button>
             </Border>
         </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger SourceName="TextGroup" Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="TextGroupBorder" />
+            </Trigger>
+            <Trigger SourceName="TextGroup" Property="IsFocused" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="TextGroupBorder" />
+            </Trigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <Style TargetType="{x:Type pc:MainView}">
