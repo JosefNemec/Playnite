@@ -23,9 +23,11 @@ using PlayniteUI.API;
 using Playnite.Plugins;
 using Playnite.Scripting;
 using Playnite.App;
-using Playnite.Providers;
+using Playnite.Controllers;
 using Playnite.Settings;
 using Playnite.SDK;
+using PlayniteUI.WebView;
+using Newtonsoft.Json;
 
 namespace PlayniteUI
 {
@@ -50,6 +52,11 @@ namespace PlayniteUI
         }
 
         public PlayniteAPI Api
+        {
+            get; set;
+        }
+
+        public ExtensionFactory Extensions
         {
             get; set;
         }
@@ -171,6 +178,9 @@ namespace PlayniteUI
                 appMutex = new Mutex(true, instanceMuxet);
             }
 
+            // Migrate library configuration
+            PlayniteSettings.MigrateSettingsConfig();
+
             Time.Instance = new Time();
             AppSettings = PlayniteSettings.LoadSettings();
             Localization.SetLanguage(AppSettings.Language);
@@ -184,23 +194,31 @@ namespace PlayniteUI
             CefTools.ConfigureCef();
             dialogs = new DialogsFactory(AppSettings.StartInFullscreen);
 
-            var view = new PlayniteUI.WebView.OffscreenWebView();
-            view.Navigate("www.google.com");
-            Console.WriteLine(view.GetPageSource());
-
             // Create directories
             try
             {
-                PluginFactory.CreatePluginFolders();
-                Scripts.CreateScriptFolders();
+                ExtensionFactory.CreatePluginFolders();
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Failed to script and plugin directories.");
             }
 
+            // Initialize API
+            Database = new GameDatabase();
+            controllers = new GameControllerFactory(Database);
+            Api = new PlayniteAPI(
+                new DatabaseAPI(Database),
+                dialogs,
+                null,
+                new PlayniteInfoAPI(),
+                new PlaynitePathsAPI(),
+                new WebViewFactory(),
+                new ResourceProvider());
+            Extensions = new ExtensionFactory(Database, controllers);
+
             // Load theme
-            ApplyTheme(AppSettings.Skin, AppSettings.SkinColor, false);
+            ApplyTheme(AppSettings.Skin, AppSettings.SkinColor, false);            
 
             // First run wizard
             bool isFirstStart = !AppSettings.FirstTimeWizardComplete;
@@ -208,7 +226,7 @@ namespace PlayniteUI
             if (!AppSettings.FirstTimeWizardComplete)
             {
                 var wizardWindow = FirstTimeStartupWindowFactory.Instance;
-                var wizardModel = new FirstTimeStartupViewModel(wizardWindow, dialogs, new ResourceProvider());
+                var wizardModel = new FirstTimeStartupViewModel(wizardWindow, dialogs, new ResourceProvider(), Extensions, Api);
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
@@ -222,9 +240,10 @@ namespace PlayniteUI
                         AppSettings.DatabasePath = Path.Combine(PlaynitePaths.UserProgramDataPath, "games.db");
                     }
 
+                    AppSettings.DisabledPlugins = settings.DisabledPlugins;
                     AppSettings.SaveSettings();
                     existingDb = File.Exists(AppSettings.DatabasePath);
-                    Database = new GameDatabase(AppSettings.DatabasePath);
+                    Database.SetDatabasePath(AppSettings.DatabasePath);
                     Database.OpenDatabase();
 
                     if (wizardModel.ImportedGames?.Any() == true)
@@ -237,12 +256,12 @@ namespace PlayniteUI
                     AppSettings.DatabasePath = Path.Combine(PlaynitePaths.UserProgramDataPath, "games.db");
                     AppSettings.SaveSettings();
                     existingDb = File.Exists(AppSettings.DatabasePath);
-                    Database = new GameDatabase(AppSettings.DatabasePath);
+                    Database.SetDatabasePath(AppSettings.DatabasePath);
                 }
             }
             else
             {
-                Database = new GameDatabase(AppSettings.DatabasePath);
+                Database.SetDatabasePath(AppSettings.DatabasePath);
             }
 
             // Emulator wizard
@@ -259,9 +278,10 @@ namespace PlayniteUI
                 AppSettings.SaveSettings();
             }
 
-            controllers = new GameControllerFactory(Database);
-            Api = new PlayniteAPI(Database, controllers, dialogs, null, new PlayniteInfoAPI(), new PlaynitePathsAPI());
-            GamesEditor = new GamesEditor(Database, controllers, AppSettings, dialogs, Api);
+            Extensions.LoadLibraryPlugins(Api, AppSettings.DisabledPlugins);
+            Extensions.LoadGenericPlugins(Api, AppSettings.DisabledPlugins);
+            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
+            GamesEditor = new GamesEditor(Database, controllers, AppSettings, dialogs, Extensions);
             CustomImageStringToImageConverter.Database = Database;
 
             // Main view startup
@@ -275,8 +295,8 @@ namespace PlayniteUI
             }
 
             // Update and stats
-            CheckUpdate();
-            SendUsageData();
+            //CheckUpdate();
+            //SendUsageData();
 
             // Pipe server
             pipeService = new PipeService();
@@ -415,7 +435,7 @@ namespace PlayniteUI
                     GlobalTaskHandler.CancelAndWait();                    
                     GamesEditor?.Dispose();
                     AppSettings?.SaveSettings();
-                    Api?.Dispose();
+                    Extensions?.Dispose();
                     Database?.CloseDatabase();
                     controllers?.Dispose();
                 }
@@ -456,7 +476,8 @@ namespace PlayniteUI
                 new ResourceProvider(),
                 AppSettings,
                 GamesEditor,
-                Api);
+                Api,
+                Extensions);
             Api.MainView = new MainViewAPI(MainModel);
             MainModel.OpenView();
             Current.MainWindow = window.Window;
@@ -495,7 +516,8 @@ namespace PlayniteUI
                 new ResourceProvider(),
                 AppSettings,
                 GamesEditor,
-                Api);
+                Api,
+                Extensions);
             Api.MainView = new MainViewAPI(MainModel);
             FullscreenModel.OpenView(!PlayniteEnvironment.IsDebugBuild);
             Current.MainWindow = window.Window;

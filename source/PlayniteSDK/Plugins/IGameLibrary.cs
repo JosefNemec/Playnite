@@ -11,9 +11,7 @@ namespace Playnite.SDK.Plugins
 {
     public interface ILibraryPlugin : IPlugin
     {
-        UserControl SettingsView { get; }
-
-        IEditableObject Settings { get; }
+        string LibraryIcon { get; }
 
         string Name { get; }
 
@@ -21,6 +19,6 @@ namespace Playnite.SDK.Plugins
 
         IGameController GetGameController(Game game);
 
-        IMetadataProvider GetMetadataDownloader();
+        IMetadataProvider GetMetadataDownloader();       
     }
 }

@@ -5,6 +5,7 @@
 //using Playnite.Metadata;
 //using Playnite.Models;
 //using Playnite.SDK;
+//using Playnite.SDK.Metadata;
 //using Playnite.SDK.Models;
 //using System;
 //using System.Collections.Generic;
@@ -103,7 +104,7 @@
 //                Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
 //                Assert.AreEqual("IGDB backgournd Game1", game1.BackgroundImage);
 //                Assert.AreEqual($"IGDBIconPathGame1.file", game1.Icon);
-//                Assert.AreEqual($"IGDBImagePathGame1.file", game1.Image);
+//                Assert.AreEqual($"IGDBImagePathGame1.file", game1.CoverImage);
 //                var game2 = dbGames[1];
 //                Assert.AreEqual("IGDB Description Game2", game2.Description);
 
@@ -175,7 +176,7 @@
 //                Assert.AreEqual(2016, game2.ReleaseDate.Value.Year);
 //                Assert.AreEqual("Store backgournd storeId", game2.BackgroundImage);
 //                Assert.AreEqual($"StoreIconPathstoreId.file", game2.Icon);
-//                Assert.AreEqual($"StoreImagePathstoreId.file", game2.Image);
+//                Assert.AreEqual($"StoreImagePathstoreId.file", game2.CoverImage);
 //                var game1 = dbGames[0];
 //                Assert.IsNull(game1.Description);
 
@@ -253,7 +254,7 @@
 //                Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
 //                Assert.AreEqual("IGDB backgournd Game1", game1.BackgroundImage);
 //                Assert.AreEqual($"IGDBIconPathGame1.file", game1.Icon);
-//                Assert.AreEqual($"IGDBImagePathGame1.file", game1.Image);
+//                Assert.AreEqual($"IGDBImagePathGame1.file", game1.CoverImage);
 
 //                var game2 = dbGames[1];
 //                Assert.AreEqual("IGDB Description Game2", game2.Description);
@@ -266,7 +267,7 @@
 //                Assert.AreEqual(2012, game2.ReleaseDate.Value.Year);
 //                Assert.AreEqual("IGDB backgournd Game2", game2.BackgroundImage);
 //                Assert.AreEqual($"IGDBIconPathGame2.file", game2.Icon);
-//                Assert.AreEqual($"IGDBImagePathGame2.file", game2.Image);
+//                Assert.AreEqual($"IGDBImagePathGame2.file", game2.CoverImage);
 
 //                // Store over IGDB
 //                callCount = 0;
@@ -288,7 +289,7 @@
 //                Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
 //                Assert.AreEqual("IGDB backgournd Game1", game1.BackgroundImage);
 //                Assert.AreEqual($"IGDBIconPathGame1.file", game1.Icon);
-//                Assert.AreEqual($"IGDBImagePathGame1.file", game1.Image);
+//                Assert.AreEqual($"IGDBImagePathGame1.file", game1.CoverImage);
 
 //                game2 = dbGames[1];
 //                Assert.AreEqual("Store Description Game2", game2.Description);
@@ -301,7 +302,7 @@
 //                Assert.AreEqual(2016, game2.ReleaseDate.Value.Year);
 //                Assert.AreEqual("Store backgournd Game2", game2.BackgroundImage);
 //                Assert.AreEqual($"StoreIconPathGame2.file", game2.Icon);
-//                Assert.AreEqual($"StoreImagePathGame2.file", game2.Image);
+//                Assert.AreEqual($"StoreImagePathGame2.file", game2.CoverImage);
 //            }
 //        }
 
@@ -326,7 +327,7 @@
 //                        Description = "Description",
 //                        Links = new ObservableCollection<Link>() { new Link() },
 //                        Icon = "icon",
-//                        Image = "image",
+//                        CoverImage = "image",
 //                        BackgroundImage = "backImage"
 //                    }
 //                };
@@ -365,7 +366,7 @@
 //                var game = dbGames[0];
 //                Assert.AreEqual("Description", game.Description);
 //                Assert.AreEqual("icon", game.Icon);
-//                Assert.AreEqual("image", game.Image);
+//                Assert.AreEqual("image", game.CoverImage);
 //                Assert.AreEqual("backImage", game.BackgroundImage);
 //                Assert.AreEqual("Developer", game.Developers[0]);
 //                Assert.AreEqual("Publisher", game.Publishers[0]);
@@ -466,7 +467,7 @@
 //                Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
 //                Assert.AreEqual("IGDB backgournd Game1", game1.BackgroundImage);
 //                Assert.AreEqual($"IGDBIconPathGame1.file", game1.Icon);
-//                Assert.AreEqual($"IGDBImagePathGame1.file", game1.Image);
+//                Assert.AreEqual($"IGDBImagePathGame1.file", game1.CoverImage);
 
 //                // Single download - values are changed when skip enabled and values are not present
 //                callCount = 0;
@@ -492,7 +493,7 @@
 //                Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
 //                Assert.AreEqual("IGDB backgournd Game1", game1.BackgroundImage);
 //                Assert.AreEqual($"IGDBIconPathGame1.file", game1.Icon);
-//                Assert.AreEqual($"IGDBImagePathGame1.file", game1.Image);
+//                Assert.AreEqual($"IGDBImagePathGame1.file", game1.CoverImage);
 //            }
 //        }
 //    }

@@ -125,7 +125,7 @@ namespace PlayniteUI.Controls
             }
             else
             {
-                if (game.PluginId == null)
+                if (game.IsCustomGame)
                 {
                     App.GamesEditor.EditGame(game);
                 }

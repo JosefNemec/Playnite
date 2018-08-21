@@ -1,4 +1,5 @@
 ﻿using GogLibrary.Models;
+using GogLibrary.Services;
 using Newtonsoft.Json;
 using Playnite.Common.System;
 using Playnite.SDK;
@@ -10,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -19,20 +21,30 @@ namespace GogLibrary
 {
     public class GogLibrary : ILibraryPlugin
     {
-        private ILogger logger;
+        private ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
+
+        internal GogLibrarySettings LibrarySettings
+        {
+            get => (GogLibrarySettings)Settings;
+        }
 
         public GogLibrary(IPlayniteAPI api)
         {
             playniteApi = api;
-            logger = playniteApi.CreateLogger("GogLibrary");
-            var configPath = Path.Combine(api.GetPluginStoragePath(this), "config.json");
-            Settings = new GogLibrarySettings(configPath);
+            var configPath = Path.Combine(api.GetPluginUserDataPath(this), "config.json");
+            Settings = new GogLibrarySettings(this, api);
+            LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\gogicon.png");
         }
 
         internal Tuple<GameAction, ObservableCollection<GameAction>> GetGameTasks(string gameId, string installDir)
         {
             var gameInfoPath = Path.Combine(installDir, string.Format("goggame-{0}.info", gameId));
+            if (!File.Exists(gameInfoPath))
+            {
+                return new Tuple<GameAction, ObservableCollection<GameAction>>(null, null);
+            }
+
             var gameTaskData = JsonConvert.DeserializeObject<GogGameActionInfo>(File.ReadAllText(gameInfoPath));
             var playTask = gameTaskData.playTasks.FirstOrDefault(a => a.isPrimary)?.ConvertToGenericTask(installDir);
             playTask.IsHandledByPlugin = true;
@@ -54,9 +66,9 @@ namespace GogLibrary
             return new Tuple<GameAction, ObservableCollection<GameAction>>(playTask, otherTasks.Count > 0 ? otherTasks : null);
         }
 
-        internal List<Game> GetInstalledGames()
+        internal Dictionary<string, Game> GetInstalledGames()
         {
-            var games = new List<Game>();
+            var games = new Dictionary<string, Game>();
             var programs = Programs.GetUnistallProgramsList();
             foreach (var program in programs)
             {
@@ -78,7 +90,8 @@ namespace GogLibrary
                     GameId = gameId,
                     PluginId = Id,
                     Source = "GOG",
-                    Name = program.DisplayName
+                    Name = program.DisplayName,
+                    State = new GameState() { Installed = true }
                 };
    
                 var tasks = GetGameTasks(game.GameId, game.InstallDirectory);
@@ -90,58 +103,73 @@ namespace GogLibrary
 
                 game.PlayAction = tasks.Item1;
                 game.OtherActions = tasks.Item2;
-                games.Add(game);
+                games.Add(game.GameId, game);
             }
 
             return games;
         }
 
-        public List<Game> GetLibraryGames()
+        internal List<Game> GetLibraryGames()
         {
-            //using (var api = new WebApiClient())
-            //{
-            //    if (api.GetLoginRequired())
-            //    {
-            //        throw new Exception("User is not logged in.");
-            //    }
+            using (var view = playniteApi.WebViews.CreateOffscreenView())
+            {
+                var api = new GogAccountClient(view);
+                if (!api.GetIsUserLoggedIn())
+                {
+                    throw new Exception("User is not logged in to GOG account.");
+                }
 
-            //    var games = new List<Game>();
-            //    var acc = api.GetAccountInfo();
-            //    var libGames = api.GetOwnedGames(acc);
-            //    if (libGames == null)
-            //    {
-            //        throw new Exception("Failed to obtain libary data.");
-            //    }
+                var accInfo = api.GetAccountInfo();                
+                var libGames = api.GetOwnedGames(accInfo);
+                if (libGames == null)
+                {
+                    throw new Exception("Failed to obtain libary data.");
+                }
 
-            //    foreach (var game in libGames)
-            //    {
-            //        var newGame = new Game()
-            //        {
-            //            Provider = Provider.GOG,
-            //            Source = Enums.GetEnumDescription(Provider.GOG),
-            //            GameId = game.game.id,
-            //            Name = game.game.title,
-            //            Links = new ObservableCollection<Link>()
-            //                    {
-            //                        new Link("Store", @"https://www.gog.com" + game.game.url)
-            //                    }
-            //        };
-
-            //        if (game.stats != null && game.stats.ContainsKey(acc.userId))
-            //        {
-            //            newGame.Playtime = game.stats[acc.userId].playtime * 60;
-            //            newGame.LastActivity = game.stats[acc.userId].lastSession;
-            //        }
-
-            //        games.Add(newGame);
-            //    }
-
-            //    return games;
-            //}
-
-            return null;
+                return LibraryGamesToGames(libGames).ToList();
+            }
         }
 
+        internal List<Game> GetLibraryGames(string accountName)
+        {
+            var api = new GogAccountClient(null);
+            var games = new List<Game>();
+            var libGames = api.GetOwnedGamesFromPublicAccount(accountName);
+            if (libGames == null)
+            {
+                throw new Exception("Failed to obtain libary data.");
+            }
+
+            return LibraryGamesToGames(libGames).ToList();
+        }
+
+        internal IEnumerable<Game> LibraryGamesToGames(List<LibraryGameResponse> libGames)
+        {
+            foreach (var game in libGames)
+            {
+                var newGame = new Game()
+                {
+                    PluginId = Id,
+                    Source = "GOG",
+                    GameId = game.game.id,
+                    Name = game.game.title,
+                    Links = new ObservableCollection<Link>()
+                    {
+                        new Link("Store", @"https://www.gog.com" + game.game.url)
+                    },
+                    State = new GameState() { Installed = false }
+                };
+
+                if (game.stats?.Keys?.Any() == true)
+                {
+                    var acc = game.stats.Keys.First();
+                    newGame.Playtime = game.stats[acc].playtime * 60;
+                    newGame.LastActivity = game.stats[acc].lastSession;
+                }
+
+                yield return newGame;
+            }
+        }
 
         #region ILibraryPlugin
 
@@ -150,30 +178,68 @@ namespace GogLibrary
             get => new GogLibrarySettingsView();
         }
 
-        public IEditableObject Settings { get; private set; }
+        public ISettings Settings { get; private set; }
 
         public string Name { get; } = "GOG";
+
+        public string LibraryIcon { get; }
 
         public Guid Id { get; } = Guid.Parse("AEBE8B7C-6DC3-4A66-AF31-E7375C6B5E9E");
 
         public void Dispose()
         {
-
+            
         }
 
         public IGameController GetGameController(Game game)
         {
-            throw new NotImplementedException();
+            return new GogGameController(game, this, LibrarySettings, playniteApi);
         }
 
         public IEnumerable<Game> GetGames()
         {
-            return GetInstalledGames();
+            var allGames = new List<Game>();
+            var installedGames = new Dictionary<string, Game>();
+
+            if (LibrarySettings.ImportInstalledGames)
+            {
+                installedGames = GetInstalledGames();
+                allGames.AddRange(installedGames.Values.ToList());
+            }
+
+            if (LibrarySettings.ImportUninstalledGames)
+            {
+                List<Game> uninstalled;
+
+                if (LibrarySettings.UsePublicAccount)
+                {
+                    uninstalled = GetLibraryGames(LibrarySettings.AccountName);
+                }
+                else
+                {
+                    uninstalled = GetLibraryGames();
+                }
+
+                foreach (var game in uninstalled)
+                {
+                    if (installedGames.TryGetValue(game.GameId, out var installed))
+                    {
+                        installed.Playtime = game.Playtime;
+                        installed.LastActivity = game.LastActivity;
+                    }
+                    else
+                    {
+                        allGames.Add(game);
+                    }
+                }
+            }
+
+            return allGames;
         }
 
         public IMetadataProvider GetMetadataDownloader()
         {
-            throw new NotImplementedException();
+            return new GogMetadataProvider();
         }
 
         #endregion ILibraryPlugin

@@ -32,7 +32,7 @@
     <DocumentationFile>bin\Release\Playnite.SDK.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LiteDB, Version=3.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+    <Reference Include="LiteDB, Version=3.1.5.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\references\LiteDB.dll</HintPath>
     </Reference>
@@ -55,7 +55,6 @@
     <Compile Include="Collections\ObservableConcurrentDictionary.cs" />
     <Compile Include="Collections\ObservableObject.cs" />
     <Compile Include="Collections\RangeObservableCollection.cs" />
-    <Compile Include="Converters\ObjectIdJsonConverter.cs" />
     <Compile Include="Events\GameControllerEvent.cs" />
     <Compile Include="IDialogsFactory.cs" />
     <Compile Include="ExtensionFunction.cs" />
@@ -67,12 +66,13 @@
     <Compile Include="IPlayniteAPI.cs" />
     <Compile Include="IPlayniteInfoAPI.cs" />
     <Compile Include="IPlaynitePathsAPI.cs" />
+    <Compile Include="IResourceProvider.cs" />
+    <Compile Include="ISettings.cs" />
     <Compile Include="IWebView.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="Models\Metadata\GameMetadata.cs" />
     <Compile Include="Models\Metadata\MetadataFile.cs" />
     <Compile Include="Models\Metadata\MetadataSearchResult.cs" />
-    <Compile Include="Plugin.cs" />
     <Compile Include="Models\CompletionStatus.cs" />
     <Compile Include="Models\DatabaseFile.cs" />
     <Compile Include="Models\Emulator.cs" />
@@ -81,8 +81,8 @@
     <Compile Include="Models\GameTask.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\Platform.cs" />
-    <Compile Include="Models\Provider.cs" />
     <Compile Include="Plugins\IGameLibrary.cs" />
+    <Compile Include="Plugins\IGenericPlugin.cs" />
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Version.cs" />

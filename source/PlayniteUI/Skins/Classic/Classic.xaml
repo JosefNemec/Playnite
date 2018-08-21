@@ -592,6 +592,61 @@
         </Setter>
     </Style>
 
+    <Style x:Key="TextableComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource NormalBrush}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource ControlCornerRadius}"
+                            Style="{DynamicResource HighlightBorder}">
+                        <Grid>
+                            <ToggleButton x:Name="ToggleButton" Focusable="False" ClickMode="Press" Margin="0,0,2,0"
+                                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                        <DockPanel LastChildFill="False" Background="Transparent">
+                                            <Viewbox DockPanel.Dock="Right" Width="20" >
+                                                <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
+                                                           VerticalAlignment="Center"/>
+                                            </Viewbox>
+                                        </DockPanel>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       Margin="5,0,25,0" IsHitTestVisible="False"
+                                       Text="{TemplateBinding Text}" TextTrimming="CharacterEllipsis"
+                                       Background="{TemplateBinding Background}" Foreground="{DynamicResource TextBrush}">
+                            </TextBlock>
+                            <Popup x:Name="Popup" IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom" Focusable="False" AllowsTransparency="True">
+                                <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}"
+                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                    <Border BorderBrush="{DynamicResource PopupBorderBrush}"
+                                            BorderThickness="{DynamicResource PopupBorderThickness}"
+                                            Background="{DynamicResource PopupBackgroundBrush}">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                        </ScrollViewer>
+                                    </Border>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type ComboBoxItem}">
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
@@ -1393,14 +1448,13 @@
                     <Grid>
                         <Rectangle x:Name="HoverRectangle" Visibility="Collapsed" Fill="{DynamicResource HoverBrush}" />
                         <Rectangle x:Name="SelectedRectangle" Visibility="Collapsed" Fill="{DynamicResource GlyphBrush}" />
-                        <Border Padding="{TemplateBinding Padding}" Background="Transparent" >
+                        <Border Padding="{TemplateBinding Padding}" Background="Transparent">
                             <GridViewRowPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Stretch" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Selector.IsSelected" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectedRectangle" />
-                            <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="HoverRectangle" />
@@ -1409,6 +1463,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="Selector.IsSelected" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type GridViewColumnHeader}">
@@ -2301,9 +2360,6 @@
                                           Command="{Binding DownloadMetadataCommand}"
                                           InputGestureText="{Binding DownloadMetadataCommand.GestureText}" />
                                 <Separator />
-                                <MenuItem Header="{DynamicResource LOCInstallScript}"
-                                          Command="{Binding InstallScriptCommand}"
-                                          InputGestureText="{Binding InstallScriptCommand.GestureText}"/>
                                 <MenuItem Header="{DynamicResource LOCReloadScripts}"
                                           Command="{Binding ReloadScriptsCommand}"
                                           InputGestureText="{Binding ReloadScriptsCommand.GestureText}"/>
@@ -2318,7 +2374,7 @@
                             </MenuItem>
                             <MenuItem Header="{DynamicResource LOCExtensions}"
                                       IsEnabled="{Binding HasExportedFunctions}"
-                                      DataContext="{Binding Api, Source={x:Static pui:App.Current}}"
+                                      DataContext="{Binding Extensions, Source={x:Static pui:App.Current}}"
                                       ItemsSource="{Binding ExportedFunctions}">
                                 <MenuItem.Icon>
                                     <Image Source="/Images/MenuIcons/script.png" Height="16"
@@ -2638,7 +2694,7 @@
                             </DockPanel>
 
                             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
-                                <StackPanel Margin="0,5,0,0" MinWidth="180">
+                                <StackPanel Margin="0,5,0,0" MinWidth="200" MaxWidth="200">
                                     <StackPanel.Resources>
                                         <Style x:Key="FilterCheck" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
                                             <Setter Property="Margin" Value="8" />
@@ -2687,34 +2743,33 @@
 
                                     <Border Height="10" />
 
-                                    <CheckBox Name="CheckFilterSteam" IsChecked="{Binding AppSettings.FilterSettings.Steam}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.Steam, Mode=OneWay, StringFormat=Steam ({0})}" />
-                                    </CheckBox>
-
-                                    <CheckBox Name="CheckFilterGOG" IsChecked="{Binding AppSettings.FilterSettings.GOG}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.GOG, Mode=OneWay, StringFormat=GOG ({0})}" />
-                                    </CheckBox>
-
-                                    <CheckBox Name="CheckFilterOrigin" IsChecked="{Binding AppSettings.FilterSettings.Origin}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.Origin, Mode=OneWay, StringFormat=Origin ({0})}" />
-                                    </CheckBox>
-
-                                    <CheckBox Name="CheckFilterUplay" IsChecked="{Binding AppSettings.FilterSettings.Uplay}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.Uplay, Mode=OneWay, StringFormat=Uplay ({0})}" />
-                                    </CheckBox>
-
-                                    <CheckBox Name="CheckFilterBattleNet" IsChecked="{Binding AppSettings.FilterSettings.BattleNet}" Style="{StaticResource FilterCheck}">
-                                        <TextBlock Text="{Binding GamesStats.BattleNet, Mode=OneWay, StringFormat=Battle.net ({0})}" />
-                                    </CheckBox>
-
-                                    <CheckBox Name="CheckFilterCustom" IsChecked="{Binding AppSettings.FilterSettings.Custom}" Style="{StaticResource FilterCheck}">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{DynamicResource LOCCustomLabel}" Margin="0,0,5,0" />
-                                            <TextBlock Text="{Binding GamesStats.Custom, Mode=OneWay, StringFormat=({0})}" />
-                                        </StackPanel>
-                                    </CheckBox>
-
-                                    <Border Height="10" />
+                                    <Label Content="{DynamicResource LOCLibraries}">
+                                        <Label.Style>
+                                            <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Libraries, TargetNullValue=''}" Value="">
+                                                        <Setter Property="Opacity" Value="0.6"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                    <ComboBox Margin="8,0,8,8" Style="{StaticResource TextableComboBox}"
+                                              ItemsSource="{Binding DatabaseFilters.Libraries}"                                              
+                                              Text="{Binding DatabaseFilters.LibrariesString, Mode=OneWay}">
+                                        <ComboBox.ItemContainerStyle>
+                                            <Style TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                                                <Setter Property="Padding" Value="0" />
+                                            </Style>
+                                        </ComboBox.ItemContainerStyle>
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <CheckBox IsChecked="{Binding Selected}"
+                                                          Margin="5,0,5,0" Padding="7"
+                                                          Content="{Binding Name}" />
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
 
                                     <Label Content="{DynamicResource LOCNameLabel}">
                                         <Label.Style>
@@ -2882,14 +2937,13 @@
                             <DockPanel>
                                 <pc:ExtendedListBox SelectionMode="Extended" BorderThickness="0,0,1,0"
                                                     BorderBrush="{DynamicResource NormalBorderBrush}" Width="310"
-                                         ItemsSource="{Binding GamesView.CollectionView}"
-                                         SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
-                                         SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
-                                         DockPanel.Dock="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                         ScrollViewer.PanningMode="VerticalOnly"
-                                         pui:ScrollToSelectedBehavior.Enabled="True"
-                                         VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
-                                         VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Recycling">
+                                                    DockPanel.Dock="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                                    SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
+                                                    SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
+                                                    ScrollViewer.PanningMode="VerticalOnly"
+                                                    pui:ScrollToSelectedBehavior.Enabled="True"
+                                                    VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
+                                                    VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.VirtualizationMode="Recycling">
                                     <ListBox.InputBindings>
                                         <KeyBinding Command="{Binding EditSelectedGamesCommand}"
                                                     Key ="{Binding EditSelectedGamesCommand.Gesture.Key}"
@@ -2901,6 +2955,16 @@
                                                     Key ="{Binding StartSelectedGameCommand.Gesture.Key}"
                                                     Modifiers="{Binding StartSelectedGameCommand.Gesture.Modifiers}" />
                                     </ListBox.InputBindings>
+                                    <pc:ExtendedListBox.Style>
+                                        <Style TargetType="pc:ExtendedListBox" BasedOn="{StaticResource {x:Type pc:ExtendedListBox}}">
+                                            <Setter Property="ItemsSource" Value="{x:Null}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding AppSettings.ViewSettings.GamesViewType}" Value="{x:Static shared:ViewType.List}">
+                                                    <Setter Property="ItemsSource" Value="{Binding GamesView.CollectionView}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </pc:ExtendedListBox.Style>
                                     <ListBox.ItemContainerStyle>
                                         <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                                             <Style.Triggers>
@@ -2991,12 +3055,11 @@
                                 </Grid.RowDefinitions>
 
                                 <pc:ExtendedListBox Grid.Row="0" Grid.Column="0"
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ItemsView"
-                      ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Extended"
-                      pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0"                      
-                      ItemsSource="{Binding GamesView.CollectionView}"
-                      SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
-                      SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}">
+                                                    SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
+                                                    SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
+                                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ItemsView"
+                                                    ScrollViewer.PanningMode="VerticalOnly" SelectionMode="Extended"
+                                                    pui:ScrollToSelectedBehavior.Enabled="True" BorderThickness="0">
                                     <pc:ExtendedListBox.InputBindings>
                                         <KeyBinding Command="{Binding EditSelectedGamesCommand}"
                                 Key ="{Binding EditSelectedGamesCommand.Gesture.Key}"
@@ -3008,6 +3071,16 @@
                                 Key ="{Binding StartSelectedGameCommand.Gesture.Key}"
                                 Modifiers="{Binding StartSelectedGameCommand.Gesture.Modifiers}" />
                                     </pc:ExtendedListBox.InputBindings>
+                                    <pc:ExtendedListBox.Style>
+                                        <Style TargetType="pc:ExtendedListBox" BasedOn="{StaticResource {x:Type pc:ExtendedListBox}}">
+                                            <Setter Property="ItemsSource" Value="{x:Null}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding AppSettings.ViewSettings.GamesViewType}" Value="{x:Static shared:ViewType.Images}">
+                                                    <Setter Property="ItemsSource" Value="{Binding GamesView.CollectionView}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </pc:ExtendedListBox.Style>
                                     <pc:ExtendedListBox.ContextMenu>
                                         <pc:GameMenu DataContext="{Binding Data.SelectedGames, Source={StaticResource CoversProxy}}" />
                                     </pc:ExtendedListBox.ContextMenu>
@@ -3043,8 +3116,8 @@
                                                                     <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
                                                                         <Image.Source>
                                                                             <PriorityBinding>
-                                                                                <Binding Path="ImageObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
-                                                                                <Binding Path="DefaultImageObject" Mode="OneWay" />
+                                                                                <Binding Path="CoverImageObject" IsAsync="{StaticResource AsyncImagesEnabled}" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
+                                                                                <Binding Path="DefaultCoverImageObject" Mode="OneWay" />
                                                                             </PriorityBinding>
                                                                         </Image.Source>
                                                                     </Image>
@@ -3086,7 +3159,7 @@
                                                         <ControlTemplate.Triggers>
                                                             <MultiDataTrigger>
                                                                 <MultiDataTrigger.Conditions>
-                                                                    <Condition Binding="{Binding Image}" Value="{x:Null}" />
+                                                                    <Condition Binding="{Binding CoverImage}" Value="{x:Null}" />
                                                                     <Condition Binding="{Binding Path=Data.AppSettings.ShowNameEmptyCover, Source={StaticResource CoversProxy}}" Value="True" />
                                                                 </MultiDataTrigger.Conditions>
                                                                 <Setter Property="Visibility" Value="Visible" TargetName="TextGameName"/>
@@ -3218,10 +3291,20 @@
                             </Grid>
                         </TabItem>
                         <TabItem Header="{DynamicResource LOCDetailsLabel}">
-                            <pc:GamesGridView ItemsSource="{Binding GamesView.CollectionView}"
-                                              SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
+                            <pc:GamesGridView SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
                                               SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
-                                              AppSettings="{Binding AppSettings}" />
+                                              AppSettings="{Binding AppSettings}">
+                                <pc:GamesGridView.Style>
+                                    <Style TargetType="pc:GamesGridView">
+                                        <Setter Property="ItemsSource" Value="{x:Null}" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding AppSettings.ViewSettings.GamesViewType}" Value="{x:Static shared:ViewType.Grid}">
+                                                <Setter Property="ItemsSource" Value="{Binding GamesView.CollectionView}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </pc:GamesGridView.Style>
+                            </pc:GamesGridView>
                         </TabItem>
                     </TabControl>
                 </DockPanel>
@@ -3232,7 +3315,7 @@
                 <Button Name="ButtonFriends" Command="{Binding OpenSteamFriendsCommand}"
                         Height="30" Width="30" HorizontalAlignment="Right" Margin="0,0,15,0"
                         Style="{StaticResource ImageHighlightButton}" ToolTip="{DynamicResource LOCSteamFriendsTooltip}"
-                        Visibility="{Binding AppSettings.SteamSettings.IntegrationEnabled, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        Visibility="Visible">
                     <Button.OpacityMask>
                         <ImageBrush ImageSource="/Images/friends.png" RenderOptions.BitmapScalingMode="Fant"/>
                     </Button.OpacityMask>

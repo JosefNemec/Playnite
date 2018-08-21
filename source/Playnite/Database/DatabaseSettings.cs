@@ -23,15 +23,6 @@ namespace Playnite.Database
             get; set;
         }
 
-        /// <summary>
-        /// Indicates if games Source field has been set to default values (for example for Steam game to "Steam").
-        /// For update from 3.x to 4.x versions.
-        /// </summary>
-        public bool GameSourcesUpdated
-        {
-            get; set;
-        }
-
         public DatabaseSettings()
         {
         }

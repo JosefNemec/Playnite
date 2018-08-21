@@ -1,7 +1,4 @@
-﻿using LiteDB;
-using Newtonsoft.Json;
-using Playnite.SDK.Converters;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -149,12 +146,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private ObjectId emulatorId;
+        private Guid emulatorId;
         /// <summary>
         /// Gets or sets emulator id for Emulator action type execution.
-        /// </summary>
-        [JsonConverter(typeof(ObjectIdJsonConverter))]       
-        public ObjectId EmulatorId
+        /// </summary>     
+        public Guid EmulatorId
         {
             get => emulatorId;
             set
@@ -164,12 +160,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private ObjectId emulatorProfileId;
+        private Guid emulatorProfileId;
         /// <summary>
         /// Gets or sets emulator profile id for Emulator action type execution.
         /// </summary>
-        [JsonConverter(typeof(ObjectIdJsonConverter))]
-        public ObjectId EmulatorProfileId
+        public Guid EmulatorProfileId
         {
             get => emulatorProfileId;
             set

@@ -5,6 +5,7 @@ using Playnite.Common.System;
 using Playnite.Database;
 using Playnite.Plugins;
 using Playnite.SDK;
+using Playnite.SDK.Plugins;
 using Playnite.Settings;
 using PlayniteUI.Commands;
 using System;
@@ -18,22 +19,40 @@ using System.Windows.Controls;
 
 namespace PlayniteUI.ViewModels
 {
-    public class SettingsViewModel : ObservableObject, IDisposable
+    public class SelectablePlugin : ObservableObject
     {
-        public class PluginSetting
+        public IPlugin Plugin { get; set; }
+        public ExtensionDescription Description { get; set; }
+        public bool Selected { get; set; }
+
+        public SelectablePlugin()
         {
-            public IEditableObject Settings { get; set; }
-            public UserControl View { get; set; }
-            public string Name { get; set; }
         }
 
+        public SelectablePlugin(bool selected, IPlugin plugin, ExtensionDescription description)
+        {
+            Selected = selected;
+            Plugin = plugin;
+            Description = description;
+        }
+    }
+
+    public class PluginSettings
+    {
+        public ISettings Settings { get; set; }
+        public UserControl View { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class SettingsViewModel : ObservableObject, IDisposable
+    {
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
         private GameDatabase database;        
 
-        public PlayniteAPI PlayniteApi { get; set; }
+        public ExtensionFactory Extensions { get; set; }
 
         private PlayniteSettings settings;
         public PlayniteSettings Settings
@@ -48,6 +67,11 @@ namespace PlayniteUI.ViewModels
                 settings = value;
                 OnPropertyChanged("Settings");
             }
+        }
+
+        public bool AnyGenericPluginSettings
+        {
+            get => GenericPluginSettings?.Any() == true;
         }
 
         public List<Theme> AvailableSkins
@@ -77,9 +101,20 @@ namespace PlayniteUI.ViewModels
             private set;
         } = false;
 
-        public List<PluginDescription> PluginsList { get; }
+        public List<SelectablePlugin> PluginsList
+        {
+            get;
+        }
 
-        public Dictionary<Guid, PluginSetting> PluginSettings { get; } = new Dictionary<Guid, PluginSetting>();
+        public Dictionary<Guid, PluginSettings> LibraryPluginSettings
+        {
+            get;
+        } = new Dictionary<Guid, PluginSettings>();
+
+        public Dictionary<Guid, PluginSettings> GenericPluginSettings
+        {
+            get;
+        } = new Dictionary<Guid, PluginSettings>();
 
         #region Commands
 
@@ -131,9 +166,9 @@ namespace PlayniteUI.ViewModels
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources,
-            PlayniteAPI playniteApi)
+            ExtensionFactory extensions)
         {
-            PlayniteApi = playniteApi;
+            Extensions = extensions;
             Settings = settings;
             Settings.BeginEdit();
             this.database = database;
@@ -141,23 +176,46 @@ namespace PlayniteUI.ViewModels
             this.dialogs = dialogs;
             this.resources = resources;
 
-            PluginsList = PluginFactory.GetPluginDescriptors();
-            foreach (var provider in PlayniteApi.LibraryPlugins)
+            PluginsList = Extensions
+                .GetExtensionDescriptors()
+                .Select(a => new SelectablePlugin(Settings.DisabledPlugins?.Contains(a.FolderName) != true, null, a))
+                .ToList();
+
+            foreach (var provider in Extensions.LibraryPlugins.Values)
             {
-                var provSetting = provider.Settings;
-                var provView = provider.SettingsView;
+                var provSetting = provider.Plugin.Settings;
+                var provView = provider.Plugin.SettingsView;
                 if (provSetting != null && provView != null)
                 {
                     provView.DataContext = provSetting;
                     provSetting.BeginEdit();
-                    var plugSetting = new PluginSetting()
+                    var plugSetting = new PluginSettings()
                     {
-                        Name = provider.Name,
+                        Name = provider.Plugin.Name,
                         Settings = provSetting,
                         View = provView
                     };
 
-                    PluginSettings.Add(provider.Id, plugSetting);
+                    LibraryPluginSettings.Add(provider.Plugin.Id, plugSetting);
+                }
+            }
+
+            foreach (var plugin in Extensions.GenericPlugins.Values)
+            {
+                var provSetting = plugin.Plugin.Settings;
+                var provView = plugin.Plugin.SettingsView;
+                if (provSetting != null && provView != null)
+                {
+                    provView.DataContext = provSetting;
+                    provSetting.BeginEdit();
+                    var plugSetting = new PluginSettings()
+                    {
+                        Name = plugin.Description.Name,
+                        Settings = provSetting,
+                        View = provView
+                    };
+
+                    GenericPluginSettings.Add(plugin.Plugin.Id, plugSetting);
                 }
             }
         }
@@ -170,9 +228,14 @@ namespace PlayniteUI.ViewModels
         public void CloseView()
         {
             Settings.CancelEdit();
-            foreach (var provider in PluginSettings.Keys)
+            foreach (var provider in LibraryPluginSettings.Keys)
             {
-                PluginSettings[provider].Settings.CancelEdit();
+                LibraryPluginSettings[provider].Settings.CancelEdit();
+            }
+
+            foreach (var provider in GenericPluginSettings.Keys)
+            {
+                GenericPluginSettings[provider].Settings.CancelEdit();
             }
 
             window.Close(false);
@@ -192,17 +255,46 @@ namespace PlayniteUI.ViewModels
                 return;
             }
 
+            foreach (var provider in LibraryPluginSettings.Keys)
+            {
+                if (!LibraryPluginSettings[provider].Settings.VerifySettings(out var errors))
+                {
+                    dialogs.ShowErrorMessage(string.Join(Environment.NewLine, errors), LibraryPluginSettings[provider].Name);
+                    return;
+                }
+            }
+
+            foreach (var plugin in GenericPluginSettings.Keys)
+            {
+                if (!GenericPluginSettings[plugin].Settings.VerifySettings(out var errors))
+                {
+                    dialogs.ShowErrorMessage(string.Join(Environment.NewLine, errors), GenericPluginSettings[plugin].Name);
+                    return;
+                }
+            }
+
+            var disabledPlugs = PluginsList.Where(a => !a.Selected)?.Select(a => a.Description.FolderName).ToList();
+            if (Settings.DisabledPlugins?.IsListEqual(disabledPlugs) != true)
+            {
+                Settings.DisabledPlugins = PluginsList.Where(a => !a.Selected)?.Select(a => a.Description.FolderName).ToList();
+            }
+
             Settings.EndEdit();
             Settings.SaveSettings();
-            foreach (var provider in PluginSettings.Keys)
+            foreach (var provider in LibraryPluginSettings.Keys)
             {
-                PluginSettings[provider].Settings.EndEdit();
+                LibraryPluginSettings[provider].Settings.EndEdit();
+            }
+
+            foreach (var plugin in GenericPluginSettings.Keys)
+            {
+                GenericPluginSettings[plugin].Settings.EndEdit();
             }
 
             if (Settings.EditedFields?.Any() == true)
             {
                 if (Settings.EditedFields.IntersectsExactlyWith(
-                    new List<string>() { "Skin", "AsyncImageLoading", "DisableHwAcceleration", "DatabasePath" }))
+                    new List<string>() { "Skin", "AsyncImageLoading", "DisableHwAcceleration", "DatabasePath", "DisabledPlugins" }))
                 {
                     if (dialogs.ShowMessage(
                         resources.FindString("LOCSettingsRestartAskMessage"),

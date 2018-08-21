@@ -108,7 +108,7 @@ namespace Playnite
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="destination">The destination.</param>
-        public static void CopyProperties(this object source, object destination, bool diffOnly, List<string> ignoreNames = null)
+        public static void CopyProperties(this object source, object destination, bool diffOnly, List<string> ignoreNames = null, bool acceptJsonIgnore = false)
         {
             // If any this null throw an exception
             if (source == null || destination == null)
@@ -126,24 +126,34 @@ namespace Playnite
                 {
                     continue;
                 }
+
                 PropertyInfo targetProperty = typeDest.GetProperty(srcProp.Name);
                 if (targetProperty == null)
                 {
                     continue;
                 }
+
                 if (!targetProperty.CanWrite)
                 {
                     continue;
                 }
+
                 if (targetProperty.GetSetMethod(true) != null && targetProperty.GetSetMethod(true).IsPrivate)
                 {
                     continue;
                 }
+
                 if ((targetProperty.GetSetMethod().Attributes & MethodAttributes.Static) != 0)
                 {
                     continue;
                 }
+
                 if (!targetProperty.PropertyType.IsAssignableFrom(srcProp.PropertyType))
+                {
+                    continue;
+                }
+
+                if (acceptJsonIgnore && targetProperty.GetCustomAttributes(typeof(JsonIgnoreAttribute), true).Length > 0)
                 {
                     continue;
                 }

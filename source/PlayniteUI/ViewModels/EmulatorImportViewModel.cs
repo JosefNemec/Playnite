@@ -22,7 +22,7 @@ namespace PlayniteUI.ViewModels
     {
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var platforms = (IEnumerable<LiteDB.ObjectId>)values[0];
+            var platforms = (IEnumerable<Guid>)values[0];
             var allPlatforms = (IEnumerable<Platform>)values[1];
             return string.Join(", ", allPlatforms.Where(a => platforms?.Contains(a.Id) == true)?.Select(a => a.Name));
         }
@@ -37,7 +37,7 @@ namespace PlayniteUI.ViewModels
     {
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var platforms = (IEnumerable<LiteDB.ObjectId>)values[0];
+            var platforms = (IEnumerable<Guid>)values[0];
             var allPlatforms = (IEnumerable<Platform>)values[1];
             return allPlatforms.Where(a => platforms.Contains(a.Id));
         }
@@ -414,11 +414,11 @@ namespace PlayniteUI.ViewModels
                     GamesList.AddRange(games
                         .Where(a =>
                         {
-                            return dbGames.FirstOrDefault(b => Paths.AreEqual(a.IsoPath, b.IsoPath)) == null;
+                            return dbGames.FirstOrDefault(b => Paths.AreEqual(a.GameImagePath, b.GameImagePath)) == null;
                         })
                         .Select(a =>
                         {
-                            a.PlatformId = profile.Platforms?.FirstOrDefault();
+                            a.PlatformId = profile.Platforms?.FirstOrDefault() ?? Guid.Empty;
                             return new ImportableGame(a, emulator, profile);
                         }));
                 }
@@ -478,7 +478,7 @@ namespace PlayniteUI.ViewModels
                             var existing = platforms.FirstOrDefault(a => string.Equals(a.Name, platform, StringComparison.InvariantCultureIgnoreCase));
                             if (existing == null)
                             {
-                                var newPlatform = new Platform(platform) { Id = null };
+                                var newPlatform = new Platform(platform);
                                 database.AddPlatform(newPlatform);
                                 platforms = DatabasePlatforms;
                                 existing = newPlatform;
@@ -486,7 +486,7 @@ namespace PlayniteUI.ViewModels
 
                             if (profile.Platforms == null)
                             {
-                                profile.Platforms = new List<LiteDB.ObjectId>();
+                                profile.Platforms = new List<Guid>();
                             }
 
                             profile.Platforms.Add(existing.Id);                            

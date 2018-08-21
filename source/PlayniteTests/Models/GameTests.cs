@@ -22,14 +22,14 @@ namespace PlayniteTests.Models
             {
                 Name = "test game",
                 InstallDirectory = dir,
-                IsoPath = Path.Combine(dir, "test.iso")
+                GameImagePath = Path.Combine(dir, "test.iso")
             };
 
             Assert.AreEqual(string.Empty, game.ExpandVariables(string.Empty));
             Assert.AreEqual("teststring", game.ExpandVariables("teststring"));
             Assert.AreEqual(dir + "teststring", game.ExpandVariables("{InstallDir}teststring"));
             Assert.AreEqual(game.InstallDirectory, game.ExpandVariables("{InstallDir}"));
-            Assert.AreEqual(game.IsoPath, game.ExpandVariables("{ImagePath}"));
+            Assert.AreEqual(game.GameImagePath, game.ExpandVariables("{ImagePath}"));
             Assert.AreEqual("test", game.ExpandVariables("{ImageNameNoExt}"));
             Assert.AreEqual("test.iso", game.ExpandVariables("{ImageName}"));
             Assert.AreEqual(PlaynitePaths.ProgramPath, game.ExpandVariables("{PlayniteDir}"));

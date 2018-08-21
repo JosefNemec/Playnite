@@ -89,15 +89,12 @@ namespace Playnite
 
         public static EmulatorProfile GetGameActionEmulatorConfig(GameAction action, List<Emulator> emulators)
         {
-            return null;
+            if (action.EmulatorId == null || emulators == null)
+            {
+                return null;
+            }
 
-            // TODO
-            //if (action.EmulatorId == null || emulators == null)
-            //{
-            //    return null;
-            //}
-
-            //return emulators.FirstOrDefault(a => a.Id == action.EmulatorId)?.Profiles.FirstOrDefault(a => a.Id == action.EmulatorProfileId);
+            return emulators.FirstOrDefault(a => a.Id == action.EmulatorId)?.Profiles.FirstOrDefault(a => a.Id == action.EmulatorProfileId);
         }
     }
 }

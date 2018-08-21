@@ -23,6 +23,8 @@ namespace Playnite.Settings
 
     public class PlayniteSettings : INotifyPropertyChanged, IEditableObject
     {
+        private static ILogger logger = LogManager.GetCurrentClassLogger();
+
         public class WindowPosition
         {
             public class Point
@@ -53,6 +55,11 @@ namespace Playnite.Settings
                 get; set;
             } = System.Windows.WindowState.Normal;
         }
+
+        public int Version
+        {
+            get; set;
+        } = 1;
 
         private Dictionary<string, WindowPosition> windowPositions = new Dictionary<string, WindowPosition>();
         public Dictionary<string, WindowPosition> WindowPositions
@@ -296,7 +303,6 @@ namespace Playnite.Settings
             { "Icon", true },
             { "Name", true },
             { "Platform", false },
-            { "Provider", false },
             { "Developers", false },
             { "Publishers", false },
             { "ReleaseDate", true },
@@ -526,6 +532,20 @@ namespace Playnite.Settings
             get; set;
         }
 
+        private List<string> disabledPlugins = new List<string>();
+        public List<string> DisabledPlugins
+        {
+            get
+            {
+                return disabledPlugins;
+            }
+
+            set
+            {
+                disabledPlugins = value;
+                OnPropertyChanged("DisabledPlugins");
+            }
+        }
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -675,6 +695,80 @@ namespace Playnite.Settings
             else
             {
                 return false;
+            }
+        }
+
+        public static void MigrateSettingsConfig()
+        {
+            void WriteConfig(string id, Dictionary<string, object> config)
+            {
+                var path = Path.Combine(PlaynitePaths.ExtensionsDataPath, id, "config.json");
+                FileSystem.CreateDirectory(path);
+                File.WriteAllText(path, JsonConvert.SerializeObject(config, Formatting.Indented));
+            }
+
+            try
+            {
+                if (!File.Exists(PlaynitePaths.ConfigFilePath))
+                {
+                    return;
+                }
+
+                var oldSettings = JsonConvert.DeserializeObject<OldSettings.Settings>(File.ReadAllText(PlaynitePaths.ConfigFilePath));
+                if (oldSettings.BattleNetSettings != null)
+                {
+                    var config = new Dictionary<string, object>()
+                    {
+                        { "ImportInstalledGames", oldSettings.BattleNetSettings.IntegrationEnabled },
+                        { "ImportUninstalledGames", oldSettings.BattleNetSettings.LibraryDownloadEnabled }
+                    };
+
+                    WriteConfig("E3C26A3D-D695-4CB7-A769-5FF7612C7EDD", config);
+                }
+
+                if (oldSettings.OriginSettings != null)
+                {
+                    var config = new Dictionary<string, object>()
+                    {
+                        { "ImportInstalledGames", oldSettings.OriginSettings.IntegrationEnabled },
+                        { "ImportUninstalledGames", oldSettings.OriginSettings.LibraryDownloadEnabled }
+                    };
+
+                    WriteConfig("85DD7072-2F20-4E76-A007-41035E390724", config);
+                }
+
+                if (oldSettings.GOGSettings != null)
+                {
+                    var config = new Dictionary<string, object>()
+                    {
+                        { "ImportInstalledGames", oldSettings.GOGSettings.IntegrationEnabled },
+                        { "ImportUninstalledGames", oldSettings.GOGSettings.LibraryDownloadEnabled },
+                        { "StartGamesUsingGalaxy", oldSettings.GOGSettings.RunViaGalaxy }
+                    };
+
+                    WriteConfig("AEBE8B7C-6DC3-4A66-AF31-E7375C6B5E9E", config);
+                }
+
+                if (oldSettings.SteamSettings != null)
+                {
+                    var config = new Dictionary<string, object>()
+                    {
+                        { "ImportInstalledGames", oldSettings.SteamSettings.IntegrationEnabled },
+                        { "ImportUninstalledGames", oldSettings.SteamSettings.LibraryDownloadEnabled },
+                        { "PreferScreenshotForBackground", oldSettings.SteamSettings.PreferScreenshotForBackground },
+                        { "ApiKey", oldSettings.SteamSettings.APIKey },
+                        { "IsPrivateAccount", oldSettings.SteamSettings.PrivateAccount },
+                        { "AccountId", oldSettings.SteamSettings.AccountId },
+                        { "AccountName", oldSettings.SteamSettings.AccountName },
+                        { "IdSource", oldSettings.SteamSettings.IdSource }
+                    };
+
+                    WriteConfig("CB91DFC9-B977-43BF-8E70-55F46E410FAB", config);
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to migrade plugin configuration.");
             }
         }
     }

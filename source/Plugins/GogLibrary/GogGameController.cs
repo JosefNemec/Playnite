@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Playnite;
+using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 
@@ -20,11 +21,13 @@ namespace GogLibrary
         private ProcessMonitor procMon;
         private Stopwatch stopWatch;
         private GogLibrary library;
+        private IPlayniteAPI api;
 
-        public GogGameController(Game game, GogLibrary library, GogLibrarySettings settings) : base(game)
+        public GogGameController(Game game, GogLibrary library, GogLibrarySettings settings, IPlayniteAPI api) : base(game)
         {
             this.settings = settings;
             this.library = library;
+            this.api = api;
         }
 
         public override void Dispose()
@@ -64,8 +67,9 @@ namespace GogLibrary
                     throw new NotSupportedException();
                 }
 
+                var playAction = api.ExpandGameVariables(Game, Game.PlayAction);
                 OnStarting(this, new GameControllerEventArgs(this, 0));
-                var proc = GameActionActivator.ActivateAction(Game.PlayAction, Game);
+                var proc = GameActionActivator.ActivateAction(playAction, Game);
                 OnStarted(this, new GameControllerEventArgs(this, 0));
 
                 if (Game.PlayAction.Type != GameActionType.URL)
@@ -151,9 +155,9 @@ namespace GogLibrary
                     }
 
                     var games = library.GetInstalledGames();
-                    var game = games.FirstOrDefault(a => a.GameId == Game.GameId);
-                    if (game != null)
+                    if (games.ContainsKey(Game.GameId))
                     {
+                        var game = games[Game.GameId];
                         stopWatch.Stop();
                         Game.PlayAction = game.PlayAction;
                         Game.OtherActions = game.OtherActions;

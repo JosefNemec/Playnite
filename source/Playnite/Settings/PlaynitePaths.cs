@@ -25,35 +25,27 @@ namespace Playnite.Settings
             }
         }
 
-        public static string PluginsUserDataPath
+        public static string ExtensionsUserDataPath
         {
             get
             {
-                return Path.Combine(ConfigRootPath, "Plugins");
+                return Path.Combine(ConfigRootPath, "Extensions");
             }
         }
 
-        public static string PluginsProgramPath
+        public static string ExtensionsProgramPath
         {
             get
             {
-                return Path.Combine(ProgramPath, "Plugins");
+                return Path.Combine(ProgramPath, "Extensions");
             }
         }
 
-        public static string ScriptsUserDataPath
+        public static string ExtensionsDataPath
         {
             get
             {
-                return Path.Combine(ConfigRootPath, "Scripts");
-            }
-        }
-
-        public static string ScriptsProgramPath
-        {
-            get
-            {
-                return Path.Combine(ProgramPath, "Scripts");
+                return Path.Combine(ConfigRootPath, "ExtensionsData");
             }
         }
 

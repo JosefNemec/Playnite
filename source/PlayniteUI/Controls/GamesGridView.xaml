@@ -124,8 +124,8 @@
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Name]}" />
                         <MenuItem Header="{DynamicResource LOCGamePlatformTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Platform]}" />
-                        <MenuItem Header="{DynamicResource LOCGameProviderTitle}"
-                                    IsCheckable="True" IsChecked="{Binding GridViewHeaders[Provider]}" />
+                        <!--<MenuItem Header="{DynamicResource LOCGameProviderTitle}"
+                                    IsCheckable="True" IsChecked="{Binding GridViewHeaders[Provider]}" />-->
                         <MenuItem Header="{DynamicResource LOCGameDevelopersTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Developers]}" />
                         <MenuItem Header="{DynamicResource LOCGamePublishersTitle}"
@@ -234,7 +234,7 @@
                 </GridViewColumn>
                 
                 <!-- Provider -->
-                <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Provider], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+                <!--<GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Provider], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
                     <GridViewColumn.Header>
                         <GridViewColumnHeader Tag="{x:Static playnite:SortOrder.Provider}">
                             <GridViewColumnHeader.Content>
@@ -251,7 +251,7 @@
                             <TextBlock Text="{Binding Provider, Mode=OneWay}" Style="{StaticResource TextItemStyle}"/>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
-                </GridViewColumn>
+                </GridViewColumn>-->
                 
                 <!-- Developers -->
                 <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Developers], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">

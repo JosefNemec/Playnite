@@ -16,7 +16,7 @@ namespace PlayniteUI
 
     public class NotificationMessage
     {
-        public int Id
+        public string Id
         {
             get; set;
         }
@@ -37,26 +37,12 @@ namespace PlayniteUI
             get; set;
         }
 
-        public NotificationMessage(int id, string text, NotificationType type, ClickDelegate action)
+        public NotificationMessage(string id, string text, NotificationType type, ClickDelegate action)
         {
             Id = id;
             Text = text;
             Type = type;
             ClickAction = action;
         }
-    }    
-
-    public static class NotificationCodes
-    {
-        public static readonly int GOGLibDownloadError = 1;
-        public static readonly int SteamLibDownloadError = 2;
-        public static readonly int GOGLInstalledImportError = 3;
-        public static readonly int SteamInstalledImportError = 4;
-        public static readonly int OriginInstalledImportError = 5;
-        public static readonly int OriginLibDownloadError = 6;
-        public static readonly int UplayInstalledImportError = 7;
-        public static readonly int BattleNetInstalledImportError = 8;
-        public static readonly int BattleNetLibDownloadImportError = 9;
-        public static readonly int SteamCatImportError = 10;
     }
 }

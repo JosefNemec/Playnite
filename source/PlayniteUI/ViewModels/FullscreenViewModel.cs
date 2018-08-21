@@ -2,6 +2,7 @@
 using Playnite;
 using Playnite.API;
 using Playnite.Database;
+using Playnite.Plugins;
 using Playnite.SDK;
 using Playnite.Settings;
 using PlayniteUI.Commands;
@@ -209,7 +210,8 @@ namespace PlayniteUI.ViewModels
             IResourceProvider resources,
             PlayniteSettings settings,
             GamesEditor gamesEditor,
-            PlayniteAPI playniteApi) : base(database, window, dialogs, resources, settings, gamesEditor, playniteApi)
+            PlayniteAPI playniteApi,
+            ExtensionFactory extensions) : base(database, window, dialogs, resources, settings, gamesEditor, playniteApi, extensions)
         {
             IsFullscreenView = true;
             PropertyChanged += FullscreenViewModel_PropertyChanged;

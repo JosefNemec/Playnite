@@ -14,7 +14,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="{DynamicResource LOCSettingsWindowTitle}" Width="750" Height="600"                     
+        Width="750" Height="600"                     
         AutomationProperties.AutomationId="WindowSettings">
 
     <i:Interaction.Triggers>
@@ -27,13 +27,7 @@
         <pui:NegateConverter x:Key="NegateConverter" />
         <pui:EnumConverter x:Key="EnumConverter" />
         <sys:Double x:Key="IconSize">24</sys:Double>
-        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
-        
-        <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="Margin" Value="0,2,0,2" />
-            <Setter Property="Padding" Value="0,3,3,3" />
-        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />   
     </controls:WindowBase.Resources>
 
     <DockPanel>
@@ -51,34 +45,40 @@
         <TabControl BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
             <TabItem Header="Settings">
                 <DockPanel>
-                    <TreeView DockPanel.Dock="Left" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}"
+                    <ListBox DockPanel.Dock="Left" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}"
                           Name="TreeSections" MinWidth="140">
-                        <TreeViewItem Header="{DynamicResource LOCExtensions}" IsSelected="True">
-                            <TreeViewItem.Tag>
-                                <sys:Int32>4</sys:Int32>
-                            </TreeViewItem.Tag>
-                        </TreeViewItem>
-                        <TreeViewItem Header="{DynamicResource LOCSettingsGeneralLabel}">
-                            <TreeViewItem.Tag>
+                        <ListBox.Resources>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                <Setter Property="FontSize" Value="16" />
+                                <Setter Property="Padding" Value="5" />
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBoxItem Content="{DynamicResource LOCSettingsGeneralLabel}" IsSelected="True">
+                            <ListBoxItem.Tag>
                                 <sys:Int32>0</sys:Int32>
-                            </TreeViewItem.Tag>
-                        </TreeViewItem>
-                        <TreeViewItem Header="{DynamicResource LOCSettingsAppearanceLabel}">
-                            <TreeViewItem.Tag>
+                            </ListBoxItem.Tag>
+                        </ListBoxItem>
+                        <ListBoxItem Content="{DynamicResource LOCSettingsAppearanceLabel}">
+                            <ListBoxItem.Tag>
                                 <sys:Int32>1</sys:Int32>
-                            </TreeViewItem.Tag>
-                        </TreeViewItem>
-                        <TreeViewItem Header="{DynamicResource LOCSettingsFullscreenLabel}">
-                            <TreeViewItem.Tag>
+                            </ListBoxItem.Tag>
+                        </ListBoxItem>
+                        <ListBoxItem Content="{DynamicResource LOCSettingsFullscreenLabel}">
+                            <ListBoxItem.Tag>
                                 <sys:Int32>2</sys:Int32>
-                            </TreeViewItem.Tag>
-                        </TreeViewItem>                
-                        <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}">
-                            <TreeViewItem.Tag>
+                            </ListBoxItem.Tag>
+                        </ListBoxItem>
+                        <ListBoxItem Content="{DynamicResource LOCSettingsAdvancedLabel}">
+                            <ListBoxItem.Tag>
                                 <sys:Int32>3</sys:Int32>
-                            </TreeViewItem.Tag>
-                        </TreeViewItem>
-                    </TreeView>
+                            </ListBoxItem.Tag>
+                        </ListBoxItem>
+                        <ListBoxItem Content="{DynamicResource LOCExtensions}">
+                            <ListBoxItem.Tag>
+                                <sys:Int32>4</sys:Int32>
+                            </ListBoxItem.Tag>
+                        </ListBoxItem>
+                    </ListBox>
                     
                     <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Top" OverridesDefaultStyle="True"
                                 SelectedIndex="{Binding SelectedItem.Tag, ElementName=TreeSections}">
@@ -359,12 +359,24 @@
                         </TabItem>
 
                         <TabItem>
-                            <ListView ItemsSource="{Binding PluginsList}">
+                            <ListView ItemsSource="{Binding PluginsList}" BorderThickness="0" Margin="-20">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                                        <Setter Property="Focusable" Value="false"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="Name" Width="220" DisplayMemberBinding="{Binding Name}" />
-                                        <GridViewColumn Header="Version" Width="80" DisplayMemberBinding="{Binding Version}" />
-                                        <GridViewColumn Header="Author" Width="150" DisplayMemberBinding="{Binding Author}" />
+                                        <GridViewColumn Header="Enabled" Width="Auto">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox IsChecked="{Binding Selected}" HorizontalAlignment="Center" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="{DynamicResource LOCNameLabel}" Width="220" DisplayMemberBinding="{Binding Description.Name}" />
+                                        <GridViewColumn Header="{DynamicResource LOCAuthorLabel}" Width="150" DisplayMemberBinding="{Binding Description.Author}" />
+                                        <GridViewColumn Header="{DynamicResource LOCModuleLabel}" Width="Auto" DisplayMemberBinding="{Binding Description.Module}" />
                                     </GridView>
                                 </ListView.View>
                             </ListView>
@@ -375,17 +387,48 @@
 
             <TabItem Header="{DynamicResource LOCLibraries}">
                 <DockPanel>
-                    <TreeView ItemsSource="{Binding PluginSettings}"
-                              Name="TreeExtensions" MinWidth="140"
+                    <ListBox ItemsSource="{Binding LibraryPluginSettings}"
+                              Name="TreeLibraryPlugins" MinWidth="140"
+                              SelectedIndex="0"
                               BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}">
-                        <TreeView.ItemTemplate>
+                        <ListBox.Resources>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                <Setter Property="FontSize" Value="16" />
+                                <Setter Property="Padding" Value="5" />
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Value.Name}" />
                             </DataTemplate>
-                        </TreeView.ItemTemplate>
-                    </TreeView>                    
+                        </ListBox.ItemTemplate>
+                    </ListBox>                    
                     <ContentControl DockPanel.Dock="Left" Margin="20"
-                                    Content="{Binding SelectedItem.Value.View, ElementName=TreeExtensions}"/>
+                                    Content="{Binding SelectedItem.Value.View, ElementName=TreeLibraryPlugins}"/>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource LOCPlugins}"
+                     Visibility="{Binding AnyGenericPluginSettings, Converter={pui:BooleanToVisibilityConverter}}">
+                <DockPanel>
+                    <ListBox ItemsSource="{Binding GenericPluginSettings}"
+                              Name="TreeGenericPlugins" MinWidth="140"
+                              SelectedIndex="0"
+                              BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}">
+                        <ListBox.Resources>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                <Setter Property="FontSize" Value="16" />
+                                <Setter Property="Padding" Value="5" />
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Value.Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <ContentControl DockPanel.Dock="Left" Margin="20"
+                                    Content="{Binding SelectedItem.Value.View, ElementName=TreeGenericPlugins}"/>
                 </DockPanel>
             </TabItem>
         </TabControl>

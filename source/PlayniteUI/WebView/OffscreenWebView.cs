@@ -16,6 +16,7 @@ namespace PlayniteUI.WebView
 
         private CefSharp.OffScreen.ChromiumWebBrowser browser;
 
+        public event EventHandler NavigationChanged;
 
         public OffscreenWebView()
         {
@@ -32,6 +33,8 @@ namespace PlayniteUI.WebView
             {
                 loadCompleteEvent.Set();
             }
+
+            NavigationChanged?.Invoke(this, new EventArgs());
         }
 
 
@@ -65,10 +68,25 @@ namespace PlayniteUI.WebView
             return browser.GetSourceAsync().GetAwaiter().GetResult();
         }
 
-        public void Navigate(string url)
+        public void NavigateAndWait(string url)
         {
             browser.Load(url);
-            loadCompleteEvent.WaitOne(10000);
+            loadCompleteEvent.WaitOne(20000);
+        }
+
+        public void Navigate(string url)
+        {            
+            browser.Load(url);
+        }
+
+        public void Open()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool? OpenDialog()
+        {
+            throw new NotImplementedException();
         }
     }
 }

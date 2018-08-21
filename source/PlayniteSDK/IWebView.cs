@@ -8,6 +8,12 @@ namespace Playnite.SDK
 {
     public interface IWebView : IDisposable
     {
+        void Open();
+
+        bool? OpenDialog();
+
+        void NavigateAndWait(string url);
+
         void Navigate(string url);
 
         string GetPageText();
@@ -17,6 +23,8 @@ namespace Playnite.SDK
         string GetCurrentAddress();
 
         void Close();
+
+        event EventHandler NavigationChanged;
     }
 
     public interface IWebViewFactory

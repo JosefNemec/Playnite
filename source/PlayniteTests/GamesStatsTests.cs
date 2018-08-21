@@ -1,66 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Playnite;
+using Playnite.Database;
 using Playnite.Models;
+using Playnite.SDK.Models;
 
 namespace PlayniteTests
 {
     [TestFixture]
     public class GamesStatsTests
     {
-        //[Test]
-        //public void BasicTest()
-        //{
-        //    var stats = new GamesStats();
-        //    var games = new ObservableCollection<IGame>
-        //    {
-        //        new Game("Game 1"),
-        //        new Game("Steam game 1")
-        //        {
-        //            Provider = Provider.Steam,
-        //            PlayTask = new GameTask(),
-        //            Hidden = true
-        //        },
-        //        new Game("Origin game 1")
-        //        {
-        //            Provider = Provider.Origin
-        //        },
-        //        new Game("GOG game 1")
-        //        {
-        //            Provider = Provider.GOG,
-        //            Hidden = true
-        //        },
-        //        new Game("GOG game 2")
-        //        {
-        //            Provider = Provider.GOG,
-        //            Hidden = false
-        //        }
-        //    };
+        [Test]
+        public void BasicTest()
+        {
 
-        //    stats.SetGames(games);
+            var db = new GameDatabase(null);
+            using (db.OpenDatabase(new MemoryStream()))
+            {
+                db.AddGames(new List<Game>
+                {
+                    new Game("Game 1"),
+                    new Game("Steam game 1")
+                    {
+                        State = new GameState() { Installed = true },
+                        Hidden = true
+                    },
+                    new Game("Origin game 1")
+                    {
+                    },
+                    new Game("GOG game 1")
+                    {
+                        Hidden = true
+                    },
+                    new Game("GOG game 2")
+                    {
+                        Hidden = false
+                    }
+                });
 
-        //    Assert.AreEqual(5, stats.Total);
-        //    Assert.AreEqual(2, stats.GOG);
-        //    Assert.AreEqual(1, stats.Steam);
-        //    Assert.AreEqual(1, stats.Origin);
-        //    Assert.AreEqual(1, stats.Custom);
-        //    Assert.AreEqual(1, stats.Installed);
-        //    Assert.AreEqual(2, stats.Hidden);
+                var stats = new DatabaseStats(db);
 
-        //    games.Add(new Game("Game 2"));
-        //    Assert.AreEqual(6, stats.Total);
-        //    Assert.AreEqual(2, stats.Custom);
+                Assert.AreEqual(5, stats.Total);
+                Assert.AreEqual(1, stats.Installed);
+                Assert.AreEqual(2, stats.Hidden);
+                Assert.AreEqual(0, stats.Favorite);
 
-        //    games[1].Hidden = false;
-        //    Assert.AreEqual(1, stats.Hidden);
+                var newGame = new Game("Game 2") { Favorite = true };
+                db.AddGame(newGame);
+                Assert.AreEqual(6, stats.Total);                
+                Assert.AreEqual(1, stats.Favorite);
 
-        //    games[0].PlayTask = new GameTask();
-        //    Assert.AreEqual(2, stats.Installed);
-        //}
+                newGame.State = new GameState() { Installed = true };
+                db.UpdateGameInDatabase(newGame);
+                Assert.AreEqual(2, stats.Installed);
+            }            
+        }
     }
 }

@@ -5,7 +5,6 @@ using Playnite.Database;
 using Playnite.Emulators;
 using Playnite.SDK;
 using Playnite.SDK.Models;
-using Playnite.SDK.Converters;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -475,7 +474,7 @@ namespace PlayniteUI.ViewModels
 
         public void AddPlatform()
         {
-            var platform = new Platform("New Platform") { Id = null };
+            var platform = new Platform("New Platform");
             Platforms.Add(platform);
             SelectedPlatform = platform;
         }
@@ -541,7 +540,7 @@ namespace PlayniteUI.ViewModels
 
         public void AddEmulator()
         {
-            var emulator = new Emulator("New Emulator") { Id = null };
+            var emulator = new Emulator("New Emulator");
             Emulators.Add(emulator);
             SelectedEmulator = emulator;
         }
@@ -573,8 +572,7 @@ namespace PlayniteUI.ViewModels
 
         public void CopyEmulator(Emulator emulator)
         {
-            var copy = emulator.CloneJson(new JsonSerializerSettings() { ContractResolver = new ObjectIdContractResolver() });
-            copy.Id = null;
+            var copy = emulator.CloneJson();
             copy.Name += " Copy";
             Emulators.Add(copy);
             SelectedEmulator = copy;
@@ -599,9 +597,8 @@ namespace PlayniteUI.ViewModels
 
         public void CopyEmulatorProfile(EmulatorProfile profile)
         {
-            var copy = profile.CloneJson(new JsonSerializerSettings() { ContractResolver = new ObjectIdContractResolver() });
+            var copy = profile.CloneJson();
             copy.Name += " Copy";
-            copy.Id = ObjectId.NewObjectId();
             SelectedEmulator.Profiles.Add(copy);
             SelectedEmulatorProfile = copy;
         }

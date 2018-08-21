@@ -15,14 +15,14 @@ namespace PlayniteTests.API
         [Test]
         public void FromFileTest()
         {            
-            var path =  Path.Combine(PlayniteTests.ResourcesPath, "plugin.info");
-            var description = PluginDescription.FromFile(path);
-            Assert.IsNotEmpty(description.Assembly);
+            var path =  Path.Combine(PlayniteTests.ResourcesPath, "extension.info");
+            var description = ExtensionDescription.FromFile(path);
+            Assert.IsNotEmpty(description.Module);
             Assert.IsNotEmpty(description.Author);
             Assert.IsNotEmpty(description.Name);
-            Assert.IsNotEmpty(description.Path);
+            Assert.IsNotEmpty(description.DescriptionPath);
             Assert.IsNotNull(description.Version);
-            Assert.AreEqual(PluginType.GameLibrary, description.Type);
+            Assert.AreEqual(ExtensionType.GameLibrary, description.Type);
         }
     }
 }

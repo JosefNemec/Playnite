@@ -1,6 +1,8 @@
 ﻿using Playnite;
 using Playnite.Common.System;
+using Playnite.Plugins;
 using Playnite.SDK;
+using Playnite.SDK.Plugins;
 using Playnite.Settings;
 using PlayniteUI.Commands;
 using System;
@@ -9,11 +11,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using static PlayniteUI.ViewModels.InstalledGamesViewModel;
 
 namespace PlayniteUI.ViewModels
 {    
-    public class FirstTimeStartupViewModel : ObservableObject, IDisposable
+    public class FirstTimeStartupViewModel : ObservableObject
     {
         public enum DbLocation
         {
@@ -21,24 +24,24 @@ namespace PlayniteUI.ViewModels
             Custom
         }
 
-        public enum Page : int
+        public class Pages
         {
-            Intro = 0,
-            Database = 1,
-            ProviderSelect = 2,
-            Steam = 3,
-            GOG = 4,
-            Origin = 5,
-            BattleNet = 6,
-            Uplay = 7,
-            Custom = 8,
-            Finish = 9
+            public const int Intro = 0;
+            public const int Database = 1;
+            public const int ProviderSelect = 2;
+            public const int ProviderConfig = 3;
+            public const int Custom = 4;
+            public const int Finish = 5;
         }
 
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
-        private IResourceProvider resources;        
+        private IResourceProvider resources;
+        private ExtensionFactory extensions;
+        private IPlayniteAPI playniteApi;
+        private List<PluginSettings> selectedPlugins;
+        private int selectedPluginIndex = 0;
 
         private DbLocation databaseLocation = DbLocation.ProgramData;
         public DbLocation DatabaseLocation
@@ -51,13 +54,13 @@ namespace PlayniteUI.ViewModels
             set
             {
                 databaseLocation = value;
-                OnPropertyChanged("DatabaseLocation");
+                OnAutoPropertyChanged();
             }
         }
 
         public bool ShowFinishButton
         {
-            get => SelectedIndex == (int)Page.Finish;
+            get => SelectedIndex == Pages.Finish;
         }
         
         public List<InstalledGameMetadata> ImportedGames
@@ -77,7 +80,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 settings = value;
-                OnPropertyChanged("Settings");
+                OnAutoPropertyChanged();
             }
         }
 
@@ -93,12 +96,46 @@ namespace PlayniteUI.ViewModels
             {
                 selectedIndex = value;
                 OnPropertyChanged("ShowFinishButton");
-                OnPropertyChanged("SelectedIndex");
+                OnAutoPropertyChanged();
             }
         }
 
-        private Dictionary<Page, Func<FirstTimeStartupViewModel, bool>> pageValidators =
-            new Dictionary<Page, Func<FirstTimeStartupViewModel, bool>>();
+        private UserControl selectedProviderSettingsView;
+        public UserControl SelectedProviderSettingsView
+        {
+            get
+            {
+                return selectedProviderSettingsView;
+            }
+
+            set
+            {
+                selectedProviderSettingsView = value;
+                OnAutoPropertyChanged();
+            }
+        }
+
+        private PluginSettings selectedPlugin;
+        public PluginSettings SelectedLibraryPlugin
+        {
+            get
+            {
+                return selectedPlugin;
+            }
+
+            set
+            {
+                selectedPlugin = value;
+                OnAutoPropertyChanged();
+            }
+        }
+
+        public List<SelectablePlugin> LibraryPlugins
+        {
+            get;
+        } = new List<SelectablePlugin>();
+
+        #region Commands
 
         public RelayCommand<object> CloseCommand
         {
@@ -129,7 +166,7 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 NavigateNext();
-            }, (a) => SelectedIndex < (int)Page.Finish);
+            }, (a) => SelectedIndex < Pages.Finish);
         }
 
         public RelayCommand<object> BackCommand
@@ -149,63 +186,27 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public RelayCommand<Uri> NavigateUrlCommand
-        {
-            get => new RelayCommand<Uri>((url) =>
-            {
-                NavigateUrl(url.AbsoluteUri);
-            });
-        }
+        #endregion Commands
 
-        public FirstTimeStartupViewModel(IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public FirstTimeStartupViewModel(
+            IWindowFactory window,
+            IDialogsFactory dialogs,
+            IResourceProvider resources,
+            ExtensionFactory extensions,
+            IPlayniteAPI playniteApi)
         {
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
+            this.extensions = extensions;
+            this.playniteApi = playniteApi;
 
-            pageValidators.Add(Page.Steam, (model) =>
+            var plugins = extensions.GetExtensionDescriptors();
+            foreach (var description in plugins)
             {
-                //if (model.Settings.SteamSettings.IntegrationEnabled && model.Settings.SteamSettings.LibraryDownloadEnabled)
-                //{
-                //    if (model.Settings.SteamSettings.IdSource == SteamIdSource.Name && string.IsNullOrEmpty(model.Settings.SteamSettings.AccountName))
-                //    {
-                //        dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidSteamAccountName"),
-                //            resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
-                //        return false;
-                //    }
-
-                //    if (model.Settings.SteamSettings.IdSource == SteamIdSource.LocalUser && model.Settings.SteamSettings.AccountId == 0)
-                //    {
-                //        dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidSteamAccountLibImport"),
-                //            resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
-                //        return false;
-                //    }
-                //}
-
-                //if (model.SteamImportCategories && model.SteamIdCategoryImport == 0)
-                //{
-                //    dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidSteamAccountCatImport"),
-                //        resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
-                //    return false;
-                //}
-
-                return true;
-            });
-
-            pageValidators.Add(Page.Database, (model) =>
-            {
-                if (model.DatabaseLocation == DbLocation.Custom)
-                {
-                    if (!Paths.GetValidFilePath(model.Settings.DatabasePath))
-                    {
-                        dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidDBLocation"),
-                            resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
-                        return false;
-                    }
-                }
-
-                return true;
-            });
+                var provider = extensions.LoadPlugin<ILibraryPlugin>(description, playniteApi);
+                LibraryPlugins.Add(new SelectablePlugin(true, provider, description));
+            }
         }
 
         public bool? OpenView()
@@ -215,21 +216,73 @@ namespace PlayniteUI.ViewModels
 
         public void CloseView(bool? result)
         {
+            Settings.DisabledPlugins = LibraryPlugins.Where(a => !a.Selected)?.Select(a => a.Description.FolderName).ToList();
+            foreach (var plugin in LibraryPlugins)
+            {
+                plugin.Plugin.Dispose();
+            }
+
             window.Close(result);
-            Dispose();
         }
 
-        public void Dispose()
+        private void SetPluginConfiguration(PluginSettings plugin)
         {
+            SelectedLibraryPlugin = plugin;
+            var view = plugin.View;
+            view.DataContext = plugin.Settings;
+            SelectedProviderSettingsView = view;
+            plugin.Settings.BeginEdit();
         }
 
         public void NavigateNext()
         {
-            if (pageValidators.ContainsKey((Page)SelectedIndex))
+            if (SelectedIndex == Pages.Database)
             {
-                if (pageValidators[(Page)SelectedIndex](this) == false)
+                if (DatabaseLocation == DbLocation.Custom && !Paths.GetValidFilePath(Settings.DatabasePath))
                 {
+                    dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidDBLocation"),
+                        resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
+                }
+            }
+
+            if (SelectedIndex == Pages.ProviderSelect)
+            {
+                selectedPluginIndex = 0;
+                selectedPlugins = LibraryPlugins.Where(a => a.Selected)?.Select(a =>
+                {
+                    var lib = a.Plugin as ILibraryPlugin;
+                    return new PluginSettings()
+                    {
+                        Name = lib.Name,
+                        View = lib.SettingsView,
+                        Settings = lib.Settings                        
+                    };
+                }).ToList();
+
+                if (selectedPlugins?.Any() == true)
+                {
+                    SetPluginConfiguration(selectedPlugins[0]);
+                }
+            }
+
+            if (SelectedIndex == Pages.ProviderConfig)
+            {
+                if (SelectedLibraryPlugin.Settings.VerifySettings(out var errors))
+                {
+                    SelectedLibraryPlugin.Settings.EndEdit();
+                }
+                else
+                {
+                    dialogs.ShowErrorMessage(string.Join(Environment.NewLine, errors), "");
+                    return;
+                }
+
+                if ((selectedPluginIndex + 1) < selectedPlugins.Count)
+                {
+                    selectedPluginIndex++;
+                    SetPluginConfiguration(selectedPlugins[selectedPluginIndex]);
+                    return;                    
                 }
             }
 
@@ -238,6 +291,11 @@ namespace PlayniteUI.ViewModels
 
         public void NavigateBack()
         {
+            if (SelectedIndex == Pages.Custom)
+            {
+                SelectedIndex--;
+            }
+
             SelectedIndex--;
         }
 
@@ -257,11 +315,6 @@ namespace PlayniteUI.ViewModels
                 logger.Debug($"Selected {model.Games} custom games from first time wizard.");
                 ImportedGames = model.Games;
             }
-        }
-
-        public void NavigateUrl(string url)
-        {
-            System.Diagnostics.Process.Start(url);
         }
     }
 }

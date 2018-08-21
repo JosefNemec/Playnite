@@ -17,6 +17,7 @@ using Playnite.Web;
 using Playnite.Metadata;
 using Playnite.SDK.Metadata;
 using Playnite.Settings;
+using Playnite.Plugins;
 
 namespace PlayniteUI.ViewModels
 {
@@ -27,7 +28,7 @@ namespace PlayniteUI.ViewModels
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
         private GameDatabase database;
-        private PlayniteSettings appSettings;
+        private ExtensionFactory extensions;
 
         #region Field checks
 
@@ -950,12 +951,13 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public GameEditViewModel(Game game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public GameEditViewModel(Game game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, ExtensionFactory extensions)
         {
             this.database = database;
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
+            this.extensions = extensions;
 
             Game = game;
             EditingGame = game.CloneJson();
@@ -967,12 +969,13 @@ namespace PlayniteUI.ViewModels
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
         }
 
-        public GameEditViewModel(IEnumerable<Game> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public GameEditViewModel(IEnumerable<Game> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, ExtensionFactory extensions)
         {
             this.database = database;
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
+            this.extensions = extensions;
 
             Games = games;
             var previewGame = GameTools.GetMultiGameEditObject(games);
@@ -983,18 +986,6 @@ namespace PlayniteUI.ViewModels
             ShowActions = false;
             ShowInstallation = false;
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
-        }
-
-        public GameEditViewModel(Game game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, PlayniteSettings appSettings)
-            : this(game, database, window, dialogs, resources)
-        {
-            this.appSettings = appSettings;
-        }
-
-        public GameEditViewModel(IEnumerable<Game> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, PlayniteSettings appSettings)
-            : this(games, database, window, dialogs, resources)
-        {
-            this.appSettings = appSettings;
         }
 
         private void EditingGame_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -1036,10 +1027,10 @@ namespace PlayniteUI.ViewModels
                         UsePlatformChanges = true;
                     }
                     break;
-                case "Image":
+                case "CoverImage":
                     if (Games == null)
                     {
-                        UseImageChanges = Game.Image != EditingGame.Image;
+                        UseImageChanges = Game.CoverImage != EditingGame.CoverImage;
                     }
                     else
                     {
@@ -1088,10 +1079,10 @@ namespace PlayniteUI.ViewModels
                         UseInstallDirChanges = true;
                     }
                     break;
-                case "IsoPath":
+                case "GameImagePath":
                     if (Games == null)
                     {
-                        UseIsoPathChanges = Game.IsoPath != EditingGame.IsoPath;
+                        UseIsoPathChanges = Game.GameImagePath != EditingGame.GameImagePath;
                     }
                     else
                     {
@@ -1490,9 +1481,9 @@ namespace PlayniteUI.ViewModels
 
             if (Games == null)
             {
-                if (Game.IsoPath != EditingGame.IsoPath)
+                if (Game.GameImagePath != EditingGame.GameImagePath)
                 {
-                    Game.IsoPath = EditingGame.IsoPath;
+                    Game.GameImagePath = EditingGame.GameImagePath;
                 }
             }
 
@@ -1798,31 +1789,31 @@ namespace PlayniteUI.ViewModels
 
             if (UseImageChanges)
             {
-                if (string.IsNullOrEmpty(EditingGame.Image))
+                if (string.IsNullOrEmpty(EditingGame.CoverImage))
                 {
                     if (Games != null)
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.Image))
+                            if (!string.IsNullOrEmpty(game.CoverImage))
                             {
-                                database.DeleteImageSafe(game.Image, game);
-                                game.Image = null;
+                                database.DeleteImageSafe(game.CoverImage, game);
+                                game.CoverImage = null;
                             }
                         }
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.Image))
+                        if (!string.IsNullOrEmpty(Game.CoverImage))
                         {
-                            database.DeleteImageSafe(Game.Image, Game);
-                            Game.Image = null;
+                            database.DeleteImageSafe(Game.CoverImage, Game);
+                            Game.CoverImage = null;
                         }
                     }
                 }
-                else if (File.Exists(EditingGame.Image))
+                else if (File.Exists(EditingGame.CoverImage))
                 {
-                    var imagePath = EditingGame.Image;
+                    var imagePath = EditingGame.CoverImage;
                     var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
                     var imageId = "images/custom/" + fileName;
                     imageId = database.AddFileNoDuplicate(imageId, fileName, File.ReadAllBytes(imagePath));
@@ -1831,22 +1822,22 @@ namespace PlayniteUI.ViewModels
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.Image) && game.Image != imageId)
+                            if (!string.IsNullOrEmpty(game.CoverImage) && game.CoverImage != imageId)
                             {
-                                database.DeleteImageSafe(game.Image, game);
+                                database.DeleteImageSafe(game.CoverImage, game);
                             }
 
-                            game.Image = imageId;
+                            game.CoverImage = imageId;
                         }
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.Image) && Game.Image != imageId)
+                        if (!string.IsNullOrEmpty(Game.CoverImage) && Game.CoverImage != imageId)
                         {
-                            database.DeleteImageSafe(Game.Image, Game);
+                            database.DeleteImageSafe(Game.CoverImage, Game);
                         }
 
-                        Game.Image = imageId;
+                        Game.CoverImage = imageId;
                     }
 
                     if (Path.GetDirectoryName(imagePath) == PlaynitePaths.TempPath)
@@ -2067,18 +2058,18 @@ namespace PlayniteUI.ViewModels
                 EditingGame.Series = game.Series;
             }
 
-            if (!string.IsNullOrEmpty(game.Image))
+            if (!string.IsNullOrEmpty(game.CoverImage))
             {
-                if (game.Image.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                if (game.CoverImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    var extension = Path.GetExtension(game.Image);
+                    var extension = Path.GetExtension(game.CoverImage);
                     var tempPath = Path.Combine(PlaynitePaths.TempPath, "tempimage" + extension);
                     FileSystem.PrepareSaveFile(tempPath);
 
                     try
                     {
-                        HttpDownloader.DownloadFile(game.Image, tempPath);
-                        EditingGame.Image = tempPath;
+                        HttpDownloader.DownloadFile(game.CoverImage, tempPath);
+                        EditingGame.CoverImage = tempPath;
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -2087,7 +2078,7 @@ namespace PlayniteUI.ViewModels
                 }
                 else
                 {
-                    EditingGame.Image = game.Image;
+                    EditingGame.CoverImage = game.CoverImage;
                 }
             }
 
@@ -2174,7 +2165,7 @@ namespace PlayniteUI.ViewModels
             var path = dialogs.SelectImagefile();
             if (!string.IsNullOrEmpty(path))
             {
-                EditingGame.Image = path;
+                EditingGame.CoverImage = path;
             }
         }
 
@@ -2293,7 +2284,7 @@ namespace PlayniteUI.ViewModels
             var path = dialogs.SelectFile("*.*|*.*");
             if (!string.IsNullOrEmpty(path))
             {
-                EditingGame.IsoPath = path;
+                EditingGame.GameImagePath = path;
             }
         }
 
@@ -2304,7 +2295,7 @@ namespace PlayniteUI.ViewModels
 
         public void RemoveImage()
         {
-            EditingGame.Image = null;
+            EditingGame.CoverImage = null;
         }
 
         public void RemoveBackground()
@@ -2338,36 +2329,28 @@ namespace PlayniteUI.ViewModels
                 {
                     GameMetadata metadata;
                     var tempGame = game.CloneJson();
-                    tempGame.Image = string.Empty;
+                    tempGame.CoverImage = string.Empty;
 
-                    return;
-                    //switch (tempGame.Provider)
-                    //{
-                    //    case Provider.Steam:
-                    //        metadata = (new SteamLibrary()).UpdateGameWithMetadata(tempGame, appSettings.SteamSettings);
-                    //        break;
-                    //    case Provider.GOG:
-                    //        metadata = (new GogLibrary()).UpdateGameWithMetadata(tempGame);
-                    //        break;
-                    //    case Provider.Origin:
-                    //        metadata = (new OriginLibrary()).UpdateGameWithMetadata(tempGame);
-                    //        break;
-                    //    case Provider.BattleNet:
-                    //        metadata = (new BattleNetLibrary()).UpdateGameWithMetadata(tempGame);
-                    //        break;
-                    //    case Provider.Uplay:
-                    //        return;
-                    //    case Provider.Custom:
-                    //    default:
-                    //        return;
-                    //}
+                    if (extensions.LibraryPlugins.TryGetValue(tempGame.PluginId, out var plugin))
+                    {
+                        var downloader = plugin.Plugin.GetMetadataDownloader();
+                        metadata = downloader.GetMetadata(tempGame);
+                        metadata?.GameData?.CopyProperties(tempGame, false);
+                    }
+                    else
+                    {
+                        dialogs.ShowErrorMessage(
+                            resources.FindString("LOCErrorLibraryPluginNotFound"),
+                            resources.FindString("LOCGameError"));
+                        return;
+                    }
                     
                     if (metadata.Image != null)
                     {
                         var path = Path.Combine(PlaynitePaths.TempPath, metadata.Image.FileName);
                         FileSystem.PrepareSaveFile(path);
                         File.WriteAllBytes(path, metadata.Image.Content);
-                        tempGame.Image = path;
+                        tempGame.CoverImage = path;
                     }
 
                     if (metadata.Icon != null)

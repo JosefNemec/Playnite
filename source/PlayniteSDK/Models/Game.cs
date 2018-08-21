@@ -8,10 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using LiteDB;
 using System.Collections.Concurrent;
 using Newtonsoft.Json;
-using Playnite.SDK.Converters;
+using LiteDB;
 
 namespace Playnite.SDK.Models
 {
@@ -53,7 +52,6 @@ namespace Playnite.SDK.Models
             {
                 description = value;
                 OnPropertyChanged("Description");
-                OnPropertyChanged("DescriptionView");
             }
         }
 
@@ -167,21 +165,21 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private string image;
+        private string coverImage;
         /// <summary>
         /// Gets or sets game cover image. Local file path, HTTP URL or database file ids are supported.
         /// </summary>
-        public string Image
+        public string CoverImage
         {
             get
             {
-                return image;
+                return coverImage;
             }
 
             set
             {
-                image = value;
-                OnPropertyChanged("Image");
+                coverImage = value;
+                OnPropertyChanged("CoverImage");
             }
         }
 
@@ -211,21 +209,21 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private string isoPath;
+        private string gameImagePath;
         /// <summary>
         /// Gets or sets game's ISO, ROM or other type of executable image path.
         /// </summary>
-        public string IsoPath
+        public string GameImagePath
         {
             get
             {
-                return isoPath;
+                return gameImagePath;
             }
 
             set
             {
-                isoPath = value;
-                OnPropertyChanged("IsoPath");
+                gameImagePath = value;
+                OnPropertyChanged("GameImagePath");
             }
         }
 
@@ -301,26 +299,7 @@ namespace Playnite.SDK.Models
             }
         }
 
-
-        private Dictionary<string, object> pluginMetadata = new Dictionary<string, object>();
-        /// <summary>
-        /// Gets or sets metadata assigned by the plugin responsible for handling this game.
-        /// </summary>
-        public Dictionary<string, object> PluginMetadata
-        {
-            get
-            {
-                return pluginMetadata;
-            }
-
-            set
-            {
-                pluginMetadata = value;
-                OnPropertyChanged("PluginMetadata");
-            }
-        }
-
-        private Guid pluginId;
+        private Guid pluginId = Guid.Empty;
         /// <summary>
         /// Gets or sets id of plugin responsible for handling this game.
         /// </summary>
@@ -374,30 +353,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        //private Provider provider;
-        ///// <summary>
-        ///// Gets or sets original library provider.
-        ///// </summary>
-        //public Provider Provider
-        //{
-        //    get
-        //    {
-        //        return provider;
-        //    }
-
-        //    set
-        //    {
-        //        provider = value;
-        //        OnPropertyChanged("Provider");
-        //    }
-        //}
-
-        private ObjectId platformId;
+        private Guid platformId;
         /// <summary>
         /// Gets or sets platform id.
         /// </summary>
-        [JsonConverter(typeof(ObjectIdJsonConverter))]
-        public ObjectId PlatformId
+        public Guid PlatformId
         {
             get
             {
@@ -550,7 +510,17 @@ namespace Playnite.SDK.Models
         {
             get => State.Installed;
         }
-        
+
+        /// <summary>
+        /// Gets value indicating wheter the game is custom game.
+        /// </summary>
+        [JsonIgnore]
+        [BsonIgnore]
+        public bool IsCustomGame
+        {
+            get => PluginId == Guid.Empty;
+        }
+
         private GameState state = new GameState();
         /// <summary>
         /// Gets or sets game state.

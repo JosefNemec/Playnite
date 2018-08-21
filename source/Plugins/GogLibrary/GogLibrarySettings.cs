@@ -7,33 +7,67 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using PlayniteUI.Commands;
+using Playnite.SDK;
+using GogLibrary.Services;
 
 namespace GogLibrary
 {
-    public class GogLibrarySettings : IEditableObject
+    public class GogLibrarySettings : ObservableObject, ISettings
     {
         private GogLibrarySettings editingClone;
-        private readonly string configPath;
+        private readonly GogLibrary library;
+        private readonly IPlayniteAPI api;
 
         #region Settings
 
+        public bool ImportInstalledGames { get; set; } = true;
+
         public bool ImportUninstalledGames { get; set; } = false;
+
+        public string AccountName { get; set; }
+
+        public bool UsePublicAccount { get; set; } = false;
 
         public bool StartGamesUsingGalaxy { get; set; } = false;
 
         #endregion Settings
 
+        [JsonIgnore]
+        public bool IsUserLoggedIn
+        {
+            get
+            {
+                using (var view = api.WebViews.CreateOffscreenView())
+                {
+                    var api = new GogAccountClient(view);
+                    return api.GetIsUserLoggedIn();
+                }
+            }
+        }
+
+        [JsonIgnore]
+        public RelayCommand<object> LoginCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                Login();
+            });
+        }
+
         public GogLibrarySettings()
         {
         }
 
-        public GogLibrarySettings(string configPath)
+        public GogLibrarySettings(GogLibrary library, IPlayniteAPI api)
         {
-            this.configPath = configPath;
-            if (File.Exists(configPath))
+            this.api = api;
+            this.library = library;
+
+            var settings = api.LoadPluginSettings<GogLibrarySettings>(library);
+            if (settings != null)
             {
-                var strConf = File.ReadAllText(configPath);
-                LoadValues(JsonConvert.DeserializeObject<GogLibrarySettings>(strConf));
+                LoadValues(settings);
             }
         }
 
@@ -49,14 +83,37 @@ namespace GogLibrary
 
         public void EndEdit()
         {
-            var str = JsonConvert.SerializeObject(this, Formatting.Indented);
-            File.WriteAllText(configPath, str);
+            api.SavePluginSettings(library, this);
+        }
+
+        public bool VerifySettings(out List<string> errors)
+        {
+            var allValid = true;
+            errors = new List<string>();
+
+            if (ImportUninstalledGames && UsePublicAccount && string.IsNullOrEmpty(AccountName))
+            {
+                errors.Add(api.Resources.FindString("LOCSettingsInvalidAccountName"));
+                allValid = false;
+            }
+
+            return allValid;
         }
 
         private void LoadValues(GogLibrarySettings source)
         {
-            ImportUninstalledGames = source.ImportUninstalledGames;
-            StartGamesUsingGalaxy = source.StartGamesUsingGalaxy;
+            source.CopyProperties(this, false, null, true);
+        }
+
+        private void Login()
+        {
+            using (var view = api.WebViews.CreateView(400, 445))
+            {
+                var api = new GogAccountClient(view);
+                api.Login();
+            }
+
+            OnPropertyChanged("IsUserLoggedIn");
         }
     }
 }

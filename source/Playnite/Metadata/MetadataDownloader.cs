@@ -20,14 +20,14 @@ namespace Playnite.Metadata
         private static ILogger logger = LogManager.GetLogger();
 
         private IMetadataProvider igdbProvider;
-        private readonly IList<ILibraryPlugin> plugins;
+        private readonly IEnumerable<ILibraryPlugin> plugins;
         private Dictionary<Guid, IMetadataProvider> downloaders = new Dictionary<Guid, IMetadataProvider>();
 
-        public MetadataDownloader(IList<ILibraryPlugin> plugins) : this(new IGDBMetadataProvider(), plugins)
+        public MetadataDownloader(IEnumerable<ILibraryPlugin> plugins) : this(new IGDBMetadataProvider(), plugins)
         {
         }
 
-        public MetadataDownloader(IMetadataProvider igdbProvider, IList<ILibraryPlugin> plugins)
+        public MetadataDownloader(IMetadataProvider igdbProvider, IEnumerable<ILibraryPlugin> plugins)
         {
             this.igdbProvider = igdbProvider;
             this.plugins = plugins;
@@ -65,7 +65,7 @@ namespace Playnite.Metadata
         {
             if (data == null)
             {
-                data = GetMetadataDownloader(game.PluginId).GetMetadata(game);
+                data = GetMetadataDownloader(game.PluginId)?.GetMetadata(game);
             }
 
             return data;
@@ -80,7 +80,7 @@ namespace Playnite.Metadata
         {
             if (field.Import)
             {
-                if (field.Source == MetadataSource.Store && game.PluginId != null)
+                if (field.Source == MetadataSource.Store && !game.IsCustomGame)
                 {
                     storeData = ProcessDownload(game, ref storeData);
                     return storeData;
@@ -101,7 +101,7 @@ namespace Playnite.Metadata
                         igdbData = igdbProvider.GetMetadata(game);
                     }
 
-                    if (igdbData.GameData == null && game.PluginId != null)
+                    if (igdbData.GameData == null && !game.IsCustomGame)
                     {
                         if (storeData == null)
                         {
@@ -117,7 +117,7 @@ namespace Playnite.Metadata
                         {
                             return igdbData;
                         }
-                        else if (game.PluginId != null)
+                        else if (!game.IsCustomGame)
                         {
                             if (storeData == null)
                             {
@@ -137,7 +137,7 @@ namespace Playnite.Metadata
                 }
                 else if (field.Source == MetadataSource.StoreOverIGDB)
                 {
-                    if (game.PluginId != null)
+                    if (!game.IsCustomGame)
                     {
                         if (storeData == null)
                         {
@@ -258,7 +258,7 @@ namespace Playnite.Metadata
                         logger.Debug($"Downloading metadata for {game.PluginId} game {game.Name}, {game.GameId}");
 
                         // Name
-                        if (game.PluginId != null && settings.Name.Import)
+                        if (!game.IsCustomGame && settings.Name.Import)
                         {
                             gameData = ProcessField(game, settings.Name, ref storeData, ref igdbData, (a) => a.GameData?.Name);
                             if (!string.IsNullOrEmpty(gameData?.GameData?.Name))
@@ -379,18 +379,18 @@ namespace Playnite.Metadata
                         if (settings.CoverImage.Import)
                         {
 
-                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.Image)))
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.CoverImage)))
                             {
                                 gameData = ProcessField(game, settings.CoverImage, ref storeData, ref igdbData, (a) => a.Image);
                                 if (gameData?.Image != null)
                                 {
-                                    if (!string.IsNullOrEmpty(game.Image))
+                                    if (!string.IsNullOrEmpty(game.CoverImage))
                                     {
-                                        database.DeleteImageSafe(game.Image, game);
+                                        database.DeleteImageSafe(game.CoverImage, game);
                                     }
 
                                     var imageId = database.AddFileNoDuplicate(gameData.Image);
-                                    game.Image = imageId;
+                                    game.CoverImage = imageId;
                                 }
                             }
                         }
@@ -412,7 +412,21 @@ namespace Playnite.Metadata
                                     game.Icon = iconId;
                                 }
                             }
-                        }           
+                        }
+
+                        // TODO make this configurable and re-downalodable manually
+                        // Only update them if they don't exist yet
+                        if (game.OtherActions?.Any() != true && storeData != null)
+                        {
+                            if (storeData?.GameData?.OtherActions?.Any() == true)
+                            {
+                                game.OtherActions = new System.Collections.ObjectModel.ObservableCollection<GameAction>();
+                                foreach (var task in storeData.GameData.OtherActions)
+                                {
+                                    game.OtherActions.Add(task);
+                                }
+                            }
+                        }
 
                         // Just to be sure check if somebody didn't remove game while downloading data
                         if (database.GamesCollection.FindOne(a => a.GameId == games[i].GameId) != null)

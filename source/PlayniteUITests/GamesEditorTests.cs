@@ -16,7 +16,7 @@ namespace PlayniteUITests
         [Test]
         public void GetMultiGameEditObject_StandardTest()
         {
-            var platId = ObjectId.NewObjectId();
+            var platId = Guid.NewGuid();
 
             // All common
             var gamesCommon = new List<Game>()
@@ -144,7 +144,7 @@ namespace PlayniteUITests
                     Categories = new ComparableList<string>() { "Cat 1", "Cat 2", "Cat 3" },
                     Tags = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
                     Description = "Description 1",
-                    PlatformId = ObjectId.NewObjectId(),
+                    PlatformId = Guid.NewGuid(),
                     LastActivity = new DateTime(2012,1,1),
                     Added = new DateTime(2012,1,1),
                     Playtime = 1,
@@ -171,7 +171,7 @@ namespace PlayniteUITests
                     Categories = new ComparableList<string>() { "Cat 4", "Cat 5", "Cat 6" },
                     Tags = new ComparableList<string>() { "Tag 4", "Tag 5", "Tag 6" },
                     Description = "Description 2",
-                    PlatformId = ObjectId.NewObjectId(),
+                    PlatformId = Guid.NewGuid(),
                     LastActivity = new DateTime(2012,1,2),
                     Added = new DateTime(2012,1,2),
                     Playtime = 2,
@@ -198,7 +198,7 @@ namespace PlayniteUITests
                     Categories = new ComparableList<string>() { "Cat 7", "Cat 8", "Cat 9" },
                     Tags = new ComparableList<string>() { "Tag 7", "Tag 8", "Tag 9" },
                     Description = "Description 3",
-                    PlatformId = ObjectId.NewObjectId(),
+                    PlatformId = Guid.NewGuid(),
                     LastActivity = new DateTime(2012,1,3),
                     Added = new DateTime(2012,1,3),
                     Playtime = 3,
@@ -221,7 +221,7 @@ namespace PlayniteUITests
             Assert.IsNull(gameNoCommon.Name);
             Assert.IsNull(gameNoCommon.ReleaseDate);
             Assert.IsNull(gameNoCommon.Description);
-            Assert.IsNull(gameNoCommon.PlatformId);
+            Assert.AreEqual(Guid.Empty, gameNoCommon.PlatformId);
             CollectionAssert.AreEqual(null, gameNoCommon.Genres);
             CollectionAssert.AreEqual(null, gameNoCommon.Developers);
             CollectionAssert.AreEqual(null, gameNoCommon.Publishers);

@@ -105,7 +105,7 @@
     <None Include="plugin.cfg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="plugin.info">
+    <None Include="extension.info">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -117,6 +117,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BuildCopyExclude.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steamicon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

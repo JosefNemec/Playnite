@@ -256,7 +256,7 @@
                                 <GridViewColumn Header="{DynamicResource LOCPathLabel}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBox Text="{Binding Game.IsoPath, Mode=OneWay}" IsReadOnly="True" />
+                                            <TextBox Text="{Binding Game.GameImagePath, Mode=OneWay}" IsReadOnly="True" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

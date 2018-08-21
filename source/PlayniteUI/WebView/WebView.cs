@@ -12,17 +12,22 @@ namespace PlayniteUI.WebView
 {
     public class WebView : IWebView
     {
+        private readonly SynchronizationContext context;
+
         private AutoResetEvent loadCompleteEvent = new AutoResetEvent(false);
 
         private WebViewWindow window;
 
+        public event EventHandler NavigationChanged;
+
         public WebView(int width, int height)
         {
+            context = SynchronizationContext.Current;
             window = new WebViewWindow();
-            window.Browser.LoadingStateChanged += Browser_LoadingStateChanged;
+            window.Browser.LoadingStateChanged += Browser_LoadingStateChanged;            
+            window.Owner = PlayniteWindows.CurrentWindow;
             window.Width = width;
             window.Height = height;
-            window.Show();
         }
 
         private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
@@ -31,38 +36,61 @@ namespace PlayniteUI.WebView
             {
                 loadCompleteEvent.Set();
             }
+
+            NavigationChanged?.Invoke(this, new EventArgs());
         }
 
         public void Close()
         {
-            window.Close();
+            context.Send(a => window.Close(), null);
         }
 
         public void Dispose()
-        {
+        {            
             window?.Close();
             window?.Browser.Dispose();
         }
 
         public string GetCurrentAddress()
         {
-            return window.Browser.Address;
+            var address = string.Empty;
+            context.Send(a => address = window.Browser.Address, null);
+            return address;
         }
 
         public string GetPageText()
         {
-            return window.Browser.GetTextAsync().GetAwaiter().GetResult();
+            var text = string.Empty;
+            context.Send(a => text = window.Browser.GetTextAsync().GetAwaiter().GetResult(), null);
+            return text;
         }
 
         public string GetPageSource()
         {
-            return window.Browser.GetSourceAsync().GetAwaiter().GetResult();
+            var text = string.Empty;
+            context.Send(a => text = window.Browser.GetSourceAsync().GetAwaiter().GetResult(), null);
+            return text;
+        }
+
+        public void NavigateAndWait(string url)
+        {
+            context.Send(a => window.Browser.Address = url, null);            
+            loadCompleteEvent.WaitOne(20000);
         }
 
         public void Navigate(string url)
         {
-            window.Browser.Load(url);
-            loadCompleteEvent.WaitOne(10000);
+            context.Send(a => window.Browser.Address = url, null);
+        }
+
+        public void Open()
+        {
+            window.Show();
+        }
+
+        public bool? OpenDialog()
+        {
+            return window.ShowDialog();
         }
     }
 }

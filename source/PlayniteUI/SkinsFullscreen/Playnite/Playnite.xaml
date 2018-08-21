@@ -586,7 +586,7 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Image}" Value="{x:Null}">
+                        <DataTrigger Binding="{Binding CoverImage}" Value="{x:Null}">
                             <Setter Property="Visibility" Value="Visible" TargetName="TextGameName"/>
                         </DataTrigger>
                         <Trigger Property="IsSelected" Value="True">
@@ -639,8 +639,8 @@
                     <Image RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both">
                         <Image.Source>
                             <PriorityBinding>
-                                <Binding Path="ImageObject" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
-                                <Binding Path="DefaultImageObject" Mode="OneWay" />
+                                <Binding Path="CoverImageObject" Mode="OneWay" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
+                                <Binding Path="DefaultCoverImageObject" Mode="OneWay" />
                             </PriorityBinding>
                         </Image.Source>
                     </Image>

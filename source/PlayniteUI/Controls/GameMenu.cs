@@ -1,4 +1,5 @@
 ﻿using Playnite.Database;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using PlayniteUI.ViewModels;
 using System;
@@ -167,7 +168,7 @@ namespace PlayniteUI.Controls
         {
             if ((new string[]
             {
-                "State", "OtherTasks", "Links", "Favorite", "Hidden"
+                "State", "OtherActions", "Links", "Favorite", "Hidden"
             }).Contains(e.PropertyName))
             {
                 //Can be called from different threads when game database update is done
@@ -285,7 +286,7 @@ namespace PlayniteUI.Controls
                         Items.Add(playItem);
                         added = true;
                     }
-                    else if (Game.PluginId != null)
+                    else if (!Game.IsCustomGame)
                     {
                         var installItem = new MenuItem()
                         {
@@ -436,7 +437,7 @@ namespace PlayniteUI.Controls
                 Items.Add(removeItem);
 
                 // Uninstall
-                if (Game.PluginId != null && Game.IsInstalled)
+                if (!Game.IsCustomGame && Game.IsInstalled)
                 {
                     var uninstallItem = new MenuItem()
                     {

@@ -35,46 +35,11 @@ namespace Playnite
                         archive.CreateEntryFromFile(logFile, Path.GetFileName(logFile));
                     }
 
-
                     // Config 
                     if (File.Exists(PlaynitePaths.ConfigFilePath))
                     {
                         archive.CreateEntryFromFile(PlaynitePaths.ConfigFilePath, Path.GetFileName(PlaynitePaths.ConfigFilePath));
                     }
-
-                    // Origin data
-                    var originContentPath = Path.Combine(Providers.Origin.OriginPaths.DataPath, "LocalContent");
-                    if (Directory.Exists(originContentPath))
-                    {
-                        FileSystem.AddFolderToZip(archive, "Origin", originContentPath, ".dat|.mfst", SearchOption.AllDirectories);
-                    }
-
-                    // GOG data
-                    //if (GogSettings.IsInstalled)
-                    //{
-                    //    var dbPath = Path.Combine(GogSettings.DBStoragePath, "index.db");
-                    //    if (File.Exists(dbPath))
-                    //    {
-                    //        archive.CreateEntryFromFile(dbPath, "index.db");
-                    //    }
-                    //}
-
-                    // TODO
-
-                    // Steam data
-                    //if (SteamSettings.IsInstalled)
-                    //{
-                    //    foreach (var folder in (new SteamLibrary()).GetLibraryFolders())
-                    //    {
-                    //        var appsFolder = Path.Combine(folder, "steamapps");
-                    //        FileSystem.AddFolderToZip(archive, "Steam", appsFolder, "appmanifest*", SearchOption.TopDirectoryOnly);
-                    //    }
-
-                    //    if (File.Exists(SteamSettings.LoginUsersPath))
-                    //    {
-                    //        archive.CreateEntryFromFile(SteamSettings.LoginUsersPath, "loginusers.vdf");
-                    //    }
-                    //}
 
                     // dxdiag
                     var diagPath = Path.Combine(diagTemp, "dxdiag.txt");

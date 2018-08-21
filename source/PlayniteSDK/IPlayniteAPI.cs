@@ -32,9 +32,17 @@ namespace Playnite.SDK
 
         IPlayniteInfoAPI ApplicationInfo { get; }
 
-        string GetPluginStoragePath(IPlugin plugin);
+        IWebViewFactory WebViews { get; }
+
+        IResourceProvider Resources { get; }
+
+        string GetPluginUserDataPath(IPlugin plugin);
 
         TConfig GetPluginConfiguration<TConfig>(IPlugin plugin) where TConfig : class;
+
+        TSettings LoadPluginSettings<TSettings>(IPlugin plugin) where TSettings : class;
+
+        void SavePluginSettings<TSettings>(IPlugin plugin, TSettings settings) where TSettings : class;
 
         /// <summary>
         /// Returns string while resolving any dynamic variables supported by Playnite.
@@ -52,5 +60,7 @@ namespace Playnite.SDK
         /// <param name="name">Logger name.</param>
         /// <returns>Logger object.</returns>
         ILogger CreateLogger(string name);
+
+        ILogger CreateLogger();
     }
 }

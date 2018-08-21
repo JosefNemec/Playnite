@@ -21,18 +21,19 @@ namespace SteamLibrary
 {
     public class SteamMetadataProvider : IMetadataProvider
     {
-        private ILogger logger;
+        private ILogger logger = LogManager.GetLogger();
         private SteamServicesClient playniteServices;
         private SteamLibrarySettings settings;
         private SteamApiClient apiClient;
 
-        public SteamMetadataProvider(SteamServicesClient playniteServices, SteamLibrarySettings settings, SteamApiClient apiClient, ILogger logger)
+        public SteamMetadataProvider(SteamServicesClient playniteServices, SteamLibrarySettings settings, SteamApiClient apiClient)
         {
-            this.logger = logger;
             this.settings = settings;
             this.playniteServices = playniteServices;
             this.apiClient = apiClient;
         }
+
+        #region IMetadataProvider
 
         public GameMetadata GetMetadata(string metadataId)
         {
@@ -54,6 +55,8 @@ namespace SteamLibrary
         {
             throw new NotImplementedException();
         }
+
+        #endregion IMetadataProvider
 
         internal KeyValue GetAppInfo(int appId)
         {
@@ -360,33 +363,6 @@ namespace SteamLibrary
                 }
 
                 game.OtherActions = tasks;
-
-                // TODO
-                // We need to download and set aditional Steam tasks here because they are only part of metadata
-                //if (game.Provider == Provider.Steam)
-                //{
-                //    // Only update them if they don't exist yet
-                //    if (game.OtherTasks?.FirstOrDefault(a => a.IsBuiltIn) == null)
-                //    {
-                //        if (storeData == null)
-                //        {
-                //            storeData = steamProvider.GetMetadata(game.GameId);
-                //        }
-
-                //        if (storeData?.GameData?.OtherTasks != null)
-                //        {
-                //            if (game.OtherTasks == null)
-                //            {
-                //                game.OtherTasks = new System.Collections.ObjectModel.ObservableCollection<GameTask>();
-                //            }
-
-                //            foreach (var task in storeData.GameData.OtherTasks)
-                //            {
-                //                game.OtherTasks.Add(task);
-                //            }
-                //        }
-                //    }
-                //}
             }
 
             if (!string.IsNullOrEmpty(metadata.BackgroundImage))

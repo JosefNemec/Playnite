@@ -13,16 +13,15 @@ namespace SteamLibrary.Services
 {
     public class SteamServicesClient : BaseServicesClient
     {
-        private readonly ILogger logger;
+        private readonly ILogger logger = LogManager.GetLogger();
 
         private static HttpClient httpClient = new HttpClient()
         {
             Timeout = new TimeSpan(0, 0, 30)
         };
 
-        public SteamServicesClient(string endpoint, ILogger logger) : base(endpoint)
+        public SteamServicesClient(string endpoint) : base(endpoint)
         {
-            this.logger = logger;
         }
 
         public void PostSteamAppInfoData(int appId, string data)

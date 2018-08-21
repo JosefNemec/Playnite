@@ -1,4 +1,4 @@
-﻿using NLog;
+﻿using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
@@ -12,7 +12,7 @@ namespace Playnite.Database
 {
     public class GameLibrary
     {
-        public static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
 
         public static IEnumerable<Game> ImportGames(ILibraryPlugin library, GameDatabase database)
         {
@@ -21,8 +21,7 @@ namespace Playnite.Database
                 var existingGame = database.GamesCollection.FindOne(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
                 if (existingGame == null)
                 {
-                    logger.Info("Adding new game {0} from {1} provider", newGame.GameId, newGame.PluginId);
-                    newGame.State.Installed = true;
+                    logger.Info(string.Format("Adding new game {0} from {1} provider", newGame.GameId, library.Name));
                     database.AssignPcPlatform(newGame);
                     database.AddGame(newGame);
                     yield return newGame;
@@ -49,23 +48,10 @@ namespace Playnite.Database
                             existingGame.LastActivity = newGame.LastActivity;
                         }
                     }
-
-                    // Don't import custom action if imported already (user may changed them manually and this would overwrite it)
-                    if (existingGame.OtherActions?.FirstOrDefault(a => a.IsHandledByPlugin) == null && newGame.OtherActions != null)
+                    
+                    if (existingGame.OtherActions?.Any() != true && newGame.OtherActions?.Any() == true)
                     {
-                        if (existingGame.OtherActions == null)
-                        {
-                            existingGame.OtherActions = new ObservableCollection<GameAction>();
-                        }
-                        else
-                        {
-                            existingGame.OtherActions = new ObservableCollection<GameAction>(existingGame.OtherActions.Where(a => !a.IsHandledByPlugin));
-                        }
-
-                        foreach (var task in newGame.OtherActions.Reverse())
-                        {
-                            existingGame.OtherActions.Insert(0, task);
-                        }
+                        existingGame.OtherActions = newGame.OtherActions;
                     }
 
                     database.UpdateGameInDatabase(existingGame);

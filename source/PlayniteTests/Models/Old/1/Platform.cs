@@ -1,6 +1,5 @@
 ﻿using LiteDB;
 using Newtonsoft.Json;
-using Playnite.SDK.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

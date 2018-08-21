@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Playnite;
 using Playnite.SDK.Models;
+using Newtonsoft.Json;
 
 namespace PlayniteTests
 {
@@ -86,6 +87,34 @@ namespace PlayniteTests
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             }
+        }
+
+        public class JsonTestObject
+        {
+            public int Prop1 { get; set; }
+
+            [JsonIgnore]
+            public int Prop2 { get; set; }
+        }
+
+        [Test]
+        public void JsonIgnoreTest()
+        {
+            var source = new JsonTestObject()
+            {
+                Prop1 = 10,
+                Prop2 = 20
+            };
+
+            var target = new JsonTestObject();
+            source.CopyProperties(target, false, null, true);
+            Assert.AreEqual(10, target.Prop1);
+            Assert.AreNotEqual(20, target.Prop2);
+
+            target = new JsonTestObject();
+            source.CopyProperties(target, false, null, false);
+            Assert.AreEqual(10, target.Prop1);
+            Assert.AreEqual(20, target.Prop2);
         }
 
         [Test]

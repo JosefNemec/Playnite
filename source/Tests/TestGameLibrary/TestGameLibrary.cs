@@ -13,11 +13,13 @@ namespace TestGameLibrary
 {
     public class TestGameLibrary : ILibraryPlugin
     {
-        public IEditableObject Settings => null;
+        public ISettings Settings { get; }
 
         public Guid Id { get; } = Guid.Parse("D625A3B7-1AA4-41CB-9CD7-74448D28E99B");
 
         public string Name { get; } = "Test";
+
+        public string LibraryIcon { get; }
 
         public UserControl SettingsView { get; }
 

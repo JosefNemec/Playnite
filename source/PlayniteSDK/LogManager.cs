@@ -7,6 +7,41 @@ using System.Threading.Tasks;
 
 namespace Playnite.SDK
 {
+    public class NullLoggger : ILogger
+    {
+        public void Debug(string message)
+        {
+        }
+
+        public void Debug(Exception exception, string message)
+        {
+        }
+
+        public void Error(string message)
+        {
+        }
+
+        public void Error(Exception exception, string message)
+        {
+        }
+
+        public void Info(string message)
+        {
+        }
+
+        public void Info(Exception exception, string message)
+        {
+        }
+
+        public void Warn(string message)
+        {
+        }
+
+        public void Warn(Exception exception, string message)
+        {
+        }
+    }
+
     public interface ILogProvider
     {
         ILogger GetLogger(string loggerName);
@@ -14,7 +49,6 @@ namespace Playnite.SDK
 
     public static class LogManager
     {
-        // TODO add null logger without init
         private static ILogProvider logManager;
 
         public static void Init(ILogProvider manager)
@@ -25,7 +59,14 @@ namespace Playnite.SDK
         public static ILogger GetLogger()
         {
             var className = (new StackFrame(1)).GetMethod().DeclaringType.Name;
-            return logManager.GetLogger(className);
+            if (logManager != null)
+            {
+                return logManager.GetLogger(className);
+            }
+            else
+            {
+                return new NullLoggger();
+            }
         }
 
         public static ILogger GetLogger(string loggerName)

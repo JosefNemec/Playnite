@@ -4,7 +4,8 @@ using Playnite.API;
 using Playnite.Common.System;
 using Playnite.Database;
 using Playnite.Models;
-using Playnite.Providers;
+using Playnite.Plugins;
+using Playnite.Controllers;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -28,7 +29,7 @@ namespace PlayniteUI
         private GameDatabase database;
         private IDialogsFactory dialogs;
         private PlayniteSettings appSettings;
-        private PlayniteAPI playniteApi;
+        private ExtensionFactory extensions;
 
         public bool IsFullscreen
         {
@@ -47,12 +48,17 @@ namespace PlayniteUI
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GamesEditor(GameDatabase database, GameControllerFactory controllerFactory, PlayniteSettings appSettings, IDialogsFactory dialogs, PlayniteAPI playniteApi)
+        public GamesEditor(
+            GameDatabase database,
+            GameControllerFactory controllerFactory,
+            PlayniteSettings appSettings,
+            IDialogsFactory dialogs,
+            ExtensionFactory extensions)
         {
             this.dialogs = dialogs;
             this.database = database;
             this.appSettings = appSettings;
-            this.playniteApi = playniteApi;
+            this.extensions = extensions;
             controllers = controllerFactory;
             controllers.Installed += Controllers_Installed;
             controllers.Uninstalled += Controllers_Uninstalled;
@@ -98,7 +104,7 @@ namespace PlayniteUI
                             GameEditWindowFactory.Instance,
                             new DialogsFactory(),
                             new ResourceProvider(),
-                            appSettings);
+                            extensions);
             return model.OpenView();
         }
 
@@ -110,7 +116,7 @@ namespace PlayniteUI
                             GameEditWindowFactory.Instance,
                             new DialogsFactory(),
                             new ResourceProvider(),
-                            appSettings);
+                            extensions);
             return model.OpenView();
         }
 
@@ -138,7 +144,25 @@ namespace PlayniteUI
 
             try
             {
-                controller = controllers.GetGameBasedController(game, playniteApi.LibraryPlugins);
+                if (game.PlayAction.IsHandledByPlugin)
+                {
+                    logger.Info("Using library plugin to start the game.");
+                    controller = controllers.GetGameBasedController(game, extensions.LibraryPlugins.Select(a => a.Value.Plugin));
+                }
+                else
+                {
+                    logger.Info("Using generic controller start the game.");
+                    controller = controllers.GetGenericGameController(game);
+                }
+
+                if (controller == null)
+                {
+                    dialogs.ShowErrorMessage(
+                        resources.FindString("LOCErrorLibraryPluginNotFound"),
+                        resources.FindString("LOCGameError"));
+                    return;
+                }
+
                 controllers.RemoveController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, null, true);
@@ -360,7 +384,15 @@ namespace PlayniteUI
             IGameController controller = null;
             try
             {
-                controller = controllers.GetGameBasedController(game, playniteApi.LibraryPlugins);
+                controller = controllers.GetGameBasedController(game, extensions.LibraryPlugins.Select(a => a.Value.Plugin));
+                if (controller == null)
+                {
+                    dialogs.ShowErrorMessage(
+                        resources.FindString("LOCErrorLibraryPluginNotFound"),
+                        resources.FindString("LOCGameError"));
+                    return;
+                }
+
                 controllers.RemoveController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, true, null, null);
@@ -399,7 +431,15 @@ namespace PlayniteUI
 
             try
             {
-                controller = controllers.GetGameBasedController(game, playniteApi.LibraryPlugins);
+                controller = controllers.GetGameBasedController(game, extensions.LibraryPlugins.Select(a => a.Value.Plugin));
+                if (controller == null)
+                {
+                    dialogs.ShowErrorMessage(
+                        resources.FindString("LOCErrorLibraryPluginNotFound"),
+                        resources.FindString("LOCGameError"));
+                    return;
+                }
+
                 controllers.RemoveController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, true, null);

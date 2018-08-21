@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PlayniteUI.Commands;
 using SteamLibrary.Models;
+using Playnite.SDK;
 
 namespace SteamLibrary
 {
@@ -18,10 +19,11 @@ namespace SteamLibrary
         LocalUser
     }
 
-    public class SteamLibrarySettings : IEditableObject
+    public class SteamLibrarySettings : ISettings
     {
         private SteamLibrarySettings editingClone;
-        private readonly string configPath;
+        private SteamLibrary library;
+        private IPlayniteAPI api;
 
         #region Settings
 
@@ -35,6 +37,8 @@ namespace SteamLibrary
 
         public string ApiKey { get; set; } = string.Empty;
 
+        public bool ImportInstalledGames { get; set; } = true;
+
         public bool ImportUninstalledGames { get; set; } = false;
 
         public bool PreferScreenshotForBackground { get; set; } = false;
@@ -42,14 +46,17 @@ namespace SteamLibrary
         #endregion Settings
 
         [JsonIgnore]
+        public bool ShowCategoryImport { get => api.Database.IsOpen; }
+
+        [JsonIgnore]
         public List<LocalSteamUser> SteamUsers { get; set; }
 
         [JsonIgnore]
-        public RelayCommand<object> ImportSteamCategoriesCommand
+        public RelayCommand<LocalSteamUser> ImportSteamCategoriesCommand
         {
-            get => new RelayCommand<object>((a) =>
+            get => new RelayCommand<LocalSteamUser>((a) =>
             {
-                ImportSteamCategories();
+                ImportSteamCategories(a);
             });
         }
 
@@ -57,14 +64,16 @@ namespace SteamLibrary
         {
         }
 
-        public SteamLibrarySettings(string configPath)
+        public SteamLibrarySettings(SteamLibrary library, IPlayniteAPI api)
         {
-            this.configPath = configPath;
-            if (File.Exists(configPath))
+            this.library = library;
+            this.api = api;
+
+            var settings = api.LoadPluginSettings<SteamLibrarySettings>(library);
+            if (settings != null)
             {
-                var strConf = File.ReadAllText(configPath);
-                LoadValues(JsonConvert.DeserializeObject<SteamLibrarySettings>(strConf));
-            }
+                LoadValues(settings);
+            }            
         }
 
         public void BeginEdit()
@@ -79,63 +88,32 @@ namespace SteamLibrary
 
         public void EndEdit()
         {
-            var str = JsonConvert.SerializeObject(this, Formatting.Indented);
-            File.WriteAllText(configPath, str);
+            api.SavePluginSettings(library, this);
+        }
+
+        public bool VerifySettings(out List<string> errors)
+        {
+            var allValid = true;
+            errors = new List<string>();
+
+            if (ImportUninstalledGames && IdSource == SteamIdSource.Name && string.IsNullOrEmpty(AccountName))
+            {
+                errors.Add(api.Resources.FindString("LOCSettingsInvalidAccountName"));
+                allValid = false;
+            }
+
+            return allValid;
         }
 
         private void LoadValues(SteamLibrarySettings source)
         {
-            IdSource = source.IdSource;
-            AccountId = source.AccountId;
-            IsPrivateAccount = source.IsPrivateAccount;
-            ApiKey = source.ApiKey;
-            ImportUninstalledGames = source.ImportUninstalledGames;
-            PreferScreenshotForBackground = source.PreferScreenshotForBackground;
+            source.CopyProperties(this, false, null, true);
         }
 
-        public void ImportSteamCategories()
+        public void ImportSteamCategories(LocalSteamUser user)
         {
-            //if (dialogs.ShowMessage(
-            //    resources.FindString("LOCSettingsSteamCatImportWarn"),
-            //    resources.FindString("LOCSettingsSteamCatImportWarnTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
-            //{
-            //    return;
-            //}
-
-            //if (Settings.SteamSettings.AccountId == 0)
-            //{
-            //    dialogs.ShowMessage(
-            //        resources.FindString("LOCSettingsSteamCatImportErrorAccount"),
-            //        resources.FindString("LOCImportError"),
-            //        MessageBoxButton.OK, MessageBoxImage.Error);
-            //    return;
-            //}
-
-            //if (database.GamesCollection == null)
-            //{
-            //    dialogs.ShowMessage(
-            //        resources.FindString("LOCSettingsSteamCatImportErrorDb"),
-            //        resources.FindString("LOCImportError"),
-            //        MessageBoxButton.OK, MessageBoxImage.Error);
-            //    return;
-            //}
-
-            //try
-            //{
-            //    var steamLib = new SteamLibrary();
-            //    var games = steamLib.GetCategorizedGames(Settings.SteamSettings.AccountId);
-
-            //    database.ImportCategories(games);
-            //    dialogs.ShowMessage(resources.FindString("LOCImportCompleted"));
-            //}
-            //catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-            //{
-            //    logger.Error(exc, "Failed to import Steam categories.");
-            //    dialogs.ShowMessage(
-            //        resources.FindString("LOCSettingsSteamCatImportError"),
-            //        resources.FindString("LOCImportError"),
-            //        MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+            var accId = user == null ? 0 : user.Id;
+            library.ImportSteamCategories(accId);
         }
     }
 }

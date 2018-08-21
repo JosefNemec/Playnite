@@ -10,3 +10,4 @@ System.IO.Abstractions.dll
 System.IO.Abstractions.xml
 NLog.dll
 NLog.xml
+Windows.winmd

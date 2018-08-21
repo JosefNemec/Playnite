@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -45,24 +46,19 @@ namespace Playnite
                     IsUnInstalled ||
                     Hidden ||
                     Favorite ||
-                    Steam ||
-                    Origin ||
-                    GOG ||
-                    Uplay ||
-                    BattleNet ||
-                    Custom ||
                     !string.IsNullOrEmpty(Name) ||
                     !string.IsNullOrEmpty(ReleaseDate) ||
                     !string.IsNullOrEmpty(Series) ||
                     !string.IsNullOrEmpty(Source) ||
                     !string.IsNullOrEmpty(AgeRating) ||
                     !string.IsNullOrEmpty(Region) ||
-                    (Genres != null && Genres.Count > 0) ||
-                    (Publishers != null && Publishers.Count > 0) ||
-                    (Developers != null && Developers.Count > 0) ||
-                    (Categories != null && Categories.Count > 0) ||
-                    (Tags != null && Tags.Count > 0) ||
-                    (Platforms != null && Platforms.Count > 0);
+                    Genres?.Any() == true ||
+                    Publishers?.Any() == true ||
+                    Developers?.Any() == true ||
+                    Categories?.Any() == true ||
+                    Tags?.Any() == true ||
+                    Platforms?.Any() == true ||
+                    Libraries?.Any() == true;
             }
         }
 
@@ -272,108 +268,6 @@ namespace Playnite
             }
         }
 
-        private bool steam;
-        public bool Steam
-        {
-            get
-            {
-                return steam;
-            }
-
-            set
-            {
-                steam = value;
-                OnPropertyChanged("Steam");
-                OnFilterChanged("Steam");
-                OnPropertyChanged("Active");
-            }
-        }
-
-        private bool origin;
-        public bool Origin
-        {
-            get
-            {
-                return origin;
-            }
-
-            set
-            {
-                origin = value;
-                OnPropertyChanged("Origin");
-                OnFilterChanged("Origin");
-                OnPropertyChanged("Active");
-            }
-        }
-
-        private bool gog;
-        public bool GOG
-        {
-            get
-            {
-                return gog;
-            }
-
-            set
-            {
-                gog = value;
-                OnPropertyChanged("GOG");
-                OnFilterChanged("GOG");
-                OnPropertyChanged("Active");
-            }
-        }
-
-        private bool uplay;
-        public bool Uplay
-        {
-            get
-            {
-                return uplay;
-            }
-
-            set
-            {
-                uplay = value;
-                OnPropertyChanged("Uplay");
-                OnFilterChanged("Uplay");
-                OnPropertyChanged("Active");
-            }
-        }
-
-        private bool battleNet;
-        public bool BattleNet
-        {
-            get
-            {
-                return battleNet;
-            }
-
-            set
-            {
-                battleNet = value;
-                OnPropertyChanged("BattleNet");
-                OnFilterChanged("BattleNet");
-                OnPropertyChanged("Active");
-            }
-        }
-
-        private bool custom;
-        public bool Custom
-        {
-            get
-            {
-                return custom;
-            }
-
-            set
-            {
-                custom = value;
-                OnPropertyChanged("Custom");
-                OnFilterChanged("Custom");
-                OnPropertyChanged("Active");
-            }
-        }
-
         private string series;
         public string Series
         {
@@ -438,6 +332,23 @@ namespace Playnite
                 ageRating = value;
                 OnPropertyChanged("AgeRating");
                 OnFilterChanged("AgeRating");
+                OnPropertyChanged("Active");
+            }
+        }
+
+        private List<Guid> libraries;
+        public List<Guid> Libraries
+        {
+            get
+            {
+                return libraries;
+            }
+
+            set
+            {
+                libraries = value;
+                OnPropertyChanged("Libraries");
+                OnFilterChanged("Libraries");
                 OnPropertyChanged("Active");
             }
         }
@@ -544,42 +455,6 @@ namespace Playnite
                 filterChanges.Add("Favorite");
             }
 
-            if (Steam != false)
-            {
-                Steam = false;
-                filterChanges.Add("Steam");
-            }
-
-            if (Origin != false)
-            {
-                Origin = false;
-                filterChanges.Add("Origin");
-            }
-
-            if (GOG != false)
-            {
-                GOG = false;
-                filterChanges.Add("GOG");
-            }
-
-            if (Uplay != false)
-            {
-                Uplay = false;
-                filterChanges.Add("Uplay");
-            }
-
-            if (BattleNet != false)
-            {
-                BattleNet = false;
-                filterChanges.Add("BattleNet");
-            }
-
-            if (Custom != false)
-            {
-                Custom = false;
-                filterChanges.Add("Custom");
-            }
-
             if (Series != null)
             {
                 Series = null;
@@ -602,6 +477,12 @@ namespace Playnite
             {
                 AgeRating = null;
                 filterChanges.Add("AgeRating");
+            }
+
+            if (Libraries != null)
+            {
+                Libraries = null;
+                filterChanges.Add("Libraries");
             }
 
             suppressFilterChanges = false;

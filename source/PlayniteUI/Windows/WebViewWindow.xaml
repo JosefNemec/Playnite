@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PlayniteUI.Windows"
         xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         mc:Ignorable="d" Loaded="Window_Loaded"
-        Title="" Height="450" Width="800">
+        Title="" Height="450" Width="800"
+        WindowStartupLocation="CenterOwner">
     <Grid>
         <cefSharp:ChromiumWebBrowser Name="Browser"/>
         

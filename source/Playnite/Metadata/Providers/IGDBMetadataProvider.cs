@@ -42,10 +42,10 @@ namespace Playnite.Metadata.Providers
 
             if (dbGame.cover != null)
             {
-                game.Image = dbGame.cover.Replace("t_thumb", "t_cover_big");
-                if (!game.Image.StartsWith("https:", StringComparison.InvariantCultureIgnoreCase))
+                game.CoverImage = dbGame.cover.Replace("t_thumb", "t_cover_big");
+                if (!game.CoverImage.StartsWith("https:", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    game.Image = "https:" + game.Image;
+                    game.CoverImage = "https:" + game.CoverImage;
                 }
             }
 
@@ -113,10 +113,10 @@ namespace Playnite.Metadata.Providers
         {
             var game = GetParsedGame(ulong.Parse(gameId));
             MetadataFile image = null;
-            if (!string.IsNullOrEmpty(game.Image))
+            if (!string.IsNullOrEmpty(game.CoverImage))
             {
-                var name = Path.GetFileName(game.Image);
-                image = new MetadataFile($"images/custom/{name}", name, HttpDownloader.DownloadData(game.Image));
+                var name = Path.GetFileName(game.CoverImage);
+                image = new MetadataFile($"images/custom/{name}", name, HttpDownloader.DownloadData(game.CoverImage));
             }
 
             return new GameMetadata(game, null, image, string.Empty);
