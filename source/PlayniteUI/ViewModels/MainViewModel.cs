@@ -940,7 +940,11 @@ namespace PlayniteUI.ViewModels
                             addedGames,
                             Database,
                             metaSettings,
-                            (g, i, t) => ProgressValue = i + 1,
+                            (g, i, t) =>
+                            {
+                                ProgressValue = i + 1;
+                                ProgressStatus = Resources.FindString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
+                            },
                             GlobalTaskHandler.CancelToken).Wait();
                     }
                 });
@@ -974,7 +978,16 @@ namespace PlayniteUI.ViewModels
 
                 var downloader = new MetadataDownloader(Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
                 GlobalTaskHandler.ProgressTask =
-                    downloader.DownloadMetadataGroupedAsync(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GlobalTaskHandler.CancelToken);
+                    downloader.DownloadMetadataGroupedAsync(
+                        games,
+                        Database,
+                        settings,
+                        (g, i, t) =>
+                        {
+                            ProgressValue = i + 1;
+                            ProgressStatus = Resources.FindString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
+                        },
+                        GlobalTaskHandler.CancelToken);
                 await GlobalTaskHandler.ProgressTask;
             }
             finally
