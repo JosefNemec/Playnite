@@ -14,7 +14,7 @@ namespace UplayLibrary.Tests
         public void UpdateGameWithMetadataTest()
         {
             var library = UplayLibraryTests.CreateLibrary();
-            var provider = new UplayMetadataProvider();            
+            var provider = new UplayMetadataProvider();
             var games = library.GetInstalledGames();
             var game = games.First();
             var metadata = provider.GetMetadata(game);
