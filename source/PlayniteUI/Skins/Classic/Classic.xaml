@@ -3315,7 +3315,7 @@
                 <Button Name="ButtonFriends" Command="{Binding OpenSteamFriendsCommand}"
                         Height="30" Width="30" HorizontalAlignment="Right" Margin="0,0,15,0"
                         Style="{StaticResource ImageHighlightButton}" ToolTip="{DynamicResource LOCSteamFriendsTooltip}"
-                        Visibility="Visible">
+                        Visibility="{Binding AppSettings.ShowSteamFriendsButton, Converter={pui:BooleanToVisibilityConverter}}">
                     <Button.OpacityMask>
                         <ImageBrush ImageSource="/Images/friends.png" RenderOptions.BitmapScalingMode="Fant"/>
                     </Button.OpacityMask>

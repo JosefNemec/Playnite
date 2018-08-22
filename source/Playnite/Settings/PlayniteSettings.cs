@@ -546,6 +546,22 @@ namespace Playnite.Settings
                 OnPropertyChanged("DisabledPlugins");
             }
         }
+
+        private bool showSteamFriendsButton = true;
+        public bool ShowSteamFriendsButton
+        {
+            get
+            {
+                return showSteamFriendsButton;
+            }
+
+            set
+            {
+                showSteamFriendsButton = value;
+                OnPropertyChanged("ShowSteamFriendsButton");
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {

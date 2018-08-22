@@ -241,6 +241,8 @@
                                   Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsDisableAcceleration}" Margin="0,15,0,0" ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
                                   Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"/>
+                                <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
+                                  Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
                             </StackPanel>
                         </TabItem>
 
