@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using Playnite.API;
 using Playnite.Common.System;
 using Playnite.Plugins;
 using Playnite.SDK;
@@ -201,7 +202,7 @@ namespace PlayniteUI.ViewModels
             this.extensions = extensions;
             this.playniteApi = playniteApi;
 
-            var plugins = extensions.GetExtensionDescriptors();
+            var plugins = extensions.GetExtensionDescriptors().Where(a => a.Type == ExtensionType.GameLibrary);
             foreach (var description in plugins)
             {
                 var provider = extensions.LoadPlugin<ILibraryPlugin>(description, playniteApi);
@@ -281,8 +282,17 @@ namespace PlayniteUI.ViewModels
                 if ((selectedPluginIndex + 1) < selectedPlugins.Count)
                 {
                     selectedPluginIndex++;
-                    SetPluginConfiguration(selectedPlugins[selectedPluginIndex]);
-                    return;                    
+                    var plugin = selectedPlugins[selectedPluginIndex];
+                    if (plugin.View != null)
+                    {
+                        SetPluginConfiguration(selectedPlugins[selectedPluginIndex]);
+                        return;
+                    }
+                    else
+                    {
+                        NavigateNext();
+                        return;
+                    }
                 }
             }
 

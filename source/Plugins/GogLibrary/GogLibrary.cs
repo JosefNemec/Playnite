@@ -47,7 +47,11 @@ namespace GogLibrary
 
             var gameTaskData = JsonConvert.DeserializeObject<GogGameActionInfo>(File.ReadAllText(gameInfoPath));
             var playTask = gameTaskData.playTasks.FirstOrDefault(a => a.isPrimary)?.ConvertToGenericTask(installDir);
-            playTask.IsHandledByPlugin = true;
+            if (playTask != null)
+            {
+                playTask.IsHandledByPlugin = true;
+            }
+
             var otherTasks = new ObservableCollection<GameAction>();
 
             foreach (var task in gameTaskData.playTasks.Where(a => !a.isPrimary))

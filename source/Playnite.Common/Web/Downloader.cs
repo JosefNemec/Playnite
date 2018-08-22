@@ -180,7 +180,7 @@ namespace Playnite.Web
             var md5 = url.MD5();
             var cacheFile = Path.Combine(cachePath, md5 + extension);
 
-            if (File.Exists(cacheFile))
+            if (File.Exists(cacheFile) && (new FileInfo(cacheFile)).Length != 0)
             {
                 logger.Debug($"Returning {url} from file cache {cacheFile}.");
                 return cacheFile;
