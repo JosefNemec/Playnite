@@ -279,7 +279,7 @@ namespace PlayniteUI.ViewModels
         public RelayCommand<object> CloseFilterPanelCommand { get; private set; }
         public RelayCommand<object> OpenMainMenuCommand { get; private set; }
         public RelayCommand<object> CloseMainMenuCommand { get; private set; }
-        public RelayCommand<ThirdPartyTool> ThridPartyToolOpenCommand { get; private set; }
+        public RelayCommand<ThirdPartyTool> ThirdPartyToolOpenCommand { get; private set; }
         public RelayCommand<object> UpdateGamesCommand { get; private set; }
         public RelayCommand<object> OpenSteamFriendsCommand { get; private set; }
         public RelayCommand<object> ReportIssueCommand { get; private set; }
@@ -401,7 +401,7 @@ namespace PlayniteUI.ViewModels
                 MainMenuOpened = false;
             });
 
-            ThridPartyToolOpenCommand = new RelayCommand<ThirdPartyTool>((tool) =>
+            ThirdPartyToolOpenCommand = new RelayCommand<ThirdPartyTool>((tool) =>
             {
                 MainMenuOpened = false;
                 StartThirdPartyTool(tool);

@@ -200,9 +200,9 @@
     <Compile Include="Controllers\GenericGameController.cs" />
     <Compile Include="Services\ServicesClient.cs" />
     <Compile Include="Settings\PlayniteSettings.cs" />
-    <Compile Include="ThirdPartyClients\ThridPartyToolsList.cs" />
     <Compile Include="App\Updater.cs" />
     <Compile Include="Settings\ViewProperties.cs" />
+    <Compile Include="ThirdPartyClients\ThirdPartyToolsList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\references\IronPythonStdLib.zip">
