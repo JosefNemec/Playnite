@@ -120,7 +120,7 @@
             </tray:TaskbarIcon.ContextMenu>
         </tray:TaskbarIcon>
 
-        <c:MainView x:Name="ViewMainView">
+        <c:MainView IsTabStop="False" x:Name="ViewMainView">
             <c:MainView.InputBindings>
                 <KeyBinding Command="{Binding OpenThemeTesterCommand}" CommandParameter="{StaticResource False}"
                     Key ="{Binding OpenThemeTesterCommand.Gesture.Key}"

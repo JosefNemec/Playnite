@@ -2048,19 +2048,19 @@
             <StackPanel>
                 <!-- Genres -->
                 <Label Content="{DynamicResource LOCGenreLabel}" Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}" />
-                <ItemsControl ItemsSource="{Binding Game.Genres, Mode=OneWay}" Style="{StaticResource ListItems}"
+                <ItemsControl IsTabStop="False" ItemsSource="{Binding Game.Genres, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Genres"/>
 
                 <!-- Developers -->
                 <Label Content="{DynamicResource LOCDeveloperLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
-                <ItemsControl ItemsSource="{Binding Game.Developers, Mode=OneWay}" Style="{StaticResource ListItems}"
+                <ItemsControl IsTabStop="False" ItemsSource="{Binding Game.Developers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Developers"/>
 
                 <!-- Publishers -->
                 <Label Content="{DynamicResource LOCPublisherLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
-                <ItemsControl ItemsSource="{Binding Game.Publishers, Mode=OneWay}" Style="{StaticResource ListItems}"
+                <ItemsControl IsTabStop="False" ItemsSource="{Binding Game.Publishers, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Publishers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Publishers"/>
 
@@ -2077,13 +2077,13 @@
 
                 <!-- Categories -->
                 <Label Content="{DynamicResource LOCGameCategoriesTitle}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
-                <ItemsControl ItemsSource="{Binding Game.Categories, Mode=OneWay}" Style="{StaticResource ListItems}"
+                <ItemsControl IsTabStop="False" ItemsSource="{Binding Game.Categories, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Categories"/>
 
                 <!-- Tags -->
                 <Label Content="{DynamicResource LOCTagsLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
-                <ItemsControl ItemsSource="{Binding Game.Tags, Mode=OneWay}" Style="{StaticResource ListItems}"
+                <ItemsControl IsTabStop="False" ItemsSource="{Binding Game.Tags, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
                                   Tag="Tags"/>
 
@@ -2101,7 +2101,7 @@
                 <!-- Links -->
                 <Label Content="{DynamicResource LOCLinksLabel}" Style="{StaticResource PropertyListLabel}"
                            Visibility="{Binding Game.Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
-                <ItemsControl ItemsSource="{Binding Game.Links}"
+                <ItemsControl IsTabStop="False" ItemsSource="{Binding Game.Links}"
                                   Visibility="{Binding Game.Links, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -2233,7 +2233,7 @@
                     </Border>
                     <ScrollViewer DockPanel.Dock="Top"
                                   Visibility="{Binding ShowInfoPanel, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <ContentControl Template="{StaticResource GamePropertiesView}" />
+                        <ContentControl IsTabStop="False" Template="{StaticResource GamePropertiesView}" />
                     </ScrollViewer>
                 </DockPanel>
             </Border>
@@ -2265,24 +2265,32 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="SearchPanel">
-        <DockPanel>
+        <DockPanel KeyboardNavigation.TabNavigation="Local">
             <DockPanel.Resources>
                 <pui:BindingProxy x:Key="SearchPanelProxy" Data="{Binding}" />
                 <pui:EnumConverter x:Key="EnumConverter" />
             </DockPanel.Resources>
-            <CheckBox Name="CheckFilterView" DockPanel.Dock="Left" Height="28"
+            <CheckBox TabIndex="1" Name="CheckFilterView" DockPanel.Dock="Left" Height="28"
                       IsChecked="{Binding AppSettings.FilterPanelVisible}">
                 <CheckBox.Style>
                     <Style TargetType="CheckBox">
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <Border Background="#44000000" Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
+                                    <Border x:Name="CheckFilterViewBorder"  Background="#44000000" Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
                                             CornerRadius="{StaticResource ControlCornerRadius}" BorderThickness="{StaticResource ControlBorderThickness}"
                                             Cursor="Hand">
                                         <TextBlock Text="∇" VerticalAlignment="Center" FontWeight="Bold" FontSize="18"
                                                    Margin="8,0,8,0" Foreground="{TemplateBinding Foreground}"/>
                                     </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="CheckFilterViewBorder" />
+                                        </Trigger>
+                                        <Trigger Property="IsFocused" Value="True">
+                                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="CheckFilterViewBorder" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
@@ -2299,11 +2307,11 @@
                     </Style>
                 </CheckBox.Style>
             </CheckBox>
-            <Border CornerRadius="{StaticResource ControlCornerRadius}" Style="{StaticResource HighlightBorder}"
+            <Border x:Name="TextGroupBorder" CornerRadius="{StaticResource ControlCornerRadius}" Style="{StaticResource HighlightBorder}"
                     Background="#44000000" pui:LeftClickContextMenuBehavior.Enabled="True"
                     SnapsToDevicePixels="True" BorderThickness="{StaticResource ControlBorderThickness}"
                     Width="35" Height="28" Cursor="Hand" DockPanel.Dock="Right">
-                <TextBlock Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
+                <TextBlock KeyboardNavigation.TabIndex="3"  Focusable="True" Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
                            Foreground="{StaticResource TextBrush}"/>
                 <Border.ContextMenu>
                     <ContextMenu StaysOpen="False" Name="MenuViewSettings" Placement="Bottom"
@@ -2384,11 +2392,19 @@
                     </ContextMenu>
                 </Border.ContextMenu>
             </Border>
-            <pc:SearchBox x:Name="SearchBoxFilter" Padding="0" DockPanel.Dock="Left" Margin="1,0,1,0"
+            <pc:SearchBox x:Name="SearchBoxFilter" TabIndex="2" Padding="0" DockPanel.Dock="Left" Margin="1,0,1,0"
                           Background="#33000000"
                           IsFocused="{Binding SearchOpened, Mode=TwoWay}"
                           Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}" />
         </DockPanel>
+        <ControlTemplate.Triggers>
+            <Trigger SourceName="TextGroup" Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="TextGroupBorder" />
+            </Trigger>
+            <Trigger SourceName="TextGroup" Property="IsFocused" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="TextGroupBorder" />
+            </Trigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <ControlTemplate x:Key="DetailsView">
@@ -2533,7 +2549,7 @@
                        Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
                        Background="{DynamicResource GamesListPanelBrush}">
 
-                <ContentControl DockPanel.Dock="Top" Margin="10,45,10,5"
+                <ContentControl IsTabStop="False"  DockPanel.Dock="Top" Margin="10,45,10,5"
                                 Template="{StaticResource SearchPanel}" />
 
                 <pc:ExtendedListBox SelectionMode="Extended" BorderThickness="0"
@@ -2606,7 +2622,7 @@
                 </pc:ExtendedListBox>
             </DockPanel>
 
-            <ContentControl Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
+            <ContentControl IsTabStop="False" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
                             DockPanel.Dock="Left" DataContext="{Binding SelectedGameDetails, Mode=OneWay}"
                             IsEnabled="{Binding Data.AppSettings.ViewSettings.GamesViewType, Source={StaticResource Proxy}, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"
                             Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -2907,7 +2923,7 @@
                         </TextBlock>
                     </DockPanel>
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
-                        <StackPanel Margin="0,0,0,10">
+                        <StackPanel KeyboardNavigation.TabNavigation="Local" Margin="0,0,0,10">
                             <StackPanel.Resources>
                                 <Style x:Key="FilterCheck" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
                                     <Setter Property="Margin" Value="8" />
@@ -2926,28 +2942,28 @@
                                 </Style>
                             </StackPanel.Resources>
 
-                            <CheckBox Name="CheckFilterInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="1" Name="CheckFilterInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameIsInstalledTitle}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.Installed, Mode=OneWay, StringFormat=({0})}" />
                                 </StackPanel>
                             </CheckBox>
 
-                            <CheckBox Name="CheckFilterUnInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsUnInstalled}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="2" Name="CheckFilterUnInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsUnInstalled}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameIsUnInstalledTitle}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.UnInstalled, Mode=OneWay, StringFormat=({0})}" />
                                 </StackPanel>
                             </CheckBox>
 
-                            <CheckBox Name="CheckFilterHidden" IsChecked="{Binding AppSettings.FilterSettings.Hidden}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="3" Name="CheckFilterHidden" IsChecked="{Binding AppSettings.FilterSettings.Hidden}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameHiddenTitle}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.Hidden, Mode=OneWay, StringFormat=({0})}" />
                                 </StackPanel>
                             </CheckBox>
 
-                            <CheckBox Name="CheckFilterFavorite" IsChecked="{Binding AppSettings.FilterSettings.Favorite}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="4" Name="CheckFilterFavorite" IsChecked="{Binding AppSettings.FilterSettings.Favorite}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameFavoriteTitle}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.Favorite, Mode=OneWay, StringFormat=({0})}" />
@@ -2956,27 +2972,27 @@
 
                             <Border Height="10" />
 
-                            <CheckBox Name="CheckFilterSteam" IsChecked="{Binding AppSettings.FilterSettings.Steam}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="5" Name="CheckFilterSteam" IsChecked="{Binding AppSettings.FilterSettings.Steam}" Style="{StaticResource FilterCheck}">
                                 <TextBlock Text="{Binding GamesStats.Steam, Mode=OneWay, StringFormat=Steam ({0})}" />
                             </CheckBox>
 
-                            <CheckBox Name="CheckFilterGOG" IsChecked="{Binding AppSettings.FilterSettings.GOG}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="6" Name="CheckFilterGOG" IsChecked="{Binding AppSettings.FilterSettings.GOG}" Style="{StaticResource FilterCheck}">
                                 <TextBlock Text="{Binding GamesStats.GOG, Mode=OneWay, StringFormat=GOG ({0})}" />
                             </CheckBox>
 
-                            <CheckBox Name="CheckFilterOrigin" IsChecked="{Binding AppSettings.FilterSettings.Origin}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="7" Name="CheckFilterOrigin" IsChecked="{Binding AppSettings.FilterSettings.Origin}" Style="{StaticResource FilterCheck}">
                                 <TextBlock Text="{Binding GamesStats.Origin, Mode=OneWay, StringFormat=Origin ({0})}" />
                             </CheckBox>
 
-                            <CheckBox Name="CheckFilterUplay" IsChecked="{Binding AppSettings.FilterSettings.Uplay}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="8" Name="CheckFilterUplay" IsChecked="{Binding AppSettings.FilterSettings.Uplay}" Style="{StaticResource FilterCheck}">
                                 <TextBlock Text="{Binding GamesStats.Uplay, Mode=OneWay, StringFormat=Uplay ({0})}" />
                             </CheckBox>
 
-                            <CheckBox Name="CheckFilterBattleNet" IsChecked="{Binding AppSettings.FilterSettings.BattleNet}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="9" Name="CheckFilterBattleNet" IsChecked="{Binding AppSettings.FilterSettings.BattleNet}" Style="{StaticResource FilterCheck}">
                                 <TextBlock Text="{Binding GamesStats.BattleNet, Mode=OneWay, StringFormat=Battle.net ({0})}" />
                             </CheckBox>
 
-                            <CheckBox Name="CheckFilterCustom" IsChecked="{Binding AppSettings.FilterSettings.Custom}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="10" Name="CheckFilterCustom" IsChecked="{Binding AppSettings.FilterSettings.Custom}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCCustomLabel}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.Custom, Mode=OneWay, StringFormat=({0})}" />
@@ -2996,7 +3012,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox x:Name="TextFilterName" Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="11" x:Name="TextFilterName" Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCGenreLabel}">
                                 <Label.Style>
@@ -3009,7 +3025,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox x:Name="TextFilterGenre" Text="{Binding AppSettings.FilterSettings.Genres, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="12" x:Name="TextFilterGenre" Text="{Binding AppSettings.FilterSettings.Genres, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCPlatformTitle}">
                                 <Label.Style>
@@ -3022,7 +3038,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox x:Name="TextFilterPlatform" Text="{Binding AppSettings.FilterSettings.Platforms, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="13" x:Name="TextFilterPlatform" Text="{Binding AppSettings.FilterSettings.Platforms, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCGameReleaseDateTitle}">
                                 <Label.Style>
@@ -3035,7 +3051,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox x:Name="TextFilterReleaseDate" Text="{Binding AppSettings.FilterSettings.ReleaseDate, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="14" x:Name="TextFilterReleaseDate" Text="{Binding AppSettings.FilterSettings.ReleaseDate, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCDeveloperLabel}">
                                 <Label.Style>
@@ -3048,7 +3064,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox x:Name="TextFilterDeveloper" Text="{Binding AppSettings.FilterSettings.Developers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="15" x:Name="TextFilterDeveloper" Text="{Binding AppSettings.FilterSettings.Developers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCPublisherLabel}">
                                 <Label.Style>
@@ -3061,7 +3077,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox x:Name="TextFilterPublisher" Text="{Binding AppSettings.FilterSettings.Publishers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="16" x:Name="TextFilterPublisher" Text="{Binding AppSettings.FilterSettings.Publishers, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCCategoryLabel}">
                                 <Label.Style>
@@ -3074,7 +3090,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox x:Name="TextFilterCategory" Text="{Binding AppSettings.FilterSettings.Categories, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="17" x:Name="TextFilterCategory" Text="{Binding AppSettings.FilterSettings.Categories, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCTagLabel}">
                                 <Label.Style>
@@ -3087,7 +3103,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox x:Name="TextFilterTag" Text="{Binding AppSettings.FilterSettings.Tags, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="18" x:Name="TextFilterTag" Text="{Binding AppSettings.FilterSettings.Tags, Delay=500, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
                             <Label Content="{DynamicResource LOCSeriesLabel}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
@@ -3099,7 +3115,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox x:Name="TextFilterSeries" Text="{Binding AppSettings.FilterSettings.Series, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="19" x:Name="TextFilterSeries" Text="{Binding AppSettings.FilterSettings.Series, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCRegionLabel}">
                                 <Label.Style>
@@ -3112,7 +3128,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox x:Name="TextFilterRegion" Text="{Binding AppSettings.FilterSettings.Region, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="20" x:Name="TextFilterRegion" Text="{Binding AppSettings.FilterSettings.Region, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCSourceLabel}">
                                 <Label.Style>
@@ -3125,7 +3141,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox x:Name="TextFilterSource" Text="{Binding AppSettings.FilterSettings.Source, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="21" x:Name="TextFilterSource" Text="{Binding AppSettings.FilterSettings.Source, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCAgeRatingLabel}">
                                 <Label.Style>
@@ -3138,7 +3154,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox x:Name="TextFilterAgeRating" Text="{Binding AppSettings.FilterSettings.AgeRating, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="22" x:Name="TextFilterAgeRating" Text="{Binding AppSettings.FilterSettings.AgeRating, Delay=500, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
                         </StackPanel>
                     </ScrollViewer>
                 </DockPanel>
@@ -3151,8 +3167,22 @@
                             HorizontalContentAlignment="Left" BorderThickness="0" Background="Transparent">
                         <Border DockPanel.Dock="Left" Background="Transparent"
                                 Cursor="Hand" Margin="10,0,5,0" controlzEx:WindowChrome.IsHitTestVisibleInChrome="True">
-                            <TextBlock Text="☰" VerticalAlignment="Center" FontWeight="Bold" Opacity="0.9"
-                                        FontSize="20" Foreground="{StaticResource TextBrush}" />
+                            <TextBlock x:Name="HamburgerMenu"  Text="☰" VerticalAlignment="Center" FontWeight="Bold" Opacity="0.9"
+                                        FontSize="20">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property= "Foreground" Value="{StaticResource TextBrush}" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding IsFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                                                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
                         </Border>
                     </Button>
 
