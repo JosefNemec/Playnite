@@ -6,6 +6,7 @@
                     xmlns:pc="clr-namespace:PlayniteUI.Controls;assembly=PlayniteUI"
                     xmlns:pcmd="clr-namespace:PlayniteUI.Commands;assembly=PlayniteUI"
                     xmlns:pui="clr-namespace:PlayniteUI;assembly=PlayniteUI"
+                    xmlns:controlzEx="urn:controlzex"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
                     mc:Ignorable="d" >
@@ -1814,32 +1815,6 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="WindowBarButton" TargetType="Button">
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-        <Setter Property="Margin" Value="5,0,5,0" />
-        <Setter Property="Padding" Value="3" />
-        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <TextBlock FontFamily="Marlett" Foreground="{TemplateBinding Foreground}" FontSize="16" Padding="{TemplateBinding Padding}">
-                        <ContentPresenter />
-                    </TextBlock>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
-            </Trigger>
-            <Trigger Property="IsFocused" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
     <Style x:Key="PopupBorder" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush}" />
@@ -1853,12 +1828,7 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
-        <Setter Property="WindowChrome.WindowChrome">
-            <Setter.Value>
-                <WindowChrome CaptionHeight="25" CornerRadius="0" ResizeBorderThickness="4"
-                              NonClientFrameEdges ="None" UseAeroCaptionButtons="False" GlassFrameThickness="0"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="CaptionHeight" Value="25" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type pc:WindowBase}">
@@ -1895,7 +1865,6 @@
                         </MultiDataTrigger>
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter Property="Content" Value="2" TargetName="PART_ButtonMaximize"/>
-                            <Setter Property="Padding" Value="8" TargetName="WindowBorder"/>
                         </Trigger>
                         <Trigger Property="IsActive" Value="False">
                             <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" TargetName="WindowBorder"/>
@@ -1908,6 +1877,29 @@
 
     <Style x:Key="MainWindowStyle" TargetType="pc:WindowBase"
            BasedOn="{StaticResource ResourceKey=StandardWindowStyle}">
+    </Style>
+
+    <Style x:Key="WindowBarButton" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Margin" Value="5,0,5,0" />
+        <Setter Property="Padding" Value="3" />
+        <Setter Property="controlzEx:WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <TextBlock FontFamily="Marlett" Foreground="{TemplateBinding Foreground}" FontSize="16" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter />
+                    </TextBlock>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type pc:GameMenu}">
@@ -2260,7 +2252,7 @@
             </Grid.Resources>
 
             <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="0">
-                <DockPanel Cursor="Hand" Margin="10,0,5,0" WindowChrome.IsHitTestVisibleInChrome="True"
+                <DockPanel Cursor="Hand" Margin="10,0,5,0" controlzEx:WindowChrome.IsHitTestVisibleInChrome="True"
                        Opacity="{Binding IsMouseOver, Converter={StaticResource OpacityBoolConverter}, ConverterParameter={StaticResource True}, RelativeSource={RelativeSource Self}}"
                        pui:LeftClickContextMenuBehavior.Enabled="True">
                     <Border DockPanel.Dock="Left" Background="Transparent">
@@ -2442,13 +2434,13 @@
                 <pc:SearchBox x:Name="SearchBoxFilter" Margin="5,8,10,8" DockPanel.Dock="Left" Padding="0" Width="235"
                               Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}"
                               IsFocused="{Binding SearchOpened, Mode=TwoWay}"
-                              WindowChrome.IsHitTestVisibleInChrome="True" />
+                              controlzEx:WindowChrome.IsHitTestVisibleInChrome="True" />
 
                 <Border CornerRadius="{StaticResource ControlCornerRadius}" Background="Transparent" Style="{StaticResource HighlightBorder}"
                     pui:LeftClickContextMenuBehavior.Enabled="True"
                     SnapsToDevicePixels="True" BorderThickness="{StaticResource ControlBorderThickness}"
                     Width="35" Height="28" Cursor="Hand"
-                    WindowChrome.IsHitTestVisibleInChrome="True">
+                    controlzEx:WindowChrome.IsHitTestVisibleInChrome="True">
                     <TextBlock Name="TextGroup" Text=". . ." HorizontalAlignment="Center" FontWeight="Bold"
                            Foreground="{StaticResource TextBrush}"/>
                     <Border.ContextMenu>
@@ -2524,7 +2516,7 @@
                     </Border.ContextMenu>
                 </Border>
 
-                <CheckBox Name="CheckFilterView" DockPanel.Dock="Left" Margin="10,0,10,0" Height="28" WindowChrome.IsHitTestVisibleInChrome="True"
+                <CheckBox Name="CheckFilterView" DockPanel.Dock="Left" Margin="10,0,10,0" Height="28" controlzEx:WindowChrome.IsHitTestVisibleInChrome="True"
                       IsChecked="{Binding AppSettings.FilterPanelVisible}">
                     <CheckBox.Style>
                         <Style TargetType="CheckBox">
@@ -2532,7 +2524,7 @@
                                 <Setter.Value>
                                     <ControlTemplate>
                                         <Border Background="Transparent" Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
-                                            CornerRadius="{StaticResource ControlCornerRadius}" BorderThickness="{StaticResource ControlBorderThickness}" Cursor="Hand" WindowChrome.IsHitTestVisibleInChrome="True">
+                                            CornerRadius="{StaticResource ControlCornerRadius}" BorderThickness="{StaticResource ControlBorderThickness}" Cursor="Hand" controlzEx:WindowChrome.IsHitTestVisibleInChrome="True">
                                             <TextBlock Text="∇" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="8,0,8,0" Foreground="{TemplateBinding Foreground}"/>
                                         </Border>
                                     </ControlTemplate>
@@ -2554,7 +2546,7 @@
 
                 <ToggleButton FontWeight="Bold" DockPanel.Dock="Right" Height="30"
                         Name="ButtonMessages" Margin="0,0,130,0" Padding="0"
-                        WindowChrome.IsHitTestVisibleInChrome="True" BorderThickness="0"
+                        controlzEx:WindowChrome.IsHitTestVisibleInChrome="True" BorderThickness="0"
                         Background="Transparent">
                     <ToggleButton.Style>
                         <Style TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
@@ -2626,7 +2618,7 @@
                             Command="{Binding CancelProgressCommand}"
                             Content="{DynamicResource LOCCancelLabel}"
                             Height="27" Grid.Column="2" Margin="10,0,20,0"
-                            WindowChrome.IsHitTestVisibleInChrome="True"/>
+                            controlzEx:WindowChrome.IsHitTestVisibleInChrome="True"/>
                 </Grid>
             </DockPanel>
 
