@@ -24,7 +24,7 @@ namespace PlayniteUITests.ViewModels
             Assert.IsNotNull(model.CloseFilterPanelCommand);
             Assert.IsNotNull(model.OpenMainMenuCommand);
             Assert.IsNotNull(model.CloseMainMenuCommand);
-            Assert.IsNotNull(model.ThridPartyToolOpenCommand);
+            Assert.IsNotNull(model.ThirdPartyToolOpenCommand);
             Assert.IsNotNull(model.UpdateGamesCommand);
             Assert.IsNotNull(model.OpenSteamFriendsCommand);
             Assert.IsNotNull(model.ReportIssueCommand);

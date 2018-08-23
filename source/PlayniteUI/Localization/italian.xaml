@@ -452,7 +452,7 @@ E' al momento utilizzata da {1} gioco/chi e {2} emulatore/i.</sys:String>
   <sys:String x:Key="LOCCommunityScore">Voto della comunità</sys:String>
   <sys:String x:Key="LOCScripts">Script</sys:String>
   <sys:String x:Key="LOCPlugins">Plugin</sys:String>
-  <sys:String x:Key="LOCExtensions">Estenzioni</sys:String>
+  <sys:String x:Key="LOCExtensions">Estensioni</sys:String>
   <sys:String x:Key="LOCReloadScripts">Ricarica gli script</sys:String>
   <sys:String x:Key="LOCReloadScriptsSuccess">Tutti gli script sono stati ricaricati con successo.</sys:String>
   <sys:String x:Key="LOCNoGamesFound">Nessun gioco trovato</sys:String>
