@@ -774,6 +774,7 @@ xcopy "$(SolutionDir)\Plugins\GogLibrary\bin\$(ConfigurationName)" "$(TargetDir)
 xcopy "$(SolutionDir)\Plugins\OriginLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\OriginLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\OriginLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\BattleNetLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\BattleNetLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\BattleNetLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\UplayLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\UplayLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\UplayLibrary\BuildCopyExclude.txt
+xcopy "$(SolutionDir)\Plugins\TwitchLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\TwitchLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\TwitchLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\LibraryExporter" "$(TargetDir)\Extensions\LibraryExporter\" /e /y</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" />

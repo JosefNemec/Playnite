@@ -117,6 +117,17 @@ namespace Playnite
                 tools.Add(tool);
             }
 
+            if (TwitchLibrary.Twitch.IsInstalled)
+            {
+                var tool = new ThirdPartyTool()
+                {
+                    Path = TwitchLibrary.Twitch.ClientExecPath,
+                    Name = "Twitch"
+                };
+
+                tools.Add(tool);
+            }
+
             if (EpicLauncher.IsInstalled)
             {
                 var tool = new ThirdPartyTool()

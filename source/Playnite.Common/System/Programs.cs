@@ -378,28 +378,33 @@ namespace Playnite.Common.System
         private static List<UninstallProgram> GetUninstallProgsFromView(RegistryView view)
         {
             var rootString = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\";
-            var progs = new List<UninstallProgram>();
-            var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, view);
-            var keyList = root.OpenSubKey(rootString);
-
-            foreach (var key in keyList.GetSubKeyNames())
+            void SearchRoot(RegistryHive hive, List<UninstallProgram> programs)
             {
-                var prog = root.OpenSubKey(rootString + key);
-                var program = new UninstallProgram()
-                {
-                    DisplayIcon = prog.GetValue("DisplayIcon")?.ToString(),
-                    DisplayVersion = prog.GetValue("DisplayVersion")?.ToString(),
-                    DisplayName = prog.GetValue("DisplayName")?.ToString(),
-                    InstallLocation = prog.GetValue("InstallLocation")?.ToString(),
-                    Publisher = prog.GetValue("Publisher")?.ToString(),
-                    UninstallString = prog.GetValue("UninstallString")?.ToString(),
-                    URLInfoAbout = prog.GetValue("URLInfoAbout")?.ToString(),
-                    RegistryKeyName = key
-                };
+                var root = RegistryKey.OpenBaseKey(hive, view);
+                var keyList = root.OpenSubKey(rootString);
 
-                progs.Add(program);
+                foreach (var key in keyList.GetSubKeyNames())
+                {
+                    var prog = root.OpenSubKey(rootString + key);
+                    var program = new UninstallProgram()
+                    {
+                        DisplayIcon = prog.GetValue("DisplayIcon")?.ToString(),
+                        DisplayVersion = prog.GetValue("DisplayVersion")?.ToString(),
+                        DisplayName = prog.GetValue("DisplayName")?.ToString(),
+                        InstallLocation = prog.GetValue("InstallLocation")?.ToString(),
+                        Publisher = prog.GetValue("Publisher")?.ToString(),
+                        UninstallString = prog.GetValue("UninstallString")?.ToString(),
+                        URLInfoAbout = prog.GetValue("URLInfoAbout")?.ToString(),
+                        RegistryKeyName = key
+                    };
+
+                    programs.Add(program);
+                }
             }
 
+            var progs = new List<UninstallProgram>();
+            SearchRoot(RegistryHive.LocalMachine, progs);
+            SearchRoot(RegistryHive.CurrentUser, progs);
             return progs;
         }
 

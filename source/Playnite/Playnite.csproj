@@ -145,6 +145,9 @@
     <Compile Include="..\Plugins\SteamLibrary\Steam.cs">
       <Link>ThirdPartyClients\Steam.cs</Link>
     </Compile>
+    <Compile Include="..\Plugins\TwitchLibrary\Twitch.cs">
+      <Link>ThirdPartyClients\Twitch.cs</Link>
+    </Compile>
     <Compile Include="..\Plugins\UplayLibrary\Uplay.cs">
       <Link>ThirdPartyClients\Uplay.cs</Link>
     </Compile>
