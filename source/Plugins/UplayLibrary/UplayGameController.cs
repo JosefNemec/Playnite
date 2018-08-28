@@ -24,11 +24,6 @@ namespace UplayLibrary
             uplay = library;
         }
 
-        public override void ActivateAction(GameAction action)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Dispose()
         {
             ReleaseResources();

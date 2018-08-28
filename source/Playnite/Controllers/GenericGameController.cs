@@ -26,11 +26,6 @@ namespace Playnite.Controllers
             database = db;
         }
 
-        public override void ActivateAction(GameAction action)
-        {
-            GameActionActivator.ActivateAction(action, Game);
-        }
-
         public override void Play()
         {            
             if (Game.PlayAction == null)

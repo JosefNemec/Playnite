@@ -16,7 +16,7 @@ using GogLibrary.Services;
 
 namespace GogLibrary
 {
-    public class GogMetadataProvider : IMetadataProvider
+    public class GogMetadataProvider : ILibraryMetadataProvider
     {
         private GogApiClient apiClient = new GogApiClient();
         private ILogger logger = LogManager.GetLogger();
@@ -27,25 +27,15 @@ namespace GogLibrary
 
         #region IMetadataProvider
 
-        public GameMetadata GetMetadata(string metadataId)
+        public GameMetadata GetMetadata(Game game)
         {
             var gameData = new Game("GOGGame")
             {
-                GameId = metadataId
+                GameId = game.GameId
             };
 
             var data = UpdateGameWithMetadata(gameData);
             return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
-        }
-
-        public GameMetadata GetMetadata(Game game)
-        {
-            return GetMetadata(game.GameId);
-        }
-
-        public ICollection<MetadataSearchResult> SearchMetadata(Game game)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion IMetadataProvider

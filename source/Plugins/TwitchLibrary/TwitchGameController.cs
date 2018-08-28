@@ -37,11 +37,6 @@ namespace TwitchLibrary
             procMon?.Dispose();
         }
 
-        public override void ActivateAction(GameAction action)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Install()
         {
             ProcessStarter.StartUrl($"twitch://fuel/");

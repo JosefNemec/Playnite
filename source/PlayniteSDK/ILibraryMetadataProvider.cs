@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace Playnite.SDK
 {
-    public interface IMetadataProvider
+    public interface ILibraryMetadataProvider
     {
-        ICollection<MetadataSearchResult> SearchMetadata(Game game);
-        GameMetadata GetMetadata(string metadataId);
         GameMetadata GetMetadata(Game game);
     }
 }

@@ -241,7 +241,7 @@ namespace GogLibrary
             return allGames;
         }
 
-        public IMetadataProvider GetMetadataDownloader()
+        public ILibraryMetadataProvider GetMetadataDownloader()
         {
             return new GogMetadataProvider();
         }

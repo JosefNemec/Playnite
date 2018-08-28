@@ -41,11 +41,6 @@ namespace GogLibrary
             procMon?.Dispose();
         }
 
-        public override void ActivateAction(GameAction action)
-        {
-            throw new NotSupportedException();
-        }
-
         public override void Play()
         {
             ReleaseResources();

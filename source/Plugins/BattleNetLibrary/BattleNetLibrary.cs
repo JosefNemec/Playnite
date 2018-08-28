@@ -266,7 +266,7 @@ namespace BattleNetLibrary
             return allGames;
         }
 
-        public IMetadataProvider GetMetadataDownloader()
+        public ILibraryMetadataProvider GetMetadataDownloader()
         {
             return new BattleNetMetadataProvider();
         }

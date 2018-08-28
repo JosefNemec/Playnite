@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace BattleNetLibrary
 {
-    public class BattleNetMetadataProvider : IMetadataProvider
+    public class BattleNetMetadataProvider : ILibraryMetadataProvider
     {
         public BattleNetMetadataProvider()
         {
@@ -21,25 +21,15 @@ namespace BattleNetLibrary
 
         #region IMetadataProvider
 
-        public GameMetadata GetMetadata(string metadataId)
+        public GameMetadata GetMetadata(Game game)
         {
             var gameData = new Game("OriginGame")
             {
-                GameId = metadataId
+                GameId = game.GameId
             };
 
             var data = UpdateGameWithMetadata(gameData);
             return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
-        }
-
-        public GameMetadata GetMetadata(Game game)
-        {
-            return GetMetadata(game.GameId);
-        }
-
-        public ICollection<MetadataSearchResult> SearchMetadata(Game game)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion IMetadataProvider

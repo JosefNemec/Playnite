@@ -428,7 +428,7 @@ namespace SteamLibrary
             return new SteamGameController(game);
         }
 
-        public IMetadataProvider GetMetadataDownloader()
+        public ILibraryMetadataProvider GetMetadataDownloader()
         {
             return new SteamMetadataProvider(servicesClient, (SteamLibrarySettings)Settings, apiClient);
         }

@@ -388,7 +388,7 @@ namespace OriginLibrary
             return allGames;
         }
 
-        public IMetadataProvider GetMetadataDownloader()
+        public ILibraryMetadataProvider GetMetadataDownloader()
         {
             return new OriginMetadataProvider(playniteApi);
         }

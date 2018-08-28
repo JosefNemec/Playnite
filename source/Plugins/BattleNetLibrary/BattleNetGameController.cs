@@ -26,11 +26,6 @@ namespace BattleNetLibrary
             this.api = api;
         }
 
-        public override void ActivateAction(GameAction action)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Dispose()
         {
             ReleaseResources();

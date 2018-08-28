@@ -36,8 +36,6 @@ namespace Playnite
             execContext = SynchronizationContext.Current;
         }
 
-        public abstract void ActivateAction(GameAction action);
-
         public abstract void Play();
 
         public abstract void Install();

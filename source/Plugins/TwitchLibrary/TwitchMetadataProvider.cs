@@ -12,31 +12,15 @@ using System.Threading.Tasks;
 
 namespace TwitchLibrary
 {
-    public class TwitchMetadataProvider : IMetadataProvider
+    public class TwitchMetadataProvider : ILibraryMetadataProvider
     {
         #region IMetadataProvider
-
-        public GameMetadata GetMetadata(string metadataId)
-        {
-            var gameData = new Game("TwitchGame")
-            {
-                GameId = metadataId
-            };
-
-            var data = UpdateGameWithMetadata(gameData);
-            return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
-        }
-
+        
         public GameMetadata GetMetadata(Game game)
         {
             var gameData = game.CloneJson();
             var data = UpdateGameWithMetadata(gameData);
             return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
-        }
-
-        public ICollection<MetadataSearchResult> SearchMetadata(Game game)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion IMetadataProvider

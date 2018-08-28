@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace SteamLibrary
 {
-    public class SteamMetadataProvider : IMetadataProvider
+    public class SteamMetadataProvider : ILibraryMetadataProvider
     {
         private ILogger logger = LogManager.GetLogger();
         private SteamServicesClient playniteServices;
@@ -35,25 +35,15 @@ namespace SteamLibrary
 
         #region IMetadataProvider
 
-        public GameMetadata GetMetadata(string metadataId)
+        public GameMetadata GetMetadata(Game game)
         {
             var gameData = new Game("SteamGame")
-            {                
-                GameId = metadataId
+            {
+                GameId = game.GameId
             };
 
             var data = UpdateGameWithMetadata(gameData);
             return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
-        }
-
-        public GameMetadata GetMetadata(Game game)
-        {
-            return GetMetadata(game.GameId);
-        }
-
-        public ICollection<MetadataSearchResult> SearchMetadata(Game game)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion IMetadataProvider

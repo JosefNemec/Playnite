@@ -23,8 +23,6 @@ namespace Playnite.SDK
 
         void Play();
 
-        void ActivateAction(GameAction action);
-
         event GameControllerEventHandler Starting;
 
         event GameControllerEventHandler Started;

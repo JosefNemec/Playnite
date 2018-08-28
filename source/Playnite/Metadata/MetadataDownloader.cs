@@ -19,21 +19,21 @@ namespace Playnite.Metadata
     {
         private static ILogger logger = LogManager.GetLogger();
 
-        private IMetadataProvider igdbProvider;
+        private ILibraryMetadataProvider igdbProvider;
         private readonly IEnumerable<ILibraryPlugin> plugins;
-        private Dictionary<Guid, IMetadataProvider> downloaders = new Dictionary<Guid, IMetadataProvider>();
+        private Dictionary<Guid, ILibraryMetadataProvider> downloaders = new Dictionary<Guid, ILibraryMetadataProvider>();
 
         public MetadataDownloader(IEnumerable<ILibraryPlugin> plugins) : this(new IGDBMetadataProvider(), plugins)
         {
         }
 
-        public MetadataDownloader(IMetadataProvider igdbProvider, IEnumerable<ILibraryPlugin> plugins)
+        public MetadataDownloader(ILibraryMetadataProvider igdbProvider, IEnumerable<ILibraryPlugin> plugins)
         {
             this.igdbProvider = igdbProvider;
             this.plugins = plugins;
         }
 
-        internal IMetadataProvider GetMetadataDownloader(Guid pluginId)
+        internal ILibraryMetadataProvider GetMetadataDownloader(Guid pluginId)
         {
             if (downloaders.ContainsKey(pluginId))
             {

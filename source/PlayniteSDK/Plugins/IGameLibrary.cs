@@ -19,6 +19,6 @@ namespace Playnite.SDK.Plugins
 
         IGameController GetGameController(Game game);
 
-        IMetadataProvider GetMetadataDownloader();       
+        ILibraryMetadataProvider GetMetadataDownloader();       
     }
 }

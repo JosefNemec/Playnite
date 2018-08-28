@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Playnite.API;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace OriginLibrary.Tests
         public void StandardDownloadTest()
         {
             var provider = new OriginMetadataProvider(new PlayniteAPI(null, null, null, null, null, null, null));
-            var data = provider.GetMetadata("Origin.OFR.50.0000557");
+            var data = provider.GetMetadata(new Game() { GameId = "Origin.OFR.50.0000557" });
             Assert.IsNotNull(data.GameData);
             Assert.IsNotNull(data.Image);
             Assert.IsNotNull(data.GameData.ReleaseDate);

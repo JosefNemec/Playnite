@@ -18,7 +18,7 @@ using Playnite.SDK.Metadata;
 
 namespace Playnite.Metadata.Providers
 {
-    public class IGDBMetadataProvider : IMetadataProvider
+    public class IGDBMetadataProvider : ILibraryMetadataProvider
     {
         private ServicesClient client;
 

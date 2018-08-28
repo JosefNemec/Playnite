@@ -12,31 +12,15 @@ using System.Threading.Tasks;
 
 namespace UplayLibrary
 {
-    public class UplayMetadataProvider : IMetadataProvider
+    public class UplayMetadataProvider : ILibraryMetadataProvider
     {
         #region IMetadataProvider
-
-        public GameMetadata GetMetadata(string metadataId)
-        {
-            var gameData = new Game("UplayGame")
-            {
-                GameId = metadataId
-            };
-
-            var data = UpdateGameWithMetadata(gameData);
-            return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
-        }
 
         public GameMetadata GetMetadata(Game game)
         {
             var gameData = game.CloneJson();
             var data = UpdateGameWithMetadata(gameData);
             return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
-        }
-
-        public ICollection<MetadataSearchResult> SearchMetadata(Game game)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion IMetadataProvider

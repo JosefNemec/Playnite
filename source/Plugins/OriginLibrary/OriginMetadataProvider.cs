@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace OriginLibrary
 {
-    public class OriginMetadataProvider : IMetadataProvider
+    public class OriginMetadataProvider : ILibraryMetadataProvider
     {
         private readonly IPlayniteAPI api;
 
@@ -26,27 +26,11 @@ namespace OriginLibrary
 
         #region IMetadataProvider
 
-        public GameMetadata GetMetadata(string metadataId)
-        {
-            var gameData = new Game("OriginGame")
-            {
-                GameId = metadataId
-            };
-
-            var data = UpdateGameWithMetadata(gameData);
-            return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
-        }
-
         public GameMetadata GetMetadata(Game game)
         {
             var gameData = game.CloneJson();
             var data = UpdateGameWithMetadata(gameData);
             return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
-        }
-
-        public ICollection<MetadataSearchResult> SearchMetadata(Game game)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion IMetadataProvider

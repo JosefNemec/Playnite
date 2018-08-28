@@ -101,7 +101,7 @@ namespace UplayLibrary
             return GetInstalledGames();
         }
 
-        public IMetadataProvider GetMetadataDownloader()
+        public ILibraryMetadataProvider GetMetadataDownloader()
         {
             return new UplayMetadataProvider();
         }

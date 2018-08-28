@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace BattleNetLibrary.Tests
         public void StandardDownloadTest()
         {
             var provider = new BattleNetMetadataProvider();
-            var data = provider.GetMetadata("D3");
+            var data = provider.GetMetadata(new Game() { GameId = "D3" });
             Assert.IsNotNull(data.GameData);
             Assert.IsNotNull(data.Icon);
             Assert.IsNotNull(data.Image);

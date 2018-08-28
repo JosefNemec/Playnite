@@ -62,7 +62,7 @@
     <Compile Include="IGameDatabaseAPI.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="IMainViewAPI.cs" />
-    <Compile Include="IMetadataProvider.cs" />
+    <Compile Include="ILibraryMetadataProvider.cs" />
     <Compile Include="IPlayniteAPI.cs" />
     <Compile Include="IPlayniteInfoAPI.cs" />
     <Compile Include="IPlaynitePathsAPI.cs" />
