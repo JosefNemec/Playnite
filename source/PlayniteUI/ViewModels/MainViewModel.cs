@@ -932,7 +932,7 @@ namespace PlayniteUI.ViewModels
                         ProgressTotal = addedGames.Count;
                         ProgressStatus = Resources.FindString("LOCProgressMetadata");
                         var metaSettings = new MetadataDownloaderSettings();
-                        metaSettings.ConfigureFields(MetadataSource.Store, true);
+                        metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
                         var downloader = new MetadataDownloader(Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
