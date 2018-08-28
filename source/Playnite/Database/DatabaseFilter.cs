@@ -42,6 +42,10 @@ namespace Playnite.Database
         private ExtensionFactory extensions;
         private FilterSettings filter;
 
+        // TODO: get rid of ignore* variables and introduce better binding between DatabaseFilter and FilterSettings (or merge them)
+        private bool ignoreFilterChanges = false;
+        private bool ignoreLibChanges = false;
+
         public List<Library> Libraries { get; set; }
         public string LibrariesString
         {
@@ -57,6 +61,7 @@ namespace Playnite.Database
             Libraries = this.extensions.LibraryPlugins.Select(a => new Library(a.Value.Plugin.Id, a.Value.Plugin.Name, filter.Libraries?.Contains(a.Value.Plugin.Id) == true)).ToList();
             Libraries.Add(new Library(Guid.Empty, "Custom", filter.Libraries?.Contains(Guid.Empty) == true));
             Libraries.ForEach(a => a.PropertyChanged += LibrarySelection_PropertyChanged);
+            filter.FilterChanged += Filter_FilterChanged;
 
             // Remove filters for unloaded plugins
             var missing = filter.Libraries?.Where(a => Libraries.FirstOrDefault(b => b.Id == a) == null)?.ToList();
@@ -69,10 +74,29 @@ namespace Playnite.Database
             }
         }
 
+        private void Filter_FilterChanged(object sender, FilterChangedEventArgs e)
+        {
+            if (ignoreFilterChanges)
+            {
+                return;
+            }
+
+            if (e.Fields?.Contains("Libraries") == true)
+            {
+                UpdateFilterStates();
+            }
+        }
+
         private void LibrarySelection_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if (ignoreLibChanges)
+            {
+                return;
+            }
+
             if (e.PropertyName == "Selected")
             {
+                ignoreFilterChanges = true;
                 var selected = Libraries.Where(a => a.Selected);
                 if (selected.Any())
                 {
@@ -82,8 +106,29 @@ namespace Playnite.Database
                 {
                     filter.Libraries = null;
                 }
+
+                ignoreFilterChanges = false;
             }
 
+            OnPropertyChanged("LibrariesString");
+        }
+
+        private void UpdateFilterStates()
+        {
+            ignoreLibChanges = true;
+            foreach (var lib in Libraries)
+            {
+                if (filter.Libraries?.Contains(lib.Id) == true)
+                {
+                    lib.Selected = true;
+                }
+                else
+                {
+                    lib.Selected = false;
+                }
+            }
+
+            ignoreLibChanges = false;
             OnPropertyChanged("LibrariesString");
         }
     }
