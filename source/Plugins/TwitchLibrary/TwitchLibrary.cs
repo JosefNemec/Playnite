@@ -114,6 +114,11 @@ namespace TwitchLibrary
             var libraryGames = AmazonEntitlementClient.GetAccountEntitlements(login.AccountId, login.AccessToken);
             foreach (var item in libraryGames)
             {
+                if (item.product.productLine != "Twitch:FuelGame")
+                {
+                    continue;
+                }
+
                 var game = new Game()
                 {
                     PluginId = Id,
