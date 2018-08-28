@@ -2325,7 +2325,8 @@
                 <pui:BindingProxy x:Key="SearchPanelProxy" Data="{Binding}" />
                 <pui:EnumConverter x:Key="EnumConverter" />
             </DockPanel.Resources>
-            <CheckBox TabIndex="1" Name="CheckFilterView" DockPanel.Dock="Left" Height="28"
+            <CheckBox TabIndex="1" Name="CheckFilterView" DockPanel.Dock="Left"
+                      Height="28" Width="32"
                       IsChecked="{Binding AppSettings.FilterPanelVisible}">
                 <CheckBox.Style>
                     <Style TargetType="CheckBox">
@@ -2335,17 +2336,12 @@
                                     <Border x:Name="CheckFilterViewBorder"  Background="#44000000" Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
                                             CornerRadius="{StaticResource ControlCornerRadius}" BorderThickness="{StaticResource ControlBorderThickness}"
                                             Cursor="Hand">
-                                        <TextBlock Text="∇" VerticalAlignment="Center" FontWeight="Bold" FontSize="18"
-                                                   Margin="8,0,8,0" Foreground="{TemplateBinding Foreground}"/>
+                                        <Rectangle Fill="{TemplateBinding Foreground}" Margin="6,5,6,5">
+                                            <Rectangle.OpacityMask>
+                                                <ImageBrush ImageSource="/Images/filtericon.png" RenderOptions.BitmapScalingMode="Fant"/>
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
                                     </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="CheckFilterViewBorder" />
-                                        </Trigger>
-                                        <Trigger Property="IsFocused" Value="True">
-                                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="CheckFilterViewBorder" />
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
@@ -2355,7 +2351,7 @@
                                 <Setter Property="ToolTip" Value="{DynamicResource LOCFilterActiveLabel}" />
                             </DataTrigger>
                             <DataTrigger Binding="{Binding AppSettings.FilterSettings.Active}" Value="False">
-                                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
                                 <Setter Property="ToolTip" Value="{DynamicResource LOCFilterInactiveLabel}" />
                             </DataTrigger>
                         </Style.Triggers>
@@ -2447,7 +2443,7 @@
                     </ContextMenu>
                 </Border.ContextMenu>
             </Border>
-            <pc:SearchBox x:Name="SearchBoxFilter" TabIndex="2" Padding="0" DockPanel.Dock="Left" Margin="1,0,1,0"
+            <pc:SearchBox x:Name="SearchBoxFilter" TabIndex="2" Padding="0" DockPanel.Dock="Left" Margin="2,0,2,0"
                           Background="#33000000"
                           IsFocused="{Binding SearchOpened, Mode=TwoWay}"
                           Text="{Binding AppSettings.FilterSettings.Name, Delay=500, Mode=TwoWay}" />

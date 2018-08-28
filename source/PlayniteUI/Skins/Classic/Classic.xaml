@@ -2573,25 +2573,26 @@
                     </Border.ContextMenu>
                 </Border>
 
-                <CheckBox KeyboardNavigation.TabIndex="3" Name="CheckFilterView" DockPanel.Dock="Left" Margin="10,0,10,0" Height="28" controlzEx:WindowChrome.IsHitTestVisibleInChrome="True"
-                      IsChecked="{Binding AppSettings.FilterPanelVisible}">
+                <CheckBox KeyboardNavigation.TabIndex="3" Name="CheckFilterView" DockPanel.Dock="Left" 
+                          controlzEx:WindowChrome.IsHitTestVisibleInChrome="True"
+                          Margin="10,0,10,0" Height="28" Width="32"
+                          IsChecked="{Binding AppSettings.FilterPanelVisible}">
                     <CheckBox.Style>
-                        <Style TargetType="CheckBox">
+                        <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate>
-                                        <Border x:Name="CheckFilterViewBorder" Background="Transparent" Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
-                                            CornerRadius="{StaticResource ControlCornerRadius}" BorderThickness="{StaticResource ControlBorderThickness}" Cursor="Hand" controlzEx:WindowChrome.IsHitTestVisibleInChrome="True">
-                                            <TextBlock Text="∇" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="8,0,8,0" Foreground="{TemplateBinding Foreground}"/>
+                                        <Border x:Name="CheckFilterViewBorder" Background="Transparent"
+                                                Style="{StaticResource HighlightBorder}" SnapsToDevicePixels="True"
+                                                CornerRadius="{StaticResource ControlCornerRadius}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                Cursor="Hand" controlzEx:WindowChrome.IsHitTestVisibleInChrome="True">
+                                            <Rectangle Fill="{TemplateBinding Foreground}" Margin="6,5,6,5">
+                                                <Rectangle.OpacityMask>
+                                                    <ImageBrush ImageSource="/Images/filtericon.png" RenderOptions.BitmapScalingMode="Fant"/>
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
                                         </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="CheckFilterViewBorder" />
-                                            </Trigger>
-                                            <Trigger Property="IsFocused" Value="True">
-                                                <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="CheckFilterViewBorder" />
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
@@ -2601,7 +2602,7 @@
                                     <Setter Property="ToolTip" Value="{DynamicResource LOCFilterActiveLabel}" />
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding AppSettings.FilterSettings.Active}" Value="False">
-                                    <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                                    <Setter Property="Foreground" Value="{StaticResource TextBrushDarker}" />
                                     <Setter Property="ToolTip" Value="{DynamicResource LOCFilterInactiveLabel}" />
                                 </DataTrigger>
                             </Style.Triggers>

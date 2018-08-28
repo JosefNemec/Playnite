@@ -376,6 +376,7 @@
     <Resource Include="Images\MenuIcons\info.png" />
     <Resource Include="Images\MenuIcons\feedback.png" />
     <Resource Include="Images\MenuIcons\script.png" />
+    <Resource Include="Images\filtericon.png" />
     <Content Include="Localization\english.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
