@@ -12,7 +12,7 @@
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCFirstWindowTitle}" WindowStartupLocation="CenterScreen"
         ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False"
-        Height="500" Width="620" MinHeight="250" MinWidth="390" x:Name="WindowMain" 
+        Height="470" Width="620" MinHeight="250" MinWidth="390" x:Name="WindowMain" 
         AutomationProperties.AutomationId="WindowWizard">
 
     <controls:WindowBase.Resources>
@@ -101,11 +101,13 @@
             <TabItem Visibility="Collapsed">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" Margin="20" DockPanel.Dock="Top">
-                        <TextBlock Text="{Binding SelectedLibraryPlugin.Name}" Margin="0,0,8,0" FontSize="16" />
-                        <TextBlock Text="{DynamicResource LOCMenuPlayniteSettingsTitle}" FontSize="16" />
+                        <Image Source="{Binding SelectedLibraryPlugin.Icon}" RenderOptions.BitmapScalingMode="Fant"
+                               Width="32" Margin="0,0,10,0" />
+                        <TextBlock Text="{Binding SelectedLibraryPlugin.Name}" Margin="0,0,6,0" FontSize="16" VerticalAlignment="Center" />
+                        <TextBlock Text="{DynamicResource LOCMenuPlayniteSettingsTitle}" FontSize="16" VerticalAlignment="Center" />
                     </StackPanel>
                     <ContentControl Content="{Binding SelectedProviderSettingsView}"
-                                    Margin="20,0,20,20" DockPanel.Dock="Top"/>
+                                    Margin="20,10,20,20" DockPanel.Dock="Top"/>
                 </DockPanel>                
             </TabItem>
             

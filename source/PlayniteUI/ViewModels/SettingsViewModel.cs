@@ -42,6 +42,7 @@ namespace PlayniteUI.ViewModels
         public ISettings Settings { get; set; }
         public UserControl View { get; set; }
         public string Name { get; set; }
+        public string Icon { get; set; }
     }
 
     public class SettingsViewModel : ObservableObject, IDisposable
@@ -193,7 +194,8 @@ namespace PlayniteUI.ViewModels
                     {
                         Name = provider.Plugin.Name,
                         Settings = provSetting,
-                        View = provView
+                        View = provView,
+                        Icon = provider.Plugin.LibraryIcon
                     };
 
                     LibraryPluginSettings.Add(provider.Plugin.Id, plugSetting);

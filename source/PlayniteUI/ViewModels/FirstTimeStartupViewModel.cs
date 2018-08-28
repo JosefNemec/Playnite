@@ -257,7 +257,8 @@ namespace PlayniteUI.ViewModels
                     {
                         Name = lib.Name,
                         View = lib.SettingsView,
-                        Settings = lib.Settings                        
+                        Settings = lib.Settings,
+                        Icon = lib.LibraryIcon
                     };
                 }).ToList();
 

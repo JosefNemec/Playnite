@@ -77,15 +77,15 @@
                        IsEnabled="{Binding IsChecked, ElementName=CheckSteamPrivate}">
                 <TextBlock Text="{DynamicResource LOCAPIKey}" DockPanel.Dock="Left"
                            VerticalAlignment="Center"/>
-                <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">
+                <TextBox Text="{Binding ApiKey}" Width="200" HorizontalAlignment="Left"
+                         DockPanel.Dock="Left" Margin="10,0,10,0"/>
+                <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Hyperlink NavigateUri="https://steamcommunity.com/dev/apikey"
                                 Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
                                 CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                         <Run Text="{DynamicResource LOCSettingsApiKeyUrlText}" />
                     </Hyperlink>
                 </TextBlock>
-                <TextBox Text="{Binding ApiKey}" Width="200" HorizontalAlignment="Left"
-                         DockPanel.Dock="Left" Margin="10,0,10,0"/>
             </DockPanel>
         </DockPanel>
 
