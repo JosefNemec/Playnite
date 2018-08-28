@@ -295,8 +295,8 @@ namespace PlayniteUI
             }
 
             // Update and stats
-            //CheckUpdate();
-            //SendUsageData();
+            CheckUpdate();
+            SendUsageData();
 
             // Pipe server
             pipeService = new PipeService();
@@ -436,8 +436,8 @@ namespace PlayniteUI
                     GamesEditor?.Dispose();
                     AppSettings?.SaveSettings();
                     Extensions?.Dispose();
-                    Database?.CloseDatabase();
                     controllers?.Dispose();
+                    Database?.CloseDatabase();
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
