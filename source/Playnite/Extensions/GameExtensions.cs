@@ -34,7 +34,7 @@ namespace Playnite
                 {
                     Type = GameActionType.File,
                     WorkingDir = "{InstallDir}",
-                    Path = prog.Path.Replace(game.InstallDirectory, "").Trim(Path.DirectorySeparatorChar),
+                    Path = prog.Path.Substring(game.InstallDirectory.Length).Trim(Path.DirectorySeparatorChar),
                     Arguments = prog.Arguments
                 };
             }
