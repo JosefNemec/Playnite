@@ -424,7 +424,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Edit Game Details</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Use exe's icon</sys:String>
+    <sys:String x:Key="LOCUseExeIcon">From Play action</sys:String>
     <sys:String x:Key="LOCImageURL">Image URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Add Link</sys:String>
     <sys:String x:Key="LOCSaveChanges">Save Changes</sys:String>
