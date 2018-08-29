@@ -588,6 +588,12 @@
       Platforms: [Apple IIgs]
       ImageExtensions: [7z, zip, dsk, 2mg]  
       ExecutableLookup: ^mame.*\.exe$       
+    - Name: SNK Neo Geo CD
+      DefaultArguments: 'neocdz -cdrom "{ImagePath}"'
+      Platforms: [SNK Neo Geo CD]
+      ImageExtensions: [chd, cue, 7z, zip]  
+      ExecutableLookup: ^mame.*\.exe$  
+
 
 - Name: RetroArch
   Website: 'http://www.retroarch.com/'
