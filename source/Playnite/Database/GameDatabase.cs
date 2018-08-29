@@ -1272,16 +1272,19 @@ namespace Playnite.Database
 
         public void ImportCategories(List<Game> sourceGames)
         {
-            foreach (var game in sourceGames)
+            using (var buffer = BufferedUpdate())
             {
-                var dbGame = GamesCollection.FindOne(a => a.PluginId == game.PluginId && a.GameId == game.GameId);
-                if (dbGame == null)
+                foreach (var game in sourceGames)
                 {
-                    continue;
-                }
+                    var dbGame = GamesCollection.FindOne(a => a.PluginId == game.PluginId && a.GameId == game.GameId);
+                    if (dbGame == null)
+                    {
+                        continue;
+                    }
 
-                dbGame.Categories = game.Categories;
-                UpdateGameInDatabase(dbGame);
+                    dbGame.Categories = game.Categories;
+                    UpdateGameInDatabase(dbGame);
+                }
             }
         }
 
