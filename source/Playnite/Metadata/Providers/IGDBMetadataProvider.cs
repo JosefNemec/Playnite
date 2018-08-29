@@ -135,7 +135,7 @@ namespace Playnite.Metadata.Providers
 
             if (string.IsNullOrEmpty(game.Name))
             {
-                return GameMetadata.Empty;
+                return GameMetadata.GetEmptyData();
             }
 
             var copyGame = game.CloneJson();
@@ -224,7 +224,7 @@ namespace Playnite.Metadata.Providers
             }
             else
             {
-                return GameMetadata.Empty;
+                return GameMetadata.GetEmptyData();
             }            
         }
 

@@ -139,6 +139,10 @@ namespace Playnite.SDK
         /// <returns>All files stored in database.</returns>
         DatabaseFile GetFile(string id);
 
+        /// <summary>
+        /// Imports categories from selected games.
+        /// </summary>
+        /// <param name="sourceGames">List of games to take categories from.</param>
         void ImportCategories(List<Game> sourceGames);
     }
 }

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Playnite.SDK.Plugins
 {
+    /// <summary>
+    /// Describes generic plugin.
+    /// </summary>
     public interface IGenericPlugin : IPlugin
     {
         /// <summary>
@@ -46,6 +49,9 @@ namespace Playnite.SDK.Plugins
         /// <param name="game">Game that's been uninstalled.</param>
         void OnGameUninstalled(Game game);
 
+        /// <summary>
+        /// Called when appliaction is started and initialized.
+        /// </summary>
         void OnApplicationStarted();
     }
 }
