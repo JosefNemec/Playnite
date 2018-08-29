@@ -177,6 +177,8 @@ namespace GogLibrary
 
         #region ILibraryPlugin
 
+        public ILibraryClient Client { get; } = new GogClient();
+
         public UserControl SettingsView
         {
             get => new GogLibrarySettingsView();

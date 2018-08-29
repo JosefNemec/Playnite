@@ -76,6 +76,8 @@ namespace UplayLibrary
 
         #region ILibraryPlugin
 
+        public ILibraryClient Client { get; } = new UplayClient();
+
         public string LibraryIcon { get; }
 
         public string Name { get; } = "Uplay";

@@ -11,6 +11,8 @@ namespace Playnite.SDK.Plugins
 {
     public interface ILibraryPlugin : IPlugin
     {
+        ILibraryClient Client { get; }
+
         string LibraryIcon { get; }
 
         string Name { get; }

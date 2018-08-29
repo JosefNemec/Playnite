@@ -133,24 +133,6 @@
     <Compile Include="..\PlayniteServices\Models\Playnite\Playnite.cs">
       <Link>Services\Models\Playnite\Playnite.cs</Link>
     </Compile>
-    <Compile Include="..\Plugins\BattleNetLibrary\BattleNet.cs">
-      <Link>ThirdPartyClients\BattleNet.cs</Link>
-    </Compile>
-    <Compile Include="..\Plugins\GogLibrary\Gog.cs">
-      <Link>ThirdPartyClients\Gog.cs</Link>
-    </Compile>
-    <Compile Include="..\Plugins\OriginLibrary\Origin.cs">
-      <Link>ThirdPartyClients\Origin.cs</Link>
-    </Compile>
-    <Compile Include="..\Plugins\SteamLibrary\Steam.cs">
-      <Link>ThirdPartyClients\Steam.cs</Link>
-    </Compile>
-    <Compile Include="..\Plugins\TwitchLibrary\Twitch.cs">
-      <Link>ThirdPartyClients\Twitch.cs</Link>
-    </Compile>
-    <Compile Include="..\Plugins\UplayLibrary\Uplay.cs">
-      <Link>ThirdPartyClients\Uplay.cs</Link>
-    </Compile>
     <Compile Include="API\DatabaseAPI.cs" />
     <Compile Include="API\ScriptExtensionDescription.cs" />
     <Compile Include="API\Logger.cs" />
@@ -199,7 +181,7 @@
     <Compile Include="Settings\FilterSettings.cs" />
     <Compile Include="Metadata\Providers\WikipediaMetadataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThirdPartyClients\EpicLauncher.cs" />
+    <Compile Include="ThirdPartyClients\EpicLauncherClient.cs" />
     <Compile Include="Controllers\GenericGameController.cs" />
     <Compile Include="Services\ServicesClient.cs" />
     <Compile Include="Settings\PlayniteSettings.cs" />

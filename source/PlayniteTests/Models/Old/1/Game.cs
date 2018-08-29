@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using LiteDB;
-using Playnite.Providers;
 using System.Collections.Concurrent;
 using Newtonsoft.Json;
 using Playnite.SDK;

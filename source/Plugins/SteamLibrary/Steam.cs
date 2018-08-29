@@ -16,6 +16,15 @@ namespace SteamLibrary
             get => Path.Combine(InstallationPath, "config", "loginusers.vdf");
         }
 
+        public static string ClientExecPath
+        {
+            get
+            {
+                var path = InstallationPath;
+                return string.IsNullOrEmpty(path) ? string.Empty : Path.Combine(path, "steam.exe");
+            }
+        }
+
         public static string InstallationPath
         {
             get

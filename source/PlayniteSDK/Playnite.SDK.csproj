@@ -60,6 +60,7 @@
     <Compile Include="ExtensionFunction.cs" />
     <Compile Include="IGameController.cs" />
     <Compile Include="IGameDatabaseAPI.cs" />
+    <Compile Include="ILibraryClient.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="IMainViewAPI.cs" />
     <Compile Include="ILibraryMetadataProvider.cs" />

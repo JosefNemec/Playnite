@@ -23,6 +23,8 @@ namespace TestGameLibrary
 
         public UserControl SettingsView { get; }
 
+        public ILibraryClient Client { get; }
+
         public TestGameLibrary(IPlayniteAPI api)
         {
         }

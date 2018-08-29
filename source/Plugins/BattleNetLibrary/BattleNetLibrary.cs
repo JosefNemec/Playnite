@@ -212,6 +212,8 @@ namespace BattleNetLibrary
 
         #region ILibraryPlugin
 
+        public ILibraryClient Client { get; } = new BattleNetClient();
+
         public string LibraryIcon { get; }
 
         public string Name { get; } = "Battle.net";

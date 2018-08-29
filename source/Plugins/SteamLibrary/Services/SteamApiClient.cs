@@ -10,7 +10,7 @@ namespace SteamLibrary.Services
 {
     public class SteamApiClient
     {
-        SteamClient steamClient;
+        SteamKit2.SteamClient steamClient;
         CallbackManager manager;
         SteamUser steamUser;
         SteamApps steamApps;
@@ -37,26 +37,26 @@ namespace SteamLibrary.Services
 
         public SteamApiClient()
         {
-            steamClient = new SteamClient();
+            steamClient = new SteamKit2.SteamClient();
             manager = new CallbackManager(steamClient);
             steamUser = steamClient.GetHandler<SteamUser>();
             steamApps = steamClient.GetHandler<SteamApps>();
-            manager.Subscribe<SteamClient.ConnectedCallback>(onConnected);
-            manager.Subscribe<SteamClient.DisconnectedCallback>(onDisconnected);
+            manager.Subscribe<SteamKit2.SteamClient.ConnectedCallback>(onConnected);
+            manager.Subscribe<SteamKit2.SteamClient.DisconnectedCallback>(onDisconnected);
             manager.Subscribe<SteamUser.LoggedOnCallback>(onLoggedOn);
             manager.Subscribe<SteamUser.LoggedOffCallback>(onLoggedOff);
         }
 
         private AutoResetEvent onConnectedEvent = new AutoResetEvent(false);
         private EResult onConnectedResult;
-        private void onConnected(SteamClient.ConnectedCallback callback)
+        private void onConnected(SteamKit2.SteamClient.ConnectedCallback callback)
         {
             onConnectedResult = callback.Result;
             onConnectedEvent.Set();
         }
 
         private AutoResetEvent onDisconnectedEvent = new AutoResetEvent(false);
-        private void onDisconnected(SteamClient.DisconnectedCallback callback)
+        private void onDisconnected(SteamKit2.SteamClient.DisconnectedCallback callback)
         {
             onDisconnectedEvent.Set();
         }

@@ -18,6 +18,11 @@ namespace Playnite
             return Process.Start(url);
         }
 
+        public static Process StartProcess(string path)
+        {
+            return StartProcess(path, string.Empty, string.Empty);
+        }
+
         public static Process StartProcess(string path, string arguments)
         {
             return StartProcess(path, arguments, string.Empty);

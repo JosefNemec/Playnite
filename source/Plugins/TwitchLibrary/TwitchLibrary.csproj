@@ -73,6 +73,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AmazonEntitlementClient.cs" />
     <Compile Include="Services\TwitchAccountClient.cs" />
+    <Compile Include="TwitchClient.cs" />
     <Compile Include="Twitch.cs" />
     <Compile Include="TwitchGameController.cs" />
     <Compile Include="TwitchLibrary.cs" />

@@ -14,6 +14,15 @@ namespace GogLibrary
     {
         public const string EnStoreLocaleString = "US_USD_en-US";
 
+        public static string ClientExecPath
+        {
+            get
+            {
+                var path = InstallationPath;
+                return string.IsNullOrEmpty(path) ? string.Empty : Path.Combine(path, "GalaxyClient.exe");
+            }
+        }
+
         public static bool IsInstalled
         {
             get

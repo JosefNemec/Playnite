@@ -334,6 +334,8 @@ namespace OriginLibrary
 
         #region ILibraryPlugin
 
+        public ILibraryClient Client { get; } = new OriginClient();
+
         public string LibraryIcon { get; }
 
         public string Name { get; } = "Origin";

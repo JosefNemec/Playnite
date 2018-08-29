@@ -136,6 +136,8 @@ namespace TwitchLibrary
 
         #region ILibraryPlugin
 
+        public ILibraryClient Client { get; } = new TwitchClient();
+
         public UserControl SettingsView
         {
             get => new TwitchLibrarySettingsView();

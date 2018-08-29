@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="OriginMetadataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="OriginClient.cs" />
     <Compile Include="Services\OriginAccountClient.cs" />
     <Compile Include="Services\OriginApiClient.cs" />
   </ItemGroup>

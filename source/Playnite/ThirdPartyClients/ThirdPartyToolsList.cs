@@ -1,5 +1,6 @@
-﻿using Playnite.Providers.EpicLauncher;
-using Playnite.SDK;
+﻿using Playnite.SDK;
+using Playnite.SDK.Plugins;
+using Playnite.ThirdPartyClients;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,131 +13,44 @@ namespace Playnite
 {
     public class ThirdPartyTool
     {
-        public string Name
-        {
-            get; set;
-        }
+        public ILibraryClient Client { get; set; }
 
-        public string Path
-        {
-            get; set;
-        }
-
-        public string Arguments
-        {
-            get; set;
-        }
-
-        public string WorkDir
-        {
-            get; set;
-        }
+        public string Name { get; set; }
 
         public void Start()
         {
-            if (string.IsNullOrEmpty(WorkDir) && string.IsNullOrEmpty(Arguments))
-            {
-                Process.Start(Path);
-            }
-            else
-            {
-                
-            }
+            Client.Open();
         }
     }
 
     public class ThirdPartyToolsList
     {
-        public RangeObservableCollection<ThirdPartyTool> Tools
-        {
-            get; private set;
-        } = new RangeObservableCollection<ThirdPartyTool>();
-
-        public void SetTools(IEnumerable<ThirdPartyTool> tools)
-        {
-            Tools = new RangeObservableCollection<ThirdPartyTool>();
-            Tools.AddRange(tools);
-        }
-
-        public static List<ThirdPartyTool> GetDefaultInstalledTools()
+        public static List<ThirdPartyTool> GetTools(IEnumerable<ILibraryPlugin> plugins)
         {
             var tools = new List<ThirdPartyTool>();
-
-            if (SteamLibrary.Steam.IsInstalled)
+            if (plugins?.Any() == true)
             {
-                var tool = new ThirdPartyTool()
+                foreach (var plugin in plugins)
                 {
-                    Path = Path.Combine(SteamLibrary.Steam.InstallationPath, "steam.exe"),
-                    Name = "Steam"
-                };
-
-                tools.Add(tool);
+                    if (plugin.Client != null && plugin.Client.IsInstalled)
+                    {
+                        tools.Add(new ThirdPartyTool()
+                        {
+                            Client = plugin.Client,
+                            Name = plugin.Name
+                        });
+                    }
+                }
             }
 
-            if (GogLibrary.Gog.IsInstalled)
+            var epic = new EpicLauncherClient();
+            if (epic.IsInstalled)
             {
-                var tool = new ThirdPartyTool()
+                tools.Add(new ThirdPartyTool()
                 {
-                    Path = Path.Combine(GogLibrary.Gog.InstallationPath, "steam.exe"),
-                    Name = "GOG Galaxy"
-                };
-
-                tools.Add(tool);
-            }
-
-            if (OriginLibrary.Origin.IsInstalled)
-            {
-                var tool = new ThirdPartyTool()
-                {
-                    Path = OriginLibrary.Origin.ClientExecPath,
-                    Name = "Origin"
-                };
-
-                tools.Add(tool);
-            }
-
-            if (BattleNetLibrary.BattleNet.IsInstalled)
-            {
-                var tool = new ThirdPartyTool()
-                {
-                    Path = BattleNetLibrary.BattleNet.ClientExecPath,
-                    Name = "Battle.net"
-                };
-
-                tools.Add(tool);
-            }
-
-            if (UplayLibrary.Uplay.IsInstalled)
-            {
-                var tool = new ThirdPartyTool()
-                {
-                    Path = UplayLibrary.Uplay.ClientExecPath,
-                    Name = "Uplay.net"
-                };
-
-                tools.Add(tool);
-            }
-
-            if (TwitchLibrary.Twitch.IsInstalled)
-            {
-                var tool = new ThirdPartyTool()
-                {
-                    Path = TwitchLibrary.Twitch.ClientExecPath,
-                    Name = "Twitch"
-                };
-
-                tools.Add(tool);
-            }
-
-            if (EpicLauncher.IsInstalled)
-            {
-                var tool = new ThirdPartyTool()
-                {
-                    Path = EpicLauncher.ClientExecPath,
-                    Name = "Epic Games Launcher"
-                };
-
-                tools.Add(tool);
+                    Client = epic,
+                    Name = "Epic Launcher"
+                });
             }
 
             return tools;

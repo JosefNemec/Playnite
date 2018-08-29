@@ -66,6 +66,7 @@
     <Compile Include="..\..\Playnite\GameActionActivator.cs">
       <Link>GameActionActivator.cs</Link>
     </Compile>
+    <Compile Include="GogClient.cs" />
     <Compile Include="Gog.cs" />
     <Compile Include="GogGameController.cs" />
     <Compile Include="GogLibrary.cs" />

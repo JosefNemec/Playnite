@@ -70,6 +70,7 @@
       <Link>GameActionActivator.cs</Link>
     </Compile>
     <Compile Include="BattleNet.cs" />
+    <Compile Include="BattleNetClient.cs" />
     <Compile Include="BattleNetGameController.cs" />
     <Compile Include="BattleNetGames.cs" />
     <Compile Include="BattleNetLibrary.cs" />

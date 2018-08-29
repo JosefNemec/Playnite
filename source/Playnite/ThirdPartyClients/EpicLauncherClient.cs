@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Playnite.Common.System;
+using Playnite.SDK;
 
-namespace Playnite.Providers.EpicLauncher
+namespace Playnite.ThirdPartyClients
 {
-    public class EpicLauncher
+    public class EpicLauncherClient : ILibraryClient
     {
         public static string ClientExecPath
         {
@@ -35,20 +36,18 @@ namespace Playnite.Providers.EpicLauncher
             }
         }
 
-        public static bool IsInstalled
+        public bool IsInstalled
         {
             get
             {
-                var progs = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "Epic Games Launcher");
-                if (progs == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
+                var path = InstallationPath;
+                return !string.IsNullOrEmpty(path) && Directory.Exists(path);
             }
+        }
+
+        public void Open()
+        {
+            ProcessStarter.StartProcess(ClientExecPath);
         }
     }
 }

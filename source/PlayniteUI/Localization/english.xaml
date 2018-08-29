@@ -420,6 +420,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
         
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Cannot open link, URL is not in valid format.</sys:String>
+    <sys:String x:Key="LOCAppStartupError">Failed to start application.</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Edit Game Details</sys:String>

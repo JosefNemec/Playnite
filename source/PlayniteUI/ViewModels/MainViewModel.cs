@@ -122,8 +122,8 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private ObservableCollection<ThirdPartyTool> thirdPartyTools;
-        public ObservableCollection<ThirdPartyTool> ThirdPartyTools
+        private List<ThirdPartyTool> thirdPartyTools;
+        public List<ThirdPartyTool> ThirdPartyTools
         {
             get => thirdPartyTools;
             set
@@ -356,11 +356,11 @@ namespace PlayniteUI.ViewModels
 
             try
             {
-                ThirdPartyTools = new ObservableCollection<ThirdPartyTool>(ThirdPartyToolsList.GetDefaultInstalledTools());
+                ThirdPartyTools = ThirdPartyToolsList.GetTools(Extensions.LibraryPlugins?.Select(a => a.Value.Plugin));
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                Logger.Error(e, "failed to load third party tools");
+                Logger.Error(e, "Failed to load third party tools.");
             }
 
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
@@ -765,6 +765,7 @@ namespace PlayniteUI.ViewModels
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 Logger.Error(e, "Failed to start 3rd party tool.");
+                Dialogs.ShowErrorMessage(Resources.FindString("LOCAppStartupError") + "\n\n" + e.Message, Resources.FindString("LOCStartupError"));
             }
         }
 
