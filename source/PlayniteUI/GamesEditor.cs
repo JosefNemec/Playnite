@@ -533,17 +533,14 @@ namespace PlayniteUI
             var game = args.Controller.Game;
             logger.Info($"Started {game.Name} game.");
             UpdateGameState(game.Id, null, true, null, null, false);
-
-            if (!IsFullscreen)
+  
+            if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
             {
-                if (appSettings.AfterLaunch == AfterLaunchOptions.Close)
-                {
-                    App.CurrentApp.Quit();
-                }
-                else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
-                {
-                    Application.Current.MainWindow.WindowState = WindowState.Minimized;
-                }
+                App.CurrentApp.Quit();
+            }
+            else if (appSettings.AfterLaunch == AfterLaunchOptions.Minimize)
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Minimized;
             }
         }
 
