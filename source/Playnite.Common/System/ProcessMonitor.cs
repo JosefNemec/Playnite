@@ -29,14 +29,14 @@ namespace Playnite
             StopWatching();
         }
 
-        public void WatchProcessTree(Process process)
+        public async void WatchProcessTree(Process process)
         {
-            WatchProcess(process);
+            await WatchProcess(process);
         }
 
-        public void WatchDirectoryProcesses(string directory, bool alreadyRunning)
+        public async void WatchDirectoryProcesses(string directory, bool alreadyRunning)
         {
-            WatchDirectory(directory, alreadyRunning);
+            await WatchDirectory(directory, alreadyRunning);
         }
 
         public void StopWatching()
@@ -44,7 +44,7 @@ namespace Playnite
             watcherToken?.Cancel();
         }
 
-        private async void WatchDirectory(string directory, bool alreadyRunning)
+        private async Task WatchDirectory(string directory, bool alreadyRunning)
         {
             if (!Directory.Exists(directory))
             {
@@ -105,7 +105,7 @@ namespace Playnite
             });
         }            
 
-        private async void WatchProcess(Process process)
+        private async Task WatchProcess(Process process)
         {
             watcherToken = new CancellationTokenSource();
 
@@ -145,22 +145,9 @@ namespace Playnite
                         }
                     }
 
-                    // Check if processes are still running
-                    foreach (var id in ids.ToList())
-                    {
-                        var query = $"Select * From Win32_Process Where ProcessID={id}";
-                        using (var mos = new ManagementObjectSearcher(query))
-                        {
-                            using (var procs = mos.Get())
-                            {
-                                if (procs.Count == 0)
-                                {
-                                    ids.Remove(id);
-                                }
-                            }
-                        }
-                    }
-
+                    // Check if processes are still running                    
+                    var runningIds = Process.GetProcesses().Select(a => a.Id);
+                    ids.RemoveAll(a => !runningIds.Contains(a));
                     await Task.Delay(500);
                 }
             });
