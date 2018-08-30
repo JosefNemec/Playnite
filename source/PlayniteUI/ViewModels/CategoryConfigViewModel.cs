@@ -142,20 +142,18 @@ namespace PlayniteUI.ViewModels
         {
             if (games != null)
             {
-                var categories = new List<string>();
-                categories = Categories.Where(a => a.Enabled == true).Select(a => a.Name).ToList();
-
                 using (database.BufferedUpdate())
                 {
                     foreach (var game in games)
                     {
+                        var categories = Categories.Where(a => a.Enabled == true).Select(a => a.Name).ToList();
                         var tempCat = game.Categories;
 
                         if (tempCat != null)
                         {
                             foreach (var cat in Categories.Where(a => a.Enabled == null))
                             {
-                                if (tempCat.Contains(cat.Name, StringComparer.OrdinalIgnoreCase))
+                                if (tempCat.Contains(cat.Name, StringComparer.OrdinalIgnoreCase) && !categories.Contains(cat.Name, StringComparer.OrdinalIgnoreCase))
                                 {
                                     categories.Add(cat.Name);
                                 }
