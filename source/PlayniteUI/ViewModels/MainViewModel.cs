@@ -1044,7 +1044,8 @@ namespace PlayniteUI.ViewModels
         {
             var newGame = new Game()
             {
-                Name = "New Game"
+                Name = "New Game",
+                State = new GameState() { Installed = true }
             };
 
             Database.AddGame(newGame);

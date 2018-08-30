@@ -96,7 +96,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                return Game != null && !Game.IsInstalled && !IsRunning && !IsInstalling && !IsUninstalling && !IsLaunching && Game.PluginId != null;
+                return Game != null && !Game.IsInstalled && !IsRunning && !IsInstalling && !IsUninstalling && !IsLaunching && Game.PluginId != Guid.Empty;
             }
         }
 
