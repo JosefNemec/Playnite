@@ -51,13 +51,13 @@ namespace Playnite
 
         public static Process ActivateAction(GameAction action, Game gameData, EmulatorProfile config)
         {
-            logger.Info($"Activating game task {action}");
             switch (action.Type)
             {
                 case GameActionType.File:
                 case GameActionType.URL:
                     return ActivateAction(action, gameData);
                 case GameActionType.Emulator:
+                    logger.Info($"Activating game task {action}");
                     if (config == null)
                     {
                         throw new Exception("Cannot start emulated game without emulator.");

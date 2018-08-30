@@ -31,10 +31,11 @@ namespace Playnite
         public static Process StartProcess(string path, string arguments, string workDir)
         {
             logger.Debug($"Starting process: {path}, {arguments}, {workDir}");
-            var info = new ProcessStartInfo(path)
+            var startupPath = Path.GetFullPath(path);
+            var info = new ProcessStartInfo(startupPath)
             {
                 Arguments = arguments,
-                WorkingDirectory = string.IsNullOrEmpty(workDir) ? (new FileInfo(path)).Directory.FullName : workDir
+                WorkingDirectory = string.IsNullOrEmpty(workDir) ? (new FileInfo(startupPath)).Directory.FullName : workDir
             };
 
             return Process.Start(info);
