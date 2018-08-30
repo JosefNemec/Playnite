@@ -1,4 +1,4 @@
-﻿using NLog;
+﻿using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,7 +38,7 @@ namespace Playnite.Web
 
     public class Downloader : IDownloader
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
 
         public Downloader()
         {

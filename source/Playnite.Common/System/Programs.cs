@@ -1,5 +1,5 @@
 ﻿using Microsoft.Win32;
-using NLog;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -93,7 +93,7 @@ namespace Playnite.Common.System
 
     public class Programs
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
 
         public static void CreateShortcut(string executablePath, string arguments, string iconPath, string shortuctPath)
         {

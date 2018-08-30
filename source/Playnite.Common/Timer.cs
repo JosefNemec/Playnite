@@ -1,4 +1,4 @@
-﻿using NLog;
+﻿using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,7 +10,7 @@ namespace Playnite
 {
     public class ExecutionTimer : IDisposable
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private string name;
         private Stopwatch watch = new Stopwatch();
 

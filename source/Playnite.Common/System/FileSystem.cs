@@ -6,7 +6,6 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using NLog;
 using System.Security.Cryptography;
 using System.IO.Compression;
 
