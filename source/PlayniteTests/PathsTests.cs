@@ -29,7 +29,7 @@ namespace PlayniteTests
         [Test]
         public void FixSeparatorsTest()
         {
-            Assert.AreEqual(@"D:\GOG Games\Albion\DOSBOX\dosbox.exe", Paths.FixSeparators(@"D:/GOG Games/Albion\DOSBOX\dosbox.exe"));
+            Assert.AreEqual(@"D:\GOG Games\Albion\DOSBOX\dosbox.exe", Paths.FixSeparators(@"D:/GOG Games//Albion\\\DOSBOX\\dosbox.exe"));
         }
 
         [Test]

@@ -286,7 +286,7 @@ namespace PlayniteUI.ViewModels
                 var path = program.Path;
                 if (program.Type == ProgramType.Win32 && !string.IsNullOrEmpty(program.WorkDir))
                 {
-                    path = @"{InstallDir}\" + program.Path.Replace(program.WorkDir, string.Empty).TrimStart('\\');
+                    path = program.Path.Replace(program.WorkDir, string.Empty).TrimStart('\\');
                 }
 
                 newGame.PlayAction = new GameAction()

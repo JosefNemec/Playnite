@@ -1,4 +1,4 @@
-﻿using NLog;
+﻿using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,7 +10,7 @@ namespace Playnite
 {
     public static class ProcessStarter
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
 
         public static Process StartUrl(string url)
         {
@@ -31,7 +31,12 @@ namespace Playnite
         public static Process StartProcess(string path, string arguments, string workDir)
         {
             logger.Debug($"Starting process: {path}, {arguments}, {workDir}");
-            var startupPath = Path.GetFullPath(path);
+            var startupPath = path;
+            if (path.Contains(".."))
+            {
+                startupPath = Path.GetFullPath(path);
+            }
+
             var info = new ProcessStartInfo(startupPath)
             {
                 Arguments = arguments,

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Playnite.Common.System
@@ -38,7 +39,8 @@ namespace Playnite.Common.System
             }
 
             var newPath = path.Replace('\\', Path.DirectorySeparatorChar);
-            return newPath.Replace('/', Path.DirectorySeparatorChar);
+            newPath = newPath.Replace('/', Path.DirectorySeparatorChar);
+            return Regex.Replace(newPath, string.Format(@"\{0}+", Path.DirectorySeparatorChar), Path.DirectorySeparatorChar.ToString());
         }
 
         private static string Normalize(string path)

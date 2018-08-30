@@ -1,4 +1,5 @@
-﻿using Playnite.Models;
+﻿using Playnite.Common.System;
+using Playnite.Models;
 using Playnite.SDK.Models;
 using Playnite.Settings;
 using System;
@@ -57,7 +58,7 @@ namespace Playnite
             return game;
         }
 
-        public static string ExpandVariables(this Game game, string inputString)
+        public static string ExpandVariables(this Game game, string inputString, bool fixSeparators = false)
         {
             if (string.IsNullOrEmpty(inputString))
             {
@@ -72,12 +73,49 @@ namespace Playnite
             result = result.Replace("{ImageName}", Path.GetFileName(game.GameImagePath));
             result = result.Replace("{PlayniteDir}", PlaynitePaths.ProgramPath);
             result = result.Replace("{Name}", game.Name);
-            return result;
+            return fixSeparators ? Paths.FixSeparators(result) : result;
         }
 
         public static string GetIdentifierInfo(this Game game)
         {
             return $"{game.Name}, {game.Id}, {game.GameId}, {game.PluginId}";
+        }
+
+        public static string GetRawExecutablePath(this Game game)
+        {
+            if (game.PlayAction == null)
+            {
+                return null;
+            }
+
+            var playAction = game.PlayAction.ExpandVariables(game);
+            if (playAction.Type == GameActionType.File)
+            {
+                if (string.IsNullOrEmpty(playAction.WorkingDir))
+                {
+                    return Path.GetFullPath(playAction.Path);
+                }
+                else
+                {
+                    if (Path.IsPathRooted(playAction.Path))
+                    {
+                        return playAction.Path;
+                    }
+                    else
+                    {
+                        //var combined = Path.Combine(playAction.Path.Replace(playAction.WorkingDir, ""), playAction.Path);
+                        return Path.GetFullPath(playAction.Path);
+                    }
+                }
+            }
+            else if (playAction.Type == GameActionType.URL)
+            {
+                return playAction.Path;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

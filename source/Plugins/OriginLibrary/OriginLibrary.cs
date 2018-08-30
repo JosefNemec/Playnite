@@ -267,7 +267,7 @@ namespace OriginLibrary
                         {
                             newGame.InstallDirectory = newGame.PlayAction.WorkingDir;
                             newGame.PlayAction.WorkingDir = newGame.PlayAction.WorkingDir.Replace(newGame.InstallDirectory, "{InstallDir}");
-                            newGame.PlayAction.Path = newGame.PlayAction.Path.Replace(newGame.InstallDirectory, "{InstallDir}");
+                            newGame.PlayAction.Path = newGame.PlayAction.Path.Replace(newGame.InstallDirectory, "").Trim(new char[] { '\\', '/' });
                         }
                         else
                         {

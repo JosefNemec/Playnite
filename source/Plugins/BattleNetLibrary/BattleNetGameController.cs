@@ -144,7 +144,7 @@ namespace BattleNetLibrary
                                 {
                                     Type = GameActionType.File,
                                     WorkingDir = @"{InstallDir}",
-                                    Path = @"{InstallDir}\" + app.ClassicExecutable
+                                    Path = app.ClassicExecutable
                                 };
                             }
                             else

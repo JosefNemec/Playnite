@@ -16,8 +16,8 @@ namespace Playnite
             var expaded = action.CloneJson();
             expaded.AdditionalArguments = game.ExpandVariables(expaded.AdditionalArguments);
             expaded.Arguments = game.ExpandVariables(expaded.Arguments);
-            expaded.Path = game.ExpandVariables(expaded.Path);
-            expaded.WorkingDir = game.ExpandVariables(expaded.WorkingDir);
+            expaded.Path = game.ExpandVariables(expaded.Path, true);
+            expaded.WorkingDir = game.ExpandVariables(expaded.WorkingDir, true);
             return expaded;
         }
     }

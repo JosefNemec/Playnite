@@ -198,7 +198,7 @@ namespace PlayniteUI
         {
             try
             {
-                GameActionActivator.ActivateAction(action, game, database.EmulatorsCollection.FindAll().ToList());
+                GameActionActivator.ActivateAction(action.ExpandVariables(game), game, database.EmulatorsCollection.FindAll().ToList());
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -348,14 +348,7 @@ namespace PlayniteUI
                 }
                 else if (game.PlayAction?.Type == GameActionType.File)
                 {
-                    if (Path.IsPathRooted(game.ExpandVariables(game.PlayAction.Path)))
-                    {
-                        icon = game.ExpandVariables(game.PlayAction.Path);
-                    }
-                    else
-                    {
-                        icon = Path.Combine(game.ExpandVariables(game.PlayAction.WorkingDir), game.ExpandVariables(game.PlayAction.Path));
-                    }
+                    icon = game.GetRawExecutablePath();
                 }
 
                 Programs.CreateShortcut(PlaynitePaths.ExecutablePath, "-command launch:" + game.Id, icon, path);
