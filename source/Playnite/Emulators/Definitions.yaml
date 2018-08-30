@@ -337,7 +337,7 @@
     - Name: Default
       DefaultArguments: '"{ImagePath}"'
       Platforms: [Nintendo Switch]
-      ImageExtensions: [nso, nro]
+      ImageExtensions: [nso, nro, nca, xci, nsp]
       ExecutableLookup: ^yuzu\.exe$
       
 - Name: Cxbx-Reloaded
