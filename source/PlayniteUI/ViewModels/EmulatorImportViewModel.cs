@@ -400,10 +400,9 @@ namespace PlayniteUI.ViewModels
             {
                 IsLoading = true;
                 cancelToken = new CancellationTokenSource();
-                var games = await  EmulatorFinder.SearchForGames(path, profile, cancelToken);
-                if (games != null)
+                var games = await EmulatorFinder.SearchForGames(path, profile, cancelToken);
+                if (games?.Any() == true)
                 {
-
                     if (GamesList == null)
                     {
                         GamesList = new RangeObservableCollection<ImportableGame>();

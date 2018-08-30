@@ -43,7 +43,17 @@ namespace Playnite.Common.System
 
         private static string Normalize(string path)
         {
-            return Path.GetFullPath(new Uri(path).LocalPath).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar).ToUpperInvariant();
+            var formatted = path;
+            try
+            {
+                formatted = new Uri(path).LocalPath;
+            }
+            catch
+            {
+                // this shound't happen 
+            }
+
+            return Path.GetFullPath(formatted).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar).ToUpperInvariant();
         }
 
         public static bool AreEqual(string path1, string path2)
@@ -64,7 +74,14 @@ namespace Playnite.Common.System
                 return false;
             }
 
-            return Normalize(path1) == Normalize(path2);
+            try
+            {
+                return Normalize(path1) == Normalize(path2);
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
