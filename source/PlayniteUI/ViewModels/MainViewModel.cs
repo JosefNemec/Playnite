@@ -739,7 +739,7 @@ namespace PlayniteUI.ViewModels
             {
                 AppSettings.SaveSettings();
 
-                if (e.PropertyName != "Name")
+                if (e.PropertyName != "Name" && e.PropertyName != "SearchActive")
                 {
                     AppSettings.FilterPanelVisible = true;
                 }
