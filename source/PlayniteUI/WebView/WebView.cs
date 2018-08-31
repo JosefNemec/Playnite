@@ -92,5 +92,10 @@ namespace PlayniteUI.WebView
         {
             return window.ShowDialog();
         }
+
+        public void DeleteCookies(string url, string name)
+        {
+            Cef.GetGlobalCookieManager().DeleteCookies(url, name);
+        }
     }
 }

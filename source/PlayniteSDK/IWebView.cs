@@ -53,6 +53,13 @@ namespace Playnite.SDK
         string GetCurrentAddress();
 
         /// <summary>
+        /// Deletes cookies.
+        /// </summary>
+        /// <param name="url">Cookie URL.</param>
+        /// <param name="name">Cookie name.</param>
+        void DeleteCookies(string url, string name);
+
+        /// <summary>
         /// Closes view.
         /// </summary>
         void Close();

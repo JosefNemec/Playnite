@@ -11,5 +11,8 @@ namespace TwitchLibrary.Models
         public string AccessToken;
         public string RefreshToken;
         public string AccountId;
+        public string AuthenticationToken;
+        public DateTime Expires;
+        public DateTime RenewAfter;
     }
 }

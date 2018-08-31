@@ -110,6 +110,20 @@ namespace TwitchLibrary
                 throw new Exception("User is not logged in.");
             }
 
+            if (DateTime.Now > login.Expires)
+            {
+                try
+                {
+                    var client = new TwitchAccountClient(null, TokensPath);
+                    client.RenewTokens(login.AuthenticationToken, login.AccountId);
+                }
+                catch (Exception e) when (!Environment.IsDebugBuild)
+                {
+                    logger.Error(e, "Failed to renew Twitch authentication.");
+                    throw new Exception("Authentication is required.");
+                }
+            }
+
             var games = new List<Game>();
             var libraryGames = AmazonEntitlementClient.GetAccountEntitlements(login.AccountId, login.AccessToken);
             foreach (var item in libraryGames)
