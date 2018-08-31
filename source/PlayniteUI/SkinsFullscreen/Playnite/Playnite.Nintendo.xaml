@@ -28,6 +28,8 @@
            RenderOptions.BitmapScalingMode="Fant" />
     <Image x:Key="ToggleSorting" Source="{Binding ConverterParameter='Icons/Nintendo/RB.png', Converter={pui:SkinMediaPathConverter}}"
            RenderOptions.BitmapScalingMode="Fant" />
+    <Image x:Key="ToggleInstalled" Source="{Binding ConverterParameter='Icons/Nintendo/Start.png', Converter={pui:SkinMediaPathConverter}}"
+           RenderOptions.BitmapScalingMode="Fant"  />
 
     <Image x:Key="CancelImage" Source="{Binding ConverterParameter='Icons/Nintendo/B.png', Converter={pui:SkinMediaPathConverter}}"
            RenderOptions.BitmapScalingMode="Fant" />
