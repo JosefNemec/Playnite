@@ -247,6 +247,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsMinimizeToTray">Minimize to tray</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">Close to tray</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">When game starts:</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameClose">After game closes:</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxy">Start games using Galaxy client</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Will enable features like cloud saves, counting play time etc.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarn">This will overwrite current categories on all Steam games. Do you want to continue?</sys:String>
@@ -461,6 +462,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCInvalidURL">Invalid URL</sys:String>
     <sys:String x:Key="LOCDoNothing">Do nothing</sys:String>
     <sys:String x:Key="LOCMinimize">Minimize</sys:String>
+    <sys:String x:Key="LOCRestoreWindow">Restore window</sys:String>
     <sys:String x:Key="LOCClose">Close</sys:String>
     <sys:String x:Key="LOCChange">Change</sys:String>
     <sys:String x:Key="LOCAdvanced">Advanced</sys:String>

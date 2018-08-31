@@ -203,6 +203,7 @@
     <Compile Include="Controls\MainView.cs" />
     <Compile Include="Controls\VirtualKeyboard.cs" />
     <Compile Include="Controls\WindowBase.cs" />
+    <Compile Include="Converters\AfterGameCloseOptionToStringConverter.cs" />
     <Compile Include="Converters\BooleanToHiddenConverter.cs" />
     <Compile Include="Converters\CompletionStatusToStringConverter.cs" />
     <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />

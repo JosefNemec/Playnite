@@ -547,6 +547,11 @@ namespace PlayniteUI
             dbGame.Playtime += args.EllapsedTime;
             database.UpdateGameInDatabase(dbGame);
             controllers.RemoveController(args.Controller);
+
+            if (appSettings.AfterGameClose == AfterGameCloseOptions.Restore)
+            {
+                App.CurrentApp.MainViewWindow.RestoreWindow();
+            }
         }
 
         private void Controllers_Installed(object sender, GameControllerEventArgs args)

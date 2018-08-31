@@ -138,6 +138,22 @@
                                                 </DataTemplate>
                                             </ComboBox.ItemTemplate>
                                         </ComboBox>
+                                        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
+                                                    x:Key="AfterCloseOptionsEnumValues">
+                                            <ObjectDataProvider.MethodParameters>
+                                                <x:Type TypeName="pset:AfterGameCloseOptions" />
+                                            </ObjectDataProvider.MethodParameters>
+                                        </ObjectDataProvider>
+                                        <pui:AfterGameCloseOptionToStringConverter x:Key="AfterGameCloseOptionToStringConverter" />
+                                        <ComboBox x:Key="ComboAfterGameCloseOptions" x:Shared="False"
+                                          SelectedValue="{Binding AfterGameClose}"
+                                          ItemsSource="{Binding Source={StaticResource AfterCloseOptionsEnumValues}}">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Converter={StaticResource AfterGameCloseOptionToStringConverter}}"/>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
                                     </Grid.Resources>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
@@ -163,13 +179,22 @@
                                       Grid.Column="0" Grid.Row="2"/>
 
                                     <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal"
-                                        Margin="40,0,0,0">
+                                        Margin="80,0,0,0">
                                         <TextBlock Text="{DynamicResource LOCSettingsAfterGameStart}" Margin="0,0,5,0"
                                            VerticalAlignment="Center" />
                                         <ContentControl DataContext="{Binding Settings}"
                                                 ToolTipService.InitialShowDelay="0"
                                                 ToolTip="{DynamicResource LOCSettingsClosePlaytimeNotif}"
                                                 Content="{StaticResource ComboAfterGameOptions}" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal"
+                                        Margin="80,5,0,0">
+                                        <TextBlock Text="{DynamicResource LOCSettingsAfterGameClose}" Margin="0,0,5,0"
+                                           VerticalAlignment="Center" />
+                                        <ContentControl DataContext="{Binding Settings}"
+                                                        Content="{StaticResource ComboAfterGameCloseOptions}"
+                                                        VerticalAlignment="Center"/>
                                     </StackPanel>
 
                                     <CheckBox Name="CheckUpdateLibStartup" Margin="5,25,5,5" Grid.Row="3" Grid.ColumnSpan="2"

@@ -21,6 +21,12 @@ namespace Playnite.Settings
         Close
     }
 
+    public enum AfterGameCloseOptions
+    {
+        None,
+        Restore
+    }
+
     public class PlayniteSettings : INotifyPropertyChanged, IEditableObject
     {
         private static ILogger logger = LogManager.GetCurrentClassLogger();
@@ -449,6 +455,21 @@ namespace Playnite.Settings
             {
                 afterLaunch = value;
                 OnPropertyChanged("AfterLaunch");
+            }
+        }
+
+        private AfterGameCloseOptions afterGameClose = AfterGameCloseOptions.Restore;
+        public AfterGameCloseOptions AfterGameClose
+        {
+            get
+            {
+                return afterGameClose;
+            }
+
+            set
+            {
+                afterGameClose = value;
+                OnPropertyChanged("AfterGameClose");
             }
         }
 

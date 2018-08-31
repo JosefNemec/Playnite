@@ -46,6 +46,11 @@ namespace PlayniteUI
         private DialogsFactory dialogs;
         private GameControllerFactory controllers;
 
+        public IWindowFactory MainViewWindow
+        {
+            get; private set;
+        }
+
         public System.Version CurrentVersion
         {
             get => Updater.GetCurrentVersion();
@@ -468,10 +473,10 @@ namespace PlayniteUI
             GamesEditor.IsFullscreen = false;
             dialogs.IsFullscreen = false;
             ApplyTheme(AppSettings.Skin, AppSettings.SkinColor, false);
-            var window = new MainWindowFactory();
+            MainViewWindow = new MainWindowFactory();
             MainModel = new MainViewModel(
                 Database,
-                window,
+                MainViewWindow,
                 dialogs,
                 new ResourceProvider(),
                 AppSettings,
@@ -480,7 +485,7 @@ namespace PlayniteUI
                 Extensions);
             Api.MainView = new MainViewAPI(MainModel);
             MainModel.OpenView();
-            Current.MainWindow = window.Window;
+            Current.MainWindow = MainViewWindow.Window;
             if (AppSettings.UpdateLibStartup)
             {
                 await MainModel.UpdateDatabase(AppSettings.UpdateLibStartup, !isFirstStart);
@@ -508,10 +513,10 @@ namespace PlayniteUI
             GamesEditor.IsFullscreen = true;
             dialogs.IsFullscreen = true;
             ApplyTheme(AppSettings.SkinFullscreen, AppSettings.SkinColorFullscreen, true);
-            var window = new FullscreenWindowFactory();
+            MainViewWindow = new FullscreenWindowFactory();
             FullscreenModel = new FullscreenViewModel(
                 Database,
-                window,
+                MainViewWindow,
                 dialogs,
                 new ResourceProvider(),
                 AppSettings,
@@ -520,7 +525,7 @@ namespace PlayniteUI
                 Extensions);
             Api.MainView = new MainViewAPI(MainModel);
             FullscreenModel.OpenView(!PlayniteEnvironment.IsDebugBuild);
-            Current.MainWindow = window.Window;
+            Current.MainWindow = MainViewWindow.Window;
 
             if (updateDb)
             {

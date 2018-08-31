@@ -1,4 +1,5 @@
 ﻿using PlayniteUI;
+using PlayniteUI.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,13 @@ using System.Threading.Tasks;
 
 namespace PlayniteUITests
 {
-    class MockWindowFactory : IWindowFactory
+    public class MockWindowFactory : IWindowFactory
     {
+        public WindowBase Window
+        {
+            get;
+        }
+
         public void BringToForeground()
         {
 
