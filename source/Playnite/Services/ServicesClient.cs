@@ -101,7 +101,8 @@ namespace Playnite.Services
             {
                 Id = winId,
                 WinVersion = Environment.OSVersion.VersionString,
-                PlayniteVersion = Updater.GetCurrentVersion().ToString()
+                PlayniteVersion = Updater.GetCurrentVersion().ToString(),
+                Is64Bit = Environment.Is64BitOperatingSystem
             };
 
             var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
