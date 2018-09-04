@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -1181,6 +1182,17 @@ namespace PlayniteUI.ViewModels
                         }
 
                         var game = GameExtensions.GetGameFromExecutable(path);
+                        var exePath = game.GetRawExecutablePath();
+                        if (!string.IsNullOrEmpty(exePath))
+                        {
+                            var ico = IconExtension.ExtractIconFromExe(exePath, true);
+                            if (ico != null)
+                            {
+                                var iconName = Guid.NewGuid().ToString() + ".png";
+                                game.Icon = Database.AddFileNoDuplicate($"images/custom/{iconName}", iconName, ico.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
+                            }                            
+                        }
+
                         Database.AddGame(game);
                         Database.AssignPcPlatform(game);
                         GamesEditor.EditGame(game);

@@ -103,8 +103,8 @@ namespace Playnite
                     }
                     else
                     {
-                        //var combined = Path.Combine(playAction.Path.Replace(playAction.WorkingDir, ""), playAction.Path);
-                        return Path.GetFullPath(playAction.Path);
+                        var combined = Path.Combine(playAction.WorkingDir, playAction.Path);
+                        return Path.GetFullPath(combined);
                     }
                 }
             }
