@@ -14,6 +14,7 @@ namespace TwitchLibrary
 {
     public class TwitchLibrarySettings : ObservableObject, ISettings
     {
+        private static ILogger logger = LogManager.GetLogger();
         private TwitchLibrarySettings editingClone;
         private TwitchLibrary library;
         private IPlayniteAPI api;
@@ -101,13 +102,20 @@ namespace TwitchLibrary
 
         private void Login()
         {
-            using (var view = api.WebViews.CreateView(400, 600))
+            try
             {
-                var api = new TwitchAccountClient(view, library.TokensPath);
-                api.Login();
-            }
+                using (var view = api.WebViews.CreateView(400, 600))
+                {
+                    var api = new TwitchAccountClient(view, library.TokensPath);
+                    api.Login();
+                }
 
-            OnPropertyChanged("IsUserLoggedIn");
+                OnPropertyChanged("IsUserLoggedIn");
+            }
+            catch (Exception e) when (!Environment.IsDebugBuild)
+            {
+                logger.Error(e, "Failed to authenticate user.");
+            }
         }
     }
 }

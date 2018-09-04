@@ -13,6 +13,7 @@ namespace BattleNetLibrary
 {
     public class BattleNetLibrarySettings : ObservableObject, ISettings
     {
+        private static ILogger logger = LogManager.GetLogger();
         private BattleNetLibrarySettings editingClone;
         private BattleNetLibrary library;
         private IPlayniteAPI api;
@@ -91,13 +92,20 @@ namespace BattleNetLibrary
 
         private void Login()
         {
-            using (var view = api.WebViews.CreateView(400, 500))
+            try
             {
-                var api = new BattleNetAccountClient(view);
-                api.Login();
-            }
+                using (var view = api.WebViews.CreateView(400, 500))
+                {
+                    var api = new BattleNetAccountClient(view);
+                    api.Login();
+                }
 
-            OnPropertyChanged("IsUserLoggedIn");
+                OnPropertyChanged("IsUserLoggedIn");
+            }
+            catch (Exception e) when (!Environment.IsDebugBuild)
+            {
+                logger.Error(e, "Failed to authenticate user.");
+            }
         }
     }
 }

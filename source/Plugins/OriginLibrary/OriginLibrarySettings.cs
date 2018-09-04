@@ -13,6 +13,7 @@ namespace OriginLibrary
 {
     public class OriginLibrarySettings : ObservableObject, ISettings
     {
+        private static ILogger logger = LogManager.GetLogger();
         private OriginLibrarySettings editingClone;
         private OriginLibrary library;
         private IPlayniteAPI api;
@@ -91,13 +92,20 @@ namespace OriginLibrary
 
         private void Login()
         {
-            using (var view = api.WebViews.CreateView(490, 670))
+            try
             {
-                var api = new OriginAccountClient(view);
-                api.Login();
-            }
+                using (var view = api.WebViews.CreateView(490, 670))
+                {
+                    var api = new OriginAccountClient(view);
+                    api.Login();
+                }
 
-            OnPropertyChanged("IsUserLoggedIn");
+                OnPropertyChanged("IsUserLoggedIn");
+            }
+            catch (Exception e) when (!Environment.IsDebugBuild)
+            {
+                logger.Error(e, "Failed to authenticate user.");
+            }
         }
     }
 }
