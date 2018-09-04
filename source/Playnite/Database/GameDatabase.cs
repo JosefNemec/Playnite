@@ -243,18 +243,18 @@ namespace Playnite.Database
                         logger.Info("Migrating database from 1 to 2 version.");
 
                         var platCollection = db.GetCollection("platforms");
-                        var conPlatforms = new Dictionary<int, Guid>();
+                        var conPlatforms = new Dictionary<int, ObjectId>();
                         foreach (var platform in platCollection.FindAll().ToList())
                         {
                             var oldId = platform["_id"].AsInt32;
-                            var newId = Guid.NewGuid();
+                            var newId = ObjectId.NewObjectId();
                             conPlatforms.Add(oldId, newId);
                             platCollection.Delete(oldId);
                             platform["_id"] = newId;
                             platCollection.Insert(platform);
                         }
 
-                        var conEmulators = new Dictionary<int, Guid>();
+                        var conEmulators = new Dictionary<int, ObjectId>();
                         var emuCollection = db.GetCollection("emulators");
                         foreach (var emulator in emuCollection.FindAll().ToList())
                         {
@@ -262,9 +262,9 @@ namespace Playnite.Database
                                 .Where(a => conPlatforms.ContainsKey(a.AsInt32))?
                                 .Select(a => conPlatforms[a]).ToList();
 
-                            var profiles = new List<EmulatorProfile>
+                            var profiles = new List<OldModels.Ver3.EmulatorProfile>
                             {
-                                new EmulatorProfile()
+                                new OldModels.Ver3.EmulatorProfile()
                                 {
                                     Name = "Default",
                                     Arguments = emulator["Arguments"],
@@ -282,7 +282,7 @@ namespace Playnite.Database
                             emulator.Remove("WorkingDirectory");
                             emulator.Add("Profiles", new BsonArray(profiles.Select(a => BsonMapper.Global.ToDocument(a))));
                             var oldId = emulator["_id"].AsInt32;
-                            var newId = Guid.NewGuid();
+                            var newId = ObjectId.NewObjectId();
                             conEmulators.Add(oldId, newId);
                             emuCollection.Delete(oldId);
                             emulator["_id"] = newId;
@@ -290,7 +290,7 @@ namespace Playnite.Database
                         }
 
                         var gameCol = db.GetCollection("games");
-                        var emusCollection = db.GetCollection<Emulator>("emulators");
+                        var emusCollection = db.GetCollection<OldModels.Ver3.Emulator>("emulators");
                         foreach (var game in gameCol.FindAll().ToList())
                         {
                             int? oldPlatId = game["PlatformId"]?.AsInt32;
@@ -306,54 +306,54 @@ namespace Playnite.Database
                                 }
                             }
 
-                            if (!game["PlayTask"].IsNull)
+                            if (game["PlayTask"].AsDocument != null)
                             {
                                 var task = game["PlayTask"].AsDocument;
-                                if (task["Type"].AsString == "Emulator")
+                                if (task.AsDocument["Type"].AsString == "Emulator")
                                 {
-                                    var oldEmuId = task["EmulatorId"].AsInt32;
+                                    var oldEmuId = task.AsDocument["EmulatorId"].AsInt32;
                                     if (conEmulators.ContainsKey(oldEmuId))
                                     {
                                         var emulator = emusCollection.FindById(conEmulators[oldEmuId]);
-                                        task["EmulatorId"] = emulator.Id;
-                                        task["EmulatorProfileId"] = emulator.Profiles?.First().Id;
+                                        task.AsDocument["EmulatorId"] = emulator.Id;
+                                        task.AsDocument["EmulatorProfileId"] = emulator.Profiles?.First().Id;
                                     }
                                     else
                                     {
-                                        task.Remove("EmulatorId");
-                                        task.Remove("EmulatorProfileId");
+                                        task.AsDocument.Remove("EmulatorId");
+                                        task.AsDocument.Remove("EmulatorProfileId");
                                     }
                                 }
                                 else
                                 {
-                                    task.Remove("EmulatorId");
-                                    task.Remove("EmulatorProfileId");
+                                    task.AsDocument.Remove("EmulatorId");
+                                    task.AsDocument.Remove("EmulatorProfileId");
                                 }
                             }
 
-                            if (!game["OtherTasks"].IsNull)
+                            if (game["OtherTasks"].AsArray != null)
                             {
-                                foreach (BsonDocument task in game["OtherTasks"].AsArray)
+                                foreach (var task in game["OtherTasks"].AsArray)
                                 {
-                                    if (task["Type"].AsString == "Emulator")
+                                    if (task.AsDocument["Type"].AsString == "Emulator")
                                     {
-                                        var oldEmuId = task["EmulatorId"].AsInt32;
+                                        var oldEmuId = task.AsDocument["EmulatorId"].AsInt32;
                                         if (conEmulators.ContainsKey(oldEmuId))
                                         {
                                             var emulator = emusCollection.FindById(conEmulators[oldEmuId]);
-                                            task["EmulatorId"] = emulator.Id;
-                                            task["EmulatorProfileId"] = emulator.Profiles?.First().Id;
+                                            task.AsDocument["EmulatorId"] = emulator.Id;
+                                            task.AsDocument["EmulatorProfileId"] = emulator.Profiles?.First().Id;
                                         }
                                         else
                                         {
-                                            task.Remove("EmulatorId");
-                                            task.Remove("EmulatorProfileId");
+                                            task.AsDocument.Remove("EmulatorId");
+                                            task.AsDocument.Remove("EmulatorProfileId");
                                         }
                                     }
                                     else
                                     {
-                                        task.Remove("EmulatorId");
-                                        task.Remove("EmulatorProfileId");
+                                        task.AsDocument.Remove("EmulatorId");
+                                        task.AsDocument.Remove("EmulatorProfileId");
                                     }
                                 }
                             }
@@ -415,7 +415,7 @@ namespace Playnite.Database
                                     var oldProfId = profile["_id"];
                                     var newProfId = Guid.NewGuid();
                                     conEmuProfiles.Add(oldProfId, newProfId);
-                                    profile["_id"] = newId;
+                                    profile["_id"] = newProfId;
 
                                     var profPlatforms = profile["Platforms"];
                                     var newPlatforms = new BsonArray();

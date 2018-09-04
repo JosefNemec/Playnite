@@ -8,6 +8,7 @@ using System.IO;
 using Moq;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 
 namespace SteamLibrary.Tests
 {
@@ -17,7 +18,8 @@ namespace SteamLibrary.Tests
         public static SteamLibrary CreateLibrary()
         {
             var api = new Mock<IPlayniteAPI>();
-            return new SteamLibrary(api.Object);
+            api.Setup(a => a.GetPluginUserDataPath(It.IsAny<ILibraryPlugin>())).Returns(() => SteamTests.TempPath);
+            return new SteamLibrary(api.Object, null);
         }
 
         [Test]
@@ -33,7 +35,6 @@ namespace SteamLibrary.Tests
                 Assert.IsFalse(string.IsNullOrEmpty(game.Name));
                 Assert.IsFalse(string.IsNullOrEmpty(game.GameId));
                 Assert.IsFalse(string.IsNullOrEmpty(game.InstallDirectory));
-                Assert.IsTrue(Directory.Exists(game.InstallDirectory));
                 Assert.IsNotNull(game.PlayAction);
                 Assert.IsTrue(game.PlayAction.Type == GameActionType.URL);
             }
@@ -65,8 +66,10 @@ namespace SteamLibrary.Tests
         [Test]
         public void GetAppStateTest()
         {
-            var state = Steam.GetAppState(12140);
-            Assert.Fail();
+            var steamLib = CreateLibrary();
+            var games = steamLib.GetInstalledGames();
+            var state = Steam.GetAppState(int.Parse(games.Values.First().GameId));
+            Assert.IsTrue(state.Installed);
         }
     }
 }

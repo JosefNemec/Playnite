@@ -27,8 +27,8 @@ namespace SteamLibrary
     public class SteamLibrary : ILibraryPlugin
     {
         private ILogger logger = LogManager.GetLogger();
-        private readonly IPlayniteAPI playniteApi;
-        private readonly SteamServicesClient servicesClient;
+        private IPlayniteAPI playniteApi;
+        private SteamServicesClient servicesClient;
         private readonly Configuration config;
         private readonly SteamApiClient apiClient = new SteamApiClient();
 
@@ -39,12 +39,23 @@ namespace SteamLibrary
 
         public SteamLibrary(IPlayniteAPI api)
         {
-            playniteApi = api;
+            Initialize(api);
             var configPath = Path.Combine(api.GetPluginUserDataPath(this), "config.json");
             config = api.GetPluginConfiguration<Configuration>(this);
             servicesClient = new SteamServicesClient(config.ServicesEndpoint);
+        }
+
+        public SteamLibrary(IPlayniteAPI api, SteamServicesClient client)
+        {
+            Initialize(api);
+            servicesClient = client;
+        }
+
+        private void Initialize(IPlayniteAPI api)
+        {
+            playniteApi = api;
             LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\steamicon.png");
-            Settings = new SteamLibrarySettings(this, api)
+            Settings = new SteamLibrarySettings(this, playniteApi)
             {
                 SteamUsers = GetSteamUsers()
             };
@@ -381,7 +392,7 @@ namespace SteamLibrary
 
         public ISettings Settings { get; private set; }
 
-        public string LibraryIcon { get; }
+        public string LibraryIcon { get; private set; }
 
         public void Dispose()
         {

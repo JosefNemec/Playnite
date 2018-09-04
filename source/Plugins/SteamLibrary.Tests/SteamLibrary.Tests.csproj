@@ -69,6 +69,7 @@
     <Compile Include="SteamLibraryTests.cs" />
     <Compile Include="SteamMetadataProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SteamTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PlayniteSDK\Playnite.SDK.csproj">

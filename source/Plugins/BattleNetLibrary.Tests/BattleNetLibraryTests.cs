@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,22 +12,18 @@ namespace BattleNetLibrary.Tests
     [TestFixture]
     public class BattleNetLibraryTests
     {
-        //[Test]
-        //public void GetInstalledGamesTest()
-        //{
-        //    var library = new BattleNetLibrary();
-        //    var games = library.GetInstalledGames();
-        //    CollectionAssert.IsNotEmpty(games);
-        //}
+        public static BattleNetLibrary CreateLibrary()
+        {
+            var api = new Mock<IPlayniteAPI>();
+            return new BattleNetLibrary(api.Object);
+        }
 
-        //[Test]
-        //public void UpdateGameWithMetadataTest()
-        //{
-        //    var library = new BattleNetLibrary();
-        //    var games = library.GetInstalledGames();
-        //    var game = games.First();
-        //    var metadata = library.UpdateGameWithMetadata(game);
-        //    Assert.IsNotNull(metadata.Icon);
-        //}
+        [Test]
+        public void GetInstalledGamesTest()
+        {
+            var library = CreateLibrary();
+            var games = library.GetInstalledGames();
+            CollectionAssert.IsNotEmpty(games);
+        }
     }
 }

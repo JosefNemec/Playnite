@@ -3,31 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GogLibrary.Services;
 using NUnit.Framework;
 
-namespace PlayniteTests.Providers.GOG
+namespace GogLibrary.Tests.Services
 {
     [TestFixture]
     public class WebApiClientTests
     {
-        //[Test]
-        //public void GetGameDetailsTest()
-        //{
-        //    var existingDetails = WebApiClient.GetGameDetails("2");
-        //    Assert.IsNotNull(existingDetails);
+        [Test]
+        public void GetGameDetailsTest()
+        {
+            var client = new GogApiClient();
+            var existingDetails = client.GetGameDetails("2");
+            Assert.IsNotNull(existingDetails);
 
-        //    var nonexistingDetails = WebApiClient.GetGameDetails("99999999");
-        //    Assert.IsNull(nonexistingDetails);
-        //}
+            var nonexistingDetails = client.GetGameDetails("99999999");
+            Assert.IsNull(nonexistingDetails);
+        }
 
-        //[Test]
-        //public void GetGameStoreDataTest()
-        //{
-        //    var existingStore = WebApiClient.GetGameStoreData(@"https://www.gog.com/game/vampire_the_masquerade_bloodlines");
-        //    Assert.IsNotNull(existingStore);
+        [Test]
+        public void GetGameStoreDataTest()
+        {
+            var client = new GogApiClient();
+            var existingStore = client.GetGameStoreData(@"https://www.gog.com/game/vampire_the_masquerade_bloodlines");
+            Assert.IsNotNull(existingStore);
 
-        //    var noneexistingStore = WebApiClient.GetGameDetails("https://www.gog.com/game/vampire");
-        //    Assert.IsNull(noneexistingStore);
-        //}
+            var noneexistingStore = client.GetGameDetails("https://www.gog.com/game/vampire");
+            Assert.IsNull(noneexistingStore);
+        }
     }
 }

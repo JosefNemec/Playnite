@@ -151,6 +151,7 @@
     <Compile Include="Database\Events\PlatformUpdateEvent.cs" />
     <Compile Include="Database\GameDatabase.cs" />
     <Compile Include="Database\GameLibrary.cs" />
+    <Compile Include="Database\OldModels\Ver3\Emulator.cs" />
     <Compile Include="Extensions\GameActionExtensions.cs" />
     <Compile Include="Extensions\GameExtensions.cs" />
     <Compile Include="GameActionActivator.cs" />

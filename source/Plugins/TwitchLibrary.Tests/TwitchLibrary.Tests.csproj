@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TwitchTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TwitchLibraryTests.cs" />
   </ItemGroup>

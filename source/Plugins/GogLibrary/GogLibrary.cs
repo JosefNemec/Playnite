@@ -32,7 +32,6 @@ namespace GogLibrary
         public GogLibrary(IPlayniteAPI api)
         {
             playniteApi = api;
-            var configPath = Path.Combine(api.GetPluginUserDataPath(this), "config.json");
             Settings = new GogLibrarySettings(this, api);
             LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\gogicon.png");
         }

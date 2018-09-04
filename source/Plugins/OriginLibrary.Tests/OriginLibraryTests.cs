@@ -52,7 +52,7 @@ namespace OriginLibrary.Tests
         {
             var originLib = CreateLibrary();
             var games = originLib.GetInstalledGames(true);
-            var cacheFiles = Directory.GetFiles(OriginTests.TempPath, "*.json");
+            var cacheFiles = Directory.GetFiles(Path.Combine(OriginTests.TempPath, "origincache"), "*.json");
             Assert.IsTrue(cacheFiles.Count() > 0);
         }
 

@@ -31,14 +31,14 @@ namespace PlayniteTests.Database
                 CollectionAssert.IsEmpty(db.PlatformsCollection.FindAll());
                 db.AddPlatform(new Platform("Test"));
                 db.AddPlatform(new Platform("Test2"));
+                platforms = db.PlatformsCollection.FindAll().ToList();
+                Assert.AreEqual(2, platforms.Count);
             }
 
             using (db.OpenDatabase(path))
             {
                 var platforms = db.PlatformsCollection.FindAll().ToList();
                 Assert.AreEqual(2, platforms.Count);
-                Assert.AreEqual("Test", platforms[0].Name);
-                Assert.AreEqual("Test2", platforms[1].Name);
             }
         }
 
@@ -241,11 +241,11 @@ namespace PlayniteTests.Database
                 Assert.AreEqual(emu1.Profiles.First().Id, game.OtherActions[0].EmulatorProfileId);
                 Assert.AreEqual(emu1.Id, game.OtherActions[0].EmulatorId);
 
-                Assert.IsNull(games[1].PlatformId);
-                Assert.IsNull(games[1].PlayAction.EmulatorId);
-                Assert.IsNull(games[1].PlayAction.EmulatorProfileId);
-                Assert.IsNull(games[1].OtherActions[0].EmulatorId);
-                Assert.IsNull(games[1].OtherActions[0].EmulatorProfileId);
+                Assert.AreEqual(Guid.Empty, games[1].PlatformId);
+                Assert.AreEqual(Guid.Empty, games[1].PlayAction.EmulatorId);
+                Assert.AreEqual(Guid.Empty, games[1].PlayAction.EmulatorProfileId);
+                Assert.AreEqual(Guid.Empty, games[1].OtherActions[0].EmulatorId);
+                Assert.AreEqual(Guid.Empty, games[1].OtherActions[0].EmulatorProfileId);
 
                 var files = db.Database.FileStorage.FindAll().ToList();
                 Assert.AreEqual(2, files.Count);
@@ -255,12 +255,6 @@ namespace PlayniteTests.Database
                     Assert.IsFalse(string.IsNullOrEmpty(file.Metadata["checksum"].AsString));
                 }
             }
-        }
-
-        [Test]
-        public void Migration3toCurrentTest()
-        {
-
         }
 
         [Test]

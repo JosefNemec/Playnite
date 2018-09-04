@@ -15,7 +15,6 @@ namespace GogLibrary.Tests
     [TestFixture]
     public class GogLibraryTests
     {
-
         public static GogLibrary CreateLibrary()
         {
             var api = new Mock<IPlayniteAPI>();
@@ -37,8 +36,6 @@ namespace GogLibrary.Tests
                 Assert.IsFalse(string.IsNullOrEmpty(game.InstallDirectory));
                 Assert.IsTrue(Directory.Exists(game.InstallDirectory));
                 Assert.IsNotNull(game.PlayAction);
-                //Assert.IsTrue(File.Exists(game.ResolveVariables(game.PlayTask.Path)));
-                Assert.Fail();
             }
         }
 

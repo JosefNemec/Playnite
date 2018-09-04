@@ -40,7 +40,7 @@ namespace Playnite.Metadata
                 return downloaders[pluginId];
             }
 
-            var plugin = plugins.FirstOrDefault(a => a.Id == pluginId);
+            var plugin = plugins?.FirstOrDefault(a => a.Id == pluginId);
             if (plugin == null)
             {
                 downloaders.Add(pluginId, null);
