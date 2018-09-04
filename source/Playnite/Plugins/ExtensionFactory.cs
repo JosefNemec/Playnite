@@ -206,7 +206,23 @@ namespace Playnite.Plugins
 
         private List<string> GetExtensionDescriptorFiles()
         {
+            var added = new List<string>();
             var plugins = new List<string>();
+
+            if (!PlayniteSettings.IsPortable && Directory.Exists(PlaynitePaths.ExtensionsUserDataPath))
+            {
+                foreach (var dir in Directory.GetDirectories(PlaynitePaths.ExtensionsUserDataPath))
+                {
+                    var descriptorPath = Path.Combine(dir, "extension.info");
+                    if (File.Exists(descriptorPath))
+                    {
+                        plugins.Add(descriptorPath);
+                        var info = new FileInfo(descriptorPath);
+                        added.Add(info.Directory.Name);
+                    }
+                }
+            }
+
             if (Directory.Exists(PlaynitePaths.ExtensionsProgramPath))
             {
                 foreach (var dir in Directory.GetDirectories(PlaynitePaths.ExtensionsProgramPath))
@@ -214,19 +230,8 @@ namespace Playnite.Plugins
                     var descriptorPath = Path.Combine(dir, "extension.info");
                     if (File.Exists(descriptorPath))
                     {
-                        plugins.Add(descriptorPath);
-                    }
-                }
-            }
-
-            if (!PlayniteSettings.IsPortable)
-            {
-                if (Directory.Exists(PlaynitePaths.ExtensionsUserDataPath))
-                {
-                    foreach (var dir in Directory.GetDirectories(PlaynitePaths.ExtensionsUserDataPath))
-                    {
-                        var descriptorPath = Path.Combine(dir, "extension.info");
-                        if (File.Exists(descriptorPath))
+                        var info = new FileInfo(descriptorPath);
+                        if (!added.Contains(info.Directory.Name))
                         {
                             plugins.Add(descriptorPath);
                         }
