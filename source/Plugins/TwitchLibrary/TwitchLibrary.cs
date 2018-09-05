@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
@@ -110,22 +111,39 @@ namespace TwitchLibrary
                 throw new Exception("User is not logged in.");
             }
 
-            if (DateTime.Now > login.Expires)
+            var games = new List<Game>();
+            List<GoodsItem> libraryGames = null;
+
+            try
             {
+                libraryGames = AmazonEntitlementClient.GetAccountEntitlements(login.AccountId, login.AccessToken);
+            }
+            catch (WebException libExc)
+            {
+                // Token renew doesn't properly based on expiration date, so try always to renew token for now until it's fixed.
+                logger.Warn(libExc, "Failed to download Twitch library at first attempt.");
                 try
                 {
                     var client = new TwitchAccountClient(null, TokensPath);
                     client.RenewTokens(login.AuthenticationToken, login.AccountId);
+                    login = LoginData;
                 }
-                catch (Exception e) when (!Environment.IsDebugBuild)
+                catch (Exception renewExc)
                 {
-                    logger.Error(e, "Failed to renew Twitch authentication.");
+                    logger.Error(renewExc, "Failed to renew Twitch authentication.");
+                }
+
+                try
+                {
+                    libraryGames = AmazonEntitlementClient.GetAccountEntitlements(login.AccountId, login.AccessToken);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to download Twitch library.");
                     throw new Exception("Authentication is required.");
                 }
             }
 
-            var games = new List<Game>();
-            var libraryGames = AmazonEntitlementClient.GetAccountEntitlements(login.AccountId, login.AccessToken);
             foreach (var item in libraryGames)
             {
                 if (item.product.productLine != "Twitch:FuelGame")
