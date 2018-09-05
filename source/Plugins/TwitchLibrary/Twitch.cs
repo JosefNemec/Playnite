@@ -54,7 +54,7 @@ namespace TwitchLibrary
         public static UninstallProgram GetUninstallRecord(string gameId)
         {
             return Programs.GetUnistallProgramsList()
-                .FirstOrDefault(a => a.RegistryKeyName.Trim(new char[] { '{', '}' }).Equals(gameId, StringComparison.CurrentCultureIgnoreCase));
+                .FirstOrDefault(a => a.RegistryKeyName.Trim(new char[] { '{', '}' }).Equals(gameId, StringComparison.OrdinalIgnoreCase));
         }
 
     }

@@ -34,7 +34,7 @@ namespace Playnite
 
             foreach (var sourceItem in source)
             {
-                if (!target.Any(a => a != null && a.IndexOf(sourceItem, StringComparison.OrdinalIgnoreCase) >= 0))
+                if (!target.Any(a => a != null && a.IndexOf(sourceItem, StringComparison.InvariantCultureIgnoreCase) >= 0))
                 {
                     return false;
                 }

@@ -43,7 +43,7 @@ namespace Playnite.Metadata.Providers
             if (dbGame.cover != null)
             {
                 game.CoverImage = dbGame.cover.Replace("t_thumb", "t_cover_big");
-                if (!game.CoverImage.StartsWith("https:", StringComparison.InvariantCultureIgnoreCase))
+                if (!game.CoverImage.StartsWith("https:", StringComparison.OrdinalIgnoreCase))
                 {
                     game.CoverImage = "https:" + game.CoverImage;
                 }

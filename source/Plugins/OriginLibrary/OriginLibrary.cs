@@ -172,7 +172,7 @@ namespace OriginLibrary
             else
             {
                 var executePath = GetPathFromPlatformPath(platform.fulfillmentAttributes.executePathOverride);
-                if (executePath.EndsWith("installerdata.xml", StringComparison.InvariantCultureIgnoreCase))
+                if (executePath.EndsWith("installerdata.xml", StringComparison.OrdinalIgnoreCase))
                 {
                     var doc = XDocument.Load(executePath);
                     var root = XElement.Parse(doc.ToString());

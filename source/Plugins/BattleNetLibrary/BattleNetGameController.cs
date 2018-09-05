@@ -44,7 +44,7 @@ namespace BattleNetLibrary
             procMon.TreeDestroyed += Monitor_TreeDestroyed;
             var app = BattleNetGames.GetAppDefinition(Game.GameId);
 
-            if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("battlenet", StringComparison.InvariantCultureIgnoreCase))
+            if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("battlenet", StringComparison.OrdinalIgnoreCase))
             {
                 OnStarting(this, new GameControllerEventArgs(this, 0));
                 var task = new GameAction()

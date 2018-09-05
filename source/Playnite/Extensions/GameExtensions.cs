@@ -23,7 +23,7 @@ namespace Playnite
 
             var game = new Game();
 
-            if (string.Equals(Path.GetExtension(path), ".lnk", StringComparison.InvariantCultureIgnoreCase))
+            if (string.Equals(Path.GetExtension(path), ".lnk", StringComparison.OrdinalIgnoreCase))
             {
                 var prog = Common.System.Programs.ParseShortcut(path);
                 var file = new FileInfo(prog.Path);

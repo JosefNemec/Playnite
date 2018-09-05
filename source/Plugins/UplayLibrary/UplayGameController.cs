@@ -37,7 +37,7 @@ namespace UplayLibrary
         public override void Play()
         {
             ReleaseResources();
-            if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("uplay", StringComparison.InvariantCultureIgnoreCase))
+            if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("uplay", StringComparison.OrdinalIgnoreCase))
             {
                 OnStarting(this, new GameControllerEventArgs(this, 0));
                 stopWatch = Stopwatch.StartNew();

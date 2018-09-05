@@ -154,7 +154,7 @@ namespace Playnite.Emulators
 
                     foreach (var extension in profile.ImageExtensions)
                     {
-                        if (string.Equals(file.Extension.TrimStart('.'), extension, StringComparison.InvariantCultureIgnoreCase))
+                        if (string.Equals(file.Extension.TrimStart('.'), extension, StringComparison.OrdinalIgnoreCase))
                         {
                             var newGame = new Game()
                             {

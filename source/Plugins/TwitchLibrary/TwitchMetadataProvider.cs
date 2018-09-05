@@ -38,7 +38,7 @@ namespace TwitchLibrary
             {
                 var iconPath = program.DisplayIcon;
                 var iconFile = Path.GetFileName(iconPath);
-                if (iconPath.EndsWith("ico", StringComparison.InvariantCultureIgnoreCase))
+                if (iconPath.EndsWith("ico", StringComparison.OrdinalIgnoreCase))
                 {
                     var data = File.ReadAllBytes(iconPath);
                     metadata.Icon = new MetadataFile($"images/twitch/{game.GameId}/{iconFile}", iconFile, data);

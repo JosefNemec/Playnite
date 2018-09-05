@@ -75,7 +75,7 @@ namespace TwitchLibrary
             var programs = Programs.GetUnistallProgramsList();
             foreach (var program in programs)
             {
-                if (string.IsNullOrEmpty(program.UninstallString) || program.UninstallString.IndexOf("TwitchGameRemover", StringComparison.InvariantCultureIgnoreCase) < 0)
+                if (string.IsNullOrEmpty(program.UninstallString) || program.UninstallString.IndexOf("TwitchGameRemover", StringComparison.OrdinalIgnoreCase) < 0)
                 {
                     continue;
                 }

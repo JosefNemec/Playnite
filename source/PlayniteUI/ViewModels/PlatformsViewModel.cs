@@ -513,7 +513,7 @@ namespace PlayniteUI.ViewModels
                 return;
             }
 
-            if (path.EndsWith("exe", StringComparison.CurrentCultureIgnoreCase))
+            if (path.EndsWith("exe", StringComparison.OrdinalIgnoreCase))
             {
                 var ico = IconExtension.ExtractIconFromExe(path, true);
                 if (ico == null)

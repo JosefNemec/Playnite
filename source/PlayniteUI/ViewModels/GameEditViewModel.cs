@@ -695,7 +695,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                return EditingGame == null || EditingGame.BackgroundImage == null ? false : EditingGame.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase);
+                return EditingGame == null || EditingGame.BackgroundImage == null ? false : EditingGame.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase);
             }
         }
 
@@ -1873,13 +1873,13 @@ namespace PlayniteUI.ViewModels
                 }
                 else
                 {
-                    if (EditingGame.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                    if (EditingGame.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                     {
                         if (Games != null)
                         {
                             foreach (var game in Games)
                             {
-                                if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                                if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                                 {
                                     database.DeleteImageSafe(game.BackgroundImage, game);
                                 }
@@ -1889,7 +1889,7 @@ namespace PlayniteUI.ViewModels
                         }
                         else
                         {
-                            if (!string.IsNullOrEmpty(Game.BackgroundImage) && !Game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                            if (!string.IsNullOrEmpty(Game.BackgroundImage) && !Game.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                             {
                                 database.DeleteImageSafe(Game.BackgroundImage, Game);
                             }
@@ -1909,7 +1909,7 @@ namespace PlayniteUI.ViewModels
                             foreach (var game in Games)
                             {
                                 if (!string.IsNullOrEmpty(game.BackgroundImage) &&
-                                    !game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase) &&
+                                    !game.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase) &&
                                     game.BackgroundImage != imageId)
                                 {
                                     database.DeleteImageSafe(game.BackgroundImage, game);
@@ -1921,7 +1921,7 @@ namespace PlayniteUI.ViewModels
                         else
                         {
                             if (!string.IsNullOrEmpty(Game.BackgroundImage) &&
-                                !Game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase) &&
+                                !Game.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase) &&
                                 Game.BackgroundImage != imageId)
                             {
                                 database.DeleteImageSafe(Game.BackgroundImage, Game);
@@ -2060,7 +2060,7 @@ namespace PlayniteUI.ViewModels
 
             if (!string.IsNullOrEmpty(game.CoverImage))
             {
-                if (game.CoverImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                if (game.CoverImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                 {
                     var extension = Path.GetExtension(game.CoverImage);
                     var tempPath = Path.Combine(PlaynitePaths.TempPath, "tempimage" + extension);
@@ -2116,7 +2116,7 @@ namespace PlayniteUI.ViewModels
             var path = dialogs.SelectIconFile();
             if (!string.IsNullOrEmpty(path))
             {
-                if (path.EndsWith("exe", StringComparison.CurrentCultureIgnoreCase))
+                if (path.EndsWith("exe", StringComparison.OrdinalIgnoreCase))
                 {
                     path = SaveFileIconToTemp(path);
                     if (string.IsNullOrEmpty(path))
