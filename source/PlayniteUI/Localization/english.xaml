@@ -521,8 +521,8 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Open Installation Location</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Create Desktop Shortcut</sys:String>
     <sys:String x:Key="LOCMoreAction">More</sys:String>
-    <sys:String x:Key="LOCPlayActionUsePlugin">Handle using library plugin</sys:String>
-    <sys:String x:Key="LOCPlayActionUsePluginTooltip">Game's starting process will be handled by the library plugin responsible for this game.</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePlugin">Managed by library plugin</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePluginTooltip">Game's starting process will be managed by the library plugin responsible for this game.</sys:String>
 
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">Didn't found any relevant information about game '{0}' on specified page.</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Tip: You can use more advanced metadata download process while editing single game via "Edit" menu option.</sys:String>
