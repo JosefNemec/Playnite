@@ -382,6 +382,10 @@ namespace Playnite.Common.System
             {
                 var root = RegistryKey.OpenBaseKey(hive, view);
                 var keyList = root.OpenSubKey(rootString);
+                if (keyList == null)
+                {
+                    return;
+                }
 
                 foreach (var key in keyList.GetSubKeyNames())
                 {
