@@ -32,5 +32,15 @@ namespace PlayniteServices.Models.Stats
         {
             get; set;
         }
+
+        public int X86Count
+        {
+            get; set;
+        }
+
+        public int X64Count
+        {
+            get; set;
+        }
     }
 }
