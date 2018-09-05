@@ -74,6 +74,7 @@
     <Compile Include="Services\GenericResponse.cs" />
     <Compile Include="System\FileSystem.cs" />
     <Compile Include="System\Paths.cs" />
+    <Compile Include="System\ProcessExtensions.cs" />
     <Compile Include="System\ProcessMonitor.cs" />
     <Compile Include="System\ProcessStarter.cs" />
     <Compile Include="System\Programs.cs" />

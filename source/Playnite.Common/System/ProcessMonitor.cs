@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Management;
 using System.Threading;
 using System.IO;
+using Playnite.Common.System;
 
 namespace Playnite
 {
@@ -51,56 +52,47 @@ namespace Playnite
                 throw new DirectoryNotFoundException($"Cannot watch directory processes, {directory} not found.");
             }
 
-            var executables = Directory.GetFiles(directory, "*.exe", SearchOption.AllDirectories);
-            if (executables.Count() == 0)
-            {
-                throw new Exception($"Cannot watch directory processes {directory}, no executables found.");
-            }
-
-            var procNames = executables.Select(a => Path.GetFileName(a)).ToList();
-            watcherToken = new CancellationTokenSource();            
-
+            watcherToken = new CancellationTokenSource();
             await Task.Run(async () =>
             {
-                var query = $"Select * From Win32_Process";
-                using (var mos = new ManagementObjectSearcher(query))
+                var startedCalled = false;
+                var processStarted = false;
+
+                while (true)
                 {
-                    var startedCalled = false;
-                    var processStarted = false;
-
-                    while (true)
+                    if (watcherToken.IsCancellationRequested)
                     {
-                        if (watcherToken.IsCancellationRequested)
-                        {
-                            return;
-                        }
+                        return;
+                    }
 
-                        var processFound = false;
-                        foreach (ManagementObject mo in mos.Get())
+                    var processFound = false;
+                    var processes = Process.GetProcesses().Where(a => a.SessionId != 0);
+                    foreach (var process in processes)
+                    {
+                        if (process.TryGetMainModuleFileName(out var procPath))
                         {
-                            var name = mo["Name"].ToString();
-                            if (procNames.Contains(name))
+                            if (procPath.IndexOf(directory, StringComparison.OrdinalIgnoreCase) >= 0)
                             {
                                 processFound = true;
                                 processStarted = true;
                                 break;
                             }
                         }
-                        
-                        if (!alreadyRunning && processFound && !startedCalled)
-                        {
-                            OnTreeStarted();
-                            startedCalled = true;
-                        }
-
-                        if (!processFound && processStarted)
-                        {
-                            OnTreeDestroyed();
-                            return;
-                        }
-
-                        await Task.Delay(3000);
                     }
+                        
+                    if (!alreadyRunning && processFound && !startedCalled)
+                    {
+                        OnTreeStarted();
+                        startedCalled = true;
+                    }
+
+                    if (!processFound && processStarted)
+                    {
+                        OnTreeDestroyed();
+                        return;
+                    }
+
+                    await Task.Delay(3000);
                 }
             });
         }            
@@ -126,28 +118,25 @@ namespace Playnite
                         return;
                     }
 
-                    // Check for existing childs
-                    foreach (var id in ids.ToList())
+                    var processes = Process.GetProcesses().Where(a => a.SessionId != 0);
+                    var runningIds = new List<int>();
+                    foreach (var proc in processes)
                     {
-                        var query = $"Select * From Win32_Process Where ParentProcessID={id}";
-                        using (var mos = new ManagementObjectSearcher(query))
+                        if (proc.TryGetParentId(out var parent))
                         {
-                            foreach (ManagementObject mo in mos.Get())
+                            if (ids.Contains(parent) && !ids.Contains(proc.Id))
                             {
-                                var childId = Convert.ToInt32(mo["ProcessID"]);
-                                if (!ids.Contains(childId))
-                                {
-                                    ids.Add(childId);
-                                }
-
-                                mo.Dispose();
+                                ids.Add(proc.Id);
                             }
+                        }
+
+                        if (ids.Contains(proc.Id))
+                        {
+                            runningIds.Add(proc.Id);
                         }
                     }
 
-                    // Check if processes are still running                    
-                    var runningIds = Process.GetProcesses().Select(a => a.Id);
-                    ids.RemoveAll(a => !runningIds.Contains(a));
+                    ids = runningIds;
                     await Task.Delay(500);
                 }
             });
