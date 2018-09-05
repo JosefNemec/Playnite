@@ -591,7 +591,7 @@
 
 - Name: RetroArch
   Website: 'http://www.retroarch.com/'
-  Profiles:
+  Profiles:    
     - Name: 4DO
       DefaultArguments: '-L ".\cores\4do_libretro.dll" "{ImagePath}"'
       Platforms: [3DO Interactive Multiplayer]
@@ -686,7 +686,7 @@
     - Name: Caprice32
       DefaultArguments: '-L ".\cores\cap32_libretro.dll" "{ImagePath}"'
       Platforms: [Amstrad CPC]
-      ImageExtensions: [dsk, sna, zip, tap, cdt, voc, 7z]
+      ImageExtensions: [dsk, sna, zip, tap, cdt, voc, m3u, 7z]
       RequiredFiles: ['cores\cap32_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -709,6 +709,13 @@
       Platforms: [Amstrad CPC]
       ImageExtensions: [dsk, sna, kcr, zip, 7z]
       RequiredFiles: ['cores\crocods_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: Daphne
+      DefaultArguments: '-L ".\cores\daphne_libretro.dll" "{ImagePath}"'
+      Platforms: [Daphne]
+      ImageExtensions: [zip, 7z]
+      RequiredFiles: ['cores\daphne_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: DeSmuME 2015
@@ -938,7 +945,7 @@
     - Name: Hatari
       DefaultArguments: '-L ".\cores\hatari_libretro.dll" "{ImagePath}"'
       Platforms: [Atari ST/STE/TT/Falcon]
-      ImageExtensions: [st, msa, zip, stx, dim, ipf, 7z]
+      ImageExtensions: [st, msa, zip, stx, dim, ipf, m3u, 7z]
       RequiredFiles: ['cores\hatari_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
@@ -954,6 +961,13 @@
       Platforms: [Super Nintendo Entertainment System, Nintendo Game Boy, Nintendo Game Boy Color]
       ImageExtensions: [sfc, smc, gb, gbc, bml, rom, zip, 7z]
       RequiredFiles: ['cores\higan_sfc_libretro.dll']
+      ExecutableLookup: ^retroarch\.exe$
+
+    - Name: Ishiiruka
+      DefaultArguments: '-L ".\cores\ishiiruka_libretro.dll" "{ImagePath}"'
+      Platforms: [Nintendo GameCube, Nintendo Wii]
+      ImageExtensions: [gcm, iso, wbfs, ciso, gcz, elf, dol, dff, tgc, wad, zip, 7z]
+      RequiredFiles: ['cores\ishiiruka_libretro.dll']
       ExecutableLookup: ^retroarch\.exe$
 
     - Name: MAME 2000 (0.37b5)
