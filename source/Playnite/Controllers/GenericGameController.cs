@@ -69,7 +69,17 @@ namespace Playnite.Controllers
             }
             else
             {
-                OnStopped(this, new GameControllerEventArgs(this, 0));
+                if (!string.IsNullOrEmpty(Game.InstallDirectory) && Directory.Exists(Game.InstallDirectory))
+                {
+                    stopWatch = Stopwatch.StartNew();
+                    procMon = new ProcessMonitor();
+                    procMon.TreeDestroyed += Monitor_TreeDestroyed;
+                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                }
+                else
+                {
+                    OnStopped(this, new GameControllerEventArgs(this, 0));
+                }
             }
         }
 
