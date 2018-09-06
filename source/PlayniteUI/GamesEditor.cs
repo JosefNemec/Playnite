@@ -144,6 +144,12 @@ namespace PlayniteUI
 
             try
             {
+                if (game.State.Running)
+                {
+                    logger.Warn("Failed to start the game, game is already running.");
+                    return;
+                }
+
                 if (game.PlayAction.IsHandledByPlugin)
                 {
                     logger.Info("Using library plugin to start the game.");
