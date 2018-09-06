@@ -277,7 +277,7 @@ Any currently active tasks (metadata downloads) will be canceled.</sys:String>
 Doesn't apply retrospectively to existing games.</sys:String>
 
     <sys:String x:Key="LOCImportError">Import Error</sys:String>
-    <sys:String x:Key="LOCLoginChecking">Checking...</sys:String>
+    <sys:String x:Key="LOCLoginChecking">Checking authentication status...</sys:String>
     <sys:String x:Key="LOCLoginRequired">Authentification required</sys:String>
     <sys:String x:Key="LOCLoginFailed">Authentification failed</sys:String>
     <sys:String x:Key="LOCLoggedIn">User is authenticated</sys:String>

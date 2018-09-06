@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BattleNetLibrary"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:pui="clr-namespace:PlayniteUI"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="800">
@@ -16,6 +17,8 @@
 
     <UserControl.Resources>
         <pui:NegateConverter x:Key="NegateConverter" />
+        <sys:Boolean x:Key="True">True</sys:Boolean>
+        <sys:Boolean x:Key="False">False</sys:Boolean>
     </UserControl.Resources>
 
     <StackPanel>
@@ -34,13 +37,24 @@
                 <Button Content="{DynamicResource LOCAuthenticateLabel}" HorizontalAlignment="Left" Margin="5"
                         Command="{Binding LoginCommand}"/>
                 <TextBlock VerticalAlignment="Center" Margin="10,5,5,5">
+                    <TextBlock.Tag>
+                        <PriorityBinding>
+                            <Binding Path="IsUserLoggedIn" IsAsync="True" />
+                            <Binding Source="{x:Null}" />
+                        </PriorityBinding>
+                    </TextBlock.Tag>
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
-                            <Setter Property="Text" Value="{DynamicResource LOCNotLoggedIn}" />
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsUserLoggedIn, IsAsync=True}" Value="True">
+                                <Trigger Property="Tag" Value="{StaticResource True}">
                                     <Setter Property="Text" Value="{DynamicResource LOCLoggedIn}" />
-                                </DataTrigger>
+                                </Trigger>
+                                <Trigger Property="Tag" Value="{StaticResource False}">
+                                    <Setter Property="Text" Value="{DynamicResource LOCNotLoggedIn}" />
+                                </Trigger>
+                                <Trigger Property="Tag" Value="{x:Null}">
+                                    <Setter Property="Text" Value="{DynamicResource LOCLoginChecking}" />
+                                </Trigger>
                             </Style.Triggers>
                         </Style>
                     </TextBlock.Style>
