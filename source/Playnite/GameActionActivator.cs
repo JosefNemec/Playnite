@@ -82,11 +82,6 @@ namespace Playnite
             return null;
         }
 
-        public static Process ActivateAction(GameAction action, Game gameData, List<Emulator> emulators)
-        {
-            return ActivateAction(action, gameData, GetGameActionEmulatorConfig(action, emulators));
-        }
-
         public static EmulatorProfile GetGameActionEmulatorConfig(GameAction action, List<Emulator> emulators)
         {
             if (action.EmulatorId == null || emulators == null)

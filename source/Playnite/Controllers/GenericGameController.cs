@@ -39,7 +39,8 @@ namespace Playnite.Controllers
             Dispose();
             OnStarting(this, new GameControllerEventArgs(this, 0));
             var emulators = database.GetEmulators();
-            var proc = GameActionActivator.ActivateAction(playAction, Game, emulators);
+            var profile = GameActionActivator.GetGameActionEmulatorConfig(playAction, emulators).ExpandVariables(Game);
+            var proc = GameActionActivator.ActivateAction(playAction, Game, profile);
             OnStarted(this, new GameControllerEventArgs(this, 0));
 
             if (playAction.Type != GameActionType.URL)
