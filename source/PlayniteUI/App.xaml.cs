@@ -242,7 +242,14 @@ namespace PlayniteUI
                     }
                     else
                     {
-                        AppSettings.DatabasePath = Path.Combine(PlaynitePaths.UserProgramDataPath, "games.db");
+                        if (PlayniteSettings.IsPortable)
+                        {
+                            AppSettings.DatabasePath = "games.db";
+                        }
+                        else
+                        {
+                            AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "games.db");
+                        }
                     }
 
                     AppSettings.DisabledPlugins = settings.DisabledPlugins;
@@ -258,7 +265,7 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    AppSettings.DatabasePath = Path.Combine(PlaynitePaths.UserProgramDataPath, "games.db");
+                    AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "games.db");
                     AppSettings.SaveSettings();
                     existingDb = File.Exists(AppSettings.DatabasePath);
                     Database.SetDatabasePath(AppSettings.DatabasePath);
