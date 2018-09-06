@@ -4,6 +4,7 @@ Playnite.SDK.xml
 Playnite.Common.dll
 Playnite.Common.pdb
 LiteDB.dll
+LiteDB.xml
 Newtonsoft.Json.dll
 Newtonsoft.Json.xml
 System.IO.Abstractions.dll

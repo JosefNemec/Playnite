@@ -27,7 +27,7 @@
     [array]$UpdateDiffs,
 
     # Directory containing build files for $UpdateDiffs
-    [string]$BuildsStorageDir,
+    [string]$BuildsStorageDir = ".\",
 
     # Build portable package
     [switch]$Portable = $false,
@@ -215,7 +215,8 @@ if (!$SkipBuild)
         if ($Sign)
         {
             Join-Path $OutputDir "Playnite.dll" | SignFile
-            Join-Path $OutputDir "PlayniteSDK.dll" | SignFile
+            Join-Path $OutputDir "Playnite.Common.dll" | SignFile
+            Join-Path $OutputDir "Playnite.SDK.dll" | SignFile
             Join-Path $OutputDir "PlayniteUI.exe" | SignFile
         }
     }
