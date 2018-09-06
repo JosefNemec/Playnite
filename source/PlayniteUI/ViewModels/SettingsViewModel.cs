@@ -11,6 +11,7 @@ using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,18 @@ namespace PlayniteUI.ViewModels
     {
         public IPlugin Plugin { get; set; }
         public ExtensionDescription Description { get; set; }
-        public bool Selected { get; set; }
+        public string PluginIcon { get; set; } = string.Empty;
+
+        private bool selected;
+        public bool Selected
+        {
+            get => selected;
+            set
+            {
+                selected = value;
+                OnAutoPropertyChanged();
+            }
+        }
 
         public SelectablePlugin()
         {
@@ -34,6 +46,22 @@ namespace PlayniteUI.ViewModels
             Selected = selected;
             Plugin = plugin;
             Description = description;
+            if (!string.IsNullOrEmpty(description.Icon))
+            {
+                PluginIcon = Path.Combine(Path.GetDirectoryName(description.DescriptionPath), description.Icon);
+            }
+            else if (description.Type == ExtensionType.Script && description.Module.EndsWith("ps1", StringComparison.OrdinalIgnoreCase))
+            {
+                PluginIcon = @"/Images/powershell.ico";
+            }
+            else if (description.Type == ExtensionType.Script && description.Module.EndsWith("py", StringComparison.OrdinalIgnoreCase))
+            {
+                PluginIcon = @"/Images/python.ico";
+            }
+            else
+            {
+                PluginIcon = @"/Images/csharp.ico";
+            }
         }
     }
 

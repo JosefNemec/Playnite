@@ -29,6 +29,8 @@ namespace Playnite.API
 
         public string Module { get; set; }
 
+        public string Icon { get; set; }
+
         public ExtensionType Type { get; set; }
 
         public ExtensionDescription()

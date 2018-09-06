@@ -378,6 +378,9 @@
     <Resource Include="Images\MenuIcons\feedback.png" />
     <Resource Include="Images\MenuIcons\script.png" />
     <Resource Include="Images\filtericon.png" />
+    <Resource Include="Images\powershell.ico" />
+    <Resource Include="Images\python.ico" />
+    <Resource Include="Images\csharp.ico" />
     <Content Include="Localization\english.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

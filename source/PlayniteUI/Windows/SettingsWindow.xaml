@@ -386,27 +386,65 @@
                         </TabItem>
 
                         <TabItem>
-                            <ListView ItemsSource="{Binding PluginsList}" BorderThickness="0" Margin="-20">
-                                <ListView.ItemContainerStyle>
-                                    <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                            <ListBox ItemsSource="{Binding PluginsList}" BorderThickness="0" Margin="-20">
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                                         <Setter Property="Focusable" Value="false"/>
                                     </Style>
-                                </ListView.ItemContainerStyle>
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn Header="Enabled" Width="Auto">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <CheckBox IsChecked="{Binding Selected}" HorizontalAlignment="Center" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                        <GridViewColumn Header="{DynamicResource LOCNameLabel}" Width="220" DisplayMemberBinding="{Binding Description.Name}" />
-                                        <GridViewColumn Header="{DynamicResource LOCAuthorLabel}" Width="150" DisplayMemberBinding="{Binding Description.Author}" />
-                                        <GridViewColumn Header="{DynamicResource LOCModuleLabel}" Width="Auto" DisplayMemberBinding="{Binding Description.Module}" />
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
+                                </ListBox.ItemContainerStyle>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.Resources>
+                                                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                    <Setter Property="Opacity" Value="1" />
+                                                    <Setter Property="Margin" Value="5" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Selected}" Value="False">
+                                                            <Setter Property="Opacity" Value="0.5" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Opacity" Value="1" />
+                                                    <Setter Property="Margin" Value="5" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Selected}" Value="False">
+                                                            <Setter Property="Opacity" Value="0.5" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Resources>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="42"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                                                   RenderOptions.BitmapScalingMode="Fant"
+                                                   VerticalAlignment="Top"
+                                                   Source="{Binding PluginIcon}" />
+                                            <TextBlock Grid.Column="1" Grid.Row="0" FontSize="16"
+                                                       Text="{Binding Description.Name}" />
+                                            <DockPanel Grid.Column="1" Grid.Row="1" LastChildFill="False">
+                                                <TextBlock DockPanel.Dock="Left" FontSize="12"
+                                                       Text="{Binding Description.Author}" />
+                                                <TextBlock DockPanel.Dock="Right" FontSize="12"
+                                                           Text="{Binding Description.Version}" />                                                
+                                                <TextBlock DockPanel.Dock="Right" FontSize="12"
+                                                       Text="{Binding Description.Module}" />
+                                            </DockPanel>
+                                            <CheckBox Grid.Column="2" Grid.Row="0" Content="Enabled" Margin="10,5,10,5"
+                                                      Grid.RowSpan="2" VerticalAlignment="Center"
+                                                      IsChecked="{Binding Selected}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </TabItem>  
                     </TabControl>
                 </DockPanel>
