@@ -39,7 +39,7 @@ namespace Playnite.Controllers
             Dispose();
             OnStarting(this, new GameControllerEventArgs(this, 0));
             var emulators = database.GetEmulators();
-            var profile = GameActionActivator.GetGameActionEmulatorConfig(playAction, emulators).ExpandVariables(Game);
+            var profile = GameActionActivator.GetGameActionEmulatorConfig(playAction, emulators)?.ExpandVariables(Game);
             var proc = GameActionActivator.ActivateAction(playAction, Game, profile);
             OnStarted(this, new GameControllerEventArgs(this, 0));
 
