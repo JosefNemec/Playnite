@@ -944,9 +944,9 @@
                        Foreground="{TemplateBinding Foreground}">
                 <ContentPresenter RecognizesAccessKey="True" Margin="5,0,5,0" ContentSource="Header"/>
             </TextBlock>
-            <TextBlock x:Name="GestureText" Grid.Column="2" Text="{TemplateBinding InputGestureText}"
+            <TextBlock x:Name="GestureText" Grid.Column="2" Text="{TemplateBinding InputGestureText}"                       
                        TextAlignment="Left" HorizontalAlignment="Stretch" Margin="20,5,10,5"
-                       VerticalAlignment="Center" Background="Transparent"/>
+                       VerticalAlignment="Center" Background="Transparent" Opacity="0.6"/>
             <Grid Grid.Column="3" Margin="0,0,5,0">
                 <TextBlock FontFamily="Marlett" Text="4" VerticalAlignment="Center" Style="{DynamicResource BaseTextBlockStyle}" />
             </Grid>
@@ -996,7 +996,7 @@
                 </TextBlock>
                 <TextBlock x:Name="GestureText" Grid.Column="2" Text="{TemplateBinding InputGestureText}"
                            TextAlignment="Left" HorizontalAlignment="Stretch"
-                           VerticalAlignment="Center" Margin="20,5,10,5" />
+                           VerticalAlignment="Center" Margin="20,5,10,5" Opacity="0.6" />
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
