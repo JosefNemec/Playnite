@@ -121,6 +121,9 @@ namespace PlayniteUI
                 Settings.ViewSettings.PropertyChanged -= Settings_PropertyChanged;
                 Settings.FilterSettings.FilterChanged -= FilterSettings_FilterChanged;
             }
+
+            Items.Clear();
+            Items = null;
         }
 
         private bool Filter(object item)
