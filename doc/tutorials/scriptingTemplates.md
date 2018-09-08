@@ -85,7 +85,7 @@ def on_game_starting(game):
 def on_game_started(game):
     pass
 
-def on_game_stopped(game, ellapsed_seconds):
+def on_game_stopped(game, elapsed_seconds):
     pass
 
 def on_game_installed(game):
