@@ -419,7 +419,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCStartGenericError">Playnite未能启动。 请关闭所有正在运行的程序并重试。</sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">无法应用主题“{0}”，颜色配置文件“{1}”
         
- {2}</sys:String>
+{2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">无法打开网址，网址格式无效</sys:String>
     <sys:String x:Key="LOCAppStartupError">无法启动应用程序。</sys:String>
 
