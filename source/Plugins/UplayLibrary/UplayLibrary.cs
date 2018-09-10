@@ -18,12 +18,17 @@ namespace UplayLibrary
         private ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
 
+        internal UplayLibrarySettings LibrarySettings
+        {
+            get => (UplayLibrarySettings)Settings;
+        }
+
         public UplayLibrary(IPlayniteAPI api)
         {
             playniteApi = api;
             LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\uplayicon.png");
+            Settings = new UplayLibrarySettings(this, playniteApi);
         }
-
 
         public GameAction GetGamePlayTask(string id)
         {
@@ -82,9 +87,12 @@ namespace UplayLibrary
 
         public string Name { get; } = "Uplay";
 
-        public UserControl SettingsView { get; } = null;
+        public UserControl SettingsView
+        {
+            get => new UplayLibrarySettingsView();
+        }
 
-        public ISettings Settings { get; } = null;
+        public ISettings Settings { get; private set; }
 
         public Guid Id { get; } = Guid.Parse("C2F038E5-8B92-4877-91F1-DA9094155FC5");
 
@@ -100,7 +108,13 @@ namespace UplayLibrary
 
         public IEnumerable<Game> GetGames()
         {
-            return GetInstalledGames();
+            var allGames = new List<Game>();
+            if (LibrarySettings.ImportInstalledGames)
+            {
+                return GetInstalledGames();
+            }
+
+            return allGames;
         }
 
         public ILibraryMetadataProvider GetMetadataDownloader()

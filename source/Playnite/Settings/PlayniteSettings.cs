@@ -802,6 +802,16 @@ namespace Playnite.Settings
 
                     WriteConfig("CB91DFC9-B977-43BF-8E70-55F46E410FAB", config);
                 }
+
+                if (oldSettings.UplaySettings != null)
+                {
+                    var config = new Dictionary<string, object>()
+                    {
+                        { "ImportInstalledGames", oldSettings.UplaySettings.IntegrationEnabled }
+                    };
+
+                    WriteConfig("C2F038E5-8B92-4877-91F1-DA9094155FC5", config);
+                }
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
