@@ -266,6 +266,12 @@ namespace PlayniteUI.ViewModels
                 {
                     SetPluginConfiguration(selectedPlugins[0]);
                 }
+                else
+                {
+                    SelectedIndex++;
+                    SelectedIndex++;
+                    return;
+                }
             }
 
             if (SelectedIndex == Pages.ProviderConfig)
