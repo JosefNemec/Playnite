@@ -362,11 +362,10 @@ namespace OriginLibrary
         public IEnumerable<Game> GetGames()
         {
             var allGames = new List<Game>();
-            var installedGames = new Dictionary<string, Game>();
+            var installedGames = GetInstalledGames(true);
 
             if (LibrarySettings.ImportInstalledGames)
             {
-                installedGames = GetInstalledGames(true);
                 allGames.AddRange(installedGames.Values.ToList());
             }
 

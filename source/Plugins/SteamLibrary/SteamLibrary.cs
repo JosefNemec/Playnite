@@ -407,11 +407,10 @@ namespace SteamLibrary
         public IEnumerable<Game> GetGames()
         {
             var allGames = new List<Game>();
-            var installedGames = new Dictionary<string, Game>();
+            var installedGames = GetInstalledGames();
 
             if (LibrarySettings.ImportInstalledGames)
             {
-                installedGames = GetInstalledGames();
                 allGames.AddRange(installedGames.Values.ToList());
             }
 
