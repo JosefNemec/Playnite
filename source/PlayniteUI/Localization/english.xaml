@@ -361,7 +361,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Ascending</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Descending</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">Don't group</sys:String>
-    <sys:String x:Key="LOCMenuGroupProvider">Group by Provider</sys:String>
+    <sys:String x:Key="LOCMenuGroupProvider">Group by Library</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">Group by Category</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Group by Platform</sys:String>
 
@@ -370,7 +370,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">Cover Image</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Background Image</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Sorting Name</sys:String>
-    <sys:String x:Key="LOCGameProviderTitle">Provider</sys:String>
+    <sys:String x:Key="LOCGameProviderTitle">Library</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Name</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Account Name</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Platform</sys:String>

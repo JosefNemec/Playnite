@@ -330,7 +330,8 @@ namespace Playnite.Settings
             { "UserScore", false },
             { "CriticScore", false },
             { "CommunityScore", false },
-            { "Tags", false }
+            { "Tags", false },
+            { "Provider", true }
         };
 
         public ObservableConcurrentDictionary<string, bool> GridViewHeaders

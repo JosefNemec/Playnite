@@ -92,6 +92,21 @@ namespace PlayniteUI
             get; set;
         }
 
+        public string Provider
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(plugin?.Name))
+                {
+                    return "";
+                }
+                else
+                {
+                    return plugin?.Name;
+                }
+            }
+        }
+
         public string DefaultIcon
         {
             get
