@@ -122,7 +122,7 @@ namespace Playnite.Common.System
         public static bool TryGetMainModuleFileName(this Process process, out string fileName, int buffer = 1024)
         {
             fileName = null;
-            var handle = OpenProcess(ProcessAccessFlags.QueryInformation, false, process.Id);
+            var handle = OpenProcess(ProcessAccessFlags.QueryLimitedInformation, false, process.Id);
             if (handle == IntPtr.Zero)
             {
                 return false;
@@ -138,7 +138,7 @@ namespace Playnite.Common.System
         public static bool TryGetParentId(this Process process, out int processId)
         {
             processId = 0;
-            var handle = OpenProcess(ProcessAccessFlags.QueryInformation, false, process.Id);
+            var handle = OpenProcess(ProcessAccessFlags.QueryLimitedInformation, false, process.Id);
             if (handle == IntPtr.Zero)
             {
                 return false;
