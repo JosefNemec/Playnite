@@ -425,7 +425,7 @@ IGDB > 官方商店：
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">编辑游戏详情</sys:String>
-    <<sys:String x:Key="LOCUseExeIcon">来自启动动作</sys:String>
+    <sys:String x:Key="LOCUseExeIcon">来自启动动作</sys:String>
     <sys:String x:Key="LOCImageURL">图片链接</sys:String>
     <sys:String x:Key="LOCAddLinkButton">添加链接</sys:String>
     <sys:String x:Key="LOCSaveChanges">保存更改</sys:String>
