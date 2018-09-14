@@ -132,6 +132,11 @@ namespace BattleNetLibrary
                         continue;
                     }
 
+                    if (!Directory.Exists(prog.InstallLocation))
+                    {
+                        continue;
+                    }
+
                     var game = new Game()
                     {
                         PluginId = Id,
