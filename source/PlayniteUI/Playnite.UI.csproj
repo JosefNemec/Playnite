@@ -86,9 +86,6 @@
     <StartupObject>PlayniteUI.ProgramEntry</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ControlzEx">
-      <HintPath>..\..\references\ControlzEx.dll</HintPath>
-    </Reference>
     <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
     </Reference>
