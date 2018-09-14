@@ -728,7 +728,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                if (EditingGame.PlatformId == null || EditingGame.PlatformId == null)
+                if (EditingGame.PlatformId == Guid.Empty || EditingGame.PlatformId == Guid.Empty)
                 {
                     return database.EmulatorsCollection.FindAll().OrderBy(a => a.Name).ToList();
                 }

@@ -317,7 +317,7 @@ namespace PlayniteUI
             }
             else
             {
-                if (game.PlatformId == null)
+                if (game.PlatformId == Guid.Empty)
                 {
                     platformResult = false;
                 }

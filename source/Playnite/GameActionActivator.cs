@@ -84,7 +84,7 @@ namespace Playnite
 
         public static EmulatorProfile GetGameActionEmulatorConfig(GameAction action, List<Emulator> emulators)
         {
-            if (action.EmulatorId == null || emulators == null)
+            if (action.EmulatorId == Guid.Empty || emulators == null)
             {
                 return null;
             }
