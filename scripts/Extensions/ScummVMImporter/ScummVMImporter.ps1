@@ -1,15 +1,3 @@
-$global:__attributes = @{
-    "Author" = "Josef Nemec";
-    "Version" = "1.0"
-}
-
-$global:__exports = @(
-    @{
-        "Name" = "Import ScummVM Games";
-        "Function" = "ImportScummVMGames"
-    }
-)
-
 function global:Get-IniContent()
 {
     param(
@@ -67,13 +55,13 @@ function global:ImportScummVMGames()
             $game.InstallDirectory = $config[$key].path
             $game.State.Installed = $true
 
-            $playTask = New-Object "Playnite.SDK.Models.GameTask"
+            $playTask = New-Object "Playnite.SDK.Models.GameAction"
             $playTask.Type = "Emulator"
             $playTask.AdditionalArguments = $key
             $playTask.EmulatorId = $scummvmEmulator.Id
             $playTask.EmulatorProfileId = $scummvmEmulator.Profiles[0].Id
 
-            $game.PlayTask =  $playTask
+            $game.PlayAction =  $playTask
             $PlayniteApi.Database.AddGame($game)
         }
     }

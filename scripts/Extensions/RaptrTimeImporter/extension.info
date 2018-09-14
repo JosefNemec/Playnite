@@ -1,0 +1,8 @@
+﻿Name: Raptr play time importer
+Author: Josef Nemec
+Version: 1.0
+Module: RaptrTimeImporter.ps1
+Type: Script
+Functions: 
+    - Description: Import Raptr Play Times
+      FunctionName: ImportRaptr

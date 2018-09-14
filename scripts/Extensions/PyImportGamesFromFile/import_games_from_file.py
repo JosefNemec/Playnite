@@ -1,15 +1,3 @@
-__attributes = {
-    'Author': 'Michael <hallosputnik@gmail.com>',
-    'Version': '0.1.0'
-}
-
-__exports = [
-    {
-        'Name': 'Import Games from File',
-        'Function': 'import_games_from_file'
-    }
-]
-
 def import_games_from_file():
     # Use the SelectFile dialog to prompt the user for the file with the list of
     # games separated by newline.

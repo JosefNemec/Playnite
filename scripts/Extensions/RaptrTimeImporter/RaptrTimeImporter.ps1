@@ -1,15 +1,3 @@
-$global:__attributes = @{
-    "Author" = "Josef Nemec";
-    "Version" = "1.0"
-}
-
-$global:__exports = @(
-    @{
-        "Name" = "Import Raptr Play Times";
-        "Function" = "ImportRaptr"
-    }
-)
-
 # Imports time from Raptr database export
 function global:ImportRaptr()
 {
