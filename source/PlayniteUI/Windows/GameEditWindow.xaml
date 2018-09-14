@@ -563,7 +563,7 @@
                     <Button Content="..." Grid.Row="1" Grid.Column="2" Margin="5" Name="ButtonBrowseIso"
                             Command="{Binding SelectGameImageCommand}"/>
 
-                    <TextBlock Text="{DynamicResource LOCGameIsInstalledTitle}"
+                    <TextBlock Text="{DynamicResource LOCGameIsGameInstalledTitle}"
                                VerticalAlignment="Center"
                                Grid.Column="0" Grid.Row="2" Margin="5,10,5,5" />
                     <CheckBox Grid.Row="2" Grid.Column="1" Margin="5,10,5,5"

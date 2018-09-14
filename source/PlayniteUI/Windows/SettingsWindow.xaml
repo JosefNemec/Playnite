@@ -43,7 +43,7 @@
         </Border>
         
         <TabControl BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
-            <TabItem Header="Settings">
+            <TabItem Header="{DynamicResource LOCMenuPlayniteSettingsTitle}">
                 <DockPanel>
                     <ListBox DockPanel.Dock="Left" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}"
                           Name="TreeSections" MinWidth="140">
@@ -438,7 +438,7 @@
                                                 <TextBlock DockPanel.Dock="Right" FontSize="12"
                                                        Text="{Binding Description.Module}" />
                                             </DockPanel>
-                                            <CheckBox Grid.Column="2" Grid.Row="0" Content="Enabled" Margin="10,5,10,5"
+                                            <CheckBox Grid.Column="2" Grid.Row="0" Content="{DynamicResource LOCEnabledTitle}" Margin="10,5,10,5"
                                                       Grid.RowSpan="2" VerticalAlignment="Center"
                                                       IsChecked="{Binding Selected}" />
                                         </Grid>

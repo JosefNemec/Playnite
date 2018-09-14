@@ -60,6 +60,7 @@ Automatically imported games may reappear in Playnite after next import procedur
 
 
     <!--General-->
+    <sys:String x:Key="LOCEnabledTitle">Enabled</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Remove</sys:String>
     <sys:String x:Key="LOCCopyTitle">Copy</sys:String>
     <sys:String x:Key="LOCAddTitle">Add</sys:String>
@@ -381,6 +382,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tag(s)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Publisher(s)</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installed</sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">Installed</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Uninstalled</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Hidden</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favorite</sys:String>
