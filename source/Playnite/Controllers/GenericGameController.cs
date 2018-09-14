@@ -56,7 +56,7 @@ namespace Playnite.Controllers
                 {
                     if (Directory.Exists(Game.InstallDirectory))
                     {
-                        procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                        procMon.WatchDirectoryProcesses(Game.InstallDirectory, false, true);
                     }
                     else
                     {

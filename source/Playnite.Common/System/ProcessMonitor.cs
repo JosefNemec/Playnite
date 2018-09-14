@@ -35,14 +35,80 @@ namespace Playnite
             await WatchProcess(process);
         }
 
-        public async void WatchDirectoryProcesses(string directory, bool alreadyRunning)
+        public async void WatchDirectoryProcesses(string directory, bool alreadyRunning, bool byProcessNames = false)
         {
-            await WatchDirectory(directory, alreadyRunning);
+            if (byProcessNames)
+            {
+                await WatchDirectoryByProcessNames(directory, alreadyRunning);
+            }
+            else
+            {
+                await WatchDirectory(directory, alreadyRunning);
+            }
         }
 
         public void StopWatching()
         {
             watcherToken?.Cancel();
+        }
+
+        private async Task WatchDirectoryByProcessNames(string directory, bool alreadyRunning)
+        {
+            if (!Directory.Exists(directory))
+            {
+                throw new DirectoryNotFoundException($"Cannot watch directory processes, {directory} not found.");
+            }
+
+            var executables = Directory.GetFiles(directory, "*.exe", SearchOption.AllDirectories);
+            if (executables.Count() == 0)
+            {
+                throw new Exception($"Cannot watch directory processes {directory}, no executables found.");
+            }
+
+            var procNames = executables.Select(a => Path.GetFileName(a)).ToList();
+            watcherToken = new CancellationTokenSource();
+            await Task.Run(async () =>
+            {
+                var startedCalled = false;
+                var processStarted = false;
+
+                while (true)
+                {
+                    if (watcherToken.IsCancellationRequested)
+                    {
+                        return;
+                    }
+
+                    var processFound = false;
+                    var processes = Process.GetProcesses().Where(a => a.SessionId != 0);
+                    foreach (var process in processes)
+                    {
+                        if (process.TryGetMainModuleFileName(out var procPath))
+                        {
+                            if (procNames.Contains(Path.GetFileName(procPath)))
+                            {
+                                processFound = true;
+                                processStarted = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!alreadyRunning && processFound && !startedCalled)
+                    {
+                        OnTreeStarted();
+                        startedCalled = true;
+                    }
+
+                    if (!processFound && processStarted)
+                    {
+                        OnTreeDestroyed();
+                        return;
+                    }
+
+                    await Task.Delay(2000);
+                }
+            });
         }
 
         private async Task WatchDirectory(string directory, bool alreadyRunning)
