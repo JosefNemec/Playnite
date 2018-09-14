@@ -783,6 +783,7 @@ namespace Playnite.SDK.Models
         /// </summary>
         public Game()
         {
+            GameId = Guid.NewGuid().ToString();
         }
 
         /// <summary>
@@ -792,6 +793,7 @@ namespace Playnite.SDK.Models
         public Game(string name)
         {
             Name = name;
+            GameId = Guid.NewGuid().ToString();
         }
 
         /// <summary>

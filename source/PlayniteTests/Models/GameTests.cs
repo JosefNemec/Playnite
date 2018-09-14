@@ -45,5 +45,13 @@ namespace PlayniteTests.Models
             game.ExpandVariables(string.Empty);
             game.ExpandVariables(null);
         }
+
+        [Test]
+        public void GameIdTest()
+        {
+            var game1 = new Game();
+            Assert.IsFalse(string.IsNullOrEmpty(game1.GameId));
+            Assert.AreNotEqual(game1.GameId, new Game().GameId);
+        }
     }
 }

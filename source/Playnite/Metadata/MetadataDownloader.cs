@@ -245,7 +245,8 @@ namespace Playnite.Metadata
 
                     // We need to get new instance from DB in case game got edited or deleted.
                     // We don't want to block game editing while metadata is downloading for other games.
-                    var game = database.GamesCollection.FindOne(a => a.GameId == games[i].GameId);
+                    // TODO: Use Id instead of GameId once we replace LiteDB and have proper autoincrement Id
+                    var game = database.GamesCollection.FindOne(a => a.PluginId == games[i].PluginId && a.GameId == games[i].GameId);
                     if (game == null)
                     {
                         logger.Warn($"Game {game.GameId} no longer in DB, skipping metadata download.");
