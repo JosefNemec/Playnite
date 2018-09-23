@@ -60,6 +60,7 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
 
 
     <!--General-->
+    <sys:String x:Key="LOCEnabledTitle">Habilitado</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Remover</sys:String>
     <sys:String x:Key="LOCCopyTitle">Copiar</sys:String>
     <sys:String x:Key="LOCAddTitle">Adicionar</sys:String>
@@ -277,7 +278,7 @@ Qualquer tarefa sendo executada (como a importação de metadados) será cancela
 Não se aplica retroativamente a jogos existentes.</sys:String>
 
     <sys:String x:Key="LOCImportError">Erro de importação</sys:String>
-    <sys:String x:Key="LOCLoginChecking">Verificando...</sys:String>
+    <sys:String x:Key="LOCLoginChecking">Verificando o estado da autenticação...</sys:String>
     <sys:String x:Key="LOCLoginRequired">Autentificação requerida</sys:String>
     <sys:String x:Key="LOCLoginFailed">Falha na autenticação</sys:String>
     <sys:String x:Key="LOCLoggedIn">Usuário autenticado</sys:String>
@@ -361,7 +362,7 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Ascendente</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Descendente</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">Não agrupar</sys:String>
-    <sys:String x:Key="LOCMenuGroupProvider">Agrupar por provedor</sys:String>
+    <sys:String x:Key="LOCMenuGroupProvider">Agrupar por biblioteca</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">Agrupar por categoria</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Agrupar por plataforma</sys:String>
 
@@ -370,7 +371,7 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">Imagem de capa</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Imagem de fundo</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Nome para ordenação</sys:String>
-    <sys:String x:Key="LOCGameProviderTitle">Provedor</sys:String>
+    <sys:String x:Key="LOCGameProviderTitle">Biblioteca</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Nome</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Nome da conta</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Plataforma</sys:String>
@@ -381,6 +382,7 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Marcadores</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Distribuidora</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Instalado</sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">Instalado</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Desinstalado</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Oculto</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favorito</sys:String>
