@@ -13,12 +13,12 @@ namespace Playnite.SDK.Plugins
     public interface IPlugin : IDisposable
     {
         /// <summary>
-        /// Gest plugin settings view.
+        /// Gets plugin settings view or null if plugin doesn't provide settings view.
         /// </summary>
         UserControl SettingsView { get; }
 
         /// <summary>
-        /// Gets plugin settings.
+        /// Gets plugin settings or null if plugin doesn't provide any settings.
         /// </summary>
         ISettings Settings { get; }
 

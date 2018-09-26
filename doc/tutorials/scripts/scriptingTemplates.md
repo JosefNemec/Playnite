@@ -5,18 +5,6 @@ These are full script file templates that specify all event functions and one cu
 
 **PowerShell** Save as *.ps1 file:
 ```powershell
-$global:__attributes = @{
-    "Author" = "";
-    "Version" = ""
-}
-
-$global:__exports = @(
-    @{
-        "Name" = "PowerShell Function";
-        "Function" = "MenuFunction"
-    }
-)
-
 function global:OnScriptLoaded()
 {
 }
@@ -39,7 +27,7 @@ function global:OnGameStopped()
 {
     param(
         $game,
-        $ellapsedSeconds
+        $elapsedSeconds
     )
 }
 
@@ -64,18 +52,6 @@ function global:MenuFunction()
 
 **IronPython** Save as *.py file:
 ```python
-__attributes = {
-    'Author': '',
-    'Version': ''
-}
-
-__exports = [
-    {
-        'Name': 'Python Function',
-        'Function' : 'menu_function'
-    }
-]
-
 def on_script_loaded():
     pass
 
@@ -85,7 +61,7 @@ def on_game_starting(game):
 def on_game_started(game):
     pass
 
-def on_game_stopped(game, ellapsed_seconds):
+def on_game_stopped(game, elapsed_seconds):
     pass
 
 def on_game_installed(game):
@@ -96,4 +72,17 @@ def on_game_uninstalled(game):
 
 def menu_function():
     pass
+```
+
+**Manifest file**
+
+```yaml
+Name: Script Extension
+Author: Author's Name
+Version: 1.0
+Module: scriptName.ps1 # or scriptName.py
+Type: Script
+Functions: 
+    - Description: Menu Function Name
+      FunctionName: MenuFunction # or menu_function
 ```

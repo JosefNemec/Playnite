@@ -1,22 +1,35 @@
 - name: Introduction
   href: intro.md
+  
 - name: Scripting
   items:
     - name: Introduction
-      href: scripting.md
+      href: scripts/scripting.md
     - name: Reacting to Events
-      href: scriptingEvents.md
-    - name: Writing to Log Files
-      href: scriptingLogging.md
+      href: scripts/scriptingEvents.md
     - name: Working with Game Database
-      href: scriptingDatabase.md
+      href: scripts/scriptingDatabase.md
     - name: UI Interaction
-      href: scriptingUI.md
-    - name: Working With Dynamic Variables
-      href: scriptingVariables.md
+      href: scripts/scriptingUI.md
     - name: Templates
-      href: scriptingTemplates.md
+      href: scripts/scriptingTemplates.md
+
 - name: Plugins
   items:
     - name: Introduction
-      href: plugins.md
+      href: plugins/plugins.md
+    - name: Generic Plugins
+      href: plugins/genericPlugins.md
+    - name: Library Plugins
+      href: plugins/libraryPlugins.md
+    - name: Plugin settings
+      href: plugins/pluginSettings.md
+
+- name: Docs
+  items:
+    - name: Extension Manifest
+      href: extensionsManifest.md  
+    - name: Working With Dynamic Variables
+      href: expandingVariables.md
+    - name: Writing to Log Files
+      href: logging.md

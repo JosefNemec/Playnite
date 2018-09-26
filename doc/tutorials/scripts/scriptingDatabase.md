@@ -97,7 +97,7 @@ All game related image files are stored in game database itself, with only refer
 
 ### Exporting Game Cover
 
-Game cover images are referenced in [Image](xref:Playnite.SDK.Models.Game.Image) property. To save a file first get the file record by calling [GetFile](xref:Playnite.SDK.IGameDatabaseAPI.GetFile(System.String)) method. `GetFile` returns [DatabaseFile](xref:Playnite.SDK.Models.DatabaseFile), which contains additional information like file name, size and others. To export file call [SaveFile](xref:Playnite.SDK.IGameDatabaseAPI.SaveFile(System.String,System.String)) method.
+Game cover images are referenced in [CoverImage](xref:Playnite.SDK.Models.Game.CoverImage) property. To save a file first get the file record by calling [GetFile](xref:Playnite.SDK.IGameDatabaseAPI.GetFile(System.String)) method. `GetFile` returns [DatabaseFile](xref:Playnite.SDK.Models.DatabaseFile), which contains additional information like file name, size and others. To export file call [SaveFile](xref:Playnite.SDK.IGameDatabaseAPI.SaveFile(System.String,System.String)) method.
 
 Following example exports cover image of the first game in database:
 
@@ -105,7 +105,7 @@ Following example exports cover image of the first game in database:
 
 ```powershell
 $game = $PlayniteApi.Database.GetGames()[0]
-$cover = $PlayniteApi.Database.GetFile($game.Image)
+$cover = $PlayniteApi.Database.GetFile($game.CoverImage)
 $PlayniteApi.Database.SaveFile($cover.Id, $cover.Filename)
 ```
 
@@ -113,7 +113,7 @@ $PlayniteApi.Database.SaveFile($cover.Id, $cover.Filename)
 
 ```python
 game = PlayniteApi.Database.GetGames()[0]
-cover = PlayniteApi.Database.GetFile(game.Image)
+cover = PlayniteApi.Database.GetFile(game.CoverImage)
 PlayniteApi.Database.SaveFile(cover.Id, cover.Filename)
 ```
 
@@ -130,9 +130,9 @@ Following example changes cover image of first game in database:
 
 ```powershell
 $game = $PlayniteApi.Database.GetGames()[0]
-$PlayniteApi.Database.RemoveImage($game.Image, $game)
+$PlayniteApi.Database.RemoveImage($game.CoverImage, $game)
 $fileId = $PlayniteApi.Database.AddFile("new_file_id", "c:\file.png")
-$game.Image = $fileId
+$game.CoverImage = $fileId
 $PlayniteApi.Database.UpdateGame($game)
 ```
 

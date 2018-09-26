@@ -4,7 +4,7 @@ Reacting to events
 Basics
 ---------------------
 
-Playnites's API allows script to react to various events like when game is started or installed.
+Playnite's API allows script to react to various events like when game is started or installed.
 
 Available Events
 ---------------------
@@ -59,18 +59,18 @@ function global:OnGameStopped()
 {
     param(
         $game,
-        $ellapsedSeconds
+        $elapsedSeconds
     )
     
-    "$($game.Name) was running for $ellapsedSeconds seconds" | Out-File "StoppedGame.txt"
+    "$($game.Name) was running for $elapsedSeconds seconds" | Out-File "StoppedGame.txt"
 }
 ```
 **IronPython**:
 
 ```python
-def on_game_stopped(game, ellapsed_seconds):
+def on_game_stopped(game, elapsed_seconds):
     with open("StoppedGame.txt", "w") as text_file:
-        text_file.write("{0} was running for {1} seconds".format(game.Name, ellapsed_seconds))
+        text_file.write("{0} was running for {1} seconds".format(game.Name, elapsed_seconds))
 ```
 
 ### Full File Examples
@@ -78,11 +78,6 @@ def on_game_stopped(game, ellapsed_seconds):
 **PowerShell** (save as *.ps1 file):
 
 ```powershell
-$global:__attributes = @{
-    "Author" = "TestAuthor";
-    "Version" = "1.0"
-}
-
 function global:OnGameStarted()
 {
     param(
@@ -96,26 +91,21 @@ function global:OnGameStopped()
 {
     param(
         $game,
-        $ellapsedSeconds
+        $elapsedSeconds
     )
     
-    "$($game.Name) was running for $ellapsedSeconds seconds" | Out-File "StoppedGame.txt"
+    "$($game.Name) was running for $elapsedSeconds seconds" | Out-File "StoppedGame.txt"
 }
 ```
 
 **IronPython** (save as *.py file):
 
 ```python
-__attributes = {
-    'Author': 'TestAuthor',
-    'Version': '1.0'
-}
-
 def on_game_started(game):
     with open("RunningGame.txt", "w") as text_file:
         text_file.write(game.Name)
 
-def on_game_stopped(game, ellapsed_seconds):
+def on_game_stopped(game, elapsed_seconds):
     with open("StoppedGame.txt", "w") as text_file:
-        text_file.write("{0} was running for {1} seconds".format(game.Name, ellapsed_seconds))
+        text_file.write("{0} was running for {1} seconds".format(game.Name, elapsed_seconds))
 ```
