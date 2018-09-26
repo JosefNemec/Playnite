@@ -16,6 +16,15 @@ Mandatory members
 | Name | Library name. |
 | GetGames | Return games available in library. |
 
+`GetGames` returns list of [Game](xref:Playnite.SDK.Models.Game) objects and these properties must be set correctly by the plugin in order for game to be imported properly:
+
+| Member | Description |
+| -- | -- |
+| GameId | Unique identifier used to differentiate games of the same plugin. |
+| PluginId | Source Id of the plugin importing game. |
+| PlayAction | Game action used to start the game. Only if game is reported as installed via `State` property. |
+| InstallDirectory | Installation location. Only if game is reported as installed via `State` property.  |
+
 Optional members
 ---------------------
 
