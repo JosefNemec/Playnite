@@ -101,7 +101,7 @@ namespace Playnite.Metadata
                         igdbData = igdbProvider.GetMetadata(game);
                     }
 
-                    if (igdbData.GameData == null && !game.IsCustomGame)
+                    if (igdbData?.GameData == null && !game.IsCustomGame)
                     {
                         if (storeData == null)
                         {
@@ -124,7 +124,7 @@ namespace Playnite.Metadata
                                 storeData = ProcessDownload(game, ref storeData);
                             }
 
-                            if (storeData.GameData != null)
+                            if (storeData?.GameData != null)
                             {
                                 return storeData;
                             }
@@ -144,7 +144,7 @@ namespace Playnite.Metadata
                             storeData = ProcessDownload(game, ref storeData);
                         }
 
-                        if (storeData.GameData == null)
+                        if (storeData?.GameData == null)
                         {
                             if (igdbData == null)
                             {

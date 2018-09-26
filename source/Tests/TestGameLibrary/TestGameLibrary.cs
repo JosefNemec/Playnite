@@ -17,7 +17,7 @@ namespace TestGameLibrary
 
         public Guid Id { get; } = Guid.Parse("D625A3B7-1AA4-41CB-9CD7-74448D28E99B");
 
-        public string Name { get; } = "Test";
+        public string Name { get; } = "Test Library";
 
         public string LibraryIcon { get; }
 
@@ -36,17 +36,41 @@ namespace TestGameLibrary
 
         public IEnumerable<Game> GetGames()
         {
-            throw new NotImplementedException();
+            return new List<Game>()
+            {
+                new Game("Notepad")
+                {
+                    GameId = "notepad",
+                    PluginId = Id,
+                    PlayAction = new GameAction()
+                    {
+                        Type = GameActionType.File,
+                        Path = "notepad.exe"
+                    },
+                    State = new GameState() { Installed = true }
+                },
+                new Game("Calculator")
+                {
+                    GameId = "calc",
+                    PluginId = Id,
+                    PlayAction = new GameAction()
+                    {
+                        Type = GameActionType.File,
+                        Path = "calc.exe"
+                    },
+                    State = new GameState() { Installed = true }
+                }
+            };
         }
 
         public IGameController GetGameController(Game game)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public ILibraryMetadataProvider GetMetadataDownloader()
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

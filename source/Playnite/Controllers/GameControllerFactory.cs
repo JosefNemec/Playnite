@@ -124,7 +124,7 @@ namespace Playnite.Controllers
                 {
                     if (plugin.Id == game.PluginId)
                     {
-                        return plugin.GetGameController(game);
+                        return plugin.GetGameController(game) ?? new GenericGameController(database, game);
                     }
                 }
             }

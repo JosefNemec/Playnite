@@ -388,9 +388,16 @@ namespace PlayniteUI
                 controller = controllers.GetGameBasedController(game, extensions.LibraryPlugins.Select(a => a.Value.Plugin));
                 if (controller == null)
                 {
+                    logger.Error("Game installation failed, library plugin not found.");
                     dialogs.ShowErrorMessage(
                         resources.FindString("LOCErrorLibraryPluginNotFound"),
                         resources.FindString("LOCGameError"));
+                    return;
+                }
+
+                if (controller is GenericGameController)
+                {
+                    logger.Error("Game installation failed, library plugin doesn't provide game controller.");
                     return;
                 }
 
@@ -435,9 +442,16 @@ namespace PlayniteUI
                 controller = controllers.GetGameBasedController(game, extensions.LibraryPlugins.Select(a => a.Value.Plugin));
                 if (controller == null)
                 {
+                    logger.Error("Game uninstallation failed, library plugin not found.");
                     dialogs.ShowErrorMessage(
                         resources.FindString("LOCErrorLibraryPluginNotFound"),
                         resources.FindString("LOCGameError"));
+                    return;
+                }
+
+                if (controller is GenericGameController)
+                {
+                    logger.Error("Game uninstallation failed, library plugin doesn't provide game controller.");
                     return;
                 }
 
