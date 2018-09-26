@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Playnite.API;
+using Playnite.Plugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,7 @@ namespace PlayniteTests.API
         [Test]
         public void FromFileTest()
         {            
-            var path =  Path.Combine(PlayniteTests.ResourcesPath, "extension.info");
+            var path =  Path.Combine(PlayniteTests.ResourcesPath, ExtensionFactory.ExtensionManifestFileName);
             var description = ExtensionDescription.FromFile(path);
             Assert.IsNotEmpty(description.Module);
             Assert.IsNotEmpty(description.Author);

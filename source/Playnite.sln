@@ -53,7 +53,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPlugin", "Tests\TestPlu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LibraryExporter", "LibraryExporter", "{EDD5E5EF-5115-42FF-8C8B-F664A08FC52B}"
 	ProjectSection(SolutionItems) = preProject
-		Plugins\LibraryExporter\extension.info = Plugins\LibraryExporter\extension.info
+		Plugins\LibraryExporter\extension.yaml = Plugins\LibraryExporter\extension.yaml
 		Plugins\LibraryExporter\LibraryExporter.ps1 = Plugins\LibraryExporter\LibraryExporter.ps1
 	EndProjectSection
 EndProject

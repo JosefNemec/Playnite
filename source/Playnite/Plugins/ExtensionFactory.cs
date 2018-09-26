@@ -46,6 +46,8 @@ namespace Playnite.Plugins
         private GameDatabase database;
         private GameControllerFactory controllers;
 
+        public const string ExtensionManifestFileName = "extension.yaml";
+
         public Dictionary<Guid, LoadedLibraryPlugin> LibraryPlugins
         {
             get;
@@ -213,7 +215,7 @@ namespace Playnite.Plugins
             {
                 foreach (var dir in Directory.GetDirectories(PlaynitePaths.ExtensionsUserDataPath))
                 {
-                    var descriptorPath = Path.Combine(dir, "extension.info");
+                    var descriptorPath = Path.Combine(dir, ExtensionManifestFileName);
                     if (File.Exists(descriptorPath))
                     {
                         plugins.Add(descriptorPath);
@@ -227,7 +229,7 @@ namespace Playnite.Plugins
             {
                 foreach (var dir in Directory.GetDirectories(PlaynitePaths.ExtensionsProgramPath))
                 {
-                    var descriptorPath = Path.Combine(dir, "extension.info");
+                    var descriptorPath = Path.Combine(dir, ExtensionManifestFileName);
                     if (File.Exists(descriptorPath))
                     {
                         var info = new FileInfo(descriptorPath);
