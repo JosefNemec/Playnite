@@ -76,7 +76,7 @@ namespace GogLibrary
             foreach (var program in programs)
             {
                 var match = Regex.Match(program.RegistryKeyName, @"(\d+)_is1");
-                if (!match.Success || program.Publisher != "GOG.com")
+                if (!match.Success || program.Publisher != "GOG.com" || program.RegistryKeyName.StartsWith("GOGPACK"))
                 {
                     continue;
                 }
