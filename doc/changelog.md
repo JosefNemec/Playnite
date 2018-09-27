@@ -2,15 +2,15 @@
 
 * **Breaking Changes**:
   * In order to unify terminology used in Playnite's UI and that in SDK, some classes and class members [were renamed](memberChanges2_0.md).
-  * Extensions (both plugins and scripts) has to provide [extension manifest](tutorials/extensionsManifest.md) otherwise they won't be loaded.
+  * Extensions (both plugins and scripts) have to provide [extension manifest](tutorials/extensionsManifest.md) otherwise they won't be loaded.
     * Various information about extension (author, version etc.) must be now stored in manifest file.
-  * Both plugins and scripts has to be stored in the same folder called `Extensions` (rather then in separate `Plugins` or `Scripts` folders).
-  * Signature for default C# plugins has changed and they now have to implement [IGenericPlugin] interface to be loaded.
+  * Both plugins and scripts have to be stored in the same folder called `Extensions` (rather then in separate `Plugins` or `Scripts` folders).
+  * Signature for default C# plugins has changed and they now have to implement `IGenericPlugin` interface to be loaded.
 
 * See [migration tutorial](tutorials/extensionMigration1to2.md) for step by step guide on how to convert existing   extensions to a new format.
 
 * New Plugin types. There are now two types of plugins that can be implemented:
-  * Generic Plugin: Same as the old plugins, used for add new general functionality.
+  * Generic Plugin: Same as the old plugins.
   * [Library Plugin](tutorials/plugins/libraryPlugins.md): Used to add new library providers responsible for automatic game import from various sources.
     * All existing supported library importers (Steam, GOG etc.) are now distributed as [library plugins](https://github.com/JosefNemec/Playnite/tree/master/source/Plugins).
 
