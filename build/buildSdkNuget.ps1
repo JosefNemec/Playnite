@@ -22,7 +22,7 @@ if (!$SkipBuild)
     }
 
     StartAndWait "nuget.exe" "restore ..\source\PlayniteSDK\packages.config -PackagesDirectory ..\source\packages"
-    $project = Join-Path $pwd "..\source\PlayniteSDK\PlayniteSDK.csproj"
+    $project = Join-Path $pwd "..\source\PlayniteSDK\Playnite.SDK.csproj"
     $msbuildPath = "c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe";
     $arguments = "`"$project`" /p:OutputPath=`"$outputPath`";Configuration=$configuration /t:Build";
     $compilerResult = StartAndWait $msbuildPath $arguments
@@ -34,7 +34,7 @@ if (!$SkipBuild)
     {
         if ($Sign)
         {
-            Join-Path $OutputPath "PlayniteSDK.dll" | SignFile
+            Join-Path $OutputPath "Playnite.SDK.dll" | SignFile
         }
     }
 }
@@ -42,7 +42,7 @@ if (!$SkipBuild)
 # -------------------------------------------
 #            Create NUGET
 # -------------------------------------------
-$version = (Get-ChildItem (Join-Path $OutputPath "PlayniteSDK.dll")).VersionInfo.ProductVersion
+$version = (Get-ChildItem (Join-Path $OutputPath "Playnite.SDK.dll")).VersionInfo.ProductVersion
 $version = $version -replace "\.0$", ""
 $spec = Get-Content "PlayniteSDK.nuspec"
 $spec = $spec -replace "{Version}", $version
