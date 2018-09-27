@@ -511,7 +511,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
 
     <!--Game actions-->
     <sys:String x:Key="LOCFavoriteGame">Add to Favorites</sys:String>
-    <sys:String x:Key="LOCRemoveFavoriteGame">Remove from Favorties</sys:String>
+    <sys:String x:Key="LOCRemoveFavoriteGame">Remove from Favorites</sys:String>
     <sys:String x:Key="LOCHideGame">Hide</sys:String>
     <sys:String x:Key="LOCUnHideGame">Show in Library</sys:String>
     <sys:String x:Key="LOCEditGame">Edit...</sys:String>
