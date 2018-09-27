@@ -112,7 +112,7 @@ end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
 var
-    UninstallerPath, UninstallerLogPath, UninstallRegKey, WinmdReferencePath: string;
+    UninstallerPath, UninstallerLogPath, UninstallRegKey, WinmdReferencePath, SdkPath: string;
 begin     
     if CurStep = ssPostInstall then
     begin
@@ -121,6 +121,12 @@ begin
         UninstallerLogPath := ExpandConstant('{app}\uninstall.log');        
         UninstallRegKey := 'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Playnite';
         WinmdReferencePath := ExpandConstant('{app}\Windows.winmd');
+        SdkPath := ExpandConstant('{app}\PlayniteSDK.dll');
+
+        if FileExists(SdkPath) = true then
+        begin
+            DeleteFile(SdkPath);
+        end;
 
         if FileExists(WinmdReferencePath) = true then
         begin
