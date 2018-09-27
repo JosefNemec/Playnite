@@ -112,14 +112,20 @@ end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
 var
-    UninstallerPath, UninstallerLogPath, UninstallRegKey: string;
+    UninstallerPath, UninstallerLogPath, UninstallRegKey, WinmdReferencePath: string;
 begin     
     if CurStep = ssPostInstall then
     begin
         { Cleanup old NSIS files and registry keys }
         UninstallerPath := ExpandConstant('{app}\uninstall.exe');
-        UninstallerLogPath := ExpandConstant('{app}\uninstall.log');
+        UninstallerLogPath := ExpandConstant('{app}\uninstall.log');        
         UninstallRegKey := 'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Playnite';
+        WinmdReferencePath := ExpandConstant('{app}\Windows.winmd');
+
+        if FileExists(WinmdReferencePath) = true then
+        begin
+            DeleteFile(WinmdReferencePath);
+        end;
 
         if FileExists(UninstallerPath) = true then
         begin

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Playnite;
+using Playnite.Common.System;
 
 namespace PlayniteTests
 {

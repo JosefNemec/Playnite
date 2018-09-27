@@ -22,6 +22,8 @@ namespace PlayniteUI
         void Close();
 
         void Close(bool? resutl);
+
+        WindowBase Window { get; }
     }
 
     public abstract class WindowFactory : IWindowFactory

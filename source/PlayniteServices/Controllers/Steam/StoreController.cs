@@ -19,11 +19,7 @@ namespace PlayniteServices.Controllers.Steam
             var cache = appsColl.FindById(appId);
             if (cache != null)
             {
-                var dateDiff = DateTime.Now - cache.CreationTime;
-                if (dateDiff.TotalHours <= Steam.StoreCacheTimeout)
-                {
-                    return new ServicesResponse<string>(cache.Data, string.Empty);
-                }
+                return new ServicesResponse<string>(cache.Data, string.Empty);
             }
 
             return new ServicesResponse<string>(string.Empty, string.Empty);

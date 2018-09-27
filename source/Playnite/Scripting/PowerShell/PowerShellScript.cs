@@ -1,4 +1,5 @@
 ﻿using Playnite.Models;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections;
@@ -11,31 +12,17 @@ namespace Playnite.Scripting.PowerShell
 {
     public class PowerShellScript : PlayniteScript
     {
+        private static ILogger logger = LogManager.GetLogger();
+
         public PowerShellRuntime Runtime
         {
             get; private set;
         }
 
-        public PowerShellScript(string path) : base(path, ScriptLanguage.PowerShell)
+        public PowerShellScript(string path) : base(path)
         {
             Runtime = new PowerShellRuntime();
             Runtime.ExecuteFile(path);
-            var attributes = Runtime.GetVariable("__attributes");
-            if (attributes != null)
-            {
-                Attributes = ((Hashtable)attributes).Cast<DictionaryEntry>().ToDictionary(kvp => (string)kvp.Key, kvp => (string)kvp.Value);
-            }
-
-            var exports = Runtime.GetVariable("__exports");
-            if (exports != null)
-            {
-                FunctionExports = new List<ScriptFunctionExport>();
-                var funcs = (IEnumerable<object>)exports;
-                foreach (Hashtable func in funcs)
-                {
-                    FunctionExports.Add(new ScriptFunctionExport(func["Name"].ToString(), func["Function"].ToString(), this));
-                }
-            }
         }
 
         public override void Dispose()
@@ -54,11 +41,11 @@ namespace Playnite.Scripting.PowerShell
             Runtime.SetVariable(name, value);
         }
 
-        public override void OnScriptLoaded()
+        public override void OnApplicationStarted()
         {
-            if (Runtime.GetFunctionExits("OnScriptLoaded"))
+            if (Runtime.GetFunctionExits("OnApplicationStarted"))
             {
-                Runtime.Execute("OnScriptLoaded");
+                Runtime.Execute("OnApplicationStarted");
             }
         }
 

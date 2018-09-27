@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Playnite;
 using Playnite.Database;
+using Playnite.Database.Events;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;

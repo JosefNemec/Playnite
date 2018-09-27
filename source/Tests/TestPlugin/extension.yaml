@@ -1,0 +1,5 @@
+﻿Name: Test Generic Plugin
+Author: Josef Nemec
+Version: 1.0
+Module: TestPlugin.dll
+Type: GenericPlugin

@@ -1,6 +1,6 @@
-﻿using NLog;
-using Playnite;
+﻿using Playnite;
 using Playnite.SDK;
+using Playnite.Settings;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace PlayniteUI.ViewModels
 {
     public class CrashHandlerViewModel : ObservableObject
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
 
         private IWindowFactory window;
         private IDialogsFactory dialogs;
@@ -87,7 +87,7 @@ namespace PlayniteUI.ViewModels
 
         public void RestartApp()
         {
-            Process.Start(Paths.ExecutablePath);
+            Process.Start(PlaynitePaths.ExecutablePath);
             CloseView();
         }
 

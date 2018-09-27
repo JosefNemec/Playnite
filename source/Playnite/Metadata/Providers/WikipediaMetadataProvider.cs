@@ -211,7 +211,7 @@ namespace Playnite.Metadata.Providers
                 image = "http:" + image;
             }
 
-            game.Image = image;
+            game.CoverImage = image;
 
             // Other fields
             var gameProperties = new Dictionary<string, string>();

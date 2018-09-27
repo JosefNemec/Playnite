@@ -1,6 +1,5 @@
 ﻿using LiteDB;
 using Newtonsoft.Json;
-using Playnite.SDK.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,13 +14,12 @@ namespace Playnite.SDK.Models
     /// </summary>
     public class Platform : ObservableObject
     {
-        private ObjectId id;
+        private Guid id;
         /// <summary>
         /// Gets or sets platform database id.
         /// </summary>
         [BsonId]
-        [JsonConverter(typeof(ObjectIdJsonConverter))]
-        public ObjectId Id
+        public Guid Id
         {
             get => id;
             set
@@ -78,13 +76,14 @@ namespace Playnite.SDK.Models
         /// </summary>
         public Platform()
         {
+            Id = Guid.NewGuid();
         }
 
         /// <summary>
         /// Creates new instance of Platform with specific name.
         /// </summary>
         /// <param name="name">Platform name.</param>
-        public Platform(string name)
+        public Platform(string name) : this()
         {
             Name = name;
         }

@@ -5,7 +5,6 @@ using Playnite.Database;
 using Playnite.Emulators;
 using Playnite.SDK;
 using Playnite.SDK.Models;
-using Playnite.SDK.Converters;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -17,6 +16,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using Playnite.Common.System;
+using Playnite.Settings;
 
 namespace PlayniteUI.ViewModels
 {
@@ -400,12 +401,12 @@ namespace PlayniteUI.ViewModels
                         database.DeleteFile(dbPlatform.Icon);
                     }
 
-                    var extension = System.IO.Path.GetExtension(platform.Icon);
+                    var extension = Path.GetExtension(platform.Icon);
                     var name = Guid.NewGuid() + extension;
                     var id = string.Format(fileIdMask, platform.Id, name);
                     database.AddFile(id, name, File.ReadAllBytes(platform.Icon));
 
-                    if (Paths.AreEqual(System.IO.Path.GetDirectoryName(platform.Icon), Paths.TempPath))
+                    if (Paths.AreEqual(Path.GetDirectoryName(platform.Icon), PlaynitePaths.TempPath))
                     {
                         File.Delete(platform.Icon);
                     }
@@ -420,7 +421,7 @@ namespace PlayniteUI.ViewModels
                         database.DeleteFile(dbPlatform.Cover);
                     }
 
-                    var extension = System.IO.Path.GetExtension(platform.Cover);
+                    var extension = Path.GetExtension(platform.Cover);
                     var name = Guid.NewGuid() + extension;
                     var id = string.Format(fileIdMask, platform.Id, name);
                     database.AddFile(id, name, File.ReadAllBytes(platform.Cover));
@@ -473,7 +474,7 @@ namespace PlayniteUI.ViewModels
 
         public void AddPlatform()
         {
-            var platform = new Platform("New Platform") { Id = null };
+            var platform = new Platform("New Platform");
             Platforms.Add(platform);
             SelectedPlatform = platform;
         }
@@ -512,7 +513,7 @@ namespace PlayniteUI.ViewModels
                 return;
             }
 
-            if (path.EndsWith("exe", StringComparison.CurrentCultureIgnoreCase))
+            if (path.EndsWith("exe", StringComparison.OrdinalIgnoreCase))
             {
                 var ico = IconExtension.ExtractIconFromExe(path, true);
                 if (ico == null)
@@ -520,7 +521,7 @@ namespace PlayniteUI.ViewModels
                     return;
                 }
 
-                path = System.IO.Path.Combine(Paths.TempPath, Guid.NewGuid() + ".png");
+                path = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".png");
                 FileSystem.PrepareSaveFile(path);
                 ico.ToBitmap().Save(path, System.Drawing.Imaging.ImageFormat.Png);
             }
@@ -539,14 +540,14 @@ namespace PlayniteUI.ViewModels
 
         public void AddEmulator()
         {
-            var emulator = new Emulator("New Emulator") { Id = null };
+            var emulator = new Emulator("New Emulator");
             Emulators.Add(emulator);
             SelectedEmulator = emulator;
         }
 
         public void RemoveEmulator(Emulator emulator)
         {
-            var games = database.GamesCollection.Find(a => a.PlayTask != null && a.PlayTask.Type == GameTaskType.Emulator && a.PlayTask.EmulatorId == emulator.Id);
+            var games = database.GamesCollection.Find(a => a.PlayAction != null && a.PlayAction.Type == GameActionType.Emulator && a.PlayAction.EmulatorId == emulator.Id);
             if (games.Count() > 0)
             {
                 if (dialogs.ShowMessage(
@@ -571,8 +572,7 @@ namespace PlayniteUI.ViewModels
 
         public void CopyEmulator(Emulator emulator)
         {
-            var copy = emulator.CloneJson(new JsonSerializerSettings() { ContractResolver = new ObjectIdContractResolver() });
-            copy.Id = null;
+            var copy = emulator.CloneJson();
             copy.Name += " Copy";
             Emulators.Add(copy);
             SelectedEmulator = copy;
@@ -597,9 +597,8 @@ namespace PlayniteUI.ViewModels
 
         public void CopyEmulatorProfile(EmulatorProfile profile)
         {
-            var copy = profile.CloneJson(new JsonSerializerSettings() { ContractResolver = new ObjectIdContractResolver() });
+            var copy = profile.CloneJson();
             copy.Name += " Copy";
-            copy.Id = ObjectId.NewObjectId();
             SelectedEmulator.Profiles.Add(copy);
             SelectedEmulatorProfile = copy;
         }

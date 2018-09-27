@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props" Condition="Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props')" />
-  <Import Project="..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.props" Condition="Exists('..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.props')" />
-  <Import Project="..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -19,53 +16,27 @@
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
       <HintPath>..\packages\AngleSharp.0.9.9\lib\net45\AngleSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Flurl, Version=2.7.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -129,16 +100,13 @@
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SteamKit2, Version=1.8.3.0, Culture=neutral, PublicKeyToken=ed3ce47ed5aad940, processorArchitecture=MSIL">
-      <HintPath>..\packages\SteamKit2.1.8.3\lib\net45\SteamKit2.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Abstractions, Version=2.1.0.175, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Abstractions.2.1.0.175\lib\net40\System.IO.Abstractions.dll</HintPath>
+    <Reference Include="System.IO.Abstractions, Version=2.1.0.227, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.2.1.0.227\lib\net40\System.IO.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -153,10 +121,6 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Management.Automation" />
-    <Reference Include="Windows, Version=255.255.255.255, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.16299.0\Windows.winmd</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="YamlDotNet, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\YamlDotNet.4.2.2\lib\net35\YamlDotNet.dll</HintPath>
@@ -170,111 +134,62 @@
       <Link>Services\Models\Playnite\Playnite.cs</Link>
     </Compile>
     <Compile Include="API\DatabaseAPI.cs" />
+    <Compile Include="API\ScriptExtensionDescription.cs" />
     <Compile Include="API\Logger.cs" />
     <Compile Include="API\PlayniteAPI.cs" />
+    <Compile Include="API\PlayniteInfoAPI.cs" />
+    <Compile Include="API\PlaynitePathsAPI.cs" />
+    <Compile Include="API\ExtensionDescription.cs" />
     <Compile Include="App\UpdateManifest.cs" />
-    <Compile Include="Extensions\BitmapExtensions.cs" />
+    <Compile Include="BaseGameController.cs" />
+    <Compile Include="Database\DatabaseFilter.cs" />
+    <Compile Include="Database\DatabaseSettings.cs" />
+    <Compile Include="Database\EventBufferHandler.cs" />
+    <Compile Include="Database\Events\GamesCollectionChangedEvent.cs" />
+    <Compile Include="Database\Events\GameUpdateEvent.cs" />
+    <Compile Include="Database\Events\PlatformsCollectionChangedEvent.cs" />
+    <Compile Include="Database\Events\PlatformUpdateEvent.cs" />
     <Compile Include="Database\GameDatabase.cs" />
-    <Compile Include="Extensions\Enums.cs" />
-    <Compile Include="Metadata\IMetadataProvider.cs" />
+    <Compile Include="Database\GameLibrary.cs" />
+    <Compile Include="Database\OldModels\Ver3\Emulator.cs" />
+    <Compile Include="Extensions\EmulatorProfileExtensions.cs" />
+    <Compile Include="Extensions\GameActionExtensions.cs" />
+    <Compile Include="Extensions\GameExtensions.cs" />
+    <Compile Include="GameActionActivator.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
-    <Compile Include="Metadata\MetadataFile.cs" />
-    <Compile Include="Metadata\MetadataSearchResult.cs" />
     <Compile Include="Models\ActiveController.cs" />
-    <Compile Include="Plugins\Plugins.cs" />
+    <Compile Include="NLogLogProvider.cs" />
+    <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Scripting\IronPython\IronPython.cs" />
     <Compile Include="Scripting\IronPython\IronPythonScript.cs" />
     <Compile Include="Scripting\IScriptRuntime.cs" />
     <Compile Include="Scripting\PlayniteScript.cs" />
     <Compile Include="Scripting\PowerShell\PowerShell.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellScript.cs" />
-    <Compile Include="Scripting\Scripts.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />
-    <Compile Include="System\ProcessMonitor.cs" />
-    <Compile Include="Providers\GenericGameController.cs" />
-    <Compile Include="Resources.cs" />
     <Compile Include="Emulators\EmulatorDefinition.cs" />
     <Compile Include="Emulators\EmulatorFinder.cs" />
-    <Compile Include="Extensions\GameExtensions.cs" />
-    <Compile Include="GameHandler.cs" />
+    <Compile Include="GameTools.cs" />
     <Compile Include="Database\DatabaseStats.cs" />
-    <Compile Include="Providers\GameControllerFactory.cs" />
-    <Compile Include="InteropMethods.cs" />
+    <Compile Include="Controllers\GameControllerFactory.cs" />
     <Compile Include="App\IPlayniteApplication.cs" />
-    <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Metadata\Providers\IGDBMetadataProvider.cs" />
     <Compile Include="Metadata\MetadataDownloader.cs" />
-    <Compile Include="Models\Old\1\Emulator.cs" />
-    <Compile Include="Models\Old\1\Game.cs" />
-    <Compile Include="Models\Old\1\GameTask.cs" />
-    <Compile Include="Models\Old\1\Platform.cs" />
-    <Compile Include="Models\Old\0\Game.cs" />
-    <Compile Include="Settings\Paths.cs" />
+    <Compile Include="Settings\OldSettings\Plugins.cs" />
+    <Compile Include="Settings\PlaynitePaths.cs" />
     <Compile Include="PipeServer.cs" />
     <Compile Include="PlayniteEnvironment.cs" />
-    <Compile Include="System\ProcessStarter.cs" />
-    <Compile Include="System\Programs.cs" />
-    <Compile Include="System\FileSystem.cs" />
-    <Compile Include="Extensions\CloneObject.cs" />
-    <Compile Include="Constants.cs" />
     <Compile Include="Diagnostic.cs" />
     <Compile Include="Settings\FilterSettings.cs" />
-    <Compile Include="Extensions\IconExtension.cs" />
     <Compile Include="Metadata\Providers\WikipediaMetadataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\BattleNet\BattleNetLibrary.cs" />
-    <Compile Include="Providers\BattleNet\BattleNetSettings.cs" />
-    <Compile Include="Metadata\GameMetadata.cs" />
-    <Compile Include="Providers\BattleNet\BattleNetMetadataProvider.cs" />
-    <Compile Include="Providers\BattleNet\IBattleNetLibrary.cs" />
-    <Compile Include="Providers\BattleNet\BattleNetGameController.cs" />
-    <Compile Include="Providers\BattleNet\WebApiClient.cs" />
-    <Compile Include="Providers\EpicLauncher\EpicLauncherSettings.cs" />
-    <Compile Include="Providers\GOG\GogGameController.cs" />
-    <Compile Include="Providers\GOG\GogLibrary.cs" />
-    <Compile Include="Providers\GOG\GogGameTaskInfo.cs" />
-    <Compile Include="Providers\GOG\GogSettings.cs" />
-    <Compile Include="Controls\LoginWindow.xaml.cs">
-      <DependentUpon>LoginWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Providers\GOG\IGogLibrary.cs" />
-    <Compile Include="Providers\GOG\GogMetadataProvider.cs" />
-    <Compile Include="Providers\GOG\WebApiClient.cs" />
-    <Compile Include="Providers\GOG\WebApiTypes.cs" />
-    <Compile Include="Providers\IGameController.cs" />
-    <Compile Include="Providers\Origin\IOriginLibrary.cs" />
-    <Compile Include="Providers\Origin\OriginGameController.cs" />
-    <Compile Include="Providers\Origin\OriginLibrary.cs" />
-    <Compile Include="Providers\Origin\OriginSettings.cs" />
-    <Compile Include="Providers\Origin\OriginPaths.cs" />
-    <Compile Include="Providers\Origin\OriginMetadataProvider.cs" />
-    <Compile Include="Providers\Origin\WebApiClient.cs" />
-    <Compile Include="Providers\Origin\WebApiTypes.cs" />
-    <Compile Include="Providers\Steam\ISteamLibrary.cs" />
-    <Compile Include="Providers\Steam\SteamGameController.cs" />
-    <Compile Include="Providers\Steam\SteamLibrary.cs" />
-    <Compile Include="Providers\Steam\SteamApiClient.cs" />
-    <Compile Include="Providers\Steam\SteamMetadataProvider.cs" />
-    <Compile Include="Providers\Steam\SteamSettings.cs" />
-    <Compile Include="Providers\Steam\WebApiClient.cs" />
-    <Compile Include="Providers\Steam\VdfParser.cs" />
-    <Compile Include="Providers\Steam\WebApiTypes.cs" />
-    <Compile Include="Providers\Uplay\IUplayLibrary.cs" />
-    <Compile Include="Providers\Uplay\UplayGameController.cs" />
-    <Compile Include="Providers\Uplay\UplayLibrary.cs" />
-    <Compile Include="Providers\Uplay\UplaySettings.cs" />
-    <Compile Include="Roman.cs" />
-    <Compile Include="System\SafeFileEnumerator.cs" />
-    <Compile Include="Services\GenericResponse.cs" />
+    <Compile Include="ThirdPartyClients\EpicLauncherClient.cs" />
+    <Compile Include="Controllers\GenericGameController.cs" />
     <Compile Include="Services\ServicesClient.cs" />
-    <Compile Include="Settings\Settings.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="ThirdPartyToolsList.cs" />
-    <Compile Include="Timer.cs" />
+    <Compile Include="Settings\PlayniteSettings.cs" />
     <Compile Include="App\Updater.cs" />
     <Compile Include="Settings\ViewProperties.cs" />
-    <Compile Include="Web\Downloader.cs" />
-    <Compile Include="Web\HttpDownloader.cs" />
+    <Compile Include="ThirdPartyClients\ThirdPartyToolsList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\references\IronPythonStdLib.zip">
@@ -288,12 +203,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\LoginWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="IWshRuntimeLibrary">
       <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
       <VersionMajor>1</VersionMajor>
@@ -305,35 +214,22 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PlayniteSDK\PlayniteSDK.csproj">
+    <ProjectReference Include="..\Playnite.Common\Playnite.Common.csproj">
+      <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
+      <Name>Playnite.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
-      <Name>PlayniteSDK</Name>
+      <Name>Playnite.SDK</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets'))" />
-    <Error Condition="!Exists('..\packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets'))" />
-  </Target>
-  <Import Project="..\packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets')" />
-  <Import Project="..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets')" />
-  <Import Project="..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.targets" Condition="Exists('..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.targets')" />
-  <Import Project="..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets" Condition="Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets')" />
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

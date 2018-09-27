@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,11 +8,6 @@ using System.Windows;
 
 namespace PlayniteUI
 {
-    public interface IResourceProvider
-    {
-        string FindString(string key);
-    }
-
     public class ResourceProvider : IResourceProvider
     {
         private static ResourceProvider instance;

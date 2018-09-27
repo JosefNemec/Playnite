@@ -32,11 +32,11 @@ namespace PlayniteUI
                     return false;
                 }
 
-                if (GameTask.Type == GameTaskType.URL)
+                if (GameTask.Type == GameActionType.URL)
                 {
                     return false;
                 }
-                else if (GameTask.Type == GameTaskType.Emulator && !GameTask.OverrideDefaultArgs)
+                else if (GameTask.Type == GameActionType.Emulator && !GameTask.OverrideDefaultArgs)
                 {
                     return false;
                 }
@@ -54,7 +54,7 @@ namespace PlayniteUI
                     return false;
                 }
 
-                if (GameTask.Type == GameTaskType.Emulator && !GameTask.OverrideDefaultArgs)
+                if (GameTask.Type == GameActionType.Emulator && !GameTask.OverrideDefaultArgs)
                 {
                     return true;
                 }
@@ -72,7 +72,7 @@ namespace PlayniteUI
                     return false;
                 }
 
-                if (GameTask.Type == GameTaskType.Emulator && !GameTask.OverrideDefaultArgs)
+                if (GameTask.Type == GameActionType.Emulator && !GameTask.OverrideDefaultArgs)
                 {
                     return true;
                 }
@@ -90,7 +90,7 @@ namespace PlayniteUI
                     return false;
                 }
 
-                return GameTask.Type != GameTaskType.Emulator;
+                return GameTask.Type != GameActionType.Emulator;
             }
         }
 
@@ -103,7 +103,7 @@ namespace PlayniteUI
                     return false;
                 }
 
-                return GameTask.Type == GameTaskType.File;
+                return GameTask.Type == GameActionType.File;
             }
         }
 
@@ -116,7 +116,7 @@ namespace PlayniteUI
                     return false;
                 }
 
-                return GameTask.Type == GameTaskType.Emulator;
+                return GameTask.Type == GameActionType.Emulator;
             }
         }
 
@@ -129,11 +129,11 @@ namespace PlayniteUI
                     return false;
                 }
 
-                return GameTask.Type == GameTaskType.Emulator;
+                return GameTask.Type == GameActionType.Emulator;
             }
         }
 
-        public GameTask GameTask
+        public GameAction GameTask
         {
             get
             {
@@ -143,7 +143,7 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    return ((GameTask)DataContext);
+                    return ((GameAction)DataContext);
                 }
             }
         }
@@ -245,7 +245,7 @@ namespace PlayniteUI
                 return;
             }
 
-            if (GameTask?.EmulatorId != null && Emulators.Any(a => a.Id == GameTask?.EmulatorId))
+            if (GameTask?.EmulatorId != Guid.Empty && Emulators.Any(a => a.Id == GameTask?.EmulatorId))
             {
                 ComboEmulatorConfig.SelectedItem = Emulators.First(a => a.Id == GameTask.EmulatorId).Profiles?.FirstOrDefault();
             }
@@ -259,7 +259,7 @@ namespace PlayniteUI
                 return;
             }
             
-            if (GameTask?.EmulatorId != null && Emulators.Any(a => a.Id == GameTask?.EmulatorId))
+            if (GameTask?.EmulatorId != Guid.Empty && Emulators.Any(a => a.Id == GameTask?.EmulatorId))
             {
                 var emulator = Emulators.First(a => a.Id == GameTask.EmulatorId);
                 var emulatorProfile = emulator.Profiles?.FirstOrDefault(a => a.Id == GameTask.EmulatorProfileId);

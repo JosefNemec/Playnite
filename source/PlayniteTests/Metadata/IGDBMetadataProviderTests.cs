@@ -13,12 +13,12 @@ namespace PlayniteTests.Metadata
 {
     [TestFixture]
     public class IGDBMetadataProviderTests
-    {        
+    {
         private IGDBMetadataProvider provider = new IGDBMetadataProvider(new ServicesClient("http://localhost:5000/"));
 
         [Test]
         public void StandardDownloadTest()
-        {         
+        {
             var search = provider.SearchMetadata(new Game("Quake 3"));
             CollectionAssert.IsNotEmpty(search);
             var metadata = search.First();
@@ -42,15 +42,15 @@ namespace PlayniteTests.Metadata
         {
             var steamGame = new Game("")
             {
-                Provider = Provider.Steam,
-                ProviderId = "7200"
+                PluginId = Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB"),
+                GameId = "7200"
             };
 
             var result = provider.GetMetadata(steamGame);
             Assert.IsFalse(result.IsEmpty);
             Assert.AreEqual("TrackMania United", result.GameData.Name);
 
-            steamGame.ProviderId = "999999";
+            steamGame.GameId = "999999";
             result = provider.GetMetadata(steamGame);
             Assert.IsTrue(result.IsEmpty);
         }
@@ -77,7 +77,7 @@ namespace PlayniteTests.Metadata
 
         [Test]
         public void AlternateNameUseTest()
-        {            
+        {
             var metadata = provider.GetMetadata(new Game("pubg"));
             Assert.IsFalse(metadata.IsEmpty);
             Assert.AreEqual("PLAYERUNKNOWN'S BATTLEGROUNDS", metadata.GameData.Name);

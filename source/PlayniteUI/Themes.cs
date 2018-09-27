@@ -8,6 +8,7 @@ using Playnite;
 using System.Windows;
 using System.Windows.Markup;
 using System.Text.RegularExpressions;
+using Playnite.Settings;
 
 namespace PlayniteUI
 {
@@ -60,7 +61,7 @@ namespace PlayniteUI
         {
             get
             {
-                return GetThemesFromFolder(Paths.ThemesFullscreenPath);
+                return GetThemesFromFolder(PlaynitePaths.ThemesFullscreenPath);
             }
         }
 
@@ -68,7 +69,7 @@ namespace PlayniteUI
         {
             get
             {
-                return GetThemesFromFolder(Paths.ThemesPath);
+                return GetThemesFromFolder(PlaynitePaths.ThemesPath);
             }
         }
 
@@ -242,13 +243,13 @@ namespace PlayniteUI
 
         public static string GetThemePath(string themeName, bool fullscreen)
         {
-            return Path.Combine(fullscreen ? Paths.ThemesFullscreenPath : Paths.ThemesPath, themeName, themeName + ".xaml");
+            return Path.Combine(fullscreen ? PlaynitePaths.ThemesFullscreenPath : PlaynitePaths.ThemesPath, themeName, themeName + ".xaml");
         }
 
         public static string GetColorPath(string themeName, string color, bool fullscreen)
         {
             var colorFile = themeName + $".{color}.xaml";
-            return Path.Combine(fullscreen ? Paths.ThemesFullscreenPath : Paths.ThemesPath, themeName, colorFile);
+            return Path.Combine(fullscreen ? PlaynitePaths.ThemesFullscreenPath : PlaynitePaths.ThemesPath, themeName, colorFile);
         }
 
         public static Tuple<bool, string> IsThemeValid(string themeName, bool fullscreen)

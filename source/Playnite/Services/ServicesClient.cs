@@ -51,33 +51,6 @@ namespace Playnite.Services
             return result.Data;
         }
 
-        public void PostSteamAppInfoData(int appId, string data)
-        {
-            var content = new StringContent(data, Encoding.UTF8, "text/plain");
-            httpClient.PostAsync(Endpoint + $"/api/steam/appinfo/{appId}", content).Wait();
-        }
-
-        public string GetSteamAppInfoData(int appId)
-        {
-            return ExecuteGetRequest<string>($"/api/steam/appinfo/{appId}");
-        }
-
-        public void PostSteamStoreData(int appId, string data)
-        {
-            var content = new StringContent(data, Encoding.UTF8, "text/plain");
-            httpClient.PostAsync(Endpoint + $"/api/steam/store/{appId}", content).Wait();
-        }
-
-        public string GetSteamStoreData(int appId)
-        {
-            return ExecuteGetRequest<string>($"/api/steam/store/{appId}");
-        }
-
-        public List<Playnite.Providers.Steam.GetOwnedGamesResult.Game> GetSteamLibrary(string userName)
-        {
-            return ExecuteGetRequest<List<Playnite.Providers.Steam.GetOwnedGamesResult.Game>>("/api/steam/library/" + userName);
-        }
-
         public List<PlayniteServices.Models.IGDB.Game> GetIGDBGames(string searchName, string apiKey = null)
         {
             var encoded = Uri.EscapeDataString(searchName);
@@ -128,7 +101,8 @@ namespace Playnite.Services
             {
                 Id = winId,
                 WinVersion = Environment.OSVersion.VersionString,
-                PlayniteVersion = Updater.GetCurrentVersion().ToString()
+                PlayniteVersion = Updater.GetCurrentVersion().ToString(),
+                Is64Bit = Environment.Is64BitOperatingSystem
             };
 
             var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");

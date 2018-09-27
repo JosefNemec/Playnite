@@ -1,18 +1,21 @@
-﻿using NLog;
-using Playnite;
+﻿using Playnite;
+using Playnite.API;
 using Playnite.App;
+using Playnite.Common.System;
 using Playnite.Database;
 using Playnite.Metadata;
-using Playnite.Providers.Steam;
+using Playnite.Plugins;
 using Playnite.Scripting;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.Settings;
 using PlayniteUI.Commands;
 using PlayniteUI.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -25,11 +28,13 @@ namespace PlayniteUI.ViewModels
 {
     public class MainViewModel : ObservableObject, IDisposable
     {
-        public static Logger Logger = LogManager.GetCurrentClassLogger();
+        public static ILogger Logger = LogManager.GetLogger();
         private static object gamesLock = new object();
         protected bool ignoreCloseActions = false;
         private readonly SynchronizationContext context;
 
+        public PlayniteAPI PlayniteApi { get; }
+        public ExtensionFactory Extensions { get; }
         public IWindowFactory Window;
         public IDialogsFactory Dialogs;
         public IResourceProvider Resources;
@@ -118,8 +123,8 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private ObservableCollection<ThirdPartyTool> thirdPartyTools;
-        public ObservableCollection<ThirdPartyTool> ThirdPartyTools
+        private List<ThirdPartyTool> thirdPartyTools;
+        public List<ThirdPartyTool> ThirdPartyTools
         {
             get => thirdPartyTools;
             set
@@ -244,8 +249,8 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private Settings appSettings;
-        public Settings AppSettings
+        private PlayniteSettings appSettings;
+        public PlayniteSettings AppSettings
         {
             get => appSettings;
             private set
@@ -265,6 +270,10 @@ namespace PlayniteUI.ViewModels
                 OnPropertyChanged("GamesStats");
             }
         }
+
+        public DatabaseFilter DatabaseFilters { get; set; }
+        
+
 
         #region General Commands
         public RelayCommand<object> OpenFilterPanelCommand { get; private set; }
@@ -298,7 +307,6 @@ namespace PlayniteUI.ViewModels
         public RelayCommand<object> CloseGameSideBarCommand { get; private set; }
         public RelayCommand<object> OpenSearchCommand { get; private set; }
         public RelayCommand<object> ToggleFilterPanelCommand { get; private set; }
-        public RelayCommand<object> InstallScriptCommand { get; private set; }
         public RelayCommand<object> CheckForUpdateCommand { get; private set; }
         #endregion
 
@@ -330,8 +338,10 @@ namespace PlayniteUI.ViewModels
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources,
-            Settings settings,
-            GamesEditor gamesEditor)
+            PlayniteSettings settings,
+            GamesEditor gamesEditor,
+            PlayniteAPI playniteApi,
+            ExtensionFactory extensions)
         {
             context = SynchronizationContext.Current;
             Window = window;
@@ -341,47 +351,27 @@ namespace PlayniteUI.ViewModels
             GamesEditor = gamesEditor;
             Messages = new ObservableCollection<NotificationMessage>();
             AppSettings = settings;
+            PlayniteApi = playniteApi;
+            Extensions = extensions;
+            DatabaseFilters = new DatabaseFilter(database, extensions, AppSettings.FilterSettings);
 
             try
             {
-                ThirdPartyTools = new ObservableCollection<ThirdPartyTool>(ThirdPartyToolsList.GetDefaultInstalledTools());
+                ThirdPartyTools = ThirdPartyToolsList.GetTools(Extensions.LibraryPlugins?.Select(a => a.Value.Plugin));
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                Logger.Error(e, "failed to load third party tools");
+                Logger.Error(e, "Failed to load third party tools.");
             }
 
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             GamesStats = new DatabaseStats(database);
-
             InitializeCommands();
         }
 
         private void InitializeCommands()
         {
-            InstallScriptCommand = new RelayCommand<object>((game) =>
-            {
-                MainMenuOpened = false;
-                var script = Dialogs.SelectFile("Script File|*.py;*.ps1");
-                if (!string.IsNullOrEmpty(script))
-                {
-                    try
-                    {
-                        Scripts.InstallScript(script);
-                        Dialogs.ShowMessage(Resources.FindString("LOCScriptInstallSuccess"));
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.Error(e, $"Failed to install {script} file.");
-                        Dialogs.ShowMessage(Resources.FindString("LOCScriptInstallFail"), "", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
-                    }
-
-                    App.CurrentApp.Api.LoadScripts();
-                }
-            });
-
             OpenSearchCommand = new RelayCommand<object>((game) =>
             {
                 SearchOpened = true;
@@ -395,13 +385,13 @@ namespace PlayniteUI.ViewModels
             OpenFilterPanelCommand = new RelayCommand<object>((game) =>
             {
                 AppSettings.FilterPanelVisible = true;
-            });
+            });        
 
             CloseFilterPanelCommand = new RelayCommand<object>((game) =>
             {
                 AppSettings.FilterPanelVisible = false;
             });
-
+        
             OpenMainMenuCommand = new RelayCommand<object>((game) =>
             {
                 MainMenuOpened = true;
@@ -562,13 +552,19 @@ namespace PlayniteUI.ViewModels
             InvokeExtensionFunctionCommand = new RelayCommand<ExtensionFunction>((f) =>
             {
                 MainMenuOpened = false;
-                App.CurrentApp.Api?.InvokeExtension(f);
+                if (!Extensions.InvokeExtension(f, out var error))
+                {
+                    Dialogs.ShowMessage(
+                         Resources.FindString("LOCScriptExecutionError") + "\n\n" + error,
+                         Resources.FindString("LOCScriptError"),
+                         MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
 
             ReloadScriptsCommand = new RelayCommand<object>((f) =>
             {
                 MainMenuOpened = false;
-                App.CurrentApp.Api?.LoadScripts();
+                Extensions.LoadScripts(PlayniteApi, AppSettings.DisabledPlugins);
             }, new KeyGesture(Key.F12));
 
             ShowGameSideBarCommand = new RelayCommand<GameViewEntry>((f) =>
@@ -590,7 +586,8 @@ namespace PlayniteUI.ViewModels
                     AppSettings,
                     SettingsWindowFactory.Instance,
                     Dialogs,
-                    Resources));
+                    Resources,
+                    Extensions));
             }, new KeyGesture(Key.F4));
 
             StartGameCommand = new RelayCommand<Game>((game) =>
@@ -743,7 +740,7 @@ namespace PlayniteUI.ViewModels
             {
                 AppSettings.SaveSettings();
 
-                if (e.PropertyName != "Name")
+                if (e.PropertyName != "Name" && e.PropertyName != "SearchActive")
                 {
                     AppSettings.FilterPanelVisible = true;
                 }
@@ -769,6 +766,7 @@ namespace PlayniteUI.ViewModels
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 Logger.Error(e, "Failed to start 3rd party tool.");
+                Dialogs.ShowErrorMessage(Resources.FindString("LOCAppStartupError") + "\n\n" + e.Message, Resources.FindString("LOCStartupError"));
             }
         }
 
@@ -847,11 +845,11 @@ namespace PlayniteUI.ViewModels
                 return;
             }
 
-            GamesView = new GamesCollectionView(Database, AppSettings, IsFullscreenView);
+            GamesView = new GamesCollectionView(Database, AppSettings, IsFullscreenView, Extensions);
             BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
             if (GamesView.CollectionView.Count > 0)
             {
-                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).ProviderId);
+                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).Id);
             }
             else
             {
@@ -870,10 +868,10 @@ namespace PlayniteUI.ViewModels
 
         public async void UpdateDatabase(bool updateLibrary)
         {
-            await UpdateDatabase(updateLibrary, 0, true);
+            await UpdateDatabase(updateLibrary, true);
         }
 
-        public async Task UpdateDatabase(bool updateLibrary, ulong steamImportCatId, bool metaForNewGames)
+        public async Task UpdateDatabase(bool updateLibrary, bool metaForNewGames)
         {
             if (!Database.IsOpen)
             {
@@ -904,186 +902,26 @@ namespace PlayniteUI.ViewModels
                     ProgressVisible = true;
                     ProgressValue = 0;
                     ProgressTotal = 1;
-                    ProgressStatus = Resources.FindString("LOCProgressInstalledGames");
 
-                    try
+                    foreach (var pluginId in Extensions.LibraryPlugins.Keys)
                     {
-                        if (AppSettings.BattleNetSettings.IntegrationEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateInstalledGames(Provider.BattleNet));
-                            RemoveMessage(NotificationCodes.BattleNetInstalledImportError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to import installed Battle.net games.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.BattleNetInstalledImportError,
-                            Resources.FindString("LOCBnetInstalledImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
-
-                    try
-                    {
-                        if (AppSettings.UplaySettings.IntegrationEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateInstalledGames(Provider.Uplay));
-                            RemoveMessage(NotificationCodes.UplayInstalledImportError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to import installed Uplay games.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.UplayInstalledImportError,
-                            Resources.FindString("LOCUplayInstalledImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
-
-                    try
-                    {
-                        if (AppSettings.GOGSettings.IntegrationEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateInstalledGames(Provider.GOG));
-                            RemoveMessage(NotificationCodes.GOGLInstalledImportError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to import installed GOG games.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.GOGLInstalledImportError,
-                            Resources.FindString("LOCGOGInstalledImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
-
-                    try
-                    {
-                        if (AppSettings.SteamSettings.IntegrationEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateInstalledGames(Provider.Steam));
-                            RemoveMessage(NotificationCodes.SteamInstalledImportError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to import installed Steam games.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.SteamInstalledImportError,
-                            Resources.FindString("LOCSteamInstalledImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
-
-                    try
-                    {
-                        if (AppSettings.OriginSettings.IntegrationEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateInstalledGames(Provider.Origin));
-                            RemoveMessage(NotificationCodes.OriginInstalledImportError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to import installed Origin games.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.OriginInstalledImportError,
-                            Resources.FindString("LOCOriginInstalledImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
-
-                    ProgressStatus = Resources.FindString("LOCProgressGOGLibImport");
-
-                    try
-                    {
-                        if (AppSettings.GOGSettings.IntegrationEnabled && AppSettings.GOGSettings.LibraryDownloadEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateOwnedGames(Provider.GOG));
-                            RemoveMessage(NotificationCodes.GOGLibDownloadError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to download GOG library updates.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.GOGLibDownloadError,
-                            Resources.FindString("LOCGOGLibraryImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
-
-                    ProgressStatus = Resources.FindString("LOCProgressSteamLibImport");
-
-                    try
-                    {
-                        if (AppSettings.SteamSettings.IntegrationEnabled && AppSettings.SteamSettings.LibraryDownloadEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateOwnedGames(Provider.Steam));
-                            RemoveMessage(NotificationCodes.SteamLibDownloadError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to download Steam library updates.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.SteamLibDownloadError,
-                            Resources.FindString("LOCSteamLibraryImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
-
-                    if (steamImportCatId > 0)
-                    {
-                        ProgressStatus = Resources.FindString("LOCProgressSteamCategoryImport");
+                        var plugin = Extensions.LibraryPlugins[pluginId];
+                        ProgressStatus = string.Format(Resources.FindString("LOCProgressImportinGames"), plugin.Plugin.Name);
 
                         try
                         {
-                            var steamLib = new SteamLibrary();
-                            Database.ImportCategories(steamLib.GetCategorizedGames(steamImportCatId));
+                            addedGames.AddRange(GameLibrary.ImportGames(plugin.Plugin, Database));
+                            RemoveMessage($"{plugin.Plugin.Id} - download");
                         }
                         catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                         {
-                            Logger.Error(e, "Failed to import Steam categories.");
+                            Logger.Error(e, $"Failed to import games from plugin: {plugin.Plugin.Name}");
                             AddMessage(new NotificationMessage(
-                                NotificationCodes.SteamCatImportError,
-                                Resources.FindString("LOCSteamCategoryImportError") + $" {e.Message}",
-                                NotificationType.Error, null));
+                                $"{plugin.Plugin.Id} - download",
+                                string.Format(Resources.FindString("LOCLibraryImportError"), plugin.Plugin.Name) + $"\n{e.Message}",
+                                NotificationType.Error,
+                                null));
                         }
-                    }
-
-                    ProgressStatus = Resources.FindString("LOCProgressOriginLibImport");
-
-                    try
-                    {
-                        if (AppSettings.OriginSettings.IntegrationEnabled && AppSettings.OriginSettings.LibraryDownloadEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateOwnedGames(Provider.Origin));
-                            RemoveMessage(NotificationCodes.OriginLibDownloadError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to download Origin library updates.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.OriginLibDownloadError,
-                            Resources.FindString("LOCOriginLibraryImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
-                    }
-
-                    ProgressStatus = Resources.FindString("LOCProgressBattleNetLibImport");
-
-                    try
-                    {
-                        if (AppSettings.BattleNetSettings.IntegrationEnabled && AppSettings.BattleNetSettings.LibraryDownloadEnabled)
-                        {
-                            addedGames.AddRange(Database.UpdateOwnedGames(Provider.BattleNet));
-                            RemoveMessage(NotificationCodes.BattleNetLibDownloadImportError);
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, "Failed to download Battle.net library updates.");
-                        AddMessage(new NotificationMessage(
-                            NotificationCodes.BattleNetLibDownloadImportError,
-                            Resources.FindString("LOCBnetLibraryImportError") + $" {e.Message}",
-                            NotificationType.Error, null));
                     }
 
                     ProgressStatus = Resources.FindString("LOCProgressLibImportFinish");
@@ -1096,15 +934,19 @@ namespace PlayniteUI.ViewModels
                         ProgressTotal = addedGames.Count;
                         ProgressStatus = Resources.FindString("LOCProgressMetadata");
                         var metaSettings = new MetadataDownloaderSettings();
-                        metaSettings.ConfigureFields(MetadataSource.Store, true);
+                        metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                        var downloader = new MetadataDownloader(AppSettings);
+                        var downloader = new MetadataDownloader(Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
                         downloader.DownloadMetadataGroupedAsync(
                             addedGames,
                             Database,
                             metaSettings,
-                            (g, i, t) => ProgressValue = i + 1,
+                            (g, i, t) =>
+                            {
+                                ProgressValue = i + 1;
+                                ProgressStatus = Resources.FindString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
+                            },
                             GlobalTaskHandler.CancelToken).Wait();
                     }
                 });
@@ -1135,9 +977,19 @@ namespace PlayniteUI.ViewModels
                 ProgressValue = 0;
                 ProgressTotal = games.Count;
                 ProgressStatus = Resources.FindString("LOCProgressMetadata");
-                var downloader = new MetadataDownloader(AppSettings);
+
+                var downloader = new MetadataDownloader(Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
                 GlobalTaskHandler.ProgressTask =
-                    downloader.DownloadMetadataGroupedAsync(games, Database, settings, (g, i, t) => ProgressValue = i + 1, GlobalTaskHandler.CancelToken);
+                    downloader.DownloadMetadataGroupedAsync(
+                        games,
+                        Database,
+                        settings,
+                        (g, i, t) =>
+                        {
+                            ProgressValue = i + 1;
+                            ProgressStatus = Resources.FindString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
+                        },
+                        GlobalTaskHandler.CancelToken);
                 await GlobalTaskHandler.ProgressTask;
             }
             finally
@@ -1194,13 +1046,13 @@ namespace PlayniteUI.ViewModels
             var newGame = new Game()
             {
                 Name = "New Game",
-                Provider = Provider.Custom
+                State = new GameState() { Installed = true }
             };
 
             Database.AddGame(newGame);
             if (GamesEditor.EditGame(newGame) == true)
             {
-                var viewEntry = GamesView.Items.First(a => a.Game.ProviderId == newGame.ProviderId);
+                var viewEntry = GamesView.Items.First(a => a.Game.GameId == newGame.GameId);
                 SelectedGame = viewEntry;
             }
             else
@@ -1243,7 +1095,7 @@ namespace PlayniteUI.ViewModels
                 }
             }
         }
-
+        
         public void OpenAboutWindow(AboutViewModel model)
         {
             model.OpenView();
@@ -1275,9 +1127,9 @@ namespace PlayniteUI.ViewModels
             model.OpenView();
         }
 
-        public void SelectGame(string providerId)
+        public void SelectGame(int id)
         {
-            var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.ProviderId == providerId);
+            var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
             SelectedGame = viewEntry;
         }
 
@@ -1329,11 +1181,22 @@ namespace PlayniteUI.ViewModels
                             return;
                         }
 
-                        var game = Programs.GetGameFromExecutable(path);
+                        var game = GameExtensions.GetGameFromExecutable(path);
+                        var exePath = game.GetRawExecutablePath();
+                        if (!string.IsNullOrEmpty(exePath))
+                        {
+                            var ico = IconExtension.ExtractIconFromExe(exePath, true);
+                            if (ico != null)
+                            {
+                                var iconName = Guid.NewGuid().ToString() + ".png";
+                                game.Icon = Database.AddFileNoDuplicate($"images/custom/{iconName}", iconName, ico.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
+                            }                            
+                        }
+
                         Database.AddGame(game);
                         Database.AssignPcPlatform(game);
                         GamesEditor.EditGame(game);
-                        SelectGame(game.ProviderId);
+                        SelectGame(game.Id);
                     }
                     else if (Directory.Exists(path))
                     {
@@ -1357,7 +1220,7 @@ namespace PlayniteUI.ViewModels
             }), null);
         }
 
-        public void RemoveMessage(int id)
+        public void RemoveMessage(string id)
         {
             context.Send((c =>
             {
@@ -1371,7 +1234,7 @@ namespace PlayniteUI.ViewModels
 
         public void RemoveMessage(NotificationMessage message)
         {
-            context.Send((c => Messages.Remove(message)), null);
+            context.Send((c => Messages.Remove(message)), null);            
         }
 
         public void ClearMessages()
@@ -1391,7 +1254,7 @@ namespace PlayniteUI.ViewModels
                 }
                 else
                 {
-                    Dialogs.ShowMessage(Resources.FindString("LOCUpdateNoNewUpdateMessage"), string.Empty);
+                    Dialogs.ShowMessage(Resources.FindString("LOCUpdateNoNewUpdateMessage"), string.Empty);                    
                 }
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -1409,7 +1272,7 @@ namespace PlayniteUI.ViewModels
             }
 
             CloseView();
-            App.CurrentApp.OpenFullscreenView(false);
+            App.CurrentApp.OpenFullscreenView(false);            
         }
 
         public void OpenView()
@@ -1430,7 +1293,7 @@ namespace PlayniteUI.ViewModels
         public async void CancelProgress()
         {
             await GlobalTaskHandler.CancelAndWaitAsync();
-        }
+        }        
 
         public virtual void ClearFilters()
         {

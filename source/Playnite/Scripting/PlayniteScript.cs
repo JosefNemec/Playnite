@@ -1,5 +1,4 @@
-﻿using NLog;
-using Playnite.Models;
+﻿using Playnite.Models;
 using Playnite.Scripting.IronPython;
 using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
@@ -51,21 +50,11 @@ namespace Playnite.Scripting
 
     public abstract class PlayniteScript: IDisposable
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
-
-        public Dictionary<string, string> Attributes
-        {
-            get; set;
-        }
-
+        private static ILogger logger = LogManager.GetLogger();
+        
         public List<ScriptFunctionExport> FunctionExports
         {
             get; set;
-        }
-
-        public ScriptLanguage Language
-        {
-            get; private set;
         }
 
         public string Path
@@ -78,10 +67,9 @@ namespace Playnite.Scripting
             get => System.IO.Path.GetFileName(Path);
         }
 
-        public PlayniteScript(string path, ScriptLanguage language)
+        public PlayniteScript(string path)
         {
             Path = path;
-            Language = language;
         }
 
         public static PlayniteScript FromFile(string path)
@@ -120,7 +108,7 @@ namespace Playnite.Scripting
 
         public abstract void InvokeExportedFunction(ScriptFunctionExport function);
         public abstract void SetVariable(string name, object value);
-        public abstract void OnScriptLoaded();
+        public abstract void OnApplicationStarted();
         public abstract void OnGameStarting(Game game);
         public abstract void OnGameStarted(Game game);
         public abstract void OnGameStopped(Game game, long ellapsedSeconds);
