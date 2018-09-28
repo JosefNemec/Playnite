@@ -649,6 +649,16 @@ namespace Playnite.Database
             EmulatorsCollection = Database.GetCollection<Emulator>("emulators");
             ActiveControllersCollection = Database.GetCollection<ActiveController>("controllers");
 
+            // Reset indexes, should only happen in theory after db upgrade.
+            var gameIndexes = GamesCollection.GetIndexes().ToList();
+            if (gameIndexes.Count == 16)
+            {
+                gameIndexes.ForEach(a =>
+                {
+                    if (a.Field != "_id") GamesCollection.DropIndex(a.Field);
+                });
+            }
+
             // New DB setup
             if (!dbExists)
             {
