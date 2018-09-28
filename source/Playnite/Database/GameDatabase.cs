@@ -62,7 +62,7 @@ namespace Playnite.Database
             get; private set;
         }
 
-        public static readonly ushort DBVersion = 4;
+        public static readonly ushort DBVersion = 5;
 
         public event PlatformsCollectionChangedEventHandler PlatformsCollectionChanged;
         public event PlatformUpdatedEventHandler PlatformUpdated;
@@ -513,37 +513,97 @@ namespace Playnite.Database
                             action.Remove("IsPrimary");
                             action.Remove("IsBuiltIn");
                             action.Add("IsHandledByPlugin", handleByPlugin);
-                            if (action["Type"].AsString == "Emulator")
+               
+                            var oldEmulator = action["EmulatorId"];
+                            if (!oldEmulator.IsNull)
                             {
-                                var oldEmulator = action["EmulatorId"];
-                                if (!oldEmulator.IsNull)
+                                if (conEmulators.TryGetValue(oldEmulator, out var newEmu))
                                 {
-                                    if (conEmulators.TryGetValue(oldEmulator, out var newEmu))
-                                    {
-                                        action["EmulatorId"] = newEmu;
-                                    }
-                                    else
-                                    {
-                                        action.Remove("EmulatorId");
-                                    }
+                                    action["EmulatorId"] = newEmu;
                                 }
-
-                                var oldProfile = action["EmulatorProfileId"];
-                                if (!oldProfile.IsNull)
+                                else
                                 {
-                                    if (conEmuProfiles.TryGetValue(oldProfile, out var newProf))
-                                    {
-                                        action["EmulatorProfileId"] = newProf;
-                                    }
-                                    else
-                                    {
-                                        action.Remove("EmulatorProfileId");
-                                    }
+                                    action.Remove("EmulatorId");
+                                }
+                            }
+
+                            var oldProfile = action["EmulatorProfileId"];
+                            if (!oldProfile.IsNull)
+                            {
+                                if (conEmuProfiles.TryGetValue(oldProfile, out var newProf))
+                                {
+                                    action["EmulatorProfileId"] = newProf;
+                                }
+                                else
+                                {
+                                    action.Remove("EmulatorProfileId");
                                 }
                             }
                         }
 
                         db.Engine.UserVersion = 4;
+                    }
+
+                    // 4 to 5
+                    if (db.Engine.UserVersion == 4 && DBVersion > 4)
+                    {
+                        // Fix Game action that have invalid emualtor ids
+                        var gameCol = db.GetCollection("games");
+                        foreach (var game in gameCol.FindAll().ToList())
+                        {
+                            var fixApplied = false;
+                            var playAction = game["PlayAction"];
+                            if (!playAction.IsNull)
+                            {
+                                if (FixGameAction(playAction.AsDocument))
+                                {
+                                    fixApplied = true;
+                                }
+                                        
+                            }
+
+                            var otherActions = game["OtherActions"];
+                            if (!otherActions.IsNull)
+                            {
+                                foreach (BsonDocument task in otherActions.AsArray)
+                                {
+                                    if (FixGameAction(task))
+                                    {
+                                        fixApplied = true;
+                                    }
+                                }
+                            }
+
+                            if (fixApplied)
+                            {
+                                gameCol.Update(game);
+                            }
+                        }
+
+                        bool FixGameAction(BsonDocument action)
+                        {
+                            var fixedAny = false;
+                            if (action["Type"].AsString != "Emulator")
+                            {
+                                var oldEmulator = action["EmulatorId"];
+                                if (!oldEmulator.IsNull)
+                                {
+                                    action.Remove("EmulatorId");
+                                    fixedAny = true;
+                                }
+
+                                var oldProfile = action["EmulatorProfileId"];
+                                if (!oldProfile.IsNull)
+                                {
+                                    action.Remove("EmulatorProfileId");
+                                    fixedAny = true;
+                                }
+                            }
+
+                            return fixedAny;
+                        }
+
+                        db.Engine.UserVersion = 5;
                     }
 
                     trans.Commit();
