@@ -115,5 +115,21 @@ namespace Playnite
                 archive.CreateEntryFromFile(file, archiveName);
             }
         }
+
+        public static bool CanWriteToFolder(string folder)
+        {
+            try
+            {
+                using (var stream = File.Create(Path.Combine(folder, Path.GetRandomFileName()), 1, FileOptions.DeleteOnClose))
+                {
+                }
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

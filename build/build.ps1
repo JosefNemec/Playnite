@@ -104,8 +104,7 @@ function BuildInnoInstaller()
         [Parameter(Mandatory = $true)]
         [string]$DestinationFile,
         [Parameter(Mandatory = $true)]
-        [string]$Version,
-        [switch]$IncludeVcredist
+        [string]$Version
     )
 
     $innoCompiler = "C:\Program Files (x86)\Inno Setup 5\ISCC.exe"
@@ -115,22 +114,12 @@ function BuildInnoInstaller()
     $destinationDir = Split-Path $DestinationFile -Parent
 
     Write-OperationLog "Building Inno Setup $destinationExe..."
-    if ($IncludeVcredist)
-    {
-        Write-DebugLog "Including vcredist into install package."
-    }
-
     New-Folder $destinationDir
     $scriptContent = Get-Content $innoScript
     $scriptContent = $scriptContent -replace "{source_path}", $SourceDir
     $scriptContent = $scriptContent -replace "{version}", $Version
     $scriptContent = $scriptContent -replace "{out_dir}", $destinationDir
     $scriptContent = $scriptContent -replace "{out_file_name}", ($destinationExe -replace "\..+`$", "")
-    if ($IncludeVcredist)
-    {
-        $scriptContent = $scriptContent -replace ";{vcredist}", ""
-    }
-
     $scriptContent | Out-File $innoTempScript "utf8"
    
     $res = StartAndWait $innoCompiler "/Q $innoTempScript" -WorkingDir $PWD    
@@ -281,7 +270,7 @@ if ($Installers)
     }
     else
     {        
-        BuildInnoInstaller $OutputDir $installerPath $buildNumber -IncludeVcredist
+        BuildInnoInstaller $OutputDir $installerPath $buildNumber
     }
 
     if ($Sign)
@@ -307,9 +296,8 @@ if ($UpdateDiffs)
         $diffDir = Join-Path $InstallerDir $diffString
         CreateDirectoryDiff (Join-Path $BuildsStorageDir $diffVersion) $OutputDir $diffDir
 
-        $includeVcredist = (Get-ChildItem $diffDir | Where { $_.Name -match "CefSharp|libcef" }) -ne $null
         $installerPath = Join-Path $InstallerDir "$diffString.exe"
-        BuildInnoInstaller $diffDir $installerPath $buildNumber -IncludeVcredist:$includeVcredist
+        BuildInnoInstaller $diffDir $installerPath $buildNumber
         Remove-Item $diffDir -Recurse -Force
         
         if ($Sign)

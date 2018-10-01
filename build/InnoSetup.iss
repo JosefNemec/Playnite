@@ -25,7 +25,7 @@ Compression=lzma2/max
 CompressionThreads=4
 LZMANumBlockThreads=4
 SolidCompression=yes
-PrivilegesRequired=admin
+PrivilegesRequired=lowest
 VersionInfoVersion={#MyAppVersion}
 VersionInfoCompany={#MyAppPublisher}
 VersionInfoCopyright={#MyAppPublisher}
@@ -45,7 +45,6 @@ Name: "startmenu"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: 
 
 [Files]
 Source: "{#SourcePath}\*"; DestDir: "{app}"; Flags: ignoreversion createallsubdirs recursesubdirs; Excludes: "*.log"
-;{vcredist}Source: "redist\vcredist_x86.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall
 
 [Icons]
 Name: "{userappdata}\Microsoft\Windows\Start Menu\Programs\Playnite\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: startmenu; Check: GetCreateIcons
@@ -54,7 +53,6 @@ Name: "{commondesktop}\Playnite"; Filename: "{app}\{#MyAppExeName}"; Tasks: desk
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "Launch Playnite"; Flags: nowait postinstall shellexec
-Filename: "{tmp}\vcredist_x86.exe"; Parameters: "/install /passive /norestart"; StatusMsg: "Installing VC++ Redistributables..."; Flags: skipifdoesntexist
 
 [Code]
 var

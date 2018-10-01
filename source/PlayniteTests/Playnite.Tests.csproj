@@ -135,6 +135,7 @@
     <Compile Include="Models\Old\1\GameTask.cs" />
     <Compile Include="Models\Old\1\Platform.cs" />
     <Compile Include="Models\Old\Provider.cs" />
+    <Compile Include="FileSystemTests.cs" />
     <Compile Include="PlayniteTests.cs" />
     <Compile Include="Plugins\PluginFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
