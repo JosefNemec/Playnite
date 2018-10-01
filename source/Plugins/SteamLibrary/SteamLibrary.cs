@@ -134,7 +134,13 @@ namespace SteamLibrary
                 var libFolder = Path.Combine(folder, "steamapps");
                 if (Directory.Exists(libFolder))
                 {
-                    GetInstalledGamesFromFolder(libFolder).ForEach(a => games.Add(a.GameId, a));
+                    GetInstalledGamesFromFolder(libFolder).ForEach(a =>
+                    {
+                        if (!games.ContainsKey(a.GameId))
+                        {
+                            games.Add(a.GameId, a);
+                        }
+                    });
                 }
                 else
                 {
