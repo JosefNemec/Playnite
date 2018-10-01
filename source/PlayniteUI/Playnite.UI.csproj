@@ -777,9 +777,9 @@ xcopy "$(SolutionDir)\Plugins\BattleNetLibrary\bin\$(ConfigurationName)" "$(Targ
 xcopy "$(SolutionDir)\Plugins\UplayLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\UplayLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\UplayLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\TwitchLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\TwitchLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\TwitchLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\LibraryExporter" "$(TargetDir)\Extensions\LibraryExporter\" /e /y
-xcopy "$(SolutionDir)\..\references\XInputInterface.dll" "$(TargetDir)"
-xcopy "$(SolutionDir)\..\references\msvcp120.dll" "$(TargetDir)"
-xcopy "$(SolutionDir)\..\references\msvcr120.dll" "$(TargetDir)"</PostBuildEvent>
+xcopy "$(SolutionDir)\..\references\XInputInterface.dll" "$(TargetDir)" /y
+xcopy "$(SolutionDir)\..\references\msvcp120.dll" "$(TargetDir)" /y
+xcopy "$(SolutionDir)\..\references\msvcr120.dll" "$(TargetDir)" /y</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
