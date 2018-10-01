@@ -172,7 +172,9 @@ function CreateDirectoryDiff()
     Copy-Item (Join-Path $OutPath "*")  $tempPath -Recurse -Force
     $tempPathFiles = Get-ChildItem $tempPath -Recurse | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
     $tempDiff = Compare-Object -ReferenceObject $targetDirFiles -DifferenceObject $tempPathFiles -Property Hash -PassThru
-
+    
+    # Ignore removed files
+    $tempDiff = $tempDiff | Where { Test-Path ([Regex]::Replace($_.Path, [Regex]::Escape($tempPath), $TargetDir, "IgnoreCase")) }
     if ($tempDiff -ne $null)
     {
         $tempDiff | ForEach { Write-ErrorLog "Diff fail: $($_.Path)" }
