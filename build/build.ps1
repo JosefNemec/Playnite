@@ -19,10 +19,6 @@
     # Target directory for installer files
     [string]$InstallerDir = $PWD,
 
-    # Installer technology
-    [ValidateSet("nsis", "inno")]
-    [string]$InstallerType = "inno",
-
     # Playnite version dirs used for diff installers
     [array]$UpdateDiffs,
 
@@ -44,57 +40,6 @@
 
 $ErrorActionPreference = "Stop"
 & .\common.ps1
-
-function BuildNsisInstaller()
-{
-    param(
-        [Parameter(Mandatory = $true)]
-        [string]$SourceDir,
-        [Parameter(Mandatory = $true)]
-        [string]$DestinationFile,
-        [Parameter(Mandatory = $true)]
-        [string]$Version
-    )
-
-    Write-OperationLog "Building NSIS setup..."
-        
-    $nsisCompiler = "c:\Program Files (x86)\NSIS\makensis.exe"
-    $installerScript = "NsisSetup.nsi"
-    $installerTempScript = "NsisSetup.temp.nsi"
-
-    $destinationDir = Split-Path $DestinationFile -Parent
-    New-Folder $destinationDir
-
-    $scriptContent = Get-Content $installerScript
-    $files = Get-ChildItem $SourceDir -Recurse
-    foreach ($file in $files)
-    {        
-        $name = $file.FullName.Replace($SourceDir, "").TrimStart("\")
-
-        if (Test-Path $file.FullName -PathType Container)
-        {
-            $filesString += "`$`{CreateDirectory} `"`$INSTDIR\$($name)`"`r`n"
-        }
-        else
-        {
-            $name = $file.FullName.Replace($SourceDir, "").TrimStart("\")
-            $filesString += "`$`{FileOname} `"$($name)`" `"$($file.FullName)`"`r`n"
-        }        
-    }
-
-    $scriptContent = $scriptContent -replace ";{files_here}", $filesString
-    $scriptContent = $scriptContent -replace ";{out_file_name}", "`"$DestinationFile`""
-    $scriptContent | Out-File $installerTempScript "utf8"
-
-    $arguments = '/DVERSION="{0}" {1}' -f $Version, $installerTempScript
-    $res = StartAndWait $nsisCompiler $arguments -WorkingDir $PWD
-    if ($res -ne 0)
-    {        
-        throw "NSIS build failed."
-    }
-
-    Remove-Item $installerTempScript
-}
 
 function BuildInnoInstaller()
 {
@@ -262,16 +207,8 @@ New-Folder $InstallerDir
 # -------------------------------------------
 if ($Installers)
 {
-    $installerPath = Join-Path $InstallerDir "Playnite$buildNumberPlain.exe"
-    
-    if ($InstallerType -eq "nsis")
-    {
-        BuildNsisInstaller $OutputDir $installerPath $buildNumber
-    }
-    else
-    {        
-        BuildInnoInstaller $OutputDir $installerPath $buildNumber
-    }
+    $installerPath = Join-Path $InstallerDir "Playnite$buildNumberPlain.exe"          
+    BuildInnoInstaller $OutputDir $installerPath $buildNumber   
 
     if ($Sign)
     {
