@@ -40,24 +40,37 @@ namespace GogLibrary.Services
                 }
             }
 
+            var dataStarted = false;
+            var stringData = string.Empty;
             foreach (var line in data)
             {
                 var trimmed = line.TrimStart();
-                if (line.TrimStart().StartsWith("var gogData"))
+                if (line.TrimStart().StartsWith("window.productcardData"))
                 {
-                    var stringData = trimmed.Substring(14).TrimEnd(';');
-                    var desData = JsonConvert.DeserializeObject<StorePageResult>(stringData);
+                    dataStarted = true;
+                    stringData = trimmed.Substring(25).TrimEnd(';');
+                    continue;
+                }
 
-                    if (desData.gameProductData == null)
+                if (line.TrimStart().StartsWith("window.activeFeatures"))
+                {
+                    var desData = JsonConvert.DeserializeObject<StorePageResult>(stringData);
+                    if (desData.cardProduct == null)
                     {
                         return null;
                     }
 
-                    return desData.gameProductData;
+                    return desData.cardProduct;
+                }
+
+                if (dataStarted)
+                {
+                    stringData += trimmed;
                 }
             }
-
-            throw new Exception("Failed to get store data from page, no data found. " + gameUrl);
+            
+            logger.Warn("Failed to get store data from page, no data found. " + gameUrl);
+            return null;
         }
 
         public ProductApiDetail GetGameDetails(string id)
