@@ -109,17 +109,16 @@ namespace GogLibrary
 
             if (metadata.StoreDetails != null)
             {
-                game.Genres = new ComparableList<string>(metadata.StoreDetails.genres.Select(a => a.name));
-                game.Developers = new ComparableList<string>() { metadata.StoreDetails.developer.name };
-                game.Publishers = new ComparableList<string>() { metadata.StoreDetails.publisher.name };
-                game.CommunityScore = metadata.StoreDetails.rating != 0 ? metadata.StoreDetails.rating * 2 : (int?)null;
+                game.Genres = new ComparableList<string>(metadata.StoreDetails.genres?.Select(a => a.name));
+                game.Tags = new ComparableList<string>(metadata.StoreDetails.tags?.Select(a => a.name));
+                game.Developers = new ComparableList<string>(metadata.StoreDetails.developers.Select(a => a.name));
+                game.Publishers = new ComparableList<string>() { metadata.StoreDetails.publisher };
 
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
-                game.Tags = new ComparableList<string>(metadata.StoreDetails.features?.Select(a => cultInfo.ToTitleCase(a.title)));
 
-                if (game.ReleaseDate == null && metadata.StoreDetails.releaseDate != null)
+                if (game.ReleaseDate == null && metadata.StoreDetails.globalReleaseDate != null)
                 {
-                    game.ReleaseDate = DateTimeOffset.FromUnixTimeSeconds(metadata.StoreDetails.releaseDate.Value).DateTime;
+                    game.ReleaseDate = metadata.StoreDetails.globalReleaseDate;
                 }
             }
 

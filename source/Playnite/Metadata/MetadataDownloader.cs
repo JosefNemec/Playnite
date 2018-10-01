@@ -65,7 +65,16 @@ namespace Playnite.Metadata
         {
             if (data == null)
             {
-                data = GetMetadataDownloader(game.PluginId)?.GetMetadata(game);
+                var downloader = GetMetadataDownloader(game.PluginId);
+                try
+                {
+                    data = downloader?.GetMetadata(game);
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to download metadat from plugin downloader.");
+                    data = null;
+                }
             }
 
             return data;

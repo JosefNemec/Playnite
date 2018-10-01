@@ -10,12 +10,6 @@ namespace GogLibrary.Models
     {
         public class ProductDetails
         {
-            public class Feature
-            {
-                public string title;
-                public string slug;
-            }
-
             public class SluggedName
             {
                 public string name;
@@ -23,14 +17,13 @@ namespace GogLibrary.Models
             }
 
             public List<SluggedName> genres;
-            public List<Feature> features;
-            public SluggedName publisher;
-            public SluggedName developer;
-            public int? releaseDate;
-            public int id;
-            public int rating;
+            public List<SluggedName> tags;
+            public string publisher;
+            public List<SluggedName> developers;
+            public DateTime? globalReleaseDate;
+            public string id;
         }
 
-        public ProductDetails gameProductData;
+        public ProductDetails cardProduct;
     }
 }
