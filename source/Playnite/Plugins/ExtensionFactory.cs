@@ -288,7 +288,7 @@ namespace Playnite.Plugins
                 {
                     allSuccess = false;
                     logger.Error(e, $"Failed to load script file {scriptPath}");
-            
+                    continue;
                 }                
                 
                 Scripts.Add(script);
