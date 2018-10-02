@@ -368,6 +368,11 @@ namespace PlayniteUI.ViewModels
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             GamesStats = new DatabaseStats(database);
             InitializeCommands();
+
+            if (AppSettings.StartMinimized)
+            {
+                WindowState = WindowState.Minimized;
+            }
         }
 
         private void InitializeCommands()

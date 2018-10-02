@@ -584,6 +584,21 @@ namespace Playnite.Settings
             }
         }
 
+        private bool startMinimized = false;
+        public bool StartMinimized
+        {
+            get
+            {
+                return startMinimized;
+            }
+
+            set
+            {
+                startMinimized = value;
+                OnPropertyChanged("StartMinimized");
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {

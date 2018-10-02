@@ -221,6 +221,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">No Steam account selected for library import.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">No Steam account selected for category import.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Download 3rd party library updates on startup</sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">Start Minimized</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Start in Fullscreen Mode</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Includes Steam, Origin and others.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchronous image loading (requires restart)</sys:String>
