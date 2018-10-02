@@ -11,6 +11,7 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 using System.Configuration;
+using Playnite.Common.System;
 
 namespace Playnite.Settings
 {
@@ -599,6 +600,21 @@ namespace Playnite.Settings
             }
         }
 
+        private bool startOnBoot = false;
+        public bool StartOnBoot
+        {
+            get
+            {
+                return startOnBoot;
+            }
+
+            set
+            {
+                startOnBoot = value;
+                OnPropertyChanged("StartOnBoot");
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -832,6 +848,21 @@ namespace Playnite.Settings
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, "Failed to migrade plugin configuration.");
+            }
+        }
+
+        public static void SetBootupStateRegistration(bool runOnBootup)
+        {
+            var startupPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+            var shortcutPath = Path.Combine(startupPath, "Playnite.lnk");
+            if (runOnBootup)
+            {
+                FileSystem.DeleteFile(shortcutPath);
+                Programs.CreateShortcut(PlaynitePaths.ExecutablePath, "", "", shortcutPath);
+            }
+            else
+            {
+                FileSystem.DeleteFile(shortcutPath);
             }
         }
     }

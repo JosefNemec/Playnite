@@ -325,11 +325,15 @@ namespace PlayniteUI
                 PipeService_CommandExecuted(this, new CommandExecutedEventArgs(command, cmdArgs));
             }
 
+            // Initialize XInput
             xdevice = new XInputDevice(InputManager.Current)
             {
                 SimulateAllKeys = true,
                 SimulateNavigationKeys = true
             };
+
+            // Fix bootup startup
+            PlayniteSettings.SetBootupStateRegistration(AppSettings.StartOnBoot);
 
             logger.Info($"Application {CurrentVersion} started");
         }

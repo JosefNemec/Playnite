@@ -166,6 +166,7 @@
                                         <RowDefinition />
                                         <RowDefinition />
                                         <RowDefinition />
+                                        <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <CheckBox Name="CheckEnableTray" Content="{DynamicResource LOCSettingsShowTray}" Margin="5,0,0,0"
                                             IsChecked="{Binding Settings.EnableTray}"
@@ -206,7 +207,11 @@
                                       Content="{DynamicResource LOCSettingsStartInFullscreen}"
                                       IsChecked="{Binding Settings.StartInFullscreen}"/>
 
-                                    <CheckBox Name="CheckStartMinimized" Margin="5,15,5,5" Grid.Row="5" Grid.ColumnSpan="2"
+                                    <CheckBox Name="CheckStartOnBoot" Margin="5,15,5,5" Grid.Row="5" Grid.ColumnSpan="2"
+                                      Content="{DynamicResource LOCSettingsStartOnBoot}"
+                                      IsChecked="{Binding Settings.StartOnBoot}"/>
+
+                                    <CheckBox Name="CheckStartMinimized" Margin="5,15,5,5" Grid.Row="6" Grid.ColumnSpan="2"
                                       Content="{DynamicResource LOCSettingsStartMinimized}"
                                       IsChecked="{Binding Settings.StartMinimized}"/>
                                 </Grid>

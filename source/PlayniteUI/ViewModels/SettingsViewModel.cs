@@ -309,6 +309,11 @@ namespace PlayniteUI.ViewModels
                 Settings.DisabledPlugins = PluginsList.Where(a => !a.Selected)?.Select(a => a.Description.FolderName).ToList();
             }
 
+            if (Settings.EditedFields.Contains("StartOnBoot"))
+            {
+                PlayniteSettings.SetBootupStateRegistration(Settings.StartOnBoot);
+            }
+
             Settings.EndEdit();
             Settings.SaveSettings();
             foreach (var provider in LibraryPluginSettings.Keys)
