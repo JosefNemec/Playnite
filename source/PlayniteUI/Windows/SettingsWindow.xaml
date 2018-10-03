@@ -396,65 +396,60 @@
                         </TabItem>
 
                         <TabItem>
-                            <ListBox ItemsSource="{Binding PluginsList}" BorderThickness="0" Margin="-20">
-                                <ListBox.ItemContainerStyle>
-                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
-                                        <Setter Property="Focusable" Value="false"/>
-                                    </Style>
-                                </ListBox.ItemContainerStyle>
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Grid.Resources>
-                                                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                                    <Setter Property="Opacity" Value="1" />
-                                                    <Setter Property="Margin" Value="5" />
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Selected}" Value="False">
-                                                            <Setter Property="Opacity" Value="0.5" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                                <Style TargetType="Image">
-                                                    <Setter Property="Opacity" Value="1" />
-                                                    <Setter Property="Margin" Value="5" />
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Selected}" Value="False">
-                                                            <Setter Property="Opacity" Value="0.5" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Grid.Resources>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="42"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition />
-                                                <RowDefinition />
-                                            </Grid.RowDefinitions>
-                                            <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
-                                                   RenderOptions.BitmapScalingMode="Fant"
-                                                   VerticalAlignment="Top"
-                                                   Source="{Binding PluginIcon}" />
-                                            <TextBlock Grid.Column="1" Grid.Row="0" FontSize="16"
-                                                       Text="{Binding Description.Name}" />
-                                            <DockPanel Grid.Column="1" Grid.Row="1" LastChildFill="False">
-                                                <TextBlock DockPanel.Dock="Left" FontSize="12"
-                                                       Text="{Binding Description.Author}" />
-                                                <TextBlock DockPanel.Dock="Right" FontSize="12"
-                                                           Text="{Binding Description.Version}" />                                                
-                                                <TextBlock DockPanel.Dock="Right" FontSize="12"
-                                                       Text="{Binding Description.Module}" />
-                                            </DockPanel>
-                                            <CheckBox Grid.Column="2" Grid.Row="0" Content="{DynamicResource LOCEnabledTitle}" Margin="10,5,10,5"
-                                                      Grid.RowSpan="2" VerticalAlignment="Center"
-                                                      IsChecked="{Binding Selected}" />
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
+                            <Grid Margin="-15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="250" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Column="1" DataContext="{Binding SelectedItem, ElementName=ListExtensions}"
+                                            Margin="10,5,0,0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontWeight="Bold" Text="Created By:" />
+                                        <TextBlock Text="{Binding Description.Author}" Margin="5,0,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                        <TextBlock FontWeight="Bold" Text="Version:" />
+                                        <TextBlock Text="{Binding Description.Version}" Margin="5,0,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                        <TextBlock FontWeight="Bold" Text="Module:" />
+                                        <TextBlock Text="{Binding Description.Module}" Margin="5,0,0,0" />
+                                    </StackPanel>
+                                    <CheckBox Content="{DynamicResource LOCEnabledTitle}" Margin="0,15,0,0"
+                                              IsChecked="{Binding Selected}" />
+                                </StackPanel>
+
+                                <ListBox Grid.Column="0" Name="ListExtensions" SelectedIndex="0"
+                                         ItemsSource="{Binding PluginsList}">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                            <Setter Property="Opacity" Value="1" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Selected}" Value="False">
+                                                    <Setter Property="Opacity" Value="0.5" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image RenderOptions.BitmapScalingMode="Fant"
+                                                       VerticalAlignment="Center" Height="24" Margin="5"
+                                                       Source="{Binding PluginIcon}" />
+                                                <TextBlock FontSize="14" VerticalAlignment="Center"
+                                                           Margin="0,5,5,5"
+                                                           Text="{Binding Description.Name}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                            </Grid>                            
                         </TabItem>  
                     </TabControl>
                 </DockPanel>
