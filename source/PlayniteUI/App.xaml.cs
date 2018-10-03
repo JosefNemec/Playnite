@@ -266,6 +266,7 @@ namespace PlayniteUI
                 else
                 {
                     AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "games.db");
+                    AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.SaveSettings();
                     existingDb = File.Exists(AppSettings.DatabasePath);
                     Database.SetDatabasePath(AppSettings.DatabasePath);
