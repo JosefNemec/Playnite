@@ -128,6 +128,10 @@ namespace SteamLibrary
         internal Dictionary<string, Game> GetInstalledGames()
         {
             var games = new Dictionary<string, Game>();
+            if (!Steam.IsInstalled)
+            {
+                return games;
+            }
 
             foreach (var folder in GetLibraryFolders())
             {
@@ -413,11 +417,6 @@ namespace SteamLibrary
         public IEnumerable<Game> GetGames()
         {
             var allGames = new List<Game>();
-            if (!Steam.IsInstalled)
-            {
-                return allGames;
-            }
-
             var installedGames = GetInstalledGames();
 
             if (LibrarySettings.ImportInstalledGames)
