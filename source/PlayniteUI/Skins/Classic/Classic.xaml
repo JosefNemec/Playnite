@@ -2356,13 +2356,33 @@
                                 </MenuItem.Icon>
                             </MenuItem>
                             <Separator />
-                            <MenuItem Header="{DynamicResource LOCMenuReloadLibrary}" Style="{DynamicResource ProgressMenu}"
-                                      Command="{Binding UpdateGamesCommand}"
-                                      InputGestureText="{Binding UpdateGamesCommand.GestureText}">
+                            <MenuItem Header="{DynamicResource LOCMenuReloadLibrary}"
+                                      Style="{DynamicResource ProgressMenu}">                     
+                                <MenuItem.Resources>
+                                    <Style x:Key="UpdateAllItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                        <Setter Property="OverridesDefaultStyle" Value="True" />
+                                        <Setter Property="Header" Value="{DynamicResource LOCUpdateAll}" />
+                                        <Setter Property="Command" Value="{Binding Source={StaticResource Proxy}, Path=Data.UpdateGamesCommand}" />
+                                        <Setter Property="InputGestureText" Value="{Binding Source={StaticResource Proxy}, Path=Data.UpdateGamesCommand.GestureText}" />
+                                    </Style>
+                                    <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                        <Setter Property="OverridesDefaultStyle" Value="True" />
+                                        <Setter Property="Header" Value="{Binding Plugin.Name}" />
+                                        <Setter Property="CommandParameter" Value="{Binding Plugin}" />
+                                        <Setter Property="Command" Value="{Binding Source={StaticResource Proxy}, Path=Data.UpdateLibraryCommand}" />
+                                    </Style>
+                                </MenuItem.Resources>
                                 <MenuItem.Icon>
                                     <Image Source="/Images/MenuIcons/refresh.png"
                                            RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                 </MenuItem.Icon>
+                                <MenuItem.ItemsSource>                                    
+                                    <CompositeCollection >
+                                        <MenuItem Style="{StaticResource UpdateAllItem}" OverridesDefaultStyle="True" />
+                                        <Separator />
+                                        <CollectionContainer Collection="{Binding Source={StaticResource Proxy}, Path=Data.Extensions.LibraryPlugins.Values}" />
+                                    </CompositeCollection>
+                                </MenuItem.ItemsSource>
                             </MenuItem>
                             <MenuItem Header="{DynamicResource LOCMenuTools}">
                                 <MenuItem Header="{DynamicResource LOCMenuPlatformEmulatorSettingsTitle}"

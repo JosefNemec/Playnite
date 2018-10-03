@@ -488,6 +488,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Back to Desktop Mode</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Exit Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Libraries</sys:String>
+    <sys:String x:Key="LOCUpdateAll">Update All</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
