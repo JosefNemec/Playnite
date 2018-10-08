@@ -396,9 +396,9 @@ namespace PlayniteUI
                                 });
                             }
                         }
-                        catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                        catch (Exception exc)
                         {
-                            logger.Error(exc, "Failed to process update.");
+                            logger.Warn(exc, "Failed to process update.");
                         }
                     }
 
@@ -416,9 +416,9 @@ namespace PlayniteUI
                     var client = new ServicesClient();
                     client.PostUserUsage(AppSettings.InstallInstanceId);
                 }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                catch (Exception exc)
                 {
-                    logger.Error(exc, "Failed to post user usage data.");
+                    logger.Warn(exc, "Failed to post user usage data.");
                 }
             });
         }
