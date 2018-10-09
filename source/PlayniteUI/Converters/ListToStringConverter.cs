@@ -30,7 +30,7 @@ namespace PlayniteUI
             }
             else
             {
-                var converted = stringVal.Split(new char[] { ',' }).SkipWhile(a => string.IsNullOrEmpty(a.Trim())).Select(a => a.Trim());
+                var converted = stringVal.Split(new char[] { ',' }).SkipWhile(a => string.IsNullOrEmpty(a.Trim()));
                 if (targetType == typeof(ComparableList<string>))
                 {
                     return new ComparableList<string>(converted);
