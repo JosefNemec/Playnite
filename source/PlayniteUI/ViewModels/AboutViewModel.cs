@@ -39,9 +39,16 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                if (patronsList == null)
+                try
                 {
-                    patronsList = string.Join(Environment.NewLine, (new ServicesClient()).GetPatrons());
+                    if (patronsList == null)
+                    {
+                        patronsList = string.Join(Environment.NewLine, (new ServicesClient()).GetPatrons());
+                    }
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to get patron list.");
                 }
 
                 return patronsList;
