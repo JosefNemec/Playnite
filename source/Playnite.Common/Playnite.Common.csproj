@@ -44,6 +44,7 @@
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,8 +72,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="Roman.cs" />
+    <Compile Include="Serialization.cs" />
     <Compile Include="Services\BaseServicesClient.cs" />
     <Compile Include="Services\GenericResponse.cs" />
+    <Compile Include="System\Computer.cs" />
     <Compile Include="System\FileSystem.cs" />
     <Compile Include="System\Paths.cs" />
     <Compile Include="System\ProcessExtensions.cs" />

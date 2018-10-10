@@ -144,6 +144,7 @@
     <Compile Include="SafeFileEnumeratorTests.cs" />
     <Compile Include="Scripting\IronPython\IronPythonTests.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellTests.cs" />
+    <Compile Include="System\ComputerTests.cs" />
     <Compile Include="TimerTests.cs" />
     <Compile Include="SettingsTests.cs" />
     <Compile Include="ListExtensionsTests.cs" />

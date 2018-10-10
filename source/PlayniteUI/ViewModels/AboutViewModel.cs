@@ -114,7 +114,7 @@ namespace PlayniteUI.ViewModels
                 try
                 {
                     Diagnostic.CreateDiagPackage(path);
-                    dialogs.ShowMessage(resources.FindString("LOCDiagPackageCreationSuccess"));
+                    ProcessStarter.StartProcess("explorer.exe", $"/select,\"{path}\"");
                 }
                 catch (Exception exc)
                 {

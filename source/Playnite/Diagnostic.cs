@@ -8,6 +8,9 @@ using System.IO.Compression;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Playnite.Settings;
+using Playnite.Common.System;
+using Playnite.Common;
+using Playnite.App;
 
 namespace Playnite
 {
@@ -41,16 +44,27 @@ namespace Playnite
                         archive.CreateEntryFromFile(PlaynitePaths.ConfigFilePath, Path.GetFileName(PlaynitePaths.ConfigFilePath));
                     }
 
-                    // dxdiag
-                    var diagPath = Path.Combine(diagTemp, "dxdiag.txt");
-                    Process.Start("dxdiag", "/dontskip /whql:off /t " + diagPath).WaitForExit();
-                    archive.CreateEntryFromFile(diagPath, Path.GetFileName(diagPath));
+                    // System Info
+                    var infoPath = Path.Combine(diagTemp, "sysinfo.txt");
+                    File.WriteAllText(infoPath, Serialization.ToYaml(Computer.GetSystemInfo()));
+                    archive.CreateEntryFromFile(infoPath, Path.GetFileName(infoPath));
 
                     // Uninstall regkey export
-                    var regKeyPath = Path.Combine(diagTemp, "uninstall.json");
-                    var programs = Common.System.Programs.GetUnistallProgramsList();
-                    File.WriteAllText(regKeyPath, JsonConvert.SerializeObject(programs, Formatting.Indented));
+                    var regKeyPath = Path.Combine(diagTemp, "uninstall.txt");
+                    var programs = Programs.GetUnistallProgramsList();
+                    File.WriteAllText(regKeyPath, Serialization.ToYaml(programs));
                     archive.CreateEntryFromFile(regKeyPath, Path.GetFileName(regKeyPath));
+
+                    // Playnite info
+                    var playnitePath = Path.Combine(diagTemp, "playniteInfo.txt");
+                    var playniteInfo = new Dictionary<string, object>
+                    {
+                        { "Version", Updater.GetCurrentVersion().ToString() },
+                        { "Portable", PlayniteSettings.IsPortable }
+                    };
+
+                    File.WriteAllText(playnitePath, Serialization.ToYaml(playniteInfo));
+                    archive.CreateEntryFromFile(playnitePath, Path.GetFileName(playnitePath));
                 }
             }
         }
