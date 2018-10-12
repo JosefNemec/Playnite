@@ -2,9 +2,11 @@
 using Playnite.App;
 using Playnite.SDK;
 using Playnite.Services;
+using Playnite.Settings;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -108,20 +110,8 @@ namespace PlayniteUI.ViewModels
 
         public void CreateDiagPackage()
         {
-            var path = dialogs.SaveFile("ZIP Archive (*.zip)|*.zip");
-            if (!string.IsNullOrEmpty(path))
-            {
-                try
-                {
-                    Diagnostic.CreateDiagPackage(path);
-                    ProcessStarter.StartProcess("explorer.exe", $"/select,\"{path}\"");
-                }
-                catch (Exception exc)
-                {
-                    logger.Error(exc, "Faild to created diagnostics package.");
-                    dialogs.ShowMessage(resources.FindString("LOCDiagPackageCreationError"));
-                }
-            }
+            var model = new CrashHandlerViewModel(null, dialogs, resources);
+            model.CreateDiagPackage();
         }
     }
 }

@@ -41,50 +41,58 @@ namespace PlayniteUI
             return result;
         }
 
+        private void Invoke(Action action)
+        {
+            context.Send((a) =>
+            {
+                action();
+            }, null);
+        }
+
         public string SaveFile(string filter)
         {
-            return Invoke(() => Dialogs.SaveFile(PlayniteWindows.CurrentWindow, filter));
+            return Invoke(() => SystemDialogs.SaveFile(PlayniteWindows.CurrentWindow, filter));
         }
 
         public string SaveFile(string filter, bool promptOverwrite)
         {
-            return Invoke(() => Dialogs.SaveFile(PlayniteWindows.CurrentWindow, filter, promptOverwrite));
+            return Invoke(() => SystemDialogs.SaveFile(PlayniteWindows.CurrentWindow, filter, promptOverwrite));
         }
 
         public string SelectFile(string filter)
         {
-            return Invoke(() => Dialogs.SelectFile(PlayniteWindows.CurrentWindow, filter));
+            return Invoke(() => SystemDialogs.SelectFile(PlayniteWindows.CurrentWindow, filter));
         }
 
         public List<string> SelectFiles(string filter)
         {
-            return Invoke(() => Dialogs.SelectFiles(PlayniteWindows.CurrentWindow, filter));
+            return Invoke(() => SystemDialogs.SelectFiles(PlayniteWindows.CurrentWindow, filter));
         }
 
         public string SelectFolder()
         {
-            return Invoke(() => Dialogs.SelectFolder(PlayniteWindows.CurrentWindow));
+            return Invoke(() => SystemDialogs.SelectFolder(PlayniteWindows.CurrentWindow));
         }
 
         public string SelectIconFile()
         {
-            return Invoke(() => Dialogs.SelectIconFile(PlayniteWindows.CurrentWindow));
+            return Invoke(() => SystemDialogs.SelectIconFile(PlayniteWindows.CurrentWindow));
         }
 
         public string SelectImagefile()
         {
-            return Invoke(() => Dialogs.SelectImageFile(PlayniteWindows.CurrentWindow));
+            return Invoke(() => SystemDialogs.SelectImageFile(PlayniteWindows.CurrentWindow));
         }
 
         public StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput)
         {
             if (IsFullscreen)
             {
-                return Invoke(() => Dialogs.SelectStringFullscreen(PlayniteWindows.CurrentWindow, messageBoxText, caption, defaultInput));
+                return Invoke(() => PlayniteMessageBoxFullscreen.SelectString(PlayniteWindows.CurrentWindow, messageBoxText, caption, defaultInput));
             }
             else
             {
-                return Invoke(() => Dialogs.SelectString(PlayniteWindows.CurrentWindow, messageBoxText, caption, defaultInput));
+                return Invoke(() => PlayniteMessageBox.SelectString(PlayniteWindows.CurrentWindow, messageBoxText, caption, defaultInput));
             }
         }
 
@@ -160,6 +168,18 @@ namespace PlayniteUI
             }
         }
 
+        public void ShowSelectableString(string messageBoxText, string caption, string inputText)
+        {
+            if (IsFullscreen)
+            {
+                Invoke(() => PlayniteMessageBoxFullscreen.ShowSelectableString(PlayniteWindows.CurrentWindow, messageBoxText, caption, inputText));
+            }
+            else
+            {
+                Invoke(() => PlayniteMessageBox.ShowSelectableString(PlayniteWindows.CurrentWindow, messageBoxText, caption, inputText));
+            }
+        }
+
         public MessageBoxResult ShowErrorMessage(string messageBoxText, string caption)
         {
             return ShowMessage(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Error);
@@ -227,6 +247,16 @@ namespace PlayniteUI
         {
             return (new FullscreenMessageBoxWindow()).Show(owner, messageBoxText, string.Empty, MessageBoxButton.OK, MessageBoxImage.None, MessageBoxResult.None, MessageBoxOptions.None);
         }
+
+        public static StringSelectionDialogResult SelectString(Window owner, string messageBoxText, string caption, string defaultInput)
+        {
+            return (new FullscreenTextInputWindow()).ShowInput(owner, messageBoxText, caption, defaultInput);
+        }
+
+        public static void ShowSelectableString(Window owner, string messageBoxText, string caption, string inputText)
+        {
+            Show(owner, messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.None);
+        }
     }
 
     public class PlayniteMessageBox
@@ -289,6 +319,16 @@ namespace PlayniteUI
         public static MessageBoxResult Show(Window owner, string messageBoxText)
         {
             return (new MessageBoxWindow()).Show(owner, messageBoxText, string.Empty, MessageBoxButton.OK, MessageBoxImage.None, MessageBoxResult.None, MessageBoxOptions.None);
+        }
+
+        public static StringSelectionDialogResult SelectString(Window owner, string messageBoxText, string caption, string defaultInput)
+        {
+            return (new MessageBoxWindow()).ShowInput(owner, messageBoxText, caption, defaultInput);
+        }
+
+        public static void ShowSelectableString(Window owner, string messageBoxText, string caption, string inputText)
+        {
+            (new MessageBoxWindow()).ShowInputReadOnly(owner, messageBoxText, caption, inputText);
         }
     }
 }

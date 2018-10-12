@@ -67,6 +67,8 @@ namespace Playnite
                     archive.CreateEntryFromFile(playnitePath, Path.GetFileName(playnitePath));
                 }
             }
+
+            FileSystem.DeleteFolder(diagTemp);
         }
     }
 }

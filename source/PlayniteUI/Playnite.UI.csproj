@@ -232,7 +232,7 @@
     <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
     <Compile Include="Converters\WidthToFontSizeConverter.cs" />
-    <Compile Include="Dialogs.cs" />
+    <Compile Include="SystemDialogs.cs" />
     <Compile Include="ElementTreeHelper.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Extensions\Images.cs" />

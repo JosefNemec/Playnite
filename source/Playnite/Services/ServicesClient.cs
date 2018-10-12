@@ -5,6 +5,7 @@ using Playnite.App;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -107,6 +108,26 @@ namespace Playnite.Services
 
             var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
             httpClient.PostAsync(Endpoint + "/api/playnite/users", content).Wait();
+        }
+
+        public Guid UploadDiagPackage(string diagPath)
+        {
+            using (var fs = new FileStream(diagPath, FileMode.Open))
+            {
+                using (var content = new StreamContent(fs))
+                {
+                    var response = httpClient.PostAsync(Endpoint + "/api/playnite/diag", content).GetAwaiter().GetResult();
+                    var strResult = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                    var result = JsonConvert.DeserializeObject<ServicesResponse<Guid>>(strResult);
+                    if (!string.IsNullOrEmpty(result.Error))
+                    {
+                        logger.Error("Service request error by proxy: " + result.Error);
+                        throw new Exception(result.Error);
+                    }
+
+                    return result.Data;
+                }
+            }
         }
     }
 }
