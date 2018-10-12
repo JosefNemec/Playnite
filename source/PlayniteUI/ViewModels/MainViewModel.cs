@@ -707,6 +707,7 @@ namespace PlayniteUI.ViewModels
             AssignGameCategoryCommand = new RelayCommand<Game>((a) =>
             {
                 GamesEditor.SetGameCategories(a);
+                SelectedGame = GamesView.Items.FirstOrDefault(g => g.Id == a.Id);
             });
 
             AssignGamesCategoryCommand = new RelayCommand<IEnumerable<Game>>((a) =>
