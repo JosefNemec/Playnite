@@ -2622,9 +2622,19 @@
                 <pui:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
             </Grid.Resources>
 
-            <pc:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
-                          Grid.ColumnSpan="10" Grid.RowSpan="10"
-                          Source="{Binding SelectedGameDetails.Game.BackgroundImageObject, IsAsync=True}" />
+            <pc:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top" 
+                          Grid.ColumnSpan="10" Grid.RowSpan="10">
+                <pc:FadeImage.Style>
+                    <Style TargetType="pc:FadeImage">
+                        <Setter Property="Source" Value="{x:Null}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding AppSettings.ShowBackgroundImage, Source={x:Static pui:App.Current}}" Value="True">
+                                <Setter Property="Source" Value="{Binding SelectedGameDetails.Game.BackgroundImageObject, IsAsync=True, Mode=OneWay}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </pc:FadeImage.Style>
+            </pc:FadeImage>
 
             <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
                        IsEnabled="{Binding Data.AppSettings.ViewSettings.GamesViewType, Source={StaticResource Proxy}, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"

@@ -189,6 +189,21 @@ namespace Playnite.Settings
             }
         }
 
+        private bool showBackgroundImage = true;
+        public bool ShowBackgroundImage
+        {
+            get
+            {
+                return showBackgroundImage;
+            }
+
+            set
+            {
+                showBackgroundImage = value;
+                OnPropertyChanged("ShowBackgroundImage");
+            }
+        }
+
         private bool migrationV2PcPlatformAdded = false;
         public bool MigrationV2PcPlatformAdded
         {
