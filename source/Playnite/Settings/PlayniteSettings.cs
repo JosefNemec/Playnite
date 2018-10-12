@@ -204,6 +204,21 @@ namespace Playnite.Settings
             }
         }
 
+        private bool downloadMetadataOnImport = true;
+        public bool DownloadMetadataOnImport
+        {
+            get
+            {
+                return downloadMetadataOnImport;
+            }
+
+            set
+            {
+                downloadMetadataOnImport = value;
+                OnPropertyChanged("DownloadMetadataOnImport");
+            }
+        }
+
         private bool migrationV2PcPlatformAdded = false;
         public bool MigrationV2PcPlatformAdded
         {

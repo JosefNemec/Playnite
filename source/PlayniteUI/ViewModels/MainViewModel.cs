@@ -944,8 +944,8 @@ namespace PlayniteUI.ViewModels
 
                     ProgressStatus = Resources.FindString("LOCProgressLibImportFinish");
                     await Task.Delay(500);
-
-                    if (addedGames.Any() && metaForNewGames)
+                                     
+                    if (addedGames.Any() && metaForNewGames && AppSettings.DownloadMetadataOnImport)
                     {
                         Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
                         ProgressValue = 0;
@@ -1084,15 +1084,18 @@ namespace PlayniteUI.ViewModels
             if (model.OpenView(path) == true && model.Games?.Any() == true)
             {
                 var addedGames = InstalledGamesViewModel.AddImportableGamesToDb(model.Games, Database);
-                if (!GlobalTaskHandler.IsActive)
+                if (AppSettings.DownloadMetadataOnImport)
                 {
-                    var settings = new MetadataDownloaderSettings();
-                    settings.ConfigureFields(MetadataSource.IGDB, true);
-                    await DownloadMetadata(settings, addedGames);
-                }
-                else
-                {
-                    Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
+                    if (!GlobalTaskHandler.IsActive)
+                    {
+                        var settings = new MetadataDownloaderSettings();
+                        settings.ConfigureFields(MetadataSource.IGDB, true);
+                        await DownloadMetadata(settings, addedGames);
+                    }
+                    else
+                    {
+                        Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
+                    }
                 }
             }
         }
@@ -1101,15 +1104,18 @@ namespace PlayniteUI.ViewModels
         {
             if (model.OpenView() == true && model.ImportedGames?.Any() == true)
             {
-                if (!GlobalTaskHandler.IsActive)
+                if (AppSettings.DownloadMetadataOnImport)
                 {
-                    var settings = new MetadataDownloaderSettings();
-                    settings.ConfigureFields(MetadataSource.IGDB, true);
-                    await DownloadMetadata(settings, model.ImportedGames);
-                }
-                else
-                {
-                    Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
+                    if (!GlobalTaskHandler.IsActive)
+                    {
+                        var settings = new MetadataDownloaderSettings();
+                        settings.ConfigureFields(MetadataSource.IGDB, true);
+                        await DownloadMetadata(settings, model.ImportedGames);
+                    }
+                    else
+                    {
+                        Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
+                    }
                 }
             }
         }
@@ -1319,7 +1325,7 @@ namespace PlayniteUI.ViewModels
                     ProgressStatus = Resources.FindString("LOCProgressLibImportFinish");
                     await Task.Delay(500);
 
-                    if (addedGames.Any())
+                    if (addedGames.Any() && AppSettings.DownloadMetadataOnImport)
                     {
                         Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
                         ProgressValue = 0;
