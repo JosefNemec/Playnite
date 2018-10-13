@@ -1,6 +1,8 @@
-﻿using Playnite.Common.System;
+﻿using Playnite;
+using Playnite.Common.System;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,31 @@ namespace BattleNetLibrary
 {
     public class BattleNet
     {
+        public static bool IsRunning
+        {
+            get
+            {
+                return RunningProcessesCount > 0;
+            }
+        }
+
+        public static bool IsInitialized
+        {
+            get
+            {
+                return RunningProcessesCount >= 3;
+            }
+        }
+
+        public static int RunningProcessesCount
+        {
+            get
+            {
+                var processes = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(ClientExecPath));
+                return processes?.Any() == true ? processes.Count() : 0;
+            }
+        }
+
         public static string ClientExecPath
         {
             get
@@ -50,6 +77,11 @@ namespace BattleNetLibrary
                     return true;
                 }
             }
-        }        
+        }
+
+        public static void StartClient()
+        {
+            ProcessStarter.StartProcess(ClientExecPath, string.Empty);
+        }
     }
 }

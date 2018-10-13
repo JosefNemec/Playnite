@@ -16,6 +16,7 @@ namespace BattleNetLibrary
 {
     public class BattleNetGameController : BaseGameController
     {
+        private static ILogger logger = LogManager.GetLogger();
         private CancellationTokenSource watcherToken;
         private ProcessMonitor procMon;
         private Stopwatch stopWatch;
@@ -36,7 +37,7 @@ namespace BattleNetLibrary
             procMon?.Dispose();
         }
 
-        public override void Play()
+        public override async void Play()
         {
             ReleaseResources();
             stopWatch = Stopwatch.StartNew();
@@ -46,6 +47,16 @@ namespace BattleNetLibrary
 
             if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("battlenet", StringComparison.OrdinalIgnoreCase))
             {
+                if (!BattleNet.IsRunning)
+                {
+                    logger.Info("Battle.net is not running, starting it first.");
+                    BattleNet.StartClient();
+                    while (!BattleNet.IsInitialized)
+                    {
+                        await Task.Delay(500);
+                    }
+                }
+
                 OnStarting(this, new GameControllerEventArgs(this, 0));
                 var task = new GameAction()
                 {

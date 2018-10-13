@@ -14,7 +14,7 @@ namespace BattleNetLibrary
 
         public void Open()
         {
-            ProcessStarter.StartProcess(BattleNet.ClientExecPath, string.Empty);
+            BattleNet.StartClient();
         }
     }
 }
