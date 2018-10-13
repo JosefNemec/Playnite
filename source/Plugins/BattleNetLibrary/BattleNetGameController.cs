@@ -51,6 +51,10 @@ namespace BattleNetLibrary
                 {
                     logger.Info("Battle.net is not running, starting it first.");
                     BattleNet.StartClient();
+                }
+
+                if (!BattleNet.IsInitialized)
+                {
                     while (!BattleNet.IsInitialized)
                     {
                         await Task.Delay(500);

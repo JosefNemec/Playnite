@@ -38,16 +38,24 @@ namespace OriginLibrary
             procMon?.Dispose();
         }
 
-        public override void Play()
+        public override async void Play()
         {
             ReleaseResources();
             OnStarting(this, new GameControllerEventArgs(this, 0));
+            var runsViaOrigin = Origin.GetGameRequiresOrigin(Game);
             var playAction = api.ExpandGameVariables(Game, Game.PlayAction);
             stopWatch = Stopwatch.StartNew();
             procMon = new ProcessMonitor();
             procMon.TreeDestroyed += ProcMon_TreeDestroyed;
             procMon.TreeStarted += ProcMon_TreeStarted;
+
             var proc = GameActionActivator.ActivateAction(playAction, Game);
+            if (runsViaOrigin)
+            {
+                // Solves issues with game process being started/shutdown multiple times during startup via Origin
+                await Task.Delay(5000);
+            }
+
             procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
         }
 
