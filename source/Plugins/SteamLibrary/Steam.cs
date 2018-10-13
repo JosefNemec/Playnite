@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SteamKit2;
 
 namespace SteamLibrary
 {
@@ -56,15 +57,15 @@ namespace SteamLibrary
             }
         }
 
-        public static string GetWorkshopUrl(int appId)
+        public static string GetWorkshopUrl(uint appId)
         {
             return $"http://steamcommunity.com/app/{appId}/workshop/";
         }
 
-        public static GameState GetAppState(int id)
+        public static GameState GetAppState(GameID id)
         {
             var state = new GameState();
-            var rootString = @"Software\Valve\Steam\Apps\" + id.ToString();
+            var rootString = @"Software\Valve\Steam\Apps\" + id.AppID.ToString();
             var root = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Default);
             var appKey = root.OpenSubKey(rootString);
             if (appKey != null)

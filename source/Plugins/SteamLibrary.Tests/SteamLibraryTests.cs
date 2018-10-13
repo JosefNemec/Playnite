@@ -68,7 +68,7 @@ namespace SteamLibrary.Tests
         {
             var steamLib = CreateLibrary();
             var games = steamLib.GetInstalledGames();
-            var state = Steam.GetAppState(int.Parse(games.Values.First().GameId));
+            var state = Steam.GetAppState(ulong.Parse(games.Values.First().GameId));
             Assert.IsTrue(state.Installed);
         }
     }

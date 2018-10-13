@@ -48,7 +48,7 @@ namespace SteamLibrary
 
         #endregion IMetadataProvider
 
-        internal KeyValue GetAppInfo(int appId)
+        internal KeyValue GetAppInfo(uint appId)
         {
             KeyValue data = null;
             var stringData = string.Empty;
@@ -105,7 +105,7 @@ namespace SteamLibrary
             return null;
         }
 
-        internal StoreAppDetailsResult.AppDetails GetStoreData(int appId)
+        internal StoreAppDetailsResult.AppDetails GetStoreData(uint appId)
         {
             var stringData = string.Empty;
 
@@ -179,12 +179,12 @@ namespace SteamLibrary
             return null;
         }
 
-        internal SteamGameMetadata DownloadGameMetadata(int id, bool screenAsBackground)
+        internal SteamGameMetadata DownloadGameMetadata(uint appId, bool screenAsBackground)
         {
             var metadata = new SteamGameMetadata();
-            var productInfo = GetAppInfo(id);
+            var productInfo = GetAppInfo(appId);
             metadata.ProductDetails = productInfo;
-            metadata.StoreDetails = GetStoreData(id);
+            metadata.StoreDetails = GetStoreData(appId);
 
             // Icon
             if (productInfo != null)
@@ -194,7 +194,7 @@ namespace SteamLibrary
                 var iconUrl = string.Empty;
                 if (icon.Name != null)
                 {
-                    iconUrl = string.Format(iconRoot, id, icon.Value);
+                    iconUrl = string.Format(iconRoot, appId, icon.Value);
                 }
                 else
                 {
@@ -202,7 +202,7 @@ namespace SteamLibrary
                     if (newIcon.Name != null)
                     {
                         iconRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
-                        iconUrl = string.Format(iconRoot, id, newIcon.Value);
+                        iconUrl = string.Format(iconRoot, appId, newIcon.Value);
                     }
                 }
 
@@ -213,7 +213,7 @@ namespace SteamLibrary
                     var iconData = HttpDownloader.DownloadData(iconUrl);
                     metadata.Icon = new MetadataFile(
 
-                        string.Format("images/steam/{0}/{1}", id.ToString(), iconName),
+                        string.Format("images/steam/{0}/{1}",appId.ToString(), iconName),
                         iconName,
                         iconData
                     );
@@ -222,7 +222,7 @@ namespace SteamLibrary
 
             // Image
             var imageRoot = @"http://cdn.akamai.steamstatic.com/steam/apps/{0}/header.jpg";
-            var imageUrl = string.Format(imageRoot, id);
+            var imageUrl = string.Format(imageRoot, appId);
             byte[] imageData = null;
 
             try
@@ -240,7 +240,7 @@ namespace SteamLibrary
                         var image = productInfo["common"]["logo"];
                         if (image.Name != null)
                         {
-                            imageUrl = string.Format(imageRoot, id, image.Value);
+                            imageUrl = string.Format(imageRoot, appId, image.Value);
                             imageData = HttpDownloader.DownloadData(imageUrl);
                         }
                     }
@@ -255,7 +255,7 @@ namespace SteamLibrary
             {
                 var imageName = Path.GetFileName(new Uri(imageUrl).AbsolutePath);
                 metadata.Image = new MetadataFile(
-                    string.Format("images/steam/{0}/{1}", id.ToString(), imageName),
+                    string.Format("images/steam/{0}/{1}", appId.ToString(), imageName),
                     imageName,
                     imageData
                 );
@@ -271,7 +271,7 @@ namespace SteamLibrary
             }
             else
             {
-                metadata.BackgroundImage = string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", id);
+                metadata.BackgroundImage = string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", appId);
             }
 
             return metadata;
@@ -279,19 +279,20 @@ namespace SteamLibrary
 
         internal SteamGameMetadata UpdateGameWithMetadata(Game game)
         {
-            var metadata = DownloadGameMetadata(int.Parse(game.GameId), settings.PreferScreenshotForBackground);
+            var appId = (new GameID(ulong.Parse(game.GameId))).AppID;
+            var metadata = DownloadGameMetadata(appId, settings.PreferScreenshotForBackground);
             game.Name = metadata.ProductDetails?["common"]["name"]?.Value ?? game.Name;
             game.Links = new ObservableCollection<Link>()
             {
-                new Link("Forum", @"https://steamcommunity.com/app/" + game.GameId),
-                new Link("News", @"http://store.steampowered.com/news/?appids=" + game.GameId),
-                new Link("Store", @"http://store.steampowered.com/app/" + game.GameId),
-                new Link("Wiki", @"http://pcgamingwiki.com/api/appid.php?appid=" + game.GameId)
+                new Link("Forum", @"https://steamcommunity.com/app/" + appId),
+                new Link("News", @"http://store.steampowered.com/news/?appids=" + appId),
+                new Link("Store", @"http://store.steampowered.com/app/" + appId),
+                new Link("Wiki", @"http://pcgamingwiki.com/api/appid.php?appid=" + appId)
             };
 
             if (metadata.StoreDetails?.categories?.FirstOrDefault(a => a.id == 30) != null)
             {
-                game.Links.Add(new Link("Workshop", Steam.GetWorkshopUrl(int.Parse(game.GameId))));
+                game.Links.Add(new Link("Workshop", Steam.GetWorkshopUrl(appId)));
             }
 
             if (metadata.StoreDetails != null)

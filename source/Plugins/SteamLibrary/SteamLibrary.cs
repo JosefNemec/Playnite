@@ -61,13 +61,13 @@ namespace SteamLibrary
             };
         }
 
-        internal static GameAction CreatePlayTask(int appId)
+        internal static GameAction CreatePlayTask(GameID gameId)
         {
             return new GameAction()
             {
                 Name = "Play",
                 Type = GameActionType.URL,
-                Path = @"steam://run/" + appId,
+                Path = @"steam://rungameid/" + gameId,
                 IsHandledByPlugin = true
             };
         }
@@ -90,14 +90,15 @@ namespace SteamLibrary
                 name = StringExtensions.NormalizeGameName(kv["name"].Value);
             }
 
+            var gameId = new GameID(kv["appID"].AsUnsignedInteger());
             var game = new Game()
             {
                 PluginId = Id,
                 Source = "Steam",
-                GameId = kv["appID"].Value,
+                GameId = gameId.ToString(),
                 Name = name,
                 InstallDirectory = Path.Combine((new FileInfo(path)).Directory.FullName, "common", kv["installDir"].Value),
-                PlayAction = CreatePlayTask(int.Parse(kv["appID"].Value)),
+                PlayAction = CreatePlayTask(gameId),
                 State = new GameState() { Installed = true }
             };
 

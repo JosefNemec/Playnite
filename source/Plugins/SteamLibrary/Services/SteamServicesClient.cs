@@ -24,24 +24,24 @@ namespace SteamLibrary.Services
         {
         }
 
-        public void PostSteamAppInfoData(int appId, string data)
+        public void PostSteamAppInfoData(uint appId, string data)
         {
             var content = new StringContent(data, Encoding.UTF8, "text/plain");
             httpClient.PostAsync(Endpoint + $"/api/steam/appinfo/{appId}", content).Wait();
         }
 
-        public string GetSteamAppInfoData(int appId)
+        public string GetSteamAppInfoData(uint appId)
         {
             return ExecuteGetRequest<string>($"/api/steam/appinfo/{appId}");
         }
 
-        public void PostSteamStoreData(int appId, string data)
+        public void PostSteamStoreData(uint appId, string data)
         {
             var content = new StringContent(data, Encoding.UTF8, "text/plain");
             httpClient.PostAsync(Endpoint + $"/api/steam/store/{appId}", content).Wait();
         }
 
-        public string GetSteamStoreData(int appId)
+        public string GetSteamStoreData(uint appId)
         {
             return ExecuteGetRequest<string>($"/api/steam/store/{appId}");
         }

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using SteamKit2;
 
 namespace SteamLibrary
 {
@@ -34,7 +35,7 @@ namespace SteamLibrary
         {
             ReleaseResources();
             OnStarting(this, new GameControllerEventArgs(this, 0));
-            ProcessStarter.StartUrl($"steam://run/{Game.GameId}");
+            ProcessStarter.StartUrl($"steam://rungameid/{Game.GameId}");
             StartRunningWatcher();
         }
 
@@ -58,7 +59,7 @@ namespace SteamLibrary
             await Task.Run(async () =>
             {
                 var stopWatch = Stopwatch.StartNew();
-                var id = int.Parse(Game.GameId);
+                var id = new GameID(ulong.Parse(Game.GameId));
 
                 while (true)
                 {
@@ -72,7 +73,7 @@ namespace SteamLibrary
                     {
                         if (Game.PlayAction == null)
                         {
-                            Game.PlayAction = SteamLibrary.CreatePlayTask(int.Parse(Game.GameId));
+                            Game.PlayAction = SteamLibrary.CreatePlayTask(ulong.Parse(Game.GameId));
                         }
 
                         stopWatch.Stop();
@@ -91,7 +92,7 @@ namespace SteamLibrary
             await Task.Run(async () =>
             {
                 var stopWatch = Stopwatch.StartNew();
-                var id = int.Parse(Game.GameId);
+                var id = new GameID(ulong.Parse(Game.GameId));
 
                 while (true)
                 {
@@ -119,7 +120,7 @@ namespace SteamLibrary
             await Task.Run(async () =>
             {
                 var stopWatch = Stopwatch.StartNew();
-                var id = int.Parse(Game.GameId);
+                var id = new GameID(ulong.Parse(Game.GameId));
                 var gameState = Steam.GetAppState(id);
 
                 while (true)
