@@ -21,6 +21,7 @@ using System.Windows.Controls;
 using Playnite;
 using System.Windows;
 using System.Reflection;
+using System.Collections.ObjectModel;
 
 namespace SteamLibrary
 {
@@ -126,6 +127,88 @@ namespace SteamLibrary
             return games;
         }
 
+        internal List<Game> GetInstalledSourceModsFromFolder(string path)
+        {
+            var games = new List<Game>();
+
+            foreach (var folder in Directory.GetDirectories(path))
+            {
+                try
+                {
+                    var game = GetInstalledSourceModFromFolder(folder);
+                    games.Add(game);
+                }
+                catch (Exception exc)
+                {
+                    // gameinfo.txt may not exist or may be invalid
+                    logger.Error(exc, $"Failed to get information about installed Source mod from: {path}");
+                }
+            }
+
+            return games;
+        }
+
+        internal Game GetInstalledSourceModFromFolder(string path)
+        {
+            var dirInfo = new DirectoryInfo(path);
+            var gameInfoPath = Path.Combine(path, "gameinfo.txt");
+ 
+            var gameInfo = new KeyValue();
+            gameInfo.ReadFileAsText(gameInfoPath);
+
+            var gameId = new GameID();
+            gameId.AppID = gameInfo["FileSystem"]["SteamAppId"].AsUnsignedInteger();
+            gameId.AppType = GameID.GameType.GameMod;
+            gameId.ModID = BitConverter.ToUInt32(CryptoHelper.CRCHash(Encoding.ASCII.GetBytes(dirInfo.Name)), 0);
+
+            // For mods and shortcut game IDs, the high bit is always set. SteamKit doesn't do this automatically (yet).
+            gameId.ModID |= 0x80000000;
+
+            var developers = new ComparableList<string>();
+            if (gameInfo["developers"] != KeyValue.Invalid)
+            {
+                developers.Add(gameInfo["developer"].Value);
+            }
+
+            var links = new ObservableCollection<Link>();
+            if (gameInfo["manual"] != KeyValue.Invalid)
+            {
+                links.Add(new Link("Manual", gameInfo["manual"].Value));
+            }
+
+            if (gameInfo["developer_url"] != KeyValue.Invalid)
+            {
+                links.Add(new Link("Developer URL", gameInfo["developer_url"].Value));
+            }
+
+            var categories = new ComparableList<string>();
+            if (gameInfo["type"] == KeyValue.Invalid || gameInfo["type"].Value == "singleplayer_only")
+            {
+                categories.Add("Single-Player");
+            }
+
+            if (gameInfo["type"] == KeyValue.Invalid || gameInfo["type"].Value == "multiplayer_only")
+            {
+                categories.Add("Multi-Player");
+            }
+
+            var game = new Game()
+            {
+                PluginId = Id,
+                Source = "Steam",
+                GameId = gameId.ToString(),
+                Name = gameInfo["Game"].Value,
+                InstallDirectory = path,
+                PlayAction = CreatePlayTask(gameId),
+                State = new GameState() { Installed = true },
+                Developers = developers,
+                Links = links,
+                Categories = categories
+            };
+
+            return game;
+        }
+
         internal Dictionary<string, Game> GetInstalledGames()
         {
             var games = new Dictionary<string, Game>();
@@ -147,6 +230,18 @@ namespace SteamLibrary
                 {
                     logger.Warn($"Steam library {libFolder} not found.");
                 }
+            }
+
+            // In most cases, this will be inside the library folder where Steam is installed.
+            if (!string.IsNullOrEmpty(Steam.SourceModInstallPath))
+            {
+                GetInstalledSourceModsFromFolder(Steam.SourceModInstallPath).ForEach(a =>
+                {
+                    if (!games.ContainsKey(a.GameId))
+                    {
+                        games.Add(a.GameId, a);
+                    }
+                });
             }
 
             return games;

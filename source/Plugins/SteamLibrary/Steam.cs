@@ -42,6 +42,22 @@ namespace SteamLibrary
             }
         }
 
+        public static string SourceModInstallPath
+        {
+            get
+            {
+                using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam"))
+                {
+                    if (key != null)
+                    {
+                        return key.GetValue("SourceModInstallPath")?.ToString().Replace('/', '\\') ?? string.Empty;
+                    }
+                }
+
+                return string.Empty;
+            }
+        }
+
         public static bool IsInstalled
         {
             get
