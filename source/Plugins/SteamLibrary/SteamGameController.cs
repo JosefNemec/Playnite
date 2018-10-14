@@ -16,9 +16,13 @@ namespace SteamLibrary
     public class SteamGameController : BaseGameController
     {
         private CancellationTokenSource watcherToken;
+        private GameID gameId;
+        private IPlayniteAPI api;
 
-        public SteamGameController(Game game) : base(game)
+        public SteamGameController(Game game, IPlayniteAPI playniteApi) : base(game)
         {
+            gameId = ulong.Parse(game.GameId);
+            api = playniteApi;
         }
 
         public override void Dispose()
@@ -41,16 +45,30 @@ namespace SteamLibrary
 
         public override void Install()
         {
-            ReleaseResources();
-            ProcessStarter.StartUrl($"steam://install/{Game.GameId}");
-            StartInstallWatcher();
+            if (gameId.IsMod)
+            {
+                api.Dialogs.ShowErrorMessage("Mods cannot be installed via Playnite.", "Error");
+            }
+            else
+            {
+                ReleaseResources();
+                ProcessStarter.StartUrl($"steam://install/{gameId.AppID}");
+                StartInstallWatcher();
+            }
         }
 
         public override void Uninstall()
         {
-            ReleaseResources();
-            ProcessStarter.StartUrl($"steam://uninstall/{Game.GameId}");
-            StartUninstallWatcher();
+            if (gameId.IsMod)
+            {
+                api.Dialogs.ShowErrorMessage("Mods cannot be uninstalled via Playnite.", "Error");
+            }
+            else
+            {
+                ReleaseResources();
+                ProcessStarter.StartUrl($"steam://uninstall/{gameId.AppID}");
+                StartUninstallWatcher();
+            }
         }
 
         public async void StartInstallWatcher()

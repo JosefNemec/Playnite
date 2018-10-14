@@ -127,6 +127,31 @@ namespace SteamLibrary
             return games;
         }
 
+        internal List<Game> GetInstalledGoldSrcModsFromFolder(string path)
+        {
+            var games = new List<Game>();
+
+            var firstPartyMods = new string[] { "bshift", "cstrike", "czero", "czeror", "dmc", "dod", "gearbox", "ricochet", "tfc", "valve"};
+
+            var dirInfo = new DirectoryInfo(path);
+
+            foreach (var folder in dirInfo.GetDirectories().Where(a => Array.IndexOf(firstPartyMods, a.Name) == -1).Select(a => a.FullName))
+            {
+                try
+                {
+                    var game = GetInstalledModFromFolder(folder, ModInfo.ModType.HL);
+                    games.Add(game);
+                }
+                catch (Exception exc)
+                {
+                    // gameinfo.txt may not exist or may be invalid
+                    logger.Error(exc, $"Failed to get information about installed GoldSrc mod from: {path}");
+                }
+            }
+
+            return games;
+        }
+
         internal List<Game> GetInstalledSourceModsFromFolder(string path)
         {
             var games = new List<Game>();
@@ -135,7 +160,7 @@ namespace SteamLibrary
             {
                 try
                 {
-                    var game = GetInstalledSourceModFromFolder(folder);
+                    var game = GetInstalledModFromFolder(folder, ModInfo.ModType.HL2);
                     games.Add(game);
                 }
                 catch (Exception exc)
@@ -148,62 +173,22 @@ namespace SteamLibrary
             return games;
         }
 
-        internal Game GetInstalledSourceModFromFolder(string path)
+        static internal Game GetInstalledModFromFolder(string path, ModInfo.ModType modType)
         {
-            var dirInfo = new DirectoryInfo(path);
-            var gameInfoPath = Path.Combine(path, "gameinfo.txt");
- 
-            var gameInfo = new KeyValue();
-            gameInfo.ReadFileAsText(gameInfoPath);
-
-            var gameId = new GameID();
-            gameId.AppID = gameInfo["FileSystem"]["SteamAppId"].AsUnsignedInteger();
-            gameId.AppType = GameID.GameType.GameMod;
-            gameId.ModID = BitConverter.ToUInt32(CryptoHelper.CRCHash(Encoding.ASCII.GetBytes(dirInfo.Name)), 0);
-
-            // For mods and shortcut game IDs, the high bit is always set. SteamKit doesn't do this automatically (yet).
-            gameId.ModID |= 0x80000000;
-
-            var developers = new ComparableList<string>();
-            if (gameInfo["developers"] != KeyValue.Invalid)
-            {
-                developers.Add(gameInfo["developer"].Value);
-            }
-
-            var links = new ObservableCollection<Link>();
-            if (gameInfo["manual"] != KeyValue.Invalid)
-            {
-                links.Add(new Link("Manual", gameInfo["manual"].Value));
-            }
-
-            if (gameInfo["developer_url"] != KeyValue.Invalid)
-            {
-                links.Add(new Link("Developer URL", gameInfo["developer_url"].Value));
-            }
-
-            var categories = new ComparableList<string>();
-            if (gameInfo["type"] == KeyValue.Invalid || gameInfo["type"].Value == "singleplayer_only")
-            {
-                categories.Add("Single-Player");
-            }
-
-            if (gameInfo["type"] == KeyValue.Invalid || gameInfo["type"].Value == "multiplayer_only")
-            {
-                categories.Add("Multi-Player");
-            }
+            var modInfo = ModInfo.GetFromFolder(path, modType);
 
             var game = new Game()
             {
-                PluginId = Id,
+                PluginId = id,
                 Source = "Steam",
-                GameId = gameId.ToString(),
-                Name = gameInfo["Game"].Value,
+                GameId = modInfo.gameId.ToString(),
+                Name = modInfo.name,
                 InstallDirectory = path,
-                PlayAction = CreatePlayTask(gameId),
+                PlayAction = CreatePlayTask(modInfo.gameId),
                 State = new GameState() { Installed = true },
-                Developers = developers,
-                Links = links,
-                Categories = categories
+                Developers = new ComparableList<string>() { modInfo.developer },
+                Links = modInfo.links,
+                Categories = modInfo.categories
             };
 
             return game;
@@ -230,6 +215,18 @@ namespace SteamLibrary
                 {
                     logger.Warn($"Steam library {libFolder} not found.");
                 }
+            }
+
+            // In most cases, this will be inside the folder where Half-Life is installed.
+            if (!string.IsNullOrEmpty(Steam.ModInstallPath))
+            {
+                GetInstalledGoldSrcModsFromFolder(Steam.ModInstallPath).ForEach(a =>
+                {
+                    if (!games.ContainsKey(a.GameId))
+                    {
+                        games.Add(a.GameId, a);
+                    }
+                });
             }
 
             // In most cases, this will be inside the library folder where Steam is installed.
@@ -488,7 +485,8 @@ namespace SteamLibrary
 
         public ILibraryClient Client { get; } = new SteamClient();
 
-        public Guid Id { get; } = Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB");
+        public Guid Id { get; } = id;
+        static private Guid id { get; } = Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB");
 
         public string Name { get; } = "Steam";
 
@@ -538,7 +536,7 @@ namespace SteamLibrary
 
         public IGameController GetGameController(Game game)
         {
-            return new SteamGameController(game);
+            return new SteamGameController(game, playniteApi);
         }
 
         public ILibraryMetadataProvider GetMetadataDownloader()

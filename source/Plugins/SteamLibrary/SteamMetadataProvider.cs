@@ -42,8 +42,17 @@ namespace SteamLibrary
                 GameId = game.GameId
             };
 
-            var data = UpdateGameWithMetadata(gameData);
-            return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
+            var gameId = new GameID(ulong.Parse(game.GameId));
+            if (gameId.IsMod)
+            {
+                var data = SteamLibrary.GetInstalledModFromFolder(game.InstallDirectory, ModInfo.GetModTypeOfGameID(gameId));
+                return new GameMetadata(data, null, null, null);
+            }
+            else
+            {
+                var data = UpdateGameWithMetadata(gameData);
+                return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
+            }
         }
 
         #endregion IMetadataProvider

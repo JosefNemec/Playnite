@@ -90,6 +90,7 @@
       <DependentUpon>SteamLibrarySettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SteamMetadataProvider.cs" />
+    <Compile Include="ModInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Playnite.Common\Playnite.Common.csproj">

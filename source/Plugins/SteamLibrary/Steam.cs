@@ -42,6 +42,22 @@ namespace SteamLibrary
             }
         }
 
+        public static string ModInstallPath
+        {
+            get
+            {
+                using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam"))
+                {
+                    if (key != null)
+                    {
+                        return key.GetValue("ModInstallPath")?.ToString().Replace('/', '\\') ?? string.Empty;
+                    }
+                }
+
+                return string.Empty;
+            }
+        }
+
         public static string SourceModInstallPath
         {
             get
@@ -104,6 +120,50 @@ namespace SteamLibrary
                 if (appKey.GetValue("Updating")?.ToString() == "1")
                 {
                     state.Installing = true;
+                }
+            }
+           
+            if (id.IsMod && state.Installed)
+            {
+                // Base app is installed, but the mod itself might not be.
+                bool foundMod = false;
+
+                if (ModInfo.GetModTypeOfGameID(id) == ModInfo.ModType.HL)
+                {
+                    // GoldSrc / HL(1) mod
+                    if (!string.IsNullOrEmpty(Steam.ModInstallPath))
+                    {
+                        foreach (var folder in Directory.GetDirectories(Steam.ModInstallPath))
+                        {
+                            var modInfo = ModInfo.GetFromFolder(folder, ModInfo.ModType.HL);
+                            if (modInfo?.gameId == id)
+                            {
+                                foundMod = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    // Source mod
+                    if (!string.IsNullOrEmpty(Steam.SourceModInstallPath))
+                    {
+                        foreach (var folder in Directory.GetDirectories(Steam.SourceModInstallPath))
+                        {
+                            var modInfo = ModInfo.GetFromFolder(folder, ModInfo.ModType.HL2);
+                            if (modInfo?.gameId == id)
+                            {
+                                foundMod = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (!foundMod)
+                {
+                    state.Installed = false;
                 }
             }
 
