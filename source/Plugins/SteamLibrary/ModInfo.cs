@@ -195,6 +195,16 @@ namespace SteamLibrary
                         {
                             type = match.Groups[2].Value;
                         }
+                        // These ones don't display in the Steam client (anymore?), but many
+                        // mods seem to have them.
+                        else if (match.Groups[1].Value == "url_info")
+                        {
+                            modInfo.links.Add(new Link("Info", match.Groups[2].Value));
+                        }
+                        else if (match.Groups[1].Value == "url_dl")
+                        {
+                            modInfo.links.Add(new Link("Download", match.Groups[2].Value));
+                        }
                     }
                 }
 
