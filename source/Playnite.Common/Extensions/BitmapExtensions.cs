@@ -50,9 +50,8 @@ namespace Playnite
             return bitmap;
         }
 
-        public static BitmapImage TgaToBitmap(string tgaPath)
+        public static BitmapImage TgaToBitmap(TGA tga)
         {
-            var tga = new TGA(tgaPath);
             var tgaBitmap = tga.ToBitmap();
             using (var memory = new MemoryStream())
             {
@@ -68,22 +67,14 @@ namespace Playnite
             }
         }
 
+        public static BitmapImage TgaToBitmap(string tgaPath)
+        {
+            return TgaToBitmap(new TGA(tgaPath));
+        }
+
         public static BitmapImage TgaToBitmap(byte[] tgaContent)
         {
-            var tga = new TGA(tgaContent);
-            var tgaBitmap = tga.ToBitmap();
-            using (var memory = new MemoryStream())
-            {
-                tgaBitmap.Save(memory, ImageFormat.Png);
-                memory.Position = 0;
-                var bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.StreamSource = memory;
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.EndInit();
-                bitmapImage.Freeze();
-                return bitmapImage;
-            }
+            return TgaToBitmap(new TGA(tgaContent));
         }
     }
 }
