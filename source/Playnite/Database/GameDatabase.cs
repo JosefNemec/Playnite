@@ -1155,6 +1155,11 @@ namespace Playnite.Database
             }
         }
 
+        public void AddFile(MetadataFile file)
+        {
+            AddFile(file.FileId, file.FileName, file.Content);
+        }
+
         public void AddFile(string id, string name, byte[] data)
         {
             CheckDbState();

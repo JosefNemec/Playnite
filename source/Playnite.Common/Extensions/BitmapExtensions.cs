@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using TGASharpLib;
 
 namespace Playnite
 {
@@ -46,6 +48,42 @@ namespace Playnite
             bitmap.EndInit();
             bitmap.Freeze();
             return bitmap;
+        }
+
+        public static BitmapImage TgaToBitmap(string tgaPath)
+        {
+            var tga = new TGA(tgaPath);
+            var tgaBitmap = tga.ToBitmap();
+            using (var memory = new MemoryStream())
+            {
+                tgaBitmap.Save(memory, ImageFormat.Png);
+                memory.Position = 0;
+                var bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = memory;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+                bitmapImage.Freeze();
+                return bitmapImage;
+            }
+        }
+
+        public static BitmapImage TgaToBitmap(byte[] tgaContent)
+        {
+            var tga = new TGA(tgaContent);
+            var tgaBitmap = tga.ToBitmap();
+            using (var memory = new MemoryStream())
+            {
+                tgaBitmap.Save(memory, ImageFormat.Png);
+                memory.Position = 0;
+                var bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = memory;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+                bitmapImage.Freeze();
+                return bitmapImage;
+            }
         }
     }
 }

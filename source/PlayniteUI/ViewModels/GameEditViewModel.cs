@@ -2111,18 +2111,29 @@ namespace PlayniteUI.ViewModels
             return tempPath;
         }
 
+        private string SaveConvertedTgaToTemp(string tgaPath)
+        {
+            var tempPath = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".png");
+            File.WriteAllBytes(tempPath, BitmapExtensions.TgaToBitmap(tgaPath).ToPngArray());
+            return tempPath;
+        }
+
         public void SelectIcon()
         {
             var path = dialogs.SelectIconFile();
             if (!string.IsNullOrEmpty(path))
             {
-                if (path.EndsWith("exe", StringComparison.OrdinalIgnoreCase))
+                if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
                 {
                     path = SaveFileIconToTemp(path);
                     if (string.IsNullOrEmpty(path))
                     {
                         return;
                     }
+                }
+                else if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
+                {
+                    path = SaveConvertedTgaToTemp(path);
                 }
 
                 EditingGame.Icon = path;
@@ -2158,6 +2169,11 @@ namespace PlayniteUI.ViewModels
             var path = dialogs.SelectImagefile();
             if (!string.IsNullOrEmpty(path))
             {
+                if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
+                {
+                    path = SaveConvertedTgaToTemp(path);
+                }
+
                 EditingGame.CoverImage = path;
             }
         }
@@ -2167,6 +2183,11 @@ namespace PlayniteUI.ViewModels
             var path = dialogs.SelectImagefile();
             if (!string.IsNullOrEmpty(path))
             {
+                if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
+                {
+                    path = SaveConvertedTgaToTemp(path);
+                }
+
                 EditingGame.BackgroundImage = path;
             }
         }

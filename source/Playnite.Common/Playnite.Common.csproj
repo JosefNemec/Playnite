@@ -83,6 +83,7 @@
     <Compile Include="System\ProcessStarter.cs" />
     <Compile Include="System\Programs.cs" />
     <Compile Include="System\SafeFileEnumerator.cs" />
+    <Compile Include="TGASharpLib.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="Web\Downloader.cs" />
     <Compile Include="Web\HttpDownloader.cs" />

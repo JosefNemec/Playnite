@@ -115,7 +115,7 @@ namespace PlayniteUI
 
         public static string SelectIconFile(Window owner)
         {
-            return SelectFile(owner, "Image Files (*.bmp, *.jpg, *.png, *.gif, *.ico)|*.bmp;*.jpg*;*.png;*.gif;*.ico|Executable (.exe)|*.exe");
+            return SelectFile(owner, "Image Files (*.bmp, *.jpg, *.png, *.gif, *.ico, *.tga)|*.bmp;*.jpg*;*.png;*.gif;*.ico;*.tga|Executable (.exe)|*.exe");
         }
 
         public static string SelectIconFile()
@@ -125,7 +125,7 @@ namespace PlayniteUI
 
         public static string SelectImageFile(Window owner)
         {
-            return SelectFile(owner, "Image Files (*.bmp, *.jpg, *.png, *.gif)|*.bmp;*.jpg*;*.png;*.gif");
+            return SelectFile(owner, "Image Files (*.bmp, *.jpg, *.png, *.gif, *.tga)|*.bmp;*.jpg*;*.png;*.gif;*.tga");
         }
 
         public static string SelectImageFile()
