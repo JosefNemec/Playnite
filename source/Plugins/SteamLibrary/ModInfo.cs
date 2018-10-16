@@ -44,9 +44,10 @@ namespace SteamLibrary
             }
         }
 
-        private ModInfo(ModType type)
+        private ModInfo(ModType type, string installFolder)
         {
             modType = type;
+            InstallFolder = installFolder;
             Name = "Unknown Mod";
             Links = new ObservableCollection<Link>();
             GameId = new GameID();
@@ -103,9 +104,7 @@ namespace SteamLibrary
                 return null;
             }
 
-            ModInfo modInfo = new ModInfo(modType);
-            modInfo.InstallFolder = path;
-
+            ModInfo modInfo = new ModInfo(modType, path);
             if (modType == ModType.HL)
             {
                 modInfo.GameId.AppID = halfLife;
@@ -165,7 +164,7 @@ namespace SteamLibrary
                 modInfo.Categories.Add("Multi-Player");
             }
 
-            modInfo.IconPath = FindIcon(path, gameInfo["icon"] == KeyValue.Invalid ? null : gameInfo["icon"].Value);
+            modInfo.IconPath = FindIcon(modInfo.InstallFolder, gameInfo["icon"] == KeyValue.Invalid ? null : gameInfo["icon"].Value);
         }
 
         static private void PopulateModInfoFromLibList(ref ModInfo modInfo, string path)
@@ -225,7 +224,7 @@ namespace SteamLibrary
                     modInfo.Categories.Add("Multi-Player");
                 }
 
-                modInfo.IconPath = FindIcon(path, icon);
+                modInfo.IconPath = FindIcon(modInfo.InstallFolder, icon);
             }
         }
 
@@ -236,10 +235,10 @@ namespace SteamLibrary
 
         static private string FindIcon(string modPath, string rawIconPath)
         {
-            rawIconPath = rawIconPath.Replace('/', Path.DirectorySeparatorChar);
-
             if (rawIconPath != null)
             {
+                rawIconPath = rawIconPath.Replace('/', Path.DirectorySeparatorChar);
+
                 // Gameinfo specifies an icon path. This is what Steam would use for all mod types, so try to do the same
                 var steamTgaBig = Path.Combine(modPath, rawIconPath) + "_big.tga";
                 if (File.Exists(steamTgaBig))
