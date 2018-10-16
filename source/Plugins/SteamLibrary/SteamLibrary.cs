@@ -171,13 +171,13 @@ namespace SteamLibrary
             return games;
         }
 
-        static internal Game GetInstalledModFromFolder(string path, ModInfo.ModType modType)
+        internal Game GetInstalledModFromFolder(string path, ModInfo.ModType modType)
         {
             var modInfo = ModInfo.GetFromFolder(path, modType);
 
             var game = new Game()
             {
-                PluginId = id,
+                PluginId = Id,
                 Source = "Steam",
                 GameId = modInfo.GameId.ToString(),
                 Name = modInfo.Name,
@@ -186,7 +186,7 @@ namespace SteamLibrary
                 State = new GameState() { Installed = true },
                 Developers = new ComparableList<string>() { modInfo.Developer },
                 Links = modInfo.Links,
-                Categories = modInfo.Categories,
+                Tags = modInfo.Categories,
                 Icon = modInfo.IconPath
             };
 
@@ -486,8 +486,7 @@ namespace SteamLibrary
 
         public ILibraryClient Client { get; } = new SteamClient();
 
-        public Guid Id { get; } = id;
-        static private Guid id { get; } = Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB");
+        public Guid Id { get; } = Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB");
 
         public string Name { get; } = "Steam";
 
@@ -542,7 +541,7 @@ namespace SteamLibrary
 
         public ILibraryMetadataProvider GetMetadataDownloader()
         {
-            return new SteamMetadataProvider(servicesClient, (SteamLibrarySettings)Settings, apiClient);
+            return new SteamMetadataProvider(servicesClient, this, apiClient);
         }
 
         #endregion ILibraryPlugin

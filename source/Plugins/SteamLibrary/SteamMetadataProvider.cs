@@ -23,12 +23,12 @@ namespace SteamLibrary
     {
         private ILogger logger = LogManager.GetLogger();
         private SteamServicesClient playniteServices;
-        private SteamLibrarySettings settings;
+        private SteamLibrary library;
         private SteamApiClient apiClient;
 
-        public SteamMetadataProvider(SteamServicesClient playniteServices, SteamLibrarySettings settings, SteamApiClient apiClient)
+        public SteamMetadataProvider(SteamServicesClient playniteServices, SteamLibrary library, SteamApiClient apiClient)
         {
-            this.settings = settings;
+            this.library = library;
             this.playniteServices = playniteServices;
             this.apiClient = apiClient;
         }
@@ -45,7 +45,7 @@ namespace SteamLibrary
             var gameId = game.ToSteamGameID();
             if (gameId.IsMod)
             {
-                var data = SteamLibrary.GetInstalledModFromFolder(game.InstallDirectory, ModInfo.GetModTypeOfGameID(gameId));
+                var data = library.GetInstalledModFromFolder(game.InstallDirectory, ModInfo.GetModTypeOfGameID(gameId));
                 return new GameMetadata(data, null, null, null);
             }
             else
@@ -289,7 +289,7 @@ namespace SteamLibrary
         internal SteamGameMetadata UpdateGameWithMetadata(Game game)
         {
             var appId = game.ToSteamGameID().AppID;
-            var metadata = DownloadGameMetadata(appId, settings.PreferScreenshotForBackground);
+            var metadata = DownloadGameMetadata(appId, library.LibrarySettings.PreferScreenshotForBackground);
             game.Name = metadata.ProductDetails?["common"]["name"]?.Value ?? game.Name;
             game.Links = new ObservableCollection<Link>()
             {
