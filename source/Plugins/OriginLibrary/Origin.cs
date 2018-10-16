@@ -85,7 +85,7 @@ namespace OriginLibrary
                 return false;
             }
 
-            var fileEnumerator = new SafeFileEnumerator(game.InstallDirectory, "Activation.dll", SearchOption.AllDirectories);
+            var fileEnumerator = new SafeFileEnumerator(game.InstallDirectory, "Activation.*", SearchOption.AllDirectories);
             return fileEnumerator.Any() == true;
         }
     }
