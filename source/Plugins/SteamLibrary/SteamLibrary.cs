@@ -186,7 +186,8 @@ namespace SteamLibrary
                 State = new GameState() { Installed = true },
                 Developers = new ComparableList<string>() { modInfo.Developer },
                 Links = modInfo.Links,
-                Categories = modInfo.Categories
+                Categories = modInfo.Categories,
+                Icon = modInfo.IconPath
             };
 
             return game;

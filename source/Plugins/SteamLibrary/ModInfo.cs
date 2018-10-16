@@ -23,6 +23,7 @@ namespace SteamLibrary
         public ComparableList<string> Categories { get; private set; }
         public string Developer { get; private set; }
         public ObservableCollection<Link> Links { get; private set; }
+        public string IconPath { get; private set; }
         private readonly ModType modType;
 
         static private Dictionary<ModType, string> infoFileName = new Dictionary<ModType, string>()
@@ -163,13 +164,15 @@ namespace SteamLibrary
             {
                 modInfo.Categories.Add("Multi-Player");
             }
+
+            modInfo.IconPath = FindIcon(path, gameInfo["icon"] == KeyValue.Invalid ? null : gameInfo["icon"].Value);
         }
 
         static private void PopulateModInfoFromLibList(ref ModInfo modInfo, string path)
         {
             using (var reader = new StreamReader(path))
             {
-                string type = null;
+                string type = null, icon = null;
 
                 var pattern = new Regex("\\s*(\\w+)\\s+\"([^\"]*)\".*", RegexOptions.Singleline);
 
@@ -205,6 +208,10 @@ namespace SteamLibrary
                         {
                             modInfo.Links.Add(new Link("Download", match.Groups[2].Value));
                         }
+                        else if (match.Groups[1].Value == "icon")
+                        {
+                            icon = match.Groups[2].Value;
+                        }
                     }
                 }
 
@@ -217,12 +224,52 @@ namespace SteamLibrary
                 {
                     modInfo.Categories.Add("Multi-Player");
                 }
+
+                modInfo.IconPath = FindIcon(path, icon);
             }
         }
 
         static public ModType GetModTypeOfGameID(GameID gameId)
         {
             return gameId.AppID == halfLife ? ModType.HL : ModType.HL2;
+        }
+
+        static private string FindIcon(string modPath, string rawIconPath)
+        {
+            rawIconPath = rawIconPath.Replace('/', Path.DirectorySeparatorChar);
+
+            if (rawIconPath != null)
+            {
+                // Gameinfo specifies an icon path. This is what Steam would use for all mod types, so try to do the same
+                var steamTgaBig = Path.Combine(modPath, rawIconPath) + "_big.tga";
+                if (File.Exists(steamTgaBig))
+                {
+                    return steamTgaBig;
+                }
+
+                var steamTga = Path.Combine(modPath, rawIconPath) + ".tga";
+                if (File.Exists(steamTga))
+                {
+                    return steamTga;
+                }
+            }
+            else
+            {
+                // Some HL1 mods seem to use this instead of specifying. (Maybe is formerly worked in Steam?)
+                var gameTga = Path.Combine(modPath, "game.tga");
+                if (File.Exists(gameTga))
+                {
+                    return gameTga;
+                }
+
+                var gameIco = Path.Combine(modPath, "game.ico");
+                if (File.Exists(gameIco))
+                {
+                    return gameIco;
+                }
+            }
+
+            return null;
         }
     }
 }
