@@ -9,6 +9,7 @@ using Moq;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
+using SteamKit2;
 
 namespace SteamLibrary.Tests
 {
@@ -68,7 +69,7 @@ namespace SteamLibrary.Tests
         {
             var steamLib = CreateLibrary();
             var games = steamLib.GetInstalledGames();
-            var state = Steam.GetAppState(ulong.Parse(games.Values.First().GameId));
+            var state = Steam.GetAppState(games.Values.First().ToSteamGameID());
             Assert.IsTrue(state.Installed);
         }
     }

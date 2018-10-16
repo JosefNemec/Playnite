@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="Configuration.cs" />
     <Compile Include="Environment.cs" />
+    <Compile Include="GameExtension.cs" />
     <Compile Include="Models\GetOwnedGamesResult.cs" />
     <Compile Include="Models\LocalSteamUser.cs" />
     <Compile Include="Models\ResolveVanityResult.cs" />

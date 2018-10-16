@@ -42,7 +42,7 @@ namespace SteamLibrary
                 GameId = game.GameId
             };
 
-            var gameId = new GameID(ulong.Parse(game.GameId));
+            var gameId = game.ToSteamGameID();
             if (gameId.IsMod)
             {
                 var data = SteamLibrary.GetInstalledModFromFolder(game.InstallDirectory, ModInfo.GetModTypeOfGameID(gameId));
@@ -288,7 +288,7 @@ namespace SteamLibrary
 
         internal SteamGameMetadata UpdateGameWithMetadata(Game game)
         {
-            var appId = (new GameID(ulong.Parse(game.GameId))).AppID;
+            var appId = game.ToSteamGameID().AppID;
             var metadata = DownloadGameMetadata(appId, settings.PreferScreenshotForBackground);
             game.Name = metadata.ProductDetails?["common"]["name"]?.Value ?? game.Name;
             game.Links = new ObservableCollection<Link>()

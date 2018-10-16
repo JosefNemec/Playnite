@@ -130,12 +130,10 @@ namespace SteamLibrary
         internal List<Game> GetInstalledGoldSrcModsFromFolder(string path)
         {
             var games = new List<Game>();
-
             var firstPartyMods = new string[] { "bshift", "cstrike", "czero", "czeror", "dmc", "dod", "gearbox", "ricochet", "tfc", "valve"};
-
             var dirInfo = new DirectoryInfo(path);
 
-            foreach (var folder in dirInfo.GetDirectories().Where(a => Array.IndexOf(firstPartyMods, a.Name) == -1).Select(a => a.FullName))
+            foreach (var folder in dirInfo.GetDirectories().Where(a => firstPartyMods.Contains(a.Name)).Select(a => a.FullName))
             {
                 try
                 {
@@ -181,14 +179,14 @@ namespace SteamLibrary
             {
                 PluginId = id,
                 Source = "Steam",
-                GameId = modInfo.gameId.ToString(),
-                Name = modInfo.name,
+                GameId = modInfo.GameId.ToString(),
+                Name = modInfo.Name,
                 InstallDirectory = path,
-                PlayAction = CreatePlayTask(modInfo.gameId),
+                PlayAction = CreatePlayTask(modInfo.GameId),
                 State = new GameState() { Installed = true },
-                Developers = new ComparableList<string>() { modInfo.developer },
-                Links = modInfo.links,
-                Categories = modInfo.categories
+                Developers = new ComparableList<string>() { modInfo.Developer },
+                Links = modInfo.Links,
+                Categories = modInfo.Categories
             };
 
             return game;
@@ -218,7 +216,8 @@ namespace SteamLibrary
             }
 
             // In most cases, this will be inside the folder where Half-Life is installed.
-            if (!string.IsNullOrEmpty(Steam.ModInstallPath))
+            var modInstallPath = Steam.ModInstallPath;
+            if (!string.IsNullOrEmpty(modInstallPath) && Directory.Exists(modInstallPath))
             {
                 GetInstalledGoldSrcModsFromFolder(Steam.ModInstallPath).ForEach(a =>
                 {
@@ -230,7 +229,8 @@ namespace SteamLibrary
             }
 
             // In most cases, this will be inside the library folder where Steam is installed.
-            if (!string.IsNullOrEmpty(Steam.SourceModInstallPath))
+            var sourceModInstallPath = Steam.SourceModInstallPath;
+            if (!string.IsNullOrEmpty(sourceModInstallPath) && Directory.Exists(sourceModInstallPath))
             {
                 GetInstalledSourceModsFromFolder(Steam.SourceModInstallPath).ForEach(a =>
                 {
@@ -536,7 +536,7 @@ namespace SteamLibrary
 
         public IGameController GetGameController(Game game)
         {
-            return new SteamGameController(game, playniteApi);
+            return new SteamGameController(game);
         }
 
         public ILibraryMetadataProvider GetMetadataDownloader()

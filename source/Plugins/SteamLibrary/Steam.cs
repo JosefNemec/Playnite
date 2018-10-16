@@ -136,7 +136,7 @@ namespace SteamLibrary
                         foreach (var folder in Directory.GetDirectories(Steam.ModInstallPath))
                         {
                             var modInfo = ModInfo.GetFromFolder(folder, ModInfo.ModType.HL);
-                            if (modInfo?.gameId == id)
+                            if (modInfo?.GameId == id)
                             {
                                 foundMod = true;
                                 break;
@@ -152,7 +152,7 @@ namespace SteamLibrary
                         foreach (var folder in Directory.GetDirectories(Steam.SourceModInstallPath))
                         {
                             var modInfo = ModInfo.GetFromFolder(folder, ModInfo.ModType.HL2);
-                            if (modInfo?.gameId == id)
+                            if (modInfo?.GameId == id)
                             {
                                 foundMod = true;
                                 break;

@@ -17,12 +17,10 @@ namespace SteamLibrary
     {
         private CancellationTokenSource watcherToken;
         private GameID gameId;
-        private IPlayniteAPI api;
 
-        public SteamGameController(Game game, IPlayniteAPI playniteApi) : base(game)
+        public SteamGameController(Game game) : base(game)
         {
-            gameId = ulong.Parse(game.GameId);
-            api = playniteApi;
+            gameId = game.ToSteamGameID();
         }
 
         public override void Dispose()
@@ -47,7 +45,7 @@ namespace SteamLibrary
         {
             if (gameId.IsMod)
             {
-                api.Dialogs.ShowErrorMessage("Mods cannot be installed via Playnite.", "Error");
+                throw new NotSupportedException("Installing mods is not supported.");
             }
             else
             {
@@ -61,7 +59,7 @@ namespace SteamLibrary
         {
             if (gameId.IsMod)
             {
-                api.Dialogs.ShowErrorMessage("Mods cannot be uninstalled via Playnite.", "Error");
+                throw new NotSupportedException("Uninstalling mods is not supported.");
             }
             else
             {
@@ -77,7 +75,7 @@ namespace SteamLibrary
             await Task.Run(async () =>
             {
                 var stopWatch = Stopwatch.StartNew();
-                var id = new GameID(ulong.Parse(Game.GameId));
+                var id = Game.ToSteamGameID();
 
                 while (true)
                 {
@@ -91,7 +89,7 @@ namespace SteamLibrary
                     {
                         if (Game.PlayAction == null)
                         {
-                            Game.PlayAction = SteamLibrary.CreatePlayTask(ulong.Parse(Game.GameId));
+                            Game.PlayAction = SteamLibrary.CreatePlayTask(Game.ToSteamGameID());
                         }
 
                         stopWatch.Stop();
@@ -110,7 +108,7 @@ namespace SteamLibrary
             await Task.Run(async () =>
             {
                 var stopWatch = Stopwatch.StartNew();
-                var id = new GameID(ulong.Parse(Game.GameId));
+                var id = Game.ToSteamGameID();
 
                 while (true)
                 {
@@ -138,7 +136,7 @@ namespace SteamLibrary
             await Task.Run(async () =>
             {
                 var stopWatch = Stopwatch.StartNew();
-                var id = new GameID(ulong.Parse(Game.GameId));
+                var id = Game.ToSteamGameID();
                 var gameState = Steam.GetAppState(id);
 
                 while (true)

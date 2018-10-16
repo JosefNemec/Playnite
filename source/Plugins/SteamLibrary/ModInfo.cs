@@ -17,12 +17,12 @@ namespace SteamLibrary
             HL2,
         }
 
-        public string name { get; private set; }
-        public GameID gameId { get; private set; }
-        public string installFolder { get; private set; }
-        public ComparableList<string> categories { get; private set; }
-        public string developer { get; private set; }
-        public ObservableCollection<Link> links { get; private set; }
+        public string Name { get; private set; }
+        public GameID GameId { get; private set; }
+        public string InstallFolder { get; private set; }
+        public ComparableList<string> Categories { get; private set; }
+        public string Developer { get; private set; }
+        public ObservableCollection<Link> Links { get; private set; }
         private readonly ModType modType;
 
         static private Dictionary<ModType, string> infoFileName = new Dictionary<ModType, string>()
@@ -39,18 +39,18 @@ namespace SteamLibrary
         {
             get
             {
-                return File.Exists(Path.Combine(installFolder, infoFileName[modType]));
+                return File.Exists(Path.Combine(InstallFolder, infoFileName[modType]));
             }
         }
 
         private ModInfo(ModType type)
         {
             modType = type;
-            name = "Unknown Mod";
-            links = new ObservableCollection<Link>();
-            gameId = new GameID();
-            developer = "Unknown";
-            categories = new ComparableList<string>();
+            Name = "Unknown Mod";
+            Links = new ObservableCollection<Link>();
+            GameId = new GameID();
+            Developer = "Unknown";
+            Categories = new ComparableList<string>();
         }
 
         static public ModInfo GetFromGameID(GameID gameID)
@@ -103,11 +103,11 @@ namespace SteamLibrary
             }
 
             ModInfo modInfo = new ModInfo(modType);
-            modInfo.installFolder = path;
+            modInfo.InstallFolder = path;
 
             if (modType == ModType.HL)
             {
-                modInfo.gameId.AppID = halfLife;
+                modInfo.GameId.AppID = halfLife;
                 PopulateModInfoFromLibList(ref modInfo, gameInfoPath);
             }
             else
@@ -115,8 +115,8 @@ namespace SteamLibrary
                 PopulateModInfoFromGameInfo(ref modInfo, gameInfoPath);
             }
 
-            modInfo.gameId.AppType = GameID.GameType.GameMod;
-            modInfo.gameId.ModID = GetModFolderCRC(dirInfo.Name);
+            modInfo.GameId.AppType = GameID.GameType.GameMod;
+            modInfo.GameId.ModID = GetModFolderCRC(dirInfo.Name);
 
             return modInfo;
         }
@@ -136,32 +136,32 @@ namespace SteamLibrary
             var gameInfo = new KeyValue();
             gameInfo.ReadFileAsText(path);
 
-            modInfo.gameId.AppID = gameInfo["FileSystem"]["SteamAppId"].AsUnsignedInteger();
-            modInfo.name = gameInfo["game"].Value;
+            modInfo.GameId.AppID = gameInfo["FileSystem"]["SteamAppId"].AsUnsignedInteger();
+            modInfo.Name = gameInfo["game"].Value;
 
             if (gameInfo["developer"] != KeyValue.Invalid)
             {
-                modInfo.developer = gameInfo["developer"].Value;
+                modInfo.Developer = gameInfo["developer"].Value;
             }
 
             if (gameInfo["manual"] != KeyValue.Invalid)
             {
-                modInfo.links.Add(new Link("Manual", gameInfo["manual"].Value));
+                modInfo.Links.Add(new Link("Manual", gameInfo["manual"].Value));
             }
 
             if (gameInfo["developer_url"] != KeyValue.Invalid)
             {
-                modInfo.links.Add(new Link("Developer URL", gameInfo["developer_url"].Value));
+                modInfo.Links.Add(new Link("Developer URL", gameInfo["developer_url"].Value));
             }
 
             if (gameInfo["type"] == KeyValue.Invalid || gameInfo["type"].Value == "singleplayer_only")
             {
-                modInfo.categories.Add("Single-Player");
+                modInfo.Categories.Add("Single-Player");
             }
 
             if (gameInfo["type"] == KeyValue.Invalid || gameInfo["type"].Value == "multiplayer_only")
             {
-                modInfo.categories.Add("Multi-Player");
+                modInfo.Categories.Add("Multi-Player");
             }
         }
 
@@ -181,15 +181,15 @@ namespace SteamLibrary
                     {
                         if (match.Groups[1].Value == "game")
                         {
-                            modInfo.name = match.Groups[2].Value;
+                            modInfo.Name = match.Groups[2].Value;
                         }
                         else if (match.Groups[1].Value == "manual")
                         {
-                            modInfo.links.Add(new Link("Manual", match.Groups[2].Value));
+                            modInfo.Links.Add(new Link("Manual", match.Groups[2].Value));
                         }
                         else if (match.Groups[1].Value == "developer_url")
                         {
-                            modInfo.links.Add(new Link("Developer URL", match.Groups[2].Value));
+                            modInfo.Links.Add(new Link("Developer URL", match.Groups[2].Value));
                         }
                         else if (match.Groups[1].Value == "type")
                         {
@@ -199,23 +199,23 @@ namespace SteamLibrary
                         // mods seem to have them.
                         else if (match.Groups[1].Value == "url_info")
                         {
-                            modInfo.links.Add(new Link("Info", match.Groups[2].Value));
+                            modInfo.Links.Add(new Link("Info", match.Groups[2].Value));
                         }
                         else if (match.Groups[1].Value == "url_dl")
                         {
-                            modInfo.links.Add(new Link("Download", match.Groups[2].Value));
+                            modInfo.Links.Add(new Link("Download", match.Groups[2].Value));
                         }
                     }
                 }
 
                 if (type == null || type == "singleplayer_only")
                 {
-                    modInfo.categories.Add("Single-Player");
+                    modInfo.Categories.Add("Single-Player");
                 }
 
                 if (type == null || type == "multiplayer_only")
                 {
-                    modInfo.categories.Add("Multi-Player");
+                    modInfo.Categories.Add("Multi-Player");
                 }
             }
         }
