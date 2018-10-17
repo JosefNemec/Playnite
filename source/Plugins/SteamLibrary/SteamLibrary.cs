@@ -220,30 +220,37 @@ namespace SteamLibrary
                 }
             }
 
-            // In most cases, this will be inside the folder where Half-Life is installed.
-            var modInstallPath = Steam.ModInstallPath;
-            if (!string.IsNullOrEmpty(modInstallPath) && Directory.Exists(modInstallPath))
+            try
             {
-                GetInstalledGoldSrcModsFromFolder(Steam.ModInstallPath).ForEach(a =>
+                // In most cases, this will be inside the folder where Half-Life is installed.
+                var modInstallPath = Steam.ModInstallPath;
+                if (!string.IsNullOrEmpty(modInstallPath) && Directory.Exists(modInstallPath))
                 {
-                    if (!games.ContainsKey(a.GameId))
+                    GetInstalledGoldSrcModsFromFolder(Steam.ModInstallPath).ForEach(a =>
                     {
-                        games.Add(a.GameId, a);
-                    }
-                });
-            }
+                        if (!games.ContainsKey(a.GameId))
+                        {
+                            games.Add(a.GameId, a);
+                        }
+                    });
+                }
 
-            // In most cases, this will be inside the library folder where Steam is installed.
-            var sourceModInstallPath = Steam.SourceModInstallPath;
-            if (!string.IsNullOrEmpty(sourceModInstallPath) && Directory.Exists(sourceModInstallPath))
-            {
-                GetInstalledSourceModsFromFolder(Steam.SourceModInstallPath).ForEach(a =>
+                // In most cases, this will be inside the library folder where Steam is installed.
+                var sourceModInstallPath = Steam.SourceModInstallPath;
+                if (!string.IsNullOrEmpty(sourceModInstallPath) && Directory.Exists(sourceModInstallPath))
                 {
-                    if (!games.ContainsKey(a.GameId))
+                    GetInstalledSourceModsFromFolder(Steam.SourceModInstallPath).ForEach(a =>
                     {
-                        games.Add(a.GameId, a);
-                    }
-                });
+                        if (!games.ContainsKey(a.GameId))
+                        {
+                            games.Add(a.GameId, a);
+                        }
+                    });
+                }
+            }
+            catch (Exception e) when (!Environment.IsDebugBuild)
+            {
+                logger.Error(e, "Failed to import Steam mods.");
             }
 
             return games;
