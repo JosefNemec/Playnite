@@ -32,7 +32,7 @@ namespace PlayniteUI
             {
                 IEnumerable<string> converted;
 
-                if (parameter is string s && s.Equals("true"))
+                if (parameter is string s && s.Equals("NoTrim"))
                 {
                     // don't use final trim()
                     converted = stringVal.Split(new char[] { ',' }).SkipWhile(a => string.IsNullOrEmpty(a.Trim()));
