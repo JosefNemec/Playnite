@@ -15,7 +15,7 @@ namespace SteamLibrary.Tests
         [Test]
         public void StandardDownloadTest()
         {
-            var provider = new SteamMetadataProvider(null, new SteamLibrarySettings(), new SteamApiClient());
+            var provider = new SteamMetadataProvider(null, new SteamLibrary(null), new SteamApiClient());
             var data = provider.GetMetadata(new Game() { GameId = "578080" });
             Assert.IsNotNull(data.GameData);
             Assert.IsNotNull(data.Icon);
