@@ -21,6 +21,7 @@ using System.Windows.Controls;
 using Playnite;
 using System.Windows;
 using System.Reflection;
+using System.Collections.ObjectModel;
 
 namespace SteamLibrary
 {
@@ -61,13 +62,13 @@ namespace SteamLibrary
             };
         }
 
-        internal static GameAction CreatePlayTask(int appId)
+        internal static GameAction CreatePlayTask(GameID gameId)
         {
             return new GameAction()
             {
                 Name = "Play",
                 Type = GameActionType.URL,
-                Path = @"steam://run/" + appId,
+                Path = @"steam://rungameid/" + gameId,
                 IsHandledByPlugin = true
             };
         }
@@ -90,14 +91,15 @@ namespace SteamLibrary
                 name = StringExtensions.NormalizeGameName(kv["name"].Value);
             }
 
+            var gameId = new GameID(kv["appID"].AsUnsignedInteger());
             var game = new Game()
             {
                 PluginId = Id,
                 Source = "Steam",
-                GameId = kv["appID"].Value,
+                GameId = gameId.ToString(),
                 Name = name,
                 InstallDirectory = Path.Combine((new FileInfo(path)).Directory.FullName, "common", kv["installDir"].Value),
-                PlayAction = CreatePlayTask(int.Parse(kv["appID"].Value)),
+                PlayAction = CreatePlayTask(gameId),
                 State = new GameState() { Installed = true }
             };
 
@@ -125,6 +127,72 @@ namespace SteamLibrary
             return games;
         }
 
+        internal List<Game> GetInstalledGoldSrcModsFromFolder(string path)
+        {
+            var games = new List<Game>();
+            var firstPartyMods = new string[] { "bshift", "cstrike", "czero", "czeror", "dmc", "dod", "gearbox", "ricochet", "tfc", "valve"};
+            var dirInfo = new DirectoryInfo(path);
+
+            foreach (var folder in dirInfo.GetDirectories().Where(a => !firstPartyMods.Contains(a.Name)).Select(a => a.FullName))
+            {
+                try
+                {
+                    var game = GetInstalledModFromFolder(folder, ModInfo.ModType.HL);
+                    games.Add(game);
+                }
+                catch (Exception exc)
+                {
+                    // gameinfo.txt may not exist or may be invalid
+                    logger.Error(exc, $"Failed to get information about installed GoldSrc mod from: {path}");
+                }
+            }
+
+            return games;
+        }
+
+        internal List<Game> GetInstalledSourceModsFromFolder(string path)
+        {
+            var games = new List<Game>();
+
+            foreach (var folder in Directory.GetDirectories(path))
+            {
+                try
+                {
+                    var game = GetInstalledModFromFolder(folder, ModInfo.ModType.HL2);
+                    games.Add(game);
+                }
+                catch (Exception exc)
+                {
+                    // gameinfo.txt may not exist or may be invalid
+                    logger.Error(exc, $"Failed to get information about installed Source mod from: {path}");
+                }
+            }
+
+            return games;
+        }
+
+        internal Game GetInstalledModFromFolder(string path, ModInfo.ModType modType)
+        {
+            var modInfo = ModInfo.GetFromFolder(path, modType);
+
+            var game = new Game()
+            {
+                PluginId = Id,
+                Source = "Steam",
+                GameId = modInfo.GameId.ToString(),
+                Name = modInfo.Name,
+                InstallDirectory = path,
+                PlayAction = CreatePlayTask(modInfo.GameId),
+                State = new GameState() { Installed = true },
+                Developers = new ComparableList<string>() { modInfo.Developer },
+                Links = modInfo.Links,
+                Tags = modInfo.Categories,
+                Icon = modInfo.IconPath
+            };
+
+            return game;
+        }
+
         internal Dictionary<string, Game> GetInstalledGames()
         {
             var games = new Dictionary<string, Game>();
@@ -146,6 +214,32 @@ namespace SteamLibrary
                 {
                     logger.Warn($"Steam library {libFolder} not found.");
                 }
+            }
+
+            // In most cases, this will be inside the folder where Half-Life is installed.
+            var modInstallPath = Steam.ModInstallPath;
+            if (!string.IsNullOrEmpty(modInstallPath) && Directory.Exists(modInstallPath))
+            {
+                GetInstalledGoldSrcModsFromFolder(Steam.ModInstallPath).ForEach(a =>
+                {
+                    if (!games.ContainsKey(a.GameId))
+                    {
+                        games.Add(a.GameId, a);
+                    }
+                });
+            }
+
+            // In most cases, this will be inside the library folder where Steam is installed.
+            var sourceModInstallPath = Steam.SourceModInstallPath;
+            if (!string.IsNullOrEmpty(sourceModInstallPath) && Directory.Exists(sourceModInstallPath))
+            {
+                GetInstalledSourceModsFromFolder(Steam.SourceModInstallPath).ForEach(a =>
+                {
+                    if (!games.ContainsKey(a.GameId))
+                    {
+                        games.Add(a.GameId, a);
+                    }
+                });
             }
 
             return games;
@@ -447,7 +541,7 @@ namespace SteamLibrary
 
         public ILibraryMetadataProvider GetMetadataDownloader()
         {
-            return new SteamMetadataProvider(servicesClient, (SteamLibrarySettings)Settings, apiClient);
+            return new SteamMetadataProvider(servicesClient, this, apiClient);
         }
 
         #endregion ILibraryPlugin

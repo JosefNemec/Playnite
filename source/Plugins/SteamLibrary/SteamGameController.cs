@@ -9,15 +9,18 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using SteamKit2;
 
 namespace SteamLibrary
 {
     public class SteamGameController : BaseGameController
     {
         private CancellationTokenSource watcherToken;
+        private GameID gameId;
 
         public SteamGameController(Game game) : base(game)
         {
+            gameId = game.ToSteamGameID();
         }
 
         public override void Dispose()
@@ -34,22 +37,36 @@ namespace SteamLibrary
         {
             ReleaseResources();
             OnStarting(this, new GameControllerEventArgs(this, 0));
-            ProcessStarter.StartUrl($"steam://run/{Game.GameId}");
+            ProcessStarter.StartUrl($"steam://rungameid/{Game.GameId}");
             StartRunningWatcher();
         }
 
         public override void Install()
         {
-            ReleaseResources();
-            ProcessStarter.StartUrl($"steam://install/{Game.GameId}");
-            StartInstallWatcher();
+            if (gameId.IsMod)
+            {
+                throw new NotSupportedException("Installing mods is not supported.");
+            }
+            else
+            {
+                ReleaseResources();
+                ProcessStarter.StartUrl($"steam://install/{gameId.AppID}");
+                StartInstallWatcher();
+            }
         }
 
         public override void Uninstall()
         {
-            ReleaseResources();
-            ProcessStarter.StartUrl($"steam://uninstall/{Game.GameId}");
-            StartUninstallWatcher();
+            if (gameId.IsMod)
+            {
+                throw new NotSupportedException("Uninstalling mods is not supported.");
+            }
+            else
+            {
+                ReleaseResources();
+                ProcessStarter.StartUrl($"steam://uninstall/{gameId.AppID}");
+                StartUninstallWatcher();
+            }
         }
 
         public async void StartInstallWatcher()
@@ -58,7 +75,7 @@ namespace SteamLibrary
             await Task.Run(async () =>
             {
                 var stopWatch = Stopwatch.StartNew();
-                var id = int.Parse(Game.GameId);
+                var id = Game.ToSteamGameID();
 
                 while (true)
                 {
@@ -72,7 +89,7 @@ namespace SteamLibrary
                     {
                         if (Game.PlayAction == null)
                         {
-                            Game.PlayAction = SteamLibrary.CreatePlayTask(int.Parse(Game.GameId));
+                            Game.PlayAction = SteamLibrary.CreatePlayTask(Game.ToSteamGameID());
                         }
 
                         stopWatch.Stop();
@@ -91,7 +108,7 @@ namespace SteamLibrary
             await Task.Run(async () =>
             {
                 var stopWatch = Stopwatch.StartNew();
-                var id = int.Parse(Game.GameId);
+                var id = Game.ToSteamGameID();
 
                 while (true)
                 {
@@ -119,7 +136,7 @@ namespace SteamLibrary
             await Task.Run(async () =>
             {
                 var stopWatch = Stopwatch.StartNew();
-                var id = int.Parse(Game.GameId);
+                var id = Game.ToSteamGameID();
                 var gameState = Steam.GetAppState(id);
 
                 while (true)
