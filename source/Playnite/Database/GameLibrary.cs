@@ -111,7 +111,7 @@ namespace Playnite.Database
                 {
                     existingGame.State.Installed = newGame.State.Installed;
                     existingGame.InstallDirectory = newGame.InstallDirectory;
-                    if (existingGame.PlayAction == null)
+                    if (existingGame.PlayAction == null || existingGame.PlayAction.IsHandledByPlugin)
                     {
                         existingGame.PlayAction = newGame.PlayAction;
                     }
