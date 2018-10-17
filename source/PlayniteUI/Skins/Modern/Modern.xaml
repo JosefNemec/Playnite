@@ -2523,7 +2523,7 @@
             </Button.OpacityMask>
         </Button>
     </ControlTemplate>
-    
+
     <ControlTemplate x:Key="NotificationIcon">
         <ToggleButton FontWeight="Bold" DockPanel.Dock="Right" Height="30" Padding="0"
                       WindowChrome.IsHitTestVisibleInChrome="True" BorderThickness="0"
@@ -2758,7 +2758,7 @@
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </pc:ExtendedListBox.Style>                    
+                    </pc:ExtendedListBox.Style>
                     <pc:ExtendedListBox.InputBindings>
                         <KeyBinding Command="{Binding EditSelectedGamesCommand}"
                                 Key ="{Binding EditSelectedGamesCommand.Gesture.Key}"
@@ -3071,7 +3071,7 @@
                             </CheckBox>
 
                             <Border Height="10" />
-                            
+
                             <Label Content="{DynamicResource LOCLibraries}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
@@ -3084,7 +3084,7 @@
                                 </Label.Style>
                             </Label>
                             <ComboBox TabIndex="5" Margin="8,0,8,8" Style="{StaticResource TextableComboBox}"
-                                      ItemsSource="{Binding DatabaseFilters.Libraries}"                                              
+                                      ItemsSource="{Binding DatabaseFilters.Libraries}"
                                       Text="{Binding DatabaseFilters.LibrariesString, Mode=OneWay}">
                                 <ComboBox.ItemContainerStyle>
                                     <Style TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
@@ -3126,7 +3126,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox TabIndex="7" x:Name="TextFilterGenre" Text="{Binding AppSettings.FilterSettings.Genres, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="7" x:Name="TextFilterGenre" Text="{Binding AppSettings.FilterSettings.Genres, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='true'}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCPlatformTitle}">
                                 <Label.Style>
@@ -3139,7 +3139,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox TabIndex="8" x:Name="TextFilterPlatform" Text="{Binding AppSettings.FilterSettings.Platforms, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="8" x:Name="TextFilterPlatform" Text="{Binding AppSettings.FilterSettings.Platforms, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='true'}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCGameReleaseDateTitle}">
                                 <Label.Style>
@@ -3165,7 +3165,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox TabIndex="10" x:Name="TextFilterDeveloper" Text="{Binding AppSettings.FilterSettings.Developers, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="10" x:Name="TextFilterDeveloper" Text="{Binding AppSettings.FilterSettings.Developers, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='true'}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCPublisherLabel}">
                                 <Label.Style>
@@ -3178,7 +3178,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox TabIndex="11" x:Name="TextFilterPublisher" Text="{Binding AppSettings.FilterSettings.Publishers, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="11" x:Name="TextFilterPublisher" Text="{Binding AppSettings.FilterSettings.Publishers, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='true'}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCCategoryLabel}">
                                 <Label.Style>
@@ -3191,7 +3191,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox TabIndex="12" x:Name="TextFilterCategory" Text="{Binding AppSettings.FilterSettings.Categories, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="12" x:Name="TextFilterCategory" Text="{Binding AppSettings.FilterSettings.Categories, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='true'}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCTagLabel}">
                                 <Label.Style>
@@ -3204,7 +3204,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox TabIndex="13" x:Name="TextFilterTag" Text="{Binding AppSettings.FilterSettings.Tags, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="13" x:Name="TextFilterTag" Text="{Binding AppSettings.FilterSettings.Tags, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='true'}" Style="{StaticResource FilterTextBox}"/>
                             <Label Content="{DynamicResource LOCSeriesLabel}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
@@ -3294,12 +3294,12 @@
                                         Visibility="{Binding IsTabStop, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
                     </Border>
 
-                    <ContentControl Template="{StaticResource SteamFriendsIcon}" Margin="0,0,130,0" 
+                    <ContentControl Template="{StaticResource SteamFriendsIcon}" Margin="0,0,130,0"
                                     HorizontalAlignment="Right" DockPanel.Dock="Right"/>
 
                     <ContentControl Template="{StaticResource NotificationIcon}" Margin="0,0,20,0"
                                     HorizontalAlignment="Right" DockPanel.Dock="Right"/>
-                    
+
                     <ContentControl Template="{StaticResource ProgressView}" Margin="20,0,30,0"
                                     HorizontalAlignment="Stretch" DockPanel.Dock="Left" />
                 </DockPanel>
@@ -3388,7 +3388,7 @@
                                                                   Grid.Column="0"
                                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                                   Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
-                                                <TextBlock x:Name="ShortcutText" Text="{TemplateBinding Tag}"                                                           
+                                                <TextBlock x:Name="ShortcutText" Text="{TemplateBinding Tag}"
                                                            Grid.Column="1" Margin="30,0,0,0" Opacity="0.6"
                                                            VerticalAlignment="Center"/>
                                             </Grid>
@@ -3583,7 +3583,7 @@
                                     Tag="{Binding DownloadMetadataCommand.GestureText}"/>
 
                             <Canvas Margin="0,35,0,0" />
-                            
+
                             <Button Content="{DynamicResource LOCReloadScripts}"
                                     Command="{Binding ReloadScriptsCommand}"
                                     Tag="{Binding ReloadScriptsCommand.GestureText}"/>
