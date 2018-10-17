@@ -47,15 +47,12 @@ namespace BattleNetLibrary
 
             if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("battlenet", StringComparison.OrdinalIgnoreCase))
             {
-                if (!BattleNet.IsRunning)
+                var bnetRunning = BattleNet.IsRunning;
+                if (!bnetRunning)
                 {
                     logger.Info("Battle.net is not running, starting it first.");
-                    BattleNet.StartClient();
-                }
-
-                if (!BattleNet.IsInitialized)
-                {
-                    while (!BattleNet.IsInitialized)
+                    BattleNet.StartClient();                  
+                    while (BattleNet.RunningProcessesCount < 3)
                     {
                         await Task.Delay(500);
                     }

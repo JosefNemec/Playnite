@@ -21,14 +21,6 @@ namespace BattleNetLibrary
             }
         }
 
-        public static bool IsInitialized
-        {
-            get
-            {
-                return RunningProcessesCount >= 3;
-            }
-        }
-
         public static int RunningProcessesCount
         {
             get
