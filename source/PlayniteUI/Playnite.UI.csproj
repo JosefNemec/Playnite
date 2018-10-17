@@ -389,6 +389,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Content>
     <EmbeddedResource Include="Resources\DescriptionView.html" />
+    <EmbeddedResource Include="Resources\contributors.txt" />
     <Content Include="Skins\Classic\Classic.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

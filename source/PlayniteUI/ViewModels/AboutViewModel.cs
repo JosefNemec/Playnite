@@ -36,6 +36,14 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        public string Contributors
+        {
+            get
+            {
+                return Resources.ReadFileFromResource("PlayniteUI.Resources.contributors.txt");
+            }
+        }
+
         private string patronsList;
         public string PatronsList
         {
