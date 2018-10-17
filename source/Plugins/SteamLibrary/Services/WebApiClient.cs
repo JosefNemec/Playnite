@@ -12,20 +12,20 @@ namespace SteamLibrary.Services
 {
     public class WebApiClient
     {
-        public static StoreAppDetailsResult ParseStoreData(int appId, string data)
+        public static StoreAppDetailsResult ParseStoreData(uint appId, string data)
         {
             var parsedData = JsonConvert.DeserializeObject<Dictionary<string, StoreAppDetailsResult>>(data);
             return parsedData[appId.ToString()];
         }
 
-        public static string GetRawStoreAppDetail(int appId)
+        public static string GetRawStoreAppDetail(uint appId)
         {
             var url = @"http://store.steampowered.com/api/appdetails?appids={0}";
             url = string.Format(url, appId);
             return HttpDownloader.DownloadString(url);
         }
 
-        public static StoreAppDetailsResult.AppDetails GetStoreAppDetail(int appId)
+        public static StoreAppDetailsResult.AppDetails GetStoreAppDetail(uint appId)
         {
             var data = GetRawStoreAppDetail(appId);
             var response = ParseStoreData(appId, data);
