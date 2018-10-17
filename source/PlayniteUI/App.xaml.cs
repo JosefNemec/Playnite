@@ -266,6 +266,7 @@ namespace PlayniteUI
                 else
                 {
                     AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "games.db");
+                    AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.SaveSettings();
                     existingDb = File.Exists(AppSettings.DatabasePath);
                     Database.SetDatabasePath(AppSettings.DatabasePath);
@@ -325,11 +326,15 @@ namespace PlayniteUI
                 PipeService_CommandExecuted(this, new CommandExecutedEventArgs(command, cmdArgs));
             }
 
+            // Initialize XInput
             xdevice = new XInputDevice(InputManager.Current)
             {
                 SimulateAllKeys = true,
                 SimulateNavigationKeys = true
             };
+
+            // Fix bootup startup
+            PlayniteSettings.SetBootupStateRegistration(AppSettings.StartOnBoot);
 
             logger.Info($"Application {CurrentVersion} started");
         }
@@ -391,9 +396,9 @@ namespace PlayniteUI
                                 });
                             }
                         }
-                        catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                        catch (Exception exc)
                         {
-                            logger.Error(exc, "Failed to process update.");
+                            logger.Warn(exc, "Failed to process update.");
                         }
                     }
 
@@ -411,9 +416,9 @@ namespace PlayniteUI
                     var client = new ServicesClient();
                     client.PostUserUsage(AppSettings.InstallInstanceId);
                 }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                catch (Exception exc)
                 {
-                    logger.Error(exc, "Failed to post user usage data.");
+                    logger.Warn(exc, "Failed to post user usage data.");
                 }
             });
         }

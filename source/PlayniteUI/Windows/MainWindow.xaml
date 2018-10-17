@@ -63,7 +63,7 @@
                           Visibility="{Binding Path=EnableTray, Source={x:Static pset:PlayniteSettings.Instance}, Converter={StaticResource BooleanToVisibilityConverter}}"
                           DoubleClickCommand="{Binding Source={StaticResource Proxy}, Path=Data.ShowWindowCommand}">
             <tray:TaskbarIcon.ContextMenu>
-                <ContextMenu >
+                <ContextMenu>
                     <ContextMenu.ItemContainerStyle>
                         <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
                             <Setter Property="OverridesDefaultStyle" Value="True" />

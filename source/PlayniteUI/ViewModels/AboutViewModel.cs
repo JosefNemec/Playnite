@@ -2,9 +2,11 @@
 using Playnite.App;
 using Playnite.SDK;
 using Playnite.Services;
+using Playnite.Settings;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,14 +36,29 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        public string Contributors
+        {
+            get
+            {
+                return Resources.ReadFileFromResource("PlayniteUI.Resources.contributors.txt");
+            }
+        }
+
         private string patronsList;
         public string PatronsList
         {
             get
             {
-                if (patronsList == null)
+                try
                 {
-                    patronsList = string.Join(Environment.NewLine, (new ServicesClient()).GetPatrons());
+                    if (patronsList == null)
+                    {
+                        patronsList = string.Join(Environment.NewLine, (new ServicesClient()).GetPatrons());
+                    }
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to get patron list.");
                 }
 
                 return patronsList;
@@ -101,20 +118,8 @@ namespace PlayniteUI.ViewModels
 
         public void CreateDiagPackage()
         {
-            var path = dialogs.SaveFile("ZIP Archive (*.zip)|*.zip");
-            if (!string.IsNullOrEmpty(path))
-            {
-                try
-                {
-                    Diagnostic.CreateDiagPackage(path);
-                    dialogs.ShowMessage(resources.FindString("LOCDiagPackageCreationSuccess"));
-                }
-                catch (Exception exc)
-                {
-                    logger.Error(exc, "Faild to created diagnostics package.");
-                    dialogs.ShowMessage(resources.FindString("LOCDiagPackageCreationError"));
-                }
-            }
+            var model = new CrashHandlerViewModel(null, dialogs, resources);
+            model.CreateDiagPackage();
         }
     }
 }

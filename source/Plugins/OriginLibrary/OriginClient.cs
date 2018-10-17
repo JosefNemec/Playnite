@@ -14,7 +14,7 @@ namespace OriginLibrary
 
         public void Open()
         {
-            ProcessStarter.StartProcess(Origin.ClientExecPath, string.Empty);
+            Origin.StartClient();
         }
     }
 }

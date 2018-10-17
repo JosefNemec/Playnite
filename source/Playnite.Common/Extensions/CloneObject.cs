@@ -91,17 +91,6 @@ namespace Playnite
             return true;
         }
 
-        public static string ToJsonFormatted(this object value)
-        {
-            var settings = new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                Formatting = Formatting.Indented
-            };
-
-            return JsonConvert.SerializeObject(value, settings);
-        }
-
         /// <summary>
         /// Extension for 'Object' that copies the properties to a destination object.
         /// Courtesy of http://stackoverflow.com/questions/930433/apply-properties-values-from-one-object-to-another-of-the-same-type-automaticall

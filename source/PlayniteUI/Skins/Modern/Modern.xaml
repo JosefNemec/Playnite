@@ -2622,9 +2622,19 @@
                 <pui:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
             </Grid.Resources>
 
-            <pc:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
-                          Grid.ColumnSpan="10" Grid.RowSpan="10"
-                          Source="{Binding SelectedGameDetails.Game.BackgroundImageObject, IsAsync=True}" />
+            <pc:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top" 
+                          Grid.ColumnSpan="10" Grid.RowSpan="10">
+                <pc:FadeImage.Style>
+                    <Style TargetType="pc:FadeImage">
+                        <Setter Property="Source" Value="{x:Null}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding AppSettings.ShowBackgroundImage, Source={x:Static pui:App.Current}}" Value="True">
+                                <Setter Property="Source" Value="{Binding SelectedGameDetails.Game.BackgroundImageObject, IsAsync=True, Mode=OneWay}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </pc:FadeImage.Style>
+            </pc:FadeImage>
 
             <DockPanel LastChildFill="True" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
                        IsEnabled="{Binding Data.AppSettings.ViewSettings.GamesViewType, Source={StaticResource Proxy}, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"
@@ -3419,7 +3429,7 @@
                     <Border Grid.Column="0" Background="{DynamicResource MainMenuBackgroundBrush}"
                             Padding="10,70,20,20">
                         <DockPanel Grid.IsSharedSizeScope="True">
-                            <RadioButton Name="ButtonAddGame" DockPanel.Dock="Top"
+                            <RadioButton Name="ButtonAddGame" DockPanel.Dock="Top" Tag="▶"
                                          IsChecked="{Binding MainMenuOpened, Mode=OneWay, Converter={pui:NegateConverter}}">
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
@@ -3427,15 +3437,14 @@
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
-                            <RadioButton Command="{Binding UpdateGamesCommand}" DockPanel.Dock="Top"
-                                         Tag="{Binding UpdateGamesCommand.GestureText}">
+                            <RadioButton Name="ButtonUpdateLibrary" DockPanel.Dock="Top" Tag="▶">
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
                                         <TextBlock Text="{DynamicResource LOCMenuReloadLibrary}" />
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
-                            <RadioButton Name="ButtonTools" DockPanel.Dock="Top"
+                            <RadioButton Name="ButtonTools" DockPanel.Dock="Top" Tag="▶"
                                          IsChecked="{Binding MainMenuOpened, Mode=OneWay, Converter={pui:NegateConverter}}">
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
@@ -3443,7 +3452,7 @@
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
-                            <RadioButton Name="ButtonClients" DockPanel.Dock="Top"
+                            <RadioButton Name="ButtonClients" DockPanel.Dock="Top" Tag="▶"
                                          IsChecked="{Binding MainMenuOpened, Mode=OneWay, Converter={pui:NegateConverter}}">
                                 <RadioButton.Content>
                                     <StackPanel Orientation="Horizontal" Margin="26,0,0,0">
@@ -3451,7 +3460,7 @@
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
-                            <RadioButton Name="ButtonExtensions" DockPanel.Dock="Top"
+                            <RadioButton Name="ButtonExtensions" DockPanel.Dock="Top" Tag="▶"
                                          IsEnabled="{Binding Extensions.HasExportedFunctions, Source={x:Static pui:App.Current}}"
                                          IsChecked="{Binding MainMenuOpened, Mode=OneWay, Converter={pui:NegateConverter}}">
                                 <RadioButton.Content>
@@ -3587,6 +3596,29 @@
                             <Button Content="{DynamicResource LOCReloadScripts}"
                                     Command="{Binding ReloadScriptsCommand}"
                                     Tag="{Binding ReloadScriptsCommand.GestureText}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="2" Padding="0,70,0,20"
+                            Visibility="{Binding IsChecked, ElementName=ButtonUpdateLibrary, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Background="{DynamicResource MainMenuBackgroundBrush}"
+                            BorderThickness="2,0,0,0" BorderBrush="{DynamicResource TooltipBackgroundBrush}"
+                            Grid.IsSharedSizeScope="True">
+                        <StackPanel>
+                            <Button Content="{DynamicResource LOCUpdateAll}"
+                                    Command="{Binding UpdateGamesCommand}"
+                                    Tag="{Binding UpdateGamesCommand.GestureText}"/>
+                            <Canvas Margin="0,25,0,0" />
+                            <ItemsControl ItemsSource="{Binding Extensions.LibraryPlugins.Values}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Content="{Binding Plugin.Name}"
+                                                Command="{Binding Source={StaticResource Proxy}, Path=Data.UpdateLibraryCommand}"
+                                                CommandParameter="{Binding Plugin}">
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </StackPanel>
                     </Border>
 

@@ -219,6 +219,23 @@ namespace BattleNetLibrary
                     new Link("Homepage", "http://blizzard.com/games/war3/"),
                     new Link("Forums", "https://us.battle.net/forums/en/bnet/12790218/")
                 }
+            },
+            new BNetApp()
+            {
+                ProductId = "VIPR",
+                InternalId = "viper",
+                WebLibraryId = "game-list-callOfDutyBlackOps4",
+                PurchaseId = "callofdutyblackops4-purchase-link",
+                IconUrl = @"https://bneteu-a.akamaihd.net/account/static/images/dashboard/callOfDutyBlackOps4/A8E38BEC-B3F0-4C46-A870-D377FC6602DC/logo-32.4a1nD.png",
+                BackgroundUrl = @"https://bnetproduct-a.akamaihd.net//5d/411c53766cdf6155fcc952f79f304b4a-prod-mobile-bg.jpg",
+                CoverUrl = "http://bnetproduct-a.akamaihd.net//62/a346ee691a8d0829c5a895200dd17cbf-prod-card-tall-v2.jpg",
+                Name = "Call of Duty: Black Ops 4",
+                Type = BNetAppType.Default,
+                Links = new List<Link>()
+                {
+                    new Link("Homepage", "https://www.callofduty.com/"),
+                    new Link("Forums", "https://community.callofduty.com/t5/Call-of-Duty-Black-Ops-4-Forum/ct-p/cod-blackops4-forums")
+                }
             }
         };
 

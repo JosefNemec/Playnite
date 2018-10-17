@@ -77,21 +77,6 @@
                         <Style TargetType="DatePicker" BasedOn="{StaticResource {x:Type DatePicker}}" >
                             <Setter Property="Margin" Value="3" />
                         </Style>
-                        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
-                                            x:Key="CompletionStatusEnumValues">
-                            <ObjectDataProvider.MethodParameters>
-                                <x:Type TypeName="pm:CompletionStatus" />
-                            </ObjectDataProvider.MethodParameters>
-                        </ObjectDataProvider>
-                        <ComboBox x:Key="ComboCompletionStatusOptions" x:Shared="False"
-                                  SelectedValue="{Binding CompletionStatus}"
-                                  ItemsSource="{Binding Source={StaticResource CompletionStatusEnumValues}}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={pui:CompletionStatusToStringConverter}}"/>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
                     </Grid.Resources>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -112,16 +97,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <!-- ID -->
@@ -216,12 +192,14 @@
                                 Text="{Binding EditingGame.Tags, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}, Delay=1000}"/>
 
                     <!-- Description -->
-                    <TextBlock Grid.Column="0" Grid.Row="10" Text="{DynamicResource LOCGameDescriptionTitle}" />
-                    <CheckBox Grid.Column="1" Grid.Row="10" Name="CheckDescription" 
+                    <TextBlock Grid.Column="0" Grid.Row="10" Text="{DynamicResource LOCGameDescriptionTitle}"
+                               VerticalAlignment="Top" Margin="8,6,10,0"/>
+                    <CheckBox Grid.Column="1" Grid.Row="10" Name="CheckDescription"
+                              VerticalAlignment="Top" Margin="0,5,0,0"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseDescriptionChanges}"/>
-                    <TextBox Grid.Column="2" Grid.Row="10" Grid.RowSpan="13"
-                             Height="260" VerticalAlignment="Top"
+                    <TextBox Grid.Column="2" Grid.Row="10" Grid.RowSpan="13" Grid.ColumnSpan="6"
+                             VerticalAlignment="Stretch" Margin="3,5,3,3"
                              TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
                              ScrollViewer.VerticalScrollBarVisibility="Auto"
                              Text="{Binding EditingGame.Description, UpdateSourceTrigger=PropertyChanged}"
@@ -300,21 +278,90 @@
                                              Value="{Binding EditingGame.CommunityScore}"
                                              ToolTip="{DynamicResource LOCDescriptionScoreValues}"
                                              ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0" />
+                    
+                </Grid>
+                </ScrollViewer>
+            </TabItem>
 
+            <TabItem Header="{DynamicResource LOCAdvanced}">
+                <Grid Margin="10">
+                    <Grid.Resources>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
+                            <Setter Property="Margin" Value="3" />
+                        </Style>
+                        <Style TargetType="controls:NumericBox" BasedOn="{StaticResource {x:Type controls:NumericBox}}" >
+                            <Setter Property="Margin" Value="3" />
+                        </Style>
+                        <Style TargetType="controls:NullableIntBox" BasedOn="{StaticResource {x:Type controls:NullableIntBox}}" >
+                            <Setter Property="Margin" Value="3" />
+                        </Style>
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}" >
+                            <Setter Property="Margin" Value="3" />
+                        </Style>
+                        <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}" >
+                            <Setter Property="Margin" Value="0,0,0,0" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}" >
+                            <Setter Property="Margin" Value="8,0,10,0" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                        <Style TargetType="DatePicker" BasedOn="{StaticResource {x:Type DatePicker}}" >
+                            <Setter Property="Margin" Value="3" />
+                        </Style>
+                        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
+                                            x:Key="CompletionStatusEnumValues">
+                            <ObjectDataProvider.MethodParameters>
+                                <x:Type TypeName="pm:CompletionStatus" />
+                            </ObjectDataProvider.MethodParameters>
+                        </ObjectDataProvider>
+                        <ComboBox x:Key="ComboCompletionStatusOptions" x:Shared="False"
+                                  SelectedValue="{Binding CompletionStatus}"
+                                  ItemsSource="{Binding Source={StaticResource CompletionStatusEnumValues}}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={pui:CompletionStatusToStringConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
                     <!-- Last Played -->
-                    <TextBlock Grid.Column="3" Grid.Row="10" Text="{DynamicResource LOCLastPlayedLabel}"/>
-                    <CheckBox Grid.Column="4" Grid.Row="10"
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{DynamicResource LOCLastPlayedLabel}"/>
+                    <CheckBox Grid.Column="0" Grid.Row="0"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseLastActivityChanges}"/>
-                    <DatePicker Grid.Column="5" Grid.Row="10"
+                    <DatePicker Grid.Column="2" Grid.Row="0"
                                 SelectedDate="{Binding EditingGame.LastActivity}"/>
 
                     <!-- PlayTime -->
-                    <TextBlock Grid.Column="3" Grid.Row="11" Text="{DynamicResource LOCTimePlayed}"/>
-                    <CheckBox Grid.Column="4" Grid.Row="11"
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{DynamicResource LOCTimePlayed}"/>
+                    <CheckBox Grid.Column="0" Grid.Row="1"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UsePlaytimeChanges}"/>
-                    <DockPanel Grid.Column="5" Grid.Row="11">
+                    <DockPanel Grid.Column="2" Grid.Row="1">
                         <TextBlock Text="{Binding EditingGame.Playtime, Converter={pui:LongToTimePlayedConverter}}"
                                    DockPanel.Dock="Right" />
                         <controls:NumericBox LongValue="{Binding EditingGame.Playtime}"
@@ -325,58 +372,57 @@
                     </DockPanel>
 
                     <!-- PlayCount -->
-                    <TextBlock Grid.Column="3" Grid.Row="12" Text="{DynamicResource LOCPlayCountLabel}"/>
-                    <CheckBox Grid.Column="4" Grid.Row="12"
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{DynamicResource LOCPlayCountLabel}"/>
+                    <CheckBox Grid.Column="0" Grid.Row="2"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UsePlayCountChanges}"/>
-                    <controls:NumericBox Grid.Column="5" Grid.Row="12"
+                    <controls:NumericBox Grid.Column="2" Grid.Row="2"
                                          LongValue="{Binding EditingGame.PlayCount}" />
 
                     <!-- CompletionStatus -->
-                    <TextBlock Grid.Column="3" Grid.Row="13" Text="{DynamicResource LOCCompletionStatus}"/>
-                    <CheckBox Grid.Column="4" Grid.Row="13"
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="{DynamicResource LOCCompletionStatus}"/>
+                    <CheckBox Grid.Column="0" Grid.Row="3"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseCompletionStatusChanges}"/>
-                    <ContentControl IsTabStop="False" Grid.Column="5" Grid.Row="13"
+                    <ContentControl IsTabStop="False" Grid.Column="2" Grid.Row="3"
                                     DataContext="{Binding EditingGame}"
                                     Content="{StaticResource ComboCompletionStatusOptions}" />
 
-                    <Grid Height="20" Grid.Column="3" Grid.Row="14" />
+                    <Canvas Height="20" Grid.Column="0" Grid.Row="4" />
 
                     <!-- Hidden -->
-                    <TextBlock Grid.Column="3" Grid.Row="15" Text="{DynamicResource LOCGameHiddenTitle}" />
-                    <CheckBox Grid.Column="4" Grid.Row="15"
+                    <TextBlock Grid.Column="1" Grid.Row="5" Text="{DynamicResource LOCGameHiddenTitle}" />
+                    <CheckBox Grid.Column="0" Grid.Row="5"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseHiddenChanges}"/>
-                    <CheckBox Grid.Column="5" Grid.Row="15" Margin="3"
+                    <CheckBox Grid.Column="2" Grid.Row="5" Margin="3"
                               IsChecked="{Binding EditingGame.Hidden}"/>
 
                     <!-- Favorite -->
-                    <TextBlock Grid.Column="3" Grid.Row="16" Text="{DynamicResource LOCGameFavoriteTitle}" />
-                    <CheckBox Grid.Column="4" Grid.Row="16"
+                    <TextBlock Grid.Column="1" Grid.Row="6" Text="{DynamicResource LOCGameFavoriteTitle}" />
+                    <CheckBox Grid.Column="0" Grid.Row="6"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseFavoriteChanges}"/>
-                    <CheckBox Grid.Column="5" Grid.Row="16" Margin="3"
+                    <CheckBox Grid.Column="2" Grid.Row="6" Margin="3"
                               IsChecked="{Binding EditingGame.Favorite}" />
 
-                    <Grid Height="20" Grid.Column="3" Grid.Row="17" />
+                    <Canvas Height="20" Grid.Column="0" Grid.Row="7" />
 
                     <!-- Added -->
-                    <TextBlock Grid.Column="3" Grid.Row="18" Text="{DynamicResource LOCAddedLabel}"/>
-                    <CheckBox Grid.Column="4" Grid.Row="18"
+                    <TextBlock Grid.Column="1" Grid.Row="8" Text="{DynamicResource LOCAddedLabel}"/>
+                    <CheckBox Grid.Column="0" Grid.Row="8"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseAddedChanges}"/>
-                    <DatePicker Grid.Column="5" Grid.Row="18"
+                    <DatePicker Grid.Column="2" Grid.Row="8"
                                 SelectedDate="{Binding EditingGame.Added}"/>
 
                     <!-- Modified -->
-                    <TextBlock Grid.Column="3" Grid.Row="19" Text="{DynamicResource LOCModifiedLabel}" />
-                    <TextBlock Grid.Column="5" Grid.Row="19" Margin="3,6,3,6"
+                    <TextBlock Grid.Column="1" Grid.Row="9" Text="{DynamicResource LOCModifiedLabel}" />
+                    <TextBlock Grid.Column="2" Grid.Row="9" Margin="3,6,3,6"
                              Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>
-                </Grid>
-                </ScrollViewer>
+                </Grid>               
             </TabItem>
-
+            
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">

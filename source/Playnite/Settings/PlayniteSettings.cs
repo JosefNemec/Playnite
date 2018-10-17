@@ -11,6 +11,7 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 using System.Configuration;
+using Playnite.Common.System;
 
 namespace Playnite.Settings
 {
@@ -185,6 +186,36 @@ namespace Playnite.Settings
             {
                 showNamesUnderCovers = value;
                 OnPropertyChanged("ShowNamesUnderCovers");
+            }
+        }
+
+        private bool showBackgroundImage = true;
+        public bool ShowBackgroundImage
+        {
+            get
+            {
+                return showBackgroundImage;
+            }
+
+            set
+            {
+                showBackgroundImage = value;
+                OnPropertyChanged("ShowBackgroundImage");
+            }
+        }
+
+        private bool downloadMetadataOnImport = true;
+        public bool DownloadMetadataOnImport
+        {
+            get
+            {
+                return downloadMetadataOnImport;
+            }
+
+            set
+            {
+                downloadMetadataOnImport = value;
+                OnPropertyChanged("DownloadMetadataOnImport");
             }
         }
 
@@ -584,6 +615,36 @@ namespace Playnite.Settings
             }
         }
 
+        private bool startMinimized = false;
+        public bool StartMinimized
+        {
+            get
+            {
+                return startMinimized;
+            }
+
+            set
+            {
+                startMinimized = value;
+                OnPropertyChanged("StartMinimized");
+            }
+        }
+
+        private bool startOnBoot = false;
+        public bool StartOnBoot
+        {
+            get
+            {
+                return startOnBoot;
+            }
+
+            set
+            {
+                startOnBoot = value;
+                OnPropertyChanged("StartOnBoot");
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -817,6 +878,21 @@ namespace Playnite.Settings
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, "Failed to migrade plugin configuration.");
+            }
+        }
+
+        public static void SetBootupStateRegistration(bool runOnBootup)
+        {
+            var startupPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+            var shortcutPath = Path.Combine(startupPath, "Playnite.lnk");
+            if (runOnBootup)
+            {
+                FileSystem.DeleteFile(shortcutPath);
+                Programs.CreateShortcut(PlaynitePaths.ExecutablePath, "", "", shortcutPath);
+            }
+            else
+            {
+                FileSystem.DeleteFile(shortcutPath);
             }
         }
     }

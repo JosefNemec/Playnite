@@ -18,17 +18,17 @@ namespace Playnite
             return Process.Start(url);
         }
 
-        public static Process StartProcess(string path)
+        public static Process StartProcess(string path, bool asAdmin = false)
         {
-            return StartProcess(path, string.Empty, string.Empty);
+            return StartProcess(path, string.Empty, string.Empty, asAdmin);
         }
 
-        public static Process StartProcess(string path, string arguments)
+        public static Process StartProcess(string path, string arguments, bool asAdmin = false)
         {
-            return StartProcess(path, arguments, string.Empty);
+            return StartProcess(path, arguments, string.Empty, asAdmin);
         }
 
-        public static Process StartProcess(string path, string arguments, string workDir)
+        public static Process StartProcess(string path, string arguments, string workDir, bool asAdmin = false)
         {
             logger.Debug($"Starting process: {path}, {arguments}, {workDir}");
             var startupPath = path;
@@ -42,6 +42,11 @@ namespace Playnite
                 Arguments = arguments,
                 WorkingDirectory = string.IsNullOrEmpty(workDir) ? (new FileInfo(startupPath)).Directory.FullName : workDir
             };
+
+            if (asAdmin)
+            {
+                info.Verb = "runas";
+            }
 
             return Process.Start(info);
         }        

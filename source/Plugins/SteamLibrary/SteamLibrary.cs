@@ -138,7 +138,10 @@ namespace SteamLibrary
                 try
                 {
                     var game = GetInstalledModFromFolder(folder, ModInfo.ModType.HL);
-                    games.Add(game);
+                    if (game != null)
+                    {
+                        games.Add(game);
+                    }
                 }
                 catch (Exception exc)
                 {
@@ -159,7 +162,10 @@ namespace SteamLibrary
                 try
                 {
                     var game = GetInstalledModFromFolder(folder, ModInfo.ModType.HL2);
-                    games.Add(game);
+                    if (game != null)
+                    {
+                        games.Add(game);
+                    }
                 }
                 catch (Exception exc)
                 {
@@ -174,6 +180,10 @@ namespace SteamLibrary
         internal Game GetInstalledModFromFolder(string path, ModInfo.ModType modType)
         {
             var modInfo = ModInfo.GetFromFolder(path, modType);
+            if (modInfo == null)
+            {
+                return null;
+            }
 
             var game = new Game()
             {
@@ -196,6 +206,10 @@ namespace SteamLibrary
         internal Dictionary<string, Game> GetInstalledGames()
         {
             var games = new Dictionary<string, Game>();
+            if (!Steam.IsInstalled)
+            {
+                return games;
+            }
 
             foreach (var folder in GetLibraryFolders())
             {
@@ -216,30 +230,37 @@ namespace SteamLibrary
                 }
             }
 
-            // In most cases, this will be inside the folder where Half-Life is installed.
-            var modInstallPath = Steam.ModInstallPath;
-            if (!string.IsNullOrEmpty(modInstallPath) && Directory.Exists(modInstallPath))
+            try
             {
-                GetInstalledGoldSrcModsFromFolder(Steam.ModInstallPath).ForEach(a =>
+                // In most cases, this will be inside the folder where Half-Life is installed.
+                var modInstallPath = Steam.ModInstallPath;
+                if (!string.IsNullOrEmpty(modInstallPath) && Directory.Exists(modInstallPath))
                 {
-                    if (!games.ContainsKey(a.GameId))
+                    GetInstalledGoldSrcModsFromFolder(Steam.ModInstallPath).ForEach(a =>
                     {
-                        games.Add(a.GameId, a);
-                    }
-                });
-            }
+                        if (!games.ContainsKey(a.GameId))
+                        {
+                            games.Add(a.GameId, a);
+                        }
+                    });
+                }
 
-            // In most cases, this will be inside the library folder where Steam is installed.
-            var sourceModInstallPath = Steam.SourceModInstallPath;
-            if (!string.IsNullOrEmpty(sourceModInstallPath) && Directory.Exists(sourceModInstallPath))
-            {
-                GetInstalledSourceModsFromFolder(Steam.SourceModInstallPath).ForEach(a =>
+                // In most cases, this will be inside the library folder where Steam is installed.
+                var sourceModInstallPath = Steam.SourceModInstallPath;
+                if (!string.IsNullOrEmpty(sourceModInstallPath) && Directory.Exists(sourceModInstallPath))
                 {
-                    if (!games.ContainsKey(a.GameId))
+                    GetInstalledSourceModsFromFolder(Steam.SourceModInstallPath).ForEach(a =>
                     {
-                        games.Add(a.GameId, a);
-                    }
-                });
+                        if (!games.ContainsKey(a.GameId))
+                        {
+                            games.Add(a.GameId, a);
+                        }
+                    });
+                }
+            }
+            catch (Exception e) when (!Environment.IsDebugBuild)
+            {
+                logger.Error(e, "Failed to import Steam mods.");
             }
 
             return games;

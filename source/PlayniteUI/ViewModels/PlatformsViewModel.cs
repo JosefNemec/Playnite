@@ -573,7 +573,16 @@ namespace PlayniteUI.ViewModels
         public void CopyEmulator(Emulator emulator)
         {
             var copy = emulator.CloneJson();
+            copy.Id = Guid.NewGuid();
             copy.Name += " Copy";
+            if (copy.Profiles?.Any() == true)
+            {
+                foreach (var profile in copy.Profiles)
+                {
+                    profile.Id = Guid.NewGuid();
+                }
+            }
+
             Emulators.Add(copy);
             SelectedEmulator = copy;
         }
@@ -598,6 +607,7 @@ namespace PlayniteUI.ViewModels
         public void CopyEmulatorProfile(EmulatorProfile profile)
         {
             var copy = profile.CloneJson();
+            copy.Id = Guid.NewGuid();
             copy.Name += " Copy";
             SelectedEmulator.Profiles.Add(copy);
             SelectedEmulatorProfile = copy;

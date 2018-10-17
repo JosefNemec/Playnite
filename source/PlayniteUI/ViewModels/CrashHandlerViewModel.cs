@@ -1,10 +1,12 @@
 ﻿using Playnite;
 using Playnite.SDK;
+using Playnite.Services;
 using Playnite.Settings;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,19 +95,29 @@ namespace PlayniteUI.ViewModels
 
         public void CreateDiagPackage()
         {
-            var path = dialogs.SaveFile("ZIP Archive (*.zip)|*.zip");
-            if (!string.IsNullOrEmpty(path))
+            var diagPath = Path.Combine(PlaynitePaths.TempPath, "diag.zip");
+
+            try
             {
-                try
-                {
-                    Diagnostic.CreateDiagPackage(path);
-                    dialogs.ShowMessage(resources.FindString("LOCDiagPackageCreationSuccess"));
-                }
-                catch (Exception exc)
-                {
-                    logger.Error(exc, "Faild to created diagnostics package.");
-                    dialogs.ShowMessage(resources.FindString("LOCDiagPackageCreationError"));
-                }
+                Diagnostic.CreateDiagPackage(diagPath);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to created diagnostics package.");
+                dialogs.ShowErrorMessage(resources.FindString("LOCDiagPackageCreationError"), "");
+                return;
+            }
+
+            try
+            {
+                var uploadedId = new ServicesClient().UploadDiagPackage(diagPath);
+                dialogs.ShowSelectableString(resources.FindString("LOCDiagPackageCreationSuccess"), "", uploadedId.ToString());
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to upload diag package.");
+                dialogs.ShowErrorMessage(resources.FindString("LOCDiagPackageUploadError"), "");
+                ProcessStarter.StartProcess("explorer.exe", $"/select,\"{diagPath}\"");
             }
         }
     }

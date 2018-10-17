@@ -398,7 +398,7 @@ namespace Playnite.Database
                         }
 
                         var conEmulators = new Dictionary<object, Guid>();
-                        var conEmuProfiles = new Dictionary<object, Guid>();
+                        var conEmuProfiles = new Dictionary<string, Guid>();
                         var emuCollection = db.GetCollection("emulators");
                         foreach (var emulator in emuCollection.FindAll().ToList())
                         {
@@ -414,7 +414,7 @@ namespace Playnite.Database
                                 {
                                     var oldProfId = profile["_id"];
                                     var newProfId = Guid.NewGuid();
-                                    conEmuProfiles.Add(oldProfId, newProfId);
+                                    conEmuProfiles.Add(oldId.AsString + oldProfId.AsString, newProfId);
                                     profile["_id"] = newProfId;
 
                                     var profPlatforms = profile["Platforms"];
@@ -530,7 +530,7 @@ namespace Playnite.Database
                             var oldProfile = action["EmulatorProfileId"];
                             if (!oldProfile.IsNull)
                             {
-                                if (conEmuProfiles.TryGetValue(oldProfile, out var newProf))
+                                if (conEmuProfiles.TryGetValue(oldEmulator.AsString + oldProfile.AsString, out var newProf))
                                 {
                                     action["EmulatorProfileId"] = newProf;
                                 }
@@ -1153,6 +1153,11 @@ namespace Playnite.Database
                     return file.Id;
                 }
             }
+        }
+
+        public void AddFile(MetadataFile file)
+        {
+            AddFile(file.FileId, file.FileName, file.Content);
         }
 
         public void AddFile(string id, string name, byte[] data)

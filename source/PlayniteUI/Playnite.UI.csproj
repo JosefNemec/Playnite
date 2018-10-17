@@ -232,7 +232,7 @@
     <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
     <Compile Include="Converters\WidthToFontSizeConverter.cs" />
-    <Compile Include="Dialogs.cs" />
+    <Compile Include="SystemDialogs.cs" />
     <Compile Include="ElementTreeHelper.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Extensions\Images.cs" />
@@ -389,6 +389,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Content>
     <EmbeddedResource Include="Resources\DescriptionView.html" />
+    <EmbeddedResource Include="Resources\contributors.txt" />
     <Content Include="Skins\Classic\Classic.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -734,12 +735,6 @@
   <ItemGroup>
     <Resource Include="Images\applogo_clean.png" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\references\XInputInterface.dll">
-      <Link>XInputInterface.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -782,7 +777,10 @@ xcopy "$(SolutionDir)\Plugins\OriginLibrary\bin\$(ConfigurationName)" "$(TargetD
 xcopy "$(SolutionDir)\Plugins\BattleNetLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\BattleNetLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\BattleNetLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\UplayLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\UplayLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\UplayLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\TwitchLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\TwitchLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\TwitchLibrary\BuildCopyExclude.txt
-xcopy "$(SolutionDir)\Plugins\LibraryExporter" "$(TargetDir)\Extensions\LibraryExporter\" /e /y</PostBuildEvent>
+xcopy "$(SolutionDir)\Plugins\LibraryExporter" "$(TargetDir)\Extensions\LibraryExporter\" /e /y
+xcopy "$(SolutionDir)\..\references\XInputInterface.dll" "$(TargetDir)" /y
+xcopy "$(SolutionDir)\..\references\msvcp120.dll" "$(TargetDir)" /y
+xcopy "$(SolutionDir)\..\references\msvcr120.dll" "$(TargetDir)" /y</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

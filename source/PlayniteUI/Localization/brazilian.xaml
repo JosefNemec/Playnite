@@ -28,8 +28,10 @@ Não selecionada - Remove a categoria
 Indeterminada - Nenhuma alteração (quando editando vários jogos)</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Vixe, isso não deveria ter acontecido...</sys:String>
-    <sys:String x:Key="LOCCrashDescription">O Playnite encontrou um problema e não conseguiu resolvê-lo. Se deseja ajudar-nos a descobrir o que aconteceu, crie um pacote de diagnóstico e faça um relatório sobre o problema. Obrigado.</sys:String>
-    <sys:String x:Key="LOCCrashReportIssue">Fazer um relatório</sys:String>
+    <sys:String x:Key="LOCCrashDescription">Ocorreu um erro irrecuperável e o Playnite falhou.
+        
+Se você quiser nos ajudar a corrigir esse problema, crie um pacote de diagnósticos e use o botão "Relatar falha" para nos informar sobre o que aconteceu. Obrigado.</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">Relatar falha</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar o Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Fechar o Playnite</sys:String>
 
@@ -221,6 +223,9 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Nenhuma conta do Steam selecionada para importação da biblioteca.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Nenhuma conta do Steam selecionada para importação das categorias.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Importar alterações na biblioteca de clientes de terceiros ao iniciar</sys:String>
+    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Baixar metadados depois de importar jogos</sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">Iniciar minimizado</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">Executar o Playnite quando o computador for iniciado</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Iniciar no modo tela cheia</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Inclui Steam, Origin e outros.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Carregamento de imagens assíncrono (requer reinicialização)</sys:String>
@@ -231,6 +236,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsDisableAcceleration">Desabilitar a aceleração de hardware (requer reinicialização)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Use se experienciar travamentos ou problemas com a interface.</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Exibir botão de amigos do Steam</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImage">Mostrar imagem de fundo</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Perfil do tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema em tela cheia</sys:String>
@@ -400,7 +406,9 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">O banco de dados não está aberto.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Não foi possível acessar o banco de dados da biblioteca. O arquivo "{0}" está sendo usado por outro processo ou está em um local inacessível.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Não foi possível criar o pacote de diagnóstico.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess">Pacote de diagnóstico criado com sucesso.</sys:String>
+    <sys:String x:Key="LOCDiagPackageUploadError">Erro ao enviar automaticamente o pacote de diagnósticos.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">O pacote de diagnósticos foi criado e enviado com sucesso.
+Anexe a seguinte ID ao seu relatório de falha:</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Não foi possível importar as categorias do Steam.</sys:String>
     
@@ -486,6 +494,7 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Voltar para o modo janela</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Sair do Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotecas</sys:String> 
+    <sys:String x:Key="LOCUpdateAll">Atualizar tudo</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumentos do emulador</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumentos adicionais do emulador</sys:String>

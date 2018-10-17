@@ -12,3 +12,5 @@ System.IO.Abstractions.xml
 NLog.dll
 NLog.xml
 Windows.winmd
+YamlDotNet.dll
+YamlDotNet.xml

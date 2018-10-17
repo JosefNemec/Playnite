@@ -2196,9 +2196,19 @@
                 </Style>
             </Grid.Style>
 
-            <pc:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top"
-                          Grid.ColumnSpan="2" Grid.RowSpan="4"
-                          Source="{Binding Game.BackgroundImageObject, IsAsync=True, Mode=OneWay}" />
+            <pc:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top" 
+                          Grid.ColumnSpan="2" Grid.RowSpan="4">
+                <pc:FadeImage.Style>
+                    <Style TargetType="pc:FadeImage">
+                        <Setter Property="Source" Value="{x:Null}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding AppSettings.ShowBackgroundImage, Source={x:Static pui:App.Current}}" Value="True">
+                                <Setter Property="Source" Value="{Binding Game.BackgroundImageObject, IsAsync=True, Mode=OneWay}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </pc:FadeImage.Style>
+            </pc:FadeImage>
 
             <DockPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
                        Margin="20,20,0,0">
@@ -2356,13 +2366,33 @@
                                 </MenuItem.Icon>
                             </MenuItem>
                             <Separator />
-                            <MenuItem Header="{DynamicResource LOCMenuReloadLibrary}" Style="{DynamicResource ProgressMenu}"
-                                      Command="{Binding UpdateGamesCommand}"
-                                      InputGestureText="{Binding UpdateGamesCommand.GestureText}">
+                            <MenuItem Header="{DynamicResource LOCMenuReloadLibrary}"
+                                      Style="{DynamicResource ProgressMenu}">                     
+                                <MenuItem.Resources>
+                                    <Style x:Key="UpdateAllItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                        <Setter Property="OverridesDefaultStyle" Value="True" />
+                                        <Setter Property="Header" Value="{DynamicResource LOCUpdateAll}" />
+                                        <Setter Property="Command" Value="{Binding Source={StaticResource Proxy}, Path=Data.UpdateGamesCommand}" />
+                                        <Setter Property="InputGestureText" Value="{Binding Source={StaticResource Proxy}, Path=Data.UpdateGamesCommand.GestureText}" />
+                                    </Style>
+                                    <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                        <Setter Property="OverridesDefaultStyle" Value="True" />
+                                        <Setter Property="Header" Value="{Binding Plugin.Name}" />
+                                        <Setter Property="CommandParameter" Value="{Binding Plugin}" />
+                                        <Setter Property="Command" Value="{Binding Source={StaticResource Proxy}, Path=Data.UpdateLibraryCommand}" />
+                                    </Style>
+                                </MenuItem.Resources>
                                 <MenuItem.Icon>
                                     <Image Source="/Images/MenuIcons/refresh.png"
                                            RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                 </MenuItem.Icon>
+                                <MenuItem.ItemsSource>                                    
+                                    <CompositeCollection >
+                                        <MenuItem Style="{StaticResource UpdateAllItem}" OverridesDefaultStyle="True" />
+                                        <Separator />
+                                        <CollectionContainer Collection="{Binding Source={StaticResource Proxy}, Path=Data.Extensions.LibraryPlugins.Values}" />
+                                    </CompositeCollection>
+                                </MenuItem.ItemsSource>
                             </MenuItem>
                             <MenuItem Header="{DynamicResource LOCMenuTools}">
                                 <MenuItem Header="{DynamicResource LOCMenuPlatformEmulatorSettingsTitle}"

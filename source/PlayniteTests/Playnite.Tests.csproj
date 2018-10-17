@@ -135,6 +135,7 @@
     <Compile Include="Models\Old\1\GameTask.cs" />
     <Compile Include="Models\Old\1\Platform.cs" />
     <Compile Include="Models\Old\Provider.cs" />
+    <Compile Include="FileSystemTests.cs" />
     <Compile Include="PlayniteTests.cs" />
     <Compile Include="Plugins\PluginFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="SafeFileEnumeratorTests.cs" />
     <Compile Include="Scripting\IronPython\IronPythonTests.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellTests.cs" />
+    <Compile Include="System\ComputerTests.cs" />
     <Compile Include="TimerTests.cs" />
     <Compile Include="SettingsTests.cs" />
     <Compile Include="ListExtensionsTests.cs" />

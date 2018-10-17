@@ -203,7 +203,7 @@ namespace PlayniteUI
 
         private void ButtonBrowsePath_Click(object sender, RoutedEventArgs e)
         {
-            var path = Dialogs.SelectFile(Window.GetWindow(this), "*.*|*.*");
+            var path = SystemDialogs.SelectFile(Window.GetWindow(this), "*.*|*.*");
             if (string.IsNullOrEmpty(path))
             {
                 return;

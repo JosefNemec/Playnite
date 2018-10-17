@@ -139,8 +139,17 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="messageBoxText">Dialog message text.</param>
         /// <param name="caption">Dialog window caption.</param>
-        /// <param name="defaultInput">Default string presented in input field..</param>
+        /// <param name="defaultInput">Default string presented in input field.</param>
         /// <returns>Selection result.</returns>
         StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput);
+
+        /// <summary>
+        /// Displays dialog with textbox allowing to select/copy text.
+        /// </summary>
+        /// <param name="messageBoxText">Dialog message text.</param>
+        /// <param name="caption">Dialog window caption.</param>
+        /// <param name="defaultInput">String added into selectable field.</param>
+        /// <returns>Selection result.</returns>
+        void ShowSelectableString(string messageBoxText, string caption, string defaultInput);
     }
 }

@@ -11,71 +11,6 @@ namespace Playnite
     // Originally from https://stackoverflow.com/questions/9746538/fastest-safest-file-finding-parsing
     public class SafeFileEnumerator : IEnumerable<FileSystemInfoBase>
     {
-        /// <summary>
-        /// Starting directory to search from
-        /// </summary>
-        private DirectoryInfoBase root;
-
-        /// <summary>
-        /// Filter pattern
-        /// </summary>
-        private string pattern;
-
-        /// <summary>
-        /// Indicator if search is recursive or not
-        /// </summary>
-        private SearchOption searchOption;
-
-        /// <summary>
-        /// Any errors captured
-        /// </summary>
-        private IList<Exception> errors;
-
-        /// <summary>
-        /// Create an Enumerator that will scan the file system, skipping directories where access is denied
-        /// </summary>
-        /// <param name="root">Starting Directory</param>
-        /// <param name="pattern">Filter pattern</param>
-        /// <param name="option">Recursive or not</param>
-        public SafeFileEnumerator(string root, string pattern, SearchOption option)
-            : this(new DirectoryInfoWrapper(new DirectoryInfo(root)), pattern, option)
-        { }
-
-        /// <summary>
-        /// Create an Enumerator that will scan the file system, skipping directories where access is denied
-        /// </summary>
-        /// <param name="root">Starting Directory</param>
-        /// <param name="pattern">Filter pattern</param>
-        /// <param name="option">Recursive or not</param>
-        public SafeFileEnumerator(DirectoryInfoBase root, string pattern, SearchOption option)
-            : this(root, pattern, option, new List<Exception>())
-        { }
-
-        // Internal constructor for recursive itterator
-        private SafeFileEnumerator(DirectoryInfoBase root, string pattern, SearchOption option, IList<Exception> errors)
-        {
-            if (root == null || !root.Exists)
-            {
-                throw new ArgumentException("Root directory is not set or does not exist.", "root");
-            }
-            this.root = root;
-            this.searchOption = option;
-            this.pattern = String.IsNullOrEmpty(pattern)
-                ? "*"
-                : pattern;
-            this.errors = errors;
-        }
-
-        /// <summary>
-        /// Errors captured while parsing the file system.
-        /// </summary>
-        public Exception[] Errors
-        {
-            get
-            {
-                return errors.ToArray();
-            }
-        }
 
         /// <summary>
         /// Helper class to enumerate the file system.
@@ -208,6 +143,72 @@ namespace Playnite
                         directoryEnumerator = null;
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Starting directory to search from
+        /// </summary>
+        private DirectoryInfoBase root;
+
+        /// <summary>
+        /// Filter pattern
+        /// </summary>
+        private string pattern;
+
+        /// <summary>
+        /// Indicator if search is recursive or not
+        /// </summary>
+        private SearchOption searchOption;
+
+        /// <summary>
+        /// Any errors captured
+        /// </summary>
+        private IList<Exception> errors;
+
+        /// <summary>
+        /// Create an Enumerator that will scan the file system, skipping directories where access is denied
+        /// </summary>
+        /// <param name="root">Starting Directory</param>
+        /// <param name="pattern">Filter pattern</param>
+        /// <param name="option">Recursive or not</param>
+        public SafeFileEnumerator(string root, string pattern, SearchOption option)
+            : this(new DirectoryInfoWrapper(new DirectoryInfo(root)), pattern, option)
+        { }
+
+        /// <summary>
+        /// Create an Enumerator that will scan the file system, skipping directories where access is denied
+        /// </summary>
+        /// <param name="root">Starting Directory</param>
+        /// <param name="pattern">Filter pattern</param>
+        /// <param name="option">Recursive or not</param>
+        public SafeFileEnumerator(DirectoryInfoBase root, string pattern, SearchOption option)
+            : this(root, pattern, option, new List<Exception>())
+        { }
+
+        // Internal constructor for recursive itterator
+        private SafeFileEnumerator(DirectoryInfoBase root, string pattern, SearchOption option, IList<Exception> errors)
+        {
+            if (root == null || !root.Exists)
+            {
+                throw new ArgumentException("Root directory is not set or does not exist.", "root");
+            }
+            this.root = root;
+            this.searchOption = option;
+            this.pattern = String.IsNullOrEmpty(pattern)
+                ? "*"
+                : pattern;
+            this.errors = errors;
+        }
+
+        /// <summary>
+        /// Errors captured while parsing the file system.
+        /// </summary>
+        public Exception[] Errors
+        {
+            get
+            {
+                return errors.ToArray();
             }
         }
 

@@ -161,7 +161,16 @@ namespace Playnite.App
 
             Task.Run(() =>
             {
-                Process.Start(updaterPath, string.Format(@"/SILENT /NOCANCEL /DIR=""{0}"" /UPDATE {1}", PlaynitePaths.ProgramPath, portable));
+                var args = string.Format(@"/SILENT /NOCANCEL /DIR=""{0}"" /UPDATE {1}", PlaynitePaths.ProgramPath, portable);
+                if (FileSystem.CanWriteToFolder(PlaynitePaths.ProgramPath))
+                {
+                    ProcessStarter.StartProcess(updaterPath, args);
+                }
+                else
+                {
+                    ProcessStarter.StartProcess(updaterPath, args, true);
+                }
+
             });
 
             playniteApp.Quit();
