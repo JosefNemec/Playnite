@@ -138,7 +138,10 @@ namespace SteamLibrary
                 try
                 {
                     var game = GetInstalledModFromFolder(folder, ModInfo.ModType.HL);
-                    games.Add(game);
+                    if (game != null)
+                    {
+                        games.Add(game);
+                    }
                 }
                 catch (Exception exc)
                 {
@@ -159,7 +162,10 @@ namespace SteamLibrary
                 try
                 {
                     var game = GetInstalledModFromFolder(folder, ModInfo.ModType.HL2);
-                    games.Add(game);
+                    if (game != null)
+                    {
+                        games.Add(game);
+                    }
                 }
                 catch (Exception exc)
                 {
@@ -174,6 +180,10 @@ namespace SteamLibrary
         internal Game GetInstalledModFromFolder(string path, ModInfo.ModType modType)
         {
             var modInfo = ModInfo.GetFromFolder(path, modType);
+            if (modInfo == null)
+            {
+                return null;
+            }
 
             var game = new Game()
             {
