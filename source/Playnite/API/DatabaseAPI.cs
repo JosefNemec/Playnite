@@ -15,6 +15,11 @@ namespace Playnite.API
     {
         private GameDatabase database;
 
+        public bool IsOpen
+        {
+            get => database?.IsOpen == true;
+        }
+
         public DatabaseAPI(GameDatabase database)
         {
             this.database = database;
@@ -25,7 +30,7 @@ namespace Playnite.API
             database.AddEmulator(emulator);
         }
 
-        public Emulator GetEmulator(ObjectId id)
+        public Emulator GetEmulator(Guid id)
         {
             return database.GetEmulator(id);
         }
@@ -50,7 +55,7 @@ namespace Playnite.API
             return database.GetGames().Cast<Game>().ToList();
         }
 
-        public Platform GetPlatform(ObjectId id)
+        public Platform GetPlatform(Guid id)
         {
             return database.GetPlatform(id);
         }
@@ -65,7 +70,7 @@ namespace Playnite.API
             database.AddPlatform(platform);
         }
 
-        public void RemoveEmulator(ObjectId id)
+        public void RemoveEmulator(Guid id)
         {
             database.RemoveEmulator(id);
         }
@@ -75,7 +80,7 @@ namespace Playnite.API
             database.DeleteGame(id);
         }
 
-        public void RemovePlatform(ObjectId id)
+        public void RemovePlatform(Guid id)
         {
             database.RemovePlatform(id);
         }
@@ -112,7 +117,7 @@ namespace Playnite.API
 
         public List<DatabaseFile> GetFiles()
         {
-            return database.Database.FileStorage.FindAll()?.Select(a => new DatabaseFile(a)).ToList();                
+            return database.Database.FileStorage.FindAll()?.Select(a => LiteFileToDbFile(a)).ToList();                
         }
 
         public DatabaseFile GetFile(string id)
@@ -120,12 +125,40 @@ namespace Playnite.API
             var file = database.Database.FileStorage.FindById(id);
             if (file != null)
             {
-                return new DatabaseFile(file);
+                return LiteFileToDbFile(file);
             }
             else
             {
                 return null;
             }
+        }
+
+        public void ImportCategories(List<Game> sourceGames)            
+        {
+            database.ImportCategories(sourceGames);
+        }
+
+        private DatabaseFile LiteFileToDbFile(LiteFileInfo liteDbFile)
+        {
+            var dbFile = new DatabaseFile()
+            {
+                Id = liteDbFile.Id,
+                Filename = liteDbFile.Filename,
+                MimeType = liteDbFile.MimeType,
+                Length = liteDbFile.Length,
+                UploadDate = liteDbFile.UploadDate,
+            };
+
+            if (liteDbFile.Metadata != null)
+            {
+                dbFile.Metadata = new Dictionary<string, object>();
+                foreach (var key in liteDbFile.Metadata.Keys)
+                {
+                    dbFile.Metadata.Add(key, liteDbFile.Metadata[key]);
+                }
+            }
+
+            return dbFile;
         }
     }
 }

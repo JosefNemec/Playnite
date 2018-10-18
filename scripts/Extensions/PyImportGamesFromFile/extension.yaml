@@ -1,0 +1,8 @@
+﻿Name: Python Game Importer
+Author: Michael <hallosputnik@gmail.com>
+Version: 0.1.0
+Module: import_games_from_file.py
+Type: Script
+Functions: 
+    - Description: Import Games from File
+      FunctionName: import_games_from_file

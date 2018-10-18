@@ -1,5 +1,6 @@
 ﻿using Playnite;
 using Playnite.Database;
+using Playnite.Settings;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -38,7 +39,7 @@ namespace DbTools
             {
                 try
                 {
-                    var settings = Settings.LoadSettings();
+                    var settings = PlayniteSettings.LoadSettings();
                     var dbPath = settings.DatabasePath;
                     var dbTempPath = dbPath + "temp";
 

@@ -22,7 +22,7 @@ namespace PlayniteTests.Metadata
 
         private void ValidateBoxArt(Game game)
         {
-            Assert.IsTrue(!string.IsNullOrEmpty(game.Image));
+            Assert.IsTrue(!string.IsNullOrEmpty(game.CoverImage));
         }
 
         [Test]

@@ -1,5 +1,6 @@
 ﻿using Playnite.Models;
 using Playnite.SDK.Models;
+using Playnite.Settings;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -81,7 +82,7 @@ namespace Playnite.Emulators
 
         public static string DefinitionsPath
         {
-            get => Path.Combine(Paths.ProgramFolder, "Emulators", "Definitions.yaml");
+            get => Path.Combine(PlaynitePaths.ProgramPath, "Emulators", "Definitions.yaml");
         }        
 
         public override string ToString()

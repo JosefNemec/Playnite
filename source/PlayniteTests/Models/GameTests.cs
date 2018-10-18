@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Playnite;
 using Playnite.SDK.Models;
+using Playnite.Settings;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,19 +22,19 @@ namespace PlayniteTests.Models
             {
                 Name = "test game",
                 InstallDirectory = dir,
-                IsoPath = Path.Combine(dir, "test.iso")
+                GameImagePath = Path.Combine(dir, "test.iso")
             };
 
-            Assert.AreEqual(string.Empty, game.ResolveVariables(string.Empty));
-            Assert.AreEqual("teststring", game.ResolveVariables("teststring"));
-            Assert.AreEqual(dir + "teststring", game.ResolveVariables("{InstallDir}teststring"));
-            Assert.AreEqual(game.InstallDirectory, game.ResolveVariables("{InstallDir}"));
-            Assert.AreEqual(game.IsoPath, game.ResolveVariables("{ImagePath}"));
-            Assert.AreEqual("test", game.ResolveVariables("{ImageNameNoExt}"));
-            Assert.AreEqual("test.iso", game.ResolveVariables("{ImageName}"));
-            Assert.AreEqual(Paths.ProgramFolder, game.ResolveVariables("{PlayniteDir}"));
-            Assert.AreEqual("test game", game.ResolveVariables("{Name}"));
-            Assert.AreEqual("test2", game.ResolveVariables("{InstallDirName}"));
+            Assert.AreEqual(string.Empty, game.ExpandVariables(string.Empty));
+            Assert.AreEqual("teststring", game.ExpandVariables("teststring"));
+            Assert.AreEqual(dir + "teststring", game.ExpandVariables("{InstallDir}teststring"));
+            Assert.AreEqual(game.InstallDirectory, game.ExpandVariables("{InstallDir}"));
+            Assert.AreEqual(game.GameImagePath, game.ExpandVariables("{ImagePath}"));
+            Assert.AreEqual("test", game.ExpandVariables("{ImageNameNoExt}"));
+            Assert.AreEqual("test.iso", game.ExpandVariables("{ImageName}"));
+            Assert.AreEqual(PlaynitePaths.ProgramPath, game.ExpandVariables("{PlayniteDir}"));
+            Assert.AreEqual("test game", game.ExpandVariables("{Name}"));
+            Assert.AreEqual("test2", game.ExpandVariables("{InstallDirName}"));
         }
 
         [Test]
@@ -41,8 +42,16 @@ namespace PlayniteTests.Models
         {
             // Should not throw
             var game = new Game();
-            game.ResolveVariables(string.Empty);
-            game.ResolveVariables(null);
+            game.ExpandVariables(string.Empty);
+            game.ExpandVariables(null);
+        }
+
+        [Test]
+        public void GameIdTest()
+        {
+            var game1 = new Game();
+            Assert.IsFalse(string.IsNullOrEmpty(game1.GameId));
+            Assert.AreNotEqual(game1.GameId, new Game().GameId);
         }
     }
 }

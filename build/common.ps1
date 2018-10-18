@@ -32,7 +32,7 @@ function global:SignFile()
     process
     {
         Write-Host "Signing file `"$Path`"" -ForegroundColor Green
-        $signToolPath = "c:\Program Files (x86)\Windows Kits\10\bin\10.0.16299.0\x86\signtool.exe"
+        $signToolPath = "c:\Program Files (x86)\Windows Kits\10\bin\10.0.17134.0\x86\signtool.exe"
         $res = StartAndWait $signToolPath ('sign /n "Open Source Developer, Josef Němec" /t http://time.certum.pl /v ' + "`"$Path`"")
         if ($res -ne 0)
         {        

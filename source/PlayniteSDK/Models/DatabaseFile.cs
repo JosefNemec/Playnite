@@ -1,5 +1,4 @@
-﻿using LiteDB;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -66,27 +65,6 @@ namespace Playnite.SDK.Models
         /// </summary>
         public DatabaseFile()
         {
-        }
-
-        /// <summary>
-        /// Creates new instance of DatabaseFile based on file from LiteDB database.
-        /// </summary>
-        /// <param name="liteDbFile">LiteDB file.</param>
-        public DatabaseFile(LiteFileInfo liteDbFile)
-        {
-            Id = liteDbFile.Id;
-            Filename = liteDbFile.Filename;
-            MimeType = liteDbFile.MimeType;
-            Length = liteDbFile.Length;
-            UploadDate = liteDbFile.UploadDate;
-            if (liteDbFile.Metadata != null)
-            {
-                Metadata = new Dictionary<string, object>();
-                foreach (var key in liteDbFile.Metadata.Keys)
-                {
-                    Metadata.Add(key, liteDbFile.Metadata[key]);
-                }
-            }
         }
     }
 }

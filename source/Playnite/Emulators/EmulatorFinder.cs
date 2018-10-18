@@ -154,12 +154,12 @@ namespace Playnite.Emulators
 
                     foreach (var extension in profile.ImageExtensions)
                     {
-                        if (string.Equals(file.Extension.TrimStart('.'), extension, StringComparison.InvariantCultureIgnoreCase))
+                        if (string.Equals(file.Extension.TrimStart('.'), extension, StringComparison.OrdinalIgnoreCase))
                         {
                             var newGame = new Game()
                             {
                                 Name = StringExtensions.NormalizeGameName(StringExtensions.GetPathWithoutAllExtensions(Path.GetFileName(file.Name))),
-                                IsoPath = file.FullName,
+                                GameImagePath = file.FullName,
                                 InstallDirectory = Path.GetDirectoryName(file.FullName)
                             };
 

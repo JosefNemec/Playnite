@@ -12,6 +12,7 @@ using System.IO;
 using Playnite;
 using System.Windows.Markup;
 using Playnite.Web;
+using Playnite.Settings;
 
 namespace PlayniteUI
 {
@@ -42,11 +43,11 @@ namespace PlayniteUI
                 return imageId.Replace("resources:", "");
             }
 
-            if (imageId.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+            if (imageId.StartsWith("http", StringComparison.OrdinalIgnoreCase))
             {
                 try
                 {
-                    var cachedFile = HttpDownloader.GetCachedWebFile(imageId);
+                    var cachedFile = HttpDownloader.GetCachedWebFile(imageId, PlaynitePaths.ImagesCachePath);
                     if (string.IsNullOrEmpty(cachedFile))
                     {
                         logger.Warn("Web file not found: " + imageId);

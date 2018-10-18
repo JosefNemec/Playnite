@@ -8,10 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using LiteDB;
 using System.Collections.Concurrent;
 using Newtonsoft.Json;
-using Playnite.SDK.Converters;
+using LiteDB;
 
 namespace Playnite.SDK.Models
 {
@@ -53,7 +52,6 @@ namespace Playnite.SDK.Models
             {
                 description = value;
                 OnPropertyChanged("Description");
-                OnPropertyChanged("DescriptionView");
             }
         }
 
@@ -167,21 +165,21 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private string image;
+        private string coverImage;
         /// <summary>
         /// Gets or sets game cover image. Local file path, HTTP URL or database file ids are supported.
         /// </summary>
-        public string Image
+        public string CoverImage
         {
             get
             {
-                return image;
+                return coverImage;
             }
 
             set
             {
-                image = value;
-                OnPropertyChanged("Image");
+                coverImage = value;
+                OnPropertyChanged("CoverImage");
             }
         }
 
@@ -195,9 +193,9 @@ namespace Playnite.SDK.Models
             {
                 if (string.IsNullOrEmpty(installDirectory))
                 {
-                    if (PlayTask != null)
+                    if (PlayAction != null)
                     {
-                        return PlayTask.WorkingDir;
+                        return PlayAction.WorkingDir;
                     }
                 }
 
@@ -211,21 +209,21 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private string isoPath;
+        private string gameImagePath;
         /// <summary>
         /// Gets or sets game's ISO, ROM or other type of executable image path.
         /// </summary>
-        public string IsoPath
+        public string GameImagePath
         {
             get
             {
-                return isoPath;
+                return gameImagePath;
             }
 
             set
             {
-                isoPath = value;
-                OnPropertyChanged("IsoPath");
+                gameImagePath = value;
+                OnPropertyChanged("GameImagePath");
             }
         }
 
@@ -283,84 +281,83 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private string providerId;
+        private string gameId;
         /// <summary>
         /// Gets or sets provider id. For example game's Steam ID.
         /// </summary>
-        public string ProviderId
+        public string GameId
         {
             get
             {
-                return providerId;
+                return gameId;
             }
 
             set
             {
-                providerId = value;
-                OnPropertyChanged("ProviderId");
+                gameId = value;
+                OnPropertyChanged("GameId");
             }
         }
 
-        private ObservableCollection<GameTask> otherTasks;
+        private Guid pluginId = Guid.Empty;
+        /// <summary>
+        /// Gets or sets id of plugin responsible for handling this game.
+        /// </summary>
+        public Guid PluginId
+        {
+            get
+            {
+                return pluginId;
+            }
+
+            set
+            {
+                pluginId = value;
+                OnPropertyChanged("PluginId");
+            }
+        }
+
+        private ObservableCollection<GameAction> otherActions;
         /// <summary>
         /// Gets or sets list of additional game actions.
         /// </summary>
-        public ObservableCollection<GameTask> OtherTasks
+        public ObservableCollection<GameAction> OtherActions
         {
             get
             {
-                return otherTasks;
+                return otherActions;
             }
 
             set
             {
-                otherTasks = value;
-                OnPropertyChanged("OtherTasks");
+                otherActions = value;
+                OnPropertyChanged("OtherActions");
             }
         }
 
-        private GameTask playTask;
+        private GameAction playAction;
         /// <summary>
         /// Gets or sets game action used to starting the game.
         /// </summary>
-        public GameTask PlayTask
+        public GameAction PlayAction
         {
             get
             {
-                return playTask;
+                return playAction;
             }
 
             set
             {
-                playTask = value;
-                OnPropertyChanged("PlayTask");
+                playAction = value;
+                OnPropertyChanged("PlayAction");
             }
         }
 
-        private Provider provider;
-        /// <summary>
-        /// Gets or sets original library provider.
-        /// </summary>
-        public Provider Provider
-        {
-            get
-            {
-                return provider;
-            }
-
-            set
-            {
-                provider = value;
-                OnPropertyChanged("Provider");
-            }
-        }
-
-        private ObjectId platformId;
+        private Guid platformId;
         /// <summary>
         /// Gets or sets platform id.
         /// </summary>
-        [JsonConverter(typeof(ObjectIdJsonConverter))]
-        public ObjectId PlatformId
+        public Guid PlatformId
         {
             get
             {
@@ -513,7 +510,17 @@ namespace Playnite.SDK.Models
         {
             get => State.Installed;
         }
-        
+
+        /// <summary>
+        /// Gets value indicating wheter the game is custom game.
+        /// </summary>
+        [JsonIgnore]
+        [BsonIgnore]
+        public bool IsCustomGame
+        {
+            get => PluginId == Guid.Empty;
+        }
+
         private GameState state = new GameState();
         /// <summary>
         /// Gets or sets game state.
@@ -776,8 +783,7 @@ namespace Playnite.SDK.Models
         /// </summary>
         public Game()
         {
-            Provider = Provider.Custom;
-            ProviderId = Guid.NewGuid().ToString();
+            GameId = Guid.NewGuid().ToString();
         }
 
         /// <summary>
@@ -787,8 +793,7 @@ namespace Playnite.SDK.Models
         public Game(string name)
         {
             Name = name;
-            Provider = Provider.Custom;
-            ProviderId = Guid.NewGuid().ToString();
+            GameId = Guid.NewGuid().ToString();
         }
 
         /// <summary>

@@ -1,5 +1,4 @@
-﻿using NLog;
-using Playnite.SDK;
+﻿using Playnite.SDK;
 using Playnite.Metadata;
 using PlayniteUI.Commands;
 using System;
@@ -18,7 +17,7 @@ namespace PlayniteUI.ViewModels
             Manual
         }
 
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
 
 

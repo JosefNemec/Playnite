@@ -1,5 +1,4 @@
-﻿using NLog;
-using Playnite;
+﻿using Playnite;
 using Playnite.Database;
 using Playnite.Emulators;
 using Playnite.SDK.Models;
@@ -15,7 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using static PlayniteUI.ViewModels.PlatformsViewModel;
+using Playnite.Common.System;
 
 namespace PlayniteUI.ViewModels
 {
@@ -23,7 +22,7 @@ namespace PlayniteUI.ViewModels
     {
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var platforms = (IEnumerable<LiteDB.ObjectId>)values[0];
+            var platforms = (IEnumerable<Guid>)values[0];
             var allPlatforms = (IEnumerable<Platform>)values[1];
             return string.Join(", ", allPlatforms.Where(a => platforms?.Contains(a.Id) == true)?.Select(a => a.Name));
         }
@@ -38,7 +37,7 @@ namespace PlayniteUI.ViewModels
     {
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var platforms = (IEnumerable<LiteDB.ObjectId>)values[0];
+            var platforms = (IEnumerable<Guid>)values[0];
             var allPlatforms = (IEnumerable<Platform>)values[1];
             return allPlatforms.Where(a => platforms.Contains(a.Id));
         }
@@ -236,7 +235,7 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
@@ -401,10 +400,9 @@ namespace PlayniteUI.ViewModels
             {
                 IsLoading = true;
                 cancelToken = new CancellationTokenSource();
-                var games = await  EmulatorFinder.SearchForGames(path, profile, cancelToken);
-                if (games != null)
+                var games = await EmulatorFinder.SearchForGames(path, profile, cancelToken);
+                if (games?.Any() == true)
                 {
-
                     if (GamesList == null)
                     {
                         GamesList = new RangeObservableCollection<ImportableGame>();
@@ -415,11 +413,11 @@ namespace PlayniteUI.ViewModels
                     GamesList.AddRange(games
                         .Where(a =>
                         {
-                            return dbGames.FirstOrDefault(b => Paths.AreEqual(a.IsoPath, b.IsoPath)) == null;
+                            return dbGames.FirstOrDefault(b => Paths.AreEqual(a.GameImagePath, b.GameImagePath)) == null;
                         })
                         .Select(a =>
                         {
-                            a.PlatformId = profile.Platforms?.FirstOrDefault();
+                            a.PlatformId = profile.Platforms?.FirstOrDefault() ?? Guid.Empty;
                             return new ImportableGame(a, emulator, profile);
                         }));
                 }
@@ -445,11 +443,11 @@ namespace PlayniteUI.ViewModels
                     continue;
                 }
 
-                game.Game.PlayTask = new GameTask()
+                game.Game.PlayAction = new GameAction()
                 {
                     EmulatorId = game.Emulator.Id,
                     EmulatorProfileId = game.EmulatorProfile.Id,
-                    Type = GameTaskType.Emulator                    
+                    Type = GameActionType.Emulator                    
                 };
 
                 game.Game.State = new GameState() { Installed = true };
@@ -479,7 +477,7 @@ namespace PlayniteUI.ViewModels
                             var existing = platforms.FirstOrDefault(a => string.Equals(a.Name, platform, StringComparison.InvariantCultureIgnoreCase));
                             if (existing == null)
                             {
-                                var newPlatform = new Platform(platform) { Id = null };
+                                var newPlatform = new Platform(platform);
                                 database.AddPlatform(newPlatform);
                                 platforms = DatabasePlatforms;
                                 existing = newPlatform;
@@ -487,7 +485,7 @@ namespace PlayniteUI.ViewModels
 
                             if (profile.Platforms == null)
                             {
-                                profile.Platforms = new List<LiteDB.ObjectId>();
+                                profile.Platforms = new List<Guid>();
                             }
 
                             profile.Platforms.Add(existing.Id);                            

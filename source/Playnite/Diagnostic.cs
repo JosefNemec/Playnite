@@ -5,13 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.IO.Compression;
-using NLog;
-using Playnite.Providers.GOG;
-using Playnite.Providers.Steam;
-using Playnite.Providers.Origin;
 using System.Diagnostics;
-using YamlDotNet.Serialization;
 using Newtonsoft.Json;
+using Playnite.Settings;
+using Playnite.Common.System;
+using Playnite.Common;
+using Playnite.App;
 
 namespace Playnite
 {
@@ -19,7 +18,7 @@ namespace Playnite
     {
         public static void CreateDiagPackage(string path)
         {
-            var diagTemp = Path.Combine(Paths.TempPath, "diag");
+            var diagTemp = Path.Combine(PlaynitePaths.TempPath, "diag");
             FileSystem.CreateDirectory(diagTemp, true);
             FileSystem.DeleteFile(path);    
             
@@ -29,7 +28,7 @@ namespace Playnite
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
                 {
                     // Add log files
-                    foreach (var logFile in Directory.GetFiles(Paths.ConfigRootPath, "*.log", SearchOption.TopDirectoryOnly))
+                    foreach (var logFile in Directory.GetFiles(PlaynitePaths.ConfigRootPath, "*.log", SearchOption.TopDirectoryOnly))
                     {
                         if (Path.GetFileName(logFile) == "cef.log")
                         {
@@ -39,57 +38,37 @@ namespace Playnite
                         archive.CreateEntryFromFile(logFile, Path.GetFileName(logFile));
                     }
 
-
                     // Config 
-                    if (File.Exists(Paths.ConfigFilePath))
+                    if (File.Exists(PlaynitePaths.ConfigFilePath))
                     {
-                        archive.CreateEntryFromFile(Paths.ConfigFilePath, Path.GetFileName(Paths.ConfigFilePath));
+                        archive.CreateEntryFromFile(PlaynitePaths.ConfigFilePath, Path.GetFileName(PlaynitePaths.ConfigFilePath));
                     }
 
-                    // Origin data
-                    var originContentPath = Path.Combine(Providers.Origin.OriginPaths.DataPath, "LocalContent");
-                    if (Directory.Exists(originContentPath))
-                    {
-                        FileSystem.AddFolderToZip(archive, "Origin", originContentPath, ".dat|.mfst", SearchOption.AllDirectories);
-                    }
-
-                    // GOG data
-                    if (GogSettings.IsInstalled)
-                    {
-                        var dbPath = Path.Combine(GogSettings.DBStoragePath, "index.db");
-                        if (File.Exists(dbPath))
-                        {
-                            archive.CreateEntryFromFile(dbPath, "index.db");
-                        }
-                    }
-
-                    // Steam data
-                    if (SteamSettings.IsInstalled)
-                    {
-                        foreach (var folder in (new SteamLibrary()).GetLibraryFolders())
-                        {
-                            var appsFolder = Path.Combine(folder, "steamapps");
-                            FileSystem.AddFolderToZip(archive, "Steam", appsFolder, "appmanifest*", SearchOption.TopDirectoryOnly);
-                        }
-
-                        if (File.Exists(SteamSettings.LoginUsersPath))
-                        {
-                            archive.CreateEntryFromFile(SteamSettings.LoginUsersPath, "loginusers.vdf");
-                        }
-                    }
-
-                    // dxdiag
-                    var diagPath = Path.Combine(diagTemp, "dxdiag.txt");
-                    Process.Start("dxdiag", "/dontskip /whql:off /t " + diagPath).WaitForExit();
-                    archive.CreateEntryFromFile(diagPath, Path.GetFileName(diagPath));
+                    // System Info
+                    var infoPath = Path.Combine(diagTemp, "sysinfo.txt");
+                    File.WriteAllText(infoPath, Serialization.ToYaml(Computer.GetSystemInfo()));
+                    archive.CreateEntryFromFile(infoPath, Path.GetFileName(infoPath));
 
                     // Uninstall regkey export
-                    var regKeyPath = Path.Combine(diagTemp, "uninstall.json");
+                    var regKeyPath = Path.Combine(diagTemp, "uninstall.txt");
                     var programs = Programs.GetUnistallProgramsList();
-                    File.WriteAllText(regKeyPath, JsonConvert.SerializeObject(programs, Formatting.Indented));
+                    File.WriteAllText(regKeyPath, Serialization.ToYaml(programs));
                     archive.CreateEntryFromFile(regKeyPath, Path.GetFileName(regKeyPath));
+
+                    // Playnite info
+                    var playnitePath = Path.Combine(diagTemp, "playniteInfo.txt");
+                    var playniteInfo = new Dictionary<string, object>
+                    {
+                        { "Version", Updater.GetCurrentVersion().ToString() },
+                        { "Portable", PlayniteSettings.IsPortable }
+                    };
+
+                    File.WriteAllText(playnitePath, Serialization.ToYaml(playniteInfo));
+                    archive.CreateEntryFromFile(playnitePath, Path.GetFileName(playnitePath));
                 }
             }
+
+            FileSystem.DeleteFolder(diagTemp);
         }
     }
 }

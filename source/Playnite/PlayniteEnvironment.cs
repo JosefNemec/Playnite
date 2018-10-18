@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.Settings;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Playnite
         {
             get
             {
-                return Settings.GetAppConfigBoolValue("ThrowAllErrors");
+                return PlayniteSettings.GetAppConfigBoolValue("ThrowAllErrors");
             }
         }
 

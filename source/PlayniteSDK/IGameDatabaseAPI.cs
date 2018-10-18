@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LiteDB;
 using Playnite.SDK.Models;
 
 namespace Playnite.SDK
@@ -13,6 +12,11 @@ namespace Playnite.SDK
     /// </summary>
     public interface IGameDatabaseAPI
     {
+        /// <summary>
+        /// Gets value indicating whether game database is open and available.
+        /// </summary>
+        bool IsOpen { get; }
+
         /// <summary>
         /// Adds new game to database.
         /// </summary>
@@ -55,7 +59,7 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="id">Emulator id.</param>
         /// <returns>Emulator based on specified id or null.</returns>
-        Emulator GetEmulator(ObjectId id);
+        Emulator GetEmulator(Guid id);
 
         /// <summary>
         /// Returns all emulators from database.
@@ -67,7 +71,7 @@ namespace Playnite.SDK
         /// Removes emulator from database.
         /// </summary>
         /// <param name="id">Emulator id.</param>
-        void RemoveEmulator(ObjectId id);
+        void RemoveEmulator(Guid id);
 
         /// <summary>
         /// Adds new platform to database.
@@ -80,7 +84,7 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="id">Platform id.</param>
         /// <returns>Platform based on speciifed id or null.</returns>
-        Platform GetPlatform(ObjectId id);
+        Platform GetPlatform(Guid id);
 
         /// <summary>
         /// Returns all platforms from database.
@@ -92,7 +96,7 @@ namespace Playnite.SDK
         /// Removes platform from database.
         /// </summary>
         /// <param name="id">Platform id.</param>
-        void RemovePlatform(ObjectId id);
+        void RemovePlatform(Guid id);
 
         /// <summary>
         /// Adds new file to database. If file with the same content already exists then new file is not added.
@@ -134,5 +138,11 @@ namespace Playnite.SDK
         /// <param name="id">File id.</param>
         /// <returns>All files stored in database.</returns>
         DatabaseFile GetFile(string id);
+
+        /// <summary>
+        /// Imports categories from selected games.
+        /// </summary>
+        /// <param name="sourceGames">List of games to take categories from.</param>
+        void ImportCategories(List<Game> sourceGames);
     }
 }

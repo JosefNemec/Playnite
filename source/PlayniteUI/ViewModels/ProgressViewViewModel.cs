@@ -1,5 +1,4 @@
-﻿using NLog;
-using Playnite.SDK;
+﻿using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +22,7 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
 
         public ProgressViewViewModel(IWindowFactory window, Action progresAction)

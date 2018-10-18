@@ -4,7 +4,6 @@ using NUnit.Framework;
 using Playnite;
 using Playnite.Database;
 using Playnite.SDK.Models;
-using Playnite.Providers.Steam;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,19 +26,19 @@ namespace PlayniteTests.Database
             using (db.OpenDatabase(path))
             {
                 var platforms = db.PlatformsCollection.FindAll().ToList();
-                CollectionAssert.IsNotEmpty(platforms);                
+                CollectionAssert.IsNotEmpty(platforms);
                 db.RemovePlatform(platforms);
                 CollectionAssert.IsEmpty(db.PlatformsCollection.FindAll());
                 db.AddPlatform(new Platform("Test"));
                 db.AddPlatform(new Platform("Test2"));
+                platforms = db.PlatformsCollection.FindAll().ToList();
+                Assert.AreEqual(2, platforms.Count);
             }
-                        
+
             using (db.OpenDatabase(path))
             {
                 var platforms = db.PlatformsCollection.FindAll().ToList();
                 Assert.AreEqual(2, platforms.Count);
-                Assert.AreEqual("Test", platforms[0].Name);
-                Assert.AreEqual("Test2", platforms[1].Name);
             }
         }
 
@@ -90,7 +89,7 @@ namespace PlayniteTests.Database
             }
 
             GameDatabase.MigrateDatabase(path);
-            var db = new GameDatabase(null, path);
+            var db = new GameDatabase(path);
             using (db.OpenDatabase())
             {
                 Assert.IsTrue(db.GamesCollection.Count() == 3);
@@ -145,7 +144,7 @@ namespace PlayniteTests.Database
                 var platCol = database.GetCollection<Playnite.Models.Old1.Platform>("platforms");
                 platCol.InsertBulk(platforms);
 
-                var gamesCol = database.GetCollection<Playnite.Models.Old1.Game>("games");  
+                var gamesCol = database.GetCollection<Playnite.Models.Old1.Game>("games");
                 var games = new List<Playnite.Models.Old1.Game>()
                 {
                     new Playnite.Models.Old1.Game()
@@ -156,15 +155,15 @@ namespace PlayniteTests.Database
                         Name = "Test Name 1",
                         PlayTask = new Playnite.Models.Old1.GameTask()
                         {
-                            Type = GameTaskType.Emulator,
-                            EmulatorId = emuCol.FindAll().First().Id
+                            Type = GameActionType.Emulator,
+                            EmulatorId = emuCol.FindOne(a => a.Name == "TestEmu").Id
                         },
                         OtherTasks = new ObservableCollection<Playnite.Models.Old1.GameTask>()
                         {
                             new Playnite.Models.Old1.GameTask()
                             {
-                                Type = GameTaskType.Emulator,
-                                EmulatorId = emuCol.FindAll().First().Id
+                                Type = GameActionType.Emulator,
+                                EmulatorId = emuCol.FindOne(a => a.Name == "TestEmu").Id
                             }
                         }
                     },
@@ -176,14 +175,14 @@ namespace PlayniteTests.Database
                         Name = "Test Name 2",
                         PlayTask = new Playnite.Models.Old1.GameTask()
                         {
-                            Type = GameTaskType.Emulator,
+                            Type = GameActionType.Emulator,
                             EmulatorId = 0
                         },
                         OtherTasks = new ObservableCollection<Playnite.Models.Old1.GameTask>()
                         {
                             new Playnite.Models.Old1.GameTask()
                             {
-                                Type = GameTaskType.Emulator,
+                                Type = GameActionType.Emulator,
                                 EmulatorId = 0
                             }
                         }
@@ -205,25 +204,27 @@ namespace PlayniteTests.Database
             }
 
             GameDatabase.MigrateDatabase(path);
-            var db = new GameDatabase(null, path);
+            var db = new GameDatabase(path);
             using (db.OpenDatabase())
             {
-                var plats = db.PlatformsCollection.FindAll().ToList();
-                Assert.IsNotNull(plats[0].Id);
-                Assert.IsNotNull(plats[1].Id);
+                var plat1 = db.PlatformsCollection.FindOne(a => a.Name == "TestPlat1");
+                var plat2 = db.PlatformsCollection.FindOne(a => a.Name == "TestPlat2");
+                Assert.IsNotNull(plat1.Id);
+                Assert.IsNotNull(plat2.Id);
 
                 var emus = db.EmulatorsCollection.FindAll().ToList();
+                var emu1 = db.EmulatorsCollection.FindOne(a => a.Name == "TestEmu");
+                var emu2 = db.EmulatorsCollection.FindOne(a => a.Name == "TestEmu2");
                 Assert.AreEqual(2, emus.Count());
-                Assert.AreEqual(plats[0].Id, emus[0].Profiles[0].Platforms[0]);
-                Assert.AreEqual(plats[1].Id, emus[0].Profiles[0].Platforms[1]);
-                CollectionAssert.IsEmpty(emus[1].Profiles[0].Platforms);
-                Assert.IsNotNull(emus[0].Id);
-                Assert.IsNotNull(emus[1].Id);
+                Assert.AreEqual(plat1.Id, emu1.Profiles[0].Platforms[0]);
+                Assert.AreEqual(plat2.Id, emu1.Profiles[0].Platforms[1]);
+                CollectionAssert.IsEmpty(emu2.Profiles[0].Platforms);
+                Assert.IsNotNull(emu1.Id);
+                Assert.IsNotNull(emu2.Id);
 
-                var emu = emus.First();
-                var emuConf = emu.Profiles.First();
-                Assert.AreEqual(1, emu.Profiles.Count);
-                Assert.IsNotNull(emu.Profiles);
+                var emuConf = emu1.Profiles.First();
+                Assert.AreEqual(1, emu1.Profiles.Count);
+                Assert.IsNotNull(emu1.Profiles);
                 Assert.AreEqual("Test Arguments", emuConf.Arguments);
                 Assert.AreEqual("Test Executable", emuConf.Executable);
                 Assert.AreEqual("Test Directory", emuConf.WorkingDirectory);
@@ -234,17 +235,17 @@ namespace PlayniteTests.Database
 
                 var games = db.GamesCollection.FindAll().ToList();
                 var game = games[0];
-                Assert.AreEqual(plats[0].Id, game.PlatformId);
-                Assert.AreEqual(emu.Profiles.First().Id, game.PlayTask.EmulatorProfileId);
-                Assert.AreEqual(emu.Id, game.PlayTask.EmulatorId);
-                Assert.AreEqual(emu.Profiles.First().Id, game.OtherTasks[0].EmulatorProfileId);
-                Assert.AreEqual(emu.Id, game.OtherTasks[0].EmulatorId);
+                Assert.AreEqual(plat1.Id, game.PlatformId);
+                Assert.AreEqual(emu1.Profiles.First().Id, game.PlayAction.EmulatorProfileId);
+                Assert.AreEqual(emu1.Id, game.PlayAction.EmulatorId);
+                Assert.AreEqual(emu1.Profiles.First().Id, game.OtherActions[0].EmulatorProfileId);
+                Assert.AreEqual(emu1.Id, game.OtherActions[0].EmulatorId);
 
-                Assert.IsNull(games[1].PlatformId);
-                Assert.IsNull(games[1].PlayTask.EmulatorId);
-                Assert.IsNull(games[1].PlayTask.EmulatorProfileId);
-                Assert.IsNull(games[1].OtherTasks[0].EmulatorId);
-                Assert.IsNull(games[1].OtherTasks[0].EmulatorProfileId);
+                Assert.AreEqual(Guid.Empty, games[1].PlatformId);
+                Assert.AreEqual(Guid.Empty, games[1].PlayAction.EmulatorId);
+                Assert.AreEqual(Guid.Empty, games[1].PlayAction.EmulatorProfileId);
+                Assert.AreEqual(Guid.Empty, games[1].OtherActions[0].EmulatorId);
+                Assert.AreEqual(Guid.Empty, games[1].OtherActions[0].EmulatorProfileId);
 
                 var files = db.Database.FileStorage.FindAll().ToList();
                 Assert.AreEqual(2, files.Count);
@@ -269,26 +270,22 @@ namespace PlayniteTests.Database
                 {
                     new Game()
                     {
-                        Provider = Provider.Custom,
                         Name = "Test Name 1"
                     },
                     new Game()
                     {
-                        Provider = Provider.Custom,
                         Name = "Test Name 2",
                         InstallDirectory = "installdir"
                     },
                     new Game()
                     {
-                        Provider = Provider.Custom,
                         Name = "Test Name 3",
-                        IsoPath = "isopath"
+                        GameImagePath = "isopath"
                     },
                     new Game()
                     {
-                        Provider = Provider.Custom,
                         Name = "Test Name 4",
-                        IsoPath = "isopath",
+                        GameImagePath = "isopath",
                         InstallDirectory = "installdir"
                     }
                 };
@@ -306,50 +303,6 @@ namespace PlayniteTests.Database
                 Assert.IsTrue(games[2].State.Installed);
                 Assert.IsTrue(games[3].State.Installed);
                 Assert.IsTrue(db.GetDatabaseSettings().InstStatesFixed);
-            }
-        }
-
-        [Test]
-        public void SourcesFixTest()
-        {
-            var path = Path.Combine(PlayniteTests.TempPath, "sourcesfix.db");
-            FileSystem.DeleteFile(path);
-
-            using (var database = new LiteDatabase(path))
-            {
-                database.Engine.UserVersion = GameDatabase.DBVersion;
-                var games = new List<Game>()
-                {
-                    new Game()
-                    {
-                        Provider = Provider.BattleNet,
-                        Name = "Bnet game"
-                    },
-                    new Game()
-                    {
-                        Provider = Provider.Custom,
-                        Name = "Custom game"
-                    },
-                    new Game()
-                    {
-                        Provider = Provider.Steam,
-                        Name = "Custom game",
-                        Source = "Some source"
-                    }
-                };
-
-                var collection = database.GetCollection<Game>("games");
-                collection.Insert(games);
-            }
-
-            var db = new GameDatabase();
-            using (db.OpenDatabase(path))
-            {
-                var games = db.GetGames();
-                Assert.AreEqual(Enums.GetEnumDescription(Provider.BattleNet), games[0].Source);
-                Assert.IsTrue(string.IsNullOrEmpty(games[1].Source));
-                Assert.AreEqual("Some source", games[2].Source);
-                Assert.IsTrue(db.GetDatabaseSettings().GameSourcesUpdated);
             }
         }
     }

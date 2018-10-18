@@ -19,15 +19,11 @@
     # Target directory for installer files
     [string]$InstallerDir = $PWD,
 
-    # Installer technology
-    [ValidateSet("nsis", "inno")]
-    [string]$InstallerType = "inno",
-
     # Playnite version dirs used for diff installers
     [array]$UpdateDiffs,
 
     # Directory containing build files for $UpdateDiffs
-    [string]$BuildsStorageDir,
+    [string]$BuildsStorageDir = ".\",
 
     # Build portable package
     [switch]$Portable = $false,
@@ -45,57 +41,6 @@
 $ErrorActionPreference = "Stop"
 & .\common.ps1
 
-function BuildNsisInstaller()
-{
-    param(
-        [Parameter(Mandatory = $true)]
-        [string]$SourceDir,
-        [Parameter(Mandatory = $true)]
-        [string]$DestinationFile,
-        [Parameter(Mandatory = $true)]
-        [string]$Version
-    )
-
-    Write-OperationLog "Building NSIS setup..."
-        
-    $nsisCompiler = "c:\Program Files (x86)\NSIS\makensis.exe"
-    $installerScript = "NsisSetup.nsi"
-    $installerTempScript = "NsisSetup.temp.nsi"
-
-    $destinationDir = Split-Path $DestinationFile -Parent
-    New-Folder $destinationDir
-
-    $scriptContent = Get-Content $installerScript
-    $files = Get-ChildItem $SourceDir -Recurse
-    foreach ($file in $files)
-    {        
-        $name = $file.FullName.Replace($SourceDir, "").TrimStart("\")
-
-        if (Test-Path $file.FullName -PathType Container)
-        {
-            $filesString += "`$`{CreateDirectory} `"`$INSTDIR\$($name)`"`r`n"
-        }
-        else
-        {
-            $name = $file.FullName.Replace($SourceDir, "").TrimStart("\")
-            $filesString += "`$`{FileOname} `"$($name)`" `"$($file.FullName)`"`r`n"
-        }        
-    }
-
-    $scriptContent = $scriptContent -replace ";{files_here}", $filesString
-    $scriptContent = $scriptContent -replace ";{out_file_name}", "`"$DestinationFile`""
-    $scriptContent | Out-File $installerTempScript "utf8"
-
-    $arguments = '/DVERSION="{0}" {1}' -f $Version, $installerTempScript
-    $res = StartAndWait $nsisCompiler $arguments -WorkingDir $PWD
-    if ($res -ne 0)
-    {        
-        throw "NSIS build failed."
-    }
-
-    Remove-Item $installerTempScript
-}
-
 function BuildInnoInstaller()
 {
     param(
@@ -105,32 +50,27 @@ function BuildInnoInstaller()
         [string]$DestinationFile,
         [Parameter(Mandatory = $true)]
         [string]$Version,
-        [switch]$IncludeVcredist
+        [Parameter(Mandatory = $false)]
+        [switch]$Update = $false
     )
 
     $innoCompiler = "C:\Program Files (x86)\Inno Setup 5\ISCC.exe"
-    $innoScript = "InnoSetup.iss"
+    $innoScript = "InnoSetup.iss"    
     $innoTempScript = "InnoSetup.temp.iss"
     $destinationExe = Split-Path $DestinationFile -Leaf
     $destinationDir = Split-Path $DestinationFile -Parent
-
-    Write-OperationLog "Building Inno Setup $destinationExe..."
-    if ($IncludeVcredist)
+    if ($Update)
     {
-        Write-DebugLog "Including vcredist into install package."
+        $innoScript = "InnoSetupUpdate.iss"
     }
 
+    Write-OperationLog "Building Inno Setup $destinationExe..."
     New-Folder $destinationDir
     $scriptContent = Get-Content $innoScript
     $scriptContent = $scriptContent -replace "{source_path}", $SourceDir
     $scriptContent = $scriptContent -replace "{version}", $Version
     $scriptContent = $scriptContent -replace "{out_dir}", $destinationDir
     $scriptContent = $scriptContent -replace "{out_file_name}", ($destinationExe -replace "\..+`$", "")
-    if ($IncludeVcredist)
-    {
-        $scriptContent = $scriptContent -replace ";{vcredist}", ""
-    }
-
     $scriptContent | Out-File $innoTempScript "utf8"
    
     $res = StartAndWait $innoCompiler "/Q $innoTempScript" -WorkingDir $PWD    
@@ -172,7 +112,9 @@ function CreateDirectoryDiff()
     Copy-Item (Join-Path $OutPath "*")  $tempPath -Recurse -Force
     $tempPathFiles = Get-ChildItem $tempPath -Recurse | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
     $tempDiff = Compare-Object -ReferenceObject $targetDirFiles -DifferenceObject $tempPathFiles -Property Hash -PassThru
-
+    
+    # Ignore removed files
+    $tempDiff = $tempDiff | Where { Test-Path ([Regex]::Replace($_.Path, [Regex]::Escape($tempPath), $TargetDir, "IgnoreCase")) }
     if ($tempDiff -ne $null)
     {
         $tempDiff | ForEach { Write-ErrorLog "Diff fail: $($_.Path)" }
@@ -215,7 +157,8 @@ if (!$SkipBuild)
         if ($Sign)
         {
             Join-Path $OutputDir "Playnite.dll" | SignFile
-            Join-Path $OutputDir "PlayniteSDK.dll" | SignFile
+            Join-Path $OutputDir "Playnite.Common.dll" | SignFile
+            Join-Path $OutputDir "Playnite.SDK.dll" | SignFile
             Join-Path $OutputDir "PlayniteUI.exe" | SignFile
         }
     }
@@ -270,16 +213,8 @@ New-Folder $InstallerDir
 # -------------------------------------------
 if ($Installers)
 {
-    $installerPath = Join-Path $InstallerDir "Playnite$buildNumberPlain.exe"
-    
-    if ($InstallerType -eq "nsis")
-    {
-        BuildNsisInstaller $OutputDir $installerPath $buildNumber
-    }
-    else
-    {        
-        BuildInnoInstaller $OutputDir $installerPath $buildNumber -IncludeVcredist
-    }
+    $installerPath = Join-Path $InstallerDir "Playnite$buildNumberPlain.exe"          
+    BuildInnoInstaller $OutputDir $installerPath $buildNumber   
 
     if ($Sign)
     {
@@ -304,9 +239,8 @@ if ($UpdateDiffs)
         $diffDir = Join-Path $InstallerDir $diffString
         CreateDirectoryDiff (Join-Path $BuildsStorageDir $diffVersion) $OutputDir $diffDir
 
-        $includeVcredist = (Get-ChildItem $diffDir | Where { $_.Name -match "CefSharp|libcef" }) -ne $null
         $installerPath = Join-Path $InstallerDir "$diffString.exe"
-        BuildInnoInstaller $diffDir $installerPath $buildNumber -IncludeVcredist:$includeVcredist
+        BuildInnoInstaller $diffDir $installerPath $buildNumber -Update
         Remove-Item $diffDir -Recurse -Force
         
         if ($Sign)

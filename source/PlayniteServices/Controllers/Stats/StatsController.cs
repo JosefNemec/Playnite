@@ -26,23 +26,26 @@ namespace PlayniteServices.Controllers.Stats
             stats.UserCount = users.Count;
 
             var now = DateTime.Now;
-            stats.LastWeekUserCount = users.Where(a => (now - a.LastLaunch).Days <= 7).Count();
+            var lastWeekUsers = users.Where(a => (now - a.LastLaunch).Days <= 7).ToList();
+            stats.LastWeekUserCount = lastWeekUsers.Count();
 
-            var userGroups = users.GroupBy(ver => ver.PlayniteVersion, user => user);
+            var userGroups = lastWeekUsers.GroupBy(ver => ver.PlayniteVersion, user => user);
             stats.UsersByVersion = new Dictionary<string, int>();
             foreach (var userGroup in userGroups.OrderByDescending(a => a.Key))
             {
                 stats.UsersByVersion.Add(userGroup.Key, userGroup.Count());
             }
 
-            var winGroups = users.GroupBy(ver => ver.WinVersion, user => user);
+            var winGroups = lastWeekUsers.GroupBy(ver => ver.WinVersion, user => user);
             stats.UsersByWinVersion = new Dictionary<string, int>();
             foreach (var winGroup in winGroups.OrderByDescending(a => a.Key))
             {
                 stats.UsersByWinVersion.Add(winGroup.Key, winGroup.Count());
             }
 
-            stats.RecentUsers = users.OrderBy(a => a.LastLaunch).TakeLast(20).ToList();
+            stats.RecentUsers = lastWeekUsers.OrderBy(a => a.LastLaunch).TakeLast(20).ToList();
+            stats.X64Count = lastWeekUsers.Where(a => a.Is64Bit).Count();
+            stats.X86Count = lastWeekUsers.Where(a => !a.Is64Bit).Count();
             return new ServicesResponse<ServiceStats>(stats, string.Empty);
         }
 

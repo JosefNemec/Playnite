@@ -33,12 +33,10 @@ namespace PlayniteTests.API
                 {
                     new Game()
                     {
-                        Provider = Provider.Custom,
                         Name = "Test Name 1"
                     },
                     new Game()
                     {
-                        Provider = Provider.Custom,
                         Name = "Test Name 2"
                     }
                 });
@@ -73,7 +71,7 @@ namespace PlayniteTests.API
             {
                 var dbApi = new DatabaseAPI(db);
                 Assert.AreEqual(0, dbApi.GetFiles().Count);
-                
+
                 db.AddFile("testid1", "testname1.png", new byte[] { 0, 1, 2 });
                 db.AddFile("testid2", "testname2.png", new byte[] { 2, 1, 0 });
 
@@ -98,7 +96,7 @@ namespace PlayniteTests.API
                 FileSystem.DeleteFile(filePath);
                 dbApi.SaveFile("testid2", filePath);
                 Assert.IsTrue(File.Exists(filePath));
-                Assert.AreEqual(3, File.ReadAllBytes(filePath).Count());                
+                Assert.AreEqual(3, File.ReadAllBytes(filePath).Count());
             }
         }
     }

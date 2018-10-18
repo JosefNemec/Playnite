@@ -1,0 +1,6 @@
+﻿Name: Steam Library Importer
+Author: Playnite
+Version: 1.0
+Module: SteamLibrary.dll
+Type: GameLibrary
+Icon: Resources\steamicon.png

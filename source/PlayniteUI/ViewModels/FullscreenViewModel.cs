@@ -1,7 +1,10 @@
 ﻿using NLog;
 using Playnite;
+using Playnite.API;
 using Playnite.Database;
+using Playnite.Plugins;
 using Playnite.SDK;
+using Playnite.Settings;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -205,8 +208,10 @@ namespace PlayniteUI.ViewModels
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources,
-            Settings settings,
-            GamesEditor gamesEditor) : base(database, window, dialogs, resources, settings, gamesEditor)
+            PlayniteSettings settings,
+            GamesEditor gamesEditor,
+            PlayniteAPI playniteApi,
+            ExtensionFactory extensions) : base(database, window, dialogs, resources, settings, gamesEditor, playniteApi, extensions)
         {
             IsFullscreenView = true;
             PropertyChanged += FullscreenViewModel_PropertyChanged;
@@ -359,7 +364,7 @@ namespace PlayniteUI.ViewModels
                 Dispose();
             }
 
-            App.CurrentApp.OpenNormalView(0, false, true);
+            App.CurrentApp.OpenNormalView(false, true);
         }
 
         public void OpenSearch()
@@ -380,7 +385,7 @@ namespace PlayniteUI.ViewModels
         {
             if (GamesView.CollectionView.Count > 0)
             {
-                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).ProviderId);
+                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).Id);
             }
             else
             {
@@ -392,7 +397,7 @@ namespace PlayniteUI.ViewModels
         {            
             if (GamesView.CollectionView.Count > 0)
             {
-                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).ProviderId);
+                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).Id);
             }
             else
             {

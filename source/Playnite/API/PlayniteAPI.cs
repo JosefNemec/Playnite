@@ -1,10 +1,11 @@
-﻿using Playnite.Database;
-using Playnite.Providers;
-using Playnite.Scripting;
+﻿using Newtonsoft.Json;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
+using Playnite.Settings;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,395 +14,115 @@ using System.Windows;
 
 namespace Playnite.API
 {
-    public class PlayniteAPI : ObservableObject, IDisposable, IPlayniteAPI
+    public class PlayniteAPI : IPlayniteAPI
     {
-        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-        private GameDatabase database;
-        private GameControllerFactory controllers;
+        private static ILogger logger = LogManager.GetLogger();
 
-        private List<PlayniteScript> scripts;
-        private List<Plugin> plugins;
+        private const string pluginSettingFileName = "config.json";
 
-        public bool HasExportedFunctions
+        public PlayniteAPI(
+            IGameDatabaseAPI databaseApi,
+            IDialogsFactory dialogs,
+            IMainViewAPI mainViewApi,
+            IPlayniteInfoAPI infoApi,
+            IPlaynitePathsAPI pathsApi,
+            IWebViewFactory webViewFactory,
+            IResourceProvider resources)
         {
-            get => ExportedFunctions?.Any() == true;
-        }
-
-        private List<ScriptFunctionExport> scriptFunctions;
-        public List<ScriptFunctionExport> ScriptFunctions
-        {
-            get => scriptFunctions;
-            set
-            {
-                scriptFunctions = value;
-                OnPropertyChanged("ExportedFunctions");
-                OnPropertyChanged("HasExportedFunctions");
-            }
-        }
-
-        private List<ExtensionFunction> pluginFunctions;
-        public List<ExtensionFunction> PluginFunctions
-        {
-            get => pluginFunctions;
-            set
-            {
-                pluginFunctions = value;
-                OnPropertyChanged("ExportedFunctions");
-                OnPropertyChanged("HasExportedFunctions");
-            }
-        }
-
-        public List<ExtensionFunction> ExportedFunctions
-        {
-            get
-            {
-                var funcs = new List<ExtensionFunction>();
-                if (ScriptFunctions?.Any() == true)
-                {
-                    funcs.AddRange(ScriptFunctions);
-                }
-
-                if (PluginFunctions?.Any() == true)
-                {
-                    funcs.AddRange(PluginFunctions);
-                }
-
-                return funcs;
-            }
-        }
-
-        public IDialogsFactory Dialogs
-        {
-            get;
-        }
-
-        public IGameDatabaseAPI Database
-        {
-            get;
-        }
-
-        public IMainViewAPI MainView
-        {
-            get; set;
-        }
-
-        public PlayniteAPI(GameDatabase database, GameControllerFactory controllers, IDialogsFactory dialogs, IMainViewAPI mainViewApi)
-        {
-            this.database = database;
-            this.controllers = controllers;
+            WebViews = webViewFactory;
+            Paths = pathsApi;
+            ApplicationInfo = infoApi;
             MainView = mainViewApi;
             Dialogs = dialogs;
-            Database = new DatabaseAPI(database);
-            LoadScripts();
-            LoadPlugins();
-            controllers.Installed += Controllers_Installed;
-            controllers.Starting += Controllers_Starting;
-            controllers.Started += Controllers_Started;
-            controllers.Stopped += Controllers_Stopped;
-            controllers.Uninstalled += Controllers_Uninstalled;
-            database.DatabaseOpened += Database_DatabaseOpened;
+            Database = databaseApi;
+            Resources = resources;
         }
 
-        public void Dispose()
+        public IDialogsFactory Dialogs { get; }
+
+        public IGameDatabaseAPI Database { get; }
+
+        public IMainViewAPI MainView { get; set; }
+
+        public IPlaynitePathsAPI Paths { get; }
+
+        public IPlayniteInfoAPI ApplicationInfo { get; }
+
+        public IWebViewFactory WebViews { get; }
+
+        public IResourceProvider Resources { get; }
+
+        public string ExpandGameVariables(Game game, string inputString)
         {
-            DisposeScripts();
-            DisposePlugins();
-            controllers.Installed -= Controllers_Installed;
-            controllers.Starting -= Controllers_Starting;
-            controllers.Started -= Controllers_Installed;
-            controllers.Stopped -= Controllers_Installed;
-            controllers.Uninstalled -= Controllers_Installed;
-            database.DatabaseOpened -= Database_DatabaseOpened;
+            return game?.ExpandVariables(inputString);
         }
 
-        private void DisposePlugins()
+        public GameAction ExpandGameVariables(Game game, GameAction action)
         {
-            if (plugins == null)
-            {
-                return;
-            }
-
-            foreach (var plugin in plugins)
-            {
-                plugin.Dispose();
-            }
-
-            plugins = null;
-            PluginFunctions = null;
-        }
-
-        private void DisposeScripts()
-        {
-            if (scripts == null)
-            {
-                return;
-            }
-
-            foreach (var script in scripts)
-            {
-                script.Dispose();                
-            }
-
-            scripts = null;
-            ScriptFunctions = null;
-        }
-
-        public bool LoadScripts()
-        {
-            var allSuccess = true;
-            DisposeScripts();
-            scripts = new List<PlayniteScript>();
-            foreach (var path in Scripts.GetScriptFiles())
-            {
-                PlayniteScript script = null;
-
-                try
-                {
-                    script = PlayniteScript.FromFile(path);
-                    if (script == null)
-                    {
-                        continue;
-                    }
-                }
-                catch (Exception e)
-                {
-                    allSuccess = false;
-                    logger.Error(e, $"Failed to load script file {path}");
-                    Dialogs.ShowMessage(
-                        $"Failed to load script file {Path.GetFileName(path)}:\n\n" + e.Message, "Script error",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                    continue;
-                }
-
-                logger.Info($"Loaded script extension {path}");
-                script.SetVariable("PlayniteApi", this);
-                scripts.Add(script);                
-            }
-
-            ScriptFunctions = scripts.Where(a => a.FunctionExports?.Any() == true).SelectMany(a => a.FunctionExports).ToList();
-            return allSuccess;
-        }
-
-        public void LoadPlugins()
-        {
-            DisposePlugins();
-            plugins = new List<Plugin>();
-            foreach (var path in Plugins.Plugins.GetPluginFiles())
-            {
-                if (Path.GetFileNameWithoutExtension(path).Equals("PlayniteSDK", StringComparison.InvariantCultureIgnoreCase))
-                {
-                    continue;
-                }
-
-                List<Plugin> plugin = null;
-
-                try
-                {
-                    plugin = Plugins.Plugins.LoadPlugin(path, this);
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(e.InnerException, $"Failed to load plugin file {path}");
-                    Dialogs.ShowMessage(
-                        $"Failed to load plugin file {Path.GetFileName(path)}:\n\n" + e.Message, "Plugin error",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                    continue;
-                }
-
-                logger.Info($"Loaded plugin extension {path}");
-                plugins.AddRange(plugin);
-            }
-
-            PluginFunctions = plugins.Where(a => a.GetFunctions()?.Any() == true).SelectMany(a => a.GetFunctions()).ToList();
-        }
-
-        public void InvokeExtension(ExtensionFunction function)
-        {
-            try
-            {
-                logger.Debug($"Invoking extension function {function}");
-                function.Invoke();
-            }
-            catch (Exception e)
-            {
-                logger.Error(e, $"Failed to execute extension function.");
-                Dialogs.ShowMessage(
-                     $"Failed to execute extension function:\n\n" + e.Message, "Script error",
-                     MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void Controllers_Uninstalled(object sender, GameControllerEventArgs args)
-        {
-            foreach (var script in scripts)
-            {
-                try
-                {
-                    script.OnGameUninstalled(args.Controller.Game);
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to load execute OnGameUninstalled method from {script.Name} script.");
-                }
-            }
-
-            foreach (var plugin in plugins)
-            {
-                try
-                {
-                    plugin.OnGameUninstalled(args.Controller.Game);
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to load execute OnGameUninstalled method from {plugin.Properties.PluginName} plugin.");
-                }
-            }
-        }
-
-        private void Controllers_Stopped(object sender, GameControllerEventArgs args)
-        {
-            foreach (var script in scripts)
-            {
-                try
-                {
-                    script.OnGameStopped(database.GetGame(args.Controller.Game.Id), args.EllapsedTime);
-                }
-                    catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to load execute OnGameStopped method from {script.Name} script.");
-                }
-            }
-
-            foreach (var plugin in plugins)
-            {
-                try
-                {
-                    plugin.OnGameStopped(database.GetGame(args.Controller.Game.Id), args.EllapsedTime);
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to load execute OnGameStopped method from {plugin.Properties.PluginName} plugin.");
-                }
-            }
-        }
-
-        private void Controllers_Starting(object sender, GameControllerEventArgs args)
-        {
-            foreach (var script in scripts)
-            {
-                try
-                {
-                    script.OnGameStarting(database.GetGame(args.Controller.Game.Id));
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to load execute OnGameStarting method from {script.Name} script.");
-                }
-            }
-
-            foreach (var plugin in plugins)
-            {
-                try
-                {
-                    plugin.OnGameStarting(database.GetGame(args.Controller.Game.Id));
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to load execute OnGameStarting method from {plugin.Properties.PluginName} plugin.");
-                }
-            }
-        }
-
-        private void Controllers_Started(object sender, GameControllerEventArgs args)
-        {
-            foreach (var script in scripts)
-            {
-                try
-                {
-                    script.OnGameStarted(database.GetGame(args.Controller.Game.Id));
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to load execute OnGameStarted method from {script.Name} script.");
-                }
-            }
-
-            foreach (var plugin in plugins)
-            {
-                try
-                {
-                    plugin.OnGameStarted(database.GetGame(args.Controller.Game.Id));
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to load execute OnGameStarted method from {plugin.Properties.PluginName} plugin.");
-                }
-            }
-        }
-
-        private void Controllers_Installed(object sender, GameControllerEventArgs args)
-        {
-            foreach (var script in scripts)
-            {
-                try
-                {                    
-                    script.OnGameInstalled(database.GetGame(args.Controller.Game.Id));
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to load execute OnGameInstalled method from {script.Name} script.");
-                }
-            }
-
-            foreach (var plugin in plugins)
-            {
-                try
-                {
-                    plugin.OnGameInstalled(database.GetGame(args.Controller.Game.Id));
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to load execute OnGameInstalled method from {plugin.Properties.PluginName} plugin.");
-                }
-            }
-        }
-
-        private void Database_DatabaseOpened(object sender, EventArgs args)
-        {
-            foreach (var script in scripts)
-            {
-                try
-                {
-                    script?.OnScriptLoaded();
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to load execute OnScriptLoaded method from {script.Name} script.");
-                    continue;
-                }
-            }
-
-            foreach (var plugin in plugins)
-            {
-                try
-                {
-                    plugin.OnLoaded();
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, $"Failed to load execute OnLoaded method from {plugin.Properties.PluginName} plugin.");
-                }
-            }
-        }
-
-        public string ResolveGameVariables(Game game, string toResolve)
-        {
-            return game?.ResolveVariables(toResolve);
+            return action?.ExpandVariables(game);
         }
 
         public ILogger CreateLogger(string name)
         {
             return new Logger(name);
+        }
+
+        public ILogger CreateLogger()
+        {
+            var className = (new StackFrame(1)).GetMethod().DeclaringType.Name;
+            return CreateLogger(className);
+        }
+
+        public string GetPluginUserDataPath(IPlugin plugin)
+        {
+            var path = Path.Combine(PlaynitePaths.ExtensionsDataPath, plugin.Id.ToString());
+            FileSystem.CreateDirectory(path);
+            return path;
+        }
+
+        public TConfig GetPluginConfiguration<TConfig>(IPlugin plugin) where TConfig : class
+        {
+            var pluginDir = Path.GetDirectoryName(plugin.GetType().Assembly.Location);
+            var pluginConfig = Path.Combine(pluginDir, "plugin.cfg");
+            if (File.Exists(pluginConfig))
+            {
+                try
+                {
+                    return JsonConvert.DeserializeObject<TConfig>(File.ReadAllText(pluginConfig));
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to load plugin config: {pluginConfig}");
+                }
+            }
+
+            return null;
+        }
+
+        public TSettings LoadPluginSettings<TSettings>(IPlugin plugin) where TSettings : class
+        {
+            var setFile = Path.Combine(GetPluginUserDataPath(plugin), pluginSettingFileName);
+            if (!File.Exists(setFile))
+            {
+                return null;
+            }
+
+            var strConf = File.ReadAllText(setFile);
+            return JsonConvert.DeserializeObject<TSettings>(strConf);
+
+        }
+
+        public void SavePluginSettings<TSettings>(IPlugin plugin, TSettings settings) where TSettings : class
+        {
+            var setDir = GetPluginUserDataPath(plugin);
+            var setFile = Path.Combine(setDir, pluginSettingFileName);
+            if (!Directory.Exists(setDir))
+            {
+                Directory.CreateDirectory(setDir);
+            }
+
+            var strConf = JsonConvert.SerializeObject(settings, Formatting.Indented);
+            File.WriteAllText(setFile, strConf);
         }
     }
 }

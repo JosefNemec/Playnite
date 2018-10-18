@@ -1,6 +1,7 @@
 ﻿using Playnite;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.Settings;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace PlayniteUI.ViewModels
         private IResourceProvider resources;
         private IDialogsFactory dialogs;
         private GamesEditor editor;
-        private Settings settings;
+        private PlayniteSettings settings;
 
         public bool ShowInfoPanel
         {
@@ -95,7 +96,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                return Game != null && !Game.IsInstalled && !IsRunning && !IsInstalling && !IsUninstalling && !IsLaunching && Game.Provider != Provider.Custom;
+                return Game != null && !Game.IsInstalled && !IsRunning && !IsInstalling && !IsUninstalling && !IsLaunching && Game.PluginId != Guid.Empty;
             }
         }
 
@@ -206,7 +207,7 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public GameDetailsViewModel(GameViewEntry game, Settings settings, GamesEditor editor, IDialogsFactory dialogs, IResourceProvider resources)
+        public GameDetailsViewModel(GameViewEntry game, PlayniteSettings settings, GamesEditor editor, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.resources = resources;
             this.dialogs = dialogs;

@@ -1,6 +1,5 @@
 ﻿using LiteDB;
 using Newtonsoft.Json;
-using Playnite.SDK.Converters;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,12 +15,11 @@ namespace Playnite.SDK.Models
     /// </summary>
     public class EmulatorProfile : ObservableObject
     {
-        private ObjectId id;
+        private Guid id;
         /// <summary>
         /// Gets or sets profile id.
         /// </summary>
-        [JsonConverter(typeof(ObjectIdJsonConverter))]
-        public ObjectId Id
+        public Guid Id
         {
             get => id;
             set
@@ -45,11 +43,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private List<ObjectId> platforms;
+        private List<Guid> platforms;
         /// <summary>
         /// Gets or sets platforms supported by profile.
         /// </summary>
-        public List<ObjectId> Platforms
+        public List<Guid> Platforms
         {
             get => platforms;
             set
@@ -129,7 +127,7 @@ namespace Playnite.SDK.Models
         /// </summary>
         public EmulatorProfile()
         {
-            Id = ObjectId.NewObjectId();
+            Id = Guid.NewGuid();
         }
     }
 
@@ -139,13 +137,12 @@ namespace Playnite.SDK.Models
     public class Emulator : ObservableObject
     {
 
-        private ObjectId id;
+        private Guid id;
         /// <summary>
         /// Gets or sets emulator id.
         /// </summary>
         [BsonId]
-        [JsonConverter(typeof(ObjectIdJsonConverter))]
-        public ObjectId Id
+        public Guid Id
         {
             get => id;
             set
@@ -188,13 +185,14 @@ namespace Playnite.SDK.Models
         /// </summary>
         public Emulator()
         {
+            Id = Guid.NewGuid();
         }
 
         /// <summary>
         /// Creates new instance of Emulator with specific name.
         /// </summary>
         /// <param name="name">Emulator name.</param>
-        public Emulator(string name)
+        public Emulator(string name) : this()
         {
             Name = name;
         }

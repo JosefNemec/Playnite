@@ -3,9 +3,35 @@
         <RemoveDir Directories="$(OutputPath)" />
         <MakeDir Directories="$(OutputPath)" />
     </Target>
-    <Target Name="Build" DependsOnTargets="BeforeBuild">
+    <Target Name="Plugins" DependsOnTargets="BeforeBuild">
         <MSBuild
-            Projects="../source/PlayniteUI/PlayniteUI.csproj"
+            Projects="../source/Plugins/SteamLibrary/SteamLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+        <MSBuild
+            Projects="../source/Plugins/GogLibrary/GogLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+        <MSBuild
+            Projects="../source/Plugins/OriginLibrary/OriginLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+        <MSBuild
+            Projects="../source/Plugins/BattleNetLibrary/BattleNetLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+        <MSBuild
+            Projects="../source/Plugins/UplayLibrary/UplayLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+        <MSBuild
+            Projects="../source/Plugins/TwitchLibrary/TwitchLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+    </Target>
+    <Target Name="Build" DependsOnTargets="Plugins">
+        <MSBuild
+            Projects="../source/PlayniteUI/Playnite.UI.csproj"
             Targets="Build"
             Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
     </Target>

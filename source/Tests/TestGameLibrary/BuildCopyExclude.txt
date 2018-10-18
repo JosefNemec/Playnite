@@ -1,0 +1,6 @@
+PlayniteSDK.dll
+PlayniteSDK.pdb
+PlayniteSDK.xml
+LiteDB.dll
+Newtonsoft.Json.dll
+Newtonsoft.Json.xml

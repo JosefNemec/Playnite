@@ -34,9 +34,9 @@ namespace PlayniteUITests.ViewModels
 
                 var game = new Game()
                 {
-                    ProviderId = "testid",
+                    GameId = "testid",
                     Name = "Test Game",
-                    Image = origImage.FileName,
+                    CoverImage = origImage.FileName,
                     Icon = origIcon.FileName,
                     BackgroundImage = origBackground.FileName
                 };
@@ -48,17 +48,17 @@ namespace PlayniteUITests.ViewModels
                 var newBackground = PlayniteUITests.CreateFakeFile();
                 
                 // Images are replaced
-                var model = new GameEditViewModel(game, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider());
+                var model = new GameEditViewModel(game, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider(), null);
                 model.EditingGame.Icon = newIcon.FileId;
-                model.EditingGame.Image = newImage.FileId;
+                model.EditingGame.CoverImage = newImage.FileId;
                 model.EditingGame.BackgroundImage = newBackground.FileId;
                 model.ConfirmDialog();
 
                 Assert.AreNotEqual(game.Icon, origIcon.FileName);
-                Assert.AreNotEqual(game.Image, origImage.FileName);
+                Assert.AreNotEqual(game.CoverImage, origImage.FileName);
                 Assert.AreNotEqual(game.BackgroundImage, origBackground.FileName);
                 Assert.AreNotEqual(game.Icon, newIcon.FileId);
-                Assert.AreNotEqual(game.Image, newImage.FileId);
+                Assert.AreNotEqual(game.CoverImage, newImage.FileId);
                 Assert.AreNotEqual(game.BackgroundImage, newBackground.FileId);
 
                 var dbFiles = db.Database.FileStorage.FindAll().ToList();
@@ -69,7 +69,7 @@ namespace PlayniteUITests.ViewModels
                     CollectionAssert.AreEqual(newIcon.Content, str.ToArray());
                 }
 
-                using (var str = db.GetFileStream(game.Image))
+                using (var str = db.GetFileStream(game.CoverImage))
                 {
                     CollectionAssert.AreEqual(newImage.Content, str.ToArray());
                 }
@@ -81,19 +81,19 @@ namespace PlayniteUITests.ViewModels
 
                 // Duplicates are kept and not replaced
                 var currentIcon = game.Icon;
-                var currentImage = game.Image;
+                var currentImage = game.CoverImage;
                 var currentBack = game.BackgroundImage;
 
-                model = new GameEditViewModel(game, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider());
+                model = new GameEditViewModel(game, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider(), null);
                 model.EditingGame.Icon = newIcon.FileId;
-                model.EditingGame.Image = newImage.FileId;
+                model.EditingGame.CoverImage = newImage.FileId;
                 model.EditingGame.BackgroundImage = newBackground.FileId;
                 model.ConfirmDialog();
 
                 dbFiles = db.Database.FileStorage.FindAll().ToList();
                 Assert.AreEqual(3, dbFiles.Count());
                 Assert.AreEqual(game.Icon, currentIcon);
-                Assert.AreEqual(game.Image, currentImage);
+                Assert.AreEqual(game.CoverImage, currentImage);
                 Assert.AreEqual(game.BackgroundImage, currentBack);
             }
         }
@@ -115,9 +115,9 @@ namespace PlayniteUITests.ViewModels
                 db.AddFile(origBackground.FileName, origBackground.FileName, origBackground.Content);
                 db.AddGame(new Game()
                 {
-                    ProviderId = "testid",
+                    GameId = "testid",
                     Name = "Test Game",
-                    Image = origImage.FileName,
+                    CoverImage = origImage.FileName,
                     Icon = origIcon.FileName,
                     BackgroundImage = origBackground.FileName
                 });
@@ -130,9 +130,9 @@ namespace PlayniteUITests.ViewModels
                 db.AddFile(origBackground.FileName, origBackground.FileName, origBackground.Content);
                 db.AddGame(new Game()
                 {
-                    ProviderId = "testid2",
+                    GameId = "testid2",
                     Name = "Test Game 2",
-                    Image = origImage.FileName,
+                    CoverImage = origImage.FileName,
                     Icon = origIcon.FileName,
                     BackgroundImage = origBackground.FileName
                 });
@@ -145,9 +145,9 @@ namespace PlayniteUITests.ViewModels
 
                 // Replaces all images for all games
                 var games = db.GamesCollection.FindAll().ToList();
-                var model = new GameEditViewModel(games, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider());
+                var model = new GameEditViewModel(games, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider(), null);
                 model.EditingGame.Icon = newIcon.FileId;
-                model.EditingGame.Image = newImage.FileId;
+                model.EditingGame.CoverImage = newImage.FileId;
                 model.EditingGame.BackgroundImage = newBackground.FileId;
                 model.ConfirmDialog();
 
@@ -158,12 +158,12 @@ namespace PlayniteUITests.ViewModels
                 foreach (var game in games)
                 {
                     StringAssert.StartsWith("images/custom/", game.Icon);
-                    StringAssert.StartsWith("images/custom/", game.Image);
+                    StringAssert.StartsWith("images/custom/", game.CoverImage);
                     StringAssert.StartsWith("images/custom/", game.BackgroundImage);
                 }
 
                 Assert.AreEqual(games[0].Icon, games[1].Icon);
-                Assert.AreEqual(games[0].Image, games[1].Image);
+                Assert.AreEqual(games[0].CoverImage, games[1].CoverImage);
                 Assert.AreEqual(games[0].BackgroundImage, games[1].BackgroundImage);
 
                 // Replaces only non-duplicate images
@@ -174,16 +174,16 @@ namespace PlayniteUITests.ViewModels
                 db.AddFile(newImage.FileName, newImage.FileName, newImage.Content);
                 db.AddFile(newBackground.FileName, newBackground.FileName, newBackground.Content);
                 games[0].Icon = newIcon.FileName;
-                games[0].Image = newImage.FileName;
+                games[0].CoverImage = newImage.FileName;
                 games[0].BackgroundImage = newBackground.FileName;
                 db.UpdateGameInDatabase(games[0]);
 
                 Assert.AreEqual(6, db.Database.FileStorage.FindAll().ToList().Count());
 
                 games = db.GamesCollection.FindAll().ToList();
-                model = new GameEditViewModel(games, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider());
+                model = new GameEditViewModel(games, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider(), null);
                 model.EditingGame.Icon = newIcon.FileId;
-                model.EditingGame.Image = newImage.FileId;
+                model.EditingGame.CoverImage = newImage.FileId;
                 model.EditingGame.BackgroundImage = newBackground.FileId;
                 model.ConfirmDialog();
 
@@ -193,7 +193,7 @@ namespace PlayniteUITests.ViewModels
                 foreach (var game in games)
                 {
                     Assert.AreEqual(newIcon.FileName, game.Icon);
-                    Assert.AreEqual(newImage.FileName, game.Image);
+                    Assert.AreEqual(newImage.FileName, game.CoverImage);
                     Assert.AreEqual(newBackground.FileName, game.BackgroundImage);
                 }
             }

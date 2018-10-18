@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GogLibrary.Models
+{
+    public class StorePageResult
+    {
+        public class ProductDetails
+        {
+            public class SluggedName
+            {
+                public string name;
+                public string slug;
+            }
+
+            public List<SluggedName> genres;
+            public List<SluggedName> tags;
+            public string publisher;
+            public List<SluggedName> developers;
+            public DateTime? globalReleaseDate;
+            public string id;
+        }
+
+        public ProductDetails cardProduct;
+    }
+}

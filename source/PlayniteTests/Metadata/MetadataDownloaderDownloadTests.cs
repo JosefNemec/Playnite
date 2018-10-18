@@ -5,7 +5,9 @@ using Playnite.Database;
 using Playnite.Metadata;
 using Playnite.Models;
 using Playnite.SDK;
+using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,6 +21,7 @@ namespace PlayniteTests.Metadata
     [TestFixture]
     public class MetadataDownloaderDownloadTests
     {
+        private static Guid storePluginId = Guid.NewGuid();
         private Random random = new Random();
         private byte[] randomFile
         {
@@ -28,6 +31,14 @@ namespace PlayniteTests.Metadata
                 random.NextBytes(b);
                 return b;
             }
+        }
+
+        private IEnumerable<ILibraryPlugin> GetLibraryPlugins(ILibraryMetadataProvider provider, Guid libraryId)
+        {
+            var library = new Mock<ILibraryPlugin>();
+            library.Setup(a => a.Id).Returns(storePluginId);
+            library.Setup(a => a.GetMetadataDownloader()).Returns(provider);
+            return new List<ILibraryPlugin>() { library.Object };
         }
 
         [Test]
@@ -42,20 +53,20 @@ namespace PlayniteTests.Metadata
                 var games = new List<Game>()
                 {
                     new Game("Game1"),
-                    new Game("Game2") { Provider = Provider.Steam, ProviderId = "Game2" },
+                    new Game("Game2") { PluginId = storePluginId, GameId = "Game2" },
                     new Game("Game3")
                 };
 
                 db.AddGames(games);
 
-                var igdbProvider = new Mock<IMetadataProvider>();
+                var igdbProvider = new Mock<ILibraryMetadataProvider>();
                 igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
 
                     if (g.Name == "Game3")
                     {
-                        return GameMetadata.Empty;
+                        return GameMetadata.GetEmptyData();
                     }
 
                     var gameId = g.Name;
@@ -74,15 +85,15 @@ namespace PlayniteTests.Metadata
                     return new GameMetadata(game, icon, image, $"IGDB backgournd {gameId}");
                 });
 
-                var storeProvider = new Mock<IMetadataProvider>();
+                var storeProvider = new Mock<ILibraryMetadataProvider>();
                 storeProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
                     storeCalled = true;
-                    return GameMetadata.Empty;
+                    return GameMetadata.GetEmptyData();
                 });
 
-                var downloader = new MetadataDownloader(storeProvider.Object, storeProvider.Object, storeProvider.Object, storeProvider.Object, igdbProvider.Object);
+                var downloader = new MetadataDownloader(igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
                 var settings = new MetadataDownloaderSettings() { SkipExistingValues = false };
                 settings.ConfigureFields(MetadataSource.IGDB, true);
                 await downloader.DownloadMetadataAsync(
@@ -103,7 +114,7 @@ namespace PlayniteTests.Metadata
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.AreEqual("IGDB backgournd Game1", game1.BackgroundImage);
                 Assert.AreEqual($"IGDBIconPathGame1.file", game1.Icon);
-                Assert.AreEqual($"IGDBImagePathGame1.file", game1.Image);
+                Assert.AreEqual($"IGDBImagePathGame1.file", game1.CoverImage);
                 var game2 = dbGames[1];
                 Assert.AreEqual("IGDB Description Game2", game2.Description);
 
@@ -122,24 +133,24 @@ namespace PlayniteTests.Metadata
                 var games = new List<Game>()
                 {
                     new Game("Game1"),
-                    new Game("Game2") { Provider = Provider.Steam, ProviderId = "storeId" },
+                    new Game("Game2") { PluginId = storePluginId, GameId = "storeId" },
                     new Game("Game3")
                 };
 
                 db.AddGames(games);
 
-                var igdbProvider = new Mock<IMetadataProvider>();
+                var igdbProvider = new Mock<ILibraryMetadataProvider>();
                 igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
-                    return GameMetadata.Empty;
+                    return GameMetadata.GetEmptyData();
                 });
 
-                var storeProvider = new Mock<IMetadataProvider>();
+                var storeProvider = new Mock<ILibraryMetadataProvider>();
                 storeProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
-                    var gameId = g.ProviderId;
+                    var gameId = g.GameId;
                     var game = new Game("Store Game " + gameId)
                     {
                         Description = $"Store Description {gameId}",
@@ -155,7 +166,7 @@ namespace PlayniteTests.Metadata
                     return new GameMetadata(game, icon, image, $"Store backgournd {gameId}");
                 });
 
-                var downloader = new MetadataDownloader(storeProvider.Object, storeProvider.Object, storeProvider.Object, storeProvider.Object, igdbProvider.Object);
+                var downloader = new MetadataDownloader(igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
                 var settings = new MetadataDownloaderSettings() { SkipExistingValues = false };
                 settings.ConfigureFields(MetadataSource.Store, true);
                 await downloader.DownloadMetadataAsync(
@@ -175,7 +186,7 @@ namespace PlayniteTests.Metadata
                 Assert.AreEqual(2016, game2.ReleaseDate.Value.Year);
                 Assert.AreEqual("Store backgournd storeId", game2.BackgroundImage);
                 Assert.AreEqual($"StoreIconPathstoreId.file", game2.Icon);
-                Assert.AreEqual($"StoreImagePathstoreId.file", game2.Image);
+                Assert.AreEqual($"StoreImagePathstoreId.file", game2.CoverImage);
                 var game1 = dbGames[0];
                 Assert.IsNull(game1.Description);
 
@@ -193,13 +204,13 @@ namespace PlayniteTests.Metadata
                 var games = new List<Game>()
                 {
                     new Game("Game1"),
-                    new Game("Game2") { Provider = Provider.Steam, ProviderId = "Game2" },
+                    new Game("Game2") { PluginId = storePluginId, GameId = "Game2" },
                     new Game("Game3")
                 };
 
                 db.AddGames(games);
 
-                var igdbProvider = new Mock<IMetadataProvider>();
+                var igdbProvider = new Mock<ILibraryMetadataProvider>();
                 igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
@@ -215,11 +226,11 @@ namespace PlayniteTests.Metadata
                     return new GameMetadata(game, icon, image, $"IGDB backgournd {gameId}");
                 });
 
-                var storeProvider = new Mock<IMetadataProvider>();
+                var storeProvider = new Mock<ILibraryMetadataProvider>();
                 storeProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
-                    var gameId = g.ProviderId;
+                    var gameId = g.GameId;
                     var game = new Game(gameId);
                     game.Description = $"Store Description {gameId}";
                     game.Developers = new ComparableList<string>() { $"Store Developer {gameId}" };
@@ -231,7 +242,7 @@ namespace PlayniteTests.Metadata
                     return new GameMetadata(game, icon, image, $"Store backgournd {gameId}");
                 });
 
-                var downloader = new MetadataDownloader(storeProvider.Object, storeProvider.Object, storeProvider.Object, storeProvider.Object, igdbProvider.Object);
+                var downloader = new MetadataDownloader(igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
                 var settings = new MetadataDownloaderSettings() { SkipExistingValues = false };
 
                 // IGDB over Store
@@ -253,7 +264,7 @@ namespace PlayniteTests.Metadata
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.AreEqual("IGDB backgournd Game1", game1.BackgroundImage);
                 Assert.AreEqual($"IGDBIconPathGame1.file", game1.Icon);
-                Assert.AreEqual($"IGDBImagePathGame1.file", game1.Image);
+                Assert.AreEqual($"IGDBImagePathGame1.file", game1.CoverImage);
 
                 var game2 = dbGames[1];
                 Assert.AreEqual("IGDB Description Game2", game2.Description);
@@ -266,7 +277,7 @@ namespace PlayniteTests.Metadata
                 Assert.AreEqual(2012, game2.ReleaseDate.Value.Year);
                 Assert.AreEqual("IGDB backgournd Game2", game2.BackgroundImage);
                 Assert.AreEqual($"IGDBIconPathGame2.file", game2.Icon);
-                Assert.AreEqual($"IGDBImagePathGame2.file", game2.Image);
+                Assert.AreEqual($"IGDBImagePathGame2.file", game2.CoverImage);
 
                 // Store over IGDB
                 callCount = 0;
@@ -288,7 +299,7 @@ namespace PlayniteTests.Metadata
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.AreEqual("IGDB backgournd Game1", game1.BackgroundImage);
                 Assert.AreEqual($"IGDBIconPathGame1.file", game1.Icon);
-                Assert.AreEqual($"IGDBImagePathGame1.file", game1.Image);
+                Assert.AreEqual($"IGDBImagePathGame1.file", game1.CoverImage);
 
                 game2 = dbGames[1];
                 Assert.AreEqual("Store Description Game2", game2.Description);
@@ -301,7 +312,7 @@ namespace PlayniteTests.Metadata
                 Assert.AreEqual(2016, game2.ReleaseDate.Value.Year);
                 Assert.AreEqual("Store backgournd Game2", game2.BackgroundImage);
                 Assert.AreEqual($"StoreIconPathGame2.file", game2.Icon);
-                Assert.AreEqual($"StoreImagePathGame2.file", game2.Image);
+                Assert.AreEqual($"StoreImagePathGame2.file", game2.CoverImage);
             }
         }
 
@@ -316,8 +327,8 @@ namespace PlayniteTests.Metadata
                 {
                     new Game("Game")
                     {
-                        Provider = Provider.Steam,
-                        ProviderId = "storeId",
+                        PluginId = storePluginId,
+                        GameId = "storeId",
                         Genres = new ComparableList<string>() { "Genre" },
                         ReleaseDate = new DateTime(2012, 6, 6),
                         Developers = new ComparableList<string>() { "Developer" },
@@ -326,29 +337,29 @@ namespace PlayniteTests.Metadata
                         Description = "Description",
                         Links = new ObservableCollection<Link>() { new Link() },
                         Icon = "icon",
-                        Image = "image",
+                        CoverImage = "image",
                         BackgroundImage = "backImage"
                     }
                 };
 
                 db.AddGames(games);
 
-                var igdbProvider = new Mock<IMetadataProvider>();
+                var igdbProvider = new Mock<ILibraryMetadataProvider>();
                 igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
-                    return GameMetadata.Empty;
+                    return GameMetadata.GetEmptyData();
                 });
 
-                var storeProvider = new Mock<IMetadataProvider>();
+                var storeProvider = new Mock<ILibraryMetadataProvider>();
                 storeProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
-                    var gameId = g.ProviderId;
+                    var gameId = g.GameId;
                     return new GameMetadata(new Game("Store Game " + gameId), null, null, null);
                 });
 
-                var downloader = new MetadataDownloader(storeProvider.Object, storeProvider.Object, storeProvider.Object, storeProvider.Object, igdbProvider.Object);
+                var downloader = new MetadataDownloader(igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
                 var settings = new MetadataDownloaderSettings() { SkipExistingValues = false };
 
                 var dbGames = db.GamesCollection.FindAll().ToList();
@@ -365,7 +376,7 @@ namespace PlayniteTests.Metadata
                 var game = dbGames[0];
                 Assert.AreEqual("Description", game.Description);
                 Assert.AreEqual("icon", game.Icon);
-                Assert.AreEqual("image", game.Image);
+                Assert.AreEqual("image", game.CoverImage);
                 Assert.AreEqual("backImage", game.BackgroundImage);
                 Assert.AreEqual("Developer", game.Developers[0]);
                 Assert.AreEqual("Publisher", game.Publishers[0]);
@@ -393,7 +404,7 @@ namespace PlayniteTests.Metadata
                     ReleaseDate = new DateTime(2012, 6, 6),
                     Tags = new ComparableList<string>() { "Tags" },
                     Icon = "Icon",
-                    Image = "Image",
+                    CoverImage = "Image",
                     BackgroundImage = "BackgroundImage",
                     UserScore = 1,
                     CommunityScore = 2,
@@ -401,7 +412,7 @@ namespace PlayniteTests.Metadata
                 });
 
 
-                var igdbProvider = new Mock<IMetadataProvider>();
+                var igdbProvider = new Mock<ILibraryMetadataProvider>();
                 igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
@@ -421,7 +432,7 @@ namespace PlayniteTests.Metadata
                     return new GameMetadata(game, icon, image, $"IGDB backgournd {gameId}");
                 });
 
-                var downloader = new MetadataDownloader(null, null, null, null, igdbProvider.Object);
+                var downloader = new MetadataDownloader(igdbProvider.Object, null);
                 var settings = new MetadataDownloaderSettings() { SkipExistingValues = true };
 
                 // No download - all values are kept
@@ -444,7 +455,7 @@ namespace PlayniteTests.Metadata
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.AreEqual("BackgroundImage", game1.BackgroundImage);
                 Assert.AreEqual("Icon", game1.Icon);
-                Assert.AreEqual("Image", game1.Image);
+                Assert.AreEqual("Image", game1.CoverImage);
 
                 // Single download - values are changed even when present
                 settings.SkipExistingValues = false;
@@ -466,7 +477,7 @@ namespace PlayniteTests.Metadata
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.AreEqual("IGDB backgournd Game1", game1.BackgroundImage);
                 Assert.AreEqual($"IGDBIconPathGame1.file", game1.Icon);
-                Assert.AreEqual($"IGDBImagePathGame1.file", game1.Image);
+                Assert.AreEqual($"IGDBImagePathGame1.file", game1.CoverImage);
 
                 // Single download - values are changed when skip enabled and values are not present
                 callCount = 0;
@@ -492,7 +503,7 @@ namespace PlayniteTests.Metadata
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
                 Assert.AreEqual("IGDB backgournd Game1", game1.BackgroundImage);
                 Assert.AreEqual($"IGDBIconPathGame1.file", game1.Icon);
-                Assert.AreEqual($"IGDBImagePathGame1.file", game1.Image);
+                Assert.AreEqual($"IGDBImagePathGame1.file", game1.CoverImage);
             }
         }
     }
