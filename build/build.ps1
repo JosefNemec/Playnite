@@ -49,14 +49,20 @@ function BuildInnoInstaller()
         [Parameter(Mandatory = $true)]
         [string]$DestinationFile,
         [Parameter(Mandatory = $true)]
-        [string]$Version
+        [string]$Version,
+        [Parameter(Mandatory = $false)]
+        [switch]$Update = $false
     )
 
     $innoCompiler = "C:\Program Files (x86)\Inno Setup 5\ISCC.exe"
-    $innoScript = "InnoSetup.iss"
+    $innoScript = "InnoSetup.iss"    
     $innoTempScript = "InnoSetup.temp.iss"
     $destinationExe = Split-Path $DestinationFile -Leaf
     $destinationDir = Split-Path $DestinationFile -Parent
+    if ($Update)
+    {
+        $innoScript = "InnoSetupUpdate.iss"
+    }
 
     Write-OperationLog "Building Inno Setup $destinationExe..."
     New-Folder $destinationDir
@@ -234,7 +240,7 @@ if ($UpdateDiffs)
         CreateDirectoryDiff (Join-Path $BuildsStorageDir $diffVersion) $OutputDir $diffDir
 
         $installerPath = Join-Path $InstallerDir "$diffString.exe"
-        BuildInnoInstaller $diffDir $installerPath $buildNumber
+        BuildInnoInstaller $diffDir $installerPath $buildNumber -Update
         Remove-Item $diffDir -Recurse -Force
         
         if ($Sign)
