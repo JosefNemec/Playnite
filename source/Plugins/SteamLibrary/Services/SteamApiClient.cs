@@ -141,9 +141,30 @@ namespace SteamLibrary.Services
 
         public async Task<KeyValue> GetProductInfo(uint id)
         {
-            if (IsLoggedIn == false)
+            if (!IsConnected)
             {
-                throw new Exception("Steam not loggin in.");
+                var connect = await Connect();
+                if (connect != EResult.OK)
+                {
+                    connect = await Connect();
+                    if (connect != EResult.OK)
+                    {
+                        throw new Exception("Failed to connect to Steam " + connect);
+                    }
+                }
+
+                isConnected = true;
+            }
+
+            if (!IsLoggedIn)
+            {
+                var logon = await Login();
+                if (logon != EResult.OK)
+                {
+                    throw new Exception("Failed to logon to Steam " + logon);
+                }
+
+                isLoggedIn = true;
             }
 
             try
@@ -173,33 +194,6 @@ namespace SteamLibrary.Services
             {
                 throw new Exception("Failed to get product info for app " + id + ". " + e.Message);
             }
-        }
-
-        public async Task<KeyValue> GetProductInfo(int id)
-        {
-            if (!IsConnected)
-            {
-                var connect = await Connect();
-                if (connect != EResult.OK)
-                {
-                    connect = await Connect();
-                    if (connect != EResult.OK)
-                    {
-                        throw new Exception("Failed to connect to Steam " + connect);
-                    }
-                }
-            }
-
-            if (!IsLoggedIn)
-            {
-                var logon = await Login();
-                if (logon != EResult.OK)
-                {
-                    throw new Exception("Failed to logon to Steam " + logon);
-                }
-            }
-
-            return await GetProductInfo(Convert.ToUInt32(id));
         }
     }
 }
