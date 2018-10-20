@@ -334,7 +334,14 @@ namespace PlayniteUI
             };
 
             // Fix bootup startup
-            PlayniteSettings.SetBootupStateRegistration(AppSettings.StartOnBoot);
+            try
+            {
+                PlayniteSettings.SetBootupStateRegistration(AppSettings.StartOnBoot);
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to register Playnite to start on boot.");
+            }
 
             logger.Info($"Application {CurrentVersion} started");
         }
