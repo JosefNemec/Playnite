@@ -28,7 +28,9 @@
 不确定 - 不变（编辑多个游戏时）</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">哦不，发生了一些坏事...</sys:String>
-    <sys:String x:Key="LOCCrashDescription">Playnite碰到了一个不能解决的问题。如果您想帮助我们，请创建诊断程序包并报告问题，谢谢！</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">发生了不可恢复的错误，并且Playnite崩溃了。
+        
+如果您想帮助我们解决此问题，请创建诊断包并使用“报告崩溃”按钮告诉我们发生了什么。 谢谢！</sys:String> 
     <sys:String x:Key="LOCCrashReportIssue">报告问题</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">重新启动Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">关闭Playnite</sys:String>
@@ -60,6 +62,7 @@
 
 
     <!--General-->
+    <sys:String x:Key="LOCEnabledTitle">启用</sys:String>
     <sys:String x:Key="LOCRemoveTitle">移除</sys:String>
     <sys:String x:Key="LOCCopyTitle">复制</sys:String>
     <sys:String x:Key="LOCAddTitle">添加</sys:String>
@@ -220,6 +223,9 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">未选择用于导入游戏库的Steam帐户</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">未选择用于导入分类的Steam帐户</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">在启动时下载第三方游戏库更新</sys:String>
+    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">导入游戏后下载元数据</sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">以最小化启动</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">计算机启动时运行Playnite</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">以全屏模式启动</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">包括Steam, Origin和其他</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">异步图像加载（需要重新启动）</sys:String>
@@ -230,6 +236,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsDisableAcceleration">禁用硬件加速（需要重新启动）</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">遇到卡顿或类似的用户界面问题时使用</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">显示Steam好友按钮</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundImage">显示背景图片</sys:String>
     <sys:String x:Key="LOCSettingsSkin">主题</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">主题简介</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">全屏主题</sys:String>
@@ -381,6 +388,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCGameTagsTitle">标签</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">发行商</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">已安装</sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">已安装</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未安装</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">已隐藏</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">收藏夹</sys:String>
@@ -398,7 +406,9 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCDatabaseNotOpenedError">数据库未打开。</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">无法访问游戏库库数据。文件“{0}”正在被另一个进程使用，或者它位于不可访问的位置。</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">无法创建诊断程序包。</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess">诊断程序包已成功创建。</sys:String>
+    <sys:String x:Key="LOCDiagPackageUploadError">无法自动上传诊断包。</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">已成功创建并上传诊断包。
+请在崩溃报告中附上以下ID：</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">无法导入Steam类别。</sys:String>
     
@@ -484,6 +494,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCBackToDesktopMode">返回桌面模式</sys:String>
     <sys:String x:Key="LOCExitPlaynite">退出Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">库</sys:String>
+    <sys:String x:Key="LOCUpdateAll">全部更新</sys:String>
     
     <sys:String x:Key="LOCEmulatorArguments">模拟器参数</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">模拟器其他参数</sys:String>
