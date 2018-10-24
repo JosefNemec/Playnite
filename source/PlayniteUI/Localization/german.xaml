@@ -475,7 +475,7 @@ Du kannst uns Feedback via GitHub senden. Bitte ergänze deine Nachricht um die 
     <sys:String x:Key="LOCRestoreWindow">Wiederherstellen</sys:String>
     <sys:String x:Key="LOCClose">Schließen</sys:String>
     <sys:String x:Key="LOCChange">Ändern</sys:String>
-    <sys:String x:Key="LOCAdvanced">[UNUSED]</sys:String>
+    <sys:String x:Key="LOCAdvanced">Erweitert</sys:String>
     <sys:String x:Key="LOCNever">Nie</sys:String>
     <sys:String x:Key="LOCNotPlayed">Nicht gespielt</sys:String>
     <sys:String x:Key="LOCPlayed">Gespielt</sys:String>
