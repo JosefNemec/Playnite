@@ -17,7 +17,7 @@ namespace Playnite.SDK.Models
     /// <summary>
     /// Represents Playnite game object.
     /// </summary>
-    public class Game : ObservableObject
+    public class Game : DatabaseObject
     {
         private string backgroundImage;
         /// <summary>
@@ -143,25 +143,6 @@ namespace Playnite.SDK.Models
             {
                 icon = value;
                 OnPropertyChanged("Icon");
-            }
-        }
-
-        private int id;
-        /// <summary>
-        /// Gets or sets game database id.
-        /// </summary>
-        [BsonId]
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-
-            set
-            {
-                id = value;
-                OnPropertyChanged("Id");
             }
         }
 
@@ -783,6 +764,7 @@ namespace Playnite.SDK.Models
         /// </summary>
         public Game()
         {
+            Id = Guid.NewGuid();
             GameId = Guid.NewGuid().ToString();
         }
 
@@ -790,10 +772,9 @@ namespace Playnite.SDK.Models
         /// Creates new instance of a Game object with specific name.
         /// </summary>
         /// <param name="name">Game name.</param>
-        public Game(string name)
+        public Game(string name) : this()
         {
             Name = name;
-            GameId = Guid.NewGuid().ToString();
         }
 
         /// <summary>

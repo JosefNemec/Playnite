@@ -63,7 +63,7 @@ namespace Playnite
             }
         }
 
-        public static void DeleteFolder(string path)
+        public static void DeleteDirectory(string path)
         {
             if (Directory.Exists(path))
             {
@@ -131,5 +131,19 @@ namespace Playnite
                 return false;
             }
         }
+
+        public static string FileReadAsString(string path)
+        {
+            // TODO: Add retry to file lock
+            return File.ReadAllText(path);
+        }
+
+        public static void FileWriteString(string path, string content)
+        {
+            PrepareSaveFile(path);
+            // TODO: Add retry to file lock
+            File.WriteAllText(path, content);
+        }
+
     }
 }

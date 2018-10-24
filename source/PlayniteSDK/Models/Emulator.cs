@@ -13,22 +13,8 @@ namespace Playnite.SDK.Models
     /// <summary>
     /// Represents emulator profile.
     /// </summary>
-    public class EmulatorProfile : ObservableObject
-    {
-        private Guid id;
-        /// <summary>
-        /// Gets or sets profile id.
-        /// </summary>
-        public Guid Id
-        {
-            get => id;
-            set
-            {
-                id = value;
-                OnPropertyChanged("Id");
-            }
-        }
-        
+    public class EmulatorProfile : DatabaseObject
+    {        
         private string name;
         /// <summary>
         /// Gets or sets emulator profile name.
@@ -134,24 +120,8 @@ namespace Playnite.SDK.Models
     /// <summary>
     /// Represents system emulator.
     /// </summary>
-    public class Emulator : ObservableObject
+    public class Emulator : DatabaseObject
     {
-
-        private Guid id;
-        /// <summary>
-        /// Gets or sets emulator id.
-        /// </summary>
-        [BsonId]
-        public Guid Id
-        {
-            get => id;
-            set
-            {
-                id = value;
-                OnPropertyChanged("Id");
-            }
-        }
-
         private string name;
         /// <summary>
         /// Gets or sets emulator name.

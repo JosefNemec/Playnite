@@ -351,7 +351,8 @@ namespace PlayniteUI
                     break;
 
                 case CmdlineCommands.Launch:
-                    var game = Database.GamesCollection.FindById(int.Parse(args.Args));
+                    // TODO :
+                    var game = Database.Games.FirstOrDefault(a => a.Id == Guid.Parse(args.Args));
                     if (game == null)
                     {
                         logger.Error($"Cannot start game, game {args.Args} not found.");

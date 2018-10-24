@@ -53,10 +53,9 @@ namespace Playnite.Controllers
             controller.Starting += Controller_Starting;
             controller.Stopped += Controller_Stopped;
             Controllers.Add(controller);
-            database?.AddActiveController(controller);
         }
 
-        public void RemoveController(int gameId)
+        public void RemoveController(Guid gameId)
         {
             var controller = Controllers.FirstOrDefault(a => a.Game.Id == gameId);
             if (controller != null)
@@ -69,7 +68,6 @@ namespace Playnite.Controllers
         {
             DisposeController(controller);
             Controllers.Remove(controller);
-            database?.RemoveActiveController(controller.Game.Id);
         }
 
         public void DisposeController(IGameController controller)
@@ -82,7 +80,7 @@ namespace Playnite.Controllers
             controller.Dispose();
         }
 
-        public IGameController GetController(int gameId)
+        public IGameController GetController(Guid gameId)
         {
             return Controllers.FirstOrDefault(a => a.Game.Id == gameId);
         }

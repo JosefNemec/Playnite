@@ -3,7 +3,6 @@ using Playnite;
 using Playnite.API;
 using Playnite.Common.System;
 using Playnite.Database;
-using Playnite.Models;
 using Playnite.Plugins;
 using Playnite.Controllers;
 using Playnite.SDK;
@@ -42,7 +41,8 @@ namespace PlayniteUI
         {
             get
             {
-                return database.GamesCollection?.Find(Query.And(Query.Not("LastActivity", null), Query.EQ("State.Installed", true))).OrderByDescending(a => a.LastActivity).Take(10).ToList();              
+                // TODO: test performance
+                return database.Games.Where(a => a.LastActivity != null && a.IsInstalled).OrderByDescending(a => a.LastActivity).Take(10).ToList();
             }
         }
 
@@ -129,7 +129,7 @@ namespace PlayniteUI
             }
 
             logger.Info($"Starting {game.GetIdentifierInfo()}");
-            var dbGame = database.GetGame(game.Id);
+            var dbGame = database.Games.Get(game.Id);
             if (dbGame == null)
             {
                 dialogs.ShowMessage(
@@ -204,7 +204,7 @@ namespace PlayniteUI
         {
             try
             {
-                var emulators = database.EmulatorsCollection.FindAll().ToList();
+                var emulators = database.Emulators.ToList();
                 var profile = GameActionActivator.GetGameActionEmulatorConfig(action, emulators)?.ExpandVariables(game);
                 GameActionActivator.ActivateAction(action.ExpandVariables(game), game, profile);
             }
@@ -240,7 +240,7 @@ namespace PlayniteUI
         public void SetHideGame(Game game, bool state)
         {
             game.Hidden = state;
-            database.UpdateGameInDatabase(game);
+            database.Games.Update(game);
         }
 
         public void SetHideGames(List<Game> games, bool state)
@@ -254,7 +254,7 @@ namespace PlayniteUI
         public void ToggleHideGame(Game game)
         {
             game.Hidden = !game.Hidden;
-            database.UpdateGameInDatabase(game);
+            database.Games.Update(game);
         }
 
         public void ToggleHideGames(List<Game> games)
@@ -268,7 +268,7 @@ namespace PlayniteUI
         public void SetFavoriteGame(Game game, bool state)
         {
             game.Favorite = state;
-            database.UpdateGameInDatabase(game);
+            database.Games.Update(game);
         }
 
         public void SetFavoriteGames(List<Game> games, bool state)
@@ -282,7 +282,7 @@ namespace PlayniteUI
         public void ToggleFavoriteGame(Game game)
         {
             game.Favorite = !game.Favorite;
-            database.UpdateGameInDatabase(game);
+            database.Games.Update(game);
         }
 
         public void ToggleFavoriteGame(List<Game> games)
@@ -314,7 +314,7 @@ namespace PlayniteUI
                 return;
             }
 
-            database.DeleteGame(game);
+            database.Games.Remove(game);
         }
 
         public void RemoveGames(List<Game> games)
@@ -338,7 +338,7 @@ namespace PlayniteUI
                 return;
             }
 
-            database.DeleteGames(games);
+            database.Games.Remove(games);
         }
 
         public void CreateShortcut(Game game)
@@ -351,8 +351,8 @@ namespace PlayniteUI
                 if (!string.IsNullOrEmpty(game.Icon) && Path.GetExtension(game.Icon) == ".ico")
                 {
                     FileSystem.CreateDirectory(Path.Combine(PlaynitePaths.DataCachePath, "icons"));
-                    icon = Path.Combine(PlaynitePaths.DataCachePath, "icons", game.Id + ".ico");
-                    database.SaveFile(game.Icon, icon);
+                    icon = Path.Combine(PlaynitePaths.DataCachePath, "icons", game.Id + ".ico");                    
+                    database.CopyFile(game.Icon, icon);
                 }
                 else if (game.PlayAction?.Type == GameActionType.File)
                 {
@@ -526,9 +526,9 @@ namespace PlayniteUI
             UpdateGameState(game.Id, null, false, false, false, false);
         }
 
-        private void UpdateGameState(int id, bool? installed, bool? running, bool? installing, bool? uninstalling, bool? launching)
+        private void UpdateGameState(Guid id, bool? installed, bool? running, bool? installing, bool? uninstalling, bool? launching)
         {
-            var game = database.GetGame(id);
+            var game = database.Games.Get(id);
             game.State.SetState(installed, running, installing, uninstalling, launching);
             if (launching == true)
             {
@@ -540,7 +540,7 @@ namespace PlayniteUI
                 }
             }
 
-            database.UpdateGameInDatabase(game);
+            database.Games.Update(game);
         }
 
         private void Controllers_Started(object sender, GameControllerEventArgs args)
@@ -564,10 +564,10 @@ namespace PlayniteUI
             var game = args.Controller.Game;
             logger.Info($"Game {game.Name} stopped after {args.EllapsedTime} seconds.");
 
-            var dbGame = database.GetGame(game.Id);
+            var dbGame = database.Games.Get(game.Id);
             dbGame.State.Running = false;
             dbGame.Playtime += args.EllapsedTime;
-            database.UpdateGameInDatabase(dbGame);
+            database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);
 
             if (appSettings.AfterGameClose == AfterGameCloseOptions.Restore)
@@ -581,7 +581,7 @@ namespace PlayniteUI
             var game = args.Controller.Game;
             logger.Info($"Game {game.Name} installed after {args.EllapsedTime} seconds.");
 
-            var dbGame = database.GetGame(game.Id);
+            var dbGame = database.Games.Get(game.Id);
             dbGame.State.Installing = false;
             dbGame.State.Installed = true;
             dbGame.InstallDirectory = args.Controller.Game.InstallDirectory;
@@ -596,7 +596,7 @@ namespace PlayniteUI
                 dbGame.OtherActions = args.Controller.Game.OtherActions;
             }
 
-            database.UpdateGameInDatabase(dbGame);
+            database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);
         }
 
@@ -605,11 +605,11 @@ namespace PlayniteUI
             var game = args.Controller.Game;
             logger.Info($"Game {game.Name} uninstalled after {args.EllapsedTime} seconds.");
 
-            var dbGame = database.GetGame(game.Id);
+            var dbGame = database.Games.Get(game.Id);
             dbGame.State.Uninstalling = false;
             dbGame.State.Installed = false;
             dbGame.InstallDirectory = string.Empty;
-            database.UpdateGameInDatabase(dbGame);
+            database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);
         }
     }

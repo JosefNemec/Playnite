@@ -1033,7 +1033,7 @@ namespace PlayniteUI.ViewModels
             }
             else if (settings.GamesSource == MetadataGamesSource.AllFromDB)
             {
-                games = Database.GamesCollection.FindAll().ToList();
+                games = Database.Games.ToList();
             }
             else if (settings.GamesSource == MetadataGamesSource.Filtered)
             {
@@ -1067,7 +1067,7 @@ namespace PlayniteUI.ViewModels
                 State = new GameState() { Installed = true }
             };
 
-            Database.AddGame(newGame);
+            Database.Games.Add(newGame);
             if (GamesEditor.EditGame(newGame) == true)
             {
                 var viewEntry = GamesView.Items.First(a => a.Game.GameId == newGame.GameId);
@@ -1075,7 +1075,7 @@ namespace PlayniteUI.ViewModels
             }
             else
             {
-                Database.DeleteGame(newGame);
+                Database.Games.Remove(newGame);
             }
         }
 
@@ -1151,7 +1151,7 @@ namespace PlayniteUI.ViewModels
             model.OpenView();
         }
 
-        public void SelectGame(int id)
+        public void SelectGame(Guid id)
         {
             var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
             SelectedGame = viewEntry;
@@ -1213,11 +1213,11 @@ namespace PlayniteUI.ViewModels
                             if (ico != null)
                             {
                                 var iconName = Guid.NewGuid().ToString() + ".png";
-                                game.Icon = Database.AddFileNoDuplicate($"images/custom/{iconName}", iconName, ico.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
+                                game.Icon = Database.AddFile(iconName, ico.ToByteArray(System.Drawing.Imaging.ImageFormat.Png), game.Id);
                             }                            
                         }
 
-                        Database.AddGame(game);
+                        Database.Games.Add(game);
                         Database.AssignPcPlatform(game);
                         GamesEditor.EditGame(game);
                         SelectGame(game.Id);

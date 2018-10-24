@@ -1,5 +1,4 @@
 ﻿using Playnite.Database;
-using Playnite.Models;
 using Playnite.Metadata.Providers;
 using System;
 using System.Collections.Generic;
@@ -255,7 +254,7 @@ namespace Playnite.Metadata
                     // We need to get new instance from DB in case game got edited or deleted.
                     // We don't want to block game editing while metadata is downloading for other games.
                     // TODO: Use Id instead of GameId once we replace LiteDB and have proper autoincrement Id
-                    var game = database.GamesCollection.FindOne(a => a.PluginId == games[i].PluginId && a.GameId == games[i].GameId);
+                    var game = database.Games.FirstOrDefault(a => a.PluginId == games[i].PluginId && a.GameId == games[i].GameId);
                     if (game == null)
                     {
                         logger.Warn($"Game {game.GameId} no longer in DB, skipping metadata download.");
@@ -396,10 +395,10 @@ namespace Playnite.Metadata
                                 {
                                     if (!string.IsNullOrEmpty(game.CoverImage))
                                     {
-                                        database.DeleteImageSafe(game.CoverImage, game);
+                                        database.RemoveFile(game.CoverImage);
                                     }
 
-                                    var imageId = database.AddFileNoDuplicate(gameData.Image);
+                                    var imageId = database.AddFile(gameData.Image, game.Id);
                                     game.CoverImage = imageId;
                                 }
                             }
@@ -415,10 +414,10 @@ namespace Playnite.Metadata
                                 {
                                     if (!string.IsNullOrEmpty(game.Icon))
                                     {
-                                        database.DeleteImageSafe(game.Icon, game);
+                                        database.RemoveFile(game.Icon);
                                     }
 
-                                    var iconId = database.AddFileNoDuplicate(gameData.Icon);
+                                    var iconId = database.AddFile(gameData.Icon, game.Id);
                                     game.Icon = iconId;
                                 }
                             }
@@ -439,9 +438,9 @@ namespace Playnite.Metadata
                         }
 
                         // Just to be sure check if somebody didn't remove game while downloading data
-                        if (database.GamesCollection.FindOne(a => a.GameId == games[i].GameId) != null)
+                        if (database.Games.FirstOrDefault(a => a.GameId == games[i].GameId) != null)
                         {
-                            database.UpdateGameInDatabase(game);
+                            database.Games.Update(game);
                         }
                         else
                         {

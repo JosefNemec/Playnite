@@ -86,7 +86,7 @@ namespace PlayniteUI
 
                 try
                 {
-                    var imageData = Database.GetFileImage(imageId);
+                    var imageData = Database.GetFileAsImage(imageId);
                     if (imageData == null)
                     {
                         logger.Warn("Image not found in database: " + imageId);

@@ -466,7 +466,7 @@ Please attach following ID to your crash report:</sys:String>
     <sys:String x:Key="LOCSkinError">Theme Error</sys:String>
     <sys:String x:Key="LOCClearAll">Clear All</sys:String>
     <sys:String x:Key="LOCSetupRunning">Installing</sys:String>
-    <sys:String x:Key="LOCUninstalling">Unnstalling</sys:String>
+    <sys:String x:Key="LOCUninstalling">Uninstalling</sys:String>
     <sys:String x:Key="LOCGameLaunching">Launching</sys:String>
     <sys:String x:Key="LOCGameRunning">Running</sys:String>
     <sys:String x:Key="LOCInvalidURL">Invalid URL</sys:String>

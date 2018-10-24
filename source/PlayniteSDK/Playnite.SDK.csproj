@@ -71,6 +71,7 @@
     <Compile Include="ISettings.cs" />
     <Compile Include="IWebView.cs" />
     <Compile Include="LogManager.cs" />
+    <Compile Include="Models\DatabaseObject.cs" />
     <Compile Include="Models\Metadata\GameMetadata.cs" />
     <Compile Include="Models\Metadata\MetadataFile.cs" />
     <Compile Include="Models\Metadata\MetadataSearchResult.cs" />

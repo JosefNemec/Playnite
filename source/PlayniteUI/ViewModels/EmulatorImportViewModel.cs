@@ -191,7 +191,7 @@ namespace PlayniteUI.ViewModels
             get
             {
                 var platforms = DatabasePlatforms;
-                return database.EmulatorsCollection.FindAll()
+                return database.Emulators
                     .Where(a => a.Profiles != null && a.Profiles.Any(b => b.ImageExtensions != null && b.ImageExtensions.Count > 0))
                     .OrderBy(a => a.Name).ToList();
             }
@@ -201,7 +201,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                return database.PlatformsCollection.FindAll().ToList();
+                return database.Platforms.ToList();
             }
         }
 
@@ -408,12 +408,11 @@ namespace PlayniteUI.ViewModels
                         GamesList = new RangeObservableCollection<ImportableGame>();
                     }
 
-                    var dbGames = database.GamesCollection.FindAll();
                     var emulator = AvailableEmulators.First(a => a.Profiles.Any(b => b.Id == profile.Id));
                     GamesList.AddRange(games
                         .Where(a =>
                         {
-                            return dbGames.FirstOrDefault(b => Paths.AreEqual(a.GameImagePath, b.GameImagePath)) == null;
+                            return database.Games.FirstOrDefault(b => Paths.AreEqual(a.GameImagePath, b.GameImagePath)) == null;
                         })
                         .Select(a =>
                         {
@@ -454,7 +453,7 @@ namespace PlayniteUI.ViewModels
             }
 
             ImportedGames = GamesList.Where(a => a.Import)?.Select(a => a.Game).ToList();
-            database.AddGames(ImportedGames);
+            database.Games.Add(ImportedGames);
         }
 
         private void AddSelectedEmulatorsToDB()
@@ -478,7 +477,7 @@ namespace PlayniteUI.ViewModels
                             if (existing == null)
                             {
                                 var newPlatform = new Platform(platform);
-                                database.AddPlatform(newPlatform);
+                                database.Platforms.Add(newPlatform);
                                 platforms = DatabasePlatforms;
                                 existing = newPlatform;
                             }
@@ -492,7 +491,7 @@ namespace PlayniteUI.ViewModels
                         }
                     }
 
-                    database.AddEmulator(new Emulator(emulator.Name)
+                    database.Emulators.Add(new Emulator(emulator.Name)
                     {
                         Profiles = new ObservableCollection<EmulatorProfile>(emulator.Profiles.Select(a => (EmulatorProfile)a))
                     });

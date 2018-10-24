@@ -12,23 +12,8 @@ namespace Playnite.SDK.Models
     /// <summary>
     /// Represents game's platfom.
     /// </summary>
-    public class Platform : ObservableObject
+    public class Platform : DatabaseObject
     {
-        private Guid id;
-        /// <summary>
-        /// Gets or sets platform database id.
-        /// </summary>
-        [BsonId]
-        public Guid Id
-        {
-            get => id;
-            set
-            {
-                id = value;
-                OnPropertyChanged("Id");
-            }
-        }
-
         private string name;
         /// <summary>
         /// Gets or sets platform name.

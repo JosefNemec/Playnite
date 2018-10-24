@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Playnite.SDK.Models;
 using Playnite.Database;
 using NLog;
-using Playnite.Database.Events;
 
 namespace Playnite.Database
 {
@@ -31,7 +30,7 @@ namespace Playnite.Database
                 }
                 else
                 {
-                    return database.GamesCollection.Count();
+                    return database.Games.Count();
                 }
             }
         }
@@ -43,15 +42,15 @@ namespace Playnite.Database
         public DatabaseStats(GameDatabase database)
         {
             this.database = database;
-            database.GameUpdated += Database_GameUpdated;
-            database.GamesCollectionChanged += Database_GamesCollectionChanged;
+            database.Games.ItemUpdated += Database_GameUpdated;
+            database.Games.ItemCollectionChanged += Database_GamesCollectionChanged;
             database.DatabaseOpened += Database_DatabaseOpened;
             Recalculate();
         }
 
         private void Recalculate()
         {
-            if (database.GamesCollection == null)
+            if (database.Games == null)
             {
                 return;
             }
@@ -63,7 +62,7 @@ namespace Playnite.Database
             Hidden = 0;
             Favorite = 0;
 
-            foreach (var game in database.GamesCollection.FindAll().ToList())
+            foreach (var game in database.Games)
             {
                 if (game.IsInstalled)
                 {
@@ -107,14 +106,14 @@ namespace Playnite.Database
             Recalculate();
         }
 
-        private void Database_GamesCollectionChanged(object sender, GamesCollectionChangedEventArgs args)
+        private void Database_GamesCollectionChanged(object sender, ItemCollectionChangedEventArgs<Game> args)
         {
-            foreach (var game in args.RemovedGames)
+            foreach (var game in args.RemovedItems)
             {
                 IncrementalUpdate(game, -1);
             }
 
-            foreach (var game in args.AddedGames)
+            foreach (var game in args.AddedItems)
             {
                 IncrementalUpdate(game, 1);
             }
@@ -122,9 +121,9 @@ namespace Playnite.Database
             NotifiyAllChanged();
         }
 
-        private void Database_GameUpdated(object sender, GameUpdatedEventArgs args)
+        private void Database_GameUpdated(object sender, ItemUpdatedEventArgs<Game> args)
         {
-            foreach (var update in args.UpdatedGames)
+            foreach (var update in args.UpdatedItems)
             {
                 if (update.OldData.Hidden != update.NewData.Hidden)
                 {
@@ -174,8 +173,8 @@ namespace Playnite.Database
         public void Dispose()
         {
             database.DatabaseOpened -= Database_DatabaseOpened;
-            database.GamesCollectionChanged -= Database_GamesCollectionChanged;
-            database.GameUpdated -= Database_GameUpdated;
+            database.Games.ItemCollectionChanged -= Database_GamesCollectionChanged;
+            database.Games.ItemUpdated -= Database_GameUpdated;
         }
     }
 }

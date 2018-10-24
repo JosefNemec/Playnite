@@ -1,6 +1,5 @@
 ﻿using Playnite;
 using Playnite.Database;
-using Playnite.Models;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -718,7 +717,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                var platforms = database.PlatformsCollection.FindAll().OrderBy(a => a.Name).ToList();
+                var platforms = database.Platforms.OrderBy(a => a.Name).ToList();
                 platforms.Insert(0, new Platform(string.Empty));
                 return platforms;
             }
@@ -730,11 +729,11 @@ namespace PlayniteUI.ViewModels
             {
                 if (EditingGame.PlatformId == Guid.Empty || EditingGame.PlatformId == Guid.Empty)
                 {
-                    return database.EmulatorsCollection.FindAll().OrderBy(a => a.Name).ToList();
+                    return database.Emulators.OrderBy(a => a.Name).ToList();
                 }
                 else
                 {
-                    return database.EmulatorsCollection.FindAll()
+                    return database.Emulators
                         .Where(a => a.Profiles != null && a.Profiles.FirstOrDefault(b => b.Platforms?.Contains(EditingGame.PlatformId) == true) != null)
                         .OrderBy(a => a.Name).ToList();
                 }
@@ -1737,7 +1736,7 @@ namespace PlayniteUI.ViewModels
                         {
                             if (!string.IsNullOrEmpty(game.Icon))
                             {
-                                database.DeleteImageSafe(game.Icon, game);
+                                database.RemoveFile(game.Icon);
                                 game.Icon = null;
                             }
                         }
@@ -1746,43 +1745,38 @@ namespace PlayniteUI.ViewModels
                     {
                         if (!string.IsNullOrEmpty(Game.Icon))
                         {
-                            database.DeleteImageSafe(Game.Icon, Game);
+                            database.RemoveFile(Game.Icon);
                             Game.Icon = null;
                         }
                     }
                 }
                 else if (File.Exists(EditingGame.Icon))
                 {
-                    var iconPath = EditingGame.Icon;
-                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(iconPath);
-                    var iconId = "images/custom/" + fileName;
-                    iconId = database.AddFileNoDuplicate(iconId, fileName, File.ReadAllBytes(iconPath));
-
                     if (Games != null)
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.Icon) && game.Icon != iconId)
+                            if (!string.IsNullOrEmpty(game.Icon))
                             {
-                                database.DeleteImageSafe(game.Icon, game);
+                                database.RemoveFile(game.Icon);
                             }
 
-                            game.Icon = iconId;
+                            game.Icon = database.AddFile(EditingGame.Icon, game.Id);
                         }
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.Icon) && Game.Icon != iconId)
+                        if (!string.IsNullOrEmpty(Game.Icon))
                         {
-                            database.DeleteImageSafe(Game.Icon, Game);
+                            database.RemoveFile(Game.Icon);
                         }
 
-                        Game.Icon = iconId;
+                        Game.Icon = database.AddFile(EditingGame.Icon, game.Id); ;
                     }
 
-                    if (Path.GetDirectoryName(iconPath) == PlaynitePaths.TempPath)
+                    if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
                     {
-                        File.Delete(iconPath);
+                        File.Delete(EditingGame.Icon);
                     }
                 }
             }
@@ -1797,7 +1791,7 @@ namespace PlayniteUI.ViewModels
                         {
                             if (!string.IsNullOrEmpty(game.CoverImage))
                             {
-                                database.DeleteImageSafe(game.CoverImage, game);
+                                database.RemoveFile(game.CoverImage);
                                 game.CoverImage = null;
                             }
                         }
@@ -1806,43 +1800,38 @@ namespace PlayniteUI.ViewModels
                     {
                         if (!string.IsNullOrEmpty(Game.CoverImage))
                         {
-                            database.DeleteImageSafe(Game.CoverImage, Game);
+                            database.RemoveFile(Game.CoverImage);
                             Game.CoverImage = null;
                         }
                     }
                 }
                 else if (File.Exists(EditingGame.CoverImage))
                 {
-                    var imagePath = EditingGame.CoverImage;
-                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
-                    var imageId = "images/custom/" + fileName;
-                    imageId = database.AddFileNoDuplicate(imageId, fileName, File.ReadAllBytes(imagePath));
-
                     if (Games != null)
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.CoverImage) && game.CoverImage != imageId)
+                            if (!string.IsNullOrEmpty(game.CoverImage))
                             {
-                                database.DeleteImageSafe(game.CoverImage, game);
+                                database.RemoveFile(game.CoverImage);
                             }
 
-                            game.CoverImage = imageId;
+                            game.CoverImage = database.AddFile(EditingGame.CoverImage, game.Id);
                         }
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.CoverImage) && Game.CoverImage != imageId)
+                        if (!string.IsNullOrEmpty(Game.CoverImage))
                         {
-                            database.DeleteImageSafe(Game.CoverImage, Game);
+                            database.RemoveFile(Game.CoverImage);
                         }
 
-                        Game.CoverImage = imageId;
+                        Game.CoverImage = database.AddFile(EditingGame.CoverImage, Game.Id);
                     }
 
-                    if (Path.GetDirectoryName(imagePath) == PlaynitePaths.TempPath)
+                    if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
                     {
-                        File.Delete(imagePath);
+                        File.Delete(EditingGame.CoverImage);
                     }
                 }
             }
@@ -1857,7 +1846,7 @@ namespace PlayniteUI.ViewModels
                         {
                             if (!string.IsNullOrEmpty(game.BackgroundImage))
                             {
-                                database.DeleteImageSafe(game.BackgroundImage, game);
+                                database.RemoveFile(game.BackgroundImage);
                                 game.BackgroundImage = null;
                             }
                         }
@@ -1866,7 +1855,7 @@ namespace PlayniteUI.ViewModels
                     {
                         if (!string.IsNullOrEmpty(Game.BackgroundImage))
                         {
-                            database.DeleteImageSafe(Game.BackgroundImage, Game);
+                            database.RemoveFile(Game.BackgroundImage);
                             Game.BackgroundImage = null;
                         }
                     }
@@ -1881,7 +1870,7 @@ namespace PlayniteUI.ViewModels
                             {
                                 if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                                 {
-                                    database.DeleteImageSafe(game.BackgroundImage, game);
+                                    database.RemoveFile(game.BackgroundImage);
                                 }
 
                                 game.BackgroundImage = EditingGame.BackgroundImage;
@@ -1891,7 +1880,7 @@ namespace PlayniteUI.ViewModels
                         {
                             if (!string.IsNullOrEmpty(Game.BackgroundImage) && !Game.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                             {
-                                database.DeleteImageSafe(Game.BackgroundImage, Game);
+                                database.RemoveFile(Game.BackgroundImage);
                             }
 
                             Game.BackgroundImage = EditingGame.BackgroundImage;
@@ -1899,40 +1888,33 @@ namespace PlayniteUI.ViewModels
                     }
                     else if (File.Exists(EditingGame.BackgroundImage))
                     {
-                        var imagePath = EditingGame.BackgroundImage;
-                        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
-                        var imageId = "images/custom/" + fileName;
-                        imageId = database.AddFileNoDuplicate(imageId, fileName, File.ReadAllBytes(imagePath));
-
                         if (Games != null)
                         {
                             foreach (var game in Games)
                             {
                                 if (!string.IsNullOrEmpty(game.BackgroundImage) &&
-                                    !game.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase) &&
-                                    game.BackgroundImage != imageId)
+                                    !game.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                                 {
-                                    database.DeleteImageSafe(game.BackgroundImage, game);
+                                    database.RemoveFile(game.BackgroundImage);
                                 }
 
-                                game.BackgroundImage = imageId;
+                                game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, game.Id);
                             }
                         }
                         else
                         {
                             if (!string.IsNullOrEmpty(Game.BackgroundImage) &&
-                                !Game.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase) &&
-                                Game.BackgroundImage != imageId)
+                                !Game.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                             {
-                                database.DeleteImageSafe(Game.BackgroundImage, Game);
+                                database.RemoveFile(Game.BackgroundImage);
                             }
 
-                            Game.BackgroundImage = imageId;
+                            Game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, Game.Id);
                         }
 
-                        if (Path.GetDirectoryName(imagePath) == PlaynitePaths.TempPath)
+                        if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
                         {
-                            File.Delete(imagePath);
+                            File.Delete(EditingGame.BackgroundImage);
                         }
                     }
                 }
@@ -1971,13 +1953,13 @@ namespace PlayniteUI.ViewModels
                 foreach (var game in Games)
                 {
                     game.Modified = date;
-                    database.UpdateGameInDatabase(game);
+                    database.Games.Update(game);
                 }
             }
             else
             {
                 game.Modified = DateTime.Today;
-                database.UpdateGameInDatabase(Game);
+                database.Games.Update(Game);
             }
 
             window.Close(true);

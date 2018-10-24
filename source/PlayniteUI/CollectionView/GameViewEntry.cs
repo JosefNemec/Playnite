@@ -14,7 +14,7 @@ namespace PlayniteUI
     {
         private ILibraryPlugin plugin;
 
-        public int Id => Game.Id;
+        public Guid Id => Game.Id;
         public Guid PluginId => Game.PluginId;
         public string GameId => Game.GameId;
         public List<string> Categories => Game.Categories;

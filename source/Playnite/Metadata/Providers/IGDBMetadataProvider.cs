@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Playnite.Services;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
-using Playnite.Models;
 using System.Globalization;
 using Playnite.Database;
 using System.IO;

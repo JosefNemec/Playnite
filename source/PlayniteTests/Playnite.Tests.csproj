@@ -121,6 +121,7 @@
     <Compile Include="Database\GameDatabasePlatformsTests.cs" />
     <Compile Include="Database\GameDatabaseEventTests.cs" />
     <Compile Include="Database\GameDatabaseTests.cs" />
+    <Compile Include="Database\ItemCollectionTests.cs" />
     <Compile Include="Emulators\EmulatorFinderTests.cs" />
     <Compile Include="Emulators\EmulatorDefinitionTests.cs" />
     <Compile Include="Extensions\EnumsTests.cs" />
