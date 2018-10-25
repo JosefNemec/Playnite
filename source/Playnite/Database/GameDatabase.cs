@@ -699,7 +699,7 @@ namespace Playnite.Database
 
         public string AddFile(MetadataFile file, Guid parentId)
         {
-            return AddFile(file.FileId, file.Content, parentId);
+            return AddFile(file.FileName, file.Content, parentId);
         }
 
         public string AddFile(string path, Guid parentId)
@@ -732,8 +732,11 @@ namespace Playnite.Database
             lock (fileFilesLock)
             {
                 FileSystem.DeleteFile(filePath);
-
-                // TODO: remove whole folder when no other files are presnet
+                var dir = Path.GetDirectoryName(filePath);
+                if (FileSystem.IsDirectoryEmpty(dir))
+                {
+                    FileSystem.DeleteDirectory(dir);
+                }
             }
         }
 
@@ -799,8 +802,6 @@ namespace Playnite.Database
             {
                 game.PlatformId = platform.Id;
             }
-
-            Games.Update(games);
         }
 
         public void ImportCategories(List<Game> sourceGames)

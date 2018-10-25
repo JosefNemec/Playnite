@@ -55,6 +55,18 @@ namespace Playnite
             }
         }
 
+        public static bool IsDirectoryEmpty(string path)
+        {
+            if (Directory.Exists(path))
+            {
+                return !Directory.EnumerateFileSystemEntries(path).Any();
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public static void DeleteFile(string path)
         {
             if (File.Exists(path))

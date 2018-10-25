@@ -220,12 +220,7 @@ namespace SteamLibrary
                 {
                     var iconName = Path.GetFileName(new Uri(iconUrl).AbsolutePath);
                     var iconData = HttpDownloader.DownloadData(iconUrl);
-                    metadata.Icon = new MetadataFile(
-
-                        string.Format("images/steam/{0}/{1}",appId.ToString(), iconName),
-                        iconName,
-                        iconData
-                    );
+                    metadata.Icon = new MetadataFile(iconName, iconData);
                 }
             }
 
@@ -263,11 +258,7 @@ namespace SteamLibrary
             if (imageData != null)
             {
                 var imageName = Path.GetFileName(new Uri(imageUrl).AbsolutePath);
-                metadata.Image = new MetadataFile(
-                    string.Format("images/steam/{0}/{1}", appId.ToString(), imageName),
-                    imageName,
-                    imageData
-                );
+                metadata.Image = new MetadataFile(imageName, imageData);
             }
 
             // Background Image

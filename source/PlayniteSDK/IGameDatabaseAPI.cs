@@ -13,6 +13,11 @@ namespace Playnite.SDK
     public interface IGameDatabaseAPI
     {
         /// <summary>
+        /// Gets full path to database directory location.
+        /// </summary>
+        string DatabasePath { get; }
+
+        /// <summary>
         /// Gets value indicating whether game database is open and available.
         /// </summary>
         bool IsOpen { get; }
@@ -28,19 +33,19 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="id">Game id.</param>
         /// <returns>Game based on specified id or null.</returns>
-        Game GetGame(int id);
+        Game GetGame(Guid id);
 
         /// <summary>
         /// Returns all games from database.
         /// </summary>
         /// <returns>All games stored in database.</returns>
-        List<Game> GetGames();
+        IEnumerable<Game> GetGames();
 
         /// <summary>
         /// Removes game from database.
         /// </summary>
         /// <param name="id">Game id.</param>
-        void RemoveGame(int id);
+        void RemoveGame(Guid id);
 
         /// <summary>
         /// Updates game in database with new data.
@@ -65,7 +70,7 @@ namespace Playnite.SDK
         /// Returns all emulators from database.
         /// </summary>
         /// <returns>All emulators stored in database.</returns>
-        List<Emulator> GetEmulators();
+        IEnumerable<Emulator> GetEmulators();
 
         /// <summary>
         /// Removes emulator from database.
@@ -90,7 +95,7 @@ namespace Playnite.SDK
         /// Returns all platforms from database.
         /// </summary>
         /// <returns>All platforms stored in database.</returns>
-        List<Platform> GetPlatforms();
+        IEnumerable<Platform> GetPlatforms();
 
         /// <summary>
         /// Removes platform from database.
@@ -104,7 +109,7 @@ namespace Playnite.SDK
         /// <param name="id">File id of new file.</param>
         /// <param name="path">Full path to file.</param>
         /// <returns>File id of file added to database or id of an existing file.</returns>
-        string AddFile(string id, string path);
+        string AddFile(string path, Guid parentId);
 
         /// <summary>
         /// Saves file from database to file.
@@ -118,26 +123,6 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="id">File id.</param>
         void RemoveFile(string id);
-
-        /// <summary>
-        /// Removes image file from database. Doesn't remove file if some other game also uses it.
-        /// </summary>
-        /// <param name="id">File id.</param>
-        /// <param name="game">Original file holding the image.</param>
-        void RemoveImage(string id, Game game);
-
-        /// <summary>
-        /// Returns all files from database.
-        /// </summary>
-        /// <returns>All files stored in database.</returns>
-        List<DatabaseFile> GetFiles();
-
-        /// <summary>
-        /// Returns specific file from database.
-        /// </summary>
-        /// <param name="id">File id.</param>
-        /// <returns>All files stored in database.</returns>
-        DatabaseFile GetFile(string id);
 
         /// <summary>
         /// Imports categories from selected games.

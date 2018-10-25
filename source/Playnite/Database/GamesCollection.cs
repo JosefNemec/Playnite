@@ -38,13 +38,19 @@ namespace Playnite.Database
             base.Add(items);
         }
 
-        public override bool Remove(Game item)
+        public override bool Remove(Guid id)
         {
-            var result =  base.Remove(item);
+            var item = Get(id);
+            var result = base.Remove(id);
             db.RemoveFile(item.Icon);
             db.RemoveFile(item.CoverImage);
             db.RemoveFile(item.BackgroundImage);
             return result;
+        }
+
+        public override bool Remove(Game item)
+        {
+            return Remove(item.Id);
         }
 
         public override bool Remove(IEnumerable<Game> items)

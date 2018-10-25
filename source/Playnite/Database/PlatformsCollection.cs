@@ -16,12 +16,18 @@ namespace Playnite.Database
             db = database;
         }
 
-        public override bool Remove(Platform item)
+        public override bool Remove(Guid id)
         {
-            var result = base.Remove(item);
+            var item = Get(id);
+            var result = base.Remove(id);
             db.RemoveFile(item.Icon);
             db.RemoveFile(item.Cover);
             return result;
+        }
+
+        public override bool Remove(Platform item)
+        {
+            return Remove(item.Id);
         }
 
         public override bool Remove(IEnumerable<Platform> items)

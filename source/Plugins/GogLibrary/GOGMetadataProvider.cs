@@ -61,19 +61,8 @@ namespace GogLibrary
                 var iconName = Path.GetFileName(new Uri(gameDetail.images.icon).AbsolutePath);
                 var image = HttpDownloader.DownloadData("http:" + gameDetail.images.logo2x);
                 var imageName = Path.GetFileName(new Uri(gameDetail.images.logo2x).AbsolutePath);
-
-                metadata.Icon = new MetadataFile(
-                    string.Format("images/gog/{0}/{1}", id, iconName),
-                    iconName,
-                    icon
-                );
-
-                metadata.Image = new MetadataFile(
-                    string.Format("images/gog/{0}/{1}", id, imageName),
-                    imageName,
-                    image
-                );
-
+                metadata.Icon = new MetadataFile(iconName, icon);
+                metadata.Image = new MetadataFile(imageName, image);
                 metadata.BackgroundImage = "http:" + gameDetail.images.background;
             }
 

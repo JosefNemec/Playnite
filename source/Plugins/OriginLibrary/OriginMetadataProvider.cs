@@ -45,13 +45,7 @@ namespace OriginLibrary
             var imageUrl = data.StoreDetails.imageServer + data.StoreDetails.i18n.packArtLarge;
             var imageData = HttpDownloader.DownloadData(imageUrl);
             var imageName = Guid.NewGuid() + Path.GetExtension(new Uri(imageUrl).AbsolutePath);
-
-            data.Image = new MetadataFile(
-                string.Format("images/origin/{0}/{1}", id.Replace(":", ""), imageName),
-                imageName,
-                imageData
-            );
-
+            data.Image = new MetadataFile(imageName, imageData);
             return data;
         }
 
@@ -113,12 +107,7 @@ namespace OriginLibrary
                 if (exeIcon != null)
                 {
                     var iconName = Guid.NewGuid() + ".png";
-
-                    metadata.Icon = new MetadataFile(
-                        string.Format("images/origin/{0}/{1}", game.GameId.Replace(":", ""), iconName),
-                        iconName,
-                        exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png)
-                    );
+                    metadata.Icon = new MetadataFile(iconName, exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
                 }
             }
 

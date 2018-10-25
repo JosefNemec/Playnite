@@ -13,14 +13,6 @@ namespace Playnite.SDK.Metadata
     public class MetadataFile
     {
         /// <summary>
-        /// Gets or sets file id.
-        /// </summary>
-        public string FileId
-        {
-            get; set;
-        }
-
-        /// <summary>
         /// Gets or sets file name.
         /// </summary>
         public string FileName
@@ -55,33 +47,28 @@ namespace Playnite.SDK.Metadata
         /// Creates new instance of <see cref="MetadataFile"/>.
         /// </summary>
         /// <param name="url">Source URL.</param>
-        /// <param name="fileId">File id.</param>
-        public MetadataFile(string url, string fileId)
+        public MetadataFile(string url)
         {
-            FileId = fileId;
             FileName = Path.GetFileName(url);
         }
 
         /// <summary>
         /// Creates new instance of <see cref="MetadataFile"/>.
         /// </summary>
-        /// <param name="fileId">File id.</param>
         /// <param name="name">File name.</param>
         /// <param name="data">File content.</param>
-        public MetadataFile(string fileId, string name, byte[] data) : this(fileId, name, data, null)
+        public MetadataFile(string name, byte[] data) : this(name, data, null)
         {            
         }
 
         /// <summary>
         /// Creates new instance of <see cref="MetadataFile"/>.
         /// </summary>
-        /// <param name="fileId">File id.</param>
         /// <param name="name">File name.</param>
         /// <param name="data">File content.</param>
         /// <param name="originalUrl">Source url.</param>
-        public MetadataFile(string fileId, string name, byte[] data, string originalUrl)
+        public MetadataFile(string name, byte[] data, string originalUrl)
         {
-            FileId = fileId;
             FileName = name;
             Content = data;
             OriginalUrl = originalUrl;

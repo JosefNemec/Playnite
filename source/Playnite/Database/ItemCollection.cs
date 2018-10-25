@@ -188,16 +188,22 @@ namespace Playnite.Database
             OnCollectionChanged(items.ToList(), new List<TItem>());
         }
 
-        public virtual bool Remove(TItem item)
+        public virtual bool Remove(Guid id)
         {
+            var item = Get(id);
             lock (collectionLock)
             {
                 FileSystem.DeleteFile(GetItemFilePath(item.Id));
-                Items.Remove(Get(item.Id));
+                Items.Remove(item);
             }
 
             OnCollectionChanged(new List<TItem>(), new List<TItem>() { item });
             return true;
+        }
+
+        public virtual bool Remove(TItem item)
+        {
+            return Remove(item.Id);
         }
 
         public virtual bool Remove(IEnumerable<TItem> items)
