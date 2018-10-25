@@ -370,7 +370,8 @@ namespace PlayniteUI.ViewModels
             database.Platforms.Remove(removedPlatforms?.ToList());
 
             // Add new platforms to database
-            var addedPlatforms = Platforms.Where(a => a.Id == null).ToList();
+            var addedPlatforms = Platforms.Where(a => a.Id == Guid.Empty).ToList();
+            addedPlatforms.ForEach(a => a.Id = Guid.NewGuid());
             database.Platforms.Add(addedPlatforms?.ToList());
 
             // Remove files from deleted platforms
@@ -441,17 +442,13 @@ namespace PlayniteUI.ViewModels
             database.Emulators.Remove(removedEmulators?.ToList());
 
             // Add new platforms to database
-            var addedEmulators = Emulators.Where(a => a.Id == null).ToList();
+            var addedEmulators = Emulators.Where(a => a.Id == Guid.Empty).ToList();
+            addedEmulators.ForEach(a => a.Id = Guid.NewGuid());
             database.Emulators.Add(addedEmulators?.ToList());
 
             // Update modified platforms in database
             foreach (var emulator in Emulators)
             {
-                if (emulator.Id == null)
-                {
-                    continue;
-                }
-
                 var dbEmulator = database.Emulators.Get(emulator.Id);
                 if (dbEmulator != null && !emulator.IsEqualJson(dbEmulator))
                 {
@@ -462,7 +459,10 @@ namespace PlayniteUI.ViewModels
 
         public void AddPlatform()
         {
-            var platform = new Platform("New Platform");
+            var platform = new Platform("New Platform")
+            {
+                Id = Guid.Empty
+            };
             Platforms.Add(platform);
             SelectedPlatform = platform;
         }
@@ -528,7 +528,10 @@ namespace PlayniteUI.ViewModels
 
         public void AddEmulator()
         {
-            var emulator = new Emulator("New Emulator");
+            var emulator = new Emulator("New Emulator")
+            {
+                Id = Guid.Empty
+            };
             Emulators.Add(emulator);
             SelectedEmulator = emulator;
         }
@@ -561,7 +564,7 @@ namespace PlayniteUI.ViewModels
         public void CopyEmulator(Emulator emulator)
         {
             var copy = emulator.CloneJson();
-            copy.Id = Guid.NewGuid();
+            copy.Id = Guid.Empty;
             copy.Name += " Copy";
             if (copy.Profiles?.Any() == true)
             {

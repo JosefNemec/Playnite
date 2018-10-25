@@ -32,7 +32,7 @@
     [switch]$SkipBuild = $false,
 
     # Sign binary files
-    [switch]$Sign = $false,
+    [string]$Sign,
 
     # Temp directory for build process
     [string]$TempDir = (Join-Path $env:TEMP "PlayniteBuild")
@@ -122,6 +122,11 @@ function CreateDirectoryDiff()
     }    
 
     Remove-Item $tempPath -Recurse -Force
+}
+
+if ($Sign)
+{
+    Start-SigningWatcher $Sign
 }
 
 # -------------------------------------------
@@ -268,6 +273,11 @@ if ($Portable)
 
     Add-Type -assembly "System.IO.Compression.Filesystem" | Out-Null
     [IO.Compression.ZipFile]::CreateFromDirectory($OutputDir, $packageName, "Optimal", $false) 
+}
+
+if ($Sign)
+{
+    Stop-SigningWatcher
 }
 
 return $true

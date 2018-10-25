@@ -47,6 +47,11 @@ namespace BattleNetLibrary
 
             if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("battlenet", StringComparison.OrdinalIgnoreCase))
             {
+                if (!BattleNet.IsInstalled)
+                {
+                    throw new Exception("Cannot start game, Battle.net launcher is not installed properly.");
+                }
+
                 var bnetRunning = BattleNet.IsRunning;
                 if (!bnetRunning)
                 {
@@ -92,6 +97,11 @@ namespace BattleNetLibrary
             }
             else
             {
+                if (!BattleNet.IsInstalled)
+                {
+                    throw new Exception("Cannot install game, Battle.net launcher is not installed properly.");
+                }
+
                 ProcessStarter.StartProcess(BattleNet.ClientExecPath, $"--game={product.InternalId}");
             }
 

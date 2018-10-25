@@ -682,13 +682,20 @@ namespace PlayniteUI
 
         private void Database_GamesCollectionChanged(object sender, ItemCollectionChangedEventArgs<Game> args)
         {
+            // DO NOT use *Range methods for "Items" object.
+            // It can throw weird exceptions in virtualization panel, directly in WPF (without known fix from MS).
+            // https://github.com/JosefNemec/Playnite/issues/796
+
             if (args.RemovedItems.Count > 0)
             {
                 var removeIds = args.RemovedItems.Select(a => a.Id);
                 var toRemove = Items.Where(a => removeIds.Contains(a.Id))?.ToList();
                 if (toRemove != null)
                 {
-                    Items.RemoveRange(toRemove);
+                    foreach (var item in toRemove)
+                    {
+                        Items.Remove(item);
+                    }
                 }
             }
 
@@ -723,7 +730,10 @@ namespace PlayniteUI
 
             if (addList.Count > 0)
             {
-                Items.AddRange(addList);
+                foreach (var item in addList)
+                {
+                    Items.Add(item);
+                }
             }
         }
     }
