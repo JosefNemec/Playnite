@@ -244,11 +244,11 @@ namespace PlayniteUI
                     {
                         if (PlayniteSettings.IsPortable)
                         {
-                            AppSettings.DatabasePath = "games.db";
+                            AppSettings.DatabasePath = @"{PlayniteDir}\library";
                         }
                         else
                         {
-                            AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "games.db");
+                            AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "library");
                         }
                     }
 
@@ -265,7 +265,7 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "games.db");
+                    AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "library");
                     AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.SaveSettings();
                     existingDb = File.Exists(AppSettings.DatabasePath);
@@ -358,15 +358,21 @@ namespace PlayniteUI
                     break;
 
                 case CmdlineCommands.Launch:
-                    // TODO :
-                    var game = Database.Games.FirstOrDefault(a => a.Id == Guid.Parse(args.Args));
-                    if (game == null)
+                    if (Guid.TryParse(args.Args, out var gameId))
                     {
-                        logger.Error($"Cannot start game, game {args.Args} not found.");
+                        var game = Database.Games[gameId];
+                        if (game == null)
+                        {
+                            logger.Error($"Cannot start game, game {args.Args} not found.");
+                        }
+                        else
+                        {
+                            GamesEditor.PlayGame(game);
+                        }
                     }
                     else
                     {
-                        GamesEditor.PlayGame(game);
+                        logger.Error($"Can't start game, failed to parse game id: {args.Args}");
                     }
 
                     break;

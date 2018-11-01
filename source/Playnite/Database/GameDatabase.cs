@@ -12,6 +12,7 @@ using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Metadata;
 using Playnite.Common;
+using Playnite.Settings;
 
 namespace Playnite.Database
 {
@@ -33,12 +34,18 @@ namespace Playnite.Database
             get; private set;
         }
 
-        private string GamesDirectoryPath { get => Path.Combine(DatabasePath, "games"); }
-        private string PlatformsDirectoryPath { get => Path.Combine(DatabasePath, "platforms"); }
-        private string EmulatorsDirectoryPath { get => Path.Combine(DatabasePath, "emulators"); }
-        private string FilesDirectoryPath { get => Path.Combine(DatabasePath, "files"); }
+        private const string gamesDirName = "games";
+        private const string platformsDirName = "platforms";
+        private const string emulatorsDirName = "emulators";
+        private const string filesDirName = "files";
+        private const string settingsFileName = "database.json";
 
-        private string DatabaseFileSettingsPath { get => Path.Combine(DatabasePath, "database.json"); }
+        private string GamesDirectoryPath { get => Path.Combine(DatabasePath, gamesDirName); }
+        private string PlatformsDirectoryPath { get => Path.Combine(DatabasePath, platformsDirName); }
+        private string EmulatorsDirectoryPath { get => Path.Combine(DatabasePath, emulatorsDirName); }
+        private string FilesDirectoryPath { get => Path.Combine(DatabasePath, filesDirName); }
+
+        private string DatabaseFileSettingsPath { get => Path.Combine(DatabasePath, settingsFileName); }
 
         #endregion Paths
 
@@ -64,11 +71,14 @@ namespace Playnite.Database
                 {
                     if (File.Exists(DatabaseFileSettingsPath))
                     {
-                        settings = Serialization.FromJson<DatabaseSettings>(FileSystem.FileReadAsString(DatabaseFileSettingsPath));
+                        lock (databaseConfigFileLock)
+                        {
+                            settings = Serialization.FromJson<DatabaseSettings>(FileSystem.ReadFileAsStringSafe(DatabaseFileSettingsPath));
+                        }
                     }
                     else
                     {
-                        settings = new DatabaseSettings() { Version = DBVersion };
+                        settings = new DatabaseSettings() { Version = NewFormatVersion };
                     }
                 }
 
@@ -80,12 +90,14 @@ namespace Playnite.Database
                 lock (databaseConfigFileLock)
                 {
                     settings = value;
-                    FileSystem.FileWriteString(DatabaseFileSettingsPath, Serialization.ToJson(settings));
+                    FileSystem.WriteStringToFileSafe(DatabaseFileSettingsPath, Serialization.ToJson(settings));
                 }
             }
         }
 
-        public static readonly ushort DBVersion = 5;
+        public static readonly ushort DBVersion = 6;
+
+        public static readonly ushort NewFormatVersion = 1;
 
         #region Events
 
@@ -110,7 +122,7 @@ namespace Playnite.Database
 
         public GameDatabase(string path)
         {
-            DatabasePath = path;
+            DatabasePath = GetFullDbPath(path);
             Platforms = new PlatformsCollection(this);
             Games = new GamesCollection(this);
             Emulators = new ItemCollection<Emulator>();
@@ -124,7 +136,7 @@ namespace Playnite.Database
             }
         }
 
-        // TODO: REMOVE
+        // TODO: Remove this, we should only allow path to be set during instantiation.
         public void SetDatabasePath(string path)
         {
             if (IsOpen)
@@ -132,7 +144,7 @@ namespace Playnite.Database
                 throw new Exception("Cannot change database path when database is open.");
             }
 
-            DatabasePath = path;
+            DatabasePath = GetFullDbPath(path);
         }
 
         public static void MigrateDatabase(string path)
@@ -581,6 +593,45 @@ namespace Playnite.Database
                         db.Engine.UserVersion = 5;
                     }
 
+                    // 5 to 6
+                    if (db.Engine.UserVersion == 5 && DBVersion > 5)
+                    {
+                        // Remove _type from emulator profiles (was added by a bug in old versions)
+                        var emuCollection = db.GetCollection("emulators");
+                        foreach (var emulator in emuCollection.FindAll().ToList())
+                        {
+                            var update = false;
+                            var profiles = emulator["Profiles"];
+                            if (!profiles.IsNull)
+                            {
+                                foreach (BsonDocument profile in profiles.AsArray)
+                                {
+                                    if (profile.ContainsKey("_type"))
+                                    {
+                                        update = true;
+                                        profile.Remove("_type");
+                                    }
+                                }
+                            }
+
+                            if (update)
+                            {
+                                emuCollection.Update(emulator);
+                            }
+                        }
+
+                        // Change game Id from int to Guid
+                        var gameCol = db.GetCollection("games");
+                        foreach (var game in gameCol.FindAll().ToList())
+                        {
+                            gameCol.Delete(game["_id"].AsInt32);
+                            game["_id"] = Guid.NewGuid();
+                            gameCol.Insert(game);
+                        }
+
+                        db.Engine.UserVersion = 6;
+                    }
+
                     trans.Commit();
                 }
                 catch (Exception e)
@@ -606,21 +657,125 @@ namespace Playnite.Database
             }
         }
 
+        public static void MigrateToNewFormat(string oldPath, string newPath)
+        {
+            using (var db = new LiteDatabase(oldPath))
+            {
+                string ExportFile(Guid parentId, string fileId)
+                {
+                    if (!string.IsNullOrEmpty(fileId))
+                    {
+                        if (fileId.IsHttpUrl())
+                        {
+                            return fileId;
+                        }
+
+                        var cover = db.FileStorage.FindById(fileId);
+                        if (cover != null)
+                        {
+                            var newFileId = Path.Combine(parentId.ToString(), Guid.NewGuid() + Path.GetExtension(cover.Filename));
+                            var targetPath = Path.Combine(newPath, filesDirName, newFileId);
+                            FileSystem.PrepareSaveFile(targetPath);
+                            cover.SaveAs(targetPath);
+                            return newFileId;
+                        }
+                    }
+
+                    return null;
+                }
+
+                var gamesDir = Path.Combine(newPath, gamesDirName);
+                FileSystem.CreateDirectory(gamesDir);
+                var gameCol = db.GetCollection("games");
+                foreach (var game in gameCol.FindAll())
+                {
+                    var conGame = BsonMapper.Global.ToObject<OldModels.Ver6.Game>(game);
+                    var targetFile = Path.Combine(gamesDir, $"{conGame.Id.ToString()}.json");
+                    conGame.CoverImage = ExportFile(conGame.Id, conGame.CoverImage);
+                    conGame.Icon = ExportFile(conGame.Id, conGame.Icon);
+                    conGame.BackgroundImage = ExportFile(conGame.Id, conGame.BackgroundImage);
+                    File.WriteAllText(targetFile, Serialization.ToJson(conGame, false));
+                }
+
+                var platformsDir = Path.Combine(newPath, platformsDirName);
+                FileSystem.CreateDirectory(platformsDir);
+                var platformsCol = db.GetCollection("platforms");
+                foreach (var platform in platformsCol.FindAll())
+                {
+                    var conPlatform = BsonMapper.Global.ToObject<OldModels.Ver6.Platform>(platform);
+                    var targetFile = Path.Combine(platformsDir, $"{conPlatform.Id.ToString()}.json");
+                    conPlatform.Cover = ExportFile(conPlatform.Id, conPlatform.Cover);
+                    conPlatform.Icon = ExportFile(conPlatform.Id, conPlatform.Icon);
+                    File.WriteAllText(targetFile, Serialization.ToJson(conPlatform, false));
+                }
+
+                var emulatorsDir = Path.Combine(newPath, emulatorsDirName);
+                FileSystem.CreateDirectory(emulatorsDir);
+                var emulatorsCol = db.GetCollection("emulators");
+                foreach (var emulator in emulatorsCol.FindAll())
+                {
+                    var conEmulator = BsonMapper.Global.ToObject<OldModels.Ver6.Emulator>(emulator);
+                    var targetFile = Path.Combine(emulatorsDir, $"{conEmulator.Id.ToString()}.json");
+                    File.WriteAllText(targetFile, Serialization.ToJson(conEmulator, false));
+                }
+            }
+
+            var dbSet = new DatabaseSettings() { Version = 1 };
+            File.WriteAllText(Path.Combine(newPath, settingsFileName), Serialization.ToJson(dbSet));
+        }
+
+        public static string GetMigratedDbPath(string originalPath)
+        {
+            if (Path.IsPathRooted(originalPath))
+            {
+                var rootDir = Path.GetDirectoryName(originalPath);
+                var appData = Environment.ExpandEnvironmentVariables("%AppData%");
+                rootDir = rootDir.Replace(appData, "%AppData%");                
+                return Path.Combine(rootDir, Path.GetFileNameWithoutExtension(originalPath));
+            }
+            else
+            {
+                return Path.Combine("{PlayniteDir}", Path.GetFileNameWithoutExtension(originalPath));
+            }
+        }
+
+        public static string GetFullDbPath(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                return path;
+            }
+
+            if (path.Contains("{PlayniteDir}", StringComparison.OrdinalIgnoreCase))
+            {
+                return path?.Replace("{PlayniteDir}", PlaynitePaths.ProgramPath);
+            }
+            else if (path.Contains("%AppData%", StringComparison.OrdinalIgnoreCase))
+            {                
+                return path?.Replace("%AppData%", Environment.ExpandEnvironmentVariables("%AppData%"), StringComparison.OrdinalIgnoreCase);
+            }
+            else
+            {
+                return path;
+            }
+        }
+
         public static bool GetMigrationRequired(string path)
         {
-            var settingsPath = Path.Combine(path, "database.json");
+            if (path.EndsWith(".db", StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            var fullPath = GetFullDbPath(path);
+            var settingsPath = Path.Combine(fullPath, "database.json");
             if (!File.Exists(settingsPath))
             {
                 return false;
             }
 
-            var st = Serialization.FromJson<DatabaseSettings>(FileSystem.FileReadAsString(settingsPath));
-            return st.Version < DBVersion;
-        }
-
-        public bool GetMigrationRequired()
-        {
-            return Settings.Version < DBVersion;
+            var st = Serialization.FromJson<DatabaseSettings>(FileSystem.ReadFileAsStringSafe(settingsPath));
+            return st.Version < NewFormatVersion;
         }
 
         public void OpenDatabase()
@@ -643,16 +798,16 @@ namespace Playnite.Database
 
             if (!dbExists)
             {
-                Settings = new DatabaseSettings() { Version = DBVersion };
+                Settings = new DatabaseSettings() { Version = NewFormatVersion };
             }
             else
             {
-                if (Settings.Version > DBVersion)
+                if (Settings.Version > NewFormatVersion)
                 {
                     throw new Exception($"Database version {Settings.Version} is not supported.");
                 }
 
-                if (GetMigrationRequired())
+                if (GetMigrationRequired(DatabasePath))
                 {
                     throw new Exception("Database must be migrated before opening.");
                 }
@@ -692,7 +847,7 @@ namespace Playnite.Database
 
         #region Files
 
-        internal string GetFilePath(string dbPath)
+        public string GetFullFilePath(string dbPath)
         {
             return Path.Combine(FilesDirectoryPath, dbPath);
         }
@@ -728,10 +883,10 @@ namespace Playnite.Database
             }
 
             CheckDbState();
-            var filePath = GetFilePath(dbPath);
+            var filePath = GetFullFilePath(dbPath);
             lock (fileFilesLock)
             {
-                FileSystem.DeleteFile(filePath);
+                FileSystem.DeleteFileSafe(filePath);
                 var dir = Path.GetDirectoryName(filePath);
                 if (FileSystem.IsDirectoryEmpty(dir))
                 {
@@ -743,7 +898,7 @@ namespace Playnite.Database
         public BitmapImage GetFileAsImage(string dbPath)
         {
             CheckDbState();
-            var filePath = GetFilePath(dbPath);
+            var filePath = GetFullFilePath(dbPath);
             if (!File.Exists(filePath))
             {
                 return null;
@@ -751,7 +906,7 @@ namespace Playnite.Database
 
             lock (fileFilesLock)
             {
-                using (var fStream = new FileStream(filePath, System.IO.FileMode.Open))
+                using (var fStream = new MemoryStream(FileSystem.ReadFileAsBytesSafe(filePath)))
                 {
                     var bitmap = new BitmapImage();
                     bitmap.BeginInit();
@@ -769,7 +924,7 @@ namespace Playnite.Database
             CheckDbState();
             lock (fileFilesLock)
             {
-                var filePath = GetFilePath(dbPath);
+                var filePath = GetFullFilePath(dbPath);
                 FileSystem.PrepareSaveFile(targetPath);
                 File.Copy(filePath, targetPath);
             }

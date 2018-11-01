@@ -278,13 +278,6 @@ namespace PlayniteUI.ViewModels
 
         public void ConfirmDialog()
         {
-            if (!Paths.GetValidFilePath(Settings.DatabasePath))
-            {
-                dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidDBLocation"),
-                    resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             foreach (var provider in LibraryPluginSettings.Keys)
             {
                 if (!LibraryPluginSettings[provider].Settings.VerifySettings(out var errors))
@@ -347,7 +340,7 @@ namespace PlayniteUI.ViewModels
 
         public void SelectDbFile()
         {
-            var path = dialogs.SelectFile("Database file (*.db)|*.db");
+            var path = dialogs.SelectFolder();
             if (!string.IsNullOrEmpty(path))
             {
                 dialogs.ShowMessage(resources.FindString("LOCSettingsDBPathNotification"));

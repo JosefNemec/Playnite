@@ -10,8 +10,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
 using Newtonsoft.Json;
+using LiteDB;
+using Playnite.SDK.Models;
 
-namespace Playnite.SDK.Models
+namespace Playnite.Database.OldModels.Ver6
 {
     /// <summary>
     /// Represents Playnite game object.
@@ -445,6 +447,7 @@ namespace Playnite.SDK.Models
         /// Gets value indicating wheter a game is being installed..
         /// </summary>
         [JsonIgnore]
+        [BsonIgnore]
         public bool IsInstalling
         {
             get => State.Installing;
@@ -454,6 +457,7 @@ namespace Playnite.SDK.Models
         /// Gets value indicating wheter a game is being uninstalled.
         /// </summary>
         [JsonIgnore]
+        [BsonIgnore]
         public bool IsUninstalling
         {
             get => State.Uninstalling;
@@ -463,6 +467,7 @@ namespace Playnite.SDK.Models
         /// Gets value indicating wheter a game is being launched.
         /// </summary>
         [JsonIgnore]
+        [BsonIgnore]
         public bool IsLaunching
         {
             get => State.Launching;
@@ -472,6 +477,7 @@ namespace Playnite.SDK.Models
         /// Gets value indicating wheter a game is currently running.
         /// </summary>
         [JsonIgnore]
+        [BsonIgnore]
         public bool IsRunning
         {
             get => State.Running;
@@ -481,6 +487,7 @@ namespace Playnite.SDK.Models
         /// Gets value indicating wheter a game is installed.
         /// </summary>
         [JsonIgnore]
+        [BsonIgnore]
         public bool IsInstalled
         {
             get => State.Installed;
@@ -490,6 +497,7 @@ namespace Playnite.SDK.Models
         /// Gets value indicating wheter the game is custom game.
         /// </summary>
         [JsonIgnore]
+        [BsonIgnore]
         public bool IsCustomGame
         {
             get => PluginId == Guid.Empty;

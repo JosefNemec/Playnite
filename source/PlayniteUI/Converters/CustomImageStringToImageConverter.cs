@@ -43,7 +43,7 @@ namespace PlayniteUI
                 return imageId.Replace("resources:", "");
             }
 
-            if (imageId.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+            if (imageId.IsHttpUrl())
             {
                 try
                 {

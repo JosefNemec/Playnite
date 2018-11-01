@@ -49,6 +49,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCGameEditChangeNotif">Section contains changes to be saved</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Updating database version...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Database update failed, can't open database file.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Cannot update library database. {0} MBs of free space is required.</sys:String>
 
     <sys:String x:Key="LOCGameError">GameError</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Cannot start game. '{0}' was not found in database.</sys:String>
@@ -138,6 +139,8 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCSunday">Sunday</sys:String>
     <sys:String x:Key="LOCImportCompleted">Import completed successfully.</sys:String>
     <sys:String x:Key="LOCAllGames">All Games</sys:String>
+    <sys:String x:Key="LOCGameId">Game Id</sys:String>
+    <sys:String x:Key="LOCDatabaseId">Database Id</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory

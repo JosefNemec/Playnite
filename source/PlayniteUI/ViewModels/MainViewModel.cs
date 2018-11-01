@@ -1,6 +1,7 @@
 ﻿using Playnite;
 using Playnite.API;
 using Playnite.App;
+using Playnite.Common;
 using Playnite.Common.System;
 using Playnite.Database;
 using Playnite.Metadata;
@@ -814,14 +815,30 @@ namespace PlayniteUI.ViewModels
                     var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(),
                     () =>
                     {
-                        try
+                        if (AppSettings.DatabasePath.EndsWith(".db", StringComparison.OrdinalIgnoreCase))
                         {
+                            var newDbPath = GameDatabase.GetMigratedDbPath(AppSettings.DatabasePath);
+                            var newResolvedDbPath = GameDatabase.GetFullDbPath(newDbPath);
+                            if (Directory.Exists(newResolvedDbPath))
+                            {
+                                newDbPath += "_db";
+                                newResolvedDbPath += "_db";
+                            }
+
+                            var dbSize = new FileInfo(AppSettings.DatabasePath).Length;
+                            if (FileSystem.GetFreeSpace(newResolvedDbPath) < dbSize)
+                            {
+                                throw new NoDiskSpaceException(dbSize);
+                            }
+
                             GameDatabase.MigrateDatabase(AppSettings.DatabasePath);
+                            GameDatabase.MigrateToNewFormat(AppSettings.DatabasePath, newResolvedDbPath);
+                            FileSystem.DeleteFile(AppSettings.DatabasePath);
+                            AppSettings.DatabasePath = newDbPath;
                         }
-                        catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                        else
                         {
-                            Logger.Error(exc, "Failed to migrate database to new version.");
-                            throw;
+                            // Do migration of new format when needed
                         }
                     })
                     {
@@ -830,7 +847,14 @@ namespace PlayniteUI.ViewModels
 
                     if (progressModel.ActivateProgress() == false)
                     {
-                        Dialogs.ShowMessage(Resources.FindString("LOCDBUpgradeFail"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                        Logger.Error(progressModel.FailException, "Failed to migrate database to new version.");
+                        var message = Resources.FindString("LOCDBUpgradeFail");
+                        if (progressModel.FailException is NoDiskSpaceException exc)
+                        {
+                            message = string.Format(Resources.FindString("LOCDBUpgradeEmptySpaceFail"), exc.RequiredSpace / 1024 / 1024);
+                        }
+
+                        Dialogs.ShowMessage(message, "", MessageBoxButton.OK, MessageBoxImage.Error);
                         GameAdditionAllowed = true;
                         return;
                     }
@@ -838,7 +862,11 @@ namespace PlayniteUI.ViewModels
 
                 if (!Database.IsOpen)
                 {
-                    Database.OpenDatabase();
+                    Database.SetDatabasePath(AppSettings.DatabasePath);
+                    using (var timer = new ExecutionTimer("OpenDatabase"))
+                    {
+                        Database.OpenDatabase();
+                    }
                 }
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -859,7 +887,10 @@ namespace PlayniteUI.ViewModels
                 return;
             }
 
-            GamesView = new GamesCollectionView(Database, AppSettings, IsFullscreenView, Extensions);
+            using (var timer = new ExecutionTimer("GamesView inti"))
+            {
+                GamesView = new GamesCollectionView(Database, AppSettings, IsFullscreenView, Extensions);
+            }
             BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
             if (GamesView.CollectionView.Count > 0)
             {
@@ -1373,7 +1404,10 @@ namespace PlayniteUI.ViewModels
         {
             Window.Show(this);
             Window.BringToForeground();
-            InitializeView();
+            using (var timer = new ExecutionTimer("InitializeView"))
+            {
+                InitializeView();
+            }
         }
 
         public virtual void CloseView()

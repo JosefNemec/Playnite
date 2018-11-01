@@ -100,7 +100,7 @@ namespace Playnite.API
         {
             if (!File.Exists(path))
             {
-                throw new Exception("Cannot add file to db, file not found.");
+                throw new FileNotFoundException("Cannot add file to database, file not found.");
             }
 
             return database.AddFile(path, parentId);

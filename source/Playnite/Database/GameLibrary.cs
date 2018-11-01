@@ -24,7 +24,7 @@ namespace Playnite.Database
 
             try
             {
-                if (path.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                if (path.IsHttpUrl())
                 {
                     metaFile = new MetadataFile(fileName, HttpDownloader.DownloadData(path));
                 }
@@ -93,7 +93,7 @@ namespace Playnite.Database
 
                     if (!string.IsNullOrEmpty(newGame.BackgroundImage))
                     {
-                        if (!newGame.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                        if (!newGame.BackgroundImage.IsHttpUrl())
                         {
                             newGame.BackgroundImage = AddNewGameFile(newGame.BackgroundImage, newGame.Id, database);
                         }

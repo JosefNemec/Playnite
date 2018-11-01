@@ -376,11 +376,18 @@ namespace Playnite.Metadata
                         // BackgroundImage
                         if (settings.BackgroundImage.Import)
                         {
-
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.BackgroundImage)))
                             {
                                 gameData = ProcessField(game, settings.BackgroundImage, ref storeData, ref igdbData, (a) => a.BackgroundImage);
-                                game.BackgroundImage = string.IsNullOrEmpty(gameData?.BackgroundImage) ? game.BackgroundImage : gameData.BackgroundImage;
+                                if (!string.IsNullOrEmpty(gameData?.BackgroundImage))
+                                {
+                                    if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.IsHttpUrl())
+                                    {
+                                        database.RemoveFile(game.BackgroundImage);
+                                    }
+
+                                    game.BackgroundImage = gameData.BackgroundImage;
+                                }
                             }
                         }
 
@@ -398,8 +405,7 @@ namespace Playnite.Metadata
                                         database.RemoveFile(game.CoverImage);
                                     }
 
-                                    var imageId = database.AddFile(gameData.Image, game.Id);
-                                    game.CoverImage = imageId;
+                                    game.CoverImage = database.AddFile(gameData.Image, game.Id);
                                 }
                             }
                         }
@@ -417,8 +423,7 @@ namespace Playnite.Metadata
                                         database.RemoveFile(game.Icon);
                                     }
 
-                                    var iconId = database.AddFile(gameData.Icon, game.Id);
-                                    game.Icon = iconId;
+                                    game.Icon = database.AddFile(gameData.Icon, game.Id);
                                 }
                             }
                         }

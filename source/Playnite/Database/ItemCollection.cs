@@ -3,6 +3,7 @@ using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -83,7 +84,7 @@ namespace Playnite.Database
         private List<TItem> RemovedItemsEventBuffer = new List<TItem>();
         private List<ItemUpdateEvent<TItem>> ItemUpdatesEventBuffer = new List<ItemUpdateEvent<TItem>>();
 
-        public List<TItem> Items { get; }
+        public BlockingCollection<TItem> Items { get; }
 
         public int Count => Items.Count;
 
@@ -108,7 +109,7 @@ namespace Playnite.Database
 
         public ItemCollection(Action<TItem> initMethod)
         {
-            Items = new List<TItem>();
+            Items = new BlockingCollection<TItem>();
             this.initMethod = initMethod;
         }
 
@@ -122,18 +123,21 @@ namespace Playnite.Database
             this.storagePath = storagePath;
             if (Directory.Exists(storagePath))
             {
-                foreach (var objectFile in Directory.GetFiles(storagePath))
+                using (var timer = new ExecutionTimer("EnumerateFiles"))
                 {
-                    try
+                    Parallel.ForEach(Directory.EnumerateFiles(storagePath, "*.json"), (objectFile) =>
                     {
-                        var obj = Serialization.FromJson<TItem>(FileSystem.FileReadAsString(objectFile));
-                        initMethod?.Invoke(obj);
-                        Items.Add(obj);
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        logger.Error(e, $"Failed to load item from {objectFile}");
-                    }
+                        try
+                        {
+                            var obj = Serialization.FromJson<TItem>(FileSystem.ReadFileAsStringSafe(objectFile));
+                            initMethod?.Invoke(obj);
+                            Items.Add(obj);
+                        }
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            logger.Error(e, $"Failed to load item from {objectFile}");
+                        }
+                    });
                 }
             }
         }
@@ -145,12 +149,12 @@ namespace Playnite.Database
 
         private void SaveItemData(TItem item)
         {
-            FileSystem.FileWriteString(GetItemFilePath(item.Id), Serialization.ToJson(item, true));
+            FileSystem.WriteStringToFileSafe(GetItemFilePath(item.Id), Serialization.ToJson(item, false));
         }
 
         private TItem GetItemData(Guid id)
         {
-            return Serialization.FromJson<TItem>(FileSystem.FileReadAsString(GetItemFilePath(id)));
+            return Serialization.FromJson<TItem>(FileSystem.ReadFileAsStringSafe(GetItemFilePath(id)));
         }
 
         public TItem Get(Guid id)
@@ -194,7 +198,7 @@ namespace Playnite.Database
             lock (collectionLock)
             {
                 FileSystem.DeleteFile(GetItemFilePath(item.Id));
-                Items.Remove(item);
+                Items.TryTake(out item);
             }
 
             OnCollectionChanged(new List<TItem>(), new List<TItem>() { item });
@@ -218,7 +222,8 @@ namespace Playnite.Database
                 foreach (var item in items)
                 {
                     FileSystem.DeleteFile(GetItemFilePath(item.Id));
-                    Items.Remove(Get(item.Id));
+                    var actualItem = Get(item.Id);
+                    Items.TryTake(out actualItem);
                 }
             }
 
@@ -280,12 +285,12 @@ namespace Playnite.Database
 
         public IEnumerator<TItem> GetEnumerator()
         {
-            return Items.GetEnumerator();
+            return Items.AsEnumerable().GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return Items.GetEnumerator();
+            return Items.AsEnumerable().GetEnumerator();
         }
 
         private void OnCollectionChanged(List<TItem> addedItems, List<TItem> removedItems)

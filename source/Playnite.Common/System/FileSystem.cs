@@ -144,18 +144,102 @@ namespace Playnite
             }
         }
 
-        public static string FileReadAsString(string path)
+        public static string ReadFileAsStringSafe(string path, int retryAttempts = 5)
         {
-            // TODO: Add retry to file lock
-            return File.ReadAllText(path);
+            IOException ioException = null;
+            for (int i = 0; i < retryAttempts; i++)
+            {
+                try
+                {
+                    return File.ReadAllText(path);
+                }
+                catch (IOException exc)
+                {
+                    ioException = exc;
+                    Task.Delay(500).Wait();
+                }
+            }
+
+            throw new IOException($"Failed to read {path}", ioException);
         }
 
-        public static void FileWriteString(string path, string content)
+        public static byte[] ReadFileAsBytesSafe(string path, int retryAttempts = 5)
         {
-            PrepareSaveFile(path);
-            // TODO: Add retry to file lock
-            File.WriteAllText(path, content);
+            IOException ioException = null;
+            for (int i = 0; i < retryAttempts; i++)
+            {
+                try
+                {
+                    return File.ReadAllBytes(path);
+                }
+                catch (IOException exc)
+                {
+                    ioException = exc;
+                    Task.Delay(500).Wait();
+                }
+            }
+
+            throw new IOException($"Failed to read {path}", ioException);
         }
 
+        public static void WriteStringToFileSafe(string path, string content, int retryAttempts = 5)
+        {
+            IOException ioException = null;
+            for (int i = 0; i < retryAttempts; i++)
+            {
+                try
+                {
+                    PrepareSaveFile(path);
+                    File.WriteAllText(path, content);
+                    return;
+                }
+                catch (IOException exc)
+                {
+                    ioException = exc;
+                    Task.Delay(500).Wait();
+                }
+            }
+
+            throw new IOException($"Failed to write to {path}", ioException);
+        }
+
+        public static void DeleteFileSafe(string path, int retryAttempts = 5)
+        {
+            if (!File.Exists(path))
+            {
+                return;
+            }
+
+            IOException ioException = null;
+            for (int i = 0; i < retryAttempts; i++)
+            {
+                try
+                {
+                    File.Delete(path);
+                    return;
+                }
+                catch (IOException exc)
+                {
+                    ioException = exc;
+                    Task.Delay(500).Wait();
+                }
+            }
+
+            throw new IOException($"Failed to delete {path}", ioException);
+        }
+
+        public static long GetFreeSpace(string drivePath)
+        {
+            var root = Path.GetPathRoot(drivePath);
+            var drive = DriveInfo.GetDrives().FirstOrDefault(a => a.RootDirectory.FullName.Equals(root, StringComparison.OrdinalIgnoreCase)); ;
+            if (drive != null)
+            {
+                return drive.AvailableFreeSpace;
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }

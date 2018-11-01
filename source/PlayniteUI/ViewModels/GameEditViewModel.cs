@@ -694,7 +694,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                return EditingGame == null || EditingGame.BackgroundImage == null ? false : EditingGame.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase);
+                return EditingGame == null || EditingGame.BackgroundImage == null ? false : EditingGame.BackgroundImage.IsHttpUrl();
             }
         }
 
@@ -1862,13 +1862,13 @@ namespace PlayniteUI.ViewModels
                 }
                 else
                 {
-                    if (EditingGame.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                    if (EditingGame.BackgroundImage.IsHttpUrl())
                     {
                         if (Games != null)
                         {
                             foreach (var game in Games)
                             {
-                                if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                                if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.IsHttpUrl())
                                 {
                                     database.RemoveFile(game.BackgroundImage);
                                 }
@@ -1878,7 +1878,7 @@ namespace PlayniteUI.ViewModels
                         }
                         else
                         {
-                            if (!string.IsNullOrEmpty(Game.BackgroundImage) && !Game.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                            if (!string.IsNullOrEmpty(Game.BackgroundImage) && !Game.BackgroundImage.IsHttpUrl())
                             {
                                 database.RemoveFile(Game.BackgroundImage);
                             }
@@ -1892,8 +1892,7 @@ namespace PlayniteUI.ViewModels
                         {
                             foreach (var game in Games)
                             {
-                                if (!string.IsNullOrEmpty(game.BackgroundImage) &&
-                                    !game.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                                if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.IsHttpUrl())
                                 {
                                     database.RemoveFile(game.BackgroundImage);
                                 }
@@ -1903,8 +1902,7 @@ namespace PlayniteUI.ViewModels
                         }
                         else
                         {
-                            if (!string.IsNullOrEmpty(Game.BackgroundImage) &&
-                                !Game.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                            if (!string.IsNullOrEmpty(Game.BackgroundImage) && !Game.BackgroundImage.IsHttpUrl())
                             {
                                 database.RemoveFile(Game.BackgroundImage);
                             }
@@ -2042,7 +2040,7 @@ namespace PlayniteUI.ViewModels
 
             if (!string.IsNullOrEmpty(game.CoverImage))
             {
-                if (game.CoverImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                if (game.CoverImage.IsHttpUrl())
                 {
                     var extension = Path.GetExtension(game.CoverImage);
                     var tempPath = Path.Combine(PlaynitePaths.TempPath, "tempimage" + extension);

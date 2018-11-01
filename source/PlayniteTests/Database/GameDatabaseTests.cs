@@ -9,6 +9,7 @@ using Playnite.SDK.Models;
 using Playnite;
 using Moq;
 using NUnit.Framework;
+using Playnite.Settings;
 
 namespace PlayniteTests.Database
 {
@@ -21,6 +22,27 @@ namespace PlayniteTests.Database
             // Some test are reading resources, which cannot be access until pack:// namespace is initialized
             // http://stackoverflow.com/questions/6005398/uriformatexception-invalid-uri-invalid-port-specified
             string s = System.IO.Packaging.PackUriHelper.UriSchemePack;
+        }
+
+        [Test]
+        public void GetMigratedDbPathTest()
+        {
+            Assert.AreEqual(@"{PlayniteDir}\games", GameDatabase.GetMigratedDbPath(@"games.db"));
+            Assert.AreEqual(@"c:\games", GameDatabase.GetMigratedDbPath(@"c:\games.db"));
+            Assert.AreEqual(@"c:\test\games", GameDatabase.GetMigratedDbPath(@"c:\test\games.db"));
+            var appData = Environment.ExpandEnvironmentVariables("%AppData%");
+            Assert.AreEqual(@"%AppData%\playnite\games", GameDatabase.GetMigratedDbPath(Path.Combine(appData, "playnite", "games.db")));
+        }
+
+        [Test]
+        public void GetFullDbPathTest()
+        {
+            var appData = Environment.ExpandEnvironmentVariables("%AppData%");
+            var progPath = PlaynitePaths.ProgramPath;
+            Assert.AreEqual(Path.Combine(appData, @"playnite\games"), GameDatabase.GetFullDbPath(@"%AppData%\playnite\games"));            
+            Assert.AreEqual(Path.Combine(progPath, "games"), GameDatabase.GetFullDbPath(@"{PlayniteDir}\games"));
+            Assert.AreEqual(@"c:\test\games", GameDatabase.GetFullDbPath(@"c:\test\games"));
+            Assert.AreEqual(@"games", GameDatabase.GetFullDbPath("games"));
         }
 
         //[Test]

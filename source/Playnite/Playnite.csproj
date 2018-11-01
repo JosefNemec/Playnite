@@ -152,6 +152,9 @@
     <Compile Include="Database\GamesCollection.cs" />
     <Compile Include="Database\ItemCollection.cs" />
     <Compile Include="Database\OldModels\Ver3\Emulator.cs" />
+    <Compile Include="Database\OldModels\Ver6\Emulator.cs" />
+    <Compile Include="Database\OldModels\Ver6\Game.cs" />
+    <Compile Include="Database\OldModels\Ver6\Platform.cs" />
     <Compile Include="Database\PlatformsCollection.cs" />
     <Compile Include="Extensions\EmulatorProfileExtensions.cs" />
     <Compile Include="Extensions\GameActionExtensions.cs" />

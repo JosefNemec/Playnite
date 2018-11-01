@@ -523,7 +523,6 @@ namespace PlayniteUI
                 CollectionView.LiveGroupingProperties.Add("Category");
                 CollectionView.LiveGroupingProperties.Add("Platform");
 
-                //CollectionView.LiveSortingProperties.Add("Provider");
                 CollectionView.LiveSortingProperties.Add("Name");
                 CollectionView.LiveSortingProperties.Add("Categories");
                 CollectionView.LiveSortingProperties.Add("Genres");
@@ -537,7 +536,6 @@ namespace PlayniteUI
                 CollectionView.LiveSortingProperties.Add("LastActivity");
                 CollectionView.LiveSortingProperties.Add("Platform");
 
-                //CollectionView.LiveFilteringProperties.Add("Provider");
                 CollectionView.LiveFilteringProperties.Add("Name");
                 CollectionView.LiveFilteringProperties.Add("Categories");
                 CollectionView.LiveFilteringProperties.Add("Genres");

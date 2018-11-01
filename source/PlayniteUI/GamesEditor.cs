@@ -350,9 +350,7 @@ namespace PlayniteUI
 
                 if (!string.IsNullOrEmpty(game.Icon) && Path.GetExtension(game.Icon) == ".ico")
                 {
-                    FileSystem.CreateDirectory(Path.Combine(PlaynitePaths.DataCachePath, "icons"));
-                    icon = Path.Combine(PlaynitePaths.DataCachePath, "icons", game.Id + ".ico");                    
-                    database.CopyFile(game.Icon, icon);
+                    icon = database.GetFullFilePath(game.Icon);
                 }
                 else if (game.PlayAction?.Type == GameActionType.File)
                 {
@@ -491,25 +489,13 @@ namespace PlayniteUI
                     ApplicationPath = PlaynitePaths.ExecutablePath
                 };
 
-                if (lastGame.PlayAction?.Type == GameActionType.File)
+                if (lastGame.Icon?.EndsWith(".ico", StringComparison.OrdinalIgnoreCase) == true)
                 {
-                    if (Path.IsPathRooted(lastGame.ExpandVariables(lastGame.PlayAction.Path)))
-                    {
-                        task.IconResourcePath = lastGame.ExpandVariables(lastGame.PlayAction.Path);
-                    }
-                    else
-                    {
-                        var workDir = lastGame.ExpandVariables(lastGame.PlayAction.WorkingDir);
-                        var path = lastGame.ExpandVariables(lastGame.PlayAction.Path);
-                        if (string.IsNullOrEmpty(workDir))
-                        {
-                            task.IconResourcePath = path;
-                        }
-                        else
-                        {
-                            task.IconResourcePath = Path.Combine(workDir, path);
-                        }
-                    }
+                    task.IconResourcePath = database.GetFullFilePath(lastGame.Icon);
+                }
+                else if (lastGame.PlayAction?.Type == GameActionType.File)
+                {
+                    task.IconResourcePath = lastGame.GetRawExecutablePath();
                 }
 
                 jumpList.JumpItems.Add(task);
