@@ -677,7 +677,10 @@ namespace PlayniteUI.ViewModels
 
             EditGameCommand = new RelayCommand<Game>((a) =>
             {
-                GamesEditor.EditGame(a);
+                if (GamesEditor.EditGame(a) == true)
+                {
+                    SelectedGame = GamesView.Items.FirstOrDefault(g => g.Id == a.Id);
+                }
             });
 
             EditGamesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
@@ -707,8 +710,10 @@ namespace PlayniteUI.ViewModels
 
             AssignGameCategoryCommand = new RelayCommand<Game>((a) =>
             {
-                GamesEditor.SetGameCategories(a);
-                SelectedGame = GamesView.Items.FirstOrDefault(g => g.Id == a.Id);
+                if (GamesEditor.SetGameCategories(a) == true)
+                {
+                    SelectedGame = GamesView.Items.FirstOrDefault(g => g.Id == a.Id);
+                }
             });
 
             AssignGamesCategoryCommand = new RelayCommand<IEnumerable<Game>>((a) =>

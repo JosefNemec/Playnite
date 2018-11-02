@@ -31,7 +31,7 @@ namespace Playnite.Database
             set
             {
                 selected = value;
-                OnAutoPropertyChanged();
+                OnPropertyChanged();
             }
         }
     }
@@ -59,7 +59,7 @@ namespace Playnite.Database
             this.filter = filter;
 
             Libraries = this.extensions.LibraryPlugins.Select(a => new Library(a.Value.Plugin.Id, a.Value.Plugin.Name, filter.Libraries?.Contains(a.Value.Plugin.Id) == true)).ToList();
-            Libraries.Add(new Library(Guid.Empty, "Custom", filter.Libraries?.Contains(Guid.Empty) == true));
+            Libraries.Add(new Library(Guid.Empty, "Playnite", filter.Libraries?.Contains(Guid.Empty) == true));
             Libraries.ForEach(a => a.PropertyChanged += LibrarySelection_PropertyChanged);
             filter.FilterChanged += Filter_FilterChanged;
 

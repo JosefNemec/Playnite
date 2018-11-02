@@ -33,7 +33,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selected = value;
-                OnAutoPropertyChanged();
+                OnPropertyChanged();
             }
         }
 

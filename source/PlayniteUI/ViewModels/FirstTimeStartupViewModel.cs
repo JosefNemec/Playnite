@@ -55,7 +55,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 databaseLocation = value;
-                OnAutoPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -81,7 +81,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 settings = value;
-                OnAutoPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -97,7 +97,7 @@ namespace PlayniteUI.ViewModels
             {
                 selectedIndex = value;
                 OnPropertyChanged("ShowFinishButton");
-                OnAutoPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -112,7 +112,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedProviderSettingsView = value;
-                OnAutoPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -127,7 +127,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedPlugin = value;
-                OnAutoPropertyChanged();
+                OnPropertyChanged();
             }
         }
 

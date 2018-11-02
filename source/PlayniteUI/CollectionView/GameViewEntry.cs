@@ -13,6 +13,7 @@ namespace PlayniteUI
     public class GameViewEntry : INotifyPropertyChanged
     {
         private ILibraryPlugin plugin;
+        private GamesCollectionView view;
 
         public Guid Id => Game.Id;
         public Guid PluginId => Game.PluginId;
@@ -76,15 +77,9 @@ namespace PlayniteUI
             get; set;
         }
 
-        private PlatformView platform;
         public PlatformView Platform
         {
-            get => platform;
-            set
-            {
-                platform = value;
-                OnPropertyChanged("PlatformId");
-            }
+            get; set;
         }
 
         public Game Game
@@ -98,11 +93,11 @@ namespace PlayniteUI
             {
                 if (string.IsNullOrEmpty(plugin?.Name))
                 {
-                    return "";
+                    return "Playnite";
                 }
                 else
                 {
-                    return plugin?.Name;
+                    return plugin.Name;
                 }
             }
         }
@@ -144,13 +139,14 @@ namespace PlayniteUI
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GameViewEntry(Game game, string category, Platform platform, ILibraryPlugin plugin)
+        public GameViewEntry(Game game, string category, GamesCollectionView view, ILibraryPlugin plugin)
         {
             this.plugin = plugin;
+            this.view = view;
             Category = new CategoryView(category);
             Game = game;
             Game.PropertyChanged += Game_PropertyChanged;
-            Platform = new PlatformView(PlatformId, platform);
+            Platform = new PlatformView(PlatformId, view.GetPlatformFromCache(game));
         }
 
         private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -162,30 +158,31 @@ namespace PlayniteUI
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-            if (propertyName == "PlatformId")
+            if (propertyName == nameof(Game.PlatformId))
             {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Platform"));
+                Platform = new PlatformView(PlatformId, view.GetPlatformFromCache(Game));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Platform)));
             }
 
-            if (propertyName == "SortingName" || propertyName == "Name")
+            if (propertyName == nameof(Game.SortingName) || propertyName == nameof(Game.Name))
             {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DisplayName"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Game.Name)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayName)));
             }
 
-            if (propertyName == "Icon")
+            if (propertyName == nameof(Game.Icon))
             {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IconObject"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IconObject)));
             }
 
-            if (propertyName == "CoverImage")
+            if (propertyName == nameof(Game.CoverImage))
             {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CoverImageObject"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CoverImageObject)));
             }
 
-            if (propertyName == "BackgroundImage")
+            if (propertyName == nameof(Game.BackgroundImage))
             {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BackgroundImageObject"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(BackgroundImageObject)));
             }
         }
 

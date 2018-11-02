@@ -65,7 +65,13 @@ namespace PlayniteUI
 
         private static void Expander_Collapsed(object sender, RoutedEventArgs e)
         {
-            var id = GetSaveStateId(sender as Expander);
+            var expander = sender as Expander;
+            if (!expander.IsLoaded)
+            {
+                return;
+            }
+
+            var id = GetSaveStateId(expander);            
             if (!App.AppSettings.CollapsedCategories.Contains(id))
             {
                 App.AppSettings.CollapsedCategories.Add(id);
@@ -74,7 +80,13 @@ namespace PlayniteUI
 
         private static void Control_Expanded(object sender, RoutedEventArgs e)
         {
-            var id = GetSaveStateId(sender as Expander);
+            var expander = sender as Expander;
+            if (!expander.IsLoaded)
+            {
+                return;
+            }
+
+            var id = GetSaveStateId(expander);
             if (App.AppSettings.CollapsedCategories.Contains(id))
             {
                 App.AppSettings.CollapsedCategories.Remove(id);

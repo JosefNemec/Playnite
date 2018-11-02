@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,12 +32,26 @@ namespace System.Collections.Generic
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="index"></param>
+        /// <param name="oldIndex"></param>
+        public void OnItemMoved(object obj, int index, int oldIndex)
+        {
+            if (!suppressNotification)
+            {
+                base.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Move, obj, index, oldIndex));
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="list"></param>
         public void AddRange(IEnumerable<T> list)
         {
             if (list == null)
             {
-                throw new ArgumentNullException("list");
+                return;
             }
 
             suppressNotification = true;
@@ -47,6 +62,7 @@ namespace System.Collections.Generic
 
             suppressNotification = false;
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            
         }
 
         /// <summary>
@@ -57,7 +73,7 @@ namespace System.Collections.Generic
         {
             if (list == null)
             {
-                throw new ArgumentNullException("list");
+                return;
             }
 
             suppressNotification = true;

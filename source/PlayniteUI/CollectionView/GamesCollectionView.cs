@@ -44,7 +44,7 @@ namespace PlayniteUI
             private set
             {
                 collectionView = value;
-                OnPropertyChanged("CollectionView");
+                OnPropertyChanged();
             }
         }
 
@@ -518,39 +518,6 @@ namespace PlayniteUI
             using (CollectionView.DeferRefresh())
             {
                 SetViewDescriptions();
-
-                CollectionView.LiveGroupingProperties.Add("PluginId");
-                CollectionView.LiveGroupingProperties.Add("Category");
-                CollectionView.LiveGroupingProperties.Add("Platform");
-
-                CollectionView.LiveSortingProperties.Add("Name");
-                CollectionView.LiveSortingProperties.Add("Categories");
-                CollectionView.LiveSortingProperties.Add("Genres");
-                CollectionView.LiveSortingProperties.Add("ReleaseDate");
-                CollectionView.LiveSortingProperties.Add("Developers");
-                CollectionView.LiveSortingProperties.Add("Tags");
-                CollectionView.LiveSortingProperties.Add("Publishers");
-                CollectionView.LiveSortingProperties.Add("IsInstalled");
-                CollectionView.LiveSortingProperties.Add("Hidden");
-                CollectionView.LiveSortingProperties.Add("Favorite");
-                CollectionView.LiveSortingProperties.Add("LastActivity");
-                CollectionView.LiveSortingProperties.Add("Platform");
-
-                CollectionView.LiveFilteringProperties.Add("Name");
-                CollectionView.LiveFilteringProperties.Add("Categories");
-                CollectionView.LiveFilteringProperties.Add("Genres");
-                CollectionView.LiveFilteringProperties.Add("ReleaseDate");
-                CollectionView.LiveFilteringProperties.Add("Developers");
-                CollectionView.LiveFilteringProperties.Add("Tags");
-                CollectionView.LiveFilteringProperties.Add("Publishers");
-                CollectionView.LiveFilteringProperties.Add("IsInstalled");
-                CollectionView.LiveFilteringProperties.Add("Hidden");
-                CollectionView.LiveFilteringProperties.Add("Favorite");
-                CollectionView.LiveFilteringProperties.Add("PlatformId");
-
-                CollectionView.IsLiveSorting = true;
-                CollectionView.IsLiveFiltering = true;
-                CollectionView.IsLiveGrouping = true;                   
             };
         }
 
@@ -575,7 +542,7 @@ namespace PlayniteUI
             if (IsFullscreen)
             {
                 Items.Clear();
-                Items.AddRange(database.Games.Select(x => new GameViewEntry(x, string.Empty, GetPlatformFromCache(x), GetLibraryPlugin(x))));
+                Items.AddRange(database.Games.Select(x => new GameViewEntry(x, string.Empty, this, GetLibraryPlugin(x))));
             }
             else
             {
@@ -583,26 +550,26 @@ namespace PlayniteUI
                 {
                     case GamesViewType.Standard:
                         Items.Clear();
-                        Items.AddRange(database.Games.Select(x => new GameViewEntry(x, string.Empty, GetPlatformFromCache(x), GetLibraryPlugin(x))));
+                        Items.AddRange(database.Games.Select(x => new GameViewEntry(x, string.Empty, this, GetLibraryPlugin(x))));
                         break;
 
                     case GamesViewType.CategoryGrouped:
                         Items.Clear();
                         Items.AddRange(database.Games.SelectMany(x =>
                         {
-                            if (x.Categories == null || x.Categories.Count == 0)
-                            {
-                                return new List<GameViewEntry>()
-                                {
-                            new GameViewEntry(x, null, GetPlatformFromCache(x), GetLibraryPlugin(x))
-                                };
-                            }
-                            else
+                            if (x.Categories?.Any() == true)
                             {
                                 return x.Categories.Select(c =>
                                 {
-                                    return new GameViewEntry(x, c, GetPlatformFromCache(x), GetLibraryPlugin(x));
+                                    return new GameViewEntry(x, c, this, GetLibraryPlugin(x));
                                 });
+                            }
+                            else
+                            {
+                                return new List<GameViewEntry>()
+                                {
+                                    new GameViewEntry(x, null, this, GetLibraryPlugin(x))
+                                };
                             }
                         }));
 
@@ -613,7 +580,7 @@ namespace PlayniteUI
             this.viewType = viewType;
         }
 
-        private Platform GetPlatformFromCache(Game game)
+        public Platform GetPlatformFromCache(Game game)
         {
             return platformsCache?.FirstOrDefault(a => a.Id == game.PlatformId);
         }
@@ -635,9 +602,9 @@ namespace PlayniteUI
             foreach (var item in Items.Where(a => a.PlatformId != null && platformIds.Contains(a.PlatformId)))
             {
                 item.Platform.Platform = GetPlatformFromCache(item.Game);
-                item.OnPropertyChanged("Platform");
-                item.OnPropertyChanged("DefaultIcon");
-                item.OnPropertyChanged("DefaultImage");
+                item.OnPropertyChanged(nameof(GameViewEntry.Platform));
+                item.OnPropertyChanged(nameof(GameViewEntry.DefaultIcon));
+                item.OnPropertyChanged(nameof(GameViewEntry.DefaultCoverImage));
             }
         }
 
@@ -648,33 +615,38 @@ namespace PlayniteUI
 
         private void Database_GameUpdated(object sender, ItemUpdatedEventArgs<Game> args)
         {
-            var replaceList = new List<Game>();
+            var refreshList = new List<Game>();
             foreach (var update in args.UpdatedItems)
             {
-                if (update.OldData.Categories.IsListEqual(update.NewData.Categories))
+                var existingItem = Items.FirstOrDefault(a => a.Game.Id == update.NewData.Id);
+                if (existingItem != null)
                 {
-                    var existingItem = Items.FirstOrDefault(a => a.Game.Id == update.NewData.Id);
-                    if (existingItem != null)
+                    var fullRefresh = false;
+                    if (update.OldData.PlatformId != update.NewData.PlatformId)
                     {
-                        if (update.NewData.PlatformId != update.OldData.PlatformId)
-                        {
-                            existingItem.Platform = new PlatformView(update.NewData.PlatformId, GetPlatformFromCache(update.NewData));
-                        }
+                        fullRefresh = true;
+                    }
+
+                    if (!update.OldData.Categories.IsListEqual(update.NewData.Categories) && ViewType == GamesViewType.CategoryGrouped)
+                    {
+                        fullRefresh = true;
+                    }
+
+                    if (fullRefresh)
+                    {
+                        refreshList.Add(update.NewData);
                     }
                     else
                     {
-                        logger.Warn("Receivied update for unknown game id " + update.NewData.Id);
+                        // Forces CollectionView to re-sort items without full list refresh.
+                        Items.OnItemMoved(existingItem, 0, 0);
                     }
-                }
-                else
-                {
-                    replaceList.Add(update.NewData);
                 }
             }
 
-            if (replaceList.Count > 0)
+            if (refreshList.Any())
             {
-                Database_GamesCollectionChanged(this, new ItemCollectionChangedEventArgs<Game>(replaceList, replaceList));
+                Database_GamesCollectionChanged(this, new ItemCollectionChangedEventArgs<Game>(refreshList, refreshList));
             }
         }
 
@@ -702,24 +674,24 @@ namespace PlayniteUI
             {
                 if (IsFullscreen)
                 {
-                    addList.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game), GetLibraryPlugin(game)));
+                    addList.Add(new GameViewEntry(game, string.Empty, this, GetLibraryPlugin(game)));
                 }
                 else
                 {
                     switch (ViewType)
                     {
                         case GamesViewType.Standard:
-                            addList.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game), GetLibraryPlugin(game)));
+                            addList.Add(new GameViewEntry(game, string.Empty, this, GetLibraryPlugin(game)));
                             break;
 
                         case GamesViewType.CategoryGrouped:
-                            if (game.Categories == null || game.Categories.Count == 0)
+                            if (game.Categories?.Any() == true)
                             {
-                                addList.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game), GetLibraryPlugin(game)));
+                                addList.AddRange(game.Categories.Select(a => new GameViewEntry(game, a, this, GetLibraryPlugin(game))));
                             }
                             else
                             {
-                                addList.AddRange(game.Categories.Select(a => new GameViewEntry(game, a, GetPlatformFromCache(game), GetLibraryPlugin(game))));
+                                addList.Add(new GameViewEntry(game, string.Empty, this, GetLibraryPlugin(game)));
                             }
                             break;
                     }
