@@ -13,16 +13,34 @@ using Playnite;
 using System.Windows.Markup;
 using Playnite.Web;
 using Playnite.Settings;
+using System.Collections.Concurrent;
+using System.Collections.Specialized;
+using Playnite.Common;
 
 namespace PlayniteUI
 {
     public class CustomImageStringToImageConverter : MarkupExtension, IValueConverter
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-                
-        public static GameDatabase Database
+        private static MemoryCache cache = new MemoryCache(Units.MegaBytesToBytes(100));
+        private static GameDatabase database;
+
+        static CustomImageStringToImageConverter()
         {
-            get; set;
+        }
+
+        public static void SetDatabase(GameDatabase db)
+        {
+            database = db;
+            database.DatabaseFileChanged += Database_DatabaseFileChanged;
+        }
+
+        private static void Database_DatabaseFileChanged(object sender, DatabaseFileEventArgs args)
+        {
+            if (args.EventType == FileEvent.Removed)
+            {
+                cache.TryRemove(args.FileId, out var file);
+            }
         }
 
         public static object GetImageFromSource(string source)
@@ -40,7 +58,25 @@ namespace PlayniteUI
 
             if (imageId.StartsWith("resources:"))
             {
-                return imageId.Replace("resources:", "");
+                if (cache.TryGet(imageId, out var image))
+                {
+                    return image;
+                }
+                else
+                {
+                    try
+                    {
+                        var imagePath = imageId.Replace("resources:", "pack://application:,,,");
+                        var imageData = BitmapExtensions.BitmapFromFile(imagePath);
+                        cache.TryAdd(imageId, imageData, imageData.GetSizeInMemory());
+                        return imageData;
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, "Failed to create bitmap from resources " + imageId);
+                        return null;
+                    }
+                }
             }
 
             if (imageId.IsHttpUrl())
@@ -78,7 +114,7 @@ namespace PlayniteUI
 
             try
             {
-                if (Database == null)
+                if (database == null)
                 {
                     logger.Error("Cannot load database image, database not found.");
                     return null;
@@ -86,7 +122,12 @@ namespace PlayniteUI
 
                 try
                 {
-                    var imageData = Database.GetFileAsImage(imageId);
+                    if (cache.TryGet(imageId, out var image))
+                    {
+                        return image;
+                    }
+
+                    var imageData = database.GetFileAsImage(imageId);
                     if (imageData == null)
                     {
                         logger.Warn("Image not found in database: " + imageId);
@@ -94,8 +135,10 @@ namespace PlayniteUI
                     }
                     else
                     {
+                        cache.TryAdd(imageId, imageData, imageData.GetSizeInMemory());
                         return imageData;
                     }
+                    
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {

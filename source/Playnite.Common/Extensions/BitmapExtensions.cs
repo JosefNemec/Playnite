@@ -30,7 +30,6 @@ namespace Playnite
         {
             BitmapEncoder encoder = new PngBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(image));
-
             using (var stream = new MemoryStream())
             {
                 encoder.Save(stream);
@@ -46,8 +45,24 @@ namespace Playnite
             bitmap.UriSource = new Uri(imagePath);
             bitmap.CacheOption = BitmapCacheOption.OnLoad;
             bitmap.EndInit();
+            bitmap.Freeze();            
+            return bitmap;
+        }
+
+        public static BitmapImage BitmapFromStream(Stream stream)
+        {
+            var bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.StreamSource = stream;
+            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            bitmap.EndInit();
             bitmap.Freeze();
             return bitmap;
+        }
+
+        public static long GetSizeInMemory(this BitmapImage image)
+        {
+            return Convert.ToInt64(image.PixelHeight * image.PixelWidth * 4);
         }
 
         public static BitmapImage TgaToBitmap(TGA tga)

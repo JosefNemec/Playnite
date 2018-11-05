@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>7.3</LangVersion>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -37,6 +38,7 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -72,6 +74,7 @@
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="InteropMethods.cs" />
+    <Compile Include="MemoryCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="Roman.cs" />
@@ -89,8 +92,10 @@
     <Compile Include="System\TempDirectory.cs" />
     <Compile Include="TGASharpLib.cs" />
     <Compile Include="Timer.cs" />
+    <Compile Include="Units.cs" />
     <Compile Include="Web\Downloader.cs" />
     <Compile Include="Web\HttpDownloader.cs" />
+    <Compile Include="WrappingStream.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

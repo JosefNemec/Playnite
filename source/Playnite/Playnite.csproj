@@ -144,6 +144,7 @@
     <Compile Include="API\ExtensionDescription.cs" />
     <Compile Include="App\UpdateManifest.cs" />
     <Compile Include="BaseGameController.cs" />
+    <Compile Include="Database\DatabaseFileEvent.cs" />
     <Compile Include="Database\DatabaseFilter.cs" />
     <Compile Include="Database\DatabaseSettings.cs" />
     <Compile Include="Database\EventBufferHandler.cs" />

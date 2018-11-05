@@ -182,6 +182,25 @@ namespace Playnite
             throw new IOException($"Failed to read {path}", ioException);
         }
 
+        public static Stream OpenFileStreamSafe(string path, int retryAttempts = 5)
+        {
+            IOException ioException = null;
+            for (int i = 0; i < retryAttempts; i++)
+            {
+                try
+                {
+                    return new FileStream(path, FileMode.Open);
+                }
+                catch (IOException exc)
+                {
+                    ioException = exc;
+                    Task.Delay(500).Wait();
+                }
+            }
+
+            throw new IOException($"Failed to read {path}", ioException);
+        }
+
         public static void WriteStringToFileSafe(string path, string content, int retryAttempts = 5)
         {
             IOException ioException = null;
@@ -240,6 +259,11 @@ namespace Playnite
             {
                 return 0;
             }
+        }
+
+        public static long GetFileSize(string path)
+        {
+            return new FileInfo(path).Length;
         }
     }
 }

@@ -295,7 +295,7 @@ namespace PlayniteUI
             Extensions.LoadGenericPlugins(Api, AppSettings.DisabledPlugins);
             Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
             GamesEditor = new GamesEditor(Database, controllers, AppSettings, dialogs, Extensions);
-            CustomImageStringToImageConverter.Database = Database;
+            CustomImageStringToImageConverter.SetDatabase(Database);
 
             // Main view startup
             if (AppSettings.StartInFullscreen)

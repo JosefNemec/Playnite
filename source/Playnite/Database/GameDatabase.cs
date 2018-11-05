@@ -103,6 +103,8 @@ namespace Playnite.Database
 
         public event EventHandler DatabaseOpened;
 
+        public event DatabaseFileEventHandler DatabaseFileChanged;
+
         #endregion Events
 
         #region Initialization
@@ -871,8 +873,10 @@ namespace Playnite.Database
             {
                 FileSystem.PrepareSaveFile(targetPath);
                 File.WriteAllBytes(targetPath, content);
-                return dbPath;
             }
+
+            DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Added));
+            return dbPath;
         }
 
         public void RemoveFile(string dbPath)
@@ -893,6 +897,8 @@ namespace Playnite.Database
                     FileSystem.DeleteDirectory(dir);
                 }
             }
+
+            DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Removed));
         }
 
         public BitmapImage GetFileAsImage(string dbPath)
@@ -906,15 +912,10 @@ namespace Playnite.Database
 
             lock (fileFilesLock)
             {
-                using (var fStream = new MemoryStream(FileSystem.ReadFileAsBytesSafe(filePath)))
+                using (var fStream = FileSystem.OpenFileStreamSafe(filePath))
+                using (var wrapper = new WrappingStream(fStream))
                 {
-                    var bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.StreamSource = fStream;
-                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmap.EndInit();
-                    bitmap.Freeze();
-                    return bitmap;
+                    return BitmapExtensions.BitmapFromStream(wrapper);
                 }
             }
         }
