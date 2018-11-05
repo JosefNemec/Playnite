@@ -308,8 +308,11 @@ namespace PlayniteUI
             }
 
             // Update and stats
-            CheckUpdate();
-            SendUsageData();
+            if (!PlayniteEnvironment.InOfflineMode)
+            {
+                CheckUpdate();
+                SendUsageData();
+            }
 
             // Pipe server
             pipeService = new PipeService();
