@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using Newtonsoft.Json;
+using NLog;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Playnite.Emulators
 {
     public class ScannedEmulatorProfile : EmulatorProfile
     {
+        [JsonIgnore]
         public EmulatorDefinitionProfile ProfileDefinition
         {
             get; set;
