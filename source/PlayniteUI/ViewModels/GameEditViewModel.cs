@@ -42,8 +42,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useNameChanges = value;
-                OnPropertyChanged("UseNameChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -58,8 +58,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useSortingNameChanges = value;
-                OnPropertyChanged("UseSortingNameChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -74,8 +74,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 usePlatformChanges = value;
-                OnPropertyChanged("UsePlatformChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -90,8 +90,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useGenresChanges = value;
-                OnPropertyChanged("UseGenresChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -106,8 +106,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useReleaseDateChanges = value;
-                OnPropertyChanged("UseReleaseDateChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -122,8 +122,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useDeveloperChanges = value;
-                OnPropertyChanged("UseDeveloperChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -138,8 +138,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 usePublisherChanges = value;
-                OnPropertyChanged("UsePublisherChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -154,8 +154,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useCategoryChanges = value;
-                OnPropertyChanged("UseCategoryChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -170,8 +170,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useTagChanges = value;
-                OnPropertyChanged("UseTagChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -186,8 +186,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useDescriptionChanges = value;
-                OnPropertyChanged("UseDescriptionChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -202,8 +202,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useIconChanges = value;
-                OnPropertyChanged("UseIconChanges");
-                OnPropertyChanged("ShowMediaChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowMediaChangeNotif));
             }
         }
 
@@ -218,8 +218,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useImageChanges = value;
-                OnPropertyChanged("UseImageChanges");
-                OnPropertyChanged("ShowMediaChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowMediaChangeNotif));
             }
         }
 
@@ -234,8 +234,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useBackgroundChanges = value;
-                OnPropertyChanged("UseBackgroundChanges");
-                OnPropertyChanged("ShowMediaChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowMediaChangeNotif));
             }
         }
 
@@ -250,8 +250,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useInstallDirChanges = value;
-                OnPropertyChanged("UseInstallDirChanges");
-                OnPropertyChanged("ShowInstallChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowInstallChangeNotif));
             }
         }
 
@@ -266,8 +266,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useIsoPathChanges = value;
-                OnPropertyChanged("UseIsoPathChanges");
-                OnPropertyChanged("ShowInstallChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowInstallChangeNotif));
             }
         }
 
@@ -282,8 +282,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useLinksChanges = value;
-                OnPropertyChanged("UseLinksChanges");
-                OnPropertyChanged("ShowLinksChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowLinksChangeNotif));
             }
         }
 
@@ -298,8 +298,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useLastActivityChanges = value;
-                OnPropertyChanged("UseLastActivityChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -314,8 +314,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 usePlaytimeChanges = value;
-                OnPropertyChanged("UsePlaytimeChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -330,8 +330,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useAddedChanges = value;
-                OnPropertyChanged("UseAddedChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -346,8 +346,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 usePlayCountChanges = value;
-                OnPropertyChanged("UsePlayCountChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -362,8 +362,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useSeriesChanges = value;
-                OnPropertyChanged("UseSeriesChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -378,8 +378,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useVersionChanges = value;
-                OnPropertyChanged("UseVersionChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -394,8 +394,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useAgeRatingChanges = value;
-                OnPropertyChanged("UseAgeRatingChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -410,8 +410,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useRegionChanges = value;
-                OnPropertyChanged("UseRegionChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -426,8 +426,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useSourceChanges = value;
-                OnPropertyChanged("UseSourceChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -442,8 +442,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useCompletionStatusChanges = value;
-                OnPropertyChanged("UseCompletionStatusChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -458,8 +458,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useUserScoreChanges = value;
-                OnPropertyChanged("UseUserScoreChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -474,8 +474,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useCriticScoreChanges = value;
-                OnPropertyChanged("UseCriticScoreChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -490,8 +490,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useCommunityScoreChanges = value;
-                OnPropertyChanged("UseCommunityScoreChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -506,8 +506,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useHiddenChanges = value;
-                OnPropertyChanged("UseHiddenChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -522,8 +522,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useFavoriteChanges = value;
-                OnPropertyChanged("UseFavoriteChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -600,7 +600,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 editingGame = value;
-                OnPropertyChanged("EditingGame");
+                OnPropertyChanged();
             }
         }
 
@@ -615,7 +615,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 game = value;
-                OnPropertyChanged("Game");
+                OnPropertyChanged();
             }
         }
 
@@ -630,7 +630,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 games = value;
-                OnPropertyChanged("Games");
+                OnPropertyChanged();
             }
         }
 
@@ -641,7 +641,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressVisible = value;
-                OnPropertyChanged("ProgressVisible");
+                OnPropertyChanged();
             }
         }
 
@@ -656,7 +656,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showActions = value;
-                OnPropertyChanged("ShowActions");
+                OnPropertyChanged();
             }
         }
 
@@ -671,7 +671,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showLinks = value;
-                OnPropertyChanged("ShowLinks");
+                OnPropertyChanged();
             }
         }
 
@@ -686,7 +686,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showInstallation = value;
-                OnPropertyChanged("ShowInstallation");
+                OnPropertyChanged();
             }
         }
 
@@ -709,7 +709,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showMetaDownload = value;
-                OnPropertyChanged("ShowMetaDownload");
+                OnPropertyChanged();
             }
         }
 
@@ -751,7 +751,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showCheckBoxes = value;
-                OnPropertyChanged("ShowCheckBoxes");
+                OnPropertyChanged();
             }
         }
 
@@ -989,14 +989,14 @@ namespace PlayniteUI.ViewModels
 
         private void EditingGame_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "PlatformId")
+            if (e.PropertyName == nameof(Game.PlatformId))
             {
-                OnPropertyChanged("Emulators");
+                OnPropertyChanged(nameof(Emulators));
             }
 
             switch (e.PropertyName)
             {
-                case "Name":
+                case nameof(Game.Name):
                     if (Games == null)
                     {
                         UseNameChanges = Game.Name != EditingGame.Name;
@@ -1006,7 +1006,7 @@ namespace PlayniteUI.ViewModels
                         UseNameChanges = true;
                     }
                     break;
-                case "SortingName":
+                case nameof(Game.SortingName):
                     if (Games == null)
                     {
                         UseSortingNameChanges = Game.SortingName != EditingGame.SortingName;
@@ -1016,7 +1016,7 @@ namespace PlayniteUI.ViewModels
                         UseSortingNameChanges = true;
                     }
                     break;
-                case "PlatformId":
+                case nameof(Game.PlatformId):
                     if (Games == null)
                     {
                         UsePlatformChanges = Game.PlatformId != EditingGame.PlatformId;
@@ -1026,7 +1026,7 @@ namespace PlayniteUI.ViewModels
                         UsePlatformChanges = true;
                     }
                     break;
-                case "CoverImage":
+                case nameof(Game.CoverImage):
                     if (Games == null)
                     {
                         UseImageChanges = Game.CoverImage != EditingGame.CoverImage;
@@ -1036,7 +1036,7 @@ namespace PlayniteUI.ViewModels
                         UseImageChanges = true;
                     }
                     break;
-                case "BackgroundImage":
+                case nameof(Game.BackgroundImage):
                     if (Games == null)
                     {
                         UseBackgroundChanges = Game.BackgroundImage != EditingGame.BackgroundImage;
@@ -1046,9 +1046,9 @@ namespace PlayniteUI.ViewModels
                         UseBackgroundChanges = true;
                     }
 
-                    OnPropertyChanged("ShowBackgroundUrl");
+                    OnPropertyChanged(nameof(ShowBackgroundUrl));
                     break;
-                case "Icon":
+                case nameof(Game.Icon):
                     if (Games == null)
                     {
                         UseIconChanges = Game.Icon != EditingGame.Icon;
@@ -1058,7 +1058,7 @@ namespace PlayniteUI.ViewModels
                         UseIconChanges = true;
                     }
                     break;
-                case "Links":
+                case nameof(Game.Links):
                     if (Games == null)
                     {
                         UseLinksChanges = !Game.Links.IsEqualJson(EditingGame.Links);
@@ -1068,7 +1068,7 @@ namespace PlayniteUI.ViewModels
                         UseLinksChanges = true;
                     }
                     break;
-                case "InstallDirectory":
+                case nameof(Game.InstallDirectory):
                     if (Games == null)
                     {
                         UseInstallDirChanges = Game.InstallDirectory != EditingGame.InstallDirectory;
@@ -1078,7 +1078,7 @@ namespace PlayniteUI.ViewModels
                         UseInstallDirChanges = true;
                     }
                     break;
-                case "GameImagePath":
+                case nameof(Game.GameImagePath):
                     if (Games == null)
                     {
                         UseIsoPathChanges = Game.GameImagePath != EditingGame.GameImagePath;
@@ -1088,7 +1088,7 @@ namespace PlayniteUI.ViewModels
                         UseIsoPathChanges = true;
                     }
                     break;
-                case "Description":
+                case nameof(Game.Description):
                     if (Games == null)
                     {
                         UseDescriptionChanges = Game.Description != EditingGame.Description;
@@ -1098,7 +1098,7 @@ namespace PlayniteUI.ViewModels
                         UseDescriptionChanges = true;
                     }
                     break;
-                case "Categories":
+                case nameof(Game.Categories):
                     if (Games == null)
                     {
                         UseCategoryChanges = !Game.Categories.IsListEqual(EditingGame.Categories);
@@ -1108,7 +1108,7 @@ namespace PlayniteUI.ViewModels
                         UseCategoryChanges = true;
                     }
                     break;
-                case "Tags":
+                case nameof(Game.Tags):
                     if (Games == null)
                     {
                         UseTagChanges = !Game.Tags.IsListEqual(EditingGame.Tags);
@@ -1118,7 +1118,7 @@ namespace PlayniteUI.ViewModels
                         UseTagChanges = true;
                     }
                     break;
-                case "Genres":
+                case nameof(Game.Genres):
                     if (Games == null)
                     {
                         UseGenresChanges = !Game.Genres.IsListEqual(EditingGame.Genres);
@@ -1128,7 +1128,7 @@ namespace PlayniteUI.ViewModels
                         UseGenresChanges = true;
                     }
                     break;
-                case "ReleaseDate":
+                case nameof(Game.ReleaseDate):
                     if (Games == null)
                     {
                         UseReleaseDateChanges = Game.ReleaseDate != EditingGame.ReleaseDate;
@@ -1138,7 +1138,7 @@ namespace PlayniteUI.ViewModels
                         UseReleaseDateChanges = true;
                     }
                     break;
-                case "Developers":
+                case nameof(Game.Developers):
                     if (Games == null)
                     {
                         UseDeveloperChanges = !Game.Developers.IsListEqual(EditingGame.Developers);
@@ -1148,7 +1148,7 @@ namespace PlayniteUI.ViewModels
                         UseDeveloperChanges = true;
                     }
                     break;
-                case "Publishers":
+                case nameof(Game.Publishers):
                     if (Games == null)
                     {
                         UsePublisherChanges = !Game.Publishers.IsListEqual(EditingGame.Publishers);
@@ -1158,7 +1158,7 @@ namespace PlayniteUI.ViewModels
                         UsePublisherChanges = true;
                     }
                     break;
-                case "LastActivity":
+                case nameof(Game.LastActivity):
                     if (Games == null)
                     {
                         UseLastActivityChanges = Game.LastActivity != EditingGame.LastActivity;
@@ -1168,7 +1168,7 @@ namespace PlayniteUI.ViewModels
                         UseLastActivityChanges = true;
                     }
                     break;
-                case "Playtime":
+                case nameof(Game.Playtime):
                     if (Games == null)
                     {
                         UsePlaytimeChanges = Game.Playtime != EditingGame.Playtime;
@@ -1178,7 +1178,7 @@ namespace PlayniteUI.ViewModels
                         UsePlaytimeChanges = true;
                     }
                     break;
-                case "Added":
+                case nameof(Game.Added):
                     if (Games == null)
                     {
                         UseAddedChanges = Game.Added != EditingGame.Added;
@@ -1188,7 +1188,7 @@ namespace PlayniteUI.ViewModels
                         UseAddedChanges = true;
                     }
                     break;
-                case "PlayCount":
+                case nameof(Game.PlayCount):
                     if (Games == null)
                     {
                         UsePlayCountChanges = Game.PlayCount != EditingGame.PlayCount;
@@ -1198,7 +1198,7 @@ namespace PlayniteUI.ViewModels
                         UsePlayCountChanges = true;
                     }
                     break;
-                case "Series":
+                case nameof(Game.Series):
                     if (Games == null)
                     {
                         UseSeriesChanges = Game.Series != EditingGame.Series;
@@ -1208,7 +1208,7 @@ namespace PlayniteUI.ViewModels
                         UseSeriesChanges = true;
                     }
                     break;
-                case "Version":
+                case nameof(Game.Version):
                     if (Games == null)
                     {
                         UseVersionChanges = Game.Version != EditingGame.Version;
@@ -1218,7 +1218,7 @@ namespace PlayniteUI.ViewModels
                         UseVersionChanges = true;
                     }
                     break;
-                case "AgeRating":
+                case nameof(Game.AgeRating):
                     if (Games == null)
                     {
                         UseAgeRatingChanges = Game.AgeRating != EditingGame.AgeRating;
@@ -1228,7 +1228,7 @@ namespace PlayniteUI.ViewModels
                         UseAgeRatingChanges = true;
                     }
                     break;
-                case "Region":
+                case nameof(Game.Region):
                     if (Games == null)
                     {
                         UseRegionChanges = Game.Region != EditingGame.Region;
@@ -1238,7 +1238,7 @@ namespace PlayniteUI.ViewModels
                         UseRegionChanges = true;
                     }
                     break;
-                case "Source":
+                case nameof(Game.Source):
                     if (Games == null)
                     {
                         UseSourceChanges = Game.Source != EditingGame.Source;
@@ -1248,7 +1248,7 @@ namespace PlayniteUI.ViewModels
                         UseSourceChanges = true;
                     }
                     break;
-                case "CompletionStatus":
+                case nameof(Game.CompletionStatus):
                     if (Games == null)
                     {
                         UseCompletionStatusChanges = Game.CompletionStatus != EditingGame.CompletionStatus;
@@ -1258,7 +1258,7 @@ namespace PlayniteUI.ViewModels
                         UseCompletionStatusChanges = true;
                     }
                     break;
-                case "UserScore":
+                case nameof(Game.UserScore):
                     if (Games == null)
                     {
                         UseUserScoreChanges = Game.UserScore != EditingGame.UserScore;
@@ -1268,7 +1268,7 @@ namespace PlayniteUI.ViewModels
                         UseUserScoreChanges = true;
                     }
                     break;
-                case "CriticScore":
+                case nameof(Game.CriticScore):
                     if (Games == null)
                     {
                         UseCriticScoreChanges = Game.CriticScore != EditingGame.CriticScore;
@@ -1278,7 +1278,7 @@ namespace PlayniteUI.ViewModels
                         UseCriticScoreChanges = true;
                     }
                     break;
-                case "CommunityScore":
+                case nameof(Game.CommunityScore):
                     if (Games == null)
                     {
                         UseCommunityScoreChanges = Game.CommunityScore != EditingGame.CommunityScore;
@@ -1288,7 +1288,7 @@ namespace PlayniteUI.ViewModels
                         UseCommunityScoreChanges = true;
                     }
                     break; ;
-                case "Favorite":
+                case nameof(Game.Favorite):
                     if (Games == null)
                     {
                         UseFavoriteChanges = Game.Favorite != EditingGame.Favorite;
@@ -1298,7 +1298,7 @@ namespace PlayniteUI.ViewModels
                         UseFavoriteChanges = true;
                     }
                     break; ;
-                case "Hidden":
+                case nameof(Game.Hidden):
                     if (Games == null)
                     {
                         UseHiddenChanges = Game.Hidden != EditingGame.Hidden;

@@ -96,7 +96,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedIndex = value;
-                OnPropertyChanged("ShowFinishButton");
+                OnPropertyChanged(nameof(ShowFinishButton));
                 OnPropertyChanged();
             }
         }

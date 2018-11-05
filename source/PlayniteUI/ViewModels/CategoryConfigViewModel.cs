@@ -48,7 +48,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 categories = value;
-                OnPropertyChanged("Categories");
+                OnPropertyChanged();
             }
         }
 
@@ -63,7 +63,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 enableThreeState = value;
-                OnPropertyChanged("EnableThreeState");
+                OnPropertyChanged();
             }
         }
 

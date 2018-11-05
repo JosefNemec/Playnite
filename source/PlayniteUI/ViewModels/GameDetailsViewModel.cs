@@ -107,7 +107,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 game = value;
-                OnPropertyChanged("Game");
+                OnPropertyChanged();
             }
         }
 
@@ -222,13 +222,13 @@ namespace PlayniteUI.ViewModels
 
         private void Game_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            OnPropertyChanged("ShowInfoPanel");
-            OnPropertyChanged("IsRunning");
-            OnPropertyChanged("IsInstalling");
-            OnPropertyChanged("IsUninstalling");
-            OnPropertyChanged("IsLaunching");
-            OnPropertyChanged("IsPlayAvailable");
-            OnPropertyChanged("IsInstallAvailable");
+            OnPropertyChanged(nameof(ShowInfoPanel));
+            OnPropertyChanged(nameof(IsRunning));
+            OnPropertyChanged(nameof(IsInstalling));
+            OnPropertyChanged(nameof(IsUninstalling));
+            OnPropertyChanged(nameof(IsLaunching));
+            OnPropertyChanged(nameof(IsPlayAvailable));
+            OnPropertyChanged(nameof(IsInstallAvailable));
         }
 
         public void NavigateUrl(string url)

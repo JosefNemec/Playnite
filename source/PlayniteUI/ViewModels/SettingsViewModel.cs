@@ -94,7 +94,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 settings = value;
-                OnPropertyChanged("Settings");
+                OnPropertyChanged();
             }
         }
 

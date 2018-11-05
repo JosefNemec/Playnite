@@ -29,7 +29,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 exception = value;
-                OnPropertyChanged("Exception");
+                OnPropertyChanged();
             }
         }
 

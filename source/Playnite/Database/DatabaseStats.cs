@@ -11,7 +11,7 @@ using NLog;
 
 namespace Playnite.Database
 {
-    public class DatabaseStats : INotifyPropertyChanged, IDisposable
+    public class DatabaseStats : ObservableObject, IDisposable
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -33,9 +33,7 @@ namespace Playnite.Database
                     return database.Games.Count;
                 }
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;       
+        }     
 
         private GameDatabase database;
 
@@ -87,18 +85,13 @@ namespace Playnite.Database
             NotifiyAllChanged();
         }
 
-        public void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
         private void NotifiyAllChanged()
         {
-            OnPropertyChanged("Installed");
-            OnPropertyChanged("UnInstalled");
-            OnPropertyChanged("Hidden");
-            OnPropertyChanged("Favorite");
-            OnPropertyChanged("Total");
+            OnPropertyChanged(nameof(Installed));
+            OnPropertyChanged(nameof(UnInstalled));
+            OnPropertyChanged(nameof(Hidden));
+            OnPropertyChanged(nameof(Favorite));
+            OnPropertyChanged(nameof(Total));
         }
 
         private void Database_DatabaseOpened(object sender, EventArgs e)
@@ -142,10 +135,10 @@ namespace Playnite.Database
                 }
             }
 
-            OnPropertyChanged("Installed");
-            OnPropertyChanged("UnInstalled");
-            OnPropertyChanged("Hidden");
-            OnPropertyChanged("Favorite");
+            OnPropertyChanged(nameof(Installed));
+            OnPropertyChanged(nameof(UnInstalled));
+            OnPropertyChanged(nameof(Hidden));
+            OnPropertyChanged(nameof(Favorite));
         }
 
         private void IncrementalUpdate(Game game, int modifier)

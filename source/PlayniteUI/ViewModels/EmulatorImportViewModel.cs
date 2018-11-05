@@ -153,9 +153,9 @@ namespace PlayniteUI.ViewModels
             set
             {
                 viewTabIndex = value;
-                OnPropertyChanged("ViewTabIndex");
-                OnPropertyChanged("ShowNextButton");
-                OnPropertyChanged("ShowBackButton");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowNextButton));
+                OnPropertyChanged(nameof(ShowBackButton));
             }
         }
 
@@ -166,7 +166,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 emulatorList = value;
-                OnPropertyChanged("EmulatorList");
+                OnPropertyChanged();
             }
         }
 
@@ -177,7 +177,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 gamesList = value;
-                OnPropertyChanged("GamesList");
+                OnPropertyChanged();
             }
         }
 
@@ -220,7 +220,7 @@ namespace PlayniteUI.ViewModels
             private set
             {
                 type = value;
-                OnPropertyChanged("Type");
+                OnPropertyChanged();
             }
         }
 
@@ -231,7 +231,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 isLoading = value;
-                OnPropertyChanged("IsLoading");
+                OnPropertyChanged();
             }
         }
 
@@ -498,8 +498,8 @@ namespace PlayniteUI.ViewModels
                 }
             }
 
-            OnPropertyChanged("DatabasePlatforms");
-            OnPropertyChanged("AvailableEmulators");
+            OnPropertyChanged(nameof(DatabasePlatforms));
+            OnPropertyChanged(nameof(AvailableEmulators));
         }
 
         public void GoNextScreen()
@@ -549,7 +549,7 @@ namespace PlayniteUI.ViewModels
                     {                       
                         if (platforms.OpenView() == true)
                         {
-                            OnPropertyChanged("AvailableEmulators");
+                            OnPropertyChanged(nameof(AvailableEmulators));
                         }
                     }
                 }

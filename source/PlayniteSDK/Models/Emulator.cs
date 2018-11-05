@@ -24,7 +24,7 @@ namespace Playnite.SDK.Models
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged();
             }
         }
 
@@ -38,7 +38,7 @@ namespace Playnite.SDK.Models
             set
             {
                 platforms = value;
-                OnPropertyChanged("Platforms");
+                OnPropertyChanged();
             }
         }
         
@@ -52,7 +52,7 @@ namespace Playnite.SDK.Models
             set
             {
                 imageExtensions = value;
-                OnPropertyChanged("ImageExtensions");
+                OnPropertyChanged();
             }
         }
 
@@ -66,7 +66,7 @@ namespace Playnite.SDK.Models
             set
             {
                 executable = value;
-                OnPropertyChanged("Executable");
+                OnPropertyChanged();
             }
         }
 
@@ -80,7 +80,7 @@ namespace Playnite.SDK.Models
             set
             {
                 arguments = value;
-                OnPropertyChanged("Arguments");
+                OnPropertyChanged();
             }
         }
 
@@ -94,7 +94,7 @@ namespace Playnite.SDK.Models
             set
             {
                 workingDirectory = value;
-                OnPropertyChanged("WorkingDirectory");
+                OnPropertyChanged();
             }
         }
 
@@ -131,7 +131,7 @@ namespace Playnite.SDK.Models
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged();
             }
         }
 
@@ -145,7 +145,7 @@ namespace Playnite.SDK.Models
             set
             {
                 profile = value;
-                OnPropertyChanged("Profiles");
+                OnPropertyChanged();
             }
         }
 

@@ -30,7 +30,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selected = value;
-                OnPropertyChanged("Selected");
+                OnPropertyChanged();
             }
         }
 
@@ -74,7 +74,7 @@ namespace PlayniteUI.ViewModels
                 }
 
                 isPlatformsSelected = value;
-                OnPropertyChanged("IsPlatformsSelected");
+                OnPropertyChanged();
             }
         }
 
@@ -108,7 +108,7 @@ namespace PlayniteUI.ViewModels
                 }
 
                 isEmulatorsSelected = value;
-                OnPropertyChanged("IsEmulatorsSelected");
+                OnPropertyChanged();
             }
         }
 
@@ -119,7 +119,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedPlatform = value;
-                OnPropertyChanged("SelectedPlatform");
+                OnPropertyChanged();
             }
         }
 
@@ -130,7 +130,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedEmulator = value;
-                OnPropertyChanged("SelectedEmulator");
+                OnPropertyChanged();
                 SelectedEmulatorProfile = SelectedEmulator?.Profiles?.FirstOrDefault();
             }
         }
@@ -143,7 +143,7 @@ namespace PlayniteUI.ViewModels
             {
                 selectedEmulatorProfile = value;
                 ReloadSelectablePlatforms(value);
-                OnPropertyChanged("SelectedEmulatorProfile");
+                OnPropertyChanged();
             }
         }
 
@@ -154,7 +154,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 platforms = value;
-                OnPropertyChanged("Platforms");
+                OnPropertyChanged();
             }
         }
 
@@ -165,7 +165,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectablePlatforms = value;
-                OnPropertyChanged("SelectablePlatforms");
+                OnPropertyChanged();
             }
         }
 
@@ -176,7 +176,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 emulators = value;
-                OnPropertyChanged("Emulators");
+                OnPropertyChanged();
             }
         }
 
@@ -678,7 +678,7 @@ namespace PlayniteUI.ViewModels
                     {
                         if (e.PropertyName == "Selected")
                         {
-                            OnPropertyChanged("SelectablePlatforms");                            
+                            OnPropertyChanged(nameof(SelectablePlatforms));
                             selectedEmulatorProfile.Platforms = SelectablePlatforms?.Where(b => b.Selected)?.Select(c => c.Id).ToList();
                         }
                     };

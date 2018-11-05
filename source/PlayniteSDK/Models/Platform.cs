@@ -22,7 +22,7 @@ namespace Playnite.SDK.Models
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged();
             }
         }
 
@@ -36,7 +36,7 @@ namespace Playnite.SDK.Models
             set
             {
                 icon = value;
-                OnPropertyChanged("Icon");
+                OnPropertyChanged();
             }
         }
 
@@ -50,7 +50,7 @@ namespace Playnite.SDK.Models
             set
             {
                 cover = value;
-                OnPropertyChanged("Cover");
+                OnPropertyChanged();
             }
         }
 

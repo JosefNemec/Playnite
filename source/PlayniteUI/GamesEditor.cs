@@ -21,7 +21,7 @@ using System.Windows.Shell;
 
 namespace PlayniteUI
 {
-    public class GamesEditor : INotifyPropertyChanged, IDisposable
+    public class GamesEditor : ObservableObject, IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
         private IResourceProvider resources = new ResourceProvider();
@@ -45,8 +45,6 @@ namespace PlayniteUI
                 return database.Games.Where(a => a.LastActivity != null && a.IsInstalled).OrderByDescending(a => a.LastActivity).Take(10).ToList();
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public GamesEditor(
             GameDatabase database,
@@ -77,11 +75,6 @@ namespace PlayniteUI
             controllers.Uninstalled -= Controllers_Uninstalled;
             controllers.Started -= Controllers_Started;
             controllers.Stopped -= Controllers_Stopped;
-        }
-
-        public void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public bool? SetGameCategories(Game game)
@@ -476,7 +469,7 @@ namespace PlayniteUI
 
         public void UpdateJumpList()
         {           
-            OnPropertyChanged("LastGames");
+            OnPropertyChanged(nameof(LastGames));
             var jumpList = new JumpList();
             foreach (var lastGame in LastGames)
             {

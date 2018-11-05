@@ -21,7 +21,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressText = value;
-                OnPropertyChanged("ProgressText");
+                OnPropertyChanged();
             }
         }
 

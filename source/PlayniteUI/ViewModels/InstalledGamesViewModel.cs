@@ -155,7 +155,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 programs = value;
-                OnPropertyChanged("Programs");
+                OnPropertyChanged();
             }
         }
 
@@ -170,7 +170,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedProgram = value;
-                OnPropertyChanged("SelectedProgram");
+                OnPropertyChanged();
             }
         }
 
@@ -181,7 +181,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 isLoading = value;
-                OnPropertyChanged("IsLoading");
+                OnPropertyChanged();
             }
         }
 

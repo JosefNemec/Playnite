@@ -54,7 +54,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedGameDetails = value;
-                OnPropertyChanged("SelectedGameDetails");
+                OnPropertyChanged();
             }
         }
 
@@ -74,7 +74,7 @@ namespace PlayniteUI.ViewModels
                 }
 
                 selectedGame = value;
-                OnPropertyChanged("SelectedGame");
+                OnPropertyChanged();
             }
         }
 
@@ -98,8 +98,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedGamesBinder = value;
-                OnPropertyChanged("SelectedGamesBinder");
-                OnPropertyChanged("SelectedGames");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedGames));
             }
         }
 
@@ -110,7 +110,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 gamesView = value;
-                OnPropertyChanged("GamesView");
+                OnPropertyChanged();
             }
         }
 
@@ -121,7 +121,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 messages = value;
-                OnPropertyChanged("Messages");
+                OnPropertyChanged();
             }
         }
 
@@ -132,7 +132,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 thirdPartyTools = value;
-                OnPropertyChanged("ThirdPartyTools");
+                OnPropertyChanged();
             }
         }
 
@@ -143,7 +143,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 gameAdditionAllowed = value;
-                OnPropertyChanged("GameAdditionAllowed");
+                OnPropertyChanged();
             }
         }
 
@@ -154,7 +154,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressStatus = value;
-                context.Post((a) => OnPropertyChanged("ProgressStatus"), null);
+                context.Post((a) => OnPropertyChanged(), null);
             }
         }
 
@@ -165,7 +165,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressValue = value;
-                context.Post((a) => OnPropertyChanged("ProgressValue"), null);
+                context.Post((a) => OnPropertyChanged(), null);
             }
         }
 
@@ -176,7 +176,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressTotal = value;
-                context.Post((a) => OnPropertyChanged("ProgressTotal"), null);
+                context.Post((a) => OnPropertyChanged(), null);
             }
         }
 
@@ -187,7 +187,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressVisible = value;
-                context.Post((a) => OnPropertyChanged("ProgressVisible"), null);
+                context.Post((a) => OnPropertyChanged(), null);
             }
         }
 
@@ -198,7 +198,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showGameSidebar = value;
-                OnPropertyChanged("ShowGameSidebar");
+                OnPropertyChanged();
             }
         }
 
@@ -209,7 +209,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 mainMenuOpened = value;
-                OnPropertyChanged("MainMenuOpened");
+                OnPropertyChanged();
             }
         }
 
@@ -220,7 +220,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 searchOpened = value;
-                OnPropertyChanged("SearchOpened");
+                OnPropertyChanged();
             }
         }
 
@@ -231,7 +231,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 visibility = value;
-                OnPropertyChanged("Visibility");
+                OnPropertyChanged();
             }
         }
 
@@ -247,7 +247,7 @@ namespace PlayniteUI.ViewModels
                 }
 
                 windowState = value;
-                OnPropertyChanged("WindowState");
+                OnPropertyChanged();
             }
         }
 
@@ -258,7 +258,7 @@ namespace PlayniteUI.ViewModels
             private set
             {
                 appSettings = value;
-                OnPropertyChanged("AppSettings");
+                OnPropertyChanged();
             }
         }
 
@@ -269,7 +269,7 @@ namespace PlayniteUI.ViewModels
             private set
             {
                 gamesStats = value;
-                OnPropertyChanged("GamesStats");
+                OnPropertyChanged();
             }
         }
 
