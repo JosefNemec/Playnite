@@ -75,8 +75,8 @@ namespace Playnite.Plugins
             set
             {
                 scriptFunctions = value;
-                OnPropertyChanged("ExportedFunctions");
-                OnPropertyChanged("HasExportedFunctions");
+                OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -87,8 +87,8 @@ namespace Playnite.Plugins
             set
             {
                 pluginFunctions = value;
-                OnPropertyChanged("ExportedFunctions");
-                OnPropertyChanged("HasExportedFunctions");
+                OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -146,7 +146,7 @@ namespace Playnite.Plugins
                 }
             }
 
-            Scripts.Clear();
+            Scripts?.Clear();
             ScriptFunctions = null;
         }
 
@@ -160,7 +160,7 @@ namespace Playnite.Plugins
                 }
             }
 
-            LibraryPlugins.Clear();
+            LibraryPlugins?.Clear();
         }
 
         private void DisposeGenericPlugins()
@@ -173,7 +173,7 @@ namespace Playnite.Plugins
                 }
             }
 
-            GenericPlugins.Clear();
+            GenericPlugins?.Clear();
             PluginFunctions = null;
         }
 

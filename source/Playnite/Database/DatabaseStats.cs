@@ -30,7 +30,7 @@ namespace Playnite.Database
                 }
                 else
                 {
-                    return database.Games.Count();
+                    return database.Games.Count;
                 }
             }
         }

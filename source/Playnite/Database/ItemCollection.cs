@@ -74,8 +74,7 @@ namespace Playnite.Database
 
     public class ItemCollection<TItem> : ICollection<TItem> where TItem : DatabaseObject
     {
-        private static ILogger logger = LogManager.GetLogger();
-
+        private ILogger logger = LogManager.GetLogger();
         private readonly object collectionLock = new object();
         private string storagePath;
         private readonly Action<TItem> initMethod;
@@ -113,14 +112,14 @@ namespace Playnite.Database
             this.initMethod = initMethod;
         }
 
-        public void InitializeCollection(string storagePath)
+        public void InitializeCollection(string path)
         {
-            if (!string.IsNullOrEmpty(this.storagePath))
+            if (!string.IsNullOrEmpty(storagePath))
             {
-                throw new Exception("Collection alredy initialized.");
+                throw new Exception("Collection already initialized.");
             }
 
-            this.storagePath = storagePath;
+            storagePath = path;
             if (Directory.Exists(storagePath))
             {
                 using (var timer = new ExecutionTimer("EnumerateFiles"))

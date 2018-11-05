@@ -194,7 +194,7 @@ namespace Playnite.Database
                                 game.Remove("WikiUrl");
                             }
 
-                            if (links.Count() > 0)
+                            if (links.Count > 0)
                             {
                                 game.Add("Links", new BsonArray(links.Select(a => BsonMapper.Global.ToDocument(a))));
                             }
