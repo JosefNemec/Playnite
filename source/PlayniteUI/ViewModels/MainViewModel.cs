@@ -866,10 +866,7 @@ namespace PlayniteUI.ViewModels
                 if (!Database.IsOpen)
                 {
                     Database.SetDatabasePath(AppSettings.DatabasePath);
-                    using (var timer = new ExecutionTimer("OpenDatabase"))
-                    {
-                        Database.OpenDatabase();
-                    }
+                    Database.OpenDatabase();
                 }
             }, Resources.FindString("LOCOpeningDatabase"));
 
@@ -1396,10 +1393,7 @@ namespace PlayniteUI.ViewModels
         {
             Window.Show(this);
             Window.BringToForeground();
-            using (var timer = new ExecutionTimer("InitializeView"))
-            {
-                InitializeView();
-            }
+            InitializeView();
         }
 
         public virtual void CloseView()

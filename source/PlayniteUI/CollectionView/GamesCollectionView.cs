@@ -461,10 +461,7 @@ namespace PlayniteUI
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
         {
             logger.Debug("Refreshing collection view filter.");
-            using (new ExecutionTimer("CollectionView.Refresh"))
-            {
-                CollectionView.Refresh();
-            }
+            CollectionView.Refresh();
         }
 
         private void SetViewDescriptions()

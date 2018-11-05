@@ -122,22 +122,19 @@ namespace Playnite.Database
             storagePath = path;
             if (Directory.Exists(storagePath))
             {
-                using (var timer = new ExecutionTimer("EnumerateFiles"))
+                Parallel.ForEach(Directory.EnumerateFiles(storagePath, "*.json"), (objectFile) =>
                 {
-                    Parallel.ForEach(Directory.EnumerateFiles(storagePath, "*.json"), (objectFile) =>
+                    try
                     {
-                        try
-                        {
-                            var obj = Serialization.FromJson<TItem>(FileSystem.ReadFileAsStringSafe(objectFile));
-                            initMethod?.Invoke(obj);
-                            Items.Add(obj);
-                        }
-                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                        {
-                            logger.Error(e, $"Failed to load item from {objectFile}");
-                        }
-                    });
-                }
+                        var obj = Serialization.FromJson<TItem>(FileSystem.ReadFileAsStringSafe(objectFile));
+                        initMethod?.Invoke(obj);
+                        Items.Add(obj);
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to load item from {objectFile}");
+                    }
+                });
             }
         }
 
