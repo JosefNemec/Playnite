@@ -813,58 +813,56 @@ namespace PlayniteUI.ViewModels
 
         protected void InitializeView()
         {
-            try
+            if (GameDatabase.GetMigrationRequired(AppSettings.DatabasePath))
             {
-                if (GameDatabase.GetMigrationRequired(AppSettings.DatabasePath))
+                var migrationProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
+                () =>
                 {
-                    var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(),
-                    () =>
+                    if (AppSettings.DatabasePath.EndsWith(".db", StringComparison.OrdinalIgnoreCase))
                     {
-                        if (AppSettings.DatabasePath.EndsWith(".db", StringComparison.OrdinalIgnoreCase))
+                        var newDbPath = GameDatabase.GetMigratedDbPath(AppSettings.DatabasePath);
+                        var newResolvedDbPath = GameDatabase.GetFullDbPath(newDbPath);
+                        if (Directory.Exists(newResolvedDbPath))
                         {
-                            var newDbPath = GameDatabase.GetMigratedDbPath(AppSettings.DatabasePath);
-                            var newResolvedDbPath = GameDatabase.GetFullDbPath(newDbPath);
-                            if (Directory.Exists(newResolvedDbPath))
-                            {
-                                newDbPath += "_db";
-                                newResolvedDbPath += "_db";
-                            }
-
-                            var dbSize = new FileInfo(AppSettings.DatabasePath).Length;
-                            if (FileSystem.GetFreeSpace(newResolvedDbPath) < dbSize)
-                            {
-                                throw new NoDiskSpaceException(dbSize);
-                            }
-
-                            GameDatabase.MigrateDatabase(AppSettings.DatabasePath);
-                            GameDatabase.MigrateToNewFormat(AppSettings.DatabasePath, newResolvedDbPath);
-                            FileSystem.DeleteFile(AppSettings.DatabasePath);
-                            AppSettings.DatabasePath = newDbPath;
-                        }
-                        else
-                        {
-                            // Do migration of new format when needed
-                        }
-                    })
-                    {
-                        ProgressText = Resources.FindString("LOCDBUpgradeProgress")
-                    };
-
-                    if (progressModel.ActivateProgress() == false)
-                    {
-                        Logger.Error(progressModel.FailException, "Failed to migrate database to new version.");
-                        var message = Resources.FindString("LOCDBUpgradeFail");
-                        if (progressModel.FailException is NoDiskSpaceException exc)
-                        {
-                            message = string.Format(Resources.FindString("LOCDBUpgradeEmptySpaceFail"), exc.RequiredSpace / 1024 / 1024);
+                            newDbPath += "_db";
+                            newResolvedDbPath += "_db";
                         }
 
-                        Dialogs.ShowMessage(message, "", MessageBoxButton.OK, MessageBoxImage.Error);
-                        GameAdditionAllowed = true;
-                        return;
+                        var dbSize = new FileInfo(AppSettings.DatabasePath).Length;
+                        if (FileSystem.GetFreeSpace(newResolvedDbPath) < dbSize)
+                        {
+                            throw new NoDiskSpaceException(dbSize);
+                        }
+
+                        GameDatabase.MigrateDatabase(AppSettings.DatabasePath);
+                        GameDatabase.MigrateToNewFormat(AppSettings.DatabasePath, newResolvedDbPath);
+                        FileSystem.DeleteFile(AppSettings.DatabasePath);
+                        AppSettings.DatabasePath = newDbPath;
                     }
-                }
+                    else
+                    {
+                        // Do migration of new format when needed
+                    }
+                }, Resources.FindString("LOCDBUpgradeProgress"));
 
+                if (migrationProgress.ActivateProgress() != true)
+                {
+                    Logger.Error(migrationProgress.FailException, "Failed to migrate database to new version.");
+                    var message = Resources.FindString("LOCDBUpgradeFail");
+                    if (migrationProgress.FailException is NoDiskSpaceException exc)
+                    {
+                        message = string.Format(Resources.FindString("LOCDBUpgradeEmptySpaceFail"), Units.BytesToMegaBytes(exc.RequiredSpace));
+                    }
+
+                    Dialogs.ShowErrorMessage(message, "");
+                    GameAdditionAllowed = false;
+                    return;
+                }
+            }
+            
+            var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
+            () =>
+            {
                 if (!Database.IsOpen)
                 {
                     Database.SetDatabasePath(AppSettings.DatabasePath);
@@ -873,29 +871,18 @@ namespace PlayniteUI.ViewModels
                         Database.OpenDatabase();
                     }
                 }
-            }
-            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                Logger.Error(exc, "Failed to open database.");
-                var message = Resources.FindString("LOCDatabaseOpenError") + $" {exc.Message}";
-                if (exc is System.IO.IOException || exc is UnauthorizedAccessException)
-                {
-                    message = string.Format(Resources.FindString("LOCDatabaseOpenAccessError"), AppSettings.DatabasePath);
-                }
+            }, Resources.FindString("LOCOpeningDatabase"));
 
-                Dialogs.ShowMessage(
-                        message,
-                        Resources.FindString("LOCDatabaseErroTitle"),
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
+            if (openProgress.ActivateProgress() != true)
+            {
+                Logger.Error(openProgress.FailException, "Failed to open library database.");
+                var message = Resources.FindString("LOCDatabaseOpenError") + $"\n{openProgress.FailException.Message}";
+                Dialogs.ShowErrorMessage(message, "");
                 GameAdditionAllowed = false;
                 return;
             }
-
-            using (var timer = new ExecutionTimer("GamesView inti"))
-            {
-                GamesView = new GamesCollectionView(Database, AppSettings, IsFullscreenView, Extensions);
-            }
+                     
+            GamesView = new GamesCollectionView(Database, AppSettings, IsFullscreenView, Extensions);         
             BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
             if (GamesView.CollectionView.Count > 0)
             {

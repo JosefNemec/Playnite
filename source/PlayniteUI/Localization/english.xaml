@@ -47,9 +47,9 @@ Automatically imported games may reappear in Playnite after next import procedur
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Friends</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Section contains changes to be saved</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress">Updating database version...</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Updating game library format...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Database update failed, can't open database file.</sys:String>
-    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Cannot update library database. {0} MBs of free space is required.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Cannot update game library. {0} MBs of free space is required.</sys:String>
 
     <sys:String x:Key="LOCGameError">GameError</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Cannot start game. '{0}' was not found in database.</sys:String>
@@ -560,6 +560,7 @@ Please attach following ID to your crash report:</sys:String>
 
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Opening Desktop mode...</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Opening Fullscreen mode...</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">Loading game library...</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Failed to install script file.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Script installed successfully.</sys:String>
     <sys:String x:Key="LOCInstallScript">Install Script</sys:String>
