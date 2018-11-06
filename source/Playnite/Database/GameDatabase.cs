@@ -789,7 +789,6 @@ namespace Playnite.Database
 
             var dbExists = Directory.Exists(DatabasePath);
             logger.Info("Opening db " + DatabasePath);
-            CloseDatabase();
 
             if (!dbExists)
             {
@@ -832,19 +831,6 @@ namespace Playnite.Database
 
             DatabaseOpened?.Invoke(this, null);
             IsOpen = true;
-        }
-
-        public void CloseDatabase()
-        {
-            if (!IsOpen)
-            {
-                return;
-            }
-
-            Games = null;
-            Platforms = null;
-            Emulators = null;
-            IsOpen = false;
         }
 
         #region Files

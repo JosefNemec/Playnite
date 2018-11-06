@@ -19,20 +19,13 @@ namespace PlayniteUI.ViewModels
 {    
     public class FirstTimeStartupViewModel : ObservableObject
     {
-        public enum DbLocation
-        {
-            ProgramData,
-            Custom
-        }
-
         public class Pages
         {
             public const int Intro = 0;
-            public const int Database = 1;
-            public const int ProviderSelect = 2;
-            public const int ProviderConfig = 3;
-            public const int Custom = 4;
-            public const int Finish = 5;
+            public const int ProviderSelect = 1;
+            public const int ProviderConfig = 2;
+            public const int Custom = 3;
+            public const int Finish = 4;
         }
 
         private static ILogger logger = LogManager.GetLogger();
@@ -43,21 +36,6 @@ namespace PlayniteUI.ViewModels
         private IPlayniteAPI playniteApi;
         private List<PluginSettings> selectedPlugins;
         private int selectedPluginIndex = 0;
-
-        private DbLocation databaseLocation = DbLocation.ProgramData;
-        public DbLocation DatabaseLocation
-        {
-            get
-            {
-                return databaseLocation;
-            }
-
-            set
-            {
-                databaseLocation = value;
-                OnPropertyChanged();
-            }
-        }
 
         public bool ShowFinishButton
         {
@@ -154,14 +132,6 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public RelayCommand<object> SelectDbFileCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                SelectDbFile();
-            });
-        }
-
         public RelayCommand<object> NextCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -237,16 +207,6 @@ namespace PlayniteUI.ViewModels
 
         public void NavigateNext()
         {
-            if (SelectedIndex == Pages.Database)
-            {
-                if (DatabaseLocation == DbLocation.Custom && !Paths.GetValidFilePath(Settings.DatabasePath))
-                {
-                    dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidDBLocation"),
-                        resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-            }
-
             if (SelectedIndex == Pages.ProviderSelect)
             {
                 selectedPluginIndex = 0;
@@ -314,16 +274,7 @@ namespace PlayniteUI.ViewModels
             }
 
             SelectedIndex--;
-        }
-
-        public void SelectDbFile()
-        {
-            var path = dialogs.SaveFile("Database file (*.db)|*.db", false);
-            if (!string.IsNullOrEmpty(path))
-            {
-                Settings.DatabasePath = path;
-            }
-        }        
+        }       
 
         public void ImportGames(InstalledGamesViewModel model)
         {

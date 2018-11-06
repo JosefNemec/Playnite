@@ -230,34 +230,28 @@ namespace PlayniteUI
             bool existingDb = false;
             if (!AppSettings.FirstTimeWizardComplete)
             {
+                if (PlayniteSettings.IsPortable)
+                {
+                    AppSettings.DatabasePath = @"{PlayniteDir}\library";
+                }
+                else
+                {
+                    AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "library");
+                }
+
+                existingDb = Directory.Exists(AppSettings.DatabasePath);
+                AppSettings.SaveSettings();
+                Database.SetDatabasePath(AppSettings.DatabasePath);
+                Database.OpenDatabase();
+
                 var wizardWindow = FirstTimeStartupWindowFactory.Instance;
                 var wizardModel = new FirstTimeStartupViewModel(wizardWindow, dialogs, new ResourceProvider(), Extensions, Api);
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
                     AppSettings.FirstTimeWizardComplete = true;
-                    if (wizardModel.DatabaseLocation == FirstTimeStartupViewModel.DbLocation.Custom)
-                    {
-                        AppSettings.DatabasePath = settings.DatabasePath;
-                    }
-                    else
-                    {
-                        if (PlayniteSettings.IsPortable)
-                        {
-                            AppSettings.DatabasePath = @"{PlayniteDir}\library";
-                        }
-                        else
-                        {
-                            AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "library");
-                        }
-                    }
-
                     AppSettings.DisabledPlugins = settings.DisabledPlugins;
                     AppSettings.SaveSettings();
-                    existingDb = File.Exists(AppSettings.DatabasePath);
-                    Database.SetDatabasePath(AppSettings.DatabasePath);
-                    Database.OpenDatabase();
-
                     if (wizardModel.ImportedGames?.Any() == true)
                     {
                         InstalledGamesViewModel.AddImportableGamesToDb(wizardModel.ImportedGames, Database);
@@ -265,30 +259,21 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "library");
                     AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.SaveSettings();
-                    existingDb = File.Exists(AppSettings.DatabasePath);
-                    Database.SetDatabasePath(AppSettings.DatabasePath);
                 }
+
+                // Emulator wizard
+                var model = new EmulatorImportViewModel(Database,
+                   EmulatorImportViewModel.DialogType.Wizard,
+                   EmulatorImportWindowFactory.Instance,
+                   dialogs,
+                   new ResourceProvider());
+                model.OpenView();
             }
             else
             {
                 Database.SetDatabasePath(AppSettings.DatabasePath);
-            }
-
-            // Emulator wizard
-            if (!AppSettings.EmulatorWizardComplete)
-            {
-                var model = new EmulatorImportViewModel(Database,
-                       EmulatorImportViewModel.DialogType.Wizard,
-                       EmulatorImportWindowFactory.Instance,
-                       dialogs,
-                       new ResourceProvider());
-
-                model.OpenView();                
-                AppSettings.EmulatorWizardComplete = true;
-                AppSettings.SaveSettings();
             }
 
             Extensions.LoadLibraryPlugins(Api, AppSettings.DisabledPlugins);
@@ -471,7 +456,6 @@ namespace PlayniteUI
                     AppSettings?.SaveSettings();
                     Extensions?.Dispose();
                     controllers?.Dispose();
-                    Database?.CloseDatabase();
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -496,7 +480,6 @@ namespace PlayniteUI
             if (Database.IsOpen)
             {
                 FullscreenModel = null;
-                Database.CloseDatabase();
             }
 
             GamesEditor.IsFullscreen = false;
@@ -536,7 +519,6 @@ namespace PlayniteUI
             if (Database.IsOpen)
             {
                 MainModel = null;
-                Database.CloseDatabase();
             }
 
             GamesEditor.IsFullscreen = true;
