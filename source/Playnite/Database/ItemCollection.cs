@@ -83,7 +83,7 @@ namespace Playnite.Database
         private List<TItem> RemovedItemsEventBuffer = new List<TItem>();
         private List<ItemUpdateEvent<TItem>> ItemUpdatesEventBuffer = new List<ItemUpdateEvent<TItem>>();
 
-        public BlockingCollection<TItem> Items { get; }
+        public ConcurrentDictionary<Guid, TItem> Items { get; }
 
         public int Count => Items.Count;
 
@@ -108,7 +108,7 @@ namespace Playnite.Database
 
         public ItemCollection(Action<TItem> initMethod)
         {
-            Items = new BlockingCollection<TItem>();
+            Items = new ConcurrentDictionary<Guid, TItem>();
             this.initMethod = initMethod;
         }
 
@@ -128,7 +128,7 @@ namespace Playnite.Database
                     {
                         var obj = Serialization.FromJson<TItem>(FileSystem.ReadFileAsStringSafe(objectFile));
                         initMethod?.Invoke(obj);
-                        Items.Add(obj);
+                        Items.TryAdd(obj.Id, obj);
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -155,7 +155,14 @@ namespace Playnite.Database
 
         public TItem Get(Guid id)
         {
-            return Items.FirstOrDefault(a => a.Id == id);
+            if (Items.TryGetValue(id, out var item))
+            {
+                return item;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public virtual void Add(TItem item)
@@ -163,7 +170,7 @@ namespace Playnite.Database
             lock (collectionLock)
             {
                 SaveItemData(item);
-                Items.Add(item);
+                Items.TryAdd(item.Id, item);
             }
 
             OnCollectionChanged(new List<TItem>() { item }, new List<TItem>());
@@ -181,7 +188,7 @@ namespace Playnite.Database
                 foreach (var item in items)
                 {
                     SaveItemData(item);
-                    Items.Add(item);
+                    Items.TryAdd(item.Id, item);
                 }
             }
 
@@ -194,7 +201,7 @@ namespace Playnite.Database
             lock (collectionLock)
             {
                 FileSystem.DeleteFile(GetItemFilePath(item.Id));
-                Items.TryTake(out item);
+                Items.TryRemove(id, out var removed);
             }
 
             OnCollectionChanged(new List<TItem>(), new List<TItem>() { item });
@@ -218,8 +225,7 @@ namespace Playnite.Database
                 foreach (var item in items)
                 {
                     FileSystem.DeleteFile(GetItemFilePath(item.Id));
-                    var actualItem = Get(item.Id);
-                    Items.TryTake(out actualItem);
+                    Items.TryRemove(item.Id, out var removed);
                 }
             }
 
@@ -271,22 +277,22 @@ namespace Playnite.Database
 
         public bool Contains(TItem item)
         {
-            return Items.Contains(item);
+            return Items.ContainsKey(item.Id);
         }
 
         public void CopyTo(TItem[] array, int arrayIndex)
         {
-            Items.CopyTo(array, arrayIndex);
+            Items.Values.CopyTo(array, arrayIndex);
         }
 
         public IEnumerator<TItem> GetEnumerator()
         {
-            return Items.AsEnumerable().GetEnumerator();
+            return Items.Values.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return Items.AsEnumerable().GetEnumerator();
+            return Items.Values.GetEnumerator();
         }
 
         private void OnCollectionChanged(List<TItem> addedItems, List<TItem> removedItems)
