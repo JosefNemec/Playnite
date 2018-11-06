@@ -50,7 +50,7 @@ namespace TestGameLibrary
                         Type = GameActionType.File,
                         Path = "notepad.exe"
                     },
-                    State = new GameState() { Installed = true },
+                    IsInstalled = true,
                     Icon = @"c:\Windows\notepad.exe"
                 },
                 new Game("Calculator")
@@ -62,7 +62,7 @@ namespace TestGameLibrary
                         Type = GameActionType.File,
                         Path = "calc.exe"
                     },
-                    State = new GameState() { Installed = true },
+                    IsInstalled = true,
                     Icon = @"https://playnite.link/applogo.png",
                     BackgroundImage =  @"https://playnite.link/applogo.png"
                 },
@@ -75,7 +75,7 @@ namespace TestGameLibrary
                         Type = GameActionType.File,
                         Path = "mspaint.exe"
                     },
-                    State = new GameState() { Installed = true },
+                    IsInstalled = true,
                     Icon = LibraryIcon
                 },
                 new Game("WordPad")
@@ -87,7 +87,7 @@ namespace TestGameLibrary
                         Type = GameActionType.File,
                         Path = "write.exe"
                     },
-                    State = new GameState() { Installed = true },
+                    IsInstalled = true,
                     Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\icon.tga")
                 }
             };

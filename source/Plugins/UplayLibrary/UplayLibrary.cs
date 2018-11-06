@@ -70,7 +70,7 @@ namespace UplayLibrary
                     InstallDirectory = installDir,
                     PlayAction = GetGamePlayTask(install),
                     Name = Path.GetFileName(installDir.TrimEnd(Path.DirectorySeparatorChar)),
-                    State = new GameState() { Installed = true }
+                    IsInstalled = true
                 };
 
                 games.Add(newGame);

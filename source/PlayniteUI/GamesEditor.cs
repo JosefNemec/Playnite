@@ -137,7 +137,7 @@ namespace PlayniteUI
 
             try
             {
-                if (game.State.Running)
+                if (game.IsRunning)
                 {
                     logger.Warn("Failed to start the game, game is already running.");
                     return;
@@ -288,7 +288,7 @@ namespace PlayniteUI
 
         public void RemoveGame(Game game)
         {
-            if (game.State.Installing || game.State.Running || game.State.Launching || game.State.Uninstalling)
+            if (game.IsInstalling || game.IsRunning || game.IsLaunching || game.IsUninstalling)
             {
                 dialogs.ShowMessage(
                     resources.FindString("LOCGameRemoveRunningError"),
@@ -312,7 +312,7 @@ namespace PlayniteUI
 
         public void RemoveGames(List<Game> games)
         {
-            if (games.Exists(a => a.State.Installing || a.State.Running || a.State.Launching || a.State.Uninstalling))
+            if (games.Exists(a => a.IsInstalling || a.IsRunning || a.IsLaunching || a.IsUninstalling))
             {
                 dialogs.ShowMessage(
                     resources.FindString("LOCGameRemoveRunningError"),
@@ -415,7 +415,7 @@ namespace PlayniteUI
 
         public void UnInstallGame(Game game)
         {
-            if (game.State.Running || game.State.Launching)
+            if (game.IsRunning || game.IsLaunching)
             {
                 dialogs.ShowMessage(
                     resources.FindString("LOCGameUninstallRunningError"),
@@ -508,7 +508,31 @@ namespace PlayniteUI
         private void UpdateGameState(Guid id, bool? installed, bool? running, bool? installing, bool? uninstalling, bool? launching)
         {
             var game = database.Games.Get(id);
-            game.State.SetState(installed, running, installing, uninstalling, launching);
+            if (installed != null)
+            {
+                game.IsInstalled = installed.Value;
+            }
+
+            if (running != null)
+            {
+                game.IsRunning = running.Value;
+            }
+
+            if (installing != null)
+            {
+                game.IsInstalling = installing.Value;
+            }
+
+            if (uninstalling != null)
+            {
+                game.IsUninstalling = uninstalling.Value;
+            }
+
+            if (launching != null)
+            {
+                game.IsLaunching = launching.Value;
+            }
+
             if (launching == true)
             {
                 game.LastActivity = DateTime.Now;
@@ -544,7 +568,7 @@ namespace PlayniteUI
             logger.Info($"Game {game.Name} stopped after {args.EllapsedTime} seconds.");
 
             var dbGame = database.Games.Get(game.Id);
-            dbGame.State.Running = false;
+            dbGame.IsRunning = false;
             dbGame.Playtime += args.EllapsedTime;
             database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);
@@ -561,8 +585,8 @@ namespace PlayniteUI
             logger.Info($"Game {game.Name} installed after {args.EllapsedTime} seconds.");
 
             var dbGame = database.Games.Get(game.Id);
-            dbGame.State.Installing = false;
-            dbGame.State.Installed = true;
+            dbGame.IsInstalling = false;
+            dbGame.IsInstalled = true;
             dbGame.InstallDirectory = args.Controller.Game.InstallDirectory;
 
             if (dbGame.PlayAction == null)
@@ -585,8 +609,8 @@ namespace PlayniteUI
             logger.Info($"Game {game.Name} uninstalled after {args.EllapsedTime} seconds.");
 
             var dbGame = database.Games.Get(game.Id);
-            dbGame.State.Uninstalling = false;
-            dbGame.State.Installed = false;
+            dbGame.IsUninstalling = false;
+            dbGame.IsInstalled = false;
             dbGame.InstallDirectory = string.Empty;
             database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);

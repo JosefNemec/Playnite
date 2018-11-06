@@ -449,7 +449,7 @@ namespace PlayniteUI.ViewModels
                     Type = GameActionType.Emulator                    
                 };
 
-                game.Game.State = new GameState() { Installed = true };
+                game.Game.IsInstalled = true;
             }
 
             ImportedGames = GamesList.Where(a => a.Import)?.Select(a => a.Game).ToList();

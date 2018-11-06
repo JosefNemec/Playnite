@@ -53,7 +53,7 @@ namespace Playnite
                 };
             };
 
-            game.State.Installed = true;
+            game.IsInstalled = true;
             return game;
         }
 

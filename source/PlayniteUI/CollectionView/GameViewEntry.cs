@@ -29,7 +29,6 @@ namespace PlayniteUI
         public string Icon => Game.Icon;
         public string CoverImage => Game.CoverImage;
         public string BackgroundImage => Game.BackgroundImage;
-        public bool IsInstalled => Game.IsInstalled;
         public bool Hidden => Game.Hidden;
         public bool Favorite => Game.Favorite;
         public string InstallDirectory => Game.InstallDirectory;
@@ -38,11 +37,11 @@ namespace PlayniteUI
         public GameAction PlayAction => Game.PlayAction;
         public string DisplayName => Game.Name;
         public string Description => Game.Description;
+        public bool IsInstalled => Game.IsInstalled;
         public bool IsInstalling => Game.IsInstalling;
         public bool IsUnistalling => Game.IsUninstalling;
         public bool IsLaunching => Game.IsLaunching;
         public bool IsRunning => Game.IsRunning;
-        public GameState State => Game.State;
         public long Playtime => Game.Playtime;
         public DateTime? Added => Game.Added;
         public DateTime? Modified => Game.Modified;

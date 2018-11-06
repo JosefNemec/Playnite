@@ -280,7 +280,8 @@ namespace PlayniteUI.ViewModels
                 {
                     Name = program.Name,
                     InstallDirectory = program.WorkDir,
-                    Source = program.Type == ProgramType.UWP ? "Windows Store" : string.Empty
+                    Source = program.Type == ProgramType.UWP ? "Windows Store" : string.Empty,
+                    IsInstalled = true
                 };
 
                 var path = program.Path;
@@ -297,8 +298,6 @@ namespace PlayniteUI.ViewModels
                     WorkingDir = program.Type == ProgramType.Win32 ? "{InstallDir}" : string.Empty,
                     Name = "Play"                    
                 };
-
-                newGame.State = new GameState() { Installed = true };
 
                 InstalledGameMetadata.IconData icon = null;
 

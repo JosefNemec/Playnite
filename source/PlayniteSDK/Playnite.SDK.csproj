@@ -74,7 +74,6 @@
     <Compile Include="Models\CompletionStatus.cs" />
     <Compile Include="Models\Emulator.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\GameState.cs" />
     <Compile Include="Models\GameAction.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\Platform.cs" />

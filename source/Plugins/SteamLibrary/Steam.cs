@@ -94,9 +94,9 @@ namespace SteamLibrary
             return $"http://steamcommunity.com/app/{appId}/workshop/";
         }
 
-        public static GameState GetAppState(GameID id)
+        public static AppState GetAppState(GameID id)
         {
-            var state = new GameState();
+            var state = new AppState();
             var rootString = @"Software\Valve\Steam\Apps\" + id.AppID.ToString();
             var root = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Default);
             var appKey = root.OpenSubKey(rootString);

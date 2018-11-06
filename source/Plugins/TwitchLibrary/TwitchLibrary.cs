@@ -93,7 +93,7 @@ namespace TwitchLibrary
                     PluginId = Id,
                     Source = "Twitch",
                     Name = program.DisplayName,
-                    State = new GameState() { Installed = true },
+                    IsInstalled = true,
                     PlayAction = GetPlayAction(gameId)
                 };
 
@@ -156,8 +156,7 @@ namespace TwitchLibrary
                     PluginId = Id,
                     Source = "Twitch",
                     GameId = item.product.id,
-                    Name = item.product.productTitle,
-                    State = new GameState() { Installed = false }
+                    Name = item.product.productTitle
                 };
 
                 games.Add(game);

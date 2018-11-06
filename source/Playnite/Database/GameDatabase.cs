@@ -621,11 +621,18 @@ namespace Playnite.Database
                                 emuCollection.Update(emulator);
                             }
                         }
-
-                        // Change game Id from int to Guid
+                                                
                         var gameCol = db.GetCollection("games");
                         foreach (var game in gameCol.FindAll().ToList())
                         {
+                            // Change game states object
+                            var state = game["State"];
+                            if (!state.IsNull)
+                            {
+                                game.Add("IsInstalled", state.AsDocument["Installed"].AsBoolean);
+                            }
+
+                            // Change game Id from int to Guid
                             gameCol.Delete(game["_id"].AsInt32);
                             game["_id"] = Guid.NewGuid();
                             gameCol.Insert(game);

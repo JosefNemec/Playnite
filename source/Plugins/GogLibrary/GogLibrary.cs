@@ -94,7 +94,7 @@ namespace GogLibrary
                     PluginId = Id,
                     Source = "GOG",
                     Name = program.DisplayName,
-                    State = new GameState() { Installed = true }
+                    IsInstalled = true
                 };
    
                 var tasks = GetGameTasks(game.GameId, game.InstallDirectory);
@@ -159,8 +159,7 @@ namespace GogLibrary
                     Links = new ObservableCollection<Link>()
                     {
                         new Link("Store", @"https://www.gog.com" + game.game.url)
-                    },
-                    State = new GameState() { Installed = false }
+                    }
                 };
 
                 if (game.stats?.Keys?.Any() == true)

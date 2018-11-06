@@ -227,7 +227,7 @@ namespace OriginLibrary
                             PluginId = Id,
                             Source = "Origin",
                             GameId = gameId,
-                            State = new GameState() { Installed = true }
+                            IsInstalled = true
                         };
 
                         GameLocalDataResponse localData = null;
@@ -323,8 +323,7 @@ namespace OriginLibrary
                         PluginId = Id,
                         Source = "Origin",
                         GameId = game.offerId,
-                        Name = game.offerId,
-                        State = new GameState() { Installed = false }
+                        Name = game.offerId
                     });
                 }
 

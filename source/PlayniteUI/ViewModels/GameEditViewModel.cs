@@ -1938,10 +1938,9 @@ namespace PlayniteUI.ViewModels
                     }
                 }
 
-                if (Game.State.Installed != EditingGame.State.Installed)
+                if (Game.IsInstalled != EditingGame.IsInstalled)
                 {
-                    // GameState is not observable so we need to change the whole object to send notify messages
-                    Game.State = new GameState(Game.State) { Installed = EditingGame.State.Installed };
+                    Game.IsInstalled = EditingGame.IsInstalled;
                 }
             }
 

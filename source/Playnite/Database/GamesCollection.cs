@@ -13,10 +13,10 @@ namespace Playnite.Database
 
         public GamesCollection(GameDatabase database) : base((Game game) =>
         {
-            game.State.Installing = false;
-            game.State.Uninstalling = false;
-            game.State.Launching = false;
-            game.State.Running = false;
+            game.IsInstalling = false;
+            game.IsUninstalling = false;
+            game.IsLaunching = false;
+            game.IsRunning = false;
         })
         {
             db = database;

@@ -441,49 +441,74 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private bool isInstalling;
         /// <summary>
-        /// Gets value indicating wheter a game is being installed..
+        /// Gets or sets value indicating wheter a game is being installed..
         /// </summary>
-        [JsonIgnore]
         public bool IsInstalling
         {
-            get => State.Installing;
+            get => isInstalling;
+            set
+            {
+                isInstalling = value;
+                OnPropertyChanged();
+            }
         }
 
+        private bool isUninstalling;
         /// <summary>
-        /// Gets value indicating wheter a game is being uninstalled.
+        /// Gets or sets value indicating wheter a game is being uninstalled.
         /// </summary>
-        [JsonIgnore]
         public bool IsUninstalling
         {
-            get => State.Uninstalling;
+            get => isUninstalling;
+            set
+            {
+                isUninstalling = value;
+                OnPropertyChanged();
+            }
         }
 
+        private bool isLaunching;
         /// <summary>
-        /// Gets value indicating wheter a game is being launched.
+        /// Gets or sets value indicating wheter a game is being launched.
         /// </summary>
-        [JsonIgnore]
         public bool IsLaunching
         {
-            get => State.Launching;
+            get => isLaunching;
+            set
+            {
+                isLaunching = value;
+                OnPropertyChanged();
+            }
         }
 
+        private bool isRunning;
         /// <summary>
-        /// Gets value indicating wheter a game is currently running.
+        /// Gets or sets value indicating wheter a game is currently running.
         /// </summary>
-        [JsonIgnore]
         public bool IsRunning
         {
-            get => State.Running;
+            get => isRunning;
+            set
+            {
+                isRunning = value;
+                OnPropertyChanged();
+            }
         }
 
+        private bool isInstalled;
         /// <summary>
-        /// Gets value indicating wheter a game is installed.
+        /// Gets or sets value indicating wheter a game is installed.
         /// </summary>
-        [JsonIgnore]
         public bool IsInstalled
         {
-            get => State.Installed;
+            get => isInstalled;
+            set
+            {
+                isInstalled = value;
+                OnPropertyChanged();
+            }
         }
 
         /// <summary>
@@ -493,29 +518,6 @@ namespace Playnite.SDK.Models
         public bool IsCustomGame
         {
             get => PluginId == Guid.Empty;
-        }
-
-        private GameState state = new GameState();
-        /// <summary>
-        /// Gets or sets game state.
-        /// </summary>
-        public GameState State
-        {
-            get
-            {
-                return state;
-            }
-
-            set
-            {
-                state = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(IsRunning));
-                OnPropertyChanged(nameof(IsInstalling));
-                OnPropertyChanged(nameof(IsUninstalling));
-                OnPropertyChanged(nameof(IsLaunching));
-                OnPropertyChanged(nameof(IsInstalled));
-            }
         }
 
         private long playtime = 0;

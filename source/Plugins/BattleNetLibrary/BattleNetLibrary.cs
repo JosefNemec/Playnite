@@ -106,7 +106,7 @@ namespace BattleNetLibrary
                                 Path = product.ClassicExecutable
                             },
                             InstallDirectory = prog.InstallLocation,
-                            State = new GameState() { Installed = true }
+                            IsInstalled = true
                         };
 
                         games.Add(game.GameId, game);
@@ -145,7 +145,7 @@ namespace BattleNetLibrary
                         Name = product.Name,
                         PlayAction = GetGamePlayTask(product.ProductId),
                         InstallDirectory = prog.InstallLocation,
-                        State = new GameState() { Installed = true }
+                        IsInstalled = true
                     };
 
                     games.Add(game.GameId, game);
@@ -204,8 +204,7 @@ namespace BattleNetLibrary
                         PluginId = Id,
                         Source = "Battle.net",
                         GameId = product.ProductId,
-                        Name = product.Name,
-                        State = new GameState() { Installed = false }
+                        Name = product.Name
                     };
 
                     games.Add(game);

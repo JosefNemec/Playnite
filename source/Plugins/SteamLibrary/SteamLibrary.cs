@@ -100,7 +100,7 @@ namespace SteamLibrary
                 Name = name,
                 InstallDirectory = Path.Combine((new FileInfo(path)).Directory.FullName, "common", kv["installDir"].Value),
                 PlayAction = CreatePlayTask(gameId),
-                State = new GameState() { Installed = true }
+                IsInstalled = true
             };
 
             return game;
@@ -193,7 +193,7 @@ namespace SteamLibrary
                 Name = modInfo.Name,
                 InstallDirectory = path,
                 PlayAction = CreatePlayTask(modInfo.GameId),
-                State = new GameState() { Installed = true },
+                IsInstalled = true,
                 Developers = new ComparableList<string>() { modInfo.Developer },
                 Links = modInfo.Links,
                 Tags = modInfo.Categories,
@@ -374,8 +374,7 @@ namespace SteamLibrary
                     Name = game.name,
                     GameId = game.appid.ToString(),
                     Playtime = game.playtime_forever * 60,
-                    CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed,
-                    State = new GameState() { Installed = false }
+                    CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed
                 };
 
                 games.Add(newGame);

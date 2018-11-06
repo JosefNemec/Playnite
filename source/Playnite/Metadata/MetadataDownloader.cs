@@ -11,6 +11,7 @@ using Playnite.SDK.Models;
 using Playnite.SDK;
 using Playnite.SDK.Plugins;
 using Playnite.SDK.Metadata;
+using System.Collections.Concurrent;
 
 namespace Playnite.Metadata
 {
@@ -20,7 +21,7 @@ namespace Playnite.Metadata
 
         private ILibraryMetadataProvider igdbProvider;
         private readonly IEnumerable<ILibraryPlugin> plugins;
-        private Dictionary<Guid, ILibraryMetadataProvider> downloaders = new Dictionary<Guid, ILibraryMetadataProvider>();
+        private ConcurrentDictionary<Guid, ILibraryMetadataProvider> downloaders = new ConcurrentDictionary<Guid, ILibraryMetadataProvider>();
 
         public MetadataDownloader(IEnumerable<ILibraryPlugin> plugins) : this(new IGDBMetadataProvider(), plugins)
         {
@@ -42,20 +43,20 @@ namespace Playnite.Metadata
             var plugin = plugins?.FirstOrDefault(a => a.Id == pluginId);
             if (plugin == null)
             {
-                downloaders.Add(pluginId, null);
+                downloaders.TryAdd(pluginId, null);
                 return null;
             }
 
             try
             {
                 var downloader = plugin.GetMetadataDownloader();
-                downloaders.Add(pluginId, downloader);
+                downloaders.TryAdd(pluginId, downloader);
                 return downloader;
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, $"Failed to get metadata downloader from {plugin.Name}");
-                downloaders.Add(pluginId, null);
+                downloaders.TryAdd(pluginId, null);
                 return null;
             }
         }
