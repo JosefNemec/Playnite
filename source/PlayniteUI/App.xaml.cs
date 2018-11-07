@@ -373,40 +373,37 @@ namespace PlayniteUI
 
         private async void CheckUpdate()
         {
-            await Task.Run(async () =>
+            await Task.Delay(Playnite.Timer.SecondsToMilliseconds(10));
+            if (GlobalTaskHandler.IsActive)
             {
-                await Task.Delay(Playnite.Timer.SecondsToMilliseconds(10));
-                if (GlobalTaskHandler.IsActive)
-                {
-                    GlobalTaskHandler.Wait();
-                }
+                GlobalTaskHandler.Wait();
+            }
 
-                var updater = new Updater(this);
+            var updater = new Updater(this);
 
-                while (true)
+            while (true)
+            {
+                if (!UpdateViewModel.InstanceInUse)
                 {
-                    if (!UpdateViewModel.InstanceInUse)
+                    try
                     {
-                        try
+                        if (updater.IsUpdateAvailable)
                         {
-                            if (updater.IsUpdateAvailable)
+                            Dispatcher.Invoke(() =>
                             {
-                                Dispatcher.Invoke(() =>
-                                {
-                                    var model = new UpdateViewModel(updater, UpdateWindowFactory.Instance, new ResourceProvider(), dialogs);
-                                    model.OpenView();
-                                });
-                            }
-                        }
-                        catch (Exception exc)
-                        {
-                            logger.Warn(exc, "Failed to process update.");
+                                var model = new UpdateViewModel(updater, UpdateWindowFactory.Instance, new ResourceProvider(), dialogs);
+                                model.OpenView();
+                            });
                         }
                     }
-
-                    await Task.Delay(Playnite.Timer.HoursToMilliseconds(4));
+                    catch (Exception exc)
+                    {
+                        logger.Warn(exc, "Failed to process update.");
+                    }
                 }
-            });
+
+                await Task.Delay(Playnite.Timer.HoursToMilliseconds(4));
+            }
         }
 
         private async void SendUsageData()

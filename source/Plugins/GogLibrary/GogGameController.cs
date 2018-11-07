@@ -137,33 +137,30 @@ namespace GogLibrary
 
         public async void StartInstallWatcher()
         {
-            watcherToken = new CancellationTokenSource();
-            await Task.Run(async () =>
+            watcherToken = new CancellationTokenSource();  
+            var stopWatch = Stopwatch.StartNew();
+
+            while (true)
             {
-                var stopWatch = Stopwatch.StartNew();
-
-                while (true)
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
-
-                    var games = library.GetInstalledGames();
-                    if (games.ContainsKey(Game.GameId))
-                    {
-                        var game = games[Game.GameId];
-                        stopWatch.Stop();
-                        Game.PlayAction = game.PlayAction;
-                        Game.OtherActions = game.OtherActions;
-                        Game.InstallDirectory = game.InstallDirectory;
-                        OnInstalled(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
-                        return;
-                    }
-
-                    await Task.Delay(2000);
+                    return;
                 }
-            });
+
+                var games = library.GetInstalledGames();
+                if (games.ContainsKey(Game.GameId))
+                {
+                    var game = games[Game.GameId];
+                    stopWatch.Stop();
+                    Game.PlayAction = game.PlayAction;
+                    Game.OtherActions = game.OtherActions;
+                    Game.InstallDirectory = game.InstallDirectory;
+                    OnInstalled(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
+                    return;
+                }
+
+                await Task.Delay(2000);
+            }
         }
     }
 }

@@ -75,55 +75,51 @@ namespace TwitchLibrary
         public async void StartInstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Run(async () =>
+     
+            while (true)
             {
-                while (true)
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
-                    var program = Twitch.GetUninstallRecord(Game.GameId);
-                    if (program != null)
-                    {
-                        if (Game.PlayAction == null)
-                        {
-                            Game.PlayAction = TwitchLibrary.GetPlayAction(Game.GameId);
-                        }
-
-                        Game.InstallDirectory = Paths.FixSeparators(program.InstallLocation);
-                        OnInstalled(this, new GameControllerEventArgs(this, 0));
-                        return;
-                    }
-
-
-                    await Task.Delay(2000);
+                    return;
                 }
-            });
+                var program = Twitch.GetUninstallRecord(Game.GameId);
+                if (program != null)
+                {
+                    if (Game.PlayAction == null)
+                    {
+                        Game.PlayAction = TwitchLibrary.GetPlayAction(Game.GameId);
+                    }
+
+                    Game.InstallDirectory = Paths.FixSeparators(program.InstallLocation);
+                    OnInstalled(this, new GameControllerEventArgs(this, 0));
+                    return;
+                }
+
+
+                await Task.Delay(2000);
+            }
         }
 
         public async void StartUninstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Run(async () =>
+        
+            while (true)
             {
-                while (true)
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
-
-                    var program = Twitch.GetUninstallRecord(Game.GameId);
-                    if (program == null)
-                    {
-                        OnUninstalled(this, new GameControllerEventArgs(this, 0));
-                        return;
-                    }
-
-                    await Task.Delay(2000);
+                    return;
                 }
-            });
+
+                var program = Twitch.GetUninstallRecord(Game.GameId);
+                if (program == null)
+                {
+                    OnUninstalled(this, new GameControllerEventArgs(this, 0));
+                    return;
+                }
+
+                await Task.Delay(2000);
+            }
         }
     }
 }

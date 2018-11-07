@@ -49,13 +49,15 @@ namespace BethesdaLibrary
                 procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
             }
             else
-                throw new Exception("Unknoww Play action configuration");
+            {
+                throw new Exception("Unknown Play action configuration.");
+            }
         }
 
         public override void Install()
         {
             ReleaseResources();
-            ProcessStarter.StartUrl("bethesdanet://install/" + Game.GameId);
+            ProcessStarter.StartUrl(Bethesda.ClientExecPath);
             StartInstallWatcher();
         }
 
@@ -80,54 +82,50 @@ namespace BethesdaLibrary
         public async void StartInstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Run(async () =>
+    
+            while (true)
             {
-                while (true)
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
-
-                    var installedGame = BethesdaLib.GetInstalledGames().FirstOrDefault(a => a.GameId == Game.GameId);
-                    if (installedGame != null)
-                    {
-                        if (Game.PlayAction == null)
-                        {
-                            Game.PlayAction = installedGame.PlayAction;
-                        }
-
-                        Game.InstallDirectory = installedGame.InstallDirectory;
-                        OnInstalled(this, new GameControllerEventArgs(this, 0));
-                        return;
-                    }
-
-                    await Task.Delay(2000);
+                    return;
                 }
-            });
+
+                var installedGame = BethesdaLib.GetInstalledGames().FirstOrDefault(a => a.GameId == Game.GameId);
+                if (installedGame != null)
+                {
+                    if (Game.PlayAction == null)
+                    {
+                        Game.PlayAction = installedGame.PlayAction;
+                    }
+
+                    Game.InstallDirectory = installedGame.InstallDirectory;
+                    OnInstalled(this, new GameControllerEventArgs(this, 0));
+                    return;
+                }
+
+                await Task.Delay(2000);
+            }
         }
 
         public async void StartUninstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Run(async () =>
+     
+            while (true)
             {
-                while (true)
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
-
-                    if (BethesdaLib.GetInstalledGames().FirstOrDefault(a => a.GameId == Game.GameId) == null)
-                    {
-                        OnUninstalled(this, new GameControllerEventArgs(this, 0));
-                        return;
-                    }
-
-                    await Task.Delay(2000);
+                    return;
                 }
-            });
+
+                if (BethesdaLib.GetInstalledGames().FirstOrDefault(a => a.GameId == Game.GameId) == null)
+                {
+                    OnUninstalled(this, new GameControllerEventArgs(this, 0));
+                    return;
+                }
+
+                await Task.Delay(2000);
+            }
         }
     }
 }
