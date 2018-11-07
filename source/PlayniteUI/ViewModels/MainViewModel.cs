@@ -64,6 +64,7 @@ namespace PlayniteUI.ViewModels
             get => selectedGame;
             set
             {
+                SelectedGameDetails?.Dispose();
                 if (value == null)
                 {
                     SelectedGameDetails = null;

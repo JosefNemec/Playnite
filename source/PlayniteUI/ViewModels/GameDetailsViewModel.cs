@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace PlayniteUI.ViewModels
 {
-    public class GameDetailsViewModel : ObservableObject
+    public class GameDetailsViewModel : ObservableObject, IDisposable
     {
         public enum FilterProperty
         {
@@ -217,6 +217,14 @@ namespace PlayniteUI.ViewModels
             if (game != null)
             {
                 Game.PropertyChanged += Game_PropertyChanged;
+            }
+        }
+
+        public void Dispose()
+        {
+            if (game != null)
+            {
+                Game.PropertyChanged -= Game_PropertyChanged;
             }
         }
 
