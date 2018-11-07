@@ -75,6 +75,12 @@ namespace Playnite
             }
         }
 
+        public static void CopyFile(string sourcePath, string targetPath)
+        {
+            PrepareSaveFile(targetPath);
+            File.Copy(sourcePath, targetPath);
+        }
+
         public static void DeleteDirectory(string path)
         {
             if (Directory.Exists(path))

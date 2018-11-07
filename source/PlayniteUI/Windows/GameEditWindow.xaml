@@ -434,102 +434,108 @@
                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
                     </StackPanel>
                 </TabItem.Header>
-                <Grid Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <GroupBox Grid.Column="0" Grid.Row="0" Header="{DynamicResource LOCGameIconTitle}">
-                        <GroupBox.HeaderTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <CheckBox Name="CheckIcon" VerticalAlignment="Center"
+                <DockPanel>
+                    <Button Content="{DynamicResource LOCOpenMetadataFolder}" HorizontalAlignment="Left"
+                            Margin="10,0,0,10" DockPanel.Dock="Bottom"
+                            Command="{Binding OpenMetadataFolderCommand}"
+                            Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <Grid Margin="10" DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <GroupBox Grid.Column="0" Grid.Row="0" Header="{DynamicResource LOCGameIconTitle}">
+                            <GroupBox.HeaderTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Name="CheckIcon" VerticalAlignment="Center"
                                                   Visibility="{Binding Data.ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
                                                   IsChecked="{Binding Data.UseIconChanges, Source={StaticResource Proxy}}"/>
-                                    <TextBlock Text="{Binding}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </GroupBox.HeaderTemplate>
-                        <DockPanel LastChildFill="True">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5" DockPanel.Dock="Top">
-                                <Button Name="ButtonSelectIcon" Content="{DynamicResource LOCSelectIconTitle}"
+                                        <TextBlock Text="{Binding}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GroupBox.HeaderTemplate>
+                            <DockPanel LastChildFill="True">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5" DockPanel.Dock="Top">
+                                    <Button Name="ButtonSelectIcon" Content="{DynamicResource LOCSelectIconTitle}"
                                         Command="{Binding SelectIconCommand}" />
-                                <Button Name="ButtonUseExeIcon" Content="{DynamicResource LOCUseExeIcon}" 
+                                    <Button Name="ButtonUseExeIcon" Content="{DynamicResource LOCUseExeIcon}" 
                                         Command="{Binding UseExeIconCommand}"
                                         Visibility="{Binding Game, Converter={StaticResource NullToVisibilityConverter}}"
                                         Margin="5,0,0,0"/>
-                                <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
+                                    <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
                                         Command="{Binding RemoveIconCommand}" />
-                            </StackPanel>
-                            <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
+                                </StackPanel>
+                                <Image Source="{Binding EditingGame.Icon, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
                                        Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageIcon"
                                        DockPanel.Dock="Top" MaxHeight="64"
                                        AutomationProperties.HelpText="{Binding EditingGame.Icon, TargetNullValue=''}"/>
-                        </DockPanel>
-                    </GroupBox>
-                    <GroupBox Grid.Column="0" Grid.Row="1" Header="{DynamicResource LOCGameCoverImageTitle}" Margin="0,5,0,0">
-                        <GroupBox.HeaderTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <CheckBox Name="CheckImage" VerticalAlignment="Center"
+                            </DockPanel>
+                        </GroupBox>
+                        <GroupBox Grid.Column="0" Grid.Row="1" Header="{DynamicResource LOCGameCoverImageTitle}" Margin="0,5,0,0">
+                            <GroupBox.HeaderTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Name="CheckImage" VerticalAlignment="Center"
                                                   Visibility="{Binding Data.ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
                                                   IsChecked="{Binding Data.UseImageChanges, Source={StaticResource Proxy}}"/>
-                                    <TextBlock Text="{Binding}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </GroupBox.HeaderTemplate>
-                        <DockPanel LastChildFill="True">
-                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
-                                <Button Name="ButtonSelectImage" Content="{DynamicResource LOCSelectCoverTitle}" 
+                                        <TextBlock Text="{Binding}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GroupBox.HeaderTemplate>
+                            <DockPanel LastChildFill="True">
+                                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
+                                    <Button Name="ButtonSelectImage" Content="{DynamicResource LOCSelectCoverTitle}" 
                                         HorizontalAlignment="Left"
                                         Command="{Binding SelectCoverCommand}"/>
-                                <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
+                                    <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
                                         Command="{Binding RemoveImageCommand}" />
-                            </StackPanel>
-                            <Image Source="{Binding EditingGame.CoverImage, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
+                                </StackPanel>
+                                <Image Source="{Binding EditingGame.CoverImage, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
                                        Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
                                        DockPanel.Dock="Top"
                                        AutomationProperties.HelpText="{Binding EditingGame.CoverImage, TargetNullValue=''}"/>
-                        </DockPanel>
-                    </GroupBox>
-                    <GroupBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
+                            </DockPanel>
+                        </GroupBox>
+                        <GroupBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
                               Header="{DynamicResource LOCGameBackgroundTitle}" Margin="5,0,0,0">
-                        <GroupBox.HeaderTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <CheckBox Name="CheckImage" VerticalAlignment="Center"
+                            <GroupBox.HeaderTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Name="CheckImage" VerticalAlignment="Center"
                                               Visibility="{Binding Data.ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
                                               IsChecked="{Binding Data.UseBackgroundChanges, Source={StaticResource Proxy}}"/>
-                                    <TextBlock Text="{Binding}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </GroupBox.HeaderTemplate>
-                        <DockPanel DockPanel.Dock="Top">
-                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
-                                <Button Content="{DynamicResource LOCSelectFileTitle}" HorizontalAlignment="Left"
+                                        <TextBlock Text="{Binding}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GroupBox.HeaderTemplate>
+                            <DockPanel DockPanel.Dock="Top">
+                                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
+                                    <Button Content="{DynamicResource LOCSelectFileTitle}" HorizontalAlignment="Left"
                                         Command="{Binding SelectBackgroundCommand}"/>
-                                <Button Content="{DynamicResource LOCSelectUrlTitle}" Margin="5,0,0,0" HorizontalAlignment="Left"
+                                    <Button Content="{DynamicResource LOCSelectUrlTitle}" Margin="5,0,0,0" HorizontalAlignment="Left"
                                         Command="{Binding SetBackgroundUrlCommand}"/>
-                                <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
+                                    <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5,0,0,0"
                                         Command="{Binding RemoveBackgroundCommand}" />
-                            </StackPanel>
-                            <DockPanel DockPanel.Dock="Top" Margin="5,5,0,5"
+                                </StackPanel>
+                                <DockPanel DockPanel.Dock="Top" Margin="5,5,0,5"
                                        Visibility="{Binding ShowBackgroundUrl, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <TextBlock Text="{DynamicResource LOCImageURL}" DockPanel.Dock="Left" VerticalAlignment="Center"/>
-                                <TextBox IsReadOnly="True" DockPanel.Dock="Left" Margin="5,0,0,0"
+                                    <TextBlock Text="{DynamicResource LOCImageURL}" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                                    <TextBox IsReadOnly="True" DockPanel.Dock="Left" Margin="5,0,0,0"
                                          Text="{Binding EditingGame.BackgroundImage}" />
-                            </DockPanel>
-                            <Image Source="{Binding EditingGame.BackgroundImage, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
+                                </DockPanel>
+                                <Image Source="{Binding EditingGame.BackgroundImage, Mode=OneWay, Converter={StaticResource CustomImageStringToImageConverter}}"
                                    Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant"
                                    DockPanel.Dock="Top"
                                    AutomationProperties.HelpText="{Binding EditingGame.BackgroundImage, TargetNullValue=''}"/>
-                        </DockPanel>
-                    </GroupBox>
-                </Grid>
+                            </DockPanel>
+                        </GroupBox>
+                    </Grid>
+                </DockPanel>
             </TabItem>
             
             <TabItem Name="TabLinks"
@@ -615,7 +621,7 @@
                                VerticalAlignment="Center"
                                Grid.Column="0" Grid.Row="2" Margin="5,10,5,5" />
                     <CheckBox Grid.Row="2" Grid.Column="1" Margin="5,10,5,5"
-                              IsChecked="{Binding EditingGame.State.Installed}"/>
+                              IsChecked="{Binding EditingGame.IsInstalled}"/>
                 </Grid>
             </TabItem>
 

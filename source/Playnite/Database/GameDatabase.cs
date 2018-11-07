@@ -13,6 +13,7 @@ using Playnite.SDK.Models;
 using Playnite.SDK.Metadata;
 using Playnite.Common;
 using Playnite.Settings;
+using Playnite.Common.System;
 
 namespace Playnite.Database
 {
@@ -842,6 +843,13 @@ namespace Playnite.Database
 
         #region Files
 
+        public string GetFileStoragePath(Guid parentId)
+        {
+            var path = Path.Combine(FilesDirectoryPath, parentId.ToString());
+            FileSystem.CreateDirectory(path, false);
+            return path;
+        }
+
         public string GetFullFilePath(string dbPath)
         {
             return Path.Combine(FilesDirectoryPath, dbPath);
@@ -854,7 +862,27 @@ namespace Playnite.Database
 
         public string AddFile(string path, Guid parentId)
         {
-            return AddFile(Path.GetFileName(path), File.ReadAllBytes(path), parentId);
+            CheckDbState();
+            var fileName = Path.GetFileName(path);
+            var targetDir = Path.Combine(FilesDirectoryPath, parentId.ToString());
+            var dbPath = string.Empty;
+            lock (fileFilesLock)
+            {
+                // Re-use file if already part of db folder, don't copy.
+                if (Paths.AreEqual(targetDir, Path.GetDirectoryName(path)))
+                {
+                    dbPath = Path.Combine(parentId.ToString(), fileName);
+                }
+                else
+                {
+                    fileName = Guid.NewGuid().ToString() + Path.GetExtension(fileName);
+                    FileSystem.CopyFile(path, Path.Combine(targetDir, fileName));
+                    dbPath = Path.Combine(parentId.ToString(), fileName);
+                }
+            }
+
+            DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Added));
+            return dbPath;
         }
 
         public string AddFile(string fileName, byte[] content, Guid parentId)

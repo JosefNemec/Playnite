@@ -17,6 +17,7 @@ using Playnite.Metadata;
 using Playnite.SDK.Metadata;
 using Playnite.Settings;
 using Playnite.Plugins;
+using Playnite.Common;
 
 namespace PlayniteUI.ViewModels
 {
@@ -755,6 +756,21 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        private bool isSingleGameEdit;
+        public bool IsSingleGameEdit
+        {
+            get
+            {
+                return isSingleGameEdit;
+            }
+
+            set
+            {
+                isSingleGameEdit = value;
+                OnPropertyChanged();
+            }
+        }
+
         public RelayCommand<object> ConfirmCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -950,6 +966,14 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        public RelayCommand<object> OpenMetadataFolderCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                OpenMetadataFolder();
+            });
+        }
+
         public GameEditViewModel(Game game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, ExtensionFactory extensions)
         {
             this.database = database;
@@ -959,6 +983,7 @@ namespace PlayniteUI.ViewModels
             this.extensions = extensions;
 
             Game = game;
+            IsSingleGameEdit = true;
             EditingGame = game.CloneJson();
             ShowCheckBoxes = false;
             ShowMetaDownload = true;
@@ -977,6 +1002,7 @@ namespace PlayniteUI.ViewModels
             this.extensions = extensions;
 
             Games = games;
+            IsSingleGameEdit = false;
             var previewGame = GameTools.GetMultiGameEditObject(games);
             EditingGame = previewGame;
             ShowCheckBoxes = true;
@@ -2370,6 +2396,11 @@ namespace PlayniteUI.ViewModels
                     ProgressVisible = false;
                 }
             });
+        }
+
+        public void OpenMetadataFolder()
+        {
+            Explorer.OpenDirectory(database.GetFileStoragePath(EditingGame.Id));
         }
     }
 }
