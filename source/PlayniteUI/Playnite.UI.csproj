@@ -779,6 +779,7 @@ xcopy "$(SolutionDir)\Plugins\OriginLibrary\bin\$(ConfigurationName)" "$(TargetD
 xcopy "$(SolutionDir)\Plugins\BattleNetLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\BattleNetLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\BattleNetLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\UplayLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\UplayLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\UplayLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\TwitchLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\TwitchLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\TwitchLibrary\BuildCopyExclude.txt
+xcopy "$(SolutionDir)\Plugins\BethesdaLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\BethesdaLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\BethesdaLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\LibraryExporter" "$(TargetDir)\Extensions\LibraryExporter\" /e /y
 xcopy "$(SolutionDir)\..\references\XInputInterface.dll" "$(TargetDir)" /y
 xcopy "$(SolutionDir)\..\references\msvcp120.dll" "$(TargetDir)" /y
