@@ -124,10 +124,6 @@ namespace Playnite.SDK
         /// <param name="id">File id.</param>
         void RemoveFile(string id);
 
-        /// <summary>
-        /// Imports categories from selected games.
-        /// </summary>
-        /// <param name="sourceGames">List of games to take categories from.</param>
-        void ImportCategories(List<Game> sourceGames);
+        IDisposable BufferedUpdate();
     }
 }

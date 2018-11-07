@@ -981,24 +981,6 @@ namespace Playnite.Database
             }
         }
 
-        public void ImportCategories(List<Game> sourceGames)
-        {
-            using (var buffer = BufferedUpdate())
-            {
-                foreach (var game in sourceGames)
-                {
-                    var dbGame = Games.FirstOrDefault(a => a.PluginId == game.PluginId && a.GameId == game.GameId);
-                    if (dbGame == null)
-                    {
-                        continue;
-                    }
-
-                    dbGame.Categories = game.Categories;
-                    Games.Update(dbGame);
-                }
-            }
-        }
-
         public void BeginBufferUpdate()
         {
             Platforms.BeginBufferUpdate();

@@ -456,6 +456,7 @@ namespace SteamLibrary
         {
             var dialogs = playniteApi.Dialogs;
             var resources = playniteApi.Resources;
+            var db = playniteApi.Database;
 
             if (dialogs.ShowMessage(
                 resources.FindString("LOCSettingsSteamCatImportWarn"),
@@ -474,7 +475,7 @@ namespace SteamLibrary
                 return;
             }
 
-            if (!playniteApi.Database.IsOpen)
+            if (!db.IsOpen)
             {
                 dialogs.ShowMessage(
                     resources.FindString("LOCSettingsSteamCatImportErrorDb"),
@@ -485,8 +486,21 @@ namespace SteamLibrary
 
             try
             {
-                var games = GetCategorizedGames(accountId);
-                playniteApi.Database.ImportCategories(games);
+                using (db.BufferedUpdate())
+                {
+                    foreach (var game in GetCategorizedGames(accountId))
+                    {
+                        var dbGame = db.GetGames().FirstOrDefault(a => a.PluginId == game.PluginId && a.GameId == game.GameId);
+                        if (dbGame == null)
+                        {
+                            continue;
+                        }
+
+                        dbGame.Categories = game.Categories;
+                        db.UpdateGame(dbGame);
+                    }
+                }
+
                 dialogs.ShowMessage(resources.FindString("LOCImportCompleted"));
             }
             catch (Exception exc) when (!Environment.IsDebugBuild)

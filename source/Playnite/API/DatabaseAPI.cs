@@ -116,9 +116,9 @@ namespace Playnite.API
             database.RemoveFile(id);
         }
 
-        public void ImportCategories(List<Game> sourceGames)
+        public IDisposable BufferedUpdate()
         {
-            database.ImportCategories(sourceGames);
+            return database.BufferedUpdate();
         }
     }
 }
