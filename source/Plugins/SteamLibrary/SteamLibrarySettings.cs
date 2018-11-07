@@ -46,7 +46,7 @@ namespace SteamLibrary
         #endregion Settings
 
         [JsonIgnore]
-        public bool ShowCategoryImport { get => api.Database.IsOpen; }
+        public bool ShowCategoryImport { get; set; }
 
         [JsonIgnore]
         public List<LocalSteamUser> SteamUsers { get; set; }

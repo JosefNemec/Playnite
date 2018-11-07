@@ -15,15 +15,11 @@ namespace TestGameLibrary
 {
     public class TestGameLibrary : ILibraryPlugin
     {
-        public ISettings Settings { get; }
-
         public Guid Id { get; } = Guid.Parse("D625A3B7-1AA4-41CB-9CD7-74448D28E99B");
 
         public string Name { get; } = "Test Library";
 
         public string LibraryIcon { get; }
-
-        public UserControl SettingsView { get; }
 
         public ILibraryClient Client { get; }
 
@@ -35,6 +31,16 @@ namespace TestGameLibrary
         public void Dispose()
         {
 
+        }
+
+        public ISettings GetSettings(bool firstRunSettings)
+        {
+            return null;
+        }
+
+        public UserControl GetSettingsView(bool firstRunView)
+        {
+            return null;
         }
 
         public IEnumerable<Game> GetGames()

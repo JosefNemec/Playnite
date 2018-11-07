@@ -212,8 +212,8 @@ namespace PlayniteUI.ViewModels
 
             foreach (var provider in Extensions.LibraryPlugins.Values)
             {
-                var provSetting = provider.Plugin.Settings;
-                var provView = provider.Plugin.SettingsView;
+                var provSetting = provider.Plugin.GetSettings(false);
+                var provView = provider.Plugin.GetSettingsView(false);
                 if (provSetting != null && provView != null)
                 {
                     provView.DataContext = provSetting;
@@ -232,8 +232,8 @@ namespace PlayniteUI.ViewModels
 
             foreach (var plugin in Extensions.GenericPlugins.Values)
             {
-                var provSetting = plugin.Plugin.Settings;
-                var provView = plugin.Plugin.SettingsView;
+                var provSetting = plugin.Plugin.GetSettings(false);
+                var provView = plugin.Plugin.GetSettingsView(false);
                 if (provSetting != null && provView != null)
                 {
                     provView.DataContext = provSetting;

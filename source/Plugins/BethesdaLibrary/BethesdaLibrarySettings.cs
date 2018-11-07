@@ -20,7 +20,6 @@ namespace BethesdaLibrary
 
         #endregion Settings
 
-
         public BethesdaLibrarySettings()
         {
         }

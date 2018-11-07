@@ -33,10 +33,7 @@ namespace SteamLibrary
         private readonly Configuration config;
         private readonly SteamApiClient apiClient = new SteamApiClient();
 
-        internal SteamLibrarySettings LibrarySettings
-        {
-            get => (SteamLibrarySettings)Settings;
-        }
+        internal SteamLibrarySettings LibrarySettings { get; private set; }
 
         public SteamLibrary(IPlayniteAPI api)
         {
@@ -56,7 +53,7 @@ namespace SteamLibrary
         {
             playniteApi = api;
             LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\steamicon.png");
-            Settings = new SteamLibrarySettings(this, playniteApi)
+            LibrarySettings = new SteamLibrarySettings(this, playniteApi)
             {
                 SteamUsers = GetSteamUsers()
             };
@@ -510,8 +507,6 @@ namespace SteamLibrary
 
         public string Name { get; } = "Steam";
 
-        public ISettings Settings { get; private set; }
-
         public string LibraryIcon { get; private set; }
 
         public void Dispose()
@@ -519,9 +514,15 @@ namespace SteamLibrary
             apiClient.Logout();
         }
 
-        public UserControl SettingsView
+        public ISettings GetSettings(bool firstRunSettings)
         {
-            get => new SteamLibrarySettingsView();
+            LibrarySettings.ShowCategoryImport = !firstRunSettings;
+            return LibrarySettings;
+        }
+
+        public UserControl GetSettingsView(bool firstRunView)
+        {
+            return new SteamLibrarySettingsView();
         }
 
         public IEnumerable<Game> GetGames()

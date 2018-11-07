@@ -25,10 +25,7 @@ namespace TwitchLibrary
         private readonly IPlayniteAPI playniteApi;
         internal readonly string TokensPath;
 
-        internal TwitchLibrarySettings LibrarySettings
-        {
-            get => (TwitchLibrarySettings)Settings;
-        }
+        internal TwitchLibrarySettings LibrarySettings { get; private set; }
 
         internal TwitchLoginData LoginData
         {
@@ -55,7 +52,7 @@ namespace TwitchLibrary
         {
             playniteApi = api;
             LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\twitchicon.png");
-            Settings = new TwitchLibrarySettings(this, playniteApi);
+            LibrarySettings = new TwitchLibrarySettings(this, playniteApi);
             TokensPath = Path.Combine(api.GetPluginUserDataPath(this), "tokens.json");
         }
 
@@ -168,14 +165,7 @@ namespace TwitchLibrary
         #region ILibraryPlugin
 
         public ILibraryClient Client { get; } = new TwitchClient();
-
-        public UserControl SettingsView
-        {
-            get => new TwitchLibrarySettingsView();
-        }
-
-        public ISettings Settings { get; private set; }
-
+        
         public string Name { get; } = "Twitch";
 
         public string LibraryIcon { get; }
@@ -185,6 +175,16 @@ namespace TwitchLibrary
         public void Dispose()
         {
 
+        }
+
+        public ISettings GetSettings(bool firstRunSettings)
+        {
+            return LibrarySettings;
+        }
+
+        public UserControl GetSettingsView(bool firstRunView)
+        {
+            return new TwitchLibrarySettingsView();
         }
 
         public IGameController GetGameController(Game game)

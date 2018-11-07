@@ -216,8 +216,8 @@ namespace PlayniteUI.ViewModels
                     return new PluginSettings()
                     {
                         Name = lib.Name,
-                        View = lib.SettingsView,
-                        Settings = lib.Settings,
+                        View = lib.GetSettingsView(true),
+                        Settings = lib.GetSettings(true),
                         Icon = lib.LibraryIcon
                     };
                 }).ToList();

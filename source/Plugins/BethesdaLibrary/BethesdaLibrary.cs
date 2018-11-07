@@ -20,16 +20,13 @@ namespace BethesdaLibrary
         private ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
 
-        internal BethesdaLibrarySettings LibrarySettings
-        {
-            get => (BethesdaLibrarySettings)Settings;
-        }
+        internal BethesdaLibrarySettings LibrarySettings { get; private set; }
 
         public BethesdaLibrary(IPlayniteAPI api)
         {
             playniteApi = api;
             LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\bethesdaicon.png");
-            Settings = new BethesdaLibrarySettings(this, playniteApi);
+            LibrarySettings = new BethesdaLibrarySettings(this, playniteApi);
         }
 
         public GameAction GetGamePlayTask(string id)
@@ -81,18 +78,21 @@ namespace BethesdaLibrary
 
         public string Name { get; } = "Bethesda";
 
-        public UserControl SettingsView
-        {
-            get => new BethesdaLibrarySettingsView();
-        }
-
-        public ISettings Settings { get; private set; }
-
         public Guid Id { get; } = Guid.Parse("0E2E793E-E0DD-4447-835C-C44A1FD506EC");
 
         public void Dispose()
         {
 
+        }
+
+        public ISettings GetSettings(bool firstRunSettings)
+        {
+            return firstRunSettings ? null : LibrarySettings;
+        }
+
+        public UserControl GetSettingsView(bool firstRunView)
+        {
+            return firstRunView ? null : new BethesdaLibrarySettingsView();
         }
 
         public IGameController GetGameController(Game game)

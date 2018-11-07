@@ -15,12 +15,12 @@ namespace Playnite.SDK.Plugins
         /// <summary>
         /// Gets plugin settings view or null if plugin doesn't provide settings view.
         /// </summary>
-        UserControl SettingsView { get; }
+        UserControl GetSettingsView(bool firstRunView);
 
         /// <summary>
         /// Gets plugin settings or null if plugin doesn't provide any settings.
         /// </summary>
-        ISettings Settings { get; }
+        ISettings GetSettings(bool firstRunSettings);
 
         /// <summary>
         /// Gets unique plugin id.
