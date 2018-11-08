@@ -254,8 +254,7 @@ namespace Playnite.Metadata
 
                     // We need to get new instance from DB in case game got edited or deleted.
                     // We don't want to block game editing while metadata is downloading for other games.
-                    // TODO: Use Id instead of GameId once we replace LiteDB and have proper autoincrement Id
-                    var game = database.Games.FirstOrDefault(a => a.PluginId == games[i].PluginId && a.GameId == games[i].GameId);
+                    var game = database.Games[games[i].Id];
                     if (game == null)
                     {
                         logger.Warn($"Game {game.GameId} no longer in DB, skipping metadata download.");
@@ -265,7 +264,7 @@ namespace Playnite.Metadata
 
                     try
                     {
-                        logger.Debug($"Downloading metadata for {game.PluginId} game {game.Name}, {game.GameId}");
+                        logger.Debug($"Downloading metadata for {game.Name}, {game.GameId}, {game.PluginId}");
 
                         // Name
                         if (!game.IsCustomGame && settings.Name.Import)

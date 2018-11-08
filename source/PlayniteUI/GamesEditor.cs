@@ -41,7 +41,6 @@ namespace PlayniteUI
         {
             get
             {
-                // TODO: test performance
                 return database.Games.Where(a => a.LastActivity != null && a.IsInstalled).OrderByDescending(a => a.LastActivity).Take(10).ToList();
             }
         }

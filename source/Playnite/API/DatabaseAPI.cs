@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace Playnite.API
 {
-    // TODO
     public class DatabaseAPI : IGameDatabaseAPI
     {
         private GameDatabase database;
