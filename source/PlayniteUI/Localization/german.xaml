@@ -47,8 +47,9 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Freundesliste</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Abschnitt enthält zu speichernde Änderungen</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress">Aktualisiere Datenbank...</sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail">Fehler beim Aktualisieren der Datenbank: Datenbank ist nicht geöffnet.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Aktualisiere Bibliothek...</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">Fehler beim Aktualisieren der Bibliothek: Bibliothek ist nicht geöffnet.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Fehler beim Aktualisieren der Bibliothek: Es werden {0} MB freier Speicherplatz benötigt.</sys:String>
 
     <sys:String x:Key="LOCGameError">Spielfehler</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Fehler beim Starten des Spiels: '{0}' befindet sich nicht in der Datenbank</sys:String>
@@ -137,6 +138,8 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCSunday">Sonntag</sys:String>
     <sys:String x:Key="LOCImportCompleted">Import erfolgreich abgeschlossen.</sys:String>
     <sys:String x:Key="LOCAllGames">Alle Spiele</sys:String>
+    <sys:String x:Key="LOCGameId">Spiel ID</sys:String>
+    <sys:String x:Key="LOCDatabaseId">Datenbank ID</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Es können folgende Variablen verwendet werden:
 {InstallDir} - Installationspfad des Spiels
@@ -557,9 +560,11 @@ Du kannst uns Feedback via GitHub senden. Bitte ergänze deine Nachricht um die 
 
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Beende Vollbildmodus...</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Starte Vollbildmodus...</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">Lade Bibliothek...</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Fehler beim Installieren des Skripts.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Skript wurde erfolgreich installiert.</sys:String>
     <sys:String x:Key="LOCInstallScript">Skript installieren</sys:String>
     <sys:String x:Key="LOCScriptError">Skript-Fehler</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Beim ausführen des Skripts ist ein Fehler aufgetreten.</sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">Öffne Metadaten-Verzeichnis</sys:String>
 </ResourceDictionary>
