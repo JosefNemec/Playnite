@@ -429,7 +429,7 @@ namespace SteamLibrary
             var apps = sharedconfig["Software"]["Valve"]["Steam"]["apps"];
             foreach (var app in apps.Children)
             {
-                if (app["tags"].Children.Count == 0)
+                if (app.Children.Count == 0)
                 {
                     continue;
                 }
@@ -445,7 +445,8 @@ namespace SteamLibrary
                     PluginId = Id,
                     Source = "Steam",
                     GameId = app.Name,
-                    Categories = new ComparableList<string>(appData)
+                    Categories = new ComparableList<string>(appData),
+                    Hidden = app["hidden"].AsInteger() == 1
                 });
             }
 
@@ -497,6 +498,7 @@ namespace SteamLibrary
                         }
 
                         dbGame.Categories = game.Categories;
+                        dbGame.Hidden = game.Hidden;
                         db.UpdateGame(dbGame);
                     }
                 }
