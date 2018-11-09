@@ -201,14 +201,14 @@ namespace SteamLibrary
                 var iconRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.ico";
                 var icon = productInfo["common"]["clienticon"];
                 var iconUrl = string.Empty;
-                if (icon.Name != null)
+                if (!string.IsNullOrEmpty(icon.Value))
                 {
                     iconUrl = string.Format(iconRoot, appId, icon.Value);
                 }
                 else
                 {
                     var newIcon = productInfo["common"]["icon"];
-                    if (newIcon.Name != null)
+                    if (!string.IsNullOrEmpty(newIcon.Value))
                     {
                         iconRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
                         iconUrl = string.Format(iconRoot, appId, newIcon.Value);
@@ -242,7 +242,7 @@ namespace SteamLibrary
                     {
                         imageRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
                         var image = productInfo["common"]["logo"];
-                        if (image.Name != null)
+                        if (!string.IsNullOrEmpty(image.Value))
                         {
                             imageUrl = string.Format(imageRoot, appId, image.Value);
                             imageData = HttpDownloader.DownloadData(imageUrl);
