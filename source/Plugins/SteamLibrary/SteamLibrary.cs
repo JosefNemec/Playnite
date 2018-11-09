@@ -428,7 +428,7 @@ namespace SteamLibrary
             var apps = sharedconfig["Software"]["Valve"]["Steam"]["apps"];
             foreach (var app in apps.Children)
             {
-                if (app["tags"].Children.Count == 0)
+                if (app.Children.Count == 0)
                 {
                     continue;
                 }
@@ -439,12 +439,36 @@ namespace SteamLibrary
                     appData.Add(tag.Value);
                 }
 
+                string gameId = app.Name;
+                if (app.Name.Contains('_'))
+                {
+                    // Mods are keyed differently, "<appId>_<modId>"
+                    // Ex. 215_2287856061
+                    string[] parts = app.Name.Split('_');
+                    if (uint.TryParse(parts[0], out uint appId) && uint.TryParse(parts[1], out uint modId))
+                    {
+                        var gid = new GameID()
+                        {
+                            AppID = appId,
+                            AppType = GameID.GameType.GameMod,
+                            ModID = modId
+                        };
+                        gameId = gid;
+                    }
+                    else
+                    {
+                        // Malformed app id?
+                        continue;
+                    }
+                }
+
                 result.Add(new Game()
                 {
                     PluginId = Id,
                     Source = "Steam",
-                    GameId = app.Name,
-                    Categories = new ComparableList<string>(appData)
+                    GameId = gameId,
+                    Categories = new ComparableList<string>(appData),
+                    Hidden = app["hidden"].AsInteger() == 1
                 });
             }
 
@@ -496,6 +520,7 @@ namespace SteamLibrary
                         }
 
                         dbGame.Categories = game.Categories;
+                        dbGame.Hidden = game.Hidden;
                         db.UpdateGame(dbGame);
                     }
                 }
