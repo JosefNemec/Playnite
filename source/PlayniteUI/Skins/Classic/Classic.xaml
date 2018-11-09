@@ -943,7 +943,7 @@
                        Foreground="{TemplateBinding Foreground}">
                 <ContentPresenter RecognizesAccessKey="True" Margin="5,0,5,0" ContentSource="Header"/>
             </TextBlock>
-            <TextBlock x:Name="GestureText" Grid.Column="2" Text="{TemplateBinding InputGestureText}"                       
+            <TextBlock x:Name="GestureText" Grid.Column="2" Text="{TemplateBinding InputGestureText}"
                        TextAlignment="Left" HorizontalAlignment="Stretch" Margin="20,5,10,5"
                        VerticalAlignment="Center" Background="Transparent" Opacity="0.6"/>
             <Grid Grid.Column="3" Margin="0,0,5,0">
@@ -2806,7 +2806,7 @@
                                         </Label.Style>
                                     </Label>
                                     <ComboBox Margin="8,0,8,8" Style="{StaticResource TextableComboBox}"
-                                              ItemsSource="{Binding DatabaseFilters.Libraries}"                                              
+                                              ItemsSource="{Binding DatabaseFilters.Libraries}"
                                               Text="{Binding DatabaseFilters.LibrariesString, Mode=OneWay}">
                                         <ComboBox.ItemContainerStyle>
                                             <Style TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
@@ -2846,7 +2846,7 @@
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterGenre" Text="{Binding AppSettings.FilterSettings.Genres, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                                    <pc:SearchBox x:Name="TextFilterGenre" Text="{Binding AppSettings.FilterSettings.Genres, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='NoTrim'}" Style="{StaticResource FilterTextBox}"/>
 
                                     <Label Content="{DynamicResource LOCPlatformTitle}">
                                         <Label.Style>
@@ -2859,7 +2859,7 @@
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterPlatform" Text="{Binding AppSettings.FilterSettings.Platforms, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                                    <pc:SearchBox x:Name="TextFilterPlatform" Text="{Binding AppSettings.FilterSettings.Platforms, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='NoTrim'}" Style="{StaticResource FilterTextBox}"/>
 
                                     <Label Content="{DynamicResource LOCGameReleaseDateTitle}">
                                         <Label.Style>
@@ -2885,7 +2885,7 @@
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterDeveloper" Text="{Binding AppSettings.FilterSettings.Developers, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                                    <pc:SearchBox x:Name="TextFilterDeveloper" Text="{Binding AppSettings.FilterSettings.Developers, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='NoTrim'}" Style="{StaticResource FilterTextBox}"/>
 
                                     <Label Content="{DynamicResource LOCPublisherLabel}">
                                         <Label.Style>
@@ -2898,7 +2898,7 @@
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterPublisher" Text="{Binding AppSettings.FilterSettings.Publishers, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                                    <pc:SearchBox x:Name="TextFilterPublisher" Text="{Binding AppSettings.FilterSettings.Publishers, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='NoTrim'}" Style="{StaticResource FilterTextBox}"/>
 
                                     <Label Content="{DynamicResource LOCCategoryLabel}">
                                         <Label.Style>
@@ -2911,7 +2911,7 @@
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterCategory" Text="{Binding AppSettings.FilterSettings.Categories, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                                    <pc:SearchBox x:Name="TextFilterCategory" Text="{Binding AppSettings.FilterSettings.Categories, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='NoTrim'}" Style="{StaticResource FilterTextBox}"/>
 
                                     <Label Content="{DynamicResource LOCTagLabel}">
                                         <Label.Style>
@@ -2924,7 +2924,7 @@
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterTag" Text="{Binding AppSettings.FilterSettings.Tags, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                                    <pc:SearchBox x:Name="TextFilterTag" Text="{Binding AppSettings.FilterSettings.Tags, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='NoTrim'}" Style="{StaticResource FilterTextBox}"/>
 
                                     <Label Content="{DynamicResource LOCSeriesLabel}">
                                         <Label.Style>
@@ -2988,7 +2988,7 @@
                             <DockPanel>
                                 <pc:ExtendedListBox SelectionMode="Extended" BorderThickness="0,0,1,0"
                                                     BorderBrush="{DynamicResource NormalBorderBrush}" Width="310"
-                                                    DockPanel.Dock="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                                    DockPanel.Dock="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                     SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
                                                     SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
                                                     ScrollViewer.PanningMode="VerticalOnly"
