@@ -89,11 +89,6 @@ namespace Playnite
             }
         }
 
-        public static string GetSafeFilename(string filename)
-        {
-            return string.Join(" ", filename.Split(Path.GetInvalidFileNameChars()));
-        }
-
         public static string GetMD5(Stream stream)
         {
             using (var md5 = MD5.Create())

@@ -27,16 +27,29 @@ namespace Playnite.Database
 
         public override bool Remove(Platform item)
         {
+            foreach (var game in db.Games.Where(a => a.PlatformId == item.Id))
+            {
+                game.PlatformId = Guid.Empty;
+                db.Games.Update(game);
+            }
+
             return Remove(item.Id);
         }
 
         public override bool Remove(IEnumerable<Platform> items)
         {
+            var ids = items.Select(a => a.Id).ToList();
             var result = base.Remove(items);
             foreach (var item in items)
             {
                 db.RemoveFile(item.Icon);
                 db.RemoveFile(item.Cover);
+            }
+
+            foreach (var game in db.Games.Where(a => ids.Contains(a.PlatformId)))
+            {
+                game.PlatformId = Guid.Empty;
+                db.Games.Update(game);
             }
 
             return result;

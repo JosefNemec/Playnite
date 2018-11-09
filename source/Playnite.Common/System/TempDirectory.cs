@@ -18,7 +18,8 @@ namespace Playnite.Common.System
         {
             var stack = new StackTrace(1);
             var method = stack.GetFrame(0).GetMethod();
-            return new TempDirectory($"{method.DeclaringType.Name}_{method.Name}", autoDelete);
+            var dirName = Paths.GetSafeFilename($"{method.DeclaringType.Name}_{method.Name}");
+            return new TempDirectory(dirName, autoDelete);
         }
 
         public TempDirectory(string dirName, bool autoDelete = true)

@@ -9,5 +9,10 @@ namespace Playnite.SDK.Models
     public class DatabaseObject : ObservableObject
     {
         public Guid Id { get; set; }
+
+        public DatabaseObject()
+        {
+            Id = Guid.NewGuid();
+        }
     }
 }

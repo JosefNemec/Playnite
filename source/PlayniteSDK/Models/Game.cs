@@ -757,9 +757,8 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Creates new instance of a Game object.
         /// </summary>
-        public Game()
+        public Game() : base()
         {
-            Id = Guid.NewGuid();
             GameId = Guid.NewGuid().ToString();
         }
 

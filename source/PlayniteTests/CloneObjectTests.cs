@@ -171,7 +171,7 @@ namespace PlayniteTests
 
             target.PropertyChanged += (s, e) => changed.Add(e.PropertyName);
             source.CopyProperties(target, false);
-            Assert.AreEqual(6, changed.Count);
+            Assert.AreEqual(5, changed.Count);
         }
     }
 }

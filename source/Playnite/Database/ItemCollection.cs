@@ -102,13 +102,24 @@ namespace Playnite.Database
 
         public event ItemUpdatedEventHandler<TItem> ItemUpdated;
 
-        public ItemCollection() : this(null)
-        {
-        }
-
-        public ItemCollection(Action<TItem> initMethod)
+        public ItemCollection()
         {
             Items = new ConcurrentDictionary<Guid, TItem>();
+        }
+
+        public ItemCollection(Action<TItem> initMethod) : this()
+        {
+            this.initMethod = initMethod;
+        }
+
+        public ItemCollection(string path)
+        {
+            Items = new ConcurrentDictionary<Guid, TItem>();
+            InitializeCollection(path);
+        }
+
+        public ItemCollection(string path, Action<TItem> initMethod) : this(path)
+        {
             this.initMethod = initMethod;
         }
 

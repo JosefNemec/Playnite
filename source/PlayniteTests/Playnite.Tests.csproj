@@ -112,14 +112,12 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="API\DatabaseAPITests.cs" />
     <Compile Include="API\PluginDescriptionTests.cs" />
     <Compile Include="App\UpdateTests.cs" />
     <Compile Include="CloneObjectTests.cs" />
     <Compile Include="Database\GameDatabaseFileTests.cs" />
     <Compile Include="Database\GameDatabaseMigrationTests.cs" />
     <Compile Include="Database\GameDatabasePlatformsTests.cs" />
-    <Compile Include="Database\GameDatabaseEventTests.cs" />
     <Compile Include="Database\GameDatabaseTests.cs" />
     <Compile Include="Database\ItemCollectionTests.cs" />
     <Compile Include="Emulators\EmulatorFinderTests.cs" />

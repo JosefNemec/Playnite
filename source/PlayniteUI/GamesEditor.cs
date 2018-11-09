@@ -337,7 +337,7 @@ namespace PlayniteUI
         {
             try
             {
-                var path = Environment.ExpandEnvironmentVariables(Path.Combine("%userprofile%", "Desktop", FileSystem.GetSafeFilename(game.Name) + ".lnk"));
+                var path = Environment.ExpandEnvironmentVariables(Path.Combine("%userprofile%", "Desktop", Paths.GetSafeFilename(game.Name) + ".lnk"));
                 string icon = string.Empty;
 
                 if (!string.IsNullOrEmpty(game.Icon) && Path.GetExtension(game.Icon) == ".ico")

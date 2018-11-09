@@ -57,9 +57,8 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Creates new instance of Platform.
         /// </summary>
-        public Platform()
+        public Platform() : base()
         {
-            Id = Guid.NewGuid();
         }
 
         /// <summary>

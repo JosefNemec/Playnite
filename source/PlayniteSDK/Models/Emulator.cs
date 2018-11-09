@@ -110,9 +110,8 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Creates new instance of EmulatorProfile.
         /// </summary>
-        public EmulatorProfile()
+        public EmulatorProfile() : base()
         {
-            Id = Guid.NewGuid();
         }
     }
 
@@ -152,9 +151,8 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Creates new instance of Emulator.
         /// </summary>
-        public Emulator()
+        public Emulator() : base()
         {
-            Id = Guid.NewGuid();
         }
 
         /// <summary>

@@ -38,7 +38,6 @@ namespace SteamLibrary
         public SteamLibrary(IPlayniteAPI api)
         {
             Initialize(api);
-            var configPath = Path.Combine(api.GetPluginUserDataPath(this), "config.json");
             config = api.GetPluginConfiguration<Configuration>(this);
             servicesClient = new SteamServicesClient(config.ServicesEndpoint);
         }

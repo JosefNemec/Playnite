@@ -85,5 +85,10 @@ namespace Playnite.Common.System
                 return false;
             }
         }
+
+        public static string GetSafeFilename(string filename)
+        {
+            return string.Join(" ", filename.Split(Path.GetInvalidFileNameChars()));
+        }
     }
 }
