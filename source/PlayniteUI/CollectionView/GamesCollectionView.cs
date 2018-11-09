@@ -26,11 +26,10 @@ namespace PlayniteUI
 
     public class GamesCollectionView : ObservableObject, IDisposable
     {
-        private static ILogger logger = LogManager.GetLogger();
-
-        private GameDatabase database;
-        private List<Platform> platformsCache;
+        private static ILogger logger = LogManager.GetLogger();        
         private ExtensionFactory extensions;
+
+        public GameDatabase Database { get; private set; }
 
         public bool IsFullscreen
         {
@@ -78,9 +77,8 @@ namespace PlayniteUI
         public GamesCollectionView(GameDatabase database, PlayniteSettings settings, bool fullScreen, ExtensionFactory extensions)
         {
             IsFullscreen = fullScreen;
-            this.database = database;
+            this.Database = database;
             this.extensions = extensions;
-            platformsCache = database.Platforms.ToList();
             database.Games.ItemCollectionChanged += Database_GamesCollectionChanged;
             database.Games.ItemUpdated += Database_GameUpdated;
             database.Platforms.ItemCollectionChanged += Database_PlatformsCollectionChanged;
@@ -105,10 +103,10 @@ namespace PlayniteUI
 
         public void Dispose()
         {
-            database.Games.ItemCollectionChanged -= Database_GamesCollectionChanged;
-            database.Games.ItemUpdated -= Database_GameUpdated;
-            database.Platforms.ItemCollectionChanged -= Database_PlatformsCollectionChanged;
-            database.Platforms.ItemUpdated -= Database_PlatformUpdated;
+            Database.Games.ItemCollectionChanged -= Database_GamesCollectionChanged;
+            Database.Games.ItemUpdated -= Database_GameUpdated;
+            Database.Platforms.ItemCollectionChanged -= Database_PlatformsCollectionChanged;
+            Database.Platforms.ItemUpdated -= Database_PlatformUpdated;
             Settings.PropertyChanged -= Settings_PropertyChanged;
             if (IsFullscreen)
             {
@@ -322,7 +320,7 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    var platform = GetPlatformFromCache(game);
+                    var platform = Database.Platforms[game.PlatformId];
                     if (platform == null)
                     {
                         platformResult = false;
@@ -542,7 +540,7 @@ namespace PlayniteUI
             if (IsFullscreen)
             {
                 Items.Clear();
-                Items.AddRange(database.Games.Select(x => new GameViewEntry(x, string.Empty, this, GetLibraryPlugin(x))));
+                Items.AddRange(Database.Games.Select(x => new GameViewEntry(x, string.Empty, this, GetLibraryPlugin(x))));
             }
             else
             {
@@ -550,12 +548,12 @@ namespace PlayniteUI
                 {
                     case GamesViewType.Standard:
                         Items.Clear();
-                        Items.AddRange(database.Games.Select(x => new GameViewEntry(x, string.Empty, this, GetLibraryPlugin(x))));
+                        Items.AddRange(Database.Games.Select(x => new GameViewEntry(x, string.Empty, this, GetLibraryPlugin(x))));
                         break;
 
                     case GamesViewType.CategoryGrouped:
                         Items.Clear();
-                        Items.AddRange(database.Games.SelectMany(x =>
+                        Items.AddRange(Database.Games.SelectMany(x =>
                         {
                             if (x.Categories?.Any() == true)
                             {
@@ -580,11 +578,6 @@ namespace PlayniteUI
             this.viewType = viewType;
         }
 
-        public Platform GetPlatformFromCache(Game game)
-        {
-            return platformsCache?.FirstOrDefault(a => a.Id == game.PlatformId);
-        }
-
         private ILibraryPlugin GetLibraryPlugin(Game game)
         {
             if (game.PluginId != Guid.Empty && extensions.LibraryPlugins.TryGetValue(game.PluginId, out var plugin))
@@ -597,12 +590,10 @@ namespace PlayniteUI
 
         private void Database_PlatformUpdated(object sender, ItemUpdatedEventArgs<Platform> args)
         {
-            platformsCache = database.Platforms.ToList();
-            var platformIds = args.UpdatedItems.Select(a => a.NewData.Id).ToList();
-            foreach (var item in Items.Where(a => a.PlatformId != null && platformIds.Contains(a.PlatformId)))
+            var platformIds = new HashSet<Guid>(args.UpdatedItems.Select(a => a.NewData.Id));
+            foreach (var item in Items.Where(a => platformIds.Contains(a.PlatformId)))
             {
-                item.Platform.Platform = GetPlatformFromCache(item.Game);
-                item.OnPropertyChanged(nameof(GameViewEntry.Platform));
+                item.OnPropertyChanged(nameof(GameViewEntry.PlatformId));
                 item.OnPropertyChanged(nameof(GameViewEntry.DefaultIcon));
                 item.OnPropertyChanged(nameof(GameViewEntry.DefaultCoverImage));
             }
@@ -610,7 +601,6 @@ namespace PlayniteUI
 
         private void Database_PlatformsCollectionChanged(object sender, ItemCollectionChangedEventArgs<Platform> args)
         {
-            platformsCache = database.Platforms.ToList();
         }
 
         private void Database_GameUpdated(object sender, ItemUpdatedEventArgs<Game> args)
@@ -658,7 +648,7 @@ namespace PlayniteUI
 
             if (args.RemovedItems.Count > 0)
             {
-                var removeIds = args.RemovedItems.Select(a => a.Id);
+                var removeIds = new HashSet<Guid>(args.RemovedItems.Select(a => a.Id));
                 var toRemove = Items.Where(a => removeIds.Contains(a.Id))?.ToList();
                 if (toRemove != null)
                 {

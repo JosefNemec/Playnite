@@ -795,7 +795,7 @@ namespace Playnite.Database
                 throw new Exception("Database path cannot be empty.");
             }
 
-            var dbExists = Directory.Exists(DatabaseFileSettingsPath);
+            var dbExists = File.Exists(DatabaseFileSettingsPath);
             logger.Info("Opening db " + DatabasePath);
 
             if (!dbExists)

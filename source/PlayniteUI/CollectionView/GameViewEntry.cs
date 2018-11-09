@@ -67,7 +67,7 @@ namespace PlayniteUI
         {
             get
             {
-                return (string.IsNullOrEmpty(Game.SortingName)) ? Game.Name : Game.SortingName;
+                return string.IsNullOrEmpty(Game.SortingName) ? Game.Name : Game.SortingName;
             }
         }
 
@@ -145,7 +145,7 @@ namespace PlayniteUI
             Category = new CategoryView(category);
             Game = game;
             Game.PropertyChanged += Game_PropertyChanged;
-            Platform = new PlatformView(PlatformId, view.GetPlatformFromCache(game));
+            Platform = new PlatformView(game.PlatformId, view.Database.Platforms[game.PlatformId]);
         }
 
         private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -159,7 +159,7 @@ namespace PlayniteUI
 
             if (propertyName == nameof(Game.PlatformId))
             {
-                Platform = new PlatformView(PlatformId, view.GetPlatformFromCache(Game));
+                Platform = new PlatformView(Game.PlatformId, view.Database.Platforms[Game.PlatformId]);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Platform)));
             }
 
