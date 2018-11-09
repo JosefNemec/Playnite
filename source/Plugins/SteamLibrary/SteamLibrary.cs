@@ -342,7 +342,7 @@ namespace SteamLibrary
         internal List<Game> GetLibraryGames(string userName, string apiKey)
         {
             var userNameUrl = @"https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key={0}&vanityurl={1}";
-            var libraryUrl = @"https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&include_appinfo=1&format=json&steamid={1}";
+            var libraryUrl = @"https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&include_appinfo=1&include_played_free_games=1&format=json&steamid={1}";
 
             ulong userId = 0;
             if (!ulong.TryParse(userName, out userId))
