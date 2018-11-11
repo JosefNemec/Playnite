@@ -47,9 +47,10 @@
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam好友</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">部分包含要保存的更改。</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress">更新数据库版本...</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">正在更新游戏库格式…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">数据库更新失败，无法打开数据库文件。</sys:String>
-
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">无法更新游戏库。{0}需要MB的可用空间。</sys:String>
+    
     <sys:String x:Key="LOCGameError">游戏错误</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">无法启动游戏， 在数据库中找不到"{0}"</sys:String>
     <sys:String x:Key="LOCGameStartError">无法启动游戏: {0}</sys:String>
@@ -138,6 +139,8 @@
     <sys:String x:Key="LOCSunday">星期日</sys:String>
     <sys:String x:Key="LOCImportCompleted">导入已成功完成。</sys:String>
     <sys:String x:Key="LOCAllGames">所有游戏</sys:String>
+    <sys:String x:Key="LOCGameId">游戏ID</sys:String>
+    <sys:String x:Key="LOCDatabaseId">数据库ID</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">特殊变量可以用来添加动态字符串：
 {InstallDir} - 游戏安装目录
@@ -557,9 +560,11 @@ IGDB > 官方商店：
 	
     <sys:String x:Key="LOCOpeningDesktopModeMessage">正在打开桌面模式...</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">正在打开全屏模式...</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">正在加载游戏库...</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">无法安装脚本文件。</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">脚本安装成功。</sys:String>
     <sys:String x:Key="LOCInstallScript">安装脚本</sys:String>
     <sys:String x:Key="LOCScriptError">脚本错误</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">无法执行扩展功能。</sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">打开元数据文件夹</sys:String>
 </ResourceDictionary>
