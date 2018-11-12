@@ -1330,6 +1330,21 @@ namespace PlayniteUI.ViewModels
 
         public void CloseView()
         {
+            if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
+            {
+                FileSystem.DeleteFile(EditingGame.Icon);
+            }
+
+            if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
+            {
+                FileSystem.DeleteFile(EditingGame.CoverImage);
+            }
+
+            if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
+            {
+                FileSystem.DeleteFile(EditingGame.BackgroundImage);
+            }
+
             window.Close(false);
         }
 
