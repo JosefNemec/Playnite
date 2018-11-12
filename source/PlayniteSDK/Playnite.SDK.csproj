@@ -45,12 +45,14 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\ComparableList.cs" />
     <Compile Include="Collections\ObservableConcurrentDictionary.cs" />
     <Compile Include="Collections\ObservableObject.cs" />
     <Compile Include="Collections\RangeObservableCollection.cs" />
+    <Compile Include="DefaultResourceProvider.cs" />
     <Compile Include="Events\GameControllerEvent.cs" />
     <Compile Include="IDialogsFactory.cs" />
     <Compile Include="ExtensionFunction.cs" />

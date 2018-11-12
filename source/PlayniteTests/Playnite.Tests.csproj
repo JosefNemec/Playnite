@@ -149,6 +149,7 @@
     <Compile Include="ListExtensionsTests.cs" />
     <Compile Include="StringExtensionsTests.cs" />
     <Compile Include="TestsSetupClass.cs" />
+    <Compile Include="Web\HttpDownloaderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Playnite.Common\Playnite.Common.csproj">

@@ -71,6 +71,7 @@
       <Link>BaseGameController.cs</Link>
     </Compile>
     <Compile Include="Configuration.cs" />
+    <Compile Include="Converters\CompletionStatusToStringConverter.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="GameExtension.cs" />
     <Compile Include="AppState.cs" />

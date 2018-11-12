@@ -70,8 +70,10 @@ namespace Playnite.Web
         public string DownloadString(string url, Encoding encoding)
         {
             logger.Debug($"Downloading string content from {url} using {encoding} encoding.");
-            var webClient = new WebClient { Encoding = encoding };
-            return webClient.DownloadString(url);
+            using (var webClient = new WebClient { Encoding = encoding })
+            {
+                return webClient.DownloadString(url);
+            }
         }
 
         public string DownloadString(string url, List<Cookie> cookies)
@@ -82,14 +84,16 @@ namespace Playnite.Web
         public string DownloadString(string url, List<Cookie> cookies, Encoding encoding)
         {
             logger.Debug($"Downloading string content from {url} using cookies and {encoding} encoding.");
-            var webClient = new WebClient { Encoding = encoding };
-            if (cookies?.Any() == true)
+            using (var webClient = new WebClient { Encoding = encoding })
             {
-                var cookieString = string.Join(";", cookies.Select(a => $"{a.Name}={a.Value}"));
-                webClient.Headers.Add(HttpRequestHeader.Cookie, cookieString);
-            }
+                if (cookies?.Any() == true)
+                {
+                    var cookieString = string.Join(";", cookies.Select(a => $"{a.Name}={a.Value}"));
+                    webClient.Headers.Add(HttpRequestHeader.Cookie, cookieString);
+                }
 
-            return webClient.DownloadString(url);
+                return webClient.DownloadString(url);
+            }
         }
 
         public void DownloadString(string url, string path)
@@ -100,34 +104,42 @@ namespace Playnite.Web
         public void DownloadString(string url, string path, Encoding encoding)
         {
             logger.Debug($"Downloading string content from {url} to {path} using {encoding} encoding.");
-            var webClient = new WebClient { Encoding = encoding };
-            var data = webClient.DownloadString(url);
-            File.WriteAllText(path, data);
+            using (var webClient = new WebClient { Encoding = encoding })
+            {
+                var data = webClient.DownloadString(url);
+                File.WriteAllText(path, data);
+            }
         }
 
         public byte[] DownloadData(string url)
         {
             logger.Debug($"Downloading data from {url}.");
-            var webClient = new WebClient();
-            return webClient.DownloadData(url);
+            using (var webClient = new WebClient())
+            {
+                return webClient.DownloadData(url);
+            }
         }
 
         public void DownloadFile(string url, string path)
         {
             logger.Debug($"Downloading data from {url} to {path}.");
             FileSystem.CreateDirectory(Path.GetDirectoryName(path));
-            var webClient = new WebClient();
-            webClient.DownloadFile(url, path);            
+            using (var webClient = new WebClient())
+            {
+                webClient.DownloadFile(url, path);
+            }
         }
 
         public async Task DownloadFileAsync(string url, string path, Action<DownloadProgressChangedEventArgs> progressHandler)
         {
             logger.Debug($"Downloading data async from {url} to {path}.");
             FileSystem.CreateDirectory(Path.GetDirectoryName(path));
-            var webClient = new WebClient();
-            webClient.DownloadProgressChanged += (s, e) => progressHandler(e);
-            webClient.DownloadFileCompleted += (s, e) => webClient.Dispose();
-            await webClient.DownloadFileTaskAsync(url, path);
+            using (var webClient = new WebClient())
+            {
+                webClient.DownloadProgressChanged += (s, e) => progressHandler(e);
+                webClient.DownloadFileCompleted += (s, e) => webClient.Dispose();
+                await webClient.DownloadFileTaskAsync(url, path);
+            }
         }
 
         public async Task DownloadFileAsync(IEnumerable<string> mirrors, string path, Action<DownloadProgressChangedEventArgs> progressHandler)

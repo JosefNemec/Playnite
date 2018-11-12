@@ -282,9 +282,11 @@ Any currently active tasks (metadata downloads) will be canceled.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Number of rows</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Number of columns</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Number of detail view rows</sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOption">Prefer game screenshot instead of store background image</sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite will use available game screenshots as background instead of store background image.
-Doesn't apply retrospectively to existing games.</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSource">Background image source:</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceImage">Game Image</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Store Screenshot</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceStore">Store Background</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Doesn't apply retrospectively to existing games without re-downloading metadata.</sys:String>
 
     <sys:String x:Key="LOCImportError">Import Error</sys:String>
     <sys:String x:Key="LOCLoginChecking">Checking authentication status...</sys:String>
