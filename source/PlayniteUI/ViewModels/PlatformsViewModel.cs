@@ -298,7 +298,7 @@ namespace PlayniteUI.ViewModels
                     EmulatorImportViewModel.DialogType.EmulatorImport,
                     EmulatorImportWindowFactory.Instance,
                     new DialogsFactory(),
-                    new ResourceProvider());
+                    new DefaultResourceProvider());
                 ImportEmulators(model);
             });
         }
@@ -312,7 +312,7 @@ namespace PlayniteUI.ViewModels
                     EmulatorImportViewModel.DialogType.EmulatorDownload,
                     EmulatorImportWindowFactory.Instance,
                     new DialogsFactory(),
-                    new ResourceProvider());
+                    new DefaultResourceProvider());
                 DownloadEmulators(model);
             });
         }

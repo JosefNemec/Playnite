@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using Playnite.SDK;
 using Playnite.Settings;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,12 @@ namespace PlayniteUI
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var source = (AfterGameCloseOptions)value;
-            var resources = new ResourceProvider();
             switch (source)
             {
                 case AfterGameCloseOptions.None:
-                    return resources.FindString("LOCDoNothing");
+                    return DefaultResourceProvider.FindString("LOCDoNothing");
                 case AfterGameCloseOptions.Restore:
-                    return resources.FindString("LOCRestoreWindow");
+                    return DefaultResourceProvider.FindString("LOCRestoreWindow");
                 default:
                     return string.Empty;
             }

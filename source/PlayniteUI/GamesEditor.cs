@@ -24,7 +24,7 @@ namespace PlayniteUI
     public class GamesEditor : ObservableObject, IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
-        private IResourceProvider resources = new ResourceProvider();
+        private IResourceProvider resources = new DefaultResourceProvider();
         private GameDatabase database;
         private IDialogsFactory dialogs;
         private PlayniteSettings appSettings;
@@ -95,7 +95,7 @@ namespace PlayniteUI
                             database,
                             GameEditWindowFactory.Instance,
                             new DialogsFactory(),
-                            new ResourceProvider(),
+                            new DefaultResourceProvider(),
                             extensions);
             return model.OpenView();
         }
@@ -107,7 +107,7 @@ namespace PlayniteUI
                             database,
                             GameEditWindowFactory.Instance,
                             new DialogsFactory(),
-                            new ResourceProvider(),
+                            new DefaultResourceProvider(),
                             extensions);
             return model.OpenView();
         }

@@ -242,7 +242,6 @@
     <Compile Include="Behaviors\ScrollToSelectedBehavior.cs" />
     <Compile Include="CollectionView\GameViewEntry.cs" />
     <Compile Include="ProgramEntry.cs" />
-    <Compile Include="Resources.cs" />
     <Compile Include="Themes.cs" />
     <Compile Include="Time.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />

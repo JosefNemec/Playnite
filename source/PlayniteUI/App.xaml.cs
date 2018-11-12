@@ -137,7 +137,7 @@ namespace PlayniteUI
             logger.Error(exception, "Unhandled exception occured.");
 
             var model = new CrashHandlerViewModel(
-                CrashHandlerWindowFactory.Instance, dialogs, new ResourceProvider());
+                CrashHandlerWindowFactory.Instance, dialogs, new DefaultResourceProvider());
             model.Exception = exception.ToString();
             model.OpenView();
             Process.GetCurrentProcess().Kill();
@@ -169,8 +169,8 @@ namespace PlayniteUI
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     PlayniteMessageBox.Show(
-                        ResourceProvider.Instance.FindString("LOCStartGenericError"),
-                        ResourceProvider.Instance.FindString("LOCStartupError"), MessageBoxButton.OK, MessageBoxImage.Error);
+                        DefaultResourceProvider.FindString("LOCStartGenericError"),
+                        DefaultResourceProvider.FindString("LOCStartupError"), MessageBoxButton.OK, MessageBoxImage.Error);
                     logger.Error(exc, "Can't process communication with other instances.");
                 }
 
@@ -219,7 +219,7 @@ namespace PlayniteUI
                 new PlayniteInfoAPI(),
                 new PlaynitePathsAPI(),
                 new WebViewFactory(),
-                new ResourceProvider());
+                new DefaultResourceProvider());
             Extensions = new ExtensionFactory(Database, controllers);
 
             // Load theme
@@ -245,7 +245,7 @@ namespace PlayniteUI
                 Database.OpenDatabase();
 
                 var wizardWindow = FirstTimeStartupWindowFactory.Instance;
-                var wizardModel = new FirstTimeStartupViewModel(wizardWindow, dialogs, new ResourceProvider(), Extensions, Api);
+                var wizardModel = new FirstTimeStartupViewModel(wizardWindow, dialogs, new DefaultResourceProvider(), Extensions, Api);
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
@@ -268,7 +268,7 @@ namespace PlayniteUI
                    EmulatorImportViewModel.DialogType.Wizard,
                    EmulatorImportWindowFactory.Instance,
                    dialogs,
-                   new ResourceProvider());
+                   new DefaultResourceProvider());
                 model.OpenView();
             }
             else
@@ -391,7 +391,7 @@ namespace PlayniteUI
                         {
                             Dispatcher.Invoke(() =>
                             {
-                                var model = new UpdateViewModel(updater, UpdateWindowFactory.Instance, new ResourceProvider(), dialogs);
+                                var model = new UpdateViewModel(updater, UpdateWindowFactory.Instance, new DefaultResourceProvider(), dialogs);
                                 model.OpenView();
                             });
                         }
@@ -458,7 +458,7 @@ namespace PlayniteUI
                 {
                     logger.Error(exc, "Failed to dispose Playnite objects.");
                 }
-            }, ResourceProvider.Instance.FindString("LOCClosingPlaynite"));
+            }, DefaultResourceProvider.FindString("LOCClosingPlaynite"));
 
             progressModel.ActivateProgress();
 
@@ -487,7 +487,7 @@ namespace PlayniteUI
                 Database,
                 MainViewWindow,
                 dialogs,
-                new ResourceProvider(),
+                new DefaultResourceProvider(),
                 AppSettings,
                 GamesEditor,
                 Api,
@@ -526,7 +526,7 @@ namespace PlayniteUI
                 Database,
                 MainViewWindow,
                 dialogs,
-                new ResourceProvider(),
+                new DefaultResourceProvider(),
                 AppSettings,
                 GamesEditor,
                 Api,
@@ -566,8 +566,8 @@ namespace PlayniteUI
             if (themeValid.Item1 == false)
             {
                 PlayniteMessageBox.Show(
-                    string.Format(ResourceProvider.Instance.FindString("LOCSkinApplyError"), AppSettings.Skin, AppSettings.SkinColor, themeValid.Item2),
-                    ResourceProvider.Instance.FindString("LOCSkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
+                    string.Format(DefaultResourceProvider.FindString("LOCSkinApplyError"), AppSettings.Skin, AppSettings.SkinColor, themeValid.Item2),
+                    DefaultResourceProvider.FindString("LOCSkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
                 isThemeValid = false;
             }
 
@@ -575,8 +575,8 @@ namespace PlayniteUI
             if (profileValid.Item1 == false)
             {
                 PlayniteMessageBox.Show(
-                    string.Format(ResourceProvider.Instance.FindString("LOCSkinApplyError"), AppSettings.Skin, AppSettings.SkinColor, profileValid.Item2),
-                    ResourceProvider.Instance.FindString("LOCSkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
+                    string.Format(DefaultResourceProvider.FindString("LOCSkinApplyError"), AppSettings.Skin, AppSettings.SkinColor, profileValid.Item2),
+                    DefaultResourceProvider.FindString("LOCSkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
                 isThemeValid = false;
             }
 

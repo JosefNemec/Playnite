@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,15 +20,15 @@ namespace PlayniteUI
             var settings = (FilterSettings)value;
             if (settings.IsInstalled)
             {
-                return ResourceProvider.Instance.FindString("LOCGameIsInstalledTitle");
+                return DefaultResourceProvider.FindString("LOCGameIsInstalledTitle");
             }
             else if (settings.IsUnInstalled)
             {
-                return ResourceProvider.Instance.FindString("LOCGameIsUnInstalledTitle");
+                return DefaultResourceProvider.FindString("LOCGameIsUnInstalledTitle");
             }
             else
             {
-                return ResourceProvider.Instance.FindString("LOCAllGames");
+                return DefaultResourceProvider.FindString("LOCAllGames");
             }
         }
 

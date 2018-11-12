@@ -7,8 +7,17 @@ using System.Windows;
 
 namespace Playnite.SDK
 {
-    public class DefaultResourceProvider
+    public class DefaultResourceProvider : IResourceProvider
     {
+        public DefaultResourceProvider()
+        {
+        }
+
+        string IResourceProvider.FindString(string key)
+        {
+            return FindString(key);
+        }
+
         public static string FindString(string key)
         {
             var resource = Application.Current.TryFindResource(key);
