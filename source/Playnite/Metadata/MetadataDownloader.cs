@@ -19,18 +19,20 @@ namespace Playnite.Metadata
     {
         private static ILogger logger = LogManager.GetLogger();
 
+        private GameDatabase database;
         private ILibraryMetadataProvider igdbProvider;
         private readonly IEnumerable<ILibraryPlugin> plugins;
         private ConcurrentDictionary<Guid, ILibraryMetadataProvider> downloaders = new ConcurrentDictionary<Guid, ILibraryMetadataProvider>();
 
-        public MetadataDownloader(IEnumerable<ILibraryPlugin> plugins) : this(new IGDBMetadataProvider(), plugins)
+        public MetadataDownloader(GameDatabase database, IEnumerable<ILibraryPlugin> plugins) : this(database, new IGDBMetadataProvider(), plugins)
         {
         }
 
-        public MetadataDownloader(ILibraryMetadataProvider igdbProvider, IEnumerable<ILibraryPlugin> plugins)
+        public MetadataDownloader(GameDatabase database, ILibraryMetadataProvider igdbProvider, IEnumerable<ILibraryPlugin> plugins)
         {
             this.igdbProvider = igdbProvider;
             this.plugins = plugins;
+            this.database = database;
         }
 
         internal ILibraryMetadataProvider GetMetadataDownloader(Guid pluginId)
@@ -197,7 +199,6 @@ namespace Playnite.Metadata
 
         public async Task DownloadMetadataGroupedAsync(
             List<Game> games,
-            GameDatabase database,
             MetadataDownloaderSettings settings,
             Action<Game, int, int> processCallback,
             CancellationTokenSource cancelToken)
@@ -215,7 +216,7 @@ namespace Playnite.Metadata
                     tasks.Add(Task.Run(() =>
                     {
                         var gms = group.ToList();
-                        DownloadMetadataAsync(gms, database, settings, (g, i, t) =>
+                        DownloadMetadataAsync(gms, settings, (g, i, t) =>
                         {
                             index++;
                             processCallback?.Invoke(g, index, total);
@@ -229,7 +230,6 @@ namespace Playnite.Metadata
 
         public async Task DownloadMetadataAsync(
             List<Game> games,
-            GameDatabase database,
             MetadataDownloaderSettings settings,
             Action<Game, int, int> processCallback,
             CancellationTokenSource cancelToken)
@@ -381,11 +381,7 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.BackgroundImage, ref storeData, ref igdbData, (a) => a.BackgroundImage);
                                 if (!string.IsNullOrEmpty(gameData?.BackgroundImage))
                                 {
-                                    if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.IsHttpUrl())
-                                    {
-                                        database.RemoveFile(game.BackgroundImage);
-                                    }
-
+                                    RemoveGameMedia(game.BackgroundImage);
                                     game.BackgroundImage = gameData.BackgroundImage;
                                 }
                             }
@@ -400,11 +396,7 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.CoverImage, ref storeData, ref igdbData, (a) => a.Image);
                                 if (gameData?.Image != null)
                                 {
-                                    if (!string.IsNullOrEmpty(game.CoverImage))
-                                    {
-                                        database.RemoveFile(game.CoverImage);
-                                    }
-
+                                    RemoveGameMedia(game.CoverImage);
                                     game.CoverImage = database.AddFile(gameData.Image, game.Id);
                                 }
                             }
@@ -418,11 +410,7 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.Icon, ref storeData, ref igdbData, (a) => a.Icon);
                                 if (gameData?.Icon != null)
                                 {
-                                    if (!string.IsNullOrEmpty(game.Icon))
-                                    {
-                                        database.RemoveFile(game.Icon);
-                                    }
-
+                                    RemoveGameMedia(game.Icon);
                                     game.Icon = database.AddFile(gameData.Icon, game.Id);
                                 }
                             }
@@ -462,6 +450,23 @@ namespace Playnite.Metadata
                     }
                 }
             });
+        }
+
+        private void RemoveGameMedia(string mediaId)
+        {
+            if (string.IsNullOrEmpty(mediaId))
+            {
+                return;
+            }
+
+            if (mediaId.IsHttpUrl())
+            {
+                HttpFileCache.ClearCache(mediaId);
+            }
+            else
+            {
+                database.RemoveFile(mediaId);
+            }
         }
     }
 }

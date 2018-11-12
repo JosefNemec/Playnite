@@ -95,12 +95,11 @@ namespace PlayniteTests.Metadata
                     return GameMetadata.GetEmptyData();
                 });
 
-                var downloader = new MetadataDownloader(igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
+                var downloader = new MetadataDownloader(db, igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
                 var settings = new MetadataDownloaderSettings() { SkipExistingValues = false };
                 settings.ConfigureFields(MetadataSource.IGDB, true);
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(),
-                    db, settings, null, null);
+                    db.Games.ToList(), settings, null, null);
 
 
                 Assert.IsFalse(storeCalled);
@@ -172,12 +171,11 @@ namespace PlayniteTests.Metadata
                     return new GameMetadata(game, icon, image, $"Store backgournd {gameId}");
                 });
 
-                var downloader = new MetadataDownloader(igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
+                var downloader = new MetadataDownloader(db, igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
                 var settings = new MetadataDownloaderSettings() { SkipExistingValues = false };
                 settings.ConfigureFields(MetadataSource.Store, true);
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(),
-                    db, settings, null, null);
+                    db.Games.ToList(), settings, null, null);
                 
                 Assert.AreEqual(1, callCount);
                 Assert.IsFalse(igdbCalled);
@@ -250,14 +248,13 @@ namespace PlayniteTests.Metadata
                     return new GameMetadata(game, icon, image, $"Store backgournd {gameId}");
                 });
 
-                var downloader = new MetadataDownloader(igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
+                var downloader = new MetadataDownloader(db, igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
                 var settings = new MetadataDownloaderSettings() { SkipExistingValues = false };
 
                 // IGDB over Store
                 settings.ConfigureFields(MetadataSource.IGDBOverStore, true);
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(),
-                    db, settings, null, null);
+                    db.Games.ToList(), settings, null, null);
                 Assert.AreEqual(4, callCount);
                                 
                 var game1 = db.Games[games[0].Id];
@@ -290,8 +287,7 @@ namespace PlayniteTests.Metadata
                 callCount = 0;
                 settings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(),
-                    db, settings, null, null);
+                    db.Games.ToList(), settings, null, null);
                 Assert.AreEqual(4, callCount);
 
                 game1 = db.Games[games[0].Id];
@@ -366,7 +362,7 @@ namespace PlayniteTests.Metadata
                     return new GameMetadata(new Game("Store Game " + gameId), null, null, null);
                 });
 
-                var downloader = new MetadataDownloader(igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
+                var downloader = new MetadataDownloader(db, igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
                 var settings = new MetadataDownloaderSettings() { SkipExistingValues = false };
 
                 var dbGames = db.Games.ToList();
@@ -375,8 +371,7 @@ namespace PlayniteTests.Metadata
 
                 settings.ConfigureFields(MetadataSource.Store, true);
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(),
-                    db, settings, null, null);
+                    db.Games.ToList(), settings, null, null);
 
                 dbGames = db.Games.ToList();
                 Assert.AreEqual(1, callCount);
@@ -440,14 +435,13 @@ namespace PlayniteTests.Metadata
                     return new GameMetadata(game, icon, image, $"IGDB backgournd {gameId}");
                 });
 
-                var downloader = new MetadataDownloader(igdbProvider.Object, null);
+                var downloader = new MetadataDownloader(db, igdbProvider.Object, null);
                 var settings = new MetadataDownloaderSettings() { SkipExistingValues = true };
 
                 // No download - all values are kept
                 settings.ConfigureFields(MetadataSource.IGDB, true);
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(),
-                    db, settings, null, null);
+                    db.Games.ToList(), settings, null, null);
 
                 var dbGames = db.Games.ToList();
                 Assert.AreEqual(0, callCount);
@@ -468,8 +462,7 @@ namespace PlayniteTests.Metadata
                 // Single download - values are changed even when present
                 settings.SkipExistingValues = false;
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(),
-                    db, settings, null, null);
+                    db.Games.ToList(), settings, null, null);
 
                 dbGames = db.Games.ToList();
                 Assert.AreEqual(1, callCount);
@@ -494,8 +487,7 @@ namespace PlayniteTests.Metadata
                 db.Games.Add(new Game("Game1"));
 
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(),
-                    db, settings, null, null);
+                    db.Games.ToList(), settings, null, null);
 
                 dbGames = db.Games.ToList();
                 Assert.AreEqual(1, callCount);

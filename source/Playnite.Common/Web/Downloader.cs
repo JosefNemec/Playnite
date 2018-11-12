@@ -167,51 +167,5 @@ namespace Playnite.Web
 
             throw new Exception("Failed to download file from all mirrors.");
         }
-
-        public string GetCachedWebFile(string url, string cachePath)
-        {
-            logger.Debug($"Getting cached web file from {url}.");
-            if (string.IsNullOrEmpty(url))
-            {
-                return string.Empty;
-            }
-
-            var extension = Path.GetExtension(url);
-            var md5 = url.MD5();
-            var cacheFile = Path.Combine(cachePath, md5 + extension);
-
-            if (File.Exists(cacheFile) && (new FileInfo(cacheFile)).Length != 0)
-            {
-                logger.Debug($"Returning {url} from file cache {cacheFile}.");
-                return cacheFile;
-            }
-            else
-            {
-                FileSystem.CreateDirectory(cachePath);
-
-                try
-                {
-                    DownloadFile(url, cacheFile);
-                    return cacheFile;
-                }
-                catch (WebException e)
-                {
-                    if (e.Response == null)
-                    {
-                        throw;
-                    }
-
-                    var response = (HttpWebResponse)e.Response;
-                    if (response.StatusCode != HttpStatusCode.NotFound)
-                    {
-                        throw;
-                    }
-                    else
-                    {
-                        return string.Empty;
-                    }
-                }
-            }            
-        }
     }
 }

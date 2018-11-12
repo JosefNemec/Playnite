@@ -83,7 +83,7 @@ namespace PlayniteUI
             {
                 try
                 {
-                    var cachedFile = HttpDownloader.GetCachedWebFile(imageId, PlaynitePaths.ImagesCachePath);
+                    var cachedFile = HttpFileCache.GetWebFile(imageId);
                     if (string.IsNullOrEmpty(cachedFile))
                     {
                         logger.Warn("Web file not found: " + imageId);

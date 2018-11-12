@@ -1760,20 +1760,14 @@ namespace PlayniteUI.ViewModels
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.Icon))
-                            {
-                                database.RemoveFile(game.Icon);
-                                game.Icon = null;
-                            }
+                            RemoveGameMedia(game.Icon);
+                            game.Icon = null;
                         }
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.Icon))
-                        {
-                            database.RemoveFile(Game.Icon);
-                            Game.Icon = null;
-                        }
+                        RemoveGameMedia(Game.Icon);
+                        Game.Icon = null;
                     }
                 }
                 else if (File.Exists(EditingGame.Icon))
@@ -1782,21 +1776,13 @@ namespace PlayniteUI.ViewModels
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.Icon))
-                            {
-                                database.RemoveFile(game.Icon);
-                            }
-
+                            RemoveGameMedia(game.Icon);
                             game.Icon = database.AddFile(EditingGame.Icon, game.Id);
                         }
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.Icon))
-                        {
-                            database.RemoveFile(Game.Icon);
-                        }
-
+                        RemoveGameMedia(Game.Icon);
                         Game.Icon = database.AddFile(EditingGame.Icon, game.Id); ;
                     }
 
@@ -1815,20 +1801,14 @@ namespace PlayniteUI.ViewModels
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.CoverImage))
-                            {
-                                database.RemoveFile(game.CoverImage);
-                                game.CoverImage = null;
-                            }
+                            RemoveGameMedia(game.CoverImage);
+                            game.CoverImage = null;
                         }
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.CoverImage))
-                        {
-                            database.RemoveFile(Game.CoverImage);
-                            Game.CoverImage = null;
-                        }
+                        RemoveGameMedia(Game.CoverImage);
+                        Game.CoverImage = null;
                     }
                 }
                 else if (File.Exists(EditingGame.CoverImage))
@@ -1837,21 +1817,13 @@ namespace PlayniteUI.ViewModels
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.CoverImage))
-                            {
-                                database.RemoveFile(game.CoverImage);
-                            }
-
+                            RemoveGameMedia(game.CoverImage);
                             game.CoverImage = database.AddFile(EditingGame.CoverImage, game.Id);
                         }
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.CoverImage))
-                        {
-                            database.RemoveFile(Game.CoverImage);
-                        }
-
+                        RemoveGameMedia(Game.CoverImage);
                         Game.CoverImage = database.AddFile(EditingGame.CoverImage, Game.Id);
                     }
 
@@ -1872,7 +1844,7 @@ namespace PlayniteUI.ViewModels
                         {
                             if (!string.IsNullOrEmpty(game.BackgroundImage))
                             {
-                                database.RemoveFile(game.BackgroundImage);
+                                RemoveGameMedia(game.BackgroundImage);
                                 game.BackgroundImage = null;
                             }
                         }
@@ -1881,7 +1853,7 @@ namespace PlayniteUI.ViewModels
                     {
                         if (!string.IsNullOrEmpty(Game.BackgroundImage))
                         {
-                            database.RemoveFile(Game.BackgroundImage);
+                            RemoveGameMedia(Game.BackgroundImage);
                             Game.BackgroundImage = null;
                         }
                     }
@@ -1894,21 +1866,13 @@ namespace PlayniteUI.ViewModels
                         {
                             foreach (var game in Games)
                             {
-                                if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.IsHttpUrl())
-                                {
-                                    database.RemoveFile(game.BackgroundImage);
-                                }
-
+                                RemoveGameMedia(game.BackgroundImage);
                                 game.BackgroundImage = EditingGame.BackgroundImage;
                             }
                         }
                         else
                         {
-                            if (!string.IsNullOrEmpty(Game.BackgroundImage) && !Game.BackgroundImage.IsHttpUrl())
-                            {
-                                database.RemoveFile(Game.BackgroundImage);
-                            }
-
+                            RemoveGameMedia(Game.BackgroundImage);
                             Game.BackgroundImage = EditingGame.BackgroundImage;
                         }
                     }
@@ -1918,21 +1882,13 @@ namespace PlayniteUI.ViewModels
                         {
                             foreach (var game in Games)
                             {
-                                if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.IsHttpUrl())
-                                {
-                                    database.RemoveFile(game.BackgroundImage);
-                                }
-
+                                RemoveGameMedia(game.BackgroundImage);
                                 game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, game.Id);
                             }
                         }
                         else
                         {
-                            if (!string.IsNullOrEmpty(Game.BackgroundImage) && !Game.BackgroundImage.IsHttpUrl())
-                            {
-                                database.RemoveFile(Game.BackgroundImage);
-                            }
-
+                            RemoveGameMedia(Game.BackgroundImage);
                             Game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, Game.Id);
                         }
 
@@ -2401,6 +2357,23 @@ namespace PlayniteUI.ViewModels
         public void OpenMetadataFolder()
         {
             Explorer.OpenDirectory(database.GetFileStoragePath(EditingGame.Id));
+        }
+
+        private void RemoveGameMedia(string mediaId)
+        {
+            if (string.IsNullOrEmpty(mediaId))
+            {
+                return;
+            }
+
+            if (mediaId.IsHttpUrl())
+            {
+                HttpFileCache.ClearCache(mediaId);
+            }
+            else
+            {
+                database.RemoveFile(mediaId);
+            }
         }
     }
 }

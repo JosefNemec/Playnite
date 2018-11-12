@@ -976,11 +976,8 @@ namespace PlayniteUI.ViewModels
                         metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                        var downloader = new MetadataDownloader(Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
-                        downloader.DownloadMetadataGroupedAsync(
-                            addedGames,
-                            Database,
-                            metaSettings,
+                        var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
+                        downloader.DownloadMetadataGroupedAsync(addedGames, metaSettings,
                             (g, i, t) =>
                             {
                                 ProgressValue = i + 1;
@@ -1017,12 +1014,9 @@ namespace PlayniteUI.ViewModels
                 ProgressTotal = games.Count;
                 ProgressStatus = Resources.FindString("LOCProgressMetadata");
 
-                var downloader = new MetadataDownloader(Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
+                var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
                 GlobalTaskHandler.ProgressTask =
-                    downloader.DownloadMetadataGroupedAsync(
-                        games,
-                        Database,
-                        settings,
+                    downloader.DownloadMetadataGroupedAsync(games, settings,
                         (g, i, t) =>
                         {
                             ProgressValue = i + 1;
@@ -1356,11 +1350,8 @@ namespace PlayniteUI.ViewModels
                         metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                        var downloader = new MetadataDownloader(Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
-                        downloader.DownloadMetadataGroupedAsync(
-                            addedGames,
-                            Database,
-                            metaSettings,
+                        var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
+                        downloader.DownloadMetadataGroupedAsync(addedGames, metaSettings,
                             (g, i, t) =>
                             {
                                 ProgressValue = i + 1;

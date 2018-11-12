@@ -161,6 +161,7 @@
     <Compile Include="Extensions\GameActionExtensions.cs" />
     <Compile Include="Extensions\GameExtensions.cs" />
     <Compile Include="GameActionActivator.cs" />
+    <Compile Include="HttpFileCache.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
     <Compile Include="NLogLogProvider.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
