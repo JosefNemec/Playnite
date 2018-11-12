@@ -1,3 +1,11 @@
+#### 3.0.0
+
+
+* **Breaking Changes**:
+  * Removed and added new APIs and API members, see [full list](memberChanges3_0.md) of changes.
+  * Game files are no longer stored in single database file. All game and media files are now accesible in their raw form even without user of database API.
+  * See [migration tutorial](tutorials/extensionMigration2to3.md) for step by step guide on how update existing extensions.
+
 #### 2.0.0
 
 * **Breaking Changes**:
@@ -7,7 +15,7 @@
   * Both plugins and scripts have to be stored in the same folder called `Extensions` (rather then in separate `Plugins` or `Scripts` folders).
   * Signature for default C# plugins has changed and they now have to implement `IGenericPlugin` interface to be loaded.
 
-* See [migration tutorial](tutorials/extensionMigration1to2.md) for step by step guide on how to convert existing   extensions to a new format.
+* See [migration tutorial](tutorials/extensionMigration1to2.md) for step by step guide on how to convert existing extensions to a new format.
 
 * New Plugin types. There are now two types of plugins that can be implemented:
   * Generic Plugin: Same as the old plugins.

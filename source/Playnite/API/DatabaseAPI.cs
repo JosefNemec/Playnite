@@ -119,5 +119,15 @@ namespace Playnite.API
         {
             return database.BufferedUpdate();
         }
+
+        public string GetFileStoragePath(Guid parentId)
+        {
+            return database.GetFileStoragePath(parentId);
+        }
+
+        public string GetFullFilePath(string databasePath)
+        {
+            return database.GetFullFilePath(databasePath);
+        }
     }
 }

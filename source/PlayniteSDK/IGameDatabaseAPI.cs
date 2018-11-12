@@ -129,5 +129,19 @@ namespace Playnite.SDK
         /// </summary>
         /// <returns>Buffer object.</returns>
         IDisposable BufferedUpdate();
+
+        /// <summary>
+        /// Returns full path to directory storing files for specified parent.
+        /// </summary>
+        /// <param name="parentId">Id of parent object.</param>
+        /// <returns>Full path to directory.</returns>
+        string GetFileStoragePath(Guid parentId);
+
+        /// <summary>
+        /// Return full path to a file based on database path.
+        /// </summary>
+        /// <param name="databasePath">Database path as set to game's field.</param>
+        /// <returns>Full path to a file.</returns>
+        string GetFullFilePath(string databasePath);        
     }
 }
