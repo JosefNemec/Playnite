@@ -104,15 +104,15 @@ namespace Playnite.SDK
         void RemovePlatform(Guid id);
 
         /// <summary>
-        /// Adds new file to database. If file with the same content already exists then new file is not added.
+        /// Add file to data storage.
         /// </summary>
-        /// <param name="id">File id of new file.</param>
-        /// <param name="path">Full path to file.</param>
-        /// <returns>File id of file added to database or id of an existing file.</returns>
+        /// <param name="path">Path of the file to be added.</param>
+        /// <param name="parentId">Databse item parent containning the file.</param>
+        /// <returns>Database id of added file.</returns>
         string AddFile(string path, Guid parentId);
 
         /// <summary>
-        /// Saves file from database to file.
+        /// Exports file from database.
         /// </summary>
         /// <param name="id">File id.</param>
         /// <param name="path">Full path to target file.</param>
@@ -124,6 +124,10 @@ namespace Playnite.SDK
         /// <param name="id">File id.</param>
         void RemoveFile(string id);
 
+        /// <summary>
+        /// Switches database to buffered mode. Suppresses all notification events until buffering is stopped.
+        /// </summary>
+        /// <returns>Buffer object.</returns>
         IDisposable BufferedUpdate();
     }
 }

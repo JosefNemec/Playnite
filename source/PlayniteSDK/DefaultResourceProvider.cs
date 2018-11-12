@@ -7,8 +7,14 @@ using System.Windows;
 
 namespace Playnite.SDK
 {
+    /// <summary>
+    /// Represents default resource provider.
+    /// </summary>
     public class DefaultResourceProvider : IResourceProvider
     {
+        /// <summary>
+        /// Creates new instance of <see cref="DefaultResourceProvider"/>.
+        /// </summary>
         public DefaultResourceProvider()
         {
         }
@@ -18,6 +24,11 @@ namespace Playnite.SDK
             return FindString(key);
         }
 
+        /// <summary>
+        /// Returns string resource.
+        /// </summary>
+        /// <param name="key">Name of the string resource.</param>
+        /// <returns>String resource.</returns>
         public static string FindString(string key)
         {
             var resource = Application.Current.TryFindResource(key);
