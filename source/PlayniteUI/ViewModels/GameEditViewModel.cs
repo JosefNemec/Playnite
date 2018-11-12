@@ -728,16 +728,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                if (EditingGame.PlatformId == Guid.Empty || EditingGame.PlatformId == Guid.Empty)
-                {
-                    return database.Emulators.OrderBy(a => a.Name).ToList();
-                }
-                else
-                {
-                    return database.Emulators
-                        .Where(a => a.Profiles != null && a.Profiles.FirstOrDefault(b => b.Platforms?.Contains(EditingGame.PlatformId) == true) != null)
-                        .OrderBy(a => a.Name).ToList();
-                }
+                return database.Emulators.OrderBy(a => a.Name).ToList();        
             }
         }
 
@@ -1015,11 +1006,6 @@ namespace PlayniteUI.ViewModels
 
         private void EditingGame_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Game.PlatformId))
-            {
-                OnPropertyChanged(nameof(Emulators));
-            }
-
             switch (e.PropertyName)
             {
                 case nameof(Game.Name):
