@@ -5,6 +5,7 @@ using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -40,13 +41,20 @@ namespace UplayLibrary
             if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("uplay", StringComparison.OrdinalIgnoreCase))
             {
                 OnStarting(this, new GameControllerEventArgs(this, 0));
-                stopWatch = Stopwatch.StartNew();
-                procMon = new ProcessMonitor();
-                procMon.TreeStarted += ProcMon_TreeStarted;
-                procMon.TreeDestroyed += Monitor_TreeDestroyed;
                 GameActionActivator.ActivateAction(Game.PlayAction, Game);
-                procMon.TreeStarted += ProcMon_TreeStarted;
-                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                if (Directory.Exists(Game.InstallDirectory))
+                {
+                    stopWatch = Stopwatch.StartNew();
+                    procMon = new ProcessMonitor();
+                    procMon.TreeStarted += ProcMon_TreeStarted;
+                    procMon.TreeDestroyed += Monitor_TreeDestroyed;
+                    procMon.TreeStarted += ProcMon_TreeStarted;
+                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                }
+                else
+                {
+                    OnStopped(this, new GameControllerEventArgs(this, 0));
+                }
             }
             else
             {

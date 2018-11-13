@@ -10,7 +10,7 @@ namespace Playnite.Common.System
 {
     public class Paths
     {
-        public static bool GetValidFilePath(string path)
+        public static bool IsValidFilePath(string path)
         {
             if (string.IsNullOrEmpty(path))
             {

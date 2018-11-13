@@ -6,6 +6,7 @@ using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -51,7 +52,14 @@ namespace TwitchLibrary
             procMon = new ProcessMonitor();
             procMon.TreeStarted += ProcMon_TreeStarted;
             procMon.TreeDestroyed += Monitor_TreeDestroyed;
-            procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+            if (Directory.Exists(Game.InstallDirectory))
+            {
+                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+            }
+            else
+            {
+                OnStopped(this, new GameControllerEventArgs(this, 0));
+            }
         }
 
         public override void Uninstall()

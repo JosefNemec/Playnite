@@ -829,16 +829,23 @@ namespace PlayniteUI.ViewModels
                             newResolvedDbPath += "_db";
                         }
 
-                        var dbSize = new FileInfo(AppSettings.DatabasePath).Length;
-                        if (FileSystem.GetFreeSpace(newResolvedDbPath) < dbSize)
+                        if (!File.Exists(AppSettings.DatabasePath))
                         {
-                            throw new NoDiskSpaceException(dbSize);
+                            AppSettings.DatabasePath = newDbPath;
                         }
+                        else
+                        {
+                            var dbSize = new FileInfo(AppSettings.DatabasePath).Length;
+                            if (FileSystem.GetFreeSpace(newResolvedDbPath) < dbSize)
+                            {
+                                throw new NoDiskSpaceException(dbSize);
+                            }
 
-                        GameDatabase.MigrateDatabase(AppSettings.DatabasePath);
-                        GameDatabase.MigrateToNewFormat(AppSettings.DatabasePath, newResolvedDbPath);
-                        FileSystem.DeleteFile(AppSettings.DatabasePath);
-                        AppSettings.DatabasePath = newDbPath;
+                            GameDatabase.MigrateDatabase(AppSettings.DatabasePath);
+                            GameDatabase.MigrateToNewFormat(AppSettings.DatabasePath, newResolvedDbPath);
+                            FileSystem.DeleteFile(AppSettings.DatabasePath);
+                            AppSettings.DatabasePath = newDbPath;
+                        }
                     }
                     else
                     {

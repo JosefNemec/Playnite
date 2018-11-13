@@ -52,8 +52,15 @@ namespace GogLibrary
                 procMon.TreeStarted += ProcMon_TreeStarted;
                 procMon.TreeDestroyed += Monitor_TreeDestroyed;
                 var args = string.Format(@"/gameId={0} /command=runGame /path=""{1}""", Game.GameId, Game.InstallDirectory);
-                var proc = ProcessStarter.StartProcess(Path.Combine(Gog.InstallationPath, "GalaxyClient.exe"), args);
-                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                ProcessStarter.StartProcess(Path.Combine(Gog.InstallationPath, "GalaxyClient.exe"), args);
+                if (Directory.Exists(Game.InstallDirectory))
+                {
+                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                }
+                else
+                {
+                    OnStopped(this, new GameControllerEventArgs(this, 0));
+                }
             }
             else
             {

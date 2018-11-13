@@ -58,9 +58,16 @@ namespace BattleNetLibrary
             else if (app.Type == BNetAppType.Classic && Game.PlayAction.Path.Contains(app.ClassicExecutable))
             {
                 OnStarting(this, new GameControllerEventArgs(this, 0));
-                var proc = GameActionActivator.ActivateAction(Game.PlayAction, Game);
-                procMon.WatchDirectoryProcesses(Game.InstallDirectory, true);
+                GameActionActivator.ActivateAction(Game.PlayAction, Game);
                 OnStarted(this, new GameControllerEventArgs(this, 0));
+                if (Directory.Exists(Game.InstallDirectory))
+                {
+                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, true);
+                }
+                else
+                {
+                    OnStopped(this, new GameControllerEventArgs(this, 0));
+                }
             }
             else
             {
@@ -87,9 +94,16 @@ namespace BattleNetLibrary
             };
 
             GameActionActivator.ActivateAction(task, Game);
-            procMon.TreeStarted += ProcMon_TreeStarted;
-            procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
-         
+            if (Directory.Exists(Game.InstallDirectory))
+            {
+                procMon.TreeStarted += ProcMon_TreeStarted;
+                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+            }
+            else
+            {
+                OnStopped(this, new GameControllerEventArgs(this, 0));
+            }
+
         }
 
         public override void Install()

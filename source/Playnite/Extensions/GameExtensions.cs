@@ -92,7 +92,14 @@ namespace Playnite
             {
                 if (string.IsNullOrEmpty(playAction.WorkingDir))
                 {
-                    return Path.GetFullPath(playAction.Path);
+                    if (Paths.IsValidFilePath(playAction.Path))
+                    {
+                        return Path.GetFullPath(playAction.Path);
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
                 else
                 {

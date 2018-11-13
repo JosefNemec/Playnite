@@ -58,9 +58,16 @@ namespace OriginLibrary
             {
                 // Solves issues with game process being started/shutdown multiple times during startup via Origin
                 await Task.Delay(5000);
-            }
+            }            
 
-            procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+            if (Directory.Exists(Game.InstallDirectory))
+            {
+                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+            }
+            else
+            {
+                OnStopped(this, new GameControllerEventArgs(this, 0));
+            }
         }
 
         public override void Install()

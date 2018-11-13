@@ -732,10 +732,18 @@ namespace Playnite.Settings
 
         public static PlayniteSettings LoadSettings()
         {
-            if (File.Exists(PlaynitePaths.ConfigFilePath))
+            try
             {
-                var settings = JsonConvert.DeserializeObject<PlayniteSettings>(File.ReadAllText(PlaynitePaths.ConfigFilePath));
-                instance = settings;
+                if (File.Exists(PlaynitePaths.ConfigFilePath))
+                {
+                    var settings = JsonConvert.DeserializeObject<PlayniteSettings>(File.ReadAllText(PlaynitePaths.ConfigFilePath));
+                    instance = settings;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "Failed to load application settings.");
+                instance = new PlayniteSettings();
             }
 
             return Instance;
@@ -802,8 +810,11 @@ namespace Playnite.Settings
             void WriteConfig(string id, Dictionary<string, object> config)
             {
                 var path = Path.Combine(PlaynitePaths.ExtensionsDataPath, id, "config.json");
-                FileSystem.CreateDirectory(path);
-                File.WriteAllText(path, JsonConvert.SerializeObject(config, Formatting.Indented));
+                if (!File.Exists(path))
+                {
+                    FileSystem.CreateDirectory(path);
+                    File.WriteAllText(path, JsonConvert.SerializeObject(config, Formatting.Indented));
+                }
             }
 
             try

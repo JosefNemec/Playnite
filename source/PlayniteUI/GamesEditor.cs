@@ -568,6 +568,7 @@ namespace PlayniteUI
 
             var dbGame = database.Games.Get(game.Id);
             dbGame.IsRunning = false;
+            dbGame.IsLaunching = false;
             dbGame.Playtime += args.EllapsedTime;
             database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);
