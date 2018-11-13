@@ -10,7 +10,7 @@ Methods accepting game identifier now accept `Guid` instead of `int`, since game
 #### Removed
 
 * `RemoveImage`, use `RemoveFile` instead.
-* `GetFiles`, use `GetFileStoragePath` and enumare though files manually.
+* `GetFiles`, use `GetFileStoragePath` and enumerate though files manually.
 * `GetFile`, use `GetFileStoragePath` or `GetFullFilePath`.
 * `ImportCategories`, implement manually if needed.
 
@@ -33,7 +33,7 @@ Removed completely since files are stored on disk in raw form.
 
 #### Removed
 
-* `State`, use appropriare `Is*` fields instead.
+* `State`, use appropriate `Is*` fields instead.
 
 ### MetadataFile
 

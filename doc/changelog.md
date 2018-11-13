@@ -3,7 +3,7 @@
 
 * **Breaking Changes**:
   * Removed and added new APIs and API members, see [full list](memberChanges3_0.md) of changes.
-  * Game files are no longer stored in single database file. All game and media files are now accesible in their raw form even without user of database API.
+  * Game files are no longer stored in single database file. All game and media files are now accessible in their raw form even without user of database API.
   * See [migration tutorial](tutorials/extensionMigration2to3.md) for step by step guide on how update existing extensions.
 
 #### 2.0.0
