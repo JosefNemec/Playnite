@@ -376,7 +376,7 @@ namespace PlayniteUI
             await Task.Delay(Playnite.Timer.SecondsToMilliseconds(10));
             if (GlobalTaskHandler.IsActive)
             {
-                GlobalTaskHandler.Wait();
+                await GlobalTaskHandler.ProgressTask;
             }
 
             var updater = new Updater(this);

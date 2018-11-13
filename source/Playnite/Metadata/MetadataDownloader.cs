@@ -205,27 +205,19 @@ namespace Playnite.Metadata
         {
             int index = 0;
             int total = games.Count;
-            var tasks = new List<Task>();
-
-            await Task.Run(() =>
+            var tasks = new List<Task>(); 
+            var grouped = games.GroupBy(a => a.PluginId);
+            logger.Info($"Downloading metadata using {grouped.Count()} threads.");
+            foreach (IGrouping<Guid, Game> group in grouped)
             {
-                var grouped = games.GroupBy(a => a.PluginId);
-                logger.Info($"Downloading metadata using {grouped.Count()} threads.");
-                foreach (IGrouping<Guid, Game> group in grouped)
+                tasks.Add(DownloadMetadataAsync(group.ToList(), settings, (g, i, t) =>
                 {
-                    tasks.Add(Task.Run(() =>
-                    {
-                        var gms = group.ToList();
-                        DownloadMetadataAsync(gms, settings, (g, i, t) =>
-                        {
-                            index++;
-                            processCallback?.Invoke(g, index, total);
-                        }, cancelToken).Wait();
-                    }));
-                }
+                    index++;
+                    processCallback?.Invoke(g, index, total);
+                }, cancelToken));
+            }
 
-                Task.WaitAll(tasks.ToArray());
-            });
+            await Task.WhenAll(tasks);          
         }
 
         public async Task DownloadMetadataAsync(

@@ -8,11 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO.Compression;
+using Playnite.SDK;
 
 namespace Playnite
 {
     public static class FileSystem
     {
+        private static ILogger logger = LogManager.GetLogger();
+
         public static void CreateDirectory(string path)
         {
             CreateDirectory(path, false);
@@ -156,6 +159,7 @@ namespace Playnite
                 }
                 catch (IOException exc)
                 {
+                    logger.Debug($"Can't read from file, trying again. {path}");
                     ioException = exc;
                     Task.Delay(500).Wait();
                 }
@@ -175,6 +179,7 @@ namespace Playnite
                 }
                 catch (IOException exc)
                 {
+                    logger.Debug($"Can't read from file, trying again. {path}");
                     ioException = exc;
                     Task.Delay(500).Wait();
                 }
@@ -194,6 +199,7 @@ namespace Playnite
                 }
                 catch (IOException exc)
                 {
+                    logger.Debug($"Can't open file stream, trying again. {path}");
                     ioException = exc;
                     Task.Delay(500).Wait();
                 }
@@ -215,6 +221,7 @@ namespace Playnite
                 }
                 catch (IOException exc)
                 {
+                    logger.Debug($"Can't write to a file, trying again. {path}");
                     ioException = exc;
                     Task.Delay(500).Wait();
                 }
@@ -240,6 +247,7 @@ namespace Playnite
                 }
                 catch (IOException exc)
                 {
+                    logger.Debug($"Can't detele file, trying again. {path}");
                     ioException = exc;
                     Task.Delay(500).Wait();
                 }
