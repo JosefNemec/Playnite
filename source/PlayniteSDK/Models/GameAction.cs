@@ -43,7 +43,7 @@ namespace Playnite.SDK.Models
             set
             {
                 type = value;
-                OnPropertyChanged("Type");
+                OnPropertyChanged();
             }
         }
 
@@ -57,7 +57,7 @@ namespace Playnite.SDK.Models
             set
             {
                 arguments = value;
-                OnPropertyChanged("Arguments");
+                OnPropertyChanged();
             }
         }
 
@@ -71,7 +71,7 @@ namespace Playnite.SDK.Models
             set
             {
                 additionalArguments = value;
-                OnPropertyChanged("AdditionalArguments");
+                OnPropertyChanged();
             }
         }
 
@@ -86,7 +86,7 @@ namespace Playnite.SDK.Models
             set
             {
                 overrideDefaultArgs = value;
-                OnPropertyChanged("OverrideDefaultArgs");
+                OnPropertyChanged();
             }
         }
 
@@ -100,7 +100,7 @@ namespace Playnite.SDK.Models
             set
             {
                 path = value;
-                OnPropertyChanged("Path");
+                OnPropertyChanged();
             }
         }
 
@@ -114,7 +114,7 @@ namespace Playnite.SDK.Models
             set
             {
                 workingDir = value;
-                OnPropertyChanged("WorkingDir");
+                OnPropertyChanged();
             }
         }
 
@@ -128,7 +128,7 @@ namespace Playnite.SDK.Models
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged();
             }
         }
 
@@ -142,7 +142,7 @@ namespace Playnite.SDK.Models
             set
             {
                 isHandledByPlugin = value;
-                OnPropertyChanged("IsHandledByPlugin");
+                OnPropertyChanged();
             }
         }
 
@@ -156,7 +156,7 @@ namespace Playnite.SDK.Models
             set
             {
                 emulatorId = value;
-                OnPropertyChanged("EmulatorId");
+                OnPropertyChanged();
             }
         }
 
@@ -170,7 +170,7 @@ namespace Playnite.SDK.Models
             set
             {
                 emulatorProfileId = value;
-                OnPropertyChanged("EmulatorProfileId");
+                OnPropertyChanged();
             }
         }
         

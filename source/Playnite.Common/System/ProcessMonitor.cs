@@ -66,49 +66,46 @@ namespace Playnite
             }
 
             var procNames = executables.Select(a => Path.GetFileName(a)).ToList();
-            watcherToken = new CancellationTokenSource();
-            await Task.Run(async () =>
+            watcherToken = new CancellationTokenSource(); 
+            var startedCalled = false;
+            var processStarted = false;
+
+            while (true)
             {
-                var startedCalled = false;
-                var processStarted = false;
-
-                while (true)
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
+                    return;
+                }
 
-                    var processFound = false;
-                    var processes = Process.GetProcesses().Where(a => a.SessionId != 0);
-                    foreach (var process in processes)
+                var processFound = false;
+                var processes = Process.GetProcesses().Where(a => a.SessionId != 0);
+                foreach (var process in processes)
+                {
+                    if (process.TryGetMainModuleFileName(out var procPath))
                     {
-                        if (process.TryGetMainModuleFileName(out var procPath))
+                        if (procNames.Contains(Path.GetFileName(procPath)))
                         {
-                            if (procNames.Contains(Path.GetFileName(procPath)))
-                            {
-                                processFound = true;
-                                processStarted = true;
-                                break;
-                            }
+                            processFound = true;
+                            processStarted = true;
+                            break;
                         }
                     }
-
-                    if (!alreadyRunning && processFound && !startedCalled)
-                    {
-                        OnTreeStarted();
-                        startedCalled = true;
-                    }
-
-                    if (!processFound && processStarted)
-                    {
-                        OnTreeDestroyed();
-                        return;
-                    }
-
-                    await Task.Delay(2000);
                 }
-            });
+
+                if (!alreadyRunning && processFound && !startedCalled)
+                {
+                    OnTreeStarted();
+                    startedCalled = true;
+                }
+
+                if (!processFound && processStarted)
+                {
+                    OnTreeDestroyed();
+                    return;
+                }
+
+                await Task.Delay(2000);
+            }
         }
 
         private async Task WatchDirectory(string directory, bool alreadyRunning)
@@ -118,94 +115,87 @@ namespace Playnite
                 throw new DirectoryNotFoundException($"Cannot watch directory processes, {directory} not found.");
             }
 
-            watcherToken = new CancellationTokenSource();
-            await Task.Run(async () =>
+            watcherToken = new CancellationTokenSource();      
+            var startedCalled = false;
+            var processStarted = false;
+
+            while (true)
             {
-                var startedCalled = false;
-                var processStarted = false;
-
-                while (true)
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
+                    return;
+                }
 
-                    var processFound = false;
-                    var processes = Process.GetProcesses().Where(a => a.SessionId != 0);
-                    foreach (var process in processes)
+                var processFound = false;
+                var processes = Process.GetProcesses().Where(a => a.SessionId != 0);
+                foreach (var process in processes)
+                {
+                    if (process.TryGetMainModuleFileName(out var procPath))
                     {
-                        if (process.TryGetMainModuleFileName(out var procPath))
+                        if (procPath.IndexOf(directory, StringComparison.OrdinalIgnoreCase) >= 0)
                         {
-                            if (procPath.IndexOf(directory, StringComparison.OrdinalIgnoreCase) >= 0)
-                            {
-                                processFound = true;
-                                processStarted = true;
-                                break;
-                            }
+                            processFound = true;
+                            processStarted = true;
+                            break;
                         }
                     }
-                        
-                    if (!alreadyRunning && processFound && !startedCalled)
-                    {
-                        OnTreeStarted();
-                        startedCalled = true;
-                    }
-
-                    if (!processFound && processStarted)
-                    {
-                        OnTreeDestroyed();
-                        return;
-                    }
-
-                    await Task.Delay(2000);
                 }
-            });
+                        
+                if (!alreadyRunning && processFound && !startedCalled)
+                {
+                    OnTreeStarted();
+                    startedCalled = true;
+                }
+
+                if (!processFound && processStarted)
+                {
+                    OnTreeDestroyed();
+                    return;
+                }
+
+                await Task.Delay(2000);
+            }
         }            
 
         private async Task WatchProcess(Process process)
         {
-            watcherToken = new CancellationTokenSource();
+            watcherToken = new CancellationTokenSource();            
+            var ids = new List<int>() { process.Id };
 
-            await Task.Run(async () =>
+            while (true)
             {
-                var ids = new List<int>() { process.Id };
-
-                while (true)
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
-
-                    if (ids.Count == 0)
-                    {
-                        OnTreeDestroyed();
-                        return;
-                    }
-
-                    var processes = Process.GetProcesses().Where(a => a.SessionId != 0);
-                    var runningIds = new List<int>();
-                    foreach (var proc in processes)
-                    {
-                        if (proc.TryGetParentId(out var parent))
-                        {
-                            if (ids.Contains(parent) && !ids.Contains(proc.Id))
-                            {
-                                ids.Add(proc.Id);
-                            }
-                        }
-
-                        if (ids.Contains(proc.Id))
-                        {
-                            runningIds.Add(proc.Id);
-                        }
-                    }
-
-                    ids = runningIds;
-                    await Task.Delay(500);
+                    return;
                 }
-            });
+
+                if (ids.Count == 0)
+                {
+                    OnTreeDestroyed();
+                    return;
+                }
+
+                var processes = Process.GetProcesses().Where(a => a.SessionId != 0);
+                var runningIds = new List<int>();
+                foreach (var proc in processes)
+                {
+                    if (proc.TryGetParentId(out var parent))
+                    {
+                        if (ids.Contains(parent) && !ids.Contains(proc.Id))
+                        {
+                            ids.Add(proc.Id);
+                        }
+                    }
+
+                    if (ids.Contains(proc.Id))
+                    {
+                        runningIds.Add(proc.Id);
+                    }
+                }
+
+                ids = runningIds;
+                await Task.Delay(500);
+            }
         }
 
         private void OnTreeStarted()

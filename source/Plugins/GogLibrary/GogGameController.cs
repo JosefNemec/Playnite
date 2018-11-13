@@ -52,8 +52,15 @@ namespace GogLibrary
                 procMon.TreeStarted += ProcMon_TreeStarted;
                 procMon.TreeDestroyed += Monitor_TreeDestroyed;
                 var args = string.Format(@"/gameId={0} /command=runGame /path=""{1}""", Game.GameId, Game.InstallDirectory);
-                var proc = ProcessStarter.StartProcess(Path.Combine(Gog.InstallationPath, "GalaxyClient.exe"), args);
-                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                ProcessStarter.StartProcess(Path.Combine(Gog.InstallationPath, "GalaxyClient.exe"), args);
+                if (Directory.Exists(Game.InstallDirectory))
+                {
+                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                }
+                else
+                {
+                    OnStopped(this, new GameControllerEventArgs(this, 0));
+                }
             }
             else
             {
@@ -137,33 +144,30 @@ namespace GogLibrary
 
         public async void StartInstallWatcher()
         {
-            watcherToken = new CancellationTokenSource();
-            await Task.Run(async () =>
+            watcherToken = new CancellationTokenSource();  
+            var stopWatch = Stopwatch.StartNew();
+
+            while (true)
             {
-                var stopWatch = Stopwatch.StartNew();
-
-                while (true)
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
-
-                    var games = library.GetInstalledGames();
-                    if (games.ContainsKey(Game.GameId))
-                    {
-                        var game = games[Game.GameId];
-                        stopWatch.Stop();
-                        Game.PlayAction = game.PlayAction;
-                        Game.OtherActions = game.OtherActions;
-                        Game.InstallDirectory = game.InstallDirectory;
-                        OnInstalled(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
-                        return;
-                    }
-
-                    await Task.Delay(2000);
+                    return;
                 }
-            });
+
+                var games = library.GetInstalledGames();
+                if (games.ContainsKey(Game.GameId))
+                {
+                    var game = games[Game.GameId];
+                    stopWatch.Stop();
+                    Game.PlayAction = game.PlayAction;
+                    Game.OtherActions = game.OtherActions;
+                    Game.InstallDirectory = game.InstallDirectory;
+                    OnInstalled(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
+                    return;
+                }
+
+                await Task.Delay(2000);
+            }
         }
     }
 }

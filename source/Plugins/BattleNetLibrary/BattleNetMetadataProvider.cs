@@ -51,10 +51,10 @@ namespace BattleNetLibrary
             game.Name = product.Name;
             var icon = HttpDownloader.DownloadData(product.IconUrl);
             var iconFile = Path.GetFileName(product.IconUrl);
-            metadata.Icon = new MetadataFile($"images/battlenet/{game.GameId}/{iconFile}", iconFile, icon);
+            metadata.Icon = new MetadataFile(iconFile, icon);
             var cover = HttpDownloader.DownloadData(product.CoverUrl);
             var coverFile = Path.GetFileName(product.CoverUrl);
-            metadata.Image = new MetadataFile($"images/battlenet/{game.GameId}/{coverFile}", coverFile, cover);
+            metadata.Image = new MetadataFile(coverFile, cover);
             game.BackgroundImage = product.BackgroundUrl;
             metadata.BackgroundImage = product.BackgroundUrl;
             game.Links = new ObservableCollection<Link>(product.Links);

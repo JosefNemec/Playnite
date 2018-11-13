@@ -22,16 +22,13 @@ namespace BattleNetLibrary
         private ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
         
-        internal BattleNetLibrarySettings LibrarySettings
-        {
-            get => (BattleNetLibrarySettings)Settings;
-        }
+        internal BattleNetLibrarySettings LibrarySettings { get; private set; }
 
         public BattleNetLibrary(IPlayniteAPI api)
         {
             playniteApi = api;
             LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\battleneticon.png");
-            Settings = new BattleNetLibrarySettings(this, playniteApi);
+            LibrarySettings = new BattleNetLibrarySettings(this, playniteApi);
         }
 
         public static UninstallProgram GetUninstallEntry(BNetApp app)
@@ -106,7 +103,7 @@ namespace BattleNetLibrary
                                 Path = product.ClassicExecutable
                             },
                             InstallDirectory = prog.InstallLocation,
-                            State = new GameState() { Installed = true }
+                            IsInstalled = true
                         };
 
                         games.Add(game.GameId, game);
@@ -145,7 +142,7 @@ namespace BattleNetLibrary
                         Name = product.Name,
                         PlayAction = GetGamePlayTask(product.ProductId),
                         InstallDirectory = prog.InstallLocation,
-                        State = new GameState() { Installed = true }
+                        IsInstalled = true
                     };
 
                     games.Add(game.GameId, game);
@@ -204,8 +201,7 @@ namespace BattleNetLibrary
                         PluginId = Id,
                         Source = "Battle.net",
                         GameId = product.ProductId,
-                        Name = product.Name,
-                        State = new GameState() { Installed = false }
+                        Name = product.Name
                     };
 
                     games.Add(game);
@@ -222,19 +218,22 @@ namespace BattleNetLibrary
         public string LibraryIcon { get; }
 
         public string Name { get; } = "Battle.net";
-
-        public UserControl SettingsView
-        {
-            get => new BattleNetLibrarySettingsView();
-        }
-
-        public ISettings Settings { get; private set; }
-
+        
         public Guid Id { get; } = Guid.Parse("E3C26A3D-D695-4CB7-A769-5FF7612C7EDD");
 
         public void Dispose()
         {
 
+        }
+
+        public ISettings GetSettings(bool firstRunSettings)
+        {
+            return LibrarySettings;
+        }
+
+        public UserControl GetSettingsView(bool firstRunView)
+        {
+            return new BattleNetLibrarySettingsView();
         }
 
         public IGameController GetGameController(Game game)

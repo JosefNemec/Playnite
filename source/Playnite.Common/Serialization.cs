@@ -24,7 +24,11 @@ namespace Playnite.Common
 
         public static string ToJson(object obj, bool formatted = false)
         {
-            return JsonConvert.SerializeObject(obj, formatted ? Formatting.Indented : Formatting.None);
+            return JsonConvert.SerializeObject(obj, new JsonSerializerSettings()
+            {
+                Formatting = formatted ? Formatting.Indented : Formatting.None,
+                NullValueHandling = NullValueHandling.Ignore
+            });
         }
 
         public static T FromJson<T>(string json) where T : class

@@ -9,7 +9,7 @@ Plugins can provide configuration view that end users can use to change plugin's
 Implementation
 ---------------------
 
-Settings support requires implementation of `Settings` and `SettingsView` properties for your plugin class. If you don't want to provide any settings configuration then leave both of these properties with null value. `Settings` is a `ISettings` object containing the settings data, while `SettingsView` is WPF UserControl used to display that data.
+Settings support requires implementation of `GetSettings` and `GetSettingsView` methods. If you don't want to provide any settings configuration then return `null` from both methods. `GetSettings` returns `ISettings` object containing the settings data, while `GetSettingsView` returns WPF `UserControl` used to display that data.
 
 ### 1. Settings class
 
@@ -97,14 +97,14 @@ As stated before, plugin class must return non-null values for `Settings` and `S
 ```csharp
 public class TestPlugin : IGenericPlugin // or ILibraryPlugin for library plugins, implementation is the same.
 {    
-    public ISettings Settings
+    public ISettings GetSettings
     {
-        get => new TestPluginSettings();
+        return new TestPluginSettings();
     }
     
-    public UserControl SettingsView
+    public UserControl GetSettingsView
     {
-        get => new TestPluginSettingsView();
+        return new TestPluginSettingsView();
     }
 }
 ```
@@ -170,7 +170,7 @@ Settings workflow
 
 When user opens settings window in Playnite, following happens with your plugin:
 
-- Playnite gets `Settings` and `SettingsView` values from your plugin.
+- Playnite gets `GetSettings` and `GetSettingsView` values from your plugin.
 - `Settings` object is set as `DataContext` of `SettingsView` view.
 - `BeginEdit` method is called.
 

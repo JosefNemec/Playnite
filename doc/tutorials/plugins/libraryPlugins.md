@@ -34,8 +34,8 @@ Return null or specify empty method if you don't want to provide implementation 
 | -- | -- |
 | Client | Returns client application for this library. If present adds entry into `Open 3rd party client` menu. |
 | LibraryIcon | Default library icon shown if no game icon is available. |
-| Settings | [Plugin settings object.](pluginSettings.md) |
-| SettingsView | [Plugin settings view.](pluginSettings.md) |
+| GetSettings | [Plugin settings object.](pluginSettings.md) |
+| GetSettingsView | [Plugin settings view.](pluginSettings.md) |
 | GetGameController | Custom controller handling actions like game execution and installation. |
 | GetMetadataDownloader | Custom metadata downloader used when `Official Store` source is used when downloading metadata. |
 
@@ -60,11 +60,17 @@ public class LibraryPlugin : ILibraryPlugin
 
     public ILibraryClient Client { get; }
 
-    public ISettings Settings { get; }
-
     public string LibraryIcon { get; }
 
-    public UserControl SettingsView { get; }
+    public ISettings GetSettings(bool firstRunSettings)
+    {
+        return null;
+    }
+
+    public UserControl GetSettingsView(bool firstRunView)
+    {
+        return null
+    }
 
     public IEnumerable<Game> GetGames()
     {

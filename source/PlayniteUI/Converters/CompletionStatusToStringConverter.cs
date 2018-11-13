@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -15,17 +16,16 @@ namespace PlayniteUI
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var source = (CompletionStatus)value;
-            var resources = new ResourceProvider();
             switch (source)
             {
                 case CompletionStatus.NotPlayed:
-                    return resources.FindString("LOCNotPlayed");
+                    return DefaultResourceProvider.FindString("LOCNotPlayed");
                 case CompletionStatus.Played:
-                    return resources.FindString("LOCPlayed");
+                    return DefaultResourceProvider.FindString("LOCPlayed");
                 case CompletionStatus.Beaten:
-                    return resources.FindString("LOCBeaten");
+                    return DefaultResourceProvider.FindString("LOCBeaten");
                 case CompletionStatus.Completed:
-                    return resources.FindString("LOCCompleted");
+                    return DefaultResourceProvider.FindString("LOCCompleted");
                 default:
                     return string.Empty;
             }

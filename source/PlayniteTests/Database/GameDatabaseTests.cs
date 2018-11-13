@@ -9,6 +9,8 @@ using Playnite.SDK.Models;
 using Playnite;
 using Moq;
 using NUnit.Framework;
+using Playnite.Settings;
+using Playnite.Common.System;
 
 namespace PlayniteTests.Database
 {
@@ -24,125 +26,83 @@ namespace PlayniteTests.Database
         }
 
         [Test]
+        public void GetMigratedDbPathTest()
+        {
+            Assert.AreEqual(@"{PlayniteDir}\games", GameDatabase.GetMigratedDbPath(@"games.db"));
+            Assert.AreEqual(@"c:\games", GameDatabase.GetMigratedDbPath(@"c:\games.db"));
+            Assert.AreEqual(@"c:\test\games", GameDatabase.GetMigratedDbPath(@"c:\test\games.db"));
+            var appData = Environment.ExpandEnvironmentVariables("%AppData%");
+            Assert.AreEqual(@"%AppData%\playnite\games", GameDatabase.GetMigratedDbPath(Path.Combine(appData, "playnite", "games.db")));
+        }
+
+        [Test]
+        public void GetFullDbPathTest()
+        {
+            var appData = Environment.ExpandEnvironmentVariables("%AppData%");
+            var progPath = PlaynitePaths.ProgramPath;
+            Assert.AreEqual(Path.Combine(appData, @"playnite\games"), GameDatabase.GetFullDbPath(@"%AppData%\playnite\games"));            
+            Assert.AreEqual(Path.Combine(progPath, "games"), GameDatabase.GetFullDbPath(@"{PlayniteDir}\games"));
+            Assert.AreEqual(@"c:\test\games", GameDatabase.GetFullDbPath(@"c:\test\games"));
+            Assert.AreEqual(@"games", GameDatabase.GetFullDbPath("games"));
+        }
+
+        [Test]
         public void ListUpdateTest()
         {
-            var path = Path.Combine(PlayniteTests.TempPath, "updatedb.db");
-            FileSystem.DeleteFile(path);
-
-            var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            using (var temp = TempDirectory.Create())
             {
-                db.AddGame(new Game()
+                var db = new GameDatabase(temp.TempPath);
+                db.OpenDatabase();
+                db.Games.Add(new Game()
                 {
                     GameId = "testid",
                     Name = "Test Game"
                 });
 
-                db.AddGame(new Game()
+                db.Games.Add(new Game()
                 {
                     GameId = "testid2",
                     Name = "Test Game 2"
                 });
 
-                Assert.AreEqual(2, db.GamesCollection.Count());
-            }
+                Assert.AreEqual(2, db.Games.Count);
 
-            db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
-            {
-                Assert.AreEqual(2, db.GamesCollection.Count());
-                db.AddGame(new Game()
-                {
-                    GameId = "testid3",
-                    Name = "Test Game 3"
-                });
+                var games = db.Games.ToList();
+                games[1].Name = "Changed Name";
+                db.Games.Update(games[1]);
 
-                var games = db.GamesCollection.FindAll().ToList();
-                games[2].Name = "Changed Name";
-                db.UpdateGameInDatabase(games[2]);
-            }
+                games = db.Games.ToList();
+                Assert.AreEqual("Changed Name", games[1].Name);
 
-            db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
-            {
-                var games = db.GamesCollection.FindAll().ToList();
-                Assert.AreEqual(3, games.Count);
-                Assert.AreEqual("Changed Name", games[2].Name);
-                db.DeleteGame(games[1]);
-            }
-
-            db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
-            {
-                Assert.AreEqual(2, db.GamesCollection.Count());
-            }
-        }
-
-        [Test]
-        public void DeleteImageSafeTest()
-        {
-            var path = Path.Combine(PlayniteTests.TempPath, "deleteimagetest.db");
-            FileSystem.DeleteFile(path);
-
-            var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
-            {
-                db.AddFile("testimage", "testimage.png", new byte[] { 0 });
-                Assert.AreEqual(1, db.Database.FileStorage.FindAll().Count());
-
-                db.AddGame(new Game()
-                {
-                    GameId = "testid",
-                    Name = "Test Game",
-                    Icon = "testimage"
-                });
-
-                db.AddGame(new Game()
-                {
-                    GameId = "testid2",
-                    Name = "Test Game 2",
-                    Icon = "testimage"
-                });
-
-                // Doesn't remove image in use
-                var games = db.GamesCollection.FindAll().ToList();
-                db.DeleteImageSafe("testimage", games[0]);
-                Assert.AreEqual(1, db.Database.FileStorage.FindAll().Count());
-
-                // Removes image
-                games[1].Icon = string.Empty;
-                db.UpdateGameInDatabase(games[1]);
-                db.DeleteImageSafe("testimage", games[0]);
-                Assert.AreEqual(0, db.Database.FileStorage.FindAll().Count());
+                db.Games.Remove(games[1]);
+                Assert.AreEqual(1, db.Games.Count);
             }
         }
 
         [Test]
         public void DeleteGameImageCleanupTest()
         {
-            var path = Path.Combine(PlayniteTests.TempPath, "deleteimagecleanuptest.db");
-            FileSystem.DeleteFile(path);
-
-            var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            using (var temp = TempDirectory.Create())
             {
-                db.AddFile("testimage", "testimage.png", new byte[] { 0 });
-                db.AddFile("testicon", "testicon.png", new byte[] { 0 });
-                Assert.AreEqual(2, db.Database.FileStorage.FindAll().Count());
+                var db = new GameDatabase(temp.TempPath);
+                db.OpenDatabase();
+                var game = new Game("Test");
+                db.Games.Add(game);
+                game.Icon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
+                game.BackgroundImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
+                game.CoverImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
 
-                var game = new Game()
-                {
-                    GameId = "testid",
-                    Name = "Test Game",
-                    Icon = "testicon",
-                    CoverImage = "testimage"
-                };
+                Assert.IsNotEmpty(game.Icon);
+                Assert.IsNotEmpty(game.BackgroundImage);
+                Assert.IsNotEmpty(game.CoverImage);
 
-                db.AddGame(game);
-                db.DeleteGame(game);
+                var files = Directory.GetFiles(db.GetFileStoragePath(game.Id));
+                Assert.AreEqual(3, files.Count());
 
-                Assert.AreEqual(0, db.Database.FileStorage.FindAll().Count());
+                db.Games.Remove(game);
+                files = Directory.GetFiles(db.GetFileStoragePath(game.Id));
+                Assert.AreEqual(0, files.Count());
             }
-        }          
+        }
     }
 }

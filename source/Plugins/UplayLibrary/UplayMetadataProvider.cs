@@ -39,7 +39,7 @@ namespace UplayLibrary
                 var iconPath = program.DisplayIcon;
                 var iconFile = Path.GetFileName(iconPath);
                 var data = File.ReadAllBytes(iconPath);
-                metadata.Icon = new MetadataFile($"images/uplay/{game.GameId}/{iconFile}", iconFile, data);
+                metadata.Icon = new MetadataFile(iconFile, data);
             }
 
             game.Name = StringExtensions.NormalizeGameName(program.DisplayName);

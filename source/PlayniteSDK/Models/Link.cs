@@ -22,7 +22,7 @@ namespace Playnite.SDK.Models
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged();
             }
         }
 
@@ -36,7 +36,7 @@ namespace Playnite.SDK.Models
             set
             {
                 url = value;
-                OnPropertyChanged("Url");
+                OnPropertyChanged();
             }
         }
 

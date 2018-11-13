@@ -137,7 +137,7 @@ namespace PlayniteUI
             logger.Error(exception, "Unhandled exception occured.");
 
             var model = new CrashHandlerViewModel(
-                CrashHandlerWindowFactory.Instance, dialogs, new ResourceProvider());
+                CrashHandlerWindowFactory.Instance, dialogs, new DefaultResourceProvider());
             model.Exception = exception.ToString();
             model.OpenView();
             Process.GetCurrentProcess().Kill();
@@ -169,8 +169,8 @@ namespace PlayniteUI
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     PlayniteMessageBox.Show(
-                        ResourceProvider.Instance.FindString("LOCStartGenericError"),
-                        ResourceProvider.Instance.FindString("LOCStartupError"), MessageBoxButton.OK, MessageBoxImage.Error);
+                        DefaultResourceProvider.FindString("LOCStartGenericError"),
+                        DefaultResourceProvider.FindString("LOCStartupError"), MessageBoxButton.OK, MessageBoxImage.Error);
                     logger.Error(exc, "Can't process communication with other instances.");
                 }
 
@@ -219,7 +219,7 @@ namespace PlayniteUI
                 new PlayniteInfoAPI(),
                 new PlaynitePathsAPI(),
                 new WebViewFactory(),
-                new ResourceProvider());
+                new DefaultResourceProvider());
             Extensions = new ExtensionFactory(Database, controllers);
 
             // Load theme
@@ -230,34 +230,28 @@ namespace PlayniteUI
             bool existingDb = false;
             if (!AppSettings.FirstTimeWizardComplete)
             {
+                if (PlayniteSettings.IsPortable)
+                {
+                    AppSettings.DatabasePath = @"{PlayniteDir}\library";
+                }
+                else
+                {
+                    AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "library");
+                }
+
+                existingDb = Directory.Exists(AppSettings.DatabasePath);
+                AppSettings.SaveSettings();
+                Database.SetDatabasePath(AppSettings.DatabasePath);
+                Database.OpenDatabase();
+
                 var wizardWindow = FirstTimeStartupWindowFactory.Instance;
-                var wizardModel = new FirstTimeStartupViewModel(wizardWindow, dialogs, new ResourceProvider(), Extensions, Api);
+                var wizardModel = new FirstTimeStartupViewModel(wizardWindow, dialogs, new DefaultResourceProvider(), Extensions, Api);
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
                     AppSettings.FirstTimeWizardComplete = true;
-                    if (wizardModel.DatabaseLocation == FirstTimeStartupViewModel.DbLocation.Custom)
-                    {
-                        AppSettings.DatabasePath = settings.DatabasePath;
-                    }
-                    else
-                    {
-                        if (PlayniteSettings.IsPortable)
-                        {
-                            AppSettings.DatabasePath = "games.db";
-                        }
-                        else
-                        {
-                            AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "games.db");
-                        }
-                    }
-
                     AppSettings.DisabledPlugins = settings.DisabledPlugins;
                     AppSettings.SaveSettings();
-                    existingDb = File.Exists(AppSettings.DatabasePath);
-                    Database.SetDatabasePath(AppSettings.DatabasePath);
-                    Database.OpenDatabase();
-
                     if (wizardModel.ImportedGames?.Any() == true)
                     {
                         InstalledGamesViewModel.AddImportableGamesToDb(wizardModel.ImportedGames, Database);
@@ -265,37 +259,28 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "games.db");
                     AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.SaveSettings();
-                    existingDb = File.Exists(AppSettings.DatabasePath);
-                    Database.SetDatabasePath(AppSettings.DatabasePath);
                 }
+
+                // Emulator wizard
+                var model = new EmulatorImportViewModel(Database,
+                   EmulatorImportViewModel.DialogType.Wizard,
+                   EmulatorImportWindowFactory.Instance,
+                   dialogs,
+                   new DefaultResourceProvider());
+                model.OpenView();
             }
             else
             {
                 Database.SetDatabasePath(AppSettings.DatabasePath);
             }
 
-            // Emulator wizard
-            if (!AppSettings.EmulatorWizardComplete)
-            {
-                var model = new EmulatorImportViewModel(Database,
-                       EmulatorImportViewModel.DialogType.Wizard,
-                       EmulatorImportWindowFactory.Instance,
-                       dialogs,
-                       new ResourceProvider());
-
-                model.OpenView();                
-                AppSettings.EmulatorWizardComplete = true;
-                AppSettings.SaveSettings();
-            }
-
             Extensions.LoadLibraryPlugins(Api, AppSettings.DisabledPlugins);
             Extensions.LoadGenericPlugins(Api, AppSettings.DisabledPlugins);
             Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
             GamesEditor = new GamesEditor(Database, controllers, AppSettings, dialogs, Extensions);
-            CustomImageStringToImageConverter.Database = Database;
+            CustomImageStringToImageConverter.SetDatabase(Database);
 
             // Main view startup
             if (AppSettings.StartInFullscreen)
@@ -308,8 +293,11 @@ namespace PlayniteUI
             }
 
             // Update and stats
-            CheckUpdate();
-            SendUsageData();
+            if (!PlayniteEnvironment.InOfflineMode)
+            {
+                CheckUpdate();
+                SendUsageData();
+            }
 
             // Pipe server
             pipeService = new PipeService();
@@ -358,14 +346,21 @@ namespace PlayniteUI
                     break;
 
                 case CmdlineCommands.Launch:
-                    var game = Database.GamesCollection.FindById(int.Parse(args.Args));
-                    if (game == null)
+                    if (Guid.TryParse(args.Args, out var gameId))
                     {
-                        logger.Error($"Cannot start game, game {args.Args} not found.");
+                        var game = Database.Games[gameId];
+                        if (game == null)
+                        {
+                            logger.Error($"Cannot start game, game {args.Args} not found.");
+                        }
+                        else
+                        {
+                            GamesEditor.PlayGame(game);
+                        }
                     }
                     else
                     {
-                        GamesEditor.PlayGame(game);
+                        logger.Error($"Can't start game, failed to parse game id: {args.Args}");
                     }
 
                     break;
@@ -378,40 +373,37 @@ namespace PlayniteUI
 
         private async void CheckUpdate()
         {
-            await Task.Run(async () =>
+            await Task.Delay(Playnite.Timer.SecondsToMilliseconds(10));
+            if (GlobalTaskHandler.IsActive)
             {
-                await Task.Delay(Playnite.Timer.SecondsToMilliseconds(10));
-                if (GlobalTaskHandler.IsActive)
-                {
-                    GlobalTaskHandler.Wait();
-                }
+                await GlobalTaskHandler.ProgressTask;
+            }
 
-                var updater = new Updater(this);
+            var updater = new Updater(this);
 
-                while (true)
+            while (true)
+            {
+                if (!UpdateViewModel.InstanceInUse)
                 {
-                    if (!UpdateViewModel.InstanceInUse)
+                    try
                     {
-                        try
+                        if (updater.IsUpdateAvailable)
                         {
-                            if (updater.IsUpdateAvailable)
+                            Dispatcher.Invoke(() =>
                             {
-                                Dispatcher.Invoke(() =>
-                                {
-                                    var model = new UpdateViewModel(updater, UpdateWindowFactory.Instance, new ResourceProvider(), dialogs);
-                                    model.OpenView();
-                                });
-                            }
-                        }
-                        catch (Exception exc)
-                        {
-                            logger.Warn(exc, "Failed to process update.");
+                                var model = new UpdateViewModel(updater, UpdateWindowFactory.Instance, new DefaultResourceProvider(), dialogs);
+                                model.OpenView();
+                            });
                         }
                     }
-
-                    await Task.Delay(Playnite.Timer.HoursToMilliseconds(4));
+                    catch (Exception exc)
+                    {
+                        logger.Warn(exc, "Failed to process update.");
+                    }
                 }
-            });
+
+                await Task.Delay(Playnite.Timer.HoursToMilliseconds(4));
+            }
         }
 
         private async void SendUsageData()
@@ -461,13 +453,12 @@ namespace PlayniteUI
                     AppSettings?.SaveSettings();
                     Extensions?.Dispose();
                     controllers?.Dispose();
-                    Database?.CloseDatabase();
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(exc, "Failed to dispose Playnite objects.");
                 }
-            }, ResourceProvider.Instance.FindString("LOCClosingPlaynite"));
+            }, DefaultResourceProvider.FindString("LOCClosingPlaynite"));
 
             progressModel.ActivateProgress();
 
@@ -486,7 +477,6 @@ namespace PlayniteUI
             if (Database.IsOpen)
             {
                 FullscreenModel = null;
-                Database.CloseDatabase();
             }
 
             GamesEditor.IsFullscreen = false;
@@ -497,7 +487,7 @@ namespace PlayniteUI
                 Database,
                 MainViewWindow,
                 dialogs,
-                new ResourceProvider(),
+                new DefaultResourceProvider(),
                 AppSettings,
                 GamesEditor,
                 Api,
@@ -526,7 +516,6 @@ namespace PlayniteUI
             if (Database.IsOpen)
             {
                 MainModel = null;
-                Database.CloseDatabase();
             }
 
             GamesEditor.IsFullscreen = true;
@@ -537,7 +526,7 @@ namespace PlayniteUI
                 Database,
                 MainViewWindow,
                 dialogs,
-                new ResourceProvider(),
+                new DefaultResourceProvider(),
                 AppSettings,
                 GamesEditor,
                 Api,
@@ -577,8 +566,8 @@ namespace PlayniteUI
             if (themeValid.Item1 == false)
             {
                 PlayniteMessageBox.Show(
-                    string.Format(ResourceProvider.Instance.FindString("LOCSkinApplyError"), AppSettings.Skin, AppSettings.SkinColor, themeValid.Item2),
-                    ResourceProvider.Instance.FindString("LOCSkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
+                    string.Format(DefaultResourceProvider.FindString("LOCSkinApplyError"), AppSettings.Skin, AppSettings.SkinColor, themeValid.Item2),
+                    DefaultResourceProvider.FindString("LOCSkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
                 isThemeValid = false;
             }
 
@@ -586,8 +575,8 @@ namespace PlayniteUI
             if (profileValid.Item1 == false)
             {
                 PlayniteMessageBox.Show(
-                    string.Format(ResourceProvider.Instance.FindString("LOCSkinApplyError"), AppSettings.Skin, AppSettings.SkinColor, profileValid.Item2),
-                    ResourceProvider.Instance.FindString("LOCSkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
+                    string.Format(DefaultResourceProvider.FindString("LOCSkinApplyError"), AppSettings.Skin, AppSettings.SkinColor, profileValid.Item2),
+                    DefaultResourceProvider.FindString("LOCSkinError"), MessageBoxButton.OK, MessageBoxImage.Error);
                 isThemeValid = false;
             }
 

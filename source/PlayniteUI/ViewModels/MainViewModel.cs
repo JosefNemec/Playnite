@@ -1,6 +1,7 @@
 ﻿using Playnite;
 using Playnite.API;
 using Playnite.App;
+using Playnite.Common;
 using Playnite.Common.System;
 using Playnite.Database;
 using Playnite.Metadata;
@@ -53,7 +54,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedGameDetails = value;
-                OnPropertyChanged("SelectedGameDetails");
+                OnPropertyChanged();
             }
         }
 
@@ -63,6 +64,7 @@ namespace PlayniteUI.ViewModels
             get => selectedGame;
             set
             {
+                SelectedGameDetails?.Dispose();
                 if (value == null)
                 {
                     SelectedGameDetails = null;
@@ -73,7 +75,7 @@ namespace PlayniteUI.ViewModels
                 }
 
                 selectedGame = value;
-                OnPropertyChanged("SelectedGame");
+                OnPropertyChanged();
             }
         }
 
@@ -97,8 +99,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedGamesBinder = value;
-                OnPropertyChanged("SelectedGamesBinder");
-                OnPropertyChanged("SelectedGames");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedGames));
             }
         }
 
@@ -109,7 +111,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 gamesView = value;
-                OnPropertyChanged("GamesView");
+                OnPropertyChanged();
             }
         }
 
@@ -120,7 +122,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 messages = value;
-                OnPropertyChanged("Messages");
+                OnPropertyChanged();
             }
         }
 
@@ -131,7 +133,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 thirdPartyTools = value;
-                OnPropertyChanged("ThirdPartyTools");
+                OnPropertyChanged();
             }
         }
 
@@ -142,7 +144,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 gameAdditionAllowed = value;
-                OnPropertyChanged("GameAdditionAllowed");
+                OnPropertyChanged();
             }
         }
 
@@ -153,7 +155,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressStatus = value;
-                context.Post((a) => OnPropertyChanged("ProgressStatus"), null);
+                context.Post((a) => OnPropertyChanged(), null);
             }
         }
 
@@ -164,7 +166,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressValue = value;
-                context.Post((a) => OnPropertyChanged("ProgressValue"), null);
+                context.Post((a) => OnPropertyChanged(), null);
             }
         }
 
@@ -175,7 +177,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressTotal = value;
-                context.Post((a) => OnPropertyChanged("ProgressTotal"), null);
+                context.Post((a) => OnPropertyChanged(), null);
             }
         }
 
@@ -186,7 +188,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressVisible = value;
-                context.Post((a) => OnPropertyChanged("ProgressVisible"), null);
+                context.Post((a) => OnPropertyChanged(), null);
             }
         }
 
@@ -197,7 +199,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showGameSidebar = value;
-                OnPropertyChanged("ShowGameSidebar");
+                OnPropertyChanged();
             }
         }
 
@@ -208,7 +210,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 mainMenuOpened = value;
-                OnPropertyChanged("MainMenuOpened");
+                OnPropertyChanged();
             }
         }
 
@@ -219,7 +221,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 searchOpened = value;
-                OnPropertyChanged("SearchOpened");
+                OnPropertyChanged();
             }
         }
 
@@ -230,7 +232,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 visibility = value;
-                OnPropertyChanged("Visibility");
+                OnPropertyChanged();
             }
         }
 
@@ -246,7 +248,7 @@ namespace PlayniteUI.ViewModels
                 }
 
                 windowState = value;
-                OnPropertyChanged("WindowState");
+                OnPropertyChanged();
             }
         }
 
@@ -257,7 +259,7 @@ namespace PlayniteUI.ViewModels
             private set
             {
                 appSettings = value;
-                OnPropertyChanged("AppSettings");
+                OnPropertyChanged();
             }
         }
 
@@ -268,7 +270,7 @@ namespace PlayniteUI.ViewModels
             private set
             {
                 gamesStats = value;
-                OnPropertyChanged("GamesStats");
+                OnPropertyChanged();
             }
         }
 
@@ -676,7 +678,10 @@ namespace PlayniteUI.ViewModels
 
             EditGameCommand = new RelayCommand<Game>((a) =>
             {
-                GamesEditor.EditGame(a);
+                if (GamesEditor.EditGame(a) == true)
+                {
+                    SelectedGame = GamesView.Items.FirstOrDefault(g => g.Id == a.Id);
+                }
             });
 
             EditGamesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
@@ -706,8 +711,10 @@ namespace PlayniteUI.ViewModels
 
             AssignGameCategoryCommand = new RelayCommand<Game>((a) =>
             {
-                GamesEditor.SetGameCategories(a);
-                SelectedGame = GamesView.Items.FirstOrDefault(g => g.Id == a.Id);
+                if (GamesEditor.SetGameCategories(a) == true)
+                {
+                    SelectedGame = GamesView.Items.FirstOrDefault(g => g.Id == a.Id);
+                }
             });
 
             AssignGamesCategoryCommand = new RelayCommand<IEnumerable<Game>>((a) =>
@@ -807,59 +814,80 @@ namespace PlayniteUI.ViewModels
 
         protected void InitializeView()
         {
-            try
+            if (GameDatabase.GetMigrationRequired(AppSettings.DatabasePath))
             {
-                if (GameDatabase.GetMigrationRequired(AppSettings.DatabasePath))
+                var migrationProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
+                () =>
                 {
-                    var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(),
-                    () =>
+                    if (AppSettings.DatabasePath.EndsWith(".db", StringComparison.OrdinalIgnoreCase))
                     {
-                        try
+                        var newDbPath = GameDatabase.GetMigratedDbPath(AppSettings.DatabasePath);
+                        var newResolvedDbPath = GameDatabase.GetFullDbPath(newDbPath);
+                        if (Directory.Exists(newResolvedDbPath))
                         {
+                            newDbPath += "_db";
+                            newResolvedDbPath += "_db";
+                        }
+
+                        if (!File.Exists(AppSettings.DatabasePath))
+                        {
+                            AppSettings.DatabasePath = newDbPath;
+                        }
+                        else
+                        {
+                            var dbSize = new FileInfo(AppSettings.DatabasePath).Length;
+                            if (FileSystem.GetFreeSpace(newResolvedDbPath) < dbSize)
+                            {
+                                throw new NoDiskSpaceException(dbSize);
+                            }
+
                             GameDatabase.MigrateDatabase(AppSettings.DatabasePath);
+                            GameDatabase.MigrateToNewFormat(AppSettings.DatabasePath, newResolvedDbPath);
+                            FileSystem.DeleteFile(AppSettings.DatabasePath);
+                            AppSettings.DatabasePath = newDbPath;
                         }
-                        catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                        {
-                            Logger.Error(exc, "Failed to migrate database to new version.");
-                            throw;
-                        }
-                    })
-                    {
-                        ProgressText = Resources.FindString("LOCDBUpgradeProgress")
-                    };
-
-                    if (progressModel.ActivateProgress() == false)
-                    {
-                        Dialogs.ShowMessage(Resources.FindString("LOCDBUpgradeFail"), "", MessageBoxButton.OK, MessageBoxImage.Error);
-                        GameAdditionAllowed = true;
-                        return;
                     }
-                }
+                    else
+                    {
+                        // Do migration of new format when needed
+                    }
+                }, Resources.FindString("LOCDBUpgradeProgress"));
 
-                if (!Database.IsOpen)
+                if (migrationProgress.ActivateProgress() != true)
                 {
-                    Database.OpenDatabase();
+                    Logger.Error(migrationProgress.FailException, "Failed to migrate database to new version.");
+                    var message = Resources.FindString("LOCDBUpgradeFail");
+                    if (migrationProgress.FailException is NoDiskSpaceException exc)
+                    {
+                        message = string.Format(Resources.FindString("LOCDBUpgradeEmptySpaceFail"), Units.BytesToMegaBytes(exc.RequiredSpace));
+                    }
+
+                    Dialogs.ShowErrorMessage(message, "");
+                    GameAdditionAllowed = false;
+                    return;
                 }
             }
-            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            
+            var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
+            () =>
             {
-                Logger.Error(exc, "Failed to open database.");
-                var message = Resources.FindString("LOCDatabaseOpenError") + $" {exc.Message}";
-                if (exc is System.IO.IOException || exc is UnauthorizedAccessException)
+                if (!Database.IsOpen)
                 {
-                    message = string.Format(Resources.FindString("LOCDatabaseOpenAccessError"), AppSettings.DatabasePath);
+                    Database.SetDatabasePath(AppSettings.DatabasePath);
+                    Database.OpenDatabase();
                 }
+            }, Resources.FindString("LOCOpeningDatabase"));
 
-                Dialogs.ShowMessage(
-                        message,
-                        Resources.FindString("LOCDatabaseErroTitle"),
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
+            if (openProgress.ActivateProgress() != true)
+            {
+                Logger.Error(openProgress.FailException, "Failed to open library database.");
+                var message = Resources.FindString("LOCDatabaseOpenError") + $"\n{openProgress.FailException.Message}";
+                Dialogs.ShowErrorMessage(message, "");
                 GameAdditionAllowed = false;
                 return;
             }
-
-            GamesView = new GamesCollectionView(Database, AppSettings, IsFullscreenView, Extensions);
+                     
+            GamesView = new GamesCollectionView(Database, AppSettings, IsFullscreenView, Extensions);         
             BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
             if (GamesView.CollectionView.Count > 0)
             {
@@ -955,11 +983,8 @@ namespace PlayniteUI.ViewModels
                         metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                        var downloader = new MetadataDownloader(Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
-                        downloader.DownloadMetadataGroupedAsync(
-                            addedGames,
-                            Database,
-                            metaSettings,
+                        var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
+                        downloader.DownloadMetadataGroupedAsync(addedGames, metaSettings,
                             (g, i, t) =>
                             {
                                 ProgressValue = i + 1;
@@ -996,12 +1021,9 @@ namespace PlayniteUI.ViewModels
                 ProgressTotal = games.Count;
                 ProgressStatus = Resources.FindString("LOCProgressMetadata");
 
-                var downloader = new MetadataDownloader(Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
+                var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
                 GlobalTaskHandler.ProgressTask =
-                    downloader.DownloadMetadataGroupedAsync(
-                        games,
-                        Database,
-                        settings,
+                    downloader.DownloadMetadataGroupedAsync(games, settings,
                         (g, i, t) =>
                         {
                             ProgressValue = i + 1;
@@ -1033,7 +1055,7 @@ namespace PlayniteUI.ViewModels
             }
             else if (settings.GamesSource == MetadataGamesSource.AllFromDB)
             {
-                games = Database.GamesCollection.FindAll().ToList();
+                games = Database.Games.ToList();
             }
             else if (settings.GamesSource == MetadataGamesSource.Filtered)
             {
@@ -1064,10 +1086,10 @@ namespace PlayniteUI.ViewModels
             var newGame = new Game()
             {
                 Name = "New Game",
-                State = new GameState() { Installed = true }
+                IsInstalled = true
             };
 
-            Database.AddGame(newGame);
+            Database.Games.Add(newGame);
             if (GamesEditor.EditGame(newGame) == true)
             {
                 var viewEntry = GamesView.Items.First(a => a.Game.GameId == newGame.GameId);
@@ -1075,7 +1097,7 @@ namespace PlayniteUI.ViewModels
             }
             else
             {
-                Database.DeleteGame(newGame);
+                Database.Games.Remove(newGame);
             }
         }
 
@@ -1151,7 +1173,7 @@ namespace PlayniteUI.ViewModels
             model.OpenView();
         }
 
-        public void SelectGame(int id)
+        public void SelectGame(Guid id)
         {
             var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
             SelectedGame = viewEntry;
@@ -1213,11 +1235,11 @@ namespace PlayniteUI.ViewModels
                             if (ico != null)
                             {
                                 var iconName = Guid.NewGuid().ToString() + ".png";
-                                game.Icon = Database.AddFileNoDuplicate($"images/custom/{iconName}", iconName, ico.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
+                                game.Icon = Database.AddFile(iconName, ico.ToByteArray(System.Drawing.Imaging.ImageFormat.Png), game.Id);
                             }                            
                         }
 
-                        Database.AddGame(game);
+                        Database.Games.Add(game);
                         Database.AssignPcPlatform(game);
                         GamesEditor.EditGame(game);
                         SelectGame(game.Id);
@@ -1335,11 +1357,8 @@ namespace PlayniteUI.ViewModels
                         metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                        var downloader = new MetadataDownloader(Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
-                        downloader.DownloadMetadataGroupedAsync(
-                            addedGames,
-                            Database,
-                            metaSettings,
+                        var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
+                        downloader.DownloadMetadataGroupedAsync(addedGames, metaSettings,
                             (g, i, t) =>
                             {
                                 ProgressValue = i + 1;

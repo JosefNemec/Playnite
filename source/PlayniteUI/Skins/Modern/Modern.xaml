@@ -3362,7 +3362,17 @@
                                                                   Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" />
                                                 <TextBlock x:Name="ShortcutText" Text="{TemplateBinding Tag}"
                                                            Grid.Column="1" Margin="30,0,0,0" Opacity="0.6"
-                                                           VerticalAlignment="Center"/>
+                                                           VerticalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="Text" Value="▶">
+                                                                    <Setter Property="FontSize" Value="10" />
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>                                                           
                                             </Grid>
                                         </Border>
                                     </ControlTemplate>

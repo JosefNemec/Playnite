@@ -10,7 +10,7 @@ Handling Games
 
 ### Getting Games
 
-You can get all games stored in database by calling [GetGames](xref:Playnite.SDK.IGameDatabaseAPI.GetGames) method or getting specific game by its Id via [GetGame](xref:Playnite.SDK.IGameDatabaseAPI.GetGame(System.Int32)) method.
+You can get all games stored in database by calling [GetGames](xref:Playnite.SDK.IGameDatabaseAPI.GetGames) method or getting specific game by its Id via [GetGame](xref:Playnite.SDK.IGameDatabaseAPI.GetGame(System.Guid)) method.
 
 **PowerShell**:
 
@@ -18,7 +18,7 @@ You can get all games stored in database by calling [GetGames](xref:Playnite.SDK
 # Get all games
 $games = $PlayniteApi.Database.GetGames()
 # Get game with known Id
-$game = $PlayniteApi.Database.GetGame(20)
+$game = $PlayniteApi.Database.GetGame(SomeGuidId)
 ```
 
 **IronPython**:
@@ -27,7 +27,7 @@ $game = $PlayniteApi.Database.GetGame(20)
 # Get all games
 games = PlayniteApi.Database.GetGames()
 # Get game with known Id
-game = PlayniteApi.Database.GetGame(20)
+game = PlayniteApi.Database.GetGame(SomeGuidId)
 ```
 
 ### Adding New Game
@@ -72,7 +72,7 @@ PlayniteApi.Database.UpdateGame(game)
 
 ### Removing Games
 
-To remove game from database use [RemoveGame](xref:Playnite.SDK.IGameDatabaseAPI.RemoveGame(System.Int32)) method with an game Id as parameter.
+To remove game from database use [RemoveGame](xref:Playnite.SDK.IGameDatabaseAPI.RemoveGame(System.Guid)) method with an game Id as parameter.
 
 Following example removes first game from database:
 
@@ -97,32 +97,25 @@ All game related image files are stored in game database itself, with only refer
 
 ### Exporting Game Cover
 
-Game cover images are referenced in [CoverImage](xref:Playnite.SDK.Models.Game.CoverImage) property. To save a file first get the file record by calling [GetFile](xref:Playnite.SDK.IGameDatabaseAPI.GetFile(System.String)) method. `GetFile` returns [DatabaseFile](xref:Playnite.SDK.Models.DatabaseFile), which contains additional information like file name, size and others. To export file call [SaveFile](xref:Playnite.SDK.IGameDatabaseAPI.SaveFile(System.String,System.String)) method.
-
-Following example exports cover image of the first game in database:
+Game cover images are referenced in [CoverImage](xref:Playnite.SDK.Models.Game.CoverImage) property. To save a file first get the file record by calling [GetFullFilePath](xref:Playnite.SDK.IGameDatabaseAPI.GetFullFilePath(System.String)) method. `GetFullFilePath` returns full path to a file on the disk drive.
 
 **PowerShell**:
 
 ```powershell
 $game = $PlayniteApi.Database.GetGames()[0]
-$cover = $PlayniteApi.Database.GetFile($game.CoverImage)
-$PlayniteApi.Database.SaveFile($cover.Id, $cover.Filename)
+$coverPath = $PlayniteApi.Database.GetFullFilePath($game.CoverImage)
 ```
 
 **IronPython**:
 
 ```python
 game = PlayniteApi.Database.GetGames()[0]
-cover = PlayniteApi.Database.GetFile(game.CoverImage)
-PlayniteApi.Database.SaveFile(cover.Id, cover.Filename)
+coverPath = PlayniteApi.Database.GetFullFilePath(game.CoverImage)
 ```
 
 ### Changing Cover Image
 
-Changing cover image involves several steps. First remove original image by calling [RemoveImage](xref:Playnite.SDK.IGameDatabaseAPI.RemoveImage(System.String,Playnite.SDK.Models.Game)) method. Then add new image file to a database using [AddFile](xref:Playnite.SDK.IGameDatabaseAPI.AddFile(System.String,System.String)). And lastly assign Id of new image to a game.
-
-> [!NOTE] 
-> [RemoveImage](xref:Playnite.SDK.IGameDatabaseAPI.RemoveImage(System.String,Playnite.SDK.Models.Game)) method will not remove image file if any other game is using it. No error is reported in that case since it's intended behavior. Similarly [AddFile](xref:Playnite.SDK.IGameDatabaseAPI.AddFile(System.String,System.String)) doesn't add new file to database if file with the same content already exits and instead returns Id of existing file.
+Changing cover image involves several steps. First remove original image by calling [RemoveFile](xref:Playnite.SDK.IGameDatabaseAPI.RemoveFile(System.String)) method. Then add new image file to a database using [AddFile](xref:Playnite.SDK.IGameDatabaseAPI.AddFile(System.String,System.Guid)). And lastly assign Id of new image to a game.
 
 Following example changes cover image of first game in database:
 
@@ -130,9 +123,8 @@ Following example changes cover image of first game in database:
 
 ```powershell
 $game = $PlayniteApi.Database.GetGames()[0]
-$PlayniteApi.Database.RemoveImage($game.CoverImage, $game)
-$fileId = $PlayniteApi.Database.AddFile("new_file_id", "c:\file.png")
-$game.CoverImage = $fileId
+$PlayniteApi.Database.RemoveFile($game.CoverImage)
+$game.CoverImage = $PlayniteApi.Database.AddFile("c:\file.png", $game.Id)
 $PlayniteApi.Database.UpdateGame($game)
 ```
 
@@ -140,8 +132,7 @@ $PlayniteApi.Database.UpdateGame($game)
 
 ```python
 game = PlayniteApi.Database.GetGames()[0]
-PlayniteApi.Database.RemoveImage(game.Image, game)
-file_id = PlayniteApi.Database.AddFile("new_file_id", "c:\\file.png")
-game.Image = file_id
+PlayniteApi.Database.RemoveFile(game.CoverImage)
+game.CoverImage = PlayniteApi.Database.AddFile("c:\\file.png", game.Id)
 PlayniteApi.Database.UpdateGame(game)
 ```

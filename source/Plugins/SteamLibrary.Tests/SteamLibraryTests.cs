@@ -49,7 +49,10 @@ namespace SteamLibrary.Tests
             var cats = steamLib.GetCategorizedGames(user.Id);
             var game = cats.First();
             CollectionAssert.IsNotEmpty(cats);
-            CollectionAssert.IsNotEmpty(game.Categories);
+            if (!game.Hidden)
+            {
+                CollectionAssert.IsNotEmpty(game.Categories);
+            }
             Assert.IsFalse(string.IsNullOrEmpty(game.GameId));
         }
 

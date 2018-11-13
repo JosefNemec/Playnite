@@ -32,10 +32,6 @@
     <DocumentationFile>bin\Release\Playnite.SDK.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LiteDB, Version=3.1.5.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\references\LiteDB.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
@@ -49,12 +45,14 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\ComparableList.cs" />
     <Compile Include="Collections\ObservableConcurrentDictionary.cs" />
     <Compile Include="Collections\ObservableObject.cs" />
     <Compile Include="Collections\RangeObservableCollection.cs" />
+    <Compile Include="DefaultResourceProvider.cs" />
     <Compile Include="Events\GameControllerEvent.cs" />
     <Compile Include="IDialogsFactory.cs" />
     <Compile Include="ExtensionFunction.cs" />
@@ -71,14 +69,13 @@
     <Compile Include="ISettings.cs" />
     <Compile Include="IWebView.cs" />
     <Compile Include="LogManager.cs" />
+    <Compile Include="Models\DatabaseObject.cs" />
     <Compile Include="Models\Metadata\GameMetadata.cs" />
     <Compile Include="Models\Metadata\MetadataFile.cs" />
     <Compile Include="Models\Metadata\MetadataSearchResult.cs" />
     <Compile Include="Models\CompletionStatus.cs" />
-    <Compile Include="Models\DatabaseFile.cs" />
     <Compile Include="Models\Emulator.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\GameState.cs" />
     <Compile Include="Models\GameAction.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\Platform.cs" />

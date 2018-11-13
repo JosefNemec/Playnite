@@ -1,6 +1,4 @@
-﻿using LiteDB;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -12,23 +10,8 @@ namespace Playnite.SDK.Models
     /// <summary>
     /// Represents game's platfom.
     /// </summary>
-    public class Platform : ObservableObject
+    public class Platform : DatabaseObject
     {
-        private Guid id;
-        /// <summary>
-        /// Gets or sets platform database id.
-        /// </summary>
-        [BsonId]
-        public Guid Id
-        {
-            get => id;
-            set
-            {
-                id = value;
-                OnPropertyChanged("Id");
-            }
-        }
-
         private string name;
         /// <summary>
         /// Gets or sets platform name.
@@ -39,7 +22,7 @@ namespace Playnite.SDK.Models
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged();
             }
         }
 
@@ -53,7 +36,7 @@ namespace Playnite.SDK.Models
             set
             {
                 icon = value;
-                OnPropertyChanged("Icon");
+                OnPropertyChanged();
             }
         }
 
@@ -67,16 +50,15 @@ namespace Playnite.SDK.Models
             set
             {
                 cover = value;
-                OnPropertyChanged("Cover");
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
         /// Creates new instance of Platform.
         /// </summary>
-        public Platform()
+        public Platform() : base()
         {
-            Id = Guid.NewGuid();
         }
 
         /// <summary>

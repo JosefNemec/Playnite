@@ -53,33 +53,7 @@
                     <TextBlock Text="{DynamicResource LOCFirstIntro}" 
                             TextWrapping="Wrap" DockPanel.Dock="Top" Margin="0,20,0,0"/>
                 </DockPanel>
-            </TabItem>
-            <TabItem Visibility="Collapsed">
-                <DockPanel Margin="20" LastChildFill="False">
-                    <TextBlock Text="{DynamicResource LOCSettingsDBLocation}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
-                    <TextBlock Text="{DynamicResource LOCFirstDBLocation}" DockPanel.Dock="Top" Margin="5,20,5,0" TextWrapping="Wrap"/>
-                    <RadioButton Name="RadioDbDefault" GroupName="database"
-                                IsChecked="{Binding DatabaseLocation, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=ProgramData}"
-                                DockPanel.Dock="Top" Margin="5,20,5,5">
-                        <RadioButton.Content>
-                            <TextBlock Text="{DynamicResource LOCFirstDBLocDefault}" TextWrapping="Wrap" />
-                        </RadioButton.Content>
-                    </RadioButton>
-                    <RadioButton Name="RadioDbCustom" GroupName="database"
-                                IsChecked="{Binding DatabaseLocation, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Custom}"
-                                DockPanel.Dock="Top" Margin="5">
-                        <RadioButton.Content>
-                            <TextBlock Text="{DynamicResource LOCFirstDBLocCustom}" TextWrapping="Wrap" />
-                        </RadioButton.Content>
-                    </RadioButton>
-                    <DockPanel KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top" Margin="15,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioDbCustom}">
-                        <Button TabIndex="2" Content=" ... " DockPanel.Dock="Right" Padding="5,0,5,0" Name="ButtonBrowserDbFile"
-                                Command="{Binding SelectDbFileCommand}" />
-                        <TextBox TabIndex="1" AcceptsReturn="False" Margin="10,0,5,0" DockPanel.Dock="Left"
-                                 Name="TextDbFile" Text="{Binding Settings.DatabasePath}"/>
-                    </DockPanel>
-                </DockPanel>
-            </TabItem>
+            </TabItem>            
             <TabItem Visibility="Collapsed">
                 <DockPanel Margin="20" LastChildFill="False">
                     <TextBlock Text="{DynamicResource LOCFirstExternalTitle}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>

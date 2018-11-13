@@ -30,7 +30,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selected = value;
-                OnPropertyChanged("Selected");
+                OnPropertyChanged();
             }
         }
 
@@ -74,7 +74,7 @@ namespace PlayniteUI.ViewModels
                 }
 
                 isPlatformsSelected = value;
-                OnPropertyChanged("IsPlatformsSelected");
+                OnPropertyChanged();
             }
         }
 
@@ -108,7 +108,7 @@ namespace PlayniteUI.ViewModels
                 }
 
                 isEmulatorsSelected = value;
-                OnPropertyChanged("IsEmulatorsSelected");
+                OnPropertyChanged();
             }
         }
 
@@ -119,7 +119,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedPlatform = value;
-                OnPropertyChanged("SelectedPlatform");
+                OnPropertyChanged();
             }
         }
 
@@ -130,7 +130,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedEmulator = value;
-                OnPropertyChanged("SelectedEmulator");
+                OnPropertyChanged();
                 SelectedEmulatorProfile = SelectedEmulator?.Profiles?.FirstOrDefault();
             }
         }
@@ -143,7 +143,7 @@ namespace PlayniteUI.ViewModels
             {
                 selectedEmulatorProfile = value;
                 ReloadSelectablePlatforms(value);
-                OnPropertyChanged("SelectedEmulatorProfile");
+                OnPropertyChanged();
             }
         }
 
@@ -154,7 +154,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 platforms = value;
-                OnPropertyChanged("Platforms");
+                OnPropertyChanged();
             }
         }
 
@@ -165,7 +165,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectablePlatforms = value;
-                OnPropertyChanged("SelectablePlatforms");
+                OnPropertyChanged();
             }
         }
 
@@ -176,7 +176,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 emulators = value;
-                OnPropertyChanged("Emulators");
+                OnPropertyChanged();
             }
         }
 
@@ -298,7 +298,7 @@ namespace PlayniteUI.ViewModels
                     EmulatorImportViewModel.DialogType.EmulatorImport,
                     EmulatorImportWindowFactory.Instance,
                     new DialogsFactory(),
-                    new ResourceProvider());
+                    new DefaultResourceProvider());
                 ImportEmulators(model);
             });
         }
@@ -312,7 +312,7 @@ namespace PlayniteUI.ViewModels
                     EmulatorImportViewModel.DialogType.EmulatorDownload,
                     EmulatorImportWindowFactory.Instance,
                     new DialogsFactory(),
-                    new ResourceProvider());
+                    new DefaultResourceProvider());
                 DownloadEmulators(model);
             });
         }
@@ -360,53 +360,46 @@ namespace PlayniteUI.ViewModels
 
         private ObservableCollection<Platform> GetPlatformsFromDB()
         {
-            return new ObservableCollection<Platform>(database.PlatformsCollection.FindAll().OrderBy(a => a.Name));
+            return new ObservableCollection<Platform>(database.Platforms.OrderBy(a => a.Name));
         }
 
         private void UpdatePlatformsToDB()
         {
             // Remove deleted platforms from database
-            var dbPlatforms = database.PlatformsCollection.FindAll();
-            var removedPlatforms = dbPlatforms.Where(a => Platforms.FirstOrDefault(b => b.Id == a.Id) == null).ToList();
-            database.RemovePlatform(removedPlatforms?.ToList());
+            var removedPlatforms = database.Platforms.Where(a => Platforms.FirstOrDefault(b => b.Id == a.Id) == null).ToList();
+            database.Platforms.Remove(removedPlatforms?.ToList());
 
             // Add new platforms to database
             var addedPlatforms = Platforms.Where(a => a.Id == Guid.Empty).ToList();
             addedPlatforms.ForEach(a => a.Id = Guid.NewGuid());
-            database.AddPlatform(addedPlatforms?.ToList());
+            database.Platforms.Add(addedPlatforms?.ToList());
 
             // Remove files from deleted platforms
             foreach (var platform in removedPlatforms)
             {
                 if (!string.IsNullOrEmpty(platform.Icon))
                 {
-                    database.DeleteFile(platform.Icon);
+                    database.RemoveFile(platform.Icon);
                 }
 
                 if (!string.IsNullOrEmpty(platform.Cover))
                 {
-                    database.DeleteFile(platform.Cover);
+                    database.RemoveFile(platform.Cover);
                 }
             }
 
             // Save files from modified platforms
-            var fileIdMask = "images/platforms/{0}/{1}";
             foreach (var platform in Platforms)
             {
-                var dbPlatform = database.PlatformsCollection.FindById(platform.Id);
-
+                var dbPlatform = database.Platforms.Get(platform.Id);
                 if (!string.IsNullOrEmpty(platform.Icon) && !platform.Icon.StartsWith("images") && File.Exists(platform.Icon))
                 {
                     if (!string.IsNullOrEmpty(dbPlatform.Icon))
                     {
-                        database.DeleteFile(dbPlatform.Icon);
+                        database.RemoveFile(dbPlatform.Icon);
                     }
 
-                    var extension = Path.GetExtension(platform.Icon);
-                    var name = Guid.NewGuid() + extension;
-                    var id = string.Format(fileIdMask, platform.Id, name);
-                    database.AddFile(id, name, File.ReadAllBytes(platform.Icon));
-
+                    var id = database.AddFile(platform.Icon, dbPlatform.Id);
                     if (Paths.AreEqual(Path.GetDirectoryName(platform.Icon), PlaynitePaths.TempPath))
                     {
                         File.Delete(platform.Icon);
@@ -419,52 +412,47 @@ namespace PlayniteUI.ViewModels
                 {
                     if (!string.IsNullOrEmpty(dbPlatform.Cover))
                     {
-                        database.DeleteFile(dbPlatform.Cover);
+                        database.RemoveFile(dbPlatform.Cover);
                     }
 
-                    var extension = Path.GetExtension(platform.Cover);
-                    var name = Guid.NewGuid() + extension;
-                    var id = string.Format(fileIdMask, platform.Id, name);
-                    database.AddFile(id, name, File.ReadAllBytes(platform.Cover));
-                    platform.Cover = id;
+                    platform.Cover = database.AddFile(platform.Cover, dbPlatform.Id);
                 }
             }
 
             // Update modified platforms in database
             foreach (var platform in Platforms)
             {
-                var dbPlatform = database.PlatformsCollection.FindById(platform.Id);
+                var dbPlatform = database.Platforms.Get(platform.Id);
                 if (dbPlatform != null && !platform.IsEqualJson(dbPlatform))
                 {
-                    database.UpdatePlatform(platform);
+                    database.Platforms.Update(platform);
                 }
             }
         }
 
         private ObservableCollection<Emulator> GetEmulatorsFromDB()
         {
-            return new ObservableCollection<Emulator>(database.EmulatorsCollection.FindAll().OrderBy(a => a.Name));
+            return new ObservableCollection<Emulator>(database.Emulators.OrderBy(a => a.Name));
         }
 
         private void UpdateEmulatorsToDB()
         {
             // Remove deleted emulators from database
-            var dbEmulators = database.EmulatorsCollection.FindAll();
-            var removedEmulators = dbEmulators.Where(a => Emulators.FirstOrDefault(b => b.Id == a.Id) == null).ToList();
-            database.RemoveEmulator(removedEmulators?.ToList());
+            var removedEmulators = database.Emulators.Where(a => Emulators.FirstOrDefault(b => b.Id == a.Id) == null).ToList();
+            database.Emulators.Remove(removedEmulators?.ToList());
 
             // Add new platforms to database
             var addedEmulators = Emulators.Where(a => a.Id == Guid.Empty).ToList();
             addedEmulators.ForEach(a => a.Id = Guid.NewGuid());
-            database.AddEmulator(addedEmulators?.ToList());
+            database.Emulators.Add(addedEmulators?.ToList());
 
             // Update modified platforms in database
             foreach (var emulator in Emulators)
             {
-                var dbEmulator = database.EmulatorsCollection.FindById(emulator.Id);
+                var dbEmulator = database.Emulators.Get(emulator.Id);
                 if (dbEmulator != null && !emulator.IsEqualJson(dbEmulator))
                 {
-                    database.UpdateEmulator(emulator);
+                    database.Emulators.Update(emulator);
                 }
             }
         }
@@ -481,8 +469,8 @@ namespace PlayniteUI.ViewModels
 
         public void RemovePlatform(Platform platform)
         {
-            var games = database.GamesCollection.Find(a => a.PlatformId == platform.Id);
-            var emus = database.EmulatorsCollection.FindAll().Where(a => a.Profiles != null && a.Profiles.FirstOrDefault(b => b.Platforms.Contains(platform.Id)) != null);
+            var games = database.Games.Where(a => a.PlatformId == platform.Id);
+            var emus = database.Emulators.Where(a => a.Profiles != null && a.Profiles.FirstOrDefault(b => b.Platforms.Contains(platform.Id)) != null);
             if (games.Count() > 0 || emus.Count() > 0)
             {
                 if (dialogs.ShowMessage(
@@ -550,7 +538,7 @@ namespace PlayniteUI.ViewModels
 
         public void RemoveEmulator(Emulator emulator)
         {
-            var games = database.GamesCollection.Find(a => a.PlayAction != null && a.PlayAction.Type == GameActionType.Emulator && a.PlayAction.EmulatorId == emulator.Id);
+            var games = database.Games.Where(a => a.PlayAction != null && a.PlayAction.Type == GameActionType.Emulator && a.PlayAction.EmulatorId == emulator.Id);
             if (games.Count() > 0)
             {
                 if (dialogs.ShowMessage(
@@ -690,7 +678,7 @@ namespace PlayniteUI.ViewModels
                     {
                         if (e.PropertyName == "Selected")
                         {
-                            OnPropertyChanged("SelectablePlatforms");                            
+                            OnPropertyChanged(nameof(SelectablePlatforms));
                             selectedEmulatorProfile.Platforms = SelectablePlatforms?.Where(b => b.Selected)?.Select(c => c.Id).ToList();
                         }
                     };

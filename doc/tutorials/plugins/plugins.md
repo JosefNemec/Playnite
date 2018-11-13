@@ -51,4 +51,4 @@ Support for all 3rd part clients in Playnite is implemented fully using plugins 
 Distributing plugins
 ---------------------
 
-When distributing plugins it is ok to leave out dlls for `Json.Net` and `LiteDB` references, since they are distributed with Playnite itself.
+When distributing plugins it is ok to leave out dlls for `Json.Net` reference, since it's distributed with Playnite already.

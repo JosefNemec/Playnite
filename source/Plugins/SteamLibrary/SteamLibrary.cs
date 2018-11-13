@@ -33,15 +33,11 @@ namespace SteamLibrary
         private readonly Configuration config;
         private readonly SteamApiClient apiClient = new SteamApiClient();
 
-        internal SteamLibrarySettings LibrarySettings
-        {
-            get => (SteamLibrarySettings)Settings;
-        }
+        internal SteamLibrarySettings LibrarySettings { get; private set; }
 
         public SteamLibrary(IPlayniteAPI api)
         {
             Initialize(api);
-            var configPath = Path.Combine(api.GetPluginUserDataPath(this), "config.json");
             config = api.GetPluginConfiguration<Configuration>(this);
             servicesClient = new SteamServicesClient(config.ServicesEndpoint);
         }
@@ -56,7 +52,7 @@ namespace SteamLibrary
         {
             playniteApi = api;
             LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\steamicon.png");
-            Settings = new SteamLibrarySettings(this, playniteApi)
+            LibrarySettings = new SteamLibrarySettings(this, playniteApi)
             {
                 SteamUsers = GetSteamUsers()
             };
@@ -100,7 +96,7 @@ namespace SteamLibrary
                 Name = name,
                 InstallDirectory = Path.Combine((new FileInfo(path)).Directory.FullName, "common", kv["installDir"].Value),
                 PlayAction = CreatePlayTask(gameId),
-                State = new GameState() { Installed = true }
+                IsInstalled = true
             };
 
             return game;
@@ -193,7 +189,7 @@ namespace SteamLibrary
                 Name = modInfo.Name,
                 InstallDirectory = path,
                 PlayAction = CreatePlayTask(modInfo.GameId),
-                State = new GameState() { Installed = true },
+                IsInstalled = true,
                 Developers = new ComparableList<string>() { modInfo.Developer },
                 Links = modInfo.Links,
                 Tags = modInfo.Categories,
@@ -374,8 +370,7 @@ namespace SteamLibrary
                     Name = game.name,
                     GameId = game.appid.ToString(),
                     Playtime = game.playtime_forever * 60,
-                    CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed,
-                    State = new GameState() { Installed = false }
+                    CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed
                 };
 
                 games.Add(newGame);
@@ -433,7 +428,7 @@ namespace SteamLibrary
             var apps = sharedconfig["Software"]["Valve"]["Steam"]["apps"];
             foreach (var app in apps.Children)
             {
-                if (app["tags"].Children.Count == 0)
+                if (app.Children.Count == 0)
                 {
                     continue;
                 }
@@ -444,12 +439,36 @@ namespace SteamLibrary
                     appData.Add(tag.Value);
                 }
 
+                string gameId = app.Name;
+                if (app.Name.Contains('_'))
+                {
+                    // Mods are keyed differently, "<appId>_<modId>"
+                    // Ex. 215_2287856061
+                    string[] parts = app.Name.Split('_');
+                    if (uint.TryParse(parts[0], out uint appId) && uint.TryParse(parts[1], out uint modId))
+                    {
+                        var gid = new GameID()
+                        {
+                            AppID = appId,
+                            AppType = GameID.GameType.GameMod,
+                            ModID = modId
+                        };
+                        gameId = gid;
+                    }
+                    else
+                    {
+                        // Malformed app id?
+                        continue;
+                    }
+                }
+
                 result.Add(new Game()
                 {
                     PluginId = Id,
                     Source = "Steam",
-                    GameId = app.Name,
-                    Categories = new ComparableList<string>(appData)
+                    GameId = gameId,
+                    Categories = new ComparableList<string>(appData),
+                    Hidden = app["hidden"].AsInteger() == 1
                 });
             }
 
@@ -460,6 +479,7 @@ namespace SteamLibrary
         {
             var dialogs = playniteApi.Dialogs;
             var resources = playniteApi.Resources;
+            var db = playniteApi.Database;
 
             if (dialogs.ShowMessage(
                 resources.FindString("LOCSettingsSteamCatImportWarn"),
@@ -478,7 +498,7 @@ namespace SteamLibrary
                 return;
             }
 
-            if (!playniteApi.Database.IsOpen)
+            if (!db.IsOpen)
             {
                 dialogs.ShowMessage(
                     resources.FindString("LOCSettingsSteamCatImportErrorDb"),
@@ -489,8 +509,22 @@ namespace SteamLibrary
 
             try
             {
-                var games = GetCategorizedGames(accountId);
-                playniteApi.Database.ImportCategories(games);
+                using (db.BufferedUpdate())
+                {
+                    foreach (var game in GetCategorizedGames(accountId))
+                    {
+                        var dbGame = db.GetGames().FirstOrDefault(a => a.PluginId == game.PluginId && a.GameId == game.GameId);
+                        if (dbGame == null)
+                        {
+                            continue;
+                        }
+
+                        dbGame.Categories = game.Categories;
+                        dbGame.Hidden = game.Hidden;
+                        db.UpdateGame(dbGame);
+                    }
+                }
+
                 dialogs.ShowMessage(resources.FindString("LOCImportCompleted"));
             }
             catch (Exception exc) when (!Environment.IsDebugBuild)
@@ -511,8 +545,6 @@ namespace SteamLibrary
 
         public string Name { get; } = "Steam";
 
-        public ISettings Settings { get; private set; }
-
         public string LibraryIcon { get; private set; }
 
         public void Dispose()
@@ -520,9 +552,15 @@ namespace SteamLibrary
             apiClient.Logout();
         }
 
-        public UserControl SettingsView
+        public ISettings GetSettings(bool firstRunSettings)
         {
-            get => new SteamLibrarySettingsView();
+            LibrarySettings.ShowCategoryImport = !firstRunSettings;
+            return LibrarySettings;
+        }
+
+        public UserControl GetSettingsView(bool firstRunView)
+        {
+            return new SteamLibrarySettingsView();
         }
 
         public IEnumerable<Game> GetGames()

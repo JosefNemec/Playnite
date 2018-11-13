@@ -22,6 +22,9 @@ namespace GogLibrary.Models
             public List<SluggedName> developers;
             public DateTime? globalReleaseDate;
             public string id;
+            public string galaxyBackgroundImage;
+            public string backgroundImage;
+            public string image;
         }
 
         public ProductDetails cardProduct;

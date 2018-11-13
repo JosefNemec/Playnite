@@ -68,7 +68,7 @@ namespace Playnite
                 }
             }
 
-            FileSystem.DeleteFolder(diagTemp);
+            FileSystem.DeleteDirectory(diagTemp);
         }
     }
 }

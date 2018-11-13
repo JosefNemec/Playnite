@@ -18,6 +18,14 @@ namespace Playnite
             }
         }
 
+        public static bool InOfflineMode
+        {
+            get
+            {
+                return PlayniteSettings.GetAppConfigBoolValue("OfflineMode");
+            }
+        }
+
         public static bool IsDebugBuild
         {
             get

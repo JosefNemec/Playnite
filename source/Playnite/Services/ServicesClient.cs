@@ -1,7 +1,7 @@
 ﻿using Microsoft.Win32;
 using Newtonsoft.Json;
-using NLog;
 using Playnite.App;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,43 +13,16 @@ using System.Threading.Tasks;
 
 namespace Playnite.Services
 {
-    public class ServicesClient
+    public class ServicesClient : BaseServicesClient
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
 
-        private HttpClient httpClient = new HttpClient()
+        public ServicesClient() : this(ConfigurationManager.AppSettings["ServicesUrl"])
         {
-            Timeout = new TimeSpan(0, 0, 30)
-        };
-
-        public string Endpoint
-        {
-            get;
         }
 
-        public ServicesClient()
+        public ServicesClient(string endpoint) : base(endpoint)
         {
-            Endpoint = ConfigurationManager.AppSettings["ServicesUrl"].TrimEnd('/');
-        }
-
-        public ServicesClient(string endpoint)
-        {
-            Endpoint = endpoint.TrimEnd('/');
-        }
-
-        private T ExecuteGetRequest<T>(string subUrl)
-        {
-            var url = Uri.EscapeUriString(Endpoint + subUrl);
-            var strResult = httpClient.GetStringAsync(url).GetAwaiter().GetResult();
-            var result = JsonConvert.DeserializeObject<ServicesResponse<T>>(strResult);
-
-            if (!string.IsNullOrEmpty(result.Error))
-            {
-                logger.Error("Service request error by proxy: " + result.Error);
-                throw new Exception(result.Error);
-            }
-
-            return result.Data;
         }
 
         public List<PlayniteServices.Models.IGDB.Game> GetIGDBGames(string searchName, string apiKey = null)
@@ -107,7 +80,7 @@ namespace Playnite.Services
             };
 
             var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
-            httpClient.PostAsync(Endpoint + "/api/playnite/users", content).Wait();
+            HttpClient.PostAsync(Endpoint + "/api/playnite/users", content).Wait();
         }
 
         public Guid UploadDiagPackage(string diagPath)
@@ -116,7 +89,7 @@ namespace Playnite.Services
             {
                 using (var content = new StreamContent(fs))
                 {
-                    var response = httpClient.PostAsync(Endpoint + "/api/playnite/diag", content).GetAwaiter().GetResult();
+                    var response = HttpClient.PostAsync(Endpoint + "/api/playnite/diag", content).GetAwaiter().GetResult();
                     var strResult = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
                     var result = JsonConvert.DeserializeObject<ServicesResponse<Guid>>(strResult);
                     if (!string.IsNullOrEmpty(result.Error))

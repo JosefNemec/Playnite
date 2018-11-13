@@ -33,7 +33,7 @@ namespace PlayniteUI
             {
                 while (true)
                 {
-                    context.Post((a) => OnPropertyChanged("CurrentTime"), null);
+                    context.Post((a) => OnPropertyChanged(nameof(CurrentTime)), null);
                     await Task.Delay(10000);
                 }
             });

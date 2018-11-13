@@ -1,5 +1,4 @@
-﻿using Playnite.Models;
-using Playnite.SDK.Models;
+﻿using Playnite.SDK.Models;
 using Playnite.Settings;
 using System;
 using System.Collections.Generic;

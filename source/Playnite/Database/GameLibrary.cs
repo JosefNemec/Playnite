@@ -17,17 +17,16 @@ namespace Playnite.Database
     {
         private static ILogger logger = LogManager.GetLogger();
 
-        private static string AddNewFile(string path, Guid libraryId, GameDatabase database)
+        private static string AddNewGameFile(string path, Guid gameId, GameDatabase database)
         {
             var fileName = Guid.NewGuid().ToString() + Path.GetExtension(path);
-            var fileId = $"{libraryId.ToString()}/{fileName}";
             MetadataFile metaFile = null;
 
             try
             {
-                if (path.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                if (path.IsHttpUrl())
                 {
-                    metaFile = new MetadataFile(fileId, fileName, HttpDownloader.DownloadData(path));
+                    metaFile = new MetadataFile(fileName, HttpDownloader.DownloadData(path));
                 }
                 else
                 {
@@ -42,12 +41,11 @@ namespace Playnite.Database
                             }
 
                             fileName = Path.ChangeExtension(fileName, ".png");
-                            fileId = Path.ChangeExtension(fileId, ".png");
-                            metaFile = new MetadataFile(fileId, fileName, icon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
+                            metaFile = new MetadataFile(fileName, icon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
                         }
                         else
                         {
-                            metaFile = new MetadataFile(fileId, fileName, File.ReadAllBytes(path));
+                            metaFile = new MetadataFile(fileName, File.ReadAllBytes(path));
                         }
                     }
                     else
@@ -66,12 +64,10 @@ namespace Playnite.Database
                 if (metaFile.FileName.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
                 {
                     metaFile.FileName = Path.ChangeExtension(metaFile.FileName, ".png");
-                    metaFile.FileId = Path.ChangeExtension(metaFile.FileId, ".png");
                     metaFile.Content = BitmapExtensions.TgaToBitmap(metaFile.Content).ToPngArray();
                 }
-
-                database.AddFile(metaFile);
-                return metaFile.FileId;
+                
+                return database.AddFile(metaFile, gameId);
             }
 
             return null;
@@ -81,35 +77,35 @@ namespace Playnite.Database
         {
             foreach (var newGame in library.GetGames())
             {
-                var existingGame = database.GamesCollection.FindOne(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
+                var existingGame = database.Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
                 if (existingGame == null)
                 {
                     logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
                     if (!string.IsNullOrEmpty(newGame.Icon))
                     {
-                        newGame.Icon = AddNewFile(newGame.Icon, library.Id, database);
+                        newGame.Icon = AddNewGameFile(newGame.Icon, newGame.Id, database);
                     }
 
                     if (!string.IsNullOrEmpty(newGame.CoverImage))
                     {
-                        newGame.CoverImage = AddNewFile(newGame.CoverImage, library.Id, database);
+                        newGame.CoverImage = AddNewGameFile(newGame.CoverImage, newGame.Id, database);
                     }
 
                     if (!string.IsNullOrEmpty(newGame.BackgroundImage))
                     {
-                        if (!newGame.BackgroundImage.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                        if (!newGame.BackgroundImage.IsHttpUrl())
                         {
-                            newGame.BackgroundImage = AddNewFile(newGame.BackgroundImage, library.Id, database);
+                            newGame.BackgroundImage = AddNewGameFile(newGame.BackgroundImage, newGame.Id, database);
                         }
                     }
 
                     database.AssignPcPlatform(newGame);
-                    database.AddGame(newGame);
+                    database.Games.Add(newGame);
                     yield return newGame;
                 }
                 else
                 {
-                    existingGame.State.Installed = newGame.State.Installed;
+                    existingGame.IsInstalled = newGame.IsInstalled;
                     existingGame.InstallDirectory = newGame.InstallDirectory;
                     if (existingGame.PlayAction == null || existingGame.PlayAction.IsHandledByPlugin)
                     {
@@ -135,7 +131,7 @@ namespace Playnite.Database
                         existingGame.OtherActions = newGame.OtherActions;
                     }
 
-                    database.UpdateGameInDatabase(existingGame);
+                    database.Games.Update(existingGame);
                 }
             }
         }

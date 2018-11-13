@@ -11,7 +11,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using Playnite.SDK;
-using Playnite.Database.Events;
 using Playnite.Settings;
 using Playnite.SDK.Plugins;
 using Playnite.API;
@@ -27,11 +26,10 @@ namespace PlayniteUI
 
     public class GamesCollectionView : ObservableObject, IDisposable
     {
-        private static ILogger logger = LogManager.GetLogger();
-
-        private GameDatabase database;
-        private List<Platform> platformsCache;
+        private static ILogger logger = LogManager.GetLogger();        
         private ExtensionFactory extensions;
+
+        public GameDatabase Database { get; private set; }
 
         public bool IsFullscreen
         {
@@ -45,7 +43,7 @@ namespace PlayniteUI
             private set
             {
                 collectionView = value;
-                OnPropertyChanged("CollectionView");
+                OnPropertyChanged();
             }
         }
 
@@ -79,13 +77,12 @@ namespace PlayniteUI
         public GamesCollectionView(GameDatabase database, PlayniteSettings settings, bool fullScreen, ExtensionFactory extensions)
         {
             IsFullscreen = fullScreen;
-            this.database = database;
+            this.Database = database;
             this.extensions = extensions;
-            platformsCache = database.PlatformsCollection.FindAll().ToList();
-            database.GamesCollectionChanged += Database_GamesCollectionChanged;
-            database.GameUpdated += Database_GameUpdated;
-            database.PlatformsCollectionChanged += Database_PlatformsCollectionChanged;
-            database.PlatformUpdated += Database_PlatformUpdated;
+            database.Games.ItemCollectionChanged += Database_GamesCollectionChanged;
+            database.Games.ItemUpdated += Database_GameUpdated;
+            database.Platforms.ItemCollectionChanged += Database_PlatformsCollectionChanged;
+            database.Platforms.ItemUpdated += Database_PlatformUpdated;
             Items = new RangeObservableCollection<GameViewEntry>();
             Settings = settings;
             if (IsFullscreen)
@@ -106,10 +103,10 @@ namespace PlayniteUI
 
         public void Dispose()
         {
-            database.GamesCollectionChanged -= Database_GamesCollectionChanged;
-            database.GameUpdated -= Database_GameUpdated;
-            database.PlatformsCollectionChanged -= Database_PlatformsCollectionChanged;
-            database.PlatformUpdated -= Database_PlatformUpdated;
+            Database.Games.ItemCollectionChanged -= Database_GamesCollectionChanged;
+            Database.Games.ItemUpdated -= Database_GameUpdated;
+            Database.Platforms.ItemCollectionChanged -= Database_PlatformsCollectionChanged;
+            Database.Platforms.ItemUpdated -= Database_PlatformUpdated;
             Settings.PropertyChanged -= Settings_PropertyChanged;
             if (IsFullscreen)
             {
@@ -323,7 +320,7 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    var platform = GetPlatformFromCache(game);
+                    var platform = Database.Platforms[game.PlatformId];
                     if (platform == null)
                     {
                         platformResult = false;
@@ -519,41 +516,6 @@ namespace PlayniteUI
             using (CollectionView.DeferRefresh())
             {
                 SetViewDescriptions();
-
-                CollectionView.LiveGroupingProperties.Add("PluginId");
-                CollectionView.LiveGroupingProperties.Add("Category");
-                CollectionView.LiveGroupingProperties.Add("Platform");
-
-                //CollectionView.LiveSortingProperties.Add("Provider");
-                CollectionView.LiveSortingProperties.Add("Name");
-                CollectionView.LiveSortingProperties.Add("Categories");
-                CollectionView.LiveSortingProperties.Add("Genres");
-                CollectionView.LiveSortingProperties.Add("ReleaseDate");
-                CollectionView.LiveSortingProperties.Add("Developers");
-                CollectionView.LiveSortingProperties.Add("Tags");
-                CollectionView.LiveSortingProperties.Add("Publishers");
-                CollectionView.LiveSortingProperties.Add("IsInstalled");
-                CollectionView.LiveSortingProperties.Add("Hidden");
-                CollectionView.LiveSortingProperties.Add("Favorite");
-                CollectionView.LiveSortingProperties.Add("LastActivity");
-                CollectionView.LiveSortingProperties.Add("Platform");
-
-                //CollectionView.LiveFilteringProperties.Add("Provider");
-                CollectionView.LiveFilteringProperties.Add("Name");
-                CollectionView.LiveFilteringProperties.Add("Categories");
-                CollectionView.LiveFilteringProperties.Add("Genres");
-                CollectionView.LiveFilteringProperties.Add("ReleaseDate");
-                CollectionView.LiveFilteringProperties.Add("Developers");
-                CollectionView.LiveFilteringProperties.Add("Tags");
-                CollectionView.LiveFilteringProperties.Add("Publishers");
-                CollectionView.LiveFilteringProperties.Add("IsInstalled");
-                CollectionView.LiveFilteringProperties.Add("Hidden");
-                CollectionView.LiveFilteringProperties.Add("Favorite");
-                CollectionView.LiveFilteringProperties.Add("PlatformId");
-
-                CollectionView.IsLiveSorting = true;
-                CollectionView.IsLiveFiltering = true;
-                CollectionView.IsLiveGrouping = true;                   
             };
         }
 
@@ -578,7 +540,7 @@ namespace PlayniteUI
             if (IsFullscreen)
             {
                 Items.Clear();
-                Items.AddRange(database.GamesCollection.FindAll().Select(x => new GameViewEntry(x, string.Empty, GetPlatformFromCache(x), GetLibraryPlugin(x))));
+                Items.AddRange(Database.Games.Select(x => new GameViewEntry(x, string.Empty, this, GetLibraryPlugin(x))));
             }
             else
             {
@@ -586,26 +548,26 @@ namespace PlayniteUI
                 {
                     case GamesViewType.Standard:
                         Items.Clear();
-                        Items.AddRange(database.GamesCollection.FindAll().Select(x => new GameViewEntry(x, string.Empty, GetPlatformFromCache(x), GetLibraryPlugin(x))));
+                        Items.AddRange(Database.Games.Select(x => new GameViewEntry(x, string.Empty, this, GetLibraryPlugin(x))));
                         break;
 
                     case GamesViewType.CategoryGrouped:
                         Items.Clear();
-                        Items.AddRange(database.GamesCollection.FindAll().SelectMany(x =>
+                        Items.AddRange(Database.Games.SelectMany(x =>
                         {
-                            if (x.Categories == null || x.Categories.Count == 0)
-                            {
-                                return new List<GameViewEntry>()
-                                {
-                            new GameViewEntry(x, null, GetPlatformFromCache(x), GetLibraryPlugin(x))
-                                };
-                            }
-                            else
+                            if (x.Categories?.Any() == true)
                             {
                                 return x.Categories.Select(c =>
                                 {
-                                    return new GameViewEntry(x, c, GetPlatformFromCache(x), GetLibraryPlugin(x));
+                                    return new GameViewEntry(x, c, this, GetLibraryPlugin(x));
                                 });
+                            }
+                            else
+                            {
+                                return new List<GameViewEntry>()
+                                {
+                                    new GameViewEntry(x, null, this, GetLibraryPlugin(x))
+                                };
                             }
                         }));
 
@@ -614,11 +576,6 @@ namespace PlayniteUI
             }
 
             this.viewType = viewType;
-        }
-
-        private Platform GetPlatformFromCache(Game game)
-        {
-            return platformsCache?.FirstOrDefault(a => a.Id == game.PlatformId);
         }
 
         private ILibraryPlugin GetLibraryPlugin(Game game)
@@ -631,67 +588,67 @@ namespace PlayniteUI
             return null;
         }
 
-        private void Database_PlatformUpdated(object sender, PlatformUpdatedEventArgs args)
+        private void Database_PlatformUpdated(object sender, ItemUpdatedEventArgs<Platform> args)
         {
-            platformsCache = database.PlatformsCollection.FindAll().ToList();
-            var platformIds = args.UpdatedPlatforms.Select(a => a.NewData.Id).ToList();
-            foreach (var item in Items.Where(a => a.PlatformId != null && platformIds.Contains(a.PlatformId)))
+            var platformIds = new HashSet<Guid>(args.UpdatedItems.Select(a => a.NewData.Id));
+            foreach (var item in Items.Where(a => platformIds.Contains(a.PlatformId)))
             {
-                item.Platform.Platform = GetPlatformFromCache(item.Game);
-                item.OnPropertyChanged("Platform");
-                item.OnPropertyChanged("DefaultIcon");
-                item.OnPropertyChanged("DefaultImage");
+                item.OnPropertyChanged(nameof(GameViewEntry.PlatformId));
+                item.OnPropertyChanged(nameof(GameViewEntry.DefaultIcon));
+                item.OnPropertyChanged(nameof(GameViewEntry.DefaultCoverImage));
             }
         }
 
-        private void Database_PlatformsCollectionChanged(object sender, PlatformsCollectionChangedEventArgs args)
+        private void Database_PlatformsCollectionChanged(object sender, ItemCollectionChangedEventArgs<Platform> args)
         {
-            platformsCache = database.PlatformsCollection.FindAll().ToList();
         }
 
-        private void Database_GameUpdated(object sender, GameUpdatedEventArgs args)
+        private void Database_GameUpdated(object sender, ItemUpdatedEventArgs<Game> args)
         {
-            var replaceList = new List<Game>();
-            foreach (var update in args.UpdatedGames)
+            var refreshList = new List<Game>();
+            foreach (var update in args.UpdatedItems)
             {
-                if (update.OldData.Categories.IsListEqual(update.NewData.Categories))
+                var existingItem = Items.FirstOrDefault(a => a.Game.Id == update.NewData.Id);
+                if (existingItem != null)
                 {
-                    var existingItem = Items.FirstOrDefault(a => a.Game.Id == update.NewData.Id);
-                    if (existingItem != null)
+                    var fullRefresh = false;
+                    if (update.OldData.PlatformId != update.NewData.PlatformId)
                     {
-                        if (update.NewData.PlatformId != update.OldData.PlatformId)
-                        {
-                            existingItem.Platform = new PlatformView(update.NewData.PlatformId, GetPlatformFromCache(update.NewData));
-                        }
+                        fullRefresh = true;
+                    }
 
-                        update.NewData.CopyProperties(existingItem.Game, true);
+                    if (!update.OldData.Categories.IsListEqual(update.NewData.Categories) && ViewType == GamesViewType.CategoryGrouped)
+                    {
+                        fullRefresh = true;
+                    }
+
+                    if (fullRefresh)
+                    {
+                        refreshList.Add(update.NewData);
                     }
                     else
                     {
-                        logger.Warn("Receivied update for unknown game id " + update.NewData.Id);
+                        // Forces CollectionView to re-sort items without full list refresh.
+                        Items.OnItemMoved(existingItem, 0, 0);
                     }
-                }
-                else
-                {
-                    replaceList.Add(update.NewData);
                 }
             }
 
-            if (replaceList.Count > 0)
+            if (refreshList.Any())
             {
-                Database_GamesCollectionChanged(this, new GamesCollectionChangedEventArgs(replaceList, replaceList));
+                Database_GamesCollectionChanged(this, new ItemCollectionChangedEventArgs<Game>(refreshList, refreshList));
             }
         }
 
-        private void Database_GamesCollectionChanged(object sender, GamesCollectionChangedEventArgs args)
+        private void Database_GamesCollectionChanged(object sender, ItemCollectionChangedEventArgs<Game> args)
         {
             // DO NOT use *Range methods for "Items" object.
             // It can throw weird exceptions in virtualization panel, directly in WPF (without known fix from MS).
             // https://github.com/JosefNemec/Playnite/issues/796
 
-            if (args.RemovedGames.Count > 0)
+            if (args.RemovedItems.Count > 0)
             {
-                var removeIds = args.RemovedGames.Select(a => a.Id);
+                var removeIds = new HashSet<Guid>(args.RemovedItems.Select(a => a.Id));
                 var toRemove = Items.Where(a => removeIds.Contains(a.Id))?.ToList();
                 if (toRemove != null)
                 {
@@ -703,28 +660,28 @@ namespace PlayniteUI
             }
 
             var addList = new List<GameViewEntry>();
-            foreach (var game in args.AddedGames)
+            foreach (var game in args.AddedItems)
             {
                 if (IsFullscreen)
                 {
-                    addList.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game), GetLibraryPlugin(game)));
+                    addList.Add(new GameViewEntry(game, string.Empty, this, GetLibraryPlugin(game)));
                 }
                 else
                 {
                     switch (ViewType)
                     {
                         case GamesViewType.Standard:
-                            addList.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game), GetLibraryPlugin(game)));
+                            addList.Add(new GameViewEntry(game, string.Empty, this, GetLibraryPlugin(game)));
                             break;
 
                         case GamesViewType.CategoryGrouped:
-                            if (game.Categories == null || game.Categories.Count == 0)
+                            if (game.Categories?.Any() == true)
                             {
-                                addList.Add(new GameViewEntry(game, string.Empty, GetPlatformFromCache(game), GetLibraryPlugin(game)));
+                                addList.AddRange(game.Categories.Select(a => new GameViewEntry(game, a, this, GetLibraryPlugin(game))));
                             }
                             else
                             {
-                                addList.AddRange(game.Categories.Select(a => new GameViewEntry(game, a, GetPlatformFromCache(game), GetLibraryPlugin(game))));
+                                addList.Add(new GameViewEntry(game, string.Empty, this, GetLibraryPlugin(game)));
                             }
                             break;
                     }

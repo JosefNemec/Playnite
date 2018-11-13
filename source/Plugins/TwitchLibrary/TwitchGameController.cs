@@ -6,6 +6,7 @@ using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -51,7 +52,14 @@ namespace TwitchLibrary
             procMon = new ProcessMonitor();
             procMon.TreeStarted += ProcMon_TreeStarted;
             procMon.TreeDestroyed += Monitor_TreeDestroyed;
-            procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+            if (Directory.Exists(Game.InstallDirectory))
+            {
+                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+            }
+            else
+            {
+                OnStopped(this, new GameControllerEventArgs(this, 0));
+            }
         }
 
         public override void Uninstall()
@@ -75,55 +83,51 @@ namespace TwitchLibrary
         public async void StartInstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Run(async () =>
+     
+            while (true)
             {
-                while (true)
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
-                    var program = Twitch.GetUninstallRecord(Game.GameId);
-                    if (program != null)
-                    {
-                        if (Game.PlayAction == null)
-                        {
-                            Game.PlayAction = TwitchLibrary.GetPlayAction(Game.GameId);
-                        }
-
-                        Game.InstallDirectory = Paths.FixSeparators(program.InstallLocation);
-                        OnInstalled(this, new GameControllerEventArgs(this, 0));
-                        return;
-                    }
-
-
-                    await Task.Delay(2000);
+                    return;
                 }
-            });
+                var program = Twitch.GetUninstallRecord(Game.GameId);
+                if (program != null)
+                {
+                    if (Game.PlayAction == null)
+                    {
+                        Game.PlayAction = TwitchLibrary.GetPlayAction(Game.GameId);
+                    }
+
+                    Game.InstallDirectory = Paths.FixSeparators(program.InstallLocation);
+                    OnInstalled(this, new GameControllerEventArgs(this, 0));
+                    return;
+                }
+
+
+                await Task.Delay(2000);
+            }
         }
 
         public async void StartUninstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Run(async () =>
+        
+            while (true)
             {
-                while (true)
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
-
-                    var program = Twitch.GetUninstallRecord(Game.GameId);
-                    if (program == null)
-                    {
-                        OnUninstalled(this, new GameControllerEventArgs(this, 0));
-                        return;
-                    }
-
-                    await Task.Delay(2000);
+                    return;
                 }
-            });
+
+                var program = Twitch.GetUninstallRecord(Game.GameId);
+                if (program == null)
+                {
+                    OnUninstalled(this, new GameControllerEventArgs(this, 0));
+                    return;
+                }
+
+                await Task.Delay(2000);
+            }
         }
     }
 }

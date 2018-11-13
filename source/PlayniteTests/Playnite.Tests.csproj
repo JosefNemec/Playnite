@@ -112,15 +112,14 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="API\DatabaseAPITests.cs" />
     <Compile Include="API\PluginDescriptionTests.cs" />
     <Compile Include="App\UpdateTests.cs" />
     <Compile Include="CloneObjectTests.cs" />
     <Compile Include="Database\GameDatabaseFileTests.cs" />
     <Compile Include="Database\GameDatabaseMigrationTests.cs" />
     <Compile Include="Database\GameDatabasePlatformsTests.cs" />
-    <Compile Include="Database\GameDatabaseEventTests.cs" />
     <Compile Include="Database\GameDatabaseTests.cs" />
+    <Compile Include="Database\ItemCollectionTests.cs" />
     <Compile Include="Emulators\EmulatorFinderTests.cs" />
     <Compile Include="Emulators\EmulatorDefinitionTests.cs" />
     <Compile Include="Extensions\EnumsTests.cs" />
@@ -150,6 +149,7 @@
     <Compile Include="ListExtensionsTests.cs" />
     <Compile Include="StringExtensionsTests.cs" />
     <Compile Include="TestsSetupClass.cs" />
+    <Compile Include="Web\HttpDownloaderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Playnite.Common\Playnite.Common.csproj">

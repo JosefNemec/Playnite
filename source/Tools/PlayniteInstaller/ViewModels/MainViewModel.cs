@@ -23,7 +23,7 @@ namespace Playnite.Installer.ViewModels
             set
             {
                 destinationFolder = value;
-                OnPropertyChanged("DestionationFolder");
+                OnPropertyChanged();
             }
         }
 
@@ -34,7 +34,7 @@ namespace Playnite.Installer.ViewModels
             set
             {
                 portable = value;
-                OnPropertyChanged("Portable");
+                OnPropertyChanged();
             }
         }
 

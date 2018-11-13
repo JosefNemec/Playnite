@@ -5,11 +5,13 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Net.Http;
 
 namespace Playnite.Web
 {
     public class HttpDownloader
     {
+        private static readonly HttpClient httpClient = new HttpClient();
         private static readonly Downloader downloader = new Downloader();
 
         public static string DownloadString(IEnumerable<string> mirrors)
@@ -57,9 +59,10 @@ namespace Playnite.Web
             downloader.DownloadFile(url, path);
         }
 
-        public static string GetCachedWebFile(string url, string cachePath)
+        public static HttpStatusCode GetResponseCode(string url)
         {
-            return downloader.GetCachedWebFile(url, cachePath);
+            var response = httpClient.GetAsync(url).GetAwaiter().GetResult();
+            return response.StatusCode;
         }
     }
 }

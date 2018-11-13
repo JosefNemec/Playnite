@@ -47,5 +47,16 @@ namespace PlayniteTests
             Assert.AreEqual(@"SomeFile.zip1test.aa_aa", StringExtensions.GetPathWithoutAllExtensions(@"SomeFile.zip1test.aa_aa.zip"));
             Assert.AreEqual(@"SomeFile.zip1_test", StringExtensions.GetPathWithoutAllExtensions(@"SomeFile.zip1_test"));
         }
+
+        [Test]
+        public void IsHttpUrlTest()
+        {
+            Assert.IsTrue(@"http://www.playnite.link".IsHttpUrl());
+            Assert.IsTrue(@"https://playnite.link".IsHttpUrl());
+            Assert.IsTrue(@"HTTP://WWW.PLAYNITE.LINK".IsHttpUrl());
+            Assert.IsTrue(@"HTTPS://PLAYNITE.LINK".IsHttpUrl());
+            Assert.IsFalse(@"ftp://www.playnite.link".IsHttpUrl());
+            Assert.IsFalse(@"www.playnite.link".IsHttpUrl());
+        }
     }
 }

@@ -75,8 +75,8 @@ namespace Playnite.Plugins
             set
             {
                 scriptFunctions = value;
-                OnPropertyChanged("ExportedFunctions");
-                OnPropertyChanged("HasExportedFunctions");
+                OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -87,8 +87,8 @@ namespace Playnite.Plugins
             set
             {
                 pluginFunctions = value;
-                OnPropertyChanged("ExportedFunctions");
-                OnPropertyChanged("HasExportedFunctions");
+                OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -146,7 +146,7 @@ namespace Playnite.Plugins
                 }
             }
 
-            Scripts.Clear();
+            Scripts?.Clear();
             ScriptFunctions = null;
         }
 
@@ -160,7 +160,7 @@ namespace Playnite.Plugins
                 }
             }
 
-            LibraryPlugins.Clear();
+            LibraryPlugins?.Clear();
         }
 
         private void DisposeGenericPlugins()
@@ -173,7 +173,7 @@ namespace Playnite.Plugins
                 }
             }
 
-            GenericPlugins.Clear();
+            GenericPlugins?.Clear();
             PluginFunctions = null;
         }
 
@@ -434,7 +434,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    script.OnGameStopped(database.GetGame(args.Controller.Game.Id), args.EllapsedTime);
+                    script.OnGameStopped(database.Games[args.Controller.Game.Id], args.EllapsedTime);
                 }
                 catch (Exception e)
                 {
@@ -446,7 +446,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameStopped(database.GetGame(args.Controller.Game.Id), args.EllapsedTime);
+                    plugin.Plugin.OnGameStopped(database.Games[args.Controller.Game.Id], args.EllapsedTime);
                 }
                 catch (Exception e)
                 {
@@ -461,7 +461,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    script.OnGameStarting(database.GetGame(args.Controller.Game.Id));
+                    script.OnGameStarting(database.Games[args.Controller.Game.Id]);
                 }
                 catch (Exception e)
                 {
@@ -473,7 +473,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameStarting(database.GetGame(args.Controller.Game.Id));
+                    plugin.Plugin.OnGameStarting(database.Games[args.Controller.Game.Id]);
                 }
                 catch (Exception e)
                 {
@@ -488,7 +488,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    script.OnGameStarted(database.GetGame(args.Controller.Game.Id));
+                    script.OnGameStarted(database.Games[args.Controller.Game.Id]);
                 }
                 catch (Exception e)
                 {
@@ -500,7 +500,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameStarted(database.GetGame(args.Controller.Game.Id));
+                    plugin.Plugin.OnGameStarted(database.Games[args.Controller.Game.Id]);
                 }
                 catch (Exception e)
                 {
@@ -515,7 +515,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    script.OnGameInstalled(database.GetGame(args.Controller.Game.Id));
+                    script.OnGameInstalled(database.Games[args.Controller.Game.Id]);
                 }
                 catch (Exception e)
                 {
@@ -527,7 +527,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameInstalled(database.GetGame(args.Controller.Game.Id));
+                    plugin.Plugin.OnGameInstalled(database.Games[args.Controller.Game.Id]);
                 }
                 catch (Exception e)
                 {

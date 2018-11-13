@@ -22,16 +22,7 @@ namespace System.Collections.Generic
         /// Invokes PropertyChanged events.
         /// </summary>
         /// <param name="name">Name of property that changed.</param>
-        public void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        /// <summary>
-        /// Invokes PropertyChanged events.
-        /// </summary>
-        /// <param name="name">Name of property that changed.</param>
-        public void OnAutoPropertyChanged([CallerMemberName]string name = null)
+        public void OnPropertyChanged([CallerMemberName]string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }

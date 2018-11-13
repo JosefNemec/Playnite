@@ -8,11 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO.Compression;
+using Playnite.SDK;
 
 namespace Playnite
 {
     public static class FileSystem
     {
+        private static ILogger logger = LogManager.GetLogger();
+
         public static void CreateDirectory(string path)
         {
             CreateDirectory(path, false);
@@ -55,6 +58,18 @@ namespace Playnite
             }
         }
 
+        public static bool IsDirectoryEmpty(string path)
+        {
+            if (Directory.Exists(path))
+            {
+                return !Directory.EnumerateFileSystemEntries(path).Any();
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public static void DeleteFile(string path)
         {
             if (File.Exists(path))
@@ -63,17 +78,18 @@ namespace Playnite
             }
         }
 
-        public static void DeleteFolder(string path)
+        public static void CopyFile(string sourcePath, string targetPath)
+        {
+            PrepareSaveFile(targetPath);
+            File.Copy(sourcePath, targetPath);
+        }
+
+        public static void DeleteDirectory(string path)
         {
             if (Directory.Exists(path))
             {
                 Directory.Delete(path, true);
             }
-        }
-
-        public static string GetSafeFilename(string filename)
-        {
-            return string.Join(" ", filename.Split(Path.GetInvalidFileNameChars()));
         }
 
         public static string GetMD5(Stream stream)
@@ -130,6 +146,133 @@ namespace Playnite
             {
                 return false;
             }
+        }
+
+        public static string ReadFileAsStringSafe(string path, int retryAttempts = 5)
+        {
+            IOException ioException = null;
+            for (int i = 0; i < retryAttempts; i++)
+            {
+                try
+                {
+                    return File.ReadAllText(path);
+                }
+                catch (IOException exc)
+                {
+                    logger.Debug($"Can't read from file, trying again. {path}");
+                    ioException = exc;
+                    Task.Delay(500).Wait();
+                }
+            }
+
+            throw new IOException($"Failed to read {path}", ioException);
+        }
+
+        public static byte[] ReadFileAsBytesSafe(string path, int retryAttempts = 5)
+        {
+            IOException ioException = null;
+            for (int i = 0; i < retryAttempts; i++)
+            {
+                try
+                {
+                    return File.ReadAllBytes(path);
+                }
+                catch (IOException exc)
+                {
+                    logger.Debug($"Can't read from file, trying again. {path}");
+                    ioException = exc;
+                    Task.Delay(500).Wait();
+                }
+            }
+
+            throw new IOException($"Failed to read {path}", ioException);
+        }
+
+        public static Stream OpenFileStreamSafe(string path, int retryAttempts = 5)
+        {
+            IOException ioException = null;
+            for (int i = 0; i < retryAttempts; i++)
+            {
+                try
+                {
+                    return new FileStream(path, FileMode.Open);
+                }
+                catch (IOException exc)
+                {
+                    logger.Debug($"Can't open file stream, trying again. {path}");
+                    ioException = exc;
+                    Task.Delay(500).Wait();
+                }
+            }
+
+            throw new IOException($"Failed to read {path}", ioException);
+        }
+
+        public static void WriteStringToFileSafe(string path, string content, int retryAttempts = 5)
+        {
+            IOException ioException = null;
+            for (int i = 0; i < retryAttempts; i++)
+            {
+                try
+                {
+                    PrepareSaveFile(path);
+                    File.WriteAllText(path, content);
+                    return;
+                }
+                catch (IOException exc)
+                {
+                    logger.Debug($"Can't write to a file, trying again. {path}");
+                    ioException = exc;
+                    Task.Delay(500).Wait();
+                }
+            }
+
+            throw new IOException($"Failed to write to {path}", ioException);
+        }
+
+        public static void DeleteFileSafe(string path, int retryAttempts = 5)
+        {
+            if (!File.Exists(path))
+            {
+                return;
+            }
+
+            IOException ioException = null;
+            for (int i = 0; i < retryAttempts; i++)
+            {
+                try
+                {
+                    File.Delete(path);
+                    return;
+                }
+                catch (IOException exc)
+                {
+                    logger.Debug($"Can't detele file, trying again. {path}");
+                    ioException = exc;
+                    Task.Delay(500).Wait();
+                }
+            }
+
+            throw new IOException($"Failed to delete {path}", ioException);
+        }
+
+        public static long GetFreeSpace(string drivePath)
+        {
+            var root = Path.GetPathRoot(drivePath);
+            var drive = DriveInfo.GetDrives().FirstOrDefault(a => a.RootDirectory.FullName.Equals(root, StringComparison.OrdinalIgnoreCase)); ;
+            if (drive != null)
+            {
+                return drive.AvailableFreeSpace;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public static long GetFileSize(string path)
+        {
+            return new FileInfo(path).Length;
         }
     }
 }

@@ -89,6 +89,16 @@ namespace Playnite.Common.System
         {
             get; set;
         }
+
+        public string Path
+        {
+            get; set;
+        }
+
+        public override string ToString()
+        {
+            return DisplayName ?? RegistryKeyName;
+        }
     }
 
     public class Programs
@@ -399,6 +409,7 @@ namespace Playnite.Common.System
                         Publisher = prog.GetValue("Publisher")?.ToString(),
                         UninstallString = prog.GetValue("UninstallString")?.ToString(),
                         URLInfoAbout = prog.GetValue("URLInfoAbout")?.ToString(),
+                        Path = prog.GetValue("Path")?.ToString(),
                         RegistryKeyName = key
                     };
 

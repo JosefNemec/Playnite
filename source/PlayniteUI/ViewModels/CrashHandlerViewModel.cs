@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.Services;
 using Playnite.Settings;
@@ -29,7 +30,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 exception = value;
-                OnPropertyChanged("Exception");
+                OnPropertyChanged();
             }
         }
 
@@ -117,7 +118,7 @@ namespace PlayniteUI.ViewModels
             {
                 logger.Error(e, "Failed to upload diag package.");
                 dialogs.ShowErrorMessage(resources.FindString("LOCDiagPackageUploadError"), "");
-                ProcessStarter.StartProcess("explorer.exe", $"/select,\"{diagPath}\"");
+                Explorer.NavigateToFileSystemEntry(diagPath);
             }
         }
     }

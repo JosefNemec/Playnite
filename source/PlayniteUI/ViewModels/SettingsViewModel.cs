@@ -33,7 +33,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selected = value;
-                OnAutoPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -94,7 +94,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 settings = value;
-                OnPropertyChanged("Settings");
+                OnPropertyChanged();
             }
         }
 
@@ -212,8 +212,8 @@ namespace PlayniteUI.ViewModels
 
             foreach (var provider in Extensions.LibraryPlugins.Values)
             {
-                var provSetting = provider.Plugin.Settings;
-                var provView = provider.Plugin.SettingsView;
+                var provSetting = provider.Plugin.GetSettings(false);
+                var provView = provider.Plugin.GetSettingsView(false);
                 if (provSetting != null && provView != null)
                 {
                     provView.DataContext = provSetting;
@@ -232,8 +232,8 @@ namespace PlayniteUI.ViewModels
 
             foreach (var plugin in Extensions.GenericPlugins.Values)
             {
-                var provSetting = plugin.Plugin.Settings;
-                var provView = plugin.Plugin.SettingsView;
+                var provSetting = plugin.Plugin.GetSettings(false);
+                var provView = plugin.Plugin.GetSettingsView(false);
                 if (provSetting != null && provView != null)
                 {
                     provView.DataContext = provSetting;
@@ -278,13 +278,6 @@ namespace PlayniteUI.ViewModels
 
         public void ConfirmDialog()
         {
-            if (!Paths.GetValidFilePath(Settings.DatabasePath))
-            {
-                dialogs.ShowMessage(resources.FindString("LOCSettingsInvalidDBLocation"),
-                    resources.FindString("LOCInvalidDataTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             foreach (var provider in LibraryPluginSettings.Keys)
             {
                 if (!LibraryPluginSettings[provider].Settings.VerifySettings(out var errors))
@@ -347,7 +340,7 @@ namespace PlayniteUI.ViewModels
 
         public void SelectDbFile()
         {
-            var path = dialogs.SelectFile("Database file (*.db)|*.db");
+            var path = dialogs.SelectFolder();
             if (!string.IsNullOrEmpty(path))
             {
                 dialogs.ShowMessage(resources.FindString("LOCSettingsDBPathNotification"));

@@ -41,7 +41,7 @@ namespace TwitchLibrary
                 if (iconPath.EndsWith("ico", StringComparison.OrdinalIgnoreCase))
                 {
                     var data = File.ReadAllBytes(iconPath);
-                    metadata.Icon = new MetadataFile($"images/twitch/{game.GameId}/{iconFile}", iconFile, data);
+                    metadata.Icon = new MetadataFile(iconFile, data);
                 }
                 else
                 {
@@ -49,7 +49,7 @@ namespace TwitchLibrary
                     if (exeIcon != null)
                     {
                         var iconName = Guid.NewGuid() + ".png";
-                        metadata.Icon = new MetadataFile($"images/twitch/{game.GameId}/{iconFile}", iconName, exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));                       
+                        metadata.Icon = new MetadataFile(iconName, exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));                       
                     }
                 }
             }

@@ -24,15 +24,12 @@ namespace GogLibrary
         private ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
 
-        internal GogLibrarySettings LibrarySettings
-        {
-            get => (GogLibrarySettings)Settings;
-        }
+        internal GogLibrarySettings LibrarySettings { get; private set; }
 
         public GogLibrary(IPlayniteAPI api)
         {
             playniteApi = api;
-            Settings = new GogLibrarySettings(this, api);
+            LibrarySettings = new GogLibrarySettings(this, api);
             LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\gogicon.png");
         }
 
@@ -94,7 +91,7 @@ namespace GogLibrary
                     PluginId = Id,
                     Source = "GOG",
                     Name = program.DisplayName,
-                    State = new GameState() { Installed = true }
+                    IsInstalled = true
                 };
    
                 var tasks = GetGameTasks(game.GameId, game.InstallDirectory);
@@ -159,8 +156,7 @@ namespace GogLibrary
                     Links = new ObservableCollection<Link>()
                     {
                         new Link("Store", @"https://www.gog.com" + game.game.url)
-                    },
-                    State = new GameState() { Installed = false }
+                    }
                 };
 
                 if (game.stats?.Keys?.Any() == true)
@@ -178,13 +174,6 @@ namespace GogLibrary
 
         public ILibraryClient Client { get; } = new GogClient();
 
-        public UserControl SettingsView
-        {
-            get => new GogLibrarySettingsView();
-        }
-
-        public ISettings Settings { get; private set; }
-
         public string Name { get; } = "GOG";
 
         public string LibraryIcon { get; }
@@ -194,6 +183,16 @@ namespace GogLibrary
         public void Dispose()
         {
             
+        }
+
+        public ISettings GetSettings(bool firstRunSettings)
+        {
+            return LibrarySettings;
+        }
+
+        public UserControl GetSettingsView(bool firstRunView)
+        {
+            return new GogLibrarySettingsView();
         }
 
         public IGameController GetGameController(Game game)

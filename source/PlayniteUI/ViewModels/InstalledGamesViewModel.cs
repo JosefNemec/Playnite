@@ -155,7 +155,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 programs = value;
-                OnPropertyChanged("Programs");
+                OnPropertyChanged();
             }
         }
 
@@ -170,7 +170,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedProgram = value;
-                OnPropertyChanged("SelectedProgram");
+                OnPropertyChanged();
             }
         }
 
@@ -181,7 +181,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 isLoading = value;
-                OnPropertyChanged("IsLoading");
+                OnPropertyChanged();
             }
         }
 
@@ -280,7 +280,8 @@ namespace PlayniteUI.ViewModels
                 {
                     Name = program.Name,
                     InstallDirectory = program.WorkDir,
-                    Source = program.Type == ProgramType.UWP ? "Windows Store" : string.Empty
+                    Source = program.Type == ProgramType.UWP ? "Windows Store" : string.Empty,
+                    IsInstalled = true
                 };
 
                 var path = program.Path;
@@ -297,8 +298,6 @@ namespace PlayniteUI.ViewModels
                     WorkingDir = program.Type == ProgramType.Win32 ? "{InstallDir}" : string.Empty,
                     Name = "Play"                    
                 };
-
-                newGame.State = new GameState() { Installed = true };
 
                 InstalledGameMetadata.IconData icon = null;
 
@@ -423,13 +422,12 @@ namespace PlayniteUI.ViewModels
             {
                 if (game.Icon != null)
                 {
-                    var iconId = "images/custom/" + game.Icon.Name;
-                    game.Game.Icon = database.AddFileNoDuplicate(iconId, game.Icon.Name, game.Icon.Data);
+                    game.Game.Icon = database.AddFile(game.Icon.Name, game.Icon.Data, game.Game.Id);
                 }
             }
 
             var insertGames = games.Select(a => a.Game).ToList();
-            database.AddGames(insertGames);
+            database.Games.Add(insertGames);
             database.AssignPcPlatform(insertGames);
             return insertGames;
         }

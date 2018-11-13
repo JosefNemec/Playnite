@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace PlayniteUI
             var lastPlayed = (DateTime?)value;
             if (lastPlayed == null)
             {
-                return ResourceProvider.Instance.FindString("LOCNever");
+                return DefaultResourceProvider.FindString("LOCNever");
             }
             else
             {
@@ -26,11 +27,11 @@ namespace PlayniteUI
                 {
                     if (diff.TotalDays < 1)
                     {
-                        return ResourceProvider.Instance.FindString("LOCToday");
+                        return DefaultResourceProvider.FindString("LOCToday");
                     }
                     else if (diff.TotalDays < 2)
                     {
-                        return ResourceProvider.Instance.FindString("LOCYesterday");
+                        return DefaultResourceProvider.FindString("LOCYesterday");
 
                     }
                     else
@@ -38,19 +39,19 @@ namespace PlayniteUI
                         switch (lastPlayed.Value.DayOfWeek)
                         {
                             case DayOfWeek.Sunday:
-                                return ResourceProvider.Instance.FindString("LOCSunday");
+                                return DefaultResourceProvider.FindString("LOCSunday");
                             case DayOfWeek.Monday:
-                                return ResourceProvider.Instance.FindString("LOCMonday");
+                                return DefaultResourceProvider.FindString("LOCMonday");
                             case DayOfWeek.Tuesday:
-                                return ResourceProvider.Instance.FindString("LOCTuesday");
+                                return DefaultResourceProvider.FindString("LOCTuesday");
                             case DayOfWeek.Wednesday:
-                                return ResourceProvider.Instance.FindString("LOCWednesday");
+                                return DefaultResourceProvider.FindString("LOCWednesday");
                             case DayOfWeek.Thursday:
-                                return ResourceProvider.Instance.FindString("LOCThursday");
+                                return DefaultResourceProvider.FindString("LOCThursday");
                             case DayOfWeek.Friday:
-                                return ResourceProvider.Instance.FindString("LOCFriday");
+                                return DefaultResourceProvider.FindString("LOCFriday");
                             case DayOfWeek.Saturday:
-                                return ResourceProvider.Instance.FindString("LOCSaturday");
+                                return DefaultResourceProvider.FindString("LOCSaturday");
                             default:
                                 return lastPlayed.Value.ToString(Playnite.Constants.DateUiFormat);
                         }

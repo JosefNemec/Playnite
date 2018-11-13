@@ -97,7 +97,7 @@ namespace PlayniteUI.Controls
 
             context = SynchronizationContext.Current;
             this.model = model;
-            resources = new ResourceProvider();
+            resources = new DefaultResourceProvider();
             DataContextChanged += GameMenu_DataContextChanged;
             InitializeItems();
         }

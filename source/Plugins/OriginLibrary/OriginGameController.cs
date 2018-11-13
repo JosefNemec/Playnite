@@ -38,7 +38,7 @@ namespace OriginLibrary
             procMon?.Dispose();
         }
 
-        public override async void Play()
+        public override void Play()
         {
             ReleaseResources();
             OnStarting(this, new GameControllerEventArgs(this, 0));
@@ -48,15 +48,26 @@ namespace OriginLibrary
             procMon = new ProcessMonitor();
             procMon.TreeDestroyed += ProcMon_TreeDestroyed;
             procMon.TreeStarted += ProcMon_TreeStarted;
-
             var proc = GameActionActivator.ActivateAction(playAction, Game);
-            if (runsViaOrigin)
+            StartRunningWatcher(runsViaOrigin);
+        }
+
+        public async void StartRunningWatcher(bool waitForOrigin)
+        {
+            if (waitForOrigin)
             {
                 // Solves issues with game process being started/shutdown multiple times during startup via Origin
                 await Task.Delay(5000);
-            }
+            }            
 
-            procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+            if (Directory.Exists(Game.InstallDirectory))
+            {
+                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+            }
+            else
+            {
+                OnStopped(this, new GameControllerEventArgs(this, 0));
+            }
         }
 
         public override void Install()
@@ -86,73 +97,67 @@ namespace OriginLibrary
 
         public async void StartInstallWatcher()
         {
-            watcherToken = new CancellationTokenSource();
-            await Task.Run(async () =>
-            {
-                var manifest = origin.GetLocalManifest(Game.GameId, null, true);
-                var platform = manifest.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
+            watcherToken = new CancellationTokenSource();  
+            var manifest = origin.GetLocalManifest(Game.GameId, null, true);
+            var platform = manifest.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
 
-                while (true)
+            while (true)
+            {
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
+                    return;
+                }
+
+                var executablePath = origin.GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
+                if (!string.IsNullOrEmpty(executablePath))
+                {
+                    if (File.Exists(executablePath))
                     {
+                        if (Game.PlayAction == null)
+                        {
+                            Game.PlayAction = origin.GetGamePlayTask(manifest);
+                        }
+
+                        Game.InstallDirectory = Path.GetDirectoryName(executablePath);
+                        OnInstalled(this, new GameControllerEventArgs(this, 0));
                         return;
                     }
-
-                    var executablePath = origin.GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
-                    if (!string.IsNullOrEmpty(executablePath))
-                    {
-                        if (File.Exists(executablePath))
-                        {
-                            if (Game.PlayAction == null)
-                            {
-                                Game.PlayAction = origin.GetGamePlayTask(manifest);
-                            }
-
-                            Game.InstallDirectory = Path.GetDirectoryName(executablePath);
-                            OnInstalled(this, new GameControllerEventArgs(this, 0));
-                            return;
-                        }
-                    }
-
-                    await Task.Delay(2000);
                 }
-            });
+
+                await Task.Delay(2000);
+            }
         }
 
         public async void StartUninstallWatcher()
         {
-            watcherToken = new CancellationTokenSource();
-            await Task.Run(async () =>
+            watcherToken = new CancellationTokenSource();   
+            var manifest = origin.GetLocalManifest(Game.GameId, null, true);
+            var platform = manifest.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
+            var executablePath = origin.GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
+
+            while (true)
             {
-                var manifest = origin.GetLocalManifest(Game.GameId, null, true);
-                var platform = manifest.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
-                var executablePath = origin.GetPathFromPlatformPath(platform.fulfillmentAttributes.installCheckOverride);
-
-                while (true)
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
+                    return;
+                }
 
-                    if (string.IsNullOrEmpty(executablePath))
+                if (string.IsNullOrEmpty(executablePath))
+                {
+                    OnUninstalled(this, new GameControllerEventArgs(this, 0));
+                    return;
+                }
+                else
+                {
+                    if (!File.Exists(executablePath))
                     {
                         OnUninstalled(this, new GameControllerEventArgs(this, 0));
                         return;
                     }
-                    else
-                    {
-                        if (!File.Exists(executablePath))
-                        {
-                            OnUninstalled(this, new GameControllerEventArgs(this, 0));
-                            return;
-                        }
-                    }
-
-                    await Task.Delay(2000);
                 }
-            });
+
+                await Task.Delay(2000);
+            }
         }
     }
 }

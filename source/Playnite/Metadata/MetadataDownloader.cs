@@ -1,5 +1,4 @@
 ﻿using Playnite.Database;
-using Playnite.Models;
 using Playnite.Metadata.Providers;
 using System;
 using System.Collections.Generic;
@@ -12,6 +11,7 @@ using Playnite.SDK.Models;
 using Playnite.SDK;
 using Playnite.SDK.Plugins;
 using Playnite.SDK.Metadata;
+using System.Collections.Concurrent;
 
 namespace Playnite.Metadata
 {
@@ -19,18 +19,20 @@ namespace Playnite.Metadata
     {
         private static ILogger logger = LogManager.GetLogger();
 
+        private GameDatabase database;
         private ILibraryMetadataProvider igdbProvider;
         private readonly IEnumerable<ILibraryPlugin> plugins;
-        private Dictionary<Guid, ILibraryMetadataProvider> downloaders = new Dictionary<Guid, ILibraryMetadataProvider>();
+        private ConcurrentDictionary<Guid, ILibraryMetadataProvider> downloaders = new ConcurrentDictionary<Guid, ILibraryMetadataProvider>();
 
-        public MetadataDownloader(IEnumerable<ILibraryPlugin> plugins) : this(new IGDBMetadataProvider(), plugins)
+        public MetadataDownloader(GameDatabase database, IEnumerable<ILibraryPlugin> plugins) : this(database, new IGDBMetadataProvider(), plugins)
         {
         }
 
-        public MetadataDownloader(ILibraryMetadataProvider igdbProvider, IEnumerable<ILibraryPlugin> plugins)
+        public MetadataDownloader(GameDatabase database, ILibraryMetadataProvider igdbProvider, IEnumerable<ILibraryPlugin> plugins)
         {
             this.igdbProvider = igdbProvider;
             this.plugins = plugins;
+            this.database = database;
         }
 
         internal ILibraryMetadataProvider GetMetadataDownloader(Guid pluginId)
@@ -43,20 +45,20 @@ namespace Playnite.Metadata
             var plugin = plugins?.FirstOrDefault(a => a.Id == pluginId);
             if (plugin == null)
             {
-                downloaders.Add(pluginId, null);
+                downloaders.TryAdd(pluginId, null);
                 return null;
             }
 
             try
             {
                 var downloader = plugin.GetMetadataDownloader();
-                downloaders.Add(pluginId, downloader);
+                downloaders.TryAdd(pluginId, downloader);
                 return downloader;
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, $"Failed to get metadata downloader from {plugin.Name}");
-                downloaders.Add(pluginId, null);
+                downloaders.TryAdd(pluginId, null);
                 return null;
             }
         }
@@ -197,39 +199,29 @@ namespace Playnite.Metadata
 
         public async Task DownloadMetadataGroupedAsync(
             List<Game> games,
-            GameDatabase database,
             MetadataDownloaderSettings settings,
             Action<Game, int, int> processCallback,
             CancellationTokenSource cancelToken)
         {
             int index = 0;
             int total = games.Count;
-            var tasks = new List<Task>();
-
-            await Task.Run(() =>
+            var tasks = new List<Task>(); 
+            var grouped = games.GroupBy(a => a.PluginId);
+            logger.Info($"Downloading metadata using {grouped.Count()} threads.");
+            foreach (IGrouping<Guid, Game> group in grouped)
             {
-                var grouped = games.GroupBy(a => a.PluginId);
-                logger.Info($"Downloading metadata using {grouped.Count()} threads.");
-                foreach (IGrouping<Guid, Game> group in grouped)
+                tasks.Add(DownloadMetadataAsync(group.ToList(), settings, (g, i, t) =>
                 {
-                    tasks.Add(Task.Run(() =>
-                    {
-                        var gms = group.ToList();
-                        DownloadMetadataAsync(gms, database, settings, (g, i, t) =>
-                        {
-                            index++;
-                            processCallback?.Invoke(g, index, total);
-                        }, cancelToken).Wait();
-                    }));
-                }
+                    index++;
+                    processCallback?.Invoke(g, index, total);
+                }, cancelToken));
+            }
 
-                Task.WaitAll(tasks.ToArray());
-            });
+            await Task.WhenAll(tasks);          
         }
 
         public async Task DownloadMetadataAsync(
             List<Game> games,
-            GameDatabase database,
             MetadataDownloaderSettings settings,
             Action<Game, int, int> processCallback,
             CancellationTokenSource cancelToken)
@@ -254,8 +246,7 @@ namespace Playnite.Metadata
 
                     // We need to get new instance from DB in case game got edited or deleted.
                     // We don't want to block game editing while metadata is downloading for other games.
-                    // TODO: Use Id instead of GameId once we replace LiteDB and have proper autoincrement Id
-                    var game = database.GamesCollection.FindOne(a => a.PluginId == games[i].PluginId && a.GameId == games[i].GameId);
+                    var game = database.Games[games[i].Id];
                     if (game == null)
                     {
                         logger.Warn($"Game {game.GameId} no longer in DB, skipping metadata download.");
@@ -265,7 +256,7 @@ namespace Playnite.Metadata
 
                     try
                     {
-                        logger.Debug($"Downloading metadata for {game.PluginId} game {game.Name}, {game.GameId}");
+                        logger.Debug($"Downloading metadata for {game.Name}, {game.GameId}, {game.PluginId}");
 
                         // Name
                         if (!game.IsCustomGame && settings.Name.Import)
@@ -377,11 +368,14 @@ namespace Playnite.Metadata
                         // BackgroundImage
                         if (settings.BackgroundImage.Import)
                         {
-
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.BackgroundImage)))
                             {
                                 gameData = ProcessField(game, settings.BackgroundImage, ref storeData, ref igdbData, (a) => a.BackgroundImage);
-                                game.BackgroundImage = string.IsNullOrEmpty(gameData?.BackgroundImage) ? game.BackgroundImage : gameData.BackgroundImage;
+                                if (!string.IsNullOrEmpty(gameData?.BackgroundImage))
+                                {
+                                    RemoveGameMedia(game.BackgroundImage);
+                                    game.BackgroundImage = gameData.BackgroundImage;
+                                }
                             }
                         }
 
@@ -394,13 +388,8 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.CoverImage, ref storeData, ref igdbData, (a) => a.Image);
                                 if (gameData?.Image != null)
                                 {
-                                    if (!string.IsNullOrEmpty(game.CoverImage))
-                                    {
-                                        database.DeleteImageSafe(game.CoverImage, game);
-                                    }
-
-                                    var imageId = database.AddFileNoDuplicate(gameData.Image);
-                                    game.CoverImage = imageId;
+                                    RemoveGameMedia(game.CoverImage);
+                                    game.CoverImage = database.AddFile(gameData.Image, game.Id);
                                 }
                             }
                         }
@@ -413,13 +402,8 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.Icon, ref storeData, ref igdbData, (a) => a.Icon);
                                 if (gameData?.Icon != null)
                                 {
-                                    if (!string.IsNullOrEmpty(game.Icon))
-                                    {
-                                        database.DeleteImageSafe(game.Icon, game);
-                                    }
-
-                                    var iconId = database.AddFileNoDuplicate(gameData.Icon);
-                                    game.Icon = iconId;
+                                    RemoveGameMedia(game.Icon);
+                                    game.Icon = database.AddFile(gameData.Icon, game.Id);
                                 }
                             }
                         }
@@ -439,9 +423,9 @@ namespace Playnite.Metadata
                         }
 
                         // Just to be sure check if somebody didn't remove game while downloading data
-                        if (database.GamesCollection.FindOne(a => a.GameId == games[i].GameId) != null)
+                        if (database.Games.FirstOrDefault(a => a.GameId == games[i].GameId) != null)
                         {
-                            database.UpdateGameInDatabase(game);
+                            database.Games.Update(game);
                         }
                         else
                         {
@@ -458,6 +442,23 @@ namespace Playnite.Metadata
                     }
                 }
             });
+        }
+
+        private void RemoveGameMedia(string mediaId)
+        {
+            if (string.IsNullOrEmpty(mediaId))
+            {
+                return;
+            }
+
+            if (mediaId.IsHttpUrl())
+            {
+                HttpFileCache.ClearCache(mediaId);
+            }
+            else
+            {
+                database.RemoveFile(mediaId);
+            }
         }
     }
 }

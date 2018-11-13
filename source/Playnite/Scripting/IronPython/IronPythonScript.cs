@@ -1,5 +1,4 @@
 ﻿using IronPython.Runtime;
-using Playnite.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;

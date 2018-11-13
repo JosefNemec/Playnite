@@ -24,6 +24,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
@@ -33,6 +34,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
@@ -142,22 +144,25 @@
     <Compile Include="API\ExtensionDescription.cs" />
     <Compile Include="App\UpdateManifest.cs" />
     <Compile Include="BaseGameController.cs" />
+    <Compile Include="Database\DatabaseFileEvent.cs" />
     <Compile Include="Database\DatabaseFilter.cs" />
     <Compile Include="Database\DatabaseSettings.cs" />
     <Compile Include="Database\EventBufferHandler.cs" />
-    <Compile Include="Database\Events\GamesCollectionChangedEvent.cs" />
-    <Compile Include="Database\Events\GameUpdateEvent.cs" />
-    <Compile Include="Database\Events\PlatformsCollectionChangedEvent.cs" />
-    <Compile Include="Database\Events\PlatformUpdateEvent.cs" />
     <Compile Include="Database\GameDatabase.cs" />
     <Compile Include="Database\GameLibrary.cs" />
+    <Compile Include="Database\GamesCollection.cs" />
+    <Compile Include="Database\ItemCollection.cs" />
     <Compile Include="Database\OldModels\Ver3\Emulator.cs" />
+    <Compile Include="Database\OldModels\Ver6\Emulator.cs" />
+    <Compile Include="Database\OldModels\Ver6\Game.cs" />
+    <Compile Include="Database\OldModels\Ver6\Platform.cs" />
+    <Compile Include="Database\PlatformsCollection.cs" />
     <Compile Include="Extensions\EmulatorProfileExtensions.cs" />
     <Compile Include="Extensions\GameActionExtensions.cs" />
     <Compile Include="Extensions\GameExtensions.cs" />
     <Compile Include="GameActionActivator.cs" />
+    <Compile Include="HttpFileCache.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
-    <Compile Include="Models\ActiveController.cs" />
     <Compile Include="NLogLogProvider.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Scripting\IronPython\IronPython.cs" />
