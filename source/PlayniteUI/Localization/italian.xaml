@@ -49,7 +49,8 @@ I giochi automaticamente importati potrebbero ricomparire in Playnite dopo la pr
   <sys:String x:Key="LOCGameEditChangeNotif">La sezione contiene delle modifiche da salvare</sys:String>
   <sys:String x:Key="LOCDBUpgradeProgress">Aggiornamento del database a versione...</sys:String>
   <sys:String x:Key="LOCDBUpgradeFail">Aggiornamento del database fallito, impossibile aprire il file del database.</sys:String>
-
+  <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Aggiornamento del database fallito. {0} MB di spazio libero richiesto.</sys:String>
+   
   <sys:String x:Key="LOCGameError">Errore di gioco</sys:String>
   <sys:String x:Key="LOCGameStartErrorNoGame">Impossibile avviare il gioco. '{0}' non è stato trovato nel database.</sys:String>
   <sys:String x:Key="LOCGameStartError">Impossibile avviare gioco: {0}</sys:String>
