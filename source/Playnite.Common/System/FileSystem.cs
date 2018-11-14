@@ -251,6 +251,12 @@ namespace Playnite
                     ioException = exc;
                     Task.Delay(500).Wait();
                 }
+                catch (UnauthorizedAccessException exc)
+                {
+
+                    logger.Error(exc, $"Can't detele file, UnauthorizedAccessException. {path}");
+                    return;
+                }
             }
 
             throw new IOException($"Failed to delete {path}", ioException);
