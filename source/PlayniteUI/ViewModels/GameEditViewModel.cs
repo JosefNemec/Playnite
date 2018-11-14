@@ -1,7 +1,5 @@
-﻿using NLog;
-using Playnite;
+﻿using Playnite;
 using Playnite.Database;
-using Playnite.Models;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -11,26 +9,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using Playnite.Providers.Steam;
-using Playnite.Providers.GOG;
-using Playnite.Providers.Origin;
 using System.ComponentModel;
-using Playnite.Providers.BattleNet;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.Web;
 using Playnite.Metadata;
+using Playnite.SDK.Metadata;
+using Playnite.Settings;
+using Playnite.Plugins;
+using Playnite.Common;
 
 namespace PlayniteUI.ViewModels
 {
     public class GameEditViewModel : ObservableObject
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
         private GameDatabase database;
-        private Settings appSettings;
+        private ExtensionFactory extensions;
 
         #region Field checks
 
@@ -45,8 +43,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useNameChanges = value;
-                OnPropertyChanged("UseNameChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -61,8 +59,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useSortingNameChanges = value;
-                OnPropertyChanged("UseSortingNameChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -77,8 +75,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 usePlatformChanges = value;
-                OnPropertyChanged("UsePlatformChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -93,8 +91,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useGenresChanges = value;
-                OnPropertyChanged("UseGenresChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -109,8 +107,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useReleaseDateChanges = value;
-                OnPropertyChanged("UseReleaseDateChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -125,8 +123,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useDeveloperChanges = value;
-                OnPropertyChanged("UseDeveloperChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -141,8 +139,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 usePublisherChanges = value;
-                OnPropertyChanged("UsePublisherChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -157,8 +155,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useCategoryChanges = value;
-                OnPropertyChanged("UseCategoryChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -173,8 +171,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useTagChanges = value;
-                OnPropertyChanged("UseTagChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -189,8 +187,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useDescriptionChanges = value;
-                OnPropertyChanged("UseDescriptionChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -205,8 +203,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useIconChanges = value;
-                OnPropertyChanged("UseIconChanges");
-                OnPropertyChanged("ShowMediaChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowMediaChangeNotif));
             }
         }
 
@@ -221,8 +219,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useImageChanges = value;
-                OnPropertyChanged("UseImageChanges");
-                OnPropertyChanged("ShowMediaChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowMediaChangeNotif));
             }
         }
 
@@ -237,8 +235,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useBackgroundChanges = value;
-                OnPropertyChanged("UseBackgroundChanges");
-                OnPropertyChanged("ShowMediaChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowMediaChangeNotif));
             }
         }
 
@@ -253,8 +251,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useInstallDirChanges = value;
-                OnPropertyChanged("UseInstallDirChanges");
-                OnPropertyChanged("ShowInstallChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowInstallChangeNotif));
             }
         }
 
@@ -269,8 +267,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useIsoPathChanges = value;
-                OnPropertyChanged("UseIsoPathChanges");
-                OnPropertyChanged("ShowInstallChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowInstallChangeNotif));
             }
         }
 
@@ -285,8 +283,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useLinksChanges = value;
-                OnPropertyChanged("UseLinksChanges");
-                OnPropertyChanged("ShowLinksChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowLinksChangeNotif));
             }
         }
 
@@ -301,8 +299,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useLastActivityChanges = value;
-                OnPropertyChanged("UseLastActivityChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -317,8 +315,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 usePlaytimeChanges = value;
-                OnPropertyChanged("UsePlaytimeChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -333,8 +331,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useAddedChanges = value;
-                OnPropertyChanged("UseAddedChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -349,8 +347,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 usePlayCountChanges = value;
-                OnPropertyChanged("UsePlayCountChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -365,8 +363,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useSeriesChanges = value;
-                OnPropertyChanged("UseSeriesChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -381,8 +379,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useVersionChanges = value;
-                OnPropertyChanged("UseVersionChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -397,8 +395,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useAgeRatingChanges = value;
-                OnPropertyChanged("UseAgeRatingChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -413,8 +411,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useRegionChanges = value;
-                OnPropertyChanged("UseRegionChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -429,8 +427,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useSourceChanges = value;
-                OnPropertyChanged("UseSourceChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -445,8 +443,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useCompletionStatusChanges = value;
-                OnPropertyChanged("UseCompletionStatusChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -461,8 +459,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useUserScoreChanges = value;
-                OnPropertyChanged("UseUserScoreChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -477,8 +475,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useCriticScoreChanges = value;
-                OnPropertyChanged("UseCriticScoreChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -493,8 +491,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useCommunityScoreChanges = value;
-                OnPropertyChanged("UseCommunityScoreChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -509,8 +507,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useHiddenChanges = value;
-                OnPropertyChanged("UseHiddenChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -525,8 +523,8 @@ namespace PlayniteUI.ViewModels
             set
             {
                 useFavoriteChanges = value;
-                OnPropertyChanged("UseFavoriteChanges");
-                OnPropertyChanged("ShowGeneralChangeNotif");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -603,7 +601,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 editingGame = value;
-                OnPropertyChanged("EditingGame");
+                OnPropertyChanged();
             }
         }
 
@@ -618,7 +616,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 game = value;
-                OnPropertyChanged("Game");
+                OnPropertyChanged();
             }
         }
 
@@ -633,7 +631,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 games = value;
-                OnPropertyChanged("Games");
+                OnPropertyChanged();
             }
         }
 
@@ -644,7 +642,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressVisible = value;
-                OnPropertyChanged("ProgressVisible");
+                OnPropertyChanged();
             }
         }
 
@@ -659,7 +657,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showActions = value;
-                OnPropertyChanged("ShowActions");
+                OnPropertyChanged();
             }
         }
 
@@ -674,7 +672,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showLinks = value;
-                OnPropertyChanged("ShowLinks");
+                OnPropertyChanged();
             }
         }
 
@@ -689,7 +687,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showInstallation = value;
-                OnPropertyChanged("ShowInstallation");
+                OnPropertyChanged();
             }
         }
 
@@ -697,7 +695,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                return EditingGame == null || EditingGame.BackgroundImage == null ? false : EditingGame.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase);
+                return EditingGame == null || EditingGame.BackgroundImage == null ? false : EditingGame.BackgroundImage.IsHttpUrl();
             }
         }
 
@@ -712,7 +710,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showMetaDownload = value;
-                OnPropertyChanged("ShowMetaDownload");
+                OnPropertyChanged();
             }
         }
 
@@ -720,7 +718,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                var platforms = database.PlatformsCollection.FindAll().OrderBy(a => a.Name).ToList();
+                var platforms = database.Platforms.OrderBy(a => a.Name).ToList();
                 platforms.Insert(0, new Platform(string.Empty));
                 return platforms;
             }
@@ -730,16 +728,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                if (EditingGame.PlatformId == null || EditingGame.PlatformId == null)
-                {
-                    return database.EmulatorsCollection.FindAll().OrderBy(a => a.Name).ToList();
-                }
-                else
-                {
-                    return database.EmulatorsCollection.FindAll()
-                        .Where(a => a.Profiles != null && a.Profiles.FirstOrDefault(b => b.Platforms?.Contains(EditingGame.PlatformId) == true) != null)
-                        .OrderBy(a => a.Name).ToList();
-                }
+                return database.Emulators.OrderBy(a => a.Name).ToList();        
             }
         }
 
@@ -754,7 +743,22 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showCheckBoxes = value;
-                OnPropertyChanged("ShowCheckBoxes");
+                OnPropertyChanged();
+            }
+        }
+
+        private bool isSingleGameEdit;
+        public bool IsSingleGameEdit
+        {
+            get
+            {
+                return isSingleGameEdit;
+            }
+
+            set
+            {
+                isSingleGameEdit = value;
+                OnPropertyChanged();
             }
         }
 
@@ -879,25 +883,25 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public RelayCommand<GameTask> MoveUpActionCommand
+        public RelayCommand<GameAction> MoveUpActionCommand
         {
-            get => new RelayCommand<GameTask>((action) =>
+            get => new RelayCommand<GameAction>((action) =>
             {
                 MoveActionUp(action);
             });
         }
 
-        public RelayCommand<GameTask> MoveDownActionCommand
+        public RelayCommand<GameAction> MoveDownActionCommand
         {
-            get => new RelayCommand<GameTask>((action) =>
+            get => new RelayCommand<GameAction>((action) =>
             {
                 MoveActionDown(action);
             });
         }
 
-        public RelayCommand<GameTask> DeleteActionCommand
+        public RelayCommand<GameAction> DeleteActionCommand
         {
-            get => new RelayCommand<GameTask>((action) =>
+            get => new RelayCommand<GameAction>((action) =>
             {
                 RemoveAction(action);
             });
@@ -953,32 +957,44 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public GameEditViewModel(Game game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public RelayCommand<object> OpenMetadataFolderCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                OpenMetadataFolder();
+            });
+        }
+
+        public GameEditViewModel(Game game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, ExtensionFactory extensions)
         {
             this.database = database;
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
+            this.extensions = extensions;
 
             Game = game;
+            IsSingleGameEdit = true;
             EditingGame = game.CloneJson();
             ShowCheckBoxes = false;
             ShowMetaDownload = true;
             ShowLinks = true;
             ShowActions = true;
-            ShowInstallation = Game.Provider == Provider.Custom;
+            ShowInstallation = true;
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
         }
 
-        public GameEditViewModel(IEnumerable<Game> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public GameEditViewModel(IEnumerable<Game> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, ExtensionFactory extensions)
         {
             this.database = database;
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
+            this.extensions = extensions;
 
             Games = games;
-            var previewGame = GameHandler.GetMultiGameEditObject(games);
+            IsSingleGameEdit = false;
+            var previewGame = GameTools.GetMultiGameEditObject(games);
             EditingGame = previewGame;
             ShowCheckBoxes = true;
             ShowMetaDownload = false;
@@ -988,28 +1004,11 @@ namespace PlayniteUI.ViewModels
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
         }
 
-        public GameEditViewModel(Game game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, Settings appSettings)
-            : this(game, database, window, dialogs, resources)
-        {
-            this.appSettings = appSettings;
-        }
-
-        public GameEditViewModel(IEnumerable<Game> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, Settings appSettings)
-            : this(games, database, window, dialogs, resources)
-        {
-            this.appSettings = appSettings;
-        }
-
         private void EditingGame_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "PlatformId")
-            {
-                OnPropertyChanged("Emulators");
-            }
-
             switch (e.PropertyName)
             {
-                case "Name":
+                case nameof(Game.Name):
                     if (Games == null)
                     {
                         UseNameChanges = Game.Name != EditingGame.Name;
@@ -1019,7 +1018,7 @@ namespace PlayniteUI.ViewModels
                         UseNameChanges = true;
                     }
                     break;
-                case "SortingName":
+                case nameof(Game.SortingName):
                     if (Games == null)
                     {
                         UseSortingNameChanges = Game.SortingName != EditingGame.SortingName;
@@ -1029,7 +1028,7 @@ namespace PlayniteUI.ViewModels
                         UseSortingNameChanges = true;
                     }
                     break;
-                case "PlatformId":
+                case nameof(Game.PlatformId):
                     if (Games == null)
                     {
                         UsePlatformChanges = Game.PlatformId != EditingGame.PlatformId;
@@ -1039,17 +1038,17 @@ namespace PlayniteUI.ViewModels
                         UsePlatformChanges = true;
                     }
                     break;
-                case "Image":
+                case nameof(Game.CoverImage):
                     if (Games == null)
                     {
-                        UseImageChanges = Game.Image != EditingGame.Image;
+                        UseImageChanges = Game.CoverImage != EditingGame.CoverImage;
                     }
                     else
                     {
                         UseImageChanges = true;
                     }
                     break;
-                case "BackgroundImage":
+                case nameof(Game.BackgroundImage):
                     if (Games == null)
                     {
                         UseBackgroundChanges = Game.BackgroundImage != EditingGame.BackgroundImage;
@@ -1059,9 +1058,9 @@ namespace PlayniteUI.ViewModels
                         UseBackgroundChanges = true;
                     }
 
-                    OnPropertyChanged("ShowBackgroundUrl");
+                    OnPropertyChanged(nameof(ShowBackgroundUrl));
                     break;
-                case "Icon":
+                case nameof(Game.Icon):
                     if (Games == null)
                     {
                         UseIconChanges = Game.Icon != EditingGame.Icon;
@@ -1071,7 +1070,7 @@ namespace PlayniteUI.ViewModels
                         UseIconChanges = true;
                     }
                     break;
-                case "Links":
+                case nameof(Game.Links):
                     if (Games == null)
                     {
                         UseLinksChanges = !Game.Links.IsEqualJson(EditingGame.Links);
@@ -1081,7 +1080,7 @@ namespace PlayniteUI.ViewModels
                         UseLinksChanges = true;
                     }
                     break;
-                case "InstallDirectory":
+                case nameof(Game.InstallDirectory):
                     if (Games == null)
                     {
                         UseInstallDirChanges = Game.InstallDirectory != EditingGame.InstallDirectory;
@@ -1091,17 +1090,17 @@ namespace PlayniteUI.ViewModels
                         UseInstallDirChanges = true;
                     }
                     break;
-                case "IsoPath":
+                case nameof(Game.GameImagePath):
                     if (Games == null)
                     {
-                        UseIsoPathChanges = Game.IsoPath != EditingGame.IsoPath;
+                        UseIsoPathChanges = Game.GameImagePath != EditingGame.GameImagePath;
                     }
                     else
                     {
                         UseIsoPathChanges = true;
                     }
                     break;
-                case "Description":
+                case nameof(Game.Description):
                     if (Games == null)
                     {
                         UseDescriptionChanges = Game.Description != EditingGame.Description;
@@ -1111,7 +1110,7 @@ namespace PlayniteUI.ViewModels
                         UseDescriptionChanges = true;
                     }
                     break;
-                case "Categories":
+                case nameof(Game.Categories):
                     if (Games == null)
                     {
                         UseCategoryChanges = !Game.Categories.IsListEqual(EditingGame.Categories);
@@ -1121,7 +1120,7 @@ namespace PlayniteUI.ViewModels
                         UseCategoryChanges = true;
                     }
                     break;
-                case "Tags":
+                case nameof(Game.Tags):
                     if (Games == null)
                     {
                         UseTagChanges = !Game.Tags.IsListEqual(EditingGame.Tags);
@@ -1131,7 +1130,7 @@ namespace PlayniteUI.ViewModels
                         UseTagChanges = true;
                     }
                     break;
-                case "Genres":
+                case nameof(Game.Genres):
                     if (Games == null)
                     {
                         UseGenresChanges = !Game.Genres.IsListEqual(EditingGame.Genres);
@@ -1141,7 +1140,7 @@ namespace PlayniteUI.ViewModels
                         UseGenresChanges = true;
                     }
                     break;
-                case "ReleaseDate":
+                case nameof(Game.ReleaseDate):
                     if (Games == null)
                     {
                         UseReleaseDateChanges = Game.ReleaseDate != EditingGame.ReleaseDate;
@@ -1151,7 +1150,7 @@ namespace PlayniteUI.ViewModels
                         UseReleaseDateChanges = true;
                     }
                     break;
-                case "Developers":
+                case nameof(Game.Developers):
                     if (Games == null)
                     {
                         UseDeveloperChanges = !Game.Developers.IsListEqual(EditingGame.Developers);
@@ -1161,7 +1160,7 @@ namespace PlayniteUI.ViewModels
                         UseDeveloperChanges = true;
                     }
                     break;
-                case "Publishers":
+                case nameof(Game.Publishers):
                     if (Games == null)
                     {
                         UsePublisherChanges = !Game.Publishers.IsListEqual(EditingGame.Publishers);
@@ -1171,7 +1170,7 @@ namespace PlayniteUI.ViewModels
                         UsePublisherChanges = true;
                     }
                     break;
-                case "LastActivity":
+                case nameof(Game.LastActivity):
                     if (Games == null)
                     {
                         UseLastActivityChanges = Game.LastActivity != EditingGame.LastActivity;
@@ -1181,7 +1180,7 @@ namespace PlayniteUI.ViewModels
                         UseLastActivityChanges = true;
                     }
                     break;
-                case "Playtime":
+                case nameof(Game.Playtime):
                     if (Games == null)
                     {
                         UsePlaytimeChanges = Game.Playtime != EditingGame.Playtime;
@@ -1191,7 +1190,7 @@ namespace PlayniteUI.ViewModels
                         UsePlaytimeChanges = true;
                     }
                     break;
-                case "Added":
+                case nameof(Game.Added):
                     if (Games == null)
                     {
                         UseAddedChanges = Game.Added != EditingGame.Added;
@@ -1201,7 +1200,7 @@ namespace PlayniteUI.ViewModels
                         UseAddedChanges = true;
                     }
                     break;
-                case "PlayCount":
+                case nameof(Game.PlayCount):
                     if (Games == null)
                     {
                         UsePlayCountChanges = Game.PlayCount != EditingGame.PlayCount;
@@ -1211,7 +1210,7 @@ namespace PlayniteUI.ViewModels
                         UsePlayCountChanges = true;
                     }
                     break;
-                case "Series":
+                case nameof(Game.Series):
                     if (Games == null)
                     {
                         UseSeriesChanges = Game.Series != EditingGame.Series;
@@ -1221,7 +1220,7 @@ namespace PlayniteUI.ViewModels
                         UseSeriesChanges = true;
                     }
                     break;
-                case "Version":
+                case nameof(Game.Version):
                     if (Games == null)
                     {
                         UseVersionChanges = Game.Version != EditingGame.Version;
@@ -1231,7 +1230,7 @@ namespace PlayniteUI.ViewModels
                         UseVersionChanges = true;
                     }
                     break;
-                case "AgeRating":
+                case nameof(Game.AgeRating):
                     if (Games == null)
                     {
                         UseAgeRatingChanges = Game.AgeRating != EditingGame.AgeRating;
@@ -1241,7 +1240,7 @@ namespace PlayniteUI.ViewModels
                         UseAgeRatingChanges = true;
                     }
                     break;
-                case "Region":
+                case nameof(Game.Region):
                     if (Games == null)
                     {
                         UseRegionChanges = Game.Region != EditingGame.Region;
@@ -1251,7 +1250,7 @@ namespace PlayniteUI.ViewModels
                         UseRegionChanges = true;
                     }
                     break;
-                case "Source":
+                case nameof(Game.Source):
                     if (Games == null)
                     {
                         UseSourceChanges = Game.Source != EditingGame.Source;
@@ -1261,7 +1260,7 @@ namespace PlayniteUI.ViewModels
                         UseSourceChanges = true;
                     }
                     break;
-                case "CompletionStatus":
+                case nameof(Game.CompletionStatus):
                     if (Games == null)
                     {
                         UseCompletionStatusChanges = Game.CompletionStatus != EditingGame.CompletionStatus;
@@ -1271,7 +1270,7 @@ namespace PlayniteUI.ViewModels
                         UseCompletionStatusChanges = true;
                     }
                     break;
-                case "UserScore":
+                case nameof(Game.UserScore):
                     if (Games == null)
                     {
                         UseUserScoreChanges = Game.UserScore != EditingGame.UserScore;
@@ -1281,7 +1280,7 @@ namespace PlayniteUI.ViewModels
                         UseUserScoreChanges = true;
                     }
                     break;
-                case "CriticScore":
+                case nameof(Game.CriticScore):
                     if (Games == null)
                     {
                         UseCriticScoreChanges = Game.CriticScore != EditingGame.CriticScore;
@@ -1291,7 +1290,7 @@ namespace PlayniteUI.ViewModels
                         UseCriticScoreChanges = true;
                     }
                     break;
-                case "CommunityScore":
+                case nameof(Game.CommunityScore):
                     if (Games == null)
                     {
                         UseCommunityScoreChanges = Game.CommunityScore != EditingGame.CommunityScore;
@@ -1301,7 +1300,7 @@ namespace PlayniteUI.ViewModels
                         UseCommunityScoreChanges = true;
                     }
                     break; ;
-                case "Favorite":
+                case nameof(Game.Favorite):
                     if (Games == null)
                     {
                         UseFavoriteChanges = Game.Favorite != EditingGame.Favorite;
@@ -1311,7 +1310,7 @@ namespace PlayniteUI.ViewModels
                         UseFavoriteChanges = true;
                     }
                     break; ;
-                case "Hidden":
+                case nameof(Game.Hidden):
                     if (Games == null)
                     {
                         UseHiddenChanges = Game.Hidden != EditingGame.Hidden;
@@ -1331,6 +1330,21 @@ namespace PlayniteUI.ViewModels
 
         public void CloseView()
         {
+            if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
+            {
+                FileSystem.DeleteFile(EditingGame.Icon);
+            }
+
+            if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
+            {
+                FileSystem.DeleteFile(EditingGame.CoverImage);
+            }
+
+            if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
+            {
+                FileSystem.DeleteFile(EditingGame.BackgroundImage);
+            }
+
             window.Close(false);
         }
 
@@ -1493,9 +1507,9 @@ namespace PlayniteUI.ViewModels
 
             if (Games == null)
             {
-                if (Game.IsoPath != EditingGame.IsoPath)
+                if (Game.GameImagePath != EditingGame.GameImagePath)
                 {
-                    Game.IsoPath = EditingGame.IsoPath;
+                    Game.GameImagePath = EditingGame.GameImagePath;
                 }
             }
 
@@ -1747,114 +1761,76 @@ namespace PlayniteUI.ViewModels
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.Icon))
-                            {
-                                database.DeleteImageSafe(game.Icon, game);
-                                game.Icon = null;
-                            }
+                            RemoveGameMedia(game.Icon);
+                            game.Icon = null;
                         }
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.Icon))
-                        {
-                            database.DeleteImageSafe(Game.Icon, Game);
-                            Game.Icon = null;
-                        }
+                        RemoveGameMedia(Game.Icon);
+                        Game.Icon = null;
                     }
                 }
                 else if (File.Exists(EditingGame.Icon))
                 {
-                    var iconPath = EditingGame.Icon;
-                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(iconPath);
-                    var iconId = "images/custom/" + fileName;
-                    iconId = database.AddFileNoDuplicate(iconId, fileName, File.ReadAllBytes(iconPath));
-
                     if (Games != null)
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.Icon) && game.Icon != iconId)
-                            {
-                                database.DeleteImageSafe(game.Icon, game);
-                            }
-
-                            game.Icon = iconId;
+                            RemoveGameMedia(game.Icon);
+                            game.Icon = database.AddFile(EditingGame.Icon, game.Id);
                         }
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.Icon) && Game.Icon != iconId)
-                        {
-                            database.DeleteImageSafe(Game.Icon, Game);
-                        }
-
-                        Game.Icon = iconId;
+                        RemoveGameMedia(Game.Icon);
+                        Game.Icon = database.AddFile(EditingGame.Icon, game.Id); ;
                     }
 
-                    if (Path.GetDirectoryName(iconPath) == Paths.TempPath)
+                    if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
                     {
-                        File.Delete(iconPath);
+                        File.Delete(EditingGame.Icon);
                     }
                 }
             }
 
             if (UseImageChanges)
             {
-                if (string.IsNullOrEmpty(EditingGame.Image))
+                if (string.IsNullOrEmpty(EditingGame.CoverImage))
                 {
                     if (Games != null)
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.Image))
-                            {
-                                database.DeleteImageSafe(game.Image, game);
-                                game.Image = null;
-                            }
+                            RemoveGameMedia(game.CoverImage);
+                            game.CoverImage = null;
                         }
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.Image))
-                        {
-                            database.DeleteImageSafe(Game.Image, Game);
-                            Game.Image = null;
-                        }
+                        RemoveGameMedia(Game.CoverImage);
+                        Game.CoverImage = null;
                     }
                 }
-                else if (File.Exists(EditingGame.Image))
+                else if (File.Exists(EditingGame.CoverImage))
                 {
-                    var imagePath = EditingGame.Image;
-                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
-                    var imageId = "images/custom/" + fileName;
-                    imageId = database.AddFileNoDuplicate(imageId, fileName, File.ReadAllBytes(imagePath));
-
                     if (Games != null)
                     {
                         foreach (var game in Games)
                         {
-                            if (!string.IsNullOrEmpty(game.Image) && game.Image != imageId)
-                            {
-                                database.DeleteImageSafe(game.Image, game);
-                            }
-
-                            game.Image = imageId;
+                            RemoveGameMedia(game.CoverImage);
+                            game.CoverImage = database.AddFile(EditingGame.CoverImage, game.Id);
                         }
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(Game.Image) && Game.Image != imageId)
-                        {
-                            database.DeleteImageSafe(Game.Image, Game);
-                        }
-
-                        Game.Image = imageId;
+                        RemoveGameMedia(Game.CoverImage);
+                        Game.CoverImage = database.AddFile(EditingGame.CoverImage, Game.Id);
                     }
 
-                    if (Path.GetDirectoryName(imagePath) == Paths.TempPath)
+                    if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
                     {
-                        File.Delete(imagePath);
+                        File.Delete(EditingGame.CoverImage);
                     }
                 }
             }
@@ -1869,7 +1845,7 @@ namespace PlayniteUI.ViewModels
                         {
                             if (!string.IsNullOrEmpty(game.BackgroundImage))
                             {
-                                database.DeleteImageSafe(game.BackgroundImage, game);
+                                RemoveGameMedia(game.BackgroundImage);
                                 game.BackgroundImage = null;
                             }
                         }
@@ -1878,73 +1854,48 @@ namespace PlayniteUI.ViewModels
                     {
                         if (!string.IsNullOrEmpty(Game.BackgroundImage))
                         {
-                            database.DeleteImageSafe(Game.BackgroundImage, Game);
+                            RemoveGameMedia(Game.BackgroundImage);
                             Game.BackgroundImage = null;
                         }
                     }
                 }
                 else
                 {
-                    if (EditingGame.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                    if (EditingGame.BackgroundImage.IsHttpUrl())
                     {
                         if (Games != null)
                         {
                             foreach (var game in Games)
                             {
-                                if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
-                                {
-                                    database.DeleteImageSafe(game.BackgroundImage, game);
-                                }
-
+                                RemoveGameMedia(game.BackgroundImage);
                                 game.BackgroundImage = EditingGame.BackgroundImage;
                             }
                         }
                         else
                         {
-                            if (!string.IsNullOrEmpty(Game.BackgroundImage) && !Game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
-                            {
-                                database.DeleteImageSafe(Game.BackgroundImage, Game);
-                            }
-
+                            RemoveGameMedia(Game.BackgroundImage);
                             Game.BackgroundImage = EditingGame.BackgroundImage;
                         }
                     }
                     else if (File.Exists(EditingGame.BackgroundImage))
                     {
-                        var imagePath = EditingGame.BackgroundImage;
-                        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
-                        var imageId = "images/custom/" + fileName;
-                        imageId = database.AddFileNoDuplicate(imageId, fileName, File.ReadAllBytes(imagePath));
-
                         if (Games != null)
                         {
                             foreach (var game in Games)
                             {
-                                if (!string.IsNullOrEmpty(game.BackgroundImage) &&
-                                    !game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase) &&
-                                    game.BackgroundImage != imageId)
-                                {
-                                    database.DeleteImageSafe(game.BackgroundImage, game);
-                                }
-
-                                game.BackgroundImage = imageId;
+                                RemoveGameMedia(game.BackgroundImage);
+                                game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, game.Id);
                             }
                         }
                         else
                         {
-                            if (!string.IsNullOrEmpty(Game.BackgroundImage) &&
-                                !Game.BackgroundImage.StartsWith("http", StringComparison.InvariantCultureIgnoreCase) &&
-                                Game.BackgroundImage != imageId)
-                            {
-                                database.DeleteImageSafe(Game.BackgroundImage, Game);
-                            }
-
-                            Game.BackgroundImage = imageId;
+                            RemoveGameMedia(Game.BackgroundImage);
+                            Game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, Game.Id);
                         }
 
-                        if (Path.GetDirectoryName(imagePath) == Paths.TempPath)
+                        if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
                         {
-                            File.Delete(imagePath);
+                            File.Delete(EditingGame.BackgroundImage);
                         }
                     }
                 }
@@ -1952,14 +1903,14 @@ namespace PlayniteUI.ViewModels
 
             if (Games == null)
             {
-                if (!Game.PlayTask.IsEqualJson(EditingGame.PlayTask))
+                if (!Game.PlayAction.IsEqualJson(EditingGame.PlayAction))
                 {
-                    Game.PlayTask = EditingGame.PlayTask;
+                    Game.PlayAction = EditingGame.PlayAction;
                 }
 
-                if (!Game.OtherTasks.IsEqualJson(EditingGame.OtherTasks))
+                if (!Game.OtherActions.IsEqualJson(EditingGame.OtherActions))
                 {
-                    Game.OtherTasks = EditingGame.OtherTasks;
+                    Game.OtherActions = EditingGame.OtherActions;
                 }
 
                 if (!Game.Links.IsEqualJson(EditingGame.Links))
@@ -1970,10 +1921,9 @@ namespace PlayniteUI.ViewModels
                     }
                 }
 
-                if (Game.State.Installed != EditingGame.State.Installed)
+                if (Game.IsInstalled != EditingGame.IsInstalled)
                 {
-                    // GameState is not observable so we need to change the whole object to send notify messages
-                    Game.State = new GameState(Game.State) { Installed = EditingGame.State.Installed };
+                    Game.IsInstalled = EditingGame.IsInstalled;
                 }
             }
 
@@ -1983,13 +1933,13 @@ namespace PlayniteUI.ViewModels
                 foreach (var game in Games)
                 {
                     game.Modified = date;
-                    database.UpdateGameInDatabase(game);
+                    database.Games.Update(game);
                 }
             }
             else
             {
                 game.Modified = DateTime.Today;
-                database.UpdateGameInDatabase(Game);
+                database.Games.Update(Game);
             }
 
             window.Close(true);
@@ -2070,18 +2020,18 @@ namespace PlayniteUI.ViewModels
                 EditingGame.Series = game.Series;
             }
 
-            if (!string.IsNullOrEmpty(game.Image))
+            if (!string.IsNullOrEmpty(game.CoverImage))
             {
-                if (game.Image.StartsWith("http", StringComparison.InvariantCultureIgnoreCase))
+                if (game.CoverImage.IsHttpUrl())
                 {
-                    var extension = Path.GetExtension(game.Image);
-                    var tempPath = Path.Combine(Paths.TempPath, "tempimage" + extension);
+                    var extension = Path.GetExtension(game.CoverImage);
+                    var tempPath = Path.Combine(PlaynitePaths.TempPath, "tempimage" + extension);
                     FileSystem.PrepareSaveFile(tempPath);
 
                     try
                     {
-                        HttpDownloader.DownloadFile(game.Image, tempPath);
-                        EditingGame.Image = tempPath;
+                        HttpDownloader.DownloadFile(game.CoverImage, tempPath);
+                        EditingGame.CoverImage = tempPath;
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -2090,7 +2040,7 @@ namespace PlayniteUI.ViewModels
                 }
                 else
                 {
-                    EditingGame.Image = game.Image;
+                    EditingGame.CoverImage = game.CoverImage;
                 }
             }
 
@@ -2113,7 +2063,7 @@ namespace PlayniteUI.ViewModels
                 return string.Empty;
             }
 
-            var tempPath = Path.Combine(Paths.TempPath, "tempico.png");
+            var tempPath = Path.Combine(PlaynitePaths.TempPath, "tempico.png");
             if (ico != null)
             {
                 FileSystem.PrepareSaveFile(tempPath);
@@ -2123,18 +2073,29 @@ namespace PlayniteUI.ViewModels
             return tempPath;
         }
 
+        private string SaveConvertedTgaToTemp(string tgaPath)
+        {
+            var tempPath = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".png");
+            File.WriteAllBytes(tempPath, BitmapExtensions.TgaToBitmap(tgaPath).ToPngArray());
+            return tempPath;
+        }
+
         public void SelectIcon()
         {
             var path = dialogs.SelectIconFile();
             if (!string.IsNullOrEmpty(path))
             {
-                if (path.EndsWith("exe", StringComparison.CurrentCultureIgnoreCase))
+                if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
                 {
                     path = SaveFileIconToTemp(path);
                     if (string.IsNullOrEmpty(path))
                     {
                         return;
                     }
+                }
+                else if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
+                {
+                    path = SaveConvertedTgaToTemp(path);
                 }
 
                 EditingGame.Icon = path;
@@ -2143,21 +2104,14 @@ namespace PlayniteUI.ViewModels
 
         public void UseExeIcon()
         {
-            if (EditingGame.PlayTask == null || EditingGame.PlayTask.Type == GameTaskType.URL)
+            if (EditingGame.PlayAction == null || EditingGame.PlayAction.Type == GameActionType.URL)
             {
                 dialogs.ShowMessage(resources.FindString("LOCExecIconMissingPlayAction"));
                 return;
             }
 
-            var path = EditingGame.ResolveVariables(EditingGame.PlayTask.Path);
-            if (!File.Exists(path) && !string.IsNullOrEmpty(EditingGame.PlayTask.WorkingDir))
-            {
-                path = Path.Combine(
-                    EditingGame.ResolveVariables(EditingGame.PlayTask.WorkingDir),
-                    path);
-            }
-
-            if (!File.Exists(path))
+            var path = game.GetRawExecutablePath();
+            if (string.IsNullOrEmpty(path) || !File.Exists(path))
             {
                 logger.Error($"Can't find executable for icon extraction, file {path}");
                 return;
@@ -2177,7 +2131,12 @@ namespace PlayniteUI.ViewModels
             var path = dialogs.SelectImagefile();
             if (!string.IsNullOrEmpty(path))
             {
-                EditingGame.Image = path;
+                if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
+                {
+                    path = SaveConvertedTgaToTemp(path);
+                }
+
+                EditingGame.CoverImage = path;
             }
         }
 
@@ -2186,6 +2145,11 @@ namespace PlayniteUI.ViewModels
             var path = dialogs.SelectImagefile();
             if (!string.IsNullOrEmpty(path))
             {
+                if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
+                {
+                    path = SaveConvertedTgaToTemp(path);
+                }
+
                 EditingGame.BackgroundImage = path;
             }
         }
@@ -2205,60 +2169,60 @@ namespace PlayniteUI.ViewModels
 
         public void AddPlayAction()
         {
-            EditingGame.PlayTask = new GameTask()
+            EditingGame.PlayAction = new GameAction()
             {
                 Name = "Play",
-                IsBuiltIn = false
+                IsHandledByPlugin = false
             };
         }
 
         public void RemovePlayAction()
         {
-            EditingGame.PlayTask = null;
+            EditingGame.PlayAction = null;
         }
 
         public void AddAction()
         {
-            if (EditingGame.OtherTasks == null)
+            if (EditingGame.OtherActions == null)
             {
-                EditingGame.OtherTasks = new ObservableCollection<GameTask>();
+                EditingGame.OtherActions = new ObservableCollection<GameAction>();
             }
 
-            var newTask = new GameTask()
+            var newTask = new GameAction()
             {
                 Name = "New Action",
-                IsBuiltIn = false
+                IsHandledByPlugin = false
             };
 
-            if (EditingGame.PlayTask != null && EditingGame.PlayTask.Type == GameTaskType.File)
+            if (EditingGame.PlayAction != null && EditingGame.PlayAction.Type == GameActionType.File)
             {
-                newTask.WorkingDir = EditingGame.PlayTask.WorkingDir;
-                newTask.Path = EditingGame.PlayTask.Path;
+                newTask.WorkingDir = EditingGame.PlayAction.WorkingDir;
+                newTask.Path = EditingGame.PlayAction.Path;
             }
 
-            EditingGame.OtherTasks.Add(newTask);
+            EditingGame.OtherActions.Add(newTask);
         }
 
-        public void RemoveAction(GameTask action)
+        public void RemoveAction(GameAction action)
         {
-            EditingGame.OtherTasks.Remove(action);
+            EditingGame.OtherActions.Remove(action);
         }
 
-        public void MoveActionUp(GameTask action)
+        public void MoveActionUp(GameAction action)
         {
-            var index = EditingGame.OtherTasks.IndexOf(action);
+            var index = EditingGame.OtherActions.IndexOf(action);
             if (index != 0)
             {
-                EditingGame.OtherTasks.Move(index, index - 1);
+                EditingGame.OtherActions.Move(index, index - 1);
             }
         }
 
-        public void MoveActionDown(GameTask action)
+        public void MoveActionDown(GameAction action)
         {
-            var index = EditingGame.OtherTasks.IndexOf(action);
-            if (index != EditingGame.OtherTasks.Count - 1)
+            var index = EditingGame.OtherActions.IndexOf(action);
+            if (index != EditingGame.OtherActions.Count - 1)
             {
-                EditingGame.OtherTasks.Move(index, index + 1);
+                EditingGame.OtherActions.Move(index, index + 1);
             }
         }
 
@@ -2296,7 +2260,7 @@ namespace PlayniteUI.ViewModels
             var path = dialogs.SelectFile("*.*|*.*");
             if (!string.IsNullOrEmpty(path))
             {
-                EditingGame.IsoPath = path;
+                EditingGame.GameImagePath = path;
             }
         }
 
@@ -2307,7 +2271,7 @@ namespace PlayniteUI.ViewModels
 
         public void RemoveImage()
         {
-            EditingGame.Image = null;
+            EditingGame.CoverImage = null;
         }
 
         public void RemoveBackground()
@@ -2341,40 +2305,33 @@ namespace PlayniteUI.ViewModels
                 {
                     GameMetadata metadata;
                     var tempGame = game.CloneJson();
-                    tempGame.Image = string.Empty;
+                    tempGame.CoverImage = string.Empty;
 
-                    switch (tempGame.Provider)
+                    if (extensions.LibraryPlugins.TryGetValue(tempGame.PluginId, out var plugin))
                     {
-                        case Provider.Steam:
-                            metadata = (new SteamLibrary()).UpdateGameWithMetadata(tempGame, appSettings.SteamSettings);
-                            break;
-                        case Provider.GOG:
-                            metadata = (new GogLibrary()).UpdateGameWithMetadata(tempGame);
-                            break;
-                        case Provider.Origin:
-                            metadata = (new OriginLibrary()).UpdateGameWithMetadata(tempGame);
-                            break;
-                        case Provider.BattleNet:
-                            metadata = (new BattleNetLibrary()).UpdateGameWithMetadata(tempGame);
-                            break;
-                        case Provider.Uplay:
-                            return;
-                        case Provider.Custom:
-                        default:
-                            return;
+                        var downloader = plugin.Plugin.GetMetadataDownloader();
+                        metadata = downloader.GetMetadata(tempGame);
+                        metadata?.GameData?.CopyProperties(tempGame, false);
+                    }
+                    else
+                    {
+                        dialogs.ShowErrorMessage(
+                            resources.FindString("LOCErrorLibraryPluginNotFound"),
+                            resources.FindString("LOCGameError"));
+                        return;
                     }
                     
                     if (metadata.Image != null)
                     {
-                        var path = Path.Combine(Paths.TempPath, metadata.Image.FileName);
+                        var path = Path.Combine(PlaynitePaths.TempPath, metadata.Image.FileName);
                         FileSystem.PrepareSaveFile(path);
                         File.WriteAllBytes(path, metadata.Image.Content);
-                        tempGame.Image = path;
+                        tempGame.CoverImage = path;
                     }
 
                     if (metadata.Icon != null)
                     {
-                        var path = Path.Combine(Paths.TempPath, metadata.Icon.FileName);
+                        var path = Path.Combine(PlaynitePaths.TempPath, metadata.Icon.FileName);
                         FileSystem.PrepareSaveFile(path);
                         File.WriteAllBytes(path, metadata.Icon.Content);
                         tempGame.Icon = path;
@@ -2385,7 +2342,7 @@ namespace PlayniteUI.ViewModels
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(exc, "Failed to download metadata, {0}, {1}", game.Provider, game.ProviderId);
+                    logger.Error(exc, string.Format("Failed to download metadata, {0}, {1}", game.PluginId, game.GameId));
                     dialogs.ShowMessage(
                         string.Format(resources.FindString("LOCMetadataDownloadError"), exc.Message),
                         resources.FindString("LOCDownloadError"),
@@ -2396,6 +2353,28 @@ namespace PlayniteUI.ViewModels
                     ProgressVisible = false;
                 }
             });
+        }
+
+        public void OpenMetadataFolder()
+        {
+            Explorer.OpenDirectory(database.GetFileStoragePath(EditingGame.Id));
+        }
+
+        private void RemoveGameMedia(string mediaId)
+        {
+            if (string.IsNullOrEmpty(mediaId))
+            {
+                return;
+            }
+
+            if (mediaId.IsHttpUrl())
+            {
+                HttpFileCache.ClearCache(mediaId);
+            }
+            else
+            {
+                database.RemoveFile(mediaId);
+            }
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using Microsoft.Win32;
 using Newtonsoft.Json;
-using NLog;
 using Playnite.App;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -12,70 +13,16 @@ using System.Threading.Tasks;
 
 namespace Playnite.Services
 {
-    public class ServicesClient
+    public class ServicesClient : BaseServicesClient
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
 
-        private HttpClient httpClient = new HttpClient()
+        public ServicesClient() : this(ConfigurationManager.AppSettings["ServicesUrl"])
         {
-            Timeout = new TimeSpan(0, 0, 30)
-        };
-
-        public string Endpoint
-        {
-            get;
         }
 
-        public ServicesClient()
+        public ServicesClient(string endpoint) : base(endpoint)
         {
-            Endpoint = ConfigurationManager.AppSettings["ServicesUrl"].TrimEnd('/');
-        }
-
-        public ServicesClient(string endpoint)
-        {
-            Endpoint = endpoint.TrimEnd('/');
-        }
-
-        private T ExecuteGetRequest<T>(string subUrl)
-        {
-            var url = Uri.EscapeUriString(Endpoint + subUrl);
-            var strResult = httpClient.GetStringAsync(url).GetAwaiter().GetResult();
-            var result = JsonConvert.DeserializeObject<ServicesResponse<T>>(strResult);
-
-            if (!string.IsNullOrEmpty(result.Error))
-            {
-                logger.Error("Service request error by proxy: " + result.Error);
-                throw new Exception(result.Error);
-            }
-
-            return result.Data;
-        }
-
-        public void PostSteamAppInfoData(int appId, string data)
-        {
-            var content = new StringContent(data, Encoding.UTF8, "text/plain");
-            httpClient.PostAsync(Endpoint + $"/api/steam/appinfo/{appId}", content).Wait();
-        }
-
-        public string GetSteamAppInfoData(int appId)
-        {
-            return ExecuteGetRequest<string>($"/api/steam/appinfo/{appId}");
-        }
-
-        public void PostSteamStoreData(int appId, string data)
-        {
-            var content = new StringContent(data, Encoding.UTF8, "text/plain");
-            httpClient.PostAsync(Endpoint + $"/api/steam/store/{appId}", content).Wait();
-        }
-
-        public string GetSteamStoreData(int appId)
-        {
-            return ExecuteGetRequest<string>($"/api/steam/store/{appId}");
-        }
-
-        public List<Playnite.Providers.Steam.GetOwnedGamesResult.Game> GetSteamLibrary(string userName)
-        {
-            return ExecuteGetRequest<List<Playnite.Providers.Steam.GetOwnedGamesResult.Game>>("/api/steam/library/" + userName);
         }
 
         public List<PlayniteServices.Models.IGDB.Game> GetIGDBGames(string searchName, string apiKey = null)
@@ -128,11 +75,32 @@ namespace Playnite.Services
             {
                 Id = winId,
                 WinVersion = Environment.OSVersion.VersionString,
-                PlayniteVersion = Updater.GetCurrentVersion().ToString()
+                PlayniteVersion = Updater.GetCurrentVersion().ToString(),
+                Is64Bit = Environment.Is64BitOperatingSystem
             };
 
             var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
-            httpClient.PostAsync(Endpoint + "/api/playnite/users", content).Wait();
+            HttpClient.PostAsync(Endpoint + "/api/playnite/users", content).Wait();
+        }
+
+        public Guid UploadDiagPackage(string diagPath)
+        {
+            using (var fs = new FileStream(diagPath, FileMode.Open))
+            {
+                using (var content = new StreamContent(fs))
+                {
+                    var response = HttpClient.PostAsync(Endpoint + "/api/playnite/diag", content).GetAwaiter().GetResult();
+                    var strResult = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                    var result = JsonConvert.DeserializeObject<ServicesResponse<Guid>>(strResult);
+                    if (!string.IsNullOrEmpty(result.Error))
+                    {
+                        logger.Error("Service request error by proxy: " + result.Error);
+                        throw new Exception(result.Error);
+                    }
+
+                    return result.Data;
+                }
+            }
         }
     }
 }

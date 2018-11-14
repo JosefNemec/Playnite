@@ -1,6 +1,7 @@
 ﻿using Playnite;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.Settings;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Windows;
 
 namespace PlayniteUI.ViewModels
 {
-    public class GameDetailsViewModel : ObservableObject
+    public class GameDetailsViewModel : ObservableObject, IDisposable
     {
         public enum FilterProperty
         {
@@ -27,7 +28,7 @@ namespace PlayniteUI.ViewModels
         private IResourceProvider resources;
         private IDialogsFactory dialogs;
         private GamesEditor editor;
-        private Settings settings;
+        private PlayniteSettings settings;
 
         public bool ShowInfoPanel
         {
@@ -95,7 +96,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                return Game != null && !Game.IsInstalled && !IsRunning && !IsInstalling && !IsUninstalling && !IsLaunching && Game.Provider != Provider.Custom;
+                return Game != null && !Game.IsInstalled && !IsRunning && !IsInstalling && !IsUninstalling && !IsLaunching && Game.PluginId != Guid.Empty;
             }
         }
 
@@ -106,7 +107,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 game = value;
-                OnPropertyChanged("Game");
+                OnPropertyChanged();
             }
         }
 
@@ -206,7 +207,7 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public GameDetailsViewModel(GameViewEntry game, Settings settings, GamesEditor editor, IDialogsFactory dialogs, IResourceProvider resources)
+        public GameDetailsViewModel(GameViewEntry game, PlayniteSettings settings, GamesEditor editor, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.resources = resources;
             this.dialogs = dialogs;
@@ -219,15 +220,23 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        public void Dispose()
+        {
+            if (game != null)
+            {
+                Game.PropertyChanged -= Game_PropertyChanged;
+            }
+        }
+
         private void Game_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            OnPropertyChanged("ShowInfoPanel");
-            OnPropertyChanged("IsRunning");
-            OnPropertyChanged("IsInstalling");
-            OnPropertyChanged("IsUninstalling");
-            OnPropertyChanged("IsLaunching");
-            OnPropertyChanged("IsPlayAvailable");
-            OnPropertyChanged("IsInstallAvailable");
+            OnPropertyChanged(nameof(ShowInfoPanel));
+            OnPropertyChanged(nameof(IsRunning));
+            OnPropertyChanged(nameof(IsInstalling));
+            OnPropertyChanged(nameof(IsUninstalling));
+            OnPropertyChanged(nameof(IsLaunching));
+            OnPropertyChanged(nameof(IsPlayAvailable));
+            OnPropertyChanged(nameof(IsInstallAvailable));
         }
 
         public void NavigateUrl(string url)

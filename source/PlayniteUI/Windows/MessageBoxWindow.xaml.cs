@@ -126,6 +126,18 @@ namespace PlayniteUI.Windows
             }
         }
 
+        private bool isTextReadOnly = false;
+        public bool IsTextReadOnly
+        {
+            get => isTextReadOnly;
+            set
+            {
+                isTextReadOnly = value;
+                OnPropertyChanged("IsTextReadOnly");
+            }
+        }
+
+        
         public MessageBoxWindow()
         {
             InitializeComponent();
@@ -134,6 +146,25 @@ namespace PlayniteUI.Windows
         public void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+
+        public void ShowInputReadOnly(Window owner, string messageBoxText, string caption, string inputText)
+        {
+            if (owner == null)
+            {
+                WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            }
+
+            TextInputText.Focus();
+            Owner = owner;
+            Text = messageBoxText;
+            Caption = caption;
+            ShowInputField = true;
+            ShowOKButton = true;
+            InputText = inputText ?? string.Empty;
+            IsTextReadOnly = true;
+            ShowDialog();
         }
 
         public StringSelectionDialogResult ShowInput(Window owner, string messageBoxText, string caption, string defaultInput)

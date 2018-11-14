@@ -7,17 +7,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:pui="clr-namespace:PlayniteUI"
-        xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
-        xmlns:m="clr-namespace:Playnite.SDK.Models;assembly=PlayniteSDK"
+        xmlns:pset="clr-namespace:Playnite.Settings;assembly=Playnite"
+        xmlns:m="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
         xmlns:c="clr-namespace:PlayniteUI.Controls"
         xmlns:tray="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource MainWindowStyle}"
         Title="Playnite" ShowTitle="False" Loaded="Window_Loaded"
-        Width="1200" Height="900" WindowStartupLocation="CenterScreen" Icon="/Images/applogo.ico"
+        Width="1280" Height="900" WindowStartupLocation="CenterScreen" Icon="/Images/applogo.ico"
         Visibility="{Binding Visibility, Mode=TwoWay}"
-        WindowState="{Binding WindowState, Mode=TwoWay}"              
+        WindowState="{Binding WindowState, Mode=TwoWay}"
         x:Name="WindowMain" AutomationProperties.AutomationId="WindowMain"
         Unloaded="WindowMain_Unloaded"
         AllowDrop="True">
@@ -53,23 +53,23 @@
         <pui:BindingProxy x:Key="Proxy" Data="{Binding}" />
     </c:WindowBase.Resources>
 
-    <c:WindowBase.InputBindings>        
-        
+    <c:WindowBase.InputBindings>
+
     </c:WindowBase.InputBindings>
 
     <Grid>
         <tray:TaskbarIcon x:Name="TrayPlaynite" ToolTipText="Playnite" IconSource="/Images/applogo.ico"
                           MenuActivation="LeftOrRightClick"
-                          Visibility="{Binding Path=EnableTray, Source={x:Static shared:Settings.Instance}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          Visibility="{Binding Path=EnableTray, Source={x:Static pset:PlayniteSettings.Instance}, Converter={StaticResource BooleanToVisibilityConverter}}"
                           DoubleClickCommand="{Binding Source={StaticResource Proxy}, Path=Data.ShowWindowCommand}">
             <tray:TaskbarIcon.ContextMenu>
-                <ContextMenu >
+                <ContextMenu>
                     <ContextMenu.ItemContainerStyle>
                         <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
                             <Setter Property="OverridesDefaultStyle" Value="True" />
                             <Setter Property="Command" Value="{Binding Source={StaticResource Proxy}, Path=Data.StartGameCommand}" />
                             <Setter Property="CommandParameter" Value="{Binding}" />
-                        </Style>                        
+                        </Style>
                     </ContextMenu.ItemContainerStyle>
                     <ContextMenu.Resources>
                         <HierarchicalDataTemplate DataType="{x:Type m:Game}">
@@ -107,7 +107,7 @@
                                     <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
                                         <Setter Property="OverridesDefaultStyle" Value="True" />
                                         <Setter Property="Header" Value="{Binding Name}" />
-                                        <Setter Property="Command" Value="{Binding Source={StaticResource Proxy}, Path=Data.ThridPartyToolOpenCommand}" />
+                                        <Setter Property="Command" Value="{Binding Source={StaticResource Proxy}, Path=Data.ThirdPartyToolOpenCommand}" />
                                         <Setter Property="CommandParameter" Value="{Binding}" />
                                     </Style>
                                 </MenuItem.ItemContainerStyle>
@@ -120,7 +120,7 @@
             </tray:TaskbarIcon.ContextMenu>
         </tray:TaskbarIcon>
 
-        <c:MainView x:Name="ViewMainView">
+        <c:MainView IsTabStop="False" x:Name="ViewMainView">
             <c:MainView.InputBindings>
                 <KeyBinding Command="{Binding OpenThemeTesterCommand}" CommandParameter="{StaticResource False}"
                     Key ="{Binding OpenThemeTesterCommand.Gesture.Key}"

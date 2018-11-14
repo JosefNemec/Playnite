@@ -13,14 +13,14 @@
         AutomationProperties.AutomationId="WindowAbout" ShowMinimizeButton="False" ShowMaximizeButton="False">
 
     <DockPanel Margin="5">
-        <DockPanel LastChildFill="False" DockPanel.Dock="Bottom">
-            <Button Name="ButtonCreatePackage" Content="{DynamicResource LOCAboutCreateDiagButton}" Style="{StaticResource BottomButton}"
+        <DockPanel KeyboardNavigation.TabIndex="3" KeyboardNavigation.TabNavigation="Local" LastChildFill="False" DockPanel.Dock="Bottom">
+            <Button TabIndex="4" Name="ButtonCreatePackage" Content="{DynamicResource LOCAboutCreateDiagButton}" Style="{StaticResource BottomButton}"
                     Command="{Binding CreateDiagPackageCommand}"/>
-            <Button Name="ButtonClose" Content="{DynamicResource LOCCloseLabel}" DockPanel.Dock="Right" IsCancel="True"
+            <Button TabIndex="5" Name="ButtonClose" Content="{DynamicResource LOCCloseLabel}" DockPanel.Dock="Right" IsCancel="True"
                     Style="{StaticResource BottomButton}" Command="{Binding CloseCommand}"/>
         </DockPanel>
 
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="10">
+        <StackPanel KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Local" Orientation="Horizontal" DockPanel.Dock="Top" Margin="10">
             <Image Source="/Images/applogo.png" Width="64" Height="64" RenderOptions.BitmapScalingMode="Fant"/>
 
             <StackPanel Margin="15,0,0,0">
@@ -30,13 +30,13 @@
                            Margin="160,0,0,0"/>
                 </StackPanel>                
                 <TextBlock Text="{DynamicResource LOCAboutAuthor}" Foreground="LightGray"/>
-                <TextBlock>
+                <TextBlock KeyboardNavigation.TabIndex="1">
                 <Hyperlink Name="HyperlinkHomepage" FontSize="12" NavigateUri="http://www.playnite.link"
                            Command="{Binding NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                     <Run Text="{DynamicResource LOCAboutHomePageLink}"/>
                 </Hyperlink>
                 </TextBlock>
-                <TextBlock>
+                <TextBlock KeyboardNavigation.TabIndex="2">
                 <Hyperlink Name="HyperlinkSource" FontSize="12" NavigateUri="https://github.com/JosefNemec/Playnite/"
                            Command="{Binding NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                     <Run Text="{DynamicResource LOCAboutSourceLink}"/>
@@ -45,12 +45,12 @@
             </StackPanel>
         </StackPanel>
 
-        <TabControl DockPanel.Dock="Top">
+        <TabControl TabIndex="2" KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top">
             <TabItem Header="{DynamicResource LOCPatronsLabel}">
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top" Text="{DynamicResource LOCPatreonDevelopMessage}"
                                HorizontalAlignment="Center" Margin="0,5,0,5" />
-                    <TextBox IsReadOnly="True" DockPanel.Dock="Top" BorderThickness="0"
+                    <TextBox IsTabStop="False" IsReadOnly="True" DockPanel.Dock="Top" BorderThickness="0"
                              HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <TextBox.Text>
                             <PriorityBinding>
@@ -66,35 +66,15 @@
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top" Text="{DynamicResource LOCAboutContributorsMessage}"
                                HorizontalAlignment="Center" Margin="0,5,0,5" />
-                    <TextBox IsReadOnly="True" DockPanel.Dock="Top" BorderThickness="0"
+                    <TextBox IsTabStop="False" IsReadOnly="True" DockPanel.Dock="Top" BorderThickness="0"
                          HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         Text="
-PhrozenByte&#x0a;
-inondle&#x0a;
-L1cardo&#x0a;
-ArtexJay&#x0a;
-RubeensVinicius&#x0a;
-sekuka925&#x0a;
-Evene174&#x0a;
-darklinkpower&#x0a;
-Warmaster&#x0a;
-clintonbale&#x0a;
-By6r9&#x0a;
-MrCraigen&#x0a;
-wilco375&#x0a;
-zygzak&#x0a;
-Wargzaxk&#x0a;
-Ratox00&#x0a;
-Vuelos&#x0a;
-spektor56&#x0a;
-ClearStrelok&#x0a;
-StarFang208&#x0a;"/>
+                         Text="{Binding Contributors, Mode=OneWay}"/>
                 </DockPanel>
 
             </TabItem>
 
             <TabItem Header="{DynamicResource LOCLicenseLabel}">
-                <TextBox AcceptsReturn="True" IsReadOnly="True" TextWrapping="Wrap" BorderThickness="0"
+                <TextBox IsTabStop="False" AcceptsReturn="True" IsReadOnly="True" TextWrapping="Wrap" BorderThickness="0"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                 Text="MIT License&#x0a;&#x0a;Copyright (c) 2018 Josef Nemec&#x0a;&#x0a;Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal
 in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell

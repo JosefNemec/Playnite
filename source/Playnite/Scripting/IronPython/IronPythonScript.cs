@@ -1,5 +1,4 @@
 ﻿using IronPython.Runtime;
-using Playnite.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,37 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Playnite.SDK.Models;
+using Playnite.SDK;
 
 namespace Playnite.Scripting.IronPython
 {
     public class IronPythonScript : PlayniteScript
     {
+        private static ILogger logger = LogManager.GetLogger();
+
         public IronPythonRuntime Runtime
         {
             get; private set;
         }
 
-        public IronPythonScript(string path) : base(path, ScriptLanguage.IronPython)
+        public IronPythonScript(string path) : base(path)
         {
             Runtime = new IronPythonRuntime();
             Runtime.ExecuteFile(path);
-
-            var attributes = Runtime.GetVariable("__attributes");
-            if (attributes != null)
-            {
-                Attributes = ((PythonDictionary)attributes).Cast<KeyValuePair<object, object>>().ToDictionary(a => a.Key.ToString(), b => b.Value.ToString());
-            }
-
-            var exports = Runtime.GetVariable("__exports");
-            if (exports != null)
-            {
-                FunctionExports = new List<ScriptFunctionExport>();
-                var funcs = (IEnumerable<object>)exports;
-                foreach (PythonDictionary func in funcs)
-                {
-                    FunctionExports.Add(new ScriptFunctionExport(func["Name"].ToString(), func["Function"].ToString(), this));
-                }
-            }
         }
 
         public override void Dispose()
@@ -56,11 +41,11 @@ namespace Playnite.Scripting.IronPython
             Runtime.SetVariable(name, value);
         }
 
-        public override void OnScriptLoaded()
+        public override void OnApplicationStarted()
         {
-            if (Runtime.GetFunctionExits("on_script_loaded"))
+            if (Runtime.GetFunctionExits("on_application_started"))
             {
-                Runtime.Execute("on_script_loaded()");
+                Runtime.Execute("on_application_started()");
             }
         }
 

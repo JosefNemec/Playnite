@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,7 +22,7 @@ namespace System.Collections.Generic
         /// Invokes PropertyChanged events.
         /// </summary>
         /// <param name="name">Name of property that changed.</param>
-        public void OnPropertyChanged(string name)
+        public void OnPropertyChanged([CallerMemberName]string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }

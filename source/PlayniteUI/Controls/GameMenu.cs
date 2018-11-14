@@ -1,4 +1,5 @@
 ﻿using Playnite.Database;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using PlayniteUI.ViewModels;
 using System;
@@ -96,7 +97,7 @@ namespace PlayniteUI.Controls
 
             context = SynchronizationContext.Current;
             this.model = model;
-            resources = new ResourceProvider();
+            resources = new DefaultResourceProvider();
             DataContextChanged += GameMenu_DataContextChanged;
             InitializeItems();
         }
@@ -167,7 +168,7 @@ namespace PlayniteUI.Controls
         {
             if ((new string[]
             {
-                "State", "OtherTasks", "Links", "Favorite", "Hidden"
+                "State", "OtherActions", "Links", "Favorite", "Hidden"
             }).Contains(e.PropertyName))
             {
                 //Can be called from different threads when game database update is done
@@ -285,7 +286,7 @@ namespace PlayniteUI.Controls
                         Items.Add(playItem);
                         added = true;
                     }
-                    else if (Game.Provider != Provider.Custom)
+                    else if (!Game.IsCustomGame)
                     {
                         var installItem = new MenuItem()
                         {
@@ -307,9 +308,9 @@ namespace PlayniteUI.Controls
                 }
 
                 // Custom Actions
-                if (Game.OtherTasks != null && Game.OtherTasks.Count > 0)
+                if (Game.OtherActions != null && Game.OtherActions.Count > 0)
                 {
-                    foreach (var task in Game.OtherTasks)
+                    foreach (var task in Game.OtherActions)
                     {
                         var taskItem = new MenuItem()
                         {
@@ -436,7 +437,7 @@ namespace PlayniteUI.Controls
                 Items.Add(removeItem);
 
                 // Uninstall
-                if (Game.Provider != Provider.Custom && Game.IsInstalled)
+                if (!Game.IsCustomGame && Game.IsInstalled)
                 {
                     var uninstallItem = new MenuItem()
                     {

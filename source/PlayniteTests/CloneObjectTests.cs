@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Playnite;
 using Playnite.SDK.Models;
+using Newtonsoft.Json;
 
 namespace PlayniteTests
 {
@@ -59,17 +60,6 @@ namespace PlayniteTests
                 }
             }
 
-            private GameState prop5;
-            public GameState Prop5
-            {
-                get => prop5;
-                set
-                {
-                    prop5 = value;
-                    OnPropertyChanged("Prop5");
-                }
-            }
-
             private long prop6;
             public long Prop6
             {
@@ -88,6 +78,34 @@ namespace PlayniteTests
             }
         }
 
+        public class JsonTestObject
+        {
+            public int Prop1 { get; set; }
+
+            [JsonIgnore]
+            public int Prop2 { get; set; }
+        }
+
+        [Test]
+        public void JsonIgnoreTest()
+        {
+            var source = new JsonTestObject()
+            {
+                Prop1 = 10,
+                Prop2 = 20
+            };
+
+            var target = new JsonTestObject();
+            source.CopyProperties(target, false, null, true);
+            Assert.AreEqual(10, target.Prop1);
+            Assert.AreNotEqual(20, target.Prop2);
+
+            target = new JsonTestObject();
+            source.CopyProperties(target, false, null, false);
+            Assert.AreEqual(10, target.Prop1);
+            Assert.AreEqual(20, target.Prop2);
+        }
+
         [Test]
         public void CopyPropertiesTest()
         {
@@ -96,8 +114,7 @@ namespace PlayniteTests
                 Prop1 = 2,
                 Prop2 = "test",
                 Prop3 = new List<int>() { 1, 2 },
-                Prop4 = new TestObject() { Prop2 = "test2" },
-                Prop5 = new GameState() { Installed = true }
+                Prop4 = new TestObject() { Prop2 = "test2" }
             };
 
             var target = new TestObject();
@@ -110,18 +127,15 @@ namespace PlayniteTests
             Assert.AreEqual(1, target.Prop3.First());
             Assert.IsNotNull(target.Prop4);
             Assert.AreEqual(source.Prop4.Prop3, target.Prop4.Prop3);
-            Assert.AreEqual(source.Prop5.Installed, target.Prop5.Installed);
 
             // Null copy
             source.Prop2 = null;
             source.Prop3 = null;
             source.Prop4 = null;
-            source.Prop5 = null;
             source.CopyProperties(target, true);
             Assert.IsNull(target.Prop2);
             Assert.IsNull(target.Prop3);
             Assert.IsNull(target.Prop4);
-            Assert.IsNull(target.Prop5);
 
             // Diff only
             var changed = new List<string>();
@@ -131,7 +145,6 @@ namespace PlayniteTests
                 Prop2 = "test",
                 Prop3 = new List<int>() { 1, 2 },
                 Prop4 = new TestObject() { Prop2 = "test2" },
-                Prop5 = new GameState() { Running = true },
                 Prop6 = 20
             };
 
@@ -139,7 +152,6 @@ namespace PlayniteTests
             {
                 Prop1 = 2,
                 Prop2 = "test",
-                Prop5 = new GameState() { Running = true },
                 Prop6 = 0
             };
 
@@ -154,13 +166,12 @@ namespace PlayniteTests
             target = new TestObject
             {
                 Prop1 = 2,
-                Prop2 = "test",
-                Prop5 = new GameState() { Running = true }
+                Prop2 = "test"
             };
 
             target.PropertyChanged += (s, e) => changed.Add(e.PropertyName);
             source.CopyProperties(target, false);
-            Assert.AreEqual(6, changed.Count);
+            Assert.AreEqual(5, changed.Count);
         }
     }
 }

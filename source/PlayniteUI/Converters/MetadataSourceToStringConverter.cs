@@ -1,5 +1,6 @@
 ﻿using Playnite;
 using Playnite.Metadata;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,17 +15,16 @@ namespace PlayniteUI
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var source = (MetadataSource)value;
-            var resources = new ResourceProvider();
             switch (source)
             {
                 case MetadataSource.Store:
-                    return resources.FindString("LOCMetaSourceStore");
+                    return DefaultResourceProvider.FindString("LOCMetaSourceStore");
                 case MetadataSource.IGDB:
-                    return resources.FindString("LOCMetaSourceIGDB");
+                    return DefaultResourceProvider.FindString("LOCMetaSourceIGDB");
                 case MetadataSource.IGDBOverStore:
-                    return resources.FindString("LOCMetaSourceIGDBOverStore");
+                    return DefaultResourceProvider.FindString("LOCMetaSourceIGDBOverStore");
                 case MetadataSource.StoreOverIGDB:
-                    return resources.FindString("LOCMetaSourceStoreOverIGDB");
+                    return DefaultResourceProvider.FindString("LOCMetaSourceStoreOverIGDB");
                 default:
                     return string.Empty;
             }

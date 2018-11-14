@@ -19,7 +19,7 @@ namespace Playnite
             set
             {
                 columnCount = value;
-                OnPropertyChanged("ColumnCount");
+                OnPropertyChanged();
             }
         }
 
@@ -34,7 +34,7 @@ namespace Playnite
             set
             {
                 rowCount = value;
-                OnPropertyChanged("RowCount");
+                OnPropertyChanged();
             }
         }
 
@@ -49,7 +49,7 @@ namespace Playnite
             set
             {
                 detailsRowCount = value;
-                OnPropertyChanged("DetailsRowCount");
+                OnPropertyChanged();
             }
         }
     }

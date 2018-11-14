@@ -28,8 +28,10 @@ Non Selezionato - Rimuovi categoria
 Indeterminato - Nessuna Modifica (durante la modifica di più giochi)</sys:String>
 
   <sys:String x:Key="LOCCrashWindowTitle">Oh no, è successo qualcosa di brutto...</sys:String>
-  <sys:String x:Key="LOCCrashDescription">Playnite ha riscontrato un problema e non ha potuto risolverlo. Se ci vuoi aiutare, la pregriamo di creare un pacchetto diagnostica e segnalare il problema. Grazie.</sys:String>
-  <sys:String x:Key="LOCCrashReportIssue">Segnala un problema</sys:String>
+  <sys:String x:Key="LOCCrashDescription" xml:space="preserve">E' avvenuto un problema irrecuperabile e Playnite è stato bloccato.
+
+Se desidera aiutarci a riparare il problema, la prego di creare un pacchetto di diagnostica e di usare il tasto "Segnala crash" per farci sapere cosa è successo. Grazie.</sys:String>
+  <sys:String x:Key="LOCCrashReportIssue">Segnala crash</sys:String>
   <sys:String x:Key="LOCCrashRestartPlaynite">Riavvia Playnite</sys:String>
   <sys:String x:Key="LOCCrashClosePlaynite">Chiudi Playnite</sys:String>
 
@@ -47,14 +49,15 @@ I giochi automaticamente importati potrebbero ricomparire in Playnite dopo la pr
   <sys:String x:Key="LOCGameEditChangeNotif">La sezione contiene delle modifiche da salvare</sys:String>
   <sys:String x:Key="LOCDBUpgradeProgress">Aggiornamento del database a versione...</sys:String>
   <sys:String x:Key="LOCDBUpgradeFail">Aggiornamento del database fallito, impossibile aprire il file del database.</sys:String>
-
+  <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Aggiornamento del database fallito. {0} MB di spazio libero richiesto.</sys:String>
+   
   <sys:String x:Key="LOCGameError">Errore di gioco</sys:String>
   <sys:String x:Key="LOCGameStartErrorNoGame">Impossibile avviare il gioco. '{0}' non è stato trovato nel database.</sys:String>
   <sys:String x:Key="LOCGameStartError">Impossibile avviare gioco: {0}</sys:String>
   <sys:String x:Key="LOCGameStartActionError">Impossibile avviare l'azione: {0}</sys:String>
   <sys:String x:Key="LOCGameOpenLocationError">Impossibile aprire il percorso del gioco: {0}</sys:String>
   <sys:String x:Key="LOCGameShortcutError">La creazione del collegamento è fallita: {0}</sys:String>
-  <sys:String x:Key="LOCGameInstallError">Imposssibile installare il gioco: {0}</sys:String>
+  <sys:String x:Key="LOCGameInstallError">Impossibile installare il gioco: {0}</sys:String>
   <sys:String x:Key="LOCGameUninstallError">Impossibile disinstallare il gioco: {0}</sys:String>
 
   <!--General-->
@@ -208,6 +211,9 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
   <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Nessun account di Steam selezionato per l'importazione della libreria.</sys:String>
   <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Nessun account di Steam selezionato per l'importazione delle categorie.</sys:String>
   <sys:String x:Key="LOCSettingsUpdateLibStartup">Scaricare gli aggiornamenti della libreria di terze parti all'avvio</sys:String>
+  <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Scaricare il metadata dopo l'importazione dei giochi.</sys:String>
+  <sys:String x:Key="LOCSettingsStartMinimized">Avvia ridotto a icona</sys:String>
+  <sys:String x:Key="LOCSettingsStartOnBoot">Avvia Playnite all'avvio del sistema</sys:String>
   <sys:String x:Key="LOCSettingsStartInFullscreen">Avvia a Schermo Intero</sys:String>
   <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Includi Steam, Origin e altri.</sys:String>
   <sys:String x:Key="LOCSettingsAsyncImageLoading">Caricamento asincrono dell'immagine (riavvio richiesto)</sys:String>
@@ -216,6 +222,8 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
   <sys:String x:Key="LOCSettingsShowIconList">Mostra le icone del gioco nella visualizzazione a Lista</sys:String>
   <sys:String x:Key="LOCSettingsDisableAcceleration">Disattiva l'accelerazione hardware (riavvio richiesto)</sys:String>
   <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Utilizzare quando si presentano scatti o problemi simili nell'interfaccia grafica</sys:String>
+  <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Mostra il pulsante degli Amici di Steam</sys:String>
+  <sys:String x:Key="LOCSettingsShowBackgroundImage">Mostra immagine di sfondo</sys:String>
   <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
   <sys:String x:Key="LOCSettingsSkinColor">Profilo del tema</sys:String>
   <sys:String x:Key="LOCSettingsSkinFullscreen">Tema Schermo Intero</sys:String>
@@ -248,7 +256,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
   <sys:String x:Key="LOCSettingsGetThemes">Ottieni più temi</sys:String>
   <sys:String x:Key="LOCSettingsCreateThemes">Creare un nuovo tema</sys:String>
   <sys:String x:Key="LOCSettingsCreateLocalization">Contribuisci a una nuova localizzazione</sys:String>
-  <sys:String x:Key="LOCSettingsRestartAskMessage">Alcune delle impostazioni cambiate richiedono il riavvio di Playnite. Desidera riavviare Playnite adesso?
+  <sys:String x:Key="LOCSettingsRestartAskMessage">Alcune modifiche delle impostazioni richiedono il riavvio di Playnite. Desidera riavviare Playnite adesso?
 
   Ogni processo al momento attivo (scaricamento di metadata) sarà annullato.</sys:String>
   <sys:String x:Key="LOCSettingsRestartTitle">Riavviare Playnite?</sys:String>
@@ -381,7 +389,9 @@ E' al momento utilizzata da {1} gioco/chi e {2} emulatore/i.</sys:String>
   <sys:String x:Key="LOCDatabaseOpenError">Impossibile aprire la banca dati della libreria</sys:String>
   <sys:String x:Key="LOCDatabaseOpenAccessError">Impossibile accedere la banca dati della libreria. Il file "{0}" è stato utilizzato da un'altro processo o è in un percorso inaccessibile.</sys:String>
   <sys:String x:Key="LOCDiagPackageCreationError">Creazione del pacchetto diagnostica fallito.</sys:String>
-  <sys:String x:Key="LOCDiagPackageCreationSuccess">Pacchetto diagnostica creato con successo.</sys:String>
+  <sys:String x:Key="LOCDiagPackageUploadError">Caricamento automatico del pacchetto diagnostica fallito.</sys:String>
+  <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Pacchetto di diagnostica è stato creato e caricato con successo.
+La prego di allegare il seguente codice ID al seguente resoconto del crash:</sys:String>
 
   <sys:String x:Key="LOCSteamCategoryImportError">Importazione delle categorie di Steam fallita.</sys:String>
   <sys:String x:Key="LOCBnetInstalledImportError">Importazione dei giochi di Battle.net installati fallita.</sys:String>
@@ -452,12 +462,14 @@ E' al momento utilizzata da {1} gioco/chi e {2} emulatore/i.</sys:String>
   <sys:String x:Key="LOCCommunityScore">Voto della comunità</sys:String>
   <sys:String x:Key="LOCScripts">Script</sys:String>
   <sys:String x:Key="LOCPlugins">Plugin</sys:String>
-  <sys:String x:Key="LOCExtensions">Estenzioni</sys:String>
+  <sys:String x:Key="LOCExtensions">Estensioni</sys:String>
   <sys:String x:Key="LOCReloadScripts">Ricarica gli script</sys:String>
   <sys:String x:Key="LOCReloadScriptsSuccess">Tutti gli script sono stati ricaricati con successo.</sys:String>
   <sys:String x:Key="LOCNoGamesFound">Nessun gioco trovato</sys:String>
   <sys:String x:Key="LOCBackToDesktopMode">Ritorna alla Modalità desktop</sys:String>
   <sys:String x:Key="LOCExitPlaynite">Esci da Playnite</sys:String>
+  <sys:String x:Key="LOCLibraries">Librerie</sys:String>
+  <sys:String x:Key="LOCUpdateAll">Aggiorna tutto</sys:String>
 
   <sys:String x:Key="LOCEmulatorArguments">Argomenti dell'emulatore</sys:String>
   <sys:String x:Key="LOCAdditionalEmulatorArguments">Ulteriori argomenti dell'emulatore</sys:String>

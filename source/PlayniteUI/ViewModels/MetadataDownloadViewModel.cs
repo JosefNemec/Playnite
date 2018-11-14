@@ -1,5 +1,4 @@
-﻿using NLog;
-using Playnite.SDK;
+﻿using Playnite.SDK;
 using Playnite.Metadata;
 using PlayniteUI.Commands;
 using System;
@@ -18,7 +17,7 @@ namespace PlayniteUI.ViewModels
             Manual
         }
 
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
 
 
@@ -29,11 +28,11 @@ namespace PlayniteUI.ViewModels
             set
             {
                 viewTabIndex = value;
-                OnPropertyChanged("ViewTabIndex");
-                OnPropertyChanged("ShowDownloadButton");
-                OnPropertyChanged("ShowNextButton");
-                OnPropertyChanged("ShowBackButton");
-                OnPropertyChanged("ShowFinishButton");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowDownloadButton));
+                OnPropertyChanged(nameof(ShowNextButton));
+                OnPropertyChanged(nameof(ShowBackButton));
+                OnPropertyChanged(nameof(ShowFinishButton));
             }
         }
 
@@ -69,11 +68,11 @@ namespace PlayniteUI.ViewModels
             {
                 mode = value;
                 ViewTabIndex = mode == ViewMode.Manual ? 0 : 1;
-                OnPropertyChanged("Mode");
-                OnPropertyChanged("ShowDownloadButton");
-                OnPropertyChanged("ShowNextButton");
-                OnPropertyChanged("ShowBackButton");
-                OnPropertyChanged("ShowFinishButton");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowDownloadButton));
+                OnPropertyChanged(nameof(ShowNextButton));
+                OnPropertyChanged(nameof(ShowBackButton));
+                OnPropertyChanged(nameof(ShowFinishButton));
             }
         }
 
@@ -88,7 +87,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 settings = value;
-                OnPropertyChanged("Settings");
+                OnPropertyChanged();
             }
         }
 

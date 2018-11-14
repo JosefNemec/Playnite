@@ -8,15 +8,12 @@
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
-        Title="{DynamicResource LOCCrashWindowTitle}" Height="400" Width="600"
+        Title="{DynamicResource LOCCrashWindowTitle}" SizeToContent="Height" Width="600"
         WindowStartupLocation="CenterScreen"
         AutomationProperties.AutomationId="WindowCrash">
 
     <DockPanel Margin="5">
         <DockPanel LastChildFill="False" DockPanel.Dock="Bottom">
-            <Button Name="ButtonClose" Content="{DynamicResource LOCCrashClosePlaynite}" DockPanel.Dock="Right" 
-                Style="{StaticResource BottomButton}"
-                    Command="{Binding CloseCommand}"/>
             <Button Name="ButtonRestart" Content="{DynamicResource LOCCrashRestartPlaynite}" DockPanel.Dock="Right" 
                 Style="{StaticResource BottomButton}"
                     Command="{Binding RestartCommand}"/>
@@ -27,15 +24,9 @@
                 Style="{StaticResource BottomButton}"
                     Command="{Binding ReportIssueCommand}"/>
         </DockPanel>
-        <DockPanel DockPanel.Dock="Top" Margin="10">
-            <Image Source="/Images/Icons/warn_big.png" Width="64" RenderOptions.BitmapScalingMode="Fant" />
-            <StackPanel Margin="20,10,10,10">
-                <TextBlock Text="{DynamicResource LOCCrashDescription}" 
-                        FontSize="14" TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
-            </StackPanel>
-        </DockPanel>
-        <TextBox IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" Name="TextDetails"
-                 Margin="5" DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto"
-                 Text="{Binding Exception}"/>
+        <TextBlock Text="{DynamicResource LOCCrashDescription}"
+                   Margin="10,10,10,20"
+                   VerticalAlignment="Center" FontSize="14" DockPanel.Dock="Top" 
+                   TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
     </DockPanel>
 </controls:WindowBase>

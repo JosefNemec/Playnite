@@ -29,5 +29,10 @@ namespace PlayniteServices.Models.Playnite
         {
             get; set;
         }
+
+        public bool Is64Bit
+        {
+            get; set;
+        }
     }
 }

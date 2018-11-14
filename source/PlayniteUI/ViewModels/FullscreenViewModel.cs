@@ -1,7 +1,10 @@
 ﻿using NLog;
 using Playnite;
+using Playnite.API;
 using Playnite.Database;
+using Playnite.Plugins;
 using Playnite.SDK;
+using Playnite.Settings;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
@@ -28,7 +31,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 viewLeft = value;
-                OnPropertyChanged("ViewLeft");
+                OnPropertyChanged();
             }
         }
 
@@ -39,7 +42,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 viewTop = value;
-                OnPropertyChanged("ViewTop");
+                OnPropertyChanged();
             }
         }
 
@@ -50,7 +53,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 viewWidth = value;
-                OnPropertyChanged("ViewWidth");
+                OnPropertyChanged();
             }
         }
 
@@ -61,7 +64,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 viewHeight = value;
-                OnPropertyChanged("ViewHeight");
+                OnPropertyChanged();
             }
         }
 
@@ -72,7 +75,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showFilter = value;
-                OnPropertyChanged("ShowFilter");
+                OnPropertyChanged();
             }
         }
 
@@ -83,9 +86,9 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showGameDetails = value;
-                OnPropertyChanged("ShowGameDetails");
-                OnPropertyChanged("ShowBackOption");
-                OnPropertyChanged("ShowDetailsOption");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowBackOption));
+                OnPropertyChanged(nameof(ShowDetailsOption));
             }
         }
 
@@ -116,7 +119,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showExitMenu = value;
-                OnPropertyChanged("ShowExitMenu");
+                OnPropertyChanged();
             }
         }
 
@@ -205,8 +208,10 @@ namespace PlayniteUI.ViewModels
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources,
-            Settings settings,
-            GamesEditor gamesEditor) : base(database, window, dialogs, resources, settings, gamesEditor)
+            PlayniteSettings settings,
+            GamesEditor gamesEditor,
+            PlayniteAPI playniteApi,
+            ExtensionFactory extensions) : base(database, window, dialogs, resources, settings, gamesEditor, playniteApi, extensions)
         {
             IsFullscreenView = true;
             PropertyChanged += FullscreenViewModel_PropertyChanged;
@@ -214,12 +219,12 @@ namespace PlayniteUI.ViewModels
 
         private void FullscreenViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "SelectedGame")
+            if (e.PropertyName == nameof(SelectedGame))
             {
-                OnPropertyChanged("ShowInstallOption");
-                OnPropertyChanged("ShowPlayOption");
-                OnPropertyChanged("ShowBackOption");
-                OnPropertyChanged("ShowDetailsOption");
+                OnPropertyChanged(nameof(ShowInstallOption));
+                OnPropertyChanged(nameof(ShowPlayOption));
+                OnPropertyChanged(nameof(ShowBackOption));
+                OnPropertyChanged(nameof(ShowDetailsOption));
             }
         }
 
@@ -317,7 +322,7 @@ namespace PlayniteUI.ViewModels
             }
 
             // TODO: Handle this properly inside of Settings class.
-            AppSettings.OnPropertyChanged("FullScreenFilterSettings");
+            AppSettings.OnPropertyChanged(nameof(AppSettings.FullScreenFilterSettings));
         }
 
         public void ClearSearch()
@@ -359,7 +364,7 @@ namespace PlayniteUI.ViewModels
                 Dispose();
             }
 
-            App.CurrentApp.OpenNormalView(0, false, true);
+            App.CurrentApp.OpenNormalView(false, true);
         }
 
         public void OpenSearch()
@@ -380,7 +385,7 @@ namespace PlayniteUI.ViewModels
         {
             if (GamesView.CollectionView.Count > 0)
             {
-                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).ProviderId);
+                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).Id);
             }
             else
             {
@@ -392,7 +397,7 @@ namespace PlayniteUI.ViewModels
         {            
             if (GamesView.CollectionView.Count > 0)
             {
-                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).ProviderId);
+                SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).Id);
             }
             else
             {

@@ -34,10 +34,5 @@ namespace PlayniteUI
                 await ProgressTask;
             }
         }
-
-        public static void Wait()
-        {
-            ProgressTask?.Wait();
-        }
     }
 }

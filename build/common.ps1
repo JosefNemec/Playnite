@@ -22,17 +22,49 @@ function global:StartAndWait()
     return $proc.ExitCode
 }
 
+function global:Start-SigningWatcher()
+{
+    param(
+        [string]$Pass
+    )
+
+    Write-OperationLog "Starting signing watcher..."
+    $global:SigningWatcherJob = Start-Job {
+        Import-Module PSNativeAutomation
+        while ($true)
+        {
+            $window = Get-UIWindow -ControlType Dialog -Name "Common profile login" -EA 0
+            if ($window)
+            {
+                $window | Get-UIEdit | Set-UIValue $args[0]
+                $window | Get-UIButton -AutomationId 1010 | Invoke-UIInvokePattern
+            }
+
+            Start-Sleep -Seconds 1
+        }
+    } -ArgumentList $Pass
+}
+
+function global:Stop-SigningWatcher()
+{
+    Write-OperationLog "Stopping signing watcher..."
+    if ($SigningWatcherJob)
+    {
+        $SigningWatcherJob.StopJob()
+    }
+}
+
 function global:SignFile()
 {
     param(
         [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true)]
         [string]$Path        
     )
-
+    
     process
     {
         Write-Host "Signing file `"$Path`"" -ForegroundColor Green
-        $signToolPath = "c:\Program Files (x86)\Windows Kits\10\bin\10.0.16299.0\x86\signtool.exe"
+        $signToolPath = "c:\Program Files (x86)\Windows Kits\10\bin\10.0.17134.0\x86\signtool.exe"
         $res = StartAndWait $signToolPath ('sign /n "Open Source Developer, Josef Němec" /t http://time.certum.pl /v ' + "`"$Path`"")
         if ($res -ne 0)
         {        

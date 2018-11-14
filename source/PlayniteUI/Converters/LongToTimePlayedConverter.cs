@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,21 +17,21 @@ namespace PlayniteUI
             var seconds = (long)value;
             if (seconds == 0)
             {
-                return ResourceProvider.Instance.FindString("LOCPlayedNone");
+                return DefaultResourceProvider.FindString("LOCPlayedNone");
             }
 
             var time = TimeSpan.FromSeconds(seconds);
             if (time.TotalSeconds < 60)
             {
-                return string.Format(ResourceProvider.Instance.FindString("LOCPlayedSeconds"), time.Seconds);
+                return string.Format(DefaultResourceProvider.FindString("LOCPlayedSeconds"), time.Seconds);
             }
             else if (time.TotalHours < 1)
             {
-                return string.Format(ResourceProvider.Instance.FindString("LOCPlayedMinutes"), time.Minutes);
+                return string.Format(DefaultResourceProvider.FindString("LOCPlayedMinutes"), time.Minutes);
             }
             else
             {
-                return string.Format(ResourceProvider.Instance.FindString("LOCPlayedHours"), Math.Floor(time.TotalHours), time.Minutes);
+                return string.Format(DefaultResourceProvider.FindString("LOCPlayedHours"), Math.Floor(time.TotalHours), time.Minutes);
             }
         }
 

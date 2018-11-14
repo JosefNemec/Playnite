@@ -1,5 +1,4 @@
-﻿using NLog;
-using Playnite;
+﻿using Playnite;
 using Playnite.Metadata;
 using Playnite.SDK.Models;
 using Playnite.SDK;
@@ -54,7 +53,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 isLoading = value;
-                OnPropertyChanged("IsLoading");
+                OnPropertyChanged();
             }
         }
 
@@ -65,7 +64,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 searchTerm = value;
-                OnPropertyChanged("SearchTerm");
+                OnPropertyChanged();
             }
         }
 
@@ -80,7 +79,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 searchResults = value;
-                OnPropertyChanged("SearchResults");
+                OnPropertyChanged();
             }
         }
 
@@ -91,7 +90,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedResult = value;
-                OnPropertyChanged("SelectedResult");
+                OnPropertyChanged();
             }
         }        
 
@@ -124,7 +123,7 @@ namespace PlayniteUI.ViewModels
             }, (a) => !string.IsNullOrEmpty(SearchTerm));
         }
 
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private MetadataProvider provider;

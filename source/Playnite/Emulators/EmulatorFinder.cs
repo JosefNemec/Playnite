@@ -1,5 +1,5 @@
-﻿using NLog;
-using Playnite.Models;
+﻿using Newtonsoft.Json;
+using NLog;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -16,6 +16,7 @@ namespace Playnite.Emulators
 {
     public class ScannedEmulatorProfile : EmulatorProfile
     {
+        [JsonIgnore]
         public EmulatorDefinitionProfile ProfileDefinition
         {
             get; set;
@@ -154,12 +155,12 @@ namespace Playnite.Emulators
 
                     foreach (var extension in profile.ImageExtensions)
                     {
-                        if (string.Equals(file.Extension.TrimStart('.'), extension, StringComparison.InvariantCultureIgnoreCase))
+                        if (string.Equals(file.Extension.TrimStart('.'), extension, StringComparison.OrdinalIgnoreCase))
                         {
                             var newGame = new Game()
                             {
                                 Name = StringExtensions.NormalizeGameName(StringExtensions.GetPathWithoutAllExtensions(Path.GetFileName(file.Name))),
-                                IsoPath = file.FullName,
+                                GameImagePath = file.FullName,
                                 InstallDirectory = Path.GetDirectoryName(file.FullName)
                             };
 

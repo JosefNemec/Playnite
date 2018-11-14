@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Playnite.Services;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
-using Playnite.Models;
 using System.Globalization;
 using Playnite.Database;
 using System.IO;
@@ -14,10 +13,11 @@ using Playnite.SDK.Models;
 using Playnite.SDK;
 using Playnite.Web;
 using System.Text.RegularExpressions;
+using Playnite.SDK.Metadata;
 
 namespace Playnite.Metadata.Providers
 {
-    public class IGDBMetadataProvider : IMetadataProvider
+    public class IGDBMetadataProvider : ILibraryMetadataProvider
     {
         private ServicesClient client;
 
@@ -41,10 +41,10 @@ namespace Playnite.Metadata.Providers
 
             if (dbGame.cover != null)
             {
-                game.Image = dbGame.cover.Replace("t_thumb", "t_cover_big");
-                if (!game.Image.StartsWith("https:", StringComparison.InvariantCultureIgnoreCase))
+                game.CoverImage = dbGame.cover.Replace("t_thumb", "t_cover_big");
+                if (!game.CoverImage.StartsWith("https:", StringComparison.OrdinalIgnoreCase))
                 {
-                    game.Image = "https:" + game.Image;
+                    game.CoverImage = "https:" + game.CoverImage;
                 }
             }
 
@@ -112,10 +112,10 @@ namespace Playnite.Metadata.Providers
         {
             var game = GetParsedGame(ulong.Parse(gameId));
             MetadataFile image = null;
-            if (!string.IsNullOrEmpty(game.Image))
+            if (!string.IsNullOrEmpty(game.CoverImage))
             {
-                var name = Path.GetFileName(game.Image);
-                image = new MetadataFile($"images/custom/{name}", name, HttpDownloader.DownloadData(game.Image));
+                var name = Path.GetFileName(game.CoverImage);
+                image = new MetadataFile(name, HttpDownloader.DownloadData(game.CoverImage));
             }
 
             return new GameMetadata(game, null, image, string.Empty);
@@ -123,9 +123,9 @@ namespace Playnite.Metadata.Providers
 
         public GameMetadata GetMetadata(Game game)
         {
-            if (game.Provider == Provider.Steam)
+            if (game.PluginId == Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB"))
             {
-                var igdbId = client.GetIGDBGameBySteamId(game.ProviderId);
+                var igdbId = client.GetIGDBGameBySteamId(game.GameId);
                 if (igdbId != 0)
                 {
                     return GetMetadata(igdbId.ToString());
@@ -134,7 +134,7 @@ namespace Playnite.Metadata.Providers
 
             if (string.IsNullOrEmpty(game.Name))
             {
-                return GameMetadata.Empty;
+                return GameMetadata.GetEmptyData();
             }
 
             var copyGame = game.CloneJson();
@@ -223,7 +223,7 @@ namespace Playnite.Metadata.Providers
             }
             else
             {
-                return GameMetadata.Empty;
+                return GameMetadata.GetEmptyData();
             }            
         }
 

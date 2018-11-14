@@ -7,14 +7,14 @@
         xmlns:pui="clr-namespace:PlayniteUI"
         xmlns:pcmd="clr-namespace:PlayniteUI.Commands"
         xmlns:pn="clr-namespace:Playnite;assembly=Playnite"
-        xmlns:steam="clr-namespace:Playnite.Providers.Steam;assembly=Playnite"
+        xmlns:pset="clr-namespace:Playnite.Settings;assembly=Playnite"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:controls="clr-namespace:PlayniteUI.Controls"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Title="{DynamicResource LOCSettingsWindowTitle}" Width="650" Height="550"                     
+        Width="750" Height="600"                     
         AutomationProperties.AutomationId="WindowSettings">
 
     <i:Interaction.Triggers>
@@ -27,466 +27,268 @@
         <pui:NegateConverter x:Key="NegateConverter" />
         <pui:EnumConverter x:Key="EnumConverter" />
         <sys:Double x:Key="IconSize">24</sys:Double>
-        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />   
     </controls:WindowBase.Resources>
 
-    <Border Margin="0,10,0,0" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
-        <DockPanel>
-            <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
-                <DockPanel LastChildFill="False" Margin="5">
-                    <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right"
+    <DockPanel>
+        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
+            <DockPanel LastChildFill="False" Margin="5">
+                <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right"
                             Style="{StaticResource BottomButton}" IsCancel="True"
                             Command="{Binding CancelCommand}"/>
-                    <Button Name="ButtonOK" Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right" 
+                <Button Name="ButtonOK" Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right" 
                             Style="{StaticResource BottomButton}"
                             Command="{Binding ConfirmCommand}"/>
-                </DockPanel>
-            </Border>
-
-            <TreeView DockPanel.Dock="Left" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}"
-                      Name="TreeSections" MinWidth="140">
-                <TreeView.Resources>
-                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
-                        <Setter Property="FontSize" Value="16" />
-                        <Setter Property="Margin" Value="0,2,0,2" />
-                        <Setter Property="Padding" Value="0,3,3,3" />
-                    </Style>
-                </TreeView.Resources>
-                <TreeViewItem Header="{DynamicResource LOCSettingsGeneralLabel}" IsSelected="True">
-                    <TreeViewItem.Tag>
-                        <sys:Int32>0</sys:Int32>
-                    </TreeViewItem.Tag>
-                </TreeViewItem>
-                <TreeViewItem Header="{DynamicResource LOCSettingsAppearanceLabel}">
-                    <TreeViewItem.Tag>
-                        <sys:Int32>1</sys:Int32>
-                    </TreeViewItem.Tag>
-                </TreeViewItem>
-                <TreeViewItem Header="{DynamicResource LOCSettingsFullscreenLabel}">
-                    <TreeViewItem.Tag>
-                        <sys:Int32>8</sys:Int32>
-                    </TreeViewItem.Tag>
-                </TreeViewItem>
-                <TreeViewItem Header="{DynamicResource LOCSettingsProvidersLabel}" IsExpanded="True" Focusable="False">
-                    <TreeViewItem Header="Steam">
-                        <TreeViewItem.Tag>
-                            <sys:Int32>2</sys:Int32>
-                        </TreeViewItem.Tag>
-                    </TreeViewItem>
-                    <TreeViewItem Header="GOG">
-                        <TreeViewItem.Tag>
-                            <sys:Int32>3</sys:Int32>
-                        </TreeViewItem.Tag>
-                    </TreeViewItem>
-                    <TreeViewItem Header="Origin" >
-                        <TreeViewItem.Tag>
-                            <sys:Int32>4</sys:Int32>
-                        </TreeViewItem.Tag>
-                    </TreeViewItem>
-                    <TreeViewItem Header="Battle.net">
-                        <TreeViewItem.Tag>
-                            <sys:Int32>5</sys:Int32>
-                        </TreeViewItem.Tag>
-                    </TreeViewItem>
-                    <TreeViewItem Header="Uplay">
-                        <TreeViewItem.Tag>
-                            <sys:Int32>6</sys:Int32>
-                        </TreeViewItem.Tag>
-                    </TreeViewItem>
-                </TreeViewItem>
-                <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}">
-                    <TreeViewItem.Tag>
-                        <sys:Int32>7</sys:Int32>
-                    </TreeViewItem.Tag>
-                </TreeViewItem>
-            </TreeView>
-
-            <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Top" OverridesDefaultStyle="True"
-                        SelectedIndex="{Binding SelectedItem.Tag, ElementName=TreeSections}">
-                <TabControl.Style>
-                    <Style TargetType="TabControl">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="TabControl">
-                                    <Grid>
-                                        <TabPanel IsItemsHost="True" />
-                                        <ContentPresenter ContentSource="SelectedContent" />
-                                    </Grid>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </TabControl.Style>
-                <TabItem Visibility="Collapsed">
-                    <StackPanel Margin="20">
-                        <DockPanel Margin="0,10,0,0">
-                            <TextBlock Text="{DynamicResource LOCSettingsDBLocation}" Margin="5,0,10,0"
-                                   DockPanel.Dock="Left" VerticalAlignment="Center"/>
-                            <Button Name="ButtonBrowserDbFile" Content="{DynamicResource LOCChange}"
-                                    DockPanel.Dock="Right" Padding="5,0,5,0"
-                                    Command="{Binding SelectDbFileCommand}"/>
-                            <TextBox Name="TextDatabase" Text="{Binding Settings.DatabasePath}"
-                                     DockPanel.Dock="Left" Margin="0,0,5,0"
-                                     IsReadOnly="True"/>
-                        </DockPanel>
-
-                        <DockPanel Margin="0,15,0,5" LastChildFill="False">
-                            <TextBlock Text="{DynamicResource LOCLanguageSettingsLabel}" VerticalAlignment="Center" Margin="5,0,10,0" />
-                            <ComboBox Name="ComboLanguage"
+            </DockPanel>
+        </Border>
+        
+        <TabControl BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
+            <TabItem Header="{DynamicResource LOCMenuPlayniteSettingsTitle}">
+                <DockPanel>
+                    <ListBox DockPanel.Dock="Left" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}"
+                          Name="TreeSections" MinWidth="140">
+                        <ListBox.Resources>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                <Setter Property="FontSize" Value="16" />
+                                <Setter Property="Padding" Value="5" />
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBoxItem Content="{DynamicResource LOCSettingsGeneralLabel}" IsSelected="True">
+                            <ListBoxItem.Tag>
+                                <sys:Int32>0</sys:Int32>
+                            </ListBoxItem.Tag>
+                        </ListBoxItem>
+                        <ListBoxItem Content="{DynamicResource LOCSettingsAppearanceLabel}">
+                            <ListBoxItem.Tag>
+                                <sys:Int32>1</sys:Int32>
+                            </ListBoxItem.Tag>
+                        </ListBoxItem>
+                        <ListBoxItem Content="{DynamicResource LOCSettingsFullscreenLabel}">
+                            <ListBoxItem.Tag>
+                                <sys:Int32>2</sys:Int32>
+                            </ListBoxItem.Tag>
+                        </ListBoxItem>
+                        <ListBoxItem Content="{DynamicResource LOCSettingsAdvancedLabel}">
+                            <ListBoxItem.Tag>
+                                <sys:Int32>3</sys:Int32>
+                            </ListBoxItem.Tag>
+                        </ListBoxItem>
+                        <ListBoxItem Content="{DynamicResource LOCExtensions}">
+                            <ListBoxItem.Tag>
+                                <sys:Int32>4</sys:Int32>
+                            </ListBoxItem.Tag>
+                        </ListBoxItem>
+                    </ListBox>
+                    
+                    <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Top" OverridesDefaultStyle="True"
+                                SelectedIndex="{Binding SelectedItem.Tag, ElementName=TreeSections}">
+                        <TabControl.Style>
+                            <Style TargetType="TabControl">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TabControl">
+                                            <ContentPresenter ContentSource="SelectedContent" Margin="20" />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TabControl.Style>
+                        <TabItem>
+                            <StackPanel>
+                                <DockPanel Margin="0,0,0,10" LastChildFill="False">
+                                    <TextBlock Text="{DynamicResource LOCLanguageSettingsLabel}" VerticalAlignment="Center" Margin="5,0,10,0" />
+                                    <ComboBox Name="ComboLanguage"
                                       SelectedValue="{Binding Settings.Language}"
                                       SelectedValuePath="Id" DisplayMemberPath="LocaleString"
                                       ItemsSource="{Binding AvailableLanguages}"/>
-                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
+                                    <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                                 <Hyperlink Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
                                            CommandParameter="https://github.com/JosefNemec/Playnite/wiki/How-to:-Translations">
                                     <Run Text="{DynamicResource LOCSettingsCreateLocalization}" />
                                 </Hyperlink>
-                            </TextBlock>
-                        </DockPanel>
+                                    </TextBlock>
+                                </DockPanel>
 
-                        <Grid Margin="0,20,0,0">
-                            <Grid.Resources>
-                                <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
+                                <Grid Margin="0,20,0,0">
+                                    <Grid.Resources>
+                                        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
                                                     x:Key="AfterLaunchOptionsEnumValues">
-                                    <ObjectDataProvider.MethodParameters>
-                                        <x:Type TypeName="pn:AfterLaunchOptions" />
-                                    </ObjectDataProvider.MethodParameters>
-                                </ObjectDataProvider>
-                                <pui:AfterGameLaunchOptionToStringConverter x:Key="AfterGameLaunchOptionToStringConverter" />
-                                <ComboBox x:Key="ComboAfterGameOptions" x:Shared="False"
+                                            <ObjectDataProvider.MethodParameters>
+                                                <x:Type TypeName="pset:AfterLaunchOptions" />
+                                            </ObjectDataProvider.MethodParameters>
+                                        </ObjectDataProvider>
+                                        <pui:AfterGameLaunchOptionToStringConverter x:Key="AfterGameLaunchOptionToStringConverter" />
+                                        <ComboBox x:Key="ComboAfterGameOptions" x:Shared="False"
                                           SelectedValue="{Binding AfterLaunch}"
                                           ItemsSource="{Binding Source={StaticResource AfterLaunchOptionsEnumValues}}">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Converter={StaticResource AfterGameLaunchOptionToStringConverter}}"/>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
-                            </Grid.Resources>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <CheckBox Name="CheckEnableTray" Content="{DynamicResource LOCSettingsShowTray}" Margin="5,0,0,0"
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Converter={StaticResource AfterGameLaunchOptionToStringConverter}}"/>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
+                                                    x:Key="AfterCloseOptionsEnumValues">
+                                            <ObjectDataProvider.MethodParameters>
+                                                <x:Type TypeName="pset:AfterGameCloseOptions" />
+                                            </ObjectDataProvider.MethodParameters>
+                                        </ObjectDataProvider>
+                                        <pui:AfterGameCloseOptionToStringConverter x:Key="AfterGameCloseOptionToStringConverter" />
+                                        <ComboBox x:Key="ComboAfterGameCloseOptions" x:Shared="False"
+                                          SelectedValue="{Binding AfterGameClose}"
+                                          ItemsSource="{Binding Source={StaticResource AfterCloseOptionsEnumValues}}">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Converter={StaticResource AfterGameCloseOptionToStringConverter}}"/>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                    </Grid.Resources>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <CheckBox Name="CheckEnableTray" Content="{DynamicResource LOCSettingsShowTray}" Margin="5,0,0,0"
                                             IsChecked="{Binding Settings.EnableTray}"
                                       Grid.Column="0" Grid.Row="0"/>
-                            <CheckBox Name="CheckMinimizeToTray" Content="{DynamicResource LOCSettingsMinimizeToTray}" Margin="20,10,5,5"
+                                    <CheckBox Name="CheckMinimizeToTray" Content="{DynamicResource LOCSettingsMinimizeToTray}" Margin="20,10,5,5"
                                         IsChecked="{Binding Settings.MinimizeToTray}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"
                                       Grid.Column="0" Grid.Row="1"/>
-                            <CheckBox Name="CheckCloseToTray" Content="{DynamicResource LOCSettingsCloseToTray}" Margin="20,5,5,5"
+                                    <CheckBox Name="CheckCloseToTray" Content="{DynamicResource LOCSettingsCloseToTray}" Margin="20,5,5,5"
                                         IsChecked="{Binding Settings.CloseToTray}"
                                         IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}"
-                                      Grid.Column="0" Grid.Row="2"/>                
+                                      Grid.Column="0" Grid.Row="2"/>
 
-                            <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal"
-                                        Margin="40,0,0,0">
-                                <TextBlock Text="{DynamicResource LOCSettingsAfterGameStart}" Margin="0,0,5,0"
+                                    <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal"
+                                        Margin="80,0,0,0">
+                                        <TextBlock Text="{DynamicResource LOCSettingsAfterGameStart}" Margin="0,0,5,0"
                                            VerticalAlignment="Center" />
-                                <ContentControl DataContext="{Binding Settings}"
+                                        <ContentControl DataContext="{Binding Settings}"
                                                 ToolTipService.InitialShowDelay="0"
                                                 ToolTip="{DynamicResource LOCSettingsClosePlaytimeNotif}"
                                                 Content="{StaticResource ComboAfterGameOptions}" />
-                            </StackPanel>
+                                    </StackPanel>
 
-                            <CheckBox Name="CheckUpdateLibStartup" Margin="5,25,5,5" Grid.Row="3" Grid.ColumnSpan="2"
+                                    <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal"
+                                        Margin="80,5,0,0">
+                                        <TextBlock Text="{DynamicResource LOCSettingsAfterGameClose}" Margin="0,0,5,0"
+                                           VerticalAlignment="Center" />
+                                        <ContentControl DataContext="{Binding Settings}"
+                                                        Content="{StaticResource ComboAfterGameCloseOptions}"
+                                                        VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+                                    <CheckBox Name="CheckUpdateLibStartup" Margin="5,25,5,5" Grid.Row="3" Grid.ColumnSpan="2"
                                       Content="{DynamicResource LOCSettingsUpdateLibStartup}" ToolTip="{DynamicResource LOCSettingsUpdateLibStartupTooltip}" 
                                       IsChecked="{Binding Settings.UpdateLibStartup}"/>
 
-                            <CheckBox Name="CheckStartFullscreen" Margin="5,15,5,5" Grid.Row="4" Grid.ColumnSpan="2"
+                                    <CheckBox Name="CheckDownloadMetadataOnImport" Margin="5,15,5,5" Grid.Row="4" Grid.ColumnSpan="2"
+                                      Content="{DynamicResource LOCSettingsDownloadMetadataOnImport}" 
+                                      IsChecked="{Binding Settings.DownloadMetadataOnImport}"/>
+
+                                    <CheckBox Name="CheckStartFullscreen" Margin="5,15,5,5" Grid.Row="5" Grid.ColumnSpan="2"
                                       Content="{DynamicResource LOCSettingsStartInFullscreen}"
                                       IsChecked="{Binding Settings.StartInFullscreen}"/>
-                        </Grid>
-                    </StackPanel>
-                </TabItem>                
-                
-                <TabItem Visibility="Collapsed">
-                    <StackPanel Margin="20">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            
-                            <TextBlock Text="{DynamicResource LOCSettingsSkin}" VerticalAlignment="Center"
+
+                                    <CheckBox Name="CheckStartOnBoot" Margin="5,15,5,5" Grid.Row="6" Grid.ColumnSpan="2"
+                                      Content="{DynamicResource LOCSettingsStartOnBoot}"
+                                      IsChecked="{Binding Settings.StartOnBoot}"/>
+
+                                    <CheckBox Name="CheckStartMinimized" Margin="5,15,5,5" Grid.Row="7" Grid.ColumnSpan="2"
+                                      Content="{DynamicResource LOCSettingsStartMinimized}"
+                                      IsChecked="{Binding Settings.StartMinimized}"/>
+                                </Grid>
+                            </StackPanel>
+                        </TabItem>
+
+                        <TabItem>
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="{DynamicResource LOCSettingsSkin}" VerticalAlignment="Center"
                                        Grid.Row="0" Grid.Column="0"/>
-                            <ComboBox Margin="10,5,20,5" Name="ComboSkins"
+                                    <ComboBox Margin="10,5,20,5" Name="ComboSkins"
                                         Grid.Row="0" Grid.Column="1"
                                         ItemsSource="{Binding AvailableSkins}"
                                         SelectedValue="{Binding Settings.Skin}"
                                         SelectionChanged="ComboSkins_SelectionChanged"
                                         SelectedValuePath="Name" DisplayMemberPath="Name" />
 
-                            <TextBlock Text="{DynamicResource LOCSettingsSkinColor}" VerticalAlignment="Center"
+                                    <TextBlock Text="{DynamicResource LOCSettingsSkinColor}" VerticalAlignment="Center"
                                        Grid.Row="0" Grid.Column="2" />
-                            <ComboBox Margin="10,5,10,5" Name="CombSkinColor"
+                                    <ComboBox Margin="10,5,10,5" Name="CombSkinColor"
                                       Grid.Row="0" Grid.Column="3"
                                       SelectedValue="{Binding Settings.SkinColor}"
                                       SelectionChanged="CombSkinColor_SelectionChanged"
                                       ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkins}" />
-                        </Grid>                        
+                                </Grid>
 
-                        <TextBlock Text="{DynamicResource LOCSettingsSkinChangeRestart}" FontStyle="Italic" Margin="0,15,0,15"/>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock >
+                                <TextBlock Text="{DynamicResource LOCSettingsSkinChangeRestart}" FontStyle="Italic" Margin="0,15,0,15"/>
+                                <StackPanel Orientation="Horizontal" Visibility="Collapsed">
+                                    <TextBlock >
                                 <Hyperlink Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
                                            CommandParameter="https://www.reddit.com/r/playnite/comments/7o2bd2/custom_themes_database/">
                                     <Run Text="{DynamicResource LOCSettingsGetThemes}" />
                                 </Hyperlink>
-                            </TextBlock>
-                            <TextBlock Margin="20,0,0,0">
+                                    </TextBlock>
+                                    <TextBlock Margin="20,0,0,0">
                                 <Hyperlink Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
                                            CommandParameter="https://github.com/JosefNemec/Playnite/wiki/How-to:-Themes">
                                     <Run Text="{DynamicResource LOCSettingsCreateThemes}" />
                                 </Hyperlink>
-                            </TextBlock>
-                        </StackPanel>
-                       
-                        <CheckBox Content="{DynamicResource LOCSettingsAsyncImageLoading}" ToolTip="{DynamicResource LOCSettingsAsyncImageLoadingTooltip}"
+                                    </TextBlock>
+                                </StackPanel>
+
+                                <CheckBox Content="{DynamicResource LOCSettingsAsyncImageLoading}" ToolTip="{DynamicResource LOCSettingsAsyncImageLoadingTooltip}"
                                   Margin="0,40,0,0"
                                   Name="CheckAsyncImages" IsChecked="{Binding Settings.AsyncImageLoading}"/>
-                        <CheckBox Content="{DynamicResource LOCSettingsShowNameEmptyCover}" Margin="0,15,0,0"
+                                <CheckBox Content="{DynamicResource LOCSettingsShowNameEmptyCover}" Margin="0,15,0,0"
                                   Name="CheckNameEmptyCover" IsChecked="{Binding Settings.ShowNameEmptyCover}"/>
-                        <CheckBox Content="{DynamicResource LOCSettingsShowNamesUnderCover}" Margin="0,15,0,0"
+                                <CheckBox Content="{DynamicResource LOCSettingsShowNamesUnderCover}" Margin="0,15,0,0"
                                   Name="CheckNameUnderCover" IsChecked="{Binding Settings.ShowNamesUnderCovers}"/>
-                        <CheckBox Content="{DynamicResource LOCSettingsShowIconList}" Margin="0,15,0,0"
-                                  Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
-                        <CheckBox Content="{DynamicResource LOCSettingsDisableAcceleration}" Margin="0,15,0,0" ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
-                                  Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"/>
-                    </StackPanel>
-                </TabItem>
-                <!--STEAM-->
-                <TabItem Visibility="Collapsed">
-                    <DockPanel Margin="20" LastChildFill="False">
-                        <CheckBox IsChecked="{Binding Settings.SteamSettings.IntegrationEnabled}"
-                                    Name="CheckSteamEnabled" Content="{DynamicResource LOCSettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
-                                    DockPanel.Dock="Top"/>
-                        <RadioButton Name="RadioInstalledSteam" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
-                                        IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
-                                        IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
-                        <RadioButton Name="RadioLibrarySteam"
-                                        IsChecked="{Binding Settings.SteamSettings.LibraryDownloadEnabled}"
-                                        IsEnabled="{Binding IsChecked, ElementName=CheckSteamEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,5,5,0">
-                            <RadioButton.Content>
-                                <TextBlock Text="{DynamicResource LOCSettingsImportSteamLibraryLabel}"
-                                       TextWrapping="Wrap" />
-                            </RadioButton.Content>
-                        </RadioButton>
+                                <CheckBox Content="{DynamicResource LOCSettingsShowIconList}" Margin="0,15,0,0"
+                                  Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>                       
+                                <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
+                                  Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
+                                <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundImage}" Margin="0,15,0,0"
+                                  Name="CheckShowBackgroundImage" IsChecked="{Binding Settings.ShowBackgroundImage}"/>
+                            </StackPanel>
+                        </TabItem>
 
-                        <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5" IsEnabled="{Binding IsChecked, ElementName=RadioLibrarySteam}">
-                            <TextBlock Text="{DynamicResource LOCSettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5"/>
-                            <Grid DockPanel.Dock="Top">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
+                        <TabItem>
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
 
-                                <RadioButton Content="{DynamicResource LOCNameLabel}" Name="RadioSteamLibName" GroupName="steamsource"
-                                                IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.Name}}"
-                                                Grid.Column="0" Grid.Row="0" Margin="5"/>
-                                <RadioButton Content="{DynamicResource LOCLocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource" 
-                                                IsChecked="{Binding Settings.SteamSettings.IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.LocalUser}}"
-                                                Grid.Column="0" Grid.Row="1" Margin="5"/>
-
-                                <DockPanel Grid.Column="1" Grid.Row="0" Margin="5">
-                                    <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">           
-                                        <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"
-                                                   Command="{Binding NavigateUrlCommand}"
-                                                   CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                                            <Run Text="{DynamicResource LOCSettingsWhatsSteamName}" />
-                                        </Hyperlink>
-                                    </TextBlock>
-                                    <TextBox Text="{Binding Settings.SteamSettings.AccountName}"
-                                                IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}"
-                                                Name="TextSteamAccountName" DockPanel.Dock="Left" Margin="0,0,10,0" />
-                                </DockPanel>
-                                <ComboBox IsReadOnly="True" Name="ComboSteamAccount" DisplayMemberPath="AccountName"
-                                            SelectedValuePath="Id" SelectedValue="{Binding Settings.SteamSettings.AccountId}"
-                                            ItemsSource="{Binding SteamUsers}"
-                                            IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"
-                                            Grid.Column="1" Grid.Row="1" Margin="5" />
-                            </Grid>
-                            <CheckBox Content="{DynamicResource LOCPrivateAccount}" DockPanel.Dock="Top"
-                                      IsChecked="{Binding Settings.SteamSettings.PrivateAccount}"
-                                      Margin="5,5,5,5" Name="CheckSteamPrivate"
-                                      ToolTip="{DynamicResource LOCSettingsApiKeyTooltip}"/>
-                            <DockPanel DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=CheckSteamPrivate}"
-                                       Margin="30,5,5,5">
-                                <TextBlock Text="{DynamicResource LOCAPIKey}" DockPanel.Dock="Left"
-                                           VerticalAlignment="Center"/>
-                                <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">
-                                    <Hyperlink NavigateUri="https://steamcommunity.com/dev/apikey"
-                                               Command="{Binding NavigateUrlCommand}"
-                                               CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                                        <Run Text="{DynamicResource LOCSettingsApiKeyUrlText}" />
-                                    </Hyperlink>
-                                </TextBlock>
-                                <TextBox Text="{Binding Settings.SteamSettings.APIKey}"
-                                         DockPanel.Dock="Left" Margin="10,0,10,0"/>
-                            </DockPanel>
-                        </DockPanel>
-
-                        <CheckBox Content="{DynamicResource LOCBackgroundImageScreenOption}"
-                                  DockPanel.Dock="Top" Margin="5,15,0,5"
-                                  ToolTip="{DynamicResource LOCBackgroundImageScreenOptionTooltip}" ToolTipService.InitialShowDelay="0"
-                                  IsChecked="{Binding Settings.SteamSettings.PreferScreenshotForBackground}"/>
-
-                        <TextBlock Text="{DynamicResource LOCSettingsSteamImportCategories}" DockPanel.Dock="Top" Margin="5,20,5,5" />
-                        <StackPanel DockPanel.Dock="Top" Margin="20,10,5,5" Orientation="Horizontal">
-                            <Button Content="{DynamicResource LOCImportLabel}" Name="ButtonImportSteamCategories"
-                                    Command="{Binding ImportSteamCategoriesCommand}"/>
-                            <TextBlock Text="{DynamicResource LOCSettingsSteamImportCatFrom}" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                            <ComboBox Name="ComboSteamCatImport" IsReadOnly="True" Margin="10,0,0,0"
-                                        DisplayMemberPath="AccountName" SelectedValuePath="Id" SelectedIndex="0"
-                                        ItemsSource="{Binding SteamUsers}" />
-                        </StackPanel>
-                    </DockPanel>
-                </TabItem>
-                <!--GOG-->
-                <TabItem Visibility="Collapsed">
-                    <DockPanel Margin="20" LastChildFill="False">
-                        <CheckBox IsChecked="{Binding Settings.GOGSettings.RunViaGalaxy}"
-                                  Name="CheckGogRunGalaxy" Content="{DynamicResource LOCSettingsGOGUseGalaxy}"
-                                  ToolTip="{DynamicResource LOCSettingsGOGUseGalaxyTooltip}"
-                                  DockPanel.Dock="Top" Margin="0,0,0,15"/>
-                        <CheckBox IsChecked="{Binding Settings.GOGSettings.IntegrationEnabled}"
-                                    Name="CheckGogEnabled" Content="{DynamicResource LOCSettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
-                                    DockPanel.Dock="Top"/>
-                        <RadioButton Name="RadioInstalledGOG" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
-                                        IsChecked="{Binding Settings.GOGSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
-                                        IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
-                        <RadioButton Name="RadioLibraryGOG" Content="{DynamicResource LOCSettingsImportLibraryLabel}"
-                                        IsChecked="{Binding Settings.GOGSettings.LibraryDownloadEnabled}"
-                                        IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,10,5,5"/>
-                        <DockPanel DockPanel.Dock="Top" Margin="20,15,5,5" LastChildFill="False"
-                                   IsEnabled="{Binding IsChecked, ElementName=CheckGogEnabled}">
-                            <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonGogAuth"
-                                    Command="{Binding AuthGOGCommand}"/>
-                            <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
-                            <TextBlock VerticalAlignment="Center">
-                                <TextBlock.Text>
-                                    <PriorityBinding>
-                                        <Binding Path="GogLoginStatus" IsAsync="True" Mode="OneWay" />
-                                        <Binding Source="{StaticResource LOCLoginChecking}" />
-                                    </PriorityBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </DockPanel>
-                    </DockPanel>
-                </TabItem>
-                <!--ORIGIN-->
-                <TabItem Visibility="Collapsed">
-                    <DockPanel Margin="20" LastChildFill="False">
-                        <CheckBox IsChecked="{Binding Settings.OriginSettings.IntegrationEnabled}"
-                                    Name="CheckOriginEnabled" Content="{DynamicResource LOCSettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
-                                    DockPanel.Dock="Top" />
-                        <RadioButton Name="RadioInstalledOrigin" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
-                                        IsChecked="{Binding Settings.OriginSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
-                                        IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
-                        <RadioButton Name="RadioLibraryOrigin" Content="{DynamicResource LOCSettingsImportLibraryLabel}"
-                                        IsChecked="{Binding Settings.OriginSettings.LibraryDownloadEnabled}"
-                                        IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,10,5,5"/>
-                        <DockPanel DockPanel.Dock="Top" Margin="20,15,5,5" LastChildFill="False"
-                                   IsEnabled="{Binding IsChecked, ElementName=CheckOriginEnabled}">
-                            <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonOriginAuth"
-                                    Command="{Binding AuthOriginCommand}"/>
-                            <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
-                            <TextBlock VerticalAlignment="Center">
-                                <TextBlock.Text>
-                                    <PriorityBinding>
-                                        <Binding Path="OriginLoginStatus" IsAsync="True" Mode="OneWay" />
-                                        <Binding Source="{StaticResource LOCLoginChecking}" />
-                                    </PriorityBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </DockPanel>
-                    </DockPanel>
-                </TabItem>
-                <!--BATTLENET-->
-                <TabItem Visibility="Collapsed">
-                    <DockPanel Margin="20" LastChildFill="False">
-                        <CheckBox IsChecked="{Binding Settings.BattleNetSettings.IntegrationEnabled}"
-                                    Name="CheckBattleNetEnabled" Content="{DynamicResource LOCSettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
-                                    DockPanel.Dock="Top" />
-                        <RadioButton Name="RadioInstalledBattleNet" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
-                                        IsChecked="{Binding Settings.BattleNetSettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
-                                        IsEnabled="{Binding IsChecked, ElementName=CheckBattleNetEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
-                        <RadioButton Name="RadioLibraryBattleNet" Content="{DynamicResource LOCSettingsImportLibraryLabel}"
-                                        IsChecked="{Binding Settings.BattleNetSettings.LibraryDownloadEnabled}"
-                                        IsEnabled="{Binding IsChecked, ElementName=CheckBattleNetEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,10,5,5"/>
-                        <DockPanel DockPanel.Dock="Top" Margin="20,15,5,5" LastChildFill="False"
-                                   IsEnabled="{Binding IsChecked, ElementName=CheckBattleNetEnabled}">
-                            <Button Content="{DynamicResource LOCAuthenticateLabel}" Name="ButtonBattleNetAuth"
-                                    Command="{Binding AuthBattleNetCommand}"/>
-                            <TextBlock Text="{DynamicResource LOCSettingsLoginStatus}" VerticalAlignment="Center" Margin="10,0,10,0"/>
-                            <TextBlock VerticalAlignment="Center">
-                                <TextBlock.Text>
-                                    <PriorityBinding>
-                                        <Binding Path="BattleNetLoginStatus" IsAsync="True" Mode="OneWay" />
-                                        <Binding Source="{StaticResource LOCLoginChecking}" />
-                                    </PriorityBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </DockPanel>
-                    </DockPanel>
-                </TabItem>
-                <!--UPLAY-->
-                <TabItem Visibility="Collapsed">
-                    <DockPanel Margin="20" LastChildFill="False">
-                        <CheckBox IsChecked="{Binding Settings.UplaySettings.IntegrationEnabled}"
-                                    Name="CheckUplayEnabled" Content="{DynamicResource LOCSettingsImportLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
-                                    DockPanel.Dock="Top"/>
-                        <RadioButton Name="RadioInstalledUplay" Content="{DynamicResource LOCSettingsImportInstalledLabel}"
-                                        IsChecked="{Binding Settings.UplaySettings.LibraryDownloadEnabled, Converter={StaticResource NegateConverter}}"
-                                        IsEnabled="{Binding IsChecked, ElementName=CheckUplayEnabled}"
-                                        DockPanel.Dock="Top" Margin="20,15,5,5"/>
-                    </DockPanel>
-                </TabItem>
-                <TabItem Visibility="Collapsed">
-                    <StackPanel Margin="20">
-                        <Button Name="ButtonClearWebCace" Content="{DynamicResource LOCSettingsClearWebCache}" HorizontalAlignment="Left"
-                                ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"
-                                Command="{Binding ClearWebCacheCommand}"/>
-                    </StackPanel>
-                </TabItem>
-                <TabItem Visibility="Collapsed">
-                    <StackPanel Margin="20">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="{DynamicResource LOCSettingsSkinFullscreen}" VerticalAlignment="Center"
+                                    <TextBlock Text="{DynamicResource LOCSettingsSkinFullscreen}" VerticalAlignment="Center"
                                         Grid.Row="0" Grid.Column="0"/>
-                            <ComboBox Margin="10,5,10,5" Name="ComboSkinsFullscreen"
+                                    <ComboBox Margin="10,5,10,5" Name="ComboSkinsFullscreen"
                                       Visibility="Collapsed"
                                         Grid.Row="0" Grid.Column="1"
                                         ItemsSource="{Binding AvailableFullscreenSkins}"
@@ -494,91 +296,220 @@
                                         SelectionChanged="ComboSkinsFullscreen_SelectionChanged"
                                         SelectedValuePath="Name" DisplayMemberPath="Name" />
 
-                            <TextBlock Text="{DynamicResource LOCSettingsSkinColorFullscreen}" VerticalAlignment="Center"
+                                    <TextBlock Text="{DynamicResource LOCSettingsSkinColorFullscreen}" VerticalAlignment="Center"
                                         Grid.Row="0" Grid.Column="0" />
-                            <ComboBox Margin="10,5,0,5" Name="CombSkinColorFullscreen"
+                                    <ComboBox Margin="10,5,0,5" Name="CombSkinColorFullscreen"
                                         Grid.Row="0" Grid.Column="1"
                                         SelectedValue="{Binding Settings.SkinColorFullscreen}"
                                         ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkinsFullscreen}">
-                            </ComboBox>
-                        </Grid>
+                                    </ComboBox>
+                                </Grid>
 
-                        <Grid Margin="0,15,0,0">
-                            <Grid.Resources>
-                                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                    <Setter Property="Margin" Value="0,5,5,5" />
-                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                </Style>
-                                <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
-                                    <Setter Property="Margin" Value="5" />
-                                    <Setter Property="Width" Value="70" />
-                                </Style>
-                                <Style TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
-                                    <Setter Property="Padding" Value="5,0,0,0" />
-                                </Style>
-                            </Grid.Resources>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
+                                <Grid Margin="0,15,0,0">
+                                    <Grid.Resources>
+                                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                            <Setter Property="Margin" Value="0,5,5,5" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                        <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+                                            <Setter Property="Margin" Value="5" />
+                                            <Setter Property="Width" Value="70" />
+                                        </Style>
+                                        <Style TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                                            <Setter Property="Padding" Value="5,0,0,0" />
+                                        </Style>
+                                    </Grid.Resources>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
 
-                            <TextBlock Text="{DynamicResource LOCSettingsFullscreenColumns}"
+                                    <TextBlock Text="{DynamicResource LOCSettingsFullscreenColumns}"
                                        Grid.Column="0" Grid.Row="0" />
-                            <TextBlock Text="{DynamicResource LOCSettingsFullscreenRows}"
+                                    <TextBlock Text="{DynamicResource LOCSettingsFullscreenRows}"
                                        Grid.Column="0" Grid.Row="1" />
-                            <TextBlock Text="{DynamicResource LOCSettingsFullscreenRowDetails}"
+                                    <TextBlock Text="{DynamicResource LOCSettingsFullscreenRowDetails}"
                                        Grid.Column="0" Grid.Row="2" />
 
-                            <ComboBox Grid.Column="1" Grid.Row="0"
+                                    <ComboBox Grid.Column="1" Grid.Row="0"
                                       SelectedValue="{Binding Settings.FullscreenSettings.ColumnCount}">
-                                <sys:Int32>1</sys:Int32>
-                                <sys:Int32>2</sys:Int32>
-                                <sys:Int32>3</sys:Int32>
-                                <sys:Int32>4</sys:Int32>
-                                <sys:Int32>5</sys:Int32>
-                                <sys:Int32>6</sys:Int32>
-                                <sys:Int32>7</sys:Int32>
-                                <sys:Int32>8</sys:Int32>
-                                <sys:Int32>9</sys:Int32>
-                                <sys:Int32>10</sys:Int32>
-                            </ComboBox>
+                                        <sys:Int32>1</sys:Int32>
+                                        <sys:Int32>2</sys:Int32>
+                                        <sys:Int32>3</sys:Int32>
+                                        <sys:Int32>4</sys:Int32>
+                                        <sys:Int32>5</sys:Int32>
+                                        <sys:Int32>6</sys:Int32>
+                                        <sys:Int32>7</sys:Int32>
+                                        <sys:Int32>8</sys:Int32>
+                                        <sys:Int32>9</sys:Int32>
+                                        <sys:Int32>10</sys:Int32>
+                                    </ComboBox>
 
-                            <ComboBox Grid.Column="1" Grid.Row="1"
+                                    <ComboBox Grid.Column="1" Grid.Row="1"
                                       SelectedValue="{Binding Settings.FullscreenSettings.RowCount}">
-                                <sys:Int32>1</sys:Int32>
-                                <sys:Int32>2</sys:Int32>
-                                <sys:Int32>3</sys:Int32>
-                                <sys:Int32>4</sys:Int32>
-                                <sys:Int32>5</sys:Int32>
-                                <sys:Int32>6</sys:Int32>
-                                <sys:Int32>7</sys:Int32>
-                                <sys:Int32>8</sys:Int32>
-                                <sys:Int32>9</sys:Int32>
-                                <sys:Int32>10</sys:Int32>
-                            </ComboBox>
+                                        <sys:Int32>1</sys:Int32>
+                                        <sys:Int32>2</sys:Int32>
+                                        <sys:Int32>3</sys:Int32>
+                                        <sys:Int32>4</sys:Int32>
+                                        <sys:Int32>5</sys:Int32>
+                                        <sys:Int32>6</sys:Int32>
+                                        <sys:Int32>7</sys:Int32>
+                                        <sys:Int32>8</sys:Int32>
+                                        <sys:Int32>9</sys:Int32>
+                                        <sys:Int32>10</sys:Int32>
+                                    </ComboBox>
 
-                            <ComboBox Grid.Column="1" Grid.Row="2"
+                                    <ComboBox Grid.Column="1" Grid.Row="2"
                                       SelectedValue="{Binding Settings.FullscreenSettings.DetailsRowCount}">
-                                <sys:Int32>1</sys:Int32>
-                                <sys:Int32>2</sys:Int32>
-                                <sys:Int32>3</sys:Int32>
-                                <sys:Int32>4</sys:Int32>
-                                <sys:Int32>5</sys:Int32>
-                                <sys:Int32>6</sys:Int32>
-                                <sys:Int32>7</sys:Int32>
-                                <sys:Int32>8</sys:Int32>
-                                <sys:Int32>9</sys:Int32>
-                                <sys:Int32>10</sys:Int32>
-                            </ComboBox>
-                        </Grid>
-                    </StackPanel>
-                </TabItem>
-            </TabControl>
-        </DockPanel>
-    </Border>
+                                        <sys:Int32>1</sys:Int32>
+                                        <sys:Int32>2</sys:Int32>
+                                        <sys:Int32>3</sys:Int32>
+                                        <sys:Int32>4</sys:Int32>
+                                        <sys:Int32>5</sys:Int32>
+                                        <sys:Int32>6</sys:Int32>
+                                        <sys:Int32>7</sys:Int32>
+                                        <sys:Int32>8</sys:Int32>
+                                        <sys:Int32>9</sys:Int32>
+                                        <sys:Int32>10</sys:Int32>
+                                    </ComboBox>
+                                </Grid>
+                            </StackPanel>
+                        </TabItem>
+
+                        <TabItem>
+                            <StackPanel>
+                                <DockPanel>
+                                    <TextBlock Text="{DynamicResource LOCSettingsDBLocation}"
+                                               DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                                    <Button Name="ButtonBrowserDbFile" Content="{DynamicResource LOCChange}"
+                                            DockPanel.Dock="Right" Padding="5,0,5,0"
+                                            Command="{Binding SelectDbFileCommand}"/>
+                                    <TextBox Name="TextDatabase" Text="{Binding Settings.DatabasePath}"
+                                             DockPanel.Dock="Left" Margin="10,0,10,0"
+                                             IsReadOnly="True"/>
+                                </DockPanel>
+                                <CheckBox Content="{DynamicResource LOCSettingsDisableAcceleration}"
+                                          ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
+                                          Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"
+                                          Margin="0,45,0,0"/>
+                                <Button Name="ButtonClearWebCace" Content="{DynamicResource LOCSettingsClearWebCache}"
+                                        HorizontalAlignment="Left" Margin="0,45,0,0"
+                                        ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"
+                                        Command="{Binding ClearWebCacheCommand}"/>
+                            </StackPanel>
+                        </TabItem>
+
+                        <TabItem>
+                            <Grid Margin="-15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="250" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Column="1" DataContext="{Binding SelectedItem, ElementName=ListExtensions}"
+                                            Margin="10,5,0,0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontWeight="Bold" Text="Created By:" />
+                                        <TextBlock Text="{Binding Description.Author}" Margin="5,0,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                        <TextBlock FontWeight="Bold" Text="Version:" />
+                                        <TextBlock Text="{Binding Description.Version}" Margin="5,0,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                        <TextBlock FontWeight="Bold" Text="Module:" />
+                                        <TextBlock Text="{Binding Description.Module}" Margin="5,0,0,0" />
+                                    </StackPanel>
+                                    <CheckBox Content="{DynamicResource LOCEnabledTitle}" Margin="0,15,0,0"
+                                              IsChecked="{Binding Selected}" />
+                                </StackPanel>
+
+                                <ListBox Grid.Column="0" Name="ListExtensions" SelectedIndex="0"
+                                         ItemsSource="{Binding PluginsList}">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                            <Setter Property="Opacity" Value="1" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Selected}" Value="False">
+                                                    <Setter Property="Opacity" Value="0.5" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image RenderOptions.BitmapScalingMode="Fant"
+                                                       VerticalAlignment="Center" Height="24" Margin="5"
+                                                       Source="{Binding PluginIcon}" />
+                                                <TextBlock FontSize="14" VerticalAlignment="Center"
+                                                           Margin="0,5,5,5"
+                                                           Text="{Binding Description.Name}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                            </Grid>                            
+                        </TabItem>  
+                    </TabControl>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource LOCLibraries}">
+                <DockPanel>
+                    <ListBox ItemsSource="{Binding LibraryPluginSettings}"
+                              Name="TreeLibraryPlugins" MinWidth="140"
+                              SelectedIndex="0"
+                              BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}">
+                        <ListBox.Resources>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                <Setter Property="FontSize" Value="16" />
+                                <Setter Property="Padding" Value="5" />
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Value.Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>                    
+                    <ContentControl DockPanel.Dock="Left" Margin="20"
+                                    Content="{Binding SelectedItem.Value.View, ElementName=TreeLibraryPlugins}"/>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource LOCPlugins}"
+                     Visibility="{Binding AnyGenericPluginSettings, Converter={pui:BooleanToVisibilityConverter}}">
+                <DockPanel>
+                    <ListBox ItemsSource="{Binding GenericPluginSettings}"
+                              Name="TreeGenericPlugins" MinWidth="140"
+                              SelectedIndex="0"
+                              BorderThickness="0,0,1,0" BorderBrush="{DynamicResource NormalBorderBrush}">
+                        <ListBox.Resources>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                <Setter Property="FontSize" Value="16" />
+                                <Setter Property="Padding" Value="5" />
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Value.Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <ContentControl DockPanel.Dock="Left" Margin="20"
+                                    Content="{Binding SelectedItem.Value.View, ElementName=TreeGenericPlugins}"/>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
 </controls:WindowBase>

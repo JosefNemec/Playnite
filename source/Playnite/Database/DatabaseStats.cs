@@ -11,7 +11,7 @@ using NLog;
 
 namespace Playnite.Database
 {
-    public class DatabaseStats : INotifyPropertyChanged, IDisposable
+    public class DatabaseStats : ObservableObject, IDisposable
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -19,12 +19,6 @@ namespace Playnite.Database
         public int UnInstalled { get; private set; } = 0;
         public int Hidden { get; private set; } = 0;
         public int Favorite { get; private set; } = 0;
-        public int Origin { get; private set; } = 0;
-        public int Steam { get; private set; } = 0;
-        public int GOG { get; private set; } = 0;
-        public int Uplay { get; private set; } = 0;
-        public int BattleNet { get; private set; } = 0;
-        public int Custom { get; private set; } = 0;
 
         public int Total
         {
@@ -36,27 +30,25 @@ namespace Playnite.Database
                 }
                 else
                 {
-                    return database.GamesCollection.Count();
+                    return database.Games.Count;
                 }
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;       
+        }     
 
         private GameDatabase database;
 
         public DatabaseStats(GameDatabase database)
         {
             this.database = database;
-            database.GameUpdated += Database_GameUpdated;
-            database.GamesCollectionChanged += Database_GamesCollectionChanged;
+            database.Games.ItemUpdated += Database_GameUpdated;
+            database.Games.ItemCollectionChanged += Database_GamesCollectionChanged;
             database.DatabaseOpened += Database_DatabaseOpened;
             Recalculate();
         }
 
         private void Recalculate()
         {
-            if (database.GamesCollection == null)
+            if (database.Games == null)
             {
                 return;
             }
@@ -67,14 +59,8 @@ namespace Playnite.Database
             UnInstalled = 0;
             Hidden = 0;
             Favorite = 0;
-            Origin = 0;
-            Steam = 0;
-            GOG = 0;
-            Uplay = 0;
-            BattleNet = 0;
-            Custom = 0;
 
-            foreach (var game in database.GamesCollection.FindAll().ToList())
+            foreach (var game in database.Games)
             {
                 if (game.IsInstalled)
                 {
@@ -94,53 +80,18 @@ namespace Playnite.Database
                 {
                     Favorite++;
                 }
-
-                switch (game.Provider)
-                {
-                    case Provider.Custom:
-                        Custom++;
-                        break;
-                    case Provider.GOG:
-                        GOG++;
-                        break;
-                    case Provider.Origin:
-                        Origin++;
-                        break;
-                    case Provider.Steam:
-                        Steam++;
-                        break;
-                    case Provider.Uplay:
-                        Uplay++;
-                        break;
-                    case Provider.BattleNet:
-                        BattleNet++;
-                        break;
-                    default:
-                        break;
-                }
             }
 
             NotifiyAllChanged();
         }
 
-        public void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
         private void NotifiyAllChanged()
         {
-            OnPropertyChanged("Installed");
-            OnPropertyChanged("UnInstalled");
-            OnPropertyChanged("Hidden");
-            OnPropertyChanged("Favorite");
-            OnPropertyChanged("Origin");
-            OnPropertyChanged("Steam");
-            OnPropertyChanged("GOG");
-            OnPropertyChanged("Uplay");
-            OnPropertyChanged("BattleNet");
-            OnPropertyChanged("Custom");
-            OnPropertyChanged("Total");
+            OnPropertyChanged(nameof(Installed));
+            OnPropertyChanged(nameof(UnInstalled));
+            OnPropertyChanged(nameof(Hidden));
+            OnPropertyChanged(nameof(Favorite));
+            OnPropertyChanged(nameof(Total));
         }
 
         private void Database_DatabaseOpened(object sender, EventArgs e)
@@ -148,14 +99,14 @@ namespace Playnite.Database
             Recalculate();
         }
 
-        private void Database_GamesCollectionChanged(object sender, GamesCollectionChangedEventArgs args)
+        private void Database_GamesCollectionChanged(object sender, ItemCollectionChangedEventArgs<Game> args)
         {
-            foreach (var game in args.RemovedGames)
+            foreach (var game in args.RemovedItems)
             {
                 IncrementalUpdate(game, -1);
             }
 
-            foreach (var game in args.AddedGames)
+            foreach (var game in args.AddedItems)
             {
                 IncrementalUpdate(game, 1);
             }
@@ -163,9 +114,9 @@ namespace Playnite.Database
             NotifiyAllChanged();
         }
 
-        private void Database_GameUpdated(object sender, GameUpdatedEventArgs args)
+        private void Database_GameUpdated(object sender, ItemUpdatedEventArgs<Game> args)
         {
-            foreach (var update in args.UpdatedGames)
+            foreach (var update in args.UpdatedItems)
             {
                 if (update.OldData.Hidden != update.NewData.Hidden)
                 {
@@ -184,10 +135,10 @@ namespace Playnite.Database
                 }
             }
 
-            OnPropertyChanged("Installed");
-            OnPropertyChanged("UnInstalled");
-            OnPropertyChanged("Hidden");
-            OnPropertyChanged("Favorite");
+            OnPropertyChanged(nameof(Installed));
+            OnPropertyChanged(nameof(UnInstalled));
+            OnPropertyChanged(nameof(Hidden));
+            OnPropertyChanged(nameof(Favorite));
         }
 
         private void IncrementalUpdate(Game game, int modifier)
@@ -210,35 +161,13 @@ namespace Playnite.Database
             {
                 UnInstalled = UnInstalled + (1 * modifier);
             }
-
-            switch (game.Provider)
-            {
-                case Provider.Custom:
-                    Custom = Custom + (1 * modifier);
-                    break;
-                case Provider.GOG:
-                    GOG = GOG + (1 * modifier);
-                    break;
-                case Provider.Origin:
-                    Origin = Origin + (1 * modifier);
-                    break;
-                case Provider.Steam:
-                    Steam = Steam + (1 * modifier);
-                    break;
-                case Provider.Uplay:
-                    Uplay = Uplay + (1 * modifier);
-                    break;
-                case Provider.BattleNet:
-                    BattleNet = BattleNet + (1 * modifier);
-                    break;
-            }
         }
 
         public void Dispose()
         {
             database.DatabaseOpened -= Database_DatabaseOpened;
-            database.GamesCollectionChanged -= Database_GamesCollectionChanged;
-            database.GameUpdated -= Database_GameUpdated;
+            database.Games.ItemCollectionChanged -= Database_GamesCollectionChanged;
+            database.Games.ItemUpdated -= Database_GameUpdated;
         }
     }
 }

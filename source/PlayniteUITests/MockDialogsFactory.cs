@@ -85,5 +85,10 @@ namespace PlayniteUITests
         {
             return MessageBoxResult.None;
         }
+
+        public void ShowSelectableString(string messageBoxText, string caption, string defaultInput)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

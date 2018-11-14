@@ -1,5 +1,6 @@
 ﻿using Playnite.Database;
 using Playnite.Metadata;
+using Playnite.SDK.Metadata;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -42,7 +43,7 @@ namespace PlayniteUITests
             var fileName = Guid.NewGuid().ToString() + ".file";
             var filePath = Path.Combine(TempPath, fileName);
             File.WriteAllBytes(filePath, file);
-            return new MetadataFile(filePath, fileName, file);
+            return new MetadataFile(fileName, file, filePath);
         }
     }
 }

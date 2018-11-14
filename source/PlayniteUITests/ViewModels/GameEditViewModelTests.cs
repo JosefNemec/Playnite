@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Playnite;
+using Playnite.Common.System;
 using Playnite.Database;
 using Playnite.SDK.Models;
 using PlayniteUI.ViewModels;
@@ -18,184 +19,105 @@ namespace PlayniteUITests.ViewModels
         [Test]
         public void ImageReplaceTest()
         {
-            var path = Path.Combine(PlayniteUITests.TempPath, "imagereplace.db");
-            FileSystem.DeleteFile(path);
-
-            var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            using (var temp = TempDirectory.Create())
             {
-                var origIcon = PlayniteUITests.CreateFakeFile();
-                var origImage = PlayniteUITests.CreateFakeFile();
-                var origBackground = PlayniteUITests.CreateFakeFile();
-
-                db.AddFile(origIcon.FileName, origIcon.FileName, origIcon.Content);
-                db.AddFile(origImage.FileName, origImage.FileName, origImage.Content);
-                db.AddFile(origBackground.FileName, origBackground.FileName, origBackground.Content);
-
+                var db = new GameDatabase(temp.TempPath);
+                db.OpenDatabase();
                 var game = new Game()
                 {
-                    ProviderId = "testid",
-                    Name = "Test Game",
-                    Image = origImage.FileName,
-                    Icon = origIcon.FileName,
-                    BackgroundImage = origBackground.FileName
+                    GameId = "testid",
+                    Name = "Test Game"
                 };
 
-                db.AddGame(game);
+                var origIcon = db.AddFile(PlayniteUITests.CreateFakeFile(), game.Id);
+                var origImage = db.AddFile(PlayniteUITests.CreateFakeFile(), game.Id);
+                var origBackground = db.AddFile(PlayniteUITests.CreateFakeFile(), game.Id);
+                game.Icon = origIcon;
+                game.CoverImage = origImage;
+                game.BackgroundImage = origBackground;
+                db.Games.Add(game);
 
                 var newIcon = PlayniteUITests.CreateFakeFile();
                 var newImage = PlayniteUITests.CreateFakeFile();
                 var newBackground = PlayniteUITests.CreateFakeFile();
                 
                 // Images are replaced
-                var model = new GameEditViewModel(game, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider());
-                model.EditingGame.Icon = newIcon.FileId;
-                model.EditingGame.Image = newImage.FileId;
-                model.EditingGame.BackgroundImage = newBackground.FileId;
+                var model = new GameEditViewModel(game, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider(), null);
+                model.EditingGame.Icon = newIcon.OriginalUrl;
+                model.EditingGame.CoverImage = newImage.OriginalUrl;
+                model.EditingGame.BackgroundImage = newBackground.OriginalUrl;
                 model.ConfirmDialog();
 
-                Assert.AreNotEqual(game.Icon, origIcon.FileName);
-                Assert.AreNotEqual(game.Image, origImage.FileName);
-                Assert.AreNotEqual(game.BackgroundImage, origBackground.FileName);
-                Assert.AreNotEqual(game.Icon, newIcon.FileId);
-                Assert.AreNotEqual(game.Image, newImage.FileId);
-                Assert.AreNotEqual(game.BackgroundImage, newBackground.FileId);
+                Assert.AreNotEqual(game.Icon, origIcon);
+                Assert.AreNotEqual(game.CoverImage, origImage);
+                Assert.AreNotEqual(game.BackgroundImage, origBackground);
 
-                var dbFiles = db.Database.FileStorage.FindAll().ToList();
-                Assert.AreEqual(3, dbFiles.Count());
-
-                using (var str = db.GetFileStream(game.Icon))
-                {
-                    CollectionAssert.AreEqual(newIcon.Content, str.ToArray());
-                }
-
-                using (var str = db.GetFileStream(game.Image))
-                {
-                    CollectionAssert.AreEqual(newImage.Content, str.ToArray());
-                }
-
-                using (var str = db.GetFileStream(game.BackgroundImage))
-                {
-                    CollectionAssert.AreEqual(newBackground.Content, str.ToArray());
-                }
-
-                // Duplicates are kept and not replaced
-                var currentIcon = game.Icon;
-                var currentImage = game.Image;
-                var currentBack = game.BackgroundImage;
-
-                model = new GameEditViewModel(game, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider());
-                model.EditingGame.Icon = newIcon.FileId;
-                model.EditingGame.Image = newImage.FileId;
-                model.EditingGame.BackgroundImage = newBackground.FileId;
-                model.ConfirmDialog();
-
-                dbFiles = db.Database.FileStorage.FindAll().ToList();
-                Assert.AreEqual(3, dbFiles.Count());
-                Assert.AreEqual(game.Icon, currentIcon);
-                Assert.AreEqual(game.Image, currentImage);
-                Assert.AreEqual(game.BackgroundImage, currentBack);
+                var dbFiles = Directory.GetFiles(db.GetFileStoragePath(game.Id));
+                Assert.AreEqual(3, dbFiles.Count());      
+                CollectionAssert.AreEqual(newIcon.Content, File.ReadAllBytes(db.GetFullFilePath(game.Icon)));
+                CollectionAssert.AreEqual(newImage.Content, File.ReadAllBytes(db.GetFullFilePath(game.CoverImage)));
+                CollectionAssert.AreEqual(newBackground.Content, File.ReadAllBytes(db.GetFullFilePath(game.BackgroundImage)));
             }
         }
 
         [Test]
         public void ImageReplaceMultiTest()
         {
-            var path = Path.Combine(PlayniteUITests.TempPath, "imagereplacemulti.db");
-            FileSystem.DeleteFile(path);
-
-            var db = new GameDatabase(null);
-            using (db.OpenDatabase(path))
+            using (var temp = TempDirectory.Create())
             {
-                var origIcon = PlayniteUITests.CreateFakeFile();
-                var origImage = PlayniteUITests.CreateFakeFile();
-                var origBackground = PlayniteUITests.CreateFakeFile();
-                db.AddFile(origIcon.FileName, origIcon.FileName, origIcon.Content);
-                db.AddFile(origImage.FileName, origImage.FileName, origImage.Content);
-                db.AddFile(origBackground.FileName, origBackground.FileName, origBackground.Content);
-                db.AddGame(new Game()
-                {
-                    ProviderId = "testid",
-                    Name = "Test Game",
-                    Image = origImage.FileName,
-                    Icon = origIcon.FileName,
-                    BackgroundImage = origBackground.FileName
-                });
+                var db = new GameDatabase(temp.TempPath);
+                db.OpenDatabase();
 
-                origIcon = PlayniteUITests.CreateFakeFile();
-                origImage = PlayniteUITests.CreateFakeFile();
-                origBackground = PlayniteUITests.CreateFakeFile();
-                db.AddFile(origIcon.FileName, origIcon.FileName, origIcon.Content);
-                db.AddFile(origImage.FileName, origImage.FileName, origImage.Content);
-                db.AddFile(origBackground.FileName, origBackground.FileName, origBackground.Content);
-                db.AddGame(new Game()
+                var game = new Game()
                 {
-                    ProviderId = "testid2",
-                    Name = "Test Game 2",
-                    Image = origImage.FileName,
-                    Icon = origIcon.FileName,
-                    BackgroundImage = origBackground.FileName
-                });
+                    GameId = "testid",
+                    Name = "Test Game"
+                };
 
-                Assert.AreEqual(6, db.Database.FileStorage.FindAll().ToList().Count());
+                var origIcon = db.AddFile(PlayniteUITests.CreateFakeFile(), game.Id);
+                var origImage = db.AddFile(PlayniteUITests.CreateFakeFile(), game.Id);
+                var origBackground = db.AddFile(PlayniteUITests.CreateFakeFile(), game.Id);
+                game.Icon = origIcon;
+                game.CoverImage = origImage;
+                game.BackgroundImage = origBackground;
+                db.Games.Add(game);
+
+                game = new Game()
+                {
+                    GameId = "testid2",
+                    Name = "Test Game 2"
+                };
+
+                origIcon = db.AddFile(PlayniteUITests.CreateFakeFile(), game.Id);
+                origImage = db.AddFile(PlayniteUITests.CreateFakeFile(), game.Id);
+                origBackground = db.AddFile(PlayniteUITests.CreateFakeFile(), game.Id);
+                game.Icon = origIcon;
+                game.CoverImage = origImage;
+                game.BackgroundImage = origBackground;
+                db.Games.Add(game);
 
                 var newIcon = PlayniteUITests.CreateFakeFile();
                 var newImage = PlayniteUITests.CreateFakeFile();
                 var newBackground = PlayniteUITests.CreateFakeFile();
 
                 // Replaces all images for all games
-                var games = db.GamesCollection.FindAll().ToList();
-                var model = new GameEditViewModel(games, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider());
-                model.EditingGame.Icon = newIcon.FileId;
-                model.EditingGame.Image = newImage.FileId;
-                model.EditingGame.BackgroundImage = newBackground.FileId;
+                var games = db.Games.ToList();
+                var model = new GameEditViewModel(games, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider(), null);
+                model.EditingGame.Icon = newIcon.OriginalUrl;
+                model.EditingGame.CoverImage = newImage.OriginalUrl;
+                model.EditingGame.BackgroundImage = newBackground.OriginalUrl;
                 model.ConfirmDialog();
 
-                var dbFiles = db.Database.FileStorage.FindAll().ToList();
-                Assert.AreEqual(3, dbFiles.Count());
+                Assert.AreEqual(3, Directory.GetFiles(db.GetFileStoragePath(games[0].Id)).Count());
+                Assert.AreEqual(3, Directory.GetFiles(db.GetFileStoragePath(games[1].Id)).Count());
 
-                games = db.GamesCollection.FindAll().ToList();
-                foreach (var game in games)
-                {
-                    StringAssert.StartsWith("images/custom/", game.Icon);
-                    StringAssert.StartsWith("images/custom/", game.Image);
-                    StringAssert.StartsWith("images/custom/", game.BackgroundImage);
-                }
+                CollectionAssert.AreEqual(newIcon.Content, File.ReadAllBytes(db.GetFullFilePath(games[0].Icon)));
+                CollectionAssert.AreEqual(newImage.Content, File.ReadAllBytes(db.GetFullFilePath(games[0].CoverImage)));
+                CollectionAssert.AreEqual(newBackground.Content, File.ReadAllBytes(db.GetFullFilePath(games[0].BackgroundImage)));
 
-                Assert.AreEqual(games[0].Icon, games[1].Icon);
-                Assert.AreEqual(games[0].Image, games[1].Image);
-                Assert.AreEqual(games[0].BackgroundImage, games[1].BackgroundImage);
-
-                // Replaces only non-duplicate images
-                newIcon = PlayniteUITests.CreateFakeFile();
-                newImage = PlayniteUITests.CreateFakeFile();
-                newBackground = PlayniteUITests.CreateFakeFile();
-                db.AddFile(newIcon.FileName, newIcon.FileName, newIcon.Content);
-                db.AddFile(newImage.FileName, newImage.FileName, newImage.Content);
-                db.AddFile(newBackground.FileName, newBackground.FileName, newBackground.Content);
-                games[0].Icon = newIcon.FileName;
-                games[0].Image = newImage.FileName;
-                games[0].BackgroundImage = newBackground.FileName;
-                db.UpdateGameInDatabase(games[0]);
-
-                Assert.AreEqual(6, db.Database.FileStorage.FindAll().ToList().Count());
-
-                games = db.GamesCollection.FindAll().ToList();
-                model = new GameEditViewModel(games, db, new MockWindowFactory(), new MockDialogsFactory(), new MockResourceProvider());
-                model.EditingGame.Icon = newIcon.FileId;
-                model.EditingGame.Image = newImage.FileId;
-                model.EditingGame.BackgroundImage = newBackground.FileId;
-                model.ConfirmDialog();
-
-                Assert.AreEqual(3, db.Database.FileStorage.FindAll().ToList().Count());
-
-                games = db.GamesCollection.FindAll().ToList();
-                foreach (var game in games)
-                {
-                    Assert.AreEqual(newIcon.FileName, game.Icon);
-                    Assert.AreEqual(newImage.FileName, game.Image);
-                    Assert.AreEqual(newBackground.FileName, game.BackgroundImage);
-                }
+                CollectionAssert.AreEqual(newIcon.Content, File.ReadAllBytes(db.GetFullFilePath(games[1].Icon)));
+                CollectionAssert.AreEqual(newImage.Content, File.ReadAllBytes(db.GetFullFilePath(games[1].CoverImage)));
+                CollectionAssert.AreEqual(newBackground.Content, File.ReadAllBytes(db.GetFullFilePath(games[1].BackgroundImage)));
             }
         }
     }
