@@ -360,7 +360,7 @@ namespace PlayniteUI.ViewModels
 
         private ObservableCollection<Platform> GetPlatformsFromDB()
         {
-            return new ObservableCollection<Platform>(database.Platforms.OrderBy(a => a.Name));
+            return new ObservableCollection<Platform>(database.Platforms.Select(a => a.CloneJson()).OrderBy(a => a.Name));
         }
 
         private void UpdatePlatformsToDB()
@@ -392,13 +392,9 @@ namespace PlayniteUI.ViewModels
             foreach (var platform in Platforms)
             {
                 var dbPlatform = database.Platforms.Get(platform.Id);
-                if (!string.IsNullOrEmpty(platform.Icon) && !platform.Icon.StartsWith("images") && File.Exists(platform.Icon))
+                if (!string.IsNullOrEmpty(platform.Icon) && File.Exists(platform.Icon))
                 {
-                    if (!string.IsNullOrEmpty(dbPlatform.Icon))
-                    {
-                        database.RemoveFile(dbPlatform.Icon);
-                    }
-
+                    database.RemoveFile(dbPlatform.Icon);
                     var id = database.AddFile(platform.Icon, dbPlatform.Id);
                     if (Paths.AreEqual(Path.GetDirectoryName(platform.Icon), PlaynitePaths.TempPath))
                     {
@@ -408,13 +404,9 @@ namespace PlayniteUI.ViewModels
                     platform.Icon = id;
                 }
 
-                if (!string.IsNullOrEmpty(platform.Cover) && !platform.Cover.StartsWith("images") && File.Exists(platform.Cover))
+                if (!string.IsNullOrEmpty(platform.Cover) && File.Exists(platform.Cover))
                 {
-                    if (!string.IsNullOrEmpty(dbPlatform.Cover))
-                    {
-                        database.RemoveFile(dbPlatform.Cover);
-                    }
-
+                    database.RemoveFile(dbPlatform.Cover);
                     platform.Cover = database.AddFile(platform.Cover, dbPlatform.Id);
                 }
             }
@@ -432,7 +424,7 @@ namespace PlayniteUI.ViewModels
 
         private ObservableCollection<Emulator> GetEmulatorsFromDB()
         {
-            return new ObservableCollection<Emulator>(database.Emulators.OrderBy(a => a.Name));
+            return new ObservableCollection<Emulator>(database.Emulators.Select(a => a.CloneJson()).OrderBy(a => a.Name));
         }
 
         private void UpdateEmulatorsToDB()
