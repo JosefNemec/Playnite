@@ -49,7 +49,7 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCGameEditChangeNotif">Esta seção contém alterações que ainda não foram salvas</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Atualizando o formato da biblioteca...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Falha ao atualizar o banco de dados, não foi possível abrir o arquivo.</sys:String>
-    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Não foi possível atualizar a biblioteca. {0} MBs de espaço livre é necessário.</sys:String> 
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Não foi possível atualizar a biblioteca. Pelo menos {0} MBs de espaço livre são necessários para continuar.</sys:String> 
 
     <sys:String x:Key="LOCGameError">Erro do Jogo</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Não foi possível executar o jogo. "{0}" não foi encontrado no banco de dados.</sys:String>
