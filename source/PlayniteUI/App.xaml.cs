@@ -145,9 +145,10 @@ namespace PlayniteUI
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-#if !DEBUG
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-#endif    
+            if (!Debugger.IsAttached)
+            {
+                AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            }
 
             // Multi-instance checking
             if (Mutex.TryOpenExisting(instanceMuxet, out var mutex))
