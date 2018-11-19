@@ -44,6 +44,16 @@ namespace Playnite
                         archive.CreateEntryFromFile(PlaynitePaths.ConfigFilePath, Path.GetFileName(PlaynitePaths.ConfigFilePath));
                     }
 
+                    // Extension configs
+                    if (Directory.Exists(PlaynitePaths.ExtensionsDataPath))
+                    {
+                        foreach (var cfg in Directory.GetFiles(PlaynitePaths.ExtensionsDataPath, "config.json", SearchOption.AllDirectories))
+                        {
+                            var fileInfo = new FileInfo(cfg);
+                            archive.CreateEntryFromFile(cfg, Path.Combine("extensions", fileInfo.Directory.Name, fileInfo.Name));
+                        }
+                    }
+
                     // System Info
                     var infoPath = Path.Combine(diagTemp, "sysinfo.txt");
                     File.WriteAllText(infoPath, Serialization.ToYaml(Computer.GetSystemInfo()));
