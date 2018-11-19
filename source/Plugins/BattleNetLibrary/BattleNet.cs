@@ -59,8 +59,8 @@ namespace BattleNetLibrary
         {
             get
             {
-                var installDir = InstallationPath;
-                return !string.IsNullOrEmpty(installDir) && Directory.Exists(installDir);
+                var clientExe = ClientExecPath;
+                return !string.IsNullOrEmpty(clientExe) && File.Exists(clientExe);
             }
         }
 
