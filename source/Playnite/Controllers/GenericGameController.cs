@@ -64,7 +64,14 @@ namespace Playnite.Controllers
                 }
                 else
                 {
-                    procMon.WatchProcessTree(proc);
+                    if (proc != null)
+                    {
+                        procMon.WatchProcessTree(proc);
+                    }
+                    else
+                    {
+                        OnStopped(this, new GameControllerEventArgs(this, 0));
+                    }
                 }
             }
             else
