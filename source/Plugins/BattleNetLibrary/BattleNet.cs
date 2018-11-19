@@ -43,7 +43,7 @@ namespace BattleNetLibrary
         {
             get
             {
-                var progs = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "Battle.net" || a.DisplayName == "Blizzard App");
+                var progs = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.UninstallString?.Contains("-uid=battle.net") == true);
                 if (progs == null)
                 {
                     return string.Empty;
@@ -59,15 +59,8 @@ namespace BattleNetLibrary
         {
             get
             {
-                var progs = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "Battle.net" || a.DisplayName == "Blizzard App");
-                if (progs == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
+                var installDir = InstallationPath;
+                return !string.IsNullOrEmpty(installDir) && Directory.Exists(installDir);
             }
         }
 
