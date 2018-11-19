@@ -75,6 +75,11 @@ namespace Playnite.Database
                         lock (databaseConfigFileLock)
                         {
                             settings = Serialization.FromJson<DatabaseSettings>(FileSystem.ReadFileAsStringSafe(DatabaseFileSettingsPath));
+                            if (settings == null)
+                            {
+                                // This shouldn't in theory happen, but there are some wierd crash reports available for this.
+                                settings = new DatabaseSettings() { Version = NewFormatVersion };
+                            }
                         }
                     }
                     else
