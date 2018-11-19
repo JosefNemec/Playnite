@@ -785,7 +785,15 @@ namespace Playnite.Database
             }
 
             var st = Serialization.FromJson<DatabaseSettings>(FileSystem.ReadFileAsStringSafe(settingsPath));
-            return st.Version < NewFormatVersion;
+            if (st == null)
+            {
+                // This shouldn't in theory happen, but there are some wierd crash reports available for this.
+                return false;
+            }
+            else
+            {
+                return st.Version < NewFormatVersion;
+            }
         }
 
         public void OpenDatabase()
