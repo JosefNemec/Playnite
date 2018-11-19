@@ -775,14 +775,19 @@ namespace Playnite.Database
             }
         }
 
-        public static bool GetMigrationRequired(string path)
+        public static bool GetMigrationRequired(string databasePath)
         {
-            if (path.EndsWith(".db", StringComparison.OrdinalIgnoreCase))
+            if (string.IsNullOrEmpty(databasePath))
+            {
+                throw new ArgumentNullException(nameof(databasePath));
+            }
+
+            if (databasePath.EndsWith(".db", StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
 
-            var fullPath = GetFullDbPath(path);
+            var fullPath = GetFullDbPath(databasePath);
             var settingsPath = Path.Combine(fullPath, "database.json");
             if (!File.Exists(settingsPath))
             {
