@@ -2440,7 +2440,7 @@
                         <MenuItem Header="{DynamicResource LOCMenuGroupCategory}" IsCheckable="True"
                                   IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Category}}"/>
                         <MenuItem Header="{DynamicResource LOCMenuGroupPlatform}" IsCheckable="True"
-                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Platform}}"/>
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.PlatformId}}"/>
                         <Separator />
                         <MenuItem Header="{DynamicResource LOCListLabel}" IsCheckable="True"
                                           IsChecked="{Binding Path=ViewSettings.GamesViewType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:ViewType.List}}"/>

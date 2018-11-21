@@ -43,14 +43,14 @@ namespace TestGameLibrary
             return null;
         }
 
-        public IEnumerable<Game> GetGames()
+        public IEnumerable<GameInfo> GetGames()
         {
-            return new List<Game>()
+            return new List<GameInfo>()
             {
-                new Game("Notepad")
+                new GameInfo()
                 {
+                    Name = "Notepad",
                     GameId = "notepad",
-                    PluginId = Id,
                     PlayAction = new GameAction()
                     {
                         Type = GameActionType.File,
@@ -59,10 +59,10 @@ namespace TestGameLibrary
                     IsInstalled = true,
                     Icon = @"c:\Windows\notepad.exe"
                 },
-                new Game("Calculator")
+                new GameInfo()
                 {
+                    Name = "Calculator",
                     GameId = "calc",
-                    PluginId = Id,
                     PlayAction = new GameAction()
                     {
                         Type = GameActionType.File,
@@ -72,10 +72,10 @@ namespace TestGameLibrary
                     Icon = @"https://playnite.link/applogo.png",
                     BackgroundImage =  @"https://playnite.link/applogo.png"
                 },
-                new Game("Paint")
+                new GameInfo()
                 {
+                    Name = "Paint",
                     GameId = "mspaint",
-                    PluginId = Id,
                     PlayAction = new GameAction()
                     {
                         Type = GameActionType.File,
@@ -84,10 +84,10 @@ namespace TestGameLibrary
                     IsInstalled = true,
                     Icon = LibraryIcon
                 },
-                new Game("WordPad")
+                new GameInfo()
                 {
+                    Name = "WordPad",
                     GameId = "write",
-                    PluginId = Id,
                     PlayAction = new GameAction()
                     {
                         Type = GameActionType.File,

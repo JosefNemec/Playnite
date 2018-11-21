@@ -56,8 +56,7 @@ namespace SteamLibrary
             }
             else
             {
-                var data = UpdateGameWithMetadata(gameData);
-                return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
+                return GetGameMetadata(gameId);
             }
         }
 
@@ -264,20 +263,20 @@ namespace SteamLibrary
             if (imageData != null)
             {
                 var imageName = Path.GetFileName(new Uri(imageUrl).AbsolutePath);
-                metadata.Image = new MetadataFile(imageName, imageData);
+                metadata.CoverImage = new MetadataFile(imageName, imageData);
             }
 
             // Background Image
             switch (backgroundSource)
             {
                 case BackgroundSource.Image:
-                    metadata.BackgroundImage = GetGameBackground(appId);
+                    metadata.BackgroundImage = new MetadataFile(GetGameBackground(appId));
                     break;
                 case BackgroundSource.StoreScreenshot:
-                    metadata.BackgroundImage = Regex.Replace(metadata.StoreDetails.screenshots.First().path_full, "\\?.*$", "");
+                    metadata.BackgroundImage = new MetadataFile(Regex.Replace(metadata.StoreDetails.screenshots.First().path_full, "\\?.*$", ""));
                     break;
                 case BackgroundSource.StoreBackground:
-                    metadata.BackgroundImage = string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", appId);
+                    metadata.BackgroundImage = new MetadataFile(string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", appId));
                     break;
                 default:
                     break;
@@ -286,40 +285,51 @@ namespace SteamLibrary
             return metadata;
         }
 
-        internal SteamGameMetadata UpdateGameWithMetadata(Game game)
+        internal GameMetadata GetGameMetadata(GameID gameId)
         {
-            var appId = game.ToSteamGameID().AppID;
-            var metadata = DownloadGameMetadata(appId, library.LibrarySettings.BackgroundSource);
-            game.Name = metadata.ProductDetails?["common"]["name"]?.Value ?? game.Name;
-            game.Links = new ObservableCollection<Link>()
+            var appId = gameId.AppID;
+            var downloadedMetadata = DownloadGameMetadata(appId, library.LibrarySettings.BackgroundSource);
+            var gameInfo = new GameInfo
             {
-                new Link("Forum", @"https://steamcommunity.com/app/" + appId),
-                new Link("News", @"http://store.steampowered.com/news/?appids=" + appId),
-                new Link("Store", @"http://store.steampowered.com/app/" + appId),
-                new Link("Wiki", @"http://pcgamingwiki.com/api/appid.php?appid=" + appId)
+                Name = downloadedMetadata.ProductDetails?["common"]["name"]?.Value ?? downloadedMetadata.GameInfo.Name,
+                Links = new List<Link>()
+                {
+                    new Link("Forum", @"https://steamcommunity.com/app/" + appId),
+                    new Link("News", @"http://store.steampowered.com/news/?appids=" + appId),
+                    new Link("Store", @"http://store.steampowered.com/app/" + appId),
+                    new Link("Wiki", @"http://pcgamingwiki.com/api/appid.php?appid=" + appId)
+                }
             };
 
-            if (metadata.StoreDetails?.categories?.FirstOrDefault(a => a.id == 30) != null)
+            var metadata = new GameMetadata()
             {
-                game.Links.Add(new Link("Workshop", Steam.GetWorkshopUrl(appId)));
+                GameInfo = gameInfo,
+                Icon = downloadedMetadata.Icon,
+                CoverImage = downloadedMetadata.CoverImage,
+                BackgroundImage = downloadedMetadata.BackgroundImage
+            };
+
+            if (downloadedMetadata.StoreDetails?.categories?.FirstOrDefault(a => a.id == 30) != null)
+            {
+                gameInfo.Links.Add(new Link("Workshop", Steam.GetWorkshopUrl(appId)));
             }
 
-            if (metadata.StoreDetails != null)
+            if (downloadedMetadata.StoreDetails != null)
             {
-                game.Description = metadata.StoreDetails.detailed_description;
-                game.Genres = new ComparableList<string>(metadata.StoreDetails.genres?.Select(a => a.description));
-                game.Developers = new ComparableList<string>(metadata.StoreDetails.developers);
-                game.Publishers = new ComparableList<string>(metadata.StoreDetails.publishers);
+                gameInfo.Description = downloadedMetadata.StoreDetails.detailed_description;
+                gameInfo.Genres = new ComparableList<string>(downloadedMetadata.StoreDetails.genres?.Select(a => a.description));
+                gameInfo.Developers = new ComparableList<string>(downloadedMetadata.StoreDetails.developers);
+                gameInfo.Publishers = new ComparableList<string>(downloadedMetadata.StoreDetails.publishers);
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
-                game.Tags = new ComparableList<string>(metadata.StoreDetails.categories?.Select(a => cultInfo.ToTitleCase(a.description)));
-                game.ReleaseDate = metadata.StoreDetails.release_date.date;
-                game.CriticScore = metadata.StoreDetails.metacritic?.score;
+                gameInfo.Tags = new ComparableList<string>(downloadedMetadata.StoreDetails.categories?.Select(a => cultInfo.ToTitleCase(a.description)));
+                gameInfo.ReleaseDate = downloadedMetadata.StoreDetails.release_date.date;
+                gameInfo.CriticScore = downloadedMetadata.StoreDetails.metacritic?.score;
             }
 
-            if (metadata.ProductDetails != null)
+            if (downloadedMetadata.ProductDetails != null)
             {
-                var tasks = new ObservableCollection<GameAction>();
-                var launchList = metadata.ProductDetails["config"]["launch"].Children;
+                var tasks = new List<GameAction>();
+                var launchList = downloadedMetadata.ProductDetails["config"]["launch"].Children;
                 foreach (var task in launchList.Skip(1))
                 {
                     var properties = task["config"];
@@ -350,7 +360,7 @@ namespace SteamLibrary
                     }
                 }
 
-                var manual = metadata.ProductDetails["extended"]["gamemanualurl"];
+                var manual = downloadedMetadata.ProductDetails["extended"]["gamemanualurl"];
                 if (manual.Name != null)
                 {
                     tasks.Add((new GameAction()
@@ -362,15 +372,10 @@ namespace SteamLibrary
                     }));
                 }
 
-                game.OtherActions = tasks;
+                gameInfo.OtherActions = tasks;
             }
 
-            if (!string.IsNullOrEmpty(metadata.BackgroundImage))
-            {
-                game.BackgroundImage = metadata.BackgroundImage;
-            }
-
-            return metadata;
+            return downloadedMetadata;
         }
 
         private string GetGameBackground(uint appId)

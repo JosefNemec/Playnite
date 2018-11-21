@@ -70,9 +70,9 @@ namespace BattleNetLibrary
             };
         }
 
-        public Dictionary<string, Game> GetInstalledGames()
+        public Dictionary<string, GameInfo> GetInstalledGames()
         {
-            var games = new Dictionary<string, Game>();
+            var games = new Dictionary<string, GameInfo>();
             foreach (var prog in Programs.GetUnistallProgramsList())
             {
                 if (string.IsNullOrEmpty(prog.UninstallString))
@@ -90,9 +90,8 @@ namespace BattleNetLibrary
                             continue;
                         }
 
-                        var game = new Game()
+                        var game = new GameInfo()
                         {
-                            PluginId = Id,
                             GameId = product.ProductId,
                             Source = "Battle.net",
                             Name = product.Name,
@@ -134,9 +133,8 @@ namespace BattleNetLibrary
                         continue;
                     }
 
-                    var game = new Game()
+                    var game = new GameInfo()
                     {
-                        PluginId = Id,
                         GameId = product.ProductId,
                         Source = "Battle.net",
                         Name = product.Name,
@@ -152,7 +150,7 @@ namespace BattleNetLibrary
             return games;
         }
 
-        public List<Game> GetLibraryGames()
+        public List<GameInfo> GetLibraryGames()
         {
             using (var view = playniteApi.WebViews.CreateOffscreenView())
             {
@@ -164,7 +162,7 @@ namespace BattleNetLibrary
                 }
 
                 var page = api.GetOwnedGames();
-                var games = new List<Game>();
+                var games = new List<GameInfo>();
                 var parser = new HtmlParser();
                 var document = parser.Parse(page);
 
@@ -196,9 +194,8 @@ namespace BattleNetLibrary
                         }
                     }
 
-                    var game = new Game()
+                    var game = new GameInfo()
                     {
-                        PluginId = Id,
                         Source = "Battle.net",
                         GameId = product.ProductId,
                         Name = product.Name
@@ -241,9 +238,9 @@ namespace BattleNetLibrary
             return new BattleNetGameController(game, playniteApi);
         }
 
-        public IEnumerable<Game> GetGames()
+        public IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
+            var allGames = new List<GameInfo>();
             var installedGames = GetInstalledGames();
 
             if (LibrarySettings.ImportInstalledGames)

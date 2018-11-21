@@ -33,10 +33,10 @@ namespace Playnite
                 dummyGame.SortingName = firstSortingName;
             }
 
-            var firstGenres = firstGame.Genres;
-            if (games.All(a => a.Genres.IsListEqual(firstGenres) == true))
+            var firstGenres = firstGame.GenreIds;
+            if (games.All(a => a.GenreIds.IsListEqual(firstGenres) == true))
             {
-                dummyGame.Genres = firstGenres;
+                dummyGame.GenreIds = firstGenres;
             }
 
             var firstReleaseDate = firstGame.ReleaseDate;
@@ -45,28 +45,28 @@ namespace Playnite
                 dummyGame.ReleaseDate = firstReleaseDate;
             }
 
-            var firstDeveloper = firstGame.Developers;
-            if (games.All(a => a.Developers.IsListEqual(firstDeveloper) == true))
+            var firstDeveloper = firstGame.DeveloperIds;
+            if (games.All(a => a.DeveloperIds.IsListEqual(firstDeveloper) == true))
             {
-                dummyGame.Developers = firstDeveloper;
+                dummyGame.DeveloperIds = firstDeveloper;
             }
 
-            var firstPublisher = firstGame.Publishers;
-            if (games.All(a => a.Publishers.IsListEqual(firstPublisher) == true))
+            var firstPublisher = firstGame.PublisherIds;
+            if (games.All(a => a.PublisherIds.IsListEqual(firstPublisher) == true))
             {
-                dummyGame.Publishers = firstPublisher;
+                dummyGame.PublisherIds = firstPublisher;
             }
 
-            var firstCat = firstGame.Categories;
-            if (games.All(a => a.Categories.IsListEqual(firstCat) == true))
+            var firstCat = firstGame.CategoryIds;
+            if (games.All(a => a.CategoryIds.IsListEqual(firstCat) == true))
             {
-                dummyGame.Categories = firstCat;
+                dummyGame.CategoryIds = firstCat;
             }
 
-            var firstTag = firstGame.Tags;
-            if (games.All(a => a.Tags.IsListEqual(firstTag) == true))
+            var firstTag = firstGame.TagIds;
+            if (games.All(a => a.TagIds.IsListEqual(firstTag) == true))
             {
-                dummyGame.Tags = firstTag;
+                dummyGame.TagIds = firstTag;
             }
 
             var firstDescription = firstGame.Description;
@@ -105,10 +105,10 @@ namespace Playnite
                 dummyGame.PlayCount = firstPlayCount;
             }
 
-            var firstSeries = firstGame.Series;
-            if (games.All(a => a.Series == firstSeries) == true)
+            var firstSeries = firstGame.SeriesId;
+            if (games.All(a => a.SeriesId == firstSeries) == true)
             {
-                dummyGame.Series = firstSeries;
+                dummyGame.SeriesId = firstSeries;
             }
 
             var firstVersion = firstGame.Version;
@@ -117,22 +117,22 @@ namespace Playnite
                 dummyGame.Version = firstVersion;
             }
 
-            var firstAgeRating = firstGame.AgeRating;
-            if (games.All(a => a.AgeRating == firstAgeRating) == true)
+            var firstAgeRating = firstGame.AgeRatingId;
+            if (games.All(a => a.AgeRatingId == firstAgeRating) == true)
             {
-                dummyGame.AgeRating = firstAgeRating;
+                dummyGame.AgeRatingId = firstAgeRating;
             }
 
-            var firstRegion = firstGame.Region;
-            if (games.All(a => a.Region == firstRegion) == true)
+            var firstRegion = firstGame.RegionId;
+            if (games.All(a => a.RegionId == firstRegion) == true)
             {
-                dummyGame.Region = firstRegion;
+                dummyGame.RegionId = firstRegion;
             }
 
-            var firstSource = firstGame.Source;
-            if (games.All(a => a.Source == firstSource) == true)
+            var firstSource = firstGame.SourceId;
+            if (games.All(a => a.SourceId == firstSource) == true)
             {
-                dummyGame.Source = firstSource;
+                dummyGame.SourceId = firstSource;
             }
 
             var firstCompletionStatus = firstGame.CompletionStatus;

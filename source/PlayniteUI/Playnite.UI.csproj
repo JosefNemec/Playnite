@@ -244,6 +244,7 @@
     <Compile Include="ProgramEntry.cs" />
     <Compile Include="Themes.cs" />
     <Compile Include="Time.cs" />
+    <Compile Include="ViewModels\DatabaseFieldsManagerViewModel.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
     <Compile Include="ViewModels\MetadataDownloadViewModel.cs" />
     <Compile Include="ViewModels\ProgressViewViewModel.cs" />
@@ -271,6 +272,9 @@
     <Compile Include="VirtualizingTilePanel.cs" />
     <Compile Include="WindowPositionHandler.cs" />
     <Compile Include="PlayniteWindows.cs" />
+    <Compile Include="Windows\DatabaseFieldsManagerWindow.xaml.cs">
+      <DependentUpon>DatabaseFieldsManagerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\FullscreenTextInputWindow.xaml.cs">
       <DependentUpon>FullscreenTextInputWindow.xaml</DependentUpon>
     </Compile>
@@ -351,6 +355,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="Windows\DatabaseFieldsManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\WebViewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

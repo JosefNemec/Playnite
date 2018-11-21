@@ -12,20 +12,6 @@ namespace Playnite.SDK.Models
     /// </summary>
     public class Platform : DatabaseObject
     {
-        private string name;
-        /// <summary>
-        /// Gets or sets platform name.
-        /// </summary>
-        public string Name
-        {
-            get => name;
-            set
-            {
-                name = value;
-                OnPropertyChanged();
-            }
-        }
-
         private string icon;
         /// <summary>
         /// Gets or sets platform icon.

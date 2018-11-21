@@ -39,9 +39,9 @@ namespace BethesdaLibrary
             };
         }
 
-        public List<Game> GetInstalledGames()
+        public List<GameInfo> GetInstalledGames()
         {
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
 
             foreach (var program in Bethesda.GetBethesdaInstallEntried())
             {
@@ -53,10 +53,9 @@ namespace BethesdaLibrary
 
                 var match = Regex.Match(program.UninstallString, @"uninstall\/(\d+)");
                 var gameId = match.Groups[1].Value;
-                var newGame = new Game()
+                var newGame = new GameInfo()
                 {
                     GameId = gameId,
-                    PluginId = Id,
                     Source = "Bethesda",
                     InstallDirectory = installDir,
                     PlayAction = GetGamePlayTask(gameId),
@@ -100,9 +99,9 @@ namespace BethesdaLibrary
             return new BethesdaGameController(this, game);
         }
 
-        public IEnumerable<Game> GetGames()
+        public IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
+            var allGames = new List<GameInfo>();
             if (LibrarySettings.ImportInstalledGames)
             {
                 return GetInstalledGames();

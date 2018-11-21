@@ -1113,7 +1113,7 @@ namespace PlayniteUI.ViewModels
                 case nameof(Game.Categories):
                     if (Games == null)
                     {
-                        UseCategoryChanges = !Game.Categories.IsListEqual(EditingGame.Categories);
+                        UseCategoryChanges = !Game.CategoryIds.IsListEqual(EditingGame.CategoryIds);
                     }
                     else
                     {
@@ -1123,7 +1123,7 @@ namespace PlayniteUI.ViewModels
                 case nameof(Game.Tags):
                     if (Games == null)
                     {
-                        UseTagChanges = !Game.Tags.IsListEqual(EditingGame.Tags);
+                        UseTagChanges = !Game.TagIds.IsListEqual(EditingGame.TagIds);
                     }
                     else
                     {
@@ -1133,7 +1133,7 @@ namespace PlayniteUI.ViewModels
                 case nameof(Game.Genres):
                     if (Games == null)
                     {
-                        UseGenresChanges = !Game.Genres.IsListEqual(EditingGame.Genres);
+                        UseGenresChanges = !Game.GenreIds.IsListEqual(EditingGame.GenreIds);
                     }
                     else
                     {
@@ -1153,7 +1153,7 @@ namespace PlayniteUI.ViewModels
                 case nameof(Game.Developers):
                     if (Games == null)
                     {
-                        UseDeveloperChanges = !Game.Developers.IsListEqual(EditingGame.Developers);
+                        UseDeveloperChanges = !Game.DeveloperIds.IsListEqual(EditingGame.DeveloperIds);
                     }
                     else
                     {
@@ -1163,7 +1163,7 @@ namespace PlayniteUI.ViewModels
                 case nameof(Game.Publishers):
                     if (Games == null)
                     {
-                        UsePublisherChanges = !Game.Publishers.IsListEqual(EditingGame.Publishers);
+                        UsePublisherChanges = !Game.PublisherIds.IsListEqual(EditingGame.PublisherIds);
                     }
                     else
                     {
@@ -1213,7 +1213,7 @@ namespace PlayniteUI.ViewModels
                 case nameof(Game.Series):
                     if (Games == null)
                     {
-                        UseSeriesChanges = Game.Series != EditingGame.Series;
+                        UseSeriesChanges = Game.SeriesId != EditingGame.SeriesId;
                     }
                     else
                     {
@@ -1233,7 +1233,7 @@ namespace PlayniteUI.ViewModels
                 case nameof(Game.AgeRating):
                     if (Games == null)
                     {
-                        UseAgeRatingChanges = Game.AgeRating != EditingGame.AgeRating;
+                        UseAgeRatingChanges = Game.AgeRatingId != EditingGame.AgeRatingId;
                     }
                     else
                     {
@@ -1243,7 +1243,7 @@ namespace PlayniteUI.ViewModels
                 case nameof(Game.Region):
                     if (Games == null)
                     {
-                        UseRegionChanges = Game.Region != EditingGame.Region;
+                        UseRegionChanges = Game.RegionId != EditingGame.RegionId;
                     }
                     else
                     {
@@ -1253,7 +1253,7 @@ namespace PlayniteUI.ViewModels
                 case nameof(Game.Source):
                     if (Games == null)
                     {
-                        UseSourceChanges = Game.Source != EditingGame.Source;
+                        UseSourceChanges = Game.SourceId != EditingGame.SourceId;
                     }
                     else
                     {
@@ -1398,12 +1398,12 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.Genres = EditingGame.Genres;
+                        game.GenreIds = EditingGame.GenreIds;
                     }
                 }
                 else
                 {
-                    Game.Genres = EditingGame.Genres;
+                    Game.GenreIds = EditingGame.GenreIds;
                 }
             }
 
@@ -1428,12 +1428,12 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.Developers = EditingGame.Developers;
+                        game.DeveloperIds = EditingGame.DeveloperIds;
                     }
                 }
                 else
                 {
-                    Game.Developers = EditingGame.Developers;
+                    Game.DeveloperIds = EditingGame.DeveloperIds;
                 }
             }
 
@@ -1443,12 +1443,12 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.Publishers = EditingGame.Publishers;
+                        game.PublisherIds = EditingGame.PublisherIds;
                     }
                 }
                 else
                 {
-                    Game.Publishers = EditingGame.Publishers;
+                    Game.PublisherIds = EditingGame.PublisherIds;
                 }
             }
 
@@ -1458,12 +1458,12 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.Categories = EditingGame.Categories;
+                        game.CategoryIds = EditingGame.CategoryIds;
                     }
                 }
                 else
                 {
-                    Game.Categories = EditingGame.Categories;
+                    Game.CategoryIds = EditingGame.CategoryIds;
                 }
             }
 
@@ -1473,12 +1473,12 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.Tags = EditingGame.Tags;
+                        game.TagIds = EditingGame.TagIds;
                     }
                 }
                 else
                 {
-                    Game.Tags = EditingGame.Tags;
+                    Game.TagIds = EditingGame.TagIds;
                 }
             }
 
@@ -1594,12 +1594,12 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.Series = EditingGame.Series;
+                        game.SeriesId = EditingGame.SeriesId;
                     }
                 }
                 else
                 {
-                    Game.Series = EditingGame.Series;
+                    Game.SeriesId = EditingGame.SeriesId;
                 }
             }
 
@@ -1624,12 +1624,12 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.AgeRating = EditingGame.AgeRating;
+                        game.AgeRatingId = EditingGame.AgeRatingId;
                     }
                 }
                 else
                 {
-                    Game.AgeRating = EditingGame.AgeRating;
+                    Game.AgeRatingId = EditingGame.AgeRatingId;
                 }
             }
 
@@ -1639,12 +1639,12 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.Region = EditingGame.Region;
+                        game.RegionId = EditingGame.RegionId;
                     }
                 }
                 else
                 {
-                    Game.Region = EditingGame.Region;
+                    Game.RegionId = EditingGame.RegionId;
                 }
             }
 
@@ -1654,12 +1654,12 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in Games)
                     {
-                        game.Source = EditingGame.Source;
+                        game.SourceId = EditingGame.SourceId;
                     }
                 }
                 else
                 {
-                    Game.Source = EditingGame.Source;
+                    Game.SourceId = EditingGame.SourceId;
                 }
             }
 
@@ -1945,80 +1945,78 @@ namespace PlayniteUI.ViewModels
             window.Close(true);
         }
 
-        public void PreviewGameData(Game game)
+        public void PreviewGameData(GameInfo game)
         {
-            var listConverter = new ListToStringConverter();
-            var dateConverter = new NullableDateToStringConverter();
-
             if (!string.IsNullOrEmpty(game.Name))
             {
                 EditingGame.Name = game.Name;
             }
 
-            if (game.Developers != null && game.Developers.Count != 0)
-            {
-                EditingGame.Developers = game.Developers;
-            }
+            // TODO
+            //if (game.Developers != null && game.Developers.Count != 0)
+            //{
+            //    EditingGame.Developers = game.Developers;
+            //}
 
-            if (game.Publishers != null && game.Publishers.Count != 0)
-            {
-                EditingGame.Publishers = game.Publishers;
-            }
+            //if (game.Publishers != null && game.Publishers.Count != 0)
+            //{
+            //    EditingGame.Publishers = game.Publishers;
+            //}
 
-            if (game.Genres != null && game.Genres.Count != 0)
-            {
-                EditingGame.Genres = game.Genres;
-            }
+            //if (game.Genres != null && game.Genres.Count != 0)
+            //{
+            //    EditingGame.Genres = game.Genres;
+            //}
 
-            if (game.Tags != null && game.Tags.Count != 0)
-            {
-                EditingGame.Tags = game.Tags;
-            }
+            //if (game.Tags != null && game.Tags.Count != 0)
+            //{
+            //    EditingGame.Tags = game.Tags;
+            //}
 
-            if (game.ReleaseDate != null)
-            {
-                EditingGame.ReleaseDate = game.ReleaseDate;
-            }
+            //if (game.ReleaseDate != null)
+            //{
+            //    EditingGame.ReleaseDate = game.ReleaseDate;
+            //}
 
-            if (!string.IsNullOrEmpty(game.Description))
-            {
-                EditingGame.Description = game.Description;
-            }
+            //if (!string.IsNullOrEmpty(game.Description))
+            //{
+            //    EditingGame.Description = game.Description;
+            //}
 
-            if (game.Links != null)
-            {
-                EditingGame.Links = game.Links;
-            }
+            //if (game.Links != null)
+            //{
+            //    EditingGame.Links = game.Links;
+            //}
 
-            if (!string.IsNullOrEmpty(game.BackgroundImage))
-            {
-                EditingGame.BackgroundImage = game.BackgroundImage;
-            }
+            //if (!string.IsNullOrEmpty(game.BackgroundImage))
+            //{
+            //    EditingGame.BackgroundImage = game.BackgroundImage;
+            //}
 
-            if (game.CriticScore != null)
-            {
-                EditingGame.CriticScore = game.CriticScore;
-            }
+            //if (game.CriticScore != null)
+            //{
+            //    EditingGame.CriticScore = game.CriticScore;
+            //}
 
-            if (game.CommunityScore != null)
-            {
-                EditingGame.CommunityScore = game.CommunityScore;
-            }
+            //if (game.CommunityScore != null)
+            //{
+            //    EditingGame.CommunityScore = game.CommunityScore;
+            //}
 
-            if (!string.IsNullOrEmpty(game.AgeRating))
-            {
-                EditingGame.AgeRating = game.AgeRating;
-            }
+            //if (!string.IsNullOrEmpty(game.AgeRating))
+            //{
+            //    EditingGame.AgeRating = game.AgeRating;
+            //}
 
-            if (!string.IsNullOrEmpty(game.Region))
-            {
-                EditingGame.Region = game.Region;
-            }
+            //if (!string.IsNullOrEmpty(game.Region))
+            //{
+            //    EditingGame.Region = game.Region;
+            //}
 
-            if (!string.IsNullOrEmpty(game.Series))
-            {
-                EditingGame.Series = game.Series;
-            }
+            //if (!string.IsNullOrEmpty(game.Series))
+            //{
+            //    EditingGame.Series = game.Series;
+            //}
 
             if (!string.IsNullOrEmpty(game.CoverImage))
             {
@@ -2304,14 +2302,13 @@ namespace PlayniteUI.ViewModels
                 try
                 {
                     GameMetadata metadata;
-                    var tempGame = game.CloneJson();
-                    tempGame.CoverImage = string.Empty;
+                    GameInfo tempGame;
 
-                    if (extensions.LibraryPlugins.TryGetValue(tempGame.PluginId, out var plugin))
+                    if (extensions.LibraryPlugins.TryGetValue(game.PluginId, out var plugin))
                     {
                         var downloader = plugin.Plugin.GetMetadataDownloader();
-                        metadata = downloader.GetMetadata(tempGame);
-                        metadata?.GameData?.CopyProperties(tempGame, false);
+                        metadata = downloader.GetMetadata(game.CloneJson());
+                        tempGame = metadata.GameInfo;
                     }
                     else
                     {
@@ -2321,11 +2318,11 @@ namespace PlayniteUI.ViewModels
                         return;
                     }
                     
-                    if (metadata.Image != null)
+                    if (metadata.CoverImage != null)
                     {
-                        var path = Path.Combine(PlaynitePaths.TempPath, metadata.Image.FileName);
+                        var path = Path.Combine(PlaynitePaths.TempPath, metadata.CoverImage.FileName);
                         FileSystem.PrepareSaveFile(path);
-                        File.WriteAllBytes(path, metadata.Image.Content);
+                        File.WriteAllBytes(path, metadata.CoverImage.Content);
                         tempGame.CoverImage = path;
                     }
 

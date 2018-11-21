@@ -352,5 +352,10 @@ namespace Playnite.Database
                 ItemUpdatesEventBuffer.Clear();
             }
         }
+
+        public IEnumerable<TItem> GetClone()
+        {
+            return this.Select(a => a.CloneJson());
+        }
     }
 }

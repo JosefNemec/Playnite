@@ -13,12 +13,18 @@ using System.Threading.Tasks;
 
 namespace Playnite.Database
 {
+    // TODO move everything to GameDatabase instance
     public class GameLibrary
     {
         private static ILogger logger = LogManager.GetLogger();
 
         private static string AddNewGameFile(string path, Guid gameId, GameDatabase database)
         {
+            if (string.IsNullOrEmpty(path))
+            {
+                return null;
+            }
+
             var fileName = Guid.NewGuid().ToString() + Path.GetExtension(path);
             MetadataFile metaFile = null;
 
@@ -73,6 +79,137 @@ namespace Playnite.Database
             return null;
         }
 
+        private static Game GameInfoToGame(GameInfo game, GameDatabase database, Guid pluginId)
+        {
+            var toAdd = new Game()
+            {
+                PluginId = pluginId,
+                Name = game.Name,
+                GameId = game.GameId,
+                Description = game.Description,
+                InstallDirectory = game.InstallDirectory,
+                GameImagePath = game.GameImagePath,
+                SortingName = game.SortingName,
+                OtherActions = new ObservableCollection<GameAction>(game.OtherActions),
+                PlayAction = game.PlayAction,
+                ReleaseDate = game.ReleaseDate,
+                Links = new ObservableCollection<Link>(game.Links),
+                IsInstalled = game.IsInstalled,
+                Playtime = game.Playtime,
+                PlayCount = game.PlayCount,
+                LastActivity = game.LastActivity,
+                Version = game.Version,
+                CompletionStatus = game.CompletionStatus,
+                UserScore = game.UserScore,
+                CriticScore = game.CriticScore,
+                CommunityScore = game.CommunityScore
+            };
+
+            if (string.IsNullOrEmpty(game.Platform))
+            {
+                database.AssignPcPlatform(toAdd);
+            }
+            else
+            {
+                toAdd.PlatformId = database.Platforms.Add(game.Platform);
+            }
+
+            if (game.Developers?.Any() == true)
+            {
+                toAdd.DeveloperIds = database.Companies.Add(game.Developers).ToComparable();
+            }
+
+            if (game.Publishers?.Any() == true)
+            {
+                toAdd.PublisherIds = database.Companies.Add(game.Publishers).ToComparable();
+            }
+
+            if (game.Genres?.Any() == true)
+            {
+                toAdd.GenreIds = database.Genres.Add(game.Genres).ToComparable();
+            }
+
+            if (game.Categories?.Any() == true)
+            {
+                toAdd.CategoryIds = database.Categories.Add(game.Categories).Select(a => a.Id).ToComparable();
+            }
+
+            if (game.Tags?.Any() == true)
+            {
+                toAdd.TagIds = database.Tags.Add(game.Tags).ToComparable();
+            }
+
+            if (!string.IsNullOrEmpty(game.AgeRating))
+            {
+                toAdd.AgeRatingId = database.AgeRatings.Add(game.AgeRating);
+            }
+
+            if (!string.IsNullOrEmpty(game.Series))
+            {
+                toAdd.SeriesId = database.Series.Add(game.Series);
+            }
+
+            if (!string.IsNullOrEmpty(game.Region))
+            {
+                toAdd.RegionId = database.Regions.Add(game.Region);
+            }
+
+            if (!string.IsNullOrEmpty(game.Source))
+            {
+                toAdd.SourceId = database.Sources.Add(game.Source);
+            }
+            
+            return toAdd;
+        }
+
+        public static Game ImportGame(GameInfo game, GameDatabase database)
+        {
+            return ImportGame(game, database, Guid.Empty);
+        }
+
+        public static Game ImportGame(GameInfo game, GameDatabase database, Guid pluginId)
+        {
+            var toAdd = GameInfoToGame(game, database, pluginId);
+            toAdd.Icon = AddNewGameFile(game.Icon, game.Id, database);
+            toAdd.CoverImage = AddNewGameFile(game.CoverImage, game.Id, database);
+            if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.IsHttpUrl())
+            {
+                toAdd.BackgroundImage = AddNewGameFile(game.BackgroundImage, game.Id, database);
+            }
+
+            database.Games.Add(toAdd);
+            return toAdd;
+        }
+
+        public static Game ImportGame(GameMetadata metadata, GameDatabase database)
+        {
+            var toAdd = GameInfoToGame(metadata.GameInfo, database, Guid.Empty);
+            if (metadata.Icon != null)
+            {
+                toAdd.Icon = database.AddFile(metadata.Icon, toAdd.Id);
+            }
+
+            if (metadata.CoverImage != null)
+            {
+                toAdd.CoverImage = database.AddFile(metadata.CoverImage, toAdd.Id);
+            }
+
+            if (metadata.BackgroundImage != null)
+            {
+                if (metadata.BackgroundImage.Content == null)
+                {
+                    toAdd.BackgroundImage = metadata.BackgroundImage.OriginalUrl;
+                }
+                else
+                {
+                    toAdd.BackgroundImage = database.AddFile(metadata.BackgroundImage, toAdd.Id);
+                }
+            }
+
+            database.Games.Add(toAdd);
+            return toAdd;
+        }
+
         public static IEnumerable<Game> ImportGames(ILibraryPlugin library, GameDatabase database)
         {
             foreach (var newGame in library.GetGames())
@@ -80,28 +217,8 @@ namespace Playnite.Database
                 var existingGame = database.Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
                 if (existingGame == null)
                 {
-                    logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
-                    if (!string.IsNullOrEmpty(newGame.Icon))
-                    {
-                        newGame.Icon = AddNewGameFile(newGame.Icon, newGame.Id, database);
-                    }
-
-                    if (!string.IsNullOrEmpty(newGame.CoverImage))
-                    {
-                        newGame.CoverImage = AddNewGameFile(newGame.CoverImage, newGame.Id, database);
-                    }
-
-                    if (!string.IsNullOrEmpty(newGame.BackgroundImage))
-                    {
-                        if (!newGame.BackgroundImage.IsHttpUrl())
-                        {
-                            newGame.BackgroundImage = AddNewGameFile(newGame.BackgroundImage, newGame.Id, database);
-                        }
-                    }
-
-                    database.AssignPcPlatform(newGame);
-                    database.Games.Add(newGame);
-                    yield return newGame;
+                    logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));                    
+                    yield return ImportGame(newGame, database, library.Id);
                 }
                 else
                 {
@@ -128,7 +245,7 @@ namespace Playnite.Database
                     
                     if (existingGame.OtherActions?.Any() != true && newGame.OtherActions?.Any() == true)
                     {
-                        existingGame.OtherActions = newGame.OtherActions;
+                        existingGame.OtherActions = new ObservableCollection<GameAction>(newGame.OtherActions);
                     }
 
                     database.Games.Update(existingGame);

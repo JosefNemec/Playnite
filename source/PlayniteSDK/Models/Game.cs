@@ -54,39 +54,41 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private ComparableList<string> developers;
+        private ComparableList<Guid> developerIds;
         /// <summary>
         /// Gets or sets list of developers.
         /// </summary>
-        public ComparableList<string> Developers
+        public ComparableList<Guid> DeveloperIds
         {
             get
             {
-                return developers;
+                return developerIds;
             }
 
             set
             {
-                developers = value;
+                developerIds = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Developers));
             }
         }
 
-        private ComparableList<string> genres;
+        private ComparableList<Guid> genreIds;
         /// <summary>
         /// Gets or sets list of genres.
         /// </summary>
-        public ComparableList<string> Genres
+        public ComparableList<Guid> GenreIds
         {
             get
             {
-                return genres;
+                return genreIds;
             }
 
             set
             {
-                genres = value;
+                genreIds = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Genres));
             }
         }
 
@@ -225,24 +227,6 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private string name;
-        /// <summary>
-        /// Gets or sets game name.
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-
-            set
-            {
-                name = value;
-                OnPropertyChanged();
-            }
-        }
-
         private string sortingName;
         /// <summary>
         /// Gets or sets optional name used for sorting the game by name.
@@ -351,21 +335,22 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private ComparableList<string> publishers;
+        private ComparableList<Guid> publisherIds;
         /// <summary>
         /// Gets or sets list of publishers.
         /// </summary>
-        public ComparableList<string> Publishers
+        public ComparableList<Guid> PublisherIds
         {
             get
             {
-                return publishers;
+                return publisherIds;
             }
 
             set
             {
-                publishers = value;
+                publisherIds = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Publishers));
             }
         }
 
@@ -384,42 +369,45 @@ namespace Playnite.SDK.Models
             {
                 releaseDate = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(ReleaseYear));
             }
         }
 
-        private ComparableList<string> categories;
+        private ComparableList<Guid> categoryIds;
         /// <summary>
         /// Gets or sets game categories.
         /// </summary>
-        public ComparableList<string> Categories
+        public ComparableList<Guid> CategoryIds
         {
             get
             {
-                return categories;
+                return categoryIds;
             }
 
             set
             {
-                categories = value;
+                categoryIds = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Categories));
             }
         }
 
-        private ComparableList<string> tags;
+        private ComparableList<Guid> tagIds;
         /// <summary>
         /// Gets or sets list of tags.
         /// </summary>
-        public ComparableList<string> Tags
+        public ComparableList<Guid> TagIds
         {
             get
             {
-                return tags;
+                return tagIds;
             }
 
             set
             {
-                tags = value;
+                tagIds = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Tags));
             }
         }
 
@@ -592,21 +580,22 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private string series;
+        private Guid seriesId;
         /// <summary>
         /// Gets or sets game series.
         /// </summary>
-        public string Series
+        public Guid SeriesId
         {
             get
             {
-                return series;
+                return seriesId;
             }
 
             set
             {
-                series = value;
+                seriesId = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Series));
             }
         }
 
@@ -628,57 +617,60 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private string ageRating;
+        private Guid ageRatingId;
         /// <summary>
         /// Gets or sets age rating for a game.
         /// </summary>
-        public string AgeRating
+        public Guid AgeRatingId
         {
             get
             {
-                return ageRating;
+                return ageRatingId;
             }
 
             set
             {
-                ageRating = value;
+                ageRatingId = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(AgeRating));
             }
         }
 
-        private string region;
+        private Guid regionId;
         /// <summary>
         /// Gets or sets game region.
         /// </summary>
-        public string Region
+        public Guid RegionId
         {
             get
             {
-                return region;
+                return regionId;
             }
 
             set
             {
-                region = value;
+                regionId = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Region));
             }
         }
 
-        private string source;
+        private Guid sourceId;
         /// <summary>
         /// Gets or sets source of the game.
         /// </summary>
-        public string Source
+        public Guid SourceId
         {
             get
             {
-                return source;
+                return sourceId;
             }
 
             set
             {
-                source = value;
+                sourceId = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Source));
             }
         }
 
@@ -753,6 +745,77 @@ namespace Playnite.SDK.Models
                 OnPropertyChanged();
             }
         }
+
+        #region Expanded
+
+        [JsonIgnore]
+        public ComparableList<Genre> Genres
+        {
+            get;
+        }
+
+        [JsonIgnore]
+        public ComparableList<Company> Developers
+        {
+            get;
+        }
+
+        [JsonIgnore]
+        public ComparableList<Company> Publishers
+        {
+            get;
+        }
+
+        [JsonIgnore]
+        public ComparableList<Tag> Tags
+        {
+            get;
+        }
+
+        [JsonIgnore]
+        public ComparableList<Category> Categories
+        {
+            get;
+        }
+
+        [JsonIgnore]
+        public Platform Platform
+        {
+            get;
+        }
+
+        [JsonIgnore]
+        public Series Series
+        {
+            get;
+        }
+
+        [JsonIgnore]
+        public AgeRating AgeRating
+        {
+            get;
+        }
+
+        [JsonIgnore]
+        public Region Region
+        {
+            get;
+        }
+
+        [JsonIgnore]
+        public GameSource Source
+        {
+            get;
+        }
+
+        [JsonIgnore]
+        public int? ReleaseYear
+        {
+            get;
+        }
+
+        #endregion Expanded
+
 
         /// <summary>
         /// Creates new instance of a Game object.

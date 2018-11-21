@@ -1,4 +1,5 @@
-﻿using Playnite.SDK;
+﻿using Playnite;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,7 @@ namespace PlayniteUI.ViewModels
                 {
                     progresAction();
                 }
-                catch (Exception exc)
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     FailException = exc;
                     window.Close(false);

@@ -16,6 +16,22 @@ namespace Playnite.Database
             db = database;
         }
 
+        public Guid Add(string platformName)
+        {
+            if (string.IsNullOrEmpty(platformName)) throw new ArgumentNullException(nameof(platformName));
+            var plat = this.FirstOrDefault(a => a.Name.Equals(platformName, StringComparison.OrdinalIgnoreCase));
+            if (plat != null)
+            {
+                return plat.Id;
+            }
+            else
+            {
+                var newPlat = new Platform(platformName);
+                base.Add(newPlat);
+                return newPlat.Id;
+            }
+        }
+
         public override bool Remove(Guid id)
         {
             var item = Get(id);

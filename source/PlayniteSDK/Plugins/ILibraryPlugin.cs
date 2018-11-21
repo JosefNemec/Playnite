@@ -33,7 +33,7 @@ namespace Playnite.SDK.Plugins
         /// Gets library games.
         /// </summary>
         /// <returns>List of games.</returns>
-        IEnumerable<Game> GetGames();
+        IEnumerable<GameInfo> GetGames();
 
         /// <summary>
         /// Gets controller responsible for handling of library game or null if no specific controller is available.

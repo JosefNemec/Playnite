@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,10 @@ namespace BethesdaLibrary.Tests
             var library = BethesdaLibraryTests.CreateLibrary();
             var provider = new BethesdaMetadataProvider();
             var games = library.GetInstalledGames();
-            var game = games.First();
-            var metadata = provider.GetMetadata(game);
+            var metadata = provider.GetMetadata(new Game()
+            {
+                GameId = games.First().GameId
+            });
             Assert.IsNotNull(metadata.Icon);
         }
     }

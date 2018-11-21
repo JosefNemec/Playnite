@@ -14,25 +14,23 @@ namespace UplayLibrary
 {
     public class UplayMetadataProvider : ILibraryMetadataProvider
     {
-        #region IMetadataProvider
-
         public GameMetadata GetMetadata(Game game)
         {
-            var gameData = game.CloneJson();
-            var data = UpdateGameWithMetadata(gameData);
-            return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
-        }
-
-        #endregion IMetadataProvider
-
-        public GameMetadata UpdateGameWithMetadata(Game game)
-        {
-            var metadata = new GameMetadata();
             var program = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.RegistryKeyName == "Uplay Install " + game.GameId);
             if (program == null)
             {
-                return metadata;
+                return null;
             }
+
+            var gameInfo = new GameInfo
+            {
+                Name = StringExtensions.NormalizeGameName(program.DisplayName)
+            };
+
+            var metadata = new GameMetadata()
+            {
+                GameInfo = gameInfo
+            };
 
             if (!string.IsNullOrEmpty(program.DisplayIcon) && File.Exists(program.DisplayIcon))
             {
@@ -42,7 +40,6 @@ namespace UplayLibrary
                 metadata.Icon = new MetadataFile(iconFile, data);
             }
 
-            game.Name = StringExtensions.NormalizeGameName(program.DisplayName);
             return metadata;
         }
     }

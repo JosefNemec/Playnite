@@ -161,7 +161,10 @@
                 <KeyBinding Command="{Binding ToggleFilterPanelCommand}"
                     Key ="{Binding ToggleFilterPanelCommand.Gesture.Key}"
                     Modifiers="{Binding ToggleFilterPanelCommand.Gesture.Modifiers}" />
-
+                <KeyBinding Command="{Binding OpenDbFieldsManagerCommand}"
+                    Key ="{Binding OpenDbFieldsManagerCommand.Gesture.Key}"
+                    Modifiers="{Binding OpenDbFieldsManagerCommand.Gesture.Modifiers}" />
+                
                 <pui:XInputBinding Button="Guide" Command="{Binding OpenFullScreenCommand}" />
             </c:MainView.InputBindings>
         </c:MainView>

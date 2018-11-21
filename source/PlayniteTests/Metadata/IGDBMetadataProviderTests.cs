@@ -23,18 +23,18 @@ namespace PlayniteTests.Metadata
             CollectionAssert.IsNotEmpty(search);
             var metadata = search.First();
             var data = provider.GetMetadata(metadata.Id);
-            Assert.IsNotNull(data.GameData);
+            Assert.IsNotNull(data.GameInfo);
             Assert.IsNull(data.Icon);
-            Assert.IsNotNull(data.Image);
-            Assert.IsNotNull(data.GameData.ReleaseDate);
+            Assert.IsNotNull(data.CoverImage);
+            Assert.IsNotNull(data.GameInfo.ReleaseDate);
             Assert.IsTrue(string.IsNullOrEmpty(data.BackgroundImage));
-            Assert.IsFalse(string.IsNullOrEmpty(data.GameData.Description));
-            CollectionAssert.IsNotEmpty(data.GameData.Publishers);
-            CollectionAssert.IsNotEmpty(data.GameData.Developers);
-            CollectionAssert.IsNotEmpty(data.GameData.Tags);
-            CollectionAssert.IsNotEmpty(data.GameData.Genres);
-            CollectionAssert.IsNotEmpty(data.GameData.Links);
-            CollectionAssert.IsNotEmpty(data.GameData.Publishers);
+            Assert.IsFalse(string.IsNullOrEmpty(data.GameInfo.Description));
+            CollectionAssert.IsNotEmpty(data.GameInfo.Publishers);
+            CollectionAssert.IsNotEmpty(data.GameInfo.Developers);
+            CollectionAssert.IsNotEmpty(data.GameInfo.Tags);
+            CollectionAssert.IsNotEmpty(data.GameInfo.Genres);
+            CollectionAssert.IsNotEmpty(data.GameInfo.Links);
+            CollectionAssert.IsNotEmpty(data.GameInfo.Publishers);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace PlayniteTests.Metadata
 
             var result = provider.GetMetadata(steamGame);
             Assert.IsFalse(result.IsEmpty);
-            Assert.AreEqual("TrackMania United", result.GameData.Name);
+            Assert.AreEqual("TrackMania United", result.GameInfo.Name);
 
             steamGame.GameId = "999999";
             result = provider.GetMetadata(steamGame);
@@ -65,14 +65,14 @@ namespace PlayniteTests.Metadata
 
             var metadata = provider.GetMetadata(game);
             Assert.IsFalse(metadata.IsEmpty);
-            Assert.AreEqual(1996, metadata.GameData.ReleaseDate?.Year);
-            Assert.AreEqual("Core Design", metadata.GameData.Developers[0]);
+            Assert.AreEqual(1996, metadata.GameInfo.ReleaseDate?.Year);
+            Assert.AreEqual("Core Design", metadata.GameInfo.Developers[0]);
 
             game.ReleaseDate = new DateTime(2013, 1, 1);
             metadata = provider.GetMetadata(game);
             Assert.IsFalse(metadata.IsEmpty);
-            Assert.AreEqual(2013, metadata.GameData.ReleaseDate?.Year);
-            Assert.AreEqual("Crystal Dynamics", metadata.GameData.Developers[0]);
+            Assert.AreEqual(2013, metadata.GameInfo.ReleaseDate?.Year);
+            Assert.AreEqual("Crystal Dynamics", metadata.GameInfo.Developers[0]);
         }
 
         [Test]
@@ -80,11 +80,11 @@ namespace PlayniteTests.Metadata
         {
             var metadata = provider.GetMetadata(new Game("pubg"));
             Assert.IsFalse(metadata.IsEmpty);
-            Assert.AreEqual("PLAYERUNKNOWN'S BATTLEGROUNDS", metadata.GameData.Name);
+            Assert.AreEqual("PLAYERUNKNOWN'S BATTLEGROUNDS", metadata.GameInfo.Name);
 
             metadata = provider.GetMetadata(new Game("unreal 2"));
             Assert.IsFalse(metadata.IsEmpty);
-            Assert.AreEqual("Unreal II: The Awakening", metadata.GameData.Name);
+            Assert.AreEqual("Unreal II: The Awakening", metadata.GameInfo.Name);
         }
 
         [Test]
@@ -92,39 +92,39 @@ namespace PlayniteTests.Metadata
         {
             // & / and test
             var result = provider.GetMetadata(new Game("Command and Conquer"));
-            Assert.IsNotNull(result.GameData);
-            Assert.IsNotNull(result.Image);
-            Assert.AreEqual("Command & Conquer", result.GameData.Name);
-            Assert.AreEqual(1995, result.GameData.ReleaseDate?.Year);
+            Assert.IsNotNull(result.GameInfo);
+            Assert.IsNotNull(result.CoverImage);
+            Assert.AreEqual("Command & Conquer", result.GameInfo.Name);
+            Assert.AreEqual(1995, result.GameInfo.ReleaseDate?.Year);
 
             // Matches exactly
             result = provider.GetMetadata(new Game("Grand Theft Auto IV"));
-            Assert.IsNotNull(result.GameData);
-            Assert.IsNotNull(result.Image);
+            Assert.IsNotNull(result.GameInfo);
+            Assert.IsNotNull(result.CoverImage);
 
             // Roman numerals test
             result = provider.GetMetadata(new Game("Quake 3 Arena"));
-            Assert.IsNotNull(result.GameData);
-            Assert.IsNotNull(result.Image);
-            Assert.AreEqual("Quake III Arena", result.GameData.Name);
+            Assert.IsNotNull(result.GameInfo);
+            Assert.IsNotNull(result.CoverImage);
+            Assert.AreEqual("Quake III Arena", result.GameInfo.Name);
 
             // THE test
             result = provider.GetMetadata(new Game("Witcher 3: Wild Hunt"));
-            Assert.IsNotNull(result.GameData);
-            Assert.IsNotNull(result.Image);
-            Assert.AreEqual("The Witcher 3: Wild Hunt", result.GameData.Name);
+            Assert.IsNotNull(result.GameInfo);
+            Assert.IsNotNull(result.CoverImage);
+            Assert.AreEqual("The Witcher 3: Wild Hunt", result.GameInfo.Name);
 
             // No subtitle test
             result = provider.GetMetadata(new Game("The Witcher 3"));
-            Assert.IsNotNull(result.GameData);
-            Assert.IsNotNull(result.Image);
-            Assert.AreEqual("The Witcher 3: Wild Hunt", result.GameData.Name);
+            Assert.IsNotNull(result.GameInfo);
+            Assert.IsNotNull(result.CoverImage);
+            Assert.AreEqual("The Witcher 3: Wild Hunt", result.GameInfo.Name);
 
             // Apostrophe test
             result = provider.GetMetadata(new Game("Dragons Lair"));
-            Assert.IsNotNull(result.GameData);
-            Assert.IsNotNull(result.Image);
-            Assert.AreEqual("Dragon's Lair", result.GameData.Name);
+            Assert.IsNotNull(result.GameInfo);
+            Assert.IsNotNull(result.CoverImage);
+            Assert.AreEqual("Dragon's Lair", result.GameInfo.Name);
         }
     }
 }

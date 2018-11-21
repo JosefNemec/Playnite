@@ -94,7 +94,7 @@ namespace PlayniteUI.ViewModels
             }
         }        
 
-        public Game MetadataData
+        public GameInfo MetadataData
         {
             get; set;
         }
@@ -167,7 +167,7 @@ namespace PlayniteUI.ViewModels
                             break;
                         case MetadataProvider.IGDB:
                             var igdb = new IGDBMetadataProvider();
-                            MetadataData = igdb.GetMetadata(id).GameData;
+                            MetadataData = igdb.GetMetadata(id).GameInfo;
                             break;
                     }
 

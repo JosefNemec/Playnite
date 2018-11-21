@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace PlayniteUI
 {
     public class ProgramEntry
-    {
+    {        
         [STAThread]
         public static void Main(string[] args)
         {

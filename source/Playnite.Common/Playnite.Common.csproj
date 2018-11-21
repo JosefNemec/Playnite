@@ -79,6 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="Roman.cs" />
+    <Compile Include="SelectableItem.cs" />
     <Compile Include="Serialization.cs" />
     <Compile Include="Services\BaseServicesClient.cs" />
     <Compile Include="Services\GenericResponse.cs" />

@@ -30,10 +30,10 @@ namespace Playnite.Metadata.Providers
             this.client = client;
         }
 
-        private Game GetParsedGame(ulong id)
+        private GameInfo GetParsedGame(ulong id)
         {
             var dbGame = client.GetIGDBGameParsed(id);
-            var game = new Game()
+            var game = new GameInfo()
             {
                 Name = dbGame.name,
                 Description = dbGame.summary?.Replace("\n", "\n<br>")
@@ -55,28 +55,28 @@ namespace Playnite.Metadata.Providers
 
             if (dbGame.developers?.Any() == true)
             {
-                game.Developers = new ComparableList<string>(dbGame.developers);
+                game.Developers = dbGame.developers;
             }
 
             if (dbGame.publishers?.Any() == true)
             {
-                game.Publishers = new ComparableList<string>(dbGame.publishers);
+                game.Publishers = dbGame.publishers;
             }
 
             if (dbGame.genres?.Any() == true)
             {
-                game.Genres = new ComparableList<string>(dbGame.genres);
+                game.Genres = dbGame.genres;
             }
 
             if (dbGame.websites?.Any() == true)
             {
-                game.Links = new ObservableCollection<Link>(dbGame.websites.Select(a => new Link(a.category.ToString(), a.url)));
+                game.Links = dbGame.websites.Select(a => new Link(a.category.ToString(), a.url)).ToList();
             }
 
             if (dbGame.game_modes?.Any() == true)
             {
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
-                game.Tags = new ComparableList<string>(dbGame.game_modes.Select(a => cultInfo.ToTitleCase(a)));
+                game.Tags = dbGame.game_modes.Select(a => cultInfo.ToTitleCase(a)).ToList();
             }
 
             if (dbGame.aggregated_rating != 0)
@@ -118,7 +118,7 @@ namespace Playnite.Metadata.Providers
                 image = new MetadataFile(name, HttpDownloader.DownloadData(game.CoverImage));
             }
 
-            return new GameMetadata(game, null, image, string.Empty);
+            return new GameMetadata(game, null, image, null);
         }
 
         public GameMetadata GetMetadata(Game game)

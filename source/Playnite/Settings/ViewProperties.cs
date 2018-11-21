@@ -50,8 +50,8 @@ namespace Playnite
     {
         None,
         Provider,
-        Category,
-        Platform
+        CategoryIds,
+        PlatformId
     }
 
     public enum ViewType : int

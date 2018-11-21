@@ -113,13 +113,13 @@ namespace OriginLibrary
                 {
                     if (File.Exists(executablePath))
                     {
-                        if (Game.PlayAction == null)
+                        var installInfo = new GameInfo()
                         {
-                            Game.PlayAction = origin.GetGamePlayTask(manifest);
-                        }
+                            PlayAction = origin.GetGamePlayTask(manifest),
+                            InstallDirectory = Path.GetDirectoryName(executablePath)
+                        };
 
-                        Game.InstallDirectory = Path.GetDirectoryName(executablePath);
-                        OnInstalled(this, new GameControllerEventArgs(this, 0));
+                        OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
                         return;
                     }
                 }

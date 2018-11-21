@@ -48,7 +48,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Friends</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Section contains changes to be saved</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Updating game library format...</sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail">Database update failed, can't open database file.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">Database update failed.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Cannot update game library. {0} MBs of free space is required.</sys:String>
 
     <sys:String x:Key="LOCGameError">GameError</sys:String>
@@ -113,6 +113,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCDownloadLabel">Download</sys:String>
     <sys:String x:Key="LOCSearchLabel">Search</sys:String>
     <sys:String x:Key="LOCGenreLabel">Genre</sys:String>
+    <sys:String x:Key="LOCCompanyLabel">Company</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Developer</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Publisher</sys:String>
     <sys:String x:Key="LOCCategoryLabel">Category</sys:String>

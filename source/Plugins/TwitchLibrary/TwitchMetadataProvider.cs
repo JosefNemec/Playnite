@@ -13,26 +13,24 @@ using System.Threading.Tasks;
 namespace TwitchLibrary
 {
     public class TwitchMetadataProvider : ILibraryMetadataProvider
-    {
-        #region IMetadataProvider
-        
+    {        
         public GameMetadata GetMetadata(Game game)
         {
-            var gameData = game.CloneJson();
-            var data = UpdateGameWithMetadata(gameData);
-            return new GameMetadata(gameData, data.Icon, data.Image, data.BackgroundImage);
-        }
-
-        #endregion IMetadataProvider
-
-        public GameMetadata UpdateGameWithMetadata(Game game)
-        {
-            var metadata = new GameMetadata();
             var program = Twitch.GetUninstallRecord(game.GameId);
             if (program == null)
             {
-                return metadata;
+                return null;
             }
+
+            var gameInfo = new GameInfo
+            {
+                Name = StringExtensions.NormalizeGameName(program.DisplayName)
+            };
+
+            var metadata = new GameMetadata()
+            {
+                GameInfo = gameInfo
+            };
 
             if (!string.IsNullOrEmpty(program.DisplayIcon) && File.Exists(program.DisplayIcon))
             {
@@ -49,12 +47,11 @@ namespace TwitchLibrary
                     if (exeIcon != null)
                     {
                         var iconName = Guid.NewGuid() + ".png";
-                        metadata.Icon = new MetadataFile(iconName, exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));                       
+                        metadata.Icon = new MetadataFile(iconName, exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
                     }
                 }
             }
 
-            game.Name = StringExtensions.NormalizeGameName(program.DisplayName);
             return metadata;
         }
     }

@@ -311,6 +311,7 @@ namespace PlayniteUI.ViewModels
         public RelayCommand<object> OpenSearchCommand { get; private set; }
         public RelayCommand<object> ToggleFilterPanelCommand { get; private set; }
         public RelayCommand<object> CheckForUpdateCommand { get; private set; }
+        public RelayCommand<object> OpenDbFieldsManagerCommand { get; private set; }
         public RelayCommand<ILibraryPlugin> UpdateLibraryCommand { get; private set; }
         #endregion
 
@@ -552,6 +553,18 @@ namespace PlayniteUI.ViewModels
                 MainMenuOpened = false;
                 CheckForUpdate();
             });
+
+            OpenDbFieldsManagerCommand = new RelayCommand<object>((a) =>
+            {
+                MainMenuOpened = false;
+                ConfigureDatabaseFields(
+                        new DatabaseFieldsManagerViewModel(
+                            Database,
+                            DatabaseFieldsManagerWindowFactory.Instance,
+                            Dialogs,
+                            Resources));
+            }, (a) => Database.IsOpen,
+            new KeyGesture(Key.W, ModifierKeys.Control));
 
             UpdateLibraryCommand = new RelayCommand<ILibraryPlugin>((a) =>
             {
@@ -841,7 +854,7 @@ namespace PlayniteUI.ViewModels
                                 throw new NoDiskSpaceException(dbSize);
                             }
 
-                            GameDatabase.MigrateDatabase(AppSettings.DatabasePath);
+                            GameDatabase.MigrateOldDatabaseFormat(AppSettings.DatabasePath);
                             GameDatabase.MigrateToNewFormat(AppSettings.DatabasePath, newResolvedDbPath);
                             FileSystem.DeleteFile(AppSettings.DatabasePath);
                             AppSettings.DatabasePath = newDbPath;
@@ -849,7 +862,7 @@ namespace PlayniteUI.ViewModels
                     }
                     else
                     {
-                        // Do migration of new format when needed
+                        GameDatabase.MigrateNewDatabaseFormat(GameDatabase.GetFullDbPath(AppSettings.DatabasePath));                        
                     }
                 }, Resources.FindString("LOCDBUpgradeProgress"));
 
@@ -1103,9 +1116,9 @@ namespace PlayniteUI.ViewModels
 
         public async void ImportInstalledGames(InstalledGamesViewModel model, string path)
         {
-            if (model.OpenView(path) == true && model.Games?.Any() == true)
+            if (model.OpenView(path) == true && model.SelectedGames?.Any() == true)
             {
-                var addedGames = InstalledGamesViewModel.AddImportableGamesToDb(model.Games, Database);
+                var addedGames = InstalledGamesViewModel.AddImportableGamesToDb(model.SelectedGames, Database);
                 if (AppSettings.DownloadMetadataOnImport)
                 {
                     if (!GlobalTaskHandler.IsActive)
@@ -1172,6 +1185,11 @@ namespace PlayniteUI.ViewModels
         {
             model.OpenView();
         }
+
+        public void ConfigureDatabaseFields(DatabaseFieldsManagerViewModel model)
+        {
+            model.OpenView();
+        }        
 
         public void SelectGame(Guid id)
         {

@@ -14,9 +14,11 @@ using Playnite.SDK.Metadata;
 using Playnite.Common;
 using Playnite.Settings;
 using Playnite.Common.System;
+using Newtonsoft.Json.Linq;
 
 namespace Playnite.Database
 {
+    // TODO cleanup methods, remove duplicates
     public class GameDatabase
     {
         private static ILogger logger = LogManager.GetLogger();
@@ -39,13 +41,28 @@ namespace Playnite.Database
         private const string platformsDirName = "platforms";
         private const string emulatorsDirName = "emulators";
         private const string filesDirName = "files";
+        private const string genresDirName = "genres";
+        private const string companiesDirName = "companies";
+        private const string tagsDirName = "tags";
+        private const string categoriesDirName = "categories";
+        private const string seriesDirName = "series";
+        private const string ageRatingsDirName = "ageratings";
+        private const string regionsDirName = "regions";
+        private const string sourcesDirName = "sources";
         private const string settingsFileName = "database.json";
 
         private string GamesDirectoryPath { get => Path.Combine(DatabasePath, gamesDirName); }
         private string PlatformsDirectoryPath { get => Path.Combine(DatabasePath, platformsDirName); }
         private string EmulatorsDirectoryPath { get => Path.Combine(DatabasePath, emulatorsDirName); }
+        private string GenresDirectoryPath { get => Path.Combine(DatabasePath, genresDirName); }
+        private string CompaniesDirectoryPath { get => Path.Combine(DatabasePath, companiesDirName); }
+        private string TagsDirectoryPath { get => Path.Combine(DatabasePath, tagsDirName); }
+        private string CategoriesDirectoryPath { get => Path.Combine(DatabasePath, categoriesDirName); }
+        private string AgeRatingsDirectoryPath { get => Path.Combine(DatabasePath, ageRatingsDirName); }
+        private string SeriesDirectoryPath { get => Path.Combine(DatabasePath, seriesDirName); }
+        private string RegionsDirectoryPath { get => Path.Combine(DatabasePath, regionsDirName); }
+        private string SourcesDirectoryPath { get => Path.Combine(DatabasePath, sourcesDirName); }
         private string FilesDirectoryPath { get => Path.Combine(DatabasePath, filesDirName); }
-
         private string DatabaseFileSettingsPath { get => Path.Combine(DatabasePath, settingsFileName); }
 
         #endregion Paths
@@ -54,7 +71,15 @@ namespace Playnite.Database
 
         public GamesCollection Games { get; private set; }
         public PlatformsCollection Platforms { get; private set; }
-        public ItemCollection<Emulator> Emulators { get; private set; }       
+        public ItemCollection<Emulator> Emulators { get; private set; }
+        public GenresCollection Genres { get; private set; }
+        public CompaniesCollection Companies { get; private set; }
+        public TagsCollection Tags { get; private set; }
+        public CategoriesCollection Categories { get; private set; }
+        public SeriesCollection Series { get; private set; }
+        public AgeRatingsCollection AgeRatings { get; private set; }
+        public RegionsCollection Regions { get; private set; }
+        public GamesSourcesCollection Sources { get; private set; }
 
         #endregion Lists
 
@@ -98,7 +123,7 @@ namespace Playnite.Database
 
         public static readonly ushort DBVersion = 6;
 
-        public static readonly ushort NewFormatVersion = 1;
+        public static readonly ushort NewFormatVersion = 2;
 
         #region Events
 
@@ -115,6 +140,14 @@ namespace Playnite.Database
             Platforms.InitializeCollection(PlatformsDirectoryPath);
             Emulators.InitializeCollection(EmulatorsDirectoryPath);
             Games.InitializeCollection(GamesDirectoryPath);
+            Genres.InitializeCollection(GenresDirectoryPath);
+            Companies.InitializeCollection(CompaniesDirectoryPath);
+            Tags.InitializeCollection(TagsDirectoryPath);
+            Categories.InitializeCollection(CategoriesDirectoryPath);
+            AgeRatings.InitializeCollection(AgeRatingsDirectoryPath);
+            Series.InitializeCollection(SeriesDirectoryPath);
+            Regions.InitializeCollection(RegionsDirectoryPath);
+            Sources.InitializeCollection(SourcesDirectoryPath);
         }
 
         #endregion Intialization
@@ -129,6 +162,14 @@ namespace Playnite.Database
             Platforms = new PlatformsCollection(this);
             Games = new GamesCollection(this);
             Emulators = new ItemCollection<Emulator>();
+            Genres = new GenresCollection(this);
+            Companies = new CompaniesCollection(this);
+            Tags = new TagsCollection(this);
+            Categories = new CategoriesCollection(this);
+            AgeRatings = new AgeRatingsCollection(this);
+            Series = new SeriesCollection(this);
+            Regions = new RegionsCollection(this);
+            Sources = new GamesSourcesCollection(this);
         }
 
         private void CheckDbState()
@@ -137,6 +178,18 @@ namespace Playnite.Database
             {
                 throw new Exception("Database is not opened.");
             }
+        }
+
+        internal static DatabaseSettings GetSettingsFromDbPath(string dbPath)
+        {
+            var settingsPath = Path.Combine(dbPath, settingsFileName);
+            return Serialization.FromJson<DatabaseSettings>(FileSystem.ReadFileAsStringSafe(settingsPath));
+        }
+
+        internal static void SaveSettingsToDbPath(DatabaseSettings settings, string dbPath)
+        {
+            var settingsPath = Path.Combine(dbPath, settingsFileName);            
+            FileSystem.WriteStringToFileSafe(settingsPath, Serialization.ToJson(settings));
         }
 
         // TODO: Remove this, we should only allow path to be set during instantiation.
@@ -150,7 +203,7 @@ namespace Playnite.Database
             DatabasePath = GetFullDbPath(path);
         }
 
-        public static void MigrateDatabase(string path)
+        public static void MigrateOldDatabaseFormat(string path)
         {
             using (var db = new LiteDatabase(path))
             {
@@ -667,6 +720,138 @@ namespace Playnite.Database
             }
         }
 
+        // TODO move to separete partial file
+        public static void MigrateNewDatabaseFormat(string path)
+        {
+            // Todo implement fallback and revert in case conversion goes wrong.
+            var dbSettings = GetSettingsFromDbPath(path);
+            var gamesDir = Path.Combine(path, gamesDirName);
+
+            // 1 to 2
+            if (dbSettings.Version == 1 && NewFormatVersion > 1)
+            {
+                void convetList<T>(Dictionary<string, object> game, string origKey, string newKey, Dictionary<string, T> convertedList) where T : DatabaseObject
+                {
+                    if (game.TryGetValue(origKey, out var storedObj))
+                    {
+                        var gameObjs = new List<Guid>();
+                        var oldLIst = (storedObj as JArray).ToObject<List<string>>();
+                        foreach (var oldObj in oldLIst)
+                        {
+                            if (string.IsNullOrEmpty(oldObj))
+                            {
+                                continue;
+                            }
+
+                            if (convertedList.TryGetValue(oldObj, out var curObj))
+                            {
+                                gameObjs.Add(curObj.Id);
+                            }
+                            else
+                            {
+                                var newObj = (T)Activator.CreateInstance(typeof(T), new object[] { oldObj });
+                                gameObjs.Add(newObj.Id);
+                                convertedList.Add(oldObj, newObj);
+                            }
+                        }
+
+                        game.Remove(origKey);
+                        game[newKey] = gameObjs;
+                    }
+                }
+
+                void covertObject<T>(Dictionary<string, object> game, string origKey, string newKey, Dictionary<string, T> convertedList) where T : DatabaseObject
+                {
+                    if (game.TryGetValue(origKey, out var storedObj))
+                    {                        
+                        var oldObj = storedObj as string;
+                        if (!string.IsNullOrEmpty(oldObj))
+                        {
+                            if (convertedList.TryGetValue(oldObj, out var curObj))
+                            {
+                                game[newKey] = curObj.Id;
+                            }
+                            else
+                            {
+                                var newObj = (T)Activator.CreateInstance(typeof(T), new object[] { oldObj });
+                                game[newKey] = newObj.Id;
+                                convertedList.Add(oldObj, newObj);
+                            }
+                        }                        
+
+                        game.Remove(origKey);
+                    }
+                }
+
+                void saveCollection<T>(Dictionary<string, T> collection, string collPath) where T : DatabaseObject
+                {
+                    if (collection.Any())
+                    {
+                        foreach (var item in collection.Values)
+                        {
+                            FileSystem.WriteStringToFileSafe(Path.Combine(collPath, item.Id + ".json"), Serialization.ToJson(item));
+                        }
+                    }
+                }
+
+                var allGenres = new Dictionary<string, Genre>(StringComparer.CurrentCultureIgnoreCase);
+                var allCompanies = new Dictionary<string, Company>(StringComparer.CurrentCultureIgnoreCase);
+                var allTags = new Dictionary<string, Tag>(StringComparer.CurrentCultureIgnoreCase);
+                var allCategories = new Dictionary<string, Category>(StringComparer.CurrentCultureIgnoreCase);
+                var allSeries = new Dictionary<string, Series>(StringComparer.CurrentCultureIgnoreCase);
+                var allRatings = new Dictionary<string, AgeRating>(StringComparer.CurrentCultureIgnoreCase);
+                var allRegions = new Dictionary<string, Region>(StringComparer.CurrentCultureIgnoreCase);
+                var allSources = new Dictionary<string, GameSource>(StringComparer.CurrentCultureIgnoreCase);
+
+                // Convert following object to Id representations and store them in separete lists:
+                foreach (var file in Directory.EnumerateFiles(gamesDir, "*.json"))
+                {
+                    var game = Serialization.FromJson<Dictionary<string, object>>(FileSystem.ReadFileAsStringSafe(file));
+
+                    // Genres    
+                    convetList(game, nameof(OldModels.NewVer1.OldGame.Genres), nameof(Game.GenreIds), allGenres);
+
+                    // Developers
+                    convetList(game, nameof(OldModels.NewVer1.OldGame.Developers), nameof(Game.DeveloperIds), allCompanies);
+
+                    // Publishers
+                    convetList(game, nameof(OldModels.NewVer1.OldGame.Publishers), nameof(Game.PublisherIds), allCompanies);
+
+                    // Tags
+                    convetList(game, nameof(OldModels.NewVer1.OldGame.Tags), nameof(Game.TagIds), allTags);
+
+                    // Categories
+                    convetList(game, nameof(OldModels.NewVer1.OldGame.Categories), nameof(Game.CategoryIds), allCategories);
+
+                    // Series
+                    covertObject(game, nameof(OldModels.NewVer1.OldGame.Series), nameof(Game.SeriesId), allSeries);
+
+                    // AgeRating
+                    covertObject(game, nameof(OldModels.NewVer1.OldGame.AgeRating), nameof(Game.AgeRatingId), allRatings);
+
+                    // Region
+                    covertObject(game, nameof(OldModels.NewVer1.OldGame.Region), nameof(Game.RegionId), allRegions);
+
+                    // Source
+                    covertObject(game, nameof(OldModels.NewVer1.OldGame.Source), nameof(Game.SourceId), allSources);
+
+                    FileSystem.WriteStringToFileSafe(file, Serialization.ToJson(game));
+                }
+
+                saveCollection(allGenres, Path.Combine(path, genresDirName));
+                saveCollection(allCompanies, Path.Combine(path, companiesDirName));
+                saveCollection(allTags, Path.Combine(path, tagsDirName));
+                saveCollection(allCategories, Path.Combine(path, categoriesDirName));
+                saveCollection(allSeries, Path.Combine(path, seriesDirName));
+                saveCollection(allRatings, Path.Combine(path, ageRatingsDirName));
+                saveCollection(allRegions, Path.Combine(path, regionsDirName));
+                saveCollection(allSources, Path.Combine(path, sourcesDirName));
+
+                dbSettings.Version = 2;
+                SaveSettingsToDbPath(dbSettings, path);
+            }
+        }
+
         public static void MigrateToNewFormat(string oldPath, string newPath)
         {
             using (var db = new LiteDatabase(oldPath))
@@ -699,7 +884,7 @@ namespace Playnite.Database
                 var gameCol = db.GetCollection("games");
                 foreach (var game in gameCol.FindAll())
                 {
-                    var conGame = BsonMapper.Global.ToObject<OldModels.Ver6.Game>(game);
+                    var conGame = BsonMapper.Global.ToObject<OldModels.Ver6.OldGame>(game);
                     var targetFile = Path.Combine(gamesDir, $"{conGame.Id.ToString()}.json");
                     conGame.CoverImage = ExportFile(conGame.Id, conGame.CoverImage);
                     conGame.Icon = ExportFile(conGame.Id, conGame.Icon);
@@ -986,6 +1171,14 @@ namespace Playnite.Database
             Platforms.BeginBufferUpdate();
             Emulators.BeginBufferUpdate();
             Games.BeginBufferUpdate();
+            Genres.BeginBufferUpdate();
+            Companies.BeginBufferUpdate();
+            Tags.BeginBufferUpdate();
+            Categories.BeginBufferUpdate();
+            Series.BeginBufferUpdate();
+            AgeRatings.BeginBufferUpdate();
+            Regions.BeginBufferUpdate();
+            Sources.BeginBufferUpdate();
         }
 
         public void EndBufferUpdate()
@@ -993,6 +1186,14 @@ namespace Playnite.Database
             Platforms.EndBufferUpdate();
             Emulators.EndBufferUpdate();
             Games.EndBufferUpdate();
+            Genres.EndBufferUpdate();
+            Companies.EndBufferUpdate();
+            Tags.EndBufferUpdate();
+            Categories.EndBufferUpdate();
+            Series.EndBufferUpdate();
+            AgeRatings.EndBufferUpdate();
+            Regions.EndBufferUpdate();
+            Sources.EndBufferUpdate();
         }
 
         public IDisposable BufferedUpdate()

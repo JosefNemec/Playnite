@@ -93,13 +93,13 @@ namespace TwitchLibrary
                 var program = Twitch.GetUninstallRecord(Game.GameId);
                 if (program != null)
                 {
-                    if (Game.PlayAction == null)
+                    var installInfo = new GameInfo()
                     {
-                        Game.PlayAction = TwitchLibrary.GetPlayAction(Game.GameId);
-                    }
+                        PlayAction = TwitchLibrary.GetPlayAction(Game.GameId),
+                        InstallDirectory = Paths.FixSeparators(program.InstallLocation)
+                    };
 
-                    Game.InstallDirectory = Paths.FixSeparators(program.InstallLocation);
-                    OnInstalled(this, new GameControllerEventArgs(this, 0));
+                    OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
                     return;
                 }
 

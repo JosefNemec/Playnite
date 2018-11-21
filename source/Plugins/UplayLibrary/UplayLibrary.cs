@@ -37,9 +37,9 @@ namespace UplayLibrary
             };
         }
 
-        public List<Game> GetInstalledGames()
+        public List<GameInfo> GetInstalledGames()
         {
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
 
             var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
             var installsKey = root.OpenSubKey(@"SOFTWARE\ubisoft\Launcher\Installs\");
@@ -59,10 +59,9 @@ namespace UplayLibrary
                 var gameData = installsKey.OpenSubKey(install);
                 var installDir = (gameData.GetValue("InstallDir") as string).Replace('/', Path.DirectorySeparatorChar);
 
-                var newGame = new Game()
+                var newGame = new GameInfo()
                 {
                     GameId = install,
-                    PluginId = Id,
                     Source = "Uplay",
                     InstallDirectory = installDir,
                     PlayAction = GetGamePlayTask(install),
@@ -106,9 +105,9 @@ namespace UplayLibrary
             return new UplayGameController(this, game);
         }
 
-        public IEnumerable<Game> GetGames()
+        public IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
+            var allGames = new List<GameInfo>();
             if (LibrarySettings.ImportInstalledGames)
             {
                 return GetInstalledGames();

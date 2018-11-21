@@ -3,6 +3,7 @@ using Playnite.API;
 using Playnite.Common.System;
 using Playnite.Plugins;
 using Playnite.SDK;
+using Playnite.SDK.Metadata;
 using Playnite.SDK.Plugins;
 using Playnite.Settings;
 using PlayniteUI.Commands;
@@ -42,11 +43,11 @@ namespace PlayniteUI.ViewModels
             get => SelectedIndex == Pages.Finish;
         }
         
-        public List<InstalledGameMetadata> ImportedGames
+        public List<GameMetadata> ImportedGames
         {
             get;
             private set;
-        } = new List<InstalledGameMetadata>();
+        } = new List<GameMetadata>();
 
         private PlayniteSettings settings = new PlayniteSettings();
         public PlayniteSettings Settings
@@ -280,8 +281,8 @@ namespace PlayniteUI.ViewModels
         {
             if (model.OpenView() == true)
             {
-                logger.Debug($"Selected {model.Games} custom games from first time wizard.");
-                ImportedGames = model.Games;
+                logger.Debug($"Selected {model.SelectedGames.Count} custom games from first time wizard.");
+                ImportedGames = model.SelectedGames;
             }
         }
     }

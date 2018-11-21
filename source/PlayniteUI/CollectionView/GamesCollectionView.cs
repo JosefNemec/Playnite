@@ -123,6 +123,7 @@ namespace PlayniteUI
             Items = null;
         }
 
+        // TODO
         private bool Filter(object item)
         {
             var entry = (GameViewEntry)item;
@@ -224,14 +225,14 @@ namespace PlayniteUI
             }
             else
             {
-                if (string.IsNullOrEmpty(game.Series))
-                {
-                    seriesResult = false;
-                }
-                else
-                {
-                    seriesResult = (game.Series.IndexOf(filterSettings.Series, StringComparison.OrdinalIgnoreCase) >= 0);
-                }
+                //if (string.IsNullOrEmpty(game.Series))
+                //{
+                //    seriesResult = false;
+                //}
+                //else
+                //{
+                //    seriesResult = (game.Series.IndexOf(filterSettings.Series, StringComparison.OrdinalIgnoreCase) >= 0);
+                //}
             }
 
             // ------------------ Region filter
@@ -242,14 +243,14 @@ namespace PlayniteUI
             }
             else
             {
-                if (string.IsNullOrEmpty(game.Region))
-                {
-                    regionResult = false;
-                }
-                else
-                {
-                    regionResult = (game.Region.IndexOf(filterSettings.Region, StringComparison.OrdinalIgnoreCase) >= 0);
-                }
+                //if (string.IsNullOrEmpty(game.Region))
+                //{
+                //    regionResult = false;
+                //}
+                //else
+                //{
+                //    regionResult = (game.Region.IndexOf(filterSettings.Region, StringComparison.OrdinalIgnoreCase) >= 0);
+                //}
             }
 
             // ------------------ Source filter
@@ -260,14 +261,14 @@ namespace PlayniteUI
             }
             else
             {
-                if (string.IsNullOrEmpty(game.Source))
-                {
-                    sourceResult = false;
-                }
-                else
-                {
-                    sourceResult = (game.Source.IndexOf(filterSettings.Source, StringComparison.OrdinalIgnoreCase) >= 0);
-                }
+                //if (string.IsNullOrEmpty(game.Source))
+                //{
+                //    sourceResult = false;
+                //}
+                //else
+                //{
+                //    sourceResult = (game.Source.IndexOf(filterSettings.Source, StringComparison.OrdinalIgnoreCase) >= 0);
+                //}
             }
 
             // ------------------ AgeRating filter
@@ -278,14 +279,14 @@ namespace PlayniteUI
             }
             else
             {
-                if (string.IsNullOrEmpty(game.AgeRating))
-                {
-                    ageRatingResult = false;
-                }
-                else
-                {
-                    ageRatingResult = (game.AgeRating.IndexOf(filterSettings.AgeRating, StringComparison.OrdinalIgnoreCase) >= 0);
-                }
+                //if (string.IsNullOrEmpty(game.AgeRating))
+                //{
+                //    ageRatingResult = false;
+                //}
+                //else
+                //{
+                //    ageRatingResult = (game.AgeRating.IndexOf(filterSettings.AgeRating, StringComparison.OrdinalIgnoreCase) >= 0);
+                //}
             }
 
             // ------------------ Genre
@@ -296,14 +297,14 @@ namespace PlayniteUI
             }
             else
             {
-                if (game.Genres == null)
-                {
-                    genreResult = false;
-                }
-                else
-                {
-                    genreResult = filterSettings.Genres.IntersectsPartiallyWith(game.Genres);
-                }
+                //if (game.Genres == null)
+                //{
+                //    genreResult = false;
+                //}
+                //else
+                //{
+                //    genreResult = filterSettings.Genres.IntersectsPartiallyWith(game.Genres);
+                //}
             }
 
             // ------------------ Platform
@@ -359,14 +360,14 @@ namespace PlayniteUI
             }
             else
             {
-                if (game.Publishers == null)
-                {
-                    publisherResult = false;
-                }
-                else
-                {
-                    publisherResult = filterSettings.Publishers.IntersectsPartiallyWith(game.Publishers);
-                }
+                //if (game.Publishers == null)
+                //{
+                //    publisherResult = false;
+                //}
+                //else
+                //{
+                //    publisherResult = filterSettings.Publishers.IntersectsPartiallyWith(game.Publishers);
+                //}
             }
 
             // ------------------ Developer
@@ -377,14 +378,14 @@ namespace PlayniteUI
             }
             else
             {
-                if (game.Developers == null)
-                {
-                    developerResult = false;
-                }
-                else
-                {
-                    developerResult = filterSettings.Developers.IntersectsPartiallyWith(game.Developers);
-                }
+                //if (game.Developers == null)
+                //{
+                //    developerResult = false;
+                //}
+                //else
+                //{
+                //    developerResult = filterSettings.Developers.IntersectsPartiallyWith(game.Developers);
+                //}
             }
 
             // ------------------ Category
@@ -401,14 +402,14 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    if (ViewType == GamesViewType.Standard)
-                    {
-                        categoryResult = filterSettings.Categories.IntersectsPartiallyWith(game.Categories);
-                    }
-                    else
-                    {
-                        categoryResult = filterSettings.Categories.Any(a => entry.Category.Category.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0);
-                    }
+                    //if (ViewType == GamesViewType.Standard)
+                    //{
+                    //    categoryResult = filterSettings.Categories.IntersectsPartiallyWith(game.Categories);
+                    //}
+                    //else
+                    //{
+                    //    categoryResult = filterSettings.Categories.Any(a => entry.Category.Category.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0);
+                    //}
                 }
             }
 
@@ -420,14 +421,14 @@ namespace PlayniteUI
             }
             else
             {
-                if (game.Tags == null)
-                {
-                    tagResult = false;
-                }
-                else
-                {
-                    tagResult = filterSettings.Tags.IntersectsPartiallyWith(game.Tags);
-                }
+                //if (game.Tags == null)
+                //{
+                //    tagResult = false;
+                //}
+                //else
+                //{
+                //    tagResult = filterSettings.Tags.IntersectsPartiallyWith(game.Tags);
+                //}
             }
 
             return installedResult &&
@@ -481,10 +482,10 @@ namespace PlayniteUI
                     case GroupOrder.Provider:
                         ViewType = GamesViewType.Standard;
                         break;
-                    case GroupOrder.Platform:
+                    case GroupOrder.PlatformId:
                         ViewType = GamesViewType.Standard;
                         break;
-                    case GroupOrder.Category:
+                    case GroupOrder.CategoryIds:
                         ViewType = GamesViewType.CategoryGrouped;
                         break;
                 }
@@ -544,35 +545,38 @@ namespace PlayniteUI
             }
             else
             {
-                switch (viewType)
-                {
-                    case GamesViewType.Standard:
-                        Items.Clear();
-                        Items.AddRange(Database.Games.Select(x => new GameViewEntry(x, string.Empty, this, GetLibraryPlugin(x))));
-                        break;
+                Items.Clear();
+                Items.AddRange(Database.Games.Select(x => new GameViewEntry(x, string.Empty, this, GetLibraryPlugin(x))));
 
-                    case GamesViewType.CategoryGrouped:
-                        Items.Clear();
-                        Items.AddRange(Database.Games.SelectMany(x =>
-                        {
-                            if (x.Categories?.Any() == true)
-                            {
-                                return x.Categories.Select(c =>
-                                {
-                                    return new GameViewEntry(x, c, this, GetLibraryPlugin(x));
-                                });
-                            }
-                            else
-                            {
-                                return new List<GameViewEntry>()
-                                {
-                                    new GameViewEntry(x, null, this, GetLibraryPlugin(x))
-                                };
-                            }
-                        }));
+                //switch (viewType)
+                //{
+                //    case GamesViewType.Standard:
+                //        Items.Clear();
+                //        Items.AddRange(Database.Games.Select(x => new GameViewEntry(x, string.Empty, this, GetLibraryPlugin(x))));
+                //        break;
 
-                        break;
-                }
+                //    case GamesViewType.CategoryGrouped:
+                //        Items.Clear();
+                //        Items.AddRange(Database.Games.SelectMany(x =>
+                //        {
+                //            if (x.Categories?.Any() == true)
+                //            {
+                //                return x.Categories.Select(c =>
+                //                {
+                //                    return new GameViewEntry(x, c, this, GetLibraryPlugin(x));
+                //                });
+                //            }
+                //            else
+                //            {
+                //                return new List<GameViewEntry>()
+                //                {
+                //                    new GameViewEntry(x, null, this, GetLibraryPlugin(x))
+                //                };
+                //            }
+                //        }));
+
+                //        break;
+                //}
             }
 
             this.viewType = viewType;
@@ -668,23 +672,24 @@ namespace PlayniteUI
                 }
                 else
                 {
-                    switch (ViewType)
-                    {
-                        case GamesViewType.Standard:
-                            addList.Add(new GameViewEntry(game, string.Empty, this, GetLibraryPlugin(game)));
-                            break;
+                    addList.Add(new GameViewEntry(game, string.Empty, this, GetLibraryPlugin(game)));
+                    //switch (ViewType)
+                    //{
+                    //    case GamesViewType.Standard:
+                    //        addList.Add(new GameViewEntry(game, string.Empty, this, GetLibraryPlugin(game)));
+                    //        break;
 
-                        case GamesViewType.CategoryGrouped:
-                            if (game.Categories?.Any() == true)
-                            {
-                                addList.AddRange(game.Categories.Select(a => new GameViewEntry(game, a, this, GetLibraryPlugin(game))));
-                            }
-                            else
-                            {
-                                addList.Add(new GameViewEntry(game, string.Empty, this, GetLibraryPlugin(game)));
-                            }
-                            break;
-                    }
+                    //    case GamesViewType.CategoryGrouped:
+                    //        if (game.Categories?.Any() == true)
+                    //        {
+                    //            addList.AddRange(game.Categories.Select(a => new GameViewEntry(game, a, this, GetLibraryPlugin(game))));
+                    //        }
+                    //        else
+                    //        {
+                    //            addList.Add(new GameViewEntry(game, string.Empty, this, GetLibraryPlugin(game)));
+                    //        }
+                    //        break;
+                    //}
                 }
             }
 

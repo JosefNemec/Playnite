@@ -17,15 +17,16 @@ namespace OriginLibrary.Tests
         {
             var provider = new OriginMetadataProvider(new PlayniteAPI(null, null, null, null, null, null, null));
             var data = provider.GetMetadata(new Game() { GameId = "Origin.OFR.50.0000557" });
-            Assert.IsNotNull(data.GameData);
-            Assert.IsNotNull(data.Image);
-            Assert.IsNotNull(data.GameData.ReleaseDate);
-            Assert.IsFalse(string.IsNullOrEmpty(data.GameData.Description));
-            CollectionAssert.IsNotEmpty(data.GameData.Publishers);
-            CollectionAssert.IsNotEmpty(data.GameData.Developers);
-            CollectionAssert.IsNotEmpty(data.GameData.Genres);
-            CollectionAssert.IsNotEmpty(data.GameData.Links);
-            CollectionAssert.IsNotEmpty(data.GameData.Publishers);
+            Assert.IsNotNull(data.GameInfo);
+            Assert.IsNotNull(data.CoverImage);
+            Assert.IsNotNull(data.BackgroundImage);
+            Assert.IsNotNull(data.GameInfo.ReleaseDate);
+            Assert.IsFalse(string.IsNullOrEmpty(data.GameInfo.Description));
+            CollectionAssert.IsNotEmpty(data.GameInfo.Publishers);
+            CollectionAssert.IsNotEmpty(data.GameInfo.Developers);
+            CollectionAssert.IsNotEmpty(data.GameInfo.Genres);
+            CollectionAssert.IsNotEmpty(data.GameInfo.Links);
+            CollectionAssert.IsNotEmpty(data.GameInfo.Publishers);
         }
     }
 }

@@ -18,13 +18,15 @@ namespace PlayniteUI
         public Guid Id => Game.Id;
         public Guid PluginId => Game.PluginId;
         public string GameId => Game.GameId;
-        public List<string> Categories => Game.Categories;
-        public List<string> Tags => Game.Tags;
-        public List<string> Genres => Game.Genres;
+        public ComparableList<Category> Categories => Game.Categories;
+        public Platform Platform => Game.Platform;
+        public ComparableList<Tag> Tags => Game.Tags;
+        public ComparableList<Genre> Genres => Game.Genres;
         public DateTime? ReleaseDate => Game.ReleaseDate;
+        public int? ReleaseYear => Game.ReleaseYear;
         public DateTime? LastActivity => Game.LastActivity;
-        public List<string> Developers => Game.Developers;
-        public List<string> Publishers => Game.Publishers;
+        public ComparableList<Company> Developers => Game.Developers;
+        public ComparableList<Company> Publishers => Game.Publishers;
         public ObservableCollection<Link> Links => Game.Links;
         public string Icon => Game.Icon;
         public string CoverImage => Game.CoverImage;
@@ -46,39 +48,38 @@ namespace PlayniteUI
         public DateTime? Added => Game.Added;
         public DateTime? Modified => Game.Modified;
         public long PlayCount => Game.PlayCount;
-        public string Series => Game.Series;
+        public Series Series => Game.Series;
         public string Version => Game.Version;
-        public string AgeRating => Game.AgeRating;
-        public string Region => Game.Region;
-        public string Source => Game.Source;
+        public AgeRating AgeRating => Game.AgeRating;
+        public Region Region => Game.Region;
+        public GameSource Source => Game.Source;
         public CompletionStatus CompletionStatus => Game.CompletionStatus;
         public int? UserScore => Game.UserScore;
         public int? CriticScore => Game.CriticScore;
         public int? CommunityScore => Game.CommunityScore;
+
+        public ComparableList<Guid> CategoryIds => Game.CategoryIds;
+        public ComparableList<Guid> GenreIds => Game.GenreIds;
+        public ComparableList<Guid> DeveloperIds => Game.DeveloperIds;
+        public ComparableList<Guid> PublisherIds => Game.PublisherIds;
+        public ComparableList<Guid> TagIds => Game.TagIds;
+        public Guid SeriesId => Game.SeriesId;
+        public Guid AgeRatingId => Game.AgeRatingId;
+        public Guid RegionId => Game.RegionId;
+        public Guid SourceId => Game.SourceId;
 
         public object IconObject => GetImageObject(Game.Icon);
         public object CoverImageObject => GetImageObject(Game.CoverImage);
         public object BackgroundImageObject => GetImageObject(Game.BackgroundImage);
         public object DefaultIconObject => GetImageObject(DefaultIcon);
         public object DefaultCoverImageObject => GetImageObject(DefaultCoverImage);
-
-
+        
         public string Name
         {
             get
             {
                 return string.IsNullOrEmpty(Game.SortingName) ? Game.Name : Game.SortingName;
             }
-        }
-
-        public CategoryView Category
-        {
-            get; set;
-        }
-
-        public PlatformView Platform
-        {
-            get; set;
         }
 
         public Game Game
@@ -104,10 +105,10 @@ namespace PlayniteUI
         public string DefaultIcon
         {
             get
-            {
-                if (!string.IsNullOrEmpty(Platform?.Platform?.Icon))
+            {                
+                if (!string.IsNullOrEmpty(Platform?.Icon))
                 {
-                    return Platform.Platform.Icon;
+                    return Platform.Icon;
                 }
                 else
                 {
@@ -125,9 +126,9 @@ namespace PlayniteUI
         {
             get
             {
-                if (!string.IsNullOrEmpty(Platform?.Platform?.Cover))
+                if (!string.IsNullOrEmpty(Platform?.Cover))
                 {
-                    return Platform.Platform.Cover;
+                    return Platform.Cover;
                 }
                 else
                 {
@@ -142,10 +143,8 @@ namespace PlayniteUI
         {
             this.plugin = plugin;
             this.view = view;
-            Category = new CategoryView(category);
             Game = game;
             Game.PropertyChanged += Game_PropertyChanged;
-            Platform = new PlatformView(game.PlatformId, view.Database.Platforms[game.PlatformId]);
         }
 
         private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -157,11 +156,10 @@ namespace PlayniteUI
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-            if (propertyName == nameof(Game.PlatformId))
-            {
-                Platform = new PlatformView(Game.PlatformId, view.Database.Platforms[Game.PlatformId]);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Platform)));
-            }
+            //if (propertyName == nameof(Game.PlatformId))
+            //{
+            //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Platform)));
+            //}
 
             if (propertyName == nameof(Game.SortingName) || propertyName == nameof(Game.Name))
             {
@@ -190,10 +188,10 @@ namespace PlayniteUI
             return CustomImageStringToImageConverter.GetImageFromSource(data);
         }
 
-        public override string ToString()
-        {
-            return string.Format("{0}, {1}", Name, Category);
-        }
+        //public override string ToString()
+        //{
+        //    return string.Format("{0}, {1}", Name, Category);
+        //}
 
         public static explicit operator Game(GameViewEntry entry)
         {

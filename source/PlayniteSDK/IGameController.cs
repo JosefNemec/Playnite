@@ -64,6 +64,6 @@ namespace Playnite.SDK
         /// <summary>
         /// Occurs when game is finished installing.
         /// </summary>
-        event GameControllerEventHandler Installed;
+        event GameInstalledEventEventHandler Installed;
     }
 }

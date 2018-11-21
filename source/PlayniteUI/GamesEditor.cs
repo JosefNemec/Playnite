@@ -579,7 +579,7 @@ namespace PlayniteUI
             }
         }
 
-        private void Controllers_Installed(object sender, GameControllerEventArgs args)
+        private void Controllers_Installed(object sender, GameInstalledEventArgs args)
         {
             var game = args.Controller.Game;
             logger.Info($"Game {game.Name} installed after {args.EllapsedTime} seconds.");

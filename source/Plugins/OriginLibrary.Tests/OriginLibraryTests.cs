@@ -31,13 +31,12 @@ namespace OriginLibrary.Tests
             Assert.AreNotEqual(0, games.Count);
 
             var game = games.Values.First();
-            Assert.AreNotEqual(game.PluginId, Guid.Empty);
             Assert.IsTrue(!string.IsNullOrEmpty(game.Name));
             Assert.IsTrue(!string.IsNullOrEmpty(game.GameId));
             Assert.IsTrue(Directory.Exists(game.InstallDirectory));
             Assert.IsNotNull(game.PlayAction);
 
-            foreach (Game g in games.Values)
+            foreach (var g in games.Values)
             {
                 if (g.PlayAction.Type == GameActionType.File)
                 {

@@ -25,7 +25,7 @@ namespace Playnite.Controllers
         public event GameControllerEventHandler Started;
         public event GameControllerEventHandler Stopped;
         public event GameControllerEventHandler Uninstalled;
-        public event GameControllerEventHandler Installed;
+        public event GameInstalledEventEventHandler Installed;
 
         public GameControllerFactory()
         {
@@ -105,7 +105,7 @@ namespace Playnite.Controllers
             Uninstalled?.Invoke(this, e);
         }
 
-        private void Controller_Installed(object sender, GameControllerEventArgs e)
+        private void Controller_Installed(object sender, GameInstalledEventArgs e)
         {
             Installed?.Invoke(this, e);
         }

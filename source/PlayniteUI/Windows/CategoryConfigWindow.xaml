@@ -41,7 +41,7 @@
             <ItemsControl Name="ListCategories" ItemsSource="{Binding Categories}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox IsChecked="{Binding Enabled}" Content="{Binding Name}" Margin="5"
+                        <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" Margin="5"
                                   IsThreeState="{Binding Data.EnableThreeState, Source={StaticResource Proxy}}"
                                   ToolTip="{DynamicResource LOCCategoryTooltip}" />
                     </DataTemplate>

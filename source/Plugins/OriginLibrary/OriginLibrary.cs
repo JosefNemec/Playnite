@@ -192,10 +192,10 @@ namespace OriginLibrary
             return playAction;
         }
 
-        public Dictionary<string, Game> GetInstalledGames(bool useDataCache = false)
+        public Dictionary<string, GameInfo> GetInstalledGames(bool useDataCache = false)
         {
             var contentPath = Path.Combine(Origin.DataPath, "LocalContent");
-            var games = new Dictionary<string, Game>();
+            var games = new Dictionary<string, GameInfo>();
 
             if (Directory.Exists(contentPath))
             {
@@ -219,9 +219,8 @@ namespace OriginLibrary
                             gameId = match.Groups[1].Value + ":" + match.Groups[2].Value;
                         }
 
-                        var newGame = new Game()
-                        {                     
-                            PluginId = Id,
+                        var newGame = new GameInfo()
+                        {
                             Source = "Origin",
                             GameId = gameId,
                             IsInstalled = true
@@ -283,7 +282,7 @@ namespace OriginLibrary
             return games;
         }
 
-        public List<Game> GetLibraryGames()
+        public List<GameInfo> GetLibraryGames()
         {
             using (var view = playniteApi.WebViews.CreateOffscreenView())
             {
@@ -311,13 +310,12 @@ namespace OriginLibrary
                     throw new Exception("Access error: " + info.error);
                 }
 
-                var games = new List<Game>();
+                var games = new List<GameInfo>();
 
                 foreach (var game in api.GetOwnedGames(info.pid.pidId, token).Where(a => a.offerType == "basegame"))
                 {
-                    games.Add(new Game()
+                    games.Add(new GameInfo()
                     {
-                        PluginId = Id,
                         Source = "Origin",
                         GameId = game.offerId,
                         Name = game.offerId
@@ -358,9 +356,9 @@ namespace OriginLibrary
             return new OriginGameController(this, game, playniteApi);
         }
 
-        public IEnumerable<Game> GetGames()
+        public IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
+            var allGames = new List<GameInfo>();
             var installedGames = GetInstalledGames(true);
 
             if (LibrarySettings.ImportInstalledGames)

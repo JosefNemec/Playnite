@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -159,10 +160,14 @@ namespace GogLibrary
                 {
                     var game = games[Game.GameId];
                     stopWatch.Stop();
-                    Game.PlayAction = game.PlayAction;
-                    Game.OtherActions = game.OtherActions;
-                    Game.InstallDirectory = game.InstallDirectory;
-                    OnInstalled(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
+                    var installInfo = new GameInfo()
+                    {
+                        PlayAction = game.PlayAction,
+                        OtherActions = game.OtherActions,
+                        InstallDirectory = game.InstallDirectory
+                    };
+
+                    OnInstalled(this, new GameInstalledEventArgs(installInfo, this, stopWatch.Elapsed.TotalSeconds));
                     return;
                 }
 

@@ -85,13 +85,14 @@ namespace SteamLibrary
                 var gameState = Steam.GetAppState(id);
                 if (gameState.Installed == true)
                 {
-                    if (Game.PlayAction == null)
+                    var installInfo = new GameInfo()
                     {
-                        Game.PlayAction = SteamLibrary.CreatePlayTask(Game.ToSteamGameID());
-                    }
+                        PlayAction = SteamLibrary.CreatePlayTask(Game.ToSteamGameID()),
+                        // TODO: update install directory here
+                    };
 
                     stopWatch.Stop();
-                    OnInstalled(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
+                    OnInstalled(this, new GameInstalledEventArgs(installInfo, this, stopWatch.Elapsed.TotalSeconds));
                     return;
                 }
 

@@ -13,32 +13,8 @@ namespace PlayniteUI.ViewModels
 {
     public class CategoryConfigViewModel : ObservableObject
     {
-        public class Category
-        {
-            public bool? Enabled
-            {
-                get; set;
-            }
-
-            public string Name
-            {
-                get; set;
-            }
-
-            public Category()
-            {
-
-            }
-
-            public Category(string name, bool enabled)
-            {
-                Name = name;
-                Enabled = enabled;
-            }
-        }
-
-        private ObservableCollection<Category> categories;
-        public ObservableCollection<Category> Categories
+        private ObservableCollection<SelectableItem<Category>> categories;
+        public ObservableCollection<SelectableItem<Category>> Categories
         {
             get
             {
@@ -132,10 +108,13 @@ namespace PlayniteUI.ViewModels
 
         public void AddCategory(string category)
         {
-            if (!string.IsNullOrEmpty(category))
+            if (!string.IsNullOrEmpty(category) || Categories.FirstOrDefault(a => a.Item.Name.Equals(category, StringComparison.CurrentCultureIgnoreCase)) != null)
             {
-                Categories.Add(new Category(category, true));
+                return;
             }
+            
+            var newCat = database.Categories.Add(category);
+            Categories.Add(new SelectableItem<Category>(newCat) { Selected = true });
         }
 
         public void SetCategories()
@@ -146,27 +125,25 @@ namespace PlayniteUI.ViewModels
                 {
                     foreach (var game in games)
                     {
-                        var categories = Categories.Where(a => a.Enabled == true).Select(a => a.Name).ToList();
-                        var tempCat = game.Categories;
-
-                        if (tempCat != null)
+                        var categories = Categories.Where(a => a.Selected == true).Select(a => a.Item.Id).ToComparable();
+                        if (game.CategoryIds != null)
                         {
-                            foreach (var cat in Categories.Where(a => a.Enabled == null))
+                            foreach (var cat in Categories.Where(a => a.Selected == null))
                             {
-                                if (tempCat.Contains(cat.Name, StringComparer.OrdinalIgnoreCase) && !categories.Contains(cat.Name, StringComparer.OrdinalIgnoreCase))
+                                if (game.CategoryIds.Contains(cat.Item.Id) && !categories.Contains(cat.Item.Id))
                                 {
-                                    categories.Add(cat.Name);
+                                    categories.Add(cat.Item.Id);
                                 }
                             }
                         }
 
-                        if (categories.Count > 0)
+                        if (categories.HasItems())
                         {
-                            game.Categories = new ComparableList<string>(categories.OrderBy(a => a));
+                            game.CategoryIds = categories;
                         }
                         else
                         {
-                            game.Categories = null;
+                            game.CategoryIds = null;
                         }
 
                         if (autoUpdate)
@@ -178,15 +155,14 @@ namespace PlayniteUI.ViewModels
             }
             else if (game != null)
             {
-                var categories = Categories.Where(a => a.Enabled == true).Select(a => a.Name).OrderBy(a => a).ToList();
-
-                if (categories.Count > 0)
+                var categories = Categories.Where(a => a.Selected == true).Select(a => a.Item.Id);
+                if (categories.HasItems())
                 {
-                    game.Categories = new ComparableList<string>(categories);
+                    game.CategoryIds = categories.ToComparable();
                 }
                 else
                 {
-                    game.Categories = null;
+                    game.CategoryIds = null;
                 }
 
                 if (autoUpdate)
@@ -200,18 +176,18 @@ namespace PlayniteUI.ViewModels
 
         private void SetCategoryStates()
         {
-            var catCount = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
             if (games != null)
             {
+                var catCount = new Dictionary<Guid, int>();
                 EnableThreeState = true;
                 foreach (var game in games)
                 {
-                    if (game.Categories == null)
+                    if (!game.CategoryIds.HasItems())
                     {
                         continue;
                     }
 
-                    foreach (var cat in game.Categories)
+                    foreach (var cat in game.CategoryIds)
                     {
                         if (catCount.ContainsKey(cat))
                         {
@@ -226,62 +202,46 @@ namespace PlayniteUI.ViewModels
 
                 foreach (var cat in Categories)
                 {
-                    if (catCount.ContainsKey(cat.Name))
+                    if (catCount.ContainsKey(cat.Item.Id))
                     {
-                        if (catCount[cat.Name] == games.Count())
+                        if (catCount[cat.Item.Id] == games.Count())
                         {
-                            cat.Enabled = true;
+                            cat.Selected = true;
                         }
                         else
                         {
 
-                            cat.Enabled = null;
+                            cat.Selected = null;
                         }
                     }
                 }
             }
             else
             {
-                if (game.Categories != null)
+                if (game.CategoryIds.HasItems())
                 {
                     // Also offer categories that are held by current game instance, but are not in DB yet
-                    foreach (var cat in game.Categories.Except(Categories.Select(a => a.Name)))
-                    {
-                        Categories.Add(new Category(cat, true));
-                    }
+                    // TODO
+                    //foreach (var cat in game.Categories.Except(Categories.Select(a => a.Name)))
+                    //{
+                    //    Categories.Add(new Category(cat, true));
+                    //}
 
-                    foreach (var cat in game.Categories)
+                    foreach (var cat in game.CategoryIds)
                     {
-                        var existingCat = Categories.FirstOrDefault(a => string.Equals(a.Name, cat, StringComparison.OrdinalIgnoreCase));
+                        var existingCat = Categories.FirstOrDefault(a => a.Item.Id == cat);
                         if (existingCat != null)
                         {
-                            existingCat.Enabled = true;
+                            existingCat.Selected = true;
                         }
                     }
                 }
             }
-
-            Categories = new ObservableCollection<Category>(Categories.OrderBy(a => a.Name));
         }
 
-        private ObservableCollection<Category> GetAllCategories()
+        private ObservableCollection<SelectableItem<Category>> GetAllCategories()
         {
-            var categories = new ObservableCollection<Category>();
-
-            foreach (var game in database.Games.Where(a => a.Categories != null))
-            {
-                foreach (var cat in game.Categories)
-                {
-                    var existingCat = categories.FirstOrDefault(a => string.Equals(a.Name, cat, StringComparison.OrdinalIgnoreCase));
-
-                    if (existingCat == null)
-                    {
-                        categories.Add(new Category(cat, false));
-                    }
-                }
-            }
-
-            return categories;
+            return database.Categories.Select(a => new SelectableItem<Category>(a)).ToObservable();
         }
     }
 }

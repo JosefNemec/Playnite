@@ -13,21 +13,7 @@ namespace Playnite.SDK.Models
     /// Represents emulator profile.
     /// </summary>
     public class EmulatorProfile : DatabaseObject
-    {        
-        private string name;
-        /// <summary>
-        /// Gets or sets emulator profile name.
-        /// </summary>
-        public string Name
-        {
-            get => name;
-            set
-            {
-                name = value;
-                OnPropertyChanged();
-            }
-        }
-
+    {
         private List<Guid> platforms;
         /// <summary>
         /// Gets or sets platforms supported by profile.
@@ -120,20 +106,6 @@ namespace Playnite.SDK.Models
     /// </summary>
     public class Emulator : DatabaseObject
     {
-        private string name;
-        /// <summary>
-        /// Gets or sets emulator name.
-        /// </summary>
-        public string Name
-        {
-            get => name;
-            set
-            {
-                name = value;
-                OnPropertyChanged();
-            }
-        }
-
         private ObservableCollection<EmulatorProfile> profile;
         /// <summary>
         /// Gets or sets list of emulator profiles.

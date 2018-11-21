@@ -43,6 +43,7 @@ namespace System.Collections.Generic
         /// <returns></returns>
         public int CompareTo(object obj)
         {
+            // TODO optimize, don't use strings to compare
             if (obj == null)
             {
                 return -1;

@@ -16,7 +16,7 @@ namespace Playnite.SDK.Events
         /// </summary>
         public IGameController Controller
         {
-            get; set;
+            get;
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Playnite.SDK.Events
         /// </summary>
         public long EllapsedTime
         {
-            get; set;
+            get;
         } = 0;
 
         /// <summary>

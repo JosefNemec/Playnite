@@ -431,7 +431,8 @@
                                 Background="{DynamicResource GlyphBrush}" CornerRadius="{DynamicResource ControlCornerRadius}"/>
                         <Border Padding="{TemplateBinding Padding}" Background="Transparent">
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Margin="3,0,0,0" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -1880,6 +1881,7 @@
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Margin" Value="5,0,5,0" />
         <Setter Property="Padding" Value="3" />
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
@@ -2398,6 +2400,9 @@
                                 <MenuItem Header="{DynamicResource LOCMenuPlatformEmulatorSettingsTitle}"
                                           Command="{Binding OpenPlatformsCommand}"
                                           InputGestureText="{Binding OpenPlatformsCommand.GestureText}"/>
+                                <MenuItem Header="Library fields manager..."
+                                          Command="{Binding OpenDbFieldsManagerCommand}"
+                                          InputGestureText="{Binding OpenDbFieldsManagerCommand.GestureText}"/>
                                 <MenuItem Header="{DynamicResource LOCMenuDownloadMetadata}" Style="{DynamicResource ProgressMenu}"
                                           Command="{Binding DownloadMetadataCommand}"
                                           InputGestureText="{Binding DownloadMetadataCommand.GestureText}" />
@@ -2604,9 +2609,9 @@
                             <MenuItem Header="{DynamicResource LOCMenuGroupProvider}" IsCheckable="True"
                                   IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Provider}}"/>
                             <MenuItem Header="{DynamicResource LOCMenuGroupCategory}" IsCheckable="True"
-                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Category}}"/>
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.CategoryIds}}"/>
                             <MenuItem Header="{DynamicResource LOCMenuGroupPlatform}" IsCheckable="True"
-                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Platform}}"/>
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.PlatformId}}"/>
                         </ContextMenu>
                     </Border.ContextMenu>
                 </Border>

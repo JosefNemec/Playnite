@@ -29,7 +29,7 @@ namespace GogLibrary.Tests
             Assert.AreNotEqual(0, games.Count);
             CollectionAssert.AllItemsAreUnique(games);
 
-            foreach (Game game in games.Values)
+            foreach (var game in games.Values)
             {
                 Assert.IsFalse(string.IsNullOrEmpty(game.Name));
                 Assert.IsFalse(string.IsNullOrEmpty(game.GameId));

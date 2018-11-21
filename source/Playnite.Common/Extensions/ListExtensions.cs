@@ -1,31 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite
+namespace System
 {
     public static class ListExtensions
     {
-        public static bool IsNullOrEmpty(IList<string> source)
+        public static ComparableList<T> ToComparable<T>(this IEnumerable<T> source)
         {
-            if (source == null || source.Count == 0)
+            if (source == null)
             {
-                return true;
+                return null;
             }
 
-            var allEmpty = true;
-            foreach (var item in source)
+            return new ComparableList<T>(source);
+        }
+
+        public static ObservableCollection<T> ToObservable<T>(this IEnumerable<T> source)
+        {
+            if (source == null)
             {
-                if (!string.IsNullOrEmpty(item))
-                {
-                    allEmpty = false;
-                    break;
-                }
+                return null;
             }
 
-            return allEmpty;
+            return new ObservableCollection<T>(source);
+        }
+
+        public static bool HasItems<T>(this IEnumerable<T> source)
+        {
+            return source?.Any() == true;
         }
 
         public static bool IntersectsPartiallyWith(this List<string> source, List<string> target)

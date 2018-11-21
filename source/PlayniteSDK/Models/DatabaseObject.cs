@@ -16,12 +16,35 @@ namespace Playnite.SDK.Models
         /// </summary>
         public Guid Id { get; set; }
 
+        private string name;
+        /// <summary>
+        /// Gets or sets name.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Creates new instance of <see cref="DatabaseObject"/>.
         /// </summary>
         public DatabaseObject()
         {
             Id = Guid.NewGuid();
+        }
+
+        public override string ToString()
+        {
+            return Name ?? base.ToString();
         }
     }
 }

@@ -53,6 +53,7 @@
     <Compile Include="Collections\ObservableObject.cs" />
     <Compile Include="Collections\RangeObservableCollection.cs" />
     <Compile Include="DefaultResourceProvider.cs" />
+    <Compile Include="Events\GameInstalledEvent.cs" />
     <Compile Include="Events\GameControllerEvent.cs" />
     <Compile Include="IDialogsFactory.cs" />
     <Compile Include="ExtensionFunction.cs" />
@@ -69,7 +70,13 @@
     <Compile Include="ISettings.cs" />
     <Compile Include="IWebView.cs" />
     <Compile Include="LogManager.cs" />
+    <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\GameSource.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\DatabaseObject.cs" />
+    <Compile Include="Models\GameInfo.cs" />
+    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Metadata\GameMetadata.cs" />
     <Compile Include="Models\Metadata\MetadataFile.cs" />
     <Compile Include="Models\Metadata\MetadataSearchResult.cs" />
@@ -79,7 +86,10 @@
     <Compile Include="Models\GameAction.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\Platform.cs" />
-    <Compile Include="Plugins\IGameLibrary.cs" />
+    <Compile Include="Models\AgeRating.cs" />
+    <Compile Include="Models\Series.cs" />
+    <Compile Include="Models\Tag.cs" />
+    <Compile Include="Plugins\ILibraryPlugin.cs" />
     <Compile Include="Plugins\IGenericPlugin.cs" />
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

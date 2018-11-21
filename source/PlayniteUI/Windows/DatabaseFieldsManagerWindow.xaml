@@ -1,0 +1,95 @@
+﻿<controls:WindowBase x:Class="PlayniteUI.Windows.DatabaseFieldsManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:PlayniteUI.Controls"
+        mc:Ignorable="d"
+        d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource StandardWindowStyle}"
+        WindowStartupLocation="CenterOwner"
+        Title="DatabaseFieldsManagerWindow" Height="500" Width="750">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Column="0" Grid.Row="0" TabStripPlacement="Left">
+            <!--Category-->
+            <TabItem Header="{DynamicResource LOCCategoryLabel}">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                        <Button Content="Add" Margin="5"
+                                Command="{Binding AddCategoryCommand}"/>
+                        <Button Content="Remove" Margin="5"
+                                Command="{Binding RemoveCategoryCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListCategories}"/>
+                        <Button Content="Rename" Margin="5"
+                                Command="{Binding RenameCategoryCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListCategories}"/>
+                    </StackPanel>
+                    <ListBox Name="ListCategories"
+                             DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
+                             ItemsSource="{Binding EditingCategories}" DisplayMemberPath="Name" />
+                </DockPanel>
+            </TabItem>
+            
+            <!--Platform-->
+            <TabItem Header="{DynamicResource LOCPlatformTitle}">
+
+            </TabItem>
+
+            <!--Genre-->
+            <TabItem Header="{DynamicResource LOCGenreLabel}">
+                
+            </TabItem>
+
+            <!--Company-->
+            <TabItem Header="{DynamicResource LOCCompanyLabel}">
+
+            </TabItem>
+
+            <!--Publisher-->
+            <TabItem Header="{DynamicResource LOCPublisherLabel}">
+
+            </TabItem>
+
+            <!--Tag-->
+            <TabItem Header="{DynamicResource LOCTagLabel}">
+
+            </TabItem>
+
+            <!--Series-->
+            <TabItem Header="{DynamicResource LOCSeriesLabel}">
+
+            </TabItem>
+
+            <!--AgeRating-->
+            <TabItem Header="{DynamicResource LOCAgeRatingLabel}">
+
+            </TabItem>
+
+            <!--Region-->
+            <TabItem Header="{DynamicResource LOCRegionLabel}">
+
+            </TabItem>
+
+            <!--Source-->
+            <TabItem Header="{DynamicResource LOCSourceLabel}">
+
+            </TabItem>
+        </TabControl>
+        
+        <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+            <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="False" Margin="5">
+                <Button TabIndex="3" Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
+                        Style="{StaticResource BottomButton}"
+                        Command="{Binding CancelCommand}"/>
+                <Button TabIndex="2" Name="ButtonOK" Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right" IsDefault="True"
+                        Style="{StaticResource BottomButton}"
+                        Command="{Binding SaveCommand}"/>
+            </DockPanel>
+        </Border>
+    </Grid>
+</controls:WindowBase>
