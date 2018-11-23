@@ -17,4 +17,29 @@ namespace Playnite.SDK.Models
             Name = name;
         }
     }
+
+    public class Developer : Company
+    {
+        public Developer() : base()
+        {
+        }
+
+        public Developer(string name) : base()
+        {
+
+        }
+    }
+
+
+    public class Publisher : Company
+    {
+        public Publisher() : base()
+        {
+        }
+
+        public Publisher(string name) : base()
+        {
+
+        }
+    }
 }

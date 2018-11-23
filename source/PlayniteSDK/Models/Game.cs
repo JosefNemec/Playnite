@@ -34,8 +34,8 @@ namespace Playnite.SDK.Models
                 backgroundImage = value;
                 OnPropertyChanged();
             }
-        }       
-        
+        }
+
         private string description;
         /// <summary>
         /// Gets or sets HTML game description.
@@ -128,7 +128,7 @@ namespace Playnite.SDK.Models
             }
         }
 
-        
+
         private string icon;
         /// <summary>
         /// Gets or sets game icon. Local file path, HTTP URL or database file ids are supported.
@@ -746,76 +746,122 @@ namespace Playnite.SDK.Models
             }
         }
 
-        #region Expanded
+        #region Expanded        
 
         [JsonIgnore]
-        public ComparableList<Genre> Genres
+        public List<Genre> Genres
         {
-            get;
+            get
+            {
+                if (genreIds?.Any() == true)
+                {
+                    return new List<Genre>(DatabaseReference?.Genres.Where(a => genreIds.Contains(a.Id)));
+                }
+
+                return null;
+            }
         }
 
         [JsonIgnore]
-        public ComparableList<Company> Developers
+        public List<Company> Developers
         {
-            get;
+            get
+            {
+                if (developerIds?.Any() == true)
+                {
+                    return new List<Company>(DatabaseReference?.Companies.Where(a => developerIds.Contains(a.Id)));
+                }
+
+                return null;
+            }
         }
 
         [JsonIgnore]
-        public ComparableList<Company> Publishers
+        public List<Company> Publishers
         {
-            get;
+            get
+            {
+                if (publisherIds?.Any() == true)
+                {
+                    return new List<Company>(DatabaseReference?.Companies.Where(a => publisherIds.Contains(a.Id)));
+                }
+
+                return null;
+            }
         }
 
         [JsonIgnore]
-        public ComparableList<Tag> Tags
+        public List<Tag> Tags
         {
-            get;
+            get
+            {
+                if (tagIds?.Any() == true)
+                {
+                    return new List<Tag>(DatabaseReference?.Tags.Where(a => tagIds.Contains(a.Id)));
+                }
+
+                return null;
+            }
         }
 
         [JsonIgnore]
-        public ComparableList<Category> Categories
+        public List<Category> Categories
         {
-            get;
+            get
+            {
+                if (categoryIds?.Any() == true)
+                {
+                    return new List<Category>(DatabaseReference?.Categories.Where(a => categoryIds.Contains(a.Id)));                    
+                }
+
+                return null;
+            }
         }
 
+        // TODO add caching
         [JsonIgnore]
         public Platform Platform
         {
-            get;
+            get => DatabaseReference?.Platforms[platformId];
         }
 
         [JsonIgnore]
         public Series Series
         {
-            get;
+            get => DatabaseReference?.Series[seriesId];
         }
 
         [JsonIgnore]
         public AgeRating AgeRating
         {
-            get;
+            get => DatabaseReference?.AgeRatings[ageRatingId];
         }
 
         [JsonIgnore]
         public Region Region
         {
-            get;
+            get => DatabaseReference?.Regions[regionId];
         }
 
         [JsonIgnore]
         public GameSource Source
         {
-            get;
+            get => DatabaseReference?.Sources[sourceId];
         }
 
         [JsonIgnore]
         public int? ReleaseYear
         {
-            get;
+            get => ReleaseDate?.Year;
         }
 
         #endregion Expanded
 
+        // TODO internal
+        public static IGameDatabase DatabaseReference
+        {
+            get; set;
+        }
 
         /// <summary>
         /// Creates new instance of a Game object.

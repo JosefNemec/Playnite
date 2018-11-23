@@ -7,13 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Playnite.SDK.Models;
 using Playnite.Database;
-using NLog;
+using Playnite.SDK;
 
 namespace Playnite.Database
 {
     public class DatabaseStats : ObservableObject, IDisposable
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
 
         public int Installed { get; private set; } = 0;
         public int UnInstalled { get; private set; } = 0;

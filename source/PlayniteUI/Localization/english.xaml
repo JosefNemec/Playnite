@@ -390,6 +390,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Category(s)</sys:String>
     <sys:String x:Key="LOCGameGenresTitle">Genre(s)</sys:String>
     <sys:String x:Key="LOCGameReleaseDateTitle">Release Date</sys:String>
+    <sys:String x:Key="LOCGameReleaseYearTitle">Release Year</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Developer(s)</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tag(s)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Publisher(s)</sys:String>

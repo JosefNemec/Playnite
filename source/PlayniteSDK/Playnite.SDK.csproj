@@ -52,13 +52,15 @@
     <Compile Include="Collections\ObservableConcurrentDictionary.cs" />
     <Compile Include="Collections\ObservableObject.cs" />
     <Compile Include="Collections\RangeObservableCollection.cs" />
+    <Compile Include="Database\IGameDatabase.cs" />
+    <Compile Include="Database\IItemCollection.cs" />
     <Compile Include="DefaultResourceProvider.cs" />
     <Compile Include="Events\GameInstalledEvent.cs" />
     <Compile Include="Events\GameControllerEvent.cs" />
     <Compile Include="IDialogsFactory.cs" />
     <Compile Include="ExtensionFunction.cs" />
     <Compile Include="IGameController.cs" />
-    <Compile Include="IGameDatabaseAPI.cs" />
+    <Compile Include="Database\IGameDatabaseAPI.cs" />
     <Compile Include="ILibraryClient.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="IMainViewAPI.cs" />

@@ -111,22 +111,22 @@ namespace Playnite.Database
             }
             else
             {
-                toAdd.PlatformId = database.Platforms.Add(game.Platform);
+                toAdd.PlatformId = database.Platforms.Add(game.Platform).Id;
             }
 
             if (game.Developers?.Any() == true)
             {
-                toAdd.DeveloperIds = database.Companies.Add(game.Developers).ToComparable();
+                toAdd.DeveloperIds = database.Companies.Add(game.Developers).Select(a => a.Id).ToComparable();
             }
 
             if (game.Publishers?.Any() == true)
             {
-                toAdd.PublisherIds = database.Companies.Add(game.Publishers).ToComparable();
+                toAdd.PublisherIds = database.Companies.Add(game.Publishers).Select(a => a.Id).ToComparable();
             }
 
             if (game.Genres?.Any() == true)
             {
-                toAdd.GenreIds = database.Genres.Add(game.Genres).ToComparable();
+                toAdd.GenreIds = database.Genres.Add(game.Genres).Select(a => a.Id).ToComparable();
             }
 
             if (game.Categories?.Any() == true)
@@ -136,27 +136,27 @@ namespace Playnite.Database
 
             if (game.Tags?.Any() == true)
             {
-                toAdd.TagIds = database.Tags.Add(game.Tags).ToComparable();
+                toAdd.TagIds = database.Tags.Add(game.Tags).Select(a => a.Id).ToComparable();
             }
 
             if (!string.IsNullOrEmpty(game.AgeRating))
             {
-                toAdd.AgeRatingId = database.AgeRatings.Add(game.AgeRating);
+                toAdd.AgeRatingId = database.AgeRatings.Add(game.AgeRating).Id;
             }
 
             if (!string.IsNullOrEmpty(game.Series))
             {
-                toAdd.SeriesId = database.Series.Add(game.Series);
+                toAdd.SeriesId = database.Series.Add(game.Series).Id;
             }
 
             if (!string.IsNullOrEmpty(game.Region))
             {
-                toAdd.RegionId = database.Regions.Add(game.Region);
+                toAdd.RegionId = database.Regions.Add(game.Region).Id;
             }
 
             if (!string.IsNullOrEmpty(game.Source))
             {
-                toAdd.SourceId = database.Sources.Add(game.Source);
+                toAdd.SourceId = database.Sources.Add(game.Source).Id;
             }
             
             return toAdd;

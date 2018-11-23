@@ -1,4 +1,5 @@
-﻿using Playnite.SDK.Models;
+﻿using Playnite.SDK;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,22 +15,6 @@ namespace Playnite.Database
         public PlatformsCollection(GameDatabase database) : base()
         {
             db = database;
-        }
-
-        public Guid Add(string platformName)
-        {
-            if (string.IsNullOrEmpty(platformName)) throw new ArgumentNullException(nameof(platformName));
-            var plat = this.FirstOrDefault(a => a.Name.Equals(platformName, StringComparison.OrdinalIgnoreCase));
-            if (plat != null)
-            {
-                return plat.Id;
-            }
-            else
-            {
-                var newPlat = new Platform(platformName);
-                base.Add(newPlat);
-                return newPlat.Id;
-            }
         }
 
         public override bool Remove(Guid id)

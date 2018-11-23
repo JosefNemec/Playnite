@@ -1,10 +1,13 @@
-﻿using Playnite.Database;
+﻿using Playnite;
+using Playnite.Database;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.Settings;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,47 +22,305 @@ namespace PlayniteUI.ViewModels
         private IResourceProvider resources;
         private GameDatabase database;
 
-        public ObservableCollection<Category> EditingCategories
-        {
-            get;
-        }
+        #region Genres
 
         public ObservableCollection<Genre> EditingGenres
         {
             get;
         }
 
+        public RelayCommand<object> AddGenreCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddItem(EditingGenres);
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveGenreCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemoveItem(EditingGenres, a.Cast<Genre>().ToList());
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand<IList<object>> RenameGenreCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RenameItem(a.First() as Genre);
+            }, (a) => a?.Count == 1);
+        }
+
+        #endregion Genres
+
+        #region Companies
+
         public ObservableCollection<Company> EditingCompanies
         {
             get;
         }
+
+        public RelayCommand<object> AddCompanyCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddItem(EditingCompanies);
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveCompanyCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemoveItem(EditingCompanies, a.Cast<Company>().ToList());
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand<IList<object>> RenameCompanyCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RenameItem(a.First() as Company);
+            }, (a) => a?.Count == 1);
+        }
+
+        #endregion Companies
+
+        #region Tags
 
         public ObservableCollection<Tag> EditingTags
         {
             get;
         }
 
+        public RelayCommand<object> AddTagCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddItem(EditingTags);
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveTagCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemoveItem(EditingTags, a.Cast<Tag>().ToList());
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand<IList<object>> RenameTagCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RenameItem(a.First() as Tag);
+            }, (a) => a?.Count == 1);
+        }
+
+        #endregion Tags
+
+        #region Platforms
+
         public ObservableCollection<Platform> EditingPlatforms
         {
             get;
         }
+
+        public RelayCommand<object> AddPlatformCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddItem(EditingPlatforms);
+            });
+        }
+
+        public RelayCommand<IList<object>> RemovePlatformCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemoveItem(EditingPlatforms, a.Cast<Platform>().ToList());
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand<IList<object>> RenamePlatformCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RenameItem(a.First() as Platform);
+            }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<IList<object>> SelectPlatformIconCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                SelectPlatformIcon(a.First() as Platform);
+            }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<IList<object>> SelectPlatformCoverCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                SelectPlatformCover(a.First() as Platform);
+            }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<IList<object>> RemovePlatformIconCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemovePlatformIcon(a.First() as Platform);
+            }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<IList<object>> RemovePlatformCoverCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemovePlatformCover(a.First() as Platform);
+            }, (a) => a?.Count == 1);
+        }
+
+        #endregion Platforms
+
+        #region Series
 
         public ObservableCollection<Series> EditingSeries
         {
             get;
         }
 
+        public RelayCommand<object> AddSeriesCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddItem(EditingSeries);
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveSeriesCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemoveItem(EditingSeries, a.Cast<Series>().ToList());
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand<IList<object>> RenameSeriesCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RenameItem(a.First() as Series);
+            }, (a) => a?.Count == 1);
+        }
+
+        #endregion Series
+
+        #region AgeRatings
+
         public ObservableCollection<AgeRating> EditingAgeRatings
         {
             get;
         }
+
+        public RelayCommand<object> AddAgeRatingCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddItem(EditingAgeRatings);
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveAgeRatingCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemoveItem(EditingAgeRatings, a.Cast<AgeRating>().ToList());
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand<IList<object>> RenameAgeRatingCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RenameItem(a.First() as AgeRating);
+            }, (a) => a?.Count == 1);
+        }
+
+        #endregion AgeRatings
+
+        #region Regions
 
         public ObservableCollection<Region> EditingRegions
         {
             get;
         }
 
+        public RelayCommand<object> AddRegionCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddItem(EditingRegions);
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveRegionCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemoveItem(EditingRegions, a.Cast<Region>().ToList());
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand<IList<object>> RenameRegionCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RenameItem(a.First() as Region);
+            }, (a) => a?.Count == 1);
+        }
+
+        #endregion Regions
+
+        #region Sources
+
         public ObservableCollection<GameSource> EditingSources
+        {
+            get;
+        }
+
+        public RelayCommand<object> AddSourceCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddItem(EditingSources);
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveSourceCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemoveItem(EditingSources, a.Cast<GameSource>().ToList());
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand<IList<object>> RenameSourceCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RenameItem(a.First() as GameSource);
+            }, (a) => a?.Count == 1);
+        }
+
+        #endregion Sources
+
+        #region Categories
+
+        public ObservableCollection<Category> EditingCategories
         {
             get;
         }
@@ -68,7 +329,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                AddCategory();
+                AddItem(EditingCategories);
             });
         }
 
@@ -76,7 +337,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<IList<object>>((a) =>
             {
-
+                RemoveItem(EditingCategories, a.Cast<Category>().ToList());
             }, (a) => a?.Count > 0);
         }
 
@@ -84,20 +345,11 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<IList<object>>((a) =>
             {
-                RenameCategory(a.First() as Category);
+                RenameItem(a.First() as Category);
             }, (a) => a?.Count == 1);
         }
 
-
-
-
-
-
-
-
-
-
-
+        #endregion Categories
 
 
         public RelayCommand<object> SaveCommand
@@ -122,15 +374,15 @@ namespace PlayniteUI.ViewModels
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
-            EditingCategories = database.Categories.GetClone().ToObservable();
-            EditingAgeRatings = database.AgeRatings.GetClone().ToObservable();
-            EditingCompanies = database.Companies.GetClone().ToObservable();
-            EditingGenres = database.Genres.GetClone().ToObservable();
-            EditingPlatforms = database.Platforms.GetClone().ToObservable();
-            EditingRegions = database.Regions.GetClone().ToObservable();
-            EditingSeries = database.Series.GetClone().ToObservable();
-            EditingSources = database.Sources.GetClone().ToObservable();
-            EditingTags = database.Tags.GetClone().ToObservable();
+            EditingCategories = database.Categories.GetClone().OrderBy(a => a.Name).ToObservable();
+            EditingAgeRatings = database.AgeRatings.GetClone().OrderBy(a => a.Name).ToObservable();
+            EditingCompanies = database.Companies.GetClone().OrderBy(a => a.Name).ToObservable();
+            EditingGenres = database.Genres.GetClone().OrderBy(a => a.Name).ToObservable();
+            EditingPlatforms = database.Platforms.GetClone().OrderBy(a => a.Name).ToObservable();
+            EditingRegions = database.Regions.GetClone().OrderBy(a => a.Name).ToObservable();
+            EditingSeries = database.Series.GetClone().OrderBy(a => a.Name).ToObservable();
+            EditingSources = database.Sources.GetClone().OrderBy(a => a.Name).ToObservable();
+            EditingTags = database.Tags.GetClone().OrderBy(a => a.Name).ToObservable();
         }
 
         public void OpenView()
@@ -145,17 +397,97 @@ namespace PlayniteUI.ViewModels
 
         internal void SaveChanges()
         {
+            UpdateDbCollection(database.Categories, EditingCategories);
+            UpdateDbCollection(database.AgeRatings, EditingAgeRatings);
+            UpdateDbCollection(database.Companies, EditingCompanies);
+            UpdateDbCollection(database.Genres, EditingGenres);
+            UpdateDbCollection(database.Regions, EditingRegions);
+            UpdateDbCollection(database.Series, EditingSeries);
+            UpdateDbCollection(database.Sources, EditingSources);
+            UpdateDbCollection(database.Tags, EditingTags);
+            UpdatePlatformsCollection();
             window.Close(true);
         }
 
-        public void AddCategory()
+        private void UpdateDbCollection<TItem>(IItemCollection<TItem> dbCollection, IList<TItem> updatedCollection) where TItem : DatabaseObject
         {
-            EditingCategories.Add(new Category("test"));
+
         }
 
-        public void RenameCategory(Category category)
+        private void UpdatePlatformsCollection()
         {
 
+        }
+
+
+        // TODO localize strings
+        public void AddItem<TItem>(IList<TItem> collection) where TItem : DatabaseObject
+        {
+            var res = dialogs.SelectString("Enter name:", "Add new item", "");
+            if (res.Result)
+            {
+                collection.Add(typeof(TItem).CrateInstance<TItem>(res.SelectedString));
+            }
+        }
+
+        public void RenameItem<TItem>(TItem item) where TItem : DatabaseObject
+        {
+            var res = dialogs.SelectString("Enter new name:", "Rename item", item.Name);
+            if (res.Result)
+            {
+                item.Name = res.SelectedString;
+            }
+        }
+
+        public void RemoveItem<TItem>(IList<TItem> collection, IList<TItem> items) where TItem : DatabaseObject
+        {
+            foreach (var item in items)
+            {
+                collection.Remove(item);
+            }
+        }
+
+        public void SelectPlatformIcon(Platform platform)
+        {
+            var path = dialogs.SelectIconFile();
+            if (string.IsNullOrEmpty(path))
+            {
+                return;
+            }
+
+            if (path.EndsWith("exe", StringComparison.OrdinalIgnoreCase))
+            {
+                var ico = IconExtension.ExtractIconFromExe(path, true);
+                if (ico == null)
+                {
+                    return;
+                }
+
+                path = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".png");
+                FileSystem.PrepareSaveFile(path);
+                ico.ToBitmap().Save(path, System.Drawing.Imaging.ImageFormat.Png);
+            }
+
+            platform.Icon = path;
+        }
+
+        public void SelectPlatformCover(Platform platform)
+        {
+            var path = dialogs.SelectIconFile();
+            if (!string.IsNullOrEmpty(path))
+            {
+                platform.Cover = path;
+            }
+        }
+
+        public void RemovePlatformIcon(Platform platform)
+        {
+            platform.Icon = null;
+        }
+
+        public void RemovePlatformCover(Platform platform)
+        {
+            platform.Cover = null;
         }
     }
 }

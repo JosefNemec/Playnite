@@ -13,20 +13,19 @@ namespace PlayniteUI
     public class GameViewEntry : INotifyPropertyChanged
     {
         private ILibraryPlugin plugin;
-        private GamesCollectionView view;
 
         public Guid Id => Game.Id;
         public Guid PluginId => Game.PluginId;
         public string GameId => Game.GameId;
-        public ComparableList<Category> Categories => Game.Categories;
         public Platform Platform => Game.Platform;
-        public ComparableList<Tag> Tags => Game.Tags;
-        public ComparableList<Genre> Genres => Game.Genres;
+        public List<Tag> Tags => Game.Tags;
+        public List<Genre> Genres => Game.Genres;
+        public List<Company> Developers => Game.Developers;
+        public List<Company> Publishers => Game.Publishers;
+        public List<Category> Categories => Game.Categories;
         public DateTime? ReleaseDate => Game.ReleaseDate;
         public int? ReleaseYear => Game.ReleaseYear;
         public DateTime? LastActivity => Game.LastActivity;
-        public ComparableList<Company> Developers => Game.Developers;
-        public ComparableList<Company> Publishers => Game.Publishers;
         public ObservableCollection<Link> Links => Game.Links;
         public string Icon => Game.Icon;
         public string CoverImage => Game.CoverImage;
@@ -34,7 +33,6 @@ namespace PlayniteUI
         public bool Hidden => Game.Hidden;
         public bool Favorite => Game.Favorite;
         public string InstallDirectory => Game.InstallDirectory;
-        public Guid PlatformId => Game.PlatformId;
         public ObservableCollection<GameAction> OtherActions => Game.OtherActions;
         public GameAction PlayAction => Game.PlayAction;
         public string DisplayName => Game.Name;
@@ -58,22 +56,48 @@ namespace PlayniteUI
         public int? CriticScore => Game.CriticScore;
         public int? CommunityScore => Game.CommunityScore;
 
-        public ComparableList<Guid> CategoryIds => Game.CategoryIds;
-        public ComparableList<Guid> GenreIds => Game.GenreIds;
-        public ComparableList<Guid> DeveloperIds => Game.DeveloperIds;
-        public ComparableList<Guid> PublisherIds => Game.PublisherIds;
-        public ComparableList<Guid> TagIds => Game.TagIds;
-        public Guid SeriesId => Game.SeriesId;
-        public Guid AgeRatingId => Game.AgeRatingId;
-        public Guid RegionId => Game.RegionId;
-        public Guid SourceId => Game.SourceId;
+        //public ComparableList<Guid> CategoryIds => Game.CategoryIds;
+        //public ComparableList<Guid> GenreIds => Game.GenreIds;
+        //public ComparableList<Guid> DeveloperIds => Game.DeveloperIds;
+        //public ComparableList<Guid> PublisherIds => Game.PublisherIds;
+        //public ComparableList<Guid> TagIds => Game.TagIds;
+        //public Guid SeriesId => Game.SeriesId;
+        //public Guid AgeRatingId => Game.AgeRatingId;
+        //public Guid RegionId => Game.RegionId;
+        //public Guid SourceId => Game.SourceId;
+        //public Guid PlatformId => Game.PlatformId;
 
         public object IconObject => GetImageObject(Game.Icon);
         public object CoverImageObject => GetImageObject(Game.CoverImage);
         public object BackgroundImageObject => GetImageObject(Game.BackgroundImage);
         public object DefaultIconObject => GetImageObject(DefaultIcon);
         public object DefaultCoverImageObject => GetImageObject(DefaultCoverImage);
-        
+
+        public Category Category
+        {
+            get; private set;
+        } = new Category() { Id = Guid.Empty };
+
+        public Genre Genre
+        {
+            get; private set;
+        } = new Genre() { Id = Guid.Empty };
+
+        public Company Developer
+        {
+            get; private set;
+        } = new Company() { Id = Guid.Empty };
+
+        public Company Publisher
+        {
+            get; private set;
+        } = new Company() { Id = Guid.Empty };
+
+        public Tag Tag
+        {
+            get; private set;
+        } = new Tag() { Id = Guid.Empty };
+
         public string Name
         {
             get
@@ -84,22 +108,12 @@ namespace PlayniteUI
 
         public Game Game
         {
-            get; set;
+            get;
         }
 
         public string Provider
         {
-            get
-            {
-                if (string.IsNullOrEmpty(plugin?.Name))
-                {
-                    return "Playnite";
-                }
-                else
-                {
-                    return plugin.Name;
-                }
-            }
+            get;
         }
 
         public string DefaultIcon
@@ -139,12 +153,36 @@ namespace PlayniteUI
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GameViewEntry(Game game, string category, GamesCollectionView view, ILibraryPlugin plugin)
+        public GameViewEntry(Game game, ILibraryPlugin plugin)
         {
             this.plugin = plugin;
-            this.view = view;
             Game = game;
             Game.PropertyChanged += Game_PropertyChanged;
+            Provider = string.IsNullOrEmpty(plugin?.Name) ? "Playnite" : plugin.Name;
+        }
+
+        public GameViewEntry(Game game, ILibraryPlugin plugin, Type colGroupType, Guid colGroupId) : this(game, plugin)
+        {
+            if (colGroupType == typeof(Genre))
+            {
+                Genre = game.Genres?.FirstOrDefault(a => a.Id == colGroupId);
+            }
+            else if (colGroupType == typeof(Developer))
+            {
+                Developer = game.Developers?.FirstOrDefault(a => a.Id == colGroupId);
+            }
+            else if (colGroupType == typeof(Publisher))
+            {
+                Publisher = game.Publishers?.FirstOrDefault(a => a.Id == colGroupId);
+            }
+            else if (colGroupType == typeof(Tag))
+            {
+                Tag = game.Tags?.FirstOrDefault(a => a.Id == colGroupId);
+            }
+            else if (colGroupType == typeof(Category))
+            {
+                Category = game.Categories?.FirstOrDefault(a => a.Id == colGroupId);
+            }
         }
 
         private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -188,10 +226,10 @@ namespace PlayniteUI
             return CustomImageStringToImageConverter.GetImageFromSource(data);
         }
 
-        //public override string ToString()
-        //{
-        //    return string.Format("{0}, {1}", Name, Category);
-        //}
+        public override string ToString()
+        {
+            return Name;
+        }
 
         public static explicit operator Game(GameViewEntry entry)
         {

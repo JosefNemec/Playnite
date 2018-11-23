@@ -19,7 +19,7 @@ using Newtonsoft.Json.Linq;
 namespace Playnite.Database
 {
     // TODO cleanup methods, remove duplicates
-    public class GameDatabase
+    public class GameDatabase : IGameDatabase
     {
         private static ILogger logger = LogManager.GetLogger();
 
@@ -69,17 +69,17 @@ namespace Playnite.Database
 
         #region Lists
 
-        public GamesCollection Games { get; private set; }
-        public PlatformsCollection Platforms { get; private set; }
-        public ItemCollection<Emulator> Emulators { get; private set; }
-        public GenresCollection Genres { get; private set; }
-        public CompaniesCollection Companies { get; private set; }
-        public TagsCollection Tags { get; private set; }
-        public CategoriesCollection Categories { get; private set; }
-        public SeriesCollection Series { get; private set; }
-        public AgeRatingsCollection AgeRatings { get; private set; }
-        public RegionsCollection Regions { get; private set; }
-        public GamesSourcesCollection Sources { get; private set; }
+        public IItemCollection<Game> Games { get; private set; }
+        public IItemCollection<Platform> Platforms { get; private set; }
+        public IItemCollection<Emulator> Emulators { get; private set; }
+        public IItemCollection<Genre> Genres { get; private set; }
+        public IItemCollection<Company> Companies { get; private set; }
+        public IItemCollection<Tag> Tags { get; private set; }
+        public IItemCollection<Category> Categories { get; private set; }
+        public IItemCollection<Series> Series { get; private set; }
+        public IItemCollection<AgeRating> AgeRatings { get; private set; }
+        public IItemCollection<Region> Regions { get; private set; }
+        public IItemCollection<GameSource> Sources { get; private set; }
 
         #endregion Lists
 
@@ -137,17 +137,17 @@ namespace Playnite.Database
 
         private void LoadCollections()
         {
-            Platforms.InitializeCollection(PlatformsDirectoryPath);
-            Emulators.InitializeCollection(EmulatorsDirectoryPath);
-            Games.InitializeCollection(GamesDirectoryPath);
-            Genres.InitializeCollection(GenresDirectoryPath);
-            Companies.InitializeCollection(CompaniesDirectoryPath);
-            Tags.InitializeCollection(TagsDirectoryPath);
-            Categories.InitializeCollection(CategoriesDirectoryPath);
-            AgeRatings.InitializeCollection(AgeRatingsDirectoryPath);
-            Series.InitializeCollection(SeriesDirectoryPath);
-            Regions.InitializeCollection(RegionsDirectoryPath);
-            Sources.InitializeCollection(SourcesDirectoryPath);
+            (Platforms as PlatformsCollection).InitializeCollection(PlatformsDirectoryPath);
+            (Emulators as EmulatorsCollection).InitializeCollection(EmulatorsDirectoryPath);
+            (Games as GamesCollection).InitializeCollection(GamesDirectoryPath);
+            (Genres as GenresCollection).InitializeCollection(GenresDirectoryPath);
+            (Companies as CompaniesCollection).InitializeCollection(CompaniesDirectoryPath);
+            (Tags as TagsCollection).InitializeCollection(TagsDirectoryPath);
+            (Categories as CategoriesCollection).InitializeCollection(CategoriesDirectoryPath);
+            (AgeRatings as AgeRatingsCollection).InitializeCollection(AgeRatingsDirectoryPath);
+            (Series as SeriesCollection).InitializeCollection(SeriesDirectoryPath);
+            (Regions as RegionsCollection).InitializeCollection(RegionsDirectoryPath);
+            (Sources as GamesSourcesCollection).InitializeCollection(SourcesDirectoryPath);
         }
 
         #endregion Intialization
@@ -161,7 +161,7 @@ namespace Playnite.Database
             DatabasePath = GetFullDbPath(path);
             Platforms = new PlatformsCollection(this);
             Games = new GamesCollection(this);
-            Emulators = new ItemCollection<Emulator>();
+            Emulators = new EmulatorsCollection(this);
             Genres = new GenresCollection(this);
             Companies = new CompaniesCollection(this);
             Tags = new TagsCollection(this);
@@ -749,7 +749,7 @@ namespace Playnite.Database
                             }
                             else
                             {
-                                var newObj = (T)Activator.CreateInstance(typeof(T), new object[] { oldObj });
+                                var newObj = typeof(T).CrateInstance<T>(oldObj);
                                 gameObjs.Add(newObj.Id);
                                 convertedList.Add(oldObj, newObj);
                             }
@@ -773,7 +773,7 @@ namespace Playnite.Database
                             }
                             else
                             {
-                                var newObj = (T)Activator.CreateInstance(typeof(T), new object[] { oldObj });
+                                var newObj = typeof(T).CrateInstance<T>(oldObj);
                                 game[newKey] = newObj.Id;
                                 convertedList.Add(oldObj, newObj);
                             }

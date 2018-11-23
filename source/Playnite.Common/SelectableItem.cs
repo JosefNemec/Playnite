@@ -8,7 +8,7 @@ namespace System
 {
     public class SelectableItem<TItem> : ObservableObject
     {
-        private bool? selected;
+        private bool? selected = false;
         public bool? Selected
         {
             get => selected;

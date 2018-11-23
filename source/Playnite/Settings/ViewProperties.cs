@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -50,8 +51,17 @@ namespace Playnite
     {
         None,
         Provider,
-        CategoryIds,
-        PlatformId
+        Category,
+        Genre,
+        Developer,
+        Publisher,
+        Tag,
+        Platform,
+        Series,
+        AgeRating,
+        Region,
+        Source,
+        ReleaseYear
     }
 
     public enum ViewType : int

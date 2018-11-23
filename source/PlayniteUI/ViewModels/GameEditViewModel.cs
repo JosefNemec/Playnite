@@ -1110,7 +1110,7 @@ namespace PlayniteUI.ViewModels
                         UseDescriptionChanges = true;
                     }
                     break;
-                case nameof(Game.Categories):
+                case nameof(Game.CategoryIds):
                     if (Games == null)
                     {
                         UseCategoryChanges = !Game.CategoryIds.IsListEqual(EditingGame.CategoryIds);
@@ -1120,7 +1120,7 @@ namespace PlayniteUI.ViewModels
                         UseCategoryChanges = true;
                     }
                     break;
-                case nameof(Game.Tags):
+                case nameof(Game.TagIds):
                     if (Games == null)
                     {
                         UseTagChanges = !Game.TagIds.IsListEqual(EditingGame.TagIds);
@@ -1130,7 +1130,7 @@ namespace PlayniteUI.ViewModels
                         UseTagChanges = true;
                     }
                     break;
-                case nameof(Game.Genres):
+                case nameof(Game.GenreIds):
                     if (Games == null)
                     {
                         UseGenresChanges = !Game.GenreIds.IsListEqual(EditingGame.GenreIds);
@@ -1150,7 +1150,7 @@ namespace PlayniteUI.ViewModels
                         UseReleaseDateChanges = true;
                     }
                     break;
-                case nameof(Game.Developers):
+                case nameof(Game.DeveloperIds):
                     if (Games == null)
                     {
                         UseDeveloperChanges = !Game.DeveloperIds.IsListEqual(EditingGame.DeveloperIds);
@@ -1160,7 +1160,7 @@ namespace PlayniteUI.ViewModels
                         UseDeveloperChanges = true;
                     }
                     break;
-                case nameof(Game.Publishers):
+                case nameof(Game.PublisherIds):
                     if (Games == null)
                     {
                         UsePublisherChanges = !Game.PublisherIds.IsListEqual(EditingGame.PublisherIds);
@@ -1210,7 +1210,7 @@ namespace PlayniteUI.ViewModels
                         UsePlayCountChanges = true;
                     }
                     break;
-                case nameof(Game.Series):
+                case nameof(Game.SeriesId):
                     if (Games == null)
                     {
                         UseSeriesChanges = Game.SeriesId != EditingGame.SeriesId;
@@ -1230,7 +1230,7 @@ namespace PlayniteUI.ViewModels
                         UseVersionChanges = true;
                     }
                     break;
-                case nameof(Game.AgeRating):
+                case nameof(Game.AgeRatingId):
                     if (Games == null)
                     {
                         UseAgeRatingChanges = Game.AgeRatingId != EditingGame.AgeRatingId;
@@ -1240,7 +1240,7 @@ namespace PlayniteUI.ViewModels
                         UseAgeRatingChanges = true;
                     }
                     break;
-                case nameof(Game.Region):
+                case nameof(Game.RegionId):
                     if (Games == null)
                     {
                         UseRegionChanges = Game.RegionId != EditingGame.RegionId;
@@ -1250,7 +1250,7 @@ namespace PlayniteUI.ViewModels
                         UseRegionChanges = true;
                     }
                     break;
-                case nameof(Game.Source):
+                case nameof(Game.SourceId):
                     if (Games == null)
                     {
                         UseSourceChanges = Game.SourceId != EditingGame.SourceId;

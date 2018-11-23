@@ -12,67 +12,7 @@ using System.Threading.Tasks;
 
 namespace Playnite.Database
 {
-    public class ItemUpdateEvent<TItem> where TItem : DatabaseObject
-    {
-        public TItem OldData
-        {
-            get; set;
-        }
-
-        public TItem NewData
-        {
-            get; set;
-        }
-
-        public ItemUpdateEvent(TItem oldData, TItem newData)
-        {
-            OldData = oldData;
-            NewData = newData;
-        }
-    }
-
-    public delegate void ItemUpdatedEventHandler<TItem>(object sender, ItemUpdatedEventArgs<TItem> args) where TItem : DatabaseObject;
-
-    public class ItemUpdatedEventArgs<TItem> : EventArgs where TItem : DatabaseObject
-    {
-        public List<ItemUpdateEvent<TItem>> UpdatedItems
-        {
-            get; set;
-        }
-
-        public ItemUpdatedEventArgs(TItem oldData, TItem newData)
-        {
-            UpdatedItems = new List<ItemUpdateEvent<TItem>>() { new ItemUpdateEvent<TItem>(oldData, newData) };
-        }
-
-        public ItemUpdatedEventArgs(List<ItemUpdateEvent<TItem>> updatedItems)
-        {
-            UpdatedItems = updatedItems;
-        }
-    }
-
-    public delegate void ItemCollectionChangedEventHandler<TItem>(object sender, ItemCollectionChangedEventArgs<TItem> args) where TItem : DatabaseObject;
-
-    public class ItemCollectionChangedEventArgs<TItem> : EventArgs where TItem : DatabaseObject
-    {
-        public List<TItem> AddedItems
-        {
-            get; set;
-        }
-
-        public List<TItem> RemovedItems
-        {
-            get; set;
-        }
-
-        public ItemCollectionChangedEventArgs(List<TItem> addedItems, List<TItem> removedItems)
-        {
-            AddedItems = addedItems;
-            RemovedItems = removedItems;
-        }
-    }
-
-    public class ItemCollection<TItem> : ICollection<TItem> where TItem : DatabaseObject
+    public class ItemCollection<TItem> : IItemCollection<TItem> where TItem : DatabaseObject
     {
         private ILogger logger = LogManager.GetLogger();
         private readonly object collectionLock = new object();
@@ -173,6 +113,46 @@ namespace Playnite.Database
             else
             {
                 return null;
+            }
+        }
+
+        public virtual TItem Add(string itemName)
+        {
+            if (string.IsNullOrEmpty(itemName)) throw new ArgumentNullException(nameof(itemName));
+            var existingItem = this.FirstOrDefault(a => a.Name.Equals(itemName, StringComparison.OrdinalIgnoreCase));
+            if (existingItem != null)
+            {
+                return existingItem;
+            }
+            else
+            {
+                var newItem = typeof(TItem).CrateInstance<TItem>(itemName);
+                Add(newItem);
+                return newItem;
+            }
+        }
+
+        public virtual IEnumerable<TItem> Add(List<string> items)
+        {
+            var toAdd = new List<TItem>();
+            foreach (var itemName in items)
+            {
+                var existingItem = this.FirstOrDefault(a => a.Name.Equals(itemName, StringComparison.OrdinalIgnoreCase));
+                if (existingItem != null)
+                {
+                    yield return existingItem;
+                }
+                else
+                {
+                    var newItem = typeof(TItem).CrateInstance<TItem>(itemName);
+                    toAdd.Add(newItem);
+                    yield return newItem;
+                }
+            }
+
+            if (toAdd?.Any() == true)
+            {
+                Add(toAdd);
             }
         }
 

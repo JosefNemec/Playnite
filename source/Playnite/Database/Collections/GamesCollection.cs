@@ -1,4 +1,5 @@
-﻿using Playnite.SDK.Models;
+﻿using Playnite.SDK;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,16 @@ namespace Playnite.Database
         })
         {
             db = database;
+        }
+
+        public override Game Add(string itemName)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override IEnumerable<Game> Add(List<string> items)
+        {
+            throw new NotSupportedException();
         }
 
         public override void Add(Game item)

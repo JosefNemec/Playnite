@@ -28,6 +28,7 @@ using Playnite.Settings;
 using Playnite.SDK;
 using PlayniteUI.WebView;
 using Newtonsoft.Json;
+using Playnite.SDK.Models;
 
 namespace PlayniteUI
 {
@@ -280,6 +281,7 @@ namespace PlayniteUI
             Extensions.LoadGenericPlugins(Api, AppSettings.DisabledPlugins);
             Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
             GamesEditor = new GamesEditor(Database, controllers, AppSettings, dialogs, Extensions);
+            Game.DatabaseReference = Database;
             CustomImageStringToImageConverter.SetDatabase(Database);
 
             // Main view startup

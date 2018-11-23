@@ -416,8 +416,8 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Padding" Value="2" />
-        <Setter Property="Margin" Value="1" />
+        <Setter Property="Padding" Value="3" />
+        <Setter Property="Margin" Value="0" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -2103,10 +2103,10 @@
                 </TextBlock>
 
                 <!-- Categories -->
-                <Label Content="{DynamicResource LOCGameCategoriesTitle}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                <!--<Label Content="{DynamicResource LOCGameCategoriesTitle}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Categories, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
-                                  Tag="Categories"/>
+                                  Tag="Categories"/>-->
 
                 <!-- Tags -->
                 <Label Content="{DynamicResource LOCTagsLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
@@ -2606,12 +2606,30 @@
                             <Separator />
                             <MenuItem Header="{DynamicResource LOCMenuGroupDont}" IsCheckable="True"
                                   IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.None}}"/>
-                            <MenuItem Header="{DynamicResource LOCMenuGroupProvider}" IsCheckable="True"
+                            <MenuItem Header="{DynamicResource LOCLibraries}" IsCheckable="True"
                                   IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Provider}}"/>
-                            <MenuItem Header="{DynamicResource LOCMenuGroupCategory}" IsCheckable="True"
-                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.CategoryIds}}"/>
-                            <MenuItem Header="{DynamicResource LOCMenuGroupPlatform}" IsCheckable="True"
-                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.PlatformId}}"/>
+                            <MenuItem Header="{DynamicResource LOCCategoryLabel}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Category}}"/>
+                            <MenuItem Header="{DynamicResource LOCGenreLabel}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Genre}}"/>
+                            <MenuItem Header="{DynamicResource LOCDeveloperLabel}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Developer}}"/>
+                            <MenuItem Header="{DynamicResource LOCPublisherLabel}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Publisher}}"/>
+                            <MenuItem Header="{DynamicResource LOCTagLabel}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Tag}}"/>
+                            <MenuItem Header="{DynamicResource LOCPlatformTitle}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Platform}}"/>
+                            <MenuItem Header="{DynamicResource LOCSeriesLabel}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Series}}"/>
+                            <MenuItem Header="{DynamicResource LOCAgeRatingLabel}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.AgeRating}}"/>
+                            <MenuItem Header="{DynamicResource LOCRegionLabel}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Region}}"/>
+                            <MenuItem Header="{DynamicResource LOCSourceLabel}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.Source}}"/>
+                            <MenuItem Header="{DynamicResource LOCGameReleaseYearTitle}" IsCheckable="True"
+                                  IsChecked="{Binding Path=ViewSettings.GroupingOrder, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static shared:GroupOrder.ReleaseYear}}"/>
                         </ContextMenu>
                     </Border.ContextMenu>
                 </Border>
