@@ -42,6 +42,11 @@ namespace Playnite.SDK.Models
             Id = Guid.NewGuid();
         }
 
+        /// <summary>
+        /// Compares Names of database object.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public int CompareTo(object obj)
         {
             var objName = (obj as DatabaseObject).Name;
@@ -65,6 +70,11 @@ namespace Playnite.SDK.Models
             return string.Compare(Name, objName, true);
         }
 
+        /// <summary>
+        /// DO NOT use for actual equality check, this only checks if db Ids are equal!
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj is DatabaseObject dbObj)

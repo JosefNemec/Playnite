@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using Playnite.Common.System;
 using Playnite.Database;
 using Playnite.SDK;
 using Playnite.SDK.Models;
@@ -397,28 +398,107 @@ namespace PlayniteUI.ViewModels
 
         internal void SaveChanges()
         {
-            UpdateDbCollection(database.Categories, EditingCategories);
-            UpdateDbCollection(database.AgeRatings, EditingAgeRatings);
-            UpdateDbCollection(database.Companies, EditingCompanies);
-            UpdateDbCollection(database.Genres, EditingGenres);
-            UpdateDbCollection(database.Regions, EditingRegions);
-            UpdateDbCollection(database.Series, EditingSeries);
-            UpdateDbCollection(database.Sources, EditingSources);
-            UpdateDbCollection(database.Tags, EditingTags);
-            UpdatePlatformsCollection();
+            using (database.BufferedUpdate())
+            {
+                UpdateDbCollection(database.Categories, EditingCategories);
+                UpdateDbCollection(database.AgeRatings, EditingAgeRatings);
+                UpdateDbCollection(database.Companies, EditingCompanies);
+                UpdateDbCollection(database.Genres, EditingGenres);
+                UpdateDbCollection(database.Regions, EditingRegions);
+                UpdateDbCollection(database.Series, EditingSeries);
+                UpdateDbCollection(database.Sources, EditingSources);
+                UpdateDbCollection(database.Tags, EditingTags);
+                UpdatePlatformsCollection();
+            }
+
             window.Close(true);
         }
 
         private void UpdateDbCollection<TItem>(IItemCollection<TItem> dbCollection, IList<TItem> updatedCollection) where TItem : DatabaseObject
-        {
+        {            
+            // Remove deleted items
+            var removedItems = dbCollection.Where(a => updatedCollection.FirstOrDefault(b => b.Id == a.Id) == null);
+            if (removedItems.Any())
+            {
+                dbCollection.Remove(removedItems);
+            }
 
+            // Add new items
+            var addedItems = updatedCollection.Where(a => dbCollection[a.Id] == null);
+            if (addedItems.Any())
+            {
+                dbCollection.Add(addedItems);
+            }
+
+            // Update modified items
+            foreach (var item in updatedCollection)
+            {
+                var dbItem = dbCollection[item.Id];
+                if (dbItem != null && !item.IsEqualJson(dbItem))
+                {
+                    dbCollection.Update(item);
+                }
+            }
         }
 
         private void UpdatePlatformsCollection()
         {
+            string addNewFile(string path, Guid parent)
+            {                
+                var newPath = database.AddFile(path, parent);
+                if (Paths.AreEqual(Path.GetDirectoryName(path), PlaynitePaths.TempPath))
+                {
+                    File.Delete(path);
+                }
 
+                return newPath;
+            }
+
+            // Remove deleted items
+            var removedItems = database.Platforms.Where(a => EditingPlatforms.FirstOrDefault(b => b.Id == a.Id) == null);
+            if (removedItems.Any())
+            {
+                // Metadata are removed by underlying collection implementation.
+                database.Platforms.Remove(removedItems);
+            }
+
+            // Add new items
+            var addedItems = EditingPlatforms.Where(a => database.Platforms[a.Id] == null);
+            foreach (var item in addedItems)
+            {
+                if (!item.Icon.IsNullOrEmpty())
+                {
+                    item.Icon = addNewFile(item.Icon, item.Id);
+                }
+
+                if (!item.Cover.IsNullOrEmpty())
+                {
+                    item.Cover = addNewFile(item.Cover, item.Id);
+                }
+
+                database.Platforms.Add(addedItems);
+            }
+
+            // Update modified items
+            foreach (var item in EditingPlatforms)
+            {
+                var dbItem = database.Platforms[item.Id];
+                if (dbItem != null && !item.IsEqualJson(dbItem))
+                {
+                    if (!item.Icon.IsNullOrEmpty())
+                    {
+                        item.Icon = addNewFile(item.Icon, item.Id);
+                    }
+
+                    if (!item.Cover.IsNullOrEmpty())
+                    {
+                        item.Cover = addNewFile(item.Cover, item.Id);
+                    }
+
+                    database.Platforms.Update(item);
+                }
+            }
         }
-
 
         // TODO localize strings
         public void AddItem<TItem>(IList<TItem> collection) where TItem : DatabaseObject

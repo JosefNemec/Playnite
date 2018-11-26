@@ -72,19 +72,21 @@ namespace PlayniteTests.Metadata
                     }
 
                     var gameId = g.Name;
-                    var game = new Game("IGDB Game " + gameId)
+                    var game = new GameInfo()
                     {
+                        Name = "IGDB Game " + gameId,
                         Description = $"IGDB Description {gameId}",
-                        Developers = new ComparableList<string>() { $"IGDB Developer {gameId}" },
-                        Genres = new ComparableList<string>() { $"IGDB Genre {gameId}" },
-                        Links = new ObservableCollection<Link>() { new Link($"IGDB link {gameId}", $"IGDB link url {gameId}") },
-                        Publishers = new ComparableList<string>() { $"IGDB publisher {gameId}" },
+                        Developers = new List<string>() { $"IGDB Developer {gameId}" },
+                        Genres = new List<string>() { $"IGDB Genre {gameId}" },
+                        Links = new List<Link>() { new Link($"IGDB link {gameId}", $"IGDB link url {gameId}") },
+                        Publishers = new List<string>() { $"IGDB publisher {gameId}" },
                         ReleaseDate = new DateTime(2012, 6, 6),
-                        Tags = new ComparableList<string>() { $"IGDB Tag {gameId}" }
+                        Tags = new List<string>() { $"IGDB Tag {gameId}" }
                     };
                     var icon = new MetadataFile($"IGDBIconName{gameId}.file", randomFile);
                     var image = new MetadataFile($"IGDBImageName{gameId}.file", randomFile);
-                    return new GameMetadata(game, icon, image, $"IGDB backgournd {gameId}");
+                    var background = new MetadataFile($"IGDB backgournd {gameId}");
+                    return new GameMetadata(game, icon, image, background);
                 });
 
                 var storeProvider = new Mock<ILibraryMetadataProvider>();
@@ -156,19 +158,21 @@ namespace PlayniteTests.Metadata
                 {
                     callCount++;
                     var gameId = g.GameId;
-                    var game = new Game("Store Game " + gameId)
+                    var game = new GameInfo()
                     {
+                        Name = "Store Game " + gameId,
                         Description = $"Store Description {gameId}",
-                        Developers = new ComparableList<string>() { $"Store Developer {gameId}" },
-                        Genres = new ComparableList<string>() { $"Store Genre {gameId}" },
-                        Links = new ObservableCollection<Link>() { new Link($"Store link {gameId}", $"Store link url {gameId}") },
-                        Publishers = new ComparableList<string>() { $"Store publisher {gameId}" },
+                        Developers = new List<string>() { $"Store Developer {gameId}" },
+                        Genres = new List<string>() { $"Store Genre {gameId}" },
+                        Links = new List<Link>() { new Link($"Store link {gameId}", $"Store link url {gameId}") },
+                        Publishers = new List<string>() { $"Store publisher {gameId}" },
                         ReleaseDate = new DateTime(2016, 2, 2),
-                        Tags = new ComparableList<string>() { $"Store Tag {gameId}" }
+                        Tags = new List<string>() { $"Store Tag {gameId}" }
                     };
                     var icon = new MetadataFile($"StoreIconName{gameId}.file", randomFile);
                     var image = new MetadataFile($"StoreImageName{gameId}.file", randomFile);
-                    return new GameMetadata(game, icon, image, $"Store backgournd {gameId}");
+                    var background = new MetadataFile($"Store backgournd {gameId}");
+                    return new GameMetadata(game, icon, image, background);
                 });
 
                 var downloader = new MetadataDownloader(db, igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
@@ -221,15 +225,17 @@ namespace PlayniteTests.Metadata
                 {
                     callCount++;
                     var gameId = g.Name;
-                    var game = new Game("IGDB Game " + gameId);
+                    var game = new GameInfo();
+                    game.Name = "IGDB Game " + gameId;
                     game.Description = $"IGDB Description {gameId}";
-                    game.Genres = new ComparableList<string>() { $"IGDB Genre {gameId}" };
-                    game.Links = new ObservableCollection<Link>() { new Link($"IGDB link {gameId}", $"IGDB link url {gameId}") };
-                    game.Publishers = new ComparableList<string>() { $"IGDB publisher {gameId}" };
+                    game.Genres = new List<string>() { $"IGDB Genre {gameId}" };
+                    game.Links = new List<Link>() { new Link($"IGDB link {gameId}", $"IGDB link url {gameId}") };
+                    game.Publishers = new List<string>() { $"IGDB publisher {gameId}" };
                     game.ReleaseDate = new DateTime(2012, 6, 6);
                     var icon = new MetadataFile($"IGDBIconName{gameId}.file", randomFile);
                     var image = new MetadataFile($"IGDBImageName{gameId}.file", randomFile);
-                    return new GameMetadata(game, icon, image, $"IGDB backgournd {gameId}");
+                    var background = new MetadataFile($"IGDB backgournd {gameId}");
+                    return new GameMetadata(game, icon, image, background);
                 });
 
                 var storeProvider = new Mock<ILibraryMetadataProvider>();
@@ -237,15 +243,17 @@ namespace PlayniteTests.Metadata
                 {
                     callCount++;
                     var gameId = g.GameId;
-                    var game = new Game(gameId);
+                    var game = new GameInfo();
+                    game.Name = gameId;
                     game.Description = $"Store Description {gameId}";
-                    game.Developers = new ComparableList<string>() { $"Store Developer {gameId}" };
-                    game.Links = new ObservableCollection<Link>() { new Link($"Store link {gameId}", $"Store link url {gameId}") };
-                    game.Publishers = new ComparableList<string>() { $"Store publisher {gameId}" };
+                    game.Developers = new List<string>() { $"Store Developer {gameId}" };
+                    game.Links = new List<Link>() { new Link($"Store link {gameId}", $"Store link url {gameId}") };
+                    game.Publishers = new List<string>() { $"Store publisher {gameId}" };
                     game.ReleaseDate = new DateTime(2016, 2, 2);
                     var icon = new MetadataFile($"StoreIconName{gameId}.file", randomFile);
                     var image = new MetadataFile($"StoreImageName{gameId}.file", randomFile);
-                    return new GameMetadata(game, icon, image, $"Store backgournd {gameId}");
+                    var background = new MetadataFile($"Store backgournd {gameId}");
+                    return new GameMetadata(game, icon, image, background);
                 });
 
                 var downloader = new MetadataDownloader(db, igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
@@ -326,26 +334,26 @@ namespace PlayniteTests.Metadata
                 var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 int callCount = 0;
-                var games = new List<Game>()
+
+                var toImport = new GameInfo()
                 {
-                    new Game("Game")
-                    {
-                        PluginId = storePluginId,
-                        GameId = "storeId",
-                        Genres = new ComparableList<string>() { "Genre" },
-                        ReleaseDate = new DateTime(2012, 6, 6),
-                        Developers = new ComparableList<string>() { "Developer" },
-                        Publishers = new ComparableList<string>() { "Publisher" },
-                        Tags = new ComparableList<string>() { "Tag" },
-                        Description = "Description",
-                        Links = new ObservableCollection<Link>() { new Link() },
-                        Icon = "icon",
-                        CoverImage = "image",
-                        BackgroundImage = "backImage"
-                    }
+                    Name = "Game",
+                    GameId = "storeId",
+                    Genres = new List<string>() { "Genre" },
+                    ReleaseDate = new DateTime(2012, 6, 6),
+                    Developers = new List<string>() { "Developer" },
+                    Publishers = new List<string>() { "Publisher" },
+                    Tags = new List<string>() { "Tag" },
+                    Description = "Description",
+                    Links = new List<Link>() { new Link() },
+                    Icon = "icon",
+                    CoverImage = "image",
+                    BackgroundImage = "backImage"
                 };
 
-                db.Games.Add(games);
+                var importedGame = db.ImportGame(toImport);
+                importedGame.PluginId = storePluginId;
+                db.Games.Update(importedGame);
 
                 var igdbProvider = new Mock<ILibraryMetadataProvider>();
                 igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
@@ -359,7 +367,7 @@ namespace PlayniteTests.Metadata
                 {
                     callCount++;
                     var gameId = g.GameId;
-                    return new GameMetadata(new Game("Store Game " + gameId), null, null, null);
+                    return new GameMetadata(new GameInfo() { Name = "Store Game " + gameId }, null, null, null);
                 });
 
                 var downloader = new MetadataDownloader(db, igdbProvider.Object, GetLibraryPlugins(storeProvider.Object, storePluginId));
@@ -367,7 +375,7 @@ namespace PlayniteTests.Metadata
 
                 var dbGames = db.Games.ToList();
                 var f = dbGames[0].ReleaseDate;
-                var s = games[0].ReleaseDate;
+                var s = importedGame.ReleaseDate;
 
                 settings.ConfigureFields(MetadataSource.Store, true);
                 await downloader.DownloadMetadataAsync(
@@ -397,15 +405,16 @@ namespace PlayniteTests.Metadata
                 var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 int callCount = 0;
-                db.Games.Add(new Game("Game1")
+                db.ImportGame(new GameInfo()
                 {
+                    Name = "Game1",
                     Description = "Description",
-                    Developers = new ComparableList<string>() { "Developers" },
-                    Genres = new ComparableList<string>() { "Genres" },
-                    Links = new ObservableCollection<Link>() { new Link("Link", "URL") },
-                    Publishers = new ComparableList<string>() { "Publishers" },
+                    Developers = new List<string>() { "Developers" },
+                    Genres = new List<string>() { "Genres" },
+                    Links = new List<Link>() { new Link("Link", "URL") },
+                    Publishers = new List<string>() { "Publishers" },
                     ReleaseDate = new DateTime(2012, 6, 6),
-                    Tags = new ComparableList<string>() { "Tags" },
+                    Tags = new List<string>() { "Tags" },
                     Icon = "Icon",
                     CoverImage = "Image",
                     BackgroundImage = "BackgroundImage",
@@ -420,19 +429,21 @@ namespace PlayniteTests.Metadata
                 {
                     callCount++;
                     var gameId = g.Name;
-                    var game = new Game("IGDB Game " + gameId)
+                    var game = new GameInfo()
                     {
+                        Name = "IGDB Game " + gameId,
                         Description = $"IGDB Description {gameId}",
-                        Developers = new ComparableList<string>() { $"IGDB Developer {gameId}" },
-                        Genres = new ComparableList<string>() { $"IGDB Genre {gameId}" },
-                        Links = new ObservableCollection<Link>() { new Link($"IGDB link {gameId}", $"IGDB link url {gameId}") },
-                        Publishers = new ComparableList<string>() { $"IGDB publisher {gameId}" },
+                        Developers = new List<string>() { $"IGDB Developer {gameId}" },
+                        Genres = new List<string>() { $"IGDB Genre {gameId}" },
+                        Links = new List<Link>() { new Link($"IGDB link {gameId}", $"IGDB link url {gameId}") },
+                        Publishers = new List<string>() { $"IGDB publisher {gameId}" },
                         ReleaseDate = new DateTime(2012, 6, 6),
-                        Tags = new ComparableList<string>() { $"IGDB Tag {gameId}" }
+                        Tags = new List<string>() { $"IGDB Tag {gameId}" }
                     };
                     var icon = new MetadataFile($"IGDBIconName{gameId}.file", randomFile);
                     var image = new MetadataFile($"IGDBImageName{gameId}.file", randomFile);
-                    return new GameMetadata(game, icon, image, $"IGDB backgournd {gameId}");
+                    var background = new MetadataFile($"IGDB backgournd {gameId}");
+                    return new GameMetadata(game, icon, image, background);
                 });
 
                 var downloader = new MetadataDownloader(db, igdbProvider.Object, null);

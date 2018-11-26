@@ -384,7 +384,7 @@ namespace PlayniteUI.ViewModels
                 var addedGames = new List<Game>();
                 foreach (var game in games)
                 {
-                    var added = GameLibrary.ImportGame(game, database);
+                    var added = database.ImportGame(game);
                     addedGames.Add(added);
                     database.AssignPcPlatform(added);
                 }

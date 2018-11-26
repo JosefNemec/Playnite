@@ -186,6 +186,9 @@
     <Compile Include="Commands\GeneralCommands.cs" />
     <Compile Include="Commands\GenericCommands.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Controls\DdItemListSelectionBox.xaml.cs">
+      <DependentUpon>DdItemListSelectionBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ExtendedListView.cs" />
     <Compile Include="Controls\NullableIntBox.cs" />
     <Compile Include="Controls\NumericBox.cs" />
@@ -223,7 +226,6 @@
     <Compile Include="Converters\NotificationIconConverter.cs" />
     <Compile Include="Converters\NullToBoolConverter.cs" />
     <Compile Include="Converters\NullToDependencyPropertyUnsetConverter.cs" />
-    <Compile Include="Converters\SelectablePlatformsListToStringConverter.cs" />
     <Compile Include="Converters\SkinMediaPathConverter.cs" />
     <Compile Include="Converters\NegateConverter.cs" />
     <Compile Include="Converters\NullableDateToStringConverter.cs" />
@@ -268,7 +270,7 @@
     <Compile Include="MouseWheelGesture.cs" />
     <Compile Include="PlayniteMessageBox.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\PlatformsViewModel.cs" />
+    <Compile Include="ViewModels\EmulatorsViewModel.cs" />
     <Compile Include="VirtualizingTilePanel.cs" />
     <Compile Include="WindowPositionHandler.cs" />
     <Compile Include="PlayniteWindows.cs" />
@@ -326,8 +328,8 @@
     <Compile Include="Windows\MetadataLookupWindow.xaml.cs">
       <DependentUpon>MetadataLookupWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PlatformsWindow.xaml.cs">
-      <DependentUpon>PlatformsWindow.xaml</DependentUpon>
+    <Compile Include="Windows\EmulatorsWindow.xaml.cs">
+      <DependentUpon>EmulatorsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
@@ -342,6 +344,10 @@
       <DependentUpon>WebViewWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="XInputBinding.cs" />
+    <Page Include="Controls\DdItemListSelectionBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\FadeImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -599,7 +605,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\PlatformsWindow.xaml">
+    <Page Include="Windows\EmulatorsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

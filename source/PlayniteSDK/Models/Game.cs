@@ -54,6 +54,7 @@ namespace Playnite.SDK.Models
             }
         }
 
+        // TODO change to standard list
         private ComparableList<Guid> developerIds;
         /// <summary>
         /// Gets or sets list of developers.

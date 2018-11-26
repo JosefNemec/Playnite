@@ -52,14 +52,51 @@ namespace Playnite.Database
                 }
             }
 
-            var result = base.Remove(items);
             foreach (var item in items)
             {
-                db.RemoveFile(item.Icon);
-                db.RemoveFile(item.Cover);
+                // Get item from in case that passed platform doesn't have actual metadata.
+                var dbItem = Get(item.Id);
+                db.RemoveFile(dbItem.Icon);
+                db.RemoveFile(dbItem.Cover);
             }
 
+            var result = base.Remove(items);
             return result;
+        }
+
+        public override void Update(IEnumerable<Platform> items)
+        {
+            foreach (var item in items)
+            {
+                var dbItem = Get(item.Id);
+                if (!dbItem.Icon.IsNullOrEmpty() && dbItem.Icon != item.Icon)
+                {
+                    db.RemoveFile(dbItem.Icon);
+                }
+
+                if (!dbItem.Cover.IsNullOrEmpty() && dbItem.Cover != item.Cover)
+                {
+                    db.RemoveFile(dbItem.Cover);
+                }
+            }
+
+            base.Update(items);
+        }
+
+        public override void Update(Platform item)
+        {
+            var dbItem = Get(item.Id);
+            if (!dbItem.Icon.IsNullOrEmpty() && dbItem.Icon != item.Icon)
+            {
+                db.RemoveFile(dbItem.Icon);
+            }
+
+            if (!dbItem.Cover.IsNullOrEmpty() && dbItem.Cover != item.Cover)
+            {
+                db.RemoveFile(dbItem.Cover);
+            }
+
+            base.Update(item);
         }
     }
 }

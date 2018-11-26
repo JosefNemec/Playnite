@@ -286,7 +286,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((args) =>
             {
-                VerifyAvailableEmulators(new PlatformsViewModel(database, new PlatformsWindowFactory(), dialogs, resources));
+                VerifyAvailableEmulators(new EmulatorsViewModel(database, new EmulatorsWindowFactory(), dialogs, resources));
             });
         }
 
@@ -538,7 +538,7 @@ namespace PlayniteUI.ViewModels
             System.Diagnostics.Process.Start(url);
         }
 
-        public void VerifyAvailableEmulators(PlatformsViewModel platforms)
+        public void VerifyAvailableEmulators(EmulatorsViewModel platforms)
         {
             if (AvailableEmulators == null || AvailableEmulators.Count == 0)
             {

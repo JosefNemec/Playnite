@@ -17,6 +17,50 @@ namespace PlayniteUITests
         public void GetMultiGameEditObject_StandardTest()
         {
             var platId = Guid.NewGuid();
+            var genres = new List<Guid>
+            {
+                Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
+            };
+
+            var developers = new List<Guid>
+            {
+                Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
+            };
+
+            var publishers = new List<Guid>
+            {
+                Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
+            };
+
+            var categories = new List<Guid>
+            {
+                Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
+            };
+
+            var tags = new List<Guid>
+            {
+                Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
+            };
+
+            var series = new List<Guid>
+            {
+                Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
+            };
+
+            var ratings = new List<Guid>
+            {
+                Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
+            };
+
+            var regions = new List<Guid>
+            {
+                Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
+            };
+
+            var sources = new List<Guid>
+            {
+                Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
+            };
 
             // All common
             var gamesCommon = new List<Game>()
@@ -24,23 +68,23 @@ namespace PlayniteUITests
                 new Game()
                 {
                     Name = "Game",
-                    Genres = new ComparableList<string>() { "Genre 1", "Genre 2", "Genre 3" },
+                    GenreIds = new ComparableList<Guid>() { genres[0], genres[1], genres[2] },
                     ReleaseDate = new DateTime(2011,6,20),
-                    Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
-                    Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
-                    Categories = new ComparableList<string>() { "Cat 1", "Cat 2", "Cat 3" },
-                    Tags = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
+                    DeveloperIds = new ComparableList<Guid>() { developers[0], developers[1], developers[2] },
+                    PublisherIds = new ComparableList<Guid>() { publishers[0], publishers[1], publishers[2] },
+                    CategoryIds = new ComparableList<Guid>() { categories[0], categories[1], categories[2] },
+                    TagIds = new ComparableList<Guid>() { tags[0], tags[1], tags[2] },
                     Description = "Description",
                     PlatformId = platId,
                     LastActivity = new DateTime(2012,1,3),
                     Added = new DateTime(2012,1,3),
                     Playtime = 3,
                     PlayCount = 3,
-                    Series = "Series 3",
+                    SeriesId = series[0],
                     Version = "Version 3",
-                    AgeRating = "AgeRating 3",
-                    Region = "Region 3",
-                    Source = "Source 3",
+                    AgeRatingId = ratings[0],
+                    RegionId = regions[0],
+                    SourceId = sources[0],
                     CompletionStatus = CompletionStatus.Completed,
                     UserScore = 1,
                     CriticScore = 2,
@@ -51,23 +95,23 @@ namespace PlayniteUITests
                 new Game()
                 {
                     Name = "Game",
-                    Genres = new ComparableList<string>() { "Genre 1", "Genre 2", "Genre 3" },
                     ReleaseDate = new DateTime(2011,6,20),
-                    Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
-                    Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
-                    Categories = new ComparableList<string>() { "Cat 1", "Cat 2", "Cat 3" },
-                    Tags = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
+                    GenreIds = new ComparableList<Guid>() { genres[0], genres[1], genres[2] },
+                    DeveloperIds = new ComparableList<Guid>() { developers[0], developers[1], developers[2] },
+                    PublisherIds = new ComparableList<Guid>() { publishers[0], publishers[1], publishers[2] },
+                    CategoryIds = new ComparableList<Guid>() { categories[0], categories[1], categories[2] },
+                    TagIds = new ComparableList<Guid>() { tags[0], tags[1], tags[2] },
+                    SeriesId = series[0],
+                    AgeRatingId = ratings[0],
+                    RegionId = regions[0],
+                    SourceId = sources[0],
                     Description = "Description",
                     PlatformId = platId,
                     LastActivity = new DateTime(2012,1,3),
                     Added = new DateTime(2012,1,3),
                     Playtime = 3,
                     PlayCount = 3,
-                    Series = "Series 3",
                     Version = "Version 3",
-                    AgeRating = "AgeRating 3",
-                    Region = "Region 3",
-                    Source = "Source 3",
                     CompletionStatus = CompletionStatus.Completed,
                     UserScore = 1,
                     CriticScore = 2,
@@ -78,23 +122,23 @@ namespace PlayniteUITests
                 new Game()
                 {
                     Name = "Game",
-                    Genres = new ComparableList<string>() { "Genre 1", "Genre 2", "Genre 3" },
+                    GenreIds = new ComparableList<Guid>() { genres[0], genres[1], genres[2] },
                     ReleaseDate = new DateTime(2011,6,20),
-                    Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
-                    Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
-                    Categories = new ComparableList<string>() { "Cat 1", "Cat 2", "Cat 3" },
-                    Tags = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
+                    DeveloperIds = new ComparableList<Guid>() { developers[0], developers[1], developers[2] },
+                    PublisherIds = new ComparableList<Guid>() { publishers[0], publishers[1], publishers[2] },
+                    CategoryIds = new ComparableList<Guid>() { categories[0], categories[1], categories[2] },
+                    TagIds = new ComparableList<Guid>() { tags[0], tags[1], tags[2] },
                     Description = "Description",
                     PlatformId = platId,
                     LastActivity = new DateTime(2012,1,3),
                     Added = new DateTime(2012,1,3),
                     Playtime = 3,
                     PlayCount = 3,
-                    Series = "Series 3",
+                    SeriesId = series[0],
                     Version = "Version 3",
-                    AgeRating = "AgeRating 3",
-                    Region = "Region 3",
-                    Source = "Source 3",
+                    AgeRatingId = ratings[0],
+                    RegionId = regions[0],
+                    SourceId = sources[0],
                     CompletionStatus = CompletionStatus.Completed,
                     UserScore = 1,
                     CriticScore = 2,
@@ -107,23 +151,23 @@ namespace PlayniteUITests
             var gameCommon = GameTools.GetMultiGameEditObject(gamesCommon);
             var firstGame = gamesCommon.First();
             Assert.AreEqual(firstGame.Name, gameCommon.Name);
-            CollectionAssert.AreEqual(firstGame.Genres, gameCommon.Genres);
+            CollectionAssert.AreEqual(firstGame.GenreIds, gameCommon.GenreIds);
             Assert.AreEqual(firstGame.ReleaseDate, gameCommon.ReleaseDate);
-            CollectionAssert.AreEqual(firstGame.Developers, gameCommon.Developers);
-            CollectionAssert.AreEqual(firstGame.Publishers, gameCommon.Publishers);
-            CollectionAssert.AreEqual(firstGame.Categories, gameCommon.Categories);
-            CollectionAssert.AreEqual(firstGame.Tags, gameCommon.Tags);
+            CollectionAssert.AreEqual(firstGame.DeveloperIds, gameCommon.DeveloperIds);
+            CollectionAssert.AreEqual(firstGame.PublisherIds, gameCommon.PublisherIds);
+            CollectionAssert.AreEqual(firstGame.CategoryIds, gameCommon.CategoryIds);
+            CollectionAssert.AreEqual(firstGame.TagIds, gameCommon.TagIds);
             Assert.AreEqual(firstGame.Description, gameCommon.Description);
             Assert.AreEqual(firstGame.PlatformId, gameCommon.PlatformId);
             Assert.AreEqual(firstGame.LastActivity, gameCommon.LastActivity);
             Assert.AreEqual(firstGame.Added, gameCommon.Added);
             Assert.AreEqual(firstGame.Playtime, gameCommon.Playtime);
             Assert.AreEqual(firstGame.PlayCount, gameCommon.PlayCount);
-            Assert.AreEqual(firstGame.Series, gameCommon.Series);
+            Assert.AreEqual(firstGame.SeriesId, gameCommon.SeriesId);
             Assert.AreEqual(firstGame.Version, gameCommon.Version);
-            Assert.AreEqual(firstGame.AgeRating, gameCommon.AgeRating);
-            Assert.AreEqual(firstGame.Region, gameCommon.Region);
-            Assert.AreEqual(firstGame.Source, gameCommon.Source);
+            Assert.AreEqual(firstGame.AgeRatingId, gameCommon.AgeRatingId);
+            Assert.AreEqual(firstGame.RegionId, gameCommon.RegionId);
+            Assert.AreEqual(firstGame.SourceId, gameCommon.SourceId);
             Assert.AreEqual(firstGame.CompletionStatus, gameCommon.CompletionStatus);
             Assert.AreEqual(firstGame.UserScore, gameCommon.UserScore);
             Assert.AreEqual(firstGame.CriticScore, gameCommon.CriticScore);
@@ -137,23 +181,23 @@ namespace PlayniteUITests
                 new Game()
                 {
                     Name = "Game 1",
-                    Genres = new ComparableList<string>() { "Genre 1", "Genre 2", "Genre 3" },
                     ReleaseDate = new DateTime(2011,6,20),
-                    Developers = new ComparableList<string>() { "Developer 1", "Developer 2", "Developer 3" },
-                    Publishers = new ComparableList<string>() { "Publisher 1", "Publisher 2", "Publisher 3" },
-                    Categories = new ComparableList<string>() { "Cat 1", "Cat 2", "Cat 3" },
-                    Tags = new ComparableList<string>() { "Tag 1", "Tag 2", "Tag 3" },
+                    GenreIds = new ComparableList<Guid>() { genres[0], genres[1], genres[2] },
+                    DeveloperIds = new ComparableList<Guid>() { developers[0], developers[1], developers[2] },
+                    PublisherIds = new ComparableList<Guid>() { publishers[0], publishers[1], publishers[2] },
+                    CategoryIds = new ComparableList<Guid>() { categories[0], categories[1], categories[2] },
+                    TagIds = new ComparableList<Guid>() { tags[0], tags[1], tags[2] },
+                    SeriesId = series[0],
+                    AgeRatingId = ratings[0],
+                    RegionId = regions[0],
+                    SourceId = sources[0],
                     Description = "Description 1",
                     PlatformId = Guid.NewGuid(),
                     LastActivity = new DateTime(2012,1,1),
                     Added = new DateTime(2012,1,1),
                     Playtime = 1,
                     PlayCount = 1,
-                    Series = "Series 1",
                     Version = "Version 1",
-                    AgeRating = "AgeRating 1",
-                    Region = "Region 1",
-                    Source = "Source 1",
                     CompletionStatus = CompletionStatus.Beaten,
                     UserScore = 1,
                     CriticScore = 1,
@@ -164,23 +208,23 @@ namespace PlayniteUITests
                 new Game()
                 {
                     Name = "Game 2",
-                    Genres = new ComparableList<string>() { "Genre 4", "Genre 5", "Genre 6" },
+                    GenreIds = new ComparableList<Guid>() { genres[3], genres[4], genres[5] },
+                    DeveloperIds = new ComparableList<Guid>() { developers[3], developers[4], developers[5] },
+                    PublisherIds = new ComparableList<Guid>() { publishers[3], publishers[4], publishers[5] },
+                    CategoryIds = new ComparableList<Guid>() { categories[3], categories[4], categories[5] },
+                    TagIds = new ComparableList<Guid>() { tags[3], tags[4], tags[5] },
+                    SeriesId = series[1],
+                    AgeRatingId = ratings[1],
+                    RegionId = regions[1],
+                    SourceId = sources[1],
                     ReleaseDate = new DateTime(2012,6,20),
-                    Developers = new ComparableList<string>() { "Developer 4", "Developer 5", "Developer 6" },
-                    Publishers = new ComparableList<string>() { "Publisher 4", "Publisher 5", "Publisher 6" },
-                    Categories = new ComparableList<string>() { "Cat 4", "Cat 5", "Cat 6" },
-                    Tags = new ComparableList<string>() { "Tag 4", "Tag 5", "Tag 6" },
                     Description = "Description 2",
                     PlatformId = Guid.NewGuid(),
                     LastActivity = new DateTime(2012,1,2),
                     Added = new DateTime(2012,1,2),
                     Playtime = 2,
                     PlayCount = 2,
-                    Series = "Series 2",
                     Version = "Version 2",
-                    AgeRating = "AgeRating 2",
-                    Region = "Region 2",
-                    Source = "Source 2",
                     CompletionStatus = CompletionStatus.Completed,
                     UserScore = 2,
                     CriticScore = 2,
@@ -191,23 +235,23 @@ namespace PlayniteUITests
                 new Game()
                 {
                     Name = "Game 3",
-                    Genres = new ComparableList<string>() { "Genre 7", "Genre 8", "Genre 9" },
+                    GenreIds = new ComparableList<Guid>() { genres[6], genres[7], genres[8] },
+                    DeveloperIds = new ComparableList<Guid>() { developers[6], developers[7], developers[8] },
+                    PublisherIds = new ComparableList<Guid>() { publishers[6], publishers[7], publishers[8] },
+                    CategoryIds = new ComparableList<Guid>() { categories[6], categories[7], categories[8] },
+                    TagIds = new ComparableList<Guid>() { tags[6], tags[7], tags[8] },
+                    SeriesId = series[2],
+                    AgeRatingId = ratings[2],
+                    RegionId = regions[2],
+                    SourceId = sources[2],
                     ReleaseDate = new DateTime(2013,6,20),
-                    Developers = new ComparableList<string>() { "Developer 7", "Developer 8", "Developer 9" },
-                    Publishers = new ComparableList<string>() { "Publisher 7", "Publisher 8", "Publisher 9" },
-                    Categories = new ComparableList<string>() { "Cat 7", "Cat 8", "Cat 9" },
-                    Tags = new ComparableList<string>() { "Tag 7", "Tag 8", "Tag 9" },
                     Description = "Description 3",
                     PlatformId = Guid.NewGuid(),
                     LastActivity = new DateTime(2012,1,3),
                     Added = new DateTime(2012,1,3),
                     Playtime = 3,
                     PlayCount = 3,
-                    Series = "Series 3",
                     Version = "Version 3",
-                    AgeRating = "AgeRating 3",
-                    Region = "Region 3",
-                    Source = "Source 3",
                     CompletionStatus = CompletionStatus.NotPlayed,
                     UserScore = 3,
                     CriticScore = 3,
@@ -222,20 +266,20 @@ namespace PlayniteUITests
             Assert.IsNull(gameNoCommon.ReleaseDate);
             Assert.IsNull(gameNoCommon.Description);
             Assert.AreEqual(Guid.Empty, gameNoCommon.PlatformId);
-            CollectionAssert.AreEqual(null, gameNoCommon.Genres);
-            CollectionAssert.AreEqual(null, gameNoCommon.Developers);
-            CollectionAssert.AreEqual(null, gameNoCommon.Publishers);
-            CollectionAssert.AreEqual(null, gameNoCommon.Categories);
-            CollectionAssert.AreEqual(null, gameNoCommon.Tags);
+            CollectionAssert.AreEqual(null, gameNoCommon.GenreIds);
+            CollectionAssert.AreEqual(null, gameNoCommon.DeveloperIds);
+            CollectionAssert.AreEqual(null, gameNoCommon.PublisherIds);
+            CollectionAssert.AreEqual(null, gameNoCommon.CategoryIds);
+            CollectionAssert.AreEqual(null, gameNoCommon.TagIds);
             Assert.IsNull(gameNoCommon.LastActivity);
             Assert.IsNull(gameNoCommon.Added);
             Assert.AreEqual(gameNoCommon.Playtime, 0);
             Assert.AreEqual(gameNoCommon.PlayCount, 0);
-            Assert.IsNull(gameNoCommon.Series);
+            Assert.IsNull(gameNoCommon.SeriesId);
             Assert.IsNull(gameNoCommon.Version);
-            Assert.IsNull(gameNoCommon.AgeRating);
-            Assert.IsNull(gameNoCommon.Region);
-            Assert.IsNull(gameNoCommon.Source);
+            Assert.IsNull(gameNoCommon.AgeRatingId);
+            Assert.IsNull(gameNoCommon.RegionId);
+            Assert.IsNull(gameNoCommon.SourceId);
             Assert.AreEqual(gameNoCommon.CompletionStatus, CompletionStatus.NotPlayed);
             Assert.IsNull(gameNoCommon.UserScore);
             Assert.IsNull(gameNoCommon.CriticScore);

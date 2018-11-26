@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="PlayniteUI.Controls.DdItemListSelectionBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PlayniteUI.Controls"
+             mc:Ignorable="d"
+             d:DesignWidth="100">
+
+    <Grid>
+        <ToggleButton Name="Toggle" HorizontalContentAlignment="Stretch"
+                      Padding="5">
+            <ToggleButton.Content>
+                <DockPanel>
+                    <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
+                               VerticalAlignment="Center" DockPanel.Dock="Right"/>
+                    <TextBlock Text="{Binding ItemsList.AsString, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                               TextTrimming="CharacterEllipsis" HorizontalAlignment="Left" VerticalAlignment="Center"
+                               DockPanel.Dock="Left"/>
+                </DockPanel>                
+            </ToggleButton.Content>
+        </ToggleButton>
+        <Popup Placement="Bottom" Focusable="False" PlacementTarget="{Binding ElementName=Toggle}"
+               IsOpen="{Binding IsChecked, ElementName=Toggle}" StaysOpen="False"
+               MaxHeight="300" Width="{Binding ActualWidth, ElementName=Toggle}">
+            <Border Background="{DynamicResource PopupBackgroundBrush}"
+                    BorderThickness="{DynamicResource PopupBorderThickness}"
+                    BorderBrush="{DynamicResource PopupBorderBrush}">
+                <ScrollViewer>
+                    <ItemsControl ItemsSource="{Binding ItemsList, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                  KeyboardNavigation.DirectionalNavigation="Contained">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Padding="5" IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+        </Popup>
+    </Grid>
+
+    <!--<ComboBox IsReadOnly="True" IsEditable="True"
+              ItemsSource="{Binding ItemsList, RelativeSource={RelativeSource AncestorType=UserControl}}"
+              Text="{Binding ItemsList.AsString, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}">
+        <ComboBox.ItemContainerStyle>
+            <Style TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0" />
+            </Style>
+        </ComboBox.ItemContainerStyle>
+        <ComboBox.ItemTemplate>
+            <DataTemplate>
+                <CheckBox Padding="5"
+                    IsChecked="{Binding Selected}" Content="{Binding Item.Name}" 
+                          Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ComboBoxItem}}"/>
+            </DataTemplate>
+        </ComboBox.ItemTemplate>
+    </ComboBox>-->
+</UserControl>

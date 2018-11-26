@@ -2,25 +2,25 @@
 
 namespace PlayniteUI
 {
-    public class PlatformsWindowFactory : WindowFactory
+    public class EmulatorsWindowFactory : WindowFactory
     {
-        public static PlatformsWindowFactory Instance
+        public static EmulatorsWindowFactory Instance
         {
-            get => new PlatformsWindowFactory();
+            get => new EmulatorsWindowFactory();
         }
 
         public override WindowBase CreateNewWindowInstance()
         {
-            return new PlatformsWindow();
+            return new EmulatorsWindow();
         }
     }
 
     /// <summary>
     /// Interaction logic for Configuration.xaml
     /// </summary>
-    public partial class PlatformsWindow : WindowBase
+    public partial class EmulatorsWindow : WindowBase
     {
-        public PlatformsWindow()
+        public EmulatorsWindow()
         {
             InitializeComponent();
         }

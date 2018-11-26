@@ -66,15 +66,19 @@ namespace Playnite.Database
 
         public override bool Remove(IEnumerable<Game> items)
         {
-            var result = base.Remove(items);
             foreach (var item in items)
             {
-                db.RemoveFile(item.Icon);
-                db.RemoveFile(item.CoverImage);
-                db.RemoveFile(item.BackgroundImage);                
+                // Get item from in case that passed platform doesn't have actual metadata.
+                var dbItem = Get(item.Id);
+                db.RemoveFile(dbItem.Icon);
+                db.RemoveFile(dbItem.CoverImage);
+                db.RemoveFile(dbItem.BackgroundImage);
             }
 
+            var result = base.Remove(items);
             return result;
         }
+
+        // TODO overload Update methods and remove metadata when updating to new data
     }
 }

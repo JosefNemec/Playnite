@@ -157,7 +157,6 @@
     <Compile Include="Database\DatabaseSettings.cs" />
     <Compile Include="Database\EventBufferHandler.cs" />
     <Compile Include="Database\GameDatabase.cs" />
-    <Compile Include="Database\GameLibrary.cs" />
     <Compile Include="Database\Collections\GamesCollection.cs" />
     <Compile Include="Database\Collections\ItemCollection.cs" />
     <Compile Include="Database\OldModels\NewVer1\OldCompletionStatus.cs" />

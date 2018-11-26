@@ -149,9 +149,9 @@
                 <KeyBinding Command="{Binding DownloadMetadataCommand}"
                     Key ="{Binding DownloadMetadataCommand.Gesture.Key}"
                     Modifiers="{Binding DownloadMetadataCommand.Gesture.Modifiers}" />
-                <KeyBinding Command="{Binding OpenPlatformsCommand}"
-                    Key ="{Binding OpenPlatformsCommand.Gesture.Key}"
-                    Modifiers="{Binding OpenPlatformsCommand.Gesture.Modifiers}" />
+                <KeyBinding Command="{Binding OpenEmulatorsCommand}"
+                    Key ="{Binding OpenEmulatorsCommand.Gesture.Key}"
+                    Modifiers="{Binding OpenEmulatorsCommand.Gesture.Modifiers}" />
                 <KeyBinding Command="{Binding AddEmulatedGamesCommand}"
                     Key ="{Binding AddEmulatedGamesCommand.Gesture.Key}"
                     Modifiers="{Binding AddEmulatedGamesCommand.Gesture.Modifiers}" />

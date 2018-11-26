@@ -140,27 +140,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
-                    <BulletDecorator>
-                        <BulletDecorator.Bullet>
+                    <Border Background="{TemplateBinding Background}"
+                            Margin="{TemplateBinding Margin}" Padding="{TemplateBinding Padding}">
+                        <StackPanel  Orientation="Horizontal">
                             <Border x:Name="BulletBorder" CornerRadius="{DynamicResource ControlCornerRadius}"
                                     BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
                                     Style="{DynamicResource HighlightBorder}" >
                                 <Grid Width="18" Height="18" Background="{DynamicResource NormalBrushDark}">
                                     <Viewbox x:Name="CheckIcon" Visibility="Collapsed">
                                         <TextBlock Text="b" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
-                                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Viewbox>
                                     <Viewbox x:Name="IndeterminateIcon" Visibility="Collapsed" Margin="2">
                                         <TextBlock Text="g" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
-                                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Viewbox>
                                 </Grid>
-                            </Border>
-                        </BulletDecorator.Bullet>
-                        <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
-                            <ContentPresenter RecognizesAccessKey="True" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        </Border>
-                    </BulletDecorator>
+                            </Border>                            
+                            <ContentPresenter RecognizesAccessKey="True" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        </StackPanel>
+                    </Border>                    
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -543,7 +542,7 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBrush}"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
@@ -2397,9 +2396,9 @@
                                 </MenuItem.ItemsSource>
                             </MenuItem>
                             <MenuItem Header="{DynamicResource LOCMenuTools}">
-                                <MenuItem Header="{DynamicResource LOCMenuPlatformEmulatorSettingsTitle}"
-                                          Command="{Binding OpenPlatformsCommand}"
-                                          InputGestureText="{Binding OpenPlatformsCommand.GestureText}"/>
+                                <MenuItem Header="{DynamicResource LOCMenuConfigureEmulatorsMenuTitle}"
+                                          Command="{Binding OpenEmulatorsCommand}"
+                                          InputGestureText="{Binding OpenEmulatorsCommand.GestureText}"/>
                                 <MenuItem Header="Library fields manager..."
                                           Command="{Binding OpenDbFieldsManagerCommand}"
                                           InputGestureText="{Binding OpenDbFieldsManagerCommand.GestureText}"/>

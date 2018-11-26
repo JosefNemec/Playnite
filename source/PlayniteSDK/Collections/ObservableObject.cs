@@ -13,6 +13,11 @@ namespace System.Collections.Generic
     /// </summary>
     public abstract class ObservableObject : INotifyPropertyChanged
     {
+        public bool SuppressNotifications
+        {
+            get; set;
+        } = false;
+
         /// <summary>
         /// Occurs when a property value changes
         /// </summary>
@@ -24,7 +29,10 @@ namespace System.Collections.Generic
         /// <param name="name">Name of property that changed.</param>
         public void OnPropertyChanged([CallerMemberName]string name = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            if (!SuppressNotifications)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }

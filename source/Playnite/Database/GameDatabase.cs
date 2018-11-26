@@ -15,6 +15,8 @@ using Playnite.Common;
 using Playnite.Settings;
 using Playnite.Common.System;
 using Newtonsoft.Json.Linq;
+using Playnite.SDK.Plugins;
+using Playnite.Web;
 
 namespace Playnite.Database
 {
@@ -1094,6 +1096,11 @@ namespace Playnite.Database
 
             CheckDbState();
             var filePath = GetFullFilePath(dbPath);
+            if (!File.Exists(filePath))
+            {
+                return;
+            }
+
             lock (fileFilesLock)
             {
                 FileSystem.DeleteFileSafe(filePath);
@@ -1199,6 +1206,241 @@ namespace Playnite.Database
         public IDisposable BufferedUpdate()
         {
             return new EventBufferHandler(this);
+        }
+
+        private string AddNewGameFile(string path, Guid gameId)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                return null;
+            }
+
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(path);
+            MetadataFile metaFile = null;
+
+            try
+            {
+                if (path.IsHttpUrl())
+                {
+                    metaFile = new MetadataFile(fileName, HttpDownloader.DownloadData(path));
+                }
+                else
+                {
+                    if (File.Exists(path))
+                    {
+                        if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+                        {
+                            var icon = IconExtension.ExtractIconFromExe(path, true);
+                            if (icon == null)
+                            {
+                                return null;
+                            }
+
+                            fileName = Path.ChangeExtension(fileName, ".png");
+                            metaFile = new MetadataFile(fileName, icon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
+                        }
+                        else
+                        {
+                            metaFile = new MetadataFile(fileName, File.ReadAllBytes(path));
+                        }
+                    }
+                    else
+                    {
+                        logger.Error($"Can't add game file during game import, file doesn't exists: {path}");
+                    }
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, $"Failed to import game file during game import from {path}");
+            }
+
+            if (metaFile != null)
+            {
+                if (metaFile.FileName.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
+                {
+                    metaFile.FileName = Path.ChangeExtension(metaFile.FileName, ".png");
+                    metaFile.Content = BitmapExtensions.TgaToBitmap(metaFile.Content).ToPngArray();
+                }
+
+                return AddFile(metaFile, gameId);
+            }
+
+            return null;
+        }
+
+        private Game GameInfoToGame(GameInfo game, Guid pluginId)
+        {
+            var toAdd = new Game()
+            {
+                PluginId = pluginId,
+                Name = game.Name,
+                GameId = game.GameId,
+                Description = game.Description,
+                InstallDirectory = game.InstallDirectory,
+                GameImagePath = game.GameImagePath,
+                SortingName = game.SortingName,
+                OtherActions = new ObservableCollection<GameAction>(game.OtherActions),
+                PlayAction = game.PlayAction,
+                ReleaseDate = game.ReleaseDate,
+                Links = new ObservableCollection<Link>(game.Links),
+                IsInstalled = game.IsInstalled,
+                Playtime = game.Playtime,
+                PlayCount = game.PlayCount,
+                LastActivity = game.LastActivity,
+                Version = game.Version,
+                CompletionStatus = game.CompletionStatus,
+                UserScore = game.UserScore,
+                CriticScore = game.CriticScore,
+                CommunityScore = game.CommunityScore
+            };
+
+            if (string.IsNullOrEmpty(game.Platform))
+            {
+                AssignPcPlatform(toAdd);
+            }
+            else
+            {
+                toAdd.PlatformId = Platforms.Add(game.Platform).Id;
+            }
+
+            if (game.Developers?.Any() == true)
+            {
+                toAdd.DeveloperIds = Companies.Add(game.Developers).Select(a => a.Id).ToComparable();
+            }
+
+            if (game.Publishers?.Any() == true)
+            {
+                toAdd.PublisherIds = Companies.Add(game.Publishers).Select(a => a.Id).ToComparable();
+            }
+
+            if (game.Genres?.Any() == true)
+            {
+                toAdd.GenreIds = Genres.Add(game.Genres).Select(a => a.Id).ToComparable();
+            }
+
+            if (game.Categories?.Any() == true)
+            {
+                toAdd.CategoryIds = Categories.Add(game.Categories).Select(a => a.Id).ToComparable();
+            }
+
+            if (game.Tags?.Any() == true)
+            {
+                toAdd.TagIds = Tags.Add(game.Tags).Select(a => a.Id).ToComparable();
+            }
+
+            if (!string.IsNullOrEmpty(game.AgeRating))
+            {
+                toAdd.AgeRatingId = AgeRatings.Add(game.AgeRating).Id;
+            }
+
+            if (!string.IsNullOrEmpty(game.Series))
+            {
+                toAdd.SeriesId = Series.Add(game.Series).Id;
+            }
+
+            if (!string.IsNullOrEmpty(game.Region))
+            {
+                toAdd.RegionId = Regions.Add(game.Region).Id;
+            }
+
+            if (!string.IsNullOrEmpty(game.Source))
+            {
+                toAdd.SourceId = Sources.Add(game.Source).Id;
+            }
+
+            return toAdd;
+        }
+
+        public Game ImportGame(GameInfo game)
+        {
+            return ImportGame(game, Guid.Empty);
+        }
+
+        public Game ImportGame(GameInfo game, Guid pluginId)
+        {
+            var toAdd = GameInfoToGame(game, pluginId);
+            toAdd.Icon = AddNewGameFile(game.Icon, game.Id);
+            toAdd.CoverImage = AddNewGameFile(game.CoverImage, game.Id);
+            if (!string.IsNullOrEmpty(game.BackgroundImage) && !game.BackgroundImage.IsHttpUrl())
+            {
+                toAdd.BackgroundImage = AddNewGameFile(game.BackgroundImage, game.Id);
+            }
+
+            Games.Add(toAdd);
+            return toAdd;
+        }
+
+        public Game ImportGame(GameMetadata metadata)
+        {
+            var toAdd = GameInfoToGame(metadata.GameInfo, Guid.Empty);
+            if (metadata.Icon != null)
+            {
+                toAdd.Icon = AddFile(metadata.Icon, toAdd.Id);
+            }
+
+            if (metadata.CoverImage != null)
+            {
+                toAdd.CoverImage = AddFile(metadata.CoverImage, toAdd.Id);
+            }
+
+            if (metadata.BackgroundImage != null)
+            {
+                if (metadata.BackgroundImage.Content == null)
+                {
+                    toAdd.BackgroundImage = metadata.BackgroundImage.OriginalUrl;
+                }
+                else
+                {
+                    toAdd.BackgroundImage = AddFile(metadata.BackgroundImage, toAdd.Id);
+                }
+            }
+
+            Games.Add(toAdd);
+            return toAdd;
+        }
+
+        public IEnumerable<Game> ImportGames(ILibraryPlugin library)
+        {
+            foreach (var newGame in library.GetGames())
+            {
+                var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
+                if (existingGame == null)
+                {
+                    logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
+                    yield return ImportGame(newGame, library.Id);
+                }
+                else
+                {
+                    existingGame.IsInstalled = newGame.IsInstalled;
+                    existingGame.InstallDirectory = newGame.InstallDirectory;
+                    if (existingGame.PlayAction == null || existingGame.PlayAction.IsHandledByPlugin)
+                    {
+                        existingGame.PlayAction = newGame.PlayAction;
+                    }
+
+                    if (existingGame.Playtime == 0 && newGame.Playtime > 0)
+                    {
+                        existingGame.Playtime = newGame.Playtime;
+                        if (existingGame.CompletionStatus == CompletionStatus.NotPlayed)
+                        {
+                            existingGame.CompletionStatus = CompletionStatus.Played;
+                        }
+
+                        if (existingGame.LastActivity == null && newGame.LastActivity != null)
+                        {
+                            existingGame.LastActivity = newGame.LastActivity;
+                        }
+                    }
+
+                    if (existingGame.OtherActions?.Any() != true && newGame.OtherActions?.Any() == true)
+                    {
+                        existingGame.OtherActions = new ObservableCollection<GameAction>(newGame.OtherActions);
+                    }
+
+                    Games.Update(existingGame);
+                }
+            }
         }
     }
 }

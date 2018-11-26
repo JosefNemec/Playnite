@@ -198,6 +198,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuConfigurationTitle">Configuration</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Settings</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Platforms and Emulators</sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Configure Emulators...</sys:String>
     <sys:String x:Key="LOCMenuTools">Tools</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Download Metadata</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Open 3rd Party Client</sys:String>
@@ -344,6 +345,7 @@ You can also add any other game(s) later from main menu by clicking on Playnite 
     
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Configure Platforms and Emulators</sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">Configure Emulators</sys:String>
     <sys:String x:Key="LOCPlatformsTitle">Platforms</sys:String>
     <sys:String x:Key="LOCPlatformTitle">Platform</sys:String>
     <sys:String x:Key="LOCEmulatorsTitle">Emulators</sys:String>

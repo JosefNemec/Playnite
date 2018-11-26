@@ -292,7 +292,7 @@ namespace PlayniteUI.ViewModels
         public RelayCommand<CancelEventArgs> WindowClosingCommand { get; private set; }
         public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
         public RelayCommand<object> OpenAboutCommand { get; private set; }
-        public RelayCommand<object> OpenPlatformsCommand { get; private set; }
+        public RelayCommand<object> OpenEmulatorsCommand { get; private set; }
         public RelayCommand<object> OpenSettingsCommand { get; private set; }
         public RelayCommand<object> AddCustomGameCommand { get; private set; }
         public RelayCommand<object> AddInstalledGamesCommand { get; private set; }
@@ -475,12 +475,12 @@ namespace PlayniteUI.ViewModels
                 OpenAboutWindow(new AboutViewModel(AboutWindowFactory.Instance, Dialogs, Resources));
             }, new KeyGesture(Key.F1));
 
-            OpenPlatformsCommand = new RelayCommand<object>((a) =>
+            OpenEmulatorsCommand = new RelayCommand<object>((a) =>
             {
                 MainMenuOpened = false;
-                ConfigurePlatforms(
-                    new PlatformsViewModel(Database,
-                    PlatformsWindowFactory.Instance,
+                ConfigureEmulators(
+                    new EmulatorsViewModel(Database,
+                    EmulatorsWindowFactory.Instance,
                     Dialogs,
                     Resources));
             }, (a) => Database.IsOpen,
@@ -967,7 +967,7 @@ namespace PlayniteUI.ViewModels
                         {
                             using (Database.BufferedUpdate())
                             {
-                                addedGames.AddRange(GameLibrary.ImportGames(plugin.Plugin, Database));
+                                addedGames.AddRange(Database.ImportGames(plugin.Plugin));
                             }
 
                             RemoveMessage($"{plugin.Plugin.Id} - download");
@@ -1181,7 +1181,7 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public void ConfigurePlatforms(PlatformsViewModel model)
+        public void ConfigureEmulators(EmulatorsViewModel model)
         {
             model.OpenView();
         }
@@ -1347,7 +1347,7 @@ namespace PlayniteUI.ViewModels
                     {
                         using (Database.BufferedUpdate())
                         {
-                            addedGames.AddRange(GameLibrary.ImportGames(library, Database));
+                            addedGames.AddRange(Database.ImportGames(library));
                         }
 
                         RemoveMessage($"{library.Id} - download");

@@ -14,13 +14,13 @@ namespace PlayniteTests
         [Test]
         public void IsNullOrEmptyTest()
         {
-            Assert.IsTrue(ListExtensions.IsNullOrEmpty(null));
-            Assert.IsTrue(ListExtensions.IsNullOrEmpty(new List<string>()));
-            Assert.IsTrue(ListExtensions.IsNullOrEmpty(new List<string>() { string.Empty }));
-            Assert.IsTrue(ListExtensions.IsNullOrEmpty(new List<string>() { "" }));
-            Assert.IsTrue(ListExtensions.IsNullOrEmpty(new List<string>() { "", "" }));
-            Assert.IsFalse(ListExtensions.IsNullOrEmpty(new List<string>() { "test" }));
-            Assert.IsFalse(ListExtensions.IsNullOrEmpty(new List<string>() { "", "test" }));
+            Assert.IsFalse(((IEnumerable<object>)null).HasItems());
+            Assert.IsFalse(new List<string>().HasItems());
+            Assert.IsFalse(new List<string>() { string.Empty }.HasItems());
+            Assert.IsFalse(new List<string>() { "" }.HasItems());
+            Assert.IsFalse(new List<string>() { "", "" }.HasItems());
+            Assert.IsTrue(new List<string>() { "test" }.HasItems());
+            Assert.IsTrue(new List<string>() { "", "test" }.HasItems());
         }
 
         [Test]
