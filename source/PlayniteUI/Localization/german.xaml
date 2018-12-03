@@ -238,6 +238,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsShowIconList">Zeige Icons in der Spieleliste</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Deaktiviere Hardwarebeschleunigung (erfordert Neustart)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Wähle diese Option bei Problemen mit der Oberfläche.</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Deaktiviere Skalierung für hohe DPI-Werte (erfordert Neustart)</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Zeige Button für Steam Freunde</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Zeige Hintergrundbild</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Theme</sys:String>
@@ -503,6 +504,9 @@ Du kannst uns Feedback via GitHub senden. Bitte ergänze deine Nachricht um die 
     <sys:String x:Key="LOCExitPlaynite">Playnite beenden</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotheken</sys:String>
     <sys:String x:Key="LOCUpdateAll">Alle aktualisieren</sys:String>
+    <sys:String x:Key="LOCExtensionCreatedBy">Erstellt von:</sys:String>
+    <sys:String x:Key="LOCExtensionVersion">Version:</sys:String>
+    <sys:String x:Key="LOCExtensionModule">Modul:</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator-Argumente</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Zusätzliche Emulator-Argumente</sys:String>
