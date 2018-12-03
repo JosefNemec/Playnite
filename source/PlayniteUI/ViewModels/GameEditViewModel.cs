@@ -1331,19 +1331,26 @@ namespace PlayniteUI.ViewModels
 
         public void CloseView()
         {
-            if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
+            try
             {
-                FileSystem.DeleteFile(EditingGame.Icon);
-            }
+                if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
+                {
+                    FileSystem.DeleteFile(EditingGame.Icon);
+                }
 
-            if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
-            {
-                FileSystem.DeleteFile(EditingGame.CoverImage);
-            }
+                if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
+                {
+                    FileSystem.DeleteFile(EditingGame.CoverImage);
+                }
 
-            if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
+                if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
+                {
+                    FileSystem.DeleteFile(EditingGame.BackgroundImage);
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                FileSystem.DeleteFile(EditingGame.BackgroundImage);
+                logger.Error(e, "Failed to cleanup temporary files.");
             }
 
             window.Close(false);
