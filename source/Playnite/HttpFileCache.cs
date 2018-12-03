@@ -77,7 +77,7 @@ namespace Playnite
             if (File.Exists(cacheFile))
             {
                 logger.Debug($"Removing {url} from file cache: {cacheFile}");
-                File.Delete(cacheFile);
+                FileSystem.DeleteFileSafe(cacheFile);
             }
 
         }
