@@ -18,6 +18,7 @@ using Playnite.SDK.Metadata;
 using Playnite.Settings;
 using Playnite.Plugins;
 using Playnite.Common;
+using System.Net;
 
 namespace PlayniteUI.ViewModels
 {
@@ -2163,7 +2164,16 @@ namespace PlayniteUI.ViewModels
 
             if (url.Result)
             {
-                EditingGame.BackgroundImage = url.SelectedString;
+                if (url.SelectedString.IsHttpUrl())
+                {
+                    if (HttpDownloader.GetResponseCode(url.SelectedString) == HttpStatusCode.OK)
+                    {
+                        EditingGame.BackgroundImage = url.SelectedString;
+                        return;
+                    }
+                }
+
+                dialogs.ShowErrorMessage(resources.FindString("LOCInvalidURL"), string.Empty);
             }
         }
 
