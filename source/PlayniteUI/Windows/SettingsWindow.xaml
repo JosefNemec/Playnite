@@ -397,6 +397,9 @@
                                           ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
                                           Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"
                                           Margin="0,45,0,0"/>
+                                <CheckBox Content="{DynamicResource LOCSettingsDisableDpiAwareness}"
+                                          Name="CheckDisableDpiAwareness" IsChecked="{Binding Settings.DisableDpiAwareness}"
+                                          Margin="0,15,0,0"/>
                                 <Button Name="ButtonClearWebCace" Content="{DynamicResource LOCSettingsClearWebCache}"
                                         HorizontalAlignment="Left" Margin="0,45,0,0"
                                         ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"

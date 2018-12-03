@@ -94,7 +94,7 @@ namespace PlayniteUI.ViewModels
                 
         public bool AreGamesAvailable
         {
-            get => Database.Games.Count > 0 && GamesView.CollectionView.Count > 0;
+            get => Database.Games?.Count > 0 && GamesView?.CollectionView.Count > 0;
         }
 
         public bool ShowInstallOption

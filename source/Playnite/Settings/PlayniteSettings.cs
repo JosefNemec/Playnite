@@ -12,6 +12,7 @@ using NLog.Config;
 using NLog.Targets;
 using System.Configuration;
 using Playnite.Common.System;
+using System.Runtime.CompilerServices;
 
 namespace Playnite.Settings
 {
@@ -79,7 +80,7 @@ namespace Playnite.Settings
             set
             {
                 windowPositions = value;
-                OnPropertyChanged("WindowPositions");
+                OnPropertyChanged();
             }
         }
 
@@ -94,7 +95,7 @@ namespace Playnite.Settings
             set
             {
                 collapsedCategories = value;
-                OnPropertyChanged("CollapsedCategories");
+                OnPropertyChanged();
             }
         }
 
@@ -109,7 +110,7 @@ namespace Playnite.Settings
             set
             {
                 firstTimeWizardComplete = value;
-                OnPropertyChanged("FirstTimeWizardComplete");
+                OnPropertyChanged();
             }
         }
 
@@ -124,7 +125,7 @@ namespace Playnite.Settings
             set
             {
                 emulatorWizardComplete = value;
-                OnPropertyChanged("EmulatorWizardComplete");
+                OnPropertyChanged();
             }
         }
 
@@ -139,7 +140,22 @@ namespace Playnite.Settings
             set
             {
                 disableHwAcceleration = value;
-                OnPropertyChanged("DisableHwAcceleration");
+                OnPropertyChanged();
+            }
+        }
+
+        private bool disableDpiAwareness = false;
+        public bool DisableDpiAwareness
+        {
+            get
+            {
+                return disableDpiAwareness;
+            }
+
+            set
+            {
+                disableDpiAwareness = value;
+                OnPropertyChanged();
             }
         }
 
@@ -154,7 +170,7 @@ namespace Playnite.Settings
             set
             {
                 asyncImageLoading = value;
-                OnPropertyChanged("AsyncImageLoading");
+                OnPropertyChanged();
             }
         }
 
@@ -169,7 +185,7 @@ namespace Playnite.Settings
             set
             {
                 showNameEmptyCover = value;
-                OnPropertyChanged("ShowNameEmptyCover");
+                OnPropertyChanged();
             }
         }
 
@@ -185,7 +201,7 @@ namespace Playnite.Settings
             set
             {
                 showNamesUnderCovers = value;
-                OnPropertyChanged("ShowNamesUnderCovers");
+                OnPropertyChanged();
             }
         }
 
@@ -200,7 +216,7 @@ namespace Playnite.Settings
             set
             {
                 showBackgroundImage = value;
-                OnPropertyChanged("ShowBackgroundImage");
+                OnPropertyChanged();
             }
         }
 
@@ -215,7 +231,7 @@ namespace Playnite.Settings
             set
             {
                 downloadMetadataOnImport = value;
-                OnPropertyChanged("DownloadMetadataOnImport");
+                OnPropertyChanged();
             }
         }
 
@@ -230,7 +246,7 @@ namespace Playnite.Settings
             set
             {
                 migrationV2PcPlatformAdded = value;
-                OnPropertyChanged("MigrationV2PcPlatformAdded");
+                OnPropertyChanged();
             }
         }
 
@@ -245,7 +261,7 @@ namespace Playnite.Settings
             set
             {
                 showIconsOnList = value;
-                OnPropertyChanged("ShowIconsOnList");
+                OnPropertyChanged();
             }
         }
 
@@ -260,7 +276,7 @@ namespace Playnite.Settings
             set
             {
                 startInFullscreen = value;
-                OnPropertyChanged("StartInFullscreen");
+                OnPropertyChanged();
             }
         }
 
@@ -275,7 +291,7 @@ namespace Playnite.Settings
             set
             {
                 databasePath = value;
-                OnPropertyChanged("DatabasePath");
+                OnPropertyChanged();
             }
         }
 
@@ -381,7 +397,7 @@ namespace Playnite.Settings
 
                 gridViewHeaders = value;
                 gridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
-                OnPropertyChanged("GridViewHeaders");
+                OnPropertyChanged();
             }
         }
 
@@ -396,7 +412,7 @@ namespace Playnite.Settings
             set
             {
                 filterPanelVisible = value;
-                OnPropertyChanged("FilterPanelVisible");
+                OnPropertyChanged();
             }
         }
 
@@ -411,7 +427,7 @@ namespace Playnite.Settings
             set
             {
                 minimizeToTray = value;
-                OnPropertyChanged("MinimizeToTray");
+                OnPropertyChanged();
             }
         }
 
@@ -426,7 +442,7 @@ namespace Playnite.Settings
             set
             {
                 closeToTray = value;
-                OnPropertyChanged("CloseToTray");
+                OnPropertyChanged();
             }
         }
 
@@ -441,7 +457,7 @@ namespace Playnite.Settings
             set
             {
                 enableTray = value;
-                OnPropertyChanged("EnableTray");
+                OnPropertyChanged();
             }
         }
 
@@ -456,7 +472,7 @@ namespace Playnite.Settings
             set
             {
                 language = value;
-                OnPropertyChanged("Language");
+                OnPropertyChanged();
             }
         }
 
@@ -471,7 +487,7 @@ namespace Playnite.Settings
             set
             {
                 updateLibStartup = value;
-                OnPropertyChanged("UpdateLibStartup");
+                OnPropertyChanged();
             }
         }
 
@@ -486,7 +502,7 @@ namespace Playnite.Settings
             set
             {
                 afterLaunch = value;
-                OnPropertyChanged("AfterLaunch");
+                OnPropertyChanged();
             }
         }
 
@@ -501,7 +517,7 @@ namespace Playnite.Settings
             set
             {
                 afterGameClose = value;
-                OnPropertyChanged("AfterGameClose");
+                OnPropertyChanged();
             }
         }
 
@@ -516,7 +532,7 @@ namespace Playnite.Settings
             set
             {
                 skin = value;
-                OnPropertyChanged("Skin");
+                OnPropertyChanged();
             }
         }
 
@@ -531,7 +547,7 @@ namespace Playnite.Settings
             set
             {
                 skinColor = value;
-                OnPropertyChanged("SkinColor");
+                OnPropertyChanged();
             }
         }
 
@@ -546,7 +562,7 @@ namespace Playnite.Settings
             set
             {
                 skinFullscreen = value;
-                OnPropertyChanged("SkinFullscreen");
+                OnPropertyChanged();
             }
         }
 
@@ -561,7 +577,7 @@ namespace Playnite.Settings
             set
             {
                 skinColorFullscreen = value;
-                OnPropertyChanged("SkinColorFullscreen");
+                OnPropertyChanged();
             }
         }
 
@@ -576,7 +592,7 @@ namespace Playnite.Settings
             set
             {
                 fullscreenSettings = value;
-                OnPropertyChanged("FullscreenSettings");
+                OnPropertyChanged();
             }
         }
 
@@ -596,7 +612,7 @@ namespace Playnite.Settings
             set
             {
                 disabledPlugins = value;
-                OnPropertyChanged("DisabledPlugins");
+                OnPropertyChanged();
             }
         }
 
@@ -611,7 +627,7 @@ namespace Playnite.Settings
             set
             {
                 showSteamFriendsButton = value;
-                OnPropertyChanged("ShowSteamFriendsButton");
+                OnPropertyChanged();
             }
         }
 
@@ -626,7 +642,7 @@ namespace Playnite.Settings
             set
             {
                 startMinimized = value;
-                OnPropertyChanged("StartMinimized");
+                OnPropertyChanged();
             }
         }
 
@@ -641,7 +657,7 @@ namespace Playnite.Settings
             set
             {
                 startOnBoot = value;
-                OnPropertyChanged("StartOnBoot");
+                OnPropertyChanged();
             }
         }
 
@@ -701,13 +717,17 @@ namespace Playnite.Settings
         {
             editingCopy.CopyProperties(this, false, new List<string>()
             {
-                "FilterSettings", "FullScreenFilterSettings", "InstallInstanceId", "ViewSettings", "FullscreenViewSettings"
+                nameof(FilterSettings),
+                nameof(FullScreenFilterSettings),
+                nameof(InstallInstanceId),
+                nameof(ViewSettings),
+                nameof(FullscreenViewSettings)
             });
             isEditing = false;
             EditedFields = new List<string>();
         }
 
-        public void OnPropertyChanged(string name, bool force = false)
+        public void OnPropertyChanged([CallerMemberName]string name = null, bool force = false)
         {
             if (isEditing && !force)
             {
@@ -726,7 +746,7 @@ namespace Playnite.Settings
         {
             if (e.PropertyName == "Values")
             {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("GridViewHeaders"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GridViewHeaders)));
             }
         }
 

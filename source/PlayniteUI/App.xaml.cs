@@ -28,6 +28,8 @@ using Playnite.Settings;
 using Playnite.SDK;
 using PlayniteUI.WebView;
 using Newtonsoft.Json;
+using System.Windows.Interop;
+using System.Reflection;
 
 namespace PlayniteUI
 {
@@ -195,6 +197,11 @@ namespace PlayniteUI
             if (AppSettings.DisableHwAcceleration)
             {
                 System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
+            }
+
+            if (AppSettings.DisableDpiAwareness)
+            {
+                DisableDpiAwareness();
             }
 
             CefTools.ConfigureCef();
@@ -607,6 +614,21 @@ namespace PlayniteUI
         private void Application_Deactivated(object sender, EventArgs e)
         {
             IsActive = false;
+        }
+
+        private void DisableDpiAwareness()
+        {
+            // https://stackoverflow.com/questions/13858665/disable-dpi-awareness-for-wpf-application
+            var setDpiHwnd = typeof(HwndTarget).GetField("_setDpi", BindingFlags.Static | BindingFlags.NonPublic);
+            setDpiHwnd?.SetValue(null, false);
+            var setProcessDpiAwareness = typeof(HwndTarget).GetProperty("ProcessDpiAwareness", BindingFlags.Static | BindingFlags.NonPublic);
+            setProcessDpiAwareness?.SetValue(null, 1, null);
+            var setDpi = typeof(UIElement).GetField("_setDpi", BindingFlags.Static | BindingFlags.NonPublic);
+            setDpi?.SetValue(null, false);
+            var setDpiXValues = (List<double>)typeof(UIElement).GetField("DpiScaleXValues", BindingFlags.Static | BindingFlags.NonPublic)?.GetValue(null);
+            setDpiXValues?.Insert(0, 1);
+            var setDpiYValues = (List<double>)typeof(UIElement).GetField("DpiScaleYValues", BindingFlags.Static | BindingFlags.NonPublic)?.GetValue(null);
+            setDpiYValues?.Insert(0, 1);
         }
     }
 }

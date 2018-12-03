@@ -238,6 +238,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsShowIconList">Show game icons on List view</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Disable hardware acceleration (requires restart)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Use when experiencing stuttering or similar UI issues</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Disable DPI Scaling (requires restart)</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Show Steam friends button</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Show background image</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Theme</sys:String>
