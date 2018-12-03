@@ -220,11 +220,11 @@ namespace PlayniteUI.ViewModels
                         Settings = lib.GetSettings(true),
                         Icon = lib.LibraryIcon
                     };
-                }).ToList();
+                }).Where(a => a.View != null).ToList();
 
                 if (selectedPlugins?.Any() == true)
                 {
-                    SetPluginConfiguration(selectedPlugins[0]);
+                    SetPluginConfiguration(selectedPlugins[0]);        
                 }
                 else
                 {
@@ -249,17 +249,8 @@ namespace PlayniteUI.ViewModels
                 if ((selectedPluginIndex + 1) < selectedPlugins.Count)
                 {
                     selectedPluginIndex++;
-                    var plugin = selectedPlugins[selectedPluginIndex];
-                    if (plugin.View != null)
-                    {
-                        SetPluginConfiguration(selectedPlugins[selectedPluginIndex]);
-                        return;
-                    }
-                    else
-                    {
-                        NavigateNext();
-                        return;
-                    }
+                    SetPluginConfiguration(selectedPlugins[selectedPluginIndex]);
+                    return;
                 }
             }
 
