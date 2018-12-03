@@ -93,5 +93,21 @@ namespace PlayniteUI.WebView
         {
             Cef.GetGlobalCookieManager().DeleteCookies(url, name);
         }
+
+        public void SetCookies(string url, string domain, string name, string value, string path, DateTime expires)
+        {
+            Cef.GetGlobalCookieManager().SetCookie(url, new Cookie()
+            {
+                Domain = domain,
+                Name = name,
+                Value = value,
+                Expires = expires,
+                Creation = DateTime.Now,
+                HttpOnly = false,
+                LastAccess = DateTime.Now,
+                Secure = false,
+                Path = path
+            });
+        }
     }
 }
