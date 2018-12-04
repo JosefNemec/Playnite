@@ -237,6 +237,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
   <sys:String x:Key="LOCSettingsSteamImportCatFrom">da account:</sys:String>
   <sys:String x:Key="LOCSettingsClearWebCache">Ripulire la web cache</sys:String>
   <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Potrebbe risolvere i problemi riscontrati durante il collegamento degli account.</sys:String>
+  <sys:String x:Key="LOCSettingsDisableDpiAwareness">Disabilita ridimensionamento DPI (richiede il riavvio)</sys:String>
   <sys:String x:Key="LOCSettingsShowTray">Mostra icona</sys:String>
   <sys:String x:Key="LOCSettingsMinimizeToTray">Riduci a icona</sys:String>
   <sys:String x:Key="LOCSettingsCloseToTray">Chiudi a icona</sys:String>
@@ -265,9 +266,11 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
   <sys:String x:Key="LOCSettingsFullscreenRows">Numero di righe</sys:String>
   <sys:String x:Key="LOCSettingsFullscreenColumns">Numero di colonne</sys:String>
   <sys:String x:Key="LOCSettingsFullscreenRowDetails">Numero di dettagli delle righe</sys:String>  
-  <sys:String x:Key="LOCBackgroundImageScreenOption">Preferire le immagini di gioco piuttosto che l'immagine di sfondo del negozio</sys:String>
-  <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite userà le schermate disponibili come sfondo al posto dello sfondo del negozio.
-Non si applica retroattivamente ai giochi esistenti.</sys:String>
+  <sys:String x:Key="LOCSteamBackgroundSource">Sorgente immagine di sfondo:</sys:String>
+  <sys:String x:Key="LOCSteamBackgroundSourceImage">Immagine Gioco</sys:String>
+  <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Shermata Negozio</sys:String>
+  <sys:String x:Key="LOCSteamBackgroundSourceStore">Sfondo Negozio</sys:String>
+  <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Non si applica retroattivamente ai giochi esistenti senza dover riscaricare i metadati.</sys:String>
 
   <sys:String x:Key="LOCImportError">Errore di importazione</sys:String>
   <sys:String x:Key="LOCLoginChecking">Controllo...</sys:String>
@@ -470,6 +473,9 @@ La prego di allegare il seguente codice ID al seguente resoconto del crash:</sys
   <sys:String x:Key="LOCExitPlaynite">Esci da Playnite</sys:String>
   <sys:String x:Key="LOCLibraries">Librerie</sys:String>
   <sys:String x:Key="LOCUpdateAll">Aggiorna tutto</sys:String>
+  <sys:String x:Key="LOCExtensionCreatedBy">Creato Da:</sys:String>
+  <sys:String x:Key="LOCExtensionVersion">Versione:</sys:String>
+  <sys:String x:Key="LOCExtensionModule">Modulo:</sys:String>
 
   <sys:String x:Key="LOCEmulatorArguments">Argomenti dell'emulatore</sys:String>
   <sys:String x:Key="LOCAdditionalEmulatorArguments">Ulteriori argomenti dell'emulatore</sys:String>
