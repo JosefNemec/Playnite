@@ -15,11 +15,6 @@ namespace SteamLibrary.Services
     {
         private readonly ILogger logger = LogManager.GetLogger();
 
-        private static HttpClient httpClient = new HttpClient()
-        {
-            Timeout = new TimeSpan(0, 0, 30)
-        };
-
         public SteamServicesClient(string endpoint) : base(endpoint)
         {
         }
@@ -27,7 +22,7 @@ namespace SteamLibrary.Services
         public void PostSteamAppInfoData(uint appId, string data)
         {
             var content = new StringContent(data, Encoding.UTF8, "text/plain");
-            httpClient.PostAsync(Endpoint + $"/api/steam/appinfo/{appId}", content).Wait();
+            HttpClient.PostAsync(Endpoint + $"/api/steam/appinfo/{appId}", content).Wait();
         }
 
         public string GetSteamAppInfoData(uint appId)
@@ -38,7 +33,7 @@ namespace SteamLibrary.Services
         public void PostSteamStoreData(uint appId, string data)
         {
             var content = new StringContent(data, Encoding.UTF8, "text/plain");
-            httpClient.PostAsync(Endpoint + $"/api/steam/store/{appId}", content).Wait();
+            HttpClient.PostAsync(Endpoint + $"/api/steam/store/{appId}", content).Wait();
         }
 
         public string GetSteamStoreData(uint appId)

@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,9 @@ namespace PlayniteUI
             switch (order)
             {
                 case SortOrder.Name:
-                    return ResourceProvider.Instance.FindString("LOCNameLabel");
+                    return DefaultResourceProvider.FindString("LOCNameLabel");
                 case SortOrder.LastActivity:
-                    return ResourceProvider.Instance.FindString("LOCLastPlayedLabel");
+                    return DefaultResourceProvider.FindString("LOCLastPlayedLabel");
                 case SortOrder.Provider:
                 case SortOrder.Categories:
                 case SortOrder.Genres:
@@ -35,7 +36,7 @@ namespace PlayniteUI
                 case SortOrder.Platform:
                 case SortOrder.Tags:
                 case SortOrder.Playtime:
-                    return ResourceProvider.Instance.FindString("LOCMostPlayedLabel");
+                    return DefaultResourceProvider.FindString("LOCMostPlayedLabel");
                 case SortOrder.Added:
                 case SortOrder.Modified:
                 case SortOrder.PlayCount:

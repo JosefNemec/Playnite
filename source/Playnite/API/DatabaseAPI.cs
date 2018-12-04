@@ -15,6 +15,11 @@ namespace Playnite.API
     {
         private GameDatabase database;
 
+        public string DatabasePath
+        {
+            get => database?.DatabasePath;
+        }
+
         public bool IsOpen
         {
             get => database?.IsOpen == true;
@@ -27,138 +32,102 @@ namespace Playnite.API
 
         public void AddEmulator(Emulator emulator)
         {
-            database.AddEmulator(emulator);
+            database.Emulators.Add(emulator);
         }
 
         public Emulator GetEmulator(Guid id)
         {
-            return database.GetEmulator(id);
+            return database.Emulators.Get(id);
         }
 
-        public List<Emulator> GetEmulators()
+        public IEnumerable<Emulator> GetEmulators()
         {
-            return database.GetEmulators();
+            return database.Emulators;
         }
 
-        public Game GetGame(int id)
+        public Game GetGame(Guid id)
         {
-            return database.GetGame(id);
+            return database.Games.Get(id);
         }
 
         public void AddGame(Game game)
         {
-            database.AddGame(game);
+            database.Games.Add(game);
         }
 
-        public List<Game> GetGames()
+        public IEnumerable<Game> GetGames()
         {
-            return database.GetGames().Cast<Game>().ToList();
+            return database.Games;
         }
 
         public Platform GetPlatform(Guid id)
         {
-            return database.GetPlatform(id);
+            return database.Platforms.Get(id);
         }
 
-        public List<Platform> GetPlatforms()
+        public IEnumerable<Platform> GetPlatforms()
         {
-            return database.GetPlatforms();
+            return database.Platforms;
         }
 
         public void AddPlatform(Platform platform)
         {
-            database.AddPlatform(platform);
+            database.Platforms.Add(platform);
         }
 
         public void RemoveEmulator(Guid id)
         {
-            database.RemoveEmulator(id);
+            database.Emulators.Remove(id);
         }
 
-        public void RemoveGame(int id)
+        public void RemoveGame(Guid id)
         {
-            database.DeleteGame(id);
+            database.Games.Remove(id);
         }
 
         public void RemovePlatform(Guid id)
         {
-            database.RemovePlatform(id);
+            database.Platforms.Remove(id);
         }
 
         public void UpdateGame(Game game)
         {
-            database.UpdateGameInDatabase(game);
+            database.Games.Update(game);
         }
 
-        public string AddFile(string id, string path)
+        public string AddFile(string path, Guid parentId)
         {
             if (!File.Exists(path))
             {
-                throw new Exception("Cannot add file to db, file not found.");
+                throw new FileNotFoundException("Cannot add file to database, file not found.");
             }
 
-            return database.AddFileNoDuplicate(id, Path.GetFileName(path), File.ReadAllBytes(path));
+            return database.AddFile(path, parentId);
         }
 
         public void SaveFile(string id, string path)
         {
-            database.SaveFile(id, path);
+            database.CopyFile(id, path);
         }
 
         public void RemoveFile(string id)
         {
-            database.DeleteFile(id);
+            database.RemoveFile(id);
         }
 
-        public void RemoveImage(string id, Game game)
+        public IDisposable BufferedUpdate()
         {
-            database.DeleteImageSafe(id, game);
+            return database.BufferedUpdate();
         }
 
-        public List<DatabaseFile> GetFiles()
+        public string GetFileStoragePath(Guid parentId)
         {
-            return database.Database.FileStorage.FindAll()?.Select(a => LiteFileToDbFile(a)).ToList();                
+            return database.GetFileStoragePath(parentId);
         }
 
-        public DatabaseFile GetFile(string id)
+        public string GetFullFilePath(string databasePath)
         {
-            var file = database.Database.FileStorage.FindById(id);
-            if (file != null)
-            {
-                return LiteFileToDbFile(file);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public void ImportCategories(List<Game> sourceGames)            
-        {
-            database.ImportCategories(sourceGames);
-        }
-
-        private DatabaseFile LiteFileToDbFile(LiteFileInfo liteDbFile)
-        {
-            var dbFile = new DatabaseFile()
-            {
-                Id = liteDbFile.Id,
-                Filename = liteDbFile.Filename,
-                MimeType = liteDbFile.MimeType,
-                Length = liteDbFile.Length,
-                UploadDate = liteDbFile.UploadDate,
-            };
-
-            if (liteDbFile.Metadata != null)
-            {
-                dbFile.Metadata = new Dictionary<string, object>();
-                foreach (var key in liteDbFile.Metadata.Keys)
-                {
-                    dbFile.Metadata.Add(key, liteDbFile.Metadata[key]);
-                }
-            }
-
-            return dbFile;
+            return database.GetFullFilePath(databasePath);
         }
     }
 }

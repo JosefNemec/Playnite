@@ -2,6 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using Playnite;
+using Playnite.Common.System;
 using Playnite.Database;
 using Playnite.Models;
 using Playnite.Settings;
@@ -18,46 +19,16 @@ namespace PlayniteTests.Database
     public class GameDatabaseFileTests
     {
         [Test]
-        public void CheckSumCreationTest()
+        public void AddFileTest()
         {
-            var image = Path.Combine(PlaynitePaths.ProgramPath, "Resources", "Images", "applogo.png");
-            var db = new GameDatabase(null);
-            using (db.OpenDatabase(new MemoryStream()))
+            using (var temp = TempDirectory.Create(false))
             {
-                db.AddFile("test.png", "test.png", File.ReadAllBytes(image));
-                var dbImage = db.GetFile("test.png");
-                Assert.IsFalse(string.IsNullOrEmpty(dbImage.Metadata["checksum"].AsString));
-            }
-        }
-
-        [Test]
-        public void MultiAddtionTest()
-        {
-            var image = Path.Combine(PlaynitePaths.ProgramPath, "Resources", "Images", "applogo.png");
-            var db = new GameDatabase(null);
-            using (db.OpenDatabase(new MemoryStream()))
-            {
-                db.AddFile("test.png", "test.png", File.ReadAllBytes(image));
-                var id = db.AddFileNoDuplicate("test2.png", "test2.png", File.ReadAllBytes(image));
-                Assert.AreEqual("test.png", id);
-                Assert.AreEqual(1, db.Database.FileStorage.FindAll().Count());
-            }
-
-            db = new GameDatabase(null);
-            using (db.OpenDatabase(new MemoryStream()))
-            {
-                db.AddFileNoDuplicate("test.png", "test.png", File.ReadAllBytes(image));
-                var id = db.AddFileNoDuplicate("test2.png", "test2.png", File.ReadAllBytes(image));
-                Assert.AreEqual("test.png", id);
-                Assert.AreEqual(1, db.Database.FileStorage.FindAll().Count());
-            }
-
-            db = new GameDatabase(null);
-            using (db.OpenDatabase(new MemoryStream()))
-            {
-                db.AddFileNoDuplicate("test.png", "test.png", File.ReadAllBytes(image));
-                db.AddFile("test2.png", "test2.png", File.ReadAllBytes(image));
-                Assert.AreEqual(2, db.Database.FileStorage.FindAll().Count());
+                var db = new GameDatabase(temp.TempPath);
+                db.OpenDatabase();
+                var file = PlayniteTests.GenerateFakeFile();
+                var testId = Guid.NewGuid();
+                var addedId = db.AddFile(file.FileName, file.Content, testId);
+                FileAssert.Exists(Path.Combine(temp.TempPath, "files", addedId));
             }
         }
     }

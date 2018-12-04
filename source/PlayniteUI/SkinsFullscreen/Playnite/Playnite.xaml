@@ -920,7 +920,7 @@
                         <Style TargetType="Grid">
                             <Setter Property="Visibility" Value="Collapsed" />
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding SelectedGame}" Value="{x:Null}">
+                                <DataTrigger Binding="{Binding AreGamesAvailable}" Value="False">
                                     <Setter Property="Visibility" Value="Visible" />
                                 </DataTrigger>
                             </Style.Triggers>

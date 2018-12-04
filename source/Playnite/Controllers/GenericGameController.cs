@@ -1,6 +1,5 @@
 ﻿using NLog;
 using Playnite.Database;
-using Playnite.Models;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -38,7 +37,7 @@ namespace Playnite.Controllers
 
             Dispose();
             OnStarting(this, new GameControllerEventArgs(this, 0));
-            var emulators = database.GetEmulators();
+            var emulators = database.Emulators.ToList();
             var profile = GameActionActivator.GetGameActionEmulatorConfig(playAction, emulators)?.ExpandVariables(Game);
             var proc = GameActionActivator.ActivateAction(playAction, Game, profile);
             OnStarted(this, new GameControllerEventArgs(this, 0));
@@ -65,7 +64,14 @@ namespace Playnite.Controllers
                 }
                 else
                 {
-                    procMon.WatchProcessTree(proc);
+                    if (proc != null)
+                    {
+                        procMon.WatchProcessTree(proc);
+                    }
+                    else
+                    {
+                        OnStopped(this, new GameControllerEventArgs(this, 0));
+                    }
                 }
             }
             else

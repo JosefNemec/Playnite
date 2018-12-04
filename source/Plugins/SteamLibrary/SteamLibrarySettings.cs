@@ -13,6 +13,13 @@ using Playnite.SDK;
 
 namespace SteamLibrary
 {
+    public enum BackgroundSource
+    {
+        Image,
+        StoreScreenshot,
+        StoreBackground
+    }
+
     public enum SteamIdSource
     {
         Name,
@@ -41,12 +48,12 @@ namespace SteamLibrary
 
         public bool ImportUninstalledGames { get; set; } = false;
 
-        public bool PreferScreenshotForBackground { get; set; } = false;
+        public BackgroundSource BackgroundSource { get; set; } = BackgroundSource.Image;
 
         #endregion Settings
 
         [JsonIgnore]
-        public bool ShowCategoryImport { get => api.Database.IsOpen; }
+        public bool ShowCategoryImport { get; set; }
 
         [JsonIgnore]
         public List<LocalSteamUser> SteamUsers { get; set; }

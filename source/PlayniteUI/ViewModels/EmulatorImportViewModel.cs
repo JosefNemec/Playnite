@@ -153,9 +153,9 @@ namespace PlayniteUI.ViewModels
             set
             {
                 viewTabIndex = value;
-                OnPropertyChanged("ViewTabIndex");
-                OnPropertyChanged("ShowNextButton");
-                OnPropertyChanged("ShowBackButton");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowNextButton));
+                OnPropertyChanged(nameof(ShowBackButton));
             }
         }
 
@@ -166,7 +166,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 emulatorList = value;
-                OnPropertyChanged("EmulatorList");
+                OnPropertyChanged();
             }
         }
 
@@ -177,7 +177,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 gamesList = value;
-                OnPropertyChanged("GamesList");
+                OnPropertyChanged();
             }
         }
 
@@ -191,7 +191,7 @@ namespace PlayniteUI.ViewModels
             get
             {
                 var platforms = DatabasePlatforms;
-                return database.EmulatorsCollection.FindAll()
+                return database.Emulators
                     .Where(a => a.Profiles != null && a.Profiles.Any(b => b.ImageExtensions != null && b.ImageExtensions.Count > 0))
                     .OrderBy(a => a.Name).ToList();
             }
@@ -201,7 +201,7 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
-                return database.PlatformsCollection.FindAll().ToList();
+                return database.Platforms.ToList();
             }
         }
 
@@ -220,7 +220,7 @@ namespace PlayniteUI.ViewModels
             private set
             {
                 type = value;
-                OnPropertyChanged("Type");
+                OnPropertyChanged();
             }
         }
 
@@ -231,7 +231,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 isLoading = value;
-                OnPropertyChanged("IsLoading");
+                OnPropertyChanged();
             }
         }
 
@@ -408,12 +408,11 @@ namespace PlayniteUI.ViewModels
                         GamesList = new RangeObservableCollection<ImportableGame>();
                     }
 
-                    var dbGames = database.GamesCollection.FindAll();
                     var emulator = AvailableEmulators.First(a => a.Profiles.Any(b => b.Id == profile.Id));
                     GamesList.AddRange(games
                         .Where(a =>
                         {
-                            return dbGames.FirstOrDefault(b => Paths.AreEqual(a.GameImagePath, b.GameImagePath)) == null;
+                            return database.Games.FirstOrDefault(b => Paths.AreEqual(a.GameImagePath, b.GameImagePath)) == null;
                         })
                         .Select(a =>
                         {
@@ -450,11 +449,11 @@ namespace PlayniteUI.ViewModels
                     Type = GameActionType.Emulator                    
                 };
 
-                game.Game.State = new GameState() { Installed = true };
+                game.Game.IsInstalled = true;
             }
 
             ImportedGames = GamesList.Where(a => a.Import)?.Select(a => a.Game).ToList();
-            database.AddGames(ImportedGames);
+            database.Games.Add(ImportedGames);
         }
 
         private void AddSelectedEmulatorsToDB()
@@ -478,7 +477,7 @@ namespace PlayniteUI.ViewModels
                             if (existing == null)
                             {
                                 var newPlatform = new Platform(platform);
-                                database.AddPlatform(newPlatform);
+                                database.Platforms.Add(newPlatform);
                                 platforms = DatabasePlatforms;
                                 existing = newPlatform;
                             }
@@ -492,15 +491,15 @@ namespace PlayniteUI.ViewModels
                         }
                     }
 
-                    database.AddEmulator(new Emulator(emulator.Name)
+                    database.Emulators.Add(new Emulator(emulator.Name)
                     {
                         Profiles = new ObservableCollection<EmulatorProfile>(emulator.Profiles.Select(a => (EmulatorProfile)a))
                     });
                 }
             }
 
-            OnPropertyChanged("DatabasePlatforms");
-            OnPropertyChanged("AvailableEmulators");
+            OnPropertyChanged(nameof(DatabasePlatforms));
+            OnPropertyChanged(nameof(AvailableEmulators));
         }
 
         public void GoNextScreen()
@@ -550,7 +549,7 @@ namespace PlayniteUI.ViewModels
                     {                       
                         if (platforms.OpenView() == true)
                         {
-                            OnPropertyChanged("AvailableEmulators");
+                            OnPropertyChanged(nameof(AvailableEmulators));
                         }
                     }
                 }

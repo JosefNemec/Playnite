@@ -31,7 +31,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 viewLeft = value;
-                OnPropertyChanged("ViewLeft");
+                OnPropertyChanged();
             }
         }
 
@@ -42,7 +42,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 viewTop = value;
-                OnPropertyChanged("ViewTop");
+                OnPropertyChanged();
             }
         }
 
@@ -53,7 +53,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 viewWidth = value;
-                OnPropertyChanged("ViewWidth");
+                OnPropertyChanged();
             }
         }
 
@@ -64,7 +64,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 viewHeight = value;
-                OnPropertyChanged("ViewHeight");
+                OnPropertyChanged();
             }
         }
 
@@ -75,7 +75,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showFilter = value;
-                OnPropertyChanged("ShowFilter");
+                OnPropertyChanged();
             }
         }
 
@@ -86,10 +86,15 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showGameDetails = value;
-                OnPropertyChanged("ShowGameDetails");
-                OnPropertyChanged("ShowBackOption");
-                OnPropertyChanged("ShowDetailsOption");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowBackOption));
+                OnPropertyChanged(nameof(ShowDetailsOption));
             }
+        }
+                
+        public bool AreGamesAvailable
+        {
+            get => Database.Games?.Count > 0 && GamesView?.CollectionView.Count > 0;
         }
 
         public bool ShowInstallOption
@@ -119,7 +124,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showExitMenu = value;
-                OnPropertyChanged("ShowExitMenu");
+                OnPropertyChanged();
             }
         }
 
@@ -214,17 +219,17 @@ namespace PlayniteUI.ViewModels
             ExtensionFactory extensions) : base(database, window, dialogs, resources, settings, gamesEditor, playniteApi, extensions)
         {
             IsFullscreenView = true;
-            PropertyChanged += FullscreenViewModel_PropertyChanged;
+            PropertyChanged += FullscreenViewModel_PropertyChanged;            
         }
 
         private void FullscreenViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "SelectedGame")
+            if (e.PropertyName == nameof(SelectedGame))
             {
-                OnPropertyChanged("ShowInstallOption");
-                OnPropertyChanged("ShowPlayOption");
-                OnPropertyChanged("ShowBackOption");
-                OnPropertyChanged("ShowDetailsOption");
+                OnPropertyChanged(nameof(ShowInstallOption));
+                OnPropertyChanged(nameof(ShowPlayOption));
+                OnPropertyChanged(nameof(ShowBackOption));
+                OnPropertyChanged(nameof(ShowDetailsOption));
             }
         }
 
@@ -240,6 +245,13 @@ namespace PlayniteUI.ViewModels
             InitializeView();
             AppSettings.FullScreenFilterSettings.FilterChanged += FullScreenFilterSettings_FilterChanged;
             AppSettings.FullscreenViewSettings.PropertyChanged += FullscreenViewSettings_PropertyChanged;
+            Database.Games.ItemCollectionChanged += Games_ItemCollectionChanged;
+            OnPropertyChanged(nameof(AreGamesAvailable));
+        }
+
+        private void Games_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Playnite.SDK.Models.Game> args)
+        {
+            OnPropertyChanged(nameof(AreGamesAvailable));
         }
 
         public void ToggleFullscreen()
@@ -322,7 +334,7 @@ namespace PlayniteUI.ViewModels
             }
 
             // TODO: Handle this properly inside of Settings class.
-            AppSettings.OnPropertyChanged("FullScreenFilterSettings");
+            AppSettings.OnPropertyChanged(nameof(AppSettings.FullScreenFilterSettings));
         }
 
         public void ClearSearch()
@@ -391,6 +403,8 @@ namespace PlayniteUI.ViewModels
             {
                 SelectedGame = null;
             }
+
+            OnPropertyChanged(nameof(AreGamesAvailable));
         }
 
         private void FullscreenViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -403,6 +417,8 @@ namespace PlayniteUI.ViewModels
             {
                 SelectedGame = null;
             }
+
+            OnPropertyChanged(nameof(AreGamesAvailable));
         }
 
         public override void Dispose()
@@ -410,6 +426,7 @@ namespace PlayniteUI.ViewModels
             base.Dispose();
             AppSettings.FullScreenFilterSettings.FilterChanged -= FullScreenFilterSettings_FilterChanged;
             AppSettings.FullscreenViewSettings.PropertyChanged -= FullscreenViewSettings_PropertyChanged;
+            Database.Games.ItemCollectionChanged -= Games_ItemCollectionChanged;
         }
     }
 }

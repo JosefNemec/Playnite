@@ -47,8 +47,9 @@ Automatically imported games may reappear in Playnite after next import procedur
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam Friends</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Section contains changes to be saved</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress">Updating database version...</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Updating game library format...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Database update failed, can't open database file.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Cannot update game library. {0} MBs of free space is required.</sys:String>
 
     <sys:String x:Key="LOCGameError">GameError</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Cannot start game. '{0}' was not found in database.</sys:String>
@@ -138,6 +139,8 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCSunday">Sunday</sys:String>
     <sys:String x:Key="LOCImportCompleted">Import completed successfully.</sys:String>
     <sys:String x:Key="LOCAllGames">All Games</sys:String>
+    <sys:String x:Key="LOCGameId">Game Id</sys:String>
+    <sys:String x:Key="LOCDatabaseId">Database Id</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
@@ -235,6 +238,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsShowIconList">Show game icons on List view</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Disable hardware acceleration (requires restart)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Use when experiencing stuttering or similar UI issues</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Disable DPI Scaling (requires restart)</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Show Steam friends button</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Show background image</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Theme</sys:String>
@@ -279,9 +283,11 @@ Any currently active tasks (metadata downloads) will be canceled.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Number of rows</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Number of columns</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Number of detail view rows</sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOption">Prefer game screenshot instead of store background image</sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite will use available game screenshots as background instead of store background image.
-Doesn't apply retrospectively to existing games.</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSource">Background image source:</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceImage">Game Image</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Store Screenshot</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceStore">Store Background</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Doesn't apply retrospectively to existing games without re-downloading metadata.</sys:String>
 
     <sys:String x:Key="LOCImportError">Import Error</sys:String>
     <sys:String x:Key="LOCLoginChecking">Checking authentication status...</sys:String>
@@ -466,7 +472,7 @@ Please attach following ID to your crash report:</sys:String>
     <sys:String x:Key="LOCSkinError">Theme Error</sys:String>
     <sys:String x:Key="LOCClearAll">Clear All</sys:String>
     <sys:String x:Key="LOCSetupRunning">Installing</sys:String>
-    <sys:String x:Key="LOCUninstalling">Unnstalling</sys:String>
+    <sys:String x:Key="LOCUninstalling">Uninstalling</sys:String>
     <sys:String x:Key="LOCGameLaunching">Launching</sys:String>
     <sys:String x:Key="LOCGameRunning">Running</sys:String>
     <sys:String x:Key="LOCInvalidURL">Invalid URL</sys:String>
@@ -495,6 +501,9 @@ Please attach following ID to your crash report:</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Exit Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Libraries</sys:String>
     <sys:String x:Key="LOCUpdateAll">Update All</sys:String>
+    <sys:String x:Key="LOCExtensionCreatedBy">Created By:</sys:String>
+    <sys:String x:Key="LOCExtensionVersion">Version:</sys:String>
+    <sys:String x:Key="LOCExtensionModule">Module:</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
@@ -557,9 +566,11 @@ Please attach following ID to your crash report:</sys:String>
 
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Opening Desktop mode...</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Opening Fullscreen mode...</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">Loading game library...</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Failed to install script file.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Script installed successfully.</sys:String>
     <sys:String x:Key="LOCInstallScript">Install Script</sys:String>
     <sys:String x:Key="LOCScriptError">Script error</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Failed to execute extension function.</sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">Open metadata folder</sys:String>
 </ResourceDictionary>

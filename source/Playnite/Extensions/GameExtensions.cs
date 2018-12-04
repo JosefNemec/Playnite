@@ -1,5 +1,4 @@
 ﻿using Playnite.Common.System;
-using Playnite.Models;
 using Playnite.SDK.Models;
 using Playnite.Settings;
 using System;
@@ -54,7 +53,7 @@ namespace Playnite
                 };
             };
 
-            game.State.Installed = true;
+            game.IsInstalled = true;
             return game;
         }
 
@@ -93,7 +92,14 @@ namespace Playnite
             {
                 if (string.IsNullOrEmpty(playAction.WorkingDir))
                 {
-                    return Path.GetFullPath(playAction.Path);
+                    if (Paths.IsValidFilePath(playAction.Path))
+                    {
+                        return Path.GetFullPath(playAction.Path);
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
                 else
                 {

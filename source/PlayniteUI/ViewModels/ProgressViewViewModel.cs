@@ -3,12 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PlayniteUI.ViewModels
 {
     public class ProgressViewViewModel : ObservableObject
     {
+        private static ILogger logger = LogManager.GetLogger();
+        private IWindowFactory window;
         private Action progresAction;
 
         private string progressText;
@@ -18,12 +21,11 @@ namespace PlayniteUI.ViewModels
             set
             {
                 progressText = value;
-                OnPropertyChanged("ProgressText");
+                OnPropertyChanged();
             }
         }
 
-        private static ILogger logger = LogManager.GetLogger();
-        private IWindowFactory window;
+        public Exception FailException { get; private set; }
 
         public ProgressViewViewModel(IWindowFactory window, Action progresAction)
         {
@@ -38,18 +40,21 @@ namespace PlayniteUI.ViewModels
 
         public bool? ActivateProgress()
         {
-            Task.Run(progresAction).
-                ContinueWith((a) =>
+            Task.Run(() =>
+            {
+                try
                 {
-                    if (a.Exception == null)
-                    {
-                        window.Close(true);
-                    }
-                    else
-                    {
-                        window.Close(false);
-                    }
-                });
+                    progresAction();
+                }
+                catch (Exception exc)
+                {
+                    FailException = exc;
+                    window.Close(false);
+                    return;
+                }
+
+                window.Close(true);
+            });
             return window.CreateAndOpenDialog(this);
         }
 

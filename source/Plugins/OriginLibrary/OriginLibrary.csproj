@@ -78,6 +78,7 @@
     <Compile Include="Models\GameLocalDataResponse.cs" />
     <Compile Include="Models\GameStoreDataResponse.cs" />
     <Compile Include="Models\OriginGameMetadata.cs" />
+    <Compile Include="Models\StorePageMetadata.cs" />
     <Compile Include="Origin.cs" />
     <Compile Include="OriginGameController.cs" />
     <Compile Include="OriginLibrary.cs" />

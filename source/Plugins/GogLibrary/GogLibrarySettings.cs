@@ -116,7 +116,7 @@ namespace GogLibrary
                     api.Login();
                 }
 
-                OnPropertyChanged("IsUserLoggedIn");
+                OnPropertyChanged(nameof(IsUserLoggedIn));
             }
             catch (Exception e) when (!Environment.IsDebugBuild)
             {

@@ -74,7 +74,7 @@ namespace Playnite
             set
             {
                 sortingOrder = value;
-                OnPropertyChanged("SortingOrder");
+                OnPropertyChanged();
             }
         }
 
@@ -89,7 +89,7 @@ namespace Playnite
             set
             {
                 sortingOrderDirection = value;
-                OnPropertyChanged("SortingOrderDirection");
+                OnPropertyChanged();
             }
         }
 
@@ -104,7 +104,7 @@ namespace Playnite
             set
             {
                 groupingOrder = value;
-                OnPropertyChanged("GroupingOrder");
+                OnPropertyChanged();
             }
         }
 
@@ -119,7 +119,7 @@ namespace Playnite
             set
             {
                 gamesViewType = value;
-                OnPropertyChanged("GamesViewType");
+                OnPropertyChanged();
             }
         }
 
@@ -134,7 +134,7 @@ namespace Playnite
             set
             {
                 coversZoom = value;
-                OnPropertyChanged("CoversZoom");
+                OnPropertyChanged();
             }
         }
     }        

@@ -26,6 +26,12 @@ namespace SteamLibrary
         private SteamLibrary library;
         private SteamApiClient apiClient;
 
+        private readonly string[] backgroundUrls = new string[]
+        {
+            @"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page.bg.jpg",
+            @"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated.jpg"
+        };
+
         public SteamMetadataProvider(SteamServicesClient playniteServices, SteamLibrary library, SteamApiClient apiClient)
         {
             this.library = library;
@@ -188,7 +194,7 @@ namespace SteamLibrary
             return null;
         }
 
-        internal SteamGameMetadata DownloadGameMetadata(uint appId, bool screenAsBackground)
+        internal SteamGameMetadata DownloadGameMetadata(uint appId, BackgroundSource backgroundSource)
         {
             var metadata = new SteamGameMetadata();
             var productInfo = GetAppInfo(appId);
@@ -220,12 +226,7 @@ namespace SteamLibrary
                 {
                     var iconName = Path.GetFileName(new Uri(iconUrl).AbsolutePath);
                     var iconData = HttpDownloader.DownloadData(iconUrl);
-                    metadata.Icon = new MetadataFile(
-
-                        string.Format("images/steam/{0}/{1}",appId.ToString(), iconName),
-                        iconName,
-                        iconData
-                    );
+                    metadata.Icon = new MetadataFile(iconName, iconData);
                 }
             }
 
@@ -263,24 +264,23 @@ namespace SteamLibrary
             if (imageData != null)
             {
                 var imageName = Path.GetFileName(new Uri(imageUrl).AbsolutePath);
-                metadata.Image = new MetadataFile(
-                    string.Format("images/steam/{0}/{1}", appId.ToString(), imageName),
-                    imageName,
-                    imageData
-                );
+                metadata.Image = new MetadataFile(imageName, imageData);
             }
 
             // Background Image
-            if (screenAsBackground)
+            switch (backgroundSource)
             {
-                if (metadata.StoreDetails?.screenshots?.Any() == true)
-                {
+                case BackgroundSource.Image:
+                    metadata.BackgroundImage = GetGameBackground(appId);
+                    break;
+                case BackgroundSource.StoreScreenshot:
                     metadata.BackgroundImage = Regex.Replace(metadata.StoreDetails.screenshots.First().path_full, "\\?.*$", "");
-                }
-            }
-            else
-            {
-                metadata.BackgroundImage = string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", appId);
+                    break;
+                case BackgroundSource.StoreBackground:
+                    metadata.BackgroundImage = string.Format(@"https://steamcdn-a.akamaihd.net/steam/apps/{0}/page_bg_generated_v6b.jpg", appId);
+                    break;
+                default:
+                    break;
             }
 
             return metadata;
@@ -289,7 +289,7 @@ namespace SteamLibrary
         internal SteamGameMetadata UpdateGameWithMetadata(Game game)
         {
             var appId = game.ToSteamGameID().AppID;
-            var metadata = DownloadGameMetadata(appId, library.LibrarySettings.PreferScreenshotForBackground);
+            var metadata = DownloadGameMetadata(appId, library.LibrarySettings.BackgroundSource);
             game.Name = metadata.ProductDetails?["common"]["name"]?.Value ?? game.Name;
             game.Links = new ObservableCollection<Link>()
             {
@@ -371,6 +371,20 @@ namespace SteamLibrary
             }
 
             return metadata;
+        }
+
+        private string GetGameBackground(uint appId)
+        {
+            foreach (var url in backgroundUrls)
+            {
+                var bk = string.Format(url, appId);
+                if (HttpDownloader.GetResponseCode(bk) == HttpStatusCode.OK)
+                {
+                    return bk;
+                }
+            }
+
+            return null;
         }
     }
 }

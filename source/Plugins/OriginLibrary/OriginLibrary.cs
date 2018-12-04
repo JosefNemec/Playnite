@@ -26,16 +26,13 @@ namespace OriginLibrary
         private ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
 
-        internal OriginLibrarySettings LibrarySettings
-        {
-            get => (OriginLibrarySettings)Settings;
-        }
+        internal OriginLibrarySettings LibrarySettings { get; private set; }
 
         public OriginLibrary(IPlayniteAPI api)
         {
             playniteApi = api;
             LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\originicon.png");
-            Settings = new OriginLibrarySettings(this, playniteApi);
+            LibrarySettings = new OriginLibrarySettings(this, playniteApi);
         }
 
         internal string GetPathFromPlatformPath(string path, RegistryView platformView)
@@ -227,7 +224,7 @@ namespace OriginLibrary
                             PluginId = Id,
                             Source = "Origin",
                             GameId = gameId,
-                            State = new GameState() { Installed = true }
+                            IsInstalled = true
                         };
 
                         GameLocalDataResponse localData = null;
@@ -323,8 +320,7 @@ namespace OriginLibrary
                         PluginId = Id,
                         Source = "Origin",
                         GameId = game.offerId,
-                        Name = game.offerId,
-                        State = new GameState() { Installed = false }
+                        Name = game.offerId
                     });
                 }
 
@@ -340,18 +336,21 @@ namespace OriginLibrary
 
         public string Name { get; } = "Origin";
 
-        public UserControl SettingsView
-        {
-            get => new OriginLibrarySettingsView();
-        }
-
-        public ISettings Settings { get; private set; }
-
         public Guid Id { get; } = Guid.Parse("85DD7072-2F20-4E76-A007-41035E390724");
 
         public void Dispose()
         {
 
+        }
+
+        public ISettings GetSettings(bool firstRunSettings)
+        {
+            return LibrarySettings;
+        }
+
+        public UserControl GetSettingsView(bool firstRunView)
+        {
+            return new OriginLibrarySettingsView();
         }
 
         public IGameController GetGameController(Game game)

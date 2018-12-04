@@ -15,9 +15,7 @@ namespace TestPlugin
         private ILogger logger;
         private IPlayniteAPI api;
 
-        public UserControl SettingsView { get => new TestPluginSettingsView(); }
-
-        public ISettings Settings { get; } = new TestPluginSettings();
+        public ISettings Settings { get; private set; } = new TestPluginSettings();
 
         public Guid Id { get; } = Guid.Parse("D51194CD-AA44-47A0-8B89-D1FD544DD9C9");
 
@@ -31,6 +29,16 @@ namespace TestPlugin
         {
         }
 
+        public ISettings GetSettings(bool firstRunSettings)
+        {
+            return Settings;
+        }
+
+        public UserControl GetSettingsView(bool firstRunView)
+        {
+            return new TestPluginSettingsView();
+        }
+
         public IEnumerable<ExtensionFunction> GetFunctions()
         {
             return new List<ExtensionFunction>()
@@ -39,7 +47,7 @@ namespace TestPlugin
                     "Test Func from TestPlugin",
                     () =>
                     {
-                        logger.Info($"TestPluginDev ExtensionFunction {api.Database.GetGames().Count}");
+                        logger.Info($"TestPluginDev ExtensionFunction {api.Database.GetGames().Count()}");
                     })
             };
         }

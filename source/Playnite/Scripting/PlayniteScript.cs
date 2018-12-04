@@ -1,5 +1,4 @@
-﻿using Playnite.Models;
-using Playnite.Scripting.IronPython;
+﻿using Playnite.Scripting.IronPython;
 using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
 using Playnite.SDK.Models;

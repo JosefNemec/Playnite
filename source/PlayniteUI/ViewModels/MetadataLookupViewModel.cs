@@ -53,7 +53,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 isLoading = value;
-                OnPropertyChanged("IsLoading");
+                OnPropertyChanged();
             }
         }
 
@@ -64,7 +64,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 searchTerm = value;
-                OnPropertyChanged("SearchTerm");
+                OnPropertyChanged();
             }
         }
 
@@ -79,7 +79,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 searchResults = value;
-                OnPropertyChanged("SearchResults");
+                OnPropertyChanged();
             }
         }
 
@@ -90,7 +90,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 selectedResult = value;
-                OnPropertyChanged("SelectedResult");
+                OnPropertyChanged();
             }
         }        
 

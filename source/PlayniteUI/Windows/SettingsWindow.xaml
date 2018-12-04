@@ -95,18 +95,7 @@
                         </TabControl.Style>
                         <TabItem>
                             <StackPanel>
-                                <DockPanel>
-                                    <TextBlock Text="{DynamicResource LOCSettingsDBLocation}" Margin="5,0,10,0"
-                                   DockPanel.Dock="Left" VerticalAlignment="Center"/>
-                                    <Button Name="ButtonBrowserDbFile" Content="{DynamicResource LOCChange}"
-                                    DockPanel.Dock="Right" Padding="5,0,5,0"
-                                    Command="{Binding SelectDbFileCommand}"/>
-                                    <TextBox Name="TextDatabase" Text="{Binding Settings.DatabasePath}"
-                                     DockPanel.Dock="Left" Margin="0,0,5,0"
-                                     IsReadOnly="True"/>
-                                </DockPanel>
-
-                                <DockPanel Margin="0,15,0,5" LastChildFill="False">
+                                <DockPanel Margin="0,0,0,10" LastChildFill="False">
                                     <TextBlock Text="{DynamicResource LOCLanguageSettingsLabel}" VerticalAlignment="Center" Margin="5,0,10,0" />
                                     <ComboBox Name="ComboLanguage"
                                       SelectedValue="{Binding Settings.Language}"
@@ -278,9 +267,7 @@
                                 <CheckBox Content="{DynamicResource LOCSettingsShowNamesUnderCover}" Margin="0,15,0,0"
                                   Name="CheckNameUnderCover" IsChecked="{Binding Settings.ShowNamesUnderCovers}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowIconList}" Margin="0,15,0,0"
-                                  Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
-                                <CheckBox Content="{DynamicResource LOCSettingsDisableAcceleration}" Margin="0,15,0,0" ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
-                                  Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"/>
+                                  Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>                       
                                 <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
                                   Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundImage}" Margin="0,15,0,0"
@@ -396,9 +383,27 @@
 
                         <TabItem>
                             <StackPanel>
-                                <Button Name="ButtonClearWebCace" Content="{DynamicResource LOCSettingsClearWebCache}" HorizontalAlignment="Left"
-                                ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"
-                                Command="{Binding ClearWebCacheCommand}"/>
+                                <DockPanel>
+                                    <TextBlock Text="{DynamicResource LOCSettingsDBLocation}"
+                                               DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                                    <Button Name="ButtonBrowserDbFile" Content="{DynamicResource LOCChange}"
+                                            DockPanel.Dock="Right" Padding="5,0,5,0"
+                                            Command="{Binding SelectDbFileCommand}"/>
+                                    <TextBox Name="TextDatabase" Text="{Binding Settings.DatabasePath}"
+                                             DockPanel.Dock="Left" Margin="10,0,10,0"
+                                             IsReadOnly="True"/>
+                                </DockPanel>
+                                <CheckBox Content="{DynamicResource LOCSettingsDisableAcceleration}"
+                                          ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
+                                          Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"
+                                          Margin="0,45,0,0"/>
+                                <CheckBox Content="{DynamicResource LOCSettingsDisableDpiAwareness}"
+                                          Name="CheckDisableDpiAwareness" IsChecked="{Binding Settings.DisableDpiAwareness}"
+                                          Margin="0,15,0,0"/>
+                                <Button Name="ButtonClearWebCace" Content="{DynamicResource LOCSettingsClearWebCache}"
+                                        HorizontalAlignment="Left" Margin="0,45,0,0"
+                                        ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"
+                                        Command="{Binding ClearWebCacheCommand}"/>
                             </StackPanel>
                         </TabItem>
 
@@ -415,15 +420,15 @@
                                 <StackPanel Grid.Column="1" DataContext="{Binding SelectedItem, ElementName=ListExtensions}"
                                             Margin="10,5,0,0">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock FontWeight="Bold" Text="Created By:" />
+                                        <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionCreatedBy}" />
                                         <TextBlock Text="{Binding Description.Author}" Margin="5,0,0,0" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                                        <TextBlock FontWeight="Bold" Text="Version:" />
+                                        <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionVersion}" />
                                         <TextBlock Text="{Binding Description.Version}" Margin="5,0,0,0" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                                        <TextBlock FontWeight="Bold" Text="Module:" />
+                                        <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionModule}" />
                                         <TextBlock Text="{Binding Description.Module}" Margin="5,0,0,0" />
                                     </StackPanel>
                                     <CheckBox Content="{DynamicResource LOCEnabledTitle}" Margin="0,15,0,0"

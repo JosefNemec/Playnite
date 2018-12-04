@@ -47,7 +47,8 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCSteamFriendsTooltip">Afficher la liste d'amis</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">La section contient des modifications à enregistrer</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Mise à jour de la base de données...</sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail">La mise à jour de la base de données a échoué, impossible d'ouvrir le fichier de base.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">La mise à jour de la base de données a échoué. Impossible d'ouvrir le fichier de base.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">La mise à jour de la base de données a échoué. {0} Mo d'espace libres requis.</sys:String>
 
     <sys:String x:Key="LOCGameError">Erreur de jeu</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Erreur: Impossible de démarrer le jeu. '{0}' n'a pas été trouvé dans la base de données.</sys:String>
@@ -136,6 +137,8 @@ Les jeux importés automatiquement sont susceptibles de réapparaître après la
     <sys:String x:Key="LOCSunday">Dimanche</sys:String>
     <sys:String x:Key="LOCImportCompleted">Les catégories ont été importées avec succès.</sys:String>
     <sys:String x:Key="LOCAllGames">Tous</sys:String>
+    <sys:String x:Key="LOCGameId">Id jeu</sys:String>
+    <sys:String x:Key="LOCDatabaseId">Id base de données</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Des variables spéciales peuvent être utilisées pour ajouter une chaîne dynamique:
 {InstallDir} - Répertoire d'installation du jeu
@@ -550,9 +553,11 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCPlayedNone">Pas encore lancé</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Retour au bureau...</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Ouverture du mode plein écran...</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">Chargement de la bibliothèque...</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Impossible d'installer le script.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Le script a été installé avec succès.</sys:String>
     <sys:String x:Key="LOCInstallScript">Installer un script</sys:String>
     <sys:String x:Key="LOCScriptError">Erreur de script</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Impossible d'exécuter la fonction.</sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">Ouvrir dossier de métadonnées</sys:String>  
 </ResourceDictionary>

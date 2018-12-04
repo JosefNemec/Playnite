@@ -1,4 +1,5 @@
-﻿using Playnite;
+﻿using LiteDB;
+using Playnite;
 using Playnite.Database;
 using Playnite.Settings;
 using System;
@@ -28,7 +29,7 @@ namespace DbTools
 
                 try
                 {
-                    GameDatabase.CloneLibrary(sourceDb, targetDb);
+                    CloneLibrary(sourceDb, targetDb);
                 }
                 catch (Exception e) when (!Debugger.IsAttached)
                 {
@@ -55,9 +56,9 @@ namespace DbTools
                     }
 
                     File.Move(dbPath, dbTempPath);
- 
+
                     Console.WriteLine($"Fixing {dbPath} file...");
-                    GameDatabase.CloneLibrary(dbTempPath, dbPath);
+                    CloneLibrary(dbTempPath, dbPath);
                     File.Delete(dbTempPath);
                     Console.WriteLine("Finished fixing database");
                 }
@@ -69,6 +70,50 @@ namespace DbTools
 
             Console.WriteLine("Press ENTER to exit...");
             Console.ReadLine();
+        }
+
+        public static void CloneLibrary(string dbPath, string targetPath)
+        {
+            using (var sourceDb = new LiteDatabase($"Filename={dbPath};Mode=Exclusive"))
+            {
+                using (var targetDb = new LiteDatabase($"Filename={targetPath};Mode=Exclusive"))
+                {
+                    var games = sourceDb.GetCollection("games").FindAll();
+                    var targetGames = targetDb.GetCollection("games");
+                    foreach (var game in games)
+                    {
+                        targetGames.Insert(game);
+                    }
+
+                    var targetPlatforms = targetDb.GetCollection("platforms");
+                    foreach (var platform in sourceDb.GetCollection("platforms").FindAll())
+                    {
+                        targetPlatforms.Insert(platform);
+                    }
+
+                    var targetEmulators = targetDb.GetCollection("emulators");
+                    foreach (var emulator in sourceDb.GetCollection("emulators").FindAll())
+                    {
+                        targetEmulators.Insert(emulator);
+                    }
+
+                    var targetSettings = targetDb.GetCollection("settings");
+                    foreach (var setting in sourceDb.GetCollection("settings").FindAll())
+                    {
+                        targetSettings.Insert(setting);
+                    }
+
+                    foreach (var file in sourceDb.FileStorage.FindAll())
+                    {
+                        using (var fileStream = file.OpenRead())
+                        {
+                            targetDb.FileStorage.Upload(file.Id, file.Filename, fileStream);
+                        }
+                    }
+
+                    targetDb.Engine.UserVersion = sourceDb.Engine.UserVersion;
+                }
+            }
         }
     }
 }

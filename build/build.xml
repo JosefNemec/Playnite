@@ -28,6 +28,10 @@
             Projects="../source/Plugins/TwitchLibrary/TwitchLibrary.csproj"
             Targets="Build"
             Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+        <MSBuild
+            Projects="../source/Plugins/BethesdaLibrary/BethesdaLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
     </Target>
     <Target Name="Build" DependsOnTargets="Plugins">
         <MSBuild

@@ -5,6 +5,7 @@ using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -40,16 +41,25 @@ namespace UplayLibrary
             if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("uplay", StringComparison.OrdinalIgnoreCase))
             {
                 OnStarting(this, new GameControllerEventArgs(this, 0));
-                stopWatch = Stopwatch.StartNew();
-                procMon = new ProcessMonitor();
-                procMon.TreeStarted += ProcMon_TreeStarted;
-                procMon.TreeDestroyed += Monitor_TreeDestroyed;
                 GameActionActivator.ActivateAction(Game.PlayAction, Game);
-                procMon.TreeStarted += ProcMon_TreeStarted;
-                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                if (Directory.Exists(Game.InstallDirectory))
+                {
+                    stopWatch = Stopwatch.StartNew();
+                    procMon = new ProcessMonitor();
+                    procMon.TreeStarted += ProcMon_TreeStarted;
+                    procMon.TreeDestroyed += Monitor_TreeDestroyed;
+                    procMon.TreeStarted += ProcMon_TreeStarted;
+                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                }
+                else
+                {
+                    OnStopped(this, new GameControllerEventArgs(this, 0));
+                }
             }
             else
-                throw new Exception("Unknoww Play action configuration");
+            {
+                throw new Exception("Unknown Play action configuration.");
+            }
         }
 
         public override void Install()
@@ -80,54 +90,50 @@ namespace UplayLibrary
         public async void StartInstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Run(async () =>
+   
+            while (true)
             {
-                while (true)
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
-
-                    var installedGame = uplay.GetInstalledGames().FirstOrDefault(a => a.GameId == Game.GameId);
-                    if (installedGame != null)
-                    {
-                        if (Game.PlayAction == null)
-                        {
-                            Game.PlayAction = installedGame.PlayAction;
-                        }
-
-                        Game.InstallDirectory = installedGame.InstallDirectory;
-                        OnInstalled(this, new GameControllerEventArgs(this, 0));
-                        return;
-                    }
-
-                    await Task.Delay(2000);
+                    return;
                 }
-            });
+
+                var installedGame = uplay.GetInstalledGames().FirstOrDefault(a => a.GameId == Game.GameId);
+                if (installedGame != null)
+                {
+                    if (Game.PlayAction == null)
+                    {
+                        Game.PlayAction = installedGame.PlayAction;
+                    }
+
+                    Game.InstallDirectory = installedGame.InstallDirectory;
+                    OnInstalled(this, new GameControllerEventArgs(this, 0));
+                    return;
+                }
+
+                await Task.Delay(2000);
+            }
         }
 
         public async void StartUninstallWatcher()
         {
             watcherToken = new CancellationTokenSource();
-            await Task.Run(async () =>
+        
+            while (true)
             {
-                while (true)
+                if (watcherToken.IsCancellationRequested)
                 {
-                    if (watcherToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
-
-                    if (uplay.GetInstalledGames().FirstOrDefault(a => a.GameId == Game.GameId) == null)
-                    {
-                        OnUninstalled(this, new GameControllerEventArgs(this, 0));
-                        return;
-                    }
-
-                    await Task.Delay(2000);
+                    return;
                 }
-            });
+
+                if (uplay.GetInstalledGames().FirstOrDefault(a => a.GameId == Game.GameId) == null)
+                {
+                    OnUninstalled(this, new GameControllerEventArgs(this, 0));
+                    return;
+                }
+
+                await Task.Delay(2000);
+            }
         }
     }
 }

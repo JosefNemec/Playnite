@@ -6,70 +6,123 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LiteDB;
-using Playnite.Models;
 using System.Windows.Media.Imaging;
 using Playnite.Emulators;
-using Playnite.SDK.Models;
-using Playnite.Database.Events;
 using Playnite.SDK;
+using Playnite.SDK.Models;
 using Playnite.SDK.Metadata;
+using Playnite.Common;
+using Playnite.Settings;
+using Playnite.Common.System;
 
 namespace Playnite.Database
 {
     public class GameDatabase
     {
         private static ILogger logger = LogManager.GetLogger();
-        private bool IsEventBufferEnabled = false;
-        private List<Platform> AddedPlatformsEventBuffer = new List<Platform>();
-        private List<Platform> RemovedPlatformsEventBuffer = new List<Platform>();
-        private List<PlatformUpdateEvent> PlatformUpdatesEventBuffer = new List<PlatformUpdateEvent>();
-        private List<Game> AddedGamesEventBuffer = new List<Game>();
-        private List<Game> RemovedGamesEventBuffer = new List<Game>();
-        private List<GameUpdateEvent> GameUpdatesEventBuffer = new List<GameUpdateEvent>();
 
-        public LiteDatabase Database
+        #region Locks
+
+        private readonly object databaseConfigFileLock = new object();
+        private readonly object fileFilesLock = new object();
+
+        #endregion Locks
+
+        #region Paths
+
+        public string DatabasePath
         {
             get; private set;
         }
 
-        public LiteCollection<Platform> PlatformsCollection
-        {
-            get; private set;
-        }
+        private const string gamesDirName = "games";
+        private const string platformsDirName = "platforms";
+        private const string emulatorsDirName = "emulators";
+        private const string filesDirName = "files";
+        private const string settingsFileName = "database.json";
 
-        public LiteCollection<Emulator> EmulatorsCollection
-        {
-            get; private set;
-        }
+        private string GamesDirectoryPath { get => Path.Combine(DatabasePath, gamesDirName); }
+        private string PlatformsDirectoryPath { get => Path.Combine(DatabasePath, platformsDirName); }
+        private string EmulatorsDirectoryPath { get => Path.Combine(DatabasePath, emulatorsDirName); }
+        private string FilesDirectoryPath { get => Path.Combine(DatabasePath, filesDirName); }
 
-        public LiteCollection<Game> GamesCollection
-        {
-            get; private set;
-        }
+        private string DatabaseFileSettingsPath { get => Path.Combine(DatabasePath, settingsFileName); }
 
-        public LiteCollection<ActiveController> ActiveControllersCollection
-        {
-            get; private set;
-        }
+        #endregion Paths
 
-        public string Path
-        {
-            get; private set;
-        }
+        #region Lists
+
+        public GamesCollection Games { get; private set; }
+        public PlatformsCollection Platforms { get; private set; }
+        public ItemCollection<Emulator> Emulators { get; private set; }       
+
+        #endregion Lists
 
         public bool IsOpen
         {
             get; private set;
         }
 
-        public static readonly ushort DBVersion = 5;
+        private DatabaseSettings settings;
+        public DatabaseSettings Settings
+        {
+            get
+            {
+                if (settings == null)
+                {
+                    if (File.Exists(DatabaseFileSettingsPath))
+                    {
+                        lock (databaseConfigFileLock)
+                        {
+                            settings = Serialization.FromJson<DatabaseSettings>(FileSystem.ReadFileAsStringSafe(DatabaseFileSettingsPath));
+                            if (settings == null)
+                            {
+                                // This shouldn't in theory happen, but there are some wierd crash reports available for this.
+                                settings = new DatabaseSettings() { Version = NewFormatVersion };
+                            }
+                        }
+                    }
+                    else
+                    {
+                        settings = new DatabaseSettings() { Version = NewFormatVersion };
+                    }
+                }
 
-        public event PlatformsCollectionChangedEventHandler PlatformsCollectionChanged;
-        public event PlatformUpdatedEventHandler PlatformUpdated;
-        public event GamesCollectionChangedEventHandler GamesCollectionChanged;
-        public event GameUpdatedEventHandler GameUpdated;
+                return settings;
+            }
+
+            set
+            {
+                lock (databaseConfigFileLock)
+                {
+                    settings = value;
+                    FileSystem.WriteStringToFileSafe(DatabaseFileSettingsPath, Serialization.ToJson(settings));
+                }
+            }
+        }
+
+        public static readonly ushort DBVersion = 6;
+
+        public static readonly ushort NewFormatVersion = 1;
+
+        #region Events
+
         public event EventHandler DatabaseOpened;
 
+        public event DatabaseFileEventHandler DatabaseFileChanged;
+
+        #endregion Events
+
+        #region Initialization
+
+        private void LoadCollections()
+        {
+            Platforms.InitializeCollection(PlatformsDirectoryPath);
+            Emulators.InitializeCollection(EmulatorsDirectoryPath);
+            Games.InitializeCollection(GamesDirectoryPath);
+        }
+
+        #endregion Intialization
 
         public GameDatabase() : this(null)
         {
@@ -77,17 +130,21 @@ namespace Playnite.Database
 
         public GameDatabase(string path)
         {
-            Path = path;
+            DatabasePath = GetFullDbPath(path);
+            Platforms = new PlatformsCollection(this);
+            Games = new GamesCollection(this);
+            Emulators = new ItemCollection<Emulator>();
         }
 
         private void CheckDbState()
         {
-            if (GamesCollection == null)
+            if (!IsOpen)
             {
                 throw new Exception("Database is not opened.");
             }
         }
 
+        // TODO: Remove this, we should only allow path to be set during instantiation.
         public void SetDatabasePath(string path)
         {
             if (IsOpen)
@@ -95,69 +152,7 @@ namespace Playnite.Database
                 throw new Exception("Cannot change database path when database is open.");
             }
 
-            Path = path;
-        }
-
-        public DatabaseSettings GetDatabaseSettings()
-        {
-            CheckDbState();
-            var coll = Database.GetCollection<DatabaseSettings>("settings");
-            return coll.FindById(1);
-        }
-
-        public void UpdateDatabaseSettings(DatabaseSettings settings)
-        {
-            CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                var coll = Database.GetCollection<DatabaseSettings>("settings");
-                coll.Upsert(settings);
-            }
-        }
-
-        public static void CloneLibrary(string dbPath, string targetPath)
-        {
-            using (var sourceDb = new LiteDatabase($"Filename={dbPath};Mode=Exclusive"))
-            {
-                using (var targetDb = new LiteDatabase($"Filename={targetPath};Mode=Exclusive"))
-                {
-                    var games = sourceDb.GetCollection<Game>("games").FindAll();
-                    var targetGames = targetDb.GetCollection<Game>("games");
-                    foreach (var game in games)
-                    {
-                        targetGames.Insert(game);
-                    }
-
-                    var targetPlatforms = targetDb.GetCollection<Platform>("platforms");
-                    foreach (var platform in sourceDb.GetCollection<Platform>("platforms").FindAll())
-                    {
-                        targetPlatforms.Insert(platform);
-                    }
-
-                    var targetEmulators = targetDb.GetCollection<Emulator>("emulators");
-                    foreach (var emulator in sourceDb.GetCollection<Emulator>("emulators").FindAll())
-                    {
-                        targetEmulators.Insert(emulator);
-                    }
-
-                    var targetSettings = targetDb.GetCollection<DatabaseSettings>("settings");
-                    foreach (var setting in sourceDb.GetCollection<DatabaseSettings>("settings").FindAll())
-                    {
-                        targetSettings.Insert(setting);
-                    }
-
-                    foreach (var file in sourceDb.FileStorage.FindAll())
-                    {
-                        using (var fileStream = file.OpenRead())
-                        {
-                            targetDb.FileStorage.Upload(file.Id, file.Filename, fileStream);
-                        }
-                    }
-
-                    targetDb.Engine.UserVersion = sourceDb.Engine.UserVersion;
-                }
-            }
+            DatabasePath = GetFullDbPath(path);
         }
 
         public static void MigrateDatabase(string path)
@@ -205,7 +200,7 @@ namespace Playnite.Database
                                 game.Remove("WikiUrl");
                             }
 
-                            if (links.Count() > 0)
+                            if (links.Count > 0)
                             {
                                 game.Add("Links", new BsonArray(links.Select(a => BsonMapper.Global.ToDocument(a))));
                             }
@@ -420,7 +415,7 @@ namespace Playnite.Database
                                     var profPlatforms = profile["Platforms"];
                                     var newPlatforms = new BsonArray();
                                     if (!profPlatforms.IsNull)
-                                    {                                        
+                                    {
                                         foreach (var platform in profPlatforms.AsArray)
                                         {
                                             if (conPlatforms.TryGetValue(platform, out var newPlat))
@@ -454,7 +449,7 @@ namespace Playnite.Database
                             if (!game["Image"].IsNull)
                             {
                                 game.Add("CoverImage", game["Image"]);
-                                game.Remove("Image");                                
+                                game.Remove("Image");
                             }
 
                             if (!game["IsoPath"].IsNull)
@@ -513,7 +508,7 @@ namespace Playnite.Database
                             action.Remove("IsPrimary");
                             action.Remove("IsBuiltIn");
                             action.Add("IsHandledByPlugin", handleByPlugin);
-               
+
                             var oldEmulator = action["EmulatorId"];
                             if (!oldEmulator.IsNull)
                             {
@@ -559,7 +554,7 @@ namespace Playnite.Database
                                 {
                                     fixApplied = true;
                                 }
-                                        
+
                             }
 
                             var otherActions = game["OtherActions"];
@@ -606,6 +601,52 @@ namespace Playnite.Database
                         db.Engine.UserVersion = 5;
                     }
 
+                    // 5 to 6
+                    if (db.Engine.UserVersion == 5 && DBVersion > 5)
+                    {
+                        // Remove _type from emulator profiles (was added by a bug in old versions)
+                        var emuCollection = db.GetCollection("emulators");
+                        foreach (var emulator in emuCollection.FindAll().ToList())
+                        {
+                            var update = false;
+                            var profiles = emulator["Profiles"];
+                            if (!profiles.IsNull)
+                            {
+                                foreach (BsonDocument profile in profiles.AsArray)
+                                {
+                                    if (profile.ContainsKey("_type"))
+                                    {
+                                        update = true;
+                                        profile.Remove("_type");
+                                    }
+                                }
+                            }
+
+                            if (update)
+                            {
+                                emuCollection.Update(emulator);
+                            }
+                        }
+                                                
+                        var gameCol = db.GetCollection("games");
+                        foreach (var game in gameCol.FindAll().ToList())
+                        {
+                            // Change game states object
+                            var state = game["State"];
+                            if (!state.IsNull)
+                            {
+                                game.Add("IsInstalled", state.AsDocument["Installed"].AsBoolean);
+                            }
+
+                            // Change game Id from int to Guid
+                            gameCol.Delete(game["_id"].AsInt32);
+                            game["_id"] = Guid.NewGuid();
+                            gameCol.Insert(game);
+                        }
+
+                        db.Engine.UserVersion = 6;
+                    }
+
                     trans.Commit();
                 }
                 catch (Exception e)
@@ -631,698 +672,313 @@ namespace Playnite.Database
             }
         }
 
-        public static bool GetMigrationRequired(string path)
+        public static void MigrateToNewFormat(string oldPath, string newPath)
         {
-            if (!File.Exists(path))
+            using (var db = new LiteDatabase(oldPath))
+            {
+                string ExportFile(Guid parentId, string fileId)
+                {
+                    if (!string.IsNullOrEmpty(fileId))
+                    {
+                        if (fileId.IsHttpUrl())
+                        {
+                            return fileId;
+                        }
+
+                        var cover = db.FileStorage.FindById(fileId);
+                        if (cover != null)
+                        {
+                            var newFileId = Path.Combine(parentId.ToString(), Guid.NewGuid() + Path.GetExtension(cover.Filename));
+                            var targetPath = Path.Combine(newPath, filesDirName, newFileId);
+                            FileSystem.PrepareSaveFile(targetPath);
+                            cover.SaveAs(targetPath);
+                            return newFileId;
+                        }
+                    }
+
+                    return null;
+                }
+
+                var gamesDir = Path.Combine(newPath, gamesDirName);
+                FileSystem.CreateDirectory(gamesDir);
+                var gameCol = db.GetCollection("games");
+                foreach (var game in gameCol.FindAll())
+                {
+                    var conGame = BsonMapper.Global.ToObject<OldModels.Ver6.Game>(game);
+                    var targetFile = Path.Combine(gamesDir, $"{conGame.Id.ToString()}.json");
+                    conGame.CoverImage = ExportFile(conGame.Id, conGame.CoverImage);
+                    conGame.Icon = ExportFile(conGame.Id, conGame.Icon);
+                    conGame.BackgroundImage = ExportFile(conGame.Id, conGame.BackgroundImage);
+                    File.WriteAllText(targetFile, Serialization.ToJson(conGame, false));
+                }
+
+                var platformsDir = Path.Combine(newPath, platformsDirName);
+                FileSystem.CreateDirectory(platformsDir);
+                var platformsCol = db.GetCollection("platforms");
+                foreach (var platform in platformsCol.FindAll())
+                {
+                    var conPlatform = BsonMapper.Global.ToObject<OldModels.Ver6.Platform>(platform);
+                    var targetFile = Path.Combine(platformsDir, $"{conPlatform.Id.ToString()}.json");
+                    conPlatform.Cover = ExportFile(conPlatform.Id, conPlatform.Cover);
+                    conPlatform.Icon = ExportFile(conPlatform.Id, conPlatform.Icon);
+                    File.WriteAllText(targetFile, Serialization.ToJson(conPlatform, false));
+                }
+
+                var emulatorsDir = Path.Combine(newPath, emulatorsDirName);
+                FileSystem.CreateDirectory(emulatorsDir);
+                var emulatorsCol = db.GetCollection("emulators");
+                foreach (var emulator in emulatorsCol.FindAll())
+                {
+                    var conEmulator = BsonMapper.Global.ToObject<OldModels.Ver6.Emulator>(emulator);
+                    var targetFile = Path.Combine(emulatorsDir, $"{conEmulator.Id.ToString()}.json");
+                    File.WriteAllText(targetFile, Serialization.ToJson(conEmulator, false));
+                }
+            }
+
+            var dbSet = new DatabaseSettings() { Version = 1 };
+            File.WriteAllText(Path.Combine(newPath, settingsFileName), Serialization.ToJson(dbSet));
+        }
+
+        public static string GetMigratedDbPath(string originalPath)
+        {
+            if (Path.IsPathRooted(originalPath))
+            {
+                var rootDir = Path.GetDirectoryName(originalPath);
+                var appData = Environment.ExpandEnvironmentVariables("%AppData%");
+                rootDir = rootDir.Replace(appData, "%AppData%");                
+                return Path.Combine(rootDir, Path.GetFileNameWithoutExtension(originalPath));
+            }
+            else
+            {
+                return Path.Combine("{PlayniteDir}", Path.GetFileNameWithoutExtension(originalPath));
+            }
+        }
+
+        public static string GetFullDbPath(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                return path;
+            }
+
+            if (path.Contains("{PlayniteDir}", StringComparison.OrdinalIgnoreCase))
+            {
+                return path?.Replace("{PlayniteDir}", PlaynitePaths.ProgramPath);
+            }
+            else if (path.Contains("%AppData%", StringComparison.OrdinalIgnoreCase))
+            {                
+                return path?.Replace("%AppData%", Environment.ExpandEnvironmentVariables("%AppData%"), StringComparison.OrdinalIgnoreCase);
+            }
+            else
+            {
+                return path;
+            }
+        }
+
+        public static bool GetMigrationRequired(string databasePath)
+        {
+            if (string.IsNullOrEmpty(databasePath))
+            {
+                throw new ArgumentNullException(nameof(databasePath));
+            }
+
+            if (databasePath.EndsWith(".db", StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            var fullPath = GetFullDbPath(databasePath);
+            var settingsPath = Path.Combine(fullPath, "database.json");
+            if (!File.Exists(settingsPath))
             {
                 return false;
             }
 
-            using (var db = new LiteDatabase(path))
+            var st = Serialization.FromJson<DatabaseSettings>(FileSystem.ReadFileAsStringSafe(settingsPath));
+            if (st == null)
             {
-                return GetMigrationRequired(db);
+                // This shouldn't in theory happen, but there are some wierd crash reports available for this.
+                return false;
+            }
+            else
+            {
+                return st.Version < NewFormatVersion;
             }
         }
 
-        public static bool GetMigrationRequired(LiteDatabase db)
+        public void OpenDatabase()
         {
-            return db.Engine.UserVersion < DBVersion;
-        }
-
-        public LiteDatabase OpenDatabase(string path)
-        {
-            Path = path;
-            return OpenDatabase();
-        }
-
-        public LiteDatabase OpenDatabase(MemoryStream stream)
-        {
-            Database = new LiteDatabase(stream);
-            GamesCollection = Database.GetCollection<Game>("games");
-            PlatformsCollection = Database.GetCollection<Platform>("platforms");
-            EmulatorsCollection = Database.GetCollection<Emulator>("emulators");
-            ActiveControllersCollection = Database.GetCollection<ActiveController>("controllers");
-            IsOpen = true;
-            return Database;
-        }
-
-        public LiteDatabase OpenDatabase()
-        {
-            if (string.IsNullOrEmpty(Path))
+            if (string.IsNullOrEmpty(DatabasePath))
             {
                 throw new Exception("Database path cannot be empty.");
             }
 
-            var dbExists = File.Exists(Path);
-            logger.Info("Opening db " + Path);
-            CloseDatabase();
+            var dbExists = File.Exists(DatabaseFileSettingsPath);
+            logger.Info("Opening db " + DatabasePath);
 
             if (!dbExists)
             {
-                FileSystem.CreateDirectory(Path);
+                FileSystem.CreateDirectory(DatabasePath);
+                FileSystem.CreateDirectory(GamesDirectoryPath);
+                FileSystem.CreateDirectory(FilesDirectoryPath);
             }
 
-            Database = new LiteDatabase($"Filename={Path};Mode=Exclusive");
-
-            // To force litedb to try to open file, should throw exceptuion if something is wrong with db file
-            Database.GetCollectionNames();
-
             if (!dbExists)
             {
-                Database.Engine.UserVersion = DBVersion;
+                Settings = new DatabaseSettings() { Version = NewFormatVersion };
             }
             else
             {
-                if (Database.Engine.UserVersion > DBVersion)
+                if (Settings.Version > NewFormatVersion)
                 {
-                    throw new Exception($"Database version {Database.Engine.UserVersion} is not supported.");
+                    throw new Exception($"Database version {Settings.Version} is not supported.");
                 }
 
-                if (GetMigrationRequired(Database))
+                if (GetMigrationRequired(DatabasePath))
                 {
                     throw new Exception("Database must be migrated before opening.");
                 }
             }
 
-            GamesCollection = Database.GetCollection<Game>("games");
-            PlatformsCollection = Database.GetCollection<Platform>("platforms");
-            EmulatorsCollection = Database.GetCollection<Emulator>("emulators");
-            ActiveControllersCollection = Database.GetCollection<ActiveController>("controllers");
-
-            // Reset indexes, should only happen in theory after db upgrade.
-            var gameIndexes = GamesCollection.GetIndexes().ToList();
-            if (gameIndexes.Count == 16)
-            {
-                gameIndexes.ForEach(a =>
-                {
-                    if (a.Field != "_id") GamesCollection.DropIndex(a.Field);
-                });
-            }
+            LoadCollections();
 
             // New DB setup
             if (!dbExists)
             {
-                GamesCollection.EnsureIndex(a => a.Id);
-                PlatformsCollection.EnsureIndex(a => a.Id);
-                EmulatorsCollection.EnsureIndex(a => a.Id);
-
                 // Generate default platforms
                 if (File.Exists(EmulatorDefinition.DefinitionsPath))
                 {
                     var platforms = EmulatorDefinition.GetDefinitions()
                         .SelectMany(a => a.Profiles.SelectMany(b => b.Platforms)).Distinct()
                         .Select(a => new Platform(a)).ToList();
-                    AddPlatform(platforms);
+                    Platforms.Add(platforms);
                 }
             }
 
-            // Reset game states in case they were not released properly
-            if (ActiveControllersCollection.Count() > 0)
-            {
-                foreach (var controller in ActiveControllersCollection.FindAll())
-                {
-                    var game = GamesCollection.FindById(controller.Game.Id);
-                    if (game != null)
-                    {
-                        game.State.SetState(null, false, false, false, false);
-                        UpdateGameInDatabase(game);
-                    }
-
-                    RemoveActiveController(controller.Game.Id);
-                }
-            }
-
-            var settings = GetDatabaseSettings();
-
-            // Fix for custom games.
-            // Needed when updating from 3.x to 4.x because installation states are handled differently.
-            if (settings?.InstStatesFixed != true)
-            {
-                foreach (var game in GamesCollection.Find(a => a.PluginId == Guid.Empty).ToList())
-                {
-                    if (!string.IsNullOrEmpty(game.InstallDirectory) || !string.IsNullOrEmpty(game.GameImagePath))
-                    {
-                        game.State.Installed = true;
-                    }
-                    else
-                    {
-                        // For UWP games which don't have installed dir
-                        if (game.PlayAction?.Path == "explorer.exe")
-                        {
-                            game.State.Installed = true;
-                        }
-                    }
-
-                    UpdateGameInDatabase(game);
-                }
-
-                if (settings != null)
-                {
-                    settings.InstStatesFixed = true;
-                }
-            }
-
-            if (settings == null)
-            {
-                settings = new DatabaseSettings()
-                {
-                    InstStatesFixed = true
-                };
-            }
-            
-            UpdateDatabaseSettings(settings);
             DatabaseOpened?.Invoke(this, null);
             IsOpen = true;
-            return Database;
         }
 
-        public void CloseDatabase()
+        #region Files
+
+        public string GetFileStoragePath(Guid parentId)
         {
-            if (Database == null)
+            var path = Path.Combine(FilesDirectoryPath, parentId.ToString());
+            FileSystem.CreateDirectory(path, false);
+            return path;
+        }
+
+        public string GetFullFilePath(string dbPath)
+        {
+            return Path.Combine(FilesDirectoryPath, dbPath);
+        }
+
+        public string AddFile(MetadataFile file, Guid parentId)
+        {
+            return AddFile(file.FileName, file.Content, parentId);
+        }
+
+        public string AddFile(string path, Guid parentId)
+        {
+            CheckDbState();
+            var fileName = Path.GetFileName(path);
+            var targetDir = Path.Combine(FilesDirectoryPath, parentId.ToString());
+            var dbPath = string.Empty;
+            lock (fileFilesLock)
+            {
+                // Re-use file if already part of db folder, don't copy.
+                if (Paths.AreEqual(targetDir, Path.GetDirectoryName(path)))
+                {
+                    dbPath = Path.Combine(parentId.ToString(), fileName);
+                }
+                else
+                {
+                    fileName = Guid.NewGuid().ToString() + Path.GetExtension(fileName);
+                    FileSystem.CopyFile(path, Path.Combine(targetDir, fileName));
+                    dbPath = Path.Combine(parentId.ToString(), fileName);
+                }
+            }
+
+            DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Added));
+            return dbPath;
+        }
+
+        public string AddFile(string fileName, byte[] content, Guid parentId)
+        {
+            CheckDbState();
+            var dbPath = Path.Combine(parentId.ToString(), Guid.NewGuid().ToString() + Path.GetExtension(fileName));
+            var targetPath = Path.Combine(FilesDirectoryPath, dbPath);
+            lock (fileFilesLock)
+            {
+                FileSystem.PrepareSaveFile(targetPath);
+                File.WriteAllBytes(targetPath, content);
+            }
+
+            DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Added));
+            return dbPath;
+        }
+
+        public void RemoveFile(string dbPath)
+        {
+            if (string.IsNullOrEmpty(dbPath))
             {
                 return;
             }
 
-            try
-            {
-                Database.Dispose();
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, "Failed to dispose LiteDB database object.");
-            }
-
-            GamesCollection = null;
-            PlatformsCollection = null;
-            EmulatorsCollection = null;
-            ActiveControllersCollection = null;
-            IsOpen = false;
-        }
-
-        public List<Game> GetGames()
-        {
             CheckDbState();
-            return GamesCollection.FindAll().ToList();
-        }
-
-        public Game GetGame(int id)
-        {
-            CheckDbState();
-            return GamesCollection.FindById(id);
-        }
-
-        public void AddGame(Game game)
-        {
-            CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
+            var filePath = GetFullFilePath(dbPath);
+            lock (fileFilesLock)
             {
-                game.Added = DateTime.Today;
-                GamesCollection.Insert(game);
-            }
-
-            OnGamesCollectionChanged(new List<Game>() { game }, new List<Game>());
-        }
-
-        public void AddGames(List<Game> games)
-        {
-            CheckDbState();
-            if (games == null || games.Count() == 0)
-            {
-                return;
-            }
-
-            foreach (var game in games)
-            {
-                game.Added = DateTime.Today;
-            }
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                GamesCollection.InsertBulk(games);
-            }
-
-            OnGamesCollectionChanged(games.ToList(), new List<Game>());
-        }
-
-        public void DeleteGame(int id)
-        {
-            var game = GetGame(id);
-            DeleteGame(game);
-        }
-
-        public void DeleteGame(Game game)
-        {
-            logger.Info(string.Format("Deleting game from database {0}, {1}", game.GameId, game.PluginId));
-            CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                GamesCollection.Delete(game.Id);
-                DeleteImageSafe(game.Icon, game);
-                DeleteImageSafe(game.CoverImage, game);
-            }
-
-            OnGamesCollectionChanged(new List<Game>(), new List<Game>() { game });
-        }
-
-        public void DeleteGames(List<Game> games)
-        {
-            CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                foreach (var game in games)
+                FileSystem.DeleteFileSafe(filePath);
+                var dir = Path.GetDirectoryName(filePath);
+                if (FileSystem.IsDirectoryEmpty(dir))
                 {
-                    logger.Info(string.Format("Deleting game from database {0}, {1}", game.GameId, game.PluginId));
-                    GamesCollection.Delete(game.Id);
-                    DeleteImageSafe(game.Icon, game);
-                    DeleteImageSafe(game.CoverImage, game);
+                    FileSystem.DeleteDirectory(dir);
                 }
             }
 
-            OnGamesCollectionChanged(new List<Game>(), games);
+            DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Removed));
         }
 
-        public void AddPlatform(Platform platform)
+        public BitmapImage GetFileAsImage(string dbPath)
         {
             CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                PlatformsCollection.Insert(platform);
-            }
-
-            OnPlatformsCollectionChanged(new List<Platform>() { platform }, new List<Platform>());
-        }
-
-        public void AddPlatform(List<Platform> platforms)
-        {
-            CheckDbState();
-            if (platforms == null || platforms.Count() == 0)
-            {
-                return;
-            }
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                PlatformsCollection.InsertBulk(platforms);
-            }
-
-            OnPlatformsCollectionChanged(platforms.ToList(), new List<Platform>());
-        }
-
-        public Platform GetPlatform(Guid id)
-        {
-            CheckDbState();
-            return PlatformsCollection.FindById(id);
-        }
-
-        public List<Platform> GetPlatforms()
-        {
-            CheckDbState();
-            return PlatformsCollection.FindAll().ToList();
-        }
-
-        public void RemovePlatform(Guid id)
-        {
-            var platform = GetPlatform(id);
-            RemovePlatform(platform);
-        }
-
-        public void RemovePlatform(Platform platform)
-        {
-            CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                PlatformsCollection.Delete(platform.Id);
-            }
-
-            OnPlatformsCollectionChanged(new List<Platform>(), new List<Platform>() { platform });
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                foreach (var game in GamesCollection.Find(a => a.PlatformId == platform.Id))
-                {
-                    game.PlatformId = Guid.Empty;
-                    UpdateGameInDatabase(game);
-                }
-            }
-        }
-
-        public void RemovePlatform(IEnumerable<Platform> platforms)
-        {
-            CheckDbState();
-            if (platforms == null || platforms.Count() == 0)
-            {
-                return;
-            }
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                foreach (var platform in platforms)
-                {
-                    PlatformsCollection.Delete(platform.Id);
-                }
-            }
-
-            OnPlatformsCollectionChanged(new List<Platform>(), platforms.ToList());
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                foreach (var platform in platforms)
-                {
-                    foreach (var game in GamesCollection.Find(a => a.PlatformId == platform.Id))
-                    {
-                        game.PlatformId = Guid.Empty;
-                        UpdateGameInDatabase(game);
-                    }
-                }
-            }
-        }
-
-        public void UpdatePlatform(Platform platform)
-        {
-            CheckDbState();
-            Platform oldData;
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                oldData = PlatformsCollection.FindById(platform.Id);
-                PlatformsCollection.Update(platform);
-            }
-
-            OnPlatformUpdated(new List<PlatformUpdateEvent>() { new PlatformUpdateEvent(oldData, platform) });
-        }
-
-        public void UpdatePlatform(List<Platform> platforms)
-        {
-            CheckDbState();
-            var updates = new List<PlatformUpdateEvent>();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                foreach (var platform in platforms)
-                {
-                    var oldData = PlatformsCollection.FindById(platform.Id);
-                    PlatformsCollection.Update(platform);
-
-                    updates.Add(new PlatformUpdateEvent(oldData, platform));
-                }
-            }
-
-            OnPlatformUpdated(updates);
-        }
-
-        public void AddEmulator(Emulator emulator)
-        {
-            CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                EmulatorsCollection.Insert(emulator);
-            }
-        }
-
-        public void AddEmulator(IEnumerable<Emulator> emulators)
-        {
-            CheckDbState();
-            if (emulators == null || emulators.Count() == 0)
-            {
-                return;
-            }
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                EmulatorsCollection.InsertBulk(emulators);
-            }
-        }
-
-        public void RemoveEmulator(Guid id)
-        {
-            CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                EmulatorsCollection.Delete(id);
-            }
-        }
-
-        public void RemoveEmulator(Emulator emulator)
-        {
-            RemoveEmulator(emulator.Id);
-        }
-
-        public void RemoveEmulator(IEnumerable<Emulator> emulators)
-        {
-            CheckDbState();
-            if (emulators == null || emulators.Count() == 0)
-            {
-                return;
-            }
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                foreach (var emulator in emulators)
-                {
-                    EmulatorsCollection.Delete(emulator.Id);
-                }
-            }
-        }
-
-        public void UpdateEmulator(Emulator emulator)
-        {
-            CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                EmulatorsCollection.Update(emulator);
-            }
-        }
-
-        public void UpdateEmulator(List<Emulator> emulators)
-        {
-            CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                foreach (var emulator in emulators)
-                {
-                    EmulatorsCollection.Update(emulator);
-                }
-            }
-        }
-
-        public Emulator GetEmulator(Guid id)
-        {
-            CheckDbState();
-            return EmulatorsCollection.FindById(id);
-        }
-
-        public List<Emulator> GetEmulators()
-        {
-            CheckDbState();
-            return EmulatorsCollection.FindAll().ToList();
-        }
-
-        public string AddFileNoDuplicate(MetadataFile file)
-        {
-            return AddFileNoDuplicate(file.FileId, file.FileName, file.Content);
-        }
-
-        public string AddFileNoDuplicate(string id, string name, byte[] data)
-        {
-            CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                using (var stream = new MemoryStream(data))
-                {
-                    var hash = FileSystem.GetMD5(stream);
-                    var dbFile = Database.FileStorage.FindAll().FirstOrDefault(a => a.Metadata.ContainsKey("checksum") && a.Metadata["checksum"].AsString == hash);
-                    if (dbFile != null)
-                    {
-                        return dbFile.Id;
-                    }
-
-                    stream.Seek(0, SeekOrigin.Begin);
-                    var file = Database.FileStorage.Upload(id, name, stream);
-                    file.Metadata.Add("checksum", hash);
-                    Database.FileStorage.SetMetadata(id, file.Metadata);
-                    return file.Id;
-                }
-            }
-        }
-
-        public void AddFile(MetadataFile file)
-        {
-            AddFile(file.FileId, file.FileName, file.Content);
-        }
-
-        public void AddFile(string id, string name, byte[] data)
-        {
-            CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                using (var stream = new MemoryStream(data))
-                {
-                    var file = Database.FileStorage.Upload(id, name, stream);
-                    stream.Seek(0, SeekOrigin.Begin);
-                    var hash = FileSystem.GetMD5(stream);
-                    file.Metadata.Add("checksum", hash);
-                    Database.FileStorage.SetMetadata(id, file.Metadata);
-                }
-            }
-        }
-
-        public void DeleteFile(string id)
-        {
-            CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                if (Database.FileStorage.Delete(id) == false)
-                {
-                    logger.Warn($"Failed to delte file {id} for uknown reason.");
-                }
-            }
-        }
-
-        public MemoryStream GetFileStream(string id)
-        {
-            CheckDbState();
-
-            var file = Database.FileStorage.FindById(id);
-            if (file == null)
+            var filePath = GetFullFilePath(dbPath);
+            if (!File.Exists(filePath))
             {
                 return null;
             }
 
-            using (Database.Engine.Locker.Reserved())
+            lock (fileFilesLock)
             {
-                using (var fStream = file.OpenRead())
+                using (var fStream = FileSystem.OpenFileStreamSafe(filePath))
+                using (var wrapper = new WrappingStream(fStream))
                 {
-                    var stream = new MemoryStream();
-                    fStream.CopyTo(stream);
-                    stream.Seek(0, SeekOrigin.Begin);
-                    return stream;
+                    return BitmapExtensions.BitmapFromStream(wrapper);
                 }
             }
         }
 
-        public LiteFileInfo GetFile(string id)
+        public void CopyFile(string dbPath, string targetPath)
         {
             CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
+            lock (fileFilesLock)
             {
-                return Database.FileStorage.FindById(id);
+                var filePath = GetFullFilePath(dbPath);
+                FileSystem.PrepareSaveFile(targetPath);
+                File.Copy(filePath, targetPath);
             }
         }
 
-        public BitmapImage GetFileImage(string id)
-        {
-            CheckDbState();
-
-            var file = GetFile(id);
-            if (file == null)
-            {
-                return null;
-            }
-
-            using (var fStream = GetFileStream(id))
-            {
-                var bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.StreamSource = fStream;
-                bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                bitmap.EndInit();
-                bitmap.Freeze();
-                return bitmap;
-            }
-        }
-
-        public void SaveFile(string id, string path)
-        {
-            CheckDbState();
-
-            var file = Database.FileStorage.FindById(id);
-            if (file == null)
-            {
-                throw new Exception($"File {id} not found in database.");
-            }
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                file.SaveAs(path, true);
-            }
-        }
-
-        /// <summary>
-        /// Deletes image from database only if it's not used by any object.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="game"></param>
-        public void DeleteImageSafe(string id, Game game)
-        {
-            if (string.IsNullOrEmpty(id))
-            {
-                return;
-            }
-
-            CheckDbState();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                var games = GamesCollection.Find(a => (a.Icon == id || a.CoverImage == id || a.BackgroundImage == id) && a.Id != game.Id);
-                if (games.Count() == 0)
-                {
-                    Database.FileStorage.Delete(id);
-                }
-            }
-        }
-
-        public void UpdateGamesInDatabase(List<Game> games)
-        {
-            CheckDbState();
-            var updates = new List<GameUpdateEvent>();
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                foreach (var game in games)
-                {
-                    var oldData = GamesCollection.FindById(game.Id);
-                    GamesCollection.Update(game);
-                    updates.Add(new GameUpdateEvent(oldData, game));
-                }
-            }
-
-            OnGameUpdated(updates);
-        }
-
-        public void UpdateGameInDatabase(Game game)
-        {
-            CheckDbState();
-            Game oldData;
-
-            using (Database.Engine.Locker.Reserved())
-            {
-                oldData = GamesCollection.FindById(game.Id);
-                GamesCollection.Update(game);
-            }
-
-            OnGameUpdated(new List<GameUpdateEvent>() { new GameUpdateEvent(oldData, game) });
-        }
+        #endregion Files
 
         public void AssignPcPlatform(Game game)
         {
-            var platform = PlatformsCollection.FindOne(a => a.Name == "PC");
+            var platform = Platforms.FirstOrDefault(a => a.Name == "PC");
             if (platform == null)
             {
                 platform = new Platform("PC");
-                AddPlatform(platform);
+                Platforms.Add(platform);
             }
 
             game.PlatformId = platform.Id;
@@ -1330,155 +986,36 @@ namespace Playnite.Database
 
         public void AssignPcPlatform(List<Game> games)
         {
-            var platform = PlatformsCollection.FindOne(a => a.Name == "PC");
+            var platform = Platforms.FirstOrDefault(a => a.Name == "PC");
             if (platform == null)
             {
                 platform = new Platform("PC");
-                AddPlatform(platform);
+                Platforms.Add(platform);
             }
 
             foreach (var game in games)
             {
                 game.PlatformId = platform.Id;
             }
-
-            UpdateGamesInDatabase(games);
-        }
-
-        public void ImportCategories(List<Game> sourceGames)
-        {
-            using (var buffer = BufferedUpdate())
-            {
-                foreach (var game in sourceGames)
-                {
-                    var dbGame = GamesCollection.FindOne(a => a.PluginId == game.PluginId && a.GameId == game.GameId);
-                    if (dbGame == null)
-                    {
-                        continue;
-                    }
-
-                    dbGame.Categories = game.Categories;
-                    UpdateGameInDatabase(dbGame);
-                }
-            }
         }
 
         public void BeginBufferUpdate()
         {
-            IsEventBufferEnabled = true;
+            Platforms.BeginBufferUpdate();
+            Emulators.BeginBufferUpdate();
+            Games.BeginBufferUpdate();
         }
 
         public void EndBufferUpdate()
         {
-            IsEventBufferEnabled = false;
-
-            if (AddedPlatformsEventBuffer.Count > 0 || RemovedPlatformsEventBuffer.Count > 0)
-            {
-                OnPlatformsCollectionChanged(AddedPlatformsEventBuffer.ToList(), RemovedPlatformsEventBuffer.ToList());
-                AddedPlatformsEventBuffer.Clear();
-                RemovedPlatformsEventBuffer.Clear();
-            }
-
-            if (PlatformUpdatesEventBuffer.Count > 0)
-            {
-                OnPlatformUpdated(PlatformUpdatesEventBuffer.ToList());
-                PlatformUpdatesEventBuffer.Clear();
-            }
-
-            if (AddedGamesEventBuffer.Count > 0 || RemovedGamesEventBuffer.Count > 0)
-            {
-                OnGamesCollectionChanged(AddedGamesEventBuffer.ToList(), RemovedGamesEventBuffer.ToList());
-                AddedGamesEventBuffer.Clear();
-                RemovedGamesEventBuffer.Clear();
-            }
-
-            if (GameUpdatesEventBuffer.Count > 0)
-            {
-                OnGameUpdated(GameUpdatesEventBuffer.ToList());
-                GameUpdatesEventBuffer.Clear();
-            }
+            Platforms.EndBufferUpdate();
+            Emulators.EndBufferUpdate();
+            Games.EndBufferUpdate();
         }
 
         public IDisposable BufferedUpdate()
         {
             return new EventBufferHandler(this);
-        }
-
-        private void OnPlatformsCollectionChanged(List<Platform> addedPlatforms, List<Platform> removedPlatforms)
-        {
-            if (!IsEventBufferEnabled)
-            {
-                PlatformsCollectionChanged?.Invoke(this, new PlatformsCollectionChangedEventArgs(addedPlatforms, removedPlatforms));
-            }
-            else
-            {
-                AddedPlatformsEventBuffer.AddRange(addedPlatforms);
-                RemovedPlatformsEventBuffer.AddRange(removedPlatforms);
-            }
-        }
-
-        private void OnPlatformUpdated(List<PlatformUpdateEvent> updates)
-        {
-            if (!IsEventBufferEnabled)
-            {
-                PlatformUpdated?.Invoke(this, new PlatformUpdatedEventArgs(updates));
-            }
-            else
-            {
-                PlatformUpdatesEventBuffer.AddRange(updates);
-            }
-        }
-
-        private void OnGamesCollectionChanged(List<Game> addedGames, List<Game> removedGames)
-        {
-            if (!IsEventBufferEnabled)
-            {
-                GamesCollectionChanged?.Invoke(this, new GamesCollectionChangedEventArgs(addedGames, removedGames));
-            }
-            else
-            {
-                AddedGamesEventBuffer.AddRange(addedGames);
-                RemovedGamesEventBuffer.AddRange(removedGames);
-            }
-        }
-
-        private void OnGameUpdated(List<GameUpdateEvent> updates)
-        {
-            if (!IsEventBufferEnabled)
-            {
-                GameUpdated?.Invoke(this, new GameUpdatedEventArgs(updates));
-            }
-            else
-            {
-                GameUpdatesEventBuffer.AddRange(updates);
-            }
-        }
-
-        public ActiveController AddActiveController(IGameController controller)
-        {
-            CheckDbState();
-            var ctrl = new ActiveController(controller);
-            using (Database.Engine.Locker.Reserved())
-            {
-                ActiveControllersCollection.Upsert(ctrl);
-            }
-
-            return ctrl;
-        }
-
-        public ActiveController GetActiveController(int gameId)
-        {
-            CheckDbState();
-            return ActiveControllersCollection.FindOne(a => a.Game.Id == gameId);
-        }
-
-        public void RemoveActiveController(int gameId)
-        {
-            CheckDbState();
-            using (Database.Engine.Locker.Reserved())
-            {
-                ActiveControllersCollection.Delete(a => a.Game.Id == gameId);
-            }
         }
     }
 }

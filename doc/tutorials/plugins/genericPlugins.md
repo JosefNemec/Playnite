@@ -21,8 +21,8 @@ Return null or specify empty method if you don't want to provide implementation 
 
 | Member | Description |
 | -- | -- |
-| Settings | [Plugin settings object.](pluginSettings.md) |
-| SettingsView | [Plugin settings view.](pluginSettings.md) |
+| GetSettings | [Plugin settings object.](pluginSettings.md) |
+| GetSettingsView | [Plugin settings view.](pluginSettings.md) |
 | GetFunctions | Adds executable menu entries into `Extensions` submenu in Playnite's main menu. |
 
 
@@ -46,6 +46,16 @@ public class TestPlugin : IGenericPlugin
     public void Dispose()
     {
         // Add code to be executed when plugin is being unloaded.
+    }
+
+    public ISettings GetSettings(bool firstRunSettings)
+    {
+        return null;
+    }
+
+    public UserControl GetSettingsView(bool firstRunView)
+    {
+        return null
     }
 
     public IEnumerable<ExtensionFunction> GetFunctions()

@@ -28,7 +28,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 updateProgress = value;
-                OnPropertyChanged("UpdateProgress");
+                OnPropertyChanged();
             }
         }
 
@@ -39,7 +39,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 showProgress = value;
-                OnPropertyChanged("ShowProgress");
+                OnPropertyChanged();
             }
         }
 

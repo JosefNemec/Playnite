@@ -1,5 +1,4 @@
-﻿using LiteDB;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,22 +12,8 @@ namespace Playnite.SDK.Models
     /// <summary>
     /// Represents emulator profile.
     /// </summary>
-    public class EmulatorProfile : ObservableObject
-    {
-        private Guid id;
-        /// <summary>
-        /// Gets or sets profile id.
-        /// </summary>
-        public Guid Id
-        {
-            get => id;
-            set
-            {
-                id = value;
-                OnPropertyChanged("Id");
-            }
-        }
-        
+    public class EmulatorProfile : DatabaseObject
+    {        
         private string name;
         /// <summary>
         /// Gets or sets emulator profile name.
@@ -39,7 +24,7 @@ namespace Playnite.SDK.Models
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged();
             }
         }
 
@@ -53,7 +38,7 @@ namespace Playnite.SDK.Models
             set
             {
                 platforms = value;
-                OnPropertyChanged("Platforms");
+                OnPropertyChanged();
             }
         }
         
@@ -67,7 +52,7 @@ namespace Playnite.SDK.Models
             set
             {
                 imageExtensions = value;
-                OnPropertyChanged("ImageExtensions");
+                OnPropertyChanged();
             }
         }
 
@@ -81,7 +66,7 @@ namespace Playnite.SDK.Models
             set
             {
                 executable = value;
-                OnPropertyChanged("Executable");
+                OnPropertyChanged();
             }
         }
 
@@ -95,7 +80,7 @@ namespace Playnite.SDK.Models
             set
             {
                 arguments = value;
-                OnPropertyChanged("Arguments");
+                OnPropertyChanged();
             }
         }
 
@@ -109,7 +94,7 @@ namespace Playnite.SDK.Models
             set
             {
                 workingDirectory = value;
-                OnPropertyChanged("WorkingDirectory");
+                OnPropertyChanged();
             }
         }
 
@@ -125,33 +110,16 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Creates new instance of EmulatorProfile.
         /// </summary>
-        public EmulatorProfile()
+        public EmulatorProfile() : base()
         {
-            Id = Guid.NewGuid();
         }
     }
 
     /// <summary>
     /// Represents system emulator.
     /// </summary>
-    public class Emulator : ObservableObject
+    public class Emulator : DatabaseObject
     {
-
-        private Guid id;
-        /// <summary>
-        /// Gets or sets emulator id.
-        /// </summary>
-        [BsonId]
-        public Guid Id
-        {
-            get => id;
-            set
-            {
-                id = value;
-                OnPropertyChanged("Id");
-            }
-        }
-
         private string name;
         /// <summary>
         /// Gets or sets emulator name.
@@ -162,7 +130,7 @@ namespace Playnite.SDK.Models
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged();
             }
         }
 
@@ -176,16 +144,15 @@ namespace Playnite.SDK.Models
             set
             {
                 profile = value;
-                OnPropertyChanged("Profiles");
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
         /// Creates new instance of Emulator.
         /// </summary>
-        public Emulator()
+        public Emulator() : base()
         {
-            Id = Guid.NewGuid();
         }
 
         /// <summary>

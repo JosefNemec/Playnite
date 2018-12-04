@@ -30,7 +30,7 @@ namespace Playnite.Metadata
             set
             {
                 import = value;
-                OnPropertyChanged("Import");
+                OnPropertyChanged();
             }
         }
 
@@ -41,7 +41,7 @@ namespace Playnite.Metadata
             set
             {
                 source = value;
-                OnPropertyChanged("Source");
+                OnPropertyChanged();
             }
         }
 
@@ -69,7 +69,7 @@ namespace Playnite.Metadata
             set
             {
                 gamesSource = value;
-                OnPropertyChanged("GamesSource");
+                OnPropertyChanged();
             }
         }
 
@@ -84,7 +84,7 @@ namespace Playnite.Metadata
             set
             {
                 skipExistingValues = value;
-                OnPropertyChanged("SkipExistingValues");
+                OnPropertyChanged();
             }
         }
 
@@ -95,7 +95,7 @@ namespace Playnite.Metadata
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged();
             }
         }
 
@@ -106,7 +106,7 @@ namespace Playnite.Metadata
             set
             {
                 genre = value;
-                OnPropertyChanged("Genre");
+                OnPropertyChanged();
             }
         }
 
@@ -117,7 +117,7 @@ namespace Playnite.Metadata
             set
             {
                 releaseDate = value;
-                OnPropertyChanged("ReleaseDate");
+                OnPropertyChanged();
             }
         }
 
@@ -128,7 +128,7 @@ namespace Playnite.Metadata
             set
             {
                 developer = value;
-                OnPropertyChanged("Developer");
+                OnPropertyChanged();
             }
         }
 
@@ -139,7 +139,7 @@ namespace Playnite.Metadata
             set
             {
                 publisher = value;
-                OnPropertyChanged("Publisher");
+                OnPropertyChanged();
             }
         }
 
@@ -150,7 +150,7 @@ namespace Playnite.Metadata
             set
             {
                 tag = value;
-                OnPropertyChanged("Tag");
+                OnPropertyChanged();
             }
         }
 
@@ -161,7 +161,7 @@ namespace Playnite.Metadata
             set
             {
                 description = value;
-                OnPropertyChanged("Description");
+                OnPropertyChanged();
             }
         }
 
@@ -172,7 +172,7 @@ namespace Playnite.Metadata
             set
             {
                 coverImage = value;
-                OnPropertyChanged("CoverImage");
+                OnPropertyChanged();
             }
         }
 
@@ -183,7 +183,7 @@ namespace Playnite.Metadata
             set
             {
                 backgroundImage = value;
-                OnPropertyChanged("BackgroundImage");
+                OnPropertyChanged();
             }
         }
 
@@ -194,7 +194,7 @@ namespace Playnite.Metadata
             set
             {
                 icon = value;
-                OnPropertyChanged("Icon");
+                OnPropertyChanged();
             }
         }
 
@@ -205,7 +205,7 @@ namespace Playnite.Metadata
             set
             {
                 links = value;
-                OnPropertyChanged("Links");
+                OnPropertyChanged();
             }
         }
 
@@ -216,7 +216,7 @@ namespace Playnite.Metadata
             set
             {
                 criticScore = value;
-                OnPropertyChanged("CriticScore");
+                OnPropertyChanged();
             }
         }
 
@@ -227,7 +227,7 @@ namespace Playnite.Metadata
             set
             {
                 communityScore = value;
-                OnPropertyChanged("CommunityScore");
+                OnPropertyChanged();
             }
         }
 

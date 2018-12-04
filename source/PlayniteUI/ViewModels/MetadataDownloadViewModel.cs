@@ -28,11 +28,11 @@ namespace PlayniteUI.ViewModels
             set
             {
                 viewTabIndex = value;
-                OnPropertyChanged("ViewTabIndex");
-                OnPropertyChanged("ShowDownloadButton");
-                OnPropertyChanged("ShowNextButton");
-                OnPropertyChanged("ShowBackButton");
-                OnPropertyChanged("ShowFinishButton");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowDownloadButton));
+                OnPropertyChanged(nameof(ShowNextButton));
+                OnPropertyChanged(nameof(ShowBackButton));
+                OnPropertyChanged(nameof(ShowFinishButton));
             }
         }
 
@@ -68,11 +68,11 @@ namespace PlayniteUI.ViewModels
             {
                 mode = value;
                 ViewTabIndex = mode == ViewMode.Manual ? 0 : 1;
-                OnPropertyChanged("Mode");
-                OnPropertyChanged("ShowDownloadButton");
-                OnPropertyChanged("ShowNextButton");
-                OnPropertyChanged("ShowBackButton");
-                OnPropertyChanged("ShowFinishButton");
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowDownloadButton));
+                OnPropertyChanged(nameof(ShowNextButton));
+                OnPropertyChanged(nameof(ShowBackButton));
+                OnPropertyChanged(nameof(ShowFinishButton));
             }
         }
 
@@ -87,7 +87,7 @@ namespace PlayniteUI.ViewModels
             set
             {
                 settings = value;
-                OnPropertyChanged("Settings");
+                OnPropertyChanged();
             }
         }
 

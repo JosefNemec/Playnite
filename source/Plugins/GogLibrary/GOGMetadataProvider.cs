@@ -59,22 +59,31 @@ namespace GogLibrary
 
                 var icon = HttpDownloader.DownloadData("http:" + gameDetail.images.icon);
                 var iconName = Path.GetFileName(new Uri(gameDetail.images.icon).AbsolutePath);
-                var image = HttpDownloader.DownloadData("http:" + gameDetail.images.logo2x);
-                var imageName = Path.GetFileName(new Uri(gameDetail.images.logo2x).AbsolutePath);
+                metadata.Icon = new MetadataFile(iconName, icon);
 
-                metadata.Icon = new MetadataFile(
-                    string.Format("images/gog/{0}/{1}", id, iconName),
-                    iconName,
-                    icon
-                );
+                if (metadata.StoreDetails != null)
+                {
+                    var imageUrl = metadata.StoreDetails.image + "_product_card_v2_mobile_slider_639.jpg";
+                    var image = HttpDownloader.DownloadData(imageUrl);
+                    var imageName = Path.GetFileName(new Uri(imageUrl).AbsolutePath);
+                    metadata.Image = new MetadataFile(imageName, image);
+                }
+                else
+                {
+                    var image = HttpDownloader.DownloadData("http:" + gameDetail.images.logo2x);
+                    var imageName = Path.GetFileName(new Uri(gameDetail.images.logo2x).AbsolutePath);
+                    metadata.Image = new MetadataFile(imageName, image);
+                }
 
-                metadata.Image = new MetadataFile(
-                    string.Format("images/gog/{0}/{1}", id, imageName),
-                    imageName,
-                    image
-                );
-
-                metadata.BackgroundImage = "http:" + gameDetail.images.background;
+                if (metadata.StoreDetails != null)
+                {
+                    var url = metadata.StoreDetails.galaxyBackgroundImage ?? metadata.StoreDetails.backgroundImage;
+                    metadata.BackgroundImage = url.Replace(".jpg", "_bg_crop_1920x655.jpg");
+                }
+                else
+                {
+                    metadata.BackgroundImage = "http:" + gameDetail.images.background;
+                }
             }
 
             return metadata;

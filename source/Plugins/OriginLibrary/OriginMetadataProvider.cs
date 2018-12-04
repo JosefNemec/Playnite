@@ -1,4 +1,5 @@
-﻿using OriginLibrary.Models;
+﻿using Newtonsoft.Json.Linq;
+using OriginLibrary.Models;
 using OriginLibrary.Services;
 using Playnite;
 using Playnite.SDK;
@@ -41,16 +42,25 @@ namespace OriginLibrary
             {
                 StoreDetails = OriginApiClient.GetGameStoreData(id)
             };
-
+        
             var imageUrl = data.StoreDetails.imageServer + data.StoreDetails.i18n.packArtLarge;
             var imageData = HttpDownloader.DownloadData(imageUrl);
             var imageName = Guid.NewGuid() + Path.GetExtension(new Uri(imageUrl).AbsolutePath);
+            data.Image = new MetadataFile(imageName, imageData);
 
-            data.Image = new MetadataFile(
-                string.Format("images/origin/{0}/{1}", id.Replace(":", ""), imageName),
-                imageName,
-                imageData
-            );
+            if (!string.IsNullOrEmpty(data.StoreDetails.offerPath))
+            {
+                data.StoreMetadata = OriginApiClient.GetStoreMetadata(data.StoreDetails.offerPath);
+                var bkData = data.StoreMetadata?.gamehub.components.items?.FirstOrDefault(a => a.ContainsKey("origin-store-pdp-hero"));
+                if (bkData != null)
+                {
+                    var bk = (bkData["origin-store-pdp-hero"] as JObject).ToObject<Dictionary<string, object>>();
+                    if (bk.TryGetValue("background-image", out var backgroundUrl))
+                    {
+                        data.BackgroundImage = backgroundUrl.ToString();
+                    }
+                }
+            }
 
             return data;
         }
@@ -75,6 +85,7 @@ namespace OriginLibrary
             game.Publishers = new ComparableList<string>() { metadata.StoreDetails.publisherFacetKey };
             game.Genres = new ComparableList<string>(metadata.StoreDetails.genreFacetKey?.Split(','));
             game.ReleaseDate = metadata.StoreDetails.platforms.First(a => a.platform == "PCWIN").releaseDate;
+            game.BackgroundImage = metadata.BackgroundImage;
 
             if (!string.IsNullOrEmpty(metadata.StoreDetails.i18n.gameManualURL))
             {
@@ -113,12 +124,7 @@ namespace OriginLibrary
                 if (exeIcon != null)
                 {
                     var iconName = Guid.NewGuid() + ".png";
-
-                    metadata.Icon = new MetadataFile(
-                        string.Format("images/origin/{0}/{1}", game.GameId.Replace(":", ""), iconName),
-                        iconName,
-                        exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png)
-                    );
+                    metadata.Icon = new MetadataFile(iconName, exeIcon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
                 }
             }
 

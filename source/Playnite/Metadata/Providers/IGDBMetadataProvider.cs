@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Playnite.Services;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
-using Playnite.Models;
 using System.Globalization;
 using Playnite.Database;
 using System.IO;
@@ -116,7 +115,7 @@ namespace Playnite.Metadata.Providers
             if (!string.IsNullOrEmpty(game.CoverImage))
             {
                 var name = Path.GetFileName(game.CoverImage);
-                image = new MetadataFile($"images/custom/{name}", name, HttpDownloader.DownloadData(game.CoverImage));
+                image = new MetadataFile(name, HttpDownloader.DownloadData(game.CoverImage));
             }
 
             return new GameMetadata(game, null, image, string.Empty);

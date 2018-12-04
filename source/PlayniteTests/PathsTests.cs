@@ -15,15 +15,15 @@ namespace PlayniteTests
         [Test]
         public void GetValidFilePathTest()
         {
-            Assert.IsTrue(Paths.GetValidFilePath(@"test.db"));
-            Assert.IsTrue(Paths.GetValidFilePath(@"c:\test.db"));
-            Assert.IsTrue(Paths.GetValidFilePath(@"..\test.db"));
+            Assert.IsTrue(Paths.IsValidFilePath(@"test.db"));
+            Assert.IsTrue(Paths.IsValidFilePath(@"c:\test.db"));
+            Assert.IsTrue(Paths.IsValidFilePath(@"..\test.db"));
 
-            Assert.IsFalse(Paths.GetValidFilePath(@"c:\test"));
-            Assert.IsFalse(Paths.GetValidFilePath(@"q:\test.db"));
-            Assert.IsFalse(Paths.GetValidFilePath(string.Empty));
-            Assert.IsFalse(Paths.GetValidFilePath(@"test"));
-            Assert.IsFalse(Paths.GetValidFilePath(@"..\test"));
+            Assert.IsFalse(Paths.IsValidFilePath(@"c:\test"));
+            Assert.IsFalse(Paths.IsValidFilePath(@"q:\test.db"));
+            Assert.IsFalse(Paths.IsValidFilePath(string.Empty));
+            Assert.IsFalse(Paths.IsValidFilePath(@"test"));
+            Assert.IsFalse(Paths.IsValidFilePath(@"..\test"));
         }
 
         [Test]

@@ -6,6 +6,7 @@
              xmlns:steam="clr-namespace:SteamLibrary"
              xmlns:pcmd="clr-namespace:PlayniteUI.Commands"
              xmlns:pui="clr-namespace:PlayniteUI"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"              
              d:DesignHeight="400" d:DesignWidth="600">
     
@@ -19,6 +20,22 @@
         <pui:NegateConverter x:Key="NegateConverter" />
         <pui:EnumConverter x:Key="EnumConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
+                            x:Key="BackgroundSourceEnumValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="steam:BackgroundSource" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ComboBox x:Key="BackgroundSourceBox" x:Shared="False"
+                    SelectedValue="{Binding BackgroundSource}"
+                    ItemsSource="{Binding Source={StaticResource BackgroundSourceEnumValues}}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={steam:BackgroundSourceToStringConverter}}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
     </UserControl.Resources>
 
     <StackPanel>
@@ -89,11 +106,13 @@
             </DockPanel>
         </DockPanel>
 
-        <CheckBox Content="{DynamicResource LOCBackgroundImageScreenOption}"
-                  DockPanel.Dock="Top" Margin="0,15,0,5"
-                  ToolTip="{DynamicResource LOCBackgroundImageScreenOptionTooltip}"
-                  ToolTipService.InitialShowDelay="0"
-                  IsChecked="{Binding PreferScreenshotForBackground}"/>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,15,0,5" HorizontalAlignment="Left"
+                    ToolTip="{DynamicResource LOCBackgroundImageScreenOptionTooltip}"
+                    ToolTipService.InitialShowDelay="0">
+            <TextBlock Text="{DynamicResource LOCSteamBackgroundSource}"
+                       VerticalAlignment="Center"/>
+            <ContentControl Content="{StaticResource BackgroundSourceBox}" Margin="10,0,0,0" />
+        </StackPanel>       
 
         <TextBlock Text="{DynamicResource LOCSettingsSteamImportCategories}"
                    DockPanel.Dock="Top" Margin="0,25,5,5"
