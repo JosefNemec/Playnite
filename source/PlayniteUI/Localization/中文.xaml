@@ -238,6 +238,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsShowIconList">在列表视图上显示游戏图标</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">禁用硬件加速（需要重新启动）</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">遇到卡顿或类似的用户界面问题时使用</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness">禁用DPI缩放（需要重启）</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">显示Steam好友按钮</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">显示背景图片</sys:String>
     <sys:String x:Key="LOCSettingsSkin">主题</sys:String>
@@ -282,9 +283,11 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsFullscreenRows">行数</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">列数</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">详细视图行数</sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOption">首选游戏截图而不是商店背景图片</sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite将使用可用的游戏截图作为背景，而不是商店的背景图片。
-不适用于现有游戏。</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSource">背景图片来源：</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceImage">游戏图像</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">商店截图</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceStore">商店背景</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">如果不重新下载元数据，则不会应用追溯于现有游戏。</sys:String>
 
     <sys:String x:Key="LOCImportError">导入错误</sys:String>
     <sys:String x:Key="LOCLoginChecking">正在检查身份验证状态...</sys:String>
@@ -498,6 +501,9 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCExitPlaynite">退出Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">库</sys:String>
     <sys:String x:Key="LOCUpdateAll">全部更新</sys:String>
+    <sys:String x:Key="LOCExtensionCreatedBy">制作者：</sys:String>
+    <sys:String x:Key="LOCExtensionVersion">版本：</sys:String>
+    <sys:String x:Key="LOCExtensionModule">模块：</sys:String>
     
     <sys:String x:Key="LOCEmulatorArguments">模拟器参数</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">模拟器其他参数</sys:String>
