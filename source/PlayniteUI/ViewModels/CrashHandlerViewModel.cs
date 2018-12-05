@@ -109,6 +109,12 @@ namespace PlayniteUI.ViewModels
                 return;
             }
 
+            if (PlayniteEnvironment.InOfflineMode)
+            {
+                Explorer.NavigateToFileSystemEntry(diagPath);
+                return;
+            }
+
             try
             {
                 var uploadedId = new ServicesClient().UploadDiagPackage(diagPath);

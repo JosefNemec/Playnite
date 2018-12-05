@@ -397,6 +397,9 @@
                                           ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
                                           Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"
                                           Margin="0,45,0,0"/>
+                                <CheckBox Content="{DynamicResource LOCSettingsDisableDpiAwareness}"
+                                          Name="CheckDisableDpiAwareness" IsChecked="{Binding Settings.DisableDpiAwareness}"
+                                          Margin="0,15,0,0"/>
                                 <Button Name="ButtonClearWebCace" Content="{DynamicResource LOCSettingsClearWebCache}"
                                         HorizontalAlignment="Left" Margin="0,45,0,0"
                                         ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"
@@ -417,15 +420,15 @@
                                 <StackPanel Grid.Column="1" DataContext="{Binding SelectedItem, ElementName=ListExtensions}"
                                             Margin="10,5,0,0">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock FontWeight="Bold" Text="Created By:" />
+                                        <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionCreatedBy}" />
                                         <TextBlock Text="{Binding Description.Author}" Margin="5,0,0,0" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                                        <TextBlock FontWeight="Bold" Text="Version:" />
+                                        <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionVersion}" />
                                         <TextBlock Text="{Binding Description.Version}" Margin="5,0,0,0" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                                        <TextBlock FontWeight="Bold" Text="Module:" />
+                                        <TextBlock FontWeight="Bold" Text="{DynamicResource LOCExtensionModule}" />
                                         <TextBlock Text="{Binding Description.Module}" Margin="5,0,0,0" />
                                     </StackPanel>
                                     <CheckBox Content="{DynamicResource LOCEnabledTitle}" Margin="0,15,0,0"

@@ -235,27 +235,29 @@ namespace Playnite.Metadata
 
                 for (int i = 0; i < games.Count; i++)
                 {
-                    if (cancelToken?.IsCancellationRequested == true)
-                    {
-                        return;
-                    }
-
-                    GameMetadata storeData = null;
-                    GameMetadata igdbData = null;
-                    GameMetadata gameData = null;
-
-                    // We need to get new instance from DB in case game got edited or deleted.
-                    // We don't want to block game editing while metadata is downloading for other games.
-                    var game = database.Games[games[i].Id]?.CloneJson();
-                    if (game == null)
-                    {
-                        logger.Warn($"Game {game.GameId} no longer in DB, skipping metadata download.");
-                        processCallback?.Invoke(null, i, games.Count);
-                        continue;
-                    }
+                    Game game = null;
 
                     try
                     {
+                        if (cancelToken?.IsCancellationRequested == true)
+                        {
+                            return;
+                        }
+
+                        GameMetadata storeData = null;
+                        GameMetadata igdbData = null;
+                        GameMetadata gameData = null;
+
+                        // We need to get new instance from DB in case game got edited or deleted.
+                        // We don't want to block game editing while metadata is downloading for other games.
+                        var game = database.Games[games[i].Id]?.CloneJson();
+                        if (game == null)
+                        {
+                            logger.Warn($"Game {game.GameId} no longer in DB, skipping metadata download.");
+                            processCallback?.Invoke(null, i, games.Count);
+                            continue;
+                        }
+
                         logger.Debug($"Downloading metadata for {game.Name}, {game.GameId}, {game.PluginId}");
 
                         // Name

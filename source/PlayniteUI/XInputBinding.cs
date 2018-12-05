@@ -370,7 +370,7 @@ namespace PlayniteUI
         {
             context.Post((a) =>
             {
-                if (InputManager.Current.PrimaryKeyboardDevice.ActiveSource == null)
+                if (InputManager.Current.PrimaryKeyboardDevice?.ActiveSource == null)
                 {
                     return;
                 }
@@ -384,7 +384,7 @@ namespace PlayniteUI
         {
             context.Post((a) =>
             {
-                if (InputManager.Current.PrimaryKeyboardDevice.ActiveSource == null)
+                if (InputManager.Current.PrimaryKeyboardDevice?.ActiveSource == null)
                 {
                     return;
                 }

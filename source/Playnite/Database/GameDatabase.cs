@@ -102,6 +102,11 @@ namespace Playnite.Database
                         lock (databaseConfigFileLock)
                         {
                             settings = Serialization.FromJson<DatabaseSettings>(FileSystem.ReadFileAsStringSafe(DatabaseFileSettingsPath));
+                            if (settings == null)
+                            {
+                                // This shouldn't in theory happen, but there are some wierd crash reports available for this.
+                                settings = new DatabaseSettings() { Version = NewFormatVersion };
+                            }
                         }
                     }
                     else
@@ -957,14 +962,19 @@ namespace Playnite.Database
             }
         }
 
-        public static bool GetMigrationRequired(string path)
+        public static bool GetMigrationRequired(string databasePath)
         {
-            if (path.EndsWith(".db", StringComparison.OrdinalIgnoreCase))
+            if (string.IsNullOrEmpty(databasePath))
+            {
+                throw new ArgumentNullException(nameof(databasePath));
+            }
+
+            if (databasePath.EndsWith(".db", StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
 
-            var fullPath = GetFullDbPath(path);
+            var fullPath = GetFullDbPath(databasePath);
             var settingsPath = Path.Combine(fullPath, "database.json");
             if (!File.Exists(settingsPath))
             {
@@ -972,7 +982,15 @@ namespace Playnite.Database
             }
 
             var st = Serialization.FromJson<DatabaseSettings>(FileSystem.ReadFileAsStringSafe(settingsPath));
-            return st.Version < NewFormatVersion;
+            if (st == null)
+            {
+                // This shouldn't in theory happen, but there are some wierd crash reports available for this.
+                return false;
+            }
+            else
+            {
+                return st.Version < NewFormatVersion;
+            }
         }
 
         public void OpenDatabase()

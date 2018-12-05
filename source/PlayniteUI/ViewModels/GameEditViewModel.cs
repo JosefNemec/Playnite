@@ -18,6 +18,7 @@ using Playnite.SDK.Metadata;
 using Playnite.Settings;
 using Playnite.Plugins;
 using Playnite.Common;
+using System.Net;
 
 namespace PlayniteUI.ViewModels
 {
@@ -1510,19 +1511,26 @@ namespace PlayniteUI.ViewModels
 
         public void CloseView()
         {
-            if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
+            try
             {
-                FileSystem.DeleteFile(EditingGame.Icon);
-            }
+                if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
+                {
+                    FileSystem.DeleteFile(EditingGame.Icon);
+                }
 
-            if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
-            {
-                FileSystem.DeleteFile(EditingGame.CoverImage);
-            }
+                if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
+                {
+                    FileSystem.DeleteFile(EditingGame.CoverImage);
+                }
 
-            if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
+                if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
+                {
+                    FileSystem.DeleteFile(EditingGame.BackgroundImage);
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                FileSystem.DeleteFile(EditingGame.BackgroundImage);
+                logger.Error(e, "Failed to cleanup temporary files.");
             }
 
             window.Close(false);
@@ -2341,7 +2349,16 @@ namespace PlayniteUI.ViewModels
 
             if (url.Result)
             {
-                EditingGame.BackgroundImage = url.SelectedString;
+                if (url.SelectedString.IsHttpUrl())
+                {
+                    if (HttpDownloader.GetResponseCode(url.SelectedString) == HttpStatusCode.OK)
+                    {
+                        EditingGame.BackgroundImage = url.SelectedString;
+                        return;
+                    }
+                }
+
+                dialogs.ShowErrorMessage(resources.FindString("LOCInvalidURL"), string.Empty);
             }
         }
 

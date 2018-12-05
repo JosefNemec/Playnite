@@ -60,6 +60,17 @@ namespace Playnite.SDK
         void DeleteCookies(string url, string name);
 
         /// <summary>
+        /// Sets cookie data.
+        /// </summary>
+        /// <param name="url">Cookie URL.</param>
+        /// <param name="domain">Cookie domain.</param>
+        /// <param name="name">Cookie name.</param>
+        /// <param name="value">Cookie value.</param>
+        /// <param name="path">Cookie url path.</param>
+        /// <param name="expires">Expiration date.</param>
+        void SetCookies(string url, string domain, string name, string value, string path, DateTime expires);
+
+        /// <summary>
         /// Closes view.
         /// </summary>
         void Close();

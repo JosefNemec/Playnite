@@ -76,7 +76,7 @@ namespace Playnite.Plugins
             {
                 scriptFunctions = value;
                 OnPropertyChanged();
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(ExportedFunctions));
             }
         }
 
@@ -88,7 +88,7 @@ namespace Playnite.Plugins
             {
                 pluginFunctions = value;
                 OnPropertyChanged();
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(ExportedFunctions));
             }
         }
 

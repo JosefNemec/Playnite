@@ -47,8 +47,9 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Amigos do Steam</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Esta seção contém alterações que ainda não foram salvas</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress">Atualizando a versão do banco de dados...</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Atualizando o formato da biblioteca...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Falha ao atualizar o banco de dados, não foi possível abrir o arquivo.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Não foi possível atualizar a biblioteca. Pelo menos {0} MBs de espaço livre são necessários para continuar.</sys:String> 
 
     <sys:String x:Key="LOCGameError">Erro do Jogo</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Não foi possível executar o jogo. "{0}" não foi encontrado no banco de dados.</sys:String>
@@ -138,6 +139,8 @@ Jogos importados automaticamente podem reaparecer no Playnite após o próximo p
     <sys:String x:Key="LOCSunday">Domingo</sys:String>
     <sys:String x:Key="LOCImportCompleted">Importação concluída com sucesso.</sys:String>
     <sys:String x:Key="LOCAllGames">Todos os jogos</sys:String>
+    <sys:String x:Key="LOCGameId">ID do jogo</sys:String>
+    <sys:String x:Key="LOCDatabaseId">ID no banco de dados</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Variáveis especiais podem ser usadas para criar cadeias de caracteres dinâmicas:
 {InstallDir} - Local de instalação do jogo
@@ -279,9 +282,11 @@ Qualquer tarefa sendo executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCSettingsFullscreenRows">Número de linhas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Número de colunas</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Número de linhas no esquema de detalhes</sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOption">Preferir capturas de tela do jogo em vez da imagem de fundo da loja</sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">O Playnite usará capturas de tela do jogo disponíveis como fundo em vez da imagem de fundo da loja.
-Não se aplica retroativamente a jogos existentes.</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSource">Fonte da imagem de fundo:</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceImage">Imagem do jogo</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Captura de tela da loja</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceStore">Imagem de fundo da loja</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Não se aplica retroativamente a jogos existentes sem baixar novamente os metadados.</sys:String>
 
     <sys:String x:Key="LOCImportError">Erro de importação</sys:String>
     <sys:String x:Key="LOCLoginChecking">Verificando o estado da autenticação...</sys:String>
@@ -557,9 +562,11 @@ Anexe a seguinte ID ao seu relatório de falha:</sys:String>
 
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Abrindo modo janela...</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Abrindo modo tela cheia...</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">Carregando a biblioteca de jogos...</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Falha ao instalar o arquivo de script.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Script instalado com sucesso.</sys:String>
     <sys:String x:Key="LOCInstallScript">Instalar script</sys:String>
     <sys:String x:Key="LOCScriptError">Erro no script</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Falha ao executar a função da extensão.</sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">Abrir a pasta de metadados</sys:String>
 </ResourceDictionary>

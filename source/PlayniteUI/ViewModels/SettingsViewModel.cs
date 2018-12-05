@@ -322,7 +322,15 @@ namespace PlayniteUI.ViewModels
             if (Settings.EditedFields?.Any() == true)
             {
                 if (Settings.EditedFields.IntersectsExactlyWith(
-                    new List<string>() { "Skin", "AsyncImageLoading", "DisableHwAcceleration", "DatabasePath", "DisabledPlugins" }))
+                    new List<string>()
+                    {
+                        nameof(Settings.Skin),
+                        nameof(Settings.AsyncImageLoading),
+                        nameof(Settings.DisableHwAcceleration),
+                        nameof(Settings.DisableDpiAwareness),
+                        nameof(Settings.DatabasePath),
+                        nameof(Settings.DisabledPlugins)
+                    }))
                 {
                     if (dialogs.ShowMessage(
                         resources.FindString("LOCSettingsRestartAskMessage"),

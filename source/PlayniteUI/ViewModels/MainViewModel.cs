@@ -380,11 +380,6 @@ namespace PlayniteUI.ViewModels
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             GamesStats = new DatabaseStats(database);
             InitializeCommands();
-
-            if (AppSettings.StartMinimized)
-            {
-                WindowState = WindowState.Minimized;
-            }
         }
 
         private void InitializeCommands()
@@ -819,12 +814,26 @@ namespace PlayniteUI.ViewModels
 
         public void OpenSteamFriends()
         {
-            System.Diagnostics.Process.Start(@"steam://open/friends");
+            try
+            {
+                ProcessStarter.StartUrl(@"steam://open/friends");
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(e, "Failed to open Steam friends.");
+            }
         }
 
         public void ReportIssue()
         {
-            System.Diagnostics.Process.Start(@"https://github.com/JosefNemec/Playnite/issues/new");
+            try
+            {
+                ProcessStarter.StartUrl(@"https://github.com/JosefNemec/Playnite/issues/new");
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(e, "Failed to open report issue url.");
+            }
         }
 
         public void ShutdownApp()
@@ -1416,7 +1425,15 @@ namespace PlayniteUI.ViewModels
         public void OpenView()
         {
             Window.Show(this);
-            Window.BringToForeground();
+            if (AppSettings.StartMinimized)
+            {
+                WindowState = WindowState.Minimized;
+            }
+            else
+            {
+                Window.BringToForeground();
+            }
+
             InitializeView();
         }
 

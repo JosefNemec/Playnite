@@ -88,28 +88,85 @@ namespace GogLibrary.Services
         public List<LibraryGameResponse> GetOwnedGames(AccountBasicRespose account)
         {
             var baseUrl = @"https://www.gog.com/u/{0}/games/stats?sort=recent_playtime&order=desc&page={1}";
-            var url = string.Format(baseUrl, account.username, 1);
-            webView.NavigateAndWait(url);
-            var gamesList = webView.GetPageText();
+            var stringLibContent = string.Empty;
             var games = new List<LibraryGameResponse>();
-            var libraryData = JsonConvert.DeserializeObject<PagedResponse<LibraryGameResponse>>(gamesList);
 
+            try
+            {
+                var url = string.Format(baseUrl, account.username, 1);
+                webView.NavigateAndWait(url);
+                stringLibContent = webView.GetPageText();
+                var libraryData = JsonConvert.DeserializeObject<PagedResponse<LibraryGameResponse>>(stringLibContent);
+                if (libraryData == null)
+                {
+                    logger.Error("GOG library content is empty.");
+                    return null;
+                }
+
+                games.AddRange(libraryData._embedded.items);
+                if (libraryData.pages > 1)
+                {
+                    for (int i = 2; i <= libraryData.pages; i++)
+                    {
+                        webView.NavigateAndWait(string.Format(baseUrl, account.username, i));
+                        stringLibContent = webView.GetPageText();
+                        var pageData = JsonConvert.DeserializeObject<PagedResponse<LibraryGameResponse>>(stringLibContent);
+                        games.AddRange(pageData._embedded.items);
+                    }
+                }
+
+                return games;
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Failed to library from new API for account {account.username}, falling back to legacy.");
+                logger.Debug(stringLibContent);
+                return GetOwnedGamesLegacy();
+            }
+        }
+
+        public List<LibraryGameResponse> GetOwnedGamesLegacy()
+        {
+            var games = new List<LibraryGameResponse>();
+            var baseUrl = @"https://www.gog.com/account/getFilteredProducts?hiddenFlag=0&mediaType=1&page={0}&sortBy=title";
+            webView.NavigateAndWait(string.Format(baseUrl, 1));
+            var gamesList = webView.GetPageText();
+
+            var libraryData = JsonConvert.DeserializeObject<GetOwnedGamesResult>(gamesList);
             if (libraryData == null)
             {
-                logger.Error("GOG library content is empty or private.");
+                logger.Error("GOG library content is empty.");
                 return null;
             }
 
-            games.AddRange(libraryData._embedded.items);
-
-            if (libraryData.pages > 1)
+            games.AddRange(libraryData.products.Select(a => new LibraryGameResponse()
             {
-                for (int i = 2; i <= libraryData.pages; i++)
+                game = new LibraryGameResponse.Game()
                 {
-                    webView.NavigateAndWait(string.Format(baseUrl, account.username, i));
+                    id = a.id.ToString(),
+                    title = a.title,
+                    url = a.url,
+                    image = a.image
+                }
+            }));
+
+            if (libraryData.totalPages > 1)
+            {
+                for (int i = 2; i <= libraryData.totalPages; i++)
+                {
+                    webView.NavigateAndWait(string.Format(baseUrl, i));
                     gamesList = webView.GetPageText();
-                    var pageData = JsonConvert.DeserializeObject<PagedResponse<LibraryGameResponse>>(gamesList);
-                    games.AddRange(pageData._embedded.items);
+                    var pageData = libraryData = JsonConvert.DeserializeObject<GetOwnedGamesResult>(gamesList);                    
+                    games.AddRange(pageData.products.Select(a => new LibraryGameResponse()
+                    {
+                        game = new LibraryGameResponse.Game()
+                        {
+                            id = a.id.ToString(),
+                            title = a.title,
+                            url = a.url,
+                            image = a.image
+                        }
+                    }));
                 }
             }
 

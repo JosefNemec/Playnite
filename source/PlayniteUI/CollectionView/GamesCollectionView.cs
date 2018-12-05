@@ -408,7 +408,7 @@ namespace PlayniteUI
             //    //    }
             //    //    else
             //    //    {
-            //    //        categoryResult = filterSettings.Categories.Any(a => entry.Category.Category.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0);
+            //    //        categoryResult = filterSettings.Categories.Any(a => entry.Category.Category?.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0);
             //    //    }
             //    //}
             //}

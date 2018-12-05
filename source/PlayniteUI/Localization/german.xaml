@@ -63,6 +63,7 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
 
 
     <!--General-->
+    <sys:String x:Key="LOCEnabledTitle">Aktiviert</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Entfernen</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopieren</sys:String>
     <sys:String x:Key="LOCAddTitle">Hinzufügen</sys:String>
@@ -154,7 +155,7 @@ Beispiel: -image "{ImagePath}" -fullscreen
 Ergebnis: -image "c:\folder\image.iso" -fullscreen</sys:String>
 
     <sys:String x:Key="LOCExecIconMissingPlayAction">Ohne "Spielen"-Aktion oder beim Verwenden einer URL kann kein Icon automatisch ausgewählt werden.</sys:String>
-   
+
     <sys:String x:Key="LOCMetaSkipNonEmpty">Lade nur fehlende Metadaten</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Das Aktivieren dieser Option führt dazu, dass bereits befüllte Felder nicht überschrieben werden.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Spielauswahl</sys:String>
@@ -237,6 +238,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsShowIconList">Zeige Icons in der Spieleliste</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Deaktiviere Hardwarebeschleunigung (erfordert Neustart)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Wähle diese Option bei Problemen mit der Oberfläche.</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Deaktiviere Skalierung für hohe DPI-Werte (erfordert Neustart)</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Zeige Button für Steam Freunde</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Zeige Hintergrundbild</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Theme</sys:String>
@@ -281,12 +283,13 @@ Alle laufenden Hintergrundprozesse (z.B. der Download von Metadaten) werden abge
     <sys:String x:Key="LOCSettingsFullscreenRows">Anzahl der Zeilen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Anzahl der Spalten</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Anzahl der Zeilen in der Detailansicht</sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOption">Verwende bevorzugt Screenshots als Hintergrundbild</sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Wenn du diese Option aktivierst wird Playnite nicht das vom Steam Store
-verwendete Hintergrundbild importieren, sondern stattdessen einen Screenshot
-vom Spiel verwenden. Das Verändern dieser Option hat keinen Einfluss auf
+    <sys:String x:Key="LOCSteamBackgroundSource">Quelle für Hintergrundbilder:</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceImage">Bild des Spiels</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Screenshot vom Steam Store</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceStore">Hintergrundbild vom Steam Store</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Das Verändern dieser Option hat keinen Einfluss auf
 bereits in deiner Bibliothek befindliche Spiele.</sys:String>
-    
+
     <sys:String x:Key="LOCImportError">Import fehlgeschlagen</sys:String>
     <sys:String x:Key="LOCLoginChecking">Überprüfe...</sys:String>
     <sys:String x:Key="LOCLoginRequired">Authentifizierung notwendig</sys:String>
@@ -393,6 +396,7 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCGameTagsTitle">Tags</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Herausgeber</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installiert</sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">Installiert</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Nicht installiert</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Versteckt</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favorit</sys:String>
@@ -432,7 +436,9 @@ Du kannst uns Feedback via GitHub senden. Bitte ergänze deine Nachricht um die 
     <sys:String x:Key="LOCLibraryImportError">Fehler beim Import von {0}-Spielen.</sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Für das ausgewählte Emulatorprofil konnten keine Spiele gefunden werden: Du musst entweder eine Plattform oder Dateiendungen definieren.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite konnte nicht gestartet werden. Bitte beende alle laufenden Instanzen von Playnite und versuche es erneut.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError">Fehler beim Anwenden des Themes '{0}' mit Farbprofil '{1}'.</sys:String>
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Fehler beim Anwenden des Themes '{0}' mit Farbprofil '{1}':
+
+{2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Fehler beim Öffnen des Links: URL ist ungültig.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Fehler beim Starten der Anwendung.</sys:String>
 
@@ -498,6 +504,9 @@ Du kannst uns Feedback via GitHub senden. Bitte ergänze deine Nachricht um die 
     <sys:String x:Key="LOCExitPlaynite">Playnite beenden</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotheken</sys:String>
     <sys:String x:Key="LOCUpdateAll">Alle aktualisieren</sys:String>
+    <sys:String x:Key="LOCExtensionCreatedBy">Erstellt von:</sys:String>
+    <sys:String x:Key="LOCExtensionVersion">Version:</sys:String>
+    <sys:String x:Key="LOCExtensionModule">Modul:</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator-Argumente</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Zusätzliche Emulator-Argumente</sys:String>

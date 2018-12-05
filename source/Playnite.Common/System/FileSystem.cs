@@ -80,6 +80,7 @@ namespace Playnite
 
         public static void CopyFile(string sourcePath, string targetPath)
         {
+            logger.Debug($"Copying file {sourcePath} to {targetPath}");
             PrepareSaveFile(targetPath);
             File.Copy(sourcePath, targetPath);
         }
