@@ -147,6 +147,7 @@ namespace PlayniteUI
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            logger.Info($"Application started from '{PlaynitePaths.ExecutablePath}', with '{string.Join(",", e.Args)}' arguments.");
             if (!Debugger.IsAttached)
             {
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
