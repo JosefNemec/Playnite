@@ -64,33 +64,6 @@ namespace Playnite
             return first == second;
         }
 
-        public static bool IsListEqual<T>(this IEnumerable<T> source, IEnumerable<T> target)
-        {
-            if (source == null && target == null)
-            {
-                return true;
-            }
-
-            if ((source == null && target != null) || (source != null && target == null))
-            {
-                return false;
-            }
-
-            var firstNotSecond = source.Except(target).ToList();
-            if (firstNotSecond.Count != 0)
-            {
-                return false;
-            }
-
-            var secondNotFirst = target.Except(source).ToList();
-            if (secondNotFirst.Count != 0)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
         /// <summary>
         /// Extension for 'Object' that copies the properties to a destination object.
         /// Courtesy of http://stackoverflow.com/questions/930433/apply-properties-values-from-one-object-to-another-of-the-same-type-automaticall

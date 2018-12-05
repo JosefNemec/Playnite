@@ -68,5 +68,32 @@ namespace System
         {
             return source.Any(a => a.Equals(value, StringComparison.InvariantCultureIgnoreCase)) == true;
         }
+
+        public static bool IsListEqual<T>(this IEnumerable<T> source, IEnumerable<T> target)
+        {
+            if (source == null && target == null)
+            {
+                return true;
+            }
+
+            if ((source == null && target != null) || (source != null && target == null))
+            {
+                return false;
+            }
+
+            var firstNotSecond = source.Except(target).ToList();
+            if (firstNotSecond.Count != 0)
+            {
+                return false;
+            }
+
+            var secondNotFirst = target.Except(source).ToList();
+            if (secondNotFirst.Count != 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

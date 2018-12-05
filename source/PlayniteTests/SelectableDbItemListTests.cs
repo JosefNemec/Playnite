@@ -21,7 +21,7 @@ namespace PlayniteTests
             };
 
             List<Guid> refIds = null;
-            var dbList = new SelectableDbItemList<DatabaseObject>(items);
+            var dbList = new SelectableDbItemList(items);
             dbList.SelectionChanged += (s, e) =>
             {
                 refIds = dbList.GetSelectedIds().ToList();
@@ -54,7 +54,7 @@ namespace PlayniteTests
 
             var properies = 0;
             var selections = 0;
-            var dbList = new SelectableDbItemList<DatabaseObject>(items);
+            var dbList = new SelectableDbItemList(items);
             dbList.SelectionChanged += (s, e) =>
             {
                 properies++;

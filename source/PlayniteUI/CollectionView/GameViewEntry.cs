@@ -56,16 +56,16 @@ namespace PlayniteUI
         public int? CriticScore => Game.CriticScore;
         public int? CommunityScore => Game.CommunityScore;
 
-        //public ComparableList<Guid> CategoryIds => Game.CategoryIds;
-        //public ComparableList<Guid> GenreIds => Game.GenreIds;
-        //public ComparableList<Guid> DeveloperIds => Game.DeveloperIds;
-        //public ComparableList<Guid> PublisherIds => Game.PublisherIds;
-        //public ComparableList<Guid> TagIds => Game.TagIds;
-        //public Guid SeriesId => Game.SeriesId;
-        //public Guid AgeRatingId => Game.AgeRatingId;
-        //public Guid RegionId => Game.RegionId;
-        //public Guid SourceId => Game.SourceId;
-        //public Guid PlatformId => Game.PlatformId;
+        public List<Guid> CategoryIds => Game.CategoryIds;
+        public List<Guid> GenreIds => Game.GenreIds;
+        public List<Guid> DeveloperIds => Game.DeveloperIds;
+        public List<Guid> PublisherIds => Game.PublisherIds;
+        public List<Guid> TagIds => Game.TagIds;
+        public Guid SeriesId => Game.SeriesId;
+        public Guid AgeRatingId => Game.AgeRatingId;
+        public Guid RegionId => Game.RegionId;
+        public Guid SourceId => Game.SourceId;
+        public Guid PlatformId => Game.PlatformId;
 
         public object IconObject => GetImageObject(Game.Icon);
         public object CoverImageObject => GetImageObject(Game.CoverImage);

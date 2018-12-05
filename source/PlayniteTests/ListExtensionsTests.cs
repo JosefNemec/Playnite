@@ -47,5 +47,11 @@ namespace PlayniteTests
             Assert.IsFalse((new List<string> { "test", "test2" }).IntersectsExactlyWith(new List<string> { "Test3", "test5" }));
             Assert.IsFalse((new List<string> { "test", "test2" }).IntersectsExactlyWith(new List<string> { string.Empty }));
         }
+
+        [Test]
+        public void IsListEqualTest()
+        {
+            Assert.Fail();
+        }
     }
 }

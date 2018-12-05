@@ -274,9 +274,16 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public DatabaseFilter DatabaseFilters { get; set; }
-        
-
+        private DatabaseFilter databaseFilters;
+        public DatabaseFilter DatabaseFilters
+        {
+            get => databaseFilters;
+            private set
+            {
+                databaseFilters = value;
+                OnPropertyChanged();
+            }
+        }
 
         #region General Commands
         public RelayCommand<object> OpenFilterPanelCommand { get; private set; }

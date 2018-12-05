@@ -46,7 +46,20 @@ namespace Playnite.Database
         private bool ignoreFilterChanges = false;
         private bool ignoreLibChanges = false;
 
+
         public List<Library> Libraries { get; set; }
+
+        private SelectableDbItemList genres;
+        public SelectableDbItemList Genres
+        {
+            get => genres;
+            private set
+            {
+                genres = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string LibrariesString
         {
             get => string.Join(", ", Libraries.Where(a => a.Selected)?.Select(a => a.Name)?.ToArray());
@@ -57,6 +70,16 @@ namespace Playnite.Database
             this.database = database;
             this.extensions = extensions;
             this.filter = filter;
+
+            // TODO handle changes in collection
+            if (database.IsOpen)
+            {
+                LoadFilterCollection();
+            }
+            else
+            {
+                database.DatabaseOpened += (s, e) => LoadFilterCollection();
+            }
 
             Libraries = this.extensions.LibraryPlugins.Select(a => new Library(a.Value.Plugin.Id, a.Value.Plugin.Name, filter.Libraries?.Contains(a.Value.Plugin.Id) == true)).ToList();
             Libraries.Add(new Library(Guid.Empty, "Playnite", filter.Libraries?.Contains(Guid.Empty) == true));
@@ -72,6 +95,12 @@ namespace Playnite.Database
                     missing.ForEach(a => filter.Libraries.Remove(a));                   
                 }
             }
+        }
+
+        internal void LoadFilterCollection()
+        {
+            // TODO default state
+            Genres = new SelectableDbItemList(database.Genres);
         }
 
         private void Filter_FilterChanged(object sender, FilterChangedEventArgs e)

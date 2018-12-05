@@ -105,6 +105,8 @@
         <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource ControlBorderThickness}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Padding" Value="10,5,10,5" />
         <Setter Property="Template">
@@ -2024,36 +2026,36 @@
                         <Setter.Value>
                             <DataTemplate>
                                 <TextBlock Style="{StaticResource ListTextBlock}">
-                                        <Hyperlink NavigateUri="{Binding Mode=OneWay}"
-                                                   Tag="{Binding Tag, RelativeSource={RelativeSource AncestorType=ItemsControl}}">
-                                            <Hyperlink.Style>
-                                                <Style TargetType="Hyperlink" BasedOn="{StaticResource {x:Type Hyperlink}}">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="Tag" Value="Genres">
-                                                            <Setter Property="Command" Value="{Binding Data.SetGenresFilterCommand, Source={StaticResource Proxy}}" />
-                                                            <Setter Property="CommandParameter" Value="{Binding}" />
-                                                        </Trigger>
-                                                        <Trigger Property="Tag" Value="Developers">
-                                                            <Setter Property="Command" Value="{Binding Data.SetDevelopersFilterCommand, Source={StaticResource Proxy}}" />
-                                                            <Setter Property="CommandParameter" Value="{Binding}" />
-                                                        </Trigger>
-                                                        <Trigger Property="Tag" Value="Publishers">
-                                                            <Setter Property="Command" Value="{Binding Data.SetPublishersFilterCommand, Source={StaticResource Proxy}}" />
-                                                            <Setter Property="CommandParameter" Value="{Binding}" />
-                                                        </Trigger>
-                                                        <Trigger Property="Tag" Value="Categories">
-                                                            <Setter Property="Command" Value="{Binding Data.SetCategoriesFilterCommand, Source={StaticResource Proxy}}" />
-                                                            <Setter Property="CommandParameter" Value="{Binding}" />
-                                                        </Trigger>
-                                                        <Trigger Property="Tag" Value="Tags">
-                                                            <Setter Property="Command" Value="{Binding Data.SetTagsFilterCommand, Source={StaticResource Proxy}}" />
-                                                            <Setter Property="CommandParameter" Value="{Binding}" />
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Hyperlink.Style>
-                                            <Run Text="{Binding Mode=OneWay}" />
-                                        </Hyperlink>
+                                    <Hyperlink Tag="{Binding Tag, RelativeSource={RelativeSource AncestorType=ItemsControl}}">
+                                        <Hyperlink.Style>
+                                            <Style TargetType="Hyperlink" BasedOn="{StaticResource {x:Type Hyperlink}}">
+                                                <Style.Triggers>
+                                                    <!--TODO move to single generic command-->
+                                                    <Trigger Property="Tag" Value="Genres">
+                                                        <Setter Property="Command" Value="{Binding Data.SetGenresFilterCommand, Source={StaticResource Proxy}}" />
+                                                        <Setter Property="CommandParameter" Value="{Binding}" />
+                                                    </Trigger>
+                                                    <Trigger Property="Tag" Value="Developers">
+                                                        <Setter Property="Command" Value="{Binding Data.SetDevelopersFilterCommand, Source={StaticResource Proxy}}" />
+                                                        <Setter Property="CommandParameter" Value="{Binding}" />
+                                                    </Trigger>
+                                                    <Trigger Property="Tag" Value="Publishers">
+                                                        <Setter Property="Command" Value="{Binding Data.SetPublishersFilterCommand, Source={StaticResource Proxy}}" />
+                                                        <Setter Property="CommandParameter" Value="{Binding}" />
+                                                    </Trigger>
+                                                    <Trigger Property="Tag" Value="Categories">
+                                                        <Setter Property="Command" Value="{Binding Data.SetCategoriesFilterCommand, Source={StaticResource Proxy}}" />
+                                                        <Setter Property="CommandParameter" Value="{Binding}" />
+                                                    </Trigger>
+                                                    <Trigger Property="Tag" Value="Tags">
+                                                        <Setter Property="Command" Value="{Binding Data.SetTagsFilterCommand, Source={StaticResource Proxy}}" />
+                                                        <Setter Property="CommandParameter" Value="{Binding}" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Hyperlink.Style>
+                                        <Run Text="{Binding Mode=OneWay}" />
+                                    </Hyperlink>
                                 </TextBlock>
                             </DataTemplate>
                         </Setter.Value>
@@ -2075,8 +2077,8 @@
                 <!-- Genres -->
                 <Label Content="{DynamicResource LOCGenreLabel}" Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}" />
                 <ItemsControl ItemsSource="{Binding Game.Genres, Mode=OneWay}" Style="{StaticResource ListItems}"
-                                  Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
-                                  Tag="Genres"/>
+                              Visibility="{Binding Game.Genres, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
+                              Tag="Genres"/>
 
                 <!-- Developers -->
                 <Label Content="{DynamicResource LOCDeveloperLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Developers, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
@@ -2101,11 +2103,11 @@
                             </Hyperlink>
                 </TextBlock>
 
-                <!-- Categories -->
-                <!--<Label Content="{DynamicResource LOCGameCategoriesTitle}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
+                 <!--Categories--> 
+                <Label Content="{DynamicResource LOCGameCategoriesTitle}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
                 <ItemsControl ItemsSource="{Binding Game.Categories, Mode=OneWay}" Style="{StaticResource ListItems}"
                                   Visibility="{Binding Game.Categories, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"
-                                  Tag="Categories"/>-->
+                                  Tag="Categories"/>
 
                 <!-- Tags -->
                 <Label Content="{DynamicResource LOCTagsLabel}" Style="{StaticResource PropertyListLabel}" Visibility="{Binding Game.Tags, Converter={StaticResource EnumerableNullOrEmptyToVisibilityConverter}}"/>
@@ -2770,7 +2772,7 @@
                                 <StackPanel Margin="0,5,0,0" MinWidth="200" MaxWidth="200">
                                     <StackPanel.Resources>
                                         <Style x:Key="FilterCheck" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
-                                            <Setter Property="Margin" Value="8" />
+                                            <Setter Property="Margin" Value="8,0,8,8" />
                                             <Style.Triggers>
                                                 <Trigger Property="IsChecked" Value="False">
                                                     <Setter Property="Opacity" Value="0.6" />
@@ -2868,7 +2870,12 @@
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterGenre" Text="{Binding AppSettings.FilterSettings.Genres, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='NoTrim'}" Style="{StaticResource FilterTextBox}"/>
+                                    <pc:DdItemListSelectionBox 
+                                        IsEditable="True"
+                                        ItemsList="{Binding DatabaseFilters.Genres}"
+                                        BoundIds="{Binding AppSettings.FilterSettings.GenreIds, Mode=TwoWay}"
+                                        Text="{Binding AppSettings.FilterSettings.GenreString, Delay=100, Mode=TwoWay}"
+                                                               />
 
                                     <Label Content="{DynamicResource LOCPlatformTitle}">
                                         <Label.Style>

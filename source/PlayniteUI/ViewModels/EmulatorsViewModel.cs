@@ -23,8 +23,8 @@ namespace PlayniteUI.ViewModels
 {
     public class EmulatorsViewModel : ObservableObject
     {
-        private SelectableDbItemList<Platform> availablePlatforms;
-        public SelectableDbItemList<Platform> AvailablePlatforms
+        private SelectableDbItemList availablePlatforms;
+        public SelectableDbItemList AvailablePlatforms
         {
             get => availablePlatforms;
             set
@@ -186,7 +186,7 @@ namespace PlayniteUI.ViewModels
             this.dialogs = dialogs;
             this.resources = resources;
             this.database = database;
-            AvailablePlatforms = new SelectableDbItemList<Platform>(database.Platforms.OrderBy(a => a.Name));
+            AvailablePlatforms = new SelectableDbItemList(database.Platforms.OrderBy(a => a.Name));
             AvailablePlatforms.SelectionChanged += (s, e) =>
             {
                 if (selectedProfile != null)

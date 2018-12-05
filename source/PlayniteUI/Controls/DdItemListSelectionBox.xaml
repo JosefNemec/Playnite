@@ -4,57 +4,76 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PlayniteUI.Controls"
+             xmlns:pui="clr-namespace:PlayniteUI"
              mc:Ignorable="d"
-             d:DesignWidth="100">
+             d:DesignWidth="100"
+             SnapsToDevicePixels="True">
+    
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <pui:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
+    </UserControl.Resources>
 
-    <Grid>
-        <ToggleButton Name="Toggle" HorizontalContentAlignment="Stretch"
-                      Padding="5">
-            <ToggleButton.Content>
-                <DockPanel>
-                    <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
-                               VerticalAlignment="Center" DockPanel.Dock="Right"/>
-                    <TextBlock Text="{Binding ItemsList.AsString, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                               TextTrimming="CharacterEllipsis" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               DockPanel.Dock="Left"/>
-                </DockPanel>                
-            </ToggleButton.Content>
-        </ToggleButton>
-        <Popup Placement="Bottom" Focusable="False" PlacementTarget="{Binding ElementName=Toggle}"
-               IsOpen="{Binding IsChecked, ElementName=Toggle}" StaysOpen="False"
-               MaxHeight="300" Width="{Binding ActualWidth, ElementName=Toggle}">
-            <Border Background="{DynamicResource PopupBackgroundBrush}"
-                    BorderThickness="{DynamicResource PopupBorderThickness}"
-                    BorderBrush="{DynamicResource PopupBorderBrush}">
-                <ScrollViewer>
-                    <ItemsControl ItemsSource="{Binding ItemsList, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                  KeyboardNavigation.DirectionalNavigation="Contained">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <CheckBox Padding="5" IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
-            </Border>
-        </Popup>
-    </Grid>
-
-    <!--<ComboBox IsReadOnly="True" IsEditable="True"
-              ItemsSource="{Binding ItemsList, RelativeSource={RelativeSource AncestorType=UserControl}}"
-              Text="{Binding ItemsList.AsString, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}">
-        <ComboBox.ItemContainerStyle>
-            <Style TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
-                <Setter Property="Padding" Value="0" />
-                <Setter Property="Margin" Value="0" />
-            </Style>
-        </ComboBox.ItemContainerStyle>
-        <ComboBox.ItemTemplate>
-            <DataTemplate>
-                <CheckBox Padding="5"
-                    IsChecked="{Binding Selected}" Content="{Binding Item.Name}" 
-                          Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ComboBoxItem}}"/>
-            </DataTemplate>
-        </ComboBox.ItemTemplate>
-    </ComboBox>-->
+    <Border BorderThickness="{DynamicResource ControlBorderThickness}"
+            CornerRadius="{DynamicResource ControlCornerRadius}"
+            Style="{DynamicResource HighlightBorder}" Background="Transparent">
+        <Grid>
+            <ToggleButton Name="Toggle" HorizontalContentAlignment="Stretch"         
+                          Focusable="{Binding IsEditable, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={pui:NegateConverter}}"
+                          Foreground="{DynamicResource TextBrush}">
+                <ToggleButton.Template>
+                    <ControlTemplate>                    
+                        <Grid>
+                            <DockPanel>
+                                <Viewbox DockPanel.Dock="Right" Width="20" Margin="0,0,2,0">
+                                    <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
+                                    VerticalAlignment="Center"/>
+                                </Viewbox>
+                                <TextBlock Text="{Binding ItemsList.AsString, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                           TextTrimming="CharacterEllipsis" HorizontalAlignment="Stretch" 
+                                           VerticalAlignment="Center"
+                                           Visibility="{Binding IsEditable, Converter={StaticResource InvertedBooleanToVisibilityConverter}, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                           DockPanel.Dock="Left" Margin="5,0,0,0"/>
+                            </DockPanel>
+                            <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup"
+                                   IsOpen="{Binding IsChecked, ElementName=Toggle, Mode=TwoWay, Delay=100}" StaysOpen="False"
+                                   MaxHeight="300" Width="{Binding ActualWidth, ElementName=Toggle}">
+                                <Border Background="{DynamicResource PopupBackgroundBrush}"
+                                            BorderThickness="{DynamicResource PopupBorderThickness}"
+                                            BorderBrush="{DynamicResource PopupBorderBrush}">
+                                    <ItemsControl ItemsSource="{Binding ItemsList, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        ScrollViewer.CanContentScroll="True"
+                                                        KeyboardNavigation.DirectionalNavigation="Contained"
+                                                        VirtualizingPanel.IsVirtualizing="True"
+                                                        VirtualizingPanel.VirtualizationMode="Recycling">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <CheckBox Padding="5" IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.Template>
+                                            <ControlTemplate>
+                                                <ScrollViewer Focusable="False">
+                                                    <ItemsPresenter />
+                                                </ScrollViewer>
+                                            </ControlTemplate>
+                                        </ItemsControl.Template>
+                                    </ItemsControl>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+            </ToggleButton>
+            <TextBox Visibility="{Binding IsEditable, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}"                     
+                     Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
+                     Focusable="{Binding IsEditable, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                     Name="TextFilter" Margin="0,0,25,0" BorderThickness="0"/>
+        </Grid>
+    </Border>
 </UserControl>

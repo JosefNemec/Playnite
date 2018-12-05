@@ -51,7 +51,7 @@ namespace Playnite
                     !string.IsNullOrEmpty(Source) ||
                     !string.IsNullOrEmpty(AgeRating) ||
                     !string.IsNullOrEmpty(Region) ||
-                    Genres?.Any() == true ||
+                    GenreString?.Any() == true ||
                     Publishers?.Any() == true ||
                     Developers?.Any() == true ||
                     Categories?.Any() == true ||
@@ -79,25 +79,54 @@ namespace Playnite
             }
         }
 
-        private List<string> genres;
-        public List<string> Genres
+        private List<Guid> genreIds;
+        public List<Guid> GenreIds
         {
             get
             {
-                return genres;
+                return genreIds;
             }
 
             set
             {
-                genres = value;
+                genreIds = value;
+                if (genreIds != null)
+                {
+                    genreString = null;
+                    OnFilterChanged(nameof(GenreString));
+                }
+
                 OnPropertyChanged();
-                OnFilterChanged(nameof(Genres));
+                OnFilterChanged(nameof(GenreIds));                
                 OnPropertyChanged(nameof(Active));
             }
         }
 
-        private List<string> platforms;
-        public List<string> Platforms
+        private string genreString;
+        public string GenreString
+        {
+            get
+            {
+                return genreString;
+            }
+
+            set
+            {
+                genreString = value;
+                if (!genreString.IsNullOrEmpty())
+                {
+                    genreIds = null;
+                    OnFilterChanged(nameof(GenreIds));
+                }
+
+                OnPropertyChanged();                
+                OnFilterChanged(nameof(GenreString));
+                OnPropertyChanged(nameof(Active));
+            }
+        }
+
+        private string platforms;
+        public string Platforms
         {
             get
             {
@@ -131,8 +160,8 @@ namespace Playnite
         }
 
 
-        private List<string> publishers;
-        public List<string> Publishers
+        private string publishers;
+        public string Publishers
         {
             get
             {
@@ -148,8 +177,8 @@ namespace Playnite
             }
         }
 
-        private List<string> developers;
-        public List<string> Developers
+        private string developers;
+        public string Developers
         {
             get
             {
@@ -165,8 +194,8 @@ namespace Playnite
             }
         }
 
-        private List<string> categories;
-        public List<string> Categories
+        private string categories;
+        public string Categories
         {
             get
             {
@@ -182,8 +211,8 @@ namespace Playnite
             }
         }
 
-        private List<string> tags;
-        public List<string> Tags
+        private string tags;
+        public string Tags
         {
             get
             {
@@ -195,74 +224,6 @@ namespace Playnite
                 tags = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(Tags));
-                OnPropertyChanged(nameof(Active));
-            }
-        }
-
-        private bool isInstalled;
-        public bool IsInstalled
-        {
-            get
-            {
-                return isInstalled;
-            }
-
-            set
-            {
-                isInstalled = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(IsInstalled));
-                OnPropertyChanged(nameof(Active));
-            }
-        }
-
-        private bool isUnInstalled;
-        public bool IsUnInstalled
-        {
-            get
-            {
-                return isUnInstalled;
-            }
-
-            set
-            {
-                isUnInstalled = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(IsUnInstalled));
-                OnPropertyChanged(nameof(Active));
-            }
-        }
-
-        private bool hidden;
-        public bool Hidden
-        {
-            get
-            {
-                return hidden;
-            }
-
-            set
-            {
-                hidden = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Hidden));
-                OnPropertyChanged(nameof(Active));
-            }
-        }
-
-        private bool favorite;
-        public bool Favorite
-        {
-            get
-            {
-                return favorite;
-            }
-
-            set
-            {
-                favorite = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Favorite));
                 OnPropertyChanged(nameof(Active));
             }
         }
@@ -335,6 +296,74 @@ namespace Playnite
             }
         }
 
+        private bool isInstalled;
+        public bool IsInstalled
+        {
+            get
+            {
+                return isInstalled;
+            }
+
+            set
+            {
+                isInstalled = value;
+                OnPropertyChanged();
+                OnFilterChanged(nameof(IsInstalled));
+                OnPropertyChanged(nameof(Active));
+            }
+        }
+
+        private bool isUnInstalled;
+        public bool IsUnInstalled
+        {
+            get
+            {
+                return isUnInstalled;
+            }
+
+            set
+            {
+                isUnInstalled = value;
+                OnPropertyChanged();
+                OnFilterChanged(nameof(IsUnInstalled));
+                OnPropertyChanged(nameof(Active));
+            }
+        }
+
+        private bool hidden;
+        public bool Hidden
+        {
+            get
+            {
+                return hidden;
+            }
+
+            set
+            {
+                hidden = value;
+                OnPropertyChanged();
+                OnFilterChanged(nameof(Hidden));
+                OnPropertyChanged(nameof(Active));
+            }
+        }
+
+        private bool favorite;
+        public bool Favorite
+        {
+            get
+            {
+                return favorite;
+            }
+
+            set
+            {
+                favorite = value;
+                OnPropertyChanged();
+                OnFilterChanged(nameof(Favorite));
+                OnPropertyChanged(nameof(Active));
+            }
+        }
+
         private List<Guid> libraries;
         public List<Guid> Libraries
         {
@@ -382,10 +411,10 @@ namespace Playnite
                 filterChanges.Add(nameof(Name));
             }
 
-            if (Genres != null)
+            if (GenreString != null)
             {
-                Genres = null;
-                filterChanges.Add(nameof(Genres));
+                GenreString = null;
+                filterChanges.Add(nameof(GenreString));
             }
 
             if (Platforms != null)

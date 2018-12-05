@@ -30,6 +30,213 @@ namespace PlayniteUI.ViewModels
         private GameDatabase database;
         private ExtensionFactory extensions;
 
+        #region Database fields
+
+        public SelectableDbItemList Genres
+        {
+            get
+            {
+                return new SelectableDbItemList(database.Genres.OrderBy(a => a.Name), EditingGame.GenreIds);
+            }
+        }
+
+        public SelectableDbItemList Developers
+        {
+            get
+            {
+                return new SelectableDbItemList(database.Companies.OrderBy(a => a.Name), EditingGame.DeveloperIds);
+            }
+        }
+
+        public SelectableDbItemList Publishers
+        {
+            get
+            {
+                return new SelectableDbItemList(database.Companies.OrderBy(a => a.Name), EditingGame.PublisherIds);
+            }
+        }
+
+        public SelectableDbItemList Tags
+        {
+            get
+            {
+                return new SelectableDbItemList(database.Tags.OrderBy(a => a.Name), EditingGame.TagIds);
+            }
+        }
+
+        public SelectableDbItemList Categories
+        {
+            get
+            {
+                return new SelectableDbItemList(database.Categories.OrderBy(a => a.Name), EditingGame.CategoryIds);
+            }
+        }
+
+        public List<GameSource> Sources
+        {
+            get
+            {
+                var items = database.Sources.OrderBy(a => a.Name).ToList();
+                items.Insert(0, new GameSource() { Id = Guid.Empty });
+                return items;
+            }
+        }
+
+        public List<Region> Regions
+        {
+            get
+            {
+                var items = database.Regions.OrderBy(a => a.Name).ToList();
+                items.Insert(0, new Region() { Id = Guid.Empty });
+                return items;
+            }
+        }
+
+        public List<Series> Series
+        {
+            get
+            {
+                var items = database.Series.OrderBy(a => a.Name).ToList();
+                items.Insert(0, new Series() { Id = Guid.Empty });
+                return items;
+            }
+        }
+
+        public List<AgeRating> AgeRatings
+        {
+            get
+            {
+                var items = database.AgeRatings.OrderBy(a => a.Name).ToList();
+                items.Insert(0, new AgeRating() { Id = Guid.Empty });
+                return items;
+            }
+        }
+
+        public List<Platform> Platforms
+        {
+            get
+            {
+                var items = database.Platforms.OrderBy(a => a.Name).ToList();
+                items.Insert(0, new Platform() { Id = Guid.Empty });
+                return items;
+            }
+        }
+
+        public List<Emulator> Emulators
+        {
+            get
+            {
+                return database.Emulators.OrderBy(a => a.Name).ToList();
+            }
+        }
+
+
+        #endregion Database fields
+
+        #region Field commands
+
+        public RelayCommand<object> AddPlatformCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                EditingGame.PlatformId = AddNewItem(database.Platforms, nameof(Platforms)) ?? EditingGame.PlatformId;
+            });
+        }
+
+        public RelayCommand<object> AddSeriesCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                EditingGame.SeriesId = AddNewItem(database.Series, nameof(Series)) ?? EditingGame.SeriesId;
+            });
+        }
+
+        public RelayCommand<object> AddAgeRatingCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                EditingGame.AgeRatingId = AddNewItem(database.AgeRatings, nameof(AgeRatings)) ?? EditingGame.AgeRatingId;
+            });
+        }
+
+        public RelayCommand<object> AddRegionCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                EditingGame.RegionId = AddNewItem(database.Regions, nameof(Regions)) ?? EditingGame.RegionId;
+            });
+        }
+
+        public RelayCommand<object> AddSourceCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                EditingGame.SourceId = AddNewItem(database.Sources, nameof(Sources)) ?? EditingGame.SourceId;
+            });
+        }
+
+        public RelayCommand<object> AddCategoryCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                var newItem = AddNewItemToList(database.Categories, nameof(Categories));
+                if (newItem != null)
+                {
+                    EditingGame.CategoryIds = new List<Guid>(EditingGame.CategoryIds) { newItem.Value };
+                }
+            });
+        }
+
+        public RelayCommand<object> AddPublisherCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                var newItem = AddNewItemToList(database.Companies, nameof(Publishers));
+                if (newItem != null)
+                {
+                    EditingGame.PublisherIds = new List<Guid>(EditingGame.PublisherIds) { newItem.Value };
+                }
+            });
+        }
+
+        public RelayCommand<object> AddDeveloperCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                var newItem = AddNewItemToList(database.Companies, nameof(Developers));
+                if (newItem != null)
+                {
+                    EditingGame.DeveloperIds = new List<Guid>(EditingGame.DeveloperIds) { newItem.Value };
+                }
+            });
+        }
+
+        public RelayCommand<object> AddGenreCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                var newItem = AddNewItemToList(database.Genres, nameof(Genres));
+                if (newItem != null)
+                {
+                    EditingGame.GenreIds = new List<Guid>(EditingGame.GenreIds) { newItem.Value };
+                }
+            });
+        }
+
+        public RelayCommand<object> AddTagCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                var newItem = AddNewItemToList(database.Tags, nameof(Tags));
+                if (newItem != null)
+                {
+                    EditingGame.TagIds = new List<Guid>(EditingGame.TagIds) { newItem.Value };
+                }
+            });
+        }
+
+        #endregion Field commands
+
         #region Field checks
 
         private bool useNameChanges;
@@ -714,24 +921,6 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public List<Platform> Platforms
-        {
-            get
-            {
-                var platforms = database.Platforms.OrderBy(a => a.Name).ToList();
-                platforms.Insert(0, new Platform(string.Empty));
-                return platforms;
-            }
-        }
-
-        public List<Emulator> Emulators
-        {
-            get
-            {
-                return database.Emulators.OrderBy(a => a.Name).ToList();        
-            }
-        }
-
         private bool showCheckBoxes = false;
         public bool ShowCheckBoxes
         {
@@ -815,15 +1004,6 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 SetBackgroundUrl();
-            });
-        }
-
-        public RelayCommand<object> SelectCategoryCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, database, EditingGame, false);
-                SelectCategories(model);
             });
         }
 
@@ -2239,11 +2419,6 @@ namespace PlayniteUI.ViewModels
             EditingGame.Links.Remove(link);
         }
 
-        public void SelectCategories(CategoryConfigViewModel model)
-        {
-            model.OpenView();
-        }
-
         public void SelectInstallDir()
         {
             var path = dialogs.SelectFolder();
@@ -2372,6 +2547,35 @@ namespace PlayniteUI.ViewModels
             {
                 database.RemoveFile(mediaId);
             }
+        }
+
+        // TODO localize
+        public Guid? AddNewItem<TItem>(IItemCollection<TItem> collection, string notifyName) where TItem : DatabaseObject
+        {
+            var res = dialogs.SelectString("Enter new name:", "New item", string.Empty);
+            if (res.Result)
+            {
+                var newItem = typeof(TItem).CrateInstance<TItem>(res.SelectedString);
+                collection.Add(newItem);
+                OnPropertyChanged(notifyName);
+                return newItem.Id;
+            }
+
+            return null;
+        }
+
+        public Guid? AddNewItemToList<TItem>(IItemCollection<TItem> collection, string notifyName) where TItem : DatabaseObject
+        {
+            var res = dialogs.SelectString("Enter new name:", "New item", string.Empty);
+            if (res.Result)
+            {
+                var newItem = typeof(TItem).CrateInstance<TItem>(res.SelectedString);
+                collection.Add(newItem);
+                OnPropertyChanged(notifyName);
+                return newItem.Id;
+            }
+
+            return null;
         }
     }
 }

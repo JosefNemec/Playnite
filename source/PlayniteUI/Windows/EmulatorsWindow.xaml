@@ -149,25 +149,8 @@
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="1" Margin="{StaticResource EditSeparatorMargin}">
-                                    <TextBlock Text="{DynamicResource LOCSupportedPlatformsTitle}" />
+                                    <TextBlock Text="{DynamicResource LOCSupportedPlatformsTitle}" />                                    
                                     <pc:DdItemListSelectionBox ItemsList="{Binding Data.AvailablePlatforms, Source={StaticResource Proxy}}" Margin="0,5,0,0" />
-
-
-                                    <!--<ComboBox Name="ComboEmulatorCategories" Margin="0,5,0,0" IsReadOnly="True" IsEditable="True" 
-                                              ItemsSource="{Binding Data.AvailablePlatforms, Source={StaticResource Proxy}}"
-                                              Text="{Binding Data.AvailablePlatforms.AsString, Mode=OneWay, Source={StaticResource Proxy}}">
-                                        <ComboBox.ItemContainerStyle>
-                                            <Style TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
-                                                <Setter Property="Padding" Value="0" />
-                                            </Style>
-                                        </ComboBox.ItemContainerStyle>
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" Padding="5" Margin="5,0,0,0" 
-                                                          Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ComboBoxItem}}"/>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>-->
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="2" Margin="{StaticResource EditSeparatorMargin}">

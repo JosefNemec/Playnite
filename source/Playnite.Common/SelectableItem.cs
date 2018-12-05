@@ -47,29 +47,29 @@ namespace System
 
 
     // TODO move this to Playnite project
-    public class SelectableDbItemList<TItem> : ObservableObject, ICollection<SelectableItem<TItem>> where TItem : DatabaseObject
+    public class SelectableDbItemList : ObservableObject, ICollection<SelectableItem<DatabaseObject>>
     {
         public string AsString
         {
             get => ToString();
         }
         
-        private List<SelectableItem<TItem>> items;
+        private List<SelectableItem<DatabaseObject>> items;
 
         public event EventHandler SelectionChanged;
 
-        public SelectableDbItemList(IEnumerable<TItem> collection, IEnumerable<Guid> selected = null)
+        public SelectableDbItemList(IEnumerable<DatabaseObject> collection, IEnumerable<Guid> selected = null)
         {            
-            items = new List<SelectableItem<TItem>>(collection.Select(a =>
+            items = new List<SelectableItem<DatabaseObject>>(collection.Select(a =>
             {
-                var newItem = new SelectableItem<TItem>(a)
+                var newItem = new SelectableItem<DatabaseObject>(a)
                 {
                     Selected = selected?.Contains(a.Id) == true
                 };
 
                 newItem.PropertyChanged += (s, e) =>
                 {
-                    if (e.PropertyName == nameof(SelectableItem<TItem>.Selected))
+                    if (e.PropertyName == nameof(SelectableItem<DatabaseObject>.Selected))
                     {
                         if (!SuppressNotifications)
                         {
@@ -87,12 +87,12 @@ namespace System
 
         public bool IsReadOnly => true;
 
-        public void Add(SelectableItem<TItem> item)
+        public void Add(SelectableItem<DatabaseObject> item)
         {
             throw new NotImplementedException();
         }
 
-        public bool Remove(SelectableItem<TItem> item)
+        public bool Remove(SelectableItem<DatabaseObject> item)
         {
             throw new NotImplementedException();
         }
@@ -102,17 +102,17 @@ namespace System
             throw new NotImplementedException();
         }
 
-        public bool Contains(SelectableItem<TItem> item)
+        public bool Contains(SelectableItem<DatabaseObject> item)
         {
             throw new NotImplementedException();
         }
 
-        public void CopyTo(SelectableItem<TItem>[] array, int arrayIndex)
+        public void CopyTo(SelectableItem<DatabaseObject>[] array, int arrayIndex)
         {
             items.CopyTo(array, arrayIndex);
         }
 
-        public IEnumerator<SelectableItem<TItem>> GetEnumerator()
+        public IEnumerator<SelectableItem<DatabaseObject>> GetEnumerator()
         {
             return items.GetEnumerator();
         }
@@ -122,17 +122,16 @@ namespace System
             return items.GetEnumerator();
         }
 
-        public IEnumerable<Guid> GetSelectedIds()
+        public List<Guid> GetSelectedIds()
         {
-            return items.Where(a => a.Selected == true).Select(a => a.Item.Id);
+            return items.Where(a => a.Selected == true).Select(a => a.Item.Id).ToList();
         }
 
         public void SetSelection(IEnumerable<Guid> toSelect)
         {
             SuppressNotifications = true;
             if (toSelect?.Any() == true)
-            {                
-                //TODO Suppress notifications for every item
+            {
                 foreach (var item in items)
                 {
                     item.Selected = toSelect?.Contains(item.Item.Id) == true;

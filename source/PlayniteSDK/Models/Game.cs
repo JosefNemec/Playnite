@@ -54,31 +54,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        // TODO change to standard list
-        private ComparableList<Guid> developerIds;
-        /// <summary>
-        /// Gets or sets list of developers.
-        /// </summary>
-        public ComparableList<Guid> DeveloperIds
-        {
-            get
-            {
-                return developerIds;
-            }
-
-            set
-            {
-                developerIds = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(Developers));
-            }
-        }
-
-        private ComparableList<Guid> genreIds;
+        private List<Guid> genreIds;
         /// <summary>
         /// Gets or sets list of genres.
         /// </summary>
-        public ComparableList<Guid> GenreIds
+        public List<Guid> GenreIds
         {
             get
             {
@@ -336,11 +316,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private ComparableList<Guid> publisherIds;
+        private List<Guid> publisherIds;
         /// <summary>
         /// Gets or sets list of publishers.
         /// </summary>
-        public ComparableList<Guid> PublisherIds
+        public List<Guid> PublisherIds
         {
             get
             {
@@ -352,6 +332,26 @@ namespace Playnite.SDK.Models
                 publisherIds = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(Publishers));
+            }
+        }
+
+        // TODO change to standard list
+        private List<Guid> developerIds;
+        /// <summary>
+        /// Gets or sets list of developers.
+        /// </summary>
+        public List<Guid> DeveloperIds
+        {
+            get
+            {
+                return developerIds;
+            }
+
+            set
+            {
+                developerIds = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(Developers));
             }
         }
 
@@ -374,11 +374,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private ComparableList<Guid> categoryIds;
+        private List<Guid> categoryIds;
         /// <summary>
         /// Gets or sets game categories.
         /// </summary>
-        public ComparableList<Guid> CategoryIds
+        public List<Guid> CategoryIds
         {
             get
             {
@@ -393,11 +393,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private ComparableList<Guid> tagIds;
+        private List<Guid> tagIds;
         /// <summary>
         /// Gets or sets list of tags.
         /// </summary>
-        public ComparableList<Guid> TagIds
+        public List<Guid> TagIds
         {
             get
             {

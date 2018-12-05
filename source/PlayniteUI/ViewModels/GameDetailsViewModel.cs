@@ -40,14 +40,14 @@ namespace PlayniteUI.ViewModels
                 }
 
                 return
-                    (game.Genres != null && game.Genres.Count > 0) ||
-                    (game.Publishers != null && game.Publishers.Count > 0) ||
-                    (game.Developers != null && game.Developers.Count > 0) ||
-                    (game.Categories != null && game.Categories.Count > 0) ||
-                    (game.Tags != null && game.Tags.Count > 0) ||
+                    (game.GenreIds?.Any() == true) ||
+                    (game.PublisherIds?.Any() == true) ||
+                    (game.DeveloperIds?.Any() == true) ||
+                    (game.CategoryIds?.Any() == true) ||
+                    (game.TagIds?.Any() == true) ||
                     game.ReleaseDate != null ||
-                    (game.Links != null && game.Links.Count > 0) ||
-                    !string.IsNullOrEmpty(game.Platform.Name);
+                    (game.Links?.Any() == true) ||
+                    game.PlatformId != Guid.Empty;
 
             }
         }
@@ -259,25 +259,25 @@ namespace PlayniteUI.ViewModels
             switch (property)
             {
                 case FilterProperty.Genres:
-                    settings.FilterSettings.Genres = new List<string>() { value };
+                    settings.FilterSettings.GenreString = value;
                     break;
                 case FilterProperty.Developers:
-                    settings.FilterSettings.Developers = new List<string>() { value };
+                    settings.FilterSettings.Developers = value;
                     break;
                 case FilterProperty.Publishers:
-                    settings.FilterSettings.Publishers = new List<string>() { value };
+                    settings.FilterSettings.Publishers = value;
                     break;
                 case FilterProperty.ReleaseDate:
                     settings.FilterSettings.ReleaseDate = value;
                     break;
                 case FilterProperty.Categories:
-                    settings.FilterSettings.Categories = new List<string>() { value };
+                    settings.FilterSettings.Categories = value;
                     break;
                 case FilterProperty.Tags:
-                    settings.FilterSettings.Tags = new List<string>() { value };
+                    settings.FilterSettings.Tags = value;
                     break;
                 case FilterProperty.Platform:
-                    settings.FilterSettings.Platforms = new List<string>() { value };
+                    settings.FilterSettings.Platforms = value;
                     break;
                 default:
                     break;
