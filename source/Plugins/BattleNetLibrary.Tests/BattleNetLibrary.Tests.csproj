@@ -61,6 +61,7 @@
     <Compile Include="BattleNetLibraryTests.cs" />
     <Compile Include="BattleNetMetadataProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BattleNetAccountClientTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

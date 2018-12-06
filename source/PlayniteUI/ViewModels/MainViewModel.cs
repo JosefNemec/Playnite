@@ -957,6 +957,7 @@ namespace PlayniteUI.ViewModels
                     foreach (var pluginId in Extensions.LibraryPlugins.Keys)
                     {
                         var plugin = Extensions.LibraryPlugins[pluginId];
+                        Logger.Info($"Importing games from {plugin.Plugin.Name} plugin.");
                         ProgressStatus = string.Format(Resources.FindString("LOCProgressImportinGames"), plugin.Plugin.Name);
 
                         try
