@@ -309,10 +309,17 @@ namespace PlayniteUI
             }
 
             // Pipe server
-            pipeService = new PipeService();
-            pipeService.CommandExecuted += PipeService_CommandExecuted;
-            pipeServer = new PipeServer(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
-            pipeServer.StartServer(pipeService);
+            try
+            {
+                pipeService = new PipeService();
+                pipeService.CommandExecuted += PipeService_CommandExecuted;
+                pipeServer = new PipeServer(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
+                pipeServer.StartServer(pipeService);
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to start pipe service.");
+            }
 
             var args = Environment.GetCommandLineArgs();
             if (args.Count() > 0 && args.Contains("-command"))
