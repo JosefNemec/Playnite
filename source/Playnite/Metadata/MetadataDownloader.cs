@@ -197,7 +197,7 @@ namespace Playnite.Metadata
             return null;
         }
 
-        public async Task DownloadMetadataGroupedAsync(
+        public Task DownloadMetadataGroupedAsync(
             List<Game> games,
             MetadataDownloaderSettings settings,
             Action<Game, int, int> processCallback,
@@ -217,16 +217,16 @@ namespace Playnite.Metadata
                 }, cancelToken));
             }
 
-            await Task.WhenAll(tasks);          
+            return Task.WhenAll(tasks);
         }
 
-        public async Task DownloadMetadataAsync(
+        public Task DownloadMetadataAsync(
             List<Game> games,
             MetadataDownloaderSettings settings,
             Action<Game, int, int> processCallback,
             CancellationTokenSource cancelToken)
         {
-            await Task.Run(() =>
+            return Task.Run(() =>
             {
                 if (games == null || games.Count == 0)
                 {
@@ -436,11 +436,14 @@ namespace Playnite.Metadata
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {
-                        logger.Error(e, $"Failed to download metadata for game {game.Name}, {game.GameId}");
+                        logger.Error(e, $"Failed to download metadata for game {game?.Name}, {game?.GameId}");
                     }
                     finally
                     {
-                        processCallback?.Invoke(game, i, games.Count);
+                        if (game != null)
+                        {
+                            processCallback?.Invoke(game, i, games.Count);
+                        }
                     }
                 }
             });
