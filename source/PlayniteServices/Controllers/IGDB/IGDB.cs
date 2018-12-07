@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -24,11 +25,35 @@ namespace PlayniteServices.Controllers.IGDB
             }
         }
 
-        public static int CacheTimeout
+        public static string CacheDirectory
         {
             get
             {
-                return int.Parse(Startup.Configuration.GetSection("IGDB")["CacheTimeout"]);
+                var path = Startup.Configuration.GetSection("IGDB")["CacheDirectory"];
+                if (Path.IsPathRooted(path))
+                {
+                    return path;
+                }
+                else
+                {
+                    return Path.Combine(Paths.ExecutingDirectory, path);
+                }
+            }
+        }
+
+        public static string WebHookSecret
+        {
+            get
+            {
+                return Startup.Configuration.GetSection("IGDB")["WebHookSecret"];
+            }
+        }
+
+        public static int SearchCacheTimeout
+        {
+            get
+            {
+                return int.Parse(Startup.Configuration.GetSection("IGDB")["SearchCacheTimeout"]);
             }
         }
 
@@ -50,18 +75,8 @@ namespace PlayniteServices.Controllers.IGDB
             return request;
         }
 
-        public static async Task<string> SendStringRequest(string url, string key)
+        public static async Task<string> SendStringRequest(string url)
         {
-            if (!string.IsNullOrEmpty(key))
-            {
-                var request = CreateRequest(url, key);
-                var response = await HttpClient.SendAsync(request);
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    return await response.Content.ReadAsStringAsync();
-                }
-            }
-
             var sharedRequest = CreateRequest(url, ApiKey);
             var sharedResponse = await HttpClient.SendAsync(sharedRequest);
             return await sharedResponse.Content.ReadAsStringAsync();

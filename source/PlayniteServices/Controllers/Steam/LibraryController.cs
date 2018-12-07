@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Threading;
 using PlayniteServices.Models.Steam;
+using LiteDB;
 
 namespace PlayniteServices.Controllers.Steam
 {
@@ -18,6 +19,7 @@ namespace PlayniteServices.Controllers.Steam
         private static DateTime lastRequest = DateTime.Now.AddMilliseconds(-requestDelay);
         private static object dateLock = new object();
         private static object userIdLock = new object();
+        private static LiteCollection<SteamNameCache> cacheCollection = Program.Database.GetCollection<SteamNameCache>("SteamUserNamesCache");
 
         // Steam API has limit one request per second, so we need to slow requests down
         // TODO: change this to something more sophisticated like proper queue
@@ -42,7 +44,6 @@ namespace PlayniteServices.Controllers.Steam
         {
             lock (userIdLock)
             {
-                var cacheCollection = Program.DatabaseCache.GetCollection<SteamNameCache>("SteamUserNamesCache");
                 var cache = cacheCollection.FindById(userName);
                 if (cache != null)
                 {
@@ -87,7 +88,7 @@ namespace PlayniteServices.Controllers.Steam
             var libraryStringResult = await httpClient.GetStringAsync(libraryUrl);
             var libraryResult = JsonConvert.DeserializeObject<GetOwnedGamesResult>(libraryStringResult);
 
-            return new ServicesResponse<List<GetOwnedGamesResult.Game>>(libraryResult.response.games, string.Empty);
+            return new ServicesResponse<List<GetOwnedGamesResult.Game>>(libraryResult.response.games);
         }
     }
 }

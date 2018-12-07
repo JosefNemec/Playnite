@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using PlayniteServices.Models.IGDB;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -10,23 +11,16 @@ using System.Threading.Tasks;
 namespace PlayniteServices.Controllers.IGDB
 {
     [Route("api/igdb/themes")]
-    public class ThemeController : Controller
+    public class ThemeController : IgdbItemController
     {
-        [HttpGet("{themeId}")]
-        public async Task<ServicesResponse<Theme>> Get(UInt64 themeId, [FromQuery]string apiKey)
-        {
-            var cacheCollection = Program.DatabaseCache.GetCollection<Theme>("IGBDThemesCache");
-            var cache = cacheCollection.FindById(themeId);
-            if (cache != null)
-            {
-                return new ServicesResponse<Theme>(cache, string.Empty);
-            }
+        private static readonly object CacheLock = new object();
 
-            var url = string.Format(@"themes/{0}?fields=name", themeId);
-            var stringResult = await IGDB.SendStringRequest(url, apiKey);
-            var theme = JsonConvert.DeserializeObject<List<Theme>>(stringResult)[0];
-            cacheCollection.Insert(theme);            
-            return new ServicesResponse<Theme>(theme, string.Empty);
+        private const string endpointPath = "themes";
+
+        [HttpGet("{themeId}")]
+        public async Task<ServicesResponse<Theme>> Get(ulong themeId)
+        {
+            return new ServicesResponse<Theme>(await GetItem<Theme>(themeId, endpointPath, CacheLock));
         }
     }
 }

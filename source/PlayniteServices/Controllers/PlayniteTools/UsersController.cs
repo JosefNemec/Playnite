@@ -4,21 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PlayniteServices.Models.Playnite;
+using LiteDB;
 
-namespace PlayniteServices.Controllers.Playnite
+namespace PlayniteServices.Controllers.PlayniteTools
 {
     [Route("api/playnite/users")]
     public class UsersController : Controller
     {
+        private static LiteCollection<User> usersColl = Program.Database.GetCollection<User>("PlayniteUsers");
+
         [HttpPost]
         public IActionResult Create([FromBody]User user)
         {
             if (user == null)
             {
-                return BadRequest(new GenericResponse(null, "No user data provided."));
+                return BadRequest(new ErrorResponse(new Exception("No user data provided.")));
             }
 
-            var usersColl = Program.DatabaseCache.GetCollection<User>("PlayniteUsers");
             var dbUser = usersColl.FindById(user.Id);
             user.LastLaunch = DateTime.Now;
             if (dbUser == null)

@@ -10,23 +10,16 @@ using System.Threading.Tasks;
 namespace PlayniteServices.Controllers.IGDB
 {
     [Route("api/igdb/company")]
-    public class CompanyController : Controller
+    public class CompanyController : IgdbItemController
     {
-        [HttpGet("{companyId}")]
-        public async Task<ServicesResponse<Company>> Get(UInt64 companyId, [FromQuery]string apiKey)
-        {
-            var cacheCollection = Program.DatabaseCache.GetCollection<Company>("IGBDCompaniesCache");
-            var cache = cacheCollection.FindById(companyId);
-            if (cache != null)
-            {
-                return new ServicesResponse<Company>(cache, string.Empty);
-            }
+        private static readonly object CacheLock = new object();
 
-            var url = string.Format(@"companies/{0}?fields=name", companyId);
-            var stringResult = await IGDB.SendStringRequest(url, apiKey);
-            var company = JsonConvert.DeserializeObject<List<Company>>(stringResult)[0];
-            cacheCollection.Insert(company);            
-            return new ServicesResponse<Company>(company, string.Empty);
+        private const string endpointPath = "companies";
+
+        [HttpGet("{companyId}")]
+        public async Task<ServicesResponse<Company>> Get(ulong companyId)
+        {
+            return new ServicesResponse<Company>(await GetItem<Company>(companyId, endpointPath, CacheLock));
         }
     }
 }

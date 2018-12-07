@@ -8,34 +8,20 @@ using Microsoft.AspNetCore.Builder;
 using PlayniteServices.Databases;
 using Microsoft.AspNetCore;
 using Microsoft.Extensions.Configuration;
+using Playnite.SDK;
 
 namespace PlayniteServices
 {
     public class Program
     {
-        private static Database databaseCache;
-        public static Database DatabaseCache
+        public static Database Database
         {
-            get
-            {
-                if (databaseCache == null)
-                {
-                    databaseCache = new Database(Database.DefaultLocation);
-
-
-                }
-
-                return databaseCache;
-            }
-
-            set
-            {
-                databaseCache = value;
-            }
+            get; private set;
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            var host = WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
@@ -44,9 +30,16 @@ namespace PlayniteServices
                 })
                 .Build();
 
+            Database = new Database(Database.Path);
+            Database.GetCollection("IGBDSteamIdCache").EnsureIndex(nameof(Models.IGDB.SteamIdGame.steamId));
+            return host;
+        }
+
         public static void Main(string[] args)
         {
+            NLogLogger.ConfigureLogger();
+            LogManager.Init(new NLogLogProvider());
             BuildWebHost(args).Run();
-        }
+        }        
     }
 }
