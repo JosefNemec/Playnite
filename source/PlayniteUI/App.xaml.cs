@@ -228,7 +228,8 @@ namespace PlayniteUI
                 new PlayniteInfoAPI(),
                 new PlaynitePathsAPI(),
                 new WebViewFactory(),
-                new DefaultResourceProvider());
+                new DefaultResourceProvider(),
+                new NotificationsAPI());
             Extensions = new ExtensionFactory(Database, controllers);
 
             // Load theme

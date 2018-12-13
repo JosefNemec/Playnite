@@ -115,17 +115,6 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        private ObservableCollection<NotificationMessage> messages;
-        public ObservableCollection<NotificationMessage> Messages
-        {
-            get => messages;
-            set
-            {
-                messages = value;
-                OnPropertyChanged();
-            }
-        }
-
         private List<ThirdPartyTool> thirdPartyTools;
         public List<ThirdPartyTool> ThirdPartyTools
         {
@@ -353,7 +342,6 @@ namespace PlayniteUI.ViewModels
             Resources = resources;
             Database = database;
             GamesEditor = gamesEditor;
-            Messages = new ObservableCollection<NotificationMessage>();
             AppSettings = settings;
             PlayniteApi = playniteApi;
             Extensions = extensions;
@@ -528,7 +516,7 @@ namespace PlayniteUI.ViewModels
             ClearMessagesCommand = new RelayCommand<object>((a) =>
             {
                 ClearMessages();
-            }, (a) => Messages.Count > 0);
+            }, (a) => PlayniteApi.Notifications.Count > 0);
 
             DownloadMetadataCommand = new RelayCommand<object>((a) =>
             {
@@ -876,7 +864,7 @@ namespace PlayniteUI.ViewModels
                     return;
                 }
             }
-            
+
             var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
             () =>
             {
@@ -1267,35 +1255,17 @@ namespace PlayniteUI.ViewModels
 
         public void AddMessage(NotificationMessage message)
         {
-            context.Send((c =>
-            {
-                if (!Messages.Any(a => a.Id == message.Id))
-                {
-                    Messages.Add(message);
-                }
-            }), null);
+            PlayniteApi.Notifications.Add(message);
         }
 
         public void RemoveMessage(string id)
         {
-            context.Send((c =>
-            {
-                var message = Messages.FirstOrDefault(a => a.Id == id);
-                if (message != null)
-                {
-                    Messages.Remove(message);
-                }
-            }), null);
-        }
-
-        public void RemoveMessage(NotificationMessage message)
-        {
-            context.Send((c => Messages.Remove(message)), null);            
+            PlayniteApi.Notifications.Remove(id);
         }
 
         public void ClearMessages()
         {
-            context.Send((c => Messages.Clear()), null);
+            PlayniteApi.Notifications.RemoveAll();
         }
 
         public void CheckForUpdate()

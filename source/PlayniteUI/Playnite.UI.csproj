@@ -308,7 +308,6 @@
     <Compile Include="Controls\GameTaskView.xaml.cs">
       <DependentUpon>GameTaskView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Notifications.cs" />
     <Compile Include="GlobalTaskHandler.cs" />
     <Compile Include="Windows\InstalledGamesWindow.xaml.cs">
       <DependentUpon>InstalledGamesWindow.xaml</DependentUpon>

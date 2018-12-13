@@ -2655,7 +2655,7 @@
                     <ToggleButton.Style>
                         <Style TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Messages.Count}" Value="0">
+                                <DataTrigger Binding="{Binding PlayniteApi.Notifications.Count}" Value="0">
                                     <Setter Property="Visibility" Value="Collapsed"/>
                                     <Setter Property="IsChecked" Value="False"/>
                                 </DataTrigger>
@@ -2667,7 +2667,7 @@
                             <TextBlock Text="🔔" FontSize="20" />
                             <Border CornerRadius="3" Width="15" Height="15" Margin="15,15,0,0"
                                     Background="OrangeRed">
-                                <TextBlock Text="{Binding Messages.Count}" FontSize="12"
+                                <TextBlock Text="{Binding PlayniteApi.Notifications.Count}" FontSize="12"
                                            Foreground="{DynamicResource TextBrush}"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
@@ -2681,7 +2681,7 @@
                     <Border Style="{StaticResource PopupBorder}">
                         <StackPanel>
                             <ItemsControl Name="ListNotifications" BorderThickness="0" Margin="0,5,0,0"
-                                          ItemsSource="{Binding Messages}" MaxWidth="350">
+                                          ItemsSource="{Binding PlayniteApi.Notifications.Messages}" MaxWidth="350">
                                 <ItemsControl.Resources>
                                 </ItemsControl.Resources>
                                 <ItemsControl.ItemTemplate>
