@@ -35,9 +35,9 @@ namespace PlayniteServices.Models.IGDB
     public class SteamIdGame
     {
         [BsonId(false)]
-        public ulong steamId;
-        public ulong igdbId;
-        public DateTime creation_time;
+        public ulong steamId { get; set; }
+        public ulong igdbId { get; set; }
+        public DateTime creation_time { get; set; }
     }
 
     public class Website

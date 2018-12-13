@@ -9,8 +9,8 @@ namespace PlayniteServices.Models.Steam
     public class SteamNameCache
     {
         [BsonId(false)]
-        public string Name;
-        public string Id;
-        public DateTime UpdateDate;
+        public string Name { get; set; }
+        public string Id { get; set; }
+        public DateTime UpdateDate { get; set; }
     }
 }

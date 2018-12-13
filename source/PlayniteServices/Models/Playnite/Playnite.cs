@@ -9,10 +9,10 @@ namespace PlayniteServices.Models.Playnite
     public class User
     {
         [BsonId(false)]
-        public string Id;
-        public string WinVersion;
-        public string PlayniteVersion;
-        public DateTime LastLaunch;
-        public bool Is64Bit;
+        public string Id { get; set; }
+        public string WinVersion { get; set; }
+        public string PlayniteVersion { get; set; }
+        public DateTime LastLaunch { get; set; }
+        public bool Is64Bit { get; set; }
     }
 }

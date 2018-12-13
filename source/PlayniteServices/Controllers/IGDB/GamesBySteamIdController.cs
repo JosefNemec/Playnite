@@ -15,7 +15,9 @@ namespace PlayniteServices.Controllers.IGDB
     {
         private const string cacheDir = "steam_ids";
 
-        private static LiteCollection<SteamIdGame> cacheCollection = Program.Database.GetCollection<SteamIdGame>("IGBDSteamIdCache");
+        public const string DbCollectionName = "IGBDSteamIdCache";
+
+        private static LiteCollection<SteamIdGame> cacheCollection = Program.Database.GetCollection<SteamIdGame>(DbCollectionName);
 
         [HttpGet("{gameId}")]
         public async Task<ServicesResponse<ulong>> Get(ulong gameId)
