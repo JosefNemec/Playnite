@@ -19,6 +19,7 @@ namespace BethesdaLibrary
     {
         private ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
+        private const string dbImportMessageId = "bethesdalibImportError";
 
         internal BethesdaLibrarySettings LibrarySettings { get; private set; }
 
@@ -105,7 +106,22 @@ namespace BethesdaLibrary
             var allGames = new List<Game>();
             if (LibrarySettings.ImportInstalledGames)
             {
-                return GetInstalledGames();
+                try
+                {
+                    var installed = GetInstalledGames();
+                    logger.Debug($"Found {installed.Count} installed Bethesda games.");
+                    playniteApi.Notifications.Remove(dbImportMessageId);
+                    return installed;
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to import uninstalled Bethesda games.");
+                    playniteApi.Notifications.Add(
+                        dbImportMessageId,
+                        string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) +
+                        System.Environment.NewLine + e.Message,
+                        NotificationType.Error);
+                }
             }
 
             return allGames;
