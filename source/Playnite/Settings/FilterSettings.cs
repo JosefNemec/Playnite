@@ -41,10 +41,10 @@ namespace Playnite
             get
             {
                 return
-                    IsInstalled ||
-                    IsUnInstalled ||
-                    Hidden ||
-                    Favorite ||
+                    (IsInstalled != ThreeStateFilterEnum.Disable) ||
+                    (IsUnInstalled != ThreeStateFilterEnum.Disable) ||
+                    (Hidden != ThreeStateFilterEnum.Disable) ||
+                    (Favorite != ThreeStateFilterEnum.Disable) ||
                     !string.IsNullOrEmpty(Name) ||
                     !string.IsNullOrEmpty(ReleaseDate) ||
                     !string.IsNullOrEmpty(Series) ||
@@ -199,75 +199,77 @@ namespace Playnite
             }
         }
 
-        private bool isInstalled;
-        public bool IsInstalled
-        {
-            get
-            {
-                return isInstalled;
-            }
+	    private ThreeStateFilterEnum isInstalled;
 
-            set
-            {
-                isInstalled = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(IsInstalled));
-                OnPropertyChanged(nameof(Active));
-            }
-        }
+	    public ThreeStateFilterEnum IsInstalled
+	    {
+		    get
+		    {
+			    return isInstalled;
+		    }
 
-        private bool isUnInstalled;
-        public bool IsUnInstalled
-        {
-            get
-            {
-                return isUnInstalled;
-            }
+		    set
+		    {
+			    isInstalled = value;
+			    OnPropertyChanged();
+			    OnFilterChanged(nameof(IsInstalled));
+			    OnPropertyChanged(nameof(Active));
+		    }
+		}
 
-            set
-            {
-                isUnInstalled = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(IsUnInstalled));
-                OnPropertyChanged(nameof(Active));
-            }
-        }
+	    private ThreeStateFilterEnum isUnInstalled;
 
-        private bool hidden;
-        public bool Hidden
-        {
-            get
-            {
-                return hidden;
-            }
+	    public ThreeStateFilterEnum IsUnInstalled
+	    {
+		    get
+		    {
+			    return isUnInstalled;
+		    }
 
-            set
-            {
-                hidden = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Hidden));
-                OnPropertyChanged(nameof(Active));
-            }
-        }
+		    set
+		    {
+			    isUnInstalled = value;
+			    OnPropertyChanged();
+			    OnFilterChanged(nameof(IsUnInstalled));
+			    OnPropertyChanged(nameof(Active));
+		    }
+		}
 
-        private bool favorite;
-        public bool Favorite
-        {
-            get
-            {
-                return favorite;
-            }
+	    private ThreeStateFilterEnum hidden;
+	    public ThreeStateFilterEnum Hidden
+	    {
+		    get
+		    {
+				return hidden;
+		    }
 
-            set
-            {
-                favorite = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Favorite));
-                OnPropertyChanged(nameof(Active));
-            }
-        }
+		    set
+		    {
+			    hidden = value;
+				OnPropertyChanged();
+				OnFilterChanged(nameof(Hidden));
+				OnPropertyChanged(nameof(Active));
+		    }
+	    }
 
-        private string series;
+	    private ThreeStateFilterEnum favorite;
+		public ThreeStateFilterEnum Favorite
+		{
+			get
+			{
+				return favorite;
+			}
+
+			set
+			{
+				favorite = value;
+				OnPropertyChanged();
+				OnFilterChanged(nameof(Favorite));
+				OnPropertyChanged(nameof(Active));
+			}
+		}
+
+		private string series;
         public string Series
         {
             get
@@ -424,27 +426,27 @@ namespace Playnite
                 filterChanges.Add(nameof(Tags));
             }
 
-            if (IsInstalled != false)
+            if (IsInstalled != ThreeStateFilterEnum.Disable)
             {
-                IsInstalled = false;
+                IsInstalled = ThreeStateFilterEnum.Disable;
                 filterChanges.Add(nameof(IsInstalled));
             }
 
-            if (IsUnInstalled != false)
+            if (IsUnInstalled != ThreeStateFilterEnum.Disable)
             {
-                IsUnInstalled = false;
+                IsUnInstalled = ThreeStateFilterEnum.Disable;
                 filterChanges.Add(nameof(IsUnInstalled));
             }
 
-            if (Hidden != false)
+            if (Hidden != ThreeStateFilterEnum.Disable)
             {
-                Hidden = false;
+                Hidden = ThreeStateFilterEnum.Disable;
                 filterChanges.Add(nameof(Hidden));
             }
 
-            if (Favorite != false)
+            if (Favorite != ThreeStateFilterEnum.Disable)
             {
-                Favorite = false;
+                Favorite = ThreeStateFilterEnum.Disable;
                 filterChanges.Add(nameof(Favorite));
             }
 

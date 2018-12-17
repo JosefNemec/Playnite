@@ -2620,6 +2620,7 @@
                 <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
                 <pui:ListToStringConverter x:Key="ListToStringConverter" />
                 <pui:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
+                <pui:NullableBoolToThreeStateFilterEnumConverter x:Key="NullableBoolToThreeStateFilterEnumConverter" />
             </Grid.Resources>
 
             <pc:FadeImage HorizontalAlignment="Center" VerticalAlignment="Top" 
@@ -3052,28 +3053,28 @@
                                 </Style>
                             </StackPanel.Resources>
 
-                            <CheckBox TabIndex="1" Name="CheckFilterInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="1" Name="CheckFilterInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled, Converter={StaticResource NullableBoolToThreeStateFilterEnumConverter}}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameIsInstalledTitle}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.Installed, Mode=OneWay, StringFormat=({0})}" />
                                 </StackPanel>
                             </CheckBox>
 
-                            <CheckBox TabIndex="2" Name="CheckFilterUnInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsUnInstalled}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="2" Name="CheckFilterUnInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsUnInstalled, Converter={StaticResource NullableBoolToThreeStateFilterEnumConverter}}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameIsUnInstalledTitle}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.UnInstalled, Mode=OneWay, StringFormat=({0})}" />
                                 </StackPanel>
                             </CheckBox>
 
-                            <CheckBox TabIndex="3" Name="CheckFilterHidden" IsChecked="{Binding AppSettings.FilterSettings.Hidden}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="3" Name="CheckFilterHidden" IsThreeState="True" IsChecked="{Binding AppSettings.FilterSettings.Hidden, Converter={StaticResource NullableBoolToThreeStateFilterEnumConverter}}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameHiddenTitle}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.Hidden, Mode=OneWay, StringFormat=({0})}" />
                                 </StackPanel>
                             </CheckBox>
 
-                            <CheckBox TabIndex="4" Name="CheckFilterFavorite" IsChecked="{Binding AppSettings.FilterSettings.Favorite}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="4" Name="CheckFilterFavorite" IsThreeState="True" IsChecked="{Binding AppSettings.FilterSettings.Favorite, Converter={StaticResource NullableBoolToThreeStateFilterEnumConverter}}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameFavoriteTitle}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.Favorite, Mode=OneWay, StringFormat=({0})}" />

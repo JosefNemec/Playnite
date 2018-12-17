@@ -171,6 +171,8 @@
     <Compile Include="Scripting\PlayniteScript.cs" />
     <Compile Include="Scripting\PowerShell\PowerShell.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellScript.cs" />
+    <Compile Include="Settings\FullscreenFilterSettings.cs" />
+    <Compile Include="Settings\ThreeStateFilterEnum.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />
     <Compile Include="Emulators\EmulatorDefinition.cs" />
     <Compile Include="Emulators\EmulatorFinder.cs" />

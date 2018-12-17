@@ -309,8 +309,8 @@ namespace Playnite.Settings
             }
         }
 
-        private FilterSettings fullScreenFilterSettings = new FilterSettings();
-        public FilterSettings FullScreenFilterSettings
+        private FullscreenFilterSettings fullScreenFilterSettings = new FullscreenFilterSettings();
+        public FullscreenFilterSettings FullScreenFilterSettings
         {
             get
             {

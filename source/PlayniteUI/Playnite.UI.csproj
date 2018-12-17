@@ -232,6 +232,7 @@
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\LongToTimePlayedConverter.cs" />
     <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
+    <Compile Include="Converters\NullableBoolToThreeStateFilterEnumConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
     <Compile Include="Converters\WidthToFontSizeConverter.cs" />
     <Compile Include="SystemDialogs.cs" />

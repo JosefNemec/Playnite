@@ -18,11 +18,11 @@ namespace PlayniteUI
             // TODO: this is just for fullscreen mode right now where only three filter options are available.
             // This should be extended in future.
             var settings = (FilterSettings)value;
-            if (settings.IsInstalled)
+            if (settings.IsInstalled == ThreeStateFilterEnum.EnableExclusive)
             {
                 return DefaultResourceProvider.FindString("LOCGameIsInstalledTitle");
             }
-            else if (settings.IsUnInstalled)
+            else if (settings.IsUnInstalled == ThreeStateFilterEnum.EnableExclusive)
             {
                 return DefaultResourceProvider.FindString("LOCGameIsUnInstalledTitle");
             }

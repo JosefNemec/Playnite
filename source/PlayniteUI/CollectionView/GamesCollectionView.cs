@@ -142,49 +142,89 @@ namespace PlayniteUI
             }
 
             // ------------------ Installed
-            bool installedResult = false;
-            if ((filterSettings.IsInstalled && filterSettings.IsUnInstalled) ||
-                (!filterSettings.IsInstalled && !filterSettings.IsUnInstalled))
-            {
-                installedResult = true;
-            }
-            else
-            {
-                if (filterSettings.IsInstalled && game.IsInstalled)
-                {
-                    installedResult = true;
-                }
-                else if (filterSettings.IsUnInstalled && !game.IsInstalled)
-                {
-                    installedResult = true;
-                }
-            }
+            bool installedResult = true;
+	        switch (filterSettings.IsInstalled)
+	        {
+		        case ThreeStateFilterEnum.Disable:
+			        if (game.IsInstalled)
+			        {
+				        installedResult = false;
+			        }
+			        break;
+		        case ThreeStateFilterEnum.EnableExclusive:
+			        if (!game.IsInstalled)
+			        {
+				        installedResult = false;
+			        }
+			        break;
+		        case ThreeStateFilterEnum.EnableInclusive:
+			        installedResult = true;
+			        break;
+	        }
 
-            // ------------------ Hidden
-            bool hiddenResult = true;
-            if (filterSettings.Hidden && game.Hidden)
-            {
-                hiddenResult = true;
-            }
-            else if (!filterSettings.Hidden && game.Hidden)
-            {
-                hiddenResult = false;
-            }
-            else if (filterSettings.Hidden && !game.Hidden)
-            {
-                hiddenResult = false;
-            }
+	        // ------------------ Installed
+			bool unInstalledResult = true;
+	        switch (filterSettings.IsUnInstalled)
+	        {
+		        case ThreeStateFilterEnum.Disable:
+			        if (!game.IsInstalled)
+			        {
+				        unInstalledResult = false;
+			        }
+			        break;
+		        case ThreeStateFilterEnum.EnableExclusive:
+			        if (game.IsInstalled)
+			        {
+				        unInstalledResult = false;
+			        }
+			        break;
+		        case ThreeStateFilterEnum.EnableInclusive:
+			        unInstalledResult = true;
+			        break;
+	        }
+
+
+			// ------------------ Hidden
+	        bool hiddenResult = true;
+	        switch (filterSettings.Hidden)
+	        {
+				case ThreeStateFilterEnum.Disable:
+					if (game.Hidden)
+					{
+						hiddenResult = false;
+					}
+					break;
+				case ThreeStateFilterEnum.EnableExclusive:
+					if (!game.Hidden)
+					{
+						hiddenResult = false;
+					}
+					break;
+		        case ThreeStateFilterEnum.EnableInclusive:
+			        hiddenResult = true;
+			        break;
+			}
 
             // ------------------ Favorite
-            bool favoriteResult = false;
-            if (filterSettings.Favorite && game.Favorite)
-            {
-                favoriteResult = true;
-            }
-            else if (!filterSettings.Favorite)
-            {
-                favoriteResult = true;
-            }
+	        bool favoriteResult = true;
+	        switch (filterSettings.Favorite)
+	        {
+		        case ThreeStateFilterEnum.Disable:
+			        if (game.Favorite)
+			        {
+				        favoriteResult = false;
+			        }
+			        break;
+		        case ThreeStateFilterEnum.EnableExclusive:
+					if (!game.Favorite)
+					{
+						favoriteResult = false;
+					}
+					break;
+		        case ThreeStateFilterEnum.EnableInclusive:
+			        favoriteResult = true;
+			        break;
+	        }
 
             // ------------------ Providers
             bool librariesFilter = false;
@@ -431,6 +471,7 @@ namespace PlayniteUI
             }
 
             return installedResult &&
+				unInstalledResult &&
                 hiddenResult &&
                 favoriteResult &&
                 nameResult &&

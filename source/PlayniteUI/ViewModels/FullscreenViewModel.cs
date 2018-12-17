@@ -317,21 +317,7 @@ namespace PlayniteUI.ViewModels
 
         public void ToggleInstallFilter()
         {
-            if (!AppSettings.FullScreenFilterSettings.IsInstalled && !AppSettings.FullScreenFilterSettings.IsUnInstalled)
-            {                
-                AppSettings.FullScreenFilterSettings.IsInstalled = true;
-                AppSettings.FullScreenFilterSettings.IsUnInstalled = false;
-            }
-            else if (AppSettings.FullScreenFilterSettings.IsInstalled)
-            {
-                AppSettings.FullScreenFilterSettings.IsInstalled = false;
-                AppSettings.FullScreenFilterSettings.IsUnInstalled = true;
-            }
-            else if (AppSettings.FullScreenFilterSettings.IsUnInstalled)
-            {
-                AppSettings.FullScreenFilterSettings.IsInstalled = false;
-                AppSettings.FullScreenFilterSettings.IsUnInstalled = false;
-            }
+            AppSettings.FullScreenFilterSettings.ToggleFilter();
 
             // TODO: Handle this properly inside of Settings class.
             AppSettings.OnPropertyChanged(nameof(AppSettings.FullScreenFilterSettings));
