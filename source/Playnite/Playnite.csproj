@@ -171,8 +171,9 @@
     <Compile Include="Scripting\PlayniteScript.cs" />
     <Compile Include="Scripting\PowerShell\PowerShell.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellScript.cs" />
-    <Compile Include="Settings\FullscreenFilterSettings.cs" />
-    <Compile Include="Settings\ThreeStateFilterEnum.cs" />
+    <Compile Include="Settings\Filters\FullscreenFilterSettings.cs" />
+    <Compile Include="Settings\Filters\ThreeStateFilterEnum.cs" />
+    <Compile Include="Settings\Filters\ThreeStateFilterEvaluator.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />
     <Compile Include="Emulators\EmulatorDefinition.cs" />
     <Compile Include="Emulators\EmulatorFinder.cs" />
@@ -187,7 +188,7 @@
     <Compile Include="PipeServer.cs" />
     <Compile Include="PlayniteEnvironment.cs" />
     <Compile Include="Diagnostic.cs" />
-    <Compile Include="Settings\FilterSettings.cs" />
+    <Compile Include="Settings\Filters\FilterSettings.cs" />
     <Compile Include="Metadata\Providers\WikipediaMetadataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThirdPartyClients\EpicLauncherClient.cs" />

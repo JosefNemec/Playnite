@@ -141,90 +141,14 @@ namespace PlayniteUI
                 }
             }
 
-            // ------------------ Installed
-            bool installedResult = true;
-	        switch (filterSettings.IsInstalled)
-	        {
-		        case ThreeStateFilterEnum.Disable:
-			        if (game.IsInstalled)
-			        {
-				        installedResult = false;
-			        }
-			        break;
-		        case ThreeStateFilterEnum.EnableExclusive:
-			        if (!game.IsInstalled)
-			        {
-				        installedResult = false;
-			        }
-			        break;
-		        case ThreeStateFilterEnum.EnableInclusive:
-			        installedResult = true;
-			        break;
-	        }
-
-	        // ------------------ Installed
-			bool unInstalledResult = true;
-	        switch (filterSettings.IsUnInstalled)
-	        {
-		        case ThreeStateFilterEnum.Disable:
-			        if (!game.IsInstalled)
-			        {
-				        unInstalledResult = false;
-			        }
-			        break;
-		        case ThreeStateFilterEnum.EnableExclusive:
-			        if (game.IsInstalled)
-			        {
-				        unInstalledResult = false;
-			        }
-			        break;
-		        case ThreeStateFilterEnum.EnableInclusive:
-			        unInstalledResult = true;
-			        break;
-	        }
-
-
-			// ------------------ Hidden
-	        bool hiddenResult = true;
-	        switch (filterSettings.Hidden)
-	        {
-				case ThreeStateFilterEnum.Disable:
-					if (game.Hidden)
-					{
-						hiddenResult = false;
-					}
-					break;
-				case ThreeStateFilterEnum.EnableExclusive:
-					if (!game.Hidden)
-					{
-						hiddenResult = false;
-					}
-					break;
-		        case ThreeStateFilterEnum.EnableInclusive:
-			        hiddenResult = true;
-			        break;
-			}
-
-            // ------------------ Favorite
-	        bool favoriteResult = true;
-	        switch (filterSettings.Favorite)
-	        {
-		        case ThreeStateFilterEnum.Disable:
-			        if (game.Favorite)
-			        {
-				        favoriteResult = false;
-			        }
-			        break;
-		        case ThreeStateFilterEnum.EnableExclusive:
-					if (!game.Favorite)
-					{
-						favoriteResult = false;
-					}
-					break;
-		        case ThreeStateFilterEnum.EnableInclusive:
-			        favoriteResult = true;
-			        break;
-	        }
+            // ------------------ Checkbox Filters
+			// TODO: Utilize Chain of Command Design Pattern for these, earlier short circuit bool evaluation/optimization
+	        bool installedResult =
+		        ThreeStateFilterEvaluator.EvaluateFilter(filterSettings.IsInstalled, game.IsInstalled);
+	        bool unInstalledResult =
+		        ThreeStateFilterEvaluator.EvaluateFilter(filterSettings.IsUnInstalled, !game.IsInstalled);
+	        bool hiddenResult = ThreeStateFilterEvaluator.EvaluateFilter(filterSettings.Hidden, game.Hidden);
+	        bool favoriteResult = ThreeStateFilterEvaluator.EvaluateFilter(filterSettings.Favorite, game.Favorite);
 
             // ------------------ Providers
             bool librariesFilter = false;
