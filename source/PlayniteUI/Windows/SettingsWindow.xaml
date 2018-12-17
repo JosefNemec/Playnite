@@ -157,6 +157,7 @@
                                         <RowDefinition />
                                         <RowDefinition />
                                         <RowDefinition />
+                                        <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <CheckBox Name="CheckEnableTray" Content="{DynamicResource LOCSettingsShowTray}" Margin="5,0,0,0"
                                             IsChecked="{Binding Settings.EnableTray}"
@@ -208,6 +209,11 @@
                                     <CheckBox Name="CheckStartMinimized" Margin="5,15,5,5" Grid.Row="7" Grid.ColumnSpan="2"
                                       Content="{DynamicResource LOCSettingsStartMinimized}"
                                       IsChecked="{Binding Settings.StartMinimized}"/>
+
+                                    <CheckBox Name="CheckAlwaysSyncTime" Margin="5,15,5,5" Grid.Row="8" Grid.ColumnSpan="2"
+                                      Content="{DynamicResource LOCSettingsForceDownloadPlaynite}"
+                                      ToolTip="{DynamicResource LOCSettingsForceDownloadPlayniteTooltip}" ToolTipService.InitialShowDelay="0"
+                                      IsChecked="{Binding Settings.ForcePlayTimeSync}"/>
                                 </Grid>
                             </StackPanel>
                         </TabItem>

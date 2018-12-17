@@ -661,6 +661,21 @@ namespace Playnite.Settings
             }
         }
 
+        private bool forcePlayTimeSync = false;
+        public bool ForcePlayTimeSync
+        {
+            get
+            {
+                return forcePlayTimeSync;
+            }
+
+            set
+            {
+                forcePlayTimeSync = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
