@@ -268,8 +268,8 @@ namespace PlayniteUI.ViewModels
                 GenericPluginSettings[provider].Settings.CancelEdit();
             }
 
-            window.Close(false);
             WindowClosing(true);
+            window.Close(false);
         }
 
         public void WindowClosing(bool closingHandled)
@@ -348,8 +348,8 @@ namespace PlayniteUI.ViewModels
                 }
             }
 
-            window.Close(true);
             WindowClosing(true);
+            window.Close(true);
         }
 
         public void SelectDbFile()
