@@ -73,7 +73,7 @@ namespace PlayniteUI.ViewModels
         public string Icon { get; set; }
     }
 
-    public class SettingsViewModel : ObservableObject, IDisposable
+    public class SettingsViewModel : ObservableObject
     {
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
@@ -163,11 +163,11 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public RelayCommand<object> DisposeCommand
+        public RelayCommand<object> WindowClosingCommand
         {
             get => new RelayCommand<object>((a) =>
             {
-                Dispose();
+                WindowClosing(false);
             });
         }
 
@@ -269,11 +269,17 @@ namespace PlayniteUI.ViewModels
             }
 
             window.Close(false);
-            Dispose();
+            WindowClosing(true);
         }
 
-        public void Dispose()
+        public void WindowClosing(bool closingHandled)
         {
+            if (closingHandled)
+            {
+                return;
+            }
+
+            Settings.CancelEdit();
         }
 
         public void ConfirmDialog()
@@ -343,7 +349,7 @@ namespace PlayniteUI.ViewModels
             }
 
             window.Close(true);
-            Dispose();
+            WindowClosing(true);
         }
 
         public void SelectDbFile()

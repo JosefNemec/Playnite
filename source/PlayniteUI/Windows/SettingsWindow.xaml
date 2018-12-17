@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         xmlns:pui="clr-namespace:PlayniteUI"
         xmlns:pcmd="clr-namespace:PlayniteUI.Commands"
         xmlns:pn="clr-namespace:Playnite;assembly=Playnite"
@@ -18,8 +19,8 @@
         AutomationProperties.AutomationId="WindowSettings">
 
     <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Closed">
-            <i:InvokeCommandAction Command="{Binding DisposeCommand}"/>
+        <i:EventTrigger EventName="Closing" >
+            <prism:InvokeCommandAction Command="{Binding WindowClosingCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     

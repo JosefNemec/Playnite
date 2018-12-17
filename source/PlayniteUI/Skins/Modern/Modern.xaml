@@ -2996,7 +2996,7 @@
                             Template="{StaticResource DetailsView}" />
 
             <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Background="{DynamicResource NormalBrushDark}"
-                    IsEnabled="{Binding AppSettings.FilterPanelVisible}">
+                    IsEnabled="{Binding AppSettings.FilterPanelVisible, Mode=OneWay}">
                 <Border.Style>
                     <Style TargetType="Border">
                         <Setter Property="Width" Value="0" />
