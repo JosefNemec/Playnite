@@ -72,7 +72,7 @@ namespace BattleNetLibrary
         public Dictionary<string, Game> GetInstalledGames()
         {
             var games = new Dictionary<string, Game>();
-            foreach (var prog in Programs.GetUnistallProgramsList())
+            foreach (var prog in Programs.GetUnistallProgramsList())            
             {
                 if (string.IsNullOrEmpty(prog.UninstallString))
                 {
@@ -105,7 +105,11 @@ namespace BattleNetLibrary
                             IsInstalled = true
                         };
 
-                        games.Add(game.GameId, game);
+                        // Check in case there are more versions of single games installed.
+                        if (!games.TryGetValue(game.GameId, out var _))
+                        {
+                            games.Add(game.GameId, game);
+                        }
                     }
                 }
                 else
@@ -116,7 +120,7 @@ namespace BattleNetLibrary
                         continue;
                     }
 
-                    if (prog.DisplayName.EndsWith("Test"))
+                    if (prog.DisplayName.EndsWith("Test") || prog.DisplayName.EndsWith("Beta"))
                     {
                         continue;
                     }
@@ -144,7 +148,11 @@ namespace BattleNetLibrary
                         IsInstalled = true
                     };
 
-                    games.Add(game.GameId, game);
+                    // Check in case there are more versions of single games installed.
+                    if (!games.TryGetValue(game.GameId, out var _))
+                    {
+                        games.Add(game.GameId, game);
+                    }
                 }
             }
 
