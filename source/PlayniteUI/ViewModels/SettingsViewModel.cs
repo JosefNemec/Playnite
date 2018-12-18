@@ -308,9 +308,18 @@ namespace PlayniteUI.ViewModels
                 Settings.DisabledPlugins = PluginsList.Where(a => !a.Selected)?.Select(a => a.Description.FolderName).ToList();
             }
 
-            if (Settings.EditedFields.Contains("StartOnBoot"))
+            if (Settings.EditedFields.Contains(nameof(Settings.StartOnBoot)))
             {
-                PlayniteSettings.SetBootupStateRegistration(Settings.StartOnBoot);
+                try
+                {
+                    PlayniteSettings.SetBootupStateRegistration(Settings.StartOnBoot);
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, "Failed to register Playnite to start on boot.");
+                    dialogs.ShowErrorMessage(resources.FindString("LOCSettingsStartOnBootRegistrationError")
+                        + Environment.NewLine + e.Message, "");
+                }
             }
 
             Settings.EndEdit();
