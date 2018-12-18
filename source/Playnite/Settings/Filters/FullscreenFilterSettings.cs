@@ -1,61 +1,61 @@
 ﻿namespace Playnite
 {
-	public enum FullscreenFilterEnum
-	{
-		All,
-		Installed,
-		Uninstalled
-	}
+    public enum FullscreenFilterEnum
+    {
+        All,
+        Installed,
+        Uninstalled
+    }
 
-	public class FullscreenFilterSettings: FilterSettings
-	{
-		private FullscreenFilterEnum fullscreenFilterEnum;
+    public class FullscreenFilterSettings: FilterSettings
+    {
+        private FullscreenFilterEnum fullscreenFilterEnum;
 
-		public FullscreenFilterSettings()
-		{
-			Favorite = ThreeStateFilterEnum.EnableInclusive;
-			Hidden = ThreeStateFilterEnum.Disable;
-			fullscreenFilterEnum = FullscreenFilterEnum.All;
+        public FullscreenFilterSettings()
+        {
+            Favorite = ThreeStateFilterEnum.EnableInclusive;
+            Hidden = ThreeStateFilterEnum.Disable;
+            fullscreenFilterEnum = FullscreenFilterEnum.All;
 
-			OnFilterToggle();
-		}
+            OnFilterToggle();
+        }
 
-		public void ToggleFilter()
-		{
-			switch (fullscreenFilterEnum)
-			{
-				case FullscreenFilterEnum.All:
-					fullscreenFilterEnum = FullscreenFilterEnum.Installed;
-					break;
-				case FullscreenFilterEnum.Installed:
-					fullscreenFilterEnum = FullscreenFilterEnum.Uninstalled;
-					break;
-				case FullscreenFilterEnum.Uninstalled:
-					fullscreenFilterEnum = FullscreenFilterEnum.All;
-					break;
-			}
+        public void ToggleFilter()
+        {
+            switch (fullscreenFilterEnum)
+            {
+                case FullscreenFilterEnum.All:
+                    fullscreenFilterEnum = FullscreenFilterEnum.Installed;
+                    break;
+                case FullscreenFilterEnum.Installed:
+                    fullscreenFilterEnum = FullscreenFilterEnum.Uninstalled;
+                    break;
+                case FullscreenFilterEnum.Uninstalled:
+                    fullscreenFilterEnum = FullscreenFilterEnum.All;
+                    break;
+            }
 
-			OnFilterToggle();
-		}
+            OnFilterToggle();
+        }
 
-		private void OnFilterToggle()
-		{
-			switch (fullscreenFilterEnum)
-			{
-				case FullscreenFilterEnum.Installed:
-					IsInstalled = ThreeStateFilterEnum.EnableExclusive;
-					IsUnInstalled = ThreeStateFilterEnum.Disable;
-					break;
-				case FullscreenFilterEnum.Uninstalled:
-					IsInstalled = ThreeStateFilterEnum.Disable;
-					IsUnInstalled = ThreeStateFilterEnum.EnableExclusive;
-					break;
-				default:
-				case FullscreenFilterEnum.All:
-					IsInstalled = ThreeStateFilterEnum.EnableInclusive;
-					IsUnInstalled = ThreeStateFilterEnum.EnableInclusive;
-					break;
-			}
-		}
-	}
+        private void OnFilterToggle()
+        {
+            switch (fullscreenFilterEnum)
+            {
+                case FullscreenFilterEnum.Installed:
+                    IsInstalled = ThreeStateFilterEnum.EnableExclusive;
+                    IsUnInstalled = ThreeStateFilterEnum.Disable;
+                    break;
+                case FullscreenFilterEnum.Uninstalled:
+                    IsInstalled = ThreeStateFilterEnum.Disable;
+                    IsUnInstalled = ThreeStateFilterEnum.EnableExclusive;
+                    break;
+                default:
+                case FullscreenFilterEnum.All:
+                    IsInstalled = ThreeStateFilterEnum.EnableInclusive;
+                    IsUnInstalled = ThreeStateFilterEnum.EnableInclusive;
+                    break;
+            }
+        }
+    }
 }

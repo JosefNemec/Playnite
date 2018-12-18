@@ -199,77 +199,77 @@ namespace Playnite
             }
         }
 
-	    private ThreeStateFilterEnum isInstalled;
+        private ThreeStateFilterEnum isInstalled;
 
-	    public ThreeStateFilterEnum IsInstalled
-	    {
-		    get
-		    {
-			    return isInstalled;
-		    }
+        public ThreeStateFilterEnum IsInstalled
+        {
+            get
+            {
+                return isInstalled;
+            }
 
-		    set
-		    {
-			    isInstalled = value;
-			    OnPropertyChanged();
-			    OnFilterChanged(nameof(IsInstalled));
-			    OnPropertyChanged(nameof(Active));
-		    }
-		}
+            set
+            {
+                isInstalled = value;
+                OnPropertyChanged();
+                OnFilterChanged(nameof(IsInstalled));
+                OnPropertyChanged(nameof(Active));
+            }
+        }
 
-	    private ThreeStateFilterEnum isUnInstalled;
+        private ThreeStateFilterEnum isUnInstalled;
 
-	    public ThreeStateFilterEnum IsUnInstalled
-	    {
-		    get
-		    {
-			    return isUnInstalled;
-		    }
+        public ThreeStateFilterEnum IsUnInstalled
+        {
+            get
+            {
+                return isUnInstalled;
+            }
 
-		    set
-		    {
-			    isUnInstalled = value;
-			    OnPropertyChanged();
-			    OnFilterChanged(nameof(IsUnInstalled));
-			    OnPropertyChanged(nameof(Active));
-		    }
-		}
+            set
+            {
+                isUnInstalled = value;
+                OnPropertyChanged();
+                OnFilterChanged(nameof(IsUnInstalled));
+                OnPropertyChanged(nameof(Active));
+            }
+        }
 
-	    private ThreeStateFilterEnum hidden;
-	    public ThreeStateFilterEnum Hidden
-	    {
-		    get
-		    {
-				return hidden;
-		    }
+        private ThreeStateFilterEnum hidden;
+        public ThreeStateFilterEnum Hidden
+        {
+            get
+            {
+                return hidden;
+            }
 
-		    set
-		    {
-			    hidden = value;
-				OnPropertyChanged();
-				OnFilterChanged(nameof(Hidden));
-				OnPropertyChanged(nameof(Active));
-		    }
-	    }
+            set
+            {
+                hidden = value;
+                OnPropertyChanged();
+                OnFilterChanged(nameof(Hidden));
+                OnPropertyChanged(nameof(Active));
+            }
+        }
 
-	    private ThreeStateFilterEnum favorite;
-		public ThreeStateFilterEnum Favorite
-		{
-			get
-			{
-				return favorite;
-			}
+        private ThreeStateFilterEnum favorite;
+        public ThreeStateFilterEnum Favorite
+        {
+            get
+            {
+                return favorite;
+            }
 
-			set
-			{
-				favorite = value;
-				OnPropertyChanged();
-				OnFilterChanged(nameof(Favorite));
-				OnPropertyChanged(nameof(Active));
-			}
-		}
+            set
+            {
+                favorite = value;
+                OnPropertyChanged();
+                OnFilterChanged(nameof(Favorite));
+                OnPropertyChanged(nameof(Active));
+            }
+        }
 
-		private string series;
+        private string series;
         public string Series
         {
             get

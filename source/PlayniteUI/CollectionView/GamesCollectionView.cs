@@ -142,13 +142,13 @@ namespace PlayniteUI
             }
 
             // ------------------ Checkbox Filters
-			// TODO: Utilize Chain of Command Design Pattern for these, earlier short circuit bool evaluation/optimization
-	        bool installedResult =
-		        ThreeStateFilterEvaluator.EvaluateFilter(filterSettings.IsInstalled, game.IsInstalled);
-	        bool unInstalledResult =
-		        ThreeStateFilterEvaluator.EvaluateFilter(filterSettings.IsUnInstalled, !game.IsInstalled);
-	        bool hiddenResult = ThreeStateFilterEvaluator.EvaluateFilter(filterSettings.Hidden, game.Hidden);
-	        bool favoriteResult = ThreeStateFilterEvaluator.EvaluateFilter(filterSettings.Favorite, game.Favorite);
+            // TODO: Utilize Chain of Command Design Pattern for these, earlier short circuit bool evaluation/optimization
+            bool installedResult =
+                ThreeStateFilterEvaluator.EvaluateFilter(filterSettings.IsInstalled, game.IsInstalled);
+            bool unInstalledResult =
+                ThreeStateFilterEvaluator.EvaluateFilter(filterSettings.IsUnInstalled, !game.IsInstalled);
+            bool hiddenResult = ThreeStateFilterEvaluator.EvaluateFilter(filterSettings.Hidden, game.Hidden);
+            bool favoriteResult = ThreeStateFilterEvaluator.EvaluateFilter(filterSettings.Favorite, game.Favorite);
 
             // ------------------ Providers
             bool librariesFilter = false;
@@ -395,7 +395,7 @@ namespace PlayniteUI
             }
 
             return installedResult &&
-				unInstalledResult &&
+                unInstalledResult &&
                 hiddenResult &&
                 favoriteResult &&
                 nameResult &&
