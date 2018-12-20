@@ -1,4 +1,5 @@
 ﻿using CefSharp;
+using CefSharp.Wpf;
 using Playnite;
 using Playnite.Settings;
 using System;
@@ -16,6 +17,7 @@ namespace PlayniteUI
         {
             FileSystem.CreateDirectory(PlaynitePaths.BrowserCachePath);
             var settings = new CefSettings();
+            settings.WindowlessRenderingEnabled = true;
             settings.CefCommandLineArgs.Add("disable-gpu", "1");
             settings.CefCommandLineArgs.Add("disable-gpu-compositing", "1");
             settings.CachePath = PlaynitePaths.BrowserCachePath;
