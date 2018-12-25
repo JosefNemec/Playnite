@@ -370,7 +370,7 @@ Il est actuellement utilisé par {1} jeu(x).</sys:String>
 Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Aide</sys:String>
 
-    <sys:String x:Key="LOCMenuSortByTitle">Trier Par</sys:String>
+    <sys:String x:Key="LOCMenuSortByTitle">Tri</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Ascendant</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Descendant</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">Ne pas grouper</sys:String>
