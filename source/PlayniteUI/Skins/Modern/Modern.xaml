@@ -3053,14 +3053,14 @@
                                 </Style>
                             </StackPanel.Resources>
 
-                            <CheckBox TabIndex="1" Name="CheckFilterInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled, Converter={StaticResource NullableBoolToThreeStateFilterEnumConverter}}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="1" Name="CheckFilterInstalled" IsThreeState="True" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled, Converter={StaticResource NullableBoolToThreeStateFilterEnumConverter}}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameIsInstalledTitle}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.Installed, Mode=OneWay, StringFormat=({0})}" />
                                 </StackPanel>
                             </CheckBox>
 
-                            <CheckBox TabIndex="2" Name="CheckFilterUnInstalled" IsChecked="{Binding AppSettings.FilterSettings.IsUnInstalled, Converter={StaticResource NullableBoolToThreeStateFilterEnumConverter}}" Style="{StaticResource FilterCheck}">
+                            <CheckBox TabIndex="2" Name="CheckFilterUnInstalled" IsThreeState="True" IsChecked="{Binding AppSettings.FilterSettings.IsUnInstalled, Converter={StaticResource NullableBoolToThreeStateFilterEnumConverter}}" Style="{StaticResource FilterCheck}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameIsUnInstalledTitle}" Margin="0,0,5,0" />
                                     <TextBlock Text="{Binding GamesStats.UnInstalled, Mode=OneWay, StringFormat=({0})}" />
