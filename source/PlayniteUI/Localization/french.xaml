@@ -37,10 +37,10 @@ Indeterminé - Aucun changement</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Supprimer le(s) jeu(x) ?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Impossible de retirer un jeu en cours d'exécution/installation.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Le jeu est en cours d'exécution et ne peut être désinstallé.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Êtes-vous sur de vouloir supprimer ce jeu ?
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Êtes-vous sûr de vouloir supprimer ce jeu ?
 
 Les jeux importés automatiquement sont susceptibles de réapparaître après la prochaine procédure d'importation (selon vos paramètres).</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Êtes-vous sur de vouloir supprimer {0} jeux ?
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Êtes-vous sûr de vouloir supprimer {0} jeux ?
 
 Les jeux importés automatiquement sont susceptibles de réapparaître après la prochaine procédure d'importation (selon vos paramètres).</sys:String>
 
