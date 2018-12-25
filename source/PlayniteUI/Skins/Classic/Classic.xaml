@@ -2776,8 +2776,7 @@
                                     </StackPanel.Resources>
 
                                     <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Background="Transparent" Margin="1" Style="{StaticResource ButtonToolTipIndefinite}">
-                                        <TextBlock Text="?">
-                                        </TextBlock>
+                                        <TextBlock Text="?" />
                                         <Button.ToolTip>
                                             <Grid VerticalAlignment="Top" HorizontalAlignment="Left">
                                                 <Grid.ColumnDefinitions>
