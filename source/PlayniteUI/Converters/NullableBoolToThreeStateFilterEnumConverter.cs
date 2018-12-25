@@ -14,9 +14,9 @@ namespace PlayniteUI
             switch (state)
             {
                 case ThreeStateFilterEnum.EnableInclusive:
-                    return true;
-                case ThreeStateFilterEnum.EnableExclusive:
                     return null;
+                case ThreeStateFilterEnum.EnableExclusive:
+                    return true;
                 case ThreeStateFilterEnum.Disable:
                     return false;
                 default:
@@ -29,9 +29,9 @@ namespace PlayniteUI
             var state = (bool?)value;
             switch (state)
             {
-                case true:
-                    return ThreeStateFilterEnum.EnableInclusive;
                 case null:
+                    return ThreeStateFilterEnum.EnableInclusive;
+                case true:
                     return ThreeStateFilterEnum.EnableExclusive;
                 case false:
                     return ThreeStateFilterEnum.Disable;
