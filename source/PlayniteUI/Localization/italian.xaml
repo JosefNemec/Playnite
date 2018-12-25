@@ -229,6 +229,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
   <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Scaricare il metadata dopo l'importazione dei giochi.</sys:String>
   <sys:String x:Key="LOCSettingsStartMinimized">Avvia ridotto a icona</sys:String>
   <sys:String x:Key="LOCSettingsStartOnBoot">Avvia Playnite all'avvio del sistema</sys:String>
+  <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Impossibile registrare l'avvio di Playnite all'avvio del computer.</sys:String>
   <sys:String x:Key="LOCSettingsStartInFullscreen">Avvia a Schermo Intero</sys:String>
   <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Includi Steam, Origin e altri.</sys:String>
   <sys:String x:Key="LOCSettingsAsyncImageLoading">Caricamento asincrono dell'immagine (riavvio richiesto)</sys:String>
@@ -288,6 +289,8 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
   <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Shermata Negozio</sys:String>
   <sys:String x:Key="LOCSteamBackgroundSourceStore">Sfondo Negozio</sys:String>
   <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Non si applica retroattivamente ai giochi esistenti senza dover riscaricare i metadati.</sys:String>
+  <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Forza la sincronizzazione del tempo di gioco</sys:String>
+  <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Scaricare sempre il tempo di gioco registrato dalla libreria remota durante la sincronizzazione della libreria, ignorando il tempo registrato da Playnite.</sys:String>
 
   <sys:String x:Key="LOCImportError">Errore di importazione</sys:String>
   <sys:String x:Key="LOCLoginChecking">Controllo...</sys:String>
