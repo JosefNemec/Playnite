@@ -465,6 +465,7 @@ Please attach following ID to your crash report:</sys:String>
     <sys:String x:Key="LOCMetadataDownloadError">Failed to download metadata: {0}</sys:String>
     <sys:String x:Key="LOCDownloadError">Download Error</sys:String>
     <sys:String x:Key="LOCClearFilters">Clear Filters</sys:String>
+    <sys:String x:Key="LOCResetFilters">Reset Filters</sys:String>
     <sys:String x:Key="LOCPrivateAccount">Private Account</sys:String>
     <sys:String x:Key="LOCPublicAccount">Public Account</sys:String>
     <sys:String x:Key="LOCAPIKey">API Key</sys:String>

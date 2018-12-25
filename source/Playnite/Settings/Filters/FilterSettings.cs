@@ -41,10 +41,10 @@ namespace Playnite
             get
             {
                 return
-                    (IsInstalled != ThreeStateFilterEnum.Disable) ||
-                    (IsUnInstalled != ThreeStateFilterEnum.Disable) ||
+                    (IsInstalled != ThreeStateFilterEnum.EnableInclusive) ||
+                    (IsUnInstalled != ThreeStateFilterEnum.EnableInclusive) ||
                     (Hidden != ThreeStateFilterEnum.Disable) ||
-                    (Favorite != ThreeStateFilterEnum.Disable) ||
+                    (Favorite != ThreeStateFilterEnum.EnableInclusive) ||
                     !string.IsNullOrEmpty(Name) ||
                     !string.IsNullOrEmpty(ReleaseDate) ||
                     !string.IsNullOrEmpty(Series) ||
@@ -373,7 +373,7 @@ namespace Playnite
             }
         }
 
-        public void ClearFilters()
+        public void ResetFilters()
         {
             suppressFilterChanges = true;
             var filterChanges = new List<string>();
@@ -426,15 +426,15 @@ namespace Playnite
                 filterChanges.Add(nameof(Tags));
             }
 
-            if (IsInstalled != ThreeStateFilterEnum.Disable)
+            if (IsInstalled != ThreeStateFilterEnum.EnableInclusive)
             {
-                IsInstalled = ThreeStateFilterEnum.Disable;
+                IsInstalled = ThreeStateFilterEnum.EnableInclusive;
                 filterChanges.Add(nameof(IsInstalled));
             }
 
-            if (IsUnInstalled != ThreeStateFilterEnum.Disable)
+            if (IsUnInstalled != ThreeStateFilterEnum.EnableInclusive)
             {
-                IsUnInstalled = ThreeStateFilterEnum.Disable;
+                IsUnInstalled = ThreeStateFilterEnum.EnableInclusive;
                 filterChanges.Add(nameof(IsUnInstalled));
             }
 
@@ -444,9 +444,9 @@ namespace Playnite
                 filterChanges.Add(nameof(Hidden));
             }
 
-            if (Favorite != ThreeStateFilterEnum.Disable)
+            if (Favorite != ThreeStateFilterEnum.EnableInclusive)
             {
-                Favorite = ThreeStateFilterEnum.Disable;
+                Favorite = ThreeStateFilterEnum.EnableInclusive;
                 filterChanges.Add(nameof(Favorite));
             }
 

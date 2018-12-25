@@ -3028,8 +3028,8 @@
                                 </Hyperlink>
                         </TextBlock>
                         <TextBlock DockPanel.Dock="Left">
-                                <Hyperlink Command="{Binding Data.ClearFiltersCommand, Source={StaticResource Proxy}}">
-                                    <Run Text="{DynamicResource LOCClearFilters}" />
+                                <Hyperlink Command="{Binding Data.ResetFiltersCommand, Source={StaticResource Proxy}}">
+                                    <Run Text="{DynamicResource LOCResetFilters}" />
                                 </Hyperlink>
                         </TextBlock>
                     </DockPanel>

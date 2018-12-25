@@ -302,7 +302,7 @@ namespace PlayniteUI.ViewModels
         public RelayCommand<object> CancelProgressCommand { get; private set; }
         public RelayCommand<object> ClearMessagesCommand { get; private set; }
         public RelayCommand<object> DownloadMetadataCommand { get; private set; }
-        public RelayCommand<object> ClearFiltersCommand { get; private set; }
+        public RelayCommand<object> ResetFiltersCommand { get; private set; }
         public RelayCommand<object> RemoveGameSelectionCommand { get; private set; }
         public RelayCommand<ExtensionFunction> InvokeExtensionFunctionCommand { get; private set; }
         public RelayCommand<object> ReloadScriptsCommand { get; private set; }
@@ -537,9 +537,9 @@ namespace PlayniteUI.ViewModels
             }, (a) => GameAdditionAllowed,
             new KeyGesture(Key.D, ModifierKeys.Control));
 
-            ClearFiltersCommand = new RelayCommand<object>((a) =>
+            ResetFiltersCommand = new RelayCommand<object>((a) =>
             {
-                ClearFilters();
+                ResetFilters();
             });
 
             CheckForUpdateCommand = new RelayCommand<object>((a) =>
@@ -1425,9 +1425,9 @@ namespace PlayniteUI.ViewModels
             await GlobalTaskHandler.CancelAndWaitAsync();
         }        
 
-        public virtual void ClearFilters()
+        public virtual void ResetFilters()
         {
-            AppSettings.FilterSettings.ClearFilters();
+            AppSettings.FilterSettings.ResetFilters();
         }
 
         public virtual void Dispose()

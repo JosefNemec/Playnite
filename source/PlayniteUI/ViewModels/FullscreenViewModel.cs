@@ -374,9 +374,9 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        public override void ClearFilters()
+        public override void ResetFilters()
         {
-            AppSettings.FullScreenFilterSettings.ClearFilters();
+            AppSettings.FullScreenFilterSettings.ResetFilters();
         }
 
         private void FullScreenFilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
