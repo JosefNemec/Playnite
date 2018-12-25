@@ -2763,7 +2763,50 @@
                                             <Setter Property="Margin" Value="8,0,8,8" />
                                             <Setter Property="ShowImage" Value="False" />
                                         </Style>
+                                        <Style x:Key="ButtonToolTipIndefinite" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                            <Setter Property="ToolTipService.ShowDuration" Value="{x:Static Member=sys:Int32.MaxValue}" />
+                                        </Style>
+                                        <Style x:Key="FilterToolTipStackPanel" TargetType="StackPanel">
+                                            <Setter Property="Margin" Value="8" />
+                                        </Style>
+                                        <Style x:Key="FilterToolTipCheckBox" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                                            <Setter Property="IsHitTestVisible" Value="False" />
+                                            <Setter Property="Focusable" Value="False" />
+                                        </Style>
                                     </StackPanel.Resources>
+
+                                    <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Background="Transparent" Margin="1" Style="{StaticResource ButtonToolTipIndefinite}">
+                                        <TextBlock Text="?">
+                                        </TextBlock>
+                                        <Button.ToolTip>
+                                            <Grid VerticalAlignment="Top" HorizontalAlignment="Left">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+
+                                                <StackPanel Orientation="Horizontal" Grid.Row="0" Style="{StaticResource FilterToolTipStackPanel}">
+                                                    <CheckBox IsChecked="False" Style="{StaticResource FilterToolTipCheckBox}" />
+                                                    <TextBlock Text="- " />
+                                                    <TextBlock Text="{DynamicResource LOCFilterHelpTooltipDisable}" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal" Grid.Row="1" Style="{StaticResource FilterToolTipStackPanel}">
+                                                    <CheckBox IsChecked="True" Style="{StaticResource FilterToolTipCheckBox}" />
+                                                    <TextBlock Text="- " />
+                                                    <TextBlock Text="{DynamicResource LOCFilterHelpTooltipEnableExclusive}" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal" Grid.Row="2" Style="{StaticResource FilterToolTipStackPanel}">
+                                                    <CheckBox IsThreeState="True" IsChecked="{x:Null}" Style="{StaticResource FilterToolTipCheckBox}" />
+                                                    <TextBlock Text="- " />
+                                                    <TextBlock Text="{DynamicResource LOCFilterHelpTooltipEnableInclusive}" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </Button.ToolTip>
+                                    </Button>
 
                                     <CheckBox Name="CheckFilterInstalled" IsThreeState="True" IsChecked="{Binding AppSettings.FilterSettings.IsInstalled, Converter={StaticResource NullableBoolToThreeStateFilterEnumConverter}}" Style="{StaticResource FilterCheck}">
                                         <StackPanel Orientation="Horizontal">

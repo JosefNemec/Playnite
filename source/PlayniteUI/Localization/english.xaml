@@ -574,4 +574,9 @@ Please attach following ID to your crash report:</sys:String>
     <sys:String x:Key="LOCScriptError">Script error</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Failed to execute extension function.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Open metadata folder</sys:String>
+
+    <!--Filter Help Tooltip-->
+    <sys:String x:Key="LOCFilterHelpTooltipDisable">Hide if condition is fulfilled</sys:String>
+    <sys:String x:Key="LOCFilterHelpTooltipEnableInclusive">Show, condition does not have to be fulfilled</sys:String>
+    <sys:String x:Key="LOCFilterHelpTooltipEnableExclusive">Show, condition has to be fulfilled</sys:String>
 </ResourceDictionary>
