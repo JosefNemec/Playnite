@@ -125,6 +125,7 @@
     <Compile Include="Emulators\EmulatorDefinitionTests.cs" />
     <Compile Include="Extensions\EnumsTests.cs" />
     <Compile Include="GamesStatsTests.cs" />
+    <Compile Include="IniParserTests.cs" />
     <Compile Include="Metadata\IGDBMetadataProviderTests.cs" />
     <Compile Include="Metadata\MetadataDownloaderDownloadTests.cs" />
     <Compile Include="Metadata\WikipediaMetadataProviderTests.cs" />
@@ -175,6 +176,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Resources\GOG\library_unreleased.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\TestIni.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\TestUpdateManifest.json">

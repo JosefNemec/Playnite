@@ -50,7 +50,6 @@ namespace UplayLibrary
                     procMon = new ProcessMonitor();
                     procMon.TreeStarted += ProcMon_TreeStarted;
                     procMon.TreeDestroyed += Monitor_TreeDestroyed;
-                    procMon.TreeStarted += ProcMon_TreeStarted;
                     GameActionActivator.ActivateAction(Game.PlayAction, Game);
                     StartRunningWatcher(requiresUplay);
                 }

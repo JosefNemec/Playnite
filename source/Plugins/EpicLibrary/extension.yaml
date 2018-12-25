@@ -1,0 +1,6 @@
+﻿Name: Epic Store Library Importer
+Author: Playnite
+Version: 1.0
+Module: EpicLibrary.dll
+Type: GameLibrary
+Icon: Resources\epicicon.png

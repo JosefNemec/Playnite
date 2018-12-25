@@ -73,6 +73,7 @@
     <Compile Include="Extensions\IconExtension.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="IniParser.cs" />
     <Compile Include="InteropMethods.cs" />
     <Compile Include="MemoryCache.cs" />
     <Compile Include="Explorer.cs" />

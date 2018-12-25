@@ -11,18 +11,20 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BethesdaLibrary
+namespace EpicLibrary
 {
-    public class BethesdaGameController : BaseGameController
+    public class EpicGameController : BaseGameController
     {
         private CancellationTokenSource watcherToken;
         private ProcessMonitor procMon;
         private Stopwatch stopWatch;
-        private BethesdaLibrary BethesdaLib;
+        private readonly IPlayniteAPI api;
+        private readonly Game game;
 
-        public BethesdaGameController(BethesdaLibrary library, Game game) : base(game)
+        public EpicGameController(Game game, IPlayniteAPI api) : base(game)
         {
-            BethesdaLib = library;
+            this.api = api;
+            this.game = game;
         }
 
         public override void Dispose()
@@ -38,7 +40,7 @@ namespace BethesdaLibrary
         public override void Play()
         {
             ReleaseResources();
-            if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("bethesda", StringComparison.OrdinalIgnoreCase))
+            if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("com.epicgames.launcher", StringComparison.OrdinalIgnoreCase))
             {
                 OnStarting(this, new GameControllerEventArgs(this, 0));
                 GameActionActivator.ActivateAction(Game.PlayAction, Game);
@@ -57,22 +59,87 @@ namespace BethesdaLibrary
             }
             else
             {
-                throw new Exception("Unknown Play action configuration.");
+                throw new Exception("Unknown Epic action configuration.");
             }
         }
 
         public override void Install()
         {
-            ReleaseResources();
-            ProcessStarter.StartUrl(Bethesda.ClientExecPath);
+            if (!EpicLauncher.IsInstalled)
+            {
+                throw new Exception("Epic Launcher is not installed.");
+            }
+
+            EpicLauncher.StartClient();
             StartInstallWatcher();
         }
 
         public override void Uninstall()
         {
-            ReleaseResources();
-            ProcessStarter.StartUrl("bethesdanet://uninstall/" + Game.GameId);
+            if (!EpicLauncher.IsInstalled)
+            {
+                throw new Exception("Epic Launcher is not installed.");
+            }
+
+            EpicLauncher.StartClient();
             StartUninstallWatcher();
+        }
+
+        public async void StartInstallWatcher()
+        {
+            watcherToken = new CancellationTokenSource();
+
+            while (true)
+            {
+                if (watcherToken.IsCancellationRequested)
+                {
+                    return;
+                }
+
+                var installed = EpicLauncher.GetInstalledAppList();
+                var app = installed?.FirstOrDefault(a => a.AppName == Game.GameId);
+                if (app != null)
+                {
+                    if (Game.PlayAction == null)
+                    {
+                        Game.PlayAction = new GameAction()
+                        {
+                            Type = GameActionType.URL,
+                            Path = string.Format(EpicLauncher.GameLaunchUrlMask, app.AppName),
+                            IsHandledByPlugin = true
+                        };
+                    }
+
+                    Game.InstallDirectory = app.InstallLocation;
+                    OnInstalled(this, new GameControllerEventArgs(this, 0));
+                    return;
+                }
+
+                await Task.Delay(5000);
+            }
+        }
+
+        public async void StartUninstallWatcher()
+        {
+            watcherToken = new CancellationTokenSource();
+
+            while (true)
+            {
+                if (watcherToken.IsCancellationRequested)
+                {
+                    return;
+                }
+
+                var installed = EpicLauncher.GetInstalledAppList();
+                var app = installed?.FirstOrDefault(a => a.AppName == Game.GameId);
+                if (app == null)
+                {
+                    OnUninstalled(this, new GameControllerEventArgs(this, 0));
+                    return;
+                }
+
+                await Task.Delay(2000);
+            }
         }
 
         private void ProcMon_TreeStarted(object sender, EventArgs args)
@@ -84,55 +151,6 @@ namespace BethesdaLibrary
         {
             stopWatch.Stop();
             OnStopped(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
-        }
-
-        public async void StartInstallWatcher()
-        {
-            watcherToken = new CancellationTokenSource();
-    
-            while (true)
-            {
-                if (watcherToken.IsCancellationRequested)
-                {
-                    return;
-                }
-
-                var installedGame = BethesdaLib.GetInstalledGames().FirstOrDefault(a => a.GameId == Game.GameId);
-                if (installedGame != null)
-                {
-                    if (Game.PlayAction == null)
-                    {
-                        Game.PlayAction = installedGame.PlayAction;
-                    }
-
-                    Game.InstallDirectory = installedGame.InstallDirectory;
-                    OnInstalled(this, new GameControllerEventArgs(this, 0));
-                    return;
-                }
-
-                await Task.Delay(2000);
-            }
-        }
-
-        public async void StartUninstallWatcher()
-        {
-            watcherToken = new CancellationTokenSource();
-     
-            while (true)
-            {
-                if (watcherToken.IsCancellationRequested)
-                {
-                    return;
-                }
-
-                if (BethesdaLib.GetInstalledGames().FirstOrDefault(a => a.GameId == Game.GameId) == null)
-                {
-                    OnUninstalled(this, new GameControllerEventArgs(this, 0));
-                    return;
-                }
-
-                await Task.Delay(2000);
-            }
         }
     }
 }

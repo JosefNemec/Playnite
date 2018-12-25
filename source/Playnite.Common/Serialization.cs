@@ -47,5 +47,19 @@ namespace Playnite.Common
                 throw;
             }
         }
+
+        public static bool TryFromJson<T>(string json, out T deserialized) where T : class
+        {
+            try
+            {
+                deserialized = JsonConvert.DeserializeObject<T>(json);
+                return true;
+            }
+            catch
+            {
+                deserialized = null;
+                return false;
+            }
+        }
     }
 }
