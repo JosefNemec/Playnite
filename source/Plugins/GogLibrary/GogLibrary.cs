@@ -23,6 +23,7 @@ namespace GogLibrary
     {
         private ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
+        private const string dbImportMessageId = "goglibImportError";
 
         internal GogLibrarySettings LibrarySettings { get; private set; }
 
@@ -203,38 +204,62 @@ namespace GogLibrary
         public IEnumerable<Game> GetGames()
         {
             var allGames = new List<Game>();
-            var installedGames = GetInstalledGames();
+            var installedGames = new Dictionary<string, Game>();
+            Exception importError = null;
 
             if (LibrarySettings.ImportInstalledGames)
             {
-                allGames.AddRange(installedGames.Values.ToList());
+                try
+                {
+                    installedGames = GetInstalledGames();
+                    logger.Debug($"Found {installedGames.Count} installed GOG games.");
+                    allGames.AddRange(installedGames.Values.ToList());
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to import installed Origin games.");
+                    importError = e;
+                }
             }
 
             if (LibrarySettings.ImportUninstalledGames)
             {
-                List<Game> uninstalled;
+                try
+                {
+                    var uninstalled = GetLibraryGames();
+                    logger.Debug($"Found {uninstalled.Count} library GOG games.");
 
-                if (LibrarySettings.UsePublicAccount)
-                {
-                    uninstalled = GetLibraryGames(LibrarySettings.AccountName);
-                }
-                else
-                {
-                    uninstalled = GetLibraryGames();
-                }
-
-                foreach (var game in uninstalled)
-                {
-                    if (installedGames.TryGetValue(game.GameId, out var installed))
+                    foreach (var game in uninstalled)
                     {
-                        installed.Playtime = game.Playtime;
-                        installed.LastActivity = game.LastActivity;
-                    }
-                    else
-                    {
-                        allGames.Add(game);
+                        if (installedGames.TryGetValue(game.GameId, out var installed))
+                        {
+                            installed.Playtime = game.Playtime;
+                            installed.LastActivity = game.LastActivity;
+                        }
+                        else
+                        {
+                            allGames.Add(game);
+                        }
                     }
                 }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to import uninstalled Origin games.");
+                    importError = e;
+                }
+            }
+
+            if (importError != null)
+            {
+                playniteApi.Notifications.Add(
+                    dbImportMessageId,
+                    string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) +
+                    System.Environment.NewLine + importError.Message,
+                    NotificationType.Error);
+            }
+            else
+            {
+                playniteApi.Notifications.Remove(dbImportMessageId);
             }
 
             return allGames;

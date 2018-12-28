@@ -202,7 +202,14 @@ namespace PlayniteUI
 
             if (AppSettings.DisableDpiAwareness)
             {
-                DisableDpiAwareness();
+                try
+                {
+                    DisableDpiAwareness();
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, "Failed to disable DPI awarness.");
+                }
             }
 
             CefTools.ConfigureCef();

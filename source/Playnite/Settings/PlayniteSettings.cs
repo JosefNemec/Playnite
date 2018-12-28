@@ -661,6 +661,21 @@ namespace Playnite.Settings
             }
         }
 
+        private bool forcePlayTimeSync = false;
+        public bool ForcePlayTimeSync
+        {
+            get
+            {
+                return forcePlayTimeSync;
+            }
+
+            set
+            {
+                forcePlayTimeSync = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -699,6 +714,11 @@ namespace Playnite.Settings
 
         public void BeginEdit()
         {
+            if (isEditing)
+            {
+                return;
+            }
+
             isEditing = true;
             EditedFields = new List<string>();
             editingCopy = this.CloneJson();
@@ -706,6 +726,11 @@ namespace Playnite.Settings
 
         public void EndEdit()
         {
+            if (!isEditing)
+            {
+                return;
+            }
+
             isEditing = false;
             foreach (var prop in EditedFields)
             {
@@ -715,6 +740,11 @@ namespace Playnite.Settings
 
         public void CancelEdit()
         {
+            if (!isEditing)
+            {
+                return;
+            }
+
             editingCopy.CopyProperties(this, false, new List<string>()
             {
                 nameof(FilterSettings),

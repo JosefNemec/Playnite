@@ -952,7 +952,7 @@ namespace PlayniteUI.ViewModels
                         {
                             using (Database.BufferedUpdate())
                             {
-                                addedGames.AddRange(GameLibrary.ImportGames(plugin.Plugin, Database));
+                                addedGames.AddRange(GameLibrary.ImportGames(plugin.Plugin, Database, AppSettings.ForcePlayTimeSync));
                             }
 
                             RemoveMessage($"{plugin.Plugin.Id} - download");
@@ -1309,7 +1309,7 @@ namespace PlayniteUI.ViewModels
                     {
                         using (Database.BufferedUpdate())
                         {
-                            addedGames.AddRange(GameLibrary.ImportGames(library, Database));
+                            addedGames.AddRange(GameLibrary.ImportGames(library, Database, AppSettings.ForcePlayTimeSync));
                         }
 
                         RemoveMessage($"{library.Id} - download");

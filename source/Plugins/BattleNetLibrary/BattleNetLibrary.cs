@@ -1,5 +1,4 @@
-﻿using AngleSharp.Parser.Html;
-using BattleNetLibrary.Models;
+﻿using BattleNetLibrary.Models;
 using BattleNetLibrary.Services;
 using Playnite.Common.System;
 using Playnite.SDK;
@@ -12,7 +11,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace BattleNetLibrary
@@ -21,6 +19,7 @@ namespace BattleNetLibrary
     {
         private ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
+        private const string dbImportMessageId = "bnetlibImportError";
         
         internal BattleNetLibrarySettings LibrarySettings { get; private set; }
 
@@ -73,7 +72,7 @@ namespace BattleNetLibrary
         public Dictionary<string, Game> GetInstalledGames()
         {
             var games = new Dictionary<string, Game>();
-            foreach (var prog in Programs.GetUnistallProgramsList())
+            foreach (var prog in Programs.GetUnistallProgramsList())            
             {
                 if (string.IsNullOrEmpty(prog.UninstallString))
                 {
@@ -106,7 +105,11 @@ namespace BattleNetLibrary
                             IsInstalled = true
                         };
 
-                        games.Add(game.GameId, game);
+                        // Check in case there are more versions of single games installed.
+                        if (!games.TryGetValue(game.GameId, out var _))
+                        {
+                            games.Add(game.GameId, game);
+                        }
                     }
                 }
                 else
@@ -117,7 +120,7 @@ namespace BattleNetLibrary
                         continue;
                     }
 
-                    if (prog.DisplayName.EndsWith("Test"))
+                    if (prog.DisplayName.EndsWith("Test") || prog.DisplayName.EndsWith("Beta"))
                     {
                         continue;
                     }
@@ -145,7 +148,11 @@ namespace BattleNetLibrary
                         IsInstalled = true
                     };
 
-                    games.Add(game.GameId, game);
+                    // Check in case there are more versions of single games installed.
+                    if (!games.TryGetValue(game.GameId, out var _))
+                    {
+                        games.Add(game.GameId, game);
+                    }
                 }
             }
 
@@ -282,33 +289,64 @@ namespace BattleNetLibrary
         public IEnumerable<Game> GetGames()
         {
             var allGames = new List<Game>();
-            var installedGames = GetInstalledGames();
-            logger.Debug($"Found {installedGames.Count} installed Battle.net games.");
+            var installedGames = new Dictionary<string, Game>();
+            Exception importError = null;
 
             if (LibrarySettings.ImportInstalledGames)
             {
-                allGames.AddRange(installedGames.Values.ToList());
+                try
+                {
+                    installedGames = GetInstalledGames();
+                    logger.Debug($"Found {installedGames.Count} installed Battle.net games.");
+                    allGames.AddRange(installedGames.Values.ToList());
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to import installed Battle.net games.");
+                    importError = e;
+                }
             }
 
             if (LibrarySettings.ImportUninstalledGames)
             {
-                var uninstalled = GetLibraryGames();
-                logger.Debug($"Found {uninstalled.Count} library Battle.net games.");
-
-                foreach (var game in uninstalled)
+                try
                 {
-                    if (installedGames.TryGetValue(game.GameId, out var installed))
+                    var uninstalled = GetLibraryGames();
+                    logger.Debug($"Found {uninstalled.Count} library Battle.net games.");
+
+                    foreach (var game in uninstalled)
                     {
-                        installed.Playtime = game.Playtime;
-                        installed.LastActivity = game.LastActivity;
+                        if (installedGames.TryGetValue(game.GameId, out var installed))
+                        {
+                            installed.Playtime = game.Playtime;
+                            installed.LastActivity = game.LastActivity;
+                        }
+                        else
+                        {
+                            allGames.Add(game);
+                        }
                     }
-                    else
-                    {
-                        allGames.Add(game);
-                    }
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to import uninstalled Battle.net games.");
+                    importError = e;
                 }
             }
 
+            if (importError != null)
+            {
+                playniteApi.Notifications.Add(
+                    dbImportMessageId,
+                    string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) + 
+                    System.Environment.NewLine + importError.Message,
+                    NotificationType.Error);
+            }
+            else
+            {
+                playniteApi.Notifications.Remove(dbImportMessageId);
+            }
+            
             return allGames;
         }
 

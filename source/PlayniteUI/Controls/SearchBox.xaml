@@ -30,7 +30,8 @@
         </TextBlock>
         <TextBox TabIndex="{Binding Path=TabIndex, RelativeSource={RelativeSource AncestorType=UserControl}}" Name="TextFilter" VerticalContentAlignment="Center" FontSize="14"
                  Background="{Binding Background, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                 Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}">
+                 Text="{Binding Text, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
+                 TextChanged="TextFilter_TextChanged">
             <TextBox.Style>
                 <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                     <Setter Property="Padding" Value="5,0,25,0" />
