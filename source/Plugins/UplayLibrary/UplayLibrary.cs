@@ -87,6 +87,8 @@ namespace UplayLibrary
 
         public Guid Id { get; } = Guid.Parse("C2F038E5-8B92-4877-91F1-DA9094155FC5");
 
+        public bool IsInstalled => Uplay.IsInstalled;
+
         public void Dispose()
         {
 

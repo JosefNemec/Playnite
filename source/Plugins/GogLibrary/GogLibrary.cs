@@ -181,6 +181,8 @@ namespace GogLibrary
 
         public Guid Id { get; } = Guid.Parse("AEBE8B7C-6DC3-4A66-AF31-E7375C6B5E9E");
 
+        public bool IsInstalled => Gog.IsInstalled;
+
         public void Dispose()
         {
             
