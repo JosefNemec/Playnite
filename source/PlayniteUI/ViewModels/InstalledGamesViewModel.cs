@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Playnite.Common.System;
+using System.Diagnostics;
 
 namespace PlayniteUI.ViewModels
 {
@@ -335,7 +336,7 @@ namespace PlayniteUI.ViewModels
             var program = new ImportableProgram()
             {
                 Icon = path,
-                Name = new DirectoryInfo(Path.GetDirectoryName(path)).Name,
+                Name = FileVersionInfo.GetVersionInfo(path).ProductName ?? new DirectoryInfo(Path.GetDirectoryName(path)).Name,
                 Path = path,
                 WorkDir = Path.GetDirectoryName(path),
                 Import = true
