@@ -284,33 +284,19 @@
 
                         <TabItem>
                             <StackPanel>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
-                                    <TextBlock Text="{DynamicResource LOCSettingsSkinFullscreen}" VerticalAlignment="Center"
-                                        Grid.Row="0" Grid.Column="0"/>
+                                <StackPanel Orientation="Horizontal">
                                     <ComboBox Margin="10,5,10,5" Name="ComboSkinsFullscreen"
-                                      Visibility="Collapsed"
-                                        Grid.Row="0" Grid.Column="1"
+                                        Visibility="Collapsed"
                                         ItemsSource="{Binding AvailableFullscreenSkins}"
                                         SelectedValue="{Binding Settings.SkinFullscreen}"
                                         SelectionChanged="ComboSkinsFullscreen_SelectionChanged"
                                         SelectedValuePath="Name" DisplayMemberPath="Name" />
-
-                                    <TextBlock Text="{DynamicResource LOCSettingsSkinColorFullscreen}" VerticalAlignment="Center"
-                                        Grid.Row="0" Grid.Column="0" />
-                                    <ComboBox Margin="10,5,0,5" Name="CombSkinColorFullscreen"
-                                        Grid.Row="0" Grid.Column="1"
+                                    <TextBlock Text="{DynamicResource LOCSettingsSkinColorFullscreen}" VerticalAlignment="Center" />
+                                    <ComboBox Margin="10,5,0,5" Name="CombSkinColorFullscreen" 
                                         SelectedValue="{Binding Settings.SkinColorFullscreen}"
                                         ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkinsFullscreen}">
                                     </ComboBox>
-                                </Grid>
+                                </StackPanel>
 
                                 <Grid Margin="0,15,0,0">
                                     <Grid.Resources>
