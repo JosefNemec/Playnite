@@ -21,10 +21,12 @@ namespace SteamLibrary
         private GameID gameId;
         private ProcessMonitor procMon;
         private Stopwatch stopWatch;
+        private SteamLibrary library;
 
-        public SteamGameController(Game game) : base(game)
+        public SteamGameController(Game game, SteamLibrary library) : base(game)
         {
             gameId = game.ToSteamGameID();
+            this.library = library;
         }
 
         public override void Dispose()
@@ -98,20 +100,21 @@ namespace SteamLibrary
                     return;
                 }
 
-                var gameState = Steam.GetAppState(id);
-                if (gameState.Installed == true)
+                var installed = library.GetInstalledGames(false);
+                if (installed.TryGetValue(id, out var installedGame))
                 {
                     if (Game.PlayAction == null)
                     {
-                        Game.PlayAction = SteamLibrary.CreatePlayTask(Game.ToSteamGameID());
+                        Game.PlayAction = installedGame.PlayAction;
                     }
 
+                    Game.InstallDirectory = installedGame.InstallDirectory;
                     stopWatch.Stop();
                     OnInstalled(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
                     return;
                 }
 
-                await Task.Delay(Playnite.Timer.SecondsToMilliseconds(5));
+                await Task.Delay(Playnite.Timer.SecondsToMilliseconds(10));
             }
         }
 
