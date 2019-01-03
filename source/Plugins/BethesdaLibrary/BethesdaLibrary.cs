@@ -81,7 +81,7 @@ namespace BethesdaLibrary
 
         public Guid Id { get; } = Guid.Parse("0E2E793E-E0DD-4447-835C-C44A1FD506EC");
 
-        public bool IsInstalled => Bethesda.IsInstalled;
+        public bool IsClientInstalled => Bethesda.IsInstalled;
 
         public void Dispose()
         {

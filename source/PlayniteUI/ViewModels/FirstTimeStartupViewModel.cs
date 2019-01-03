@@ -176,7 +176,7 @@ namespace PlayniteUI.ViewModels
             foreach (var description in plugins)
             {
                 var provider = extensions.LoadPlugin<ILibraryPlugin>(description, playniteApi);
-                LibraryPlugins.Add(new SelectablePlugin(provider.IsInstalled, provider, description));
+                LibraryPlugins.Add(new SelectablePlugin(provider.IsClientInstalled, provider, description));
             }
         }
 

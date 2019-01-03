@@ -339,7 +339,7 @@ namespace OriginLibrary
 
         public Guid Id { get; } = Guid.Parse("85DD7072-2F20-4E76-A007-41035E390724");
 
-        public bool IsInstalled => Origin.IsInstalled;
+        public bool IsClientInstalled => Origin.IsInstalled;
 
         public void Dispose()
         {

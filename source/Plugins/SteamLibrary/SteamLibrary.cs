@@ -548,7 +548,7 @@ namespace SteamLibrary
 
         public string LibraryIcon { get; private set; }
 
-        public bool IsInstalled => Steam.IsInstalled;
+        public bool IsClientInstalled => Steam.IsInstalled;
 
         public void Dispose()
         {

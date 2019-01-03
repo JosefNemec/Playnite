@@ -332,11 +332,13 @@ namespace PlayniteUI.ViewModels
             {
                 return;
             }
-            
-            var program = new ImportableProgram()
+
+			var productName = FileVersionInfo.GetVersionInfo(path).ProductName;
+
+			var program = new ImportableProgram()
             {
                 Icon = path,
-                Name = FileVersionInfo.GetVersionInfo(path).ProductName ?? new DirectoryInfo(Path.GetDirectoryName(path)).Name,
+                Name = string.IsNullOrWhiteSpace(productName) ? new DirectoryInfo(Path.GetDirectoryName(path)).Name : productName,
                 Path = path,
                 WorkDir = Path.GetDirectoryName(path),
                 Import = true
