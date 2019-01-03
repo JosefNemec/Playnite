@@ -35,11 +35,11 @@ namespace Playnite
             {
                 if (large)
                 {
-                    readIconCount = InteropMethods.ExtractIconEx(file, 0, hIconEx, hDummy, 1);
+                    readIconCount = Interop.ExtractIconEx(file, 0, hIconEx, hDummy, 1);
                 }
                 else
                 {
-                    readIconCount = InteropMethods.ExtractIconEx(file, 0, hDummy, hIconEx, 1);
+                    readIconCount = Interop.ExtractIconEx(file, 0, hDummy, hIconEx, 1);
                 }
 
                 if (readIconCount > 0 && hIconEx[0] != IntPtr.Zero)
@@ -62,7 +62,7 @@ namespace Playnite
                 {
                     if (ptr != IntPtr.Zero)
                     {
-                        InteropMethods.DestroyIcon(ptr);
+                        Interop.DestroyIcon(ptr);
                     }
                 }
 
@@ -70,7 +70,7 @@ namespace Playnite
                 {
                     if (ptr != IntPtr.Zero)
                     {
-                        InteropMethods.DestroyIcon(ptr);
+                        Interop.DestroyIcon(ptr);
                     }
                 }
             }
@@ -96,7 +96,7 @@ namespace Playnite
                 Int32Rect.Empty,
                 BitmapSizeOptions.FromEmptyOptions());
 
-            if (!InteropMethods.DeleteObject(hBitmap))
+            if (!Interop.DeleteObject(hBitmap))
             {
                 throw new Win32Exception();
             }

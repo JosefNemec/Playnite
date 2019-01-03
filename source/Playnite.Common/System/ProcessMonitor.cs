@@ -39,13 +39,24 @@ namespace Playnite
 
         public async void WatchDirectoryProcesses(string directory, bool alreadyRunning, bool byProcessNames = false)
         {
+            // Get real path in case that original path is symlink or junction point
+            var realPath = directory;
+            try
+            {
+                realPath = Paths.GetFinalPathName(directory);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Failed to get target path for a directory {directory}");
+            }
+
             if (byProcessNames)
             {
-                await WatchDirectoryByProcessNames(directory, alreadyRunning);
+                await WatchDirectoryByProcessNames(realPath, alreadyRunning);
             }
             else
             {
-                await WatchDirectory(directory, alreadyRunning);
+                await WatchDirectory(realPath, alreadyRunning);
             }
         }
 
