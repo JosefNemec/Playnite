@@ -173,6 +173,8 @@ namespace TwitchLibrary
 
         public Guid Id { get; } = Guid.Parse("E2A7D494-C138-489D-BB3F-1D786BEEB675");
 
+        public bool IsClientInstalled => Twitch.IsInstalled;
+
         public void Dispose()
         {
 

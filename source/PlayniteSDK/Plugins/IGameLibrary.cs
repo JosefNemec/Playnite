@@ -30,6 +30,12 @@ namespace Playnite.SDK.Plugins
         string Name { get; }
 
         /// <summary>
+        /// Gets if this game library provider is installed on PC
+        /// </summary>
+        /// <returns></returns>
+        bool IsClientInstalled { get; }
+
+        /// <summary>
         /// Gets library games.
         /// </summary>
         /// <returns>List of games.</returns>

@@ -266,6 +266,8 @@ namespace BattleNetLibrary
         
         public Guid Id { get; } = Guid.Parse("E3C26A3D-D695-4CB7-A769-5FF7612C7EDD");
 
+        public bool IsClientInstalled => BattleNet.IsInstalled;
+
         public void Dispose()
         {
 
