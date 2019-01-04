@@ -19,7 +19,8 @@ namespace Playnite
 
         private static string GetFileNameFromUrl(string url)
         {
-            var extension = Path.GetExtension(url);
+            var uri = new Uri(url);
+            var extension = Path.GetExtension(uri.Segments[uri.Segments.Length - 1]);
             var md5 = url.MD5();
             return md5 + extension;
         }

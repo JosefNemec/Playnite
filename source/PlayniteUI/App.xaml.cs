@@ -30,6 +30,7 @@ using PlayniteUI.WebView;
 using Newtonsoft.Json;
 using System.Windows.Interop;
 using System.Reflection;
+using TheArtOfDev.HtmlRenderer;
 
 namespace PlayniteUI
 {
@@ -192,6 +193,7 @@ namespace PlayniteUI
 
             Time.Instance = new Time();
             AppSettings = PlayniteSettings.LoadSettings();
+            HtmlRendererSettings.ImageCachePath = PlaynitePaths.ImagesCachePath;
             Localization.SetLanguage(AppSettings.Language);
             Resources.Remove("AsyncImagesEnabled");
             Resources.Add("AsyncImagesEnabled", AppSettings.AsyncImageLoading);

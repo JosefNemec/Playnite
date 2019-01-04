@@ -71,7 +71,15 @@ namespace PlayniteUI.ViewModels
                 }
                 else
                 {
-                    SelectedGameDetails = new GameDetailsViewModel(value, AppSettings, GamesEditor, Dialogs, Resources);
+                    if (AppSettings.ViewSettings.GamesViewType == ViewType.List ||
+                        (AppSettings.ViewSettings.GamesViewType == ViewType.Images && ShowGameSidebar))
+                    {
+                        SelectedGameDetails = new GameDetailsViewModel(value, AppSettings, GamesEditor, Dialogs, Resources);
+                    }
+                    else
+                    {
+                        SelectedGameDetails = null;
+                    }
                 }
 
                 selectedGame = value;
@@ -187,6 +195,11 @@ namespace PlayniteUI.ViewModels
             get => showGameSidebar;
             set
             {
+                if (value == true && SelectedGameDetails == null)
+                {
+                    SelectedGameDetails = new GameDetailsViewModel(SelectedGame, AppSettings, GamesEditor, Dialogs, Resources);
+                }                   
+
                 showGameSidebar = value;
                 OnPropertyChanged();
             }
@@ -358,6 +371,7 @@ namespace PlayniteUI.ViewModels
 
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
+            AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
             GamesStats = new DatabaseStats(database);
             InitializeCommands();
         }
@@ -738,13 +752,24 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(AppSettings.ViewSettings.GamesViewType) &&
+                AppSettings.ViewSettings.GamesViewType == ViewType.Images &&
+                ShowGameSidebar &&
+                SelectedGameDetails == null)
+            {
+                SelectedGameDetails = new GameDetailsViewModel(SelectedGame, AppSettings, GamesEditor, Dialogs, Resources);
+            }
+        }
+
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName != "Active")
+            if (e.PropertyName != nameof(AppSettings.FilterSettings.Active))
             {
                 AppSettings.SaveSettings();
 
-                if (e.PropertyName != "Name" && e.PropertyName != "SearchActive")
+                if (e.PropertyName != nameof(AppSettings.FilterSettings.Name) && e.PropertyName != nameof(AppSettings.FilterSettings.SearchActive))
                 {
                     AppSettings.FilterPanelVisible = true;
                 }
@@ -753,7 +778,7 @@ namespace PlayniteUI.ViewModels
 
         private void AppSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Language")
+            if (e.PropertyName == nameof(AppSettings.Language))
             {
                 Localization.SetLanguage(AppSettings.Language);
             }
