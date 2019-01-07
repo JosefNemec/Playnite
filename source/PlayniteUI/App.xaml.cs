@@ -194,7 +194,16 @@ namespace PlayniteUI
             Time.Instance = new Time();
             AppSettings = PlayniteSettings.LoadSettings();
             HtmlRendererSettings.ImageCachePath = PlaynitePaths.ImagesCachePath;
-            Localization.SetLanguage(AppSettings.Language);
+
+            try
+            {
+                Localization.SetLanguage(AppSettings.Language);
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, $"Failed to set {AppSettings.Language} langauge.");
+            }
+
             Resources.Remove("AsyncImagesEnabled");
             Resources.Add("AsyncImagesEnabled", AppSettings.AsyncImageLoading);
             if (AppSettings.DisableHwAcceleration)
