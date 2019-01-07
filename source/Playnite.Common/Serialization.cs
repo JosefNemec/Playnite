@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Playnite.Common
 {
     public static class Serialization
     {
+        private static ILogger logger = LogManager.GetLogger();
+
         public static string ToYaml(object obj)
         {
             var serializer = new SerializerBuilder().Build();
@@ -33,7 +36,16 @@ namespace Playnite.Common
 
         public static T FromJson<T>(string json) where T : class
         {
-            return JsonConvert.DeserializeObject<T>(json);
+            try
+            {
+                return JsonConvert.DeserializeObject<T>(json);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Failed to deserialize {typeof(T).FullName} from json:");
+                logger.Debug(json);
+                throw;
+            }
         }
     }
 }
