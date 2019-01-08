@@ -13,22 +13,25 @@ namespace PlayniteUI.ViewModels
 {
     public class CategoryConfigViewModel : ObservableObject
     {
-        public class Category
+        public class Category : ObservableObject
         {
+            private bool? enabled;
             public bool? Enabled
             {
-                get; set;
+                get
+                {
+                    return enabled;
+                }
+
+                set
+                {
+                    enabled = value;
+                    OnPropertyChanged();
+                }
             }
 
-            public string Name
-            {
-                get; set;
-            }
-
-            public Category()
-            {
-
-            }
+            public string Name { get; }
+            // No setter: if the name of a Category changes, Categories could have duplicates
 
             public Category(string name, bool enabled)
             {
@@ -86,6 +89,7 @@ namespace PlayniteUI.ViewModels
             get => new RelayCommand<string>((category) =>
             {
                 AddCategory(category);
+                NewTextCat = String.Empty;
             });
         }
 
@@ -134,7 +138,15 @@ namespace PlayniteUI.ViewModels
         {
             if (!string.IsNullOrEmpty(category))
             {
-                Categories.Add(new Category(category, true));
+                Category existing = Categories.Where(a => a.Name.Equals(category, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                if (existing != null)
+                {
+                    existing.Enabled = true;
+                }
+                else
+                {
+                    Categories.Add(new Category(category, true));
+                }
             }
         }
 
@@ -282,6 +294,21 @@ namespace PlayniteUI.ViewModels
             }
 
             return categories;
+        }
+
+        private string newTextCat;
+        public string NewTextCat
+        {
+            get
+            {
+                return newTextCat;
+            }
+
+            set
+            {
+                newTextCat = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

@@ -703,7 +703,7 @@
                 <Button TabIndex="3" Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding CancelCommand}"/>
-                <Button TabIndex="2" Name="ButtonOK" Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right"
+                <Button TabIndex="2" Name="ButtonOK" Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right" IsDefault="True"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding ConfirmCommand}"/>
             </DockPanel>
