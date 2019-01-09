@@ -92,7 +92,9 @@ namespace EpicLibrary
 
         public string Name { get; } = "Epic";
 
-        public string LibraryIcon { get; }        
+        public string LibraryIcon { get; }
+
+        public bool IsClientInstalled => EpicLauncher.IsInstalled;
 
         public Guid Id { get; } = Guid.Parse("65BBA94D-DBD1-46C6-B5D0-B1BA559D10E4");
 

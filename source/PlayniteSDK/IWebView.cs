@@ -47,6 +47,10 @@ namespace Playnite.SDK
         /// <returns>Document source.</returns>
         string GetPageSource();
 
+        /// <summary>
+        /// Gets document source.
+        /// </summary>
+        /// <returns>Document source task.</returns>
         Task<string> GetPageSourceAsync();
 
         /// <summary>
