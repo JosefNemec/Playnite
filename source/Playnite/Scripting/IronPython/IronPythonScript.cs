@@ -20,9 +20,16 @@ namespace Playnite.Scripting.IronPython
             get; private set;
         }
 
-        public IronPythonScript(string path) : base(path)
+        public IronPythonScript(string path, IDictionary<string, object> initialVariables) : base(path)
         {
             Runtime = new IronPythonRuntime();
+            if (initialVariables != null)
+            {
+                foreach (var kvp in initialVariables)
+                {
+                    Runtime.SetVariable(kvp.Key, kvp.Value);
+                }
+            }
             Runtime.ExecuteFile(path);
         }
 

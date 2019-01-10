@@ -248,6 +248,10 @@ namespace Playnite.Plugins
             var allSuccess = true;
             DisposeScripts();
             var functions = new List<ScriptFunctionExport>();
+            var initalVariables = new Dictionary<string, object>
+            {
+                ["PlayniteApi"] = injectingApi,
+            };
 
             foreach (ScriptExtensionDescription desc in GetExtensionDescriptors().Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.FolderName)))
             {
@@ -261,13 +265,11 @@ namespace Playnite.Plugins
 
                 try
                 {
-                    script = PlayniteScript.FromFile(scriptPath);
+                    script = PlayniteScript.FromFile(scriptPath, initalVariables);
                     if (script == null)
                     {
                         continue;
                     }
-
-                    script.SetVariable("PlayniteApi", injectingApi);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {

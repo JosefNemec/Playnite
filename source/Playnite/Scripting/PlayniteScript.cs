@@ -71,18 +71,18 @@ namespace Playnite.Scripting
             Path = path;
         }
 
-        public static PlayniteScript FromFile(string path)
+        public static PlayniteScript FromFile(string path, IDictionary<string, object> initialVariables)
         {
             var extension = System.IO.Path.GetExtension(path).ToLower();
             if (extension == ".py")
             {
-                return new IronPythonScript(path);
+                return new IronPythonScript(path, initialVariables);
             }
             else if (extension == ".ps1")
             {
                 if (PowerShellRuntime.IsInstalled)
                 {
-                    return new PowerShellScript(path);
+                    return new PowerShellScript(path, initialVariables);
                 }
                 else
                 {

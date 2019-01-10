@@ -18,9 +18,16 @@ namespace Playnite.Scripting.PowerShell
             get; private set;
         }
 
-        public PowerShellScript(string path) : base(path)
+        public PowerShellScript(string path, IDictionary<string, object> initialVariables) : base(path)
         {
             Runtime = new PowerShellRuntime();
+            if (initialVariables != null)
+            {
+                foreach (var kvp in initialVariables)
+                {
+                    Runtime.SetVariable(kvp.Key, kvp.Value);
+                }
+            }
             Runtime.ExecuteFile(path);
         }
 
