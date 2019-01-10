@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Playnite.SDK.Models;
 using Playnite.SDK;
+using Microsoft.CSharp.RuntimeBinder;
 
 namespace Playnite.Scripting.IronPython
 {
@@ -33,7 +34,8 @@ namespace Playnite.Scripting.IronPython
 
         public override void InvokeExportedFunction(ScriptFunctionExport function)
         {
-            Runtime.Execute(function.FunctionName + "()");
+            dynamic pythonFunction = Runtime.GetVariable(function.FunctionName);
+            pythonFunction();
         }
 
         public override void SetVariable(string name, object value)

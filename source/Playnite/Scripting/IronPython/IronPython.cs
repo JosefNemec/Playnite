@@ -25,6 +25,7 @@ namespace Playnite.Scripting.IronPython
         private static NLog.Logger logger = NLog.LogManager.GetLogger("Python");
         private ScriptEngine engine;
         private ScriptScope scope;
+        private ScriptScope pythonBuiltins;
 
         public IronPythonRuntime()
         {
@@ -41,17 +42,11 @@ namespace Playnite.Scripting.IronPython
             {
                 paths.Add(stdLibPath);
             }
-
             engine.SetSearchPaths(paths);
+            pythonBuiltins = engine.GetBuiltinModule();
+            engine.Runtime.LoadAssembly(typeof(Playnite.SDK.Models.Game).Assembly);
+            engine.Execute("from Playnite.SDK.Models import *", pythonBuiltins);
             scope = engine.CreateScope();
-            engine.Execute(string.Format(@"
-import clr
-import os
-os.chdir('{0}')
-clr.AddReferenceToFile(""Playnite.SDK.dll"")
-from Playnite.SDK.Models import *
-", PlaynitePaths.ProgramPath.Replace(Path.DirectorySeparatorChar, '/')), scope);
-
             SetVariable("__logger", new Logger("Python"));
         }
 
@@ -71,6 +66,7 @@ from Playnite.SDK.Models import *
             {
                 foreach (var key in variables.Keys)
                 {
+                    // Set the variable inside the scope (current module), not globally in __builtins__
                     scope.SetVariable(key, variables[key]);
                 }
             }
@@ -87,7 +83,8 @@ from Playnite.SDK.Models import *
             FileInfo fileInfo = new FileInfo(path);
             Directory.SetCurrentDirectory(fileInfo.DirectoryName);
 
-            engine.ExecuteFile(path, scope);
+            // Replace the current scope with the new module
+            scope = engine.ImportModule(Path.GetFileNameWithoutExtension(fileInfo.Name));
         }
 
         public object GetVariable(string name)
@@ -98,18 +95,28 @@ from Playnite.SDK.Models import *
             }
             catch (MissingMemberException)
             {
-                return null;
+                try
+                {
+                    return pythonBuiltins.GetVariable<object>(name);
+                }
+                catch (MissingMemberException)
+                {
+                    return null;
+                }
+
             }
         }
 
         public void SetVariable(string name, object value)
         {
-            scope.SetVariable(name, value);
+            // Set the variable inside Python's __builtins__ module
+            // This is a set of global variables accessible in all Python modules
+            pythonBuiltins.SetVariable(name, value);
         }
 
         public bool GetFunctionExits(string name)
         {
-            return engine.Execute<bool>($"'{name}' in globals()", scope);
+            return scope.GetVariableNames().Contains(name);
         }
     }
 }
