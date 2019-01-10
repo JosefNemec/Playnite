@@ -6,6 +6,7 @@ using Playnite.API;
 using Playnite.Settings;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,12 @@ namespace Playnite.Scripting.IronPython
 
         public IronPythonRuntime()
         {
-            engine = Python.CreateEngine();
+            Dictionary<string, object> options = new Dictionary<string, object>();
+            if (Debugger.IsAttached)
+            {
+                options["Debug"] = true;
+            }
+            engine = Python.CreateEngine(options);
             var paths = engine.GetSearchPaths();
             paths.Add(PlaynitePaths.ProgramPath);
             var stdLibPath = Path.Combine(PlaynitePaths.ProgramPath, "IronPythonStdLib.zip");
