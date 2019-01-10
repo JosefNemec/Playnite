@@ -1,3 +1,7 @@
+import PlayniteApi
+from Playnite.SDK.Models import Game
+import __logger
+
 def import_games_from_file():
     # Use the SelectFile dialog to prompt the user for the file with the list of
     # games separated by newline.

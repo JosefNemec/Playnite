@@ -25,7 +25,6 @@ namespace Playnite.Scripting.IronPython
         private static NLog.Logger logger = NLog.LogManager.GetLogger("Python");
         private ScriptEngine engine;
         private ScriptScope scope;
-        private ScriptScope pythonBuiltins;
 
         public IronPythonRuntime()
         {
@@ -43,9 +42,7 @@ namespace Playnite.Scripting.IronPython
                 paths.Add(stdLibPath);
             }
             engine.SetSearchPaths(paths);
-            pythonBuiltins = engine.GetBuiltinModule();
             engine.Runtime.LoadAssembly(typeof(Playnite.SDK.Models.Game).Assembly);
-            engine.Execute("from Playnite.SDK.Models import *", pythonBuiltins);
             scope = engine.CreateScope();
             SetVariable("__logger", new Logger("Python"));
         }
@@ -97,7 +94,7 @@ namespace Playnite.Scripting.IronPython
             {
                 try
                 {
-                    return pythonBuiltins.GetVariable<object>(name);
+                    return engine.Runtime.Globals.GetVariable<object>(name);
                 }
                 catch (MissingMemberException)
                 {
@@ -111,7 +108,7 @@ namespace Playnite.Scripting.IronPython
         {
             // Set the variable inside Python's __builtins__ module
             // This is a set of global variables accessible in all Python modules
-            pythonBuiltins.SetVariable(name, value);
+            engine.Runtime.Globals.SetVariable(name, value);
         }
 
         public bool GetFunctionExits(string name)

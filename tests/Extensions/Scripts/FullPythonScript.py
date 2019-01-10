@@ -1,3 +1,5 @@
+import __logger
+
 __attributes = {
     'Author': 'Josef Nemec',
     'Version': '1.0'
