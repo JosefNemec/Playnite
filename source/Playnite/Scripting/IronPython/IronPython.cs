@@ -82,6 +82,11 @@ from Playnite.SDK.Models import *
 
         public void ExecuteFile(string path)
         {
+            // Python search paths contain the current directory
+            // Change to the directory of the script to allow importing other modules
+            FileInfo fileInfo = new FileInfo(path);
+            Directory.SetCurrentDirectory(fileInfo.DirectoryName);
+
             engine.ExecuteFile(path, scope);
         }
 
