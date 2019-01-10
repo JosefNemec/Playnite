@@ -86,7 +86,7 @@ Gry pojawią się ponownie w Playnite po kolejnyme imporcie (w zależności od u
     <sys:String x:Key="LOCRegionLabel">Region</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">Ostatnio grane</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Najczęściej grane</sys:String>
-    <sys:String x:Key="LOCPlayCountLabel">Liczba włączeń</sys:String>
+    <sys:String x:Key="LOCPlayCountLabel">Liczba uruchomień</sys:String>
     <sys:String x:Key="LOCAddedLabel">Dodany</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Zmodyfikowany</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Strona www</sys:String>
@@ -175,7 +175,8 @@ IGDB:
 Użyj danych z IGDB.com.
     
 IGDB > Sklep Oficjalny:
-Preferuj dane z IGDB.com i jeżeli nie ma, użyj dane z Sklepu Oficjalnego.    
+Preferuj dane z IGDB.com i jeżeli nie ma, użyj dane z Sklepu Oficjalnego.   
+
 Sklep Oficjalny > IGDB:
 Preferuj dane z Sklepu Oficjalnego i jeżeli nie ma, użyj dane z IGDB.com.</sys:String>
 
@@ -186,7 +187,7 @@ Preferuj dane z Sklepu Oficjalnego i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCProgressBattleNetLibImport">Aktualizacja biblioteki Battle.net...</sys:String>
     <sys:String x:Key="LOCProgressMetadata">Pobieranie metadanych...</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Importowanie zainstalowanych gier...</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">Importowanie gier w liczbie: {0} ...</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">Importowanie gier z {0} ...</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Aktualizacja biblioteki...</sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport">Aktualizacja biblioteki...</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Ukończono auktualizację biblioteki</sys:String>
