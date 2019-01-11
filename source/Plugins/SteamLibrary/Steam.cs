@@ -32,7 +32,7 @@ namespace SteamLibrary
             {
                 using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam"))
                 {
-                    if (key != null)
+                    if (key?.GetValueNames().Contains("SteamPath") == true)
                     {
                         return key.GetValue("SteamPath")?.ToString().Replace('/', '\\') ?? string.Empty;
                     }
@@ -48,7 +48,7 @@ namespace SteamLibrary
             {
                 using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam"))
                 {
-                    if (key != null)
+                    if (key?.GetValueNames().Contains("ModInstallPath") == true)
                     {
                         return key.GetValue("ModInstallPath")?.ToString().Replace('/', '\\') ?? string.Empty;
                     }
@@ -64,7 +64,7 @@ namespace SteamLibrary
             {
                 using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam"))
                 {
-                    if (key != null)
+                    if (key?.GetValueNames().Contains("SourceModInstallPath") == true)
                     {
                         return key.GetValue("SourceModInstallPath")?.ToString().Replace('/', '\\') ?? string.Empty;
                     }
