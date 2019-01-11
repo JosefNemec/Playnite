@@ -1,0 +1,70 @@
+﻿using Playnite;
+using Playnite.Common;
+using Playnite.Common.System;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ItchioLibrary
+{
+    public class Itch
+    {
+        public class InstallState
+        {
+            public string current;
+        }
+
+        public static string UserPath
+        {
+            get
+            {
+                var appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                return Path.Combine(appData, "itch");
+            }
+        }
+
+        public static string InstallationPath
+        {
+            get
+            {
+                var prog = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "itch");
+                return prog == null ? string.Empty : prog.InstallLocation;
+            }
+        }
+
+        public static string ClientExecPath
+        {
+            get
+            {
+                var installDir = InstallationPath;
+                if (string.IsNullOrEmpty(installDir))
+                {
+                    return string.Empty;
+                }
+
+                var statePath = Path.Combine(InstallationPath, "state.json");
+                var instState = Serialization.FromJson<InstallState>(File.ReadAllText(statePath));
+                var exePath = Path.Combine(InstallationPath, $"app-{instState.current}", "itch.exe");
+                return File.Exists(exePath) ? exePath : string.Empty;
+            }
+        }
+
+        public static bool IsInstalled
+        {
+            get
+            {
+                var path = InstallationPath;
+                return !string.IsNullOrEmpty(path) && Directory.Exists(path);
+            }
+        }
+
+        public static void StartClient()
+        {
+            ProcessStarter.StartProcess(ClientExecPath, string.Empty);
+        }
+
+    }
+}

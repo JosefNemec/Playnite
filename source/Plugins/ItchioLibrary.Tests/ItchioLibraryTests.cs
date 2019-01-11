@@ -7,15 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EpicLibrary.Tests
+namespace ItchioLibrary.Tests
 {
     [TestFixture]
-    public class EpicLibraryTests
+    public class ItchioLibraryTets
     {
-        public static EpicLibrary CreateLibrary()
+        public static ItchioLibrary CreateLibrary()
         {
             var api = new Mock<IPlayniteAPI>();
-            return new EpicLibrary(api.Object);
+            return new ItchioLibrary(api.Object);
         }
 
         [Test]
@@ -23,6 +23,14 @@ namespace EpicLibrary.Tests
         {
             var library = CreateLibrary();
             var games = library.GetInstalledGames();
+            CollectionAssert.IsNotEmpty(games);
+        }
+
+        [Test]
+        public void GetLibraryGamesTest()
+        {
+            var library = CreateLibrary();
+            var games = library.GetLibraryGames();
             CollectionAssert.IsNotEmpty(games);
         }
     }

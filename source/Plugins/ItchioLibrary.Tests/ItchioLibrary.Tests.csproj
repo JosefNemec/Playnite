@@ -20,6 +20,7 @@
     <TestProjectType>UnitTest</TestProjectType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,15 +60,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ButlerTests.cs" />
+    <Compile Include="ItchioLibraryTests.cs" />
+    <Compile Include="ItchTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestSetup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Playnite.Common\Playnite.Common.csproj">
+      <Project>{DEB1B9F3-6FC9-4185-8DAA-4FCA15B46F83}</Project>
+      <Name>Playnite.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PlayniteSDK\Playnite.SDK.csproj">
+      <Project>{19BC9097-5705-4352-90E2-99F0C63230D0}</Project>
+      <Name>Playnite.SDK</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ItchioLibrary\ItchioLibrary.csproj">
       <Project>{27a6e49e-f769-4709-8b43-ff60b8a882be}</Project>
       <Name>ItchioLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

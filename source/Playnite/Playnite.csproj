@@ -164,7 +164,6 @@
     <Compile Include="GameActionActivator.cs" />
     <Compile Include="HttpFileCache.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
-    <Compile Include="NLogLogProvider.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Scripting\IronPython\IronPython.cs" />
     <Compile Include="Scripting\IronPython\IronPythonScript.cs" />

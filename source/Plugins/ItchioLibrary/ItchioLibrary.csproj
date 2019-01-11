@@ -11,6 +11,7 @@
     <AssemblyName>ItchioLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,12 +41,12 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -62,12 +63,23 @@
     <Compile Include="..\..\playniteui\converters\NegateConverter.cs">
       <Link>Converters\NegateConverter.cs</Link>
     </Compile>
+    <Compile Include="Butler.cs" />
+    <Compile Include="Itch.cs" />
+    <Compile Include="ItchioClient.cs" />
+    <Compile Include="ItchioLibrary.cs" />
+    <Compile Include="ItchioLibrarySettings.cs" />
     <Compile Include="ItchioLibrarySettingsView.xaml.cs">
       <DependentUpon>ItchioLibrarySettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Butler.cs" />
+    <Compile Include="Models\Cave.cs" />
+    <Compile Include="Models\FetchCaves.cs" />
+    <Compile Include="Models\FetchProfileOwnedKeys.cs" />
+    <Compile Include="Models\ProfileList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="extension.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

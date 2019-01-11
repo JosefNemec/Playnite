@@ -74,7 +74,6 @@ namespace EpicLibrary
                     continue;
                 }
 
-
                 games.Add(new Game()
                 {
                     PluginId = Id,
@@ -96,7 +95,7 @@ namespace EpicLibrary
 
         public bool IsClientInstalled => EpicLauncher.IsInstalled;
 
-        public Guid Id { get; } = Guid.Parse("65BBA94D-DBD1-46C6-B5D0-B1BA559D10E4");
+        public Guid Id { get; } = Guid.Parse("00000002-DBD1-46C6-B5D0-B1BA559D10E4");
 
         public void Dispose()
         {
