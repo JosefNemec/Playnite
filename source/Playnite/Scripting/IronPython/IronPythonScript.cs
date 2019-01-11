@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Playnite.SDK.Models;
 using Playnite.SDK;
-using Microsoft.CSharp.RuntimeBinder;
 
 namespace Playnite.Scripting.IronPython
 {
@@ -30,7 +29,7 @@ namespace Playnite.Scripting.IronPython
                     Runtime.SetVariable(kvp.Key, kvp.Value);
                 }
             }
-            Runtime.ExecuteFile(path);
+            Runtime.ImportModule(path);
         }
 
         public override void Dispose()
@@ -41,8 +40,7 @@ namespace Playnite.Scripting.IronPython
 
         public override void InvokeExportedFunction(ScriptFunctionExport function)
         {
-            dynamic pythonFunction = Runtime.GetVariable(function.FunctionName);
-            pythonFunction();
+            Runtime.CallFunction(function.FunctionName);
         }
 
         public override void SetVariable(string name, object value)
@@ -54,7 +52,7 @@ namespace Playnite.Scripting.IronPython
         {
             if (Runtime.GetFunctionExits("on_application_started"))
             {
-                Runtime.Execute("on_application_started()");
+                Runtime.CallFunction("on_application_started");
             }
         }
 
@@ -62,10 +60,7 @@ namespace Playnite.Scripting.IronPython
         {
             if (Runtime.GetFunctionExits("on_game_starting"))
             {
-                Runtime.Execute("on_game_starting(__game)", new Dictionary<string, object>()
-                {
-                    { "__game", game }
-                });
+                Runtime.CallFunction("on_game_starting", game);
             }
         }
 
@@ -73,10 +68,7 @@ namespace Playnite.Scripting.IronPython
         {
             if (Runtime.GetFunctionExits("on_game_started"))
             {
-                Runtime.Execute("on_game_started(__game)", new Dictionary<string, object>()
-                {
-                    { "__game", game }
-                });
+                Runtime.CallFunction("on_game_started", game);
             }
         }
 
@@ -84,11 +76,7 @@ namespace Playnite.Scripting.IronPython
         {
             if (Runtime.GetFunctionExits("on_game_stopped"))
             {
-                Runtime.Execute("on_game_stopped(__game, __ellapsed_seconds)", new Dictionary<string, object>()
-                {
-                    { "__game", game },
-                    { "__ellapsed_seconds", ellapsedSeconds }
-                });
+                Runtime.CallFunction("on_game_stopped", game, ellapsedSeconds);
             }
         }
 
@@ -96,10 +84,7 @@ namespace Playnite.Scripting.IronPython
         {
             if (Runtime.GetFunctionExits("on_game_installed"))
             {
-                Runtime.Execute("on_game_installed(__game)", new Dictionary<string, object>()
-                {
-                    { "__game", game }
-                });
+                Runtime.CallFunction("on_game_installed", game);
             }
         }
 
@@ -107,10 +92,7 @@ namespace Playnite.Scripting.IronPython
         {
             if (Runtime.GetFunctionExits("on_game_uninstalled"))
             {
-                Runtime.Execute("on_game_uninstalled(__game)", new Dictionary<string, object>()
-                {
-                    { "__game", game }
-                });
+                Runtime.CallFunction("on_game_uninstalled", game);
             }
         }
     }

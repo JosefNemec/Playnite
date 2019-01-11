@@ -15,6 +15,9 @@ __exports = [
 def on_script_loaded():    
     __logger.Info('FullPythonScript on_script_loaded')
 
+def on_application_started():
+    __logger.Info('FullPythonScript on_application_started')
+
 def on_game_starting(game):
     __logger.Info('FullPythonScript on_game_starting ' + game.Name)
 

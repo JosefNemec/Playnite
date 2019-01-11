@@ -52,28 +52,7 @@ namespace Playnite.Scripting.IronPython
             engine.Runtime.Shutdown();
         }
 
-        public object Execute(string script)
-        {
-            return Execute(script, null);
-        }
-
-        public object Execute(string script, Dictionary<string, object> variables)
-        {
-            if (variables != null)
-            {
-                foreach (var key in variables.Keys)
-                {
-                    // Set the variable inside the scope (current module), not globally in __builtins__
-                    scope.SetVariable(key, variables[key]);
-                }
-            }
-
-            var source = engine.CreateScriptSourceFromString(script, SourceCodeKind.AutoDetect);            
-            var result = source.Execute<object>(scope);
-            return result;
-        }
-
-        public void ExecuteFile(string path)
+        public void ImportModule(string path)
         {
             // Python search paths contain the current directory
             // Change to the directory of the script to allow importing other modules
@@ -84,36 +63,28 @@ namespace Playnite.Scripting.IronPython
             scope = engine.ImportModule(Path.GetFileNameWithoutExtension(fileInfo.Name));
         }
 
-        public object GetVariable(string name)
-        {
-            try
-            {
-                return scope.GetVariable<object>(name);
-            }
-            catch (MissingMemberException)
-            {
-                try
-                {
-                    return engine.Runtime.Globals.GetVariable<object>(name);
-                }
-                catch (MissingMemberException)
-                {
-                    return null;
-                }
-
-            }
-        }
-
         public void SetVariable(string name, object value)
         {
-            // Set the variable inside Python's __builtins__ module
-            // This is a set of global variables accessible in all Python modules
+            // Set the variable inside IronPython's Globals
+            // These variables may be imported in Python scripts
             engine.Runtime.Globals.SetVariable(name, value);
         }
 
         public bool GetFunctionExits(string name)
         {
-            return scope.GetVariableNames().Contains(name);
+            try
+            {
+                return engine.Operations.IsCallable(scope.GetVariable(name));
+            }
+            catch (MissingMemberException)
+            {
+                return false;
+            }
+        }
+
+        public object CallFunction(string name, params object[] args)
+        {
+            return engine.Operations.Invoke(scope.GetVariable(name), args);
         }
     }
 }
