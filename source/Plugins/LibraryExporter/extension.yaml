@@ -1,7 +1,7 @@
 ﻿Name: Library Exporter
 Author: Playnite
 Version: 1.0
-Module: LibraryExporter.ps1
+Module: LibraryExporter.psm1
 Type: Script
 Functions: 
     - Description: Export Library

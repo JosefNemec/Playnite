@@ -28,7 +28,7 @@ namespace Playnite.Scripting.PowerShell
                     Runtime.SetVariable(kvp.Key, kvp.Value);
                 }
             }
-            Runtime.ExecuteFile(path);
+            Runtime.ImportModule(path);
         }
 
         public override void Dispose()
@@ -39,7 +39,7 @@ namespace Playnite.Scripting.PowerShell
 
         public override void InvokeExportedFunction(ScriptFunctionExport function)
         {
-            Runtime.Execute(function.FunctionName);
+            Runtime.CallFunction(function.FunctionName);
         }
 
         public override void SetVariable(string name, object value)
@@ -51,7 +51,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (Runtime.GetFunctionExits("OnApplicationStarted"))
             {
-                Runtime.Execute("OnApplicationStarted");
+                Runtime.CallFunction("OnApplicationStarted");
             }
         }
 
@@ -59,10 +59,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (Runtime.GetFunctionExits("OnGameStarting"))
             {
-                Runtime.Execute("OnGameStarting $__game", new Dictionary<string, object>()
-                {
-                    { "__game", game }
-                });
+                Runtime.CallFunction("OnGameStarting", game);
             }
         }
 
@@ -70,10 +67,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (Runtime.GetFunctionExits("OnGameStarted"))
             {
-                Runtime.Execute("OnGameStarted $__game", new Dictionary<string, object>()
-                {
-                    { "__game", game }
-                });
+                Runtime.CallFunction("OnGameStarted", game);
             }
         }
 
@@ -81,11 +75,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (Runtime.GetFunctionExits("OnGameStopped"))
             {
-                Runtime.Execute("OnGameStopped $__game $__ellapsedSeconds", new Dictionary<string, object>()
-                {
-                    { "__game", game },
-                    { "__ellapsedSeconds", ellapsedSeconds }
-                });
+                Runtime.CallFunction("OnGameStopped", game, ellapsedSeconds);
             }
         }
 
@@ -93,10 +83,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (Runtime.GetFunctionExits("OnGameInstalled"))
             {
-                Runtime.Execute("OnGameInstalled $__game", new Dictionary<string, object>()
-                {
-                    { "__game", game }
-                });
+                Runtime.CallFunction("OnGameInstalled", game);
             }
         }
 
@@ -104,10 +91,7 @@ namespace Playnite.Scripting.PowerShell
         {
             if (Runtime.GetFunctionExits("OnGameUninstalled"))
             {
-                Runtime.Execute("OnGameUninstalled $__game", new Dictionary<string, object>()
-                {
-                    { "__game", game }
-                });
+                Runtime.CallFunction("OnGameUninstalled", game);
             }
         }
     }

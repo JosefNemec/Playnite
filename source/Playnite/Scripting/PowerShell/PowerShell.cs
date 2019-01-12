@@ -9,14 +9,17 @@ using System.Collections.ObjectModel;
 using Playnite.API;
 using Microsoft.Win32;
 using System.IO;
+using Microsoft.PowerShell;
 
 namespace Playnite.Scripting.PowerShell
 {
     public class PowerShellRuntime : IScriptRuntime
     {
         private static NLog.Logger logger = NLog.LogManager.GetLogger("PowerShell");
-        private Runspace runspace;
-        
+        private System.Management.Automation.PowerShell powerShell;
+        private InitialSessionState initialSessionState;
+        private PSModuleInfo module;
+
         public static bool IsInstalled
         {
             get
@@ -27,24 +30,18 @@ namespace Playnite.Scripting.PowerShell
 
         public PowerShellRuntime()
         {
-            runspace = RunspaceFactory.CreateRunspace();
-            runspace.ApartmentState = System.Threading.ApartmentState.MTA;
-            runspace.ThreadOptions = PSThreadOptions.UseCurrentThread;
-            runspace.Open();
-
-            using (var pipe = runspace.CreatePipeline())
-            {
-                pipe.Commands.AddScript("Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted");
-                pipe.Commands.AddScript("$global:ErrorActionPreference = \"Stop\"");
-                pipe.Invoke();
-            }
-
+            initialSessionState = InitialSessionState.CreateDefault();
+            initialSessionState.ExecutionPolicy = ExecutionPolicy.Unrestricted;
+            initialSessionState.ThreadOptions = PSThreadOptions.UseCurrentThread;
+            //initialSessionState.ApartmentState = System.Threading.ApartmentState.MTA;
+            powerShell = System.Management.Automation.PowerShell.Create(initialSessionState);
+            SetVariable("ErrorActionPreference", "Stop");
             SetVariable("__logger", new Logger("PowerShell"));
         }
 
         public void Dispose()
         {
-            runspace.Close();
+
         }
 
         public static PowerShellRuntime CreateRuntime()
@@ -52,58 +49,41 @@ namespace Playnite.Scripting.PowerShell
             return new PowerShellRuntime();
         }
 
-        public object Execute(string script)
+        public void ImportModule(string path)
         {
-            return Execute(script, null);
-        }
-
-        public object Execute(string script, Dictionary<string, object> variables)
-        {
-            using (var pipe = runspace.CreatePipeline(script))
-            {
-                if (variables != null)
-                {
-                    foreach (var key in variables.Keys)
-                    {                        
-                        runspace.SessionStateProxy.SetVariable(key, variables[key]);
-                    }
-                }
-
-                var result = pipe.Invoke();
-                if (result.Count == 1)
-                {
-                    return result[0].BaseObject;
-                }
-                else
-                {
-                    return result.Select(a => a?.BaseObject).ToList();
-                }
-            }
-        }
-
-        public object ExecuteFile(string path)
-        {
-            var content = File.ReadAllText(path);
-            return Execute(content);
+            powerShell.Runspace.SessionStateProxy.Path.SetLocation(Path.GetDirectoryName(path));
+            powerShell.Commands.Clear();
+            module = powerShell
+                .AddCommand("Import-Module")
+                .AddParameter("PassThru")
+                .AddArgument(path)
+                .Invoke<PSModuleInfo>().FirstOrDefault();
         }
 
         public void SetVariable(string name, object value)
         {
-            runspace.SessionStateProxy.SetVariable(name, value);
+            powerShell.Runspace.SessionStateProxy.SetVariable(name, value);
         }
 
         public object GetVariable(string name)
         {
-            return runspace.SessionStateProxy.GetVariable(name);
+            return powerShell.Runspace.SessionStateProxy.GetVariable(name);
+        }
+
+        public Collection<PSObject> CallFunction(string name, params object[] arguments)
+        {
+            powerShell.Commands.Clear();
+            powerShell.AddCommand(module.ExportedFunctions[name]);
+            foreach (var argument in arguments)
+            {
+                powerShell.AddArgument(argument);
+            }
+            return powerShell.Invoke();
         }
 
         public bool GetFunctionExits(string name)
         {
-            using (var pipe = runspace.CreatePipeline($"Get-Command {name} -EA 0"))
-            {
-                var res = pipe.Invoke();
-                return res.Count != 0;
-            }
+            return module?.ExportedFunctions.ContainsKey(name) ?? false;
         }
     }
 }

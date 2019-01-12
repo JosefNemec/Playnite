@@ -78,7 +78,7 @@ namespace Playnite.Scripting
             {
                 return new IronPythonScript(path, initialVariables);
             }
-            else if (extension == ".ps1")
+            else if (extension == ".psm1")
             {
                 if (PowerShellRuntime.IsInstalled)
                 {
