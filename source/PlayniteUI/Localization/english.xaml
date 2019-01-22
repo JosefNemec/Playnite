@@ -203,7 +203,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuReloadLibrary">Update Game Library</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Add Game</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manually</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled">Scan Directory...</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">Scan Automatically...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emulated Game...</sys:String>
     <sys:String x:Key="LOCMenuAbout">About Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Send Feedback</sys:String>
@@ -584,6 +584,5 @@ Please attach following ID to your crash report:</sys:String>
     
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io client will now open. Please sign in and then close this message.</sys:String>
-    <sys:String x:Key="LOCItchioSignInWaitMessage">Waiting for user to sign in, please close this when you're done...</sys:String>
-    
+    <sys:String x:Key="LOCItchioSignInWaitMessage">Waiting for user to sign in, please close this when you're done...</sys:String>    
 </ResourceDictionary>

@@ -11,6 +11,11 @@ namespace Playnite
     {
         public static bool HasMethod(this object obj, string methodName)
         {
+            if (obj == null)
+            {
+                return false;
+            }
+
             try
             {
                 return obj.GetType().GetMethod(methodName) != null;

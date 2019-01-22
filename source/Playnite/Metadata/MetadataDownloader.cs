@@ -38,9 +38,9 @@ namespace Playnite.Metadata
         public void Dispose()
         {
             foreach (var downloader in downloaders.Values)
-            {
+            {                
                 // TODO move to proper disposable
-                if (downloader.HasMethod("Dispose"))
+                if (downloader?.HasMethod("Dispose") == true)
                 {
                     (downloader as dynamic)?.Dispose();
                 }

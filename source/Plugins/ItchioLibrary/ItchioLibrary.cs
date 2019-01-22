@@ -83,6 +83,11 @@ namespace ItchioLibrary
             using (var butler = new Butler())
             {
                 var caves = butler.GetCaves();
+                if (caves?.Any() != true)
+                {
+                    return games;
+                }
+
                 foreach (var cave in caves)
                 {
                     if (cave.game.classification != Models.GameClassification.game &&
@@ -189,7 +194,6 @@ namespace ItchioLibrary
 
         public void Dispose()
         {
-
         }
                
         public IGameController GetGameController(Game game)
@@ -213,7 +217,7 @@ namespace ItchioLibrary
                         logger.Debug($"Found {installedGames.Count} installed itch.io games.");
                         allGames.AddRange(installedGames.Values.ToList());
                     }
-                    catch (Exception e) when (false)
+                    catch (Exception e)
                     {
                         logger.Error(e, "Failed to import installed itch.io games.");
                         importError = e;
@@ -240,7 +244,7 @@ namespace ItchioLibrary
                             }
                         }
                     }
-                    catch (Exception e) when (false)
+                    catch (Exception e)
                     {
                         logger.Error(e, "Failed to import uninstalled itch.io games.");
                         importError = e;

@@ -31,22 +31,6 @@
         <TabControl TabIndex="0" DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0" Name="TabMain"
                     OverridesDefaultStyle="True"
                     SelectedIndex="{Binding SelectedIndex}">
-            <TabControl.Style>
-                <Style TargetType="TabControl">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="TabControl">
-                                <ScrollViewer x:Name="TabControlScroller" HorizontalScrollBarVisibility="Disabled"  VerticalScrollBarVisibility="Auto" >
-                                    <Grid>
-                                        <TabPanel IsItemsHost="True" />
-                                        <ContentPresenter ContentSource="SelectedContent" />
-                                    </Grid>
-                                </ScrollViewer>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>                        
-                </Style>
-            </TabControl.Style>
             <TabItem Visibility="Collapsed">
                 <DockPanel LastChildFill="False" Margin="20">
                     <TextBlock Text="{DynamicResource LOCWelcomeLabel}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
@@ -58,17 +42,21 @@
                 <DockPanel Margin="20" LastChildFill="False">
                     <TextBlock Text="{DynamicResource LOCFirstExternalTitle}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
                     <TextBlock Text="{DynamicResource LOCFirstImportIntroduction}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="5,20,5,20"/>
-
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl ItemsSource="{Binding LibraryPlugins}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <CheckBox Content="{Binding Plugin.Name}" IsChecked="{Binding Selected}"
-                                          Margin="5"/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>                
+                   
+                    <ItemsControl ItemsSource="{Binding LibraryPlugins}"
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Plugin.Name}" IsChecked="{Binding Selected}"
+                                           Margin="7"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="5" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>             
                 </DockPanel>
             </TabItem>
 
