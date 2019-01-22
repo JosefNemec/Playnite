@@ -2325,10 +2325,21 @@ namespace PlayniteUI.ViewModels
                     tempGame.CoverImage = string.Empty;
 
                     if (extensions.LibraryPlugins.TryGetValue(tempGame.PluginId, out var plugin))
-                    {
+                    {                        
                         var downloader = plugin.Plugin.GetMetadataDownloader();
-                        metadata = downloader.GetMetadata(tempGame);
-                        metadata?.GameData?.CopyProperties(tempGame, false);
+                        try
+                        {
+                            metadata = downloader.GetMetadata(tempGame);
+                            metadata?.GameData?.CopyProperties(tempGame, false);
+                        }
+                        finally
+                        {
+                            // TODO move to proper disposable
+                            if (downloader.HasMethod("Dispose"))
+                            {
+                                (downloader as dynamic)?.Dispose();
+                            }
+                        }
                     }
                     else
                     {

@@ -1,4 +1,5 @@
-﻿using Playnite;
+﻿using ItchioLibrary.Models;
+using Playnite;
 using Playnite.Common;
 using Playnite.Common.System;
 using System;
@@ -12,17 +13,20 @@ namespace ItchioLibrary
 {
     public class Itch
     {
-        public class InstallState
-        {
-            public string current;
-        }
-
         public static string UserPath
         {
             get
             {
                 var appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
                 return Path.Combine(appData, "itch");
+            }
+        }
+
+        public static string PrereqsPaths
+        {
+            get
+            {
+                return Path.Combine(UserPath, "prereqs");
             }
         }
 
@@ -46,7 +50,7 @@ namespace ItchioLibrary
                 }
 
                 var statePath = Path.Combine(InstallationPath, "state.json");
-                var instState = Serialization.FromJson<InstallState>(File.ReadAllText(statePath));
+                var instState = Serialization.FromJson<ItchInstallState>(File.ReadAllText(statePath));
                 var exePath = Path.Combine(InstallationPath, $"app-{instState.current}", "itch.exe");
                 return File.Exists(exePath) ? exePath : string.Empty;
             }
@@ -65,6 +69,5 @@ namespace ItchioLibrary
         {
             ProcessStarter.StartProcess(ClientExecPath, string.Empty);
         }
-
     }
 }

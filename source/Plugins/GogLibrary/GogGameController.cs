@@ -71,7 +71,7 @@ namespace GogLibrary
 
                 var playAction = api.ExpandGameVariables(Game, Game.PlayAction);
                 OnStarting(this, new GameControllerEventArgs(this, 0));
-                var proc = GameActionActivator.ActivateAction(playAction, Game);
+                var proc = GameActionActivator.ActivateAction(playAction);
                 OnStarted(this, new GameControllerEventArgs(this, 0));
 
                 if (Game.PlayAction.Type != GameActionType.URL)

@@ -645,11 +645,22 @@
                                           IsChecked="{Binding EditingGame.PlayAction.IsHandledByPlugin}"
                                           Visibility="{Binding EditingGame.IsCustomGame, Converter={pui:InvertedBooleanToVisibilityConverter}}"
                                           Margin="5"/>
-                                <pui:GameTaskView x:Name="TaskPlay" DataContext="{Binding EditingGame.PlayAction}"
-                                                  Margin="5,0,5,5"
-                                                  IsEnabled="{Binding IsHandledByPlugin, Converter={pui:NegateConverter}}"
-                                                  Visibility="{Binding Data.EditingGame.PlayAction, Converter={StaticResource NullToVisibilityConverter}, Source={StaticResource Proxy}}"
-                                                  Emulators="{Binding Data.Emulators, Source={StaticResource Proxy}}"/>
+                                <pui:GameTaskView x:Name="TaskPlay" Margin="5,0,5,5" DataContext="{Binding EditingGame.PlayAction}" 
+                                                  Emulators="{Binding Data.Emulators, Source={StaticResource Proxy}}">
+                                    <pui:GameTaskView.Style>
+                                        <Style TargetType="{x:Type pui:GameTaskView}">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsHandledByPlugin}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Data.EditingGame.PlayAction, Source={StaticResource Proxy}}" Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </pui:GameTaskView.Style>
+                                </pui:GameTaskView>
                             </StackPanel>
                         </GroupBox>
                         <GroupBox Header="{DynamicResource LOCOtherActions}" Margin="10">

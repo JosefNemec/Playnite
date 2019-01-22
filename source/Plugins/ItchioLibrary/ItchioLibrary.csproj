@@ -34,6 +34,9 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AngleSharp.0.9.9\lib\net45\AngleSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -41,6 +44,9 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Abstractions, Version=2.1.0.227, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.Abstractions.2.1.0.227\lib\net40\System.IO.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -63,7 +69,15 @@
     <Compile Include="..\..\playniteui\converters\NegateConverter.cs">
       <Link>Converters\NegateConverter.cs</Link>
     </Compile>
+    <Compile Include="..\..\Playnite\BaseGameController.cs">
+      <Link>BaseGameController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\GameActionActivator.cs">
+      <Link>GameActionActivator.cs</Link>
+    </Compile>
     <Compile Include="Butler.cs" />
+    <Compile Include="ItchioMetadataProvider.cs" />
+    <Compile Include="ItchioGameController.cs" />
     <Compile Include="Itch.cs" />
     <Compile Include="ItchioClient.cs" />
     <Compile Include="ItchioLibrary.cs" />
@@ -73,13 +87,21 @@
     </Compile>
     <Compile Include="Models\Butler.cs" />
     <Compile Include="Models\Cave.cs" />
+    <Compile Include="Models\FetchGame.cs" />
     <Compile Include="Models\FetchCaves.cs" />
     <Compile Include="Models\FetchProfileOwnedKeys.cs" />
+    <Compile Include="Models\HTMLLaunch.cs" />
+    <Compile Include="Models\ItchInstallState.cs" />
+    <Compile Include="Models\LaunchManifest.cs" />
+    <Compile Include="Models\LogMessage.cs" />
+    <Compile Include="Models\PickManifestAction.cs" />
+    <Compile Include="Models\PrereqsFailed.cs" />
     <Compile Include="Models\ProfileList.cs" />
+    <Compile Include="Models\ShellLaunch.cs" />
+    <Compile Include="Models\URLLaunch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="extension.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

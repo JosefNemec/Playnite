@@ -43,7 +43,7 @@ namespace EpicLibrary
             if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("com.epicgames.launcher", StringComparison.OrdinalIgnoreCase))
             {
                 OnStarting(this, new GameControllerEventArgs(this, 0));
-                GameActionActivator.ActivateAction(Game.PlayAction, Game);
+                GameActionActivator.ActivateAction(Game.PlayAction);
                 if (Directory.Exists(Game.InstallDirectory))
                 {
                     stopWatch = Stopwatch.StartNew();

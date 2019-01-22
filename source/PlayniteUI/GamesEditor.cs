@@ -198,7 +198,7 @@ namespace PlayniteUI
             {
                 var emulators = database.Emulators.ToList();
                 var profile = GameActionActivator.GetGameActionEmulatorConfig(action, emulators)?.ExpandVariables(game);
-                GameActionActivator.ActivateAction(action.ExpandVariables(game), game, profile);
+                GameActionActivator.ActivateAction(action.ExpandVariables(game), profile);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {

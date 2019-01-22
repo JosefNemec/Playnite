@@ -50,7 +50,7 @@ namespace OriginLibrary
                 procMon = new ProcessMonitor();
                 procMon.TreeDestroyed += ProcMon_TreeDestroyed;
                 procMon.TreeStarted += ProcMon_TreeStarted;
-                GameActionActivator.ActivateAction(playAction, Game);
+                GameActionActivator.ActivateAction(playAction);
                 StartRunningWatcher(runsViaOrigin);
             }
             else

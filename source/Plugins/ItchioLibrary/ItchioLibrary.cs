@@ -1,8 +1,12 @@
-﻿using Playnite.SDK;
+﻿using ItchioLibrary.Models;
+using Playnite;
+using Playnite.Common;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -26,6 +30,53 @@ namespace ItchioLibrary
             LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\itchioicon.png");
         }
 
+        public static bool TryGetGameActions(string installDir, out GameAction playAction, out List<GameAction> otherActions)
+        {
+            var fileEnum = new SafeFileEnumerator(installDir, ".itch.toml", SearchOption.AllDirectories);
+            if (fileEnum.Any())
+            {
+                var strMan = File.ReadAllText(fileEnum.First().FullName);
+                var manifest = Serialization.FromToml<LaunchManifest>(strMan);
+                if (manifest.actions?.Any() == true)
+                {
+                    playAction = null;
+                    otherActions = new List<GameAction>();
+                    foreach (var action in manifest.actions)
+                    {
+                        if (action.name.Equals("play", StringComparison.OrdinalIgnoreCase))
+                        {
+                            playAction = new GameAction
+                            {
+                                IsHandledByPlugin = true,
+                                Name = "Play",
+                                Path = action.path,
+                                WorkingDir = action.path.IsHttpUrl() ? null : "{InstallDir}",
+                                Type = action.path.IsHttpUrl() ? GameActionType.URL : GameActionType.File,
+                                Arguments = action.args?.Any() == true ? string.Join(" ", action.args) : null
+                            };
+                        }
+                        else
+                        {
+                            otherActions.Add(new GameAction
+                            {
+                                Name = action.name,
+                                Path = action.path,
+                                WorkingDir = action.path.IsHttpUrl() ? null : "{InstallDir}",
+                                Type = action.path.IsHttpUrl() ? GameActionType.URL : GameActionType.File,
+                                Arguments = action.args?.Any() == true ? string.Join(" ", action.args) : null
+                            });
+                        }
+                    }
+
+                    return true;
+                }
+            }
+
+            playAction = null;
+            otherActions = null;
+            return false;
+        }
+
         internal Dictionary<string, Game> GetInstalledGames()
         {
             var games = new Dictionary<string, Game>();
@@ -34,8 +85,20 @@ namespace ItchioLibrary
                 var caves = butler.GetCaves();
                 foreach (var cave in caves)
                 {
-                    // We don't support multiple version of one game at moment
+                    if (cave.game.classification != Models.GameClassification.game &&
+                        cave.game.classification != Models.GameClassification.tool)
+                    {
+                        continue;
+                    }
+
+                    // TODO: We don't support multiple version of one game at moment
                     if (games.ContainsKey(cave.game.id.ToString()))
+                    {
+                        continue;
+                    }
+
+                    var installDir = cave.installInfo.installFolder;
+                    if (!Directory.Exists(installDir))
                     {
                         continue;
                     }
@@ -45,16 +108,22 @@ namespace ItchioLibrary
                         PluginId = Id,
                         GameId = cave.game.id.ToString(),
                         Name = cave.game.title,
-                        InstallDirectory = cave.installInfo.installFolder,
+                        InstallDirectory = installDir,
                         IsInstalled = true,
-                        PlayAction = new GameAction()
+                        CoverImage = cave.game.coverUrl,
+                        PlayAction = new GameAction
                         {
                             Type = GameActionType.URL,
-                            Path = @"itch://library/",
+                            Path = ItchioGameController.DynamicLaunchActionStr,
+                            Arguments = cave.id,
                             IsHandledByPlugin = true
-                        },
-                        CoverImage = cave.game.coverUrl
+                        }
                     };
+
+                    if (TryGetGameActions(installDir, out var play, out var others))
+                    {
+                        game.OtherActions = new ObservableCollection<GameAction>(others);
+                    }
 
                     games.Add(game.GameId, game);
                 }
@@ -74,18 +143,32 @@ namespace ItchioLibrary
                     throw new Exception("User is not authenticated.");
                 }
 
-                var keys = butler.GetOwnedKeys(profiles.First().id);
-                foreach (var key in keys)
+                foreach (var profile in profiles)
                 {
-                    var game = new Game()
+                    var keys = butler.GetOwnedKeys(profile.id);
+                    foreach (var key in keys)
                     {
-                        PluginId = Id,
-                        GameId = key.game.id.ToString(),
-                        Name = key.game.title, 
-                        CoverImage = key.game.coverUrl
-                    };
+                        if (key.game.classification != Models.GameClassification.game &&
+                            key.game.classification != Models.GameClassification.tool)
+                        {
+                            continue;
+                        }
 
-                    games.Add(game);
+                        if (games.Any(a => a.GameId == key.game.id.ToString()))
+                        {
+                            continue;
+                        }
+
+                        var game = new Game()
+                        {
+                            PluginId = Id,
+                            GameId = key.game.id.ToString(),
+                            Name = key.game.title,
+                            CoverImage = key.game.coverUrl
+                        };
+
+                        games.Add(game);
+                    }
                 }
             }
 
@@ -111,7 +194,7 @@ namespace ItchioLibrary
                
         public IGameController GetGameController(Game game)
         {
-            return null;
+            return new ItchioGameController(game, playniteApi);
         }
 
         public IEnumerable<Game> GetGames()
@@ -120,46 +203,54 @@ namespace ItchioLibrary
             var installedGames = new Dictionary<string, Game>();
             Exception importError = null;
 
-            if (LibrarySettings.ImportInstalledGames)
+            if (Itch.IsInstalled)
             {
-                try
+                if (LibrarySettings.ImportInstalledGames)
                 {
-                    installedGames = GetInstalledGames();
-                    logger.Debug($"Found {installedGames.Count} installed itch.io games.");
-                    allGames.AddRange(installedGames.Values.ToList());
-                }
-                catch (Exception e) when (false)
-                {
-                    logger.Error(e, "Failed to import installed itch.io games.");
-                    importError = e;
-                }
-            }
-
-            if (LibrarySettings.ImportUninstalledGames)
-            {
-                try
-                {
-                    var uninstalled = GetLibraryGames();
-                    logger.Debug($"Found {uninstalled.Count} library itch.io games.");
-
-                    foreach (var game in uninstalled)
+                    try
                     {
-                        if (installedGames.TryGetValue(game.GameId, out var installed))
-                        {
-                            installed.Playtime = game.Playtime;
-                            installed.LastActivity = game.LastActivity;
-                        }
-                        else
-                        {
-                            allGames.Add(game);
-                        }
+                        installedGames = GetInstalledGames();
+                        logger.Debug($"Found {installedGames.Count} installed itch.io games.");
+                        allGames.AddRange(installedGames.Values.ToList());
+                    }
+                    catch (Exception e) when (false)
+                    {
+                        logger.Error(e, "Failed to import installed itch.io games.");
+                        importError = e;
                     }
                 }
-                catch (Exception e) when (false)
+
+                if (LibrarySettings.ImportUninstalledGames)
                 {
-                    logger.Error(e, "Failed to import uninstalled itch.io games.");
-                    importError = e;
+                    try
+                    {
+                        var uninstalled = GetLibraryGames();
+                        logger.Debug($"Found {uninstalled.Count} library itch.io games.");
+
+                        foreach (var game in uninstalled)
+                        {
+                            if (installedGames.TryGetValue(game.GameId, out var installed))
+                            {
+                                installed.Playtime = game.Playtime;
+                                installed.LastActivity = game.LastActivity;
+                            }
+                            else
+                            {
+                                allGames.Add(game);
+                            }
+                        }
+                    }
+                    catch (Exception e) when (false)
+                    {
+                        logger.Error(e, "Failed to import uninstalled itch.io games.");
+                        importError = e;
+                    }
                 }
+            }
+            else
+            {
+                importError = new Exception(
+                    string.Format(playniteApi.Resources.FindString("LOCClientNotInstalledError"), "itch.io"));
             }
 
             if (importError != null)
@@ -180,7 +271,7 @@ namespace ItchioLibrary
 
         public ILibraryMetadataProvider GetMetadataDownloader()
         {
-            return null;
+            return new ItchioMetadataProvider();
         }
 
         public ISettings GetSettings(bool firstRunSettings)

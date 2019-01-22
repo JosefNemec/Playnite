@@ -203,8 +203,8 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuReloadLibrary">Update Game Library</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Add Game</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manually</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled">Import Installed or from Folder</sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated">Import emulated Game(s)</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">Scan Directory...</sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">Emulated Game...</sys:String>
     <sys:String x:Key="LOCMenuAbout">About Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Send Feedback</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Start Fullscreen Mode</sys:String>
@@ -298,6 +298,7 @@ Any currently active tasks (metadata downloads) will be canceled.</sys:String>
     <sys:String x:Key="LOCLoginFailed">Authentification failed</sys:String>
     <sys:String x:Key="LOCLoggedIn">User is authenticated</sys:String>
     <sys:String x:Key="LOCNotLoggedIn">Requires authentication</sys:String>
+    <sys:String x:Key="LOCNotLoggedInError">Failed to authenticate user.</sys:String>
 
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Metadata Import</sys:String>
@@ -576,4 +577,13 @@ Please attach following ID to your crash report:</sys:String>
     <sys:String x:Key="LOCScriptError">Script error</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Failed to execute extension function.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Open metadata folder</sys:String>
+
+    <sys:String x:Key="LOCClientNotInstalledError">{0} client is not installed.</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Game's installation directory not found.</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">Invalid game action configuration.</sys:String>
+    
+    <!--itch.io-->
+    <sys:String x:Key="LOCItchioSignInNotif">itch.io client will now open. Please sign in and then close this message.</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage">Waiting for user to sign in, please close this when you're done...</sys:String>
+    
 </ResourceDictionary>

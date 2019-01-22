@@ -14,3 +14,7 @@ NLog.xml
 Windows.winmd
 YamlDotNet.dll
 YamlDotNet.xml
+Nett.dll
+Nett.xml
+AngleSharp.dll
+AngleSharp.xml

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Nett;
+using Newtonsoft.Json;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,11 @@ namespace Playnite.Common
                 deserialized = null;
                 return false;
             }
+        }
+
+        public static T FromToml<T>(string toml) where T : class
+        {
+            return Toml.ReadString<T>(toml);
         }
     }
 }

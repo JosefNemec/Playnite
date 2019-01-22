@@ -33,6 +33,11 @@ namespace ItchioLibrary
             public const string Fetch_Caves = "Fetch.Caves";
 
             /// <summary>
+            /// Fetches information for an itch.io game.
+            /// </summary>
+            public const string Fetch_Game = "Fetch.Game";
+
+            /// <summary>
             /// Lists remembered profiles
             /// </summary>            
             public const string Profile_List = "Profile.List";
@@ -40,9 +45,54 @@ namespace ItchioLibrary
             /// <summary>
             /// List owned keys
             /// </summary>
-            public const string Fetch_ProfileOwnedKeys = "Fetch.ProfileOwnedKeys";            
-        }
+            public const string Fetch_ProfileOwnedKeys = "Fetch.ProfileOwnedKeys";
 
+            // <summary>
+            /// Sent any time butler needs to send a log message
+            /// </summary>
+            public const string Log = "Log";
+
+            // <summary>
+            /// Attempt to launch an installed game.
+            /// </summary>
+            public const string Launch = "Launch";
+
+            // <summary>
+            /// Sent during Launch, when the game is configured, prerequisites are installed sandbox is set up (if enabled), and the game is actually running.
+            /// </summary>
+            public const string LaunchRunning = "LaunchRunning";
+
+            // <summary>
+            /// Sent during Launch, when the game has actually exited.
+            /// </summary>
+            public const string LaunchExited = "LaunchExited";
+
+            // <summary>
+            /// Sent during Launch, ask the user to pick a manifest action to launch.
+            /// </summary>
+            public const string PickManifestAction = "PickManifestAction";
+
+            // <summary>
+            /// Ask the client to perform a shell launch, ie. open an item with the operating system’s default handler (File explorer).
+            /// </summary>
+            public const string ShellLaunch = "ShellLaunch";
+
+            // <summary>
+            /// Ask the client to perform an URL launch, ie. open an address with the system browser or appropriate.
+            /// </summary>
+            public const string URLLaunch = "URLLaunch";
+
+            // <summary>
+            /// Ask the client to perform an HTML launch, ie. open an HTML5 game, ideally in an embedded browser.
+            /// </summary>
+            public const string HTMLLaunch = "HTMLLaunch";
+
+            // <summary>
+            /// Sent during Launch, when one or more prerequisites have failed to install.
+            /// </summary>
+            public const string PrereqsFailed = "PrereqsFailed";
+        }
+        
         public static string ExecutablePath
         {
             get
@@ -83,12 +133,14 @@ namespace ItchioLibrary
 
         private static ILogger logger = LogManager.GetLogger();
         private const string startupArgs = @"daemon --json --dbpath ""{0}"" --transport tcp --keep-alive";
-
         private Process proc;
         private string endpoint;
         private string secret;
         private AutoResetEvent startupEvent = new AutoResetEvent(false);
         private JsonRpcClient client;
+
+        public event EventHandler<JsonRpcRequestEventArgs> RequestReceived;
+        public event EventHandler<JsonRpcNotificationEventArgs> NotificationReceived;
 
         public Butler()
         {
@@ -129,10 +181,42 @@ namespace ItchioLibrary
             }
 
             client = new JsonRpcClient(endpoint);
+            client.NotificationReceived += Client_NotificationReceived;
+            client.RequestReceived += Client_RequestReceived;
             client.SendRequest<Dictionary<string, object>>(Methods.Meta_Authenticate, new Dictionary<string, object>()
             {
                 { "secret", secret }
             });
+        }
+
+        private void Client_RequestReceived(object sender, JsonRpcRequestEventArgs e)
+        {
+            RequestReceived?.Invoke(this, e);
+        }
+
+        private void Client_NotificationReceived(object sender, JsonRpcNotificationEventArgs e)
+        {
+            if (e.Notification.Method == Methods.Log)
+            {
+                var logMessage = e.Notification.GetParams<LogMessage>();
+                switch (logMessage.level)
+                {
+                    case LogLevel.debug:
+                        logger.Debug("Butler: " + logMessage.message);
+                        break;
+                    case LogLevel.info:
+                        logger.Info("Butler: " + logMessage.message);
+                        break;
+                    case LogLevel.warning:
+                        logger.Warn("Butler: " + logMessage.message);
+                        break;
+                    case LogLevel.error:
+                        logger.Error("Butler: " + logMessage.message);
+                        break;
+                }
+            }
+
+            NotificationReceived?.Invoke(this, e);
         }
 
         private void Proc_ErrorDataReceived(object sender, DataReceivedEventArgs e)
@@ -174,7 +258,7 @@ namespace ItchioLibrary
                 proc.WaitForExit(5000);
                 if (proc.HasExited == false)
                 {
-                    logger.Error("Butler didn't shutdown gracefully, going kill it.");
+                    logger.Error("Butler didn't shutdown gracefully, going to kill it.");
                     proc.Kill();
                 }
             }
@@ -226,6 +310,15 @@ namespace ItchioLibrary
             return client.SendRequest<ProfileList>(Methods.Profile_List).profiles;                
         }
 
+        public ItchioGame GetGame(int gameId)
+        {
+            return client.SendRequest<FetchGame>(Methods.Fetch_Game, new Dictionary<string, object>
+            {
+                { "gameId", gameId },
+                { "fresh", true }
+            }).game;
+        }
+
         public void Shutdown()
         {
             client.SendRequest(Methods.Meta_Shutdown);
@@ -233,11 +326,32 @@ namespace ItchioLibrary
 
         public List<DownloadKey> GetOwnedKeys(long profileId)
         {
-            return client.SendRequest<FetchProfileOwnedKeys>(Methods.Fetch_ProfileOwnedKeys, new Dictionary<string, object>()
+            return client.SendRequest<FetchProfileOwnedKeys>(Methods.Fetch_ProfileOwnedKeys, new Dictionary<string, object>
             {
                 { "profileId", profileId },
                 { "fresh", true }
             }).items;
+        }
+
+        public Task LaunchAsync(string caveId)
+        {
+            return Task.Run(() =>
+                client.SendRequest(Methods.Launch, new Dictionary<string, object>
+                {
+                    { "caveId", caveId },
+                    { "prereqsDir", Itch.PrereqsPaths }
+                })
+            );
+        }
+
+        public void SendResponse(JsonRpcRequest request, object response)
+        {
+            client.SendResponse(request, response);
+        }
+
+        public void SendResponse(JsonRpcRequest request)
+        {
+            client.SendResponse(request, new Dictionary<string, object>());
         }
     }
 }

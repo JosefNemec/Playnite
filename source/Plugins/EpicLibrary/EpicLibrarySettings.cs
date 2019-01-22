@@ -101,6 +101,7 @@ namespace EpicLibrary
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
+                api.Dialogs.ShowErrorMessage("Failed to authenticate user.", "");
                 logger.Error(e, "Failed to authenticate user.");
             }
         }
