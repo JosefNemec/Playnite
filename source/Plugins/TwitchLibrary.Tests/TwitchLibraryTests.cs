@@ -13,7 +13,7 @@ using Playnite.SDK.Plugins;
 namespace TwitchLibrary.Tests
 {
     [TestFixture]
-    public class SteamLibraryTests
+    public class TwitchLibraryTests
     {
         public static TwitchLibrary CreateLibrary()
         {

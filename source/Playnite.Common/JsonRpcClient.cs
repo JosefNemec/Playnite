@@ -117,14 +117,10 @@ namespace Playnite.Common
         private static ILogger logger = LogManager.GetLogger();
         private readonly Encoding encoding = Encoding.UTF8;
         private readonly Socket socket;
-
         private ConcurrentDictionary<int, string> requestResponses = new ConcurrentDictionary<int, string>();
 
         public event EventHandler<JsonRpcRequestEventArgs> RequestReceived;
         public event EventHandler<JsonRpcNotificationEventArgs> NotificationReceived;
-
-        //private AutoResetEvent responseReceived = new AutoResetEvent(false);
-        //private CancellationTokenSource cancelToken = new CancellationTokenSource();
                
         public JsonRpcClient(string address)
         {
@@ -138,12 +134,12 @@ namespace Playnite.Common
         {
             return Task.Run(async () =>
             {
-                byte[] bytes = new byte[1024];
+                byte[] dataBuffer = new byte[1024];
                 var procData = string.Empty;
-                TaskCompletionSource<bool> tcs = null;
+                TaskCompletionSource<bool> complSource = null;
                 var args = new SocketAsyncEventArgs();
-                args.SetBuffer(bytes, 0, 1024);
-                args.Completed += (_, __) => tcs.SetResult(true);
+                args.SetBuffer(dataBuffer, 0, 1024);
+                args.Completed += (_, __) => complSource.SetResult(true);
 
                 while (true)
                 {
@@ -152,16 +148,15 @@ namespace Playnite.Common
                         break;
                     }
 
-
-                    tcs = new TaskCompletionSource<bool>();
+                    complSource = new TaskCompletionSource<bool>();
                     if (socket.ReceiveAsync(args))
                     {
-                        await tcs.Task;
+                        await complSource.Task;
                     }
 
                     if (args.BytesTransferred > 0)
                     {
-                        var data = encoding.GetString(bytes, 0, args.BytesTransferred);
+                        var data = encoding.GetString(dataBuffer, 0, args.BytesTransferred);
                         procData += data;
                         var termIndex = procData.IndexOf('\n');
                         if (termIndex == -1)
@@ -208,7 +203,6 @@ namespace Playnite.Common
             {
                 // Response
                 requestResponses.TryAdd(request.Id.Value, data);
-                //responseReceived.Set();
             }
             else if (request.Id != null && !string.IsNullOrEmpty(request.Method))
             {

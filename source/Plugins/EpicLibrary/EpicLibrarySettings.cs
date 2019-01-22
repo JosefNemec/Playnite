@@ -101,7 +101,7 @@ namespace EpicLibrary
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
-                api.Dialogs.ShowErrorMessage("Failed to authenticate user.", "");
+                api.Dialogs.ShowErrorMessage(api.Resources.FindString("LOCNotLoggedInError"), "");
                 logger.Error(e, "Failed to authenticate user.");
             }
         }

@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Playnite.SDK;
+using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace EpicLibrary.Tests
         public static EpicLibrary CreateLibrary()
         {
             var api = new Mock<IPlayniteAPI>();
+            api.Setup(a => a.GetPluginUserDataPath(It.IsAny<ILibraryPlugin>())).Returns(() => EpicTests.TempPath);
             return new EpicLibrary(api.Object);
         }
 
