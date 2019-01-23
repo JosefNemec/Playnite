@@ -44,7 +44,7 @@
                         </PriorityBinding>
                     </TextBlock.Tag>
                     <TextBlock.Style>
-                        <Style TargetType="TextBlock">
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
                             <Style.Triggers>
                                 <Trigger Property="Tag" Value="{StaticResource True}">
                                     <Setter Property="Text" Value="{DynamicResource LOCLoggedIn}" />

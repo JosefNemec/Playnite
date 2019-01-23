@@ -98,6 +98,11 @@
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">

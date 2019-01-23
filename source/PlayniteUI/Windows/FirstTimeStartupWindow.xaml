@@ -12,7 +12,7 @@
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCFirstWindowTitle}" WindowStartupLocation="CenterScreen"
         ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False"
-        Height="470" Width="620" MinHeight="250" MinWidth="390" x:Name="WindowMain" 
+        Height="510" Width="630" MinHeight="250" MinWidth="390" x:Name="WindowMain" 
         AutomationProperties.AutomationId="WindowWizard">
 
     <controls:WindowBase.Resources>
@@ -31,6 +31,22 @@
         <TabControl TabIndex="0" DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0" Name="TabMain"
                     OverridesDefaultStyle="True"
                     SelectedIndex="{Binding SelectedIndex}">
+            <TabControl.Style>
+                <Style TargetType="TabControl">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabControl">
+                                <ScrollViewer x:Name="TabControlScroller" HorizontalScrollBarVisibility="Disabled"  VerticalScrollBarVisibility="Auto" >
+                                    <Grid>
+                                        <TabPanel IsItemsHost="True" />
+                                        <ContentPresenter ContentSource="SelectedContent" />
+                                    </Grid>
+                                </ScrollViewer>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>                        
+                </Style>
+            </TabControl.Style>
             <TabItem Visibility="Collapsed">
                 <DockPanel LastChildFill="False" Margin="20">
                     <TextBlock Text="{DynamicResource LOCWelcomeLabel}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>

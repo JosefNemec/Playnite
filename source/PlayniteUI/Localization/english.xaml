@@ -248,8 +248,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Fullscreen Theme Profile</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">Database Location</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">What's my account name?</sys:String>
-    <sys:String x:Key="LOCSettingsLoginStatus">Login status:</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLibrarySource">Specify user library by:</sys:String>
+    <sys:String x:Key="LOCSettingsLoginStatus">Login status:</sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite Settings</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCategories">Import Steam Categories:</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCatFrom">from account:</sys:String>
@@ -581,8 +580,22 @@ Please attach following ID to your crash report:</sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">{0} client is not installed.</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Game's installation directory not found.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Invalid game action configuration.</sys:String>
-    
+
+    <sys:String x:Key="LOCTroubleShootingAccountLink">Troubleshooting account sync issues</sys:String>
+
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io client will now open. Please sign in and then close this message.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">Waiting for user to sign in, please close this when you're done...</sys:String>    
+    
+    <!--GOG-->
+    <sys:String x:Key="LOCGOGUseLogin">Account Login</sys:String>
+    <sys:String x:Key="LOCGOGUseAccountName">Account Name</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Login to your account or user public account name to sync your full library.
+Note that Account Name option only works accounts that have public visibility.</sys:String>
+
+    <!--Steam-->
+    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Select authenticated user or specify fanity URL name of your account to sync your full library. Accounts with private library visibility have to specify API key linked to that Steam account.
+    </sys:String>
+    <sys:String x:Key="LOCSteamCustomUrlName">Account URL Name</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">Authenticated User</sys:String>
 </ResourceDictionary>
