@@ -8,7 +8,7 @@ using LiteDB;
 
 namespace PlayniteServices.Controllers.PlayniteTools
 {
-    [Route("api/playnite/users")]
+    [Route("playnite/users")]
     public class UsersController : Controller
     {
         private static LiteCollection<User> usersColl = Program.Database.GetCollection<User>("PlayniteUsers");

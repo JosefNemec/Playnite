@@ -29,7 +29,7 @@ namespace PlayniteServicesTests.Controllers.Playnite
             };
 
             var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(@"/api/playnite/users", content);
+            var response = await client.PostAsync(@"/playnite/users", content);
             Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
 
             // TODO add db check

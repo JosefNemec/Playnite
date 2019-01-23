@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.PlayniteTools
 {
-    [Route("api/playnite/diag")]
+    [Route("playnite/diag")]
     public class DiagnosticsController : Controller
     {
         [HttpPost]

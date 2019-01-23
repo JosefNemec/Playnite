@@ -12,7 +12,7 @@ using Playnite;
 
 namespace PlayniteServices.Controllers.IGDB
 {
-    [Route("api/igdb/games")]
+    [Route("igdb/games")]
     public class GamesController : Controller
     {
         private static readonly object CacheLock = new object();

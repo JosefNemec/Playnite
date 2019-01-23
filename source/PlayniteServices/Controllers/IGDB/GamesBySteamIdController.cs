@@ -10,7 +10,7 @@ using LiteDB;
 
 namespace PlayniteServices.Controllers.IGDB
 {
-    [Route("api/igdb/gamesBySteamId")]
+    [Route("igdb/gamesBySteamId")]
     public class GamesBySteamIdController : Controller
     {
         private const string cacheDir = "steam_ids";
