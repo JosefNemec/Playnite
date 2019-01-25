@@ -223,8 +223,22 @@ namespace PlayniteUI
                 }
             }
 
-            CefTools.ConfigureCef();
-            dialogs = new DialogsFactory(AppSettings.StartInFullscreen);
+            try
+            {
+                CefTools.ConfigureCef();
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to initialize CefSharp.");
+                PlayniteMessageBox.Show(
+                    DefaultResourceProvider.FindString("LOCCefSharpInitError"),
+                    DefaultResourceProvider.FindString("LOCStartupError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                Quit();
+                return;
+            }
+
+            dialogs = new DialogsFactory(AppSettings.StartInFullscreen);            
 
             // Create directories
             try
@@ -498,9 +512,9 @@ namespace PlayniteUI
             progressModel.ActivateProgress();
 
             // These must run on main thread
-            if (Cef.IsInitialized)
+            if (CefTools.IsInitialized)
             {
-                Cef.Shutdown();
+                CefTools.Shutdown();
             }
 
             resourcesReleased = true;
