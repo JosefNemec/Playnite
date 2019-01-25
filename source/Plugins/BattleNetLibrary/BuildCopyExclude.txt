@@ -16,3 +16,5 @@ AngleSharp.dll
 AngleSharp.xml
 YamlDotNet.dll
 YamlDotNet.xml
+Nett.dll
+Nett.xml
