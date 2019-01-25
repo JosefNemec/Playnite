@@ -20,7 +20,7 @@ namespace ItchioLibrary
 
         #region Settings      
 
-        public bool ImportInstalledGames { get; set; } = true;
+        public bool ImportInstalledGames { get; set; } = Itch.IsInstalled;
 
         public bool ImportUninstalledGames { get; set; } = false;
 

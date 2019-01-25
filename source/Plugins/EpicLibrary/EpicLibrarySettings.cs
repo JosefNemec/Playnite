@@ -25,7 +25,7 @@ namespace EpicLibrary
 
         #region Settings      
 
-        public bool ImportInstalledGames { get; set; } = true;
+        public bool ImportInstalledGames { get; set; } = EpicLauncher.IsInstalled;
 
         public bool ImportUninstalledGames { get; set; } = false;
 
