@@ -31,6 +31,7 @@ using Newtonsoft.Json;
 using Playnite.SDK.Models;
 using System.Windows.Interop;
 using System.Reflection;
+using TheArtOfDev.HtmlRenderer;
 
 namespace PlayniteUI
 {
@@ -193,7 +194,17 @@ namespace PlayniteUI
 
             Time.Instance = new Time();
             AppSettings = PlayniteSettings.LoadSettings();
-            Localization.SetLanguage(AppSettings.Language);
+            HtmlRendererSettings.ImageCachePath = PlaynitePaths.ImagesCachePath;
+
+            try
+            {
+                Localization.SetLanguage(AppSettings.Language);
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, $"Failed to set {AppSettings.Language} langauge.");
+            }
+
             Resources.Remove("AsyncImagesEnabled");
             Resources.Add("AsyncImagesEnabled", AppSettings.AsyncImageLoading);
             if (AppSettings.DisableHwAcceleration)
@@ -203,11 +214,32 @@ namespace PlayniteUI
 
             if (AppSettings.DisableDpiAwareness)
             {
-                DisableDpiAwareness();
+                try
+                {
+                    DisableDpiAwareness();
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, "Failed to disable DPI awarness.");
+                }
             }
 
-            CefTools.ConfigureCef();
-            dialogs = new DialogsFactory(AppSettings.StartInFullscreen);
+            try
+            {
+                CefTools.ConfigureCef();
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to initialize CefSharp.");
+                PlayniteMessageBox.Show(
+                    DefaultResourceProvider.FindString("LOCCefSharpInitError"),
+                    DefaultResourceProvider.FindString("LOCStartupError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                Quit();
+                return;
+            }
+
+            dialogs = new DialogsFactory(AppSettings.StartInFullscreen);            
 
             // Create directories
             try
@@ -229,7 +261,8 @@ namespace PlayniteUI
                 new PlayniteInfoAPI(),
                 new PlaynitePathsAPI(),
                 new WebViewFactory(),
-                new DefaultResourceProvider());
+                new DefaultResourceProvider(),
+                new NotificationsAPI());
             Extensions = new ExtensionFactory(Database, controllers);
 
             // Load theme
@@ -311,10 +344,17 @@ namespace PlayniteUI
             }
 
             // Pipe server
-            pipeService = new PipeService();
-            pipeService.CommandExecuted += PipeService_CommandExecuted;
-            pipeServer = new PipeServer(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
-            pipeServer.StartServer(pipeService);
+            try
+            {
+                pipeService = new PipeService();
+                pipeService.CommandExecuted += PipeService_CommandExecuted;
+                pipeServer = new PipeServer(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
+                pipeServer.StartServer(pipeService);
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to start pipe service.");
+            }
 
             var args = Environment.GetCommandLineArgs();
             if (args.Count() > 0 && args.Contains("-command"))
@@ -474,9 +514,9 @@ namespace PlayniteUI
             progressModel.ActivateProgress();
 
             // These must run on main thread
-            if (Cef.IsInitialized)
+            if (CefTools.IsInitialized)
             {
-                Cef.Shutdown();
+                CefTools.Shutdown();
             }
 
             resourcesReleased = true;

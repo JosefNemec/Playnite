@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Playnite.Common.System;
 using Playnite.SDK.Metadata;
+using System.Diagnostics;
 
 namespace PlayniteUI.ViewModels
 {
@@ -290,11 +291,12 @@ namespace PlayniteUI.ViewModels
             {
                 return;
             }
-
+            
+            var productName = FileVersionInfo.GetVersionInfo(path).ProductName;
             var import = new ImportableProgram(new Program()
             {
                 Icon = path,
-                Name = new DirectoryInfo(Path.GetDirectoryName(path)).Name,
+                Name = string.IsNullOrWhiteSpace(productName) ? new DirectoryInfo(Path.GetDirectoryName(path)).Name : productName,
                 Path = path,
                 WorkDir = Path.GetDirectoryName(path)
             }, ProgramType.Win32)

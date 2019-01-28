@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using Playnite.Common.System;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -32,6 +33,7 @@ namespace UplayLibrary
 
         public void ReleaseResources()
         {
+            watcherToken?.Cancel();
             procMon?.Dispose();
         }
 
@@ -41,15 +43,15 @@ namespace UplayLibrary
             if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("uplay", StringComparison.OrdinalIgnoreCase))
             {
                 OnStarting(this, new GameControllerEventArgs(this, 0));
-                GameActionActivator.ActivateAction(Game.PlayAction, Game);
                 if (Directory.Exists(Game.InstallDirectory))
                 {
+                    var requiresUplay = Uplay.GetGameRequiresUplay(Game);
                     stopWatch = Stopwatch.StartNew();
                     procMon = new ProcessMonitor();
                     procMon.TreeStarted += ProcMon_TreeStarted;
                     procMon.TreeDestroyed += Monitor_TreeDestroyed;
-                    procMon.TreeStarted += ProcMon_TreeStarted;
-                    procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                    GameActionActivator.ActivateAction(Game.PlayAction);
+                    StartRunningWatcher(requiresUplay);
                 }
                 else
                 {
@@ -59,6 +61,34 @@ namespace UplayLibrary
             else
             {
                 throw new Exception("Unknown Play action configuration.");
+            }
+        }
+
+        public async void StartRunningWatcher(bool waitForUplay)
+        {
+            if (waitForUplay)
+            {
+                // Solves issues with game process being started/shutdown multiple times during startup via Uplay
+                watcherToken = new CancellationTokenSource();
+                while (true)
+                {
+                    if (watcherToken.IsCancellationRequested)
+                    {
+                        return;
+                    }
+
+                    if (ProcessExtensions.IsRunning("UbisoftGameLauncher"))
+                    {
+                        procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+                        return;
+                    }
+
+                    await Task.Delay(5000);
+                }
+            }
+            else
+            {
+                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
             }
         }
 

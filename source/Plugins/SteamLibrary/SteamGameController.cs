@@ -10,17 +10,23 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using SteamKit2;
+using System.IO;
 
 namespace SteamLibrary
 {
     public class SteamGameController : BaseGameController
     {
+        private static ILogger logger = LogManager.GetLogger();
         private CancellationTokenSource watcherToken;
         private GameID gameId;
+        private ProcessMonitor procMon;
+        private Stopwatch stopWatch;
+        private SteamLibrary library;
 
-        public SteamGameController(Game game) : base(game)
+        public SteamGameController(Game game, SteamLibrary library) : base(game)
         {
             gameId = game.ToSteamGameID();
+            this.library = library;
         }
 
         public override void Dispose()
@@ -31,14 +37,26 @@ namespace SteamLibrary
         private void ReleaseResources()
         {
             watcherToken?.Cancel();
+            procMon?.Dispose();
         }
 
         public override void Play()
         {
             ReleaseResources();
             OnStarting(this, new GameControllerEventArgs(this, 0));
+            stopWatch = Stopwatch.StartNew();
             ProcessStarter.StartUrl($"steam://rungameid/{Game.GameId}");
-            StartRunningWatcher();
+            procMon = new ProcessMonitor();
+            procMon.TreeStarted += ProcMon_TreeStarted;
+            procMon.TreeDestroyed += Monitor_TreeDestroyed;
+            if (Directory.Exists(Game.InstallDirectory))
+            {
+                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
+            }
+            else
+            {
+                OnStopped(this, new GameControllerEventArgs(this, 0));
+            }
         }
 
         public override void Install()
@@ -82,28 +100,28 @@ namespace SteamLibrary
                     return;
                 }
 
-                var gameState = Steam.GetAppState(id);
-                if (gameState.Installed == true)
+                var installed = library.GetInstalledGames(false);
+                if (installed.TryGetValue(id, out var installedGame))
                 {
-                    var installInfo = new GameInfo()
+                    if (Game.PlayAction == null)
                     {
-                        PlayAction = SteamLibrary.CreatePlayTask(Game.ToSteamGameID()),
-                        // TODO: update install directory here
-                    };
+                        Game.PlayAction = installedGame.PlayAction;
+                    }
 
+                    Game.InstallDirectory = installedGame.InstallDirectory;
                     stopWatch.Stop();
-                    OnInstalled(this, new GameInstalledEventArgs(installInfo, this, stopWatch.Elapsed.TotalSeconds));
+                    OnInstalled(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
                     return;
                 }
 
-                await Task.Delay(Playnite.Timer.SecondsToMilliseconds(5));
+                await Task.Delay(Playnite.Timer.SecondsToMilliseconds(10));
             }
         }
 
         public async void StartUninstallWatcher()
         {
             watcherToken = new CancellationTokenSource();    
-            var stopWatch = Stopwatch.StartNew();
+            stopWatch = Stopwatch.StartNew();
             var id = Game.ToSteamGameID();
 
             while (true)
@@ -125,48 +143,15 @@ namespace SteamLibrary
             }
         }
 
-        public async void StartRunningWatcher()
+        private void ProcMon_TreeStarted(object sender, EventArgs args)
         {
-            watcherToken = new CancellationTokenSource(); 
-            var stopWatch = Stopwatch.StartNew();
-            var id = Game.ToSteamGameID();
-            var gameState = Steam.GetAppState(id);
+            OnStarted(this, new GameControllerEventArgs(this, 0));
+        }
 
-            while (true)
-            {
-                if (watcherToken.IsCancellationRequested)
-                {
-                    return;
-                }
-
-                gameState = Steam.GetAppState(id);
-                if (gameState.Running == true)
-                {
-                    OnStarted(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
-                    stopWatch.Restart();
-                    break;
-                }
-
-                await Task.Delay(Playnite.Timer.SecondsToMilliseconds(2));
-            }
-
-            while (true)
-            {
-                if (watcherToken.IsCancellationRequested)
-                {
-                    return;
-                }
-
-                gameState = Steam.GetAppState(id);
-                if (gameState.Running == false)
-                {
-                    stopWatch.Stop();
-                    OnStopped(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
-                    return;
-                }
-
-                await Task.Delay(Playnite.Timer.SecondsToMilliseconds(5));
-            }
+        private void Monitor_TreeDestroyed(object sender, EventArgs args)
+        {
+            stopWatch.Stop();
+            OnStopped(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
         }
     }
 }

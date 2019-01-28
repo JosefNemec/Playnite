@@ -23,6 +23,8 @@ namespace TestGameLibrary
 
         public ILibraryClient Client { get; }
 
+        public bool IsClientInstalled => false;
+
         public TestGameLibrary(IPlayniteAPI api)
         {
             LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\installer.ico");

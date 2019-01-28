@@ -9,24 +9,17 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.IGDB
 {
-    [Route("api/igdb/platforms")]
-    public class PlatformController : Controller
+    [Route("igdb/platforms")]
+    public class PlatformController : IgdbItemController
     {
-        [HttpGet("{platformId}")]
-        public async Task<ServicesResponse<Platform>> Get(UInt64 platformId, [FromQuery]string apiKey)
-        {
-            var cacheCollection = Program.DatabaseCache.GetCollection<Platform>("IGBDPlatformsCache");
-            var cache = cacheCollection.FindById(platformId);
-            if (cache != null)
-            {
-                return new ServicesResponse<Platform>(cache, string.Empty);
-            }
+        private static readonly object CacheLock = new object();
 
-            var url = string.Format(@"platforms/{0}?fields=name,url", platformId);
-            var stringResult = await IGDB.SendStringRequest(url, apiKey);
-            var theme = JsonConvert.DeserializeObject<List<Platform>>(stringResult)[0];
-            cacheCollection.Insert(theme);            
-            return new ServicesResponse<Platform>(theme, string.Empty);
+        private const string endpointPath = "platforms";
+
+        [HttpGet("{platformId}")]
+        public async Task<ServicesResponse<Platform>> Get(ulong platformId)
+        {
+            return new ServicesResponse<Platform>(await GetItem<Platform>(platformId, endpointPath, CacheLock));
         }
     }
 }

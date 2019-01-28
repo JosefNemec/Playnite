@@ -42,14 +42,21 @@ namespace OriginLibrary
         {
             ReleaseResources();
             OnStarting(this, new GameControllerEventArgs(this, 0));
-            var runsViaOrigin = Origin.GetGameRequiresOrigin(Game);
-            var playAction = api.ExpandGameVariables(Game, Game.PlayAction);
-            stopWatch = Stopwatch.StartNew();
-            procMon = new ProcessMonitor();
-            procMon.TreeDestroyed += ProcMon_TreeDestroyed;
-            procMon.TreeStarted += ProcMon_TreeStarted;
-            var proc = GameActionActivator.ActivateAction(playAction, Game);
-            StartRunningWatcher(runsViaOrigin);
+            if (Directory.Exists(Game.InstallDirectory))
+            {
+                var runsViaOrigin = Origin.GetGameRequiresOrigin(Game);
+                var playAction = api.ExpandGameVariables(Game, Game.PlayAction);
+                stopWatch = Stopwatch.StartNew();
+                procMon = new ProcessMonitor();
+                procMon.TreeDestroyed += ProcMon_TreeDestroyed;
+                procMon.TreeStarted += ProcMon_TreeStarted;
+                GameActionActivator.ActivateAction(playAction);
+                StartRunningWatcher(runsViaOrigin);
+            }
+            else
+            {
+                OnStopped(this, new GameControllerEventArgs(this, 0));
+            }
         }
 
         public async void StartRunningWatcher(bool waitForOrigin)
@@ -58,16 +65,9 @@ namespace OriginLibrary
             {
                 // Solves issues with game process being started/shutdown multiple times during startup via Origin
                 await Task.Delay(5000);
-            }            
+            }  
 
-            if (Directory.Exists(Game.InstallDirectory))
-            {
-                procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
-            }
-            else
-            {
-                OnStopped(this, new GameControllerEventArgs(this, 0));
-            }
+            procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);         
         }
 
         public override void Install()

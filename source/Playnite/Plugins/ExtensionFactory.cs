@@ -142,8 +142,15 @@ namespace Playnite.Plugins
             {
                 foreach (var script in Scripts)
                 {
-                    script.Dispose();
-                }
+                    try
+                    {
+                        script.Dispose();
+                    }
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to dispose library plugin {script.Name}");
+                    }
+            }
             }
 
             Scripts?.Clear();
@@ -156,7 +163,14 @@ namespace Playnite.Plugins
             {
                 foreach (var provider in LibraryPlugins.Keys)
                 {
-                    LibraryPlugins[provider].Plugin.Dispose();
+                    try
+                    {
+                        LibraryPlugins[provider].Plugin.Dispose();
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to dispose library plugin {provider}");
+                    }
                 }
             }
 
@@ -169,7 +183,14 @@ namespace Playnite.Plugins
             {
                 foreach (var provider in GenericPlugins.Keys)
                 {
-                    GenericPlugins[provider].Plugin.Dispose();
+                    try
+                    {
+                        GenericPlugins[provider].Plugin.Dispose();
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to dispose generic plugin {provider}");
+                    }
                 }
             }
 

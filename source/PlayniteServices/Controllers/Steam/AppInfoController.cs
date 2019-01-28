@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Playnite;
 using PlayniteServices.Models.Steam;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,30 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.Steam
 {
-    [Route("api/steam/appinfo")]
+    [Route("steam/appinfo")]
     public class AppInfoController : Controller
     {
+        private static readonly object CacheLock = new object();
+
+        private const string cacheDir = "appinfo";
+
         [HttpGet("{appId}")]
         public ServicesResponse<string> Get(string appId)
         {
-            var appsColl = Program.DatabaseCache.GetCollection<SteamStoreAppCache>("SteamAppInfoCache");
-            var cache = appsColl.FindById(appId);
-            if (cache != null)
+            var cachePath = Path.Combine(Steam.CacheDirectory, cacheDir, appId + ".txt");
+            lock (CacheLock)
             {
-                var dateDiff = DateTime.Now - cache.CreationTime;
-                if (dateDiff.TotalHours <= Steam.AppInfoCacheTimeout)
+                if (System.IO.File.Exists(cachePath))
                 {
-                    return new ServicesResponse<string>(cache.Data, string.Empty);
+                    var fileInfo = new FileInfo(cachePath);
+                    if ((fileInfo.LastWriteTime - DateTime.Now).TotalHours <= Steam.AppInfoCacheTimeout)
+                    {
+                        return new ServicesResponse<string>(System.IO.File.ReadAllText(cachePath));
+                    }
                 }
             }
 
-            return new ServicesResponse<string>(string.Empty, string.Empty);
+            return new ServicesResponse<string>(string.Empty);
         }
 
         [HttpPost("{appId}")]
@@ -40,18 +47,16 @@ namespace PlayniteServices.Controllers.Steam
 
             if (string.IsNullOrEmpty(data))
             {
-                return BadRequest(new GenericResponse(null, "No data provided."));
+                return BadRequest(new ErrorResponse(new Exception("No data provided.")));
             }
 
-            var appsColl = Program.DatabaseCache.GetCollection<SteamStoreAppCache>("SteamAppInfoCache");
-            var storeItem = new SteamStoreAppCache()
+            var cachePath = Path.Combine(Steam.CacheDirectory, cacheDir, appId + ".txt");
+            lock (CacheLock)
             {
-                Id = appId,
-                Data = data,
-                CreationTime = DateTime.Now
-            };
+                FileSystem.PrepareSaveFile(cachePath);
+                System.IO.File.WriteAllText(cachePath, data);
+            }
 
-            appsColl.Upsert(storeItem);
             return Ok();
         }
     }

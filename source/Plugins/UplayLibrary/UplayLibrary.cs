@@ -17,6 +17,7 @@ namespace UplayLibrary
     {
         private ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
+        private const string dbImportMessageId = "uplaylibImportError";
 
         internal UplayLibrarySettings LibrarySettings { get; private set; }
 
@@ -85,6 +86,8 @@ namespace UplayLibrary
 
         public Guid Id { get; } = Guid.Parse("C2F038E5-8B92-4877-91F1-DA9094155FC5");
 
+        public bool IsClientInstalled => Uplay.IsInstalled;
+
         public void Dispose()
         {
 
@@ -110,7 +113,22 @@ namespace UplayLibrary
             var allGames = new List<GameInfo>();
             if (LibrarySettings.ImportInstalledGames)
             {
-                return GetInstalledGames();
+                try
+                {
+                    var installed = GetInstalledGames();
+                    logger.Debug($"Found {installed.Count} installed Uplay games.");
+                    playniteApi.Notifications.Remove(dbImportMessageId);
+                    return installed;
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to import uninstalled Uplay games.");
+                    playniteApi.Notifications.Add(
+                        dbImportMessageId,
+                        string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) +
+                        System.Environment.NewLine + e.Message,
+                        NotificationType.Error);
+                }
             }
 
             return allGames;

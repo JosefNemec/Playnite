@@ -58,7 +58,7 @@ namespace BattleNetLibrary
             else if (app.Type == BNetAppType.Classic && Game.PlayAction.Path.Contains(app.ClassicExecutable))
             {
                 OnStarting(this, new GameControllerEventArgs(this, 0));
-                GameActionActivator.ActivateAction(Game.PlayAction, Game);
+                GameActionActivator.ActivateAction(Game.PlayAction);
                 OnStarted(this, new GameControllerEventArgs(this, 0));
                 if (Directory.Exists(Game.InstallDirectory))
                 {
@@ -93,7 +93,7 @@ namespace BattleNetLibrary
                 Arguments = string.Format("--exec=\"launch {0}\"", Game.GameId)
             };
 
-            GameActionActivator.ActivateAction(task, Game);
+            GameActionActivator.ActivateAction(task);
             if (Directory.Exists(Game.InstallDirectory))
             {
                 procMon.TreeStarted += ProcMon_TreeStarted;

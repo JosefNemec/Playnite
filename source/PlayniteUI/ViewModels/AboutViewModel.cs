@@ -49,6 +49,11 @@ namespace PlayniteUI.ViewModels
         {
             get
             {
+                if (PlayniteEnvironment.InOfflineMode)
+                {
+                    return string.Empty;
+                }
+
                 try
                 {
                     if (patronsList == null)

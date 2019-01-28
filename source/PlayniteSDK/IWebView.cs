@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Playnite.SDK
 {
@@ -45,6 +46,12 @@ namespace Playnite.SDK
         /// </summary>
         /// <returns>Document source.</returns>
         string GetPageSource();
+
+        /// <summary>
+        /// Gets document source.
+        /// </summary>
+        /// <returns>Document source task.</returns>
+        Task<string> GetPageSourceAsync();
 
         /// <summary>
         /// Gets current URL address.
@@ -99,5 +106,14 @@ namespace Playnite.SDK
         /// <param name="height">View height.</param>
         /// <returns>Web view.</returns>
         IWebView CreateView(int width, int height);
+
+        /// <summary>
+        /// Creates new web view.
+        /// </summary>
+        /// <param name="width">View widht.</param>
+        /// <param name="height">View height.</param>
+        /// <param name="background">View background color.</param>
+        /// <returns>Web view.</returns>
+        IWebView CreateView(int width, int height, Color background);
     }
 }

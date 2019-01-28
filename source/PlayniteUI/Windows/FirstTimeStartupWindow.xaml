@@ -12,7 +12,7 @@
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCFirstWindowTitle}" WindowStartupLocation="CenterScreen"
         ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False"
-        Height="470" Width="620" MinHeight="250" MinWidth="390" x:Name="WindowMain" 
+        Height="510" Width="630" MinHeight="250" MinWidth="390" x:Name="WindowMain" 
         AutomationProperties.AutomationId="WindowWizard">
 
     <controls:WindowBase.Resources>
@@ -58,17 +58,21 @@
                 <DockPanel Margin="20" LastChildFill="False">
                     <TextBlock Text="{DynamicResource LOCFirstExternalTitle}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
                     <TextBlock Text="{DynamicResource LOCFirstImportIntroduction}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="5,20,5,20"/>
-
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl ItemsSource="{Binding LibraryPlugins}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <CheckBox Content="{Binding Plugin.Name}" IsChecked="{Binding Selected}"
-                                          Margin="5"/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>                
+                   
+                    <ItemsControl ItemsSource="{Binding LibraryPlugins}"
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Plugin.Name}" IsChecked="{Binding Selected}"
+                                           Margin="7"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="5" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>             
                 </DockPanel>
             </TabItem>
 

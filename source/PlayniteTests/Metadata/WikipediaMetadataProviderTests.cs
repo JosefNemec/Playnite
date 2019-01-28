@@ -82,9 +82,6 @@ namespace PlayniteTests.Metadata
 
             game = wiki.ParseGamePage(wiki.GetPage("StarCraft II: Wings of Liberty"));
             ValidateGameDate(game);
-
-            game = wiki.ParseGamePage(wiki.GetPage("V-Rally"));
-            ValidateGameDate(game);
         }
     }
 }

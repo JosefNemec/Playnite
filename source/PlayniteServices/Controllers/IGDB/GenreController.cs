@@ -9,24 +9,17 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.IGDB
 {
-    [Route("api/igdb/genre")]
-    public class GenreController : Controller
+    [Route("igdb/genre")]
+    public class GenreController : IgdbItemController
     {
-        [HttpGet("{genreId}")]
-        public async Task<ServicesResponse<Genre>> Get(UInt64 genreId, [FromQuery]string apiKey)
-        {
-            var cacheCollection = Program.DatabaseCache.GetCollection<Genre>("IGBDGenresCache");
-            var cache = cacheCollection.FindById(genreId);
-            if (cache != null)
-            {
-                return new ServicesResponse<Genre>(cache, string.Empty);
-            }
+        private static readonly object CacheLock = new object();
 
-            var url = string.Format(@"genres/{0}?fields=name", genreId);
-            var stringResult = await IGDB.SendStringRequest(url, apiKey);
-            var genre = JsonConvert.DeserializeObject<List<Genre>>(stringResult)[0];
-            cacheCollection.Insert(genre);
-            return new ServicesResponse<Genre>(genre, string.Empty);
+        private const string endpointPath = "genres";
+
+        [HttpGet("{genreId}")]
+        public async Task<ServicesResponse<Genre>> Get(ulong genreId)
+        {
+            return new ServicesResponse<Genre>(await GetItem<Genre>(genreId, endpointPath, CacheLock));
         }
     }
 }

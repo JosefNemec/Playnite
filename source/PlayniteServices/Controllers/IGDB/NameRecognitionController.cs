@@ -10,7 +10,7 @@ using LiteDB;
 
 namespace PlayniteServices.Controllers.IGDB
 {
-    [Route("api/igdb/nameRecognition")]
+    [Route("igdb/nameRecognition")]
     public class NameRecognitionController : Controller
     {
         [HttpGet("{gameName}")]
@@ -39,11 +39,11 @@ namespace PlayniteServices.Controllers.IGDB
                 //    creation_time = DateTime.Now
                 //});
 
-                return new ServicesResponse<ulong>(games.First().id, string.Empty);
+                return new ServicesResponse<ulong>(games.First().id);
             }
             else
             {
-                return new ServicesResponse<ulong>(0, string.Empty);
+                return new ServicesResponse<ulong>(0);
             }
         }
     }

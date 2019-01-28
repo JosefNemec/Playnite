@@ -1,47 +1,65 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Playnite;
+using Playnite.Common;
+using Playnite.SDK;
 using PlayniteServices.Models.IGDB;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.IGDB
 {
-    [Route("api/igdb/game")]
-    public class GameController : Controller
+    [Route("igdb/game")]
+    public class GameController : IgdbItemController
     {
+        private static ILogger logger = LogManager.GetLogger();
+        private static readonly object CacheLock = new object();
+        private const string endpointPath = "games";
+
         [HttpGet("{gameId}")]
-        public async Task<ServicesResponse<Game>> Get(ulong gameId, [FromQuery]string apiKey)
+        public async Task<ServicesResponse<Game>> Get(ulong gameId)
         {
-            var url = string.Format(@"games/{0}?fields=*&limit=40&offset=0&search={0}", gameId);
-            var libraryStringResult = await IGDB.SendStringRequest(url, apiKey);
-            var game = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult);
-            return new ServicesResponse<Game>(game[0], string.Empty);
+            return new ServicesResponse<Game>(await GetItem<Game>(gameId, endpointPath, CacheLock));
+        }
+        
+        // Only use for IGDB webhook.
+        [HttpPost]
+        public ActionResult Post([FromBody]Game game)
+        {
+            if (Request.Headers.TryGetValue("X-Secret", out var secret))
+            {
+                if (secret != IGDB.WebHookSecret)
+                {
+                    return BadRequest();
+                }
+
+                logger.Info($"Received game webhook from IGDB: {game.id}");
+                var cachePath = Path.Combine(IGDB.CacheDirectory, endpointPath, game.id + ".json");
+                lock (CacheLock)
+                {
+                    FileSystem.PrepareSaveFile(cachePath);                    
+                    System.IO.File.WriteAllText(cachePath, Serialization.ToJson(game));
+                }
+
+                return Ok();
+            }
+
+            return BadRequest();
         }
     }
 
-    [Route("api/igdb/game_parsed")]
+    [Route("igdb/game_parsed")]
     public class GameParsedController : Controller
     {
         [HttpGet("{gameId}")]
-        public async Task<ServicesResponse<ParsedGame>> Get(ulong gameId, [FromQuery]string apiKey)
+        public async Task<ServicesResponse<ParsedGame>> Get(ulong gameId)
         {
-            var cacheCollection = Program.DatabaseCache.GetCollection<ParsedGame>("IGBDParsedGameCache");
-            var cache = cacheCollection.FindById(gameId);
-            if (cache != null)
-            {
-                var dateDiff = DateTime.Now - cache.creation_time;
-                if (dateDiff.TotalHours <= IGDB.CacheTimeout)
-                {
-                    return new ServicesResponse<ParsedGame>(cache, string.Empty);
-                }
-            }
-
-            var url = string.Format(@"games/{0}?fields=*&limit=40&offset=0&search={0}", gameId);
-            var libraryStringResult = await IGDB.SendStringRequest(url, apiKey);
-            var game = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult)[0];
+            var game = (await new GameController().Get(gameId)).Data;
             var parsedGame = new ParsedGame()
             {
                 id = game.id,
@@ -50,7 +68,6 @@ namespace PlayniteServices.Controllers.IGDB
                 cover = game.cover?.url,
                 websites = game.websites,
                 summary = game.summary,
-                creation_time = DateTime.Now,
                 rating = game.rating,
                 aggregated_rating = game.aggregated_rating,
                 total_rating = game.total_rating,
@@ -59,15 +76,15 @@ namespace PlayniteServices.Controllers.IGDB
                 screenshots = game.screenshots,
                 videos = game.videos,
                 artworks = game.artworks,
-                release_dates = game.release_dates                
+                release_dates = game.release_dates
             };
-        
+
             if (game.developers?.Any() == true)
             {
                 parsedGame.developers = new List<string>();
                 foreach (var dev in game.developers)
                 {
-                    var dbDev = (await (new CompanyController()).Get(dev, apiKey)).Data;
+                    var dbDev = (await (new CompanyController()).Get(dev)).Data;
                     parsedGame.developers.Add(dbDev.name);
                 }
             }
@@ -77,7 +94,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.game_modes = new List<string>();
                 foreach (var mode in game.game_modes)
                 {
-                    var dbMode = (await (new GameModeController()).Get(mode, apiKey)).Data;
+                    var dbMode = (await (new GameModeController()).Get(mode)).Data;
                     parsedGame.game_modes.Add(dbMode.name);
                 }
             }
@@ -87,7 +104,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.genres = new List<string>();
                 foreach (var genre in game.genres)
                 {
-                    var dbGenre = (await (new GenreController()).Get(genre, apiKey)).Data;
+                    var dbGenre = (await (new GenreController()).Get(genre)).Data;
                     parsedGame.genres.Add(dbGenre.name);
                 }
             }
@@ -97,7 +114,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.publishers = new List<string>();
                 foreach (var pub in game.publishers)
                 {
-                    var dbDev = (await (new CompanyController()).Get(pub, apiKey)).Data;
+                    var dbDev = (await (new CompanyController()).Get(pub)).Data;
                     parsedGame.publishers.Add(dbDev.name);
                 }
             }
@@ -107,7 +124,7 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.themes = new List<string>();
                 foreach (var theme in game.themes)
                 {
-                    var dbTheme = (await (new ThemeController()).Get(theme, apiKey)).Data;
+                    var dbTheme = (await (new ThemeController()).Get(theme)).Data;
                     parsedGame.themes.Add(dbTheme.name);
                 }
             }
@@ -117,13 +134,12 @@ namespace PlayniteServices.Controllers.IGDB
                 parsedGame.platforms = new List<string>();
                 foreach (var platform in game.platforms)
                 {
-                    var dbPlatform = (await (new PlatformController()).Get(platform, apiKey)).Data;
+                    var dbPlatform = (await (new PlatformController()).Get(platform)).Data;
                     parsedGame.platforms.Add(dbPlatform.name);
                 }
             }
 
-            cacheCollection.Upsert(parsedGame);
-            return new ServicesResponse<ParsedGame>(parsedGame, string.Empty);
+            return new ServicesResponse<ParsedGame>(parsedGame);
         }
     }
 }

@@ -36,6 +36,7 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -65,6 +66,7 @@
     <Compile Include="ILogger.cs" />
     <Compile Include="IMainViewAPI.cs" />
     <Compile Include="ILibraryMetadataProvider.cs" />
+    <Compile Include="INotificationsAPI.cs" />
     <Compile Include="IPlayniteAPI.cs" />
     <Compile Include="IPlayniteInfoAPI.cs" />
     <Compile Include="IPlaynitePathsAPI.cs" />

@@ -65,7 +65,7 @@ function global:SignFile()
     {
         Write-Host "Signing file `"$Path`"" -ForegroundColor Green
         $signToolPath = "c:\Program Files (x86)\Windows Kits\10\bin\10.0.17134.0\x86\signtool.exe"
-        $res = StartAndWait $signToolPath ('sign /n "Open Source Developer, Josef Němec" /t http://time.certum.pl /v ' + "`"$Path`"")
+        $res = StartAndWait $signToolPath ('sign /n "Open Source Developer, Josef Němec" /t http://time.certum.pl /v /sha1 FE916C2B41F1DB83F0C972274CB8CD03BF79B0DA ' + "`"$Path`"")
         if ($res -ne 0)
         {        
             throw "Failed to sign file."

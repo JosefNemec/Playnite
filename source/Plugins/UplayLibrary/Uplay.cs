@@ -1,4 +1,6 @@
-﻿using Playnite.Common.System;
+﻿using Playnite;
+using Playnite.Common.System;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -49,6 +51,17 @@ namespace UplayLibrary
                     return true;
                 }
             }
+        }
+
+        public static bool GetGameRequiresUplay(Game game)
+        {
+            if (string.IsNullOrEmpty(game.InstallDirectory) || !Directory.Exists(game.InstallDirectory))
+            {
+                return false;
+            }
+
+            var fileEnumerator = new SafeFileEnumerator(game.InstallDirectory, "uplay_*_loader*", SearchOption.AllDirectories);
+            return fileEnumerator.Any() == true;
         }
     }
 }

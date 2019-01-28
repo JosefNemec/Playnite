@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,37 @@ namespace Playnite.Common.System
 {
     public class Paths
     {
+        public static string GetFinalPathName(string path)
+        {
+            var h = Interop.CreateFile(path,
+                Interop.FILE_READ_EA,
+                FileShare.ReadWrite | FileShare.Delete,
+                IntPtr.Zero,
+                FileMode.Open,
+                Interop.FILE_FLAG_BACKUP_SEMANTICS,
+                IntPtr.Zero);
+            if (h == Interop.INVALID_HANDLE_VALUE)
+            {
+                throw new Win32Exception();
+            }
+
+            try
+            {
+                var sb = new StringBuilder(1024);
+                var res = Interop.GetFinalPathNameByHandle(h, sb, 1024, 0);
+                if (res == 0)
+                {
+                    throw new Win32Exception();
+                }
+
+                return sb.ToString().Replace(@"\\?\", string.Empty);
+            }
+            finally
+            {
+                Interop.CloseHandle(h);
+            }
+        }
+
         public static bool IsValidFilePath(string path)
         {
             if (string.IsNullOrEmpty(path))

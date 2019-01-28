@@ -10,41 +10,41 @@ using LiteDB;
 
 namespace PlayniteServices.Controllers.IGDB
 {
-    [Route("api/igdb/gamesBySteamId")]
+    [Route("igdb/gamesBySteamId")]
     public class GamesBySteamIdController : Controller
     {
+        private const string cacheDir = "steam_ids";
+
+        public const string DbCollectionName = "IGBDSteamIdCache";
+
+        private static LiteCollection<SteamIdGame> cacheCollection = Program.Database.GetCollection<SteamIdGame>(DbCollectionName);
+
         [HttpGet("{gameId}")]
-        public async Task<ServicesResponse<ulong>> Get(string gameId, [FromQuery]string apiKey)
+        public async Task<ServicesResponse<ulong>> Get(ulong gameId)
         {
-            var ulongId = ulong.Parse(gameId);
-            var cacheCollection = Program.DatabaseCache.GetCollection<SteamIdGame>("IGBDSteamIdCache");
-            var cache = cacheCollection.FindById(ulongId);
+            var cache = cacheCollection.FindById(gameId);
             if (cache != null)
             {
-                var dateDiff = DateTime.Now - cache.creation_time;
-                if (dateDiff.TotalHours <= (IGDB.CacheTimeout + 100))
-                {
-                    return new ServicesResponse<ulong>(cache.igdbId, string.Empty);
-                }
+                return new ServicesResponse<ulong>(cache.igdbId);
             }
 
             var url = string.Format(@"/games/?fields=name,id&filter[external.steam][eq]={0}&limit=1", gameId);
-            var libraryStringResult = await IGDB.SendStringRequest(url, apiKey);
+            var libraryStringResult = await IGDB.SendStringRequest(url);
             var games = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult);
             if (games.Any())
             {
                 cacheCollection.Upsert(new SteamIdGame()
                 {
-                    steamId = ulongId,
+                    steamId = gameId,
                     igdbId = games.First().id,
                     creation_time = DateTime.Now
                 });
 
-                return new ServicesResponse<ulong>(games.First().id, string.Empty);
+                return new ServicesResponse<ulong>(games.First().id);
             }
             else
             {
-                return new ServicesResponse<ulong>(0, string.Empty);
+                return new ServicesResponse<ulong>(0);
             }
         }
     }

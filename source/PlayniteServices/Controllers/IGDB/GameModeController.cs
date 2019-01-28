@@ -9,24 +9,17 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.IGDB
 {
-    [Route("api/igdb/game_modes")]
-    public class GameModeController : Controller
+    [Route("igdb/game_modes")]
+    public class GameModeController : IgdbItemController
     {
-        [HttpGet("{modeId}")]
-        public async Task<ServicesResponse<GameMode>> Get(UInt64 modeId, [FromQuery]string apiKey)
-        {
-            var cacheCollection = Program.DatabaseCache.GetCollection<GameMode>("IGBDGameModesCache");
-            var cache = cacheCollection.FindById(modeId);
-            if (cache != null)
-            {
-                return new ServicesResponse<GameMode>(cache, string.Empty);
-            }
+        private static readonly object CacheLock = new object();
 
-            var url = string.Format(@"game_modes/{0}?fields=name", modeId);
-            var stringResult = await IGDB.SendStringRequest(url, apiKey);
-            var gameMode = JsonConvert.DeserializeObject<List<GameMode>>(stringResult)[0];
-            cacheCollection.Insert(gameMode);            
-            return new ServicesResponse<GameMode>(gameMode, string.Empty);
+        private const string endpointPath = "game_modes";
+
+        [HttpGet("{modeId}")]
+        public async Task<ServicesResponse<GameMode>> Get(ulong modeId)
+        {
+            return new ServicesResponse<GameMode>(await GetItem<GameMode>(modeId, endpointPath, CacheLock));
         }
     }
 }

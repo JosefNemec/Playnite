@@ -21,9 +21,22 @@
         <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
             <DockPanel LastChildFill="False" Margin="5">
                 <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}"  Style="{StaticResource BottomButton}"
-                        DockPanel.Dock="Right" IsCancel="True" Command="{Binding CloseCommand}"/>
-                <Button Name="ButtonOK" Content="{DynamicResource LOCCategorySetButton}" Style="{StaticResource BottomButton}"
-                        DockPanel.Dock="Right" Command="{Binding SetCategoriesCommand}"/>
+                        DockPanel.Dock="Right" IsCancel="True" Command="{Binding CloseCommand}" />
+                <Button Name="ButtonOK" Content="{DynamicResource LOCCategorySetButton}"
+                        DockPanel.Dock="Right" Command="{Binding SetCategoriesCommand}">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BottomButton}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=TextNewCat, Path=IsFocused}" Value="True">
+                                    <Setter Property="IsDefault"  Value="False"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=TextNewCat, Path=IsFocused}" Value="False">
+                                    <Setter Property="IsDefault"  Value="True"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </DockPanel>
         </Border>
 
@@ -32,8 +45,9 @@
             <DockPanel>
                 <Button Name="ButtonAddCat" Content="{DynamicResource LOCCategoryAddCatButton}"
                         DockPanel.Dock="Left" Padding="10,5,10,5"
-                        Command="{Binding AddCategoryCommand}" CommandParameter="{Binding Text, ElementName=TextNewCat}"/>
-                <TextBox Name="TextNewCat" DockPanel.Dock="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        Command="{Binding AddCategoryCommand}" CommandParameter="{Binding Text, ElementName=TextNewCat}"
+                        IsDefault="{Binding IsFocused, ElementName=TextNewCat}" />
+                <TextBox Name="TextNewCat" Text="{Binding NewTextCat}" DockPanel.Dock="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
             </DockPanel>
         </Border>
 

@@ -198,7 +198,7 @@ namespace PlayniteUI
             {
                 var emulators = database.Emulators.ToList();
                 var profile = GameActionActivator.GetGameActionEmulatorConfig(action, emulators)?.ExpandVariables(game);
-                GameActionActivator.ActivateAction(action.ExpandVariables(game), game, profile);
+                GameActionActivator.ActivateAction(action.ExpandVariables(game), profile);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -337,7 +337,7 @@ namespace PlayniteUI
         {
             try
             {
-                var path = Environment.ExpandEnvironmentVariables(Path.Combine("%userprofile%", "Desktop", Paths.GetSafeFilename(game.Name) + ".lnk"));
+                var path = Environment.ExpandEnvironmentVariables(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), Paths.GetSafeFilename(game.Name) + ".lnk"));
                 string icon = string.Empty;
 
                 if (!string.IsNullOrEmpty(game.Icon) && Path.GetExtension(game.Icon) == ".ico")

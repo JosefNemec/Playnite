@@ -19,13 +19,19 @@ namespace PlayniteServices
 
         public GenericResponse()
         {
-
         }
 
-        public GenericResponse(object data, string error)
+        public GenericResponse(object data)
         {
             Data = data;
-            Error = error;
+        }
+    }
+
+    public class ErrorResponse : GenericResponse
+    {
+        public ErrorResponse(Exception error)
+        {
+            Error = error.Message;
         }
     }
 
@@ -36,10 +42,9 @@ namespace PlayniteServices
             get; set;
         }
 
-        public ServicesResponse(T data, string error)
+        public ServicesResponse(T data)
         {
             Data = data;
-            Error = error;
         }
     }
 }

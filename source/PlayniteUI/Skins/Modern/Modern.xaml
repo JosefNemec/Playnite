@@ -6,6 +6,7 @@
                     xmlns:pc="clr-namespace:PlayniteUI.Controls;assembly=PlayniteUI"
                     xmlns:pcmd="clr-namespace:PlayniteUI.Commands;assembly=PlayniteUI"
                     xmlns:pui="clr-namespace:PlayniteUI;assembly=PlayniteUI"
+                    xmlns:psdk="clr-namespace:Playnite.SDK;assembly=Playnite.SDK"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:shared="clr-namespace:Playnite;assembly=Playnite"
                     mc:Ignorable="d">
@@ -103,6 +104,11 @@
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
@@ -2531,7 +2537,7 @@
             <ToggleButton.Style>
                 <Style TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Messages.Count}" Value="0">
+                        <DataTrigger Binding="{Binding PlayniteApi.Notifications.Count}" Value="0">
                             <Setter Property="Visibility" Value="Collapsed"/>
                             <Setter Property="IsChecked" Value="False"/>
                         </DataTrigger>
@@ -2546,7 +2552,7 @@
                     <TextBlock Text="🔔" FontSize="18" />
                     <Border CornerRadius="3" Width="15" Height="15" Margin="15,15,0,0"
                                     Background="OrangeRed">
-                        <TextBlock Text="{Binding Messages.Count}" FontSize="12"
+                        <TextBlock Text="{Binding PlayniteApi.Notifications.Count}" FontSize="12"
                                            Foreground="{DynamicResource TextBrush}"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
@@ -2557,7 +2563,7 @@
                         <Border Style="{StaticResource PopupBorder}">
                             <StackPanel>
                                 <ItemsControl Name="ListNotifications" BorderThickness="0" Margin="0,5,0,0"
-                                          ItemsSource="{Binding Messages}" MaxWidth="350">
+                                          ItemsSource="{Binding PlayniteApi.Notifications.Messages}" MaxWidth="350">
                                     <ItemsControl.Resources>
                                     </ItemsControl.Resources>
                                     <ItemsControl.ItemTemplate>
@@ -2567,11 +2573,11 @@
                                                     <TextBlock.Style>
                                                         <Style TargetType="TextBlock">
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Type}" Value="{x:Static pui:NotificationType.Error}">
+                                                                <DataTrigger Binding="{Binding Type}" Value="{x:Static psdk:NotificationType.Error}">
                                                                     <Setter Property="Text" Value="⚠" />
                                                                     <Setter Property="Foreground" Value="Yellow" />
                                                                 </DataTrigger>
-                                                                <DataTrigger Binding="{Binding Type}" Value="{x:Static pui:NotificationType.Info}">
+                                                                <DataTrigger Binding="{Binding Type}" Value="{x:Static psdk:NotificationType.Info}">
                                                                     <Setter Property="Text" Value="!" />
                                                                     <Setter Property="Foreground" Value="DodgerBlue" />
                                                                 </DataTrigger>
@@ -2685,7 +2691,7 @@
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate>
-                                                <Expander Header="{Binding Mode=OneWay}" BorderThickness="0"
+                                                <Expander Header="{Binding Mode=OneWay}" BorderThickness="0" IsExpanded="True"
                                                           pui:ExpanderBehaviors.SaveState="True"
                                                           pui:ExpanderBehaviors.SaveStateId="{Binding Name, Mode=OneWay}">
                                                     <ItemsPresenter />
@@ -2995,7 +3001,7 @@
                             Template="{StaticResource DetailsView}" />
 
             <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Background="{DynamicResource NormalBrushDark}"
-                    IsEnabled="{Binding AppSettings.FilterPanelVisible}">
+                    IsEnabled="{Binding AppSettings.FilterPanelVisible, Mode=OneWay}">
                 <Border.Style>
                     <Style TargetType="Border">
                         <Setter Property="Width" Value="0" />
@@ -3136,7 +3142,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox TabIndex="7" x:Name="TextFilterGenre" Text="{Binding AppSettings.FilterSettings.Genres, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='NoTrim'}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="7" x:Name="TextFilterGenre" Text="{Binding AppSettings.FilterSettings.Genres, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCPlatformTitle}">
                                 <Label.Style>
@@ -3149,7 +3155,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox TabIndex="8" x:Name="TextFilterPlatform" Text="{Binding AppSettings.FilterSettings.Platforms, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='NoTrim'}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="8" x:Name="TextFilterPlatform" Text="{Binding AppSettings.FilterSettings.Platforms, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCGameReleaseDateTitle}">
                                 <Label.Style>
@@ -3175,7 +3181,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox TabIndex="10" x:Name="TextFilterDeveloper" Text="{Binding AppSettings.FilterSettings.Developers, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='NoTrim'}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="10" x:Name="TextFilterDeveloper" Text="{Binding AppSettings.FilterSettings.Developers, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCPublisherLabel}">
                                 <Label.Style>
@@ -3188,7 +3194,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox TabIndex="11" x:Name="TextFilterPublisher" Text="{Binding AppSettings.FilterSettings.Publishers, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='NoTrim'}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="11" x:Name="TextFilterPublisher" Text="{Binding AppSettings.FilterSettings.Publishers, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCCategoryLabel}">
                                 <Label.Style>
@@ -3201,7 +3207,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox TabIndex="12" x:Name="TextFilterCategory" Text="{Binding AppSettings.FilterSettings.Categories, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='NoTrim'}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="12" x:Name="TextFilterCategory" Text="{Binding AppSettings.FilterSettings.Categories, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
 
                             <Label Content="{DynamicResource LOCTagLabel}">
                                 <Label.Style>
@@ -3214,7 +3220,7 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <pc:SearchBox TabIndex="13" x:Name="TextFilterTag" Text="{Binding AppSettings.FilterSettings.Tags, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}, ConverterParameter='NoTrim'}" Style="{StaticResource FilterTextBox}"/>
+                            <pc:SearchBox TabIndex="13" x:Name="TextFilterTag" Text="{Binding AppSettings.FilterSettings.Tags, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
                             <Label Content="{DynamicResource LOCSeriesLabel}">
                                 <Label.Style>
                                     <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">

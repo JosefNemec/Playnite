@@ -39,7 +39,7 @@ namespace PlayniteUI.ViewModels
         {
             var platforms = (IEnumerable<Guid>)values[0];
             var allPlatforms = (IEnumerable<Platform>)values[1];
-            return allPlatforms.Where(a => platforms.Contains(a.Id));
+            return allPlatforms.Where(a => platforms?.Contains(a.Id) == true);
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)

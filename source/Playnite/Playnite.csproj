@@ -136,6 +136,7 @@
       <Link>Services\Models\Playnite\Playnite.cs</Link>
     </Compile>
     <Compile Include="API\DatabaseAPI.cs" />
+    <Compile Include="API\NotificationsAPI.cs" />
     <Compile Include="API\ScriptExtensionDescription.cs" />
     <Compile Include="API\Logger.cs" />
     <Compile Include="API\PlayniteAPI.cs" />
@@ -176,7 +177,6 @@
     <Compile Include="GameActionActivator.cs" />
     <Compile Include="HttpFileCache.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
-    <Compile Include="NLogLogProvider.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Scripting\IronPython\IronPython.cs" />
     <Compile Include="Scripting\IronPython\IronPythonScript.cs" />
@@ -201,7 +201,6 @@
     <Compile Include="Settings\FilterSettings.cs" />
     <Compile Include="Metadata\Providers\WikipediaMetadataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThirdPartyClients\EpicLauncherClient.cs" />
     <Compile Include="Controllers\GenericGameController.cs" />
     <Compile Include="Services\ServicesClient.cs" />
     <Compile Include="Settings\PlayniteSettings.cs" />

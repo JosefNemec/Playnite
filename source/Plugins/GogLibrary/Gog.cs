@@ -49,13 +49,12 @@ namespace GogLibrary
                     Registry.LocalMachine.OpenSubKey(@"SOFTWARE\GOG.com\GalaxyClient\paths");
                 }
 
-                if (key == null)
+                if (key?.GetValueNames().Contains("client") == true)
                 {
-                    return string.Empty;
-                }
+                    return key.GetValue("client").ToString();
+                }          
 
-                return key.GetValue("client").ToString();
-
+                return string.Empty;
             }
         }
 

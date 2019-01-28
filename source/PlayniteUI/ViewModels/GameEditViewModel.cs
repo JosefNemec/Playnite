@@ -2497,10 +2497,21 @@ namespace PlayniteUI.ViewModels
                     GameInfo tempGame;
 
                     if (extensions.LibraryPlugins.TryGetValue(game.PluginId, out var plugin))
-                    {
+                    {                        
                         var downloader = plugin.Plugin.GetMetadataDownloader();
-                        metadata = downloader.GetMetadata(game.CloneJson());
-                        tempGame = metadata.GameInfo;
+                        try
+                        {
+                            metadata = downloader.GetMetadata(game.CloneJson());
+                            tempGame = metadata.GameInfo;
+                        }
+                        finally
+                        {
+                            // TODO move to proper disposable
+                            if (downloader.HasMethod("Dispose"))
+                            {
+                                (downloader as dynamic)?.Dispose();
+                            }
+                        }
                     }
                     else
                     {

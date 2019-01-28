@@ -122,7 +122,7 @@ namespace Playnite.Controllers
                 {
                     if (plugin.Id == game.PluginId)
                     {
-                        return plugin.GetGameController(game) ?? new GenericGameController(database, game);
+                        return plugin.GetGameController(game.CloneJson()) ?? new GenericGameController(database, game);
                     }
                 }
             }
@@ -133,7 +133,7 @@ namespace Playnite.Controllers
 
         public IGameController GetGenericGameController(Game game)
         {
-            return new GenericGameController(database, game);
+            return new GenericGameController(database, game.CloneJson());
         }
     }
 }

@@ -24,6 +24,7 @@ namespace TwitchLibrary
         private ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
         internal readonly string TokensPath;
+        private const string dbImportMessageId = "twitchlibImportError";
 
         internal TwitchLibrarySettings LibrarySettings { get; private set; }
 
@@ -66,9 +67,9 @@ namespace TwitchLibrary
             };
         }
 
-        internal Dictionary<string, GameInfo> GetInstalledGames()
+        internal Dictionary<string, Game> GetInstalledGames()
         {
-            var games = new Dictionary<string, GameInfo>();
+            var games = new Dictionary<string, Game>();
             var programs = Programs.GetUnistallProgramsList();
             foreach (var program in programs)
             {
@@ -83,10 +84,11 @@ namespace TwitchLibrary
                 }
 
                 var gameId = program.RegistryKeyName.Trim(new char[] { '{', '}' }).ToLower();
-                var game = new GameInfo()
+                var game = new Game()
                 {
                     InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                     GameId = gameId,
+                    PluginId = Id,
                     Source = "Twitch",
                     Name = program.DisplayName,
                     IsInstalled = true,
@@ -99,7 +101,7 @@ namespace TwitchLibrary
             return games;
         }
 
-        public List<GameInfo> GetLibraryGames()
+        public List<Game> GetLibraryGames()
         {
             var login = LoginData;
             if (login == null)
@@ -107,7 +109,7 @@ namespace TwitchLibrary
                 throw new Exception("User is not logged in.");
             }
 
-            var games = new List<GameInfo>();
+            var games = new List<Game>();
             List<GoodsItem> libraryGames = null;
 
             try
@@ -147,8 +149,9 @@ namespace TwitchLibrary
                     continue;
                 }
 
-                var game = new GameInfo()
+                var game = new Game()
                 {
+                    PluginId = Id,
                     Source = "Twitch",
                     GameId = item.product.id,
                     Name = item.product.productTitle
@@ -170,6 +173,8 @@ namespace TwitchLibrary
 
         public Guid Id { get; } = Guid.Parse("E2A7D494-C138-489D-BB3F-1D786BEEB675");
 
+        public bool IsClientInstalled => Twitch.IsInstalled;
+
         public void Dispose()
         {
 
@@ -190,31 +195,65 @@ namespace TwitchLibrary
             return new TwitchGameController(game, this, playniteApi);
         }
 
-        public IEnumerable<GameInfo> GetGames()
+        public IEnumerable<Game> GetGames()
         {
-            var allGames = new List<GameInfo>();
-            var installedGames = GetInstalledGames();
+            var allGames = new List<Game>();
+            var installedGames = new Dictionary<string, Game>();
+            Exception importError = null;
 
             if (LibrarySettings.ImportInstalledGames)
             {
-                allGames.AddRange(installedGames.Values.ToList());
+                try
+                {
+                    installedGames = GetInstalledGames();
+                    logger.Debug($"Found {installedGames.Count} installed Twitch games.");
+                    allGames.AddRange(installedGames.Values.ToList());
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to import installed Twitch games.");
+                    importError = e;
+                }
             }
 
             if (LibrarySettings.ImportUninstalledGames)
             {
-                var uninstalled = GetLibraryGames();
-                foreach (var game in uninstalled)
+                try
                 {
-                    if (installedGames.TryGetValue(game.GameId, out var installed))
+                    var uninstalled = GetLibraryGames();
+                    logger.Debug($"Found {uninstalled.Count} library Twitch games.");
+
+                    foreach (var game in uninstalled)
                     {
-                        installed.Playtime = game.Playtime;
-                        installed.LastActivity = game.LastActivity;
-                    }
-                    else
-                    {
-                        allGames.Add(game);
+                        if (installedGames.TryGetValue(game.GameId, out var installed))
+                        {
+                            installed.Playtime = game.Playtime;
+                            installed.LastActivity = game.LastActivity;
+                        }
+                        else
+                        {
+                            allGames.Add(game);
+                        }
                     }
                 }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to import uninstalled Twitch games.");
+                    importError = e;
+                }
+            }
+
+            if (importError != null)
+            {
+                playniteApi.Notifications.Add(
+                    dbImportMessageId,
+                    string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) +
+                    System.Environment.NewLine + importError.Message,
+                    NotificationType.Error);
+            }
+            else
+            {
+                playniteApi.Notifications.Remove(dbImportMessageId);
             }
 
             return allGames;

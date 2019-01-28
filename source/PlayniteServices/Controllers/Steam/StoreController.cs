@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Playnite;
 using PlayniteServices.Models.Steam;
 using System;
 using System.Collections.Generic;
@@ -9,20 +10,28 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.Steam
 {
-    [Route("api/steam/store")]
+    [Route("steam/store")]
     public class StoreController : Controller
     {
+        private static readonly object CacheLock = new object();
+
+        private const string cacheDir = "store";
+
         [HttpGet("{appId}")]
         public ServicesResponse<string> Get(string appId)
         {
-            var appsColl = Program.DatabaseCache.GetCollection<SteamStoreAppCache>("SteamStoreCache");
-            var cache = appsColl.FindById(appId);
-            if (cache != null)
+            var cachePath = Path.Combine(Steam.CacheDirectory, cacheDir, appId + ".json");
+            lock (CacheLock)
             {
-                return new ServicesResponse<string>(cache.Data, string.Empty);
+                if (System.IO.File.Exists(cachePath))
+                {
+                    return new ServicesResponse<string>(System.IO.File.ReadAllText(cachePath));
+                }
+                else
+                {
+                    return new ServicesResponse<string>(string.Empty);
+                }
             }
-
-            return new ServicesResponse<string>(string.Empty, string.Empty);
         }
 
         [HttpPost("{appId}")]
@@ -36,18 +45,16 @@ namespace PlayniteServices.Controllers.Steam
 
             if (string.IsNullOrEmpty(data))
             {
-                return BadRequest(new GenericResponse(null, "No data provided."));
+                return BadRequest(new ErrorResponse(new Exception("No data provided.")));
             }
 
-            var appsColl = Program.DatabaseCache.GetCollection<SteamStoreAppCache>("SteamStoreCache");
-            var storeItem = new SteamStoreAppCache()
+            var cachePath = Path.Combine(Steam.CacheDirectory, cacheDir, appId + ".json");
+            lock (CacheLock)
             {
-                Id = appId,
-                Data = data,
-                CreationTime = DateTime.Now
-            };
+                FileSystem.PrepareSaveFile(cachePath);
+                System.IO.File.WriteAllText(cachePath, data);
+            }
 
-            appsColl.Upsert(storeItem);
             return Ok();
         }
     }

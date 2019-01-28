@@ -8,39 +8,12 @@ namespace PlayniteServices.Models.Stats
 {
     public class ServiceStats
     {
-        public int UserCount
-        {
-            get; set;
-        }
-
-        public int LastWeekUserCount
-        {
-            get; set;
-        }
-
-        public Dictionary<string, int> UsersByVersion
-        {
-            get; set;
-        }
-
-        public Dictionary<string, int> UsersByWinVersion
-        {
-            get; set;
-        }
-
-        public List<User> RecentUsers
-        {
-            get; set;
-        }
-
-        public int X86Count
-        {
-            get; set;
-        }
-
-        public int X64Count
-        {
-            get; set;
-        }
+        public int UserCount;
+        public int LastWeekUserCount;
+        public Dictionary<string, int> UsersByVersion;
+        public Dictionary<string, int> UsersByWinVersion;
+        public List<User> RecentUsers;
+        public int X86Count;
+        public int X64Count;
     }
 }

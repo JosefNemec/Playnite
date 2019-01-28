@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.props" Condition="Exists('..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.props')" />
-  <Import Project="..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props" Condition="Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props')" />
-  <Import Project="..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.props')" />
+  <Import Project="..\packages\CefSharp.Wpf.69.0.0\build\CefSharp.Wpf.props" Condition="Exists('..\packages\CefSharp.Wpf.69.0.0\build\CefSharp.Wpf.props')" />
+  <Import Project="..\packages\CefSharp.OffScreen.69.0.0\build\CefSharp.OffScreen.props" Condition="Exists('..\packages\CefSharp.OffScreen.69.0.0\build\CefSharp.OffScreen.props')" />
+  <Import Project="..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.props')" />
+  <Import Project="..\packages\cef.redist.x86.3.3497.1841\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.3.3497.1841\build\cef.redist.x86.props')" />
+  <Import Project="..\packages\cef.redist.x64.3.3497.1841\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.3.3497.1841\build\cef.redist.x64.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -314,7 +316,6 @@
     <Compile Include="Controls\GameTaskView.xaml.cs">
       <DependentUpon>GameTaskView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Notifications.cs" />
     <Compile Include="GlobalTaskHandler.cs" />
     <Compile Include="Windows\InstalledGamesWindow.xaml.cs">
       <DependentUpon>InstalledGamesWindow.xaml</DependentUpon>
@@ -365,6 +366,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Content Include="Localization\polish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Localization\ukrainian.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Page Include="Windows\WebViewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -795,27 +806,26 @@ xcopy "$(SolutionDir)\Plugins\BattleNetLibrary\bin\$(ConfigurationName)" "$(Targ
 xcopy "$(SolutionDir)\Plugins\UplayLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\UplayLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\UplayLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\TwitchLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\TwitchLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\TwitchLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\BethesdaLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\BethesdaLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\BethesdaLibrary\BuildCopyExclude.txt
+xcopy "$(SolutionDir)\Plugins\EpicLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\EpicLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\EpicLibrary\BuildCopyExclude.txt
+xcopy "$(SolutionDir)\Plugins\ItchioLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\ItchioLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\ItchioLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\LibraryExporter" "$(TargetDir)\Extensions\LibraryExporter\" /e /y
 xcopy "$(SolutionDir)\..\references\XInputInterface.dll" "$(TargetDir)" /y
-xcopy "$(SolutionDir)\..\references\msvcp120.dll" "$(TargetDir)" /y
-xcopy "$(SolutionDir)\..\references\msvcr120.dll" "$(TargetDir)" /y</PostBuildEvent>
+xcopy "$(SolutionDir)\..\references\CefSharpRedist\*" "$(TargetDir)" /y</PostBuildEvent>
   </PropertyGroup>
-  <Import Project="..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets'))" />
-    <Error Condition="!Exists('..\packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.targets'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x64.3.3497.1841\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.3497.1841\build\cef.redist.x64.props'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x86.3.3497.1841\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.3497.1841\build\cef.redist.x86.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.OffScreen.69.0.0\build\CefSharp.OffScreen.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.OffScreen.69.0.0\build\CefSharp.OffScreen.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.OffScreen.69.0.0\build\CefSharp.OffScreen.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.OffScreen.69.0.0\build\CefSharp.OffScreen.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Wpf.69.0.0\build\CefSharp.Wpf.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Wpf.69.0.0\build\CefSharp.Wpf.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Wpf.69.0.0\build\CefSharp.Wpf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Wpf.69.0.0\build\CefSharp.Wpf.targets'))" />
   </Target>
-  <Import Project="..\packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets')" />
-  <Import Project="..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets')" />
-  <Import Project="..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets" Condition="Exists('..\packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets')" />
-  <Import Project="..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.targets" Condition="Exists('..\packages\CefSharp.OffScreen.57.0.0\build\CefSharp.OffScreen.targets')" />
+  <Import Project="..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.targets')" />
+  <Import Project="..\packages\CefSharp.OffScreen.69.0.0\build\CefSharp.OffScreen.targets" Condition="Exists('..\packages\CefSharp.OffScreen.69.0.0\build\CefSharp.OffScreen.targets')" />
+  <Import Project="..\packages\CefSharp.Wpf.69.0.0\build\CefSharp.Wpf.targets" Condition="Exists('..\packages\CefSharp.Wpf.69.0.0\build\CefSharp.Wpf.targets')" />
 </Project>
