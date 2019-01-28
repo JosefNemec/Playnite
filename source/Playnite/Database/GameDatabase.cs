@@ -1427,15 +1427,16 @@ namespace Playnite.Database
             return toAdd;
         }
 
-        public IEnumerable<Game> ImportGames(ILibraryPlugin library)
+        public List<Game> ImportGames(ILibraryPlugin library, bool forcePlayTimeSync)
         {
+            var addedGames = new List<Game>();
             foreach (var newGame in library.GetGames())
             {
                 var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
                 if (existingGame == null)
                 {
                     logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
-                    yield return ImportGame(newGame, library.Id);
+                    addedGames.Add(ImportGame(newGame, library.Id));
                 }
                 else
                 {
@@ -1446,7 +1447,8 @@ namespace Playnite.Database
                         existingGame.PlayAction = newGame.PlayAction;
                     }
 
-                    if (existingGame.Playtime == 0 && newGame.Playtime > 0)
+                    if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
+                       (newGame.Playtime > 0 && forcePlayTimeSync))
                     {
                         existingGame.Playtime = newGame.Playtime;
                         if (existingGame.CompletionStatus == CompletionStatus.NotPlayed)
@@ -1468,6 +1470,8 @@ namespace Playnite.Database
                     Games.Update(existingGame);
                 }
             }
+
+            return addedGames;        
         }
     }
 }

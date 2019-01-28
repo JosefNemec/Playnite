@@ -186,19 +186,19 @@ namespace ItchioLibrary
                     var cave = installed?.FirstOrDefault(a => a.game.id.ToString() == Game.GameId);
                     if (cave != null)
                     {
-                        if (Game.PlayAction == null)
+                        var installInfo = new GameInfo
                         {
-                            Game.PlayAction = new GameAction()
+                            InstallDirectory = cave.installInfo.installFolder,
+                            PlayAction = new GameAction()
                             {
                                 Type = GameActionType.URL,
                                 Path = DynamicLaunchActionStr,
                                 Arguments = cave.id,
                                 IsHandledByPlugin = true
-                            };
-                        }
+                            }
+                        };
 
-                        Game.InstallDirectory = cave.installInfo.installFolder;
-                        OnInstalled(this, new GameControllerEventArgs(this, 0));
+                        OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
                         return;
                     }
 

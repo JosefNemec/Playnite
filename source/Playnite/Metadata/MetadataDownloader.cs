@@ -262,7 +262,7 @@ namespace Playnite.Metadata
 
                         // We need to get new instance from DB in case game got edited or deleted.
                         // We don't want to block game editing while metadata is downloading for other games.
-                        var game = database.Games[games[i].Id]?.CloneJson();
+                        game = database.Games[games[i].Id]?.CloneJson();
                         if (game == null)
                         {
                             logger.Warn($"Game {game.GameId} no longer in DB, skipping metadata download.");

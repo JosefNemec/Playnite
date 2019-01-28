@@ -30,14 +30,13 @@ namespace EpicLibrary
             TokensPath = Path.Combine(api.GetPluginUserDataPath(this), "tokens.json");
         }
 
-        internal Dictionary<string, Game> GetInstalledGames()
+        internal Dictionary<string, GameInfo> GetInstalledGames()
         {
-            var games = new Dictionary<string, Game>();
+            var games = new Dictionary<string, GameInfo>();
             foreach (var app in EpicLauncher.GetInstalledAppList())
             {
-                var game = new Game()
+                var game = new GameInfo()
                 {
-                    PluginId = Id,
                     GameId = app.AppName,
                     Name = Path.GetFileName(app.InstallLocation),
                     InstallDirectory = app.InstallLocation,
@@ -56,9 +55,9 @@ namespace EpicLibrary
             return games;
         }
 
-        internal List<Game> GetLibraryGames()
+        internal List<GameInfo> GetLibraryGames()
         {
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
             var accountApi = new EpicAccountClient(playniteApi, TokensPath);
             var assets = accountApi.GetAssets();
             if (!assets?.Any() == true)
@@ -74,9 +73,8 @@ namespace EpicLibrary
                     continue;
                 }
 
-                games.Add(new Game()
+                games.Add(new GameInfo()
                 {
-                    PluginId = Id,
                     GameId = gameAsset.appName,
                     Name = catalogItem.title,
                 });                
@@ -117,10 +115,10 @@ namespace EpicLibrary
             return new EpicGameController(game, playniteApi);
         }
 
-        public IEnumerable<Game> GetGames()
+        public IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
-            var installedGames = new Dictionary<string, Game>();
+            var allGames = new List<GameInfo>();
+            var installedGames = new Dictionary<string, GameInfo>();
             Exception importError = null;
 
             if (LibrarySettings.ImportInstalledGames)

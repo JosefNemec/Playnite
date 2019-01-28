@@ -77,9 +77,9 @@ namespace ItchioLibrary
             return false;
         }
 
-        internal Dictionary<string, Game> GetInstalledGames()
+        internal Dictionary<string, GameInfo> GetInstalledGames()
         {
-            var games = new Dictionary<string, Game>();
+            var games = new Dictionary<string, GameInfo>();
             using (var butler = new Butler())
             {
                 var caves = butler.GetCaves();
@@ -108,9 +108,8 @@ namespace ItchioLibrary
                         continue;
                     }
 
-                    var game = new Game()
+                    var game = new GameInfo()
                     {
-                        PluginId = Id,
                         GameId = cave.game.id.ToString(),
                         Name = cave.game.title,
                         InstallDirectory = installDir,
@@ -127,7 +126,7 @@ namespace ItchioLibrary
 
                     if (TryGetGameActions(installDir, out var play, out var others))
                     {
-                        game.OtherActions = new ObservableCollection<GameAction>(others);
+                        game.OtherActions = new List<GameAction>(others);
                     }
 
                     games.Add(game.GameId, game);
@@ -137,9 +136,9 @@ namespace ItchioLibrary
             return games;
         }
 
-        internal List<Game> GetLibraryGames()
+        internal List<GameInfo> GetLibraryGames()
         {
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
             using (var butler = new Butler())
             {
                 var profiles = butler.GetProfiles();
@@ -164,9 +163,8 @@ namespace ItchioLibrary
                             continue;
                         }
 
-                        var game = new Game()
+                        var game = new GameInfo()
                         {
-                            PluginId = Id,
                             GameId = key.game.id.ToString(),
                             Name = key.game.title,
                             CoverImage = key.game.coverUrl
@@ -201,10 +199,10 @@ namespace ItchioLibrary
             return new ItchioGameController(game, playniteApi);
         }
 
-        public IEnumerable<Game> GetGames()
+        public IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
-            var installedGames = new Dictionary<string, Game>();
+            var allGames = new List<GameInfo>();
+            var installedGames = new Dictionary<string, GameInfo>();
             Exception importError = null;
 
             if (Itch.IsInstalled)

@@ -100,20 +100,21 @@ namespace EpicLibrary
                 var app = installed?.FirstOrDefault(a => a.AppName == Game.GameId);
                 if (app != null)
                 {
-                    if (Game.PlayAction == null)
+                    var installInfo = new GameInfo
                     {
-                        Game.PlayAction = new GameAction()
+
+                        InstallDirectory = app.InstallLocation,
+                        PlayAction = new GameAction()
                         {
                             Type = GameActionType.URL,
                             Path = string.Format(EpicLauncher.GameLaunchUrlMask, app.AppName),
                             IsHandledByPlugin = true
-                        };
-                    }
+                        }
+                    };
 
-                    Game.InstallDirectory = app.InstallLocation;
-                    OnInstalled(this, new GameControllerEventArgs(this, 0));
+                    OnInstalled(this, new GameInstalledEventArgs(installInfo, this, 0));
                     return;
-                }
+                };                
 
                 await Task.Delay(5000);
             }

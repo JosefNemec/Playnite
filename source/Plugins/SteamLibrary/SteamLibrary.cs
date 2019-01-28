@@ -70,7 +70,7 @@ namespace SteamLibrary
             };
         }
 
-        internal Game GetInstalledGameFromFile(string path)
+        internal GameInfo GetInstalledGameFromFile(string path)
         {
             var kv = new KeyValue();
             kv.ReadFileAsText(path);
@@ -89,9 +89,8 @@ namespace SteamLibrary
             }
 
             var gameId = new GameID(kv["appID"].AsUnsignedInteger());
-            var game = new Game()
+            var game = new GameInfo()
             {
-                PluginId = Id,
                 Source = "Steam",
                 GameId = gameId.ToString(),
                 Name = name,
@@ -103,9 +102,9 @@ namespace SteamLibrary
             return game;
         }
 
-        internal List<Game> GetInstalledGamesFromFolder(string path)
+        internal List<GameInfo> GetInstalledGamesFromFolder(string path)
         {
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
 
             foreach (var file in Directory.GetFiles(path, @"appmanifest*"))
             {
@@ -124,9 +123,9 @@ namespace SteamLibrary
             return games;
         }
 
-        internal List<Game> GetInstalledGoldSrcModsFromFolder(string path)
+        internal List<GameInfo> GetInstalledGoldSrcModsFromFolder(string path)
         {
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
             var firstPartyMods = new string[] { "bshift", "cstrike", "czero", "czeror", "dmc", "dod", "gearbox", "ricochet", "tfc", "valve"};
             var dirInfo = new DirectoryInfo(path);
 
@@ -150,9 +149,9 @@ namespace SteamLibrary
             return games;
         }
 
-        internal List<Game> GetInstalledSourceModsFromFolder(string path)
+        internal List<GameInfo> GetInstalledSourceModsFromFolder(string path)
         {
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
 
             foreach (var folder in Directory.GetDirectories(path))
             {
@@ -174,7 +173,7 @@ namespace SteamLibrary
             return games;
         }
 
-        internal Game GetInstalledModFromFolder(string path, ModInfo.ModType modType)
+        internal GameInfo GetInstalledModFromFolder(string path, ModInfo.ModType modType)
         {
             var modInfo = ModInfo.GetFromFolder(path, modType);
             if (modInfo == null)
@@ -182,16 +181,15 @@ namespace SteamLibrary
                 return null;
             }
 
-            var game = new Game()
+            var game = new GameInfo()
             {
-                PluginId = Id,
                 Source = "Steam",
                 GameId = modInfo.GameId.ToString(),
                 Name = modInfo.Name,
                 InstallDirectory = path,
                 PlayAction = CreatePlayTask(modInfo.GameId),
                 IsInstalled = true,
-                Developers = new ComparableList<string>() { modInfo.Developer },
+                Developers = new List<string>() { modInfo.Developer },
                 Links = modInfo.Links,
                 Tags = modInfo.Categories,
                 Icon = modInfo.IconPath
@@ -200,9 +198,9 @@ namespace SteamLibrary
             return game;
         }
 
-        internal Dictionary<string, Game> GetInstalledGames(bool includeMods = true)
+        internal Dictionary<string, GameInfo> GetInstalledGames(bool includeMods = true)
         {
-            var games = new Dictionary<string, Game>();
+            var games = new Dictionary<string, GameInfo>();
             if (!Steam.IsInstalled)
             {
                 return games;
@@ -317,7 +315,7 @@ namespace SteamLibrary
             return users;
         }
 
-        internal List<Game> GetLibraryGames(SteamLibrarySettings settings)
+        internal List<GameInfo> GetLibraryGames(SteamLibrarySettings settings)
         {
             var userName = string.Empty;
             if (settings.IdSource == SteamIdSource.Name)
@@ -339,7 +337,7 @@ namespace SteamLibrary
             }
         }
 
-        internal List<Game> GetLibraryGames(string userName, string apiKey)
+        internal List<GameInfo> GetLibraryGames(string userName, string apiKey)
         {
             var userNameUrl = @"https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key={0}&vanityurl={1}";
             var libraryUrl = @"https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&include_appinfo=1&include_played_free_games=1&format=json&steamid={1}";
@@ -358,7 +356,7 @@ namespace SteamLibrary
                 throw new Exception("No games found on specified Steam account.");
             }
 
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
             foreach (var game in library.response.games)
             {
                 // Ignore games without name, like 243870
@@ -367,9 +365,8 @@ namespace SteamLibrary
                     continue;
                 }
 
-                var newGame = new Game()
+                var newGame = new GameInfo()
                 {
-                    PluginId = Id,
                     Source = "Steam",
                     Name = game.name,
                     GameId = game.appid.ToString(),
@@ -383,14 +380,14 @@ namespace SteamLibrary
             return games;
         }
 
-        internal List<Game> GetLibraryGames(string userName)
+        internal List<GameInfo> GetLibraryGames(string userName)
         {
             if (string.IsNullOrEmpty(userName))
             {
                 throw new Exception("Steam user name cannot be empty.");
             }
 
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
             var importedGames = servicesClient.GetSteamLibrary(userName);
             if (importedGames == null)
             {
@@ -405,9 +402,8 @@ namespace SteamLibrary
                     continue;
                 }
 
-                var newGame = new Game()
+                var newGame = new GameInfo()
                 {
-                    PluginId = Id,
                     GameId = game.appid.ToString(),
                     Source = "Steam",
                     Name = game.name,
@@ -421,10 +417,10 @@ namespace SteamLibrary
             return games;
         }
 
-        public List<Game> GetCategorizedGames(ulong steamId)
+        public List<GameInfo> GetCategorizedGames(ulong steamId)
         {
             var id = new SteamID(steamId);
-            var result = new List<Game>();
+            var result = new List<GameInfo>();
             var vdf = Path.Combine(Steam.InstallationPath, "userdata", id.AccountID.ToString(), "7", "remote", "sharedconfig.vdf");
             var sharedconfig = new KeyValue();
             sharedconfig.ReadFileAsText(vdf);
@@ -466,12 +462,11 @@ namespace SteamLibrary
                     }
                 }
 
-                result.Add(new Game()
+                result.Add(new GameInfo()
                 {
-                    PluginId = Id,
                     Source = "Steam",
                     GameId = gameId,
-                    Categories = new ComparableList<string>(appData),
+                    Categories = new List<string>(appData),
                     Hidden = app["hidden"].AsInteger() == 1
                 });
             }
@@ -517,13 +512,14 @@ namespace SteamLibrary
                 {
                     foreach (var game in GetCategorizedGames(accountId))
                     {
-                        var dbGame = db.GetGames().FirstOrDefault(a => a.PluginId == game.PluginId && a.GameId == game.GameId);
+                        var dbGame = db.GetGames().FirstOrDefault(a => a.PluginId == Id && a.GameId == game.GameId);
                         if (dbGame == null)
                         {
                             continue;
                         }
 
-                        dbGame.Categories = game.Categories;
+                        // TODO
+                        //dbGame.Categories = game.Categories;                        
                         dbGame.Hidden = game.Hidden;
                         db.UpdateGame(dbGame);
                     }
@@ -569,10 +565,10 @@ namespace SteamLibrary
             return new SteamLibrarySettingsView();
         }
 
-        public IEnumerable<Game> GetGames()
+        public IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
-            var installedGames = new Dictionary<string, Game>();
+            var allGames = new List<GameInfo>();
+            var installedGames = new Dictionary<string, GameInfo>();
             Exception importError = null;
 
             if (LibrarySettings.ImportInstalledGames)

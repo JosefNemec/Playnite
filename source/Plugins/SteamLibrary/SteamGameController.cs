@@ -103,14 +103,14 @@ namespace SteamLibrary
                 var installed = library.GetInstalledGames(false);
                 if (installed.TryGetValue(id, out var installedGame))
                 {
-                    if (Game.PlayAction == null)
+                    var installInfo = new GameInfo
                     {
-                        Game.PlayAction = installedGame.PlayAction;
-                    }
+                        InstallDirectory = installedGame.InstallDirectory,
+                        PlayAction = installedGame.PlayAction
+                    };
 
-                    Game.InstallDirectory = installedGame.InstallDirectory;
                     stopWatch.Stop();
-                    OnInstalled(this, new GameControllerEventArgs(this, stopWatch.Elapsed.TotalSeconds));
+                    OnInstalled(this, new GameInstalledEventArgs(installInfo, this, stopWatch.Elapsed.TotalSeconds));
                     return;
                 }
 

@@ -100,6 +100,7 @@ namespace Playnite.Database
         internal void LoadFilterCollection()
         {
             // TODO default state
+            // TODO Update when DB changes
             Genres = new SelectableDbItemList(database.Genres);
         }
 

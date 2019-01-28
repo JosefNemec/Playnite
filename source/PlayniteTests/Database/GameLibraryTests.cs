@@ -22,13 +22,12 @@ namespace PlayniteTests.Database
             var libPlugin = new Mock<ILibraryPlugin>();
             var timeToImport = 500;
             libPlugin.Setup(a => a.Id).Returns(Guid.NewGuid());
-            libPlugin.Setup(a => a.GetGames()).Returns(() => new List<Game>
+            libPlugin.Setup(a => a.GetGames()).Returns(() => new List<GameInfo>
             {
-                new Game()
+                new GameInfo()
                 {
                     GameId = gameId,
-                    Playtime = timeToImport,
-                    PluginId = libPlugin.Object.Id
+                    Playtime = timeToImport
                 }
             });
 
@@ -36,20 +35,20 @@ namespace PlayniteTests.Database
             {
                 var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
-                GameLibrary.ImportGames(libPlugin.Object, db, true);
+                db.ImportGames(libPlugin.Object, true);
                 Assert.AreEqual(timeToImport, db.Games.First().Playtime);
 
                 timeToImport = 600;
-                GameLibrary.ImportGames(libPlugin.Object, db, false);
+                db.ImportGames(libPlugin.Object, false);
                 Assert.AreEqual(500, db.Games.First().Playtime);
-                GameLibrary.ImportGames(libPlugin.Object, db, true);
+                db.ImportGames(libPlugin.Object, true);
                 Assert.AreEqual(timeToImport, db.Games.First().Playtime);
 
                 var g = db.Games.First();
                 g.Playtime = 0;
                 db.Games.Update(g);
                 Assert.AreEqual(0, db.Games.First().Playtime);
-                GameLibrary.ImportGames(libPlugin.Object, db, false);
+                db.ImportGames(libPlugin.Object, false);
                 Assert.AreEqual(timeToImport, db.Games.First().Playtime);
             }
         }

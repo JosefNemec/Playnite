@@ -362,7 +362,7 @@ namespace OriginLibrary
         public IEnumerable<GameInfo> GetGames()
         {
             var allGames = new List<GameInfo>();
-            var installedGames = new Dictionary<string, Game>();
+            var installedGames = new Dictionary<string, GameInfo>();
             Exception importError = null;
 
             if (LibrarySettings.ImportInstalledGames)

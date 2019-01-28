@@ -34,12 +34,12 @@ namespace GogLibrary
             LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\gogicon.png");
         }
 
-        internal Tuple<GameAction, ObservableCollection<GameAction>> GetGameTasks(string gameId, string installDir)
+        internal Tuple<GameAction, List<GameAction>> GetGameTasks(string gameId, string installDir)
         {
             var gameInfoPath = Path.Combine(installDir, string.Format("goggame-{0}.info", gameId));
             if (!File.Exists(gameInfoPath))
             {
-                return new Tuple<GameAction, ObservableCollection<GameAction>>(null, null);
+                return new Tuple<GameAction, List<GameAction>>(null, null);
             }
 
             var gameTaskData = JsonConvert.DeserializeObject<GogGameActionInfo>(File.ReadAllText(gameInfoPath));
@@ -49,7 +49,7 @@ namespace GogLibrary
                 playTask.IsHandledByPlugin = true;
             }
 
-            var otherTasks = new ObservableCollection<GameAction>();
+            var otherTasks = new List<GameAction>();
 
             foreach (var task in gameTaskData.playTasks.Where(a => !a.isPrimary))
             {
@@ -64,12 +64,12 @@ namespace GogLibrary
                 }
             }
 
-            return new Tuple<GameAction, ObservableCollection<GameAction>>(playTask, otherTasks.Count > 0 ? otherTasks : null);
+            return new Tuple<GameAction, List<GameAction>>(playTask, otherTasks.Count > 0 ? otherTasks : null);
         }
 
-        internal Dictionary<string, Game> GetInstalledGames()
+        internal Dictionary<string, GameInfo> GetInstalledGames()
         {
-            var games = new Dictionary<string, Game>();
+            var games = new Dictionary<string, GameInfo>();
             var programs = Programs.GetUnistallProgramsList();
             foreach (var program in programs)
             {
@@ -85,11 +85,10 @@ namespace GogLibrary
                 }
 
                 var gameId = match.Groups[1].Value;
-                var game = new Game()
+                var game = new GameInfo()
                 {
                     InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                     GameId = gameId,
-                    PluginId = Id,
                     Source = "GOG",
                     Name = program.DisplayName,
                     IsInstalled = true
@@ -110,7 +109,7 @@ namespace GogLibrary
             return games;
         }
 
-        internal List<Game> GetLibraryGames()
+        internal List<GameInfo> GetLibraryGames()
         {
             using (var view = playniteApi.WebViews.CreateOffscreenView())
             {
@@ -131,10 +130,10 @@ namespace GogLibrary
             }
         }
 
-        internal List<Game> GetLibraryGames(string accountName)
+        internal List<GameInfo> GetLibraryGames(string accountName)
         {
             var api = new GogAccountClient(null);
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
             var libGames = api.GetOwnedGamesFromPublicAccount(accountName);
             if (libGames == null)
             {
@@ -144,17 +143,16 @@ namespace GogLibrary
             return LibraryGamesToGames(libGames).ToList();
         }
 
-        internal IEnumerable<Game> LibraryGamesToGames(List<LibraryGameResponse> libGames)
+        internal IEnumerable<GameInfo> LibraryGamesToGames(List<LibraryGameResponse> libGames)
         {
             foreach (var game in libGames)
             {
-                var newGame = new Game()
+                var newGame = new GameInfo()
                 {
-                    PluginId = Id,
                     Source = "GOG",
                     GameId = game.game.id,
                     Name = game.game.title,
-                    Links = new ObservableCollection<Link>()
+                    Links = new List<Link>()
                     {
                         new Link("Store", @"https://www.gog.com" + game.game.url)
                     }
@@ -203,10 +201,10 @@ namespace GogLibrary
             return new GogGameController(game, this, LibrarySettings, playniteApi);
         }
 
-        public IEnumerable<Game> GetGames()
+        public IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
-            var installedGames = new Dictionary<string, Game>();
+            var allGames = new List<GameInfo>();
+            var installedGames = new Dictionary<string, GameInfo>();
             Exception importError = null;
 
             if (LibrarySettings.ImportInstalledGames)

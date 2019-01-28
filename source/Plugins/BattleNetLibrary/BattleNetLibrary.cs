@@ -185,7 +185,6 @@ namespace BattleNetLibrary
                         {
                             games.Add(new GameInfo()
                             {
-                                PluginId = Id,
                                 Source = "Battle.net",
                                 GameId = gameInfo.ProductId,
                                 Name = gameInfo.Name
@@ -204,7 +203,6 @@ namespace BattleNetLibrary
                         var w3 = BattleNetGames.Games.FirstOrDefault(a => a.ProductId == "W3");
                         games.Add(new GameInfo()
                         {
-                            PluginId = Id,
                             Source = "Battle.net",
                             GameId = w3.ProductId,
                             Name = w3.Name
@@ -215,7 +213,6 @@ namespace BattleNetLibrary
                             var w3x = BattleNetGames.Games.FirstOrDefault(a => a.ProductId == "W3X");
                             games.Add(new GameInfo()
                             {
-                                PluginId = Id,
                                 Source = "Battle.net",
                                 GameId = w3x.ProductId,
                                 Name = w3x.Name
@@ -230,7 +227,6 @@ namespace BattleNetLibrary
                         var d2 = BattleNetGames.Games.FirstOrDefault(a => a.ProductId == "D2");
                         games.Add(new GameInfo()
                         {
-                            PluginId = Id,
                             Source = "Battle.net",
                             GameId = d2.ProductId,
                             Name = d2.Name
@@ -241,7 +237,6 @@ namespace BattleNetLibrary
                             var d2x = BattleNetGames.Games.FirstOrDefault(a => a.ProductId == "D2X");
                             games.Add(new GameInfo()
                             {
-                                PluginId = Id,
                                 Source = "Battle.net",
                                 GameId = d2x.ProductId,
                                 Name = d2x.Name
@@ -289,7 +284,7 @@ namespace BattleNetLibrary
         public IEnumerable<GameInfo> GetGames()
         {
             var allGames = new List<GameInfo>();
-            var installedGames = new Dictionary<string, Game>();
+            var installedGames = new Dictionary<string, GameInfo>();
             Exception importError = null;
 
             if (LibrarySettings.ImportInstalledGames)

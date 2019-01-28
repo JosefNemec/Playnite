@@ -290,7 +290,7 @@ namespace PlayniteUI
             //}
 
             //// ------------------ Genre
-            //bool genreResult = false;
+            bool genreResult = false;
             //if (filterSettings.Genres == null || filterSettings.Genres.Count == 0)
             //{
             //    genreResult = true;
@@ -435,8 +435,8 @@ namespace PlayniteUI
                 hiddenResult &&
                 favoriteResult &&
                 nameResult &&
-                librariesFilter;// &&
-                //genreResult &&
+                librariesFilter &&
+                genreResult;
                 //platformResult &&
                 //releaseDateResult &&
                 //publisherResult &&

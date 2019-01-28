@@ -67,9 +67,9 @@ namespace TwitchLibrary
             };
         }
 
-        internal Dictionary<string, Game> GetInstalledGames()
+        internal Dictionary<string, GameInfo> GetInstalledGames()
         {
-            var games = new Dictionary<string, Game>();
+            var games = new Dictionary<string, GameInfo>();
             var programs = Programs.GetUnistallProgramsList();
             foreach (var program in programs)
             {
@@ -84,11 +84,10 @@ namespace TwitchLibrary
                 }
 
                 var gameId = program.RegistryKeyName.Trim(new char[] { '{', '}' }).ToLower();
-                var game = new Game()
+                var game = new GameInfo()
                 {
                     InstallDirectory = Paths.FixSeparators(program.InstallLocation),
                     GameId = gameId,
-                    PluginId = Id,
                     Source = "Twitch",
                     Name = program.DisplayName,
                     IsInstalled = true,
@@ -101,7 +100,7 @@ namespace TwitchLibrary
             return games;
         }
 
-        public List<Game> GetLibraryGames()
+        public List<GameInfo> GetLibraryGames()
         {
             var login = LoginData;
             if (login == null)
@@ -109,7 +108,7 @@ namespace TwitchLibrary
                 throw new Exception("User is not logged in.");
             }
 
-            var games = new List<Game>();
+            var games = new List<GameInfo>();
             List<GoodsItem> libraryGames = null;
 
             try
@@ -149,9 +148,8 @@ namespace TwitchLibrary
                     continue;
                 }
 
-                var game = new Game()
+                var game = new GameInfo()
                 {
-                    PluginId = Id,
                     Source = "Twitch",
                     GameId = item.product.id,
                     Name = item.product.productTitle
@@ -195,10 +193,10 @@ namespace TwitchLibrary
             return new TwitchGameController(game, this, playniteApi);
         }
 
-        public IEnumerable<Game> GetGames()
+        public IEnumerable<GameInfo> GetGames()
         {
-            var allGames = new List<Game>();
-            var installedGames = new Dictionary<string, Game>();
+            var allGames = new List<GameInfo>();
+            var installedGames = new Dictionary<string, GameInfo>();
             Exception importError = null;
 
             if (LibrarySettings.ImportInstalledGames)

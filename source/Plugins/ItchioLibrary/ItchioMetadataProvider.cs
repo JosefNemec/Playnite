@@ -34,16 +34,16 @@ namespace ItchioLibrary
 
         public GameMetadata GetMetadata(Game game)
         {
-            var gameData = new Game()
+            var gameData = new GameInfo()
             {
-                Links = new ObservableCollection<Link>(),
-                Tags = new ComparableList<string>(),
-                Genres = new ComparableList<string>()
+                Links = new List<Link>(),
+                Tags = new List<string>(),
+                Genres = new List<string>()
             };
 
             var metadata = new GameMetadata
             {
-                GameData = gameData
+                GameInfo = gameData
             };
 
             var itchGame = butler.GetGame(Convert.ToInt32(game.GameId));
@@ -53,7 +53,7 @@ namespace ItchioLibrary
             {
                 var cover = HttpDownloader.DownloadData(itchGame.coverUrl);
                 var coverFile = Path.GetFileName(itchGame.coverUrl);
-                metadata.Image = new MetadataFile(coverFile, cover);
+                metadata.CoverImage = new MetadataFile(coverFile, cover);
             }
 
             if (!string.IsNullOrEmpty(itchGame.url))
@@ -71,8 +71,7 @@ namespace ItchioLibrary
                 var bckMatch = Regex.Match(gameTheme, @"background-image:\surl\((.+?)\)");
                 if (bckMatch.Success)
                 {
-                    metadata.BackgroundImage = bckMatch.Groups[1].Value;
-                    gameData.BackgroundImage = bckMatch.Groups[1].Value;
+                    metadata.BackgroundImage = new MetadataFile(bckMatch.Groups[1].Value);
                 }                
 
                 // Other info
