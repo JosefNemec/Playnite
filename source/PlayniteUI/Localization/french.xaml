@@ -25,7 +25,7 @@
     <sys:String x:Key="LOCCategoryAddCatButton">Ajouter une catégorie</sys:String>
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Sélectionné - Attribue une catégorie
 Non sélectionné - Retire une catégorie
-Indeterminé - Aucun changement</sys:String>
+Indéterminé - Aucun changement</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh non, quelque chose s'est mal passé...</sys:String>
     <sys:String x:Key="LOCCrashDescription">Playnite a rencontré un problème et n'a pas pu le resoudre. Si vous voulez nous aider, vous pouvez envoyer un rapport de bug et signaler le problème. Merci beaucoup !</sys:String>
@@ -484,8 +484,8 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCClose">Fermer</sys:String>
     <sys:String x:Key="LOCChange">Changer</sys:String>
     <sys:String x:Key="LOCAdvanced">Avancé</sys:String>
-    <sys:String x:Key="LOCNever">Jamais</sys:String>
-    <sys:String x:Key="LOCNotPlayed">Pas encore commencé</sys:String>
+    <sys:String x:Key="LOCNever">[Indéterminé]</sys:String>
+    <sys:String x:Key="LOCNotPlayed">[Pas encore commencé]</sys:String>
     <sys:String x:Key="LOCPlayed">Commencé</sys:String>
     <sys:String x:Key="LOCBeaten">Terminé</sys:String>
     <sys:String x:Key="LOCCompleted">Terminé (100%)</sys:String>
@@ -563,7 +563,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minutes</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} secondes</sys:String>
-    <sys:String x:Key="LOCPlayedNone">Pas encore lancé</sys:String>
+    <sys:String x:Key="LOCPlayedNone">[Pas encore lancé]</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Retour au bureau...</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Ouverture du mode plein écran...</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Chargement de la bibliothèque...</sys:String>
