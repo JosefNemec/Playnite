@@ -200,7 +200,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCMenuAddGame">Ajouter un jeu</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manuellement</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Importer depuis une installation</sys:String>
-    <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importer les jeux désinstallés</sys:String>
+    <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importer les jeux non installés</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Importer des jeux émulés</sys:String>
     <sys:String x:Key="LOCMenuAbout">A propos de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envoyer des Commentaires</sys:String>
@@ -318,7 +318,7 @@ Vous pouvez également configurer et importer tout émulateur personnalisé plus
     <sys:String x:Key="LOCFirstWindowTitle">Assistant de configuration</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Playnite peut importer des jeux à partir des clients que vous utilisez et mettre à jour votre bibliothèque de manière automatique.
 
-Gardez à l'esprit que vous pouvez toujours ajouter manuellement un jeu personnalisé et l'assigner à n'importe quelle plateforme en cliquant sur 'Ajouter un jeu' à partir du menu principal.
+Vous pouvez également ajouter des jeux ne dépendant d'aucun client en cliquant sur 'Ajouter un jeu' à partir du menu principal. Les profils de jeu personnalisés peuvent ensuite être assignés à n'importe quelle plateforme.
     </sys:String>
     <sys:String x:Key="LOCFirstDBLocation" xml:space="preserve">Choisissez l'emplacement du fichier de base de données de la bibliothèque. L'emplacement peut être modifié plus tard via le menu Paramètres.
 
@@ -338,9 +338,7 @@ Conseil : Si vous souhaitez synchroniser votre bibliothèque entre plusieurs ord
     <sys:String x:Key="LOCFirstOtherGamesText">Cliquez sur le bouton ci-dessous pour importer d'autres jeux installés ou les rechercher manuellement (y compris les jeux Windows Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importer des jeux</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuration terminée</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">La configuration initiale est achevée. N'oubliez pas que vous pouvez modifier tous les paramètres plus tard via le menu "Paramètres".
-
-Vous pouvez également ajouter d'autres jeux via le menu principal en cliquant sur le bouton situé dans le coin supérieur gauche de la fenêtre.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Vous avez terminé la configuration initiale. N'oubliez pas que vous pouvez modifier la configuration des clients à tout moment via le menu "Paramètres".</sys:String>
     
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Configurer les plateformes et émulateurs</sys:String>
@@ -396,7 +394,7 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Éditeur(s)</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installés</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Jeu installé</sys:String>
-    <sys:String x:Key="LOCGameIsUnInstalledTitle">Désinstallés</sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">Non installés</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Cachés</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favoris</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Dernière activité</sys:String>
@@ -583,19 +581,17 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCTroubleShootingAccountLink">Régler les problèmes de synchronisation</sys:String>
 
     <!--itch.io-->
-    <sys:String x:Key="LOCItchioSignInNotif">Le client itch.io va maintenant démarrer. Veuillez vous identifier puis fermer cette fenêtre.</sys:String>
+    <sys:String x:Key="LOCItchioSignInNotif">Le client itch.io va maintenant démarrer. Veuillez vous identifier puis fermer la fenêtre de connexion.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">En attente d'identification...</sys:String>    
 
     <!--GOG-->
-    <sys:String x:Key="LOCGOGUseLogin">Nom de connexion</sys:String>
-    <sys:String x:Key="LOCGOGUseAccountName">Nom du compte</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Connectez-vous à votre compte ou indiquez votre nom d'utilisateur public pour synchroniser votre bibliothèque.
-Notez que le nom du compte ne peut être utilisé que si ses paramètres de visibilité sont réglés sur "PUBLIC".</sys:String>
+    <sys:String x:Key="LOCGOGUseLogin">Connexion au compte</sys:String>
+    <sys:String x:Key="LOCGOGUseAccountName">Nom d'utilisateur</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Connectez-vous directement à votre compte ou indiquez votre nom d'utilisateur pour synchroniser votre bibliothèque. Notez que le nom d'utilisateur ne peut être utilisé que si les paramètres de visibilité de votre compte sont réglés sur "PUBLIC".</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Connectez-vous à votre compte ou indiquez l'URL personnalisée de votre profil pour synchroniser votre bibliothèque.
-Les comptes dont la visibilité des jeux est réglée sur "personne" doivent également voir leur clé d'API être indiquée.
+    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Sélectionnez le nom d'utilisateur de votre compte ou indiquez l'URL personnalisée de votre profil pour synchroniser votre bibliothèque. Les comptes dont la visibilité des jeux est réglée sur "personne" nécessitent également d'indiquer leur clé API.
     </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">URL perso.</sys:String>
-    <sys:String x:Key="LOCSteamLoggedInUser">Statut : Utilisateur connecté</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">Nom d'utilisateur</sys:String>
 </ResourceDictionary>
