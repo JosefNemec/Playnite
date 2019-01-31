@@ -164,7 +164,7 @@ Résultats dans : -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Boutique Officielle</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Boutique Officielle> IGDB</sys:String>
-    <sys:String x:Key="LOCMetaDescriptionFields">Veuillez sélectionner les champs qui doivent être automatiquement renseignés par Playnite et les sources à utiliser pour obtenir les données.</sys:String>
+    <sys:String x:Key="LOCMetaDescriptionFields">Veuillez sélectionner les champs qui doivent être automatiquement remplis par Playnite et les sources à utiliser pour obtenir les données.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Boutique:
 Utiliser uniquement les données fournies par les boutiques officielles.
 
@@ -244,7 +244,6 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsDBLocation">Emplacement de la base de données</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Aide</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Statut de connexion :</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLibrarySource">Spécifier la méthode d'importation :</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Paramètres de Playnite</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCategories">Importer des catégories de Steam :</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCatFrom">du profil :</sys:String>
@@ -292,6 +291,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCLoginFailed">Statut : Authentification échouée</sys:String>
     <sys:String x:Key="LOCLoggedIn">Statut : Utilisateur connecté</sys:String>
     <sys:String x:Key="LOCNotLoggedIn">Statut : Authentification requise</sys:String>
+    <sys:String x:Key="LOCNotLoggedInError">Impossible de connecter l'utilisateur.</sys:String>
 
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Importation de Métadonnées</sys:String>
@@ -436,6 +436,12 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
 {1}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Impossible d'ouvrir le lien, l'URL n'est pas au format valide.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Impossible d'ouvrir l'application.</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Impossible d'initialiser les composants web, Playnite ne peut pas démarrer.
+
+Veuillez essayer les solutions suivantes :        
+  • Vérifiez que tous les fichiers ont été correctement installés. Réinstallez-les en cas de doute.
+  • Vérifiez que votre antivirus ne bloque aucun fichier dans le répertoire de Playnite.
+  • Essayez d'installer Playnite dans un autre emplacement.</sys:String>
     
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Modifier les propriétés</sys:String>
@@ -569,4 +575,27 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCScriptError">Erreur de script</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Impossible d'exécuter la fonction.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Ouvrir dossier de métadonnées</sys:String>  
+
+    <sys:String x:Key="LOCClientNotInstalledError">{0} le client n'est pas installé.</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Dossier d'installation introuvable.</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">Configuration invalide.</sys:String>
+
+    <sys:String x:Key="LOCTroubleShootingAccountLink">Régler les problèmes de synchronisation</sys:String>
+
+    <!--itch.io-->
+    <sys:String x:Key="LOCItchioSignInNotif">Le client itch.io va maintenant démarrer. Veuillez vous identifier puis fermer cette fenêtre.</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage">En attente d'identification...</sys:String>    
+
+    <!--GOG-->
+    <sys:String x:Key="LOCGOGUseLogin">Nom de connexion</sys:String>
+    <sys:String x:Key="LOCGOGUseAccountName">Nom du compte</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Connectez-vous à votre compte ou indiquez votre nom d'utilisateur public pour synchroniser votre bibliothèque.
+Notez que le nom du compte ne peut être utilisé que si ses paramètres de visibilité sont réglés sur "PUBLIC".</sys:String>
+
+    <!--Steam-->
+    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Connectez-vous à votre compte ou indiquez l'URL personnalisée de votre profil pour synchroniser votre bibliothèque.
+Les comptes dont la visibilité des jeux est réglée sur "personne" doivent également voir leur clé d'API être indiquée.
+    </sys:String>
+    <sys:String x:Key="LOCSteamCustomUrlName">URL perso.</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">Statut : Utilisateur connecté</sys:String>
 </ResourceDictionary>
