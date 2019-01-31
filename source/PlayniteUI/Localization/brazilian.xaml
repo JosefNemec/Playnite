@@ -510,7 +510,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCExitPlaynite">Sair do Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotecas</sys:String> 
     <sys:String x:Key="LOCUpdateAll">Atualizar tudo</sys:String>
-    <sys:String x:Key="LOCExtensionCreatedBy">Criada por::</sys:String>
+    <sys:String x:Key="LOCExtensionCreatedBy">Criada por:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Versão:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Módulo:</sys:String>
 
@@ -596,11 +596,11 @@ Você pode tentar corrigir o problema:
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Dados da conta</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Nome da conta</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Inicie uma sessão com a sua conta ou insira o nome da conta pública do usuário para sincronizar a sua biblioteca completa.
-Observe que a opção Nome da conta só funciona em contas com visibilidade pública.</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Inicie uma sessão com a sua conta ou insira o nome de usuário da conta pública para sincronizar a sua biblioteca completa.
+Observe que o nome de usuário da conta só funciona em contas com visibilidade pública.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Selecione um usuário já autenticado ou insira o nome na URL da sua conta para sincronizar a sua biblioteca completa. Contas com visibilidade da biblioteca privada precisam especificar a chave da API vinculada a essa conta Steam.
+    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Selecione um usuário já autenticado ou insira o nome na URL da sua conta para sincronizar a sua biblioteca completa. Contas com a biblioteca privada precisam especificar a chave da API vinculada a essa conta Steam.
     </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Nome da conta na URL</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Usuário autenticado</sys:String>
