@@ -132,10 +132,10 @@ namespace Playnite.Database
             }
         }
 
-        public virtual IEnumerable<TItem> Add(List<string> items)
+        public virtual IEnumerable<TItem> Add(List<string> itemsToAdd)
         {
             var toAdd = new List<TItem>();
-            foreach (var itemName in items)
+            foreach (var itemName in itemsToAdd)
             {
                 var existingItem = this.FirstOrDefault(a => a.Name.Equals(itemName, StringComparison.OrdinalIgnoreCase));
                 if (existingItem != null)
@@ -156,34 +156,34 @@ namespace Playnite.Database
             }
         }
 
-        public virtual void Add(TItem item)
+        public virtual void Add(TItem itemToAdd)
         {
             lock (collectionLock)
             {
-                SaveItemData(item);
-                Items.TryAdd(item.Id, item);
+                SaveItemData(itemToAdd);
+                Items.TryAdd(itemToAdd.Id, itemToAdd);
             }
 
-            OnCollectionChanged(new List<TItem>() { item }, new List<TItem>());
+            OnCollectionChanged(new List<TItem>() { itemToAdd }, new List<TItem>());
         }
 
-        public virtual void Add(IEnumerable<TItem> items)
+        public virtual void Add(IEnumerable<TItem> itemsToAdd)
         {
-            if (items?.Any() != true)
+            if (itemsToAdd?.Any() != true)
             {
                 return;
             }
 
             lock (collectionLock)
             {
-                foreach (var item in items)
+                foreach (var item in itemsToAdd)
                 {
                     SaveItemData(item);
                     Items.TryAdd(item.Id, item);
                 }
             }
 
-            OnCollectionChanged(items.ToList(), new List<TItem>());
+            OnCollectionChanged(itemsToAdd.ToList(), new List<TItem>());
         }
 
         public virtual bool Remove(Guid id)
@@ -199,54 +199,54 @@ namespace Playnite.Database
             return true;
         }
 
-        public virtual bool Remove(TItem item)
+        public virtual bool Remove(TItem itemToRemove)
         {
-            return Remove(item.Id);
+            return Remove(itemToRemove.Id);
         }
 
-        public virtual bool Remove(IEnumerable<TItem> items)
+        public virtual bool Remove(IEnumerable<TItem> itemsToRemove)
         {
-            if (items?.Any() != true)
+            if (itemsToRemove?.Any() != true)
             {
                 return false;
             }
 
             lock (collectionLock)
             {
-                foreach (var item in items)
+                foreach (var item in itemsToRemove)
                 {
                     FileSystem.DeleteFile(GetItemFilePath(item.Id));
                     Items.TryRemove(item.Id, out var removed);
                 }
             }
 
-            OnCollectionChanged(new List<TItem>(), items.ToList());
+            OnCollectionChanged(new List<TItem>(), itemsToRemove.ToList());
             return true;
         }        
 
-        public virtual void Update(TItem item)
+        public virtual void Update(TItem itemToUpdate)
         {            
             TItem oldData;
             lock (collectionLock)
             {
-                oldData = GetItemData(item.Id);
-                SaveItemData(item);
-                var loadedItem = Get(item.Id);
-                if (!ReferenceEquals(loadedItem, item))
+                oldData = GetItemData(itemToUpdate.Id);
+                SaveItemData(itemToUpdate);
+                var loadedItem = Get(itemToUpdate.Id);
+                if (!ReferenceEquals(loadedItem, itemToUpdate))
                 {
-                    item.CopyProperties(loadedItem, true, null, true);
+                    itemToUpdate.CopyProperties(loadedItem, true, null, true);
                 }
             }
 
-            OnItemUpdated(new List<ItemUpdateEvent<TItem>>() { new ItemUpdateEvent<TItem>(oldData, item) });
+            OnItemUpdated(new List<ItemUpdateEvent<TItem>>() { new ItemUpdateEvent<TItem>(oldData, itemToUpdate) });
         }
 
-        public virtual void Update(IEnumerable<TItem> items)
+        public virtual void Update(IEnumerable<TItem> itemsToUpdate)
         {
             var updates = new List<ItemUpdateEvent<TItem>>();
             lock (collectionLock)
             {
-                foreach (var item in items)
+                foreach (var item in itemsToUpdate)
                 {
                     var oldData = GetItemData(item.Id);
                     SaveItemData(item);

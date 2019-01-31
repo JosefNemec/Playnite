@@ -27,6 +27,15 @@ namespace Playnite
         }
     }
 
+    // TODO store as null if not set
+    public class FilterItemProperites
+    {
+        [JsonIgnore]
+        public bool IsSet => !Text.IsNullOrEmpty() || Ids?.Any() == true;
+        public List<Guid> Ids { get; set; }
+        public string Text { get; set; }
+    }
+
     public class FilterSettings : ObservableObject
     {
         [JsonIgnore]
@@ -47,17 +56,17 @@ namespace Playnite
                     Favorite ||
                     !string.IsNullOrEmpty(Name) ||
                     !string.IsNullOrEmpty(ReleaseDate) ||
-                    !string.IsNullOrEmpty(Series) ||
-                    !string.IsNullOrEmpty(Source) ||
-                    !string.IsNullOrEmpty(AgeRating) ||
-                    !string.IsNullOrEmpty(Region) ||
-                    GenreString?.Any() == true ||
-                    Publishers?.Any() == true ||
-                    Developers?.Any() == true ||
-                    Categories?.Any() == true ||
-                    Tags?.Any() == true ||
-                    Platforms?.Any() == true ||
-                    Libraries?.Any() == true;
+                    Series?.IsSet == true ||
+                    Source?.IsSet == true ||
+                    AgeRating?.IsSet == true ||
+                    Region?.IsSet == true ||
+                    Genre?.IsSet == true ||
+                    Publisher?.IsSet == true ||
+                    Developer?.IsSet == true ||
+                    Category?.IsSet == true ||
+                    Tag?.IsSet == true ||
+                    Platform?.IsSet == true ||
+                    Library?.IsSet == true;
             }
         }
 
@@ -79,54 +88,25 @@ namespace Playnite
             }
         }
 
-        private List<Guid> genreIds;
-        public List<Guid> GenreIds
+        private FilterItemProperites genres;
+        public FilterItemProperites Genre
         {
             get
             {
-                return genreIds;
+                return genres;
             }
 
             set
             {
-                genreIds = value;
-                if (genreIds != null)
-                {
-                    genreString = null;
-                    OnFilterChanged(nameof(GenreString));
-                }
-
+                genres = value;
                 OnPropertyChanged();
-                OnFilterChanged(nameof(GenreIds));                
+                OnFilterChanged(nameof(Genre));
                 OnPropertyChanged(nameof(Active));
             }
         }
 
-        private string genreString;
-        public string GenreString
-        {
-            get
-            {
-                return genreString;
-            }
-
-            set
-            {
-                genreString = value;
-                if (!genreString.IsNullOrEmpty())
-                {
-                    genreIds = null;
-                    OnFilterChanged(nameof(GenreIds));
-                }
-
-                OnPropertyChanged();                
-                OnFilterChanged(nameof(GenreString));
-                OnPropertyChanged(nameof(Active));
-            }
-        }
-
-        private string platforms;
-        public string Platforms
+        private FilterItemProperites platforms;
+        public FilterItemProperites Platform
         {
             get
             {
@@ -137,7 +117,7 @@ namespace Playnite
             {
                 platforms = value;
                 OnPropertyChanged();
-                OnFilterChanged(nameof(Platforms));
+                OnFilterChanged(nameof(Platform));
                 OnPropertyChanged(nameof(Active));
             }
         }
@@ -160,8 +140,8 @@ namespace Playnite
         }
 
 
-        private string publishers;
-        public string Publishers
+        private FilterItemProperites publishers;
+        public FilterItemProperites Publisher
         {
             get
             {
@@ -172,13 +152,13 @@ namespace Playnite
             {
                 publishers = value;
                 OnPropertyChanged();
-                OnFilterChanged(nameof(Publishers));
+                OnFilterChanged(nameof(Publisher));
                 OnPropertyChanged(nameof(Active));
             }
         }
 
-        private string developers;
-        public string Developers
+        private FilterItemProperites developers;
+        public FilterItemProperites Developer
         {
             get
             {
@@ -189,13 +169,13 @@ namespace Playnite
             {
                 developers = value;
                 OnPropertyChanged();
-                OnFilterChanged(nameof(Developers));
+                OnFilterChanged(nameof(Developer));
                 OnPropertyChanged(nameof(Active));
             }
         }
 
-        private string categories;
-        public string Categories
+        private FilterItemProperites categories;
+        public FilterItemProperites Category
         {
             get
             {
@@ -206,13 +186,13 @@ namespace Playnite
             {
                 categories = value;
                 OnPropertyChanged();
-                OnFilterChanged(nameof(Categories));
+                OnFilterChanged(nameof(Category));
                 OnPropertyChanged(nameof(Active));
             }
         }
 
-        private string tags;
-        public string Tags
+        private FilterItemProperites tags;
+        public FilterItemProperites Tag
         {
             get
             {
@@ -223,13 +203,13 @@ namespace Playnite
             {
                 tags = value;
                 OnPropertyChanged();
-                OnFilterChanged(nameof(Tags));
+                OnFilterChanged(nameof(Tag));
                 OnPropertyChanged(nameof(Active));
             }
         }
 
-        private string series;
-        public string Series
+        private FilterItemProperites series;
+        public FilterItemProperites Series
         {
             get
             {
@@ -245,8 +225,8 @@ namespace Playnite
             }
         }
 
-        private string region;
-        public string Region
+        private FilterItemProperites region;
+        public FilterItemProperites Region
         {
             get
             {
@@ -262,8 +242,8 @@ namespace Playnite
             }
         }
 
-        private string source;
-        public string Source
+        private FilterItemProperites source;
+        public FilterItemProperites Source
         {
             get
             {
@@ -279,8 +259,8 @@ namespace Playnite
             }
         }
 
-        private string ageRating;
-        public string AgeRating
+        private FilterItemProperites ageRating;
+        public FilterItemProperites AgeRating
         {
             get
             {
@@ -363,20 +343,20 @@ namespace Playnite
                 OnPropertyChanged(nameof(Active));
             }
         }
-
-        private List<Guid> libraries;
-        public List<Guid> Libraries
+        
+        private FilterItemProperites library;
+        public FilterItemProperites Library
         {
             get
             {
-                return libraries;
+                return library;
             }
 
             set
             {
-                libraries = value;
+                library = value;
                 OnPropertyChanged();
-                OnFilterChanged(nameof(Libraries));
+                OnFilterChanged(nameof(Library));
                 OnPropertyChanged(nameof(Active));
             }
         }
@@ -411,16 +391,16 @@ namespace Playnite
                 filterChanges.Add(nameof(Name));
             }
 
-            if (GenreString != null)
+            if (Genre?.IsSet == true)
             {
-                GenreString = null;
-                filterChanges.Add(nameof(GenreString));
+                Genre = null;
+                filterChanges.Add(nameof(Genre));
             }
 
-            if (Platforms != null)
+            if (Platform?.IsSet == true)
             {
-                Platforms = null;
-                filterChanges.Add(nameof(Platforms));
+                Platform = null;
+                filterChanges.Add(nameof(Platform));
             }
 
             if (ReleaseDate != null)
@@ -429,28 +409,28 @@ namespace Playnite
                 filterChanges.Add(nameof(ReleaseDate));
             }
 
-            if (Publishers != null)
+            if (Publisher?.IsSet == true)
             {
-                Publishers = null;
-                filterChanges.Add(nameof(Publishers));
+                Publisher = null;
+                filterChanges.Add(nameof(Publisher));
             }
 
-            if (Developers != null)
+            if (Developer?.IsSet == true)
             {
-                Developers = null;
-                filterChanges.Add(nameof(Developers));
+                Developer = null;
+                filterChanges.Add(nameof(Developer));
             }
 
-            if (Categories != null)
+            if (Category?.IsSet == true)
             {
-                Categories = null;
-                filterChanges.Add(nameof(Categories));
+                Category = null;
+                filterChanges.Add(nameof(Category));
             }
 
-            if (Tags != null)
+            if (Tag?.IsSet == true)
             {
-                Tags = null;
-                filterChanges.Add(nameof(Tags));
+                Tag = null;
+                filterChanges.Add(nameof(Tag));
             }
 
             if (IsInstalled != false)
@@ -477,34 +457,34 @@ namespace Playnite
                 filterChanges.Add(nameof(Favorite));
             }
 
-            if (Series != null)
+            if (Series?.IsSet == true)
             {
                 Series = null;
                 filterChanges.Add(nameof(Series));
             }
 
-            if (Region != null)
+            if (Region?.IsSet == true)
             {
                 Region = null;
                 filterChanges.Add(nameof(Region));
             }
 
-            if (Source != null)
+            if (Source?.IsSet == true)
             {
                 Source = null;
                 filterChanges.Add(nameof(Source));
             }
 
-            if (AgeRating != null)
+            if (AgeRating?.IsSet == true)
             {
                 AgeRating = null;
                 filterChanges.Add(nameof(AgeRating));
             }
 
-            if (Libraries != null)
+            if (Library != null)
             {
-                Libraries = null;
-                filterChanges.Add(nameof(Libraries));
+                Library = null;
+                filterChanges.Add(nameof(Library));
             }
 
             suppressFilterChanges = false;

@@ -2827,29 +2827,16 @@
                                         <Label.Style>
                                             <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Libraries, TargetNullValue=''}" Value="">
+                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Library.IsSet, TargetNullValue=''}" Value="False">
                                                         <Setter Property="Opacity" Value="0.6"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <ComboBox Margin="8,0,8,8" Style="{StaticResource TextableComboBox}"
-                                              ItemsSource="{Binding DatabaseFilters.Libraries}"
-                                              Text="{Binding DatabaseFilters.LibrariesString, Mode=OneWay}">
-                                        <ComboBox.ItemContainerStyle>
-                                            <Style TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
-                                                <Setter Property="Padding" Value="0" />
-                                            </Style>
-                                        </ComboBox.ItemContainerStyle>
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <CheckBox IsChecked="{Binding Selected}"
-                                                          Margin="5,0,5,0" Padding="7"
-                                                          Content="{Binding Name}" />
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
+                                    
+                                    <pc:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Libraries}"
+                                                           FilterProperties="{Binding AppSettings.FilterSettings.Library}"/>
 
                                     <Label Content="{DynamicResource LOCNameLabel}">
                                         <Label.Style>
@@ -2868,32 +2855,31 @@
                                         <Label.Style>
                                             <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Genres, TargetNullValue=''}" Value="">
+                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Genre.IsSet, TargetNullValue=''}" Value="False">
                                                         <Setter Property="Opacity" Value="0.6"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:DdItemListSelectionBox 
-                                        IsEditable="True"
-                                        ItemsList="{Binding DatabaseFilters.Genres}"
-                                        BoundIds="{Binding AppSettings.FilterSettings.GenreIds, Mode=TwoWay}"
-                                        Text="{Binding AppSettings.FilterSettings.GenreString, Delay=100, Mode=TwoWay}"
-                                                               />
+
+                                    <pc:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Genres}"
+                                                           FilterProperties="{Binding AppSettings.FilterSettings.Genre}"/>
 
                                     <Label Content="{DynamicResource LOCPlatformTitle}">
                                         <Label.Style>
                                             <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterPlatform}" Value="">
+                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Platform.IsSet, TargetNullValue=''}" Value="False">
                                                         <Setter Property="Opacity" Value="0.6"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterPlatform" Text="{Binding AppSettings.FilterSettings.Platforms, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <pc:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Platforms}"
+                                                           FilterProperties="{Binding AppSettings.FilterSettings.Platform}"/>
 
                                     <Label Content="{DynamicResource LOCGameReleaseDateTitle}">
                                         <Label.Style>
@@ -2912,105 +2898,121 @@
                                         <Label.Style>
                                             <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterDeveloper}" Value="">
+                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Developer.IsSet, TargetNullValue=''}" Value="False">
                                                         <Setter Property="Opacity" Value="0.6"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterDeveloper" Text="{Binding AppSettings.FilterSettings.Developers, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <pc:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Developers}"
+                                                           FilterProperties="{Binding AppSettings.FilterSettings.Developer}"/>
 
                                     <Label Content="{DynamicResource LOCPublisherLabel}">
                                         <Label.Style>
                                             <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterPublisher}" Value="">
+                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Publisher.IsSet, TargetNullValue=''}" Value="False">
                                                         <Setter Property="Opacity" Value="0.6"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterPublisher" Text="{Binding AppSettings.FilterSettings.Publishers, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <pc:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Publishers}"
+                                                           FilterProperties="{Binding AppSettings.FilterSettings.Publisher}"/>
 
                                     <Label Content="{DynamicResource LOCCategoryLabel}">
                                         <Label.Style>
                                             <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterCategory}" Value="">
+                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Category.IsSet, TargetNullValue=''}" Value="False">
                                                         <Setter Property="Opacity" Value="0.6"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterCategory" Text="{Binding AppSettings.FilterSettings.Categories, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+                                    
+                                    <pc:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Categories}"
+                                                           FilterProperties="{Binding AppSettings.FilterSettings.Category}"/>
 
                                     <Label Content="{DynamicResource LOCTagLabel}">
                                         <Label.Style>
                                             <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterTag}" Value="">
+                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Tag.IsSet, TargetNullValue=''}" Value="False">
                                                         <Setter Property="Opacity" Value="0.6"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterTag" Text="{Binding AppSettings.FilterSettings.Tags, Delay=100, Mode=TwoWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <pc:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Tags}"
+                                                           FilterProperties="{Binding AppSettings.FilterSettings.Tag}"/>
 
                                     <Label Content="{DynamicResource LOCSeriesLabel}">
                                         <Label.Style>
                                             <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterSeries}" Value="">
+                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Series.IsSet, TargetNullValue=''}" Value="False">
                                                         <Setter Property="Opacity" Value="0.6"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterSeries" Text="{Binding AppSettings.FilterSettings.Series, Delay=100, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <pc:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Series}"
+                                                           FilterProperties="{Binding AppSettings.FilterSettings.Series}"/>
 
                                     <Label Content="{DynamicResource LOCRegionLabel}">
                                         <Label.Style>
                                             <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterRegion}" Value="">
+                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Region.IsSet, TargetNullValue=''}" Value="False">
                                                         <Setter Property="Opacity" Value="0.6"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterRegion" Text="{Binding AppSettings.FilterSettings.Region, Delay=100, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <pc:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Regions}"
+                                                           FilterProperties="{Binding AppSettings.FilterSettings.Region}"/>
 
                                     <Label Content="{DynamicResource LOCSourceLabel}">
                                         <Label.Style>
                                             <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterSource}" Value="">
+                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.Source.IsSet, TargetNullValue=''}" Value="False">
                                                         <Setter Property="Opacity" Value="0.6"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterSource" Text="{Binding AppSettings.FilterSettings.Source, Delay=100, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <pc:FilterSelectionBox ItemsList="{Binding DatabaseFilters.Sources}"
+                                                           FilterProperties="{Binding AppSettings.FilterSettings.Source}"/>
 
                                     <Label Content="{DynamicResource LOCAgeRatingLabel}">
                                         <Label.Style>
                                             <Style TargetType="Label" BasedOn="{StaticResource FilterLabel}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text, TargetNullValue='', ElementName=TextFilterAgeRating}" Value="">
+                                                    <DataTrigger Binding="{Binding AppSettings.FilterSettings.AgeRating.IsSet, TargetNullValue=''}" Value="False">
                                                         <Setter Property="Opacity" Value="0.6"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Label.Style>
                                     </Label>
-                                    <pc:SearchBox x:Name="TextFilterAgeRating" Text="{Binding AppSettings.FilterSettings.AgeRating, Delay=100, Mode=TwoWay}" Style="{StaticResource FilterTextBox}"/>
+
+                                    <pc:FilterSelectionBox ItemsList="{Binding DatabaseFilters.AgeRatings}"
+                                                           FilterProperties="{Binding AppSettings.FilterSettings.AgeRating}"/>
                                 </StackPanel>
                             </ScrollViewer>
                         </DockPanel>

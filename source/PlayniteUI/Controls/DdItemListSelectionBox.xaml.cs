@@ -36,7 +36,11 @@ namespace PlayniteUI.Controls
             }
         }
 
-        public static readonly DependencyProperty ItemsListProperty = DependencyProperty.Register("ItemsList", typeof(SelectableDbItemList), typeof(DdItemListSelectionBox), new PropertyMetadata(null, ItemsListPropertyChangedCallback));
+        public static readonly DependencyProperty ItemsListProperty = DependencyProperty.Register(
+            nameof(ItemsList),
+            typeof(SelectableDbItemList),
+            typeof(DdItemListSelectionBox),
+            new PropertyMetadata(null, ItemsListPropertyChangedCallback));
 
         private static void ItemsListPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
@@ -66,7 +70,11 @@ namespace PlayniteUI.Controls
             }
         }
 
-        public static readonly DependencyProperty BoundIdsProperty = DependencyProperty.Register("BoundIds", typeof(object), typeof(DdItemListSelectionBox), new PropertyMetadata(null, BoundIdsPropertyChangedCallback));
+        public static readonly DependencyProperty BoundIdsProperty = DependencyProperty.Register(
+            nameof(BoundIds),
+            typeof(object),
+            typeof(DdItemListSelectionBox),
+            new PropertyMetadata(null, BoundIdsPropertyChangedCallback));
 
         private static void BoundIdsPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
@@ -79,50 +87,6 @@ namespace PlayniteUI.Controls
             obj.IgnoreChanges = true;
             obj.ItemsList?.SetSelection(obj.BoundIds as IEnumerable<Guid>);
             obj.IgnoreChanges = false;
-        }
-
-        public string Text
-        {
-            get
-            {
-                return (string)GetValue(TextProperty);
-            }
-
-            set
-            {
-                SetValue(TextProperty, value);
-            }
-        }
-
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(DdItemListSelectionBox), new PropertyMetadata(string.Empty, TextPropertyChangedCallback));
-
-        private static void TextPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            var obj = sender as DdItemListSelectionBox;
-            obj.TextFilter.Text = (string)e.NewValue;
-            obj.TextFilter.CaretIndex = obj.TextFilter.Text.Length;
-        }
-
-        public bool IsEditable
-        {
-            get
-            {
-                return (bool)GetValue(IsEditableProperty);
-            }
-
-            set
-            {
-                SetValue(IsEditableProperty, value);
-            }
-        }
-
-        public static readonly DependencyProperty IsEditableProperty = DependencyProperty.Register("IsEditable", typeof(bool), typeof(DdItemListSelectionBox), new PropertyMetadata(false, IsEditablePropertyChangedCallback));
-
-        private static void IsEditablePropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            //var obj = sender as DdItemListSelectionBox;
-            //obj.TextFilter.Text = (string)e.NewValue;
-            //obj.TextFilter.CaretIndex = obj.TextFilter.Text.Length;
         }
 
         public DdItemListSelectionBox()

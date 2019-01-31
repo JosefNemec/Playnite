@@ -111,6 +111,11 @@ namespace GogLibrary
 
         internal List<GameInfo> GetLibraryGames()
         {
+            if (LibrarySettings.UsePublicAccount)
+            {
+                return GetLibraryGames(LibrarySettings.AccountName);
+            }
+
             using (var view = playniteApi.WebViews.CreateOffscreenView())
             {
                 var api = new GogAccountClient(view);

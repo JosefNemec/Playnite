@@ -33,104 +33,27 @@ namespace PlayniteUI.ViewModels
 
         #region Database fields
 
-        public SelectableDbItemList Genres
-        {
-            get
-            {
-                return new SelectableDbItemList(database.Genres.OrderBy(a => a.Name), EditingGame.GenreIds);
-            }
-        }
+        public SelectableDbItemList Genres { get; set; } 
 
-        public SelectableDbItemList Developers
-        {
-            get
-            {
-                return new SelectableDbItemList(database.Companies.OrderBy(a => a.Name), EditingGame.DeveloperIds);
-            }
-        }
+        public SelectableDbItemList Developers { get; set; }
 
-        public SelectableDbItemList Publishers
-        {
-            get
-            {
-                return new SelectableDbItemList(database.Companies.OrderBy(a => a.Name), EditingGame.PublisherIds);
-            }
-        }
+        public SelectableDbItemList Publishers { get; set; }
 
-        public SelectableDbItemList Tags
-        {
-            get
-            {
-                return new SelectableDbItemList(database.Tags.OrderBy(a => a.Name), EditingGame.TagIds);
-            }
-        }
+        public SelectableDbItemList Tags { get; set; }
 
-        public SelectableDbItemList Categories
-        {
-            get
-            {
-                return new SelectableDbItemList(database.Categories.OrderBy(a => a.Name), EditingGame.CategoryIds);
-            }
-        }
+        public SelectableDbItemList Categories { get; set; }
 
-        public List<GameSource> Sources
-        {
-            get
-            {
-                var items = database.Sources.OrderBy(a => a.Name).ToList();
-                items.Insert(0, new GameSource() { Id = Guid.Empty });
-                return items;
-            }
-        }
+        public List<GameSource> Sources { get; set; }
 
-        public List<Region> Regions
-        {
-            get
-            {
-                var items = database.Regions.OrderBy(a => a.Name).ToList();
-                items.Insert(0, new Region() { Id = Guid.Empty });
-                return items;
-            }
-        }
+        public List<Region> Regions { get; set; }
 
-        public List<Series> Series
-        {
-            get
-            {
-                var items = database.Series.OrderBy(a => a.Name).ToList();
-                items.Insert(0, new Series() { Id = Guid.Empty });
-                return items;
-            }
-        }
+        public List<Series> Series { get; set; }
 
-        public List<AgeRating> AgeRatings
-        {
-            get
-            {
-                var items = database.AgeRatings.OrderBy(a => a.Name).ToList();
-                items.Insert(0, new AgeRating() { Id = Guid.Empty });
-                return items;
-            }
-        }
+        public List<AgeRating> AgeRatings { get; set; }
 
-        public List<Platform> Platforms
-        {
-            get
-            {
-                var items = database.Platforms.OrderBy(a => a.Name).ToList();
-                items.Insert(0, new Platform() { Id = Guid.Empty });
-                return items;
-            }
-        }
+        public List<Platform> Platforms { get; set; }
 
-        public List<Emulator> Emulators
-        {
-            get
-            {
-                return database.Emulators.OrderBy(a => a.Name).ToList();
-            }
-        }
-
+        public List<Emulator> Emulators { get; set; }
 
         #endregion Database fields
 
@@ -1148,12 +1071,6 @@ namespace PlayniteUI.ViewModels
 
         public GameEditViewModel(Game game, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, ExtensionFactory extensions)
         {
-            this.database = database;
-            this.window = window;
-            this.dialogs = dialogs;
-            this.resources = resources;
-            this.extensions = extensions;
-
             Game = game;
             IsSingleGameEdit = true;
             EditingGame = game.CloneJson();
@@ -1162,17 +1079,11 @@ namespace PlayniteUI.ViewModels
             ShowLinks = true;
             ShowActions = true;
             ShowInstallation = true;
-            EditingGame.PropertyChanged += EditingGame_PropertyChanged;
+            Init(database, window, dialogs, resources, extensions);
         }
 
         public GameEditViewModel(IEnumerable<Game> games, GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, ExtensionFactory extensions)
         {
-            this.database = database;
-            this.window = window;
-            this.dialogs = dialogs;
-            this.resources = resources;
-            this.extensions = extensions;
-
             Games = games;
             IsSingleGameEdit = false;
             var previewGame = GameTools.GetMultiGameEditObject(games);
@@ -1182,7 +1093,41 @@ namespace PlayniteUI.ViewModels
             ShowLinks = false;
             ShowActions = false;
             ShowInstallation = false;
+            Init(database, window, dialogs, resources, extensions);
+        }
+
+        private void Init(GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources, ExtensionFactory extensions)
+        {
+            this.database = database;
+            this.window = window;
+            this.dialogs = dialogs;
+            this.resources = resources;
+            this.extensions = extensions;
+
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
+
+            Genres = new SelectableDbItemList(database.Genres, EditingGame.GenreIds);
+            Developers = new SelectableDbItemList(database.Companies, EditingGame.DeveloperIds);
+            Publishers = new SelectableDbItemList(database.Companies, EditingGame.PublisherIds);
+            Tags = new SelectableDbItemList(database.Tags, EditingGame.TagIds);
+            Categories = new SelectableDbItemList(database.Categories, EditingGame.CategoryIds);
+
+            Sources = database.Sources.OrderBy(a => a.Name).ToList();
+            Sources.Insert(0, new GameSource() { Id = Guid.Empty }); 
+
+            Regions = database.Regions.OrderBy(a => a.Name).ToList();
+            Regions.Insert(0, new Region() { Id = Guid.Empty });
+
+            Series = database.Series.OrderBy(a => a.Name).ToList();
+            Series.Insert(0, new Series() { Id = Guid.Empty });
+
+            AgeRatings = database.AgeRatings.OrderBy(a => a.Name).ToList();
+            AgeRatings.Insert(0, new AgeRating() { Id = Guid.Empty });
+
+            Platforms = database.Platforms.OrderBy(a => a.Name).ToList();
+            Platforms.Insert(0, new Platform() { Id = Guid.Empty });
+
+            Emulators = database.Emulators.OrderBy(a => a.Name).ToList();
         }
 
         private void EditingGame_PropertyChanged(object sender, PropertyChangedEventArgs e)

@@ -186,7 +186,7 @@ namespace PlayniteUI.ViewModels
             this.dialogs = dialogs;
             this.resources = resources;
             this.database = database;
-            AvailablePlatforms = new SelectableDbItemList(database.Platforms.OrderBy(a => a.Name));
+            AvailablePlatforms = new SelectableDbItemList(database.Platforms);
             AvailablePlatforms.SelectionChanged += (s, e) =>
             {
                 if (selectedProfile != null)

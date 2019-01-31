@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PlayniteUI.Controls.DdItemListSelectionBox"
+﻿<UserControl x:Class="PlayniteUI.Controls.FilterSelectionBox"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -24,16 +24,23 @@
                 <ToggleButton.Template>
                     <ControlTemplate>                    
                         <Grid>
-                            <DockPanel>
-                                <Viewbox DockPanel.Dock="Right" Width="20" Margin="0,0,2,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Viewbox Grid.Column="1" Width="20" Margin="0,0,2,0">
                                     <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
                                     VerticalAlignment="Center"/>
                                 </Viewbox>
-                                <TextBlock Text="{Binding ItemsList.AsString, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                           TextTrimming="CharacterEllipsis" HorizontalAlignment="Stretch" 
-                                           VerticalAlignment="Center"
-                                           DockPanel.Dock="Left" Margin="5,0,0,0"/>
-                            </DockPanel>
+                                <TextBox Grid.Column="0" BorderThickness="0"
+                                         Text="{Binding FullTextText, Delay=200, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
+                                         VerticalAlignment="Center"
+                                         DockPanel.Dock="Left" Margin="1,0,0,0"/>
+                            </Grid>
                             <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup"
                                    IsOpen="{Binding IsChecked, ElementName=Toggle, Mode=TwoWay, Delay=100}" StaysOpen="False"
                                    MaxHeight="300" Width="{Binding ActualWidth, ElementName=Toggle}">

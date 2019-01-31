@@ -420,14 +420,14 @@ namespace PlayniteUI.ViewModels
             var removedItems = dbCollection.Where(a => updatedCollection.FirstOrDefault(b => b.Id == a.Id) == null);
             if (removedItems.Any())
             {
-                dbCollection.Remove(removedItems);
+                dbCollection.Remove(removedItems.ToList());
             }
 
             // Add new items
             var addedItems = updatedCollection.Where(a => dbCollection[a.Id] == null);
             if (addedItems.Any())
             {
-                dbCollection.Add(addedItems);
+                dbCollection.Add(addedItems.ToList());
             }
 
             // Update modified items

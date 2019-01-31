@@ -256,32 +256,33 @@ namespace PlayniteUI.ViewModels
 
         public void SetFilter(FilterProperty property, string value)
         {
-            switch (property)
-            {
-                case FilterProperty.Genres:
-                    settings.FilterSettings.GenreString = value;
-                    break;
-                case FilterProperty.Developers:
-                    settings.FilterSettings.Developers = value;
-                    break;
-                case FilterProperty.Publishers:
-                    settings.FilterSettings.Publishers = value;
-                    break;
-                case FilterProperty.ReleaseDate:
-                    settings.FilterSettings.ReleaseDate = value;
-                    break;
-                case FilterProperty.Categories:
-                    settings.FilterSettings.Categories = value;
-                    break;
-                case FilterProperty.Tags:
-                    settings.FilterSettings.Tags = value;
-                    break;
-                case FilterProperty.Platform:
-                    settings.FilterSettings.Platforms = value;
-                    break;
-                default:
-                    break;
-            }
+            // TODO
+            //switch (property)
+            //{
+            //    case FilterProperty.Genres:
+            //        settings.FilterSettings.GenreString = value;
+            //        break;
+            //    case FilterProperty.Developers:
+            //        settings.FilterSettings.Developers = value;
+            //        break;
+            //    case FilterProperty.Publishers:
+            //        settings.FilterSettings.Publishers = value;
+            //        break;
+            //    case FilterProperty.ReleaseDate:
+            //        settings.FilterSettings.ReleaseDate = value;
+            //        break;
+            //    case FilterProperty.Categories:
+            //        settings.FilterSettings.Categories = value;
+            //        break;
+            //    case FilterProperty.Tags:
+            //        settings.FilterSettings.Tags = value;
+            //        break;
+            //    case FilterProperty.Platform:
+            //        settings.FilterSettings.Platforms = value;
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
 
         public void Play()

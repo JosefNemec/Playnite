@@ -188,6 +188,9 @@
     <Compile Include="Commands\GeneralCommands.cs" />
     <Compile Include="Commands\GenericCommands.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Controls\FilterSelectionBox.xaml.cs">
+      <DependentUpon>FilterSelectionBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DdItemListSelectionBox.xaml.cs">
       <DependentUpon>DdItemListSelectionBox.xaml</DependentUpon>
     </Compile>
@@ -345,6 +348,10 @@
       <DependentUpon>WebViewWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="XInputBinding.cs" />
+    <Page Include="Controls\FilterSelectionBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\DdItemListSelectionBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
