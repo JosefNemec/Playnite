@@ -203,8 +203,8 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCMenuReloadLibrary">更新游戏库</sys:String>
     <sys:String x:Key="LOCMenuAddGame">添加游戏</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">手动</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled">从已安装或从文件夹导入</sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated">导入模拟器游戏</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">自动扫描...</sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">模拟器游戏...</sys:String>
     <sys:String x:Key="LOCMenuAbout">关于Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">发送反馈</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">启动全屏模式</sys:String>
@@ -229,6 +229,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">导入游戏后下载元数据</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">以最小化启动</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">计算机启动时运行Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">计算机启动时无法注册Playnite为开机启动项</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">以全屏模式启动</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">包括Steam, Origin和其他</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">异步图像加载（需要重新启动）</sys:String>
@@ -248,7 +249,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsDBLocation">数据库位置</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">我的帐户名称是什么？</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">登录状态：</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLibrarySource">按以下方式指定用户游戏库：</sys:String>
+    <sys:String x:Key="LOCSettingsSteamLibrarySource">通过以下方式指定用户库：</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite设置</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCategories">导入Steam类别：</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCatFrom">来自帐户：</sys:String>
@@ -288,6 +289,8 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">商店截图</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">商店背景</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">如果不重新下载元数据，则不会应用追溯于现有游戏。</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">强制同步游戏时间</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">始终在库同步期间从远程库下载记录的游戏时间，忽略Playnite记录的时间。</sys:String>
 
     <sys:String x:Key="LOCImportError">导入错误</sys:String>
     <sys:String x:Key="LOCLoginChecking">正在检查身份验证状态...</sys:String>
@@ -295,7 +298,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCLoginFailed">验证失败</sys:String>
     <sys:String x:Key="LOCLoggedIn">用户已通过身份验证</sys:String>
     <sys:String x:Key="LOCNotLoggedIn">需要身份验证</sys:String>
-    
+    <sys:String x:Key="LOCNotLoggedInError">无法验证用户身份</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">数据导入</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">下载数据</sys:String>
@@ -438,6 +441,12 @@ IGDB > 官方商店：
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">无法打开网址，网址格式无效</sys:String>
     <sys:String x:Key="LOCAppStartupError">无法启动应用程序。</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">无法初始化Web视图组件，Playnite无法继续启动。
+
+您可以尝试这些来解决问题：        
+  • 检查所有文件是否已正确安装，重新安装可能会有所帮助
+  • 检查防病毒软件是否阻止Playnite目录中的文件
+  • 尝试不同的安装位置</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">编辑游戏详情</sys:String>
@@ -567,10 +576,32 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCOpeningDesktopModeMessage">正在打开桌面模式...</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">正在打开全屏模式...</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">正在加载游戏库...</sys:String>
-    <sys:String x:Key="LOCScriptInstallFail">无法安装脚本文件。</sys:String>
-    <sys:String x:Key="LOCScriptInstallSuccess">脚本安装成功。</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">无法安装脚本文件</sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">脚本安装成功</sys:String>
     <sys:String x:Key="LOCInstallScript">安装脚本</sys:String>
     <sys:String x:Key="LOCScriptError">脚本错误</sys:String>
-    <sys:String x:Key="LOCScriptExecutionError">无法执行扩展功能。</sys:String>
+    <sys:String x:Key="LOCScriptExecutionError">无法执行扩展功能</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">打开元数据文件夹</sys:String>
+	 
+    <sys:String x:Key="LOCClientNotInstalledError">{0} 客户端未安装</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">未找到游戏的安装目录</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">无效的游戏动作配置</sys:String>
+
+    <sys:String x:Key="LOCTroubleShootingAccountLink">解决帐户同步问题</sys:String>
+
+    <!--itch.io-->
+    <sys:String x:Key="LOCItchioSignInNotif">itch.io客户端现在将打开，请登录然后关闭此消息。</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage">正在等待用户登录，请在完成后关闭...</sys:String>    
+
+    <!--GOG-->
+    <sys:String x:Key="LOCGOGUseLogin">帐号登录</sys:String>
+    <sys:String x:Key="LOCGOGUseAccountName">账户名称</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">登录您的帐户或公共用户帐户以同步您的完整库。
+请注意，“帐户名称”选项仅适用于具有公开可见性的帐户。</sys:String>
+
+    <!--Steam-->
+    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">选择通过身份验证的用户或指定帐户的可信URL名称以同步您的完整库。库为私密的帐户必须指定链接到该Steam帐户的API密钥。
+    </sys:String>
+    <sys:String x:Key="LOCSteamCustomUrlName">帐户URL名称</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">已认证用户</sys:String>
 </ResourceDictionary>
