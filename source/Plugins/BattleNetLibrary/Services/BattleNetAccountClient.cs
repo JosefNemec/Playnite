@@ -1,7 +1,12 @@
-﻿using Playnite.SDK;
+﻿using BattleNetLibrary.Models;
+using Playnite.Common;
+using Playnite.SDK;
+using Playnite.Web;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +14,9 @@ namespace BattleNetLibrary.Services
 {
     public class BattleNetAccountClient
     {
-        private const string libraryUrl = @"battle.net/account/management/";
+        private const string apiStatusUrl = @"https://account.blizzard.com/api/";
+        private const string gamesUrl = @"https://account.blizzard.com/api/games-and-subs";
+        private const string classicGamesUrl = @"https://account.blizzard.com/api/classic-games";
         private ILogger logger = LogManager.GetLogger();
         private IWebView webView;
 
@@ -18,30 +25,76 @@ namespace BattleNetLibrary.Services
             this.webView = webView;
         }
 
-        public string GetOwnedGames()
+        public List<GamesAndSubs.GameAccount> GetOwnedGames()
         {
-            webView.NavigateAndWait(libraryUrl);
-            return webView.GetPageSource();
+            webView.NavigateAndWait(gamesUrl);
+            var textGames = webView.GetPageText();
+            var games = Serialization.FromJson<GamesAndSubs>(textGames);
+            return games.gameAccounts;
+        }
+
+        public List<ClassicGames.ClassicGame> GetOwnedClassicGames()
+        {
+            webView.NavigateAndWait(classicGamesUrl);
+            var textGames = webView.GetPageText();
+            var games = Serialization.FromJson<ClassicGames>(textGames);
+            return games.classicGames;
         }
 
         public void Login()
         {
+            var apiUrls = GetDefaultApiStatus();
             webView.NavigationChanged += (s, e) =>
             {
-                if (webView.GetCurrentAddress().EndsWith(libraryUrl))
+                var address = webView.GetCurrentAddress();
+                if (address.StartsWith(@"https://account.blizzard.com") && !address.Equals(apiUrls.logoutUri, StringComparison.OrdinalIgnoreCase))
                 {
                     webView.Close();
                 }
             };
 
-            webView.Navigate(@"https://battle.net/account/management/?logout");
+            webView.Navigate(apiUrls.logoutUri);
             webView.OpenDialog();
         }
 
         public bool GetIsUserLoggedIn()
         {
-            webView.NavigateAndWait(libraryUrl);
-            return !webView.GetCurrentAddress().Contains("battle.net/login");
+            return GetApiStatus().authenticated;
+        }
+
+        public static BattleNetApiStatus GetDefaultApiStatus()
+        {
+            using (var webClient = new WebClient())
+            {
+                try
+                {                    
+                    webClient.DownloadData(apiStatusUrl);
+                }
+                catch (WebException exception) // Response is always 401
+                {
+                    string responseText = string.Empty;
+                    var responseStream = exception.Response?.GetResponseStream();
+                    if (responseStream != null)
+                    {
+                        using (var reader = new StreamReader(responseStream))
+                        {
+                            responseText = reader.ReadToEnd();
+                        }
+                    }
+
+                    var deserialized = Serialization.FromJson<BattleNetApiStatus>(responseText);
+                    return  deserialized;
+                }
+
+                return null;
+            }
+        }
+
+        public BattleNetApiStatus GetApiStatus()
+        {
+            webView.NavigateAndWait(apiStatusUrl);
+            var textStatus = webView.GetPageText();
+            return Serialization.FromJson<BattleNetApiStatus>(textStatus);
         }
     }
 }

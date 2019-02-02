@@ -930,10 +930,19 @@ namespace Playnite.Database
             lock (fileFilesLock)
             {
                 FileSystem.DeleteFileSafe(filePath);
-                var dir = Path.GetDirectoryName(filePath);
-                if (FileSystem.IsDirectoryEmpty(dir))
+
+                try
                 {
-                    FileSystem.DeleteDirectory(dir);
+                    var dir = Path.GetDirectoryName(filePath);
+                    if (FileSystem.IsDirectoryEmpty(dir))
+                    {
+                        FileSystem.DeleteDirectory(dir);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    // Getting crash reports from Path.GetDirectoryName for some reason.
+                    logger.Error(e, "Failed to clean up directory after removing file");
                 }
             }
 

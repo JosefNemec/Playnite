@@ -34,6 +34,11 @@ namespace Playnite.SDK
         IPlaynitePathsAPI Paths { get; }
 
         /// <summary>
+        /// Gets notification API.
+        /// </summary>
+        INotificationsAPI Notifications { get; }
+
+        /// <summary>
         /// Gets application info API.
         /// </summary>
         IPlayniteInfoAPI ApplicationInfo { get; }

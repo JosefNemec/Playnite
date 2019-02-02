@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         xmlns:pui="clr-namespace:PlayniteUI"
         xmlns:pcmd="clr-namespace:PlayniteUI.Commands"
         xmlns:pn="clr-namespace:Playnite;assembly=Playnite"
@@ -18,8 +19,8 @@
         AutomationProperties.AutomationId="WindowSettings">
 
     <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Closed">
-            <i:InvokeCommandAction Command="{Binding DisposeCommand}"/>
+        <i:EventTrigger EventName="Closing" >
+            <prism:InvokeCommandAction Command="{Binding WindowClosingCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     
@@ -157,6 +158,7 @@
                                         <RowDefinition />
                                         <RowDefinition />
                                         <RowDefinition />
+                                        <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <CheckBox Name="CheckEnableTray" Content="{DynamicResource LOCSettingsShowTray}" Margin="5,0,0,0"
                                             IsChecked="{Binding Settings.EnableTray}"
@@ -208,6 +210,11 @@
                                     <CheckBox Name="CheckStartMinimized" Margin="5,15,5,5" Grid.Row="7" Grid.ColumnSpan="2"
                                       Content="{DynamicResource LOCSettingsStartMinimized}"
                                       IsChecked="{Binding Settings.StartMinimized}"/>
+
+                                    <CheckBox Name="CheckAlwaysSyncTime" Margin="5,15,5,5" Grid.Row="8" Grid.ColumnSpan="2"
+                                      Content="{DynamicResource LOCSettingsForceDownloadPlaynite}"
+                                      ToolTip="{DynamicResource LOCSettingsForceDownloadPlayniteTooltip}" ToolTipService.InitialShowDelay="0"
+                                      IsChecked="{Binding Settings.ForcePlayTimeSync}"/>
                                 </Grid>
                             </StackPanel>
                         </TabItem>
@@ -277,33 +284,19 @@
 
                         <TabItem>
                             <StackPanel>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
-                                    <TextBlock Text="{DynamicResource LOCSettingsSkinFullscreen}" VerticalAlignment="Center"
-                                        Grid.Row="0" Grid.Column="0"/>
+                                <StackPanel Orientation="Horizontal">
                                     <ComboBox Margin="10,5,10,5" Name="ComboSkinsFullscreen"
-                                      Visibility="Collapsed"
-                                        Grid.Row="0" Grid.Column="1"
+                                        Visibility="Collapsed"
                                         ItemsSource="{Binding AvailableFullscreenSkins}"
                                         SelectedValue="{Binding Settings.SkinFullscreen}"
                                         SelectionChanged="ComboSkinsFullscreen_SelectionChanged"
                                         SelectedValuePath="Name" DisplayMemberPath="Name" />
-
-                                    <TextBlock Text="{DynamicResource LOCSettingsSkinColorFullscreen}" VerticalAlignment="Center"
-                                        Grid.Row="0" Grid.Column="0" />
-                                    <ComboBox Margin="10,5,0,5" Name="CombSkinColorFullscreen"
-                                        Grid.Row="0" Grid.Column="1"
+                                    <TextBlock Text="{DynamicResource LOCSettingsSkinColorFullscreen}" VerticalAlignment="Center" />
+                                    <ComboBox Margin="10,5,0,5" Name="CombSkinColorFullscreen" 
                                         SelectedValue="{Binding Settings.SkinColorFullscreen}"
                                         ItemsSource="{Binding SelectedItem.Profiles, ElementName=ComboSkinsFullscreen}">
                                     </ComboBox>
-                                </Grid>
+                                </StackPanel>
 
                                 <Grid Margin="0,15,0,0">
                                     <Grid.Resources>

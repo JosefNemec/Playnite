@@ -30,6 +30,7 @@ using PlayniteUI.WebView;
 using Newtonsoft.Json;
 using System.Windows.Interop;
 using System.Reflection;
+using TheArtOfDev.HtmlRenderer;
 
 namespace PlayniteUI
 {
@@ -147,6 +148,7 @@ namespace PlayniteUI
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            logger.Info($"Application started from '{PlaynitePaths.ExecutablePath}', with '{string.Join(",", e.Args)}' arguments.");
             if (!Debugger.IsAttached)
             {
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -191,7 +193,17 @@ namespace PlayniteUI
 
             Time.Instance = new Time();
             AppSettings = PlayniteSettings.LoadSettings();
-            Localization.SetLanguage(AppSettings.Language);
+            HtmlRendererSettings.ImageCachePath = PlaynitePaths.ImagesCachePath;
+
+            try
+            {
+                Localization.SetLanguage(AppSettings.Language);
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, $"Failed to set {AppSettings.Language} langauge.");
+            }
+
             Resources.Remove("AsyncImagesEnabled");
             Resources.Add("AsyncImagesEnabled", AppSettings.AsyncImageLoading);
             if (AppSettings.DisableHwAcceleration)
@@ -201,7 +213,14 @@ namespace PlayniteUI
 
             if (AppSettings.DisableDpiAwareness)
             {
-                DisableDpiAwareness();
+                try
+                {
+                    DisableDpiAwareness();
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, "Failed to disable DPI awarness.");
+                }
             }
 
             CefTools.ConfigureCef();
@@ -227,7 +246,8 @@ namespace PlayniteUI
                 new PlayniteInfoAPI(),
                 new PlaynitePathsAPI(),
                 new WebViewFactory(),
-                new DefaultResourceProvider());
+                new DefaultResourceProvider(),
+                new NotificationsAPI());
             Extensions = new ExtensionFactory(Database, controllers);
 
             // Load theme
@@ -308,10 +328,17 @@ namespace PlayniteUI
             }
 
             // Pipe server
-            pipeService = new PipeService();
-            pipeService.CommandExecuted += PipeService_CommandExecuted;
-            pipeServer = new PipeServer(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
-            pipeServer.StartServer(pipeService);
+            try
+            {
+                pipeService = new PipeService();
+                pipeService.CommandExecuted += PipeService_CommandExecuted;
+                pipeServer = new PipeServer(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
+                pipeServer.StartServer(pipeService);
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to start pipe service.");
+            }
 
             var args = Environment.GetCommandLineArgs();
             if (args.Count() > 0 && args.Contains("-command"))

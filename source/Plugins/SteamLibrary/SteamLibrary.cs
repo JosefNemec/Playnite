@@ -32,6 +32,7 @@ namespace SteamLibrary
         private SteamServicesClient servicesClient;
         private readonly Configuration config;
         private readonly SteamApiClient apiClient = new SteamApiClient();
+        private const string dbImportMessageId = "steamlibImportError";
 
         internal SteamLibrarySettings LibrarySettings { get; private set; }
 
@@ -199,7 +200,7 @@ namespace SteamLibrary
             return game;
         }
 
-        internal Dictionary<string, Game> GetInstalledGames()
+        internal Dictionary<string, Game> GetInstalledGames(bool includeMods = true)
         {
             var games = new Dictionary<string, Game>();
             if (!Steam.IsInstalled)
@@ -226,37 +227,40 @@ namespace SteamLibrary
                 }
             }
 
-            try
+            if (includeMods)
             {
-                // In most cases, this will be inside the folder where Half-Life is installed.
-                var modInstallPath = Steam.ModInstallPath;
-                if (!string.IsNullOrEmpty(modInstallPath) && Directory.Exists(modInstallPath))
+                try
                 {
-                    GetInstalledGoldSrcModsFromFolder(Steam.ModInstallPath).ForEach(a =>
+                    // In most cases, this will be inside the folder where Half-Life is installed.
+                    var modInstallPath = Steam.ModInstallPath;
+                    if (!string.IsNullOrEmpty(modInstallPath) && Directory.Exists(modInstallPath))
                     {
-                        if (!games.ContainsKey(a.GameId))
+                        GetInstalledGoldSrcModsFromFolder(Steam.ModInstallPath).ForEach(a =>
                         {
-                            games.Add(a.GameId, a);
-                        }
-                    });
-                }
+                            if (!games.ContainsKey(a.GameId))
+                            {
+                                games.Add(a.GameId, a);
+                            }
+                        });
+                    }
 
-                // In most cases, this will be inside the library folder where Steam is installed.
-                var sourceModInstallPath = Steam.SourceModInstallPath;
-                if (!string.IsNullOrEmpty(sourceModInstallPath) && Directory.Exists(sourceModInstallPath))
-                {
-                    GetInstalledSourceModsFromFolder(Steam.SourceModInstallPath).ForEach(a =>
+                    // In most cases, this will be inside the library folder where Steam is installed.
+                    var sourceModInstallPath = Steam.SourceModInstallPath;
+                    if (!string.IsNullOrEmpty(sourceModInstallPath) && Directory.Exists(sourceModInstallPath))
                     {
-                        if (!games.ContainsKey(a.GameId))
+                        GetInstalledSourceModsFromFolder(Steam.SourceModInstallPath).ForEach(a =>
                         {
-                            games.Add(a.GameId, a);
-                        }
-                    });
+                            if (!games.ContainsKey(a.GameId))
+                            {
+                                games.Add(a.GameId, a);
+                            }
+                        });
+                    }
                 }
-            }
-            catch (Exception e) when (!Environment.IsDebugBuild)
-            {
-                logger.Error(e, "Failed to import Steam mods.");
+                catch (Exception e) when (!Environment.IsDebugBuild)
+                {
+                    logger.Error(e, "Failed to import Steam mods.");
+                }
             }
 
             return games;
@@ -547,6 +551,8 @@ namespace SteamLibrary
 
         public string LibraryIcon { get; private set; }
 
+        public bool IsClientInstalled => Steam.IsInstalled;
+
         public void Dispose()
         {
             apiClient.Logout();
@@ -566,28 +572,62 @@ namespace SteamLibrary
         public IEnumerable<Game> GetGames()
         {
             var allGames = new List<Game>();
-            var installedGames = GetInstalledGames();
+            var installedGames = new Dictionary<string, Game>();
+            Exception importError = null;
 
             if (LibrarySettings.ImportInstalledGames)
             {
-                allGames.AddRange(installedGames.Values.ToList());
+                try
+                {
+                    installedGames = GetInstalledGames();
+                    logger.Debug($"Found {installedGames.Count} installed Steam games.");
+                    allGames.AddRange(installedGames.Values.ToList());
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to import installed battle.net games.");
+                    importError = e;
+                }
             }
 
             if (LibrarySettings.ImportUninstalledGames)
             {
-                var uninstalled = GetLibraryGames(LibrarySettings);
-                foreach (var game in uninstalled)
+                try
                 {
-                    if (installedGames.TryGetValue(game.GameId, out var installed))
+                    var uninstalled = GetLibraryGames(LibrarySettings);
+                    logger.Debug($"Found {uninstalled.Count} library Steam games.");
+
+                    foreach (var game in uninstalled)
                     {
-                        installed.Playtime = game.Playtime;
-                        installed.LastActivity = game.LastActivity;
-                    }
-                    else
-                    {
-                        allGames.Add(game);
+                        if (installedGames.TryGetValue(game.GameId, out var installed))
+                        {
+                            installed.Playtime = game.Playtime;
+                            installed.LastActivity = game.LastActivity;
+                        }
+                        else
+                        {
+                            allGames.Add(game);
+                        }
                     }
                 }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Failed to import uninstalled Steam games.");
+                    importError = e;
+                }
+            }
+
+            if (importError != null)
+            {
+                playniteApi.Notifications.Add(
+                    dbImportMessageId,
+                    string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) +
+                    System.Environment.NewLine + importError.Message,
+                    NotificationType.Error);
+            }
+            else
+            {
+                playniteApi.Notifications.Remove(dbImportMessageId);
             }
 
             return allGames;
@@ -595,7 +635,7 @@ namespace SteamLibrary
 
         public IGameController GetGameController(Game game)
         {
-            return new SteamGameController(game);
+            return new SteamGameController(game, this);
         }
 
         public ILibraryMetadataProvider GetMetadataDownloader()

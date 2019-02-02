@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,6 +29,22 @@ namespace PlayniteServices.Controllers.Steam
             get
             {
                 return Startup.Configuration.GetSection("Steam")["ApiKey"];
+            }
+        }
+
+        public static string CacheDirectory
+        {
+            get
+            {
+                var path = Startup.Configuration.GetSection("Steam")["CacheDirectory"];
+                if (Path.IsPathRooted(path))
+                {
+                    return path;
+                }
+                else
+                {
+                    return Path.Combine(Paths.ExecutingDirectory, path);
+                }
             }
         }
     }

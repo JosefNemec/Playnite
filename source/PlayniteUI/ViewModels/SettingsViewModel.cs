@@ -73,7 +73,7 @@ namespace PlayniteUI.ViewModels
         public string Icon { get; set; }
     }
 
-    public class SettingsViewModel : ObservableObject, IDisposable
+    public class SettingsViewModel : ObservableObject
     {
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
@@ -163,11 +163,11 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public RelayCommand<object> DisposeCommand
+        public RelayCommand<object> WindowClosingCommand
         {
             get => new RelayCommand<object>((a) =>
             {
-                Dispose();
+                WindowClosing(false);
             });
         }
 
@@ -268,12 +268,18 @@ namespace PlayniteUI.ViewModels
                 GenericPluginSettings[provider].Settings.CancelEdit();
             }
 
+            WindowClosing(true);
             window.Close(false);
-            Dispose();
         }
 
-        public void Dispose()
+        public void WindowClosing(bool closingHandled)
         {
+            if (closingHandled)
+            {
+                return;
+            }
+
+            Settings.CancelEdit();
         }
 
         public void ConfirmDialog()
@@ -302,9 +308,18 @@ namespace PlayniteUI.ViewModels
                 Settings.DisabledPlugins = PluginsList.Where(a => !a.Selected)?.Select(a => a.Description.FolderName).ToList();
             }
 
-            if (Settings.EditedFields.Contains("StartOnBoot"))
+            if (Settings.EditedFields.Contains(nameof(Settings.StartOnBoot)))
             {
-                PlayniteSettings.SetBootupStateRegistration(Settings.StartOnBoot);
+                try
+                {
+                    PlayniteSettings.SetBootupStateRegistration(Settings.StartOnBoot);
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, "Failed to register Playnite to start on boot.");
+                    dialogs.ShowErrorMessage(resources.FindString("LOCSettingsStartOnBootRegistrationError")
+                        + Environment.NewLine + e.Message, "");
+                }
             }
 
             Settings.EndEdit();
@@ -342,8 +357,8 @@ namespace PlayniteUI.ViewModels
                 }
             }
 
+            WindowClosing(true);
             window.Close(true);
-            Dispose();
         }
 
         public void SelectDbFile()

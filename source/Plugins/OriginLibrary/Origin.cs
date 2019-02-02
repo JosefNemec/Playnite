@@ -29,8 +29,8 @@ namespace OriginLibrary
             get
             {
                 var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
-                var key = root.OpenSubKey(@"SOFTWARE\Origin");
-                if (key != null)
+                var key = root.OpenSubKey(@"SOFTWARE\Origin");             
+                if (key?.GetValueNames().Contains("ClientPath") == true)
                 {
                     return key.GetValue("ClientPath").ToString();
                 }

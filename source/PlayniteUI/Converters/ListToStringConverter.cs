@@ -17,7 +17,7 @@ namespace PlayniteUI
                 return string.Empty;
             }
 
-            return string.Join(", ", ((IEnumerable<string>)value).ToArray());
+            return string.Join(",", ((IEnumerable<string>)value).ToArray());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -29,20 +29,8 @@ namespace PlayniteUI
                 return null;
             }
             else
-            {
-                IEnumerable<string> converted;
-
-                if (parameter is string s && s.Equals("NoTrim"))
-                {
-                    // don't use final trim()
-                    converted = stringVal.Split(new char[] { ',' }).SkipWhile(a => string.IsNullOrEmpty(a.Trim()));
-                }
-                else
-                {
-                    // use end trim()
-                    converted = stringVal.Split(new char[] { ',' }).SkipWhile(a => string.IsNullOrEmpty(a.Trim())).Select(a => a.Trim());
-                }
-
+            {                
+                var converted = stringVal.Split(new char[] { ',' });
                 if (targetType == typeof(ComparableList<string>))
                 {
                     return new ComparableList<string>(converted);

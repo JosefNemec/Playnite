@@ -132,9 +132,12 @@ namespace PlayniteUI
         }
 
         public static void BringToForeground(WindowBase window)
-        {
-            window.Topmost = true;
-            window.Topmost = false;
+        {            
+            if (!window.Activate())
+            {
+                window.Topmost = true;
+                window.Topmost = false;
+            }
         }
     }    
 }

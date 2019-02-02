@@ -119,6 +119,7 @@
     <Compile Include="Database\GameDatabaseMigrationTests.cs" />
     <Compile Include="Database\GameDatabasePlatformsTests.cs" />
     <Compile Include="Database\GameDatabaseTests.cs" />
+    <Compile Include="Database\GameLibraryTests.cs" />
     <Compile Include="Database\ItemCollectionTests.cs" />
     <Compile Include="Emulators\EmulatorFinderTests.cs" />
     <Compile Include="Emulators\EmulatorDefinitionTests.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Scripting\IronPython\IronPythonTests.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellTests.cs" />
     <Compile Include="System\ComputerTests.cs" />
+    <Compile Include="System\ProcessExtensionsTests.cs" />
     <Compile Include="TimerTests.cs" />
     <Compile Include="SettingsTests.cs" />
     <Compile Include="ListExtensionsTests.cs" />

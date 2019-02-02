@@ -25,9 +25,9 @@ namespace PlayniteServicesTests
 
         public TestFixture() : this(Path.Combine("source"))
         {
-            if (File.Exists(Database.DefaultLocation))
+            if (File.Exists(Database.Path))
             {
-                File.Delete(Database.DefaultLocation);
+                File.Delete(Database.Path);
             }
         }
 

@@ -21,6 +21,8 @@ namespace PlayniteUI.Controls
     /// </summary>
     public partial class SearchBox : UserControl
     {
+        private int oldCarret;
+        private bool ignoreTextCallback;
         internal IInputElement previousFocus;
 
         public string Text
@@ -101,12 +103,22 @@ namespace PlayniteUI.Controls
         {
             TextFilter.Text = string.Empty;
         }
-        
+
         private static void TextPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var obj = sender as SearchBox;
-            obj.TextFilter.Text = (string)e.NewValue;
-            obj.TextFilter.CaretIndex = obj.TextFilter.Text.Length;
+            if (obj.ignoreTextCallback)
+            {
+                return;
+            }
+
+            var currentCurret = obj.TextFilter.CaretIndex;                 
+            if (currentCurret == 0 && obj.TextFilter.Text.Length > 0 && obj.oldCarret != obj.TextFilter.Text.Length)
+            {
+                obj.TextFilter.CaretIndex = obj.oldCarret;
+            }
+
+            obj.oldCarret = obj.TextFilter.CaretIndex;
         }
 
         private static void ShowImagePropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -134,6 +146,18 @@ namespace PlayniteUI.Controls
             {
                 obj.ClearFocus();
             }
+        }
+
+        private void TextFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (ignoreTextCallback)
+            {
+                return;
+            }
+
+            ignoreTextCallback = true;
+            Text = TextFilter.Text;
+            ignoreTextCallback = false;
         }
     }
 }

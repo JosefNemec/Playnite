@@ -80,7 +80,10 @@
     <Compile Include="BattleNetMetadataProvider.cs" />
     <Compile Include="BattleNetLibrarySettings.cs" />
     <Compile Include="Environment.cs" />
+    <Compile Include="Models\BattleNetApiStatus.cs" />
     <Compile Include="Models\BNetApp.cs" />
+    <Compile Include="Models\ClassicGames.cs" />
+    <Compile Include="Models\GamesAndSubs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BattleNetAccountClient.cs" />
   </ItemGroup>

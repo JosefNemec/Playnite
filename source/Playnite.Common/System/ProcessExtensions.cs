@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Playnite.Common.System
@@ -153,6 +154,11 @@ namespace Playnite.Common.System
 
             processId = info.InheritedFromUniqueProcessId.ToInt32();
             return true;
+        }
+
+        public static bool IsRunning(string processPattern)
+        {
+            return Process.GetProcesses().FirstOrDefault(a => Regex.IsMatch(a.ProcessName, processPattern, RegexOptions.IgnoreCase)) != null;
         }
     }
 }

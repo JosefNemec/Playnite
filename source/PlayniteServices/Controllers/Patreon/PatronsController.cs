@@ -37,7 +37,7 @@ namespace PlayniteServices.Controllers.Patreon
                 cache = new ListCache(patrons);
             }
 
-            return new ServicesResponse<List<string>>(cache.Names, string.Empty);
+            return new ServicesResponse<List<string>>(cache.Names);
         }
     }
 }

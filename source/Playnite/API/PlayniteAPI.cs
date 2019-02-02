@@ -20,14 +20,15 @@ namespace Playnite.API
 
         private const string pluginSettingFileName = "config.json";
 
-        public PlayniteAPI(
+        public PlayniteAPI(            
             IGameDatabaseAPI databaseApi,
             IDialogsFactory dialogs,
             IMainViewAPI mainViewApi,
             IPlayniteInfoAPI infoApi,
             IPlaynitePathsAPI pathsApi,
             IWebViewFactory webViewFactory,
-            IResourceProvider resources)
+            IResourceProvider resources,
+            INotificationsAPI notifications)
         {
             WebViews = webViewFactory;
             Paths = pathsApi;
@@ -36,6 +37,7 @@ namespace Playnite.API
             Dialogs = dialogs;
             Database = databaseApi;
             Resources = resources;
+            Notifications = notifications;
         }
 
         public IDialogsFactory Dialogs { get; }
@@ -51,6 +53,8 @@ namespace Playnite.API
         public IWebViewFactory WebViews { get; }
 
         public IResourceProvider Resources { get; }
+
+        public INotificationsAPI Notifications { get; }
 
         public string ExpandGameVariables(Game game, string inputString)
         {

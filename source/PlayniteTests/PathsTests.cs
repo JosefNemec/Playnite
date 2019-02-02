@@ -13,6 +13,13 @@ namespace PlayniteTests
     public class PathsTests
     {
         [Test]
+        public void GetFinalPathNameTest()
+        {
+            Assert.AreEqual(@"C:\Users", Paths.GetFinalPathName(@"c:\Documents and Settings"));
+            Assert.AreEqual(@"C:\Users", Paths.GetFinalPathName(@"C:\Users"));
+        }
+
+        [Test]
         public void GetValidFilePathTest()
         {
             Assert.IsTrue(Paths.IsValidFilePath(@"test.db"));

@@ -1,6 +1,7 @@
 ﻿using LiteDB;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,30 +9,19 @@ namespace PlayniteServices.Databases
 {
     public class Database
     {
-        private static string defaultLocation = string.Empty;
-        public static string DefaultLocation
+        public static string Path
         {
             get
             {
-                if (!string.IsNullOrEmpty(defaultLocation))
+                var path = Startup.Configuration.GetSection("DbPath").Value;
+                if (System.IO.Path.IsPathRooted(path))
                 {
-                    return defaultLocation;
+                    return path;
                 }
                 else
                 {
-                    var dbLocation = Startup.Configuration.GetSection("DbLocation");
-                    if (dbLocation == null || string.IsNullOrEmpty(dbLocation.Value))
-                    {
-                        throw new Exception("Missing database location configuration.");
-                    }
-
-                    return dbLocation.Value;
-                }                
-            }
-
-            set
-            {
-                defaultLocation = value;
+                    return System.IO.Path.Combine(Paths.ExecutingDirectory, path);
+                }               
             }
         }
 
@@ -45,6 +35,11 @@ namespace PlayniteServices.Databases
         public LiteCollection<T> GetCollection<T>(string name)
         {
             return liteDB.GetCollection<T>(name);
+        }
+
+        public LiteCollection<BsonDocument> GetCollection(string name)
+        {
+            return liteDB.GetCollection(name);
         }
 
         public bool DropCollection(string name)

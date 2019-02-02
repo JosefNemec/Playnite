@@ -16,8 +16,6 @@ namespace BattleNetLibrary.Models
     {
         public string ProductId;
         public string InternalId;
-        public string WebLibraryId;
-        public string PurchaseId;
         public string IconUrl;
         public string BackgroundUrl;
         public string CoverUrl;
@@ -25,5 +23,6 @@ namespace BattleNetLibrary.Models
         public BNetAppType Type;
         public string ClassicExecutable;
         public List<Link> Links;
+        public long ApiId;
     }
 }

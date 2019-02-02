@@ -136,6 +136,7 @@
       <Link>Services\Models\Playnite\Playnite.cs</Link>
     </Compile>
     <Compile Include="API\DatabaseAPI.cs" />
+    <Compile Include="API\NotificationsAPI.cs" />
     <Compile Include="API\ScriptExtensionDescription.cs" />
     <Compile Include="API\Logger.cs" />
     <Compile Include="API\PlayniteAPI.cs" />

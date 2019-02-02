@@ -71,7 +71,15 @@ namespace PlayniteUI.ViewModels
                 }
                 else
                 {
-                    SelectedGameDetails = new GameDetailsViewModel(value, AppSettings, GamesEditor, Dialogs, Resources);
+                    if (AppSettings.ViewSettings.GamesViewType == ViewType.List ||
+                        (AppSettings.ViewSettings.GamesViewType == ViewType.Images && ShowGameSidebar))
+                    {
+                        SelectedGameDetails = new GameDetailsViewModel(value, AppSettings, GamesEditor, Dialogs, Resources);
+                    }
+                    else
+                    {
+                        SelectedGameDetails = null;
+                    }
                 }
 
                 selectedGame = value;
@@ -111,17 +119,6 @@ namespace PlayniteUI.ViewModels
             set
             {
                 gamesView = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ObservableCollection<NotificationMessage> messages;
-        public ObservableCollection<NotificationMessage> Messages
-        {
-            get => messages;
-            set
-            {
-                messages = value;
                 OnPropertyChanged();
             }
         }
@@ -198,6 +195,11 @@ namespace PlayniteUI.ViewModels
             get => showGameSidebar;
             set
             {
+                if (value == true && SelectedGameDetails == null)
+                {
+                    SelectedGameDetails = new GameDetailsViewModel(SelectedGame, AppSettings, GamesEditor, Dialogs, Resources);
+                }                   
+
                 showGameSidebar = value;
                 OnPropertyChanged();
             }
@@ -353,7 +355,6 @@ namespace PlayniteUI.ViewModels
             Resources = resources;
             Database = database;
             GamesEditor = gamesEditor;
-            Messages = new ObservableCollection<NotificationMessage>();
             AppSettings = settings;
             PlayniteApi = playniteApi;
             Extensions = extensions;
@@ -370,13 +371,9 @@ namespace PlayniteUI.ViewModels
 
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
+            AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
             GamesStats = new DatabaseStats(database);
             InitializeCommands();
-
-            if (AppSettings.StartMinimized)
-            {
-                WindowState = WindowState.Minimized;
-            }
         }
 
         private void InitializeCommands()
@@ -533,7 +530,7 @@ namespace PlayniteUI.ViewModels
             ClearMessagesCommand = new RelayCommand<object>((a) =>
             {
                 ClearMessages();
-            }, (a) => Messages.Count > 0);
+            }, (a) => PlayniteApi.Notifications.Count > 0);
 
             DownloadMetadataCommand = new RelayCommand<object>((a) =>
             {
@@ -755,13 +752,24 @@ namespace PlayniteUI.ViewModels
             });
         }
 
+        private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(AppSettings.ViewSettings.GamesViewType) &&
+                AppSettings.ViewSettings.GamesViewType == ViewType.Images &&
+                ShowGameSidebar &&
+                SelectedGameDetails == null)
+            {
+                SelectedGameDetails = new GameDetailsViewModel(SelectedGame, AppSettings, GamesEditor, Dialogs, Resources);
+            }
+        }
+
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName != "Active")
+            if (e.PropertyName != nameof(AppSettings.FilterSettings.Active))
             {
                 AppSettings.SaveSettings();
 
-                if (e.PropertyName != "Name" && e.PropertyName != "SearchActive")
+                if (e.PropertyName != nameof(AppSettings.FilterSettings.Name) && e.PropertyName != nameof(AppSettings.FilterSettings.SearchActive))
                 {
                     AppSettings.FilterPanelVisible = true;
                 }
@@ -770,7 +778,7 @@ namespace PlayniteUI.ViewModels
 
         private void AppSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Language")
+            if (e.PropertyName == nameof(AppSettings.Language))
             {
                 Localization.SetLanguage(AppSettings.Language);
             }
@@ -881,7 +889,7 @@ namespace PlayniteUI.ViewModels
                     return;
                 }
             }
-            
+
             var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
             () =>
             {
@@ -962,13 +970,14 @@ namespace PlayniteUI.ViewModels
                     foreach (var pluginId in Extensions.LibraryPlugins.Keys)
                     {
                         var plugin = Extensions.LibraryPlugins[pluginId];
+                        Logger.Info($"Importing games from {plugin.Plugin.Name} plugin.");
                         ProgressStatus = string.Format(Resources.FindString("LOCProgressImportinGames"), plugin.Plugin.Name);
 
                         try
                         {
                             using (Database.BufferedUpdate())
                             {
-                                addedGames.AddRange(GameLibrary.ImportGames(plugin.Plugin, Database));
+                                addedGames.AddRange(GameLibrary.ImportGames(plugin.Plugin, Database, AppSettings.ForcePlayTimeSync));
                             }
 
                             RemoveMessage($"{plugin.Plugin.Id} - download");
@@ -1271,35 +1280,17 @@ namespace PlayniteUI.ViewModels
 
         public void AddMessage(NotificationMessage message)
         {
-            context.Send((c =>
-            {
-                if (!Messages.Any(a => a.Id == message.Id))
-                {
-                    Messages.Add(message);
-                }
-            }), null);
+            PlayniteApi.Notifications.Add(message);
         }
 
         public void RemoveMessage(string id)
         {
-            context.Send((c =>
-            {
-                var message = Messages.FirstOrDefault(a => a.Id == id);
-                if (message != null)
-                {
-                    Messages.Remove(message);
-                }
-            }), null);
-        }
-
-        public void RemoveMessage(NotificationMessage message)
-        {
-            context.Send((c => Messages.Remove(message)), null);            
+            PlayniteApi.Notifications.Remove(id);
         }
 
         public void ClearMessages()
         {
-            context.Send((c => Messages.Clear()), null);
+            PlayniteApi.Notifications.RemoveAll();
         }
 
         public void CheckForUpdate()
@@ -1343,7 +1334,7 @@ namespace PlayniteUI.ViewModels
                     {
                         using (Database.BufferedUpdate())
                         {
-                            addedGames.AddRange(GameLibrary.ImportGames(library, Database));
+                            addedGames.AddRange(GameLibrary.ImportGames(library, Database, AppSettings.ForcePlayTimeSync));
                         }
 
                         RemoveMessage($"{library.Id} - download");
@@ -1405,7 +1396,15 @@ namespace PlayniteUI.ViewModels
         public void OpenView()
         {
             Window.Show(this);
-            Window.BringToForeground();
+            if (AppSettings.StartMinimized)
+            {
+                WindowState = WindowState.Minimized;
+            }
+            else
+            {
+                Window.BringToForeground();
+            }
+
             InitializeView();
         }
 
