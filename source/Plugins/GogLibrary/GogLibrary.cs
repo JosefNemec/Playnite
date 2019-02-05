@@ -228,7 +228,7 @@ namespace GogLibrary
             {
                 try
                 {
-                    var uninstalled = GetLibraryGames();
+                    var uninstalled = LibrarySettings.UsePublicAccount ? GetLibraryGames(LibrarySettings.AccountName) : GetLibraryGames();
                     logger.Debug($"Found {uninstalled.Count} library GOG games.");
 
                     foreach (var game in uninstalled)
