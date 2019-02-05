@@ -15,6 +15,7 @@ namespace OriginLibrary
 {
     public class OriginGameController : BaseGameController
     {
+        private ILogger logger = LogManager.GetLogger();
         private CancellationTokenSource watcherToken;
         private ProcessMonitor procMon;
         private Stopwatch stopWatch;
@@ -99,6 +100,13 @@ namespace OriginLibrary
         {
             watcherToken = new CancellationTokenSource();  
             var manifest = origin.GetLocalManifest(Game.GameId, null, true);
+            if (manifest.publishing == null)
+            {
+                logger.Error($"No publishing manifest found for Origin game {Game.GameId}, stopping installation check.");
+                OnUninstalled(this, new GameControllerEventArgs(this, 0));
+                return;
+            }
+
             var platform = manifest.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
 
             while (true)
