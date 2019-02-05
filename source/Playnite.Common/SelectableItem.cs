@@ -56,6 +56,7 @@ namespace System
 
         internal void OnSelectionChanged()
         {
+            OnPropertyChanged(nameof(AsString));
             SelectionChanged?.Invoke(this, EventArgs.Empty);
         }
     }
@@ -92,7 +93,6 @@ namespace System
                 if (!SuppressNotifications)
                 {
                     OnSelectionChanged();
-                    OnPropertyChanged(nameof(AsString));
                 }
             }
         }
@@ -113,7 +113,6 @@ namespace System
             }
 
             SuppressNotifications = false;
-            OnPropertyChanged(nameof(AsString));
             OnSelectionChanged();
         }
 
@@ -178,17 +177,24 @@ namespace System
         }
 
         // TODO keep ordering when item is added or removed
-        public void Add(DatabaseObject item)
+        public void Add(DatabaseObject item, bool selected = false)
         {
             if (Items.FirstOrDefault(a => a.Item.Id == item.Id) != null)
             {
                 throw new Exception("Item is already part of the collection.");
             }
 
-            var newItem = new SelectableItem<DatabaseObject>(item);
+            var newItem = new SelectableItem<DatabaseObject>(item)
+            {
+                Selected = selected
+            };
             newItem.PropertyChanged += NewItem_PropertyChanged;
             Items.Add(newItem);            
             OnCollectionChanged();
+            if (selected)
+            {
+                OnSelectionChanged();
+            }
         }
 
         public bool Remove(DatabaseObject item)
@@ -204,7 +210,6 @@ namespace System
                 Items.Remove(listItem);
                 if (listItem.Selected == true)
                 {
-                    OnPropertyChanged(nameof(AsString));
                     OnSelectionChanged();
                 }
 

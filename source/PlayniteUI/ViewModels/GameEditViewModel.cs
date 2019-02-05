@@ -43,15 +43,15 @@ namespace PlayniteUI.ViewModels
 
         public SelectableDbItemList Categories { get; set; }
 
-        public List<GameSource> Sources { get; set; }
+        public ObservableCollection<GameSource> Sources { get; set; }
 
-        public List<Region> Regions { get; set; }
+        public ObservableCollection<Region> Regions { get; set; }
 
-        public List<Series> Series { get; set; }
+        public ObservableCollection<Series> Series { get; set; }
 
-        public List<AgeRating> AgeRatings { get; set; }
+        public ObservableCollection<AgeRating> AgeRatings { get; set; }
 
-        public List<Platform> Platforms { get; set; }
+        public ObservableCollection<Platform> Platforms { get; set; }
 
         public List<Emulator> Emulators { get; set; }
 
@@ -63,7 +63,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                EditingGame.PlatformId = AddNewItem(database.Platforms, nameof(Platforms)) ?? EditingGame.PlatformId;
+                AddNewPlatform();
             });
         }
 
@@ -71,7 +71,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                EditingGame.SeriesId = AddNewItem(database.Series, nameof(Series)) ?? EditingGame.SeriesId;
+                AddNewSeries();
             });
         }
 
@@ -79,7 +79,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                EditingGame.AgeRatingId = AddNewItem(database.AgeRatings, nameof(AgeRatings)) ?? EditingGame.AgeRatingId;
+                AddNewAreRating();
             });
         }
 
@@ -87,7 +87,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                EditingGame.RegionId = AddNewItem(database.Regions, nameof(Regions)) ?? EditingGame.RegionId;
+                AddNewRegion();
             });
         }
 
@@ -95,7 +95,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                EditingGame.SourceId = AddNewItem(database.Sources, nameof(Sources)) ?? EditingGame.SourceId;
+                AddNewSource();
             });
         }
 
@@ -103,11 +103,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                var newItem = AddNewItemToList(database.Categories, nameof(Categories));
-                if (newItem != null)
-                {
-                    EditingGame.CategoryIds = new List<Guid>(EditingGame.CategoryIds) { newItem.Value };
-                }
+                AddNewCategory();
             });
         }
 
@@ -115,11 +111,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                var newItem = AddNewItemToList(database.Companies, nameof(Publishers));
-                if (newItem != null)
-                {
-                    EditingGame.PublisherIds = new List<Guid>(EditingGame.PublisherIds) { newItem.Value };
-                }
+                AddNewPublisher();
             });
         }
 
@@ -127,11 +119,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                var newItem = AddNewItemToList(database.Companies, nameof(Developers));
-                if (newItem != null)
-                {
-                    EditingGame.DeveloperIds = new List<Guid>(EditingGame.DeveloperIds) { newItem.Value };
-                }
+                AddNewDeveloper();
             });
         }
 
@@ -139,11 +127,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                var newItem = AddNewItemToList(database.Genres, nameof(Genres));
-                if (newItem != null)
-                {
-                    EditingGame.GenreIds = new List<Guid>(EditingGame.GenreIds) { newItem.Value };
-                }
+                AddNewGenre();
             });
         }
 
@@ -151,11 +135,7 @@ namespace PlayniteUI.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                var newItem = AddNewItemToList(database.Tags, nameof(Tags));
-                if (newItem != null)
-                {
-                    EditingGame.TagIds = new List<Guid>(EditingGame.TagIds) { newItem.Value };
-                }
+                AddNewTag();
             });
         }
 
@@ -1112,19 +1092,19 @@ namespace PlayniteUI.ViewModels
             Tags = new SelectableDbItemList(database.Tags, EditingGame.TagIds);
             Categories = new SelectableDbItemList(database.Categories, EditingGame.CategoryIds);
 
-            Sources = database.Sources.OrderBy(a => a.Name).ToList();
+            Sources = database.Sources.OrderBy(a => a.Name).ToObservable();
             Sources.Insert(0, new GameSource() { Id = Guid.Empty }); 
 
-            Regions = database.Regions.OrderBy(a => a.Name).ToList();
+            Regions = database.Regions.OrderBy(a => a.Name).ToObservable();
             Regions.Insert(0, new Region() { Id = Guid.Empty });
 
-            Series = database.Series.OrderBy(a => a.Name).ToList();
+            Series = database.Series.OrderBy(a => a.Name).ToObservable();
             Series.Insert(0, new Series() { Id = Guid.Empty });
 
-            AgeRatings = database.AgeRatings.OrderBy(a => a.Name).ToList();
+            AgeRatings = database.AgeRatings.OrderBy(a => a.Name).ToObservable();
             AgeRatings.Insert(0, new AgeRating() { Id = Guid.Empty });
 
-            Platforms = database.Platforms.OrderBy(a => a.Name).ToList();
+            Platforms = database.Platforms.OrderBy(a => a.Name).ToObservable();
             Platforms.Insert(0, new Platform() { Id = Guid.Empty });
 
             Emulators = database.Emulators.OrderBy(a => a.Name).ToList();
@@ -2523,32 +2503,128 @@ namespace PlayniteUI.ViewModels
         }
 
         // TODO localize
-        public Guid? AddNewItem<TItem>(IItemCollection<TItem> collection, string notifyName) where TItem : DatabaseObject
+        //public TItem AddNewItem<TItem>(IItemCollection<TItem> collection, string notifyName) where TItem : DatabaseObject
+        //{
+        //    var res = dialogs.SelectString("Enter new name:", "New item", string.Empty);
+        //    if (res.Result)
+        //    {
+        //        var newItem = typeof(TItem).CrateInstance<TItem>(res.SelectedString);
+        //        collection.Add(newItem);
+        //        OnPropertyChanged(notifyName);
+        //        return newItem;
+        //    }
+
+        //    return null;
+        //}
+
+        public TItem CreateNewItem<TItem>() where TItem : DatabaseObject
         {
             var res = dialogs.SelectString("Enter new name:", "New item", string.Empty);
             if (res.Result)
             {
-                var newItem = typeof(TItem).CrateInstance<TItem>(res.SelectedString);
-                collection.Add(newItem);
-                OnPropertyChanged(notifyName);
-                return newItem.Id;
+                return typeof(TItem).CrateInstance<TItem>(res.SelectedString);
             }
 
             return null;
         }
 
-        public Guid? AddNewItemToList<TItem>(IItemCollection<TItem> collection, string notifyName) where TItem : DatabaseObject
+        public TItem CreateNewItem<TItem>(ObservableCollection<TItem> collection) where TItem : DatabaseObject
         {
-            var res = dialogs.SelectString("Enter new name:", "New item", string.Empty);
-            if (res.Result)
+            var newItem = CreateNewItem<TItem>();
+            if (newItem == null)
             {
-                var newItem = typeof(TItem).CrateInstance<TItem>(res.SelectedString);
-                collection.Add(newItem);
-                OnPropertyChanged(notifyName);
-                return newItem.Id;
+                return null;
             }
+            else
+            {
+                collection.Add(newItem);
+                return newItem;
+            }
+        }
 
-            return null;
+        public TItem CreateNewItem<TItem>(SelectableDbItemList collection) where TItem : DatabaseObject
+        {
+            var newItem = CreateNewItem<TItem>();
+            if (newItem == null)
+            {
+                return null;
+            }
+            else
+            {
+                collection.Add(newItem, true);
+                return newItem;
+            }
+        }
+
+        public void AddNewPlatform()
+        {
+            EditingGame.PlatformId = CreateNewItem(Platforms)?.Id ?? EditingGame.PlatformId;
+        }
+
+        public void AddNewSeries()
+        {
+            EditingGame.SeriesId = CreateNewItem(Series)?.Id ?? EditingGame.SeriesId;
+        }
+
+        public void AddNewAreRating()
+        {
+            EditingGame.AgeRatingId = CreateNewItem(AgeRatings)?.Id ?? EditingGame.AgeRatingId;
+        }
+
+        public void AddNewRegion()
+        {
+            EditingGame.RegionId = CreateNewItem(Regions)?.Id ?? EditingGame.RegionId;
+        }
+
+        public void AddNewSource()
+        {
+            EditingGame.SourceId = CreateNewItem(Sources)?.Id ?? EditingGame.SourceId;
+        }
+
+        public void AddNewCategory()
+        {
+            var newItem = CreateNewItem<Category>(Categories);
+            if (newItem != null)
+            {
+                EditingGame.CategoryIds = new List<Guid>(EditingGame.CategoryIds ?? new List<Guid>()) { newItem.Id };
+            }
+        }
+
+        public void AddNewPublisher()
+        {
+            var newItem = CreateNewItem<Company>(Publishers);
+            if (newItem != null)
+            {
+                EditingGame.PublisherIds = new List<Guid>(EditingGame.PublisherIds ?? new List<Guid>()) { newItem.Id };
+                // refresh taky developery
+            }
+        }
+
+        public void AddNewDeveloper()
+        {
+            var newItem = CreateNewItem<Company>(Developers);
+            if (newItem != null)
+            {
+                EditingGame.DeveloperIds = new List<Guid>(EditingGame.DeveloperIds ?? new List<Guid>()) { newItem.Id };
+            }
+        }
+
+        public void AddNewGenre()
+        {
+            var newItem = CreateNewItem<Genre>(Genres);
+            if (newItem != null)
+            {
+                EditingGame.GenreIds = new List<Guid>(EditingGame.GenreIds ?? new List<Guid>()) { newItem.Id };
+            }
+        }
+
+        public void AddNewTag()
+        {
+            var newItem = CreateNewItem<Tag>(Tags);
+            if (newItem != null)
+            {
+                EditingGame.TagIds = new List<Guid>(EditingGame.TagIds ?? new List<Guid>()) { newItem.Id };
+            }
         }
     }
 }
