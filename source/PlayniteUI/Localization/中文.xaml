@@ -249,7 +249,6 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsDBLocation">数据库位置</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">我的帐户名称是什么？</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">登录状态：</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLibrarySource">通过以下方式指定用户库：</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite设置</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCategories">导入Steam类别：</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCatFrom">来自帐户：</sys:String>
@@ -600,8 +599,7 @@ IGDB > 官方商店：
 请注意，“帐户名称”选项仅适用于具有公开可见性的帐户</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">选择通过身份验证的用户或指定帐户的可信URL名称以同步您的完整库。库为私密的帐户必须指定链接到该Steam帐户的API密钥
-    </sys:String>
+    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">选择通过身份验证的用户或指定帐户的可信URL名称以同步您的完整库。库为私密的帐户必须指定链接到该Steam帐户的API密钥</sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">帐户URL名称</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">已认证用户</sys:String>
 </ResourceDictionary>
