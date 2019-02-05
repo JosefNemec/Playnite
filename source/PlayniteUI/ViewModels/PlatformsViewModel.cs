@@ -365,37 +365,17 @@ namespace PlayniteUI.ViewModels
 
         private void UpdatePlatformsToDB()
         {
-            // Remove deleted platforms from database
-            var removedPlatforms = database.Platforms.Where(a => Platforms.FirstOrDefault(b => b.Id == a.Id) == null).ToList();
-            database.Platforms.Remove(removedPlatforms?.ToList());
-
-            // Add new platforms to database
-            var addedPlatforms = Platforms.Where(a => a.Id == Guid.Empty).ToList();
-            addedPlatforms.ForEach(a => a.Id = Guid.NewGuid());
-            database.Platforms.Add(addedPlatforms?.ToList());
-
-            // Remove files from deleted platforms
-            foreach (var platform in removedPlatforms)
-            {
-                if (!string.IsNullOrEmpty(platform.Icon))
-                {
-                    database.RemoveFile(platform.Icon);
-                }
-
-                if (!string.IsNullOrEmpty(platform.Cover))
-                {
-                    database.RemoveFile(platform.Cover);
-                }
-            }
-
-            // Save files from modified platforms
-            foreach (var platform in Platforms)
+            // Update modified platforms in database
+            foreach (var platform in Platforms.Where(a => a.Id != Guid.Empty))
             {
                 var dbPlatform = database.Platforms.Get(platform.Id);
+
+                // Save files from modified platforms
                 if (!string.IsNullOrEmpty(platform.Icon) && File.Exists(platform.Icon))
                 {
                     database.RemoveFile(dbPlatform.Icon);
                     var id = database.AddFile(platform.Icon, dbPlatform.Id);
+                    // In case Icon was extracted from EXE
                     if (Paths.AreEqual(Path.GetDirectoryName(platform.Icon), PlaynitePaths.TempPath))
                     {
                         File.Delete(platform.Icon);
@@ -409,16 +389,41 @@ namespace PlayniteUI.ViewModels
                     database.RemoveFile(dbPlatform.Cover);
                     platform.Cover = database.AddFile(platform.Cover, dbPlatform.Id);
                 }
-            }
 
-            // Update modified platforms in database
-            foreach (var platform in Platforms)
-            {
-                var dbPlatform = database.Platforms.Get(platform.Id);
                 if (dbPlatform != null && !platform.IsEqualJson(dbPlatform))
                 {
                     database.Platforms.Update(platform);
                 }
+            }
+
+            // Remove deleted platforms from database
+            var removedPlatforms = database.Platforms.Where(a => Platforms.FirstOrDefault(b => b.Id == a.Id) == null).ToList();
+            database.Platforms.Remove(removedPlatforms?.ToList());      
+
+            // Add new platforms to database
+            var addedPlatforms = Platforms.Where(a => a.Id == Guid.Empty).ToList();
+            foreach (var addedPlatform in addedPlatforms)
+            {
+                addedPlatform.Id = Guid.NewGuid();
+
+                if (!string.IsNullOrEmpty(addedPlatform.Icon))
+                {
+                    var id = database.AddFile(addedPlatform.Icon, addedPlatform.Id);
+                    // In case Icon was extracted from EXE
+                    if (Paths.AreEqual(Path.GetDirectoryName(addedPlatform.Icon), PlaynitePaths.TempPath))
+                    {
+                        File.Delete(addedPlatform.Icon);
+                    }
+
+                    addedPlatform.Icon = id;
+                }
+
+                if (!string.IsNullOrEmpty(addedPlatform.Cover))
+                {
+                    addedPlatform.Cover = database.AddFile(addedPlatform.Cover, addedPlatform.Id);
+                }
+                
+                database.Platforms.Add(addedPlatform);
             }
         }
 
