@@ -203,7 +203,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCMenuReloadLibrary">Bibliothek aktualisieren</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Spiel hinzufügen</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manuell</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled">Installiertes Spiel</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">Automatisch</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Emuliertes Spiel</sys:String>
     <sys:String x:Key="LOCMenuAbout">Über Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Sende Feedback</sys:String>
@@ -231,6 +231,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Lade Metadaten nach dem Import</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Playnite minimiert starten</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Playnite mit Windows starten</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Fehler beim Registrieren des Autostart-Eintrags für Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Lade Bilder asynchron (erfordert Neustart)</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Ermöglicht weicheres Scrolling zum Preis einer längeren Ladezeit.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Zeige den Namen des Spiels wenn kein Cover gefunden wurde</sys:String>
@@ -248,7 +249,6 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsDBLocation">Datenbank</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Name des Accounts</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Login-Status:</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLibrarySource">Bibliothek von:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite Einstellungen</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCategories">Importiere Kategorien:</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCatFrom">von Benutzer</sys:String>
@@ -289,6 +289,8 @@ Alle laufenden Hintergrundprozesse (z.B. der Download von Metadaten) werden abge
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Hintergrundbild vom Steam Store</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Das Verändern dieser Option hat keinen Einfluss auf
 bereits in deiner Bibliothek befindliche Spiele.</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Spielzeit mit Anbieter-Bibliothek synchronisieren</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Synchronisiert automatisch die Spielzeit mit der Bibliothek von Steam, Origin und anderen. Playnite wird die Spielzeit von betroffenen Spielen anschließend nicht mehr selbst überwachen.</sys:String>
 
     <sys:String x:Key="LOCImportError">Import fehlgeschlagen</sys:String>
     <sys:String x:Key="LOCLoginChecking">Überprüfe...</sys:String>
@@ -296,6 +298,7 @@ bereits in deiner Bibliothek befindliche Spiele.</sys:String>
     <sys:String x:Key="LOCLoginFailed">Authentifizierung fehlgeschlagen</sys:String>
     <sys:String x:Key="LOCLoggedIn">Angemeldet</sys:String>
     <sys:String x:Key="LOCNotLoggedIn">Nicht angemeldet</sys:String>
+    <sys:String x:Key="LOCNotLoggedInError">Fehler bei der Authentifizierung.</sys:String>
 
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Metadaten importieren</sys:String>
@@ -441,6 +444,12 @@ Du kannst uns Feedback via GitHub senden. Bitte ergänze deine Nachricht um die 
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Fehler beim Öffnen des Links: URL ist ungültig.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Fehler beim Starten der Anwendung.</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Fehler bei der Initialisierung der WebView-Komponente.
+
+Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den Fehler zu beheben: 
+  • Überprüfe die Installation von Playnite und wiederhole diese gegebenenfalls
+  • Überprüfe ob ein Antivirusprogramm Playnite beim Start behindert
+  • Installiere Playnite in ein anderes Verzeichnis</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Metadaten bearbeiten</sys:String>
@@ -576,4 +585,24 @@ Du kannst uns Feedback via GitHub senden. Bitte ergänze deine Nachricht um die 
     <sys:String x:Key="LOCScriptError">Skript-Fehler</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Beim ausführen des Skripts ist ein Fehler aufgetreten.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Öffne Metadaten-Verzeichnis</sys:String>
+
+    <sys:String x:Key="LOCClientNotInstalledError">Anbieter-Bibliothek {0} ist nicht installiert.</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Installationsverzeichnis des Spiels nicht gefunden.</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">Ungültige Aktion für dieses Spiel.</sys:String>
+
+    <sys:String x:Key="LOCTroubleShootingAccountLink">Hilfe bei der Account-Synchronisation</sys:String>
+
+    <!--itch.io-->
+    <sys:String x:Key="LOCItchioSignInNotif">Der itch.io Client wird gestartet... Bitte melde dich dort an und schließe anschließend diese Meldung.</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage">Warte auf Anmeldung... Schließe diese Meldung wenn du dich erfolgreich angemeldet hast.</sys:String>
+
+    <!--GOG-->
+    <sys:String x:Key="LOCGOGUseLogin">Privater Account</sys:String>
+    <sys:String x:Key="LOCGOGUseAccountName">Öffentlicher Account</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Um deine vollständige GOG-Bibliothek zu synchronisieren trage deinen privaten oder öffentlichen Accountnamen ein. Um den öffentlichen Accountnamen nutzen zu können muss die Privatsphäre deines Profils auf Öffentlich gestellt werden.</sys:String>
+
+    <!--Steam-->
+    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Um deine vollständige Steam-Bibliothek zu synchronisieren trage deinen privaten Accountnamen oder deine Account URL ein. Um die Account URL nutzen zu können muss die Privatsphäre deines Profils auf Öffentlich gestellt oder ein API-Key eingetragen werden.</sys:String>
+    <sys:String x:Key="LOCSteamCustomUrlName">Account URL</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">Angemeldet</sys:String>
 </ResourceDictionary>
