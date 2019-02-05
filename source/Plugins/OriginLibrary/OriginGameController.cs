@@ -45,14 +45,13 @@ namespace OriginLibrary
             OnStarting(this, new GameControllerEventArgs(this, 0));
             if (Directory.Exists(Game.InstallDirectory))
             {
-                var runsViaOrigin = Origin.GetGameRequiresOrigin(Game);
                 var playAction = api.ExpandGameVariables(Game, Game.PlayAction);
                 stopWatch = Stopwatch.StartNew();
                 procMon = new ProcessMonitor();
                 procMon.TreeDestroyed += ProcMon_TreeDestroyed;
                 procMon.TreeStarted += ProcMon_TreeStarted;
                 GameActionActivator.ActivateAction(playAction, Game);
-                StartRunningWatcher(runsViaOrigin);
+                StartRunningWatcher();
             }
             else
             {
@@ -60,9 +59,14 @@ namespace OriginLibrary
             }
         }
 
-        public async void StartRunningWatcher(bool waitForOrigin)
+        public async void StartRunningWatcher()
         {
-            if (waitForOrigin)
+            if (Origin.GetGameUsesEasyAntiCheat(Game))
+            {
+                // Games with EasyAntiCheat take longer to be re-executed by Origin
+                await Task.Delay(12000);
+            }
+            else if (Origin.GetGameRequiresOrigin(Game))
             {
                 // Solves issues with game process being started/shutdown multiple times during startup via Origin
                 await Task.Delay(5000);
