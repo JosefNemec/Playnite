@@ -149,6 +149,7 @@ namespace EpicLibrary
                         {
                             installed.Playtime = game.Playtime;
                             installed.LastActivity = game.LastActivity;
+                            installed.Name = game.Name;
                         }
                         else
                         {

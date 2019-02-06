@@ -15,6 +15,7 @@ namespace OriginLibrary
 {
     public class OriginGameController : BaseGameController
     {
+        private ILogger logger = LogManager.GetLogger();
         private CancellationTokenSource watcherToken;
         private ProcessMonitor procMon;
         private Stopwatch stopWatch;
@@ -44,14 +45,13 @@ namespace OriginLibrary
             OnStarting(this, new GameControllerEventArgs(this, 0));
             if (Directory.Exists(Game.InstallDirectory))
             {
-                var runsViaOrigin = Origin.GetGameRequiresOrigin(Game);
                 var playAction = api.ExpandGameVariables(Game, Game.PlayAction);
                 stopWatch = Stopwatch.StartNew();
                 procMon = new ProcessMonitor();
                 procMon.TreeDestroyed += ProcMon_TreeDestroyed;
                 procMon.TreeStarted += ProcMon_TreeStarted;
                 GameActionActivator.ActivateAction(playAction);
-                StartRunningWatcher(runsViaOrigin);
+                StartRunningWatcher();
             }
             else
             {
@@ -59,9 +59,14 @@ namespace OriginLibrary
             }
         }
 
-        public async void StartRunningWatcher(bool waitForOrigin)
+        public async void StartRunningWatcher()
         {
-            if (waitForOrigin)
+            if (Origin.GetGameUsesEasyAntiCheat(Game))
+            {
+                // Games with EasyAntiCheat take longer to be re-executed by Origin
+                await Task.Delay(12000);
+            }
+            else if (Origin.GetGameRequiresOrigin(Game))
             {
                 // Solves issues with game process being started/shutdown multiple times during startup via Origin
                 await Task.Delay(5000);
@@ -99,6 +104,13 @@ namespace OriginLibrary
         {
             watcherToken = new CancellationTokenSource();  
             var manifest = origin.GetLocalManifest(Game.GameId, null, true);
+            if (manifest.publishing == null)
+            {
+                logger.Error($"No publishing manifest found for Origin game {Game.GameId}, stopping installation check.");
+                OnUninstalled(this, new GameControllerEventArgs(this, 0));
+                return;
+            }
+
             var platform = manifest.publishing.softwareList.software.FirstOrDefault(a => a.softwarePlatform == "PCWIN");
 
             while (true)

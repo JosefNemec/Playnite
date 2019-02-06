@@ -815,7 +815,7 @@
                 <Image Stretch="UniformToFill" RenderOptions.BitmapScalingMode="Fant"                       
                        HorizontalAlignment="Center" VerticalAlignment="Top"
                        Grid.ColumnSpan="20" Grid.RowSpan="20"
-                       Source="{Binding ConverterParameter='background.png', Converter={pui:SkinMediaPathConverter}}" />
+                       Source="{Binding ConverterParameter='background.jpg', Converter={pui:SkinMediaPathConverter}}" />
 
                 <!--BACKGROUND IMAGE-->
                 <Grid Grid.ColumnSpan="20" Grid.RowSpan="20"

@@ -205,6 +205,11 @@ namespace ItchioLibrary
             var installedGames = new Dictionary<string, GameInfo>();
             Exception importError = null;
 
+            if (!LibrarySettings.ImportInstalledGames && !LibrarySettings.ImportUninstalledGames)
+            {
+                return allGames;
+            }
+
             if (Itch.IsInstalled)
             {
                 if (LibrarySettings.ImportInstalledGames)

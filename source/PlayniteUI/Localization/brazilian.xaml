@@ -203,8 +203,8 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCMenuReloadLibrary">Recarregar lista de jogos</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Adicionar jogos</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manualmente</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled">Importar instalação ou de pasta</sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated">Importar jogos emulados</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">Escanear automaticamente...</sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">Jogo emulado...</sys:String>
     <sys:String x:Key="LOCMenuAbout">Sobre o Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Enviar comentários</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Modo tela cheia</sys:String>
@@ -228,7 +228,8 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Importar alterações na biblioteca de clientes de terceiros ao iniciar</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Baixar metadados depois de importar jogos</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Iniciar minimizado</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot">Executar o Playnite quando o computador for iniciado</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">Executar o Playnite ao iniciar o sistema</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Não foi possível registrar o Playnite para ser executado ao iniciar o sistema.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Iniciar no modo tela cheia</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Inclui Steam, Origin e outros.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Carregamento de imagens assíncrono (requer reinicialização)</sys:String>
@@ -238,6 +239,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsShowIconList">Exibir o ícone dos jogos no esquema de lista</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Desabilitar a aceleração de hardware (requer reinicialização)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Use se experienciar travamentos ou problemas com a interface.</sys:String>
+    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Desabilitar o ajuste de DPI (requer reinicialização)</sys:String>
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Exibir botão de amigos do Steam</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundImage">Mostrar imagem de fundo</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Tema</sys:String>
@@ -246,8 +248,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Perfil do tema em tela cheia</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">Local do banco de dados</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Qual o nome da minha conta?</sys:String>
-    <sys:String x:Key="LOCSettingsLoginStatus">Estado da conta:</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLibrarySource">Especificar a biblioteca do usuário por:</sys:String>
+    <sys:String x:Key="LOCSettingsLoginStatus">Estado da sessão:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Configurações do Playnite</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCategories">Importar as categorias do Steam:</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCatFrom">da conta:</sys:String>
@@ -287,13 +288,16 @@ Qualquer tarefa sendo executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Captura de tela da loja</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Imagem de fundo da loja</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Não se aplica retroativamente a jogos existentes sem baixar novamente os metadados.</sys:String>
-
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Forçar sincronização do tempo em jogo</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Sempre importar o tempo em jogo registrado na biblioteca remota durante a sincronização de bibliotecas, ignorando o tempo registrado pelo Playnite.</sys:String>
+  
     <sys:String x:Key="LOCImportError">Erro de importação</sys:String>
     <sys:String x:Key="LOCLoginChecking">Verificando o estado da autenticação...</sys:String>
     <sys:String x:Key="LOCLoginRequired">Autentificação requerida</sys:String>
     <sys:String x:Key="LOCLoginFailed">Falha na autenticação</sys:String>
     <sys:String x:Key="LOCLoggedIn">Usuário autenticado</sys:String>
     <sys:String x:Key="LOCNotLoggedIn">Requer autenticação</sys:String>
+    <sys:String x:Key="LOCNotLoggedInError">Falha ao autenticar o usuário.</sys:String>
 
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Importar Metadados</sys:String>
@@ -437,6 +441,12 @@ Anexe a seguinte ID ao seu relatório de falha:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Não foi possível abrir o link, o URL não está em um formato válido.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Não foi possível executar a aplicação.</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Falha ao inicializar o componente de visualização da web, a execução do Playnite foi interrompida.
+
+Você pode tentar corrigir o problema:
+• Verificando se todos os arquivos foram instalados corretamente, uma reinstalação pode ajudar
+• Verificando se o seu antivírus não está bloqueando arquivos na pasta do Playnite
+• Instalando o programa em um local diferente</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Editar Detalhes do Jogo</sys:String>
@@ -500,6 +510,9 @@ Anexe a seguinte ID ao seu relatório de falha:</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Sair do Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotecas</sys:String> 
     <sys:String x:Key="LOCUpdateAll">Atualizar tudo</sys:String>
+    <sys:String x:Key="LOCExtensionCreatedBy">Criada por:</sys:String>
+    <sys:String x:Key="LOCExtensionVersion">Versão:</sys:String>
+    <sys:String x:Key="LOCExtensionModule">Módulo:</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Argumentos do emulador</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumentos adicionais do emulador</sys:String>
@@ -569,4 +582,26 @@ Anexe a seguinte ID ao seu relatório de falha:</sys:String>
     <sys:String x:Key="LOCScriptError">Erro no script</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Falha ao executar a função da extensão.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Abrir a pasta de metadados</sys:String>
+
+    <sys:String x:Key="LOCClientNotInstalledError">Cliente do {0} não instalado.</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Diretório de instalação do jogo não encontrado.</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">Configuração de ação do jogo inválida.</sys:String>
+
+    <sys:String x:Key="LOCTroubleShootingAccountLink">Solução de problemas de sincronização de contas</sys:String>
+
+    <!--itch.io-->
+    <sys:String x:Key="LOCItchioSignInNotif">O cliente do itch.io será executado agora. Entre com a sua conta e feche esta janela.</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage">Aguardando que o usuário inicie a sessão, feche esta janela quando terminar...</sys:String>    
+
+    <!--GOG-->
+    <sys:String x:Key="LOCGOGUseLogin">Dados da conta</sys:String>
+    <sys:String x:Key="LOCGOGUseAccountName">Nome da conta</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Inicie uma sessão com a sua conta ou insira o nome de usuário da conta pública para sincronizar a sua biblioteca completa.
+Observe que o nome de usuário da conta só funciona em contas com visibilidade pública.</sys:String>
+
+    <!--Steam-->
+    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Selecione um usuário já autenticado ou insira o nome na URL da sua conta para sincronizar a sua biblioteca completa. Contas com a biblioteca privada precisam especificar a chave da API vinculada a essa conta Steam.
+    </sys:String>
+    <sys:String x:Key="LOCSteamCustomUrlName">Nome da conta na URL</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">Usuário autenticado</sys:String>
 </ResourceDictionary>

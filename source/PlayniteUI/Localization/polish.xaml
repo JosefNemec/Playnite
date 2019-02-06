@@ -16,7 +16,7 @@
     
     <sys:String x:Key="LOCAboutHomePageLink">Strona główna - www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Kod źródłowy na GitHub</sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton">Utwórz diag. package</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">Utwórz pakiet diagnostyczny</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">O Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Utworzone przez Josef'a Němec</sys:String>
 
@@ -30,7 +30,7 @@ Nieokreślony - Bez zmian (podczas edycji wielu gier)</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">O nie, stało się coś złego ...</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Wystąpił nieodwracalny błąd, a Playnite uległo awarii.
         
-Jeśli chcesz nam pomóc rozwiązać ten problem, utwórz diag. package i użyj przycisku "Zgłoś awarię", aby poinformować nas, co się stało. Dziękuję Ci.</sys:String>
+Jeśli chcesz nam pomóc rozwiązać ten problem, utwórz pakiet diagnostyczny i użyj przycisku "Zgłoś awarię", aby poinformować nas, co się stało. Dziękuję Ci.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Zgłoś awarię</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Zrestartuj Playnite</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Zamknij Playnite</sys:String>
@@ -43,13 +43,13 @@ Jeśli chcesz nam pomóc rozwiązać ten problem, utwórz diag. package i użyj 
 Gra pojawi się ponownie w Playnite po kolejnym imporcie (w zależności od ustawień).</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Czy na pewno chcesz usunąć gry w liczbie {0} ?
         
-Gry pojawią się ponownie w Playnite po kolejnyme imporcie (w zależności od ustawień).</sys:String>
+Gry pojawią się ponownie w Playnite po kolejnym imporcie (w zależności od ustawień).</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Znajomi Steam</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Sekcja zawiera zmiany, które będą zapisane</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress">Aktualizacj formatu biblioteki gier...</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Aktualizacja formatu biblioteki gier...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Aktualizacja bazy danych nie powiodła się, nie można otworzyć pliku bazy danych.</sys:String>
-    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Nie można zaktualizować biblioteki gier. {0} MBs miejsca wolnego jest wymagane.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Nie można zaktualizować biblioteki gier. {0} MB miejsca wolnego jest wymagane.</sys:String>
 
     <sys:String x:Key="LOCGameError">Błąd gry</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Nie można uruchomić gry. '{0}' nie zostało odnalezione.</sys:String>
@@ -67,8 +67,8 @@ Gry pojawią się ponownie w Playnite po kolejnyme imporcie (w zależności od u
     <sys:String x:Key="LOCRemoveTitle">Usuń</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopiuj</sys:String>
     <sys:String x:Key="LOCAddTitle">Dodaj</sys:String>
-    <sys:String x:Key="LOCDefaultIconTitle">Domyślna Ikona</sys:String>
-    <sys:String x:Key="LOCDefaultCoverTitle">Domyślny Obraz Okładki</sys:String>
+    <sys:String x:Key="LOCDefaultIconTitle">Domyślna ikona</sys:String>
+    <sys:String x:Key="LOCDefaultCoverTitle">Domyślny obraz okładki</sys:String>
     <sys:String x:Key="LOCFinishLabel">Zakończ</sys:String>
     <sys:String x:Key="LOCNextLabel">Następne</sys:String>
     <sys:String x:Key="LOCBackLabel">Wstecz</sys:String>
@@ -89,7 +89,7 @@ Gry pojawią się ponownie w Playnite po kolejnyme imporcie (w zależności od u
     <sys:String x:Key="LOCPlayCountLabel">Liczba uruchomień</sys:String>
     <sys:String x:Key="LOCAddedLabel">Dodany</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Zmodyfikowany</sys:String>
-    <sys:String x:Key="LOCWebsiteLabel">Strona www</sys:String>
+    <sys:String x:Key="LOCWebsiteLabel">Strona WWW</sys:String>
     <sys:String x:Key="LOCPathLabel">Ścieżka</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
     <sys:String x:Key="LOCSaveLabel">Zapisz</sys:String>
@@ -163,22 +163,22 @@ W efekcie: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">Wszystkie gry z bazy danych</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Wszystkie aktualnie filtrowane gry</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Tylko wybrane gry</sys:String>
-    <sys:String x:Key="LOCMetaSourceStore">Sklep Oficjalny</sys:String>
+    <sys:String x:Key="LOCMetaSourceStore">Oficjalny sklep</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Sklep Oficjalny</sys:String>
-    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Sklep Oficjalny > IGDB</sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Oficjalny sklep</sys:String>
+    <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Oficjalny sklep > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Wybierz, które pola powinny być automatycznie wypełnione przez Playnite i które źródła powinny zostać użyte do uzyskania danych.</sys:String>
     <sys:String x:Key="LOCMetaSourceSettingsDescription" xml:space="preserve">Sklep:
-Użyj danych z Sklepu Oficjalnego.
+Użyj danych z oficjalnego sklepu.
     
 IGDB:
 Użyj danych z IGDB.com.
     
-IGDB > Sklep Oficjalny:
-Preferuj dane z IGDB.com i jeżeli nie ma, użyj dane z Sklepu Oficjalnego.   
+IGDB > Oficjalny sklep:
+Preferuj dane z IGDB.com i jeżeli nie ma, użyj dane z oficjalnego sklepu.   
 
-Sklep Oficjalny > IGDB:
-Preferuj dane z Sklepu Oficjalnego i jeżeli nie ma, użyj dane z IGDB.com.</sys:String>
+Oficjalny sklep > IGDB:
+Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys:String>
 
     <!--Progess string-->
     <sys:String x:Key="LOCProgressSteamLibImport">Aktualizacja biblioteki Steam...</sys:String>
@@ -190,7 +190,7 @@ Preferuj dane z Sklepu Oficjalnego i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCProgressImportinGames">Importowanie gier z {0} ...</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Aktualizacja biblioteki...</sys:String>
     <sys:String x:Key="LOCProgressSteamCategoryImport">Aktualizacja biblioteki...</sys:String>
-    <sys:String x:Key="LOCProgressLibImportFinish">Ukończono auktualizację biblioteki</sys:String>
+    <sys:String x:Key="LOCProgressLibImportFinish">Ukończono aktualizację biblioteki</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Zwalnianie zasobów...</sys:String>
 
     <!--Menu-->
@@ -232,8 +232,8 @@ Preferuj dane z Sklepu Oficjalnego i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Nie zarejestrowano Playnite do uruchomienia podczas startu systemu.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Uruchom w trybie pełnoekranowym</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Zawiera Steam, Origin i pozostałe.</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchroniczne ładowanie obrazu (wymaga restaru)</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Poprawić płynność przewijania listy gier kosztem wolniejszego ładowania się grafik</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchroniczne ładowanie obrazu (wymaga restartu)</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Poprawia płynność przewijania listy gier kosztem wolniejszego ładowania się grafiki</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Wyświetlaj nazwę gry, gdy brakuje okładki</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Pokaż nazwy gier w widoku okładki</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Pokaż ikony gier w widoku listy</sys:String>
@@ -245,7 +245,7 @@ Preferuj dane z Sklepu Oficjalnego i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsSkin">Motyw</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Motyw profilu</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Motyw pełnoekranowy</sys:String>
-    <sys:String x:Key="LOCSettingsSkinColorFullscreen"> </sys:String>
+    <sys:String x:Key="LOCSettingsSkinColorFullscreen">Pełnoekranowy motyw profilu</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">Lokalizacja bazy danych</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Jaka jest nazwa konta Steam?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Status logowania:</sys:String>
@@ -253,7 +253,7 @@ Preferuj dane z Sklepu Oficjalnego i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsWindowTitle">Opcje Playnite</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCategories">Importuj kategorie Steam:</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCatFrom">z konta:</sys:String>
-    <sys:String x:Key="LOCSettingsClearWebCache">Wyczyść pamięć podręczną Web</sys:String>
+    <sys:String x:Key="LOCSettingsClearWebCache">Wyczyść pamięć podręczną</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Może rozwiązać problemy napotkane podczas powiązania kont.</sys:String>
     <sys:String x:Key="LOCSettingsShowTray">Pokaż ikonę w zasobniku </sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">Minimalizuj do zasobnika</sys:String>
@@ -264,8 +264,8 @@ Preferuj dane z Sklepu Oficjalnego i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip">Włącza funkcje takie jak zapisywanie w chmurze, liczenie czasu gry itp.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarn">To spowoduje nadpisanie bieżących kategorii we wszystkich grach Steam. Czy chcesz kontynuować?</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Importować kategorie?</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Nie można zimportować kategorii, konto źródłowe nie zostało wybrane.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Nie można zimportować kategorii, baza danych nie jest otwarta.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Nie można zaimportować kategorii, konto źródłowe nie zostało wybrane.</sys:String>
+    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Nie można zaimportować kategorii, baza danych nie jest otwarta.</sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportError">Nie udało się zaimportować kategorii Steam: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Spowoduje to wylogowanie Cię z wszystkich powiązanych usług. Wymagany jest restart aplikacji, czy chcesz kontynuować?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Wyczyścić pamięć podręczną?</sys:String>
@@ -286,8 +286,8 @@ Wszystkie aktualnie aktywne zadania (pobieranie metadanych) zostaną anulowane.<
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Liczba wierszy z szczegółami</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Źródło obrazów w tle:</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Obraz gry</sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Zrzut ekranu z Sklepu Oficjalnego</sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceStore">Tło z Sklepu Oficjalnego</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Zrzut ekranu z oficjalnego sklepu</sys:String>
+    <sys:String x:Key="LOCSteamBackgroundSourceStore">Tło z oficjalnego sklepu</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Nie dotyczy obrazów tła w istniejących grach bez ponownego pobierania metadanych.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Wymuś synchronizację czasu gry</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Zawsze pobieraj czas gry z klienta, podczas synchronizacji, ignorując czas z Playnite.</sys:String>
@@ -305,14 +305,14 @@ Wszystkie aktualnie aktywne zadania (pobieranie metadanych) zostaną anulowane.<
     
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Kreator importu emulatorów</sys:String>
-    <sys:String x:Key="LOCEmuWizardIntro">Ten kreator przeprowadzi Cię przez proces pobierania i importowania emulatora konsoli, a także import emulowanych gier.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">Pamiętaj, że zawsze możesz poźniej dodać emulatory i  gry za pośrednictwem menu głównego (w menu "Narzędzia" dla emulatorów i menu "Dodaj grę/gry" dla emulowanych gier).</sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro">Ten kreator przeprowadzi Cię przez proces pobierania i importowania emulatora konsoli, oraz emulowanych gier.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Pamiętaj, że zawsze możesz później dodać emulatory i gry za pośrednictwem menu głównego (w menu "Narzędzia" dla emulatorów i "Dodaj grę/gry" dla emulowanych gier).</sys:String>
     <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Poniżej znajduje się lista emulatorów, które Playnite rozpoznaje i automatycznie konfiguruje. Możesz je pobrać i zainstalować, odwiedzając ich stronę internetową. Po zainstalowaniu emulatorów przejdź do następnego ekranu, aby zaimportować je do Playnite.
         
 Możesz także skonfigurować i importować dowolny niestandardowy emulator później za pośrednictwem menu konfiguracji.</sys:String>
     <sys:String x:Key="LOCEmuWizardEmuImportIntro">Można importować dowolne emulatory zainstalowane na komputerze, naciskając przycisk "Skanowanie folderów ...". Playnite przeszuka wybrany folder dla wszystkich znanych emulatorów i udostępni opcję ich importowania. Możesz importować dane z wielu folderów, używając tego przycisku kilka razy, emulatory zostaną dodane na dole bieżącej listy.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">Możesz importować gry, naciskając przycisk "Skanuj folder dla ROM/ISO". Wybór odpowiedniego emulatora powie Playnite, które typy plików powinny być skanowane i importowane. Możesz importować z wielu folderów, używając tego przycisku kilka razy, gry zostaną dodane na dole bieżącej listy.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">There are no emulators selected for import. You won't be able to automatically import any emulated games without configuring emulators first. Are you sure you want to continue and exit import process?</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Nie wybrano żadnych emulatorów do zaimportowania. Automatyczne importowanie emulowanych gier nie będzie możliwe bez wcześniejszego skonfigurowania emulatora. Czy na pewno chcesz kontynuować i opuścić proces importowania?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">W Playnite nie ma skonfigurowanych emulatorów. Nie można importować gier bez uprzedniego skonfigurowania emulatora i wybrania odpowiednich typów plików. Czy chcesz teraz dodać kilka emulatorów?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Skanuj folder dla ROM/ISO</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Wybierz pliki</sys:String>
@@ -415,8 +415,8 @@ Jest obecnie używany przez {1} grę/gry i {2} emulator(y).</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">Baza danych nie jest otwarta.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Nie można uzyskać dostępu do bazy danych biblioteki. Plik "{0}" jest używany przez inny proces lub jest w niedostępnej lokalizacji.</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">Nie można utworzyć diag. packege.</sys:String>
-    <sys:String x:Key="LOCDiagPackageUploadError">Błąd przy udostępnianiu diag. package.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Dia. package utworzono i udostępniono.
+    <sys:String x:Key="LOCDiagPackageUploadError">Błąd przy udostępnianiu pakietu diagnostycznego.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Pakiet diagnostyczny utworzono i udostępniono.
 Dołącz następujący identyfikator do raportu błędu:</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Nie udało się zaimportować kategorii Steam.</sys:String>
@@ -520,7 +520,7 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCCheckForUpdates">Sprawdzanie aktualizacji</sys:String>
     <sys:String x:Key="LOCUpdateError">Błąd aktualizacji</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Błąd sprawdzania nowej wersji.</sys:String>
-    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Nie znaleziono nowej wersji, masz aktualną wersję.</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Nie znaleziono nowej wersji, posiadasz aktualną wersję.</sys:String>
     <sys:String x:Key="LOCUGeneralUpdateFailMessage">Nie udało się pobrać i zainstalować aktualizacji.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Zadanie w tle jest obecnie uruchomione, czy chcesz anulować i zaktualizować?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Zadanie w tle jest aktualnie uruchomione, czy chcesz je anulować i zamknąć Playnite?</sys:String>
