@@ -203,7 +203,7 @@ Eredeti áruház adatait használja, de ha nem elérhető akkor használja IGDB-
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Minden játék importálása</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Minden játék importálása (Felhasználó láthatósága publikusra kell legyen állítva vagy API kulcsot kell megadni)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Hibás adatbázis útvonal, helyes fájl útvonal kell legyen megadva.</sys:String>
-    <sys:String x:Key="LOCSettingsInvalidSteamAccountName">Steam felhasználónév nem lehet üres.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidAccountName">Felhasználónév nem lehet üres.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Nem lett steam fiók megadva könyvtár importáláshoz.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Nem lett steam fiók megadva csoportok importáláshoz.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Külső kliensek könyvtárainak frissítése induláskor</sys:String>
