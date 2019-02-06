@@ -211,7 +211,7 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Εισαγωγή όλων των παιχνιδιών</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Εισαγωγή όλων των παιχνιδιών (Πρέπει να παρέχετε κλειδί δημόσιου λογαριασμού ή API)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Μη έγκυρη θέση αρχείου βάσης δεδομένων, πρέπει να οριστεί κατάλληλη διαδρομή αρχείου.</sys:String>
-    <sys:String x:Key="LOCSettingsInvalidSteamAccountName">Το όνομα του λογαριασμού Steam δεν μπορεί να είναι κενό.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidAccountName">Το όνομα του λογαριασμού δεν μπορεί να είναι κενό.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">No Steam account selected for library import.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">No Steam account selected for category import.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Λήψη ενημερώσεων βιβλιοθήκης από 3rd party  κατά την εκκίνηση</sys:String>
