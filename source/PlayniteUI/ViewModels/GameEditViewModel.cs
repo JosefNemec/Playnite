@@ -1551,7 +1551,7 @@ namespace PlayniteUI.ViewModels
             }
 
             if (UsePublisherChanges)
-            {
+            {                
                 if (Games != null)
                 {
                     foreach (var game in Games)
@@ -1567,6 +1567,12 @@ namespace PlayniteUI.ViewModels
 
             if (UseCategoryChanges)
             {
+                var addedCategories = Categories.Where(a => a.Selected == true && database.Categories[a.Item.Id] == null);
+                if (addedCategories.Any())
+                {
+                    database.Categories.Add(addedCategories.Select(a => (Category)a.Item));
+                }
+
                 if (Games != null)
                 {
                     foreach (var game in Games)
@@ -1576,6 +1582,7 @@ namespace PlayniteUI.ViewModels
                 }
                 else
                 {
+
                     Game.CategoryIds = EditingGame.CategoryIds;
                 }
             }
@@ -2586,7 +2593,7 @@ namespace PlayniteUI.ViewModels
             var newItem = CreateNewItem<Category>(Categories);
             if (newItem != null)
             {
-                EditingGame.CategoryIds = new List<Guid>(EditingGame.CategoryIds ?? new List<Guid>()) { newItem.Id };
+                //EditingGame.CategoryIds = new List<Guid>(EditingGame.CategoryIds ?? new List<Guid>()) { newItem.Id };
             }
         }
 
@@ -2595,7 +2602,7 @@ namespace PlayniteUI.ViewModels
             var newItem = CreateNewItem<Company>(Publishers);
             if (newItem != null)
             {
-                EditingGame.PublisherIds = new List<Guid>(EditingGame.PublisherIds ?? new List<Guid>()) { newItem.Id };
+                //EditingGame.PublisherIds = new List<Guid>(EditingGame.PublisherIds ?? new List<Guid>()) { newItem.Id };
                 // refresh taky developery
             }
         }
@@ -2605,7 +2612,7 @@ namespace PlayniteUI.ViewModels
             var newItem = CreateNewItem<Company>(Developers);
             if (newItem != null)
             {
-                EditingGame.DeveloperIds = new List<Guid>(EditingGame.DeveloperIds ?? new List<Guid>()) { newItem.Id };
+                //EditingGame.DeveloperIds = new List<Guid>(EditingGame.DeveloperIds ?? new List<Guid>()) { newItem.Id };
             }
         }
 
@@ -2614,7 +2621,7 @@ namespace PlayniteUI.ViewModels
             var newItem = CreateNewItem<Genre>(Genres);
             if (newItem != null)
             {
-                EditingGame.GenreIds = new List<Guid>(EditingGame.GenreIds ?? new List<Guid>()) { newItem.Id };
+                //EditingGame.GenreIds = new List<Guid>(EditingGame.GenreIds ?? new List<Guid>()) { newItem.Id };
             }
         }
 
@@ -2623,7 +2630,7 @@ namespace PlayniteUI.ViewModels
             var newItem = CreateNewItem<Tag>(Tags);
             if (newItem != null)
             {
-                EditingGame.TagIds = new List<Guid>(EditingGame.TagIds ?? new List<Guid>()) { newItem.Id };
+                //EditingGame.TagIds = new List<Guid>(EditingGame.TagIds ?? new List<Guid>()) { newItem.Id };
             }
         }
     }
