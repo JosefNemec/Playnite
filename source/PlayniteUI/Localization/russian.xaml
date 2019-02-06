@@ -209,7 +209,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Импортировать все игры</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Импортировать все игры (В настройках приватности аккаунта должно быть выбрано "Публичный" или должен быть указан API-ключ)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Не найдено расположение базы данных, должен быть указан верный путь.</sys:String>
-    <sys:String x:Key="LOCSettingsInvalidSteamAccountName">Имя Steam-аккаунта не может быть пустым.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidAccountName">Имя аккаунта не может быть пустым.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Не выбран Steam-аккаунт для импорта библиотеки.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Не выбран Steam-аккаунт для импорта категории.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Обновления из сторонних клиентов при запуске</sys:String>
