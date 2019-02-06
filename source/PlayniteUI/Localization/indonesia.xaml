@@ -155,7 +155,7 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
   <sys:String x:Key="LOCSettingsImportInstalledLabel">Import game yang sudah terinstal</sys:String>
   <sys:String x:Key="LOCSettingsImportLibraryLabel">Import semua game</sys:String>
   <sys:String x:Key="LOCSettingsInvalidDBLocation">Lokasi file database invalid, silahkan set path yang benar.</sys:String>
-  <sys:String x:Key="LOCSettingsInvalidSteamAccountName">Nama akun Steam tidak boleh kosong.</sys:String>
+  <sys:String x:Key="LOCSettingsInvalidAccountName">Nama akun tidak boleh kosong.</sys:String>
   <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Tidak ada akun Steam dipilih untuk import library.</sys:String>
   <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Tidak ada akun Steam dipilih untuk import kategori.</sys:String>
   <sys:String x:Key="LOCSettingsUpdateLibStartup">Download library pihak ketiga saat memulai program.</sys:String>
