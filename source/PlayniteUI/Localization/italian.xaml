@@ -222,7 +222,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
   <sys:String x:Key="LOCSettingsImportLibraryLabel">Importa tutti i giochi</sys:String>
   <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importa tutti i giochi (Le impostazioni di privacy dell'account devono essere impostate su Pubblico o dev'essere fornita la chiave API)</sys:String>
   <sys:String x:Key="LOCSettingsInvalidDBLocation">Il percorso del file della banca dati non valido, dev'essere impostato un percorso file corretto.</sys:String>
-  <sys:String x:Key="LOCSettingsInvalidSteamAccountName">Nome dell'account di Steam non puù essere vuoto.</sys:String>
+  <sys:String x:Key="LOCSettingsInvalidAccountName">Nome dell'account non puù essere vuoto.</sys:String>
   <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Nessun account di Steam selezionato per l'importazione della libreria.</sys:String>
   <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Nessun account di Steam selezionato per l'importazione delle categorie.</sys:String>
   <sys:String x:Key="LOCSettingsUpdateLibStartup">Scaricare gli aggiornamenti della libreria di terze parti all'avvio</sys:String>
