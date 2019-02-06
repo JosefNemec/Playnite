@@ -58,7 +58,7 @@
     </c:WindowBase.InputBindings>
 
     <Grid>
-        <tray:TaskbarIcon x:Name="TrayPlaynite" ToolTipText="Playnite" IconSource="/Images/applogo.ico"
+        <tray:TaskbarIcon x:Name="TrayPlaynite" IconSource="/Images/applogo.ico"
                           MenuActivation="LeftOrRightClick"
                           Visibility="{Binding Path=EnableTray, Source={x:Static pset:PlayniteSettings.Instance}, Converter={StaticResource BooleanToVisibilityConverter}}"
                           DoubleClickCommand="{Binding Source={StaticResource Proxy}, Path=Data.ShowWindowCommand}">

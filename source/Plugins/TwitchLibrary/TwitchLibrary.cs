@@ -84,18 +84,21 @@ namespace TwitchLibrary
                 }
 
                 var gameId = program.RegistryKeyName.Trim(new char[] { '{', '}' }).ToLower();
-                var game = new Game()
+                if (!games.ContainsKey(gameId))
                 {
-                    InstallDirectory = Paths.FixSeparators(program.InstallLocation),
-                    GameId = gameId,
-                    PluginId = Id,
-                    Source = "Twitch",
-                    Name = program.DisplayName,
-                    IsInstalled = true,
-                    PlayAction = GetPlayAction(gameId)
-                };
+                    var game = new Game()
+                    {
+                        InstallDirectory = Paths.FixSeparators(program.InstallLocation),
+                        GameId = gameId,
+                        PluginId = Id,
+                        Source = "Twitch",
+                        Name = program.DisplayName,
+                        IsInstalled = true,
+                        PlayAction = GetPlayAction(gameId)
+                    };
 
-                games.Add(game.GameId, game);
+                    games.Add(game.GameId, game);
+                }
             }
 
             return games;
