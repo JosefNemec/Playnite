@@ -123,9 +123,9 @@ namespace Playnite
             }
         }
 
-        public const double MinCoversZoom = 100;
+        public const double MinCoversZoom = 90;
         public const double DefaultCoversZoom = 180;
-        public const double MaxCoversZoom = 260;
+        public const double MaxCoversZoom = 270;
 
         private double coversZoom = DefaultCoversZoom;
         public double CoversZoom
