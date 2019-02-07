@@ -46,9 +46,13 @@ namespace PlayniteUI.Controls
                 Popup.IsOpen = true;
             }
 
-            var mousePos = e.GetPosition(SliderGrid);
-            Popup.HorizontalOffset = mousePos.X;
-            Popup.VerticalOffset = mousePos.Y;
+            PositionPopupBelowTheEndOfTheSlider();
+        }
+
+        private void PositionPopupBelowTheEndOfTheSlider()
+        {
+            Popup.HorizontalOffset = Slider.Width - PopupGrid.ActualWidth;
+            Popup.VerticalOffset = 0f;
         }
 
         private void Slider_MouseLeave(object sender, MouseEventArgs e)
