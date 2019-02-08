@@ -7,35 +7,35 @@ namespace PlayniteServices.Models.Patreon
 {
     public class User
     {
-        public string id;
-        public string first_name;
-        public string last_name;
-        public string full_name;
-        public string vanity;
-        public string email;
-        public string about;
-        public string facebook_id;
-        public string image_url;
-        public string thumb_url;
-        public string youtube;
-        public string twitter;
-        public string facebook;
-        public DateTime? created;
-        public string url;
+        public string id { get; set; }
+        public string first_name { get; set; }
+        public string last_name { get; set; }
+        public string full_name { get; set; }
+        public string vanity { get; set; }
+        public string email { get; set; }
+        public string about { get; set; }
+        public string facebook_id { get; set; }
+        public string image_url { get; set; }
+        public string thumb_url { get; set; }
+        public string youtube { get; set; }
+        public string twitter { get; set; }
+        public string facebook { get; set; }
+        public DateTime? created { get; set; }
+        public string url { get; set; }
     }
 
     public class Pledge
     {
-        public string id;
-        public User patron;
-        public int amount_cents;
-        public DateTime? created_at;
-        public DateTime? declined_since;
-        public int pledge_cap_cents;
-        public bool patron_pays_fees;
-        public int total_historical_amount_cents;
-        public bool is_paused;
-        public bool has_shipping_address;
-        public int outstanding_payment_amount_cents;
+        public string id { get; set; }
+        public User patron { get; set; }
+        public int amount_cents { get; set; }
+        public DateTime? created_at { get; set; }
+        public DateTime? declined_since { get; set; }
+        public int pledge_cap_cents { get; set; }
+        public bool patron_pays_fees { get; set; }
+        public int total_historical_amount_cents { get; set; }
+        public bool is_paused { get; set; }
+        public bool has_shipping_address { get; set; }
+        public int outstanding_payment_amount_cents { get; set; }
     }
 }
