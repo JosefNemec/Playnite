@@ -1797,7 +1797,7 @@ namespace PlayniteUI.ViewModels
 
                     if (Path.GetDirectoryName(EditingGame.Icon) == PlaynitePaths.TempPath)
                     {
-                        File.Delete(EditingGame.Icon);
+                        FileSystem.DeleteFile(EditingGame.Icon);
                     }
                 }
             }
@@ -1838,7 +1838,7 @@ namespace PlayniteUI.ViewModels
 
                     if (Path.GetDirectoryName(EditingGame.CoverImage) == PlaynitePaths.TempPath)
                     {
-                        File.Delete(EditingGame.CoverImage);
+                        FileSystem.DeleteFile(EditingGame.CoverImage);
                     }
                 }
             }
@@ -1903,7 +1903,7 @@ namespace PlayniteUI.ViewModels
 
                         if (Path.GetDirectoryName(EditingGame.BackgroundImage) == PlaynitePaths.TempPath)
                         {
-                            File.Delete(EditingGame.BackgroundImage);
+                            FileSystem.DeleteFile(EditingGame.BackgroundImage);
                         }
                     }
                 }
@@ -2325,10 +2325,21 @@ namespace PlayniteUI.ViewModels
                     tempGame.CoverImage = string.Empty;
 
                     if (extensions.LibraryPlugins.TryGetValue(tempGame.PluginId, out var plugin))
-                    {
+                    {                        
                         var downloader = plugin.Plugin.GetMetadataDownloader();
-                        metadata = downloader.GetMetadata(tempGame);
-                        metadata?.GameData?.CopyProperties(tempGame, false);
+                        try
+                        {
+                            metadata = downloader.GetMetadata(tempGame);
+                            metadata?.GameData?.CopyProperties(tempGame, false);
+                        }
+                        finally
+                        {
+                            // TODO move to proper disposable
+                            if (downloader.HasMethod("Dispose"))
+                            {
+                                (downloader as dynamic)?.Dispose();
+                            }
+                        }
                     }
                     else
                     {

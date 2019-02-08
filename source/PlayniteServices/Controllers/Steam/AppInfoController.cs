@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.Steam
 {
-    [Route("api/steam/appinfo")]
+    [Route("steam/appinfo")]
     public class AppInfoController : Controller
     {
         private static readonly object CacheLock = new object();

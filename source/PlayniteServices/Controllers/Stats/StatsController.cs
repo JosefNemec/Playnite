@@ -13,7 +13,7 @@ namespace PlayniteServices.Controllers.Stats
     {
         private static LiteCollection<User> usersColl = Program.Database.GetCollection<User>("PlayniteUsers");
 
-        [HttpGet("api/stats/{serviceKey}")]
+        [HttpGet("stats/{serviceKey}")]
         public GenericResponse GetStarts(string serviceKey)
         {
             var key = Startup.Configuration.GetSection("ServiceKey");
@@ -50,7 +50,7 @@ namespace PlayniteServices.Controllers.Stats
             return new ServicesResponse<ServiceStats>(stats);
         }
 
-        [HttpGet("api/stats/drop/{serviceKey}")]
+        [HttpGet("stats/drop/{serviceKey}")]
         public GenericResponse DropStats(string serviceKey)
         {
             var key = Startup.Configuration.GetSection("ServiceKey");

@@ -23,7 +23,7 @@ namespace BattleNetLibrary
 
         public GameMetadata GetMetadata(Game game)
         {
-            var gameData = new Game("OriginGame")
+            var gameData = new Game("BattleNetGame")
             {
                 GameId = game.GameId
             };

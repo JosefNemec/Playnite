@@ -29,33 +29,13 @@ namespace Playnite
             return null;
         }
 
-        public static Process ActivateAction(GameAction action, Game gameData)
-        {
-            logger.Info($"Activating game task {action}");
-            switch (action.Type)
-            {
-                case GameActionType.File:
-                    var path = action.Path;
-                    var arguments = action.Arguments;
-                    var workdir = action.WorkingDir;
-                    return ProcessStarter.StartProcess(path, arguments, workdir);
-                case GameActionType.URL:
-                    var url = action.Path;
-                    return ProcessStarter.StartUrl(url);
-                case GameActionType.Emulator:
-                    throw new Exception("Cannot start emulated game without emulator.");
-            }
-
-            return null;
-        }
-
-        public static Process ActivateAction(GameAction action, Game gameData, EmulatorProfile config)
+        public static Process ActivateAction(GameAction action, EmulatorProfile config)
         {
             switch (action.Type)
             {
                 case GameActionType.File:
                 case GameActionType.URL:
-                    return ActivateAction(action, gameData);
+                    return ActivateAction(action);
                 case GameActionType.Emulator:
                     logger.Info($"Activating game task {action}");
                     if (config == null)

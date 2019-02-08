@@ -15,7 +15,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Width="750" Height="600"                     
+        Width="780" Height="620"                     
         AutomationProperties.AutomationId="WindowSettings">
 
     <i:Interaction.Triggers>
@@ -477,9 +477,11 @@
                                 <TextBlock Text="{Binding Value.Name}" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
-                    </ListBox>                    
-                    <ContentControl DockPanel.Dock="Left" Margin="20"
-                                    Content="{Binding SelectedItem.Value.View, ElementName=TreeLibraryPlugins}"/>
+                    </ListBox>
+                    <ScrollViewer DockPanel.Dock="Left">
+                        <ContentControl Content="{Binding SelectedItem.Value.View, ElementName=TreeLibraryPlugins}"
+                                        Margin="20"/>
+                    </ScrollViewer>
                 </DockPanel>
             </TabItem>
 

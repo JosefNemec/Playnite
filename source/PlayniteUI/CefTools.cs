@@ -13,6 +13,8 @@ namespace PlayniteUI
 {
     public class CefTools
     {
+        public static bool IsInitialized { get; private set; }
+
         public static void ConfigureCef()
         {
             FileSystem.CreateDirectory(PlaynitePaths.BrowserCachePath);
@@ -23,12 +25,13 @@ namespace PlayniteUI
             settings.CachePath = PlaynitePaths.BrowserCachePath;
             settings.PersistSessionCookies = true;
             settings.LogFile = Path.Combine(PlaynitePaths.ConfigRootPath, "cef.log");
-            Cef.Initialize(settings);
+            IsInitialized = Cef.Initialize(settings);
         }
 
         public static void Shutdown()
         {
             Cef.Shutdown();
+            IsInitialized = false;
         }
     }
 }

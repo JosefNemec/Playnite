@@ -32,6 +32,14 @@
             Projects="../source/Plugins/BethesdaLibrary/BethesdaLibrary.csproj"
             Targets="Build"
             Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+        <MSBuild
+            Projects="../source/Plugins/EpicLibrary/EpicLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+        <MSBuild
+            Projects="../source/Plugins/ItchioLibrary/ItchioLibrary.csproj"
+            Targets="Build"
+            Properties="OutputPath=bin/$(Configuration); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
     </Target>
     <Target Name="Build" DependsOnTargets="Plugins">
         <MSBuild

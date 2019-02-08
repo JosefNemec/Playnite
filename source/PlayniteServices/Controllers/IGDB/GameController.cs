@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.IGDB
 {
-    [Route("api/igdb/game")]
+    [Route("igdb/game")]
     public class GameController : IgdbItemController
     {
         private static ILogger logger = LogManager.GetLogger();
@@ -53,7 +53,7 @@ namespace PlayniteServices.Controllers.IGDB
         }
     }
 
-    [Route("api/igdb/game_parsed")]
+    [Route("igdb/game_parsed")]
     public class GameParsedController : Controller
     {
         [HttpGet("{gameId}")]

@@ -15,7 +15,7 @@ using System.Collections.Concurrent;
 
 namespace Playnite.Metadata
 {
-    public class MetadataDownloader
+    public class MetadataDownloader : IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
 
@@ -33,6 +33,18 @@ namespace Playnite.Metadata
             this.igdbProvider = igdbProvider;
             this.plugins = plugins;
             this.database = database;
+        }
+
+        public void Dispose()
+        {
+            foreach (var downloader in downloaders.Values)
+            {                
+                // TODO move to proper disposable
+                if (downloader?.HasMethod("Dispose") == true)
+                {
+                    (downloader as dynamic)?.Dispose();
+                }
+            }
         }
 
         internal ILibraryMetadataProvider GetMetadataDownloader(Guid pluginId)

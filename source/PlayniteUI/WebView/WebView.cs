@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace PlayniteUI.WebView
 {
@@ -20,14 +21,19 @@ namespace PlayniteUI.WebView
 
         public event EventHandler NavigationChanged;
 
-        public WebView(int width, int height)
+        public WebView(int width, int height) : this(width, height, Colors.Transparent)
+        {
+        }
+
+        public WebView(int width, int height, Color background)
         {
             context = SynchronizationContext.Current;
             window = new WebViewWindow();
-            window.Browser.LoadingStateChanged += Browser_LoadingStateChanged;            
+            window.Browser.LoadingStateChanged += Browser_LoadingStateChanged;
             window.Owner = PlayniteWindows.CurrentWindow;
             window.Width = width;
             window.Height = height;
+            window.Background = new SolidColorBrush(background);
         }
 
         private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
@@ -70,6 +76,11 @@ namespace PlayniteUI.WebView
             var text = string.Empty;
             context.Send(a => text = window.Browser.GetSourceAsync().GetAwaiter().GetResult(), null);
             return text;
+        }
+
+        public Task<string> GetPageSourceAsync()
+        {
+            return window.Browser.GetSourceAsync();
         }
 
         public void NavigateAndWait(string url)

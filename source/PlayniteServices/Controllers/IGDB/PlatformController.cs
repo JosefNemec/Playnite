@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PlayniteServices.Controllers.IGDB
 {
-    [Route("api/igdb/platforms")]
+    [Route("igdb/platforms")]
     public class PlatformController : IgdbItemController
     {
         private static readonly object CacheLock = new object();

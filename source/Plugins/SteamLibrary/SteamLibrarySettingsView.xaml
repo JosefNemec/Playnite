@@ -20,16 +20,16 @@
         <pui:NegateConverter x:Key="NegateConverter" />
         <pui:EnumConverter x:Key="EnumConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        
+
         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
-                            x:Key="BackgroundSourceEnumValues">
+                    x:Key="BackgroundSourceEnumValues">
             <ObjectDataProvider.MethodParameters>
                 <x:Type TypeName="steam:BackgroundSource" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
         <ComboBox x:Key="BackgroundSourceBox" x:Shared="False"
-                    SelectedValue="{Binding BackgroundSource}"
-                    ItemsSource="{Binding Source={StaticResource BackgroundSourceEnumValues}}">
+            SelectedValue="{Binding BackgroundSource}"
+            ItemsSource="{Binding Source={StaticResource BackgroundSourceEnumValues}}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Converter={steam:BackgroundSourceToStringConverter}}"/>
@@ -49,7 +49,8 @@
                   Content="{DynamicResource LOCSettingsImportUninstalledLabel}"/>
 
         <DockPanel DockPanel.Dock="Top" Margin="40,5,5,5" IsEnabled="{Binding IsChecked, ElementName=CheckSteamImportUninstalled}">
-            <TextBlock Text="{DynamicResource LOCSettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5"/>
+            <TextBlock Text="{DynamicResource LOCSettingsSteamLibrarySource}" DockPanel.Dock="Top" Margin="5,10,5,0"
+                       TextWrapping="Wrap"/>
             <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -60,50 +61,49 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <RadioButton Content="{DynamicResource LOCGameAccountNameTitle}" Name="RadioSteamLibName" GroupName="steamsource"
-                             IsChecked="{Binding IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.Name}}"
-                             Grid.Column="0" Grid.Row="0" Margin="5"/>
-                <RadioButton Content="{DynamicResource LOCLocalUserLabel}" Name="RadioSteamLibAccount" GroupName="steamsource"
-                             IsChecked="{Binding IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.LocalUser}}"
-                             Grid.Column="0" Grid.Row="1" Margin="5"/>
+                <RadioButton Grid.Column="0" Grid.Row="0" Margin="5" VerticalAlignment="Center"
+                             Content="{DynamicResource LOCSteamLoggedInUser}" Name="RadioSteamLibAccount" GroupName="steamsource"
+                             IsChecked="{Binding IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.LocalUser}}"/>
 
-                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="5">
-                    <TextBox Text="{Binding AccountName}"
-                             IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}"
-                             Margin="0,0,10,0" Width="200" />
-                    <TextBlock VerticalAlignment="Center">
-                        <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"
-                                   Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
-                                   CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                            <Run Text="{DynamicResource LOCSettingsWhatsSteamName}" />
-                        </Hyperlink>
-                    </TextBlock>
-                </StackPanel>
-                <ComboBox IsReadOnly="True" DisplayMemberPath="AccountName"
+                <ComboBox Grid.Column="1" Grid.Row="0" Margin="5" Width="200"
+                          IsReadOnly="True" DisplayMemberPath="AccountName"
                           SelectedValuePath="Id" SelectedValue="{Binding AccountId}"
                           ItemsSource="{Binding SteamUsers}"
-                          IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"
-                          Grid.Column="1" Grid.Row="1" Margin="5" Width="200" HorizontalAlignment="Left" />
+                          IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibAccount}"                          
+                          VerticalAlignment="Center" HorizontalAlignment="Left" />
+
+                <RadioButton Grid.Column="0" Grid.Row="1" Margin="5" VerticalAlignment="Center"
+                             Content="{DynamicResource LOCSteamCustomUrlName}" Name="RadioSteamLibName" GroupName="steamsource"
+                             IsChecked="{Binding IdSource, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static steam:SteamIdSource.Name}}"/>
+
+                <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Width="200"
+                         Text="{Binding AccountName}" 
+                         IsEnabled="{Binding IsChecked, ElementName=RadioSteamLibName}"
+                         HorizontalAlignment="Left" VerticalAlignment="Center" />
             </Grid>
 
-            <CheckBox Content="{DynamicResource LOCPrivateAccount}" DockPanel.Dock="Top"
-                      IsChecked="{Binding IsPrivateAccount}"
-                      Margin="5,15,5,5" Name="CheckSteamPrivate"
-                      ToolTip="{DynamicResource LOCSettingsApiKeyTooltip}"/>
-            <DockPanel DockPanel.Dock="Top" Margin="30,5,5,5"
-                       IsEnabled="{Binding IsChecked, ElementName=CheckSteamPrivate}">
-                <TextBlock Text="{DynamicResource LOCAPIKey}" DockPanel.Dock="Left"
-                           VerticalAlignment="Center"/>
-                <TextBox Text="{Binding ApiKey}" Width="200" HorizontalAlignment="Left"
-                         DockPanel.Dock="Left" Margin="10,0,10,0"/>
-                <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <StackPanel DockPanel.Dock="Top" Margin="5,10,5,5" Orientation="Horizontal">
+                <CheckBox Content="{DynamicResource LOCPrivateAccount}"
+                          IsChecked="{Binding IsPrivateAccount}"
+                          Name="CheckSteamPrivate" VerticalAlignment="Center"
+                          ToolTip="{DynamicResource LOCSettingsApiKeyTooltip}"/>
+                <TextBox Text="{Binding ApiKey}" Width="200" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center">
                     <Hyperlink NavigateUri="https://steamcommunity.com/dev/apikey"
                                 Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
                                 CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                         <Run Text="{DynamicResource LOCSettingsApiKeyUrlText}" />
                     </Hyperlink>
                 </TextBlock>
-            </DockPanel>
+            </StackPanel>
+
+            <TextBlock Margin="5,15,0,0">
+                <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"
+                            Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                            CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                    <Run Text="{DynamicResource LOCTroubleShootingAccountLink}" />
+                </Hyperlink>
+            </TextBlock>
         </DockPanel>
 
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,15,0,5" HorizontalAlignment="Left"

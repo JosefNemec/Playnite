@@ -94,7 +94,7 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <Expander Header="{Binding Mode=OneWay}"
+                                    <Expander Header="{Binding Mode=OneWay}" IsExpanded="True"
                                               pui:ExpanderBehaviors.SaveState="True"
                                               pui:ExpanderBehaviors.SaveStateId="{Binding Name, Mode=OneWay}">
                                         <ItemsPresenter />

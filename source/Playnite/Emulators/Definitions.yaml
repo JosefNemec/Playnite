@@ -188,7 +188,7 @@
     - Name: Default
       DefaultArguments: '-nogui -slowboot -loadbin "{ImagePath}"'
       Platforms: [Sony PlayStation]
-      ImageExtensions: [bin, iso, img, cue]
+      ImageExtensions: [bin, iso, img, cue, pbp]
       ExecutableLookup: ^ePSXe\.exe
 
 - Name: PCSXR-PGXP
