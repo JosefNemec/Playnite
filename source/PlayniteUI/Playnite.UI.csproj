@@ -670,6 +670,10 @@
       <Project>{ad271e73-8a13-4c4e-bfdc-3076646b59e3}</Project>
       <Name>Playnite</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Plugins\HumbleBundleLibrary\HumbleBundleLibrary.csproj">
+      <Project>{d9c940a1-af0e-4277-8954-084afe427f81}</Project>
+      <Name>HumbleBundleLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\clear.png" />
@@ -787,6 +791,7 @@
 xcopy "$(SolutionDir)\PlayniteUI\SkinsFullscreen" "$(TargetDir)\SkinsFullscreen\" /e /y
 xcopy "$(SolutionDir)\Plugins\SteamLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\SteamLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\SteamLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\GogLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\GogLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\GogLibrary\BuildCopyExclude.txt
+xcopy "$(SolutionDir)\Plugins\HumbleBundleLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\HumbleBundleLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\HumbleBundleLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\OriginLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\OriginLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\OriginLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\BattleNetLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\BattleNetLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\BattleNetLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\UplayLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\UplayLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\UplayLibrary\BuildCopyExclude.txt

@@ -90,6 +90,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BethesdaLibrary", "Plugins\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BethesdaLibrary.Tests", "Plugins\BethesdaLibrary.Tests\BethesdaLibrary.Tests.csproj", "{01051E5D-11FC-493E-BEC0-D76A60DCC76B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HumbleBundleLibrary", "HumbleBundleLibrary", "{9ECAAA3F-13E9-4F16-8FBD-10061B9CD84B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumbleBundleLibrary", "Plugins\HumbleBundleLibrary\HumbleBundleLibrary.csproj", "{D9C940A1-AF0E-4277-8954-084AFE427F81}"
+EndProject
 Global
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true
@@ -291,6 +295,14 @@ Global
 		{01051E5D-11FC-493E-BEC0-D76A60DCC76B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{01051E5D-11FC-493E-BEC0-D76A60DCC76B}.Release|x86.ActiveCfg = Release|Any CPU
 		{01051E5D-11FC-493E-BEC0-D76A60DCC76B}.Release|x86.Build.0 = Release|Any CPU
+		{D9C940A1-AF0E-4277-8954-084AFE427F81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9C940A1-AF0E-4277-8954-084AFE427F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9C940A1-AF0E-4277-8954-084AFE427F81}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D9C940A1-AF0E-4277-8954-084AFE427F81}.Debug|x86.Build.0 = Debug|Any CPU
+		{D9C940A1-AF0E-4277-8954-084AFE427F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9C940A1-AF0E-4277-8954-084AFE427F81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9C940A1-AF0E-4277-8954-084AFE427F81}.Release|x86.ActiveCfg = Release|Any CPU
+		{D9C940A1-AF0E-4277-8954-084AFE427F81}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -324,6 +336,8 @@ Global
 		{1EB514C1-C5F5-4692-BDE5-74EF959F39B8} = {799A52BB-1932-4CAB-B4DD-B3F3146756E3}
 		{5C2250D7-7623-414A-B68A-4754F311DF7D} = {1EB514C1-C5F5-4692-BDE5-74EF959F39B8}
 		{01051E5D-11FC-493E-BEC0-D76A60DCC76B} = {1EB514C1-C5F5-4692-BDE5-74EF959F39B8}
+		{9ECAAA3F-13E9-4F16-8FBD-10061B9CD84B} = {799A52BB-1932-4CAB-B4DD-B3F3146756E3}
+		{D9C940A1-AF0E-4277-8954-084AFE427F81} = {9ECAAA3F-13E9-4F16-8FBD-10061B9CD84B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3300FF38-9F6F-4C0F-87F3-776D6C64846D}

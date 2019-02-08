@@ -17,9 +17,18 @@ namespace Playnite.Database
     {
         private static ILogger logger = LogManager.GetLogger();
 
+        private static string GetExtension(string path)
+        {
+            if (!path.IsHttpUrl())
+                return Path.GetExtension(path);
+
+            var uri = new Uri(path);
+            return Path.GetExtension(uri.AbsolutePath);
+        }
+
         private static string AddNewGameFile(string path, Guid gameId, GameDatabase database)
         {
-            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(path);
+            var fileName = Guid.NewGuid().ToString() + GetExtension(path);
             MetadataFile metaFile = null;
 
             try
