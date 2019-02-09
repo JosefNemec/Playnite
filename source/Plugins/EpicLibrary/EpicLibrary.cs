@@ -35,6 +35,11 @@ namespace EpicLibrary
             var games = new Dictionary<string, Game>();
             foreach (var app in EpicLauncher.GetInstalledAppList())
             {
+                if (app.AppName.StartsWith("UE_"))
+                {
+                    continue;
+                }
+
                 var game = new Game()
                 {
                     PluginId = Id,
