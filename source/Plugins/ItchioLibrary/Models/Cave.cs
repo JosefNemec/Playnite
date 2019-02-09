@@ -88,17 +88,17 @@ namespace ItchioLibrary.Models
         /// <summary>
         /// Game this embed info is for
         /// </summary>
-        public int gameId;
+        public long gameId;
 
         /// <summary>
         /// width of the initial viewport, in pixels
         /// </summary>
-        public int width;
+        public long width;
 
         /// <summary>
         /// height of the initial viewport, in pixels
         /// </summary>
-        public int height;
+        public long height;
 
         /// <summary>
         /// for itch.io website, whether or not a fullscreen button should be shown
@@ -238,7 +238,7 @@ namespace ItchioLibrary.Models
         /// <summary>
         /// Price in cents of a dollar
         /// </summary>
-        public int minPrice;
+        public long minPrice;
 
         /// <summary>
         /// Are payments accepted?
@@ -384,7 +384,7 @@ namespace ItchioLibrary.Models
 
     public class CaveInstallInfo
     {
-        public int installedSize;
+        public long installedSize;
         public string installLocation;
         public string installFolder;
         public bool pinned;
