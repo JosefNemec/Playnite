@@ -249,7 +249,6 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsDBLocation">Lokalizacja bazy danych</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">Jaka jest nazwa konta Steam?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Status logowania:</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLibrarySource">Określ bibliotekę użytkownika według:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Opcje Playnite</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCategories">Importuj kategorie Steam:</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCatFrom">z konta:</sys:String>
@@ -298,6 +297,7 @@ Wszystkie aktualnie aktywne zadania (pobieranie metadanych) zostaną anulowane.<
     <sys:String x:Key="LOCLoginFailed">Błąd uwierzytelnienia</sys:String>
     <sys:String x:Key="LOCLoggedIn">Użytkownik jest uwierzytelniony</sys:String>
     <sys:String x:Key="LOCNotLoggedIn">Wymagane uwierzytelnienie</sys:String>
+    <sys:String x:Key="LOCNotLoggedInError">Błąd uwierzytelniania użytkownika.</sys:String>
 
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Importowanie metadanych</sys:String>
@@ -441,7 +441,13 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Nie można otworzyć linku, URL ma nieprawidłowy format.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Nie udało się uruchomić aplikacji.</sys:String>
-
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Failed to initialize web view component, Playnite can't continue with startup.
+        
+You can try these to fix the issue:        
+  • Check that all files are properly installed, re-installing may help
+  • Check if antivirus is not blocking files in Playnite's directory
+  • Try different install location</sys:String>
+  
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Edytuj szczegóły gry</sys:String>
     <sys:String x:Key="LOCUseExeIcon">Od akcji odtworzenia</sys:String>
@@ -576,4 +582,26 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCScriptError">Błąd skryptu</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Nie udało się uruchomić funkcji rozszerzenia.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Otwórz folder metadanych</sys:String>
+    
+    <sys:String x:Key="LOCClientNotInstalledError">{0} nie jest zainstalowany.</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Nie odnaleziono katalogu instalacyjnego gry.</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">Nieprawidłowa konfiguracja akcji odtwarzania.</sys:String>
+
+    <sys:String x:Key="LOCTroubleShootingAccountLink">Rozwiązywanie problemów z synchronizacją konta</sys:String>
+
+    <!--itch.io-->
+    <sys:String x:Key="LOCItchioSignInNotif">itch.io klient jest uruchamiany. Zaloguj się, a następnie zamknij ten komunikat..</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage">Oczekiwanie na zalogowanie się użytkownika. Zamknij to, gdy się skończy...</sys:String>    
+    
+    <!--GOG-->
+    <sys:String x:Key="LOCGOGUseLogin">Login</sys:String>
+    <sys:String x:Key="LOCGOGUseAccountName">Nazwa konta</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Zaloguj się na konto lub podaj nazwę konta, aby zsynchronizować bibliotekę.
+Pamiętaj, że opcja Nazwa konta działa tylko na kontach, które są publiczne.</sys:String>
+
+    <!--Steam-->
+    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Wybierz uwierzytelnionego użytkownika lub podaj adres URL konta Steam, aby zsynchronizować bibliotekę. Konta z statusem prywatny muszą określać klucz API powiązany z kontem Steam.
+    </sys:String>
+    <sys:String x:Key="LOCSteamCustomUrlName">URL konta</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">Uwierzytelniony użytkownik</sys:String>
 </ResourceDictionary>
