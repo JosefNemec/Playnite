@@ -264,12 +264,37 @@ namespace OriginLibrary
                         if (newGame.PlayAction?.Type == GameActionType.File)
                         {
                             newGame.InstallDirectory = newGame.PlayAction.WorkingDir;
-                            newGame.PlayAction.WorkingDir = newGame.PlayAction.WorkingDir.Replace(newGame.InstallDirectory, "{InstallDir}");
+                            newGame.PlayAction.WorkingDir = newGame.PlayAction.WorkingDir.Replace(newGame.InstallDirectory, ExpandableVariables.InstallationDirectory);
                             newGame.PlayAction.Path = newGame.PlayAction.Path.Replace(newGame.InstallDirectory, "").Trim(new char[] { '\\', '/' });
                         }
                         else
                         {
                             newGame.InstallDirectory = Path.GetDirectoryName(installPath);
+                        }
+
+                        // If game uses EasyAntiCheat then use executable referenced by it
+                        if (Origin.GetGameUsesEasyAntiCheat(newGame))
+                        {
+                            var eac = EasyAntiCheat.GetLauncherSettings(newGame.InstallDirectory);
+                            if (newGame.PlayAction == null)
+                            {
+                                newGame.PlayAction = new GameAction { Type = GameActionType.File };
+                            }
+
+                            newGame.PlayAction.Path = eac.Executable;
+                            if (!string.IsNullOrEmpty(eac.Parameters) && eac.UseCmdlineParameters == "1")
+                            {
+                                newGame.PlayAction.Arguments = eac.Parameters;
+                            }
+
+                            if (!string.IsNullOrEmpty(eac.WorkingDirectory))
+                            {
+                                newGame.PlayAction.WorkingDir = Path.Combine(ExpandableVariables.InstallationDirectory, eac.WorkingDirectory);
+                            }
+                            else
+                            {
+                                newGame.PlayAction.WorkingDir = ExpandableVariables.InstallationDirectory;
+                            }
                         }
 
                         games.Add(newGame.GameId, newGame);
