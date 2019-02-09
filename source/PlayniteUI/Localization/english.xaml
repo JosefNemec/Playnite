@@ -591,8 +591,9 @@ You can try these to fix the issue:
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io client will now open. Please sign in and then close this message.</sys:String>
-    <sys:String x:Key="LOCItchioSignInWaitMessage">Waiting for user to sign in, please close this when you're done...</sys:String>    
-    
+    <sys:String x:Key="LOCItchioSignInWaitMessage">Waiting for user to sign in, please close this when you're done...</sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">Itch client version 25 or newer is not installed.</sys:String>
+
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Account Login</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Account Name</sys:String>

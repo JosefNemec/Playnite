@@ -61,9 +61,19 @@ namespace ItchioLibrary
             get
             {
                 var path = InstallationPath;
-                return !string.IsNullOrEmpty(path) && Directory.Exists(path);
+                return !string.IsNullOrEmpty(path) && Directory.Exists(path) && InstalledVersion.Major >= 25;
             }
         }
+
+        public static Version InstalledVersion
+        {
+            get
+            {
+                var statePath = Path.Combine(InstallationPath, "state.json");
+                var instState = Serialization.FromJson<ItchInstallState>(File.ReadAllText(statePath));
+                return new Version(instState.current);
+            }
+        }        
 
         public static void StartClient()
         {
