@@ -16,7 +16,7 @@ $ErrorActionPreference = "Stop"
 
 $versionSize = ($Version.ToCharArray() | Where { $_ -eq "." }).Count
 $updateVersion = $Version
-$asmVersion = $Version + (".0" * (4 - $versionSize - 1))
+$asmVersion = $Version + (".0" * (4 - $versionSize - 2)) + ".*"
 
 Write-Host "Publishing version $updateVersion" -ForegroundColor Cyan
 
@@ -24,31 +24,13 @@ $updateInfoPath = "..\web\update\update.json"
 $asmInfoPath = "..\source\PlayniteUI\Properties\AssemblyInfo.cs"
 $changelogPath = "..\web\update\" + $updateVersion + ".html"
 $changelogTemplatePath = "..\web\update\template.html"
-$asmInfoContent = Get-Content $asmInfoPath
+$asmInfoContent = Get-Content $asmInfoPath -Encoding UTF8
 
 # AssemblyInfo.cs update
 Write-Host "Changing assembly info..." -ForegroundColor Green
 $asmInfoContent = $asmInfoContent -replace '^\[.*AssemblyVersion.*$', "[assembly: AssemblyVersion(`"$asmVersion`")]"
 $asmInfoContent = $asmInfoContent -replace '^\[.*AssemblyFileVersion.*$', "[assembly: AssemblyFileVersion(`"$asmVersion`")]"
-$asmInfoContent  | Out-File $asmInfoPath -Encoding utf8
-
-# update.json update
-Write-Host "Updating update manifest..." -ForegroundColor Green
-$updateInfoContent = Get-Content $updateInfoPath | ConvertFrom-Json
-$updateInfoContent.$UpdateBranch.version = $updateVersion
-$updateInfoContent.$UpdateBranch.url = "http://playnite.cz/update/$updateVersion/PlayniteInstaller.exe"
-$updateInfoContent.$UpdateBranch.url2 = "https://github.com/JosefNemec/Playnite/releases/download/$updateVersion/PlayniteInstaller.exe"
-$releases = {$updateInfoContent.$UpdateBranch.releases}.Invoke()
-if ($releases[0].version -ne $updateVersion)
-{
-    $releases.Insert(0, (New-Object psobject -Property @{
-        version = $updateVersion
-        file = $updateVersion + ".html"
-    }))
-    $updateInfoContent.$UpdateBranch.releases = $releases
-}
-
-$updateInfoContent | ConvertTo-Json -Depth 10 | Out-File $updateInfoPath -Encoding utf8
+$asmInfoContent  | Out-File $asmInfoPath -Encoding UTF8
 
 # Changelog
 Write-Host "Generating changelog..." -ForegroundColor Green
@@ -63,14 +45,26 @@ try
     Start-Process "notepad" $tempMessagesPath -PassThru -Wait | Out-Null
     $messages = Get-Content $tempMessagesPath
 
-    Write-Host "Git Changelog" -ForegroundColor Yellow
-    $messages | Write-Host
-    
-    Write-Host "Clean Changelog" -ForegroundColor Yellow
-    $htmlChangelog = $messages | ForEach { $_ -replace "\s*#\d+", "" }
-    $htmlChangelog | Out-Host
+    $newItems = $messages | Where { $_.StartsWith("New:") } | ForEach { $_.Replace("New:", "").Trim() }
+    $fixedItems = $messages | Where { $_.StartsWith("Fix:") } | ForEach { $_.Replace("Fix:", "").Trim() }
 
-    $changelogContent = (Get-Content $changelogTemplatePath) -replace "{changelog}", ($htmlChangelog | ForEach { "<li>$_</li>" } | Out-String)
+    Write-Host "Git Changelog" -ForegroundColor Yellow
+    "New:" | Write-Host
+    $newItems | ForEach { "* $_" } | Write-Host
+    "Fixed:" | Write-Host
+    $fixedItems | ForEach { "* $_" } | Write-Host
+   
+    Write-Host "Clean Changelog" -ForegroundColor Yellow
+    $cleanNewItems = $newItems -replace "\s*#\d+", "" | ForEach { "* $_" }
+    $cleanFixedItems = $fixedItems -replace "\s*#\d+", "" | ForEach { "* $_" }
+
+    "New:" | Write-Host
+    $cleanNewItems | Write-Host
+    "Fixed:" | Write-Host
+    $cleanFixedItems | Write-Host
+
+    $changelogContent = (Get-Content $changelogTemplatePath) -replace "{new}", ($cleanNewItems | ForEach { "<li>$_</li>"})
+    $changelogContent = $changelogContent -replace "{fixed}", ($cleanFixedItems | ForEach { "<li>$_</li>"})
     $changelogContent | Out-File $changelogPath -Encoding utf8  
 }
 finally
@@ -128,19 +122,6 @@ if ($PublishRelease)
     $headers["Content-Type"] = "application/zip"
     $uploadUrl = $releaseResponse.upload_url -replace "assets.*$", "assets?name=PlaynitePortable.zip"    
     $uploadResponse = Invoke-RestMethod -Uri $uploadUrl -Body ([System.IO.File]::ReadAllBytes("PlaynitePortable.zip")) -Headers $headers -Method Post
-}
-
-# Publish update manifest
-if ($PublishManifest)
-{
-    Write-Host "Publishing update manifest..." -ForegroundColor Green
-    $webclient = New-Object System.Net.WebClient
-
-    $manifestUrl = $ManifestFtpUri + (Split-Path $updateInfoPath -Leaf)
-    $webclient.UploadFile((New-Object System.Uri($manifestUrl)), $updateInfoPath)
-
-    $changelogUrl = $ManifestFtpUri + (Split-Path $changelogPath -Leaf)
-    $webclient.UploadFile((New-Object System.Uri($changelogUrl)), $changelogPath)
 }
 
 Write-Host "Done" -ForegroundColor Cyan
