@@ -153,6 +153,11 @@ namespace ItchioLibrary
                     var keys = butler.GetOwnedKeys(profile.id);
                     foreach (var key in keys)
                     {
+                        if (key.game == null)
+                        {
+                            continue;
+                        }
+
                         if (key.game.classification != GameClassification.game &&
                             key.game.classification != GameClassification.tool)
                         {
