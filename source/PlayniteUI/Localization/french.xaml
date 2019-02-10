@@ -232,7 +232,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Afficher le nom des jeux à la place des jaquettes manquantes</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Afficher le nom des jeux dans la vue en grille</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Afficher les icônes des jeux dans la vue en liste</sys:String>
-    <sys:String x:Key="LOCSettingsShowGroupCount">Afficher le nombre d'items des groupes dans la vue en liste</sys:String>
+    <sys:String x:Key="LOCSettingsShowGroupCount">Afficher le nombre d'items dans la vue en liste</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Désactiver l'accélération matérielle (redémarrage nécessaire)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Cocher cette option en cas de ralentissement ou de malfonctionnement de l'interface.</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Désactiver la mise à l'échelle (redémarrage nécessaire)</sys:String>
