@@ -274,7 +274,9 @@
                                 <CheckBox Content="{DynamicResource LOCSettingsShowNamesUnderCover}" Margin="0,15,0,0"
                                   Name="CheckNameUnderCover" IsChecked="{Binding Settings.ShowNamesUnderCovers}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowIconList}" Margin="0,15,0,0"
-                                  Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>                       
+                                  Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
+                                <CheckBox Content="{DynamicResource LOCSettingsShowGroupCount}" Margin="0,15,0,0"
+                                  Name="CheckShowGroupCount" IsChecked="{Binding Settings.ShowGroupCount}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
                                   Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundImage}" Margin="0,15,0,0"
