@@ -595,6 +595,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">Der itch.io Client wird gestartet... Bitte melde dich dort an und schließe anschließend diese Meldung.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">Warte auf Anmeldung... Schließe diese Meldung wenn du dich erfolgreich angemeldet hast.</sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">Der itch.io Client in Version 25 oder neuer wird benötigt, konnte aber nicht gefunden werden.</sys:String>
 
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Privater Account</sys:String>
