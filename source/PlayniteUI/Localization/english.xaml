@@ -527,8 +527,8 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCUpdateError">Update Error</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Failed to check for new version.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">No new version found, you are up to date.</sys:String>
-    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Failed to download and install update.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Background task is currently running, do you want to cancel it and processed with update installation?</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Failed to download and install update.</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Background task is currently running, do you want to cancel it and proceed with update installation?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Background task is currently running, do you want to cancel it and close Playnite?</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Reload theme list</sys:String>
@@ -601,7 +601,7 @@ You can try these to fix the issue:
 Note that Account Name option only works accounts that have public visibility.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Select authenticated user or specify fanity URL name of your account to sync your full library. Accounts with private library visibility have to specify API key linked to that Steam account.
+    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Select authenticated user or specify vanity URL name of your account to sync your full library. Accounts with private library visibility have to specify API key linked to that Steam account.
     </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Account URL Name</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Authenticated User</sys:String>

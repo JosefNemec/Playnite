@@ -520,7 +520,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCUpdateError">Erreur lors de la mise à jour.</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Erreur lors de la recherche.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Vous possédez déjà la dernière version de Playnite.</sys:String>
-    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Erreur lors de l'installation.</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Erreur lors de l'installation.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Une tâche de fond est en cours d'exécution, voulez-vous l'annuler ?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Une tâche de fond est en cours d'exécution, voulez-vous l'annuler et fermer Playnite ?</sys:String>
 

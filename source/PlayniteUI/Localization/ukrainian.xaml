@@ -518,7 +518,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCUpdateError">Помилка оновлення</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Не вдалося перевірити наявність нової версії.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Нову версію не знайдено, ви користуєтеся найновішою.</sys:String>
-    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Не вдалося завантажити та інсталювати оновлення.</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Не вдалося завантажити та інсталювати оновлення.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Наразі запущено фонове завдання, ви хочете його відмінити аби продовжити оновлення?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Наразі запущено фонове завдання, ви хочете його відмінити і закрити Playnite?</sys:String>
 
