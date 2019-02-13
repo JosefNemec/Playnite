@@ -24,9 +24,7 @@ namespace Playnite.SDK
             OldData = oldData;
             NewData = newData;
         }
-    }
-
-    public delegate void ItemUpdatedEventHandler<TItem>(object sender, ItemUpdatedEventArgs<TItem> args) where TItem : DatabaseObject;
+    }    
 
     public class ItemUpdatedEventArgs<TItem> : EventArgs where TItem : DatabaseObject
     {
@@ -45,8 +43,6 @@ namespace Playnite.SDK
             UpdatedItems = updatedItems;
         }
     }
-
-    public delegate void ItemCollectionChangedEventHandler<TItem>(object sender, ItemCollectionChangedEventArgs<TItem> args) where TItem : DatabaseObject;
 
     public class ItemCollectionChangedEventArgs<TItem> : EventArgs where TItem : DatabaseObject
     {
@@ -97,8 +93,8 @@ namespace Playnite.SDK
 
         IEnumerable<TItem> GetClone();
 
-        event ItemCollectionChangedEventHandler<TItem> ItemCollectionChanged;
+        event EventHandler<ItemCollectionChangedEventArgs<TItem>> ItemCollectionChanged;
 
-        event ItemUpdatedEventHandler<TItem> ItemUpdated;        
+        event EventHandler<ItemUpdatedEventArgs<TItem>> ItemUpdated;        
     }
 }

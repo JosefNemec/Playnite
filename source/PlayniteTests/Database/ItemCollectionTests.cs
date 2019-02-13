@@ -129,5 +129,34 @@ namespace PlayniteTests.Database
                 Assert.AreEqual(2, itemUpdateArgs.UpdatedItems.Count);
             }
         }
+
+        [Test]
+        public void NestedBufferTest()
+        {
+            using (var temp = TempDirectory.Create())
+            {
+                var colChanges = 0;
+                var colUpdates = 0;
+                var col = new ItemCollection<DatabaseObject>(temp.TempPath);
+                col.ItemUpdated += (e, args) => colUpdates++;
+                col.ItemCollectionChanged += (e, args) => colChanges++;
+                var item = new DatabaseObject();
+
+                col.BeginBufferUpdate();
+                col.BeginBufferUpdate();
+                col.BeginBufferUpdate();
+                col.Add(item);
+                col.Update(item);
+                col.EndBufferUpdate();
+                Assert.AreEqual(0, colChanges);
+                Assert.AreEqual(0, colChanges);
+                col.EndBufferUpdate();
+                Assert.AreEqual(0, colChanges);
+                Assert.AreEqual(0, colChanges);
+                col.EndBufferUpdate();
+                Assert.AreEqual(1, colChanges);
+                Assert.AreEqual(1, colChanges);
+            }
+        }
     }
 }

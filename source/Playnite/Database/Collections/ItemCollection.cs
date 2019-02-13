@@ -19,6 +19,7 @@ namespace Playnite.Database
         private string storagePath;
         private readonly Action<TItem> initMethod;
         private bool isEventBufferEnabled = false;
+        private int bufferDepth = 0;
         private List<TItem> AddedItemsEventBuffer = new List<TItem>();
         private List<TItem> RemovedItemsEventBuffer = new List<TItem>();
         private List<ItemUpdateEvent<TItem>> ItemUpdatesEventBuffer = new List<ItemUpdateEvent<TItem>>();
@@ -38,9 +39,9 @@ namespace Playnite.Database
             }
         }
 
-        public event ItemCollectionChangedEventHandler<TItem> ItemCollectionChanged;
+        public event EventHandler<ItemCollectionChangedEventArgs<TItem>> ItemCollectionChanged;
 
-        public event ItemUpdatedEventHandler<TItem> ItemUpdated;
+        public event EventHandler<ItemUpdatedEventArgs<TItem>> ItemUpdated;
 
         public ItemCollection()
         {
@@ -314,10 +315,18 @@ namespace Playnite.Database
         public void BeginBufferUpdate()
         {
             isEventBufferEnabled = true;
+            bufferDepth++;
         }
 
         public void EndBufferUpdate()
         {
+            // In case nested buffers are used then we end only when top level one clear.
+            if (bufferDepth > 1)
+            {
+                bufferDepth--;
+                return;
+            }
+
             isEventBufferEnabled = false;
             if (AddedItemsEventBuffer.Count > 0 || RemovedItemsEventBuffer.Count > 0)
             {

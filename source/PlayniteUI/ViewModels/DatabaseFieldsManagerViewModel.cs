@@ -441,6 +441,7 @@ namespace PlayniteUI.ViewModels
             }
         }
 
+        // TODO update from master
         private void UpdatePlatformsCollection()
         {
             string addNewFile(string path, Guid parent)

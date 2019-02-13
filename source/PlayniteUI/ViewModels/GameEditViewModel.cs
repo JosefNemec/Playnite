@@ -1093,19 +1093,19 @@ namespace PlayniteUI.ViewModels
             Categories = new SelectableDbItemList(database.Categories, EditingGame.CategoryIds);
 
             Sources = database.Sources.OrderBy(a => a.Name).ToObservable();
-            Sources.Insert(0, new GameSource() { Id = Guid.Empty }); 
+            Sources.Insert(0, new GameSource() { Id = Guid.Empty, Name = string.Empty }); 
 
             Regions = database.Regions.OrderBy(a => a.Name).ToObservable();
-            Regions.Insert(0, new Region() { Id = Guid.Empty });
+            Regions.Insert(0, new Region() { Id = Guid.Empty, Name = string.Empty });
 
             Series = database.Series.OrderBy(a => a.Name).ToObservable();
-            Series.Insert(0, new Series() { Id = Guid.Empty });
+            Series.Insert(0, new Series() { Id = Guid.Empty, Name = string.Empty });
 
             AgeRatings = database.AgeRatings.OrderBy(a => a.Name).ToObservable();
-            AgeRatings.Insert(0, new AgeRating() { Id = Guid.Empty });
+            AgeRatings.Insert(0, new AgeRating() { Id = Guid.Empty, Name = string.Empty });
 
             Platforms = database.Platforms.OrderBy(a => a.Name).ToObservable();
-            Platforms.Insert(0, new Platform() { Id = Guid.Empty });
+            Platforms.Insert(0, new Platform() { Id = Guid.Empty, Name = string.Empty });
 
             Emulators = database.Emulators.OrderBy(a => a.Name).ToList();
         }
@@ -1507,6 +1507,7 @@ namespace PlayniteUI.ViewModels
 
             if (UseGenresChanges)
             {
+                AddNewItemsToDb(Genres, EditingGame.GenreIds, database.Genres);
                 if (Games != null)
                 {
                     foreach (var game in Games)
@@ -1537,6 +1538,7 @@ namespace PlayniteUI.ViewModels
 
             if (UseDeveloperChanges)
             {
+                AddNewItemsToDb(Developers, EditingGame.DeveloperIds, database.Companies);
                 if (Games != null)
                 {
                     foreach (var game in Games)
@@ -1551,7 +1553,8 @@ namespace PlayniteUI.ViewModels
             }
 
             if (UsePublisherChanges)
-            {                
+            {
+                AddNewItemsToDb(Publishers, EditingGame.PublisherIds, database.Companies);
                 if (Games != null)
                 {
                     foreach (var game in Games)
@@ -1567,12 +1570,7 @@ namespace PlayniteUI.ViewModels
 
             if (UseCategoryChanges)
             {
-                var addedCategories = Categories.Where(a => a.Selected == true && database.Categories[a.Item.Id] == null);
-                if (addedCategories.Any())
-                {
-                    database.Categories.Add(addedCategories.Select(a => (Category)a.Item));
-                }
-
+                AddNewItemsToDb(Categories, EditingGame.CategoryIds, database.Categories);
                 if (Games != null)
                 {
                     foreach (var game in Games)
@@ -1589,6 +1587,7 @@ namespace PlayniteUI.ViewModels
 
             if (UseTagChanges)
             {
+                AddNewItemsToDb(Tags, EditingGame.TagIds, database.Tags);
                 if (Games != null)
                 {
                     foreach (var game in Games)
@@ -1635,6 +1634,7 @@ namespace PlayniteUI.ViewModels
 
             if (UsePlatformChanges)
             {
+                AddNewItemToDb(Platforms, EditingGame.PlatformId, database.Platforms);
                 if (Games != null)
                 {
                     foreach (var game in Games)
@@ -1710,6 +1710,7 @@ namespace PlayniteUI.ViewModels
 
             if (UseSeriesChanges)
             {
+                AddNewItemToDb(Series, EditingGame.SeriesId, database.Series);
                 if (Games != null)
                 {
                     foreach (var game in Games)
@@ -1740,6 +1741,7 @@ namespace PlayniteUI.ViewModels
 
             if (UseAgeRatingChanges)
             {
+                AddNewItemToDb(AgeRatings, EditingGame.AgeRatingId, database.AgeRatings);
                 if (Games != null)
                 {
                     foreach (var game in Games)
@@ -1755,6 +1757,7 @@ namespace PlayniteUI.ViewModels
 
             if (UseRegionChanges)
             {
+                AddNewItemToDb(Regions, EditingGame.RegionId, database.Regions);
                 if (Games != null)
                 {
                     foreach (var game in Games)
@@ -1770,6 +1773,7 @@ namespace PlayniteUI.ViewModels
 
             if (UseSourceChanges)
             {
+                AddNewItemToDb(Sources, EditingGame.SourceId, database.Sources);
                 if (Games != null)
                 {
                     foreach (var game in Games)
@@ -2072,73 +2076,74 @@ namespace PlayniteUI.ViewModels
                 EditingGame.Name = game.Name;
             }
 
-            // TODO
-            //if (game.Developers != null && game.Developers.Count != 0)
-            //{
-            //    EditingGame.Developers = game.Developers;
-            //}
+            if (game.Developers?.Any() == true)
+            {
+                AddNewDevelopers(game.Developers);
+            }
 
-            //if (game.Publishers != null && game.Publishers.Count != 0)
-            //{
-            //    EditingGame.Publishers = game.Publishers;
-            //}
+            if (game.Publishers?.Any() == true)
+            {
+                AddNewPublishers(game.Publishers);
+            }
 
-            //if (game.Genres != null && game.Genres.Count != 0)
-            //{
-            //    EditingGame.Genres = game.Genres;
-            //}
+            if (game.Genres?.Any() == true)
+            {
+                AddNewGenres(game.Genres);
+            }
 
-            //if (game.Tags != null && game.Tags.Count != 0)
-            //{
-            //    EditingGame.Tags = game.Tags;
-            //}
+            if (game.Tags?.Any() == true)
+            {
+                AddNewTags(game.Tags);
+            }
 
-            //if (game.ReleaseDate != null)
-            //{
-            //    EditingGame.ReleaseDate = game.ReleaseDate;
-            //}
+            if (!game.AgeRating.IsNullOrEmpty())
+            {
+                AddNewAreRating(game.AgeRating);
+            }
 
-            //if (!string.IsNullOrEmpty(game.Description))
-            //{
-            //    EditingGame.Description = game.Description;
-            //}
+            if (!game.Region.IsNullOrEmpty())
+            {
+                AddNewRegion(game.Region);
+            }
 
-            //if (game.Links != null)
-            //{
-            //    EditingGame.Links = game.Links;
-            //}
+            if (!game.Series.IsNullOrEmpty())
+            {
+                AddNewSeries(game.Series);
+            }
 
-            //if (!string.IsNullOrEmpty(game.BackgroundImage))
-            //{
-            //    EditingGame.BackgroundImage = game.BackgroundImage;
-            //}
+            if (game.ReleaseDate != null)
+            {
+                EditingGame.ReleaseDate = game.ReleaseDate;
+            }
 
-            //if (game.CriticScore != null)
-            //{
-            //    EditingGame.CriticScore = game.CriticScore;
-            //}
+            if (!game.Description.IsNullOrEmpty())
+            {
+                EditingGame.Description = game.Description;
+            }
 
-            //if (game.CommunityScore != null)
-            //{
-            //    EditingGame.CommunityScore = game.CommunityScore;
-            //}
+            if (game.Links != null)
+            {
+                EditingGame.Links = game.Links.ToObservable();
+            }
 
-            //if (!string.IsNullOrEmpty(game.AgeRating))
-            //{
-            //    EditingGame.AgeRating = game.AgeRating;
-            //}
+            if (!game.BackgroundImage.IsNullOrEmpty())
+            {
+                EditingGame.BackgroundImage = game.BackgroundImage;
+            }
 
-            //if (!string.IsNullOrEmpty(game.Region))
-            //{
-            //    EditingGame.Region = game.Region;
-            //}
+            if (game.CriticScore != null)
+            {
+                EditingGame.CriticScore = game.CriticScore;
+            }
 
-            //if (!string.IsNullOrEmpty(game.Series))
-            //{
-            //    EditingGame.Series = game.Series;
-            //}
+            if (game.CommunityScore != null)
+            {
+                EditingGame.CommunityScore = game.CommunityScore;
+            }
 
-            if (!string.IsNullOrEmpty(game.CoverImage))
+            // TODO: unify image handling
+            // TODO: support raw binary data from metadata
+            if (!game.CoverImage.IsNullOrEmpty())
             {
                 if (game.CoverImage.IsHttpUrl())
                 {
@@ -2162,12 +2167,12 @@ namespace PlayniteUI.ViewModels
                 }
             }
 
-            if (!string.IsNullOrEmpty(game.BackgroundImage))
+            if (!game.BackgroundImage.IsNullOrEmpty())
             {
                 EditingGame.BackgroundImage = game.BackgroundImage;
             }
 
-            if (!string.IsNullOrEmpty(game.Icon))
+            if (!game.Icon.IsNullOrEmpty())
             {
                 EditingGame.Icon = game.Icon;
             }
@@ -2470,7 +2475,7 @@ namespace PlayniteUI.ViewModels
                     }
 
                     ShowCheckBoxes = true;
-                    PreviewGameData(tempGame);
+                    Application.Current.Dispatcher.Invoke(() => PreviewGameData(tempGame));
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -2509,129 +2514,180 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        // TODO localize
-        //public TItem AddNewItem<TItem>(IItemCollection<TItem> collection, string notifyName) where TItem : DatabaseObject
-        //{
-        //    var res = dialogs.SelectString("Enter new name:", "New item", string.Empty);
-        //    if (res.Result)
-        //    {
-        //        var newItem = typeof(TItem).CrateInstance<TItem>(res.SelectedString);
-        //        collection.Add(newItem);
-        //        OnPropertyChanged(notifyName);
-        //        return newItem;
-        //    }
-
-        //    return null;
-        //}
-
-        public TItem CreateNewItem<TItem>() where TItem : DatabaseObject
+        public void AddNewItemsToDb<TItem>(SelectableDbItemList sourceList, List<Guid> itemsToAdd, IItemCollection<TItem> targetCollection) where TItem : DatabaseObject
         {
-            var res = dialogs.SelectString("Enter new name:", "New item", string.Empty);
-            if (res.Result)
+            if (itemsToAdd?.Any() != true)
             {
-                return typeof(TItem).CrateInstance<TItem>(res.SelectedString);
+                return;
+            }
+
+            var addedItems = sourceList.Where(a => itemsToAdd.Contains(a.Item.Id) == true && targetCollection[a.Item.Id] == null);
+            if (addedItems.Any())
+            {
+                targetCollection.Add(addedItems.Select(a => (TItem)a.Item));
+            }
+        }
+
+        public void AddNewItemToDb<TItem>(ObservableCollection<TItem> sourceList, Guid itemToAdd, IItemCollection<TItem> targetCollection) where TItem : DatabaseObject
+        {
+            if (itemToAdd == Guid.Empty || itemToAdd == null)
+            {
+                return;
+            }
+
+            var addedItem = sourceList.FirstOrDefault(a => a.Id == itemToAdd && targetCollection[a.Id] == null);
+            if (addedItem != null)
+            {
+                targetCollection.Add(addedItem);
+            }
+        }
+
+        // TODO localize
+        public TItem CreateNewItem<TItem>(string itemName = null) where TItem : DatabaseObject
+        {
+            if (itemName.IsNullOrEmpty())
+            {
+                var res = dialogs.SelectString("Enter new name:", "New item", string.Empty);
+                if (res.Result)
+                {
+                    return typeof(TItem).CrateInstance<TItem>(res.SelectedString);
+                }
+            }
+            else
+            {
+                return typeof(TItem).CrateInstance<TItem>(itemName);
             }
 
             return null;
         }
 
-        public TItem CreateNewItem<TItem>(ObservableCollection<TItem> collection) where TItem : DatabaseObject
+        public TItem CreateNewItemInCollection<TItem>(ObservableCollection<TItem> collection, string itemName = null) where TItem : DatabaseObject
         {
-            var newItem = CreateNewItem<TItem>();
+            var newItem = CreateNewItem<TItem>(itemName);
             if (newItem == null)
             {
                 return null;
             }
             else
             {
-                collection.Add(newItem);
-                return newItem;
+                var existing = collection.FirstOrDefault(a => a.Name.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase));
+                if (existing != null)
+                {
+                    return existing;
+                }
+                else
+                {
+                    collection.Add(newItem);
+                    return newItem;
+                }
             }
         }
 
-        public TItem CreateNewItem<TItem>(SelectableDbItemList collection) where TItem : DatabaseObject
+        public TItem CreateNewItemInCollection<TItem>(SelectableDbItemList collection, string itemName = null) where TItem : DatabaseObject
         {
-            var newItem = CreateNewItem<TItem>();
+            var newItem = CreateNewItem<TItem>(itemName);
             if (newItem == null)
             {
                 return null;
             }
             else
             {
-                collection.Add(newItem, true);
-                return newItem;
+                var existing = collection.FirstOrDefault(a => a.Item.Name.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase));
+                if (existing != null)
+                {
+                    existing.Selected = true;
+                    return (TItem)existing.Item;
+                }
+                else
+                {
+                    collection.Add(newItem, true);
+                    return newItem;
+                }
             }
         }
 
-        public void AddNewPlatform()
+        public void AddNewPlatform(string platform = null)
         {
-            EditingGame.PlatformId = CreateNewItem(Platforms)?.Id ?? EditingGame.PlatformId;
+            EditingGame.PlatformId = CreateNewItemInCollection(Platforms, platform)?.Id ?? EditingGame.PlatformId;
         }
 
-        public void AddNewSeries()
+        public void AddNewSeries(string series = null)
         {
-            EditingGame.SeriesId = CreateNewItem(Series)?.Id ?? EditingGame.SeriesId;
+            EditingGame.SeriesId = CreateNewItemInCollection(Series, series)?.Id ?? EditingGame.SeriesId;
         }
 
-        public void AddNewAreRating()
+        public void AddNewAreRating(string ageRating = null)
         {
-            EditingGame.AgeRatingId = CreateNewItem(AgeRatings)?.Id ?? EditingGame.AgeRatingId;
+            EditingGame.AgeRatingId = CreateNewItemInCollection(AgeRatings, ageRating)?.Id ?? EditingGame.AgeRatingId;
         }
 
-        public void AddNewRegion()
+        public void AddNewRegion(string region = null)
         {
-            EditingGame.RegionId = CreateNewItem(Regions)?.Id ?? EditingGame.RegionId;
+            EditingGame.RegionId = CreateNewItemInCollection(Regions, region)?.Id ?? EditingGame.RegionId;
         }
 
-        public void AddNewSource()
+        public void AddNewSource(string source = null)
         {
-            EditingGame.SourceId = CreateNewItem(Sources)?.Id ?? EditingGame.SourceId;
+            EditingGame.SourceId = CreateNewItemInCollection(Sources, source)?.Id ?? EditingGame.SourceId;
         }
 
         public void AddNewCategory()
         {
-            var newItem = CreateNewItem<Category>(Categories);
+            CreateNewItemInCollection<Category>(Categories);
+        }
+
+        public void AddNewPublisher(string publisher = null)
+        {
+            var newItem = CreateNewItemInCollection<Company>(Publishers, publisher);
             if (newItem != null)
             {
-                //EditingGame.CategoryIds = new List<Guid>(EditingGame.CategoryIds ?? new List<Guid>()) { newItem.Id };
+                if (!Developers.Any(a => a.Item.Name.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    Developers.Add(newItem);
+                }
             }
         }
 
-        public void AddNewPublisher()
+        public void AddNewPublishers(List<string> publishers)
         {
-            var newItem = CreateNewItem<Company>(Publishers);
+            publishers?.ForEach(a => AddNewPublisher(a));
+        }
+
+        public void AddNewDeveloper(string developer = null)
+        {
+            var newItem = CreateNewItemInCollection<Company>(Developers, developer);
             if (newItem != null)
             {
-                //EditingGame.PublisherIds = new List<Guid>(EditingGame.PublisherIds ?? new List<Guid>()) { newItem.Id };
-                // refresh taky developery
+                if (!Publishers.Any(a => a.Item.Name.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    Publishers.Add(newItem);
+                }
             }
         }
 
-        public void AddNewDeveloper()
+        public void AddNewDevelopers(List<string> developers)
         {
-            var newItem = CreateNewItem<Company>(Developers);
-            if (newItem != null)
-            {
-                //EditingGame.DeveloperIds = new List<Guid>(EditingGame.DeveloperIds ?? new List<Guid>()) { newItem.Id };
-            }
+            developers?.ForEach(a => AddNewDeveloper(a));
         }
 
-        public void AddNewGenre()
+        public void AddNewGenre(string genre = null)
         {
-            var newItem = CreateNewItem<Genre>(Genres);
-            if (newItem != null)
-            {
-                //EditingGame.GenreIds = new List<Guid>(EditingGame.GenreIds ?? new List<Guid>()) { newItem.Id };
-            }
+            CreateNewItemInCollection<Genre>(Genres, genre);
         }
 
-        public void AddNewTag()
+        public void AddNewGenres(List<string> genres)
         {
-            var newItem = CreateNewItem<Tag>(Tags);
-            if (newItem != null)
-            {
-                //EditingGame.TagIds = new List<Guid>(EditingGame.TagIds ?? new List<Guid>()) { newItem.Id };
-            }
+            genres?.ForEach(a => AddNewGenre(a));
+        }
+
+        public void AddNewTag(string tag = null)
+        {
+            CreateNewItemInCollection<Tag>(Tags, tag);
+        }
+
+        public void AddNewTags(List<string> tags)
+        {
+            tags?.ForEach(a => AddNewTag(a));
         }
     }
 }
