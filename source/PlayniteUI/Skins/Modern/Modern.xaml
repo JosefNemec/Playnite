@@ -2635,7 +2635,7 @@
                         <Setter Property="Source" Value="{x:Null}" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding AppSettings.ShowBackgroundImage, Source={x:Static pui:App.Current}}" Value="True">
-                                <Setter Property="Source" Value="{Binding SelectedGameDetails.Game.BackgroundImageObject, IsAsync=True, Mode=OneWay}"/>
+                                <Setter Property="Source" Value="{Binding SelectedGame.BackgroundImageObject, IsAsync=True, Mode=OneWay}"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
