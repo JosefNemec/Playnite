@@ -270,6 +270,11 @@ namespace SteamLibrary
         {
             var dbs = new List<string>() { Steam.InstallationPath };
             var configPath = Path.Combine(Steam.InstallationPath, "steamapps", "libraryfolders.vdf");
+            if (!File.Exists(configPath))
+            {
+                return dbs;
+            }
+
             var kv = new KeyValue();
             kv.ReadFileAsText(configPath);
 
