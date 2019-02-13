@@ -50,6 +50,11 @@ namespace ItchioLibrary
                 }
 
                 var statePath = Path.Combine(InstallationPath, "state.json");
+                if (!File.Exists(statePath))
+                {
+                    return string.Empty;
+                }
+
                 var instState = Serialization.FromJson<ItchInstallState>(File.ReadAllText(statePath));
                 var exePath = Path.Combine(InstallationPath, $"app-{instState.current}", "itch.exe");
                 return File.Exists(exePath) ? exePath : string.Empty;
@@ -60,8 +65,7 @@ namespace ItchioLibrary
         {
             get
             {
-                var path = InstallationPath;
-                return !string.IsNullOrEmpty(path) && Directory.Exists(path) && InstalledVersion.Major >= 25;
+                return InstalledVersion.Major >= 25; 
             }
         }
 
@@ -70,6 +74,11 @@ namespace ItchioLibrary
             get
             {
                 var statePath = Path.Combine(InstallationPath, "state.json");
+                if (!File.Exists(statePath))
+                {
+                    return new Version();
+                }
+
                 var instState = Serialization.FromJson<ItchInstallState>(File.ReadAllText(statePath));
                 return new Version(instState.current);
             }
