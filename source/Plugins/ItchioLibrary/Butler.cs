@@ -302,7 +302,25 @@ namespace ItchioLibrary
 
         public List<Cave> GetCaves()
         {
-            return client.SendRequest<FetchCaves>(Methods.Fetch_Caves).items;
+            var allCaves = new List<Cave>();
+            FetchCaves caveResult = null;
+
+            do
+            {
+                var prms = new Dictionary<string, object>();
+                if (!string.IsNullOrEmpty(caveResult?.nextCursor))
+                {
+                    prms.Add("cursor", caveResult.nextCursor);
+                }
+
+                caveResult = client.SendRequest<FetchCaves>(Methods.Fetch_Caves, prms);
+                if (caveResult.items != null)
+                {
+                    allCaves.AddRange(caveResult.items);
+                }
+            }
+            while (!string.IsNullOrEmpty(caveResult?.nextCursor));
+            return allCaves;
         }
 
         public List<Profile> GetProfiles()
