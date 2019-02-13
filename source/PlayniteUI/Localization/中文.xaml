@@ -526,7 +526,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCUpdateError">更新错误</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">无法检查新版本</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">找不到新版本，您已是最新版本</sys:String>
-    <sys:String x:Key="LOCUGeneralUpdateFailMessage">无法下载并安装更新</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">无法下载并安装更新</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">后台任务当前正在运行，是否要取消它并使用更新安装进行处理？</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">后台任务当前正在运行，您要取消它并关闭Playnite吗？</sys:String>
 	   

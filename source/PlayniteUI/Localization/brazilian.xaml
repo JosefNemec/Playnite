@@ -527,7 +527,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCUpdateError">Erro na atualização</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Falha ao verificar se há uma nova versão.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Nenhuma nova versão encontrada, você está na mais recente.</sys:String>
-    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Falha ao baixar e instalar a atualização.</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Falha ao baixar e instalar a atualização.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Uma tarefa está sendo executada em segundo plano no momento. Deseja cancelá-la e continuar com a instalação da atualização?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Uma tarefa está sendo executada em segundo plano no momento. Deseja cancelá-la e fechar o Playnite?</sys:String>
 

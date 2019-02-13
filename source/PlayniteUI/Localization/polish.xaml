@@ -527,7 +527,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCUpdateError">Błąd aktualizacji</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Błąd sprawdzania nowej wersji.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Nie znaleziono nowej wersji, posiadasz aktualną wersję.</sys:String>
-    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Nie udało się pobrać i zainstalować aktualizacji.</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Nie udało się pobrać i zainstalować aktualizacji.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Zadanie w tle jest obecnie uruchomione, czy chcesz anulować i zaktualizować?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Zadanie w tle jest aktualnie uruchomione, czy chcesz je anulować i zamknąć Playnite?</sys:String>
 
