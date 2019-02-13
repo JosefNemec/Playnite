@@ -1,0 +1,3 @@
+files:
+  - source: english.xaml
+    translation: /%original_path%/%language%.xaml
