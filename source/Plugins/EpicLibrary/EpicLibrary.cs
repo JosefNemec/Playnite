@@ -83,6 +83,7 @@ namespace EpicLibrary
                 games.Add(new Game()
                 {
                     PluginId = Id,
+                    Source = "Epic",
                     GameId = gameAsset.appName,
                     Name = catalogItem.title,
                 });                
