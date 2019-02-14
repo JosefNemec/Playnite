@@ -27,6 +27,7 @@
 Unchecked - Remove category
 Indeterminate - No changes (when editing multiple games)</sys:String>
     <sys:String x:Key="LOCNoCategory">No Category</sys:String>
+    <sys:String x:Key="LOCNoPlatform">No Platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh no, something bad happened...</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Unrecoverable error occurred and Playnite crashed.

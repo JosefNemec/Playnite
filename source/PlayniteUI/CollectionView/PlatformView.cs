@@ -1,4 +1,5 @@
-﻿using Playnite.SDK.Models;
+﻿using Playnite.SDK;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,7 +93,7 @@ namespace PlayniteUI
 
         public override string ToString()
         {
-            return string.IsNullOrEmpty(Name) ? "No Platform" : Name;
+            return string.IsNullOrEmpty(Name) ? DefaultResourceProvider.FindString("LOCNoPlatform") : Name;
         }
     }
 }
