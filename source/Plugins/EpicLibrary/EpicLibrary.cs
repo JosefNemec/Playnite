@@ -43,6 +43,7 @@ namespace EpicLibrary
                 var game = new Game()
                 {
                     PluginId = Id,
+                    Source = "Epic",
                     GameId = app.AppName,
                     Name = Path.GetFileName(app.InstallLocation),
                     InstallDirectory = app.InstallLocation,
@@ -82,6 +83,7 @@ namespace EpicLibrary
                 games.Add(new Game()
                 {
                     PluginId = Id,
+                    Source = "Epic",
                     GameId = gameAsset.appName,
                     Name = catalogItem.title,
                 });                
