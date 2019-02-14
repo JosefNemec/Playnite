@@ -26,6 +26,8 @@
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Aktiv - Spiel zur Kategorie hinzufügen
 Inaktiv - Spiel aus Kategorie entfernen
 Unentschieden - Keine Änderung (mehrere Spiele)</sys:String>
+    <sys:String x:Key="LOCNoCategory">Keine Kategorie</sys:String>
+    <sys:String x:Key="LOCNoPlatform">Keine Plattform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh nein, das hätte nicht passieren dürfen...</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Playnite hat ein schwerwiegendes Problem festgestellt.
