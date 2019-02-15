@@ -28,13 +28,14 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
-        public PowerShellRuntime()
+        public PowerShellRuntime(string name)
         {
             initialSessionState = InitialSessionState.CreateDefault();
             initialSessionState.ExecutionPolicy = ExecutionPolicy.Unrestricted;
             initialSessionState.ThreadOptions = PSThreadOptions.UseCurrentThread;
             //initialSessionState.ApartmentState = System.Threading.ApartmentState.MTA;
             powerShell = System.Management.Automation.PowerShell.Create(initialSessionState);
+            powerShell.Runspace.Name = name;
             SetVariable("ErrorActionPreference", "Stop");
             SetVariable("__logger", new Logger("PowerShell"));
         }
@@ -44,20 +45,15 @@ namespace Playnite.Scripting.PowerShell
 
         }
 
-        public static PowerShellRuntime CreateRuntime()
-        {
-            return new PowerShellRuntime();
-        }
-
         public void ImportModule(string path)
         {
             powerShell.Runspace.SessionStateProxy.Path.SetLocation(Path.GetDirectoryName(path));
-            powerShell.Commands.Clear();
             module = powerShell
                 .AddCommand("Import-Module")
                 .AddParameter("PassThru")
                 .AddArgument(path)
                 .Invoke<PSModuleInfo>().FirstOrDefault();
+            powerShell.Commands.Clear();
         }
 
         public void SetVariable(string name, object value)
@@ -72,13 +68,14 @@ namespace Playnite.Scripting.PowerShell
 
         public Collection<PSObject> CallFunction(string name, params object[] arguments)
         {
-            powerShell.Commands.Clear();
             powerShell.AddCommand(module.ExportedFunctions[name]);
             foreach (var argument in arguments)
             {
                 powerShell.AddArgument(argument);
             }
-            return powerShell.Invoke();
+            var result = powerShell.Invoke();
+            powerShell.Commands.Clear();
+            return result;
         }
 
         public bool GetFunctionExits(string name)

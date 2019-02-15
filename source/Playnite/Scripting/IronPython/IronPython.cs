@@ -26,7 +26,7 @@ namespace Playnite.Scripting.IronPython
         private ScriptEngine engine;
         private ScriptScope scope;
 
-        public IronPythonRuntime()
+        public IronPythonRuntime(string name)
         {
             Dictionary<string, object> options = new Dictionary<string, object>();
             if (Debugger.IsAttached)

@@ -265,7 +265,7 @@ namespace Playnite.Plugins
 
                 try
                 {
-                    script = PlayniteScript.FromFile(scriptPath, initalVariables);
+                    script = PlayniteScript.FromFile(desc.Name, scriptPath, initalVariables);
                     if (script == null)
                     {
                         continue;

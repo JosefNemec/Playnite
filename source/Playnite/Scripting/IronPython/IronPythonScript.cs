@@ -19,9 +19,9 @@ namespace Playnite.Scripting.IronPython
             get; private set;
         }
 
-        public IronPythonScript(string path, IDictionary<string, object> initialVariables) : base(path)
+        public IronPythonScript(string name, string path, IDictionary<string, object> initialVariables) : base(path)
         {
-            Runtime = new IronPythonRuntime();
+            Runtime = new IronPythonRuntime(name);
             if (initialVariables != null)
             {
                 foreach (var kvp in initialVariables)
