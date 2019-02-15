@@ -357,6 +357,16 @@ namespace SteamLibrary
                 throw new Exception("No games found on specified Steam account.");
             }
 
+            IDictionary<string, DateTime> lastActivity = null;
+            try
+            {
+                lastActivity = GetGamesLastActivity(userId);
+            }
+            catch (Exception exc)
+            {
+                logger.Warn(exc, "Failed to import Steam last activity.");
+            }
+
             var games = new List<GameInfo>();
             foreach (var game in library.response.games)
             {
@@ -374,6 +384,11 @@ namespace SteamLibrary
                     Playtime = game.playtime_forever * 60,
                     CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed
                 };
+
+                if (lastActivity != null && lastActivity.TryGetValue(newGame.GameId, out var gameLastActivity))
+                {
+                    newGame.LastActivity = gameLastActivity;
+                }
 
                 games.Add(newGame);
             }
@@ -395,6 +410,19 @@ namespace SteamLibrary
                 throw new Exception("No games found on specified Steam account.");
             }
 
+            IDictionary<string, DateTime> lastActivity = null;
+            if (ulong.TryParse(userName, out var userId))
+            {
+                try
+                {
+                    lastActivity = GetGamesLastActivity(userId);
+                }
+                catch (Exception exc)
+                {
+                    logger.Warn(exc, "Failed to import Steam last activity.");
+                }
+            }
+
             foreach (var game in importedGames)
             {
                 // Ignore games without name, like 243870
@@ -412,16 +440,21 @@ namespace SteamLibrary
                     CompletionStatus = game.playtime_forever > 0 ? CompletionStatus.Played : CompletionStatus.NotPlayed
                 };
 
+                if (lastActivity != null && lastActivity.TryGetValue(newGame.GameId, out var gameLastActivity))
+                {
+                    newGame.LastActivity = gameLastActivity;
+                }
+
                 games.Add(newGame);
             }
 
             return games;
         }
 
-        public List<Game> GetGamesLastActivity(ulong steamId)
+        public IDictionary<string, DateTime> GetGamesLastActivity(ulong steamId)
         {
             var id = new SteamID(steamId);
-            var result = new List<Game>();
+            var result = new Dictionary<string, DateTime>();
             var vdf = Path.Combine(Steam.InstallationPath, "userdata", id.AccountID.ToString(), "config", "localconfig.vdf");
             var sharedconfig = new KeyValue();
             sharedconfig.ReadFileAsText(vdf);
@@ -457,13 +490,7 @@ namespace SteamLibrary
                     }
                 }
 
-                result.Add(new Game()
-                {
-                    PluginId = Id,
-                    Source = "Steam",
-                    GameId = gameId,
-                    LastActivity = DateTimeOffset.FromUnixTimeSeconds(app["LastPlayed"].AsLong()).LocalDateTime
-                });
+                result.Add(gameId, DateTimeOffset.FromUnixTimeSeconds(app["LastPlayed"].AsLong()).LocalDateTime);
             }
 
             return result;
@@ -497,19 +524,19 @@ namespace SteamLibrary
             {
                 using (db.BufferedUpdate())
                 {
-                    foreach (var game in GetGamesLastActivity(accountId))
+                    foreach (var kvp in GetGamesLastActivity(accountId))
                     {
-                        var dbGame = db.GetGames().FirstOrDefault(a => a.PluginId == game.PluginId && a.GameId == game.GameId);
+                        var dbGame = db.GetGames().FirstOrDefault(a => a.PluginId == Id && a.GameId == kvp.Key);
                         if (dbGame == null)
                         {
                             continue;
                         }
 
-                        if (dbGame.LastActivity >= game.LastActivity)
+                        if (dbGame.LastActivity >= kvp.Value)
                         {
                             continue;
                         }
-                        dbGame.LastActivity = game.LastActivity;
+                        dbGame.LastActivity = kvp.Value;
                         db.UpdateGame(dbGame);
                     }
                 }

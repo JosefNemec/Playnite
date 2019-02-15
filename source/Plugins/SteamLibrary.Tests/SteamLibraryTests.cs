@@ -61,10 +61,10 @@ namespace SteamLibrary.Tests
             var steamLib = CreateLibrary();
             var user = steamLib.GetSteamUsers().First(a => a.Recent);
             var lastActivity = steamLib.GetGamesLastActivity(user.Id);
-            var game = lastActivity.First();
+            var kvp = lastActivity.First();
             CollectionAssert.IsNotEmpty(lastActivity);
-            Assert.IsNotNull(game.LastActivity);
-            Assert.IsFalse(string.IsNullOrEmpty(game.GameId));
+            Assert.IsNotNull(kvp.Value);
+            Assert.IsFalse(string.IsNullOrEmpty(kvp.Key));
         }
 
         [Test]
