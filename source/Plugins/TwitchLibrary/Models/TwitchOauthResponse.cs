@@ -21,12 +21,12 @@ namespace TwitchLibrary.Models
         public long RenewAfter;
         public bool IsTemporaryAccount;
         public bool IsMerged;
-        public int Bans;
+        public long Bans;
     }
 
     public class TwitchOauthResponse
     {
-        public int Status;
+        public long Status;
         public TwitchOauthSession Session;
         public long Timestamp;
         public object MergeToken;
