@@ -56,6 +56,18 @@ namespace SteamLibrary.Tests
         }
 
         [Test]
+        public void GetGamesLastActivityTest()
+        {
+            var steamLib = CreateLibrary();
+            var user = steamLib.GetSteamUsers().First(a => a.Recent);
+            var lastActivity = steamLib.GetGamesLastActivity(user.Id);
+            var game = lastActivity.First();
+            CollectionAssert.IsNotEmpty(lastActivity);
+            Assert.IsNotNull(game.LastActivity);
+            Assert.IsFalse(string.IsNullOrEmpty(game.GameId));
+        }
+
+        [Test]
         public void GetSteamUsersTest()
         {
             var steamLib = CreateLibrary();

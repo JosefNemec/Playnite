@@ -67,6 +67,15 @@ namespace SteamLibrary
             });
         }
 
+        [JsonIgnore]
+        public RelayCommand<LocalSteamUser> ImportSteamLastActivityCommand
+        {
+            get => new RelayCommand<LocalSteamUser>((a) =>
+            {
+                ImportSteamLastActivity(a);
+            });
+        }
+
         public SteamLibrarySettings()
         {
         }
@@ -121,6 +130,12 @@ namespace SteamLibrary
         {
             var accId = user == null ? 0 : user.Id;
             library.ImportSteamCategories(accId);
+        }
+
+        public void ImportSteamLastActivity(LocalSteamUser user)
+        {
+            var accId = user == null ? 0 : user.Id;
+            library.ImportSteamLastActivity(accId);
         }
     }
 }

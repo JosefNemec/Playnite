@@ -418,6 +418,114 @@ namespace SteamLibrary
             return games;
         }
 
+        public List<Game> GetGamesLastActivity(ulong steamId)
+        {
+            var id = new SteamID(steamId);
+            var result = new List<Game>();
+            var vdf = Path.Combine(Steam.InstallationPath, "userdata", id.AccountID.ToString(), "config", "localconfig.vdf");
+            var sharedconfig = new KeyValue();
+            sharedconfig.ReadFileAsText(vdf);
+
+            var apps = sharedconfig["Software"]["Valve"]["Steam"]["apps"];
+            foreach (var app in apps.Children)
+            {
+                if (app.Children.Count == 0)
+                {
+                    continue;
+                }
+
+                string gameId = app.Name;
+                if (app.Name.Contains('_'))
+                {
+                    // Mods are keyed differently, "<appId>_<modId>"
+                    // Ex. 215_2287856061
+                    string[] parts = app.Name.Split('_');
+                    if (uint.TryParse(parts[0], out uint appId) && uint.TryParse(parts[1], out uint modId))
+                    {
+                        var gid = new GameID()
+                        {
+                            AppID = appId,
+                            AppType = GameID.GameType.GameMod,
+                            ModID = modId
+                        };
+                        gameId = gid;
+                    }
+                    else
+                    {
+                        // Malformed app id?
+                        continue;
+                    }
+                }
+
+                result.Add(new Game()
+                {
+                    PluginId = Id,
+                    Source = "Steam",
+                    GameId = gameId,
+                    LastActivity = DateTimeOffset.FromUnixTimeSeconds(app["LastPlayed"].AsLong()).LocalDateTime
+                });
+            }
+
+            return result;
+        }
+
+        public void ImportSteamLastActivity(ulong accountId)
+        {
+            var dialogs = playniteApi.Dialogs;
+            var resources = playniteApi.Resources;
+            var db = playniteApi.Database;
+
+            if (accountId == 0)
+            {
+                dialogs.ShowMessage(
+                    resources.FindString("LOCSettingsSteamLastActivityImportErrorAccount"),
+                    resources.FindString("LOCImportError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (!db.IsOpen)
+            {
+                dialogs.ShowMessage(
+                    resources.FindString("LOCSettingsSteamLastActivityImportErrorDb"),
+                    resources.FindString("LOCImportError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                using (db.BufferedUpdate())
+                {
+                    foreach (var game in GetGamesLastActivity(accountId))
+                    {
+                        var dbGame = db.GetGames().FirstOrDefault(a => a.PluginId == game.PluginId && a.GameId == game.GameId);
+                        if (dbGame == null)
+                        {
+                            continue;
+                        }
+
+                        if (dbGame.LastActivity >= game.LastActivity)
+                        {
+                            continue;
+                        }
+                        dbGame.LastActivity = game.LastActivity;
+                        db.UpdateGame(dbGame);
+                    }
+                }
+
+                dialogs.ShowMessage(resources.FindString("LOCImportCompleted"));
+            }
+            catch (Exception exc) when (!Environment.IsDebugBuild)
+            {
+                logger.Error(exc, "Failed to import Steam last activity.");
+                dialogs.ShowMessage(
+                    resources.FindString("LOCSettingsSteamLastActivityImportError"),
+                    resources.FindString("LOCImportError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         public List<GameInfo> GetCategorizedGames(ulong steamId)
         {
             var id = new SteamID(steamId);
