@@ -26,6 +26,8 @@
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Checked - Assign category
 Unchecked - Remove category
 Indeterminate - No changes (when editing multiple games)</sys:String>
+    <sys:String x:Key="LOCNoCategory">No Category</sys:String>
+    <sys:String x:Key="LOCNoPlatform">No Platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh no, something bad happened...</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Unrecoverable error occurred and Playnite crashed.
@@ -203,8 +205,8 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuReloadLibrary">Update Game Library</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Add Game</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manually</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled">Import Installed or from Folder</sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated">Import emulated Game(s)</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">Scan Automatically...</sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">Emulated Game...</sys:String>
     <sys:String x:Key="LOCMenuAbout">About Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Send Feedback</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Start Fullscreen Mode</sys:String>
@@ -237,6 +239,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Display game name when cover art is missing</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Show game names on cover view</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Show game icons on List view</sys:String>
+    <sys:String x:Key="LOCSettingsShowGroupCount">Show item count on group descriptions</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Disable hardware acceleration (requires restart)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Use when experiencing stuttering or similar UI issues</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Disable DPI Scaling (requires restart)</sys:String>
@@ -248,8 +251,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Fullscreen Theme Profile</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">Database Location</sys:String>
     <sys:String x:Key="LOCSettingsWhatsSteamName">What's my account name?</sys:String>
-    <sys:String x:Key="LOCSettingsLoginStatus">Login status:</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLibrarySource">Specify user library by:</sys:String>
+    <sys:String x:Key="LOCSettingsLoginStatus">Login status:</sys:String>    
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite Settings</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCategories">Import Steam Categories:</sys:String>
     <sys:String x:Key="LOCSettingsSteamImportCatFrom">from account:</sys:String>
@@ -298,6 +300,7 @@ Any currently active tasks (metadata downloads) will be canceled.</sys:String>
     <sys:String x:Key="LOCLoginFailed">Authentification failed</sys:String>
     <sys:String x:Key="LOCLoggedIn">User is authenticated</sys:String>
     <sys:String x:Key="LOCNotLoggedIn">Requires authentication</sys:String>
+    <sys:String x:Key="LOCNotLoggedInError">Failed to authenticate user.</sys:String>
 
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Metadata Import</sys:String>
@@ -441,6 +444,12 @@ Please attach following ID to your crash report:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Cannot open link, URL is not in valid format.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Failed to start application.</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Failed to initialize web view component, Playnite can't continue with startup.
+        
+You can try these to fix the issue:        
+  • Check that all files are properly installed, re-installing may help
+  • Check if antivirus is not blocking files in Playnite's directory
+  • Try different install location</sys:String>
 
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Edit Game Details</sys:String>
@@ -521,8 +530,8 @@ Please attach following ID to your crash report:</sys:String>
     <sys:String x:Key="LOCUpdateError">Update Error</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Failed to check for new version.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">No new version found, you are up to date.</sys:String>
-    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Failed to download and install update.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Background task is currently running, do you want to cancel it and processed with update installation?</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Failed to download and install update.</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Background task is currently running, do you want to cancel it and proceed with update installation?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Background task is currently running, do you want to cancel it and close Playnite?</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Reload theme list</sys:String>
@@ -576,4 +585,27 @@ Please attach following ID to your crash report:</sys:String>
     <sys:String x:Key="LOCScriptError">Script error</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Failed to execute extension function.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Open metadata folder</sys:String>
+
+    <sys:String x:Key="LOCClientNotInstalledError">{0} client is not installed.</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Game's installation directory not found.</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">Invalid game action configuration.</sys:String>
+
+    <sys:String x:Key="LOCTroubleShootingAccountLink">Troubleshooting account sync issues</sys:String>
+
+    <!--itch.io-->
+    <sys:String x:Key="LOCItchioSignInNotif">itch.io client will now open. Please sign in and then close this message.</sys:String>
+    <sys:String x:Key="LOCItchioSignInWaitMessage">Waiting for user to sign in, please close this when you're done...</sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">Itch client version 25 or newer is not installed.</sys:String>
+
+    <!--GOG-->
+    <sys:String x:Key="LOCGOGUseLogin">Account Login</sys:String>
+    <sys:String x:Key="LOCGOGUseAccountName">Account Name</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Login to your account or user public account name to sync your full library.
+Note that Account Name option only works accounts that have public visibility.</sys:String>
+
+    <!--Steam-->
+    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Select authenticated user or specify vanity URL name of your account to sync your full library. Accounts with private library visibility have to specify API key linked to that Steam account.
+    </sys:String>
+    <sys:String x:Key="LOCSteamCustomUrlName">Account URL Name</sys:String>
+    <sys:String x:Key="LOCSteamLoggedInUser">Authenticated User</sys:String>
 </ResourceDictionary>

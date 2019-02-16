@@ -68,6 +68,9 @@
     <Compile Include="..\..\Playnite\BaseGameController.cs">
       <Link>BaseGameController.cs</Link>
     </Compile>
+    <Compile Include="..\..\Playnite\EasyAntiCheat.cs">
+      <Link>EasyAntiCheat.cs</Link>
+    </Compile>
     <Compile Include="..\..\Playnite\GameActionActivator.cs">
       <Link>GameActionActivator.cs</Link>
     </Compile>

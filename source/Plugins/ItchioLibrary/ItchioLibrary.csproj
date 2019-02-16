@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{27A6E49E-F769-4709-8B43-FF60B8A882BE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ItchioLibrary</RootNamespace>
+    <AssemblyName>ItchioLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AngleSharp.0.9.9\lib\net45\AngleSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Abstractions, Version=2.1.0.227, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.Abstractions.2.1.0.227\lib\net40\System.IO.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\playniteui\commands\GeneralCommands.cs">
+      <Link>Commands\GeneralCommands.cs</Link>
+    </Compile>
+    <Compile Include="..\..\playniteui\commands\RelayCommand.cs">
+      <Link>Commands\RelayCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\playniteui\converters\EnumConverter.cs">
+      <Link>Converters\EnumConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\playniteui\converters\NegateConverter.cs">
+      <Link>Converters\NegateConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\BaseGameController.cs">
+      <Link>BaseGameController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\GameActionActivator.cs">
+      <Link>GameActionActivator.cs</Link>
+    </Compile>
+    <Compile Include="Butler.cs" />
+    <Compile Include="ItchioMetadataProvider.cs" />
+    <Compile Include="ItchioGameController.cs" />
+    <Compile Include="Itch.cs" />
+    <Compile Include="ItchioClient.cs" />
+    <Compile Include="ItchioLibrary.cs" />
+    <Compile Include="ItchioLibrarySettings.cs" />
+    <Compile Include="ItchioLibrarySettingsView.xaml.cs">
+      <DependentUpon>ItchioLibrarySettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Butler.cs" />
+    <Compile Include="Models\Cave.cs" />
+    <Compile Include="Models\FetchGame.cs" />
+    <Compile Include="Models\FetchCaves.cs" />
+    <Compile Include="Models\FetchProfileOwnedKeys.cs" />
+    <Compile Include="Models\HTMLLaunch.cs" />
+    <Compile Include="Models\ItchInstallState.cs" />
+    <Compile Include="Models\LaunchManifest.cs" />
+    <Compile Include="Models\LogMessage.cs" />
+    <Compile Include="Models\PickManifestAction.cs" />
+    <Compile Include="Models\PrereqsFailed.cs" />
+    <Compile Include="Models\ProfileList.cs" />
+    <Compile Include="Models\ShellLaunch.cs" />
+    <Compile Include="Models\URLLaunch.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="extension.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Resources\itchioicon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BuildCopyExclude.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ItchioLibrarySettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Playnite.Common\Playnite.Common.csproj">
+      <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
+      <Name>Playnite.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PlayniteSDK\Playnite.SDK.csproj">
+      <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
+      <Name>Playnite.SDK</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

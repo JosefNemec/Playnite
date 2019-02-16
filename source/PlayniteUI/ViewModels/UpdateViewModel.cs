@@ -142,7 +142,7 @@ namespace PlayniteUI.ViewModels
                 ShowProgress = false;
                 logger.Error(exc, "Failed to download and install update.");
                 dialogs.ShowMessage(
-                    resources.FindString("LOCUGeneralUpdateFailMessage") + $"\n{exc.Message}",
+                    resources.FindString("LOCGeneralUpdateFailMessage") + $"\n{exc.Message}",
                     resources.FindString("LOCUpdateError"),
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);

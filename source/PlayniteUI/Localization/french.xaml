@@ -26,6 +26,8 @@
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Sélectionné - Attribue une catégorie
 Non sélectionné - Retire une catégorie
 Indéterminé - Aucun changement</sys:String>
+    <sys:String x:Key="LOCNoCategory">Sans catégorie</sys:String>
+    <sys:String x:Key="LOCNoPlatform">Sans plateforme</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh non, quelque chose s'est mal passé...</sys:String>
     <sys:String x:Key="LOCCrashDescription">Playnite a rencontré un problème et n'a pas pu le resoudre. Si vous voulez nous aider, vous pouvez envoyer un rapport de bug et signaler le problème. Merci beaucoup !</sys:String>
@@ -232,6 +234,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Afficher le nom des jeux à la place des jaquettes manquantes</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Afficher le nom des jeux dans la vue en grille</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Afficher les icônes des jeux dans la vue en liste</sys:String>
+    <sys:String x:Key="LOCSettingsShowGroupCount">Afficher le nombre d'items dans la description des groupes</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Désactiver l'accélération matérielle (redémarrage nécessaire)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Cocher cette option en cas de ralentissement ou de malfonctionnement de l'interface.</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Désactiver la mise à l'échelle (redémarrage nécessaire)</sys:String>
@@ -409,8 +412,8 @@ Il est actuellement utilisé par {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCDatabaseErroTitle">Erreur de la Base de Données</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Erreur : Impossible d'ouvrir la base de données de la bibliothèque.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Erreur : Impossible d'accéder à la base de données de la bibliothèque. Le fichier "{0}" est utilisé par un autre processus ou dans un emplacement inaccessible.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationError">Erreur : Impossible de créer le package de diagnostics.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess">Package de diagnostic créé avec succès.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationError">Erreur : Impossible de créer le dossier de diagnostic.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess">Le dossier de diagnostic a été créé et mis en ligne avec succès. Veuillez copier le numéro d'identification indiqué ci-dessous pour le communiquer lors de la rédaction de votre rapport de bug sur la page Github du projet (Catégorie : Issues).</sys:String>
 
     <sys:String x:Key="LOCSteamCategoryImportError">Erreur : Impossible d'importer les catégories de Steam.</sys:String>
 
@@ -520,7 +523,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCUpdateError">Erreur lors de la mise à jour.</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Erreur lors de la recherche.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Vous possédez déjà la dernière version de Playnite.</sys:String>
-    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Erreur lors de l'installation.</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Erreur lors de l'installation.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Une tâche de fond est en cours d'exécution, voulez-vous l'annuler ?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Une tâche de fond est en cours d'exécution, voulez-vous l'annuler et fermer Playnite ?</sys:String>
 
@@ -582,7 +585,8 @@ Veuillez essayer les solutions suivantes :
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">Le client itch.io va maintenant démarrer. Veuillez vous identifier avant de fermer la fenêtre de connexion.</sys:String>
-    <sys:String x:Key="LOCItchioSignInWaitMessage">(Fermer cette fenêtre une fois la connexion établie)</sys:String>    
+    <sys:String x:Key="LOCItchioSignInWaitMessage">(Fermer cette fenêtre une fois la connexion établie)</sys:String>   
+    <sys:String x:Key="LOCItchioClientNotInstalledError">Le client itch.io n'est pas à jour. La version 25 (ou ultérieur) est requise pour la synchronisation.</sys:String> 
 
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Connexion au compte</sys:String>

@@ -39,7 +39,7 @@ namespace Playnite.Controllers
             OnStarting(this, new GameControllerEventArgs(this, 0));
             var emulators = database.Emulators.ToList();
             var profile = GameActionActivator.GetGameActionEmulatorConfig(playAction, emulators)?.ExpandVariables(Game);
-            var proc = GameActionActivator.ActivateAction(playAction, Game, profile);
+            var proc = GameActionActivator.ActivateAction(playAction, profile);
             OnStarted(this, new GameControllerEventArgs(this, 0));
 
             if (playAction.Type != GameActionType.URL)
@@ -55,7 +55,7 @@ namespace Playnite.Controllers
                 {
                     if (Directory.Exists(Game.InstallDirectory))
                     {
-                        procMon.WatchDirectoryProcesses(Game.InstallDirectory, false, true);
+                        procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
                     }
                     else
                     {

@@ -158,13 +158,13 @@
     <Compile Include="Database\OldModels\Ver6\Game.cs" />
     <Compile Include="Database\OldModels\Ver6\Platform.cs" />
     <Compile Include="Database\PlatformsCollection.cs" />
+    <Compile Include="EasyAntiCheat.cs" />
     <Compile Include="Extensions\EmulatorProfileExtensions.cs" />
     <Compile Include="Extensions\GameActionExtensions.cs" />
     <Compile Include="Extensions\GameExtensions.cs" />
     <Compile Include="GameActionActivator.cs" />
     <Compile Include="HttpFileCache.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
-    <Compile Include="NLogLogProvider.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Scripting\IronPython\IronPython.cs" />
     <Compile Include="Scripting\IronPython\IronPythonScript.cs" />
@@ -189,7 +189,6 @@
     <Compile Include="Settings\FilterSettings.cs" />
     <Compile Include="Metadata\Providers\WikipediaMetadataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThirdPartyClients\EpicLauncherClient.cs" />
     <Compile Include="Controllers\GenericGameController.cs" />
     <Compile Include="Services\ServicesClient.cs" />
     <Compile Include="Settings\PlayniteSettings.cs" />

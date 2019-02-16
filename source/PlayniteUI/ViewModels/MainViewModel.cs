@@ -64,6 +64,11 @@ namespace PlayniteUI.ViewModels
             get => selectedGame;
             set
             {
+                if (value == selectedGame)
+                {
+                    return;
+                }
+
                 SelectedGameDetails?.Dispose();
                 if (value == null)
                 {
@@ -1006,14 +1011,16 @@ namespace PlayniteUI.ViewModels
                         metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                        var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
-                        downloader.DownloadMetadataGroupedAsync(addedGames, metaSettings,
-                            (g, i, t) =>
-                            {
-                                ProgressValue = i + 1;
-                                ProgressStatus = Resources.FindString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
-                            },
-                            GlobalTaskHandler.CancelToken).Wait();
+                        using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin)))
+                        {
+                            downloader.DownloadMetadataGroupedAsync(addedGames, metaSettings,
+                                (g, i, t) =>
+                                {
+                                    ProgressValue = i + 1;
+                                    ProgressStatus = Resources.FindString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
+                                },
+                                GlobalTaskHandler.CancelToken).Wait();
+                        }
                     }
                 });
 
@@ -1044,16 +1051,18 @@ namespace PlayniteUI.ViewModels
                 ProgressTotal = games.Count;
                 ProgressStatus = Resources.FindString("LOCProgressMetadata");
 
-                var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
-                GlobalTaskHandler.ProgressTask =
-                    downloader.DownloadMetadataGroupedAsync(games, settings,
-                        (g, i, t) =>
-                        {
-                            ProgressValue = i + 1;
-                            ProgressStatus = Resources.FindString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
-                        },
-                        GlobalTaskHandler.CancelToken);
-                await GlobalTaskHandler.ProgressTask;
+                using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin)))
+                {
+                    GlobalTaskHandler.ProgressTask =
+                        downloader.DownloadMetadataGroupedAsync(games, settings,
+                            (g, i, t) =>
+                            {
+                                ProgressValue = i + 1;
+                                ProgressStatus = Resources.FindString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
+                            },
+                            GlobalTaskHandler.CancelToken);
+                    await GlobalTaskHandler.ProgressTask;
+                }
             }
             finally
             {
@@ -1362,14 +1371,16 @@ namespace PlayniteUI.ViewModels
                         metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                        var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
-                        downloader.DownloadMetadataGroupedAsync(addedGames, metaSettings,
-                            (g, i, t) =>
-                            {
-                                ProgressValue = i + 1;
-                                ProgressStatus = Resources.FindString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
-                            },
-                            GlobalTaskHandler.CancelToken).Wait();
+                        using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin)))
+                        {
+                            downloader.DownloadMetadataGroupedAsync(addedGames, metaSettings,
+                                (g, i, t) =>
+                                {
+                                    ProgressValue = i + 1;
+                                    ProgressStatus = Resources.FindString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
+                                },
+                                GlobalTaskHandler.CancelToken).Wait();
+                        }
                     }
                 });
 

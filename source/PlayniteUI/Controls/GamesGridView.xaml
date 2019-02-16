@@ -94,9 +94,16 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <Expander Header="{Binding Mode=OneWay}"
+                                    <Expander IsExpanded="True"
                                               pui:ExpanderBehaviors.SaveState="True"
                                               pui:ExpanderBehaviors.SaveStateId="{Binding Name, Mode=OneWay}">
+                                        <Expander.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0 0 5 0"/>
+                                                <TextBlock Text="{Binding Items.Count, Mode=OneWay, StringFormat=({0})}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource BaseTextBlockStyle}" TextAlignment="Center"
+                                                                       Visibility="{Binding Path=AppSettings.ShowGroupCount, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                            </StackPanel>
+                                        </Expander.Header>
                                         <ItemsPresenter />
                                     </Expander>
                                 </ControlTemplate>

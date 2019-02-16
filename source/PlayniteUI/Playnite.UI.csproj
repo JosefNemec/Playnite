@@ -202,6 +202,9 @@
     </Compile>
     <Compile Include="Controls\FullscreenView.cs" />
     <Compile Include="Controls\MainView.cs" />
+    <Compile Include="Controls\SliderWithPopup.xaml.cs">
+      <DependentUpon>SliderWithPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\VirtualKeyboard.cs" />
     <Compile Include="Controls\WindowBase.cs" />
     <Compile Include="Converters\AfterGameCloseOptionToStringConverter.cs" />
@@ -210,6 +213,7 @@
     <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />
     <Compile Include="Converters\BoolToAutoWidthConverter.cs" />
     <Compile Include="Converters\BoolToYesNoConverter.cs" />
+    <Compile Include="Converters\CoversZoomToPercentageConverter.cs" />
     <Compile Include="Converters\EnumBooleanConverter.cs" />
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\IconToImageSourceConverter.cs" />
@@ -362,6 +366,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="Controls\SliderWithPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\WebViewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -797,6 +805,8 @@ xcopy "$(SolutionDir)\Plugins\BattleNetLibrary\bin\$(ConfigurationName)" "$(Targ
 xcopy "$(SolutionDir)\Plugins\UplayLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\UplayLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\UplayLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\TwitchLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\TwitchLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\TwitchLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\BethesdaLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\BethesdaLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\BethesdaLibrary\BuildCopyExclude.txt
+xcopy "$(SolutionDir)\Plugins\EpicLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\EpicLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\EpicLibrary\BuildCopyExclude.txt
+xcopy "$(SolutionDir)\Plugins\ItchioLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\ItchioLibrary\" /e /y /exclude:$(SolutionDir)\Plugins\ItchioLibrary\BuildCopyExclude.txt
 xcopy "$(SolutionDir)\Plugins\LibraryExporter" "$(TargetDir)\Extensions\LibraryExporter\" /e /y
 xcopy "$(SolutionDir)\..\references\XInputInterface.dll" "$(TargetDir)" /y
 xcopy "$(SolutionDir)\..\references\CefSharpRedist\*" "$(TargetDir)" /y</PostBuildEvent>

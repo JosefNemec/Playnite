@@ -104,6 +104,11 @@
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
@@ -2630,7 +2635,7 @@
                         <Setter Property="Source" Value="{x:Null}" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding AppSettings.ShowBackgroundImage, Source={x:Static pui:App.Current}}" Value="True">
-                                <Setter Property="Source" Value="{Binding SelectedGameDetails.Game.BackgroundImageObject, IsAsync=True, Mode=OneWay}"/>
+                                <Setter Property="Source" Value="{Binding SelectedGame.BackgroundImageObject, IsAsync=True, Mode=OneWay}"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -2686,9 +2691,16 @@
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate>
-                                                <Expander Header="{Binding Mode=OneWay}" BorderThickness="0"
+                                                <Expander BorderThickness="0" IsExpanded="True"
                                                           pui:ExpanderBehaviors.SaveState="True"
                                                           pui:ExpanderBehaviors.SaveStateId="{Binding Name, Mode=OneWay}">
+                                                    <Expander.Header>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0 0 5 0"/>
+                                                            <TextBlock Text="{Binding Items.Count, Mode=OneWay, StringFormat=({0})}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource BaseTextBlockStyle}" TextAlignment="Center"
+                                                                       Visibility="{Binding Path=Data.AppSettings.ShowGroupCount, Source={StaticResource Proxy}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                        </StackPanel>
+                                                    </Expander.Header>
                                                     <ItemsPresenter />
                                                 </Expander>
                                             </ControlTemplate>
@@ -2744,6 +2756,7 @@
                     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
                     <pui:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
                     <pui:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
+                    <pui:CoversZoomToPercentageConverter x:Key="CoversZoomToPercentageConverter" />
                 </Grid.Resources>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -2826,7 +2839,7 @@
                                                                 Style="{StaticResource BaseTextBlockStyle}"
                                                                 TextTrimming="CharacterEllipsis" TextAlignment="Center"
                                                                 HorizontalAlignment="Center" VerticalAlignment="Center"
-                                                                FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"/>
+                                                                FontSize="{Binding Path=SliderValue, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"/>
                                                     </Border>
                                                     <Border Background="#88000000" x:Name="BorderMouseOver" Visibility="Collapsed">
                                                         <Grid Margin="10" VerticalAlignment="Center">
@@ -2839,12 +2852,12 @@
                                                             </Grid.RowDefinitions>
                                                             <Button Background="#EE000000" Content="▶"
                                                                 Grid.Row="0" Grid.Column="0" Margin="0,0,3,0"
-                                                                FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"
+                                                                FontSize="{Binding Path=SliderValue, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"
                                                                 Command="{Binding Data.StartGameCommand, Source={StaticResource CoversProxy}}"
                                                                 CommandParameter="{Binding Game}" />
                                                             <Button Background="#EE000000" Content="ℹ"
                                                                 Grid.Row="0" Grid.Column="1" Margin="3,0,0,0"
-                                                                FontSize="{Binding Path=Value, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"
+                                                                FontSize="{Binding Path=SliderValue, ElementName=SliderZoom, Converter={StaticResource WidthToFontSizeConverter}}"
                                                                 Command="{Binding Data.ShowGameSideBarCommand, Source={StaticResource CoversProxy}}"
                                                                 CommandParameter="{Binding}"/>
                                                         </Grid>
@@ -2883,7 +2896,7 @@
                     </pc:ExtendedListBox.Resources>
                     <pc:ExtendedListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <pui:VirtualizingTilePanel ItemWidth="{Binding Path=Value, ElementName=SliderZoom}"
+                            <pui:VirtualizingTilePanel ItemWidth="{Binding Path=SliderValue, ElementName=SliderZoom}"
                                                    ItemHeightModifier="{DynamicResource GameCoverViewRation}"/>
                         </ItemsPanelTemplate>
                     </pc:ExtendedListBox.ItemsPanel>
@@ -2891,8 +2904,12 @@
 
                 <StackPanel Margin="5" Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
                     <Label Content="{DynamicResource LOCZoomLabel}" DockPanel.Dock="Right" Margin="10,0,10,0"/>
-                    <Slider Name="SliderZoom" SmallChange="1" Value="{Binding Path=AppSettings.ViewSettings.CoversZoom}" Maximum="260" Minimum="100"
-                        IsSnapToTickEnabled="True" Width="150" DockPanel.Dock="Right" VerticalAlignment="Center"/>
+
+                    <pc:SliderWithPopup x:Name="SliderZoom"
+                                        SliderValue="{Binding Path=AppSettings.ViewSettings.CoversZoom, Mode=TwoWay}" 
+                                        SliderMaximumValue="{x:Static shared:ViewSettings.MaxCoversZoom}"
+                                        SliderMinimumValue="{x:Static shared:ViewSettings.MinCoversZoom}"
+                                        PopupLabel="{Binding Path=AppSettings.ViewSettings.CoversZoom, Converter={StaticResource CoversZoomToPercentageConverter}, StringFormat={}{0}%}" />
                 </StackPanel>
 
                 <ScrollViewer Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Width="350"

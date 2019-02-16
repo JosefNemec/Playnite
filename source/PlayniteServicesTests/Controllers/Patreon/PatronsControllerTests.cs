@@ -23,7 +23,7 @@ namespace PlayniteServicesTests.Controllers.Patreon
         [Fact]
         public async Task CompanyControllerTest()
         {
-            var response = await client.GetAsync("api/patreon/patrons");
+            var response = await client.GetAsync("patreon/patrons");
             var validResponse = JsonConvert.DeserializeObject<ServicesResponse<List<string>>>(await response.Content.ReadAsStringAsync());
             Assert.NotEmpty(validResponse.Data);
             Assert.True(string.IsNullOrEmpty(validResponse.Error));

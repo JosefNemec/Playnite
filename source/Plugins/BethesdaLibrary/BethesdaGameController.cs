@@ -41,14 +41,13 @@ namespace BethesdaLibrary
             if (Game.PlayAction.Type == GameActionType.URL && Game.PlayAction.Path.StartsWith("bethesda", StringComparison.OrdinalIgnoreCase))
             {
                 OnStarting(this, new GameControllerEventArgs(this, 0));
-                GameActionActivator.ActivateAction(Game.PlayAction, Game);
+                GameActionActivator.ActivateAction(Game.PlayAction);
                 if (Directory.Exists(Game.InstallDirectory))
                 {
                     stopWatch = Stopwatch.StartNew();
                     procMon = new ProcessMonitor();
                     procMon.TreeStarted += ProcMon_TreeStarted;
                     procMon.TreeDestroyed += Monitor_TreeDestroyed;
-                    procMon.TreeStarted += ProcMon_TreeStarted;
                     procMon.WatchDirectoryProcesses(Game.InstallDirectory, false);
                 }
                 else

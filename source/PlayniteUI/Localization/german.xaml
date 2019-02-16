@@ -26,6 +26,8 @@
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Aktiv - Spiel zur Kategorie hinzufügen
 Inaktiv - Spiel aus Kategorie entfernen
 Unentschieden - Keine Änderung (mehrere Spiele)</sys:String>
+    <sys:String x:Key="LOCNoCategory">Keine Kategorie</sys:String>
+    <sys:String x:Key="LOCNoPlatform">Keine Plattform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh nein, das hätte nicht passieren dürfen...</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Playnite hat ein schwerwiegendes Problem festgestellt.
@@ -237,6 +239,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Zeige den Namen des Spiels wenn kein Cover gefunden wurde</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Zeige den Namen des Spiels unter dem Cover</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Zeige Icons in der Spieleliste</sys:String>
+    <sys:String x:Key="LOCSettingsShowGroupCount">Zeige Anzahl der Spiele in Gruppenbeschreibung</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Deaktiviere Hardwarebeschleunigung (erfordert Neustart)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Wähle diese Option bei Problemen mit der Oberfläche.</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Deaktiviere Skalierung für hohe DPI-Werte (erfordert Neustart)</sys:String>
@@ -530,7 +533,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCUpdateError">Fehler beim Aktualisieren</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Fehler bei der Suche nach Aktualisierungen.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Keine neue Version gefunden, Playnite ist aktuell.</sys:String>
-    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Fehler beim Aktualisieren von Playnite:</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Fehler beim Aktualisieren von Playnite:</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Im Hintergrund wird gerade ein Prozess ausgeführt, soll dieser beendet und mit dem Update fortgefahren werden?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Im Hintergrund wird gerade ein Prozess ausgeführt, soll Playnite wirklich beendet werden?</sys:String>
 
@@ -595,6 +598,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">Der itch.io Client wird gestartet... Bitte melde dich dort an und schließe anschließend diese Meldung.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">Warte auf Anmeldung... Schließe diese Meldung wenn du dich erfolgreich angemeldet hast.</sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">Der itch.io Client in Version 25 oder neuer wird benötigt, konnte aber nicht gefunden werden.</sys:String>
 
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Privater Account</sys:String>

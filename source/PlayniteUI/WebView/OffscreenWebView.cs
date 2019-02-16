@@ -68,6 +68,11 @@ namespace PlayniteUI.WebView
             return browser.GetSourceAsync().GetAwaiter().GetResult();
         }
 
+        public Task<string> GetPageSourceAsync()
+        {
+            return browser.GetSourceAsync();
+        }
+
         public void NavigateAndWait(string url)
         {
             browser.Load(url);

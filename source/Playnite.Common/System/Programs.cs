@@ -15,32 +15,51 @@ using Windows.Management.Deployment;
 
 namespace Playnite.Common.System
 {
+    //public enum ExecutableType : int
+    //{
+    //    Native = 0,
+    //    Script = 1,
+    //    Html = 2
+    //}
+
+    //public class Executable
+    //{
+    //    public string Path { get; set; }
+    //    public ExecutableType Type { get; set; }
+
+    //    public Executable(string path)
+    //    {
+    //        var info = new FileInfo(path);
+    //        Path = path;
+    //        switch (info.Extension)
+    //        {
+    //            case var ext when ".exe".Equals(ext, StringComparison.OrdinalIgnoreCase):
+    //                Type = ExecutableType.Native;
+    //                break;
+
+    //            case var ext when ".html".Equals(ext, StringComparison.OrdinalIgnoreCase):
+    //                Type = ExecutableType.Html;
+    //                break;
+
+    //            case var ext when Regex.IsMatch(ext, @"\.(bat|cmd)", RegexOptions.IgnoreCase):
+    //                Type = ExecutableType.Script;
+    //                break;
+    //        }
+    //    }
+
+    //    public override string ToString()
+    //    {
+    //        return Path;
+    //    }
+    //}
+
     public class Program
     {
-        public string Path
-        {
-            get; set;
-        }
-
-        public string Arguments
-        {
-            get; set;
-        }
-
-        public string Icon
-        {
-            get; set;
-        }
-
-        public string WorkDir
-        {
-            get; set;
-        }
-
-        public string Name
-        {
-            get; set;
-        }
+        public string Path { get; set; }
+        public string Arguments { get; set; }
+        public string Icon { get; set; }
+        public string WorkDir { get; set; }
+        public string Name { get; set; }
 
         public override string ToString()
         {
@@ -50,50 +69,15 @@ namespace Playnite.Common.System
 
     public class UninstallProgram
     {
-        public string DisplayIcon
-        {
-            get; set;
-        }
-
-        public string DisplayName
-        {
-            get; set;
-        }
-
-        public string DisplayVersion
-        {
-            get; set;
-        }
-
-        public string InstallLocation
-        {
-            get; set;
-        }
-
-        public string Publisher
-        {
-            get; set;
-        }
-
-        public string UninstallString
-        {
-            get; set;
-        }
-
-        public string URLInfoAbout
-        {
-            get; set;
-        }
-
-        public string RegistryKeyName
-        {
-            get; set;
-        }
-
-        public string Path
-        {
-            get; set;
-        }
+        public string DisplayIcon { get; set; }
+        public string DisplayName { get; set; }
+        public string DisplayVersion { get; set; }
+        public string InstallLocation { get; set; }
+        public string Publisher { get; set; }
+        public string UninstallString { get; set; }
+        public string URLInfoAbout { get; set; }
+        public string RegistryKeyName { get; set; }
+        public string Path { get; set; }
 
         public override string ToString()
         {
@@ -450,5 +434,37 @@ namespace Playnite.Common.System
                 Arguments = link.Arguments
             };
         }
+
+        private static List<string> exeBlacklist = new List<string>
+        {
+            @"unins.*\.exe$",
+            @"\.vshost\.exe$",
+            @"nacl_helper",
+            @"nwjc\.exe$",
+            @"flixel\.exe$",
+            @"dxwebsetup\.exe$",
+            @"vcredist.*\.exe$",
+            @"unitycrashhandler.*\.exe$"
+        };
+
+        //// TODO: Merge this with GetExecutablesFromFolder
+        //public static List<Executable> GetExecutables(string directory)
+        //{
+        //    var fileEnum = new SafeFileEnumerator(directory, "*.*", SearchOption.AllDirectories);
+        //    return fileEnum.Where(a => Regex.IsMatch(a.Name, @"\.(exe|cmd|bat|html)$", RegexOptions.IgnoreCase)).
+        //        Select(a => new Executable(a.FullName)).ToList();
+        //}
+
+        //public static bool TryGetStarterExecutable(string directory, out string execPath)
+        //{
+        //    var candidates = GetExecutables(directory)?.Where(a => !exeBlacklist.Any(b => Regex.IsMatch(a.Path, b, RegexOptions.IgnoreCase)));
+        //    if (candidates?.Any() == true)
+        //    {
+
+        //    }
+
+        //    execPath = string.Empty;
+        //    return false;
+        //}
     }
 }

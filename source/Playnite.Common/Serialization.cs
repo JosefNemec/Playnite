@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Nett;
+using Newtonsoft.Json;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,25 @@ namespace Playnite.Common
                 logger.Debug(json);
                 throw;
             }
+        }
+
+        public static bool TryFromJson<T>(string json, out T deserialized) where T : class
+        {
+            try
+            {
+                deserialized = JsonConvert.DeserializeObject<T>(json);
+                return true;
+            }
+            catch
+            {
+                deserialized = null;
+                return false;
+            }
+        }
+
+        public static T FromToml<T>(string toml) where T : class
+        {
+            return Toml.ReadString<T>(toml);
         }
     }
 }

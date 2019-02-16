@@ -481,7 +481,7 @@ Actualmente está siendo utilizado por {1} juego(s) y {2} emulador(es).</sys:Str
     <sys:String x:Key="LOCUpdateError">Error al actualizar</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Error al comprobar actualizaciones.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">No hay nuevas versiones disponibles.</sys:String>
-    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Error al descargar e instalar la actualización.</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Error al descargar e instalar la actualización.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Hay tareas en segundo plano ¿Quierés cancelarlas y continuar con la intalación de actualizaciones?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Hay tareas en segundo plano ¿Quierés cancelarlas y cerrar Playnite?</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Volver a cargar la lista de temas</sys:String>

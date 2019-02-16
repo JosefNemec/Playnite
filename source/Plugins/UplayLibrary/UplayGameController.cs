@@ -20,6 +20,7 @@ namespace UplayLibrary
         private ProcessMonitor procMon;
         private Stopwatch stopWatch;
         private UplayLibrary uplay;
+        private static ILogger logger = LogManager.GetLogger();
 
         public UplayGameController(UplayLibrary library, Game game) : base(game)
         {
@@ -50,8 +51,7 @@ namespace UplayLibrary
                     procMon = new ProcessMonitor();
                     procMon.TreeStarted += ProcMon_TreeStarted;
                     procMon.TreeDestroyed += Monitor_TreeDestroyed;
-                    procMon.TreeStarted += ProcMon_TreeStarted;
-                    GameActionActivator.ActivateAction(Game.PlayAction, Game);
+                    GameActionActivator.ActivateAction(Game.PlayAction);
                     StartRunningWatcher(requiresUplay);
                 }
                 else
@@ -69,6 +69,7 @@ namespace UplayLibrary
         {
             if (waitForUplay)
             {
+                logger.Debug("Game requires UbisoftGameLauncher to run, waiting for it to start properly.");
                 // Solves issues with game process being started/shutdown multiple times during startup via Uplay
                 watcherToken = new CancellationTokenSource();
                 while (true)

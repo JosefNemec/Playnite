@@ -15,7 +15,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Width="750" Height="600"                     
+        Width="780" Height="620"                     
         AutomationProperties.AutomationId="WindowSettings">
 
     <i:Interaction.Triggers>
@@ -274,7 +274,9 @@
                                 <CheckBox Content="{DynamicResource LOCSettingsShowNamesUnderCover}" Margin="0,15,0,0"
                                   Name="CheckNameUnderCover" IsChecked="{Binding Settings.ShowNamesUnderCovers}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowIconList}" Margin="0,15,0,0"
-                                  Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>                       
+                                  Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
+                                <CheckBox Content="{DynamicResource LOCSettingsShowGroupCount}" Margin="0,15,0,0"
+                                  Name="CheckShowGroupCount" IsChecked="{Binding Settings.ShowGroupCount}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
                                   Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
                                 <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundImage}" Margin="0,15,0,0"
@@ -477,9 +479,11 @@
                                 <TextBlock Text="{Binding Value.Name}" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
-                    </ListBox>                    
-                    <ContentControl DockPanel.Dock="Left" Margin="20"
-                                    Content="{Binding SelectedItem.Value.View, ElementName=TreeLibraryPlugins}"/>
+                    </ListBox>
+                    <ScrollViewer DockPanel.Dock="Left">
+                        <ContentControl Content="{Binding SelectedItem.Value.View, ElementName=TreeLibraryPlugins}"
+                                        Margin="20"/>
+                    </ScrollViewer>
                 </DockPanel>
             </TabItem>
 

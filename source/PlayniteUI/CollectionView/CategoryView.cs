@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Playnite.SDK;
 
 namespace PlayniteUI
 {
@@ -80,7 +77,7 @@ namespace PlayniteUI
 
         public override string ToString()
         {
-            return string.IsNullOrEmpty(Category) ? "No Category" : Category;
+            return string.IsNullOrEmpty(Category) ? DefaultResourceProvider.FindString("LOCNoCategory") : Category;
         }
     }
 }

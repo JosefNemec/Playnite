@@ -22,28 +22,28 @@ namespace SteamLibrary.Services
         public void PostSteamAppInfoData(uint appId, string data)
         {
             var content = new StringContent(data, Encoding.UTF8, "text/plain");
-            HttpClient.PostAsync(Endpoint + $"/api/steam/appinfo/{appId}", content).Wait();
+            HttpClient.PostAsync(Endpoint + $"/steam/appinfo/{appId}", content).Wait();
         }
 
         public string GetSteamAppInfoData(uint appId)
         {
-            return ExecuteGetRequest<string>($"/api/steam/appinfo/{appId}");
+            return ExecuteGetRequest<string>($"/steam/appinfo/{appId}");
         }
 
         public void PostSteamStoreData(uint appId, string data)
         {
             var content = new StringContent(data, Encoding.UTF8, "text/plain");
-            HttpClient.PostAsync(Endpoint + $"/api/steam/store/{appId}", content).Wait();
+            HttpClient.PostAsync(Endpoint + $"/steam/store/{appId}", content).Wait();
         }
 
         public string GetSteamStoreData(uint appId)
         {
-            return ExecuteGetRequest<string>($"/api/steam/store/{appId}");
+            return ExecuteGetRequest<string>($"/steam/store/{appId}");
         }
 
         public List<GetOwnedGamesResult.Game> GetSteamLibrary(string userName)
         {
-            return ExecuteGetRequest<List<GetOwnedGamesResult.Game>>("/api/steam/library/" + userName);
+            return ExecuteGetRequest<List<GetOwnedGamesResult.Game>>("/steam/library/" + userName);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace SteamLibrary
 
         #region Settings
 
-        public SteamIdSource IdSource { get; set; } = SteamIdSource.Name;
+        public SteamIdSource IdSource { get; set; } = SteamIdSource.LocalUser;
 
         public ulong AccountId { get; set; }
 
