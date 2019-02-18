@@ -441,11 +441,10 @@ namespace PlayniteUI.ViewModels
             }
         }
 
-        // TODO update from master
         private void UpdatePlatformsCollection()
         {
             string addNewFile(string path, Guid parent)
-            {                
+            {
                 var newPath = database.AddFile(path, parent);
                 if (Paths.AreEqual(Path.GetDirectoryName(path), PlaynitePaths.TempPath))
                 {
@@ -455,56 +454,55 @@ namespace PlayniteUI.ViewModels
                 return newPath;
             }
 
-            // Remove deleted items
-            var removedItems = database.Platforms.Where(a => EditingPlatforms.FirstOrDefault(b => b.Id == a.Id) == null);
-            if (removedItems.Any())
+            // Update modified platforms in database
+            foreach (var platform in EditingPlatforms.Where(a => database.Platforms[a.Id] != null).ToList())
             {
-                // Metadata are removed by underlying collection implementation.
-                database.Platforms.Remove(removedItems);
+                var dbPlatform = database.Platforms.Get(platform.Id);
+                if (platform.IsEqualJson(dbPlatform))
+                {
+                    continue;
+                }
+
+                if (!string.IsNullOrEmpty(platform.Icon) && File.Exists(platform.Icon))
+                {
+                    platform.Icon = addNewFile(platform.Icon, dbPlatform.Id);
+                }
+
+                if (!string.IsNullOrEmpty(platform.Cover) && File.Exists(platform.Cover))
+                {
+                    platform.Cover = addNewFile(platform.Cover, dbPlatform.Id);
+                }
+                
+                database.Platforms.Update(platform);
             }
 
-            // Add new items
-            var addedItems = EditingPlatforms.Where(a => database.Platforms[a.Id] == null);
-            foreach (var item in addedItems)
+            // Remove deleted platforms from database
+            var removedItems = database.Platforms.Where(a => EditingPlatforms.FirstOrDefault(b => b.Id == a.Id) == null).ToList();
+            database.Platforms.Remove(removedItems);
+
+            // Add new platforms to database
+            foreach (var addedPlatform in EditingPlatforms.Where(a => database.Platforms[a.Id] == null).ToList())
             {
-                if (!item.Icon.IsNullOrEmpty())
+                if (!string.IsNullOrEmpty(addedPlatform.Icon))
                 {
-                    item.Icon = addNewFile(item.Icon, item.Id);
+                    addedPlatform.Icon = addNewFile(addedPlatform.Icon, addedPlatform.Id);
                 }
 
-                if (!item.Cover.IsNullOrEmpty())
+                if (!string.IsNullOrEmpty(addedPlatform.Cover))
                 {
-                    item.Cover = addNewFile(item.Cover, item.Id);
+                    addedPlatform.Cover = addNewFile(addedPlatform.Cover, addedPlatform.Id);
                 }
 
-                database.Platforms.Add(addedItems);
-            }
-
-            // Update modified items
-            foreach (var item in EditingPlatforms)
-            {
-                var dbItem = database.Platforms[item.Id];
-                if (dbItem != null && !item.IsEqualJson(dbItem))
-                {
-                    if (!item.Icon.IsNullOrEmpty())
-                    {
-                        item.Icon = addNewFile(item.Icon, item.Id);
-                    }
-
-                    if (!item.Cover.IsNullOrEmpty())
-                    {
-                        item.Cover = addNewFile(item.Cover, item.Id);
-                    }
-
-                    database.Platforms.Update(item);
-                }
+                database.Platforms.Add(addedPlatform);
             }
         }
 
-        // TODO localize strings
         public void AddItem<TItem>(IList<TItem> collection) where TItem : DatabaseObject
         {
-            var res = dialogs.SelectString("Enter name:", "Add new item", "");
+            var res = dialogs.SelectString(
+                resources.FindString("LOCEnterName"),
+                resources.FindString("LOCAddNewItem"),
+                "");
             if (res.Result)
             {
                 collection.Add(typeof(TItem).CrateInstance<TItem>(res.SelectedString));
@@ -513,7 +511,10 @@ namespace PlayniteUI.ViewModels
 
         public void RenameItem<TItem>(TItem item) where TItem : DatabaseObject
         {
-            var res = dialogs.SelectString("Enter new name:", "Rename item", item.Name);
+            var res = dialogs.SelectString(
+                resources.FindString("LOCEnterNewName"),
+                resources.FindString("LOCRenameItem"),
+                item.Name);
             if (res.Result)
             {
                 item.Name = res.SelectedString;

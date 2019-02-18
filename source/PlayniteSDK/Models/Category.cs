@@ -16,5 +16,7 @@ namespace Playnite.SDK.Models
         {
             Name = name;
         }
+
+        public static readonly Category Empty = new Category { Id = Guid.Empty, Name = string.Empty };
     }
 }

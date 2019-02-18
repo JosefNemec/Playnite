@@ -9,16 +9,6 @@ namespace System
 {
     public static class ListExtensions
     {
-        public static ComparableList<T> ToComparable<T>(this IEnumerable<T> source)
-        {
-            if (source == null)
-            {
-                return null;
-            }
-
-            return new ComparableList<T>(source);
-        }
-
         public static ObservableCollection<T> ToObservable<T>(this IEnumerable<T> source)
         {
             if (source == null)
@@ -34,28 +24,27 @@ namespace System
             return source?.Any() == true;
         }
 
-        public static bool IntersectsPartiallyWith(this List<string> source, List<string> target)
+        public static bool HasNonEmptyItems(this IEnumerable<string> source)
         {
-            var intersects = true;
-
-            foreach (var sourceItem in source)
-            {
-                if (!target.Any(a => a != null && a.IndexOf(sourceItem, StringComparison.InvariantCultureIgnoreCase) >= 0))
-                {
-                    return false;
-                }
-            }
-
-            return intersects;
+            return source?.Any(a => !a.IsNullOrEmpty()) == true;
         }
 
-        public static bool IntersectsExactlyWith(this List<string> source, List<string> target)
+        public static bool IntersectsPartiallyWith(this IEnumerable<string> source, IEnumerable<string> target, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
-            var intersects = false;
+            if (source == null && target == null)
+            {
+                return false;
+            }
 
+            if ((source == null && target != null) || (source != null && target == null))
+            {
+                return false;
+            }
+
+            var intersects = false;
             foreach (var sourceItem in source)
             {
-                if (target.Any(a => a != null && a.Equals(sourceItem, StringComparison.InvariantCultureIgnoreCase)))
+                if (target.Any(a => a?.IndexOf(sourceItem, comparison) >= 0))
                 {
                     return true;
                 }
@@ -64,9 +53,38 @@ namespace System
             return intersects;
         }
 
-        public static bool ContainsInsensitive(this List<string> source, string value)
+        public static bool IntersectsExactlyWith(this IEnumerable<string> source, IEnumerable<string> target, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
-            return source.Any(a => a.Equals(value, StringComparison.InvariantCultureIgnoreCase)) == true;
+            if (source == null && target == null)
+            {
+                return false;
+            }
+
+            if ((source == null && target != null) || (source != null && target == null))
+            {
+                return false;
+            }
+
+            var intersects = false;
+            foreach (var sourceItem in source)
+            {
+                if (target.Any(a => a?.Equals(sourceItem, comparison) == true))
+                {
+                    return true;
+                }
+            }
+
+            return intersects;
+        }
+
+        public static bool ContainsString(this IEnumerable<string> source, string value, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
+        {
+            return source?.Any(a => a?.Equals(value, comparison) == true) == true;
+        }
+
+        public static bool ContainsStringPartial(this IEnumerable<string> source, string value, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
+        {
+            return source?.Any(a => value?.IndexOf(a, comparison) >= 0) == true;
         }
 
         public static bool IsListEqual<T>(this IEnumerable<T> source, IEnumerable<T> target)

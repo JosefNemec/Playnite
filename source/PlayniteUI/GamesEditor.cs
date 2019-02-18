@@ -78,13 +78,13 @@ namespace PlayniteUI
 
         public bool? SetGameCategories(Game game)
         {
-            var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, database, game, true);
+            var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, database, game);
             return model.OpenView();
         }
 
         public bool? SetGamesCategories(List<Game> games)
         {
-            var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, database, games, true);
+            var model = new CategoryConfigViewModel(CategoryConfigWindowFactory.Instance, database, games);
             return model.OpenView();
         }
 

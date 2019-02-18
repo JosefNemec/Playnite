@@ -54,17 +54,15 @@ namespace Playnite.SDK.Models
             {
                 return 0;
             }
+
             if (string.IsNullOrEmpty(Name))
             {
                 return 1;
             }
+
             if (string.IsNullOrEmpty(objName))
             {
                 return -1;
-            }
-            if (Name.Equals(objName))
-            {
-                return 0;
             }
 
             return string.Compare(Name, objName, true);

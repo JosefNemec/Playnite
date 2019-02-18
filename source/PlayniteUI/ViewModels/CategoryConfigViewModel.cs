@@ -13,6 +13,21 @@ namespace PlayniteUI.ViewModels
 {
     public class CategoryConfigViewModel : ObservableObject
     {
+        private string newTextCat;
+        public string NewTextCat
+        {
+            get
+            {
+                return newTextCat;
+            }
+
+            set
+            {
+                newTextCat = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ObservableCollection<SelectableItem<Category>> categories;
         public ObservableCollection<SelectableItem<Category>> Categories
         {
@@ -45,7 +60,6 @@ namespace PlayniteUI.ViewModels
 
         private Game game;
         private IEnumerable<Game> games;
-        private bool autoUpdate;
         private IWindowFactory window;
         private GameDatabase database;
 
@@ -57,11 +71,11 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public RelayCommand<string> AddCategoryCommand
+        public RelayCommand<object> AddCategoryCommand
         {
-            get => new RelayCommand<string>((category) =>
+            get => new RelayCommand<object>((a) =>
             {
-                AddCategory(category);
+                AddCategory();
             });
         }
 
@@ -74,23 +88,21 @@ namespace PlayniteUI.ViewModels
             });
         }
 
-        public CategoryConfigViewModel(IWindowFactory window, GameDatabase database, IEnumerable<Game> games, bool autoUpdate)
+        public CategoryConfigViewModel(IWindowFactory window, GameDatabase database, IEnumerable<Game> games)
         {
             this.window = window;
             this.database = database;
             this.games = games;
-            this.autoUpdate = autoUpdate;
             EnableThreeState = true;
             Categories = GetAllCategories();
             SetCategoryStates();
         }
 
-        public CategoryConfigViewModel(IWindowFactory window, GameDatabase database, Game game, bool autoUpdate)
+        public CategoryConfigViewModel(IWindowFactory window, GameDatabase database, Game game)
         {
             this.window = window;
             this.database = database;
             this.game = game;
-            this.autoUpdate = autoUpdate;
             EnableThreeState = false;
             Categories = GetAllCategories();
             SetCategoryStates();
@@ -106,67 +118,83 @@ namespace PlayniteUI.ViewModels
             window.Close(false);
         }
 
-        public void AddCategory(string category)
+        public void AddCategory()
         {
-            if (!string.IsNullOrEmpty(category) || Categories.FirstOrDefault(a => a.Item.Name.Equals(category, StringComparison.CurrentCultureIgnoreCase)) != null)
+            if (NewTextCat.IsNullOrEmpty())
             {
                 return;
             }
-            
-            var newCat = database.Categories.Add(category);
-            Categories.Add(new SelectableItem<Category>(newCat) { Selected = true });
+
+            var existing = Categories.FirstOrDefault(a => a.Item.Name.Equals(NewTextCat, StringComparison.CurrentCultureIgnoreCase));
+            if (existing != null)
+            {
+                existing.Selected = true;
+            }
+            else
+            {
+                var newCat = new Category(NewTextCat);
+                Categories.Add(new SelectableItem<Category>(newCat) { Selected = true });
+            }
+
+            NewTextCat = string.Empty;
         }
 
         public void SetCategories()
-        {
-            if (games != null)
+        {            
+            using (database.BufferedUpdate())
             {
-                using (database.BufferedUpdate())
+                var newCategoeries = Categories.Where(a => (a.Selected == true || a.Selected == null) && database.Categories[a.Item.Id] == null);
+                if (newCategoeries.Any())
                 {
+                    database.Categories.Add(newCategoeries.Select(a => a.Item));
+                }
+
+                if (games != null)
+                {
+                    var toBeAdded = Categories.Where(a => a.Selected == true || a.Selected == null);
+                    var selected = toBeAdded.Where(a => a.Selected == true);
                     foreach (var game in games)
                     {
-                        var categories = Categories.Where(a => a.Selected == true).Select(a => a.Item.Id).ToComparable();
-                        if (game.CategoryIds != null)
+                        if (toBeAdded.Any())
                         {
-                            foreach (var cat in Categories.Where(a => a.Selected == null))
+                            var toAssign = new List<Guid>();
+                            if (selected.Any())
                             {
-                                if (game.CategoryIds.Contains(cat.Item.Id) && !categories.Contains(cat.Item.Id))
+                                toAssign.AddRange(selected.Select(a => a.Item.Id));
+                            }
+
+                            var under = toBeAdded.Where(a => a.Selected == null);
+                            if (under.Any() && game.CategoryIds?.Any() == true)
+                            {
+                                var approp = game.CategoryIds.Intersect(under.Select(a => a.Item.Id));
+                                if (approp.Any())
                                 {
-                                    categories.Add(cat.Item.Id);
+                                    toAssign.AddRange(approp);
                                 }
                             }
-                        }
 
-                        if (categories.HasItems())
-                        {
-                            game.CategoryIds = categories;
+                            game.CategoryIds = toAssign;
                         }
                         else
                         {
                             game.CategoryIds = null;
                         }
-
-                        if (autoUpdate)
-                        {
-                            database.Games.Update(game);
-                        }
                     }
-                }
-            }
-            else if (game != null)
-            {
-                var categories = Categories.Where(a => a.Selected == true).Select(a => a.Item.Id);
-                if (categories.HasItems())
-                {
-                    game.CategoryIds = categories.ToComparable();
-                }
-                else
-                {
-                    game.CategoryIds = null;
-                }
 
-                if (autoUpdate)
+                    database.Games.Update(games);
+                }
+                else if (game != null)
                 {
+                    var selected = Categories.Where(a => a.Selected == true);
+                    if (selected.Any())
+                    {
+                        game.CategoryIds = selected.Select(a => a.Item.Id).ToList();
+                    }
+                    else
+                    {
+                        game.CategoryIds = null;
+                    }
+
                     database.Games.Update(game);
                 }
             }
@@ -220,13 +248,6 @@ namespace PlayniteUI.ViewModels
             {
                 if (game.CategoryIds.HasItems())
                 {
-                    // Also offer categories that are held by current game instance, but are not in DB yet
-                    // TODO
-                    //foreach (var cat in game.Categories.Except(Categories.Select(a => a.Name)))
-                    //{
-                    //    Categories.Add(new Category(cat, true));
-                    //}
-
                     foreach (var cat in game.CategoryIds)
                     {
                         var existingCat = Categories.FirstOrDefault(a => a.Item.Id == cat);

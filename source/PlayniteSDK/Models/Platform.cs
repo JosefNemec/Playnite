@@ -64,5 +64,7 @@ namespace Playnite.SDK.Models
         {            
             return Name;
         }
+
+        public static readonly Platform Empty = new Platform { Id = Guid.Empty, Name = string.Empty };
     }
 }

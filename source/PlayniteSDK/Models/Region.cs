@@ -16,5 +16,7 @@ namespace Playnite.SDK.Models
         {
             Name = name;
         }
+
+        public static readonly Region Empty = new Region { Id = Guid.Empty, Name = string.Empty };
     }
 }

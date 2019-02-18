@@ -17,6 +17,37 @@ namespace Playnite.Database
             db = database;
         }
 
-        // TODO: remove categories from games when removing from collection
+        private void RemoveUsage(Guid categoryId)
+        {
+            foreach (var game in db.Games.Where(a => a.CategoryIds?.Contains(categoryId) == true))
+            {
+                game.CategoryIds.Remove(categoryId);
+                db.Games.Update(game);
+            }
+        }
+
+        public override bool Remove(Category itemToRemove)
+        {
+            RemoveUsage(itemToRemove.Id);
+            return base.Remove(itemToRemove);
+        }
+
+        public override bool Remove(Guid id)
+        {
+            RemoveUsage(id);
+            return base.Remove(id);
+        }
+
+        public override bool Remove(IEnumerable<Category> itemsToRemove)
+        {
+            if (itemsToRemove.HasItems())
+            {
+                foreach (var item in itemsToRemove)
+                {
+                    RemoveUsage(item.Id);
+                }
+            }
+            return base.Remove(itemsToRemove);
+        }
     }
 }

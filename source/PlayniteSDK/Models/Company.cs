@@ -16,6 +16,8 @@ namespace Playnite.SDK.Models
         {
             Name = name;
         }
+
+        public static readonly Company Empty = new Company { Id = Guid.Empty, Name = string.Empty };
     }
 
     public class Developer : Company

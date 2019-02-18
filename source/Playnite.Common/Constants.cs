@@ -11,18 +11,20 @@ namespace Playnite
     {
         public static string DateUiFormat
         {
-            get
-            {
-                return CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
-            }
-        }
+            get;
+        } = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
 
         public static string TimeUiFormat
         {
-            get
-            {
-                return CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern;
-            }
-        }
+            get;
+        } = CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern;
+
+        
+        public static char[] ListSeparators
+        {
+            get;
+        } = new char[] { ListSeparator };
+
+        public const char ListSeparator = ',';
     }
 }

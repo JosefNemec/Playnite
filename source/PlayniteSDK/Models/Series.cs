@@ -16,5 +16,7 @@ namespace Playnite.SDK.Models
         {
             Name = name;
         }
+
+        public static readonly Series Empty = new Series { Id = Guid.Empty, Name = string.Empty };
     }
 }

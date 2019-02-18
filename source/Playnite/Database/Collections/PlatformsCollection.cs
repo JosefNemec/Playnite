@@ -17,51 +17,63 @@ namespace Playnite.Database
             db = database;
         }
 
+        private void RemoveUsage(Guid platformId)
+        {
+            foreach (var game in db.Games.Where(a => a.PlatformId == platformId))
+            {
+                game.PlatformId = Guid.Empty;
+                db.Games.Update(game);
+            }
+
+            foreach (var emulator in db.Emulators)
+            {
+                if (!emulator.Profiles.HasItems())
+                {
+                    continue;
+                }
+
+                var updated = false;
+                foreach (var profile in emulator.Profiles.Where(a => a.Platforms?.Contains(platformId) == true))
+                {
+                    profile.Platforms.Remove(platformId);
+                    updated = true;
+                }
+
+                if (updated)
+                {
+                    db.Emulators.Update(emulator);
+                }
+            }
+        }
+
         public override bool Remove(Guid id)
         {
-            var item = Get(id);
-            var result = base.Remove(id);
-            db.RemoveFile(item.Icon);
-            db.RemoveFile(item.Cover);
-            return result;
+            RemoveUsage(id);
+            var dbItem = Get(id);
+            db.RemoveFile(dbItem.Icon);
+            db.RemoveFile(dbItem.Cover);
+            return base.Remove(id);
         }
 
         public override bool Remove(Platform item)
         {
-            using (db.BufferedUpdate())
-            {
-                foreach (var game in db.Games.Where(a => a.PlatformId == item.Id))
-                {
-                    game.PlatformId = Guid.Empty;
-                    db.Games.Update(game);
-                }
-            }
-
             return Remove(item.Id);
         }
 
-        public override bool Remove(IEnumerable<Platform> items)
+        public override bool Remove(IEnumerable<Platform> itemsToRemove)
         {
-            var ids = items.Select(a => a.Id).ToList();
-            using (db.BufferedUpdate())
+            if (itemsToRemove.HasItems())
             {
-                foreach (var game in db.Games.Where(a => ids.Contains(a.PlatformId)))
+                foreach (var item in itemsToRemove)
                 {
-                    game.PlatformId = Guid.Empty;
-                    db.Games.Update(game);
+                    RemoveUsage(item.Id);
+                    var dbItem = Get(item.Id);
+                    db.RemoveFile(dbItem.Icon);
+                    db.RemoveFile(dbItem.Cover);
                 }
             }
 
-            foreach (var item in items)
-            {
-                // Get item from in case that passed platform doesn't have actual metadata.
-                var dbItem = Get(item.Id);
-                db.RemoveFile(dbItem.Icon);
-                db.RemoveFile(dbItem.Cover);
-            }
-
-            var result = base.Remove(items);
-            return result;
+            return base.Remove(itemsToRemove);
         }
 
         public override void Update(IEnumerable<Platform> items)

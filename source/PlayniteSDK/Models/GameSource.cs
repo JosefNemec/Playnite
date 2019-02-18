@@ -16,5 +16,7 @@ namespace Playnite.SDK.Models
         {
             Name = name;
         }
+
+        public static readonly GameSource Empty = new GameSource { Id = Guid.Empty, Name = string.Empty };
     }
 }

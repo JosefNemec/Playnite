@@ -79,8 +79,16 @@ namespace PlayniteUI
             this.extensions = extensions;
             database.Games.ItemCollectionChanged += Database_GamesCollectionChanged;
             database.Games.ItemUpdated += Database_GameUpdated;
-            database.Platforms.ItemCollectionChanged += Database_PlatformsCollectionChanged;
             database.Platforms.ItemUpdated += Database_PlatformUpdated;
+            database.Genres.ItemUpdated += Genres_ItemUpdated;
+            database.Categories.ItemUpdated += Categories_ItemUpdated;
+            database.AgeRatings.ItemUpdated += AgeRatings_ItemUpdated;
+            database.Companies.ItemUpdated += Companies_ItemUpdated;
+            database.Regions.ItemUpdated += Regions_ItemUpdated;
+            database.Series.ItemUpdated += Series_ItemUpdated;
+            database.Sources.ItemUpdated += Sources_ItemUpdated;
+            database.Tags.ItemUpdated += Tags_ItemUpdated;
+
             Items = new RangeObservableCollection<GameViewEntry>();
             Settings = settings;
             if (IsFullscreen)
@@ -105,8 +113,17 @@ namespace PlayniteUI
         {
             Database.Games.ItemCollectionChanged -= Database_GamesCollectionChanged;
             Database.Games.ItemUpdated -= Database_GameUpdated;
-            Database.Platforms.ItemCollectionChanged -= Database_PlatformsCollectionChanged;
             Database.Platforms.ItemUpdated -= Database_PlatformUpdated;
+            Database.Platforms.ItemUpdated -= Database_PlatformUpdated;
+            Database.Genres.ItemUpdated -= Genres_ItemUpdated;
+            Database.Categories.ItemUpdated -= Categories_ItemUpdated;
+            Database.AgeRatings.ItemUpdated -= AgeRatings_ItemUpdated;
+            Database.Companies.ItemUpdated -= Companies_ItemUpdated;
+            Database.Regions.ItemUpdated -= Regions_ItemUpdated;
+            Database.Series.ItemUpdated -= Series_ItemUpdated;
+            Database.Sources.ItemUpdated -= Sources_ItemUpdated;
+            Database.Tags.ItemUpdated -= Tags_ItemUpdated;
+
             Settings.PropertyChanged -= Settings_PropertyChanged;
             if (IsFullscreen)
             {
@@ -125,73 +142,91 @@ namespace PlayniteUI
 
         private bool IsFilterMatching(FilterItemProperites filter, List<Guid> idData, IEnumerable<DatabaseObject> objectData)
         {
-            if (filter == null)
+            if (filter == null || !filter.IsSet)
             {
                 return true;
             }
 
-            if (!filter.IsSet)
+            if (objectData == null && (filter == null || !filter.IsSet))
             {
                 return true;
             }
-            else
+
+            if (objectData == null && filter?.IsSet == true)
             {
-                // TODO support for lists
-                if (!filter.Text.IsNullOrEmpty())
+                return false;
+            }
+
+            if (!filter.Text.IsNullOrEmpty())
+            {
+                if (filter.Text.Contains(Constants.ListSeparator))
                 {
-                    return objectData?.Any(a => a.Name.Contains(filter.Text, StringComparison.InvariantCultureIgnoreCase)) == true;
-                }
-                else if (filter.Ids.HasItems())
-                {
-                    if (!idData.HasItems())
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return filter.Ids.Intersect(idData).Any();
-                    }
+                    return filter.Texts.IntersectsPartiallyWith(objectData?.Select(a => a.Name));
                 }
                 else
                 {
-                    return true;
+                    return objectData.Any(a => a.Name.Contains(filter.Text, StringComparison.InvariantCultureIgnoreCase));
                 }
+            }
+            else if (filter.Ids.HasItems())
+            {
+                if (!idData.HasItems())
+                {
+                    return false;
+                }
+                else
+                {
+                    return filter.Ids.Intersect(idData).Any();
+                }
+            }
+            else
+            {
+                return true;
             }
         }
 
         private bool IsFilterMatchingSingle(FilterItemProperites filter, Guid idData, DatabaseObject objectData)
         {
-            if (filter == null)
+            if (filter == null || !filter.IsSet)
             {
                 return true;
             }
 
-            if (!filter.IsSet)
+            if (objectData == null && (filter == null || !filter.IsSet))
             {
                 return true;
             }
-            else
+
+            if (objectData == null && filter?.IsSet == true)
             {
-                // TODO support for lists
-                if (!filter.Text.IsNullOrEmpty())
+                return false;
+            }
+
+            if (!filter.Text.IsNullOrEmpty())
+            {
+                if (filter.Text.Contains(Constants.ListSeparator))
                 {
-                    return objectData?.Name.Contains(filter.Text, StringComparison.InvariantCultureIgnoreCase) == true;
-                }
-                else if (filter.Ids.HasItems())
-                {
-                    if (idData == null)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return filter.Ids.Contains(idData);
-                    }
+                    return filter.Texts.ContainsStringPartial(objectData.Name);
                 }
                 else
                 {
-                    return true;
+                    return objectData.Name.Contains(filter.Text, StringComparison.InvariantCultureIgnoreCase);
                 }
+            }
+            else if (filter.Ids.HasItems())
+            {
+                if (idData == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return filter.Ids.Contains(idData);
+                }
+            }
+            else
+            {
+                return true;
             }
         }
  
@@ -232,6 +267,11 @@ namespace PlayniteUI
                 }
             }
 
+            if (!installedResult)
+            {
+                return false;
+            }
+
             // ------------------ Hidden
             bool hiddenResult = true;
             if (filterSettings.Hidden && game.Hidden)
@@ -240,11 +280,16 @@ namespace PlayniteUI
             }
             else if (!filterSettings.Hidden && game.Hidden)
             {
-                hiddenResult = false;
+                return false;
             }
             else if (filterSettings.Hidden && !game.Hidden)
             {
-                hiddenResult = false;
+                return false;
+            }
+
+            if (!hiddenResult)
+            {
+                return false;
             }
 
             // ------------------ Favorite
@@ -256,6 +301,11 @@ namespace PlayniteUI
             else if (!filterSettings.Favorite)
             {
                 favoriteResult = true;
+            }
+
+            if (!favoriteResult)
+            {
+                return false;
             }
 
             // ------------------ Providers
@@ -270,6 +320,11 @@ namespace PlayniteUI
                 librariesFilter = true;
             }
 
+            if (!librariesFilter)
+            {
+                return false;
+            }
+
             // ------------------ Name filter
             bool nameResult = false;
             if (string.IsNullOrEmpty(filterSettings.Name))
@@ -280,14 +335,19 @@ namespace PlayniteUI
             {
                 if (string.IsNullOrEmpty(game.Name))
                 {
-                    nameResult = false;
+                    return false;
                 }
                 else
                 {
                     nameResult = (game.Name.IndexOf(filterSettings.Name, StringComparison.OrdinalIgnoreCase) >= 0);
                 }
-            }  
-            
+            }
+
+            if (!nameResult)
+            {
+                return false;
+            }
+
             // ------------------ Release Date
             bool releaseDateResult = false;
             if (string.IsNullOrEmpty(filterSettings.ReleaseDate))
@@ -298,8 +358,7 @@ namespace PlayniteUI
             {
                 if (game.ReleaseDate == null)
                 {
-
-                    releaseDateResult = false;
+                    return false;
                 }
                 else
                 {
@@ -307,52 +366,72 @@ namespace PlayniteUI
                 }
             }
 
+            if (!releaseDateResult)
+            {
+                return false;
+            }
+
             // ------------------ Series filter
-            bool seriesResult = IsFilterMatchingSingle(filterSettings.Series, game.SeriesId, game.Series);
+            if (!IsFilterMatchingSingle(filterSettings.Series, game.SeriesId, game.Series))
+            {
+                return false;
+            }
 
             // ------------------ Region filter
-            var regionResult = IsFilterMatchingSingle(filterSettings.Region, game.RegionId, game.Region);
+            if (!IsFilterMatchingSingle(filterSettings.Region, game.RegionId, game.Region))
+            {
+                return false;
+            }
 
             // ------------------ Source filter
-            bool sourceResult = IsFilterMatchingSingle(filterSettings.Source, game.SourceId, game.Source);
+            if (!IsFilterMatchingSingle(filterSettings.Source, game.SourceId, game.Source))
+            {
+                return false;
+            }
 
             // ------------------ AgeRating filter
-            var ageRatingResult = IsFilterMatchingSingle(filterSettings.AgeRating, game.AgeRatingId, game.AgeRating);
+            if (!IsFilterMatchingSingle(filterSettings.AgeRating, game.AgeRatingId, game.AgeRating))
+            {
+                return false;
+            }
 
             //// ------------------ Genre
-            var genreResult = IsFilterMatching(filterSettings.Genre, game.GenreIds, game.Genres);
+            if (!IsFilterMatching(filterSettings.Genre, game.GenreIds, game.Genres))
+            {
+                return false;
+            }
 
             //// ------------------ Platform
-            var platformResult = IsFilterMatchingSingle(filterSettings.Platform, game.PlatformId, game.Platform);
+            if (!IsFilterMatchingSingle(filterSettings.Platform, game.PlatformId, game.Platform))
+            {
+                return false;
+            }
 
             // ------------------ Publisher
-            var publisherResult = IsFilterMatching(filterSettings.Publisher, game.PublisherIds, game.Publishers);
+            if (!IsFilterMatching(filterSettings.Publisher, game.PublisherIds, game.Publishers))
+            {
+                return false;
+            }
 
             // ------------------ Developer
-            var developerResult = IsFilterMatching(filterSettings.Developer, game.DeveloperIds, game.Developers);
+            if (!IsFilterMatching(filterSettings.Developer, game.DeveloperIds, game.Developers))
+            {
+                return false;
+            }
 
             // ------------------ Category
-            var categoryResult = IsFilterMatching(filterSettings.Category, game.CategoryIds, game.Categories);
+            if (!IsFilterMatching(filterSettings.Category, game.CategoryIds, game.Categories))
+            {
+                return false;
+            }
 
             // ------------------ Tags
-            var tagResult = IsFilterMatching(filterSettings.Tag, game.TagIds, game.Tags);
+            if (!IsFilterMatching(filterSettings.Tag, game.TagIds, game.Tags))
+            {
+                return false;
+            }
 
-            return installedResult &&
-                hiddenResult &&
-                favoriteResult &&
-                nameResult &&
-                librariesFilter &&
-                genreResult &&
-                platformResult &&
-                releaseDateResult &&
-                publisherResult &&
-                developerResult &&
-                categoryResult &&
-                tagResult &&
-                seriesResult &&
-                regionResult &&
-                sourceResult &&
-                ageRatingResult;
+            return true;
         }
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -437,8 +516,7 @@ namespace PlayniteUI
             {
                 sortDirection = sortDirection == ListSortDirection.Ascending ? ListSortDirection.Descending : ListSortDirection.Ascending;
             }
-
-            // TODO probably doesn't work ATM
+       
             CollectionView.SortDescriptions.Add(new SortDescription(viewSettings.SortingOrder.ToString(), sortDirection));
             if (viewSettings.SortingOrder != SortOrder.Name)
             {
@@ -591,19 +669,100 @@ namespace PlayniteUI
             return null;
         }
 
-        private void Database_PlatformUpdated(object sender, ItemUpdatedEventArgs<Platform> args)
+        private void Database_PlatformUpdated(object sender, ItemUpdatedEventArgs<Platform> e)
         {
-            //var platformIds = new HashSet<Guid>(args.UpdatedItems.Select(a => a.NewData.Id));
-            //foreach (var item in Items.Where(a => platformIds.Contains(a.PlatformId)))
-            //{
-            //    item.OnPropertyChanged(nameof(GameViewEntry.PlatformId));
-            //    item.OnPropertyChanged(nameof(GameViewEntry.DefaultIcon));
-            //    item.OnPropertyChanged(nameof(GameViewEntry.DefaultCoverImage));
-            //}
+            DoGroupDbObjectsUpdate(
+               GroupOrder.Platform, e,
+               (a, b) => a.PlatformId != Guid.Empty && b.Contains(a.PlatformId));
         }
 
-        private void Database_PlatformsCollectionChanged(object sender, ItemCollectionChangedEventArgs<Platform> args)
+        private void Genres_ItemUpdated(object sender, ItemUpdatedEventArgs<Genre> e)
         {
+            DoGroupDbObjectsUpdate(
+                GroupOrder.Genre, e,
+                (a, b) => a.GenreIds?.Any() == true && b.Intersect(a.GenreIds).Any(),
+                nameof(Game.Genres));
+        }
+
+        private void Tags_ItemUpdated(object sender, ItemUpdatedEventArgs<Tag> e)
+        {
+            DoGroupDbObjectsUpdate(
+                GroupOrder.Tag, e,
+                (a, b) => a.TagIds?.Any() == true && b.Intersect(a.TagIds).Any(),
+                nameof(Game.Tags));
+        }
+
+        private void Sources_ItemUpdated(object sender, ItemUpdatedEventArgs<GameSource> e)
+        {
+            DoGroupDbObjectsUpdate(
+               GroupOrder.Source, e,
+               (a, b) => a.SourceId != Guid.Empty && b.Contains(a.SourceId));
+        }
+
+        private void Series_ItemUpdated(object sender, ItemUpdatedEventArgs<Series> e)
+        {
+            DoGroupDbObjectsUpdate(
+               GroupOrder.Series, e,
+               (a, b) => a.SeriesId != Guid.Empty && b.Contains(a.SeriesId));
+        }
+
+        private void Regions_ItemUpdated(object sender, ItemUpdatedEventArgs<Region> e)
+        {
+            DoGroupDbObjectsUpdate(
+               GroupOrder.Region, e,
+               (a, b) => a.RegionId != Guid.Empty && b.Contains(a.RegionId));
+        }
+
+        private void Companies_ItemUpdated(object sender, ItemUpdatedEventArgs<Company> e)
+        {
+            DoGroupDbObjectsUpdate(
+                GroupOrder.Developer, e,
+                (a, b) => a.DeveloperIds?.Any() == true && b.Intersect(a.DeveloperIds).Any(),
+                nameof(Game.Developers));          
+
+            DoGroupDbObjectsUpdate(
+                GroupOrder.Publisher, e,
+                (a, b) => a.PublisherIds?.Any() == true && b.Intersect(a.PublisherIds).Any(),
+                nameof(Game.Publishers));
+        }
+
+        private void AgeRatings_ItemUpdated(object sender, ItemUpdatedEventArgs<AgeRating> e)
+        {
+            DoGroupDbObjectsUpdate(
+               GroupOrder.AgeRating, e,
+               (a, b) => a.AgeRatingId != Guid.Empty && b.Contains(a.AgeRatingId));
+        }
+
+        private void Categories_ItemUpdated(object sender, ItemUpdatedEventArgs<Category> e)
+        {
+            DoGroupDbObjectsUpdate(
+                GroupOrder.Category, e,
+                (a, b) => a.CategoryIds?.Any() == true && b.Intersect(a.CategoryIds).Any(),
+                nameof(Game.Categories));
+        }
+
+        private void DoGroupDbObjectsUpdate<TItem>(
+            GroupOrder order,
+            ItemUpdatedEventArgs<TItem> updatedItems,
+            Func<GameViewEntry, List<Guid>, bool> condition,
+            string extraPropNotify = null) where TItem : DatabaseObject
+        {
+            var updatedIds = new List<Guid>(updatedItems.UpdatedItems.Select(a => a.NewData.Id));
+            var doUpdate = false;
+            foreach (var item in Items.Where(a => condition(a, updatedIds)))
+            {
+                doUpdate = true;
+                item.OnPropertyChanged(groupFields[order]);
+                if (!extraPropNotify.IsNullOrEmpty())
+                {
+                    item.OnPropertyChanged(extraPropNotify);
+                }
+            }
+
+            if (doUpdate && viewSettings.GroupingOrder == order)
+            {
+                FilterSettings_FilterChanged(this, null);
+            }
         }
 
         private void Database_GameUpdated(object sender, ItemUpdatedEventArgs<Game> args)

@@ -2541,13 +2541,15 @@ namespace PlayniteUI.ViewModels
                 targetCollection.Add(addedItem);
             }
         }
-
-        // TODO localize
+        
         public TItem CreateNewItem<TItem>(string itemName = null) where TItem : DatabaseObject
         {
             if (itemName.IsNullOrEmpty())
             {
-                var res = dialogs.SelectString("Enter new name:", "New item", string.Empty);
+                var res = dialogs.SelectString(
+                    resources.FindString("LOCEnterName"),
+                    resources.FindString("LOCAddNewItem"),
+                    "");
                 if (res.Result)
                 {
                     return typeof(TItem).CrateInstance<TItem>(res.SelectedString);

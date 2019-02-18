@@ -818,8 +818,7 @@ namespace Playnite.SDK.Models
                 return null;
             }
         }
-
-        // TODO add caching
+        
         [JsonIgnore]
         public Platform Platform
         {

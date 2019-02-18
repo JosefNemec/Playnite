@@ -16,5 +16,39 @@ namespace Playnite.Database
         {
             db = database;
         }
+
+        private void RemoveUsage(Guid sourceId)
+        {
+            foreach (var game in db.Games.Where(a => a.SourceId == sourceId))
+            {
+                game.SourceId = Guid.Empty;
+                db.Games.Update(game);
+            }
+        }
+
+        public override bool Remove(GameSource itemToRemove)
+        {
+            RemoveUsage(itemToRemove.Id);
+            return base.Remove(itemToRemove);
+        }
+
+        public override bool Remove(Guid id)
+        {
+            RemoveUsage(id);
+            return base.Remove(id);
+        }
+
+        public override bool Remove(IEnumerable<GameSource> itemsToRemove)
+        {
+            if (itemsToRemove.HasItems())
+            {
+                foreach (var item in itemsToRemove)
+                {
+                    RemoveUsage(item.Id);
+                }
+            }
+
+            return base.Remove(itemsToRemove);
+        }
     }
 }

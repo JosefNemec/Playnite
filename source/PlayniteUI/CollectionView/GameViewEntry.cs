@@ -12,12 +12,13 @@ namespace PlayniteUI
 {
     public class GameViewEntry : INotifyPropertyChanged
     {
-        private ILibraryPlugin plugin;
+        private readonly ILibraryPlugin plugin;
+        private readonly Type colGroupType;
+        private readonly Guid colGroupId;
 
         public Guid Id => Game.Id;
         public Guid PluginId => Game.PluginId;
         public string GameId => Game.GameId;
-        public Platform Platform => Game.Platform;
         public List<Tag> Tags => Game.Tags;
         public List<Genre> Genres => Game.Genres;
         public List<Company> Developers => Game.Developers;
@@ -45,12 +46,8 @@ namespace PlayniteUI
         public long Playtime => Game.Playtime;
         public DateTime? Added => Game.Added;
         public DateTime? Modified => Game.Modified;
-        public long PlayCount => Game.PlayCount;
-        public Series Series => Game.Series;
-        public string Version => Game.Version;
-        public AgeRating AgeRating => Game.AgeRating;
-        public Region Region => Game.Region;
-        public GameSource Source => Game.Source;
+        public long PlayCount => Game.PlayCount;        
+        public string Version => Game.Version;    
         public CompletionStatus CompletionStatus => Game.CompletionStatus;
         public int? UserScore => Game.UserScore;
         public int? CriticScore => Game.CriticScore;
@@ -73,30 +70,55 @@ namespace PlayniteUI
         public object DefaultIconObject => GetImageObject(DefaultIcon);
         public object DefaultCoverImageObject => GetImageObject(DefaultCoverImage);
 
+        public Series Series
+        {
+            get => Game.SeriesId == Guid.Empty ? Series.Empty : Game.Series;
+        }
+
+        public Platform Platform
+        {
+            get => Game.PlatformId == Guid.Empty ? Platform.Empty : Game.Platform;
+        }
+
+        public Region Region
+        {
+            get => Game.RegionId == Guid.Empty ? Region.Empty : Game.Region;
+        }
+
+        public GameSource Source
+        {
+            get => Game.SourceId == Guid.Empty ? GameSource.Empty : Game.Source;
+        }
+
+        public AgeRating AgeRating
+        {
+            get => Game.AgeRatingId == Guid.Empty ? AgeRating.Empty : Game.AgeRating;
+        }
+
         public Category Category
         {
             get; private set;
-        } = new Category() { Id = Guid.Empty };
+        } = Category.Empty;
 
         public Genre Genre
         {
             get; private set;
-        } = new Genre() { Id = Guid.Empty };
+        } = Genre.Empty;
 
         public Company Developer
         {
             get; private set;
-        } = new Company() { Id = Guid.Empty };
+        } = Company.Empty;
 
         public Company Publisher
         {
             get; private set;
-        } = new Company() { Id = Guid.Empty };
+        } = Company.Empty;
 
         public Tag Tag
         {
             get; private set;
-        } = new Tag() { Id = Guid.Empty };
+        } = Tag.Empty;
 
         public string Name
         {
@@ -163,6 +185,9 @@ namespace PlayniteUI
 
         public GameViewEntry(Game game, ILibraryPlugin plugin, Type colGroupType, Guid colGroupId) : this(game, plugin)
         {
+            this.colGroupType = colGroupType;
+            this.colGroupId = colGroupId;
+
             if (colGroupType == typeof(Genre))
             {
                 Genre = game.Genres?.FirstOrDefault(a => a.Id == colGroupId);
@@ -192,13 +217,6 @@ namespace PlayniteUI
 
         public void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-            //if (propertyName == nameof(Game.PlatformId))
-            //{
-            //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Platform)));
-            //}
-
             if (propertyName == nameof(Game.SortingName) || propertyName == nameof(Game.Name))
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Game.Name)));
@@ -219,6 +237,8 @@ namespace PlayniteUI
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(BackgroundImageObject)));
             }
+
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private object GetImageObject(string data)

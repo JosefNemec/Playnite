@@ -295,7 +295,7 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.Genre, ref storeData, ref igdbData, (a) => a.GameInfo?.Genres);
                                 if (gameData?.GameInfo?.Genres.HasItems() == true)
                                 {
-                                    game.GenreIds = database.Genres.Add(gameData.GameInfo.Genres).Select(a => a.Id).ToComparable();
+                                    game.GenreIds = database.Genres.Add(gameData.GameInfo.Genres).Select(a => a.Id).ToList();
                                 }
                             }
                         }
@@ -319,7 +319,7 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.Developer, ref storeData, ref igdbData, (a) => a.GameInfo?.Developers);
                                 if (gameData?.GameInfo?.Developers.HasItems() == true)
                                 {
-                                    game.DeveloperIds = database.Companies.Add(gameData.GameInfo.Developers).Select(a => a.Id).ToComparable();
+                                    game.DeveloperIds = database.Companies.Add(gameData.GameInfo.Developers).Select(a => a.Id).ToList();
                                 }
                             }
                         }
@@ -333,7 +333,7 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.Publisher, ref storeData, ref igdbData, (a) => a.GameInfo?.Publishers);
                                 if (gameData?.GameInfo?.Publishers.HasItems() == true)
                                 {
-                                    game.PublisherIds = database.Companies.Add(gameData.GameInfo.Publishers).Select(a => a.Id).ToComparable();
+                                    game.PublisherIds = database.Companies.Add(gameData.GameInfo.Publishers).Select(a => a.Id).ToList();
                                 }
                             }
                         }
@@ -346,7 +346,7 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.Tag, ref storeData, ref igdbData, (a) => a.GameInfo?.Tags);
                                 if (gameData?.GameInfo?.Tags.HasItems() == true)
                                 {
-                                    game.TagIds = database.Tags.Add(gameData.GameInfo.Tags).Select(a => a.Id).ToComparable();
+                                    game.TagIds = database.Tags.Add(gameData.GameInfo.Tags).Select(a => a.Id).ToList();
                                 }
                             }
                         }

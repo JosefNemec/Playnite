@@ -16,5 +16,7 @@ namespace Playnite.SDK.Models
         {
             Name = name;
         }
+
+        public static readonly AgeRating Empty = new AgeRating { Id = Guid.Empty, Name = string.Empty };
     }
 }

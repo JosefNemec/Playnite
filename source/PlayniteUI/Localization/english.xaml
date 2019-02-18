@@ -593,6 +593,11 @@ You can try these to fix the issue:
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Troubleshooting account sync issues</sys:String>
 
+    <sys:String x:Key="LOCRenameItem">Rename item</sys:String>
+    <sys:String x:Key="LOCAddNewItem">Add new item</sys:String>
+    <sys:String x:Key="LOCEnterName">Enter name</sys:String>
+    <sys:String x:Key="LOCEnterNewName">Enter new name</sys:String>
+
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io client will now open. Please sign in and then close this message.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">Waiting for user to sign in, please close this when you're done...</sys:String>    

@@ -232,7 +232,7 @@ namespace Playnite.Metadata.Providers
             var res = list.Where(a => string.Equals(matchName, a.Name, StringComparison.InvariantCultureIgnoreCase));
             if (!res.Any())
             {
-                res = list.Where(a => a.AlternativeNames?.ContainsInsensitive(matchName) == true);
+                res = list.Where(a => a.AlternativeNames?.Contains(matchName) == true);
             }
 
             if (res.Any())

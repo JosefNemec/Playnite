@@ -22,7 +22,7 @@ namespace Playnite.Database
         private int bufferDepth = 0;
         private List<TItem> AddedItemsEventBuffer = new List<TItem>();
         private List<TItem> RemovedItemsEventBuffer = new List<TItem>();
-        private List<ItemUpdateEvent<TItem>> ItemUpdatesEventBuffer = new List<ItemUpdateEvent<TItem>>();
+        private Dictionary<Guid, ItemUpdateEvent<TItem>> ItemUpdatesEventBuffer = new Dictionary<Guid, ItemUpdateEvent<TItem>>();
 
         public ConcurrentDictionary<Guid, TItem> Items { get; }
 
@@ -159,6 +159,11 @@ namespace Playnite.Database
 
         public virtual void Add(TItem itemToAdd)
         {
+            if (Items.ContainsKey(itemToAdd.Id))
+            {
+                throw new Exception($"Item {itemToAdd.Id} already exists.");
+            }
+
             lock (collectionLock)
             {
                 SaveItemData(itemToAdd);
@@ -179,6 +184,11 @@ namespace Playnite.Database
             {
                 foreach (var item in itemsToAdd)
                 {
+                    if (Items.ContainsKey(item.Id))
+                    {
+                        throw new Exception($"Item {item.Id} already exists.");
+                    }
+
                     SaveItemData(item);
                     Items.TryAdd(item.Id, item);
                 }
@@ -190,9 +200,14 @@ namespace Playnite.Database
         public virtual bool Remove(Guid id)
         {
             var item = Get(id);
+            if (item == null)
+            {
+                throw new Exception($"Item {item.Id} doesn't exists.");
+            }
+
             lock (collectionLock)
             {
-                FileSystem.DeleteFile(GetItemFilePath(item.Id));
+                FileSystem.DeleteFile(GetItemFilePath(id));
                 Items.TryRemove(id, out var removed);
             }
 
@@ -216,6 +231,12 @@ namespace Playnite.Database
             {
                 foreach (var item in itemsToRemove)
                 {
+                    var existing = Get(item.Id);
+                    if (existing == null)
+                    {
+                        throw new Exception($"Item {item.Id} doesn't exists.");
+                    }
+
                     FileSystem.DeleteFile(GetItemFilePath(item.Id));
                     Items.TryRemove(item.Id, out var removed);
                 }
@@ -231,6 +252,11 @@ namespace Playnite.Database
             lock (collectionLock)
             {
                 oldData = GetItemData(itemToUpdate.Id);
+                if (oldData == null)
+                {
+                    throw new Exception($"Item {oldData.Id} doesn't exists.");
+                }
+
                 SaveItemData(itemToUpdate);
                 var loadedItem = Get(itemToUpdate.Id);
                 if (!ReferenceEquals(loadedItem, itemToUpdate))
@@ -250,6 +276,11 @@ namespace Playnite.Database
                 foreach (var item in itemsToUpdate)
                 {
                     var oldData = GetItemData(item.Id);
+                    if (oldData == null)
+                    {
+                        throw new Exception($"Item {oldData.Id} doesn't exists.");
+                    }
+
                     SaveItemData(item);
                     var loadedItem = Get(item.Id);
                     if (!ReferenceEquals(loadedItem, item))
@@ -300,7 +331,7 @@ namespace Playnite.Database
             }
         }
 
-        private void OnItemUpdated(List<ItemUpdateEvent<TItem>> updates)
+        private void OnItemUpdated(IEnumerable<ItemUpdateEvent<TItem>> updates)
         {
             if (!isEventBufferEnabled)
             {
@@ -308,7 +339,17 @@ namespace Playnite.Database
             }
             else
             {
-                ItemUpdatesEventBuffer.AddRange(updates);
+                foreach (var update in updates)
+                {
+                    if (ItemUpdatesEventBuffer.TryGetValue(update.NewData.Id, out var existing))
+                    {
+                        existing.NewData = update.NewData;
+                    }
+                    else
+                    {
+                        ItemUpdatesEventBuffer.Add(update.NewData.Id, update);
+                    }
+                }
             }
         }
 
@@ -321,24 +362,26 @@ namespace Playnite.Database
         public void EndBufferUpdate()
         {
             // In case nested buffers are used then we end only when top level one clear.
-            if (bufferDepth > 1)
+            if (bufferDepth >= 1)
             {
                 bufferDepth--;
-                return;
             }
 
-            isEventBufferEnabled = false;
-            if (AddedItemsEventBuffer.Count > 0 || RemovedItemsEventBuffer.Count > 0)
+            if (bufferDepth == 0)
             {
-                OnCollectionChanged(AddedItemsEventBuffer.ToList(), RemovedItemsEventBuffer.ToList());
-                AddedItemsEventBuffer.Clear();
-                RemovedItemsEventBuffer.Clear();
-            }
+                isEventBufferEnabled = false;
+                if (AddedItemsEventBuffer.Count > 0 || RemovedItemsEventBuffer.Count > 0)
+                {
+                    OnCollectionChanged(AddedItemsEventBuffer.ToList(), RemovedItemsEventBuffer.ToList());
+                    AddedItemsEventBuffer.Clear();
+                    RemovedItemsEventBuffer.Clear();
+                }
 
-            if (ItemUpdatesEventBuffer.Count > 0)
-            {
-                OnItemUpdated(ItemUpdatesEventBuffer.ToList());
-                ItemUpdatesEventBuffer.Clear();
+                if (ItemUpdatesEventBuffer.Count > 0)
+                {
+                    OnItemUpdated(ItemUpdatesEventBuffer.Values);
+                    ItemUpdatesEventBuffer.Clear();
+                }
             }
         }
 

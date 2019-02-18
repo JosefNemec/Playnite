@@ -31,9 +31,31 @@ namespace Playnite
     public class FilterItemProperites
     {
         [JsonIgnore]
+        public List<string> Texts { get; private set; }
+
+        [JsonIgnore]
         public bool IsSet => !Text.IsNullOrEmpty() || Ids?.Any() == true;
+
         public List<Guid> Ids { get; set; }
-        public string Text { get; set; }
+
+        private string text;
+        public string Text
+        {
+            get => text;
+            set
+            {
+                text = value;
+                if (text?.Contains(Constants.ListSeparator) == true)
+                {
+                    Texts = text.Split(Constants.ListSeparators, StringSplitOptions.RemoveEmptyEntries).
+                        Select(a => a.Trim()).ToList();
+                }
+                else
+                {
+                    Texts = null;
+                }
+            }
+        }
     }
 
     public class FilterSettings : ObservableObject

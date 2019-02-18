@@ -1203,8 +1203,6 @@ namespace Playnite.Database
         public void BeginBufferUpdate()
         {
             Platforms.BeginBufferUpdate();
-            Emulators.BeginBufferUpdate();
-            Games.BeginBufferUpdate();
             Genres.BeginBufferUpdate();
             Companies.BeginBufferUpdate();
             Tags.BeginBufferUpdate();
@@ -1213,13 +1211,13 @@ namespace Playnite.Database
             AgeRatings.BeginBufferUpdate();
             Regions.BeginBufferUpdate();
             Sources.BeginBufferUpdate();
+            Emulators.BeginBufferUpdate();
+            Games.BeginBufferUpdate();
         }
 
         public void EndBufferUpdate()
         {
             Platforms.EndBufferUpdate();
-            Emulators.EndBufferUpdate();
-            Games.EndBufferUpdate();
             Genres.EndBufferUpdate();
             Companies.EndBufferUpdate();
             Tags.EndBufferUpdate();
@@ -1228,6 +1226,8 @@ namespace Playnite.Database
             AgeRatings.EndBufferUpdate();
             Regions.EndBufferUpdate();
             Sources.EndBufferUpdate();
+            Emulators.EndBufferUpdate();
+            Games.EndBufferUpdate();
         }
 
         public IDisposable BufferedUpdate()
@@ -1333,27 +1333,27 @@ namespace Playnite.Database
 
             if (game.Developers?.Any() == true)
             {
-                toAdd.DeveloperIds = Companies.Add(game.Developers).Select(a => a.Id).ToComparable();
+                toAdd.DeveloperIds = Companies.Add(game.Developers).Select(a => a.Id).ToList();
             }
 
             if (game.Publishers?.Any() == true)
             {
-                toAdd.PublisherIds = Companies.Add(game.Publishers).Select(a => a.Id).ToComparable();
+                toAdd.PublisherIds = Companies.Add(game.Publishers).Select(a => a.Id).ToList();
             }
 
             if (game.Genres?.Any() == true)
             {
-                toAdd.GenreIds = Genres.Add(game.Genres).Select(a => a.Id).ToComparable();
+                toAdd.GenreIds = Genres.Add(game.Genres).Select(a => a.Id).ToList();
             }
 
             if (game.Categories?.Any() == true)
             {
-                toAdd.CategoryIds = Categories.Add(game.Categories).Select(a => a.Id).ToComparable();
+                toAdd.CategoryIds = Categories.Add(game.Categories).Select(a => a.Id).ToList();
             }
 
             if (game.Tags?.Any() == true)
             {
-                toAdd.TagIds = Tags.Add(game.Tags).Select(a => a.Id).ToComparable();
+                toAdd.TagIds = Tags.Add(game.Tags).Select(a => a.Id).ToList();
             }
 
             if (!string.IsNullOrEmpty(game.AgeRating))

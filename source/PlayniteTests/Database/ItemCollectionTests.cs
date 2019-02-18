@@ -84,17 +84,18 @@ namespace PlayniteTests.Database
                 var col = new ItemCollection<DatabaseObject>(temp.TempPath);
                 col.ItemUpdated += (e, args) => itemUpdateArgs = args;
                 col.ItemCollectionChanged += (e, args) => itemColArgs = args;
-                var item = new DatabaseObject();
+                var item = new DatabaseObject() { Name = "Original" };
                 
                 col.Add(item);
                 Assert.AreEqual(1, itemColArgs.AddedItems.Count);
                 Assert.AreEqual(item, itemColArgs.AddedItems[0]);
                 Assert.AreEqual(0, itemColArgs.RemovedItems.Count);
 
+                item.Name = "New";
                 col.Update(item);
                 Assert.AreEqual(1, itemUpdateArgs.UpdatedItems.Count);
-                Assert.AreEqual(item, itemUpdateArgs.UpdatedItems[0].NewData);
-                Assert.AreNotEqual(item, itemUpdateArgs.UpdatedItems[0].OldData);
+                Assert.AreEqual("Original", itemUpdateArgs.UpdatedItems[0].OldData.Name);
+                Assert.AreEqual("New", itemUpdateArgs.UpdatedItems[0].NewData.Name);
 
                 col.Remove(item);
                 Assert.AreEqual(0, itemColArgs.AddedItems.Count);
@@ -118,7 +119,6 @@ namespace PlayniteTests.Database
                 col.BeginBufferUpdate();
                 col.Add(item);
                 col.Update(item);
-                col.Update(item);
                 col.Remove(item);
                 Assert.IsNull(itemColArgs);
                 Assert.IsNull(itemUpdateArgs);
@@ -126,7 +126,7 @@ namespace PlayniteTests.Database
                 col.EndBufferUpdate();
                 Assert.AreEqual(1, itemColArgs.AddedItems.Count);
                 Assert.AreEqual(1, itemColArgs.RemovedItems.Count);
-                Assert.AreEqual(2, itemUpdateArgs.UpdatedItems.Count);
+                Assert.AreEqual(1, itemUpdateArgs.UpdatedItems.Count);
             }
         }
 
@@ -154,8 +154,39 @@ namespace PlayniteTests.Database
                 Assert.AreEqual(0, colChanges);
                 Assert.AreEqual(0, colChanges);
                 col.EndBufferUpdate();
+                Assert.AreEqual(1, colUpdates);
                 Assert.AreEqual(1, colChanges);
-                Assert.AreEqual(1, colChanges);
+
+                col.BeginBufferUpdate();
+                col.Update(item);
+                col.EndBufferUpdate();
+                Assert.AreEqual(2, colUpdates);
+            }
+        }
+
+        [Test]
+        public void BufferConsolidationTest()
+        {
+            using (var temp = TempDirectory.Create())
+            {
+                ItemCollectionChangedEventArgs<DatabaseObject> colChanges = null;
+                ItemUpdatedEventArgs<DatabaseObject> colUpdates = null;
+                var col = new ItemCollection<DatabaseObject>(temp.TempPath);
+                col.ItemUpdated += (e, args) => colUpdates = args;
+                col.ItemCollectionChanged += (e, args) => colChanges = args;
+
+                var item = new DatabaseObject() { Name = "Original" };
+                col.Add(item);
+
+                col.BeginBufferUpdate();
+                item.Name = "Change1";
+                col.Update(item);
+                item.Name = "Change2";
+                col.Update(item);
+                col.EndBufferUpdate();
+                Assert.AreEqual(1, colUpdates.UpdatedItems.Count);
+                Assert.AreEqual("Original", colUpdates.UpdatedItems[0].OldData.Name);
+                Assert.AreEqual("Change2", colUpdates.UpdatedItems[0].NewData.Name);
             }
         }
     }

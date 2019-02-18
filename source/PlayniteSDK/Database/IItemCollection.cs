@@ -38,9 +38,9 @@ namespace Playnite.SDK
             UpdatedItems = new List<ItemUpdateEvent<TItem>>() { new ItemUpdateEvent<TItem>(oldData, newData) };
         }
 
-        public ItemUpdatedEventArgs(List<ItemUpdateEvent<TItem>> updatedItems)
+        public ItemUpdatedEventArgs(IEnumerable<ItemUpdateEvent<TItem>> updatedItems)
         {
-            UpdatedItems = updatedItems;
+            UpdatedItems = updatedItems.ToList();
         }
     }
 
