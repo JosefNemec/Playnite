@@ -587,6 +587,11 @@ Veuillez essayer les solutions suivantes :
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Régler les problèmes de synchronisation</sys:String>
 
+    <sys:String x:Key="LOCRenameItem">Rename item</sys:String>
+    <sys:String x:Key="LOCAddNewItem">Add new item</sys:String>
+    <sys:String x:Key="LOCEnterName">Enter name</sys:String>
+    <sys:String x:Key="LOCEnterNewName">Enter new name</sys:String>
+
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">Le client itch.io va maintenant démarrer. Veuillez vous identifier avant de fermer la fenêtre de connexion.</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">(Fermer cette fenêtre une fois la connexion établie)</sys:String>    
