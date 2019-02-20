@@ -39,7 +39,22 @@
                                 <TextBox Grid.Column="0" BorderThickness="0"
                                          Text="{Binding FullTextText, Delay=200, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
                                          VerticalAlignment="Center"
-                                         DockPanel.Dock="Left" Margin="1,0,0,0"/>
+                                         Margin="1,0,0,0"/>
+                                <Button Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right"
+                                        BorderThickness="0" Padding="3,0,3,0" Margin="0"
+                                        FontFamily="Marlett" Content="r"
+                                        Click="ClearButton_Click">
+                                    <Button.Style>                                        
+                                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
                             </Grid>
                             <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup"
                                    IsOpen="{Binding IsChecked, ElementName=Toggle, Mode=TwoWay, Delay=100}" StaysOpen="False"

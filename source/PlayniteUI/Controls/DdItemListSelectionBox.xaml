@@ -24,16 +24,38 @@
                 <ToggleButton.Template>
                     <ControlTemplate>                    
                         <Grid>
-                            <DockPanel>
-                                <Viewbox DockPanel.Dock="Right" Width="20" Margin="0,0,2,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Viewbox Grid.Column="1" Width="20" Margin="0,0,2,0">
                                     <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
                                     VerticalAlignment="Center"/>
                                 </Viewbox>
                                 <TextBlock Text="{Binding ItemsList.AsString, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                            TextTrimming="CharacterEllipsis" HorizontalAlignment="Stretch" 
                                            VerticalAlignment="Center"
-                                           DockPanel.Dock="Left" Margin="5,0,0,0"/>
-                            </DockPanel>
+                                           Grid.Column="0" Margin="5,0,0,0"/>
+                                <Button Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right"
+                                        BorderThickness="0" Padding="3,0,3,0" Margin="0"
+                                        FontFamily="Marlett" Content="r"
+                                        Click="ClearButton_Click">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=ToggleButton}}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </Grid>
                             <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup"
                                    IsOpen="{Binding IsChecked, ElementName=Toggle, Mode=TwoWay, Delay=100}" StaysOpen="False"
                                    MaxHeight="300" Width="{Binding ActualWidth, ElementName=Toggle}">

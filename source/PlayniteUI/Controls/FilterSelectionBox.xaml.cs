@@ -159,5 +159,10 @@ namespace PlayniteUI.Controls
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FullTextText)));
         }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            FilterProperties = null;
+        }
     }
 }

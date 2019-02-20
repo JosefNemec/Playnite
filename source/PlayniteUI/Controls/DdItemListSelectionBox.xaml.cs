@@ -93,5 +93,10 @@ namespace PlayniteUI.Controls
         {
             InitializeComponent();
         }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            BoundIds = null;
+        }
     }
 }
