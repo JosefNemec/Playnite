@@ -434,37 +434,5 @@ namespace Playnite.Common.System
                 Arguments = link.Arguments
             };
         }
-
-        private static List<string> exeBlacklist = new List<string>
-        {
-            @"unins.*\.exe$",
-            @"\.vshost\.exe$",
-            @"nacl_helper",
-            @"nwjc\.exe$",
-            @"flixel\.exe$",
-            @"dxwebsetup\.exe$",
-            @"vcredist.*\.exe$",
-            @"unitycrashhandler.*\.exe$"
-        };
-
-        //// TODO: Merge this with GetExecutablesFromFolder
-        //public static List<Executable> GetExecutables(string directory)
-        //{
-        //    var fileEnum = new SafeFileEnumerator(directory, "*.*", SearchOption.AllDirectories);
-        //    return fileEnum.Where(a => Regex.IsMatch(a.Name, @"\.(exe|cmd|bat|html)$", RegexOptions.IgnoreCase)).
-        //        Select(a => new Executable(a.FullName)).ToList();
-        //}
-
-        //public static bool TryGetStarterExecutable(string directory, out string execPath)
-        //{
-        //    var candidates = GetExecutables(directory)?.Where(a => !exeBlacklist.Any(b => Regex.IsMatch(a.Path, b, RegexOptions.IgnoreCase)));
-        //    if (candidates?.Any() == true)
-        //    {
-
-        //    }
-
-        //    execPath = string.Empty;
-        //    return false;
-        //}
     }
 }

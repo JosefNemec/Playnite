@@ -335,7 +335,6 @@ namespace Playnite.SDK.Models
             }
         }
 
-        // TODO change to standard list
         private List<Guid> developerIds;
         /// <summary>
         /// Gets or sets list of developers.
@@ -856,9 +855,8 @@ namespace Playnite.SDK.Models
         }
 
         #endregion Expanded
-
-        // TODO internal
-        public static IGameDatabase DatabaseReference
+                
+        internal static IGameDatabase DatabaseReference
         {
             get; set;
         }

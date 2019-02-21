@@ -369,8 +369,7 @@ namespace Playnite.Plugins
 
             PluginFunctions = funcs;
         }
-
-        // TODO: support multiple plugins from one assembly (not sure if it's worth it)
+        
         public TPlugin LoadPlugin<TPlugin>(ExtensionDescription descriptor, IPlayniteAPI injectingApi) where TPlugin : IPlugin
         {
             var plugins = new List<TPlugin>();

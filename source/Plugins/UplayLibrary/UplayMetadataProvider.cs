@@ -14,6 +14,10 @@ namespace UplayLibrary
 {
     public class UplayMetadataProvider : ILibraryMetadataProvider
     {
+        public void Dispose()
+        {
+        }
+
         public GameMetadata GetMetadata(Game game)
         {
             var program = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.RegistryKeyName == "Uplay Install " + game.GameId);
@@ -24,9 +28,11 @@ namespace UplayLibrary
 
             var gameInfo = new GameInfo
             {
-                Name = StringExtensions.NormalizeGameName(program.DisplayName)
+                Name = StringExtensions.NormalizeGameName(program.DisplayName),
+                Links = new List<Link>()
             };
 
+            gameInfo.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + gameInfo.Name));
             var metadata = new GameMetadata()
             {
                 GameInfo = gameInfo
@@ -34,10 +40,7 @@ namespace UplayLibrary
 
             if (!string.IsNullOrEmpty(program.DisplayIcon) && File.Exists(program.DisplayIcon))
             {
-                var iconPath = program.DisplayIcon;
-                var iconFile = Path.GetFileName(iconPath);
-                var data = File.ReadAllBytes(iconPath);
-                metadata.Icon = new MetadataFile(iconFile, data);
+                metadata.Icon = new MetadataFile(program.DisplayIcon);
             }
 
             return metadata;

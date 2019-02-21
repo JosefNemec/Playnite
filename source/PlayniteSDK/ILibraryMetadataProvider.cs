@@ -11,7 +11,7 @@ namespace Playnite.SDK
     /// <summary>
     /// Describes metadata provider for library games.
     /// </summary>
-    public interface ILibraryMetadataProvider
+    public interface ILibraryMetadataProvider : IDisposable
     {
         /// <summary>
         /// Gets metadata for specified games.

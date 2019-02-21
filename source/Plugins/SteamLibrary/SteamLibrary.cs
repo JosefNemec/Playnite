@@ -512,16 +512,20 @@ namespace SteamLibrary
                 {
                     foreach (var game in GetCategorizedGames(accountId))
                     {
-                        var dbGame = db.GetGames().FirstOrDefault(a => a.PluginId == Id && a.GameId == game.GameId);
+                        if (!game.Categories.HasItems())
+                        {
+                            continue;
+                        }
+
+                        var dbGame = db.Games.FirstOrDefault(a => a.PluginId == Id && a.GameId == game.GameId);
                         if (dbGame == null)
                         {
                             continue;
                         }
 
-                        // TODO
-                        //dbGame.Categories = game.Categories;                        
+                        dbGame.CategoryIds = db.Categories.Add(game.Categories).Select(a => a.Id).ToList();
                         dbGame.Hidden = game.Hidden;
-                        db.UpdateGame(dbGame);
+                        db.Games.Update(dbGame);
                     }
                 }
 

@@ -45,15 +45,13 @@ namespace ItchioLibrary
             {
                 GameInfo = gameData
             };
-
+            
             var itchGame = butler.GetGame(Convert.ToInt32(game.GameId));
 
             // Cover image
             if (!string.IsNullOrEmpty(itchGame.coverUrl))
             {
-                var cover = HttpDownloader.DownloadData(itchGame.coverUrl);
-                var coverFile = Path.GetFileName(itchGame.coverUrl);
-                metadata.CoverImage = new MetadataFile(coverFile, cover);
+                metadata.CoverImage = new MetadataFile(itchGame.coverUrl);
             }
 
             if (!string.IsNullOrEmpty(itchGame.url))
@@ -110,9 +108,11 @@ namespace ItchioLibrary
                         continue;
                     }
 
+                    gameData.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name));
+
                     if (name == "Author")
                     {
-                        gameData.Developers = new ComparableList<string> { field.ChildNodes[1].TextContent };
+                        gameData.Developers = new List<string> { field.ChildNodes[1].TextContent };
                     }
 
                     if (name == "Release date")

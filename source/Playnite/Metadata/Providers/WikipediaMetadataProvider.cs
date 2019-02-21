@@ -10,6 +10,7 @@ using AngleSharp.Dom;
 using AngleSharp.Parser.Html;
 using Newtonsoft.Json;
 using NLog;
+using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using Playnite.Web;
 
@@ -129,17 +130,18 @@ namespace Playnite.Metadata.Providers
             }
         }
 
-        public GameInfo ParseGamePage(WikiPage page, string gameName = "")
+        public GameMetadata ParseGamePage(WikiPage page, string gameName = "")
         {
-            logger.Info("Parsing wiki page " + page.title);
+            logger.Info("Parsing wiki page " + page.title);            
             var gameInfo = new GameInfo();
+            var metadata = new GameMetadata() { GameInfo = gameInfo };
             var parser = new HtmlParser();
             var document = parser.Parse(@"<html><head></head><body>" + page.text["*"] + @"</body></html>?");
             var tables = document.QuerySelectorAll("table.infobox.hproduct");
 
             if (tables.Length == 0)
             {
-                return gameInfo;
+                return metadata;
             }
 
             IElement infoTable = null;
@@ -211,7 +213,10 @@ namespace Playnite.Metadata.Providers
                 image = "http:" + image;
             }
 
-            gameInfo.CoverImage = image;
+            if (!image.IsNullOrEmpty())
+            {
+                metadata.CoverImage = new MetadataFile(image);
+            }
 
             // Other fields
             var gameProperties = new Dictionary<string, string>();
@@ -315,7 +320,7 @@ namespace Playnite.Metadata.Providers
                 }
             }
 
-            return gameInfo;
+            return metadata;
         }
     }
 }

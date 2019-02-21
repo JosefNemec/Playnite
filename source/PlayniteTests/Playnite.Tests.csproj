@@ -149,6 +149,7 @@
     <Compile Include="Scripting\IronPython\IronPythonTests.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellTests.cs" />
     <Compile Include="SelectableDbItemListTests.cs" />
+    <Compile Include="Settings\FilterSettingsTests.cs" />
     <Compile Include="System\ComputerTests.cs" />
     <Compile Include="System\ProcessExtensionsTests.cs" />
     <Compile Include="TimerTests.cs" />

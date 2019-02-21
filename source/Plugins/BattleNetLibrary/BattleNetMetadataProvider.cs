@@ -15,6 +15,10 @@ namespace BattleNetLibrary
 {
     public class BattleNetMetadataProvider : ILibraryMetadataProvider
     {
+        public void Dispose()
+        {
+        }
+
         public GameMetadata GetMetadata(Game game)
         {
             var product = BattleNetGames.GetAppDefinition(game.GameId);
@@ -29,6 +33,8 @@ namespace BattleNetLibrary
                 Links = new List<Link>(product.Links)
             };
 
+            gameInfo.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + product.Name));
+
             var metadata = new GameMetadata()
             {
                 GameInfo = gameInfo
@@ -36,18 +42,12 @@ namespace BattleNetLibrary
 
             if (!string.IsNullOrEmpty(product.IconUrl))
             {
-                metadata.Icon = new MetadataFile(
-                    Path.GetFileName(product.IconUrl),
-                    HttpDownloader.DownloadData(product.IconUrl),
-                    product.IconUrl);
+                metadata.Icon = new MetadataFile(product.IconUrl);
             }
 
             if (!string.IsNullOrEmpty(product.CoverUrl))
             {
-                metadata.CoverImage = new MetadataFile(
-                    Path.GetFileName(product.CoverUrl),
-                    HttpDownloader.DownloadData(product.CoverUrl),
-                    product.CoverUrl);
+                metadata.CoverImage = new MetadataFile(product.CoverUrl);
             }
 
             if (!string.IsNullOrEmpty(product.BackgroundUrl))

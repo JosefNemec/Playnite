@@ -14,7 +14,7 @@ namespace PlayniteTests
     [TestFixture]
     public class CloneObjectTests
     {
-        class TestObject : INotifyPropertyChanged
+        class TestObject : ObservableObject
         {
             private int prop1;
             public int Prop1
@@ -23,7 +23,7 @@ namespace PlayniteTests
                 set
                 {
                     prop1 = value;
-                    OnPropertyChanged("Prop1");
+                    OnPropertyChanged();
                 }
             }
 
@@ -34,7 +34,7 @@ namespace PlayniteTests
                 set
                 {
                     prop2 = value;
-                    OnPropertyChanged("Prop2");
+                    OnPropertyChanged();
                 }
             }
 
@@ -45,7 +45,7 @@ namespace PlayniteTests
                 set
                 {
                     prop3 = value;
-                    OnPropertyChanged("Prop3");
+                    OnPropertyChanged();
                 }
             }
 
@@ -56,7 +56,7 @@ namespace PlayniteTests
                 set
                 {
                     prop4 = value;
-                    OnPropertyChanged("Prop4");
+                    OnPropertyChanged();
                 }
             }
 
@@ -67,14 +67,8 @@ namespace PlayniteTests
                 set
                 {
                     prop6 = value;
-                    OnPropertyChanged("Prop6");
+                    OnPropertyChanged();
                 }
-            }
-
-            public event PropertyChangedEventHandler PropertyChanged;
-            public void OnPropertyChanged(string name)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             }
         }
 

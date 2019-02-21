@@ -8,7 +8,7 @@ using System.Windows.Data;
 namespace System.Collections.Generic
 {
     /// <summary>
-    /// 
+    /// Highly unoptimized, should not be used anywhere anymore in new code.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class ComparableList<T>: List<T>, IComparable, IEnumerable<T>
@@ -43,7 +43,6 @@ namespace System.Collections.Generic
         /// <returns></returns>
         public int CompareTo(object obj)
         {
-            // TODO optimize, don't use strings to compare
             if (obj == null)
             {
                 return -1;

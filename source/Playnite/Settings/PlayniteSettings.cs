@@ -721,7 +721,7 @@ namespace Playnite.Settings
 
             isEditing = true;
             EditedFields = new List<string>();
-            editingCopy = this.CloneJson();
+            editingCopy = this.GetClone();
         }
 
         public void EndEdit()

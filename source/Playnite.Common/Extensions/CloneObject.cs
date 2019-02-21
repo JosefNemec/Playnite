@@ -17,7 +17,7 @@ namespace Playnite
         /// <typeparam name="T">The type of object being copied.</typeparam>
         /// <param name="source">The object instance to copy.</param>
         /// <returns>The copied object.</returns>
-        public static T CloneJson<T>(this T source)
+        public static T GetClone<T>(this T source)
         {
             if (Object.ReferenceEquals(source, null))
             {
@@ -27,7 +27,7 @@ namespace Playnite
             return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source));
         }
 
-        public static T CloneJson<T>(this T source, JsonSerializerSettings settings)
+        public static T GetClone<T>(this T source, JsonSerializerSettings settings)
         {
             if (Object.ReferenceEquals(source, null))
             {
@@ -37,7 +37,7 @@ namespace Playnite
             return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source, settings), settings);
         }
 
-        public static U CloneJson<T, U>(this T source)
+        public static U GetClone<T, U>(this T source)
         {
             if (Object.ReferenceEquals(source, null))
             {
@@ -47,7 +47,7 @@ namespace Playnite
             return JsonConvert.DeserializeObject<U>(JsonConvert.SerializeObject(source));
         }
 
-        public static U CloneJson<T, U>(this T source, JsonSerializerSettings settings)
+        public static U GetClone<T, U>(this T source, JsonSerializerSettings settings)
         {
             if (Object.ReferenceEquals(source, null))
             {
@@ -84,6 +84,11 @@ namespace Playnite
             PropertyInfo[] srcProps = typeSrc.GetProperties();
             foreach (PropertyInfo srcProp in srcProps)
             {
+                if (ignoreNames?.Any() == true && ignoreNames.Contains(srcProp.Name))
+                {
+                    continue;
+                }
+
                 if (!srcProp.CanRead)
                 {
                     continue;
@@ -127,18 +132,7 @@ namespace Playnite
                     continue;
                 }
 
-                if (ignoreNames?.Any() == true)
-                {
-                    if (ignoreNames.Contains(srcProp.Name))
-                    {
-                        continue;
-                    }
-                }
-                          
-                // TODO change to equals
-
                 // TODO Add support for lists
-
                 if (sourceValue is IComparable && diffOnly)
                 {
                     var equal = ((IComparable)sourceValue).CompareTo(targetValue) == 0;

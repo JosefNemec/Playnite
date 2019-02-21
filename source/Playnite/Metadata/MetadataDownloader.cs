@@ -38,12 +38,8 @@ namespace Playnite.Metadata
         public void Dispose()
         {
             foreach (var downloader in downloaders.Values)
-            {                
-                // TODO move to proper disposable
-                if (downloader?.HasMethod("Dispose") == true)
-                {
-                    (downloader as dynamic)?.Dispose();
-                }
+            {
+                downloader.Dispose();
             }
         }
 
@@ -262,7 +258,7 @@ namespace Playnite.Metadata
 
                         // We need to get new instance from DB in case game got edited or deleted.
                         // We don't want to block game editing while metadata is downloading for other games.
-                        game = database.Games[games[i].Id]?.CloneJson();
+                        game = database.Games[games[i].Id]?.GetClone();
                         if (game == null)
                         {
                             logger.Warn($"Game {game.GameId} no longer in DB, skipping metadata download.");
@@ -402,14 +398,13 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.BackgroundImage, ref storeData, ref igdbData, (a) => a.BackgroundImage);
                                 if (gameData?.BackgroundImage != null)
                                 {
-                                    RemoveGameMedia(game.BackgroundImage);
-                                    if (gameData.BackgroundImage.Content == null)
+                                    if (gameData.BackgroundImage.HasContent)
                                     {
-                                        game.BackgroundImage = gameData.BackgroundImage.OriginalUrl;
+                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id);
                                     }
                                     else
                                     {
-                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id);
+                                        game.BackgroundImage = gameData.BackgroundImage.OriginalUrl;
                                     }
                                 }
                             }
@@ -424,7 +419,6 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.CoverImage, ref storeData, ref igdbData, (a) => a.CoverImage);
                                 if (gameData?.CoverImage != null)
                                 {
-                                    RemoveGameMedia(game.CoverImage);
                                     game.CoverImage = database.AddFile(gameData.CoverImage, game.Id);
                                 }
                             }
@@ -438,13 +432,11 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.Icon, ref storeData, ref igdbData, (a) => a.Icon);
                                 if (gameData?.Icon != null)
                                 {
-                                    RemoveGameMedia(game.Icon);
                                     game.Icon = database.AddFile(gameData.Icon, game.Id);
                                 }
                             }
                         }
-
-                        // TODO make this configurable and re-downalodable manually
+                        
                         // Only update them if they don't exist yet
                         if (game.OtherActions?.Any() != true && storeData != null)
                         {
@@ -481,23 +473,6 @@ namespace Playnite.Metadata
                     }
                 }
             });
-        }
-
-        private void RemoveGameMedia(string mediaId)
-        {
-            if (string.IsNullOrEmpty(mediaId))
-            {
-                return;
-            }
-
-            if (mediaId.IsHttpUrl())
-            {
-                HttpFileCache.ClearCache(mediaId);
-            }
-            else
-            {
-                database.RemoveFile(mediaId);
-            }
         }
     }
 }

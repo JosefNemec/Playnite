@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace System.Collections.Generic
     /// </summary>
     public abstract class ObservableObject : INotifyPropertyChanged
     {
+        [JsonIgnore]
         public bool SuppressNotifications
         {
             get; set;

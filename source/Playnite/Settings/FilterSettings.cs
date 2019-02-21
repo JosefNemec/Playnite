@@ -26,8 +26,7 @@ namespace Playnite
             Fields = fields;
         }
     }
-
-    // TODO store as null if not set
+        
     public class FilterItemProperites
     {
         [JsonIgnore]
@@ -512,5 +511,74 @@ namespace Playnite
             suppressFilterChanges = false;
             OnFilterChanged(filterChanges);
         }
+
+        #region Serialization Conditions
+
+        public bool ShouldSerializeName()
+        {
+            return !Name.IsNullOrEmpty();
+        }
+
+        public bool ShouldSerializeReleaseDate()
+        {
+            return !ReleaseDate.IsNullOrEmpty();
+        }
+
+        public bool ShouldSerializeSeries()
+        {
+            return Series?.IsSet == true;
+        }
+
+        public bool ShouldSerializeSource()
+        {
+            return Source?.IsSet == true;
+        }
+
+        public bool ShouldSerializeAgeRating()
+        {
+            return AgeRating?.IsSet == true;
+        }
+
+        public bool ShouldSerializeRegion()
+        {
+            return Region?.IsSet == true;
+        }
+
+        public bool ShouldSerializeGenre()
+        {
+            return Genre?.IsSet == true;
+        }
+
+        public bool ShouldSerializePublisher()
+        {
+            return Publisher?.IsSet == true;
+        }
+
+        public bool ShouldSerializeDeveloper()
+        {
+            return Developer?.IsSet == true;
+        }
+
+        public bool ShouldSerializeCategory()
+        {
+            return Category?.IsSet == true;
+        }
+
+        public bool ShouldSerializeTag()
+        {
+            return Tag?.IsSet == true;
+        }
+
+        public bool ShouldSerializePlatform()
+        {
+            return Platform?.IsSet == true;
+        }
+
+        public bool ShouldSerializeLibrary()
+        {
+            return Library?.IsSet == true;
+        }
+
+        #endregion Serialization Conditions
     }
 }

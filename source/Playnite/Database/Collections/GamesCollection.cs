@@ -79,6 +79,56 @@ namespace Playnite.Database
             return result;
         }
 
-        // TODO overload Update methods and remove metadata when updating to new data
+        public override void Update(Game itemToUpdate)
+        {
+            var dbItem = Get(itemToUpdate.Id);
+            if (!dbItem.Icon.IsNullOrEmpty() && dbItem.Icon != itemToUpdate.Icon)
+            {
+                db.RemoveFile(dbItem.Icon);
+            }
+
+            if (!dbItem.CoverImage.IsNullOrEmpty() && dbItem.CoverImage != itemToUpdate.CoverImage)
+            {
+                db.RemoveFile(dbItem.CoverImage);
+            }
+
+            if (!dbItem.BackgroundImage.IsNullOrEmpty() && !dbItem.BackgroundImage.IsHttpUrl() && dbItem.BackgroundImage != itemToUpdate.BackgroundImage)
+            {
+                db.RemoveFile(dbItem.BackgroundImage);
+            }
+
+            base.Update(itemToUpdate);
+        }
+
+        public override void Update(IEnumerable<Game> itemsToUpdate)
+        {
+            foreach (var item in itemsToUpdate)
+            {
+                var dbItem = Get(item.Id);
+                if (!dbItem.Icon.IsNullOrEmpty() && dbItem.Icon != item.Icon)
+                {
+                    db.RemoveFile(dbItem.Icon);
+                }
+
+                if (!dbItem.CoverImage.IsNullOrEmpty() && dbItem.CoverImage != item.CoverImage)
+                {
+                    db.RemoveFile(dbItem.CoverImage);
+                }
+
+                if (!dbItem.BackgroundImage.IsNullOrEmpty())
+                {
+                    if (!dbItem.BackgroundImage.IsHttpUrl() && dbItem.BackgroundImage != item.BackgroundImage)
+                    {
+                        db.RemoveFile(dbItem.BackgroundImage);
+                    }
+                    else if (dbItem.BackgroundImage.IsHttpUrl() && dbItem.BackgroundImage != item.BackgroundImage)
+                    {
+                        HttpFileCache.ClearCache(dbItem.BackgroundImage);
+                    }
+                }
+            }
+
+            base.Update(itemsToUpdate);
+        }
     }
 }

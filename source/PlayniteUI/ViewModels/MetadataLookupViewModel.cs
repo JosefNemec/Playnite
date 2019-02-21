@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Playnite.Metadata.Providers;
+using Playnite.SDK.Metadata;
 
 namespace PlayniteUI.ViewModels
 {
@@ -94,7 +95,7 @@ namespace PlayniteUI.ViewModels
             }
         }        
 
-        public GameInfo MetadataData
+        public GameMetadata MetadataData
         {
             get; set;
         }
@@ -167,7 +168,7 @@ namespace PlayniteUI.ViewModels
                             break;
                         case MetadataProvider.IGDB:
                             var igdb = new IGDBMetadataProvider();
-                            MetadataData = igdb.GetMetadata(id).GameInfo;
+                            MetadataData = igdb.GetMetadata(id);
                             break;
                     }
 

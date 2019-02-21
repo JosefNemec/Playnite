@@ -13,7 +13,11 @@ using System.Threading.Tasks;
 namespace TwitchLibrary
 {
     public class TwitchMetadataProvider : ILibraryMetadataProvider
-    {        
+    {
+        public void Dispose()
+        {
+        }
+
         public GameMetadata GetMetadata(Game game)
         {
             var program = Twitch.GetUninstallRecord(game.GameId);
@@ -24,9 +28,11 @@ namespace TwitchLibrary
 
             var gameInfo = new GameInfo
             {
-                Name = StringExtensions.NormalizeGameName(program.DisplayName)
+                Name = StringExtensions.NormalizeGameName(program.DisplayName),
+                Links = new List<Link>()
             };
 
+            gameInfo.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + gameInfo.Name));
             var metadata = new GameMetadata()
             {
                 GameInfo = gameInfo
@@ -35,11 +41,9 @@ namespace TwitchLibrary
             if (!string.IsNullOrEmpty(program.DisplayIcon) && File.Exists(program.DisplayIcon))
             {
                 var iconPath = program.DisplayIcon;
-                var iconFile = Path.GetFileName(iconPath);
                 if (iconPath.EndsWith("ico", StringComparison.OrdinalIgnoreCase))
                 {
-                    var data = File.ReadAllBytes(iconPath);
-                    metadata.Icon = new MetadataFile(iconFile, data);
+                    metadata.Icon = new MetadataFile(program.DisplayIcon);
                 }
                 else
                 {

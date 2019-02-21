@@ -120,7 +120,7 @@ namespace Playnite.Database
         public virtual TItem Add(string itemName)
         {
             if (string.IsNullOrEmpty(itemName)) throw new ArgumentNullException(nameof(itemName));
-            var existingItem = this.FirstOrDefault(a => a.Name.Equals(itemName, StringComparison.OrdinalIgnoreCase));
+            var existingItem = this.FirstOrDefault(a => a.Name.Equals(itemName, StringComparison.InvariantCultureIgnoreCase));
             if (existingItem != null)
             {
                 return existingItem;
@@ -138,7 +138,7 @@ namespace Playnite.Database
             var toAdd = new List<TItem>();
             foreach (var itemName in itemsToAdd)
             {
-                var existingItem = this.FirstOrDefault(a => a.Name.Equals(itemName, StringComparison.OrdinalIgnoreCase));
+                var existingItem = this.FirstOrDefault(a => a.Name.Equals(itemName, StringComparison.InvariantCultureIgnoreCase));
                 if (existingItem != null)
                 {
                     yield return existingItem;
@@ -387,7 +387,7 @@ namespace Playnite.Database
 
         public IEnumerable<TItem> GetClone()
         {
-            return this.Select(a => a.CloneJson());
+            return this.Select(a => a.GetClone());
         }
     }
 }

@@ -21,7 +21,7 @@ namespace PlayniteTests.Database
         [Test]
         public void AddFileTest()
         {
-            using (var temp = TempDirectory.Create(false))
+            using (var temp = TempDirectory.Create())
             {
                 var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
@@ -29,6 +29,34 @@ namespace PlayniteTests.Database
                 var testId = Guid.NewGuid();
                 var addedId = db.AddFile(file.FileName, file.Content, testId);
                 FileAssert.Exists(Path.Combine(temp.TempPath, "files", addedId));
+            }
+        }
+
+        [Test]
+        public void AddFileHttpTest()
+        {
+            using (var temp = TempDirectory.Create())
+            {
+                var db = new GameDatabase(temp.TempPath);
+                db.OpenDatabase();
+                var testId = Guid.NewGuid();
+                var addedId = db.AddFile(@"https://playnite.link/applogo.png", testId);
+                FileAssert.Exists(Path.Combine(temp.TempPath, "files", addedId));
+            }
+        }
+
+        [Test]
+        public void AddFileHttp404Test()
+        {
+            using (var temp = TempDirectory.Create())
+            {
+                var db = new GameDatabase(temp.TempPath);
+                db.OpenDatabase();
+                var testId = Guid.NewGuid();
+                var addedId = db.AddFile(@"https://playnite.link/doesntexists.png", testId);
+                Assert.IsNull(addedId);
+                var files = Directory.GetFiles(Path.Combine(temp.TempPath, "files", testId.ToString()));
+                Assert.AreEqual(0, files.Count());
             }
         }
     }

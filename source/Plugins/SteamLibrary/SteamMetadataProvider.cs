@@ -62,6 +62,10 @@ namespace SteamLibrary
 
         #endregion IMetadataProvider
 
+        public void Dispose()
+        {
+        }
+
         internal KeyValue GetAppInfo(uint appId)
         {
             KeyValue data = null;
@@ -223,47 +227,29 @@ namespace SteamLibrary
                 // There might be no icon assigned to game
                 if (!string.IsNullOrEmpty(iconUrl))
                 {
-                    var iconName = Path.GetFileName(new Uri(iconUrl).AbsolutePath);
-                    var iconData = HttpDownloader.DownloadData(iconUrl);
-                    metadata.Icon = new MetadataFile(iconName, iconData);
+                    metadata.Icon = new MetadataFile(iconUrl);
                 }
             }
 
             // Image
             var imageRoot = @"http://cdn.akamai.steamstatic.com/steam/apps/{0}/header.jpg";
             var imageUrl = string.Format(imageRoot, appId);
-            byte[] imageData = null;
-
-            try
+            if (HttpDownloader.GetResponseCode(imageUrl) == HttpStatusCode.OK)
             {
-                imageData = HttpDownloader.DownloadData(imageUrl);
+                metadata.CoverImage = new MetadataFile(imageUrl);
             }
-            catch (WebException e)
+            else
             {
-                var response = (HttpWebResponse)e.Response;
-                if (response.StatusCode == HttpStatusCode.NotFound)
+                if (productInfo != null)
                 {
-                    if (productInfo != null)
+                    imageRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
+                    var image = productInfo["common"]["logo"];
+                    if (!string.IsNullOrEmpty(image.Value))
                     {
-                        imageRoot = @"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
-                        var image = productInfo["common"]["logo"];
-                        if (!string.IsNullOrEmpty(image.Value))
-                        {
-                            imageUrl = string.Format(imageRoot, appId, image.Value);
-                            imageData = HttpDownloader.DownloadData(imageUrl);
-                        }
+                        imageUrl = string.Format(imageRoot, appId, image.Value);
+                        metadata.CoverImage = new MetadataFile(imageUrl);
                     }
                 }
-                else
-                {
-                    throw;
-                }
-            }
-
-            if (imageData != null)
-            {
-                var imageName = Path.GetFileName(new Uri(imageUrl).AbsolutePath);
-                metadata.CoverImage = new MetadataFile(imageName, imageData);
             }
 
             // Background Image
@@ -297,7 +283,7 @@ namespace SteamLibrary
                     new Link("Forum", @"https://steamcommunity.com/app/" + appId),
                     new Link("News", @"http://store.steampowered.com/news/?appids=" + appId),
                     new Link("Store", @"http://store.steampowered.com/app/" + appId),
-                    new Link("Wiki", @"http://pcgamingwiki.com/api/appid.php?appid=" + appId)
+                    new Link("PCGamingWiki", @"http://pcgamingwiki.com/api/appid.php?appid=" + appId)
                 }
             };
 
@@ -317,11 +303,11 @@ namespace SteamLibrary
             if (downloadedMetadata.StoreDetails != null)
             {
                 gameInfo.Description = downloadedMetadata.StoreDetails.detailed_description;
-                gameInfo.Genres = new ComparableList<string>(downloadedMetadata.StoreDetails.genres?.Select(a => a.description));
-                gameInfo.Developers = new ComparableList<string>(downloadedMetadata.StoreDetails.developers);
-                gameInfo.Publishers = new ComparableList<string>(downloadedMetadata.StoreDetails.publishers);
+                gameInfo.Genres = new List<string>(downloadedMetadata.StoreDetails.genres?.Select(a => a.description));
+                gameInfo.Developers = new List<string>(downloadedMetadata.StoreDetails.developers);
+                gameInfo.Publishers = new List<string>(downloadedMetadata.StoreDetails.publishers);
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
-                gameInfo.Tags = new ComparableList<string>(downloadedMetadata.StoreDetails.categories?.Select(a => cultInfo.ToTitleCase(a.description)));
+                gameInfo.Tags = new List<string>(downloadedMetadata.StoreDetails.categories?.Select(a => cultInfo.ToTitleCase(a.description)));
                 gameInfo.ReleaseDate = downloadedMetadata.StoreDetails.release_date.date;
                 gameInfo.CriticScore = downloadedMetadata.StoreDetails.metacritic?.score;
             }

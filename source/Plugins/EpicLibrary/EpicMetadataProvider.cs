@@ -15,6 +15,10 @@ namespace EpicLibrary
         {
         }
 
+        public void Dispose()
+        {
+        }
+
         #region IMetadataProvider
 
         public GameMetadata GetMetadata(Game game)

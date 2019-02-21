@@ -41,7 +41,7 @@ namespace OriginLibrary
                 Links = new List<Link>()
                 {
                     new Link("Store", @"https://www.origin.com/store" + storeMetadata.StoreDetails.offerPath),
-                    new Link("Wiki", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name)
+                    new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + game.Name)
                 }
             };
 
@@ -104,18 +104,18 @@ namespace OriginLibrary
 
         #endregion IMetadataProvider
 
+        public void Dispose()
+        {
+        }
+
         public OriginGameMetadata DownloadGameMetadata(string id)
         {
             var data = new OriginGameMetadata()
             {
                 StoreDetails = OriginApiClient.GetGameStoreData(id)
             };
-        
-            var imageUrl = data.StoreDetails.imageServer + data.StoreDetails.i18n.packArtLarge;
-            var imageData = HttpDownloader.DownloadData(imageUrl);
-            var imageName = Guid.NewGuid() + Path.GetExtension(new Uri(imageUrl).AbsolutePath);
-            data.CoverImage = new MetadataFile(imageName, imageData);
 
+            data.CoverImage = new MetadataFile(data.StoreDetails.imageServer + data.StoreDetails.i18n.packArtLarge);
             if (!string.IsNullOrEmpty(data.StoreDetails.offerPath))
             {
                 data.StoreMetadata = OriginApiClient.GetStoreMetadata(data.StoreDetails.offerPath);

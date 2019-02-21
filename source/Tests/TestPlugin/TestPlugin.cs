@@ -47,7 +47,7 @@ namespace TestPlugin
                     "Test Func from TestPlugin",
                     () =>
                     {
-                        logger.Info($"TestPluginDev ExtensionFunction {api.Database.GetGames().Count()}");
+                        logger.Info($"TestPluginDev ExtensionFunction {api.Database.Games.Count}");
                     })
             };
         }

@@ -66,7 +66,7 @@ namespace BattleNetLibrary
 
         public void BeginEdit()
         {
-            editingClone = this.CloneJson();
+            editingClone = this.GetClone();
         }
 
         public void CancelEdit()

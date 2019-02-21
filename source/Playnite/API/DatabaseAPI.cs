@@ -15,6 +15,18 @@ namespace Playnite.API
     {
         private GameDatabase database;
 
+        public IItemCollection<Game> Games => database.Games;
+        public IItemCollection<Platform> Platforms => database.Platforms;
+        public IItemCollection<Emulator> Emulators => database.Emulators;
+        public IItemCollection<Genre> Genres => database.Genres;
+        public IItemCollection<Company> Companies => database.Companies;
+        public IItemCollection<Tag> Tags => database.Tags;
+        public IItemCollection<Category> Categories => database.Categories;
+        public IItemCollection<Series> Series => database.Series;
+        public IItemCollection<AgeRating> AgeRatings => database.AgeRatings;
+        public IItemCollection<Region> Regions => database.Regions;
+        public IItemCollection<GameSource> Sources => database.Sources;
+
         public string DatabasePath
         {
             get => database?.DatabasePath;
@@ -28,72 +40,7 @@ namespace Playnite.API
         public DatabaseAPI(GameDatabase database)
         {
             this.database = database;
-        }
-
-        public void AddEmulator(Emulator emulator)
-        {
-            database.Emulators.Add(emulator);
-        }
-
-        public Emulator GetEmulator(Guid id)
-        {
-            return database.Emulators.Get(id);
-        }
-
-        public IEnumerable<Emulator> GetEmulators()
-        {
-            return database.Emulators;
-        }
-
-        public Game GetGame(Guid id)
-        {
-            return database.Games.Get(id);
-        }
-
-        public void AddGame(Game game)
-        {
-            database.Games.Add(game);
-        }
-
-        public IEnumerable<Game> GetGames()
-        {
-            return database.Games;
-        }
-
-        public Platform GetPlatform(Guid id)
-        {
-            return database.Platforms.Get(id);
-        }
-
-        public IEnumerable<Platform> GetPlatforms()
-        {
-            return database.Platforms;
-        }
-
-        public void AddPlatform(Platform platform)
-        {
-            database.Platforms.Add(platform);
-        }
-
-        public void RemoveEmulator(Guid id)
-        {
-            database.Emulators.Remove(id);
-        }
-
-        public void RemoveGame(Guid id)
-        {
-            database.Games.Remove(id);
-        }
-
-        public void RemovePlatform(Guid id)
-        {
-            database.Platforms.Remove(id);
-        }
-
-        public void UpdateGame(Game game)
-        {
-            database.Games.Update(game);
-        }
+        }      
 
         public string AddFile(string path, Guid parentId)
         {

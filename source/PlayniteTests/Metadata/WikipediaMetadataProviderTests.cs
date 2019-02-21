@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Playnite.Metadata.Providers;
+using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 
 namespace PlayniteTests.Metadata
@@ -12,12 +13,12 @@ namespace PlayniteTests.Metadata
     [TestFixture]
     public class WikipediaMetadataProviderTests
     {
-        private void ValidateGameDate(GameInfo game)
+        private void ValidateGameDate(GameMetadata metadata)
         {
-            Assert.IsNotNull(game.ReleaseDate);
-            Assert.IsTrue(game.Developers.Count > 0 && !string.IsNullOrEmpty(game.Developers[0]));
-            Assert.IsTrue(game.Publishers.Count > 0 && !string.IsNullOrEmpty(game.Publishers[0]));
-            Assert.IsTrue(game.Genres.Count > 0 && !string.IsNullOrEmpty(game.Genres[0]));
+            Assert.IsNotNull(metadata.GameInfo.ReleaseDate);
+            Assert.IsTrue(metadata.GameInfo.Developers.Count > 0 && !string.IsNullOrEmpty(metadata.GameInfo.Developers[0]));
+            Assert.IsTrue(metadata.GameInfo.Publishers.Count > 0 && !string.IsNullOrEmpty(metadata.GameInfo.Publishers[0]));
+            Assert.IsTrue(metadata.GameInfo.Genres.Count > 0 && !string.IsNullOrEmpty(metadata.GameInfo.Genres[0]));
         }
 
         private void ValidateBoxArt(GameInfo game)
@@ -31,57 +32,57 @@ namespace PlayniteTests.Metadata
             var wiki = new WikipediaMetadataProvider();
 
             // Standard page
-            var game = wiki.ParseGamePage(wiki.GetPage("Guild Wars 2"));
-            ValidateGameDate(game);
-            ValidateBoxArt(game);
+            var metadata = wiki.ParseGamePage(wiki.GetPage("Guild Wars 2"));
+            ValidateGameDate(metadata);
+            ValidateBoxArt(metadata.GameInfo);
 
             // Without title in info box
-            game = wiki.ParseGamePage(wiki.GetPage("Kingpin: Life of Crime"));
-            ValidateGameDate(game);
-            ValidateBoxArt(game);
+            metadata = wiki.ParseGamePage(wiki.GetPage("Kingpin: Life of Crime"));
+            ValidateGameDate(metadata);
+            ValidateBoxArt(metadata.GameInfo);
 
             // Multiple release dates
-            game = wiki.ParseGamePage(wiki.GetPage("Command & Conquer: Red Alert"));
-            ValidateGameDate(game);
-            ValidateBoxArt(game);
+            metadata = wiki.ParseGamePage(wiki.GetPage("Command & Conquer: Red Alert"));
+            ValidateGameDate(metadata);
+            ValidateBoxArt(metadata.GameInfo);
 
             // Multiple developers
-            game = wiki.ParseGamePage(wiki.GetPage("Counter-Strike: Global Offensive"));
-            ValidateGameDate(game);
-            ValidateBoxArt(game);
+            metadata = wiki.ParseGamePage(wiki.GetPage("Counter-Strike: Global Offensive"));
+            ValidateGameDate(metadata);
+            ValidateBoxArt(metadata.GameInfo);
 
             // Different page laytout
-            game = wiki.ParseGamePage(wiki.GetPage("Quake III Arena"));
-            ValidateGameDate(game);
-            ValidateBoxArt(game);
+            metadata = wiki.ParseGamePage(wiki.GetPage("Quake III Arena"));
+            ValidateGameDate(metadata);
+            ValidateBoxArt(metadata.GameInfo);
 
             // Multiple property tables
-            game = wiki.ParseGamePage(wiki.GetPage("TrackMania"), "TrackMania United");
-            ValidateGameDate(game);
-            ValidateBoxArt(game);
+            metadata = wiki.ParseGamePage(wiki.GetPage("TrackMania"), "TrackMania United");
+            ValidateGameDate(metadata);
+            ValidateBoxArt(metadata.GameInfo);
 
             // No image
-            game = wiki.ParseGamePage(wiki.GetPage("State of War (video game)"));
-            ValidateGameDate(game);
+            metadata = wiki.ParseGamePage(wiki.GetPage("State of War (video game)"));
+            ValidateGameDate(metadata);
 
             // Different formats
-            game = wiki.ParseGamePage(wiki.GetPage("Dungeon Siege"));
-            ValidateGameDate(game);
+            metadata = wiki.ParseGamePage(wiki.GetPage("Dungeon Siege"));
+            ValidateGameDate(metadata);
 
-            game = wiki.ParseGamePage(wiki.GetPage("MotoGP 3: Ultimate Racing Technology"));
-            ValidateGameDate(game);
+            metadata = wiki.ParseGamePage(wiki.GetPage("MotoGP 3: Ultimate Racing Technology"));
+            ValidateGameDate(metadata);
 
-            game = wiki.ParseGamePage(wiki.GetPage("Quake 4"));
-            ValidateGameDate(game);
+            metadata = wiki.ParseGamePage(wiki.GetPage("Quake 4"));
+            ValidateGameDate(metadata);
 
-            game = wiki.ParseGamePage(wiki.GetPage("DEFCON (video game)"));
-            ValidateGameDate(game);
+            metadata = wiki.ParseGamePage(wiki.GetPage("DEFCON (video game)"));
+            ValidateGameDate(metadata);
 
-            game = wiki.ParseGamePage(wiki.GetPage("Kid Chaos (video game)"));
-            ValidateGameDate(game);
+            metadata = wiki.ParseGamePage(wiki.GetPage("Kid Chaos (video game)"));
+            ValidateGameDate(metadata);
 
-            game = wiki.ParseGamePage(wiki.GetPage("StarCraft II: Wings of Liberty"));
-            ValidateGameDate(game);
+            metadata = wiki.ParseGamePage(wiki.GetPage("StarCraft II: Wings of Liberty"));
+            ValidateGameDate(metadata);
         }
     }
 }

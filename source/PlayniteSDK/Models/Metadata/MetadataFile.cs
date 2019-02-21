@@ -12,6 +12,11 @@ namespace Playnite.SDK.Metadata
     /// </summary>
     public class MetadataFile
     {
+        public bool HasContent
+        {
+            get => !string.IsNullOrEmpty(FileName) && Content != null;
+        }
+
         /// <summary>
         /// Gets or sets file name.
         /// </summary>
@@ -50,6 +55,7 @@ namespace Playnite.SDK.Metadata
         public MetadataFile(string url)
         {
             FileName = Path.GetFileName(url);
+            OriginalUrl = url;
         }
 
         /// <summary>

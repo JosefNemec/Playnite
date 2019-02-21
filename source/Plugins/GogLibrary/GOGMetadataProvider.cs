@@ -21,6 +21,10 @@ namespace GogLibrary
         private GogApiClient apiClient = new GogApiClient();
         private ILogger logger = LogManager.GetLogger();
 
+        public void Dispose()
+        {
+        }
+
         public GameMetadata GetMetadata(Game game)
         {
             var storeData = DownloadGameMetadata(game.GameId);
@@ -45,7 +49,7 @@ namespace GogLibrary
                 BackgroundImage = storeData.BackgroundImage
             };
 
-            gameInfo.Links.Add(new Link("Wiki", @"http://pcgamingwiki.com/w/index.php?search=" + storeData.GameDetails.title));
+            gameInfo.Links.Add(new Link("PCGamingWiki", @"http://pcgamingwiki.com/w/index.php?search=" + storeData.GameDetails.title));
             if (!string.IsNullOrEmpty(storeData.GameDetails.links.forum))
             {
                 gameInfo.Links.Add(new Link("Forum", storeData.GameDetails.links.forum));
@@ -85,22 +89,15 @@ namespace GogLibrary
                     metadata.StoreDetails = apiClient.GetGameStoreData(gameDetail.links.product_card);
                 }
 
-                var icon = HttpDownloader.DownloadData("http:" + gameDetail.images.icon);
-                var iconName = Path.GetFileName(new Uri(gameDetail.images.icon).AbsolutePath);
-                metadata.Icon = new MetadataFile(iconName, icon);
-
+                metadata.Icon = new MetadataFile("http:" + gameDetail.images.icon);
                 if (metadata.StoreDetails != null)
                 {
                     var imageUrl = metadata.StoreDetails.image + "_product_card_v2_mobile_slider_639.jpg";
-                    var image = HttpDownloader.DownloadData(imageUrl);
-                    var imageName = Path.GetFileName(new Uri(imageUrl).AbsolutePath);
-                    metadata.CoverImage = new MetadataFile(imageName, image);
+                    metadata.CoverImage = new MetadataFile(imageUrl);
                 }
                 else
                 {
-                    var image = HttpDownloader.DownloadData("http:" + gameDetail.images.logo2x);
-                    var imageName = Path.GetFileName(new Uri(gameDetail.images.logo2x).AbsolutePath);
-                    metadata.CoverImage = new MetadataFile(imageName, image);
+                    metadata.CoverImage = new MetadataFile("http:" + gameDetail.images.logo2x);
                 }
 
                 if (metadata.StoreDetails != null)

@@ -30,6 +30,10 @@ namespace Playnite.Metadata.Providers
             this.client = client;
         }
 
+        public void Dispose()
+        {
+        }
+
         private GameInfo GetParsedGame(ulong id)
         {
             var dbGame = client.GetIGDBGameParsed(id);
@@ -114,8 +118,8 @@ namespace Playnite.Metadata.Providers
             MetadataFile image = null;
             if (!string.IsNullOrEmpty(game.CoverImage))
             {
-                var name = Path.GetFileName(game.CoverImage);
-                image = new MetadataFile(name, HttpDownloader.DownloadData(game.CoverImage));
+                image = new MetadataFile(game.CoverImage);
+                game.CoverImage = null;
             }
 
             return new GameMetadata(game, null, image, null);
@@ -137,7 +141,7 @@ namespace Playnite.Metadata.Providers
                 return GameMetadata.GetEmptyData();
             }
 
-            var copyGame = game.CloneJson();
+            var copyGame = game.GetClone();
             copyGame.Name = StringExtensions.NormalizeGameName(game.Name);
             var name = copyGame.Name;
             var results = SearchMetadata(copyGame).ToList();
@@ -178,7 +182,7 @@ namespace Playnite.Metadata.Providers
             }
 
             // Try removing apostrophes
-            var resCopy = results.CloneJson();
+            var resCopy = results.GetClone();
             resCopy.ForEach(a => a.Name = a.Name.Replace("'", ""));
             data = matchFun(game, name, resCopy);
             if (data != null)
@@ -188,7 +192,7 @@ namespace Playnite.Metadata.Providers
 
             // Try removing all ":"
             testName = Regex.Replace(testName, @"\s*:\s*", " ");
-            resCopy = results.CloneJson();
+            resCopy = results.GetClone();
             resCopy.ForEach(a => a.Name = Regex.Replace(a.Name, @"\s*:\s*", " "));
             data = matchFun(game, testName, resCopy);
             if (data != null)
