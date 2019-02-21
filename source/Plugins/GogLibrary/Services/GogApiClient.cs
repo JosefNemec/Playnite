@@ -54,7 +54,7 @@ namespace GogLibrary.Services
 
                 if (line.TrimStart().StartsWith("window.activeFeatures"))
                 {
-                    var desData = JsonConvert.DeserializeObject<StorePageResult>(stringData);
+                    var desData = JsonConvert.DeserializeObject<StorePageResult>(stringData.TrimEnd(';'));
                     if (desData.cardProduct == null)
                     {
                         return null;
