@@ -272,7 +272,7 @@ namespace OriginLibrary
                         }
 
                         // If game uses EasyAntiCheat then use executable referenced by it
-                        if (Origin.GetGameUsesEasyAntiCheat(newGame))
+                        if (Origin.GetGameUsesEasyAntiCheat(newGame.InstallDirectory))
                         {
                             var eac = EasyAntiCheat.GetLauncherSettings(newGame.InstallDirectory);
                             if (newGame.PlayAction == null)

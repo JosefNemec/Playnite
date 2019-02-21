@@ -61,12 +61,12 @@ namespace OriginLibrary
 
         public async void StartRunningWatcher()
         {
-            if (Origin.GetGameUsesEasyAntiCheat(Game))
+            if (Origin.GetGameUsesEasyAntiCheat(Game.InstallDirectory))
             {
                 // Games with EasyAntiCheat take longer to be re-executed by Origin
                 await Task.Delay(12000);
             }
-            else if (Origin.GetGameRequiresOrigin(Game))
+            else if (Origin.GetGameRequiresOrigin(Game.InstallDirectory))
             {
                 // Solves issues with game process being started/shutdown multiple times during startup via Origin
                 await Task.Delay(5000);

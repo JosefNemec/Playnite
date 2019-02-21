@@ -40,7 +40,7 @@ namespace EpicLibrary
                     continue;
                 }            
 
-                var game = new Game()
+                var game = new GameInfo()
                 {
                     Source = "Epic",
                     GameId = app.AppName,
