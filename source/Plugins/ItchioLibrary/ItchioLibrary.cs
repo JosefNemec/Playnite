@@ -152,8 +152,13 @@ namespace ItchioLibrary
                     var keys = butler.GetOwnedKeys(profile.id);
                     foreach (var key in keys)
                     {
-                        if (key.game.classification != Models.GameClassification.game &&
-                            key.game.classification != Models.GameClassification.tool)
+                        if (key.game == null)
+                        {
+                            continue;
+                        }
+
+                        if (key.game.classification != GameClassification.game &&
+                            key.game.classification != GameClassification.tool)
                         {
                             continue;
                         }
@@ -257,7 +262,7 @@ namespace ItchioLibrary
             else
             {
                 importError = new Exception(
-                    string.Format(playniteApi.Resources.FindString("LOCClientNotInstalledError"), "itch.io"));
+                    playniteApi.Resources.FindString("LOCItchioClientNotInstalledError"));
             }
 
             if (importError != null)

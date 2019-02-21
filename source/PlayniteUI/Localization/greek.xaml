@@ -485,7 +485,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCUpdateError">Σφάλμα ενημέρωσης</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Απέτυχε ο έλεγχος για νέα έκδοση.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Δεν βρέθηκε νέα έκδοση, είστε ενημερωμένοι.</sys:String>
-    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Αποτυχία λήψης και εγκατάστασης της ενημέρωσης.</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Αποτυχία λήψης και εγκατάστασης της ενημέρωσης.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Η τρέχουσα εργασία εκτελείται αυτή τη στιγμή, θέλετε να την ακυρώσετε και να την επεξεργαστείτε με την εγκατάσταση της ενημερωμένης έκδοσης?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Background task is currently running, do you want to cancel it and close Playnite?</sys:String>
 

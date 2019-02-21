@@ -526,7 +526,7 @@ Puoi provare i seguenti :
   <sys:String x:Key="LOCUpdateError">Errore aggiornamento</sys:String>
   <sys:String x:Key="LOCUpdateCheckFailMessage">Controllo della nuova versione fallito.</sys:String>
   <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Nessuna versione trovata, sei alla versione recente.</sys:String>
-  <sys:String x:Key="LOCUGeneralUpdateFailMessage">Scaricamento e installazione aggiornamento fallita.</sys:String>
+  <sys:String x:Key="LOCGeneralUpdateFailMessage">Scaricamento e installazione aggiornamento fallita.</sys:String>
   <sys:String x:Key="LOCUpdateProgressCancelAsk">Processo di backgorund in corso, desidera annullarlo per procedere all'installazione dell'aggiornamento?</sys:String>
   <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Processo di backgorund in corso, desidera uscire da Playnite?</sys:String>
 

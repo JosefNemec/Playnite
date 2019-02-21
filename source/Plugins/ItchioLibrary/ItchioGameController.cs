@@ -54,7 +54,7 @@ namespace ItchioLibrary
             if (!Itch.IsInstalled)
             {
                 throw new Exception(
-                    string.Format(api.Resources.FindString("LOCClientNotInstalledError"), "itch.io"));
+                    api.Resources.FindString("LOCItchioClientNotInstalledError"));
             }
         }
 

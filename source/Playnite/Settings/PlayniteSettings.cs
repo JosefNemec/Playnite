@@ -265,6 +265,21 @@ namespace Playnite.Settings
             }
         }
 
+        private bool showGroupCount = false;
+        public bool ShowGroupCount
+        {
+            get
+            {
+                return showGroupCount;
+            }
+
+            set
+            {
+                showGroupCount = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool startInFullscreen = false;
         public bool StartInFullscreen
         {

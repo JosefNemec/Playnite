@@ -19,8 +19,11 @@ namespace PlayniteServices.Controllers.IGDB
             {
                 if (System.IO.File.Exists(cachePath))
                 {
-                    var cacheTheme = JsonConvert.DeserializeObject<TItem>(System.IO.File.ReadAllText(cachePath));
-                    return cacheTheme;
+                    var cacheItem = JsonConvert.DeserializeObject<TItem>(System.IO.File.ReadAllText(cachePath));
+                    if (cacheItem != null)
+                    {
+                        return cacheItem;
+                    }
                 }
             }
 

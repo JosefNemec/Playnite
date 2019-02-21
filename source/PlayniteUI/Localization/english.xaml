@@ -26,6 +26,8 @@
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Checked - Assign category
 Unchecked - Remove category
 Indeterminate - No changes (when editing multiple games)</sys:String>
+    <sys:String x:Key="LOCNoCategory">No Category</sys:String>
+    <sys:String x:Key="LOCNoPlatform">No Platform</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">Oh no, something bad happened...</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Unrecoverable error occurred and Playnite crashed.
@@ -239,6 +241,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Display game name when cover art is missing</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Show game names on cover view</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Show game icons on List view</sys:String>
+    <sys:String x:Key="LOCSettingsShowGroupCount">Show item count on group descriptions</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Disable hardware acceleration (requires restart)</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Use when experiencing stuttering or similar UI issues</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">Disable DPI Scaling (requires restart)</sys:String>
@@ -531,8 +534,8 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCUpdateError">Update Error</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Failed to check for new version.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">No new version found, you are up to date.</sys:String>
-    <sys:String x:Key="LOCUGeneralUpdateFailMessage">Failed to download and install update.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Background task is currently running, do you want to cancel it and processed with update installation?</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">Failed to download and install update.</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Background task is currently running, do you want to cancel it and proceed with update installation?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Background task is currently running, do you want to cancel it and close Playnite?</sys:String>
 
     <sys:String x:Key="LOCThemeTestReloadList">Reload theme list</sys:String>
@@ -600,8 +603,9 @@ You can try these to fix the issue:
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io client will now open. Please sign in and then close this message.</sys:String>
-    <sys:String x:Key="LOCItchioSignInWaitMessage">Waiting for user to sign in, please close this when you're done...</sys:String>    
-    
+    <sys:String x:Key="LOCItchioSignInWaitMessage">Waiting for user to sign in, please close this when you're done...</sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">Itch client version 25 or newer is not installed.</sys:String>
+
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Account Login</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Account Name</sys:String>
@@ -609,7 +613,7 @@ You can try these to fix the issue:
 Note that Account Name option only works accounts that have public visibility.</sys:String>
 
     <!--Steam-->
-    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Select authenticated user or specify fanity URL name of your account to sync your full library. Accounts with private library visibility have to specify API key linked to that Steam account.
+    <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Select authenticated user or specify vanity URL name of your account to sync your full library. Accounts with private library visibility have to specify API key linked to that Steam account.
     </sys:String>
     <sys:String x:Key="LOCSteamCustomUrlName">Account URL Name</sys:String>
     <sys:String x:Key="LOCSteamLoggedInUser">Authenticated User</sys:String>

@@ -208,6 +208,9 @@
     </Compile>
     <Compile Include="Controls\FullscreenView.cs" />
     <Compile Include="Controls\MainView.cs" />
+    <Compile Include="Controls\SliderWithPopup.xaml.cs">
+      <DependentUpon>SliderWithPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\VirtualKeyboard.cs" />
     <Compile Include="Controls\WindowBase.cs" />
     <Compile Include="Converters\AfterGameCloseOptionToStringConverter.cs" />
@@ -216,6 +219,7 @@
     <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />
     <Compile Include="Converters\BoolToAutoWidthConverter.cs" />
     <Compile Include="Converters\BoolToYesNoConverter.cs" />
+    <Compile Include="Converters\CoversZoomToPercentageConverter.cs" />
     <Compile Include="Converters\EnumBooleanConverter.cs" />
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\IconToImageSourceConverter.cs" />
@@ -383,6 +387,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="Controls\SliderWithPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\WebViewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -64,6 +64,11 @@ namespace PlayniteUI.ViewModels
             get => selectedGame;
             set
             {
+                if (value == selectedGame)
+                {
+                    return;
+                }
+
                 SelectedGameDetails?.Dispose();
                 if (value == null)
                 {

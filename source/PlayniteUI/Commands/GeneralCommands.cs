@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,7 +41,7 @@ namespace PlayniteUI.Commands
                 url = "http://" + url;
             }
 
-            System.Diagnostics.Process.Start(url);
+            ProcessStarter.StartUrl(url);
         }
     }
 }

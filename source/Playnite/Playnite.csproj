@@ -172,6 +172,7 @@
     <Compile Include="Database\OldModels\Ver6\Platform.cs" />
     <Compile Include="Database\Collections\CompaniesCollection.cs" />
     <Compile Include="Database\Collections\PlatformsCollection.cs" />
+    <Compile Include="EasyAntiCheat.cs" />
     <Compile Include="Extensions\EmulatorProfileExtensions.cs" />
     <Compile Include="Extensions\GameActionExtensions.cs" />
     <Compile Include="Extensions\GameExtensions.cs" />

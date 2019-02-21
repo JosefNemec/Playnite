@@ -58,6 +58,7 @@
     <Compile Include="DefaultResourceProvider.cs" />
     <Compile Include="Events\GameInstalledEvent.cs" />
     <Compile Include="Events\GameControllerEvent.cs" />
+    <Compile Include="ExpandableVariables.cs" />
     <Compile Include="IDialogsFactory.cs" />
     <Compile Include="ExtensionFunction.cs" />
     <Compile Include="IGameController.cs" />

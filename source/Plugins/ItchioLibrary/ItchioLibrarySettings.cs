@@ -101,8 +101,7 @@ namespace ItchioLibrary
                 if (!Itch.IsInstalled)
                 {
                     api.Dialogs.ShowErrorMessage(
-                        string.Format(api.Resources.FindString("LOCClientNotInstalledError"), "itch.io"),
-                        "");
+                        api.Resources.FindString("LOCItchioClientNotInstalledError"), "");
                     return;
                 }
 

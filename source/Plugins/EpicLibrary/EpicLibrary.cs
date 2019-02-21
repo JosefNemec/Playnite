@@ -35,8 +35,14 @@ namespace EpicLibrary
             var games = new Dictionary<string, GameInfo>();
             foreach (var app in EpicLauncher.GetInstalledAppList())
             {
-                var game = new GameInfo()
+                if (app.AppName.StartsWith("UE_"))
                 {
+                    continue;
+                }            
+
+                var game = new Game()
+                {
+                    Source = "Epic",
                     GameId = app.AppName,
                     Name = Path.GetFileName(app.InstallLocation),
                     InstallDirectory = app.InstallLocation,
@@ -75,6 +81,7 @@ namespace EpicLibrary
 
                 games.Add(new GameInfo()
                 {
+                    Source = "Epic",
                     GameId = gameAsset.appName,
                     Name = catalogItem.title,
                 });                
