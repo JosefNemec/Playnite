@@ -272,15 +272,7 @@ namespace PlayniteUI
             bool existingDb = false;
             if (!AppSettings.FirstTimeWizardComplete)
             {
-                if (PlayniteSettings.IsPortable)
-                {
-                    AppSettings.DatabasePath = @"{PlayniteDir}\library";
-                }
-                else
-                {
-                    AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "library");
-                }
-
+                AppSettings.DatabasePath = GameDatabase.GetDefaultPath(PlayniteSettings.IsPortable);
                 existingDb = Directory.Exists(AppSettings.DatabasePath);
                 AppSettings.SaveSettings();
                 Database.SetDatabasePath(AppSettings.DatabasePath);
@@ -315,6 +307,12 @@ namespace PlayniteUI
             }
             else
             {
+                // This shouldn't even happen, but in case that settings file gets damanged set default path.
+                if (string.IsNullOrEmpty(AppSettings.DatabasePath))
+                {
+                    AppSettings.DatabasePath = GameDatabase.GetDefaultPath(PlayniteSettings.IsPortable);
+                }
+
                 Database.SetDatabasePath(AppSettings.DatabasePath);
             }
 
