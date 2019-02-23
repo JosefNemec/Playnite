@@ -31,6 +31,7 @@ using Newtonsoft.Json;
 using System.Windows.Interop;
 using System.Reflection;
 using TheArtOfDev.HtmlRenderer;
+using Polly;
 
 namespace PlayniteUI
 {
@@ -159,17 +160,22 @@ namespace PlayniteUI
             {
                 try
                 {
-                    var client = new PipeClient(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
-                    if (e.Args.Count() > 0 && e.Args.Contains("-command"))
-                    {
-                        var commandArgs = e.Args[1].Split(new char[] { ':' });
-                        var command = commandArgs[0];
-                        client.InvokeCommand(command, commandArgs.Count() > 1 ? commandArgs[1] : string.Empty);
-                    }
-                    else
-                    {
-                        client.InvokeCommand(CmdlineCommands.Focus, string.Empty);
-                    }
+                    Policy.Handle<Exception>()
+                        .WaitAndRetry(3, a => TimeSpan.FromSeconds(3))
+                        .Execute(() =>
+                        {
+                            var client = new PipeClient(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
+                            if (e.Args.Count() > 0 && e.Args.Contains("-command"))
+                            {
+                                var commandArgs = e.Args[1].Split(new char[] { ':' });
+                                var command = commandArgs[0];
+                                client.InvokeCommand(command, commandArgs.Count() > 1 ? commandArgs[1] : string.Empty);
+                            }
+                            else
+                            {
+                                client.InvokeCommand(CmdlineCommands.Focus, string.Empty);
+                            }
+                        });
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -180,11 +186,22 @@ namespace PlayniteUI
                 }
 
                 logger.Info("Application already running, shutting down.");
-                Quit();
+                resourcesReleased = true;
+                Shutdown(0);
                 return;
             }
             else
             {
+                var curProcess = Process.GetCurrentProcess();
+                var processes = Process.GetProcessesByName(curProcess.ProcessName);
+                if (processes.Count() > 1 && processes.OrderBy(a => a.StartTime).First().Id != curProcess.Id)
+                {
+                    logger.Info("Another faster instance is already running, shutting down.");
+                    resourcesReleased = true;
+                    Shutdown(0);
+                    return;
+                }
+
                 appMutex = new Mutex(true, instanceMuxet);
             }
 
@@ -485,12 +502,12 @@ namespace PlayniteUI
 
         private void ReleaseResources()
         {
-            logger.Debug("Releasing Playnite resources...");
             if (resourcesReleased)
             {
                 return;
             }
 
+            logger.Debug("Releasing Playnite resources...");
             var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), () =>
             {
                 try
