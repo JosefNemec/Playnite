@@ -130,7 +130,7 @@ namespace PlayniteUI
 
             // Figure out range that's visible based on layout algorithm            
             GetVisibleRange(out var firstVisibleItemIndex, out var lastVisibleItemIndex);
-            if (lastVisibleItemIndex == -1)
+            if (lastVisibleItemIndex < 0)
             {
                 return availableSize;
             }
