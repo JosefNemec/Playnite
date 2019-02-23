@@ -15,7 +15,16 @@ namespace Playnite
         public static Process StartUrl(string url)
         {
             logger.Debug($"Opening URL: {url}");
-            return Process.Start(url);
+            try
+            {
+                return Process.Start(url);
+            }
+            catch (Exception e)
+            {
+                // There are some crash report with 0x80004005 error when opening standard URL.
+                logger.Error(e, "Failed to open URL.");
+                return Process.Start("cmd.exe", $"/C start {url}");
+            }
         }
 
         public static Process StartProcess(string path, bool asAdmin = false)
