@@ -2397,7 +2397,14 @@ namespace PlayniteUI.ViewModels
 
             if (mediaId.IsHttpUrl())
             {
-                HttpFileCache.ClearCache(mediaId);
+                try
+                {
+                    HttpFileCache.ClearCache(mediaId);
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to clean file from cache {mediaId}");
+                }
             }
             else
             {
