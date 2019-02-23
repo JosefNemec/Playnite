@@ -44,23 +44,31 @@ namespace Playnite.Common.System
 
         public static bool IsValidFilePath(string path)
         {
-            if (string.IsNullOrEmpty(path))
+            try
             {
+                if (string.IsNullOrEmpty(path))
+                {
+                    return false;
+                }
+
+                if (string.IsNullOrEmpty(Path.GetExtension(path)))
+                {
+                    return false;
+                }
+
+                string drive = Path.GetPathRoot(path);
+                if (!string.IsNullOrEmpty(drive) && !Directory.Exists(drive))
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch
+            {
+                // Any of Path methods can throw exception in case that path is some weird string
                 return false;
             }
-
-            if (string.IsNullOrEmpty(Path.GetExtension(path)))
-            {
-                return false;
-            }
-
-            string drive = Path.GetPathRoot(path);
-            if (!string.IsNullOrEmpty(drive) && !Directory.Exists(drive))
-            {
-                return false;
-            }
-
-            return true;
         }
 
         public static string FixSeparators(string path)
