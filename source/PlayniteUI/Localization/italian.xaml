@@ -26,6 +26,8 @@
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Selezionato - Assegna categoria
 Non Selezionato - Rimuovi categoria
 Indeterminato - Nessuna Modifica (durante la modifica di più giochi)</sys:String>
+  <sys:String x:Key="LOCNoCategory">Nessuna categoria</sys:String>
+  <sys:String x:Key="LOCNoPlatform">Nessuna piattaforma</sys:String>
 
   <sys:String x:Key="LOCCrashWindowTitle">Oh no, è successo qualcosa di brutto...</sys:String>
   <sys:String x:Key="LOCCrashDescription" xml:space="preserve">E' avvenuto un problema irrecuperabile e Playnite è stato bloccato.
@@ -237,6 +239,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
   <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostra il nome del gioco quando la copertina risulta mancante</sys:String>
   <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostra i nomi dei giochi  in copertina</sys:String>
   <sys:String x:Key="LOCSettingsShowIconList">Mostra le icone del gioco nella visualizzazione a Lista</sys:String>
+  <sys:String x:Key="LOCSettingsShowGroupCount">Mostra il conto degli oggetti nelle descrizioni del gruppo</sys:String>
   <sys:String x:Key="LOCSettingsDisableAcceleration">Disattiva l'accelerazione hardware (riavvio richiesto)</sys:String>
   <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Utilizzare quando si presentano scatti o problemi simili nell'interfaccia grafica</sys:String>
   <sys:String x:Key="LOCSettingsDisableDpiAwareness">Disabilita ridimensionamento DPI (richiede il riavvio)</sys:String>
@@ -526,7 +529,7 @@ Puoi provare i seguenti :
   <sys:String x:Key="LOCUpdateError">Errore aggiornamento</sys:String>
   <sys:String x:Key="LOCUpdateCheckFailMessage">Controllo della nuova versione fallito.</sys:String>
   <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Nessuna versione trovata, sei alla versione recente.</sys:String>
-  <sys:String x:Key="LOCGeneralUpdateFailMessage">Scaricamento e installazione aggiornamento fallita.</sys:String>
+  <sys:String x:Key="LOCUGeneralUpdateFailMessage">Scaricamento e installazione aggiornamento fallita.</sys:String>
   <sys:String x:Key="LOCUpdateProgressCancelAsk">Processo di backgorund in corso, desidera annullarlo per procedere all'installazione dell'aggiornamento?</sys:String>
   <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Processo di backgorund in corso, desidera uscire da Playnite?</sys:String>
 
@@ -590,7 +593,9 @@ Puoi provare i seguenti :
 
   <!--itch.io-->
   <sys:String x:Key="LOCItchioSignInNotif">Il client di itch.io sarà aperto. Accedi e chiudi questo messaggio.</sys:String>
-  <sys:String x:Key="LOCItchioSignInWaitMessage">Attendere l'accesso dell'utente, chiudere il messaggio quando ha finito...</sys:String>    
+  <sys:String x:Key="LOCItchioSignInWaitMessage">Attendere per l'accesso dell'utente, chiudere quando ha finito...</sys:String>
+  <sys:String x:Key="LOCItchioClientNotInstalledError">La versione 25 o superiore del client Itch non è installata.</sys:String>
+
 
   <!--GOG-->
   <sys:String x:Key="LOCGOGUseLogin">Login dell'account</sys:String>
