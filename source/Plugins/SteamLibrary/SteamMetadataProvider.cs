@@ -293,7 +293,7 @@ namespace SteamLibrary
             game.Name = metadata.ProductDetails?["common"]["name"]?.Value ?? game.Name;
             game.Links = new ObservableCollection<Link>()
             {
-                new Link("Forum", $"https://steamcommunity.com/app/{appId}/discussions"),
+                new Link("Forum", $"https://steamcommunity.com/app/{appId}"),
                 new Link("News", $"https://store.steampowered.com/news/?appids={appId}"),
                 new Link("Store", $"https://store.steampowered.com/app/{appId}"),
                 new Link("Wiki", $"https://pcgamingwiki.com/api/appid.php?appid={appId}")
