@@ -111,6 +111,7 @@ namespace ItchioLibrary
                     var game = new Game()
                     {
                         PluginId = Id,
+                        Source = "itch.io",
                         GameId = cave.game.id.ToString(),
                         Name = cave.game.title,
                         InstallDirectory = installDir,
@@ -172,6 +173,7 @@ namespace ItchioLibrary
                         var game = new Game()
                         {
                             PluginId = Id,
+                            Source = "itch.io",
                             GameId = key.game.id.ToString(),
                             Name = key.game.title,
                             CoverImage = key.game.coverUrl
