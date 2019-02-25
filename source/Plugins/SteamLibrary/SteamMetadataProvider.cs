@@ -231,7 +231,7 @@ namespace SteamLibrary
             }
 
             // Image
-            var imageRoot = @"http://cdn.akamai.steamstatic.com/steam/apps/{0}/header.jpg";
+            var imageRoot = @"https://steamcdn-a.akamaihd.net/steam/apps/{0}/header.jpg";
             var imageUrl = string.Format(imageRoot, appId);
             byte[] imageData = null;
 
@@ -293,10 +293,10 @@ namespace SteamLibrary
             game.Name = metadata.ProductDetails?["common"]["name"]?.Value ?? game.Name;
             game.Links = new ObservableCollection<Link>()
             {
-                new Link("Forum", @"https://steamcommunity.com/app/" + appId),
-                new Link("News", @"http://store.steampowered.com/news/?appids=" + appId),
-                new Link("Store", @"http://store.steampowered.com/app/" + appId),
-                new Link("Wiki", @"http://pcgamingwiki.com/api/appid.php?appid=" + appId)
+                new Link("Forum", $"https://steamcommunity.com/app/{appId}"),
+                new Link("News", $"https://store.steampowered.com/news/?appids={appId}"),
+                new Link("Store", $"https://store.steampowered.com/app/{appId}"),
+                new Link("Wiki", $"https://pcgamingwiki.com/api/appid.php?appid={appId}")
             };
 
             if (metadata.StoreDetails?.categories?.FirstOrDefault(a => a.id == 30) != null)
