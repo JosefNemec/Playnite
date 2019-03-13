@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{25019444-ECFB-43A0-9FE3-C4E59FA6F0AF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DiscordLibrary</RootNamespace>
+    <AssemblyName>DiscordLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\playniteui\commands\GeneralCommands.cs">
+      <Link>Commands\GeneralCommands.cs</Link>
+    </Compile>
+    <Compile Include="..\..\playniteui\commands\RelayCommand.cs">
+      <Link>Commands\RelayCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\playniteui\converters\EnumConverter.cs">
+      <Link>Converter\EnumConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\playniteui\converters\NegateConverter.cs">
+      <Link>Converter\NegateConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\BaseGameController.cs">
+      <Link>BaseGameController.cs</Link>
+    </Compile>
+    <Compile Include="Discord.cs" />
+    <Compile Include="Models\FeatureTypes.cs" />
+    <Compile Include="Models\Genres.cs" />
+    <Compile Include="Models\Sku.cs" />
+    <Compile Include="Services\DiscordAccountClient.cs" />
+    <Compile Include="DiscordClient.cs" />
+    <Compile Include="DiscordGameController.cs" />
+    <Compile Include="DiscordLibrary.cs" />
+    <Compile Include="DiscordLibrarySettings.cs" />
+    <Compile Include="DiscordMetadataProvider.cs" />
+    <Compile Include="DiscordLibrarySettingsView.xaml.cs">
+      <DependentUpon>DiscordLibrarySettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Application.cs" />
+    <Compile Include="Models\StoreListing.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="extension.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Playnite.Common\Playnite.Common.csproj">
+      <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
+      <Name>Playnite.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PlayniteSDK\Playnite.SDK.csproj">
+      <Project>{19BC9097-5705-4352-90E2-99F0C63230D0}</Project>
+      <Name>Playnite.SDK</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BuildCopyExclude.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\discordicon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="DiscordLibrarySettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

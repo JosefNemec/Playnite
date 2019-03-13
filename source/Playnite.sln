@@ -105,6 +105,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.Tests", "Tests\Pla
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.DesktopApp.Tests", "Tests\Playnite.DesktopApp.Tests\Playnite.DesktopApp.Tests.csproj", "{CAA480E1-7AB2-4DA9-980F-6F935AB7FA69}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DiscordLibrary", "DiscordLibrary", "{2DCE5808-5EE7-47A1-A3DB-7E6D91F8A20A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordLibrary", "Plugins\DiscordLibrary\DiscordLibrary.csproj", "{25019444-ECFB-43A0-9FE3-C4E59FA6F0AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -346,6 +349,14 @@ Global
 		{CAA480E1-7AB2-4DA9-980F-6F935AB7FA69}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CAA480E1-7AB2-4DA9-980F-6F935AB7FA69}.Release|x86.ActiveCfg = Release|Any CPU
 		{CAA480E1-7AB2-4DA9-980F-6F935AB7FA69}.Release|x86.Build.0 = Release|Any CPU
+		{25019444-ECFB-43A0-9FE3-C4E59FA6F0AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25019444-ECFB-43A0-9FE3-C4E59FA6F0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25019444-ECFB-43A0-9FE3-C4E59FA6F0AF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{25019444-ECFB-43A0-9FE3-C4E59FA6F0AF}.Debug|x86.Build.0 = Debug|Any CPU
+		{25019444-ECFB-43A0-9FE3-C4E59FA6F0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25019444-ECFB-43A0-9FE3-C4E59FA6F0AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25019444-ECFB-43A0-9FE3-C4E59FA6F0AF}.Release|x86.ActiveCfg = Release|Any CPU
+		{25019444-ECFB-43A0-9FE3-C4E59FA6F0AF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -385,6 +396,8 @@ Global
 		{45CBA566-ABB0-4460-B6AC-5B83EAAB5C0B} = {A55A55BB-F795-41BC-8A58-D683F3EFAAEB}
 		{F15B7D48-7F9C-406A-825C-B47BB9A5BF4B} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
 		{CAA480E1-7AB2-4DA9-980F-6F935AB7FA69} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
+		{2DCE5808-5EE7-47A1-A3DB-7E6D91F8A20A} = {799A52BB-1932-4CAB-B4DD-B3F3146756E3}
+		{25019444-ECFB-43A0-9FE3-C4E59FA6F0AF} = {2DCE5808-5EE7-47A1-A3DB-7E6D91F8A20A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3300FF38-9F6F-4C0F-87F3-776D6C64846D}
