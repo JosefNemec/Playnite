@@ -4,11 +4,10 @@ using Playnite.SDK;
 using PlayniteUI.Commands;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Drawing;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace PlayniteUI.ViewModels
 {
@@ -150,6 +149,25 @@ namespace PlayniteUI.ViewModels
                 window.Close();
                 return;
             }
+        }
+
+        public static void NotifyInWindows()
+        {
+            var notifyIcon = new NotifyIcon
+            {
+                Visible = true,
+                Icon = Icon.ExtractAssociatedIcon(@"PlayniteUI.exe"),
+                BalloonTipTitle = DefaultResourceProvider.FindString("LOCUpdaterWindowTitle"),
+                BalloonTipText = DefaultResourceProvider.FindString("LOCUpdateIsAvailableNotificationBody")
+            };
+            notifyIcon.BalloonTipClicked += RestoreMainWindow;
+
+            notifyIcon.ShowBalloonTip(5000);
+        }
+
+        private static void RestoreMainWindow(object a, EventArgs e)
+        {
+            App.CurrentApp.MainViewWindow.RestoreWindow();
         }
     }
 }

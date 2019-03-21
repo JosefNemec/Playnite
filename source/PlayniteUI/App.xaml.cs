@@ -352,7 +352,7 @@ namespace PlayniteUI
             // Update and stats
             if (!PlayniteEnvironment.InOfflineMode)
             {
-                CheckUpdate();
+                NotifyIfUpdateIsAvailableDelayed();
                 SendUsageData();
             }
 
@@ -435,7 +435,7 @@ namespace PlayniteUI
             }
         }
 
-        private async void CheckUpdate()
+        private async void NotifyIfUpdateIsAvailableDelayed()
         {
             await Task.Delay(Playnite.Timer.SecondsToMilliseconds(10));
             if (GlobalTaskHandler.IsActive)
@@ -453,11 +453,16 @@ namespace PlayniteUI
                     {
                         if (updater.IsUpdateAvailable)
                         {
-                            Dispatcher.Invoke(() =>
+                            if (!CurrentApp.IsActive)
                             {
-                                var model = new UpdateViewModel(updater, UpdateWindowFactory.Instance, new DefaultResourceProvider(), dialogs);
-                                model.OpenView();
-                            });
+                                UpdateViewModel.NotifyInWindows();
+                            }
+                            else
+                            {
+                                Api.Notifications.Add(new NotificationMessage("UpdateAvailable",
+                                    DefaultResourceProvider.FindString("LOCUpdateIsAvailableNotificationBody"),
+                                    NotificationType.Info, null));
+                            }
                         }
                     }
                     catch (Exception exc)
