@@ -2,12 +2,10 @@
 using Playnite.Input;
 using Playnite.SDK;
 using Playnite.Plugins;
-using Playnite.Settings;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,8 +13,6 @@ using System.Diagnostics;
 using Playnite.Database;
 using Playnite.API;
 using TheArtOfDev.HtmlRenderer;
-using Playnite.SDK.Models;
-using Playnite.WebView;
 using Playnite.Services;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -140,6 +136,8 @@ namespace Playnite
         public abstract void Restore();
 
         public abstract void Minimize();
+
+        public abstract void NotifyInWindows(string title, string body);
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
         {
@@ -442,15 +440,17 @@ namespace Playnite
                     {
                         if (updater.IsUpdateAvailable)
                         {
-                            CurrentNative.Dispatcher.Invoke(() =>
+                            var updateTitle = ResourceProvider.GetString("LOCUpdaterWindowTitle");
+                            var updateBody = ResourceProvider.GetString("LOCUpdateIsAvailableNotificationBody");
+                            if (!Current.IsActive)
                             {
-                                var model = new UpdateViewModel(
-                                    updater,
-                                    new UpdateWindowFactory(),
-                                    new ResourceProvider(),
-                                    Dialogs);
-                                model.OpenView();
-                            });
+                                NotifyInWindows(updateTitle, updateBody);
+                            }
+                            else
+                            {
+                                Api.Notifications.Add(new NotificationMessage("UpdateAvailable", updateBody,
+                                    NotificationType.Info, null));
+                            }
                         }
                     }
                     catch (Exception exc)

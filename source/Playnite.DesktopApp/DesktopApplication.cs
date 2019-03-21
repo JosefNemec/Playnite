@@ -230,5 +230,13 @@ namespace Playnite.DesktopApp
 
             return isFirstStart;
         }
+
+        public override void NotifyInWindows(string title, string body)
+        {
+            var icon = new Icon(ThemeFile.GetFilePath("Images/applogo.ico", ThemeManager.DefaultTheme,
+                ThemeManager.CurrentTheme));
+            trayIcon.ShowBalloonTip(title, body, icon, true);
+
+        }
     }
 }
