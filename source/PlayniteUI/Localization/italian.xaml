@@ -189,7 +189,7 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
   <sys:String x:Key="LOCProgressBattleNetLibImport">Scaricamento aggiornamenti libreria di Battle.net...</sys:String>
   <sys:String x:Key="LOCProgressMetadata">Scaricamento metadata...</sys:String>
   <sys:String x:Key="LOCProgressInstalledGames">Importazione dei giochi installati...</sys:String>
-  <sys:String x:Key="LOCProgressImportinGames">Immportazione di {0} giochi...</sys:String>
+  <sys:String x:Key="LOCProgressImportinGames">Importazione di {0} giochi...</sys:String>
   <sys:String x:Key="LOCProgressLibraryGames">Scaricamento degli aggiornamenti della libreria...</sys:String>
   <sys:String x:Key="LOCProgressSteamCategoryImport">Scaricamento degli aggiornamenti della libreria</sys:String>
   <sys:String x:Key="LOCProgressLibImportFinish">Aggiornamento libreria completato</sys:String>
