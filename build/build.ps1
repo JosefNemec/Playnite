@@ -140,12 +140,12 @@ if (!$SkipBuild)
     }
 
     # Restore NuGet packages
-    if (-not (Test-Path "nuget.exe"))
+    if (-not (Get-Command -Name "nuget" -Type Application -ErrorAction Ignore))
     {
         Invoke-WebRequest -Uri $NugetUrl -OutFile "nuget.exe"
     }
 
-    $nugetProc = Start-Process "nuget.exe" "restore ..\source\Playnite.sln" -PassThru -NoNewWindow
+    $nugetProc = Start-Process "nuget" "restore ..\source\Playnite.sln" -PassThru -NoNewWindow
     $handle = $nugetProc.Handle
     $nugetProc.WaitForExit()
 
