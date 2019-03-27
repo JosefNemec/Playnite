@@ -1,7 +1,5 @@
 ﻿using ItchioLibrary.Models;
-using Playnite;
 using Playnite.Common;
-using Playnite.Common.System;
 using System;
 using System.Collections.Generic;
 using System.IO;

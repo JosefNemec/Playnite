@@ -74,5 +74,30 @@ namespace PlayniteTests
         {
             Assert.Fail();
         }
+
+        [Test]
+        public void GetCommonItemsTest()
+        {
+            List<int> list1 = new List<int> { 1, 2, 3, 4, };
+            List<int> list2 = new List<int> { 1, 2, 3 };
+            List<int> list3 = new List<int> { 1, 2 };
+            var common = ListExtensions.GetCommonItems(new List<List<int>> { list1, list2, list3 }).ToArray();
+            Assert.AreEqual(2, common.Count());
+            Assert.AreEqual(1, common[0]);
+            Assert.AreEqual(2, common[1]);
+        }
+
+        [Test]
+        public void GetDistinctItemsTest()
+        {
+            List<int> list1 = new List<int> { 1, 2, 3, 4, };
+            List<int> list2 = new List<int> { 1, 2 };
+            List<int> list3 = new List<int> { 1, 2, 5};
+            var distinct = ListExtensions.GetDistinctItems(new List<List<int>> { list1, list2, list3 }).ToArray();
+            Assert.AreEqual(3, distinct.Count());
+            Assert.AreEqual(3, distinct[0]);
+            Assert.AreEqual(4, distinct[1]);
+            Assert.AreEqual(5, distinct[2]);
+        }
     }
 }

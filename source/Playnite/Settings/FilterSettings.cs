@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Playnite.Common;
 
 namespace Playnite
 {
@@ -27,7 +28,7 @@ namespace Playnite
         }
     }
         
-    public class FilterItemProperites
+    public class FilterItemProperites : ObservableObject
     {
         [JsonIgnore]
         public List<string> Texts { get; private set; }
@@ -35,7 +36,17 @@ namespace Playnite
         [JsonIgnore]
         public bool IsSet => !Text.IsNullOrEmpty() || Ids?.Any() == true;
 
-        public List<Guid> Ids { get; set; }
+        private List<Guid> ids;
+        public List<Guid> Ids
+        {
+            get => ids;
+            set
+            {
+                ids = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsSet));
+            }
+        }
 
         private string text;
         public string Text
@@ -53,7 +64,15 @@ namespace Playnite
                 {
                     Texts = null;
                 }
+
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsSet));
+                OnPropertyChanged(nameof(Texts));
             }
+        }
+
+        public FilterItemProperites()
+        {
         }
     }
 
@@ -66,7 +85,7 @@ namespace Playnite
         }
 
         [JsonIgnore]
-        public bool Active
+        public bool IsActive
         {
             get
             {
@@ -104,25 +123,25 @@ namespace Playnite
                 name = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(Name));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
                 OnPropertyChanged(nameof(SearchActive));
             }
         }
 
-        private FilterItemProperites genres;
+        private FilterItemProperites genre;
         public FilterItemProperites Genre
         {
             get
             {
-                return genres;
+                return genre;
             }
 
             set
             {
-                genres = value;
+                genre = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(Genre));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
@@ -139,7 +158,7 @@ namespace Playnite
                 platforms = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(Platform));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
@@ -156,7 +175,7 @@ namespace Playnite
                 releaseDate = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(ReleaseDate));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
@@ -174,7 +193,7 @@ namespace Playnite
                 publishers = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(Publisher));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
@@ -191,7 +210,7 @@ namespace Playnite
                 developers = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(Developer));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
@@ -208,7 +227,7 @@ namespace Playnite
                 categories = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(Category));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
@@ -225,7 +244,7 @@ namespace Playnite
                 tags = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(Tag));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
@@ -242,7 +261,7 @@ namespace Playnite
                 series = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(Series));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
@@ -259,7 +278,7 @@ namespace Playnite
                 region = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(Region));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
@@ -276,7 +295,7 @@ namespace Playnite
                 source = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(Source));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
@@ -293,7 +312,7 @@ namespace Playnite
                 ageRating = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(AgeRating));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
@@ -310,7 +329,7 @@ namespace Playnite
                 isInstalled = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(IsInstalled));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
@@ -327,7 +346,7 @@ namespace Playnite
                 isUnInstalled = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(IsUnInstalled));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
@@ -344,7 +363,7 @@ namespace Playnite
                 hidden = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(Hidden));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
@@ -361,7 +380,7 @@ namespace Playnite
                 favorite = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(Favorite));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
         
@@ -378,7 +397,7 @@ namespace Playnite
                 library = value;
                 OnPropertyChanged();
                 OnFilterChanged(nameof(Library));
-                OnPropertyChanged(nameof(Active));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 

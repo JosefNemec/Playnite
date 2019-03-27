@@ -6,13 +6,13 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite
+namespace System
 {
-    public class Enums
+    public static class EnumExtensions
     {
-        public static string GetEnumDescription(Enum value)
+        public static string GetDescription(this Enum source)
         {
-            FieldInfo field = value.GetType().GetField(value.ToString());
+            FieldInfo field = source.GetType().GetField(source.ToString());
             var attributes = (DescriptionAttribute[])field.GetCustomAttributes(typeof(DescriptionAttribute), false);
             if (attributes != null && attributes.Length > 0)
             {
@@ -20,7 +20,7 @@ namespace Playnite
             }
             else
             {
-                return value.ToString();
+                return source.ToString();
             }
         }
     }

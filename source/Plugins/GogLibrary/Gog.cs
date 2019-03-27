@@ -1,5 +1,5 @@
 ﻿using Microsoft.Win32;
-using Playnite.Web;
+using Playnite.Common.Web;
 using System;
 using System.Collections.Generic;
 using System.IO;

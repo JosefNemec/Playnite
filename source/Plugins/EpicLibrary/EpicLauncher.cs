@@ -5,10 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EpicLibrary.Models;
-using Playnite;
 using Playnite.Common;
-using Playnite.Common.System;
-using Playnite.SDK;
 
 namespace EpicLibrary
 {

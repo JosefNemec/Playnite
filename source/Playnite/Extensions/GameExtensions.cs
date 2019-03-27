@@ -1,4 +1,4 @@
-﻿using Playnite.Common.System;
+﻿using Playnite.Common;
 using Playnite.SDK.Models;
 using Playnite.Settings;
 using System;
@@ -24,7 +24,7 @@ namespace Playnite
 
             if (string.Equals(Path.GetExtension(path), ".lnk", StringComparison.OrdinalIgnoreCase))
             {
-                var prog = Common.System.Programs.ParseShortcut(path);
+                var prog = Programs.ParseShortcut(path);
                 var file = new FileInfo(prog.Path);
                 var versionInfo = FileVersionInfo.GetVersionInfo(prog.Path);
                 var programName = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : new DirectoryInfo(file.DirectoryName).Name;

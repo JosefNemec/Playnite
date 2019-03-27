@@ -55,7 +55,7 @@
     <Compile Include="Collections\RangeObservableCollection.cs" />
     <Compile Include="Database\IGameDatabase.cs" />
     <Compile Include="Database\IItemCollection.cs" />
-    <Compile Include="DefaultResourceProvider.cs" />
+    <Compile Include="ResourceProvider.cs" />
     <Compile Include="Events\GameInstalledEvent.cs" />
     <Compile Include="Events\GameControllerEvent.cs" />
     <Compile Include="ExpandableVariables.cs" />

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net.Http;
 
-namespace Playnite.Web
+namespace Playnite.Common.Web
 {
     public class HttpDownloader
     {

@@ -1,14 +1,13 @@
 ﻿using Newtonsoft.Json.Linq;
 using OriginLibrary.Models;
 using OriginLibrary.Services;
-using Playnite;
 using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
-using Playnite.Web;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;

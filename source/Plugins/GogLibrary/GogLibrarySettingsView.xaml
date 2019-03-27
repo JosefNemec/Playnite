@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GogLibrary"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:pui="clr-namespace:PlayniteUI"
-             xmlns:pcmd="clr-namespace:PlayniteUI.Commands"
+             xmlns:pcon="clr-namespace:Playnite.Converters"
+             xmlns:pcmd="clr-namespace:Playnite.Commands"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
     
@@ -17,7 +17,7 @@
     </d:DesignerProperties.DesignStyle>
 
     <UserControl.Resources>
-        <pui:NegateConverter x:Key="NegateConverter" />
+        <pcon:NegateConverter x:Key="NegateConverter" />
         <sys:Boolean x:Key="True">True</sys:Boolean>
         <sys:Boolean x:Key="False">False</sys:Boolean>
     </UserControl.Resources>
@@ -53,7 +53,7 @@
                         </PriorityBinding>
                     </TextBlock.Tag>
                     <TextBlock.Style>
-                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                        <Style TargetType="TextBlock">
                             <Style.Triggers>
                                 <Trigger Property="Tag" Value="{StaticResource True}">
                                     <Setter Property="Text" Value="{DynamicResource LOCLoggedIn}" />
@@ -79,7 +79,7 @@
 
             <TextBlock VerticalAlignment="Center" Margin="10">
                         <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-GOG-account-name"
-                                   Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                   Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                                    CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                             <Run Text="{DynamicResource LOCTroubleShootingAccountLink}" />
                         </Hyperlink>

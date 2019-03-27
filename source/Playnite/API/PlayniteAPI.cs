@@ -3,6 +3,7 @@ using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using Playnite.Settings;
+using Playnite.Common;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

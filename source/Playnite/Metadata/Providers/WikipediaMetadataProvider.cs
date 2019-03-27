@@ -10,9 +10,9 @@ using AngleSharp.Dom;
 using AngleSharp.Parser.Html;
 using Newtonsoft.Json;
 using NLog;
+using Playnite.Common.Web;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
-using Playnite.Web;
 
 namespace Playnite.Metadata.Providers
 {

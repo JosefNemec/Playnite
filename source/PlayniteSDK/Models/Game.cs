@@ -13,6 +13,62 @@ using Newtonsoft.Json;
 
 namespace Playnite.SDK.Models
 {
+    public enum GameField
+    {
+        BackgroundImage,
+        Description,
+        GenreIds,
+        Hidden,
+        Favorite,
+        Icon,
+        CoverImage,
+        InstallDirectory,
+        GameImagePath,
+        LastActivity,
+        SortingName,
+        Gameid,
+        PluginId,
+        OtherActions,
+        PlayAction,
+        PlatformId,
+        PublisherIds,
+        DeveloperIds,
+        ReleaseDate,
+        CategoryIds,
+        TagIds,
+        Links,
+        IsInstalling,
+        IsUninstalling,
+        IsLaunching,
+        IsRunning,
+        IsInstalled,
+        IsCustomGame,
+        Playtime,
+        Added,
+        Modified,
+        PlayCount,
+        SeriesId,
+        Version,
+        AgeRatingId,
+        RegionId,
+        SourceId,
+        CompletionStatus,
+        UserScore,
+        CriticScore,
+        CommunityScore,
+        Genres,
+        Developers,
+        Publishers,
+        Tags,
+        Categories,
+        Platform,
+        Series,
+        AgeRating,
+        Region,
+        Source,
+        ReleaseYear
+    }
+
     /// <summary>
     /// Represents Playnite game object.
     /// </summary>
@@ -752,8 +808,8 @@ namespace Playnite.SDK.Models
         public List<Genre> Genres
         {
             get
-            {
-                if (genreIds?.Any() == true)
+            {                
+                if (genreIds?.Any() == true && DatabaseReference != null)
                 {
                     return new List<Genre>(DatabaseReference?.Genres.Where(a => genreIds.Contains(a.Id)));
                 }
@@ -767,7 +823,7 @@ namespace Playnite.SDK.Models
         {
             get
             {
-                if (developerIds?.Any() == true)
+                if (developerIds?.Any() == true && DatabaseReference != null)
                 {
                     return new List<Company>(DatabaseReference?.Companies.Where(a => developerIds.Contains(a.Id)));
                 }
@@ -781,7 +837,7 @@ namespace Playnite.SDK.Models
         {
             get
             {
-                if (publisherIds?.Any() == true)
+                if (publisherIds?.Any() == true && DatabaseReference != null)
                 {
                     return new List<Company>(DatabaseReference?.Companies.Where(a => publisherIds.Contains(a.Id)));
                 }
@@ -795,7 +851,7 @@ namespace Playnite.SDK.Models
         {
             get
             {
-                if (tagIds?.Any() == true)
+                if (tagIds?.Any() == true && DatabaseReference != null)
                 {
                     return new List<Tag>(DatabaseReference?.Tags.Where(a => tagIds.Contains(a.Id)));
                 }
@@ -809,7 +865,7 @@ namespace Playnite.SDK.Models
         {
             get
             {
-                if (categoryIds?.Any() == true)
+                if (categoryIds?.Any() == true && DatabaseReference != null)
                 {
                     return new List<Category>(DatabaseReference?.Categories.Where(a => categoryIds.Contains(a.Id)));                    
                 }

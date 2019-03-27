@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System
+namespace System.Collections.Generic
 {
     public static class ListExtensions
     {
@@ -112,6 +112,45 @@ namespace System
             }
 
             return true;
+        }
+
+        public static HashSet<T> GetCommonItems<T>(IEnumerable<IEnumerable<T>> lists)
+        {
+            if (lists?.Any() != true || lists?.First()?.Any() != true)
+            {
+                return new HashSet<T>();
+            }
+
+            var set = new HashSet<T>(lists.First());
+            foreach (var list in lists)
+            {
+                if (list != null)
+                {
+                    set.IntersectWith(list);
+                }
+            }
+
+            return set;
+        }
+
+        public static HashSet<T> GetDistinctItems<T>(IEnumerable<IEnumerable<T>> lists)
+        {
+            if (lists?.Any() != true)
+            {
+                return new HashSet<T>();
+            }
+
+            var set = new List<T>();
+            foreach (var list in lists)
+            {
+                if (list != null)
+                {
+                    set.AddRange(list);
+                }
+            }
+
+            var listsCounts = lists.Count();
+            return new HashSet<T>(set.GroupBy(a => a).Where(a => a.Count() < listsCounts).Select(a => a.Key));
         }
     }
 }

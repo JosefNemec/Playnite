@@ -1,6 +1,4 @@
-﻿using Microsoft.Win32;
-using Playnite.Common.System;
-using Playnite.SDK;
+﻿using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
@@ -119,7 +117,7 @@ namespace BethesdaLibrary
                     logger.Error(e, "Failed to import uninstalled Bethesda games.");
                     playniteApi.Notifications.Add(
                         dbImportMessageId,
-                        string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) +
+                        string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                         System.Environment.NewLine + e.Message,
                         NotificationType.Error);
                 }

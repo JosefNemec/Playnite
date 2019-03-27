@@ -1,7 +1,5 @@
 ﻿using Microsoft.Win32;
-using Playnite;
-using Playnite.Common.System;
-using Playnite.SDK.Models;
+using Playnite.Common;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

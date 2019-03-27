@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NLog;
 using System.Windows;
-using Playnite.App;
 using Flurl;
-using Playnite.Web;
 using System.Net;
+using Playnite.Common;
+using Playnite.Common.Web;
 using Playnite.Settings;
 
-namespace Playnite.App
+namespace Playnite
 {
     public class Updater
     {

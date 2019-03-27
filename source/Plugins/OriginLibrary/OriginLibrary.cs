@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using OriginLibrary.Models;
 using OriginLibrary.Services;
 using Playnite;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
@@ -436,7 +437,7 @@ namespace OriginLibrary
             {
                 playniteApi.Notifications.Add(
                     dbImportMessageId,
-                    string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) +
+                    string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
                     NotificationType.Error);
             }

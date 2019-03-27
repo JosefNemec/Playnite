@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using Playnite.Common.System;
+﻿using Playnite.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;

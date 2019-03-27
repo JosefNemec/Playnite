@@ -125,7 +125,7 @@ namespace UplayLibrary
                     logger.Error(e, "Failed to import uninstalled Uplay games.");
                     playniteApi.Notifications.Add(
                         dbImportMessageId,
-                        string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) +
+                        string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                         System.Environment.NewLine + e.Message,
                         NotificationType.Error);
                 }

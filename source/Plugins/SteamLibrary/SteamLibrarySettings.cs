@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PlayniteUI.Commands;
+using Playnite.Commands;
 using SteamLibrary.Models;
 using Playnite.SDK;
 
@@ -105,7 +105,7 @@ namespace SteamLibrary
 
             if (ImportUninstalledGames && IdSource == SteamIdSource.Name && string.IsNullOrEmpty(AccountName))
             {
-                errors.Add(api.Resources.FindString("LOCSettingsInvalidAccountName"));
+                errors.Add(api.Resources.GetString("LOCSettingsInvalidAccountName"));
                 allValid = false;
             }
 

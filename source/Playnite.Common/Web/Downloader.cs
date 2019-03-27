@@ -7,7 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite.Web
+namespace Playnite.Common.Web
 {
     public interface IDownloader
     {

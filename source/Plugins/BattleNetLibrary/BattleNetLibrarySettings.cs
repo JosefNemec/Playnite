@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Playnite;
 using Playnite.SDK;
-using PlayniteUI.Commands;
+using Playnite.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;

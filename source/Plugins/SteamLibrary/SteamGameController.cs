@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -114,7 +115,7 @@ namespace SteamLibrary
                     return;
                 }
 
-                await Task.Delay(Playnite.Timer.SecondsToMilliseconds(10));
+                await Task.Delay(Playnite.Common.Timer.SecondsToMilliseconds(10));
             }
         }
 
@@ -139,7 +140,7 @@ namespace SteamLibrary
                     return;
                 }
 
-                await Task.Delay(Playnite.Timer.SecondsToMilliseconds(5));
+                await Task.Delay(Playnite.Common.Timer.SecondsToMilliseconds(5));
             }
         }
 

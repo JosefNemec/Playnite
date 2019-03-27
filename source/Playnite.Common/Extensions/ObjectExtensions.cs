@@ -26,10 +26,20 @@ namespace System
                 return true;
             }
         }
-        
+
+        public static T CrateInstance<T>(this Type type)
+        {
+            return (T)Activator.CreateInstance(type);
+        }
+
         public static T CrateInstance<T>(this Type type, params object[] parameters)
         {
             return (T)Activator.CreateInstance(type, parameters);
+        }
+
+        public static bool Implements<TType>(this object source)
+        {
+            return typeof(TType).IsAssignableFrom(source.GetType());
         }
     }
 }

@@ -9,11 +9,21 @@ using System.Threading.Tasks;
 
 namespace Playnite
 {
+
+    public class MultiEditGame : Game
+    {
+        public List<Guid> DistinctGenreIds { get; set; }
+        public List<Guid> DistinctDeveloperIds { get; set; }
+        public List<Guid> DistinctPublisherIds { get; set; }
+        public List<Guid> DistinctCategoryIds { get; set; }
+        public List<Guid> DistinctTagIds { get; set; }
+    }
+
     public class GameTools
     {
-        public static Game GetMultiGameEditObject(IEnumerable<Game> games)
+        public static MultiEditGame GetMultiGameEditObject(IEnumerable<Game> games)
         {
-            var dummyGame = new Game();
+            var dummyGame = new MultiEditGame();
             if (games?.Any() != true)
             {
                 return dummyGame;
@@ -33,40 +43,25 @@ namespace Playnite
                 dummyGame.SortingName = firstSortingName;
             }
 
-            var firstGenres = firstGame.GenreIds;
-            if (games.All(a => a.GenreIds.IsListEqual(firstGenres) == true))
-            {
-                dummyGame.GenreIds = firstGenres;
-            }
+            dummyGame.GenreIds = ListExtensions.GetCommonItems(games.Select(a => a.GenreIds)).ToList();
+            dummyGame.DistinctGenreIds = ListExtensions.GetDistinctItems(games.Select(a => a.GenreIds)).ToList();
+
+            dummyGame.DeveloperIds = ListExtensions.GetCommonItems(games.Select(a => a.DeveloperIds)).ToList();
+            dummyGame.DistinctDeveloperIds = ListExtensions.GetDistinctItems(games.Select(a => a.DeveloperIds)).ToList();
+
+            dummyGame.PublisherIds = ListExtensions.GetCommonItems(games.Select(a => a.PublisherIds)).ToList();
+            dummyGame.DistinctPublisherIds = ListExtensions.GetDistinctItems(games.Select(a => a.PublisherIds)).ToList();
+
+            dummyGame.CategoryIds = ListExtensions.GetCommonItems(games.Select(a => a.CategoryIds)).ToList();
+            dummyGame.DistinctCategoryIds = ListExtensions.GetDistinctItems(games.Select(a => a.CategoryIds)).ToList();
+
+            dummyGame.TagIds = ListExtensions.GetCommonItems(games.Select(a => a.TagIds)).ToList();
+            dummyGame.DistinctTagIds = ListExtensions.GetDistinctItems(games.Select(a => a.TagIds)).ToList();
 
             var firstReleaseDate = firstGame.ReleaseDate;
             if (games.All(a => a.ReleaseDate == firstReleaseDate) == true)
             {
                 dummyGame.ReleaseDate = firstReleaseDate;
-            }
-
-            var firstDeveloper = firstGame.DeveloperIds;
-            if (games.All(a => a.DeveloperIds.IsListEqual(firstDeveloper) == true))
-            {
-                dummyGame.DeveloperIds = firstDeveloper;
-            }
-
-            var firstPublisher = firstGame.PublisherIds;
-            if (games.All(a => a.PublisherIds.IsListEqual(firstPublisher) == true))
-            {
-                dummyGame.PublisherIds = firstPublisher;
-            }
-
-            var firstCat = firstGame.CategoryIds;
-            if (games.All(a => a.CategoryIds.IsListEqual(firstCat) == true))
-            {
-                dummyGame.CategoryIds = firstCat;
-            }
-
-            var firstTag = firstGame.TagIds;
-            if (games.All(a => a.TagIds.IsListEqual(firstTag) == true))
-            {
-                dummyGame.TagIds = firstTag;
             }
 
             var firstDescription = firstGame.Description;

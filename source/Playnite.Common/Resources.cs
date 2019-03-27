@@ -10,7 +10,7 @@ using System.Windows;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
 
-namespace Playnite
+namespace Playnite.Common
 {
     public class Resources
     {

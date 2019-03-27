@@ -262,14 +262,14 @@ namespace ItchioLibrary
             else
             {
                 importError = new Exception(
-                    playniteApi.Resources.FindString("LOCItchioClientNotInstalledError"));
+                    playniteApi.Resources.GetString("LOCItchioClientNotInstalledError"));
             }
 
             if (importError != null)
             {
                 playniteApi.Notifications.Add(
                     dbImportMessageId,
-                    string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) +
+                    string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
                     NotificationType.Error);
             }

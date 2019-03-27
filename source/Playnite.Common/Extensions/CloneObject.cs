@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Reflection;
 
-namespace Playnite
+namespace System
 {
     public static class CloneObject
     {

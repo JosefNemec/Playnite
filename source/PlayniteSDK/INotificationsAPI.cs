@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Playnite.SDK
 {
@@ -12,6 +13,11 @@ namespace Playnite.SDK
     /// </summary>
     public class NotificationMessage
     {
+        public ICommand ActivationCommand
+        {
+            get;
+        }
+
         /// <summary>
         /// Gets notification id.
         /// </summary>
@@ -60,13 +66,13 @@ namespace Playnite.SDK
         /// <param name="id">Notification id.</param>
         /// <param name="text">Notification text.</param>
         /// <param name="type">Notification type.</param>
-        /// <param name="action">Action to be invoked when notification is activated.</param>
-        public NotificationMessage(string id, string text, NotificationType type, Action action)
+        /// <param name="command">Action to be invoked when notification is activated.</param>
+        public NotificationMessage(string id, string text, NotificationType type, ICommand command)
         {
             Id = id;
             Text = text;
             Type = type;
-            InvokeAction = action;
+            ActivationCommand = command;
         }
     }
 

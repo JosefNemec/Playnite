@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:steam="clr-namespace:SteamLibrary"
-             xmlns:pcmd="clr-namespace:PlayniteUI.Commands"
-             xmlns:pui="clr-namespace:PlayniteUI"
+             xmlns:pcmd="clr-namespace:Playnite.Commands"
+             xmlns:pcon="clr-namespace:Playnite.Converters"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"              
              d:DesignHeight="400" d:DesignWidth="600">
@@ -17,8 +17,8 @@
     </d:DesignerProperties.DesignStyle>
 
     <UserControl.Resources>
-        <pui:NegateConverter x:Key="NegateConverter" />
-        <pui:EnumConverter x:Key="EnumConverter" />
+        <pcon:NegateConverter x:Key="NegateConverter" />
+        <pcon:EnumToBooleanConverter x:Key="EnumConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
@@ -90,7 +90,7 @@
                 <TextBox Text="{Binding ApiKey}" Width="200" VerticalAlignment="Center" Margin="10,0,10,0"/>
                 <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center">
                     <Hyperlink NavigateUri="https://steamcommunity.com/dev/apikey"
-                                Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                                Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                                 CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                         <Run Text="{DynamicResource LOCSettingsApiKeyUrlText}" />
                     </Hyperlink>
@@ -99,7 +99,7 @@
 
             <TextBlock Margin="5,15,0,0">
                 <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/wiki/How-to-get-Steam-account-name"
-                            Command="{x:Static pcmd:GeneralCommands.NavigateUrlCommand}"
+                            Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                             CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                     <Run Text="{DynamicResource LOCTroubleShootingAccountLink}" />
                 </Hyperlink>

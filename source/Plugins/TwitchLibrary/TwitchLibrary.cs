@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Playnite.Common.System;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
@@ -248,7 +248,7 @@ namespace TwitchLibrary
             {
                 playniteApi.Notifications.Add(
                     dbImportMessageId,
-                    string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) +
+                    string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
                     NotificationType.Error);
             }

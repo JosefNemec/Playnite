@@ -1,4 +1,5 @@
-﻿using Playnite.SDK;
+﻿using Playnite.Commands;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +13,14 @@ namespace Playnite.API
     public class NotificationsAPI : ObservableObject, INotificationsAPI
     {
         private readonly SynchronizationContext context;
+
+        public RelayCommand<object> RemoveAllCommands
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveAll();
+            });
+        }
 
         public ObservableCollection<NotificationMessage> Messages
         {

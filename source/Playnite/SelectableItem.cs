@@ -54,7 +54,7 @@ namespace System
         public abstract List<Guid> GetSelectedIds();
         public abstract void SetSelection(IEnumerable<Guid> toSelect);
 
-        internal void OnSelectionChanged()
+        internal virtual void OnSelectionChanged()
         {
             OnPropertyChanged(nameof(AsString));
             SelectionChanged?.Invoke(this, EventArgs.Empty);
@@ -71,15 +71,28 @@ namespace System
             get => ToString();
         }
 
-        public SelectableItemList(IEnumerable<TItem> collection, Func<TItem, Guid> idSelector, IEnumerable<Guid> selected = null)
+        public SelectableItemList(
+            IEnumerable<TItem> collection,
+            Func<TItem, Guid> idSelector,
+            IEnumerable<Guid> selected = null,
+            IEnumerable<Guid> undetermined = null)
         {
             this.idSelector = idSelector;
             Items = new List<SelectableItem<TItem>>(collection.Select(a =>
             {
-                var newItem = new SelectableItem<TItem>(a)
+                var newItem = new SelectableItem<TItem>(a);
+                if (selected?.Contains(idSelector(a)) == true)
                 {
-                    Selected = selected?.Contains(idSelector(a)) == true
-                };
+                    newItem.Selected = true;
+                }
+                else if (undetermined?.Contains(idSelector(a)) == true)
+                {
+                    newItem.Selected = null;
+                }
+                else
+                {
+                    newItem.Selected = false;
+                }
 
                 newItem.PropertyChanged += NewItem_PropertyChanged;
                 return newItem;
@@ -170,8 +183,11 @@ namespace System
     {
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
-        public SelectableDbItemList(IEnumerable<DatabaseObject> collection, IEnumerable<Guid> selected = null)
-            : base(collection.OrderBy(a => a.Name), (a) => a.Id, selected)
+        public SelectableDbItemList(
+            IEnumerable<DatabaseObject> collection,
+            IEnumerable<Guid> selected = null,
+            IEnumerable<Guid> undetermined = null)
+            : base(collection.OrderBy(a => a.Name), (a) => a.Id, selected, undetermined)
         {
         }
 

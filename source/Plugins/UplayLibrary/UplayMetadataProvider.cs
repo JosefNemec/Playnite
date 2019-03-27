@@ -1,5 +1,4 @@
-﻿using Playnite;
-using Playnite.Common.System;
+﻿using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;

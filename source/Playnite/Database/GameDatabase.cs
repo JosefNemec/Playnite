@@ -10,10 +10,10 @@ using Playnite.SDK.Models;
 using Playnite.SDK.Metadata;
 using Playnite.Common;
 using Playnite.Settings;
-using Playnite.Common.System;
 using Playnite.SDK.Plugins;
-using Playnite.Web;
 using System.Net;
+using Playnite.Common.Web;
+using System.Drawing.Imaging;
 
 namespace Playnite.Database
 {
@@ -240,7 +240,6 @@ namespace Playnite.Database
             if (!dbExists)
             {
                 FileSystem.CreateDirectory(DatabasePath);
-                FileSystem.CreateDirectory(GamesDirectoryPath);
                 FileSystem.CreateDirectory(FilesDirectoryPath);
             }
 
@@ -524,14 +523,14 @@ namespace Playnite.Database
                     {
                         if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
                         {
-                            var icon = IconExtension.ExtractIconFromExe(path, true);
+                            var icon = System.Drawing.IconExtension.ExtractIconFromExe(path, true);
                             if (icon == null)
                             {
                                 return null;
                             }
 
                             fileName = Path.ChangeExtension(fileName, ".png");
-                            metaFile = new MetadataFile(fileName, icon.ToByteArray(System.Drawing.Imaging.ImageFormat.Png));
+                            metaFile = new MetadataFile(fileName, System.Drawing.IconExtension.ToByteArray(icon, System.Drawing.Imaging.ImageFormat.Png));
                         }
                         else
                         {

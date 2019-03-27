@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:pcmds="clr-namespace:Playnite.Commands;assembly=Playnite"
+                    xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+                    xmlns:pctrlsShared="clr-namespace:Playnite.Controls;assembly=Playnite"
+                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=PlayniteUI"
+                    xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls;assembly=PlayniteUI"
+                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=PlayniteUI"
+                    xmlns:playnite="clr-namespace:Playnite;assembly=Playnite">
+
+    <Style TargetType="{x:Type views:LibraryListView}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type views:LibraryListView}">
+                    <pctrls:GamesGridView SelectedItem="{Binding SelectedGame, Mode=TwoWay}"
+                                          SelectedItemsList="{Binding SelectedGamesBinder, Mode=TwoWay}"
+                                          AppSettings="{pmrk:Settings}">
+                        <pctrls:GamesGridView.Style>
+                            <Style TargetType="pctrls:GamesGridView">
+                                <Setter Property="ItemsSource" Value="{x:Null}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{pmrk:Settings ViewSettings.GamesViewType}" Value="{x:Static playnite:ViewType.List}">
+                                        <Setter Property="ItemsSource" Value="{Binding GamesView.CollectionView}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </pctrls:GamesGridView.Style>
+                    </pctrls:GamesGridView>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

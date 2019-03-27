@@ -57,19 +57,19 @@ namespace Playnite.Settings
             }
         }
 
-        public static string ThemesPath
+        public static string ThemesProgramPath
         {
             get
             {
-                return Path.Combine(ProgramPath, "Skins");
+                return Path.Combine(ProgramPath, "Themes");
             }
         }
 
-        public static string ThemesFullscreenPath
+        public static string ThemesUserDataPath
         {
             get
             {
-                return Path.Combine(ProgramPath, "SkinsFullscreen");
+                return Path.Combine(ConfigRootPath, "Themes");
             }
         }
 

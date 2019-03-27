@@ -1,6 +1,5 @@
-﻿using NLog;
+﻿using Playnite.Common;
 using Playnite.Database;
-using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using System;

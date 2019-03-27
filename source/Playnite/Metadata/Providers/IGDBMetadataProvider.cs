@@ -4,16 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Playnite.Services;
-using System.Collections.Concurrent;
-using System.Collections.ObjectModel;
 using System.Globalization;
-using Playnite.Database;
 using System.IO;
-using Playnite.SDK.Models;
-using Playnite.SDK;
-using Playnite.Web;
 using System.Text.RegularExpressions;
+using Playnite.SDK;
 using Playnite.SDK.Metadata;
+using Playnite.SDK.Models;
+using Playnite.Common;
 
 namespace Playnite.Metadata.Providers
 {

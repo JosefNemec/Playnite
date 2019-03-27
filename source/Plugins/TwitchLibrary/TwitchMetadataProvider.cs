@@ -1,10 +1,9 @@
-﻿using Playnite;
-using Playnite.Common.System;
-using Playnite.SDK;
+﻿using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;

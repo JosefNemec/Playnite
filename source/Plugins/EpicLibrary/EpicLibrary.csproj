@@ -50,20 +50,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\playniteui\commands\GeneralCommands.cs">
-      <Link>Commands\GeneralCommands.cs</Link>
-    </Compile>
-    <Compile Include="..\..\playniteui\commands\RelayCommand.cs">
-      <Link>Commands\RelayCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\..\playniteui\converters\EnumConverter.cs">
-      <Link>Converters\EnumConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\..\playniteui\converters\NegateConverter.cs">
-      <Link>Converters\NegateConverter.cs</Link>
-    </Compile>
     <Compile Include="..\..\Playnite\BaseGameController.cs">
       <Link>BaseGameController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Commands\GlobalCommands.cs">
+      <Link>Commands\GlobalCommands.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Commands\RelayCommand.cs">
+      <Link>Commands\RelayCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Converters\NegateConverter.cs">
+      <Link>Converters\NegateConverter.cs</Link>
     </Compile>
     <Compile Include="..\..\Playnite\GameActionActivator.cs">
       <Link>GameActionActivator.cs</Link>

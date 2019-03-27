@@ -266,10 +266,10 @@ namespace PlayniteUITests
             Assert.IsNull(gameNoCommon.ReleaseDate);
             Assert.IsNull(gameNoCommon.Description);
             Assert.AreEqual(Guid.Empty, gameNoCommon.PlatformId);
-            CollectionAssert.AreEqual(null, gameNoCommon.GenreIds);
-            CollectionAssert.AreEqual(null, gameNoCommon.DeveloperIds);
-            CollectionAssert.AreEqual(null, gameNoCommon.PublisherIds);
-            CollectionAssert.AreEqual(null, gameNoCommon.CategoryIds);
+            CollectionAssert.IsEmpty(gameNoCommon.GenreIds);
+            CollectionAssert.IsEmpty(gameNoCommon.DeveloperIds);
+            CollectionAssert.IsEmpty(gameNoCommon.PublisherIds);
+            CollectionAssert.IsEmpty(gameNoCommon.CategoryIds);
             CollectionAssert.AreEqual(null, gameNoCommon.TagIds);
             Assert.IsNull(gameNoCommon.LastActivity);
             Assert.IsNull(gameNoCommon.Added);
@@ -286,6 +286,9 @@ namespace PlayniteUITests
             Assert.IsNull(gameNoCommon.CommunityScore);
             Assert.IsFalse(gameNoCommon.Hidden);
             Assert.IsFalse(gameNoCommon.Favorite);
+
+            // Some common
+            Assert.Fail();
         }
     }
 }

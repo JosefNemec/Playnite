@@ -7,10 +7,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Diagnostics;
 using Newtonsoft.Json;
-using Playnite.Settings;
-using Playnite.Common.System;
 using Playnite.Common;
-using Playnite.App;
+using Playnite.Settings;
 
 namespace Playnite
 {

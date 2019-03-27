@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Playnite.Common.System;
+using Playnite.Common;
 using Playnite.SDK.Models;
 
 namespace GogLibrary.Models

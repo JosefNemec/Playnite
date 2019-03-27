@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\CefSharp.OffScreen.71.0.2\build\CefSharp.OffScreen.props" Condition="Exists('..\packages\CefSharp.OffScreen.71.0.2\build\CefSharp.OffScreen.props')" />
+  <Import Project="..\packages\CefSharp.Wpf.71.0.2\build\CefSharp.Wpf.props" Condition="Exists('..\packages\CefSharp.Wpf.71.0.2\build\CefSharp.Wpf.props')" />
+  <Import Project="..\packages\CefSharp.Common.71.0.2\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.71.0.2\build\CefSharp.Common.props')" />
+  <Import Project="..\packages\cef.redist.x86.3.3578.1870\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.3.3578.1870\build\cef.redist.x86.props')" />
+  <Import Project="..\packages\cef.redist.x64.3.3578.1870\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.3.3578.1870\build\cef.redist.x64.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,6 +41,26 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
       <HintPath>..\packages\AngleSharp.0.9.9\lib\net45\AngleSharp.dll</HintPath>
@@ -43,6 +68,12 @@
     </Reference>
     <Reference Include="Flurl, Version=2.7.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Flurl.2.7.1\lib\net40\Flurl.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlRenderer">
+      <HintPath>..\..\references\HtmlRenderer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlRenderer.WPF">
+      <HintPath>..\..\references\HtmlRenderer.WPF.dll</HintPath>
     </Reference>
     <Reference Include="IronPython, Version=2.7.8.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\packages\IronPython.2.7.8.1\lib\net45\IronPython.dll</HintPath>
@@ -62,6 +93,9 @@
     </Reference>
     <Reference Include="Microsoft.Dynamic, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicLanguageRuntime.1.2.1\lib\net45\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Scripting, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicLanguageRuntime.1.2.1\lib\net45\Microsoft.Scripting.dll</HintPath>
@@ -98,6 +132,12 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
       <Private>True</Private>
@@ -115,6 +155,10 @@
     <Reference Include="System.Management" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -124,6 +168,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Management.Automation" />
     <Reference Include="WindowsBase" />
+    <Reference Include="XInputDotNetPure">
+      <HintPath>..\..\references\XInputDotNetPure.dll</HintPath>
+    </Reference>
     <Reference Include="YamlDotNet, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\YamlDotNet.5.2.1\lib\net45\YamlDotNet.dll</HintPath>
     </Reference>
@@ -136,6 +183,9 @@
       <Link>Services\Models\Playnite\Playnite.cs</Link>
     </Compile>
     <Compile Include="API\DatabaseAPI.cs" />
+    <Compile Include="API\DesignData\DesignNotificationsAPI.cs" />
+    <Compile Include="API\DesignData\DesignPlayniteAPI.cs" />
+    <Compile Include="API\MainViewAPI.cs" />
     <Compile Include="API\NotificationsAPI.cs" />
     <Compile Include="API\ScriptExtensionDescription.cs" />
     <Compile Include="API\Logger.cs" />
@@ -143,8 +193,59 @@
     <Compile Include="API\PlayniteInfoAPI.cs" />
     <Compile Include="API\PlaynitePathsAPI.cs" />
     <Compile Include="API\ExtensionDescription.cs" />
+    <Compile Include="Behaviors\AnimatedVisibility.cs" />
+    <Compile Include="CefTools.cs" />
+    <Compile Include="App\PlayniteApplication.cs" />
     <Compile Include="App\UpdateManifest.cs" />
     <Compile Include="BaseGameController.cs" />
+    <Compile Include="Behaviors\ExpanderBehaviors.cs" />
+    <Compile Include="Behaviors\FocusBahaviors.cs" />
+    <Compile Include="Behaviors\LeftClickContextMenuBehavior.cs" />
+    <Compile Include="Behaviors\ScrollToSelectedBehavior.cs" />
+    <Compile Include="BindingProxy.cs" />
+    <Compile Include="CmdlineCommands.cs" />
+    <Compile Include="Commands\GlobalCommands.cs" />
+    <Compile Include="Commands\GenericCommands.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Controls\ExtendedListBox.cs" />
+    <Compile Include="Controls\ExtendedListView.cs" />
+    <Compile Include="Controls\FadeImage.xaml.cs">
+      <DependentUpon>FadeImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HtmlTextView.cs" />
+    <Compile Include="Controls\VirtualizingGridPanel.cs" />
+    <Compile Include="Controls\VirtualizingTilePanel.cs" />
+    <Compile Include="Controls\WindowBase.cs" />
+    <Compile Include="Converters\AfterGameCloseOptionToStringConverter.cs" />
+    <Compile Include="Converters\AfterGameLaunchOptionToStringConverter.cs" />
+    <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />
+    <Compile Include="Converters\BooleanToHiddenConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolToAutoWidthConverter.cs" />
+    <Compile Include="Converters\BoolToYesNoConverter.cs" />
+    <Compile Include="Converters\CompletionStatusToStringConverter.cs" />
+    <Compile Include="Converters\CoversZoomToPercentageConverter.cs" />
+    <Compile Include="Converters\ImageStringToImageConverter.cs" />
+    <Compile Include="Converters\DateTimeToLastPlayedConverter.cs" />
+    <Compile Include="Converters\EnumToVisibilityConverter.cs" />
+    <Compile Include="Converters\EnumToBooleanConverter.cs" />
+    <Compile Include="Converters\ICollectionNullOrEmptyToVisibilityConverter.cs" />
+    <Compile Include="Converters\IconToImageSourceConverter.cs" />
+    <Compile Include="Converters\InvertableBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\ListToStringConverter.cs" />
+    <Compile Include="Converters\LongToTimePlayedConverter.cs" />
+    <Compile Include="Converters\MetadataSourceToStringConverter.cs" />
+    <Compile Include="Converters\NegateConverter.cs" />
+    <Compile Include="Converters\NotificationIconConverter.cs" />
+    <Compile Include="Converters\NullableDateToStringConverter.cs" />
+    <Compile Include="Converters\NullToBoolConverter.cs" />
+    <Compile Include="Converters\NullToDependencyPropertyUnsetConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\OpacityBoolConverter.cs" />
+    <Compile Include="Converters\SortingOrderToStringConverter.cs" />
+    <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
+    <Compile Include="Converters\ValueConverterGroup.cs" />
+    <Compile Include="Converters\WidthToFontSizeConverter.cs" />
     <Compile Include="Database\Collections\EmulatorsCollection.cs" />
     <Compile Include="Database\Collections\GamesSourcesCollection.cs" />
     <Compile Include="Database\Collections\RegionsCollection.cs" />
@@ -172,13 +273,28 @@
     <Compile Include="Database\OldModels\Ver6\Platform.cs" />
     <Compile Include="Database\Collections\CompaniesCollection.cs" />
     <Compile Include="Database\Collections\PlatformsCollection.cs" />
+    <Compile Include="DialogsFactory.cs" />
     <Compile Include="EasyAntiCheat.cs" />
+    <Compile Include="ElementTreeHelper.cs" />
     <Compile Include="Extensions\EmulatorProfileExtensions.cs" />
     <Compile Include="Extensions\GameActionExtensions.cs" />
     <Compile Include="Extensions\GameExtensions.cs" />
+    <Compile Include="Extensions\IProvideValueTarget.cs" />
+    <Compile Include="Extensions\Markup\Api.cs" />
+    <Compile Include="Extensions\Markup\BindingExtension.cs" />
+    <Compile Include="Extensions\Markup\Settings.cs" />
+    <Compile Include="Extensions\Markup\ThemeFile.cs" />
+    <Compile Include="Extensions\ServiceProvider.cs" />
     <Compile Include="FakePlayniteLibraryPlugin.cs" />
     <Compile Include="GameActionActivator.cs" />
+    <Compile Include="GamesCollectionView.cs" />
+    <Compile Include="GamesCollectionViewEntry.cs" />
+    <Compile Include="GamesEditor.cs" />
+    <Compile Include="GlobalTaskHandler.cs" />
     <Compile Include="HttpFileCache.cs" />
+    <Compile Include="ImageSourceManager.cs" />
+    <Compile Include="Input\MouseWheelGesture.cs" />
+    <Compile Include="Localization.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Scripting\IronPython\IronPython.cs" />
@@ -188,6 +304,8 @@
     <Compile Include="Scripting\PowerShell\PowerShell.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellScript.cs" />
     <Compile Include="SelectableItem.cs" />
+    <Compile Include="Services\BaseServicesClient.cs" />
+    <Compile Include="Services\GenericResponse.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />
     <Compile Include="Emulators\EmulatorDefinition.cs" />
     <Compile Include="Emulators\EmulatorFinder.cs" />
@@ -210,13 +328,28 @@
     <Compile Include="Settings\PlayniteSettings.cs" />
     <Compile Include="App\Updater.cs" />
     <Compile Include="Settings\ViewProperties.cs" />
+    <Compile Include="Themes.cs" />
     <Compile Include="ThirdPartyClients\ThirdPartyToolsList.cs" />
+    <Compile Include="ObservableTime.cs" />
+    <Compile Include="ViewModels\CrashHandlerViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModelBase.cs" />
+    <Compile Include="ViewModels\ProgressViewViewModel.cs" />
+    <Compile Include="ViewModels\UpdateViewModel.cs" />
+    <Compile Include="WebView\OffscreenWebView.cs" />
+    <Compile Include="WebView\WebView.cs" />
+    <Compile Include="WebView\WebViewFactory.cs" />
+    <Compile Include="Windows\CrashHandlerWindowFactory.cs" />
+    <Compile Include="Windows\WebViewWindow.xaml.cs">
+      <DependentUpon>WebViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ProgressWindowFactory.cs" />
+    <Compile Include="Windows\UpdateWindowFactory.cs" />
+    <Compile Include="Windows\WindowManager.cs" />
+    <Compile Include="Input\XInputBinding.cs" />
+    <Compile Include="Windows\WindowFactory.cs" />
+    <Compile Include="Windows\WindowPositionHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\references\IronPythonStdLib.zip">
-      <Link>IronPythonStdLib.zip</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="App.config" />
     <None Include="Emulators\Definitions.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -244,12 +377,76 @@
       <Name>Playnite.SDK</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Controls\FadeImage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Localization\english.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\WebViewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ContentWithTargetPath Include="..\..\references\XInputInterface.dll">
+      <Link>Dependencies\XInputInterface.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>XInputInterface.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\..\references\CefSharpRedist\concrt140.dll">
+      <Link>Dependencies\concrt140.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>concrt140.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\..\references\CefSharpRedist\msvcp140.dll">
+      <Link>Dependencies\msvcp140.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>msvcp140.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\..\references\CefSharpRedist\msvcp140_1.dll">
+      <Link>Dependencies\msvcp140_1.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>msvcp140_1.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\..\references\CefSharpRedist\vcruntime140.dll">
+      <Link>Dependencies\vcruntime140.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>vcruntime140.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\..\references\IronPythonStdLib.zip">
+      <Link>Dependencies\IronPythonStdLib.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>IronPythonStdLib.zip</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\DescriptionView.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\cef.redist.x64.3.3578.1870\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.3578.1870\build\cef.redist.x64.props'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x86.3.3578.1870\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.3578.1870\build\cef.redist.x86.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.71.0.2\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.71.0.2\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.71.0.2\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.71.0.2\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Wpf.71.0.2\build\CefSharp.Wpf.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Wpf.71.0.2\build\CefSharp.Wpf.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Wpf.71.0.2\build\CefSharp.Wpf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Wpf.71.0.2\build\CefSharp.Wpf.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.OffScreen.71.0.2\build\CefSharp.OffScreen.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.OffScreen.71.0.2\build\CefSharp.OffScreen.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.OffScreen.71.0.2\build\CefSharp.OffScreen.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.OffScreen.71.0.2\build\CefSharp.OffScreen.targets'))" />
+  </Target>
+  <Import Project="..\packages\CefSharp.Common.71.0.2\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.71.0.2\build\CefSharp.Common.targets')" />
+  <Import Project="..\packages\CefSharp.Wpf.71.0.2\build\CefSharp.Wpf.targets" Condition="Exists('..\packages\CefSharp.Wpf.71.0.2\build\CefSharp.Wpf.targets')" />
+  <Import Project="..\packages\CefSharp.OffScreen.71.0.2\build\CefSharp.OffScreen.targets" Condition="Exists('..\packages\CefSharp.OffScreen.71.0.2\build\CefSharp.OffScreen.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

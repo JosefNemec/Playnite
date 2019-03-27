@@ -1,7 +1,6 @@
 ﻿using ItchioLibrary.Models;
 using Playnite;
 using Playnite.Common;
-using Playnite.Common.System;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -54,7 +53,7 @@ namespace ItchioLibrary
             if (!Itch.IsInstalled)
             {
                 throw new Exception(
-                    api.Resources.FindString("LOCItchioClientNotInstalledError"));
+                    api.Resources.GetString("LOCItchioClientNotInstalledError"));
             }
         }
 
@@ -79,7 +78,7 @@ namespace ItchioLibrary
                 {
                     if (!Directory.Exists(Game.InstallDirectory))
                     {
-                        throw new DirectoryNotFoundException(api.Resources.FindString("LOCInstallDirNotFoundError"));
+                        throw new DirectoryNotFoundException(api.Resources.GetString("LOCInstallDirNotFoundError"));
                     }
                     
                     GameActionActivator.ActivateAction(api.ExpandGameVariables(Game, Game.PlayAction));
@@ -98,7 +97,7 @@ namespace ItchioLibrary
             }
             else
             {
-                throw new Exception(api.Resources.FindString("LOCInvalidGameActionSettings"));
+                throw new Exception(api.Resources.GetString("LOCInvalidGameActionSettings"));
             }
         }
 

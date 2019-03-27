@@ -1,9 +1,8 @@
-﻿using AngleSharp.Dom;
-using AngleSharp.Parser.Html;
+﻿using AngleSharp.Parser.Html;
+using Playnite.Common.Web;
 using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
-using Playnite.Web;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

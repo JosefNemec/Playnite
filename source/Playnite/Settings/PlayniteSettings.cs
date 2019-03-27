@@ -11,8 +11,9 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 using System.Configuration;
-using Playnite.Common.System;
+using Playnite.Common;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 
 namespace Playnite.Settings
 {
@@ -416,7 +417,7 @@ namespace Playnite.Settings
             }
         }
 
-        private bool filterPanelVisible = false;
+        private bool filterPanelVisible = true;
         public bool FilterPanelVisible
         {
             get
@@ -427,6 +428,54 @@ namespace Playnite.Settings
             set
             {
                 filterPanelVisible = value;
+                OnPropertyChanged();
+            }
+        }
+                
+        private bool notificationPanelVisible = false;
+        [JsonIgnore]
+        public bool NotificationPanelVisible
+        {
+            get
+            {
+                return notificationPanelVisible;
+            }
+
+            set
+            {
+                notificationPanelVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool sidebarVisible = false;
+        [JsonIgnore]
+        public bool SidebarVisible
+        {
+            get
+            {
+                return sidebarVisible;
+            }
+
+            set
+            {
+                sidebarVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Dock sidebarPosition = Dock.Left;
+        [JsonIgnore]
+        public Dock SidebarPosition
+        {
+            get
+            {
+                return sidebarPosition;
+            }
+
+            set
+            {
+                sidebarPosition = value;
                 OnPropertyChanged();
             }
         }
@@ -536,62 +585,17 @@ namespace Playnite.Settings
             }
         }
 
-        private string skin = "Modern";
-        public string Skin
+        private string theme = "Default";
+        public string Theme
         {
             get
             {
-                return skin;
+                return theme;
             }
 
             set
             {
-                skin = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string skinColor = "Default";
-        public string SkinColor
-        {
-            get
-            {
-                return skinColor;
-            }
-
-            set
-            {
-                skinColor = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string skinFullscreen = "Playnite";
-        public string SkinFullscreen
-        {
-            get
-            {
-                return skinFullscreen;
-            }
-
-            set
-            {
-                skinFullscreen = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string skinColorFullscreen = "Default";
-        public string SkinColorFullscreen
-        {
-            get
-            {
-                return skinColorFullscreen;
-            }
-
-            set
-            {
-                skinColorFullscreen = value;
+                theme = value;
                 OnPropertyChanged();
             }
         }

@@ -11,64 +11,108 @@ namespace Playnite
 {
     public enum SortOrder
     {
+        [Description("LOCGameNameTitle")]
         Name,
+        [Description("LOCGameLastActivityTitle")]
         LastActivity,
+        [Description("LOCGameProviderTitle")]
         Provider,
+        [Description("LOCGameCategoriesTitle")]
         Categories,
+        [Description("LOCGameGenresTitle")]
         Genres,
+        [Description("LOCGameReleaseDateTitle")]
         ReleaseDate,
+        [Description("LOCGameDevelopersTitle")]
         Developers,
+        [Description("LOCGamePublishersTitle")]
         Publishers,
+        [Description("LOCGameIsInstalledTitle")]
         IsInstalled,
+        [Description("LOCGameHiddenTitle")]
         Hidden,
+        [Description("LOCGameFavoriteTitle")]
         Favorite,
+        [Description("LOCGameInstallDirTitle")]
         InstallDirectory,
-        Icon,
+        [Description("LOCGamePlatformTitle")]
         Platform,
+        [Description("LOCGameTagsTitle")]
         Tags,
+        [Description("LOCTimePlayed")]
         Playtime,
+        [Description("LOCAddedLabel")]
         Added,
+        [Description("LOCModifiedLabel")]
         Modified,
+        [Description("LOCPlayCountLabel")]
         PlayCount,
+        [Description("LOCSeriesLabel")]
         Series,
+        [Description("LOCVersionLabel")]
         Version,
+        [Description("LOCAgeRatingLabel")]
         AgeRating,
+        [Description("LOCRegionLabel")]
         Region,
+        [Description("LOCSourceLabel")]
         Source,
+        [Description("LOCCompletionStatus")]
         CompletionStatus,
+        [Description("LOCUserScore")]
         UserScore,
+        [Description("LOCCriticScore")]
         CriticScore,
+        [Description("LOCCommunityScore")]
         CommunityScore
     }
 
     public enum SortOrderDirection
     {
+        [Description("LOCMenuSortAscending")]
         Ascending,
+        [Description("LOCMenuSortDescending")]
         Descending
     }
 
     public enum GroupOrder
     {
+        [Description("LOCMenuGroupDont")]
         None,
+        [Description("LOCLibraries")]
         Provider,
+        [Description("LOCCategoryLabel")]
         Category,
+        [Description("LOCGenreLabel")]
         Genre,
+        [Description("LOCDeveloperLabel")]
         Developer,
+        [Description("LOCPublisherLabel")]
         Publisher,
+        [Description("LOCTagLabel")]
         Tag,
+        [Description("LOCPlatformTitle")]
         Platform,
+        [Description("LOCSeriesLabel")]
         Series,
+        [Description("LOCAgeRatingLabel")]
         AgeRating,
+        [Description("LOCRegionLabel")]
         Region,
+        [Description("LOCSourceLabel")]
         Source,
+        [Description("LOCGameReleaseYearTitle")]
         ReleaseYear
     }
 
     public enum ViewType : int
     {
-        List = 0,
-        Images = 1,
-        Grid = 2
+        [Description("LOCDetailsLabel")]
+        Details = 0,
+        [Description("LOCGridLabel")]
+        Grid = 1,
+        [Description("LOCListLabel")]
+        List = 2
     }
 
     public class ViewSettings : ObservableObject
@@ -118,7 +162,7 @@ namespace Playnite
             }
         }
 
-        private ViewType gamesViewType;
+        private ViewType gamesViewType = ViewType.Details;
         public ViewType GamesViewType
         {
             get

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using GogLibrary.Models;
-using Playnite.Web;
 using System.IO;
 using Playnite;
 using System.Collections.ObjectModel;

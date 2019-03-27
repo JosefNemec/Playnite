@@ -1,5 +1,5 @@
 ﻿using Playnite;
-using Playnite.SDK;
+using Playnite.Common;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using System;

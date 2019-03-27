@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite
+namespace Playnite.Common
 {
     public class NLogLogger : ILogger
     {

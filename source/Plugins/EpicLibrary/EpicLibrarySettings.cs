@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Playnite;
 using Playnite.SDK;
-using PlayniteUI.Commands;
+using Playnite.Commands;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -101,7 +101,7 @@ namespace EpicLibrary
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
-                api.Dialogs.ShowErrorMessage(api.Resources.FindString("LOCNotLoggedInError"), "");
+                api.Dialogs.ShowErrorMessage(api.Resources.GetString("LOCNotLoggedInError"), "");
                 logger.Error(e, "Failed to authenticate user.");
             }
         }

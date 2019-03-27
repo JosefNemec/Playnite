@@ -1,5 +1,6 @@
 ﻿using BattleNetLibrary.Models;
 using Playnite;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;

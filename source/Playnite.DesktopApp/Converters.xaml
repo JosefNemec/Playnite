@@ -1,0 +1,29 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
+                    mc:Ignorable="d">
+    
+    <sys:Boolean x:Key="True">True</sys:Boolean>
+    <sys:Boolean x:Key="False">False</sys:Boolean>
+    <pcon:OpacityBoolConverter x:Key="OpacityBoolConverter" />
+    <pcon:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+    <pcon:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <pcon:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
+    <pcon:BidirectionalEnumAndNumberConverter x:Key="BidirectionalEnumAndNumberConverter" />
+    <pcon:ImageStringToImageConverter x:Key="ImageStringToImageConverter" />
+    <pcon:ImageStringToImageConverter x:Key="ImageStringToImageConverterCached" Cached="True" />
+    <pcon:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
+    <pcon:ListToStringConverter x:Key="ListToStringConverter" />
+    <pcon:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
+    <pcon:NegateConverter x:Key="NegateConverter" />
+    <pcon:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
+    <pcon:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
+    <pcon:LongToTimePlayedConverter x:Key="LongToTimePlayedConverter" />
+    <pcon:DateTimeToLastPlayedConverter x:Key="DateTimeToLastPlayedConverter" />
+    <pcon:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
+    <pcon:CoversZoomToPercentageConverter x:Key="CoversZoomToPercentageConverter" />    
+</ResourceDictionary>

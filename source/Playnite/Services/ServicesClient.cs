@@ -1,6 +1,5 @@
 ﻿using Microsoft.Win32;
 using Newtonsoft.Json;
-using Playnite.App;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;

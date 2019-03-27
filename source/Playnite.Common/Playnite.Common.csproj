@@ -34,6 +34,21 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ExtendedLinguisticServices, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Sensors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.Sensors.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="Nett, Version=0.10.0.0, Culture=neutral, PublicKeyToken=605dcfe7a1d3365b, processorArchitecture=MSIL">
       <HintPath>..\packages\Nett.0.10.1\lib\Net40\Nett.dll</HintPath>
     </Reference>
@@ -76,10 +91,12 @@
     <Compile Include="Extensions\BitmapExtensions.cs" />
     <Compile Include="Extensions\CloneObject.cs" />
     <Compile Include="Extensions\Enums.cs" />
+    <Compile Include="Extensions\ItemsControlExtensions.cs" />
     <Compile Include="Extensions\IconExtension.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Images.cs" />
     <Compile Include="IniParser.cs" />
     <Compile Include="InteropMethods.cs" />
     <Compile Include="MemoryCache.cs" />
@@ -90,17 +107,16 @@
     <Compile Include="Roman.cs" />
     <Compile Include="JsonRpcClient.cs" />
     <Compile Include="Serialization.cs" />
-    <Compile Include="Services\BaseServicesClient.cs" />
-    <Compile Include="Services\GenericResponse.cs" />
-    <Compile Include="System\Computer.cs" />
-    <Compile Include="System\FileSystem.cs" />
-    <Compile Include="System\Paths.cs" />
-    <Compile Include="System\ProcessExtensions.cs" />
-    <Compile Include="System\ProcessMonitor.cs" />
-    <Compile Include="System\ProcessStarter.cs" />
-    <Compile Include="System\Programs.cs" />
-    <Compile Include="System\SafeFileEnumerator.cs" />
-    <Compile Include="System\TempDirectory.cs" />
+    <Compile Include="Computer.cs" />
+    <Compile Include="FileSystem.cs" />
+    <Compile Include="Paths.cs" />
+    <Compile Include="Extensions\ProcessExtensions.cs" />
+    <Compile Include="ProcessMonitor.cs" />
+    <Compile Include="ProcessStarter.cs" />
+    <Compile Include="Programs.cs" />
+    <Compile Include="SafeFileEnumerator.cs" />
+    <Compile Include="SystemDialogs.cs" />
+    <Compile Include="TempDirectory.cs" />
     <Compile Include="TGASharpLib.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="Units.cs" />
@@ -128,5 +144,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,7 +3,6 @@ using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using SteamLibrary.Models;
 using SteamLibrary.Services;
-using Playnite.Web;
 using SteamKit2;
 using System;
 using System.Collections.Generic;
@@ -16,6 +15,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Playnite.Common.Web;
 
 namespace SteamLibrary
 {
@@ -286,6 +286,8 @@ namespace SteamLibrary
                     new Link("PCGamingWiki", @"http://pcgamingwiki.com/api/appid.php?appid=" + appId)
                 }
             };
+
+            downloadedMetadata.GameInfo = gameInfo;
 
             var metadata = new GameMetadata()
             {

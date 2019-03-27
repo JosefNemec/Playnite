@@ -1,11 +1,9 @@
 ﻿using Newtonsoft.Json;
 using Playnite.SDK;
-using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using SteamLibrary.Models;
 using SteamLibrary.Services;
-using Playnite.Web;
 using SteamKit2;
 using System;
 using System.Collections.Generic;
@@ -22,6 +20,7 @@ using Playnite;
 using System.Windows;
 using System.Reflection;
 using System.Collections.ObjectModel;
+using Playnite.Common.Web;
 
 namespace SteamLibrary
 {
@@ -486,8 +485,8 @@ namespace SteamLibrary
             var db = playniteApi.Database;
 
             if (dialogs.ShowMessage(
-                resources.FindString("LOCSettingsSteamCatImportWarn"),
-                resources.FindString("LOCSettingsSteamCatImportWarnTitle"),
+                resources.GetString("LOCSettingsSteamCatImportWarn"),
+                resources.GetString("LOCSettingsSteamCatImportWarnTitle"),
                 MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
             {
                 return;
@@ -496,8 +495,8 @@ namespace SteamLibrary
             if (accountId == 0)
             {
                 dialogs.ShowMessage(
-                    resources.FindString("LOCSettingsSteamCatImportErrorAccount"),
-                    resources.FindString("LOCImportError"),
+                    resources.GetString("LOCSettingsSteamCatImportErrorAccount"),
+                    resources.GetString("LOCImportError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -505,8 +504,8 @@ namespace SteamLibrary
             if (!db.IsOpen)
             {
                 dialogs.ShowMessage(
-                    resources.FindString("LOCSettingsSteamCatImportErrorDb"),
-                    resources.FindString("LOCImportError"),
+                    resources.GetString("LOCSettingsSteamCatImportErrorDb"),
+                    resources.GetString("LOCImportError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -534,14 +533,14 @@ namespace SteamLibrary
                     }
                 }
 
-                dialogs.ShowMessage(resources.FindString("LOCImportCompleted"));
+                dialogs.ShowMessage(resources.GetString("LOCImportCompleted"));
             }
             catch (Exception exc) when (!Environment.IsDebugBuild)
             {
                 logger.Error(exc, "Failed to import Steam categories.");
                 dialogs.ShowMessage(
-                    resources.FindString("LOCSettingsSteamCatImportError"),
-                    resources.FindString("LOCImportError"),
+                    resources.GetString("LOCSettingsSteamCatImportError"),
+                    resources.GetString("LOCImportError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -626,7 +625,7 @@ namespace SteamLibrary
             {
                 playniteApi.Notifications.Add(
                     dbImportMessageId,
-                    string.Format(playniteApi.Resources.FindString("LOCLibraryImportError"), Name) +
+                    string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
                     NotificationType.Error);
             }

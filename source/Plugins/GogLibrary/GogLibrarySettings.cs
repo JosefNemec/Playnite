@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using PlayniteUI.Commands;
+using Playnite.Commands;
 using Playnite.SDK;
 using GogLibrary.Services;
 
@@ -94,7 +94,7 @@ namespace GogLibrary
 
             if (ImportUninstalledGames && UsePublicAccount && string.IsNullOrEmpty(AccountName))
             {
-                errors.Add(api.Resources.FindString("LOCSettingsInvalidAccountName"));
+                errors.Add(api.Resources.GetString("LOCSettingsInvalidAccountName"));
                 allValid = false;
             }
 

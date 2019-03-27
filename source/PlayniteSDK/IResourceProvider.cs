@@ -16,6 +16,8 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="key">Resource key.</param>
         /// <returns>String resource.</returns>
-        string FindString(string key);
+        string GetString(string key);
+
+        object GetResource(string key);
     }
 }
