@@ -91,7 +91,7 @@ namespace PlayniteUI.ViewModels
                 OnPropertyChanged(nameof(ShowDetailsOption));
             }
         }
-                
+
         public bool AreGamesAvailable
         {
             get => Database.Games?.Count > 0 && GamesView?.CollectionView.Count > 0;
@@ -106,7 +106,7 @@ namespace PlayniteUI.ViewModels
         {
             get => SelectedGame?.IsInstalled == true;
         }
-        
+
         public bool ShowBackOption
         {
             get => SelectedGame != null && ShowGameDetails;
@@ -155,7 +155,7 @@ namespace PlayniteUI.ViewModels
         public RelayCommand<object> BackCommand
         {
             get => new RelayCommand<object>((a) =>
-            {                
+            {
                 ToggleFilter();
             });
         }
@@ -219,7 +219,7 @@ namespace PlayniteUI.ViewModels
             ExtensionFactory extensions) : base(database, window, dialogs, resources, settings, gamesEditor, playniteApi, extensions)
         {
             IsFullscreenView = true;
-            PropertyChanged += FullscreenViewModel_PropertyChanged;            
+            PropertyChanged += FullscreenViewModel_PropertyChanged;
         }
 
         private void FullscreenViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -311,6 +311,10 @@ namespace PlayniteUI.ViewModels
             }
             else if (AppSettings.FullscreenViewSettings.SortingOrder == Playnite.SortOrder.Playtime)
             {
+                AppSettings.FullscreenViewSettings.SortingOrder = Playnite.SortOrder.Added;
+            }
+            else if (AppSettings.FullscreenViewSettings.SortingOrder == Playnite.SortOrder.Added)
+            {
                 AppSettings.FullscreenViewSettings.SortingOrder = Playnite.SortOrder.Name;
             }
         }
@@ -318,7 +322,7 @@ namespace PlayniteUI.ViewModels
         public void ToggleInstallFilter()
         {
             if (!AppSettings.FullScreenFilterSettings.IsInstalled && !AppSettings.FullScreenFilterSettings.IsUnInstalled)
-            {                
+            {
                 AppSettings.FullScreenFilterSettings.IsInstalled = true;
                 AppSettings.FullScreenFilterSettings.IsUnInstalled = false;
             }
@@ -384,7 +388,7 @@ namespace PlayniteUI.ViewModels
             var result = Dialogs.SelectString("", "", AppSettings.FullScreenFilterSettings.Name);
             if (result.Result)
             {
-                AppSettings.FullScreenFilterSettings.Name = result.SelectedString;                
+                AppSettings.FullScreenFilterSettings.Name = result.SelectedString;
             }
         }
 
@@ -408,7 +412,7 @@ namespace PlayniteUI.ViewModels
         }
 
         private void FullscreenViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {            
+        {
             if (GamesView.CollectionView.Count > 0)
             {
                 SelectGame((GamesView.CollectionView.GetItemAt(0) as GameViewEntry).Id);
