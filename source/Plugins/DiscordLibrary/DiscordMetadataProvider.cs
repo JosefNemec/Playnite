@@ -49,13 +49,6 @@ namespace DiscordLibrary
                 return null;
             }
 
-            var iconUrl = $"https://cdn.discordapp.com/app-icons/{applicationId}/{application.icon}.png";   
-            var icon = HttpDownloader.DownloadData(iconUrl);
-            var iconName = Path.GetFileName(new Uri(iconUrl).AbsolutePath);
-            metadata.Icon = new MetadataFile(iconName, icon);
-
-            metadata.BackgroundImage = $"https://cdn.discordapp.com/app-assets/{applicationId}/store/{storeListing.hero_background.id}.png?size=2048";
-
             metadata.GameData = new Game()
             {
                 Name = application.name,
@@ -66,6 +59,13 @@ namespace DiscordLibrary
                 // TODO: Format Markdown
                 //Description = storeListing.description,
             };
+
+            var iconUrl = $"https://cdn.discordapp.com/app-icons/{applicationId}/{application.icon}.png";
+            metadata.Icon = new MetadataFile("icon.png", HttpDownloader.DownloadData(iconUrl));
+
+            metadata.Image = new MetadataFile("cover.png", HttpDownloader.DownloadData(metadata.GameData.CoverImage));
+
+            metadata.BackgroundImage = $"https://cdn.discordapp.com/app-assets/{applicationId}/store/{storeListing.hero_background.id}.png?size=2048";
 
             if (application.developers != null)
             {
