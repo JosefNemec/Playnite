@@ -63,12 +63,6 @@ namespace DiscordLibrary
                 CoverImage = $"https://cdn.discordapp.com/app-assets/{applicationId}/store/{storeListing.thumbnail.id}.png?size=2048",
                 Links = new ObservableCollection<Link>() { new Link("Discord", $"https://discordapp.com/store/skus/{skuId}/{storeListing.sku.slug}") },
 
-                //TODO: add genre descriptions from Enum
-                Genres = new ComparableList<string>(storeListing.sku.genres.Select(x => x.ToString()))
-
-                // TODO find critic score, metacritic is shown in the Discord store UI
-                //CriticScore = ???,
-
                 // TODO: Format Markdown
                 //Description = storeListing.description,
             };

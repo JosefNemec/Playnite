@@ -9,13 +9,15 @@ namespace DiscordLibrary.Models
         public string name;
         public string slug;
         public int content_rating_agency;
-        public FeatureType[] features;
         public string id;
         public int flags;
         public Price price;
         public ContentRating content_rating;
-        public Genre[] genres;
         public Application application;
+
+        // It would be nice to expose these as metadata, but the enum definition can't be created automatically
+        //public FeatureType[] features;
+        //public Genre[] genres;
     }
 
     public class Price

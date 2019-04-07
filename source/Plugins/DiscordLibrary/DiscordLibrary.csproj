@@ -65,8 +65,6 @@
       <Link>BaseGameController.cs</Link>
     </Compile>
     <Compile Include="Discord.cs" />
-    <Compile Include="Models\FeatureTypes.cs" />
-    <Compile Include="Models\Genres.cs" />
     <Compile Include="Models\Sku.cs" />
     <Compile Include="Services\DiscordAccountClient.cs" />
     <Compile Include="DiscordClient.cs" />
