@@ -81,33 +81,14 @@ namespace DiscordLibrary
             {
                 switch(thirdPartySku.distributor)
                 {
-                    case "battlenet":
-                        //TODO: add link
-                        //Sometimes null id and sku
-                        break;
                     case "discord":
-                        //TODO: add link
-                        break;
-                    case "epic":
-                        //TODO: add link
-                        break;
-                    case "glyph":
-                        //TODO: add link
-                        break;
-                    case "gog":
-                        //TODO: add link
-                        break;
-                    case "origin":
-                        //TODO: add link
+                        // already handled above
                         break;
                     case "steam":
                         metadata.GameData.Links.Add(new Link("Steam", $"https://store.steampowered.com/app/{thirdPartySku.id}"));
                         break;
-                    case "twitch":
-                        //TODO: add link
-                        break;
                     case "uplay":
-                        //TODO: add link
+                        // Not sure how to map short 3 or 4 digit uplay ids to URLs
                         break;
                 }
             }
