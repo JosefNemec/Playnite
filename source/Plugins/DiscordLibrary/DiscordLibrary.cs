@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using DiscordLibrary.Services;
 using Playnite.Common.System;
 using Playnite.SDK;
 using Playnite.SDK.Models;
@@ -171,9 +172,37 @@ namespace DiscordLibrary
 
         private List<Game> GetLibraryGames()
         {
-            //TODO: fetch last activity: https://discordapp.com/api/v6/users/@me/activities/statistics/applications
-            //TODO: fetch game list: https://discordapp.com/api/v6/users/@me/library
-            throw new NotImplementedException("GetLibraryGames() unimplemented");
+            var token = librarySettings.ApiToken;
+            if (token == null)
+            {
+                throw new Exception("User is not logged in.");
+            }
+
+            var library = DiscordAccountClient.GetLibrary(token);
+            var lastPlayed = DiscordAccountClient.GetLastPlayed(token).ToDictionary(x => x.application_id);
+
+            var games = new List<Game>();
+            foreach (var libraryGame in library)
+            {
+                var applicationId = libraryGame.application.id;
+                var game = new Game()
+                {
+                    GameId = applicationId.ToString(),
+                    PluginId = Id,
+                    Source = Name,
+                    Name = libraryGame.application.name,
+                    PlayAction = CreatePlayTask(applicationId.ToString())
+                };
+
+                if (lastPlayed.TryGetValue(applicationId, out var gameLastPlayed)) {
+                    game.LastActivity = gameLastPlayed.last_played_at;
+                    game.Playtime = gameLastPlayed.total_discord_sku_duration;
+                }
+    
+                games.Add(game);
+            }
+
+            return games;
         }
 
         public ILibraryMetadataProvider GetMetadataDownloader()

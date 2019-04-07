@@ -65,6 +65,8 @@
       <Link>BaseGameController.cs</Link>
     </Compile>
     <Compile Include="Discord.cs" />
+    <Compile Include="Models\LastPlayed.cs" />
+    <Compile Include="Models\LibraryItem.cs" />
     <Compile Include="Models\Sku.cs" />
     <Compile Include="Services\DiscordAccountClient.cs" />
     <Compile Include="DiscordClient.cs" />

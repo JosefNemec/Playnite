@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using DiscordLibrary.Services;
 using Newtonsoft.Json;
 using Playnite;
@@ -25,6 +26,8 @@ namespace DiscordLibrary
 
         public bool ImportUninstalledGames { get;  set; } = false;
 
+        public string ApiToken { get; set; } = null;
+
         #endregion Settings
 
         [JsonIgnore]
@@ -32,7 +35,11 @@ namespace DiscordLibrary
         {
             get
             {
-                return new DiscordAccountClient(api, library).GetIsUserLoggedIn();
+                using (var view = api.WebViews.CreateOffscreenView())
+                {
+                    ApiToken = new DiscordAccountClient(view).GetToken();
+                    return ApiToken != null;
+                }
             }
         }
 
@@ -95,8 +102,12 @@ namespace DiscordLibrary
         {
             try
             {
-                var client = new DiscordAccountClient(api, library);
-                client.Login();
+                using (var view = api.WebViews.CreateView(675, 600, Colors.Black))
+                {
+                    var client = new DiscordAccountClient(view);
+                    client.Login();
+                }
+
                 OnPropertyChanged(nameof(IsUserLoggedIn));
             }
             catch (Exception e) when (!Debugger.IsAttached)
