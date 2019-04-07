@@ -60,6 +60,14 @@ namespace Playnite.SDK
         string GetCurrentAddress();
 
         /// <summary>
+        /// Run JavaScript in current window. 
+        /// </summary>
+        /// <param name="methodName">Function to invoke, can be an anonymous function.</param>
+        /// <param name="args">Arguments to pass to function.</param>
+        /// <returns>JavaScript result object.</returns>
+        object EvaluateScript(string methodName, params object[] args);
+
+        /// <summary>
         /// Deletes cookies.
         /// </summary>
         /// <param name="url">Cookie URL.</param>

@@ -73,6 +73,12 @@ namespace Playnite.WebView
             return browser.GetSourceAsync();
         }
 
+        public object EvaluateScript(string methodName, params object[] args)
+        {
+            var response = browser.EvaluateScriptAsync(methodName, args).GetAwaiter().GetResult();
+            return response.Success ? (response.Result ?? "null") : response.Message;
+        }
+
         public void NavigateAndWait(string url)
         {
             browser.Load(url);
