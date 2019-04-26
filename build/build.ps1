@@ -38,6 +38,8 @@
     [string]$TempDir = (Join-Path $env:TEMP "PlayniteBuild")
 )
 
+$VSWHERE_CMD = "vswhere"
+
 $ErrorActionPreference = "Stop"
 & .\common.ps1
 
@@ -140,17 +142,27 @@ if (!$SkipBuild)
     }
 
     # Restore NuGet packages
-    if (-not (Test-Path "nuget.exe"))
+    if (-not (Get-Command -Name "nuget" -Type Application -ErrorAction Ignore))
     {
         Invoke-WebRequest -Uri $NugetUrl -OutFile "nuget.exe"
     }
 
-    $nugetProc = Start-Process "nuget.exe" "restore ..\source\Playnite.sln" -PassThru -NoNewWindow
+    $nugetProc = Start-Process "nuget" "restore ..\source\Playnite.sln" -PassThru -NoNewWindow
     $handle = $nugetProc.Handle
     $nugetProc.WaitForExit()
 
     $solutionDir = Join-Path $pwd "..\source"
-    $msbuildPath = "c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe";
+
+    if (-not (Get-Command -Name $VSWHERE_CMD -Type Application -ErrorAction Ignore))
+    {
+        $VSWHERE_CMD = (Join-Path $solutionDir "packages\vswhere.2.6.7\tools\vswhere.exe")
+        if (-not (Get-Command -Name $VSWHERE_CMD -Type Application -ErrorAction Ignore))
+        {
+            StartAndWait "nuget.exe" "install vswhere -Version 2.6.7 -SolutionDirectory `"$solutionDir`""
+        }
+    }
+
+    $msbuildpath = & $VSWHERE_CMD -version "[15.0,16.0)" -requires Microsoft.Component.MSBuild -find "MSBuild\**\Bin\MSBuild.exe"
     $arguments = "build.xml /p:SolutionDir=`"$solutionDir`" /p:OutputPath=`"$OutputDir`";Configuration=$configuration /property:Platform=$Platform /t:Build";
     $compilerResult = StartAndWait $msbuildPath $arguments
     if ($compilerResult -ne 0)

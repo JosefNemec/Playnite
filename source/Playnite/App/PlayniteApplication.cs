@@ -25,6 +25,7 @@ using System.IO;
 using Playnite.Common;
 using System.ComponentModel;
 using Playnite.Windows;
+using Polly;
 
 namespace Playnite
 {
@@ -231,18 +232,23 @@ namespace Playnite
             {
                 try
                 {
-                    var args = Environment.GetCommandLineArgs();
-                    var client = new PipeClient(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
-                    if (args.Count() > 0 && args.Contains("-command"))
-                    {
-                        var commandArgs = args[1].Split(new char[] { ':' });
-                        var command = commandArgs[0];
-                        client.InvokeCommand(command, commandArgs.Count() > 1 ? commandArgs[1] : string.Empty);
-                    }
-                    else
-                    {
-                        client.InvokeCommand(CmdlineCommands.Focus, string.Empty);
-                    }
+                    Policy.Handle<Exception>()
+                        .WaitAndRetry(3, a => TimeSpan.FromSeconds(3))
+                        .Execute(() =>
+                        {
+                            var args = Environment.GetCommandLineArgs();
+                            var client = new PipeClient(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
+                            if (args.Count() > 0 && args.Contains("-command"))
+                            {
+                                var commandArgs = args[1].Split(new char[] { ':' });
+                                var command = commandArgs[0];
+                                client.InvokeCommand(command, commandArgs.Count() > 1 ? commandArgs[1] : string.Empty);
+                            }
+                            else
+                            {
+                                client.InvokeCommand(CmdlineCommands.Focus, string.Empty);
+                            }
+                        });
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -253,11 +259,22 @@ namespace Playnite
                 }
 
                 logger.Info("Application already running, shutting down.");
-                Quit();
+                resourcesReleased = true;
+                CurrentNative.Shutdown(0);
                 return true;
             }
             else
             {
+                var curProcess = Process.GetCurrentProcess();
+                var processes = Process.GetProcessesByName(curProcess.ProcessName);
+                if (processes.Count() > 1 && processes.OrderBy(a => a.StartTime).First().Id != curProcess.Id)
+                {
+                    logger.Info("Another faster instance is already running, shutting down.");
+                    resourcesReleased = true;
+                    CurrentNative.Shutdown(0);
+                    return true;
+                }
+
                 appMutex = new Mutex(true, instanceMuxet);
 
                 try

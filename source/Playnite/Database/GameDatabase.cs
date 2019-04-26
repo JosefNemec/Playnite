@@ -175,6 +175,18 @@ namespace Playnite.Database
             Sources = new GamesSourcesCollection(this);
         }
 
+        public static string GetDefaultPath(bool portable)
+        {
+            if (portable)
+            {
+                return @"{PlayniteDir}\library";
+            }
+            else
+            {
+                return Path.Combine(PlaynitePaths.ConfigRootPath, "library");
+            }
+        }
+
         private void CheckDbState()
         {
             if (!IsOpen)

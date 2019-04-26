@@ -191,15 +191,7 @@ namespace Playnite.DesktopApp
             var isFirstStart = AppSettings.DatabasePath.IsNullOrEmpty();
             if (isFirstStart)
             {
-                if (PlayniteSettings.IsPortable)
-                {
-                    AppSettings.DatabasePath = @"{PlayniteDir}\library";
-                }
-                else
-                {
-                    AppSettings.DatabasePath = Path.Combine(PlaynitePaths.ConfigRootPath, "library");
-                }
-
+                AppSettings.DatabasePath = GameDatabase.GetDefaultPath(PlayniteSettings.IsPortable);
                 AppSettings.SaveSettings();
                 Database.SetDatabasePath(AppSettings.DatabasePath);
                 Database.OpenDatabase();

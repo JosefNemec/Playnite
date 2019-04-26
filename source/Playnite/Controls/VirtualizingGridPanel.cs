@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using Playnite;
 
 namespace Playnite.Controls
 {
@@ -125,7 +126,7 @@ namespace Playnite.Controls
 
             // Figure out range that's visible based on layout algorithm            
             GetVisibleRange(out var firstVisibleItemIndex, out var lastVisibleItemIndex);
-            if (lastVisibleItemIndex == -1)
+            if (lastVisibleItemIndex < 0)
             {
                 return availableSize;
             }
@@ -165,6 +166,7 @@ namespace Playnite.Controls
                         {
                             InsertInternalChild(childIndex, child);
                         }
+
                         Generator.PrepareItemContainer(child);
                     }
                     //If we get a recycled element
@@ -195,8 +197,16 @@ namespace Playnite.Controls
                 int iIndex = ItemContainerGenerator.IndexFromGeneratorPosition(childGeneratorPosition);
                 if (iIndex < minDesiredGenerated || iIndex > maxDesiredGenerated)
                 {
-                    Generator.Recycle(childGeneratorPosition, 1);
-                    RemoveInternalChildRange(i, 1);
+                    try
+                    {
+                        Generator.Recycle(childGeneratorPosition, 1);
+                        RemoveInternalChildRange(i, 1);
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        // There are some weird null-reference crash reports from Generator.Recycle
+                        logger.Error(e, $"Failed to recycle item {iIndex}, {minDesiredGenerated}, {maxDesiredGenerated}, {i}.");
+                    }
                 }
             }
         }
@@ -535,7 +545,7 @@ namespace Playnite.Controls
             }
 
             var maxOffset = GetTotalHeight(new Size(1, 1)) - (Rows * ItemHeight);
-            if (offset > maxOffset)
+            if (offset > 0 && offset > maxOffset)
             {
                 _offset.Y = maxOffset;
             }

@@ -91,7 +91,7 @@ namespace SteamLibrary
 
         public static string GetWorkshopUrl(uint appId)
         {
-            return $"http://steamcommunity.com/app/{appId}/workshop/";
+            return $"https://steamcommunity.com/app/{appId}/workshop/";
         }
 
         public static AppState GetAppState(GameID id)
