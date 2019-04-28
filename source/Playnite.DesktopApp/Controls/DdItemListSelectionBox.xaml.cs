@@ -113,6 +113,7 @@ namespace Playnite.DesktopApp.Controls
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
+            ItemsList.SetSelection(null);
             BoundIds = null;
         }
     }

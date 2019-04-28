@@ -88,7 +88,7 @@ namespace Playnite.DesktopApp.ViewModels
                 else
                 {
                     if (AppSettings.ViewSettings.GamesViewType == ViewType.Details ||
-                        (AppSettings.ViewSettings.GamesViewType == ViewType.Grid && ShowGameSidebar))
+                        (AppSettings.ViewSettings.GamesViewType == ViewType.Grid && AppSettings.GridViewSideBarVisible))
                     {
                         SelectedGameDetails = new GameDetailsViewModel(value, AppSettings, GamesEditor, Dialogs, Resources);
                     }
@@ -205,22 +205,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private bool showGameSidebar = false;
-        public bool ShowGameSidebar
-        {
-            get => showGameSidebar;
-            set
-            {
-                if (value == true && SelectedGameDetails == null)
-                {
-                    SelectedGameDetails = new GameDetailsViewModel(SelectedGame, AppSettings, GamesEditor, Dialogs, Resources);
-                }                   
-
-                showGameSidebar = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool mainMenuOpened = false;
         public bool MainMenuOpened
         {
@@ -299,6 +283,17 @@ namespace Playnite.DesktopApp.ViewModels
             private set
             {
                 databaseFilters = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DatabaseExplorer databaseExplorer;
+        public DatabaseExplorer DatabaseExplorer
+        {
+            get => databaseExplorer;
+            private set
+            {
+                databaseExplorer = value;
                 OnPropertyChanged();
             }
         }
@@ -384,7 +379,8 @@ namespace Playnite.DesktopApp.ViewModels
             AppSettings = settings;
             PlayniteApi = playniteApi;
             Extensions = extensions;
-            DatabaseFilters = new DatabaseFilter(database, extensions, AppSettings.FilterSettings);           
+            DatabaseFilters = new DatabaseFilter(database, extensions, AppSettings.FilterSettings);
+            DatabaseExplorer = new DatabaseExplorer(database, extensions);
 
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
@@ -608,13 +604,13 @@ namespace Playnite.DesktopApp.ViewModels
 
             ShowGameSideBarCommand = new RelayCommand<GamesCollectionViewEntry>((f) =>
             {
+                AppSettings.GridViewSideBarVisible = true;
                 SelectedGame = f;
-                ShowGameSidebar = true;
             });
 
             CloseGameSideBarCommand = new RelayCommand<object>((f) =>
             {
-                ShowGameSidebar = false;
+                AppSettings.GridViewSideBarVisible = false;
             });
 
             OpenSettingsCommand = new RelayCommand<object>((a) =>
@@ -784,7 +780,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             if (e.PropertyName == nameof(AppSettings.ViewSettings.GamesViewType) &&
                 AppSettings.ViewSettings.GamesViewType == ViewType.Grid &&
-                ShowGameSidebar &&
+                AppSettings.GridViewSideBarVisible &&
                 SelectedGameDetails == null &&
                 SelectedGame != null)
             {

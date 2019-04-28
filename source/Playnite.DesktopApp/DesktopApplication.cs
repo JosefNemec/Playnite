@@ -66,7 +66,6 @@ namespace Playnite.DesktopApp
             InstantiateApp();
             var isFirstStart = ProcessStartupWizard();
             MigrateDatabase();
-            LoadExtensions();
             SetupInputs();
             OpenMainViewAsync(isFirstStart);
             LoadTrayIcon();
@@ -110,6 +109,9 @@ namespace Playnite.DesktopApp
                 new ResourceProvider(),
                 new NotificationsAPI());
             Extensions = new ExtensionFactory(Database, Controllers);
+            Extensions.LoadLibraryPlugins(Api, AppSettings.DisabledPlugins);
+            Extensions.LoadGenericPlugins(Api, AppSettings.DisabledPlugins);
+            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
             GamesEditor = new DesktopGamesEditor(
                 Database,
                 Controllers,

@@ -14,8 +14,10 @@ using System.Configuration;
 using Playnite.Common;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows;
 
-namespace Playnite.Settings
+namespace Playnite
 {
     public enum AfterLaunchOptions
     {
@@ -30,8 +32,161 @@ namespace Playnite.Settings
         Restore
     }
 
-    public class PlayniteSettings : INotifyPropertyChanged, IEditableObject
+    public class PlayniteSettings : ObservableObject
     {
+        public class DetailsVisibilitySettings : ObservableObject
+        {
+            private bool playTime = true;
+            public bool PlayTime
+            {
+                get
+                {
+                    return playTime;
+                }
+
+                set
+                {
+                    playTime = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool platform = true;
+            public bool Platform
+            {
+                get
+                {
+                    return platform;
+                }
+
+                set
+                {
+                    platform = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool genres = true;
+            public bool Genres
+            {
+                get
+                {
+                    return genres;
+                }
+
+                set
+                {
+                    genres = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool developers = true;
+            public bool Developers
+            {
+                get
+                {
+                    return developers;
+                }
+
+                set
+                {
+                    developers = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool publishers = true;
+            public bool Publishers
+            {
+                get
+                {
+                    return publishers;
+                }
+
+                set
+                {
+                    publishers = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool releaseDate = true;
+            public bool ReleaseDate
+            {
+                get
+                {
+                    return releaseDate;
+                }
+
+                set
+                {
+                    releaseDate = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool categories = true;
+            public bool Categories
+            {
+                get
+                {
+                    return categories;
+                }
+
+                set
+                {
+                    categories = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool tags = true;
+            public bool Tags
+            {
+                get
+                {
+                    return tags;
+                }
+
+                set
+                {
+                    tags = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool links = true;
+            public bool Links
+            {
+                get
+                {
+                    return links;
+                }
+
+                set
+                {
+                    links = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool description = true;
+            public bool Description
+            {
+                get
+                {
+                    return description;
+                }
+
+                set
+                {
+                    description = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private static ILogger logger = LogManager.GetCurrentClassLogger();
 
         public class WindowPosition
@@ -85,6 +240,176 @@ namespace Playnite.Settings
             }
         }
 
+        public DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
+        public DetailsVisibilitySettings DetailsVisibility
+        {
+            get
+            {
+                return detailsVisibility;
+            }
+
+            set
+            {
+                detailsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Dock gridViewDetailsPosition = Dock.Right;
+        public Dock GridViewDetailsPosition
+        {
+            get
+            {
+                return gridViewDetailsPosition;
+            }
+
+            set
+            {
+                gridViewDetailsPosition = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Dock sideBarPosition = Dock.Left;
+        public Dock SideBarPosition
+        {
+            get
+            {
+                return sideBarPosition;
+            }
+
+            set
+            {
+                sideBarPosition = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Dock filterPanelPosition = Dock.Right;
+        public Dock FilterPanelPosition
+        {
+            get
+            {
+                return filterPanelPosition;
+            }
+
+            set
+            {
+                filterPanelPosition = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Dock explorerPanelPosition = Dock.Left;
+        public Dock ExplorerPanelPosition
+        {
+            get
+            {
+                return explorerPanelPosition;
+            }
+
+            set
+            {
+                explorerPanelPosition = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool explorerPanelVisible = true;
+        public bool ExplorerPanelVisible
+        {
+            get
+            {
+                return explorerPanelVisible;
+            }
+
+            set
+            {
+                explorerPanelVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [JsonIgnore]
+        public double CoverArtHeight
+        {
+            get
+            {
+                if (CoversZoom != 0)
+                {
+                    return CoversZoom * ((double)coverArtHeightRatio / CoverArtWidthRatio);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        // TODO rename
+        private double coversZoom = ViewSettings.DefaultCoversZoom;
+        public double CoversZoom
+        {
+            get
+            {
+                return coversZoom;
+            }
+
+            set
+            {
+                coversZoom = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(CoverArtHeight));
+            }
+        }
+
+        private uint coverArtWidthRatio = 92;
+        public uint CoverArtWidthRatio
+        {
+            get
+            {
+                return coverArtWidthRatio;
+            }
+
+            set
+            {
+                coverArtWidthRatio = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(CoverArtHeight));
+            }
+        }
+
+        private uint coverArtHeightRatio = 43;
+        public uint CoverArtHeightRatio
+        {
+            get
+            {
+                return coverArtHeightRatio;
+            }
+
+            set
+            {
+                coverArtHeightRatio = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(CoverArtHeight));
+            }
+        }
+
+        private Stretch coverArtStretch = Stretch.UniformToFill;
+        public Stretch CoverArtStretch
+        {
+            get
+            {
+                return coverArtStretch;
+            }
+
+            set
+            {
+                coverArtStretch = value;
+                OnPropertyChanged();
+            }
+        }
+
         private List<string> collapsedCategories = new List<string>();
         public List<string> CollapsedCategories
         {
@@ -98,7 +423,7 @@ namespace Playnite.Settings
                 collapsedCategories = value;
                 OnPropertyChanged();
             }
-        }
+        }        
 
         private bool firstTimeWizardComplete;
         public bool FirstTimeWizardComplete
@@ -394,7 +719,7 @@ namespace Playnite.Settings
             { "CriticScore", false },
             { "CommunityScore", false },
             { "Tags", false },
-            { "Provider", true }
+            { "Library", true }
         };
 
         public ObservableConcurrentDictionary<string, bool> GridViewHeaders
@@ -413,6 +738,21 @@ namespace Playnite.Settings
 
                 gridViewHeaders = value;
                 gridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool gridViewSideBarVisible = false;
+        public bool GridViewSideBarVisible
+        {
+            get
+            {
+                return gridViewSideBarVisible;
+            }
+
+            set
+            {
+                gridViewSideBarVisible = value;
                 OnPropertyChanged();
             }
         }
@@ -600,21 +940,6 @@ namespace Playnite.Settings
             }
         }
 
-        private FullscreenSettings fullscreenSettings = new FullscreenSettings();
-        public FullscreenSettings FullscreenSettings
-        {
-            get
-            {
-                return fullscreenSettings;
-            }
-
-            set
-            {
-                fullscreenSettings = value;
-                OnPropertyChanged();
-            }
-        }
-
         public string InstallInstanceId
         {
             get; set;
@@ -702,14 +1027,7 @@ namespace Playnite.Settings
             {
                 return !File.Exists(PlaynitePaths.UninstallerNsisPath) && !File.Exists(PlaynitePaths.UninstallerInnoPath);
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [JsonIgnore]
-        public List<string> EditedFields;
-        private bool isEditing = false;
-        private PlayniteSettings editingCopy;
+        }        
 
         private static PlayniteSettings instance;
         public static PlayniteSettings Instance
@@ -731,72 +1049,13 @@ namespace Playnite.Settings
             GridViewHeaders.PropertyChanged += GridViewHeaders_PropertyChanged;
         }
 
-        public void BeginEdit()
-        {
-            if (isEditing)
-            {
-                return;
-            }
-
-            isEditing = true;
-            EditedFields = new List<string>();
-            editingCopy = this.GetClone();
-        }
-
-        public void EndEdit()
-        {
-            if (!isEditing)
-            {
-                return;
-            }
-
-            isEditing = false;
-            foreach (var prop in EditedFields)
-            {
-                OnPropertyChanged(prop);
-            }
-        }
-
-        public void CancelEdit()
-        {
-            if (!isEditing)
-            {
-                return;
-            }
-
-            editingCopy.CopyProperties(this, false, new List<string>()
-            {
-                nameof(FilterSettings),
-                nameof(FullScreenFilterSettings),
-                nameof(InstallInstanceId),
-                nameof(ViewSettings),
-                nameof(FullscreenViewSettings)
-            });
-            isEditing = false;
-            EditedFields = new List<string>();
-        }
-
-        public void OnPropertyChanged([CallerMemberName]string name = null, bool force = false)
-        {
-            if (isEditing && !force)
-            {
-                if (!EditedFields.Contains(name))
-                {
-                    EditedFields.Add(name);
-                }
-            }
-            else
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-            }            
-        }
-
         private void GridViewHeaders_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Values")
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GridViewHeaders)));
-            }
+            // TODO
+            //if (e.PropertyName == "Values")
+            //{
+            //    OnPropertyChanged(nameof(GridViewHeaders));
+            //}
         }
 
         public static PlayniteSettings LoadSettings()
@@ -893,7 +1152,7 @@ namespace Playnite.Settings
                     return;
                 }
 
-                var oldSettings = JsonConvert.DeserializeObject<OldSettings.Settings>(File.ReadAllText(PlaynitePaths.ConfigFilePath));
+                var oldSettings = JsonConvert.DeserializeObject<Settings.OldSettings.Settings>(File.ReadAllText(PlaynitePaths.ConfigFilePath));
                 if (oldSettings.BattleNetSettings != null)
                 {
                     var config = new Dictionary<string, object>()

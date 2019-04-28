@@ -160,7 +160,8 @@ namespace Playnite.DesktopApp.Controls
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            FilterProperties = null;
+            ItemsList.SetSelection(null);
+            //FilterProperties = null;
         }
     }
 }

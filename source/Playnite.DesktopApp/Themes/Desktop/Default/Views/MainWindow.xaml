@@ -63,9 +63,10 @@
                                                Visibility="{pmrk:Settings SidebarVisible}" />                             
                                 <ContentControl Content="{pmrk:MainViewModel ActiveView}" DockPanel.Dock="Top" />
                             </DockPanel>                            
-                            <views:NotificationPanel x:Name="Notifications"                                                     
+                            <views:NotificationPanel x:Name="Notifications"  
+                                                     WindowChrome.IsHitTestVisibleInChrome="True"
                                                      Width="260"
-                                                     Grid.Row="1" Grid.Column="0"
+                                                     Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
                                                      HorizontalAlignment="Left" VerticalAlignment="Stretch"
                                                      pbeh:AnimatedVisibility.Visibility="{pmrk:Settings NotificationPanelVisible}"
                                                      pbeh:AnimatedVisibility.Visible="{StaticResource VisibilityOn}"

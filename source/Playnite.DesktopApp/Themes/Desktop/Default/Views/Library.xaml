@@ -15,26 +15,25 @@
                     <DockPanel>
                         <DockPanel.Resources>         
                             <Storyboard x:Key="VisibilityOn">
-                                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
-                                                 Storyboard.TargetName="FilterPanel">
-                                    <SplineThicknessKeyFrame KeyTime="00:00:00" Value="-230,0,0,0" />
-                                    <SplineThicknessKeyFrame KeyTime="0:0:0.14" Value="0,0,0,0" />
-                                </ThicknessAnimationUsingKeyFrames>
+                                <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                 Storyboard.TargetName="FilterPanel"
+                                                 From="0" To="230" Duration="0:0:0.10" />
                             </Storyboard>
                             <Storyboard x:Key="VisibilityOff">
-                                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
-                                                 Storyboard.TargetName="FilterPanel">
-                                    <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0" />
-                                    <SplineThicknessKeyFrame KeyTime="0:0:0.14" Value="-230,0,0,0" />
-                                </ThicknessAnimationUsingKeyFrames>
+                                <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                 Storyboard.TargetName="FilterPanel"
+                                                 From="230" To="0" Duration="0:0:0.10" />
                             </Storyboard>
                         </DockPanel.Resources>
                         <views:FilterPanel x:Name="FilterPanel"
-                                    DockPanel.Dock="Left" Width="230"
+                                    DockPanel.Dock="{pmrk:Settings FilterPanelPosition}" Width="230"
                                     pbeh:AnimatedVisibility.Visibility="{pmrk:Settings FilterPanelVisible}"
                                     pbeh:AnimatedVisibility.Visible="{StaticResource VisibilityOn}"
                                     pbeh:AnimatedVisibility.Collapsed="{StaticResource VisibilityOff}">               
                         </views:FilterPanel>
+                        <views:ExplorerPanel Visibility="{pmrk:Settings ExplorerPanelVisible}"
+                                             DockPanel.Dock="{pmrk:Settings ExplorerPanelPosition}"
+                                             Width="260" />
                         <Grid DockPanel.Dock="Left">
                             <views:LibraryDetailsView Visibility="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToVisibilityConverter},ConverterParameter={x:Static playnite:ViewType.Details}}"
                                                         IsEnabled="{pmrk:Settings ViewSettings.GamesViewType,Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static playnite:ViewType.Details}}"/>

@@ -92,47 +92,52 @@ namespace Playnite.DesktopApp.ViewModels
 
         public Visibility PlayTimeVisibility
         {
-            get => game.Playtime > 0 ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.PlayTime && game.Playtime > 0) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility PlatformVisibility
         {
-            get => game.Platform.Id != Guid.Empty ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.Platform && game.Platform.Id != Guid.Empty) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility GenreVisibility
         {
-            get => game.GenreIds.HasItems() ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.Genres && game.GenreIds.HasItems()) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility DeveloperVisibility
         {
-            get => game.DeveloperIds.HasItems() ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.Developers && game.DeveloperIds.HasItems()) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility PublisherVisibility
         {
-            get => game.PublisherIds.HasItems() ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.Publishers && game.PublisherIds.HasItems()) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility ReleaseDateVisibility
         {
-            get => game.ReleaseDate != null ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.ReleaseDate && game.ReleaseDate != null) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility CategoryVisibility
         {
-            get => game.CategoryIds.HasItems() ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.Categories && game.CategoryIds.HasItems()) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility TagVisibility
         {
-            get => game.TagIds.HasItems() ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.Tags && game.TagIds.HasItems()) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility LinkVisibility
         {
-            get => game.Links.HasItems() ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.Links && game.Links.HasItems()) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility DescriptionVisibility
+        {
+            get => (settings.DetailsVisibility.Description && !game.Description.IsNullOrEmpty()) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private GamesCollectionViewEntry game;
@@ -245,6 +250,8 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Game.PropertyChanged += Game_PropertyChanged;
             }
+
+            settings.PropertyChanged += Settings_PropertyChanged;
         }
 
         public void Dispose()
@@ -253,6 +260,13 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Game.PropertyChanged -= Game_PropertyChanged;
             }
+
+            settings.PropertyChanged -= Settings_PropertyChanged;
+        }
+
+        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            NotifyVisibilityChange();
         }
 
         private void Game_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -264,7 +278,11 @@ namespace Playnite.DesktopApp.ViewModels
             OnPropertyChanged(nameof(IsLaunching));
             OnPropertyChanged(nameof(IsPlayAvailable));
             OnPropertyChanged(nameof(IsInstallAvailable));
+            NotifyVisibilityChange();
+        }
 
+        private void NotifyVisibilityChange()
+        {
             foreach (var prop in GetType().GetProperties().Where(a => a.Name.EndsWith("Visibility")))
             {
                 OnPropertyChanged(prop.Name);

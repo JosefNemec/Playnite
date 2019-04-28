@@ -8,16 +8,16 @@
                     xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
                     xmlns:pctrlsShared="clr-namespace:Playnite.Controls;assembly=Playnite">    
 
-    <Style TargetType="{x:Type views:GridGameOverview}">
+    <Style TargetType="{x:Type views:GridGameOverview}">        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:GridGameOverview}">
-                    <DockPanel Margin="5,0,2,0" Width="350">
+                    <DockPanel>
                         <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top"
-                       DockPanel.Dock="Top" Margin="0,10,15,10">
-                <Hyperlink Command="{pmrk:MainViewModel CloseGameSideBarCommand}">
-                    <Run Text="r" FontFamily="Marlett" />
-                </Hyperlink>
+                                   DockPanel.Dock="Top" Margin="0,10,15,5">
+                            <Hyperlink Command="{pmrk:MainViewModel CloseGameSideBarCommand}">
+                                <Run Text="r" FontFamily="Marlett" />
+                            </Hyperlink>
                         </TextBlock>
 
                         <DockPanel DockPanel.Dock="Top">
@@ -60,8 +60,8 @@
                         </StackPanel>
 
                         <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                          VerticalScrollBarVisibility="Auto"
-                          Margin="0,15,0,0" DockPanel.Dock="Top">
+                                      VerticalScrollBarVisibility="Auto"
+                                      Margin="0,15,0,0" DockPanel.Dock="Top">
                             <StackPanel>
                                 <views:GameProperties IsTabStop="False" />
                                 <Border Margin="0,10,0,0">
@@ -78,6 +78,7 @@
                                         </Style>
                                     </Border.Style>
                                     <pctrlsShared:HtmlTextView HtmlText="{Binding Game.Description, Mode=OneWay}"
+                                                               Visibility="{Binding DescriptionVisibility}"
                                         HtmlFontFamily="{DynamicResource FontFamily}"
                                         HtmlForeground="{DynamicResource TextColor}"
                                         LinkForeground="{DynamicResource GlyphColor}"

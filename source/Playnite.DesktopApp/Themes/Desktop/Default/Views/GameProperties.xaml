@@ -51,6 +51,7 @@
                             </Style>
                             <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
                                 <Setter Property="Margin" Value="0,10,0,2" />
+                                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
                             </Style>
                             <DataTemplate x:Key="GenreItemTemplate">
                                 <Button Style="{StaticResource PropertyItemButton}"

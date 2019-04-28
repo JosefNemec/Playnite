@@ -145,6 +145,7 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCAllGames">All Games</sys:String>
     <sys:String x:Key="LOCGameId">Game Id</sys:String>
     <sys:String x:Key="LOCDatabaseId">Database Id</sys:String>
+    <sys:String x:Key="LOCPresets">Presets</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Special variables can be used to add dynamic string:
 {InstallDir} - Game installation directory
@@ -219,10 +220,20 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSDKDocumentation">SDK Documentation</sys:String>
 
     <!--Settings Window-->
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Grid view details position</sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">Filter panel position</sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">Explorer panel position</sys:String>
+    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Cover art rendering</sys:String>
+    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Target aspect ratio</sys:String>
+    <sys:String x:Key="LOCSettingsStrechModeLabel">Strech mode</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam Banner</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD Box</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">Settings marked with * require application restart to take effect</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Settings</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">General</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Appearance</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">Game Details</sys:String>
+    <sys:String x:Key="LOCSettingsLayoutLabel">Layout</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Advanced</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Providers</sys:String>
@@ -244,9 +255,9 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Includes Steam, Origin and others.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchronous image loading *</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Improves scrolling smoothness of game lists in exchange for slower image load times.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Display game name when cover art is missing</sys:String>
-    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Show game names on cover view</sys:String>
-    <sys:String x:Key="LOCSettingsShowIconList">Show game icons on List view</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Display game name if cover art is missing</sys:String>
+    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Show game names on Grid view</sys:String>
+    <sys:String x:Key="LOCSettingsShowIconList">Show game icons on Details view list</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Show item count on group descriptions</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Disable hardware acceleration *</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Use when experiencing stuttering or similar UI issues</sys:String>
@@ -301,6 +312,16 @@ Any currently active tasks (metadata downloads) will be canceled.</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Doesn't apply retrospectively to existing games without re-downloading metadata.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Force sync play time</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Always download recorded play time from remote library during library sync, ignoring time recorded by Playnite.</sys:String>
+
+    <sys:String x:Key="LOCStrechNone">None</sys:String>
+    <sys:String x:Key="LOCStrechFill">Fill</sys:String>
+    <sys:String x:Key="LOCStrechUniform">Uniform</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">Uniform to fill</sys:String>
+
+    <sys:String x:Key="LOCDockLeft">Left</sys:String>
+    <sys:String x:Key="LOCDockRight">Right</sys:String>
+    <sys:String x:Key="LOCDockTop">Top</sys:String>
+    <sys:String x:Key="LOCDockBottom">Bottom</sys:String>
 
     <sys:String x:Key="LOCImportError">Import Error</sys:String>
     <sys:String x:Key="LOCLoginChecking">Checking authentication status...</sys:String>
@@ -582,7 +603,7 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Cancel game monitoring?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Installation monitoring is currently running, do you want to cancel the process and return game to previous state?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Game execution monitoring is currently running, do you want to cancel the process and return game to previous state?</sys:String>
-
+    
     <sys:String x:Key="LOCTimePlayed">Time Played</sys:String>
     <sys:String x:Key="LOCLastPlayed">Last Played</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>

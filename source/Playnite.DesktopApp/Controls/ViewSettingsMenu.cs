@@ -88,7 +88,7 @@ namespace Playnite.DesktopApp.Controls
                 Header = ResourceProvider.GetString("LOCMenuGroupByTitle")
             };
 
-            PopulateEnumOptions(groupItem.Items, typeof(GroupOrder), nameof(settings.ViewSettings.GroupingOrder), settings.ViewSettings);
+            PopulateEnumOptions(groupItem.Items, typeof(GroupableField), nameof(settings.ViewSettings.GroupingOrder), settings.ViewSettings);
 
             Items.Add(sortItem);
             Items.Add(groupItem);

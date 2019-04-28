@@ -98,6 +98,7 @@
                             </Border.Style>
                             <ScrollViewer>
                                 <pctrlsShared:HtmlTextView HtmlText="{Binding Game.Description, Mode=OneWay}"
+                                                           Visibility="{Binding DescriptionVisibility}"
                                          HtmlFontFamily="{DynamicResource FontFamily}"
                                          HtmlForeground="{DynamicResource TextColor}"
                                          LinkForeground="{DynamicResource GlyphColor}"

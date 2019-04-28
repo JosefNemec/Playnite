@@ -52,7 +52,7 @@ namespace Playnite
             private set;
         }
 
-        private GroupOrder? currentGrouping = null;
+        private GroupableField? currentGrouping = null;
 
         private GamesViewType? viewType = null;
         public GamesViewType? ViewType
@@ -464,43 +464,43 @@ namespace Playnite
             {
                 switch (viewSettings.GroupingOrder)
                 {
-                    case GroupOrder.None:
+                    case GroupableField.None:
                         ViewType = GamesViewType.Standard;
                         break;
-                    case GroupOrder.Provider:
+                    case GroupableField.Library:
                         ViewType = GamesViewType.Standard;
                         break;
-                    case GroupOrder.Category:
+                    case GroupableField.Category:
                         ViewType = GamesViewType.ListGrouped;
                         break;
-                    case GroupOrder.Genre:
+                    case GroupableField.Genre:
                         ViewType = GamesViewType.ListGrouped;
                         break;
-                    case GroupOrder.Developer:
+                    case GroupableField.Developer:
                         ViewType = GamesViewType.ListGrouped;
                         break;
-                    case GroupOrder.Publisher:
+                    case GroupableField.Publisher:
                         ViewType = GamesViewType.ListGrouped;
                         break;
-                    case GroupOrder.Tag:
+                    case GroupableField.Tag:
                         ViewType = GamesViewType.ListGrouped;
                         break;
-                    case GroupOrder.Platform:
+                    case GroupableField.Platform:
                         ViewType = GamesViewType.Standard;
                         break;
-                    case GroupOrder.Series:
+                    case GroupableField.Series:
                         ViewType = GamesViewType.Standard;
                         break;
-                    case GroupOrder.AgeRating:
+                    case GroupableField.AgeRating:
                         ViewType = GamesViewType.Standard;
                         break;
-                    case GroupOrder.Region:
+                    case GroupableField.Region:
                         ViewType = GamesViewType.Standard;
                         break;
-                    case GroupOrder.Source:
+                    case GroupableField.Source:
                         ViewType = GamesViewType.Standard;
                         break;
-                    case GroupOrder.ReleaseYear:
+                    case GroupableField.ReleaseYear:
                         ViewType = GamesViewType.Standard;
                         break;
                     default:
@@ -521,7 +521,7 @@ namespace Playnite
                 CollectionView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             }
 
-            if (viewSettings.GroupingOrder != GroupOrder.None)
+            if (viewSettings.GroupingOrder != GroupableField.None)
             {
                 CollectionView.GroupDescriptions.Add(new PropertyGroupDescription(groupFields[viewSettings.GroupingOrder]));
                 if (CollectionView.SortDescriptions.First().PropertyName != groupFields[viewSettings.GroupingOrder])
@@ -539,67 +539,67 @@ namespace Playnite
             };
         }
 
-        private Dictionary<GroupOrder, string> groupFields = new Dictionary<GroupOrder, string>()
+        private Dictionary<GroupableField, string> groupFields = new Dictionary<GroupableField, string>()
         {
-            { GroupOrder.Provider, nameof(GamesCollectionViewEntry.Provider) },
-            { GroupOrder.Category, nameof(GamesCollectionViewEntry.Category) },
-            { GroupOrder.Genre, nameof(GamesCollectionViewEntry.Genre) },
-            { GroupOrder.Developer, nameof(GamesCollectionViewEntry.Developer) },
-            { GroupOrder.Publisher, nameof(GamesCollectionViewEntry.Publisher) },
-            { GroupOrder.Tag, nameof(GamesCollectionViewEntry.Tag) },
-            { GroupOrder.Platform, nameof(GamesCollectionViewEntry.Platform) },
-            { GroupOrder.Series, nameof(GamesCollectionViewEntry.Series) },
-            { GroupOrder.AgeRating, nameof(GamesCollectionViewEntry.AgeRating) },
-            { GroupOrder.Region, nameof(GamesCollectionViewEntry.Region) },
-            { GroupOrder.Source, nameof(GamesCollectionViewEntry.Source) },
-            { GroupOrder.ReleaseYear, nameof(GamesCollectionViewEntry.ReleaseYear) }
+            { GroupableField.Library, nameof(GamesCollectionViewEntry.Library) },
+            { GroupableField.Category, nameof(GamesCollectionViewEntry.Category) },
+            { GroupableField.Genre, nameof(GamesCollectionViewEntry.Genre) },
+            { GroupableField.Developer, nameof(GamesCollectionViewEntry.Developer) },
+            { GroupableField.Publisher, nameof(GamesCollectionViewEntry.Publisher) },
+            { GroupableField.Tag, nameof(GamesCollectionViewEntry.Tag) },
+            { GroupableField.Platform, nameof(GamesCollectionViewEntry.Platform) },
+            { GroupableField.Series, nameof(GamesCollectionViewEntry.Series) },
+            { GroupableField.AgeRating, nameof(GamesCollectionViewEntry.AgeRating) },
+            { GroupableField.Region, nameof(GamesCollectionViewEntry.Region) },
+            { GroupableField.Source, nameof(GamesCollectionViewEntry.Source) },
+            { GroupableField.ReleaseYear, nameof(GamesCollectionViewEntry.ReleaseYear) }
         };
 
-        private Dictionary<GroupOrder, Type> groupTypes = new Dictionary<GroupOrder, Type>()
+        private Dictionary<GroupableField, Type> groupTypes = new Dictionary<GroupableField, Type>()
         {            
-            { GroupOrder.Category, typeof(Category) },
-            { GroupOrder.Genre, typeof(Genre) },
-            { GroupOrder.Developer, typeof(Developer) },
-            { GroupOrder.Publisher, typeof(Publisher) },
-            { GroupOrder.Tag, typeof(Tag) }
+            { GroupableField.Category, typeof(Category) },
+            { GroupableField.Genre, typeof(Genre) },
+            { GroupableField.Developer, typeof(Developer) },
+            { GroupableField.Publisher, typeof(Publisher) },
+            { GroupableField.Tag, typeof(Tag) }
         };
 
-        private Guid GetGroupingId(GroupOrder orderField, Game sourceGame)
+        private Guid GetGroupingId(GroupableField orderField, Game sourceGame)
         {
             switch (orderField)
             {
-                case GroupOrder.AgeRating:
+                case GroupableField.AgeRating:
                     return sourceGame.AgeRatingId;
-                case GroupOrder.Platform:
+                case GroupableField.Platform:
                     return sourceGame.PlatformId;
-                case GroupOrder.Region:
+                case GroupableField.Region:
                     return sourceGame.RegionId;
-                case GroupOrder.Series:
+                case GroupableField.Series:
                     return sourceGame.SeriesId;
-                case GroupOrder.Source:
+                case GroupableField.Source:
                     return sourceGame.SourceId;
-                case GroupOrder.None:
+                case GroupableField.None:
                     return Guid.Empty;
                 default:
                     throw new Exception("Wrong grouping configuration.");
             }
         }
 
-        private IEnumerable<Guid> GetGroupingIds(GroupOrder orderField, Game sourceGame)
+        private IEnumerable<Guid> GetGroupingIds(GroupableField orderField, Game sourceGame)
         {
             switch (orderField)
             {
-                case GroupOrder.Category:
+                case GroupableField.Category:
                     return sourceGame.CategoryIds;
-                case GroupOrder.Genre:
+                case GroupableField.Genre:
                     return sourceGame.GenreIds;
-                case GroupOrder.Developer:
+                case GroupableField.Developer:
                     return sourceGame.DeveloperIds;
-                case GroupOrder.Publisher:
+                case GroupableField.Publisher:
                     return sourceGame.PublisherIds;
-                case GroupOrder.Tag:
+                case GroupableField.Tag:
                     return sourceGame.TagIds;
-                case GroupOrder.None:
+                case GroupableField.None:
                     return null;
                 default:
                     throw new Exception("Wrong grouping configuration.");
@@ -670,14 +670,14 @@ namespace Playnite
         private void Database_PlatformUpdated(object sender, ItemUpdatedEventArgs<Platform> e)
         {
             DoGroupDbObjectsUpdate(
-               GroupOrder.Platform, e,
+               GroupableField.Platform, e,
                (a, b) => a.PlatformId != Guid.Empty && b.Contains(a.PlatformId));
         }
 
         private void Genres_ItemUpdated(object sender, ItemUpdatedEventArgs<Genre> e)
         {
             DoGroupDbObjectsUpdate(
-                GroupOrder.Genre, e,
+                GroupableField.Genre, e,
                 (a, b) => a.GenreIds?.Any() == true && b.Intersect(a.GenreIds).Any(),
                 nameof(Game.Genres));
         }
@@ -685,7 +685,7 @@ namespace Playnite
         private void Tags_ItemUpdated(object sender, ItemUpdatedEventArgs<Tag> e)
         {
             DoGroupDbObjectsUpdate(
-                GroupOrder.Tag, e,
+                GroupableField.Tag, e,
                 (a, b) => a.TagIds?.Any() == true && b.Intersect(a.TagIds).Any(),
                 nameof(Game.Tags));
         }
@@ -693,33 +693,33 @@ namespace Playnite
         private void Sources_ItemUpdated(object sender, ItemUpdatedEventArgs<GameSource> e)
         {
             DoGroupDbObjectsUpdate(
-               GroupOrder.Source, e,
+               GroupableField.Source, e,
                (a, b) => a.SourceId != Guid.Empty && b.Contains(a.SourceId));
         }
 
         private void Series_ItemUpdated(object sender, ItemUpdatedEventArgs<Series> e)
         {
             DoGroupDbObjectsUpdate(
-               GroupOrder.Series, e,
+               GroupableField.Series, e,
                (a, b) => a.SeriesId != Guid.Empty && b.Contains(a.SeriesId));
         }
 
         private void Regions_ItemUpdated(object sender, ItemUpdatedEventArgs<Region> e)
         {
             DoGroupDbObjectsUpdate(
-               GroupOrder.Region, e,
+               GroupableField.Region, e,
                (a, b) => a.RegionId != Guid.Empty && b.Contains(a.RegionId));
         }
 
         private void Companies_ItemUpdated(object sender, ItemUpdatedEventArgs<Company> e)
         {
             DoGroupDbObjectsUpdate(
-                GroupOrder.Developer, e,
+                GroupableField.Developer, e,
                 (a, b) => a.DeveloperIds?.Any() == true && b.Intersect(a.DeveloperIds).Any(),
                 nameof(Game.Developers));          
 
             DoGroupDbObjectsUpdate(
-                GroupOrder.Publisher, e,
+                GroupableField.Publisher, e,
                 (a, b) => a.PublisherIds?.Any() == true && b.Intersect(a.PublisherIds).Any(),
                 nameof(Game.Publishers));
         }
@@ -727,20 +727,20 @@ namespace Playnite
         private void AgeRatings_ItemUpdated(object sender, ItemUpdatedEventArgs<AgeRating> e)
         {
             DoGroupDbObjectsUpdate(
-               GroupOrder.AgeRating, e,
+               GroupableField.AgeRating, e,
                (a, b) => a.AgeRatingId != Guid.Empty && b.Contains(a.AgeRatingId));
         }
 
         private void Categories_ItemUpdated(object sender, ItemUpdatedEventArgs<Category> e)
         {
             DoGroupDbObjectsUpdate(
-                GroupOrder.Category, e,
+                GroupableField.Category, e,
                 (a, b) => a.CategoryIds?.Any() == true && b.Intersect(a.CategoryIds).Any(),
                 nameof(Game.Categories));
         }
 
         private void DoGroupDbObjectsUpdate<TItem>(
-            GroupOrder order,
+            GroupableField order,
             ItemUpdatedEventArgs<TItem> updatedItems,
             Func<GamesCollectionViewEntry, List<Guid>, bool> condition,
             string extraPropNotify = null) where TItem : DatabaseObject

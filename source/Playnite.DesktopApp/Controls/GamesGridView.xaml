@@ -140,7 +140,7 @@
                         <MenuItem Header="{DynamicResource LOCGamePlatformTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Platform]}" />
                         <MenuItem Header="{DynamicResource LOCGameProviderTitle}"
-                                    IsCheckable="True" IsChecked="{Binding GridViewHeaders[Provider]}" />
+                                    IsCheckable="True" IsChecked="{Binding GridViewHeaders[Library]}" />
                         <MenuItem Header="{DynamicResource LOCGameDevelopersTitle}"
                                     IsCheckable="True" IsChecked="{Binding GridViewHeaders[Developers]}" />
                         <MenuItem Header="{DynamicResource LOCGamePublishersTitle}"
@@ -249,23 +249,23 @@
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
-                
-                <!-- Provider -->
-                <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Provider], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
+
+                <!-- Library -->
+                <GridViewColumn Width="{Binding Path=DataContext.GridViewHeaders[Library], ElementName=HeaderMenu, Mode=TwoWay, Converter={StaticResource BoolToAutoWidthConverter}}">
                     <GridViewColumn.Header>
-                        <GridViewColumnHeader Tag="{x:Static p:SortOrder.Provider}">
+                        <GridViewColumnHeader Tag="{x:Static p:SortOrder.Library}">
                             <GridViewColumnHeader.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{DynamicResource LOCGameProviderTitle}" />
                                     <ContentControl Style="{StaticResource SortIndicator}"
-                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Provider}}"/>
+                                                    Visibility="{Binding Path=ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Library}}"/>
                                 </StackPanel>
                             </GridViewColumnHeader.Content>
                         </GridViewColumnHeader>
                     </GridViewColumn.Header>
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Provider, Mode=OneWay}" Style="{StaticResource TextItemStyle}"/>
+                            <TextBlock Text="{Binding Library, Mode=OneWay}" Style="{StaticResource TextItemStyle}"/>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>

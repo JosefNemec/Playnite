@@ -136,7 +136,7 @@ namespace Playnite
             get;
         }
 
-        public string Provider
+        public string Library
         {
             get;
         }
@@ -148,7 +148,7 @@ namespace Playnite
             this.plugin = plugin;
             Game = game;
             Game.PropertyChanged += Game_PropertyChanged;
-            Provider = string.IsNullOrEmpty(plugin?.Name) ? "Playnite" : plugin.Name;
+            Library = string.IsNullOrEmpty(plugin?.Name) ? "Playnite" : plugin.Name;
         }
 
         public GamesCollectionViewEntry(Game game, ILibraryPlugin plugin, Type colGroupType, Guid colGroupId) : this(game, plugin)

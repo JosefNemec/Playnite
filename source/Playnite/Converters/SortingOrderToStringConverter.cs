@@ -22,7 +22,7 @@ namespace Playnite.Converters
                     return ResourceProvider.GetString("LOCNameLabel");
                 case SortOrder.LastActivity:
                     return ResourceProvider.GetString("LOCLastPlayedLabel");
-                case SortOrder.Provider:
+                case SortOrder.Library:
                 case SortOrder.Categories:
                 case SortOrder.Genres:
                 case SortOrder.ReleaseDate:

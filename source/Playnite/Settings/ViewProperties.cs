@@ -16,7 +16,7 @@ namespace Playnite
         [Description("LOCGameLastActivityTitle")]
         LastActivity,
         [Description("LOCGameProviderTitle")]
-        Provider,
+        Library,
         [Description("LOCGameCategoriesTitle")]
         Categories,
         [Description("LOCGameGenresTitle")]
@@ -75,12 +75,12 @@ namespace Playnite
         Descending
     }
 
-    public enum GroupOrder
+    public enum GroupableField
     {
         [Description("LOCMenuGroupDont")]
         None,
         [Description("LOCLibraries")]
-        Provider,
+        Library,
         [Description("LOCCategoryLabel")]
         Category,
         [Description("LOCGenreLabel")]
@@ -117,6 +117,11 @@ namespace Playnite
 
     public class ViewSettings : ObservableObject
     {
+        // TODO change to something reasonable
+        public const double MinCoversZoom = 90;
+        public const double DefaultCoversZoom = 230;
+        public const double MaxCoversZoom = 460;
+
         private SortOrder sortingOrder = SortOrder.Name;
         public SortOrder SortingOrder
         {
@@ -147,8 +152,8 @@ namespace Playnite
             }
         }
 
-        private GroupOrder groupingOrder = GroupOrder.None;
-        public GroupOrder GroupingOrder
+        private GroupableField groupingOrder = GroupableField.None;
+        public GroupableField GroupingOrder
         {
             get
             {
@@ -177,23 +182,6 @@ namespace Playnite
             }
         }
 
-        public const double MinCoversZoom = 90;
-        public const double DefaultCoversZoom = 180;
-        public const double MaxCoversZoom = 270;
 
-        private double coversZoom = DefaultCoversZoom;
-        public double CoversZoom
-        {
-            get
-            {
-                return coversZoom;
-            }
-
-            set
-            {
-                coversZoom = value;
-                OnPropertyChanged();
-            }
-        }
     }        
 }

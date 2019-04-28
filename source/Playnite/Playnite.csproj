@@ -215,8 +215,11 @@
     <Compile Include="Controls\HtmlTextView.cs" />
     <Compile Include="Controls\VirtualizingGridPanel.cs" />
     <Compile Include="Controls\VirtualizingTilePanel.cs" />
+    <Compile Include="Controls\VirtualizingUniformPanel.cs" />
     <Compile Include="Controls\WindowBase.cs" />
     <Compile Include="Converters\AfterGameCloseOptionToStringConverter.cs" />
+    <Compile Include="Converters\DockToStringConverter.cs" />
+    <Compile Include="Converters\StrechToStringConverter.cs" />
     <Compile Include="Converters\AfterGameLaunchOptionToStringConverter.cs" />
     <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />
     <Compile Include="Converters\BooleanToHiddenConverter.cs" />
@@ -254,6 +257,7 @@
     <Compile Include="Database\Collections\CategoriesCollection.cs" />
     <Compile Include="Database\Collections\TagsCollection.cs" />
     <Compile Include="Database\Collections\GenresCollection.cs" />
+    <Compile Include="Database\DatabaseExplorer.cs" />
     <Compile Include="Database\DatabaseFileEvent.cs" />
     <Compile Include="Database\DatabaseFilter.cs" />
     <Compile Include="Database\DatabaseSettings.cs" />
@@ -306,7 +310,6 @@
     <Compile Include="SelectableItem.cs" />
     <Compile Include="Services\BaseServicesClient.cs" />
     <Compile Include="Services\GenericResponse.cs" />
-    <Compile Include="Settings\FullscreenSettings.cs" />
     <Compile Include="Emulators\EmulatorDefinition.cs" />
     <Compile Include="Emulators\EmulatorFinder.cs" />
     <Compile Include="GameTools.cs" />

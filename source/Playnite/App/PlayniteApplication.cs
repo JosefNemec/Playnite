@@ -364,13 +364,6 @@ namespace Playnite
             };
         }
 
-        public void LoadExtensions()
-        {
-            Extensions.LoadLibraryPlugins(Api, AppSettings.DisabledPlugins);
-            Extensions.LoadGenericPlugins(Api, AppSettings.DisabledPlugins);
-            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
-        }
-
         public void Quit()
         {
             logger.Info("Shutting down Playnite");

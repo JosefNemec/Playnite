@@ -66,6 +66,7 @@
 
                 <!--Views-->
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/Sidebar.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/ExplorerPanel.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/FilterPanel.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/MainPanel.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/NotificationPanel.xaml" />

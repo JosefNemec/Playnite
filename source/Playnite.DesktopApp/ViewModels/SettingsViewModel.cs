@@ -18,6 +18,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Playnite.Windows;
 using Playnite.DesktopApp.Markup;
+using System.Text.RegularExpressions;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -82,6 +83,8 @@ namespace Playnite.DesktopApp.ViewModels
         private IResourceProvider resources;
         private GameDatabase database;
         private PlayniteApplication application;
+        private PlayniteSettings originalSettings;
+        private List<string> editedFields = new List<string>();
 
         public ExtensionFactory Extensions { get; set; }
 
@@ -178,6 +181,14 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<string> SetCoverArtAspectRatioCommand
+        {
+            get => new RelayCommand<string>((ratio) =>
+            {
+                SetCoverArtAspectRatio(ratio);
+            });
+        }
+
         #endregion Commands
 
         public SettingsViewModel(
@@ -190,8 +201,8 @@ namespace Playnite.DesktopApp.ViewModels
             PlayniteApplication app)
         {
             Extensions = extensions;
-            Settings = settings;
-            Settings.BeginEdit();
+            originalSettings = settings;
+            Settings = settings.GetClone();
             this.database = database;
             this.window = window;
             this.dialogs = dialogs;
@@ -250,7 +261,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void CloseView()
         {
-            Settings.CancelEdit();
             foreach (var provider in LibraryPluginSettings.Keys)
             {
                 LibraryPluginSettings[provider].Settings.CancelEdit();
@@ -271,8 +281,20 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 return;
             }
-
-            Settings.CancelEdit();
+        }
+ 
+        public void EndEdit()
+        {
+            Settings.CopyProperties(originalSettings, false, new List<string>()
+            {
+                nameof(PlayniteSettings.GridViewHeaders),
+                nameof(PlayniteSettings.FilterSettings),
+                nameof(PlayniteSettings.FullScreenFilterSettings),
+                nameof(PlayniteSettings.InstallInstanceId),
+                nameof(PlayniteSettings.ViewSettings),
+                nameof(PlayniteSettings.FullscreenViewSettings),
+                nameof(PlayniteSettings.CoverArtHeight)
+            });
         }
 
         public void ConfirmDialog()
@@ -301,7 +323,7 @@ namespace Playnite.DesktopApp.ViewModels
                 Settings.DisabledPlugins = PluginsList.Where(a => !a.Selected)?.Select(a => a.Description.FolderName).ToList();
             }
 
-            if (Settings.EditedFields.Contains(nameof(Settings.StartOnBoot)))
+            if (editedFields.Contains(nameof(Settings.StartOnBoot)))
             {
                 try
                 {
@@ -315,8 +337,8 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            Settings.EndEdit();
-            Settings.SaveSettings();
+            EndEdit();
+            originalSettings.SaveSettings();
             foreach (var provider in LibraryPluginSettings.Keys)
             {
                 LibraryPluginSettings[provider].Settings.EndEdit();
@@ -327,9 +349,9 @@ namespace Playnite.DesktopApp.ViewModels
                 GenericPluginSettings[plugin].Settings.EndEdit();
             }
 
-            if (Settings.EditedFields?.Any() == true)
+            if (editedFields?.Any() == true)
             {
-                if (Settings.EditedFields.IntersectsExactlyWith(
+                if (editedFields.IntersectsExactlyWith(
                     new List<string>()
                     {
                         nameof(Settings.Theme),
@@ -362,7 +384,6 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 dialogs.ShowMessage(resources.GetString("LOCSettingsDBPathNotification"));
                 Settings.DatabasePath = path;
-                Settings.OnPropertyChanged("DatabasePath", true);
             }
         }
 
@@ -377,6 +398,17 @@ namespace Playnite.DesktopApp.ViewModels
                 Directory.Delete(PlaynitePaths.BrowserCachePath, true);
                 application.Restart();
             }            
+        }
+
+        public void SetCoverArtAspectRatio(string ratio)
+        {
+            var regex = Regex.Match(ratio, @"(\d+):(\d+)");
+            if (regex.Success)
+            {
+
+                Settings.CoverArtWidthRatio = Convert.ToUInt32(regex.Groups[1].Value);
+                Settings.CoverArtHeightRatio = Convert.ToUInt32(regex.Groups[2].Value);
+            }
         }
     }
 }
