@@ -20,7 +20,9 @@ namespace PlayniteServices.Models.IGDB
         Iphone = 10,
         Ipad = 11,
         Android = 12,
-        Steam = 13
+        Steam = 13,
+        Reddit = 14,
+        Discord = 15
     }
 
     public enum GameCategory : ulong
