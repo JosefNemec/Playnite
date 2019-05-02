@@ -37,9 +37,9 @@ namespace DiscordLibrary.Services
         internal string GetToken()
         {
             var token = string.Empty;
-            // Discord deletes the localStorage object, create an iframe to recover it
-            webView.NavigateAndWait("https://discordapp.com/404");
-            token = webView.EvaluateScript("(() => document.body.appendChild(document.createElement('iframe')).contentWindow.localStorage.getItem('token'))") as string;
+            // Usually, Discord deletes the localStorage object, but we can use a URL like robots.txt that doesn't run scripts
+            webView.NavigateAndWait("https://discordapp.com/robots.txt");
+            token = webView.EvaluateScript("(() => localStorage.getItem('token')") as string;
             if (!string.IsNullOrEmpty(token) && !string.Equals(token, "undefined"))
             {
                 return token.Trim('"');
