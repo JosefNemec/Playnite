@@ -41,5 +41,17 @@ namespace System
         {
             return typeof(TType).IsAssignableFrom(source.GetType());
         }
+
+        public static object CreateGenericInstance(Type genericTypeDefinition, Type genericType)
+        {
+            Type resultType = genericTypeDefinition.MakeGenericType(genericType);
+            return Activator.CreateInstance(resultType);
+        }
+
+        public static object CreateGenericInstance(Type genericTypeDefinition, Type genericType, params object[] parameters)
+        {
+            Type resultType = genericTypeDefinition.MakeGenericType(genericType);
+            return Activator.CreateInstance(resultType, parameters);
+        }
     }
 }

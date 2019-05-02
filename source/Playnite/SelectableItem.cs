@@ -1,4 +1,6 @@
-﻿using Playnite.SDK.Models;
+﻿using Playnite;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
 using System.Collections;
@@ -44,6 +46,156 @@ namespace System
         public override string ToString()
         {
             return Item?.ToString() ?? base.ToString();
+        }
+    }
+
+    public class SelectableObjectList<TItem> : ObservableObject, ICollection<SelectableItem<TItem>>, INotifyCollectionChanged
+    {
+        internal readonly List<SelectableItem<TItem>> Items;
+
+        public int Count => Items.Count;
+
+        public bool IsReadOnly => true;
+
+        public string AsString => ToString();
+
+        public event EventHandler SelectionChanged;
+
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
+
+        public SelectableObjectList(
+            IEnumerable<TItem> collection,
+            IEnumerable<TItem> selected = null)
+        {
+            Items = new List<SelectableItem<TItem>>(collection.Select(a =>
+            {
+                var newItem = new SelectableItem<TItem>(a);         
+                newItem.Selected = selected?.Contains(a) == true;
+                newItem.PropertyChanged += NewItem_PropertyChanged;
+                return newItem;
+            }));
+        }
+
+        internal virtual void OnSelectionChanged()
+        {
+            OnPropertyChanged(nameof(AsString));
+            SelectionChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnCollectionChanged()
+        {
+            CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+
+        internal void NewItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(SelectableItem<TItem>.Selected))
+            {
+                if (!SuppressNotifications)
+                {
+                    OnSelectionChanged();
+                }
+            }
+        }
+
+        public void SetSelection(IEnumerable<TItem> toSelect)
+        {
+            SuppressNotifications = true;
+            if (toSelect?.Any() == true)
+            {
+                foreach (var item in Items)
+                {
+                    item.Selected = toSelect?.Contains(item.Item) == true;
+                }
+            }
+            else
+            {
+                Items.ForEach(a => a.Selected = false);
+            }
+
+            SuppressNotifications = false;
+            OnSelectionChanged();
+        }
+
+        public List<TItem> GetSelectedItems()
+        {
+            return Items.Where(a => a.Selected == true).Select(a => a.Item).ToList();
+        }
+
+        public void Add(TItem item, bool selected = false)
+        {
+            if (Items.Any(a => a.Item.Equals(item)))
+            {
+                return;
+            }
+
+            var newItem = new SelectableItem<TItem>(item)
+            {
+                Selected = selected
+            };
+            newItem.PropertyChanged += NewItem_PropertyChanged;
+            Items.Add(newItem);
+            OnCollectionChanged();
+            if (selected)
+            {
+                OnSelectionChanged();
+            }
+        }
+
+        public void Add(SelectableItem<TItem> item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Remove(SelectableItem<TItem> item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Clear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Contains(SelectableItem<TItem> item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CopyTo(SelectableItem<TItem>[] array, int arrayIndex)
+        {
+            Items.CopyTo(array, arrayIndex);
+        }
+
+        public IEnumerator<SelectableItem<TItem>> GetEnumerator()
+        {
+            return Items.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return Items.GetEnumerator();
+        }
+
+        public override string ToString()
+        {
+            return string.Join(", ", this.Where(a => a.Selected == true).Select(a => a.Item.ToString()));
+        }
+    }
+
+    public class SelectableStringList : SelectableObjectList<string>
+    {
+        public SelectableStringList(
+            IEnumerable<string> collection,
+            IEnumerable<string> selected = null,
+            bool includeNoneItem = false) : base(collection, selected)
+        {
+            if (includeNoneItem)
+            {
+                var newItem = new SelectableItem<string>(FilterSettings.MissingFieldString);
+                newItem.PropertyChanged += NewItem_PropertyChanged;
+                Items.Insert(0, newItem);
+            }
         }
     }
 
@@ -186,9 +338,23 @@ namespace System
         public SelectableDbItemList(
             IEnumerable<DatabaseObject> collection,
             IEnumerable<Guid> selected = null,
-            IEnumerable<Guid> undetermined = null)
+            IEnumerable<Guid> undetermined = null,
+            bool includeNoneItem = false)
             : base(collection.OrderBy(a => a.Name), (a) => a.Id, selected, undetermined)
         {
+            if (includeNoneItem)
+            {
+                var newItem = new SelectableItem<DatabaseObject>(new DatabaseObject()
+                {
+                    Id = Guid.Empty,
+                    Name = ResourceProvider.GetString("LOCNone")
+                })
+                {
+                    Selected = selected?.Contains(Guid.Empty) == true
+                };
+                newItem.PropertyChanged += NewItem_PropertyChanged;
+                Items.Insert(0, newItem);
+            }
         }
 
         // TODO keep ordering when item is added or removed
@@ -237,6 +403,7 @@ namespace System
         {
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
+
         public override string ToString()
         {
             return string.Join(", ", this.Where(a => a.Selected == true).Select(a => a.Item.Name));

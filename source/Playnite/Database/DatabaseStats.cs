@@ -43,7 +43,10 @@ namespace Playnite.Database
             database.Games.ItemUpdated += Database_GameUpdated;
             database.Games.ItemCollectionChanged += Database_GamesCollectionChanged;
             database.DatabaseOpened += Database_DatabaseOpened;
-            Recalculate();
+            if (database.IsOpen)
+            {
+                Recalculate();
+            }
         }
 
         private void Recalculate()

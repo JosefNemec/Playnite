@@ -55,6 +55,13 @@ namespace Playnite
         public int? UserScore => Game.UserScore;
         public int? CriticScore => Game.CriticScore;
         public int? CommunityScore => Game.CommunityScore;
+        public ScoreGroup UserScoreGroup => Game.UserScoreGroup;
+        public ScoreGroup CriticScoreGroup => Game.CriticScoreGroup;
+        public ScoreGroup CommunityScoreGroup => Game.CommunityScoreGroup;
+        public PastTimeSegment LastActivitySegment => Game.LastActivitySegment;
+        public PastTimeSegment AddedSegment => Game.AddedSegment;
+        public PastTimeSegment ModifiedSegment => Game.ModifiedSegment;
+        public PlaytimeCategory PlaytimeCategory => Game.PlaytimeCategory;
 
         public List<Guid> CategoryIds => Game.CategoryIds;
         public List<Guid> GenreIds => Game.GenreIds;

@@ -287,8 +287,8 @@ namespace Playnite.Database
                 }
             }
 
-            DatabaseOpened?.Invoke(this, null);
             IsOpen = true;
+            DatabaseOpened?.Invoke(this, null);
         }
 
         #region Files

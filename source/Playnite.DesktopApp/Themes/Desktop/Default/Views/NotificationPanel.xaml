@@ -20,7 +20,7 @@
     </Style>
 
     <Style TargetType="{x:Type local:NotificationPanel}">
-        <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
+        <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:NotificationPanel">

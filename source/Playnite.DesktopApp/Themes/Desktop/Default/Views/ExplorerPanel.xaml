@@ -2,20 +2,25 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=PlayniteUI"
                     xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls;assembly=PlayniteUI"
-                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=PlayniteUI">    
+                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=PlayniteUI"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf">    
 
     <Style TargetType="{x:Type views:ExplorerPanel}">
         <Setter Property="Background" Value="{DynamicResource GamesListPanelBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:ExplorerPanel}">
-                    <DockPanel Background="{TemplateBinding Background}">                        
+                    <DockPanel Background="{TemplateBinding Background}">
                         <ComboBox DockPanel.Dock="Top" Margin="5"
-                                  SelectedValue="{Binding DatabaseExplorer.SelectedField}"
-                                  ItemsSource="{Binding DatabaseExplorer.Fields}"/>
+                                  SelectedValue="{Binding SelectedField}"
+                                  ItemsSource="{Binding Fields}"/>
                         <ListBox DockPanel.Dock="Top" Margin="5"
                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                 ItemsSource="{Binding DatabaseExplorer.FieldValues}"/>
+                                 DisplayMemberPath="Name"
+                                 SelectedItem="{Binding SelectedFieldObject}"
+                                 ItemsSource="{Binding FieldValues}">
+                        </ListBox>
                     </DockPanel>                    
                 </ControlTemplate>
             </Setter.Value>

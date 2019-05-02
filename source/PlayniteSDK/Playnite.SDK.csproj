@@ -55,6 +55,10 @@
     <Compile Include="Collections\RangeObservableCollection.cs" />
     <Compile Include="Database\IGameDatabase.cs" />
     <Compile Include="Database\IItemCollection.cs" />
+    <Compile Include="Models\IIdentifiable.cs" />
+    <Compile Include="Models\PastTimeSegment.cs" />
+    <Compile Include="Models\PlaytimeCategory.cs" />
+    <Compile Include="Models\ScoreGroup.cs" />
     <Compile Include="ResourceProvider.cs" />
     <Compile Include="Events\GameInstalledEvent.cs" />
     <Compile Include="Events\GameControllerEvent.cs" />

@@ -9,7 +9,7 @@ namespace Playnite.SDK.Models
     /// <summary>
     /// Represents base database object item.
     /// </summary>
-    public class DatabaseObject : ObservableObject, IComparable
+    public class DatabaseObject : ObservableObject, IComparable, IIdentifiable
     {
         /// <summary>
         /// Gets or sets identifier of database object.

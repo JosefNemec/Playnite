@@ -101,10 +101,22 @@
                                               pbeh:ExpanderBehaviors.SaveStateId="{Binding Name, Mode=OneWay}">
                                         <Expander.Header>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"
-                                                           HorizontalAlignment="Center"
-                                                           TextAlignment="Center"
-                                                           Margin="0,0,5,0" Foreground="{StaticResource TextBrush}"/>
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                           TextAlignment="Center" Margin="0,0,5,0">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                                            <Setter Property="Text" Value="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" Value="{x:Null}">
+                                                                    <Setter Property="Text" Value="{DynamicResource LOCNone}" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" Value="">
+                                                                    <Setter Property="Text" Value="{DynamicResource LOCNone}" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
                                                 <TextBlock Text="{Binding Items.Count, Mode=OneWay, StringFormat=({0})}"
                                                            VerticalAlignment="Center"
                                                            HorizontalAlignment="Center" TextAlignment="Center"

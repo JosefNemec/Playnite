@@ -25,5 +25,6 @@
     <pcon:LongToTimePlayedConverter x:Key="LongToTimePlayedConverter" />
     <pcon:DateTimeToLastPlayedConverter x:Key="DateTimeToLastPlayedConverter" />
     <pcon:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
-    <pcon:CoversZoomToPercentageConverter x:Key="CoversZoomToPercentageConverter" />    
+    <pcon:CoversZoomToPercentageConverter x:Key="CoversZoomToPercentageConverter" />
+    <pcon:ObjectToStringConverter x:Key="ObjectToStringConverter" />
 </ResourceDictionary>

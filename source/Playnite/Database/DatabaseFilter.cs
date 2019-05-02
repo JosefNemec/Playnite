@@ -128,6 +128,18 @@ namespace Playnite.Database
             }
         }
 
+        private SelectableStringList releaseYears;
+        public SelectableStringList ReleaseYears
+        {
+
+            get => releaseYears;
+            private set
+            {
+                releaseYears = value;
+                OnPropertyChanged();
+            }
+        }
+
         public DatabaseFilter(GameDatabase database, ExtensionFactory extensions, FilterSettings filter)
         {
             this.database = database;
@@ -159,17 +171,21 @@ namespace Playnite.Database
 
         internal void LoadFilterCollection()
         {
-            Genres = new SelectableDbItemList(database.Genres);
-            Platforms = new SelectableDbItemList(database.Platforms);
-            AgeRatings = new SelectableDbItemList(database.AgeRatings);
-            Categories = new SelectableDbItemList(database.Categories);
-            Publishers = new SelectableDbItemList(database.Companies);
-            Developers = new SelectableDbItemList(database.Companies);
-            Regions = new SelectableDbItemList(database.Regions);
-            Series = new SelectableDbItemList(database.Series);
-            Sources = new SelectableDbItemList(database.Sources);
-            Tags = new SelectableDbItemList(database.Tags);
+            var years = database.Games.Where(a => a.ReleaseYear != null).Select(a => a.ReleaseYear).Distinct().OrderBy(a => a.Value).Select(a => a.ToString());
+            ReleaseYears = new SelectableStringList(years, null, true);
+            Genres = new SelectableDbItemList(database.Genres, null, null, true);
+            Platforms = new SelectableDbItemList(database.Platforms, null, null, true);
+            AgeRatings = new SelectableDbItemList(database.AgeRatings, null, null, true);
+            Categories = new SelectableDbItemList(database.Categories, null, null, true);
+            Publishers = new SelectableDbItemList(database.Companies, null, null, true);
+            Developers = new SelectableDbItemList(database.Companies, null, null, true);
+            Regions = new SelectableDbItemList(database.Regions, null, null, true);
+            Series = new SelectableDbItemList(database.Series, null, null, true);
+            Sources = new SelectableDbItemList(database.Sources, null, null, true);
+            Tags = new SelectableDbItemList(database.Tags, null, null, true);
 
+            database.Games.ItemCollectionChanged += Games_ItemCollectionChanged;
+            database.Games.ItemUpdated += Games_ItemUpdated;
             database.Genres.ItemCollectionChanged += (s, args) => UpdateAvailableFilterList(Genres, args);
             database.Platforms.ItemCollectionChanged += (s, args) => UpdateAvailableFilterList(Platforms, args);
             database.AgeRatings.ItemCollectionChanged += (s, args) => UpdateAvailableFilterList(AgeRatings, args);
@@ -183,6 +199,28 @@ namespace Playnite.Database
                 UpdateAvailableFilterList(Publishers, args);
                 UpdateAvailableFilterList(Developers, args);
             };
+        }
+
+        private void Games_ItemUpdated(object sender, ItemUpdatedEventArgs<Game> e)
+        {
+            foreach (var update in e.UpdatedItems)
+            {
+                if (update.OldData.ReleaseDate != update.NewData.ReleaseDate && update.NewData.ReleaseDate != null)
+                {
+                    ReleaseYears.Add(update.NewData.ReleaseYear.ToString());
+                }
+            }
+        }
+
+        private void Games_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Game> e)
+        {
+            foreach (var update in e.AddedItems)
+            {
+                if (update.ReleaseDate != null)
+                {
+                    ReleaseYears.Add(update.ReleaseYear.ToString());
+                }
+            }
         }
 
         private void UpdateAvailableFilterList<T>(SelectableDbItemList targetList, ItemCollectionChangedEventArgs<T> args) where T : DatabaseObject

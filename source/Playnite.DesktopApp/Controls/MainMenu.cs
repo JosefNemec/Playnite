@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -40,7 +41,7 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
-        private MenuItem AddMenuChild(
+        public static MenuItem AddMenuChild(
             ItemCollection parent,
             string locString,
             RelayCommand command,
@@ -91,6 +92,12 @@ namespace Playnite.DesktopApp.Controls
             AddMenuChild(addGameItem.Items, "LOCMenuAddGameEmulated", mainModel.AddEmulatedGamesCommand);
             Items.Add(new Separator());
 
+            // Library
+            var libraryItem = AddMenuChild(Items, "LOCLibrary", null);
+            AddMenuChild(libraryItem.Items, "LOCMenuLibraryManagerTitle", mainModel.OpenDbFieldsManagerCommand);
+            AddMenuChild(libraryItem.Items, "LOCMenuConfigureEmulatorsMenuTitle", mainModel.OpenEmulatorsCommand);
+            AddMenuChild(libraryItem.Items, "LOCMenuDownloadMetadata", mainModel.DownloadMetadataCommand);
+
             // Update Library
             var updateItem = AddMenuChild(Items, "LOCMenuReloadLibrary", null, null, ResourceProvider.GetResource("UpdateDbIcon"));
             AddMenuChild(updateItem.Items, "LOCUpdateAll", mainModel.UpdateGamesCommand);
@@ -106,12 +113,6 @@ namespace Playnite.DesktopApp.Controls
 
                 updateItem.Items.Add(item);
             }
-
-            // Library
-            var libraryItem = AddMenuChild(Items, "LOCLibrary", null);
-            AddMenuChild(libraryItem.Items, "LOCMenuConfigureEmulatorsMenuTitle", mainModel.OpenEmulatorsCommand);
-            AddMenuChild(libraryItem.Items, "LOCMenuLibraryManagerTitle", mainModel.OpenDbFieldsManagerCommand);
-            AddMenuChild(libraryItem.Items, "LOCMenuDownloadMetadata", mainModel.DownloadMetadataCommand);
 
             // Extensions
             var extensionsItem = AddMenuChild(Items, "LOCExtensions", null);

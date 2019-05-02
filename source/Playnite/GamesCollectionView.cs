@@ -28,12 +28,7 @@ namespace Playnite
         private ExtensionFactory extensions;
         private ViewSettings viewSettings;
 
-        public GameDatabase Database { get; private set; }
-
-        public bool IsFullscreen
-        {
-            get; private set;
-        }            
+        public GameDatabase Database { get; private set; }         
 
         private ListCollectionView collectionView;
         public ListCollectionView CollectionView
@@ -70,9 +65,8 @@ namespace Playnite
             get; set;
         }
 
-        public GamesCollectionView(GameDatabase database, PlayniteSettings settings, bool fullScreen, ExtensionFactory extensions)
+        public GamesCollectionView(GameDatabase database, PlayniteSettings settings, ExtensionFactory extensions)
         {
-            IsFullscreen = fullScreen;
             this.Database = database;
             this.extensions = extensions;
             database.Games.ItemCollectionChanged += Database_GamesCollectionChanged;
@@ -89,18 +83,9 @@ namespace Playnite
 
             Items = new RangeObservableCollection<GamesCollectionViewEntry>();
             Settings = settings;
-            if (IsFullscreen)
-            {
-                Settings.FullscreenViewSettings.PropertyChanged += Settings_PropertyChanged;
-                Settings.FullScreenFilterSettings.FilterChanged += FilterSettings_FilterChanged;
-            }
-            else
-            {
-                Settings.ViewSettings.PropertyChanged += Settings_PropertyChanged;
-                Settings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
-            }
-
-            viewSettings = IsFullscreen ? Settings.FullscreenViewSettings : Settings.ViewSettings;
+            Settings.ViewSettings.PropertyChanged += Settings_PropertyChanged;
+            Settings.FilterSettings.FilterChanged += FilterSettings_FilterChanged; 
+            viewSettings = Settings.ViewSettings;
 
             CollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(Items);
             CollectionView.Filter = Filter;
@@ -122,17 +107,9 @@ namespace Playnite
             Database.Sources.ItemUpdated -= Sources_ItemUpdated;
             Database.Tags.ItemUpdated -= Tags_ItemUpdated;
 
-            Settings.PropertyChanged -= Settings_PropertyChanged;
-            if (IsFullscreen)
-            {
-                Settings.FullscreenViewSettings.PropertyChanged -= Settings_PropertyChanged;
-                Settings.FullScreenFilterSettings.FilterChanged -= FilterSettings_FilterChanged;
-            }
-            else
-            {
-                Settings.ViewSettings.PropertyChanged -= Settings_PropertyChanged;
-                Settings.FilterSettings.FilterChanged -= FilterSettings_FilterChanged;
-            }
+            Settings.PropertyChanged -= Settings_PropertyChanged; 
+            Settings.ViewSettings.PropertyChanged -= Settings_PropertyChanged;
+            Settings.FilterSettings.FilterChanged -= FilterSettings_FilterChanged;
 
             Items.Clear();
             Items = null;
@@ -150,13 +127,13 @@ namespace Playnite
                 return true;
             }
 
-            if (objectData == null && filter?.IsSet == true)
-            {
-                return false;
-            }
-
             if (!filter.Text.IsNullOrEmpty())
             {
+                if (objectData == null)
+                {
+                    return false;
+                }
+
                 if (filter.Text.Contains(Common.Constants.ListSeparator))
                 {
                     return filter.Texts.IntersectsPartiallyWith(objectData?.Select(a => a.Name));
@@ -168,7 +145,11 @@ namespace Playnite
             }
             else if (filter.Ids.HasItems())
             {
-                if (!idData.HasItems())
+                if (filter.Ids.Contains(Guid.Empty) && !idData.HasItems())
+                {
+                    return true;
+                }
+                else if (!idData.HasItems())
                 {
                     return false;
                 }
@@ -195,13 +176,13 @@ namespace Playnite
                 return true;
             }
 
-            if (objectData == null && filter?.IsSet == true)
-            {
-                return false;
-            }
-
             if (!filter.Text.IsNullOrEmpty())
             {
+                if (objectData == null)
+                {
+                    return false;
+                }
+
                 if (filter.Text.Contains(Common.Constants.ListSeparator))
                 {
                     return filter.Texts.ContainsStringPartial(objectData.Name);
@@ -213,7 +194,11 @@ namespace Playnite
             }
             else if (filter.Ids.HasItems())
             {
-                if (idData == null)
+                if (filter.Ids.Contains(Guid.Empty) && idData == Guid.Empty)
+                {
+                    return true;
+                }
+                else if (idData == Guid.Empty)
                 {
                     return false;
                 }
@@ -227,12 +212,22 @@ namespace Playnite
                 return true;
             }
         }
- 
+
+        private bool IsScoreFilterMatching(EnumFilterItemProperites filter, ScoreGroup score)
+        {
+            if (filter == null)
+            {
+                return true;
+            }
+
+            return filter.Values.Contains((int)score);
+        }
+
         private bool Filter(object item)
         {
             var entry = (GamesCollectionViewEntry)item;
             var game = entry.Game;
-            var filterSettings = IsFullscreen ? Settings.FullScreenFilterSettings : Settings.FilterSettings;
+            var filterSettings = Settings.FilterSettings;
 
             if (!filterSettings.IsActive)
             {
@@ -323,48 +318,82 @@ namespace Playnite
                 return false;
             }
 
-            // ------------------ Name filter
-            bool nameResult = false;
-            if (string.IsNullOrEmpty(filterSettings.Name))
+            // ------------------ Name filter   
+            if (!filterSettings.Name.IsNullOrEmpty())
             {
-                nameResult = true;
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(game.Name))
+                if (game.Name.IsNullOrEmpty())
                 {
                     return false;
                 }
-                else
+                else if (game.Name.IndexOf(filterSettings.Name, StringComparison.OrdinalIgnoreCase) < 0)
                 {
-                    nameResult = (game.Name.IndexOf(filterSettings.Name, StringComparison.OrdinalIgnoreCase) >= 0);
+                    return false;
                 }
             }
 
-            if (!nameResult)
+            // ------------------ Release Year       
+            if (filterSettings.ReleaseYear?.IsSet == true)
+            {
+                if (game.ReleaseDate == null && !filterSettings.ReleaseYear.Values.Contains(FilterSettings.MissingFieldString))
+                {
+                    return false;
+                }
+                else if (game.ReleaseDate != null && !filterSettings.ReleaseYear.Values.Contains(game.ReleaseYear.ToString()))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Playtime
+            if (filterSettings.PlayTime?.IsSet == true && !filterSettings.PlayTime.Values.Contains((int)game.PlaytimeCategory))
+            {
+                return false;                     
+            }
+
+            // ------------------ Version
+                if (!filterSettings.Version.IsNullOrEmpty() && game.Version?.Contains(filterSettings.Version) != true)
             {
                 return false;
             }
 
-            // ------------------ Release Date
-            bool releaseDateResult = false;
-            if (string.IsNullOrEmpty(filterSettings.ReleaseDate))
+            // ------------------ Completion Status
+            if (filterSettings.CompletionStatus?.IsSet == true && !filterSettings.CompletionStatus.Values.Contains((int)game.CompletionStatus))
             {
-                releaseDateResult = true;
-            }
-            else
-            {
-                if (game.ReleaseDate == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    releaseDateResult = game.ReleaseDate.Value.ToString(Common.Constants.DateUiFormat).IndexOf(filterSettings.ReleaseDate, StringComparison.OrdinalIgnoreCase) >= 0;
-                }
+                return false;
             }
 
-            if (!releaseDateResult)
+            // ------------------ Last Activity
+            if (filterSettings.LastActivity?.IsSet == true && !filterSettings.LastActivity.Values.Contains((int)game.LastActivitySegment))
+            {
+                return false;
+            }
+
+            // ------------------ Added
+            if (filterSettings.Added?.IsSet == true && !filterSettings.Added.Values.Contains((int)game.AddedSegment))
+            {
+                return false;
+            }
+
+            // ------------------ Modified
+            if (filterSettings.Modified?.IsSet == true && !filterSettings.Modified.Values.Contains((int)game.ModifiedSegment))
+            {
+                return false;
+            }
+
+            // ------------------ User Score
+            if (!IsScoreFilterMatching(filterSettings.UserScore, game.UserScoreGroup))
+            {
+                return false;
+            }
+
+            // ------------------ Community Score
+            if (!IsScoreFilterMatching(filterSettings.CommunityScore, game.CommunityScoreGroup))
+            {
+                return false;
+            }
+
+            // ------------------ Critic Score
+            if (!IsScoreFilterMatching(filterSettings.CriticScore, game.CriticScoreGroup))
             {
                 return false;
             }
@@ -455,60 +484,39 @@ namespace Playnite
         private void SetViewDescriptions()
         {         
             var sortDirection = viewSettings.SortingOrderDirection == SortOrderDirection.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;
-
-            if (IsFullscreen)
+            switch (viewSettings.GroupingOrder)
             {
-                ViewType = GamesViewType.Standard;
+                case GroupableField.Category:
+                case GroupableField.Genre:
+                case GroupableField.Developer:
+                case GroupableField.Publisher:
+                case GroupableField.Tag:
+                    ViewType = GamesViewType.ListGrouped;
+                    break;
+                case GroupableField.None:
+                case GroupableField.Library:
+                case GroupableField.Platform:
+                case GroupableField.Series:
+                case GroupableField.AgeRating:
+                case GroupableField.Region:
+                case GroupableField.Source:
+                case GroupableField.ReleaseYear:
+                case GroupableField.CompletionStatus:
+                case GroupableField.UserScore:
+                case GroupableField.CriticScore:
+                case GroupableField.CommunityScore:
+                case GroupableField.LastActivity:
+                case GroupableField.Added:
+                case GroupableField.Modified:
+                case GroupableField.PlayTime:
+                    ViewType = GamesViewType.Standard;
+                    break;
+                default:
+                    throw new Exception("Uknown GroupingOrder");
             }
-            else
-            {
-                switch (viewSettings.GroupingOrder)
-                {
-                    case GroupableField.None:
-                        ViewType = GamesViewType.Standard;
-                        break;
-                    case GroupableField.Library:
-                        ViewType = GamesViewType.Standard;
-                        break;
-                    case GroupableField.Category:
-                        ViewType = GamesViewType.ListGrouped;
-                        break;
-                    case GroupableField.Genre:
-                        ViewType = GamesViewType.ListGrouped;
-                        break;
-                    case GroupableField.Developer:
-                        ViewType = GamesViewType.ListGrouped;
-                        break;
-                    case GroupableField.Publisher:
-                        ViewType = GamesViewType.ListGrouped;
-                        break;
-                    case GroupableField.Tag:
-                        ViewType = GamesViewType.ListGrouped;
-                        break;
-                    case GroupableField.Platform:
-                        ViewType = GamesViewType.Standard;
-                        break;
-                    case GroupableField.Series:
-                        ViewType = GamesViewType.Standard;
-                        break;
-                    case GroupableField.AgeRating:
-                        ViewType = GamesViewType.Standard;
-                        break;
-                    case GroupableField.Region:
-                        ViewType = GamesViewType.Standard;
-                        break;
-                    case GroupableField.Source:
-                        ViewType = GamesViewType.Standard;
-                        break;
-                    case GroupableField.ReleaseYear:
-                        ViewType = GamesViewType.Standard;
-                        break;
-                    default:
-                        throw new Exception("Uknown GroupingOrder");
-                }
 
-                currentGrouping = viewSettings.GroupingOrder;
-            }
+            currentGrouping = viewSettings.GroupingOrder;
+            
 
             if (viewSettings.SortingOrder == SortOrder.Name)
             {
@@ -552,7 +560,15 @@ namespace Playnite
             { GroupableField.AgeRating, nameof(GamesCollectionViewEntry.AgeRating) },
             { GroupableField.Region, nameof(GamesCollectionViewEntry.Region) },
             { GroupableField.Source, nameof(GamesCollectionViewEntry.Source) },
-            { GroupableField.ReleaseYear, nameof(GamesCollectionViewEntry.ReleaseYear) }
+            { GroupableField.ReleaseYear, nameof(GamesCollectionViewEntry.ReleaseYear) },
+            { GroupableField.CompletionStatus, nameof(GamesCollectionViewEntry.CompletionStatus) },
+            { GroupableField.UserScore, nameof(GamesCollectionViewEntry.UserScoreGroup) },
+            { GroupableField.CommunityScore, nameof(GamesCollectionViewEntry.CommunityScoreGroup) },
+            { GroupableField.CriticScore, nameof(GamesCollectionViewEntry.CriticScoreGroup) },
+            { GroupableField.LastActivity, nameof(GamesCollectionViewEntry.LastActivitySegment) },
+            { GroupableField.Added, nameof(GamesCollectionViewEntry.AddedSegment) },
+            { GroupableField.Modified, nameof(GamesCollectionViewEntry.ModifiedSegment) },
+            { GroupableField.PlayTime, nameof(GamesCollectionViewEntry.PlaytimeCategory) }
         };
 
         private Dictionary<GroupableField, Type> groupTypes = new Dictionary<GroupableField, Type>()
@@ -613,45 +629,36 @@ namespace Playnite
                 return;
             }
 
-            if (IsFullscreen)
+            Items.Clear();
+            switch (viewType)
             {
-                Items.Clear();
-                Items.AddRange(Database.Games.Select(x => new GamesCollectionViewEntry(x, GetLibraryPlugin(x))));
-            }
-            else
-            {
-                Items.Clear();
+                case GamesViewType.Standard:
+                    Items.Clear();
+                    Items.AddRange(Database.Games.Select(x => new GamesCollectionViewEntry(x, GetLibraryPlugin(x))));
+                    break;
 
-                switch (viewType)
-                {
-                    case GamesViewType.Standard:
-                        Items.Clear();
-                        Items.AddRange(Database.Games.Select(x => new GamesCollectionViewEntry(x, GetLibraryPlugin(x))));
-                        break;
-
-                    case GamesViewType.ListGrouped:
-                        Items.Clear();
-                        Items.AddRange(Database.Games.SelectMany(x =>
+                case GamesViewType.ListGrouped:
+                    Items.Clear();
+                    Items.AddRange(Database.Games.SelectMany(x =>
+                    {
+                        var ids = GetGroupingIds(viewSettings.GroupingOrder, x);
+                        if (ids?.Any() == true)
                         {
-                            var ids = GetGroupingIds(viewSettings.GroupingOrder, x);
-                            if (ids?.Any() == true)
+                            return ids.Select(c =>
                             {
-                                return ids.Select(c =>
-                                {
-                                    return new GamesCollectionViewEntry(x, GetLibraryPlugin(x), groupTypes[viewSettings.GroupingOrder], c);
-                                });
-                            }
-                            else
+                                return new GamesCollectionViewEntry(x, GetLibraryPlugin(x), groupTypes[viewSettings.GroupingOrder], c);
+                            });
+                        }
+                        else
+                        {
+                            return new List<GamesCollectionViewEntry>()
                             {
-                                return new List<GamesCollectionViewEntry>()
-                                {
-                                    new GamesCollectionViewEntry(x, GetLibraryPlugin(x))
-                                };
-                            }
-                        }));
+                                new GamesCollectionViewEntry(x, GetLibraryPlugin(x))
+                            };
+                        }
+                    }));
 
-                        break;
-                }
+                    break;
             }
 
             this.viewType = viewType;
@@ -763,6 +770,48 @@ namespace Playnite
             }
         }
 
+        private bool GetRelevantDataDiffer(Game oldData, Game newData)
+        {
+            switch (viewSettings.GroupingOrder)
+            {
+                case GroupableField.None:
+                case GroupableField.Library:
+                    return false;
+                case GroupableField.Category:
+                case GroupableField.Genre:
+                case GroupableField.Developer:
+                case GroupableField.Publisher:
+                case GroupableField.Tag:
+                case GroupableField.Platform:
+                    return ViewType == GamesViewType.ListGrouped && !GetGroupingIds(viewSettings.GroupingOrder, oldData).IsListEqual(GetGroupingIds(viewSettings.GroupingOrder, newData));                
+                case GroupableField.Series:
+                case GroupableField.AgeRating:
+                case GroupableField.Region:
+                case GroupableField.Source:
+                    return ViewType == GamesViewType.Standard && !GetGroupingId(viewSettings.GroupingOrder, oldData).Equals(GetGroupingId(viewSettings.GroupingOrder, newData));
+                case GroupableField.ReleaseYear:
+                    return oldData.ReleaseYear != newData.ReleaseYear;
+                case GroupableField.CompletionStatus:
+                    return oldData.CompletionStatus != newData.CompletionStatus;
+                case GroupableField.UserScore:
+                    return oldData.UserScore != newData.UserScore;
+                case GroupableField.CriticScore:
+                    return oldData.CriticScore != newData.CriticScore;
+                case GroupableField.CommunityScore:
+                    return oldData.CommunityScore != newData.CommunityScore;
+                case GroupableField.LastActivity:
+                    return oldData.LastActivity != newData.LastActivity;
+                case GroupableField.Added:
+                    return oldData.Added != newData.Added;
+                case GroupableField.Modified:
+                    return oldData.Modified != newData.Modified;
+                case GroupableField.PlayTime:
+                    return oldData.Playtime != newData.Playtime;
+                default:
+                    throw new Exception("Uknown GroupableField");
+            }
+        }
+
         private void Database_GameUpdated(object sender, ItemUpdatedEventArgs<Game> args)
         {
             var refreshList = new List<Game>();
@@ -771,19 +820,7 @@ namespace Playnite
                 var existingItem = Items.FirstOrDefault(a => a.Game.Id == update.NewData.Id);
                 if (existingItem != null)
                 {
-                    var fullRefresh = false;
-
-                    if (ViewType == GamesViewType.Standard && !GetGroupingId(viewSettings.GroupingOrder, update.OldData).Equals(GetGroupingId(viewSettings.GroupingOrder, update.NewData)))
-                    {
-                        fullRefresh = true;
-                    }
-
-                    if (ViewType == GamesViewType.ListGrouped && !GetGroupingIds(viewSettings.GroupingOrder, update.OldData).IsListEqual(GetGroupingIds(viewSettings.GroupingOrder, update.NewData)))
-                    {
-                        fullRefresh = true;
-                    }
-
-                    if (fullRefresh)
+                    if (GetRelevantDataDiffer(update.OldData, update.NewData))
                     {
                         refreshList.Add(update.NewData);
                     }
@@ -822,36 +859,29 @@ namespace Playnite
 
             var addList = new List<GamesCollectionViewEntry>();
             foreach (var game in args.AddedItems)
-            {
-                if (IsFullscreen)
+            {  
+                switch (ViewType)
                 {
-                    addList.Add(new GamesCollectionViewEntry(game, GetLibraryPlugin(game)));
-                }
-                else
-                {
-                    switch (ViewType)
-                    {
-                        case GamesViewType.Standard:
-                            addList.Add(new GamesCollectionViewEntry(game, GetLibraryPlugin(game)));
-                            break;
+                    case GamesViewType.Standard:
+                        addList.Add(new GamesCollectionViewEntry(game, GetLibraryPlugin(game)));
+                        break;
 
-                        case GamesViewType.ListGrouped:
+                    case GamesViewType.ListGrouped:
                            
-                            var ids = GetGroupingIds(viewSettings.GroupingOrder, game);
-                            if (ids?.Any() == true)
+                        var ids = GetGroupingIds(viewSettings.GroupingOrder, game);
+                        if (ids?.Any() == true)
+                        {
+                            addList.AddRange(ids.Select(c =>
                             {
-                                addList.AddRange(ids.Select(c =>
-                                {
-                                    return new GamesCollectionViewEntry(game, GetLibraryPlugin(game), groupTypes[viewSettings.GroupingOrder], c);
-                                }));
-                            }
-                            else
-                            {
-                                addList.Add(new GamesCollectionViewEntry(game, GetLibraryPlugin(game)));
-                            }
+                                return new GamesCollectionViewEntry(game, GetLibraryPlugin(game), groupTypes[viewSettings.GroupingOrder], c);
+                            }));
+                        }
+                        else
+                        {
+                            addList.Add(new GamesCollectionViewEntry(game, GetLibraryPlugin(game)));
+                        }
 
-                            break;
-                    }
+                        break;
                 }
             }
 

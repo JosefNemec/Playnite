@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Playnite.Common;
+using Playnite.SDK.Models;
 
 namespace Playnite
 {
@@ -27,7 +28,71 @@ namespace Playnite
             Fields = fields;
         }
     }
-        
+
+    public class StringFilterItemProperites : ObservableObject
+    {
+        [JsonIgnore]
+        public bool IsSet => Values.HasItems();
+
+        private List<string> values;
+        public List<string> Values
+        {
+            get => values;
+            set
+            {
+                values = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsSet));
+            }
+        }
+
+        public StringFilterItemProperites()
+        {
+        }
+
+        public StringFilterItemProperites(List<string> values)
+        {
+            Values = values;
+        }
+
+        public StringFilterItemProperites(string value)
+        {
+            Values = new List<string>() { value };
+        }
+    }
+
+    public class EnumFilterItemProperites : ObservableObject
+    {
+        [JsonIgnore]
+        public bool IsSet => Values.HasItems();
+
+        private List<int> values;
+        public List<int> Values
+        {
+            get => values;
+            set
+            {
+                values = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsSet));
+            }
+        }
+
+        public EnumFilterItemProperites()
+        {
+        }
+
+        public EnumFilterItemProperites(List<int> values)
+        {
+            Values = values;
+        }
+
+        public EnumFilterItemProperites(int value)
+        {
+            Values = new List<int>() { value };
+        }
+    }
+
     public class FilterItemProperites : ObservableObject
     {
         [JsonIgnore]
@@ -74,10 +139,37 @@ namespace Playnite
         public FilterItemProperites()
         {
         }
+
+        public FilterItemProperites(List<Guid> ids)
+        {
+            Ids = ids;
+        }
+
+        public FilterItemProperites(Guid id)
+        {
+            Ids = new List<Guid>() { id };
+        }
+
+        public FilterItemProperites(string text)
+        {
+            Text = text;
+        }
+
+        public bool ShouldSerializeText()
+        {
+            return !Text.IsNullOrEmpty();
+        }
+
+        public bool ShouldSerializeIds()
+        {
+            return Ids.HasItems();
+        }
     }
 
     public class FilterSettings : ObservableObject
     {
+        public const string MissingFieldString = "{}";
+
         [JsonIgnore]
         public bool SearchActive
         {
@@ -94,8 +186,8 @@ namespace Playnite
                     IsUnInstalled ||
                     Hidden ||
                     Favorite ||
-                    !string.IsNullOrEmpty(Name) ||
-                    !string.IsNullOrEmpty(ReleaseDate) ||
+                    !string.IsNullOrEmpty(Name) ||                    
+                    !string.IsNullOrEmpty(Version) ||
                     Series?.IsSet == true ||
                     Source?.IsSet == true ||
                     AgeRating?.IsSet == true ||
@@ -106,7 +198,16 @@ namespace Playnite
                     Category?.IsSet == true ||
                     Tag?.IsSet == true ||
                     Platform?.IsSet == true ||
-                    Library?.IsSet == true;
+                    Library?.IsSet == true || 
+                    CompletionStatus?.IsSet == true ||
+                    UserScore?.IsSet == true ||
+                    CriticScore?.IsSet == true ||
+                    CommunityScore?.IsSet == true || 
+                    LastActivity?.IsSet == true ||
+                    Added?.IsSet == true ||
+                    Modified?.IsSet == true || 
+                    ReleaseYear?.IsSet == true || 
+                    PlayTime?.IsSet == true;
             }
         }
 
@@ -120,11 +221,14 @@ namespace Playnite
 
             set
             {
-                name = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Name));
-                OnPropertyChanged(nameof(IsActive));
-                OnPropertyChanged(nameof(SearchActive));
+                if (name != value)
+                {
+                    name = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Name));
+                    OnPropertyChanged(nameof(IsActive));
+                    OnPropertyChanged(nameof(SearchActive));
+                }
             }
         }
 
@@ -138,10 +242,12 @@ namespace Playnite
 
             set
             {
-                genre = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Genre));
-                OnPropertyChanged(nameof(IsActive));
+                if (genre != value)
+                {
+                    genre = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Genre));
+                }
             }
         }
 
@@ -155,15 +261,17 @@ namespace Playnite
 
             set
             {
-                platforms = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Platform));
-                OnPropertyChanged(nameof(IsActive));
+                if (platforms != value)
+                {
+                    platforms = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Platform));
+                }
             }
         }
 
-        private string releaseDate;
-        public string ReleaseDate
+        private StringFilterItemProperites releaseDate;
+        public StringFilterItemProperites ReleaseYear
         {
             get
             {
@@ -172,13 +280,33 @@ namespace Playnite
 
             set
             {
-                releaseDate = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(ReleaseDate));
-                OnPropertyChanged(nameof(IsActive));
+                if (releaseDate != value)
+                {
+                    releaseDate = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(ReleaseYear));
+                }
             }
         }
 
+        private string version;
+        public string Version
+        {
+            get
+            {
+                return version;
+            }
+
+            set
+            {
+                if (version != value)
+                {
+                    version = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Version));
+                }
+            }
+        }
 
         private FilterItemProperites publishers;
         public FilterItemProperites Publisher
@@ -190,10 +318,12 @@ namespace Playnite
 
             set
             {
-                publishers = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Publisher));
-                OnPropertyChanged(nameof(IsActive));
+                if (publishers != value)
+                {
+                    publishers = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Publisher));
+                }
             }
         }
 
@@ -207,10 +337,12 @@ namespace Playnite
 
             set
             {
-                developers = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Developer));
-                OnPropertyChanged(nameof(IsActive));
+                if (developers != value)
+                {
+                    developers = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Developer));
+                }
             }
         }
 
@@ -224,10 +356,12 @@ namespace Playnite
 
             set
             {
-                categories = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Category));
-                OnPropertyChanged(nameof(IsActive));
+                if (categories != value)
+                {
+                    categories = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Category));
+                }
             }
         }
 
@@ -241,10 +375,12 @@ namespace Playnite
 
             set
             {
-                tags = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Tag));
-                OnPropertyChanged(nameof(IsActive));
+                if (tags != value)
+                {
+                    tags = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Tag));
+                }
             }
         }
 
@@ -258,10 +394,12 @@ namespace Playnite
 
             set
             {
-                series = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Series));
-                OnPropertyChanged(nameof(IsActive));
+                if (series != value)
+                {
+                    series = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Series));
+                }
             }
         }
 
@@ -275,10 +413,12 @@ namespace Playnite
 
             set
             {
-                region = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Region));
-                OnPropertyChanged(nameof(IsActive));
+                if (region != value)
+                {
+                    region = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Region));
+                }
             }
         }
 
@@ -292,10 +432,12 @@ namespace Playnite
 
             set
             {
-                source = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Source));
-                OnPropertyChanged(nameof(IsActive));
+                if (source != value)
+                {
+                    source = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Source));
+                }
             }
         }
 
@@ -309,10 +451,12 @@ namespace Playnite
 
             set
             {
-                ageRating = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(AgeRating));
-                OnPropertyChanged(nameof(IsActive));
+                if (ageRating != value)
+                {
+                    ageRating = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(AgeRating));
+                }
             }
         }
 
@@ -326,10 +470,12 @@ namespace Playnite
 
             set
             {
-                isInstalled = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(IsInstalled));
-                OnPropertyChanged(nameof(IsActive));
+                if (isInstalled != value)
+                {
+                    isInstalled = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(IsInstalled));
+                }
             }
         }
 
@@ -343,10 +489,12 @@ namespace Playnite
 
             set
             {
-                isUnInstalled = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(IsUnInstalled));
-                OnPropertyChanged(nameof(IsActive));
+                if (isUnInstalled != value)
+                {
+                    isUnInstalled = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(IsUnInstalled));
+                }
             }
         }
 
@@ -360,10 +508,12 @@ namespace Playnite
 
             set
             {
-                hidden = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Hidden));
-                OnPropertyChanged(nameof(IsActive));
+                if (hidden != value)
+                {
+                    hidden = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Hidden));
+                }
             }
         }
 
@@ -377,10 +527,12 @@ namespace Playnite
 
             set
             {
-                favorite = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Favorite));
-                OnPropertyChanged(nameof(IsActive));
+                if (favorite != value)
+                {
+                    favorite = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Favorite));
+                }
             }
         }
         
@@ -394,10 +546,164 @@ namespace Playnite
 
             set
             {
-                library = value;
-                OnPropertyChanged();
-                OnFilterChanged(nameof(Library));
-                OnPropertyChanged(nameof(IsActive));
+                if (library != value)
+                {
+                    library = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Library));
+                }
+            }
+        }
+
+        private EnumFilterItemProperites completionStatus;
+        public EnumFilterItemProperites CompletionStatus
+        {
+            get
+            {
+                return completionStatus;
+            }
+
+            set
+            {
+                if (completionStatus != value)
+                {
+                    completionStatus = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(CompletionStatus));
+                }
+            }
+        }
+
+        private EnumFilterItemProperites userScore;
+        public EnumFilterItemProperites UserScore
+        {
+            get
+            {
+                return userScore;
+            }
+
+            set
+            {
+                if (userScore != value)
+                {
+                    userScore = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(UserScore));
+                }
+            }
+        }
+
+        private EnumFilterItemProperites criticScore;
+        public EnumFilterItemProperites CriticScore
+        {
+            get
+            {
+                return criticScore;
+            }
+
+            set
+            {
+                if (criticScore != value)
+                {
+                    criticScore = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(CriticScore));
+                }
+            }
+        }
+
+        private EnumFilterItemProperites communityScore;
+        public EnumFilterItemProperites CommunityScore
+        {
+            get
+            {
+                return communityScore;
+            }
+
+            set
+            {
+                if (communityScore != value)
+                {
+                    communityScore = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(CommunityScore));
+                }
+            }
+        }
+
+        private EnumFilterItemProperites lastActivity;
+        public EnumFilterItemProperites LastActivity
+        {
+            get
+            {
+                return lastActivity;
+            }
+
+            set
+            {
+                if (lastActivity != value)
+                {
+                    lastActivity = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(LastActivity));
+                }
+            }
+        }
+
+        private EnumFilterItemProperites added;
+        public EnumFilterItemProperites Added
+        {
+            get
+            {
+                return added;
+            }
+
+            set
+            {
+                if (added != value)
+                {
+                    added = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Added));
+                }
+            }
+        }
+
+        private EnumFilterItemProperites modified;
+        public EnumFilterItemProperites Modified
+        {
+            get
+            {
+                return modified;
+            }
+
+            set
+            {
+                if (modified != value)
+                {
+                    modified = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(Modified));
+                }
+            }
+        }
+
+        private EnumFilterItemProperites playTime;
+        public EnumFilterItemProperites PlayTime
+        {
+            get
+            {
+                return playTime;
+            }
+
+            set
+            {
+                if (playTime != value)
+                {
+                    playTime = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(PlayTime));
+                }
             }
         }
 
@@ -410,6 +716,8 @@ namespace Playnite
             {
                 FilterChanged?.Invoke(this, new FilterChangedEventArgs(new List<string>() { field }));
             }
+
+            OnPropertyChanged(nameof(IsActive));
         }
 
         public void OnFilterChanged(List<string> fields)
@@ -418,6 +726,8 @@ namespace Playnite
             {
                 FilterChanged?.Invoke(this, new FilterChangedEventArgs(fields));
             }
+
+            OnPropertyChanged(nameof(IsActive));
         }
 
         public void ClearFilters()
@@ -443,10 +753,16 @@ namespace Playnite
                 filterChanges.Add(nameof(Platform));
             }
 
-            if (ReleaseDate != null)
+            if (ReleaseYear != null)
             {
-                ReleaseDate = null;
-                filterChanges.Add(nameof(ReleaseDate));
+                ReleaseYear = null;
+                filterChanges.Add(nameof(ReleaseYear));
+            }
+
+            if (Version != null)
+            {
+                Version = null;
+                filterChanges.Add(nameof(Version));
             }
 
             if (Publisher?.IsSet == true)
@@ -527,6 +843,54 @@ namespace Playnite
                 filterChanges.Add(nameof(Library));
             }
 
+            if (CompletionStatus != null)
+            {
+                CompletionStatus = null;
+                filterChanges.Add(nameof(CompletionStatus));
+            }
+
+            if (UserScore != null)
+            {
+                UserScore = null;
+                filterChanges.Add(nameof(UserScore));
+            }
+
+            if (CriticScore != null)
+            {
+                CriticScore = null;
+                filterChanges.Add(nameof(CriticScore));
+            }
+
+            if (CommunityScore != null)
+            {
+                CommunityScore = null;
+                filterChanges.Add(nameof(CommunityScore));
+            }
+
+            if (LastActivity != null)
+            {
+                LastActivity = null;
+                filterChanges.Add(nameof(LastActivity));
+            }
+
+            if (Added != null)
+            {
+                Added = null;
+                filterChanges.Add(nameof(Added));
+            }
+
+            if (Modified != null)
+            {
+                Modified = null;
+                filterChanges.Add(nameof(Modified));
+            }
+
+            if (PlayTime != null)
+            {
+                PlayTime = null;
+                filterChanges.Add(nameof(PlayTime));
+            }
+
             suppressFilterChanges = false;
             OnFilterChanged(filterChanges);
         }
@@ -540,7 +904,12 @@ namespace Playnite
 
         public bool ShouldSerializeReleaseDate()
         {
-            return !ReleaseDate.IsNullOrEmpty();
+            return ReleaseYear?.IsSet == true;
+        }
+
+        public bool ShouldSerializeVersion()
+        {
+            return !Version.IsNullOrEmpty();
         }
 
         public bool ShouldSerializeSeries()
@@ -596,6 +965,46 @@ namespace Playnite
         public bool ShouldSerializeLibrary()
         {
             return Library?.IsSet == true;
+        }
+
+        public bool ShouldSerializeCompletionStatus()
+        {
+            return CompletionStatus?.IsSet == true;
+        }
+
+        public bool ShouldSerializeUserScore()
+        {
+            return UserScore?.IsSet == true;
+        }
+
+        public bool ShouldSerializeCriticScore()
+        {
+            return CriticScore?.IsSet == true;
+        }
+
+        public bool ShouldSerializeCommunityScore()
+        {
+            return CommunityScore?.IsSet == true;
+        }
+
+        public bool ShouldSerializeLastActivity()
+        {
+            return LastActivity?.IsSet == true;
+        }
+
+        public bool ShouldSerializeAdded()
+        {
+            return Added?.IsSet == true;
+        }
+
+        public bool ShouldSerializeModified()
+        {
+            return Modified?.IsSet == true;
+        }
+
+        public bool ShouldSerializePlayTime()
+        {
+            return PlayTime?.IsSet == true;
         }
 
         #endregion Serialization Conditions

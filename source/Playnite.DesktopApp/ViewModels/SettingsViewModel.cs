@@ -203,6 +203,7 @@ namespace Playnite.DesktopApp.ViewModels
             Extensions = extensions;
             originalSettings = settings;
             Settings = settings.GetClone();
+            Settings.PropertyChanged += (s, e) => editedFields.Add(e.PropertyName);
             this.database = database;
             this.window = window;
             this.dialogs = dialogs;

@@ -315,7 +315,7 @@ namespace Playnite
             }
         }
 
-        private bool explorerPanelVisible = true;
+        private bool explorerPanelVisible = false;
         public bool ExplorerPanelVisible
         {
             get
@@ -757,7 +757,7 @@ namespace Playnite
             }
         }
 
-        private bool filterPanelVisible = true;
+        private bool filterPanelVisible = false;
         public bool FilterPanelVisible
         {
             get
@@ -1068,7 +1068,7 @@ namespace Playnite
                     instance = settings;
                 }
             }
-            catch (Exception e)
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, "Failed to load application settings.");
                 instance = new PlayniteSettings();

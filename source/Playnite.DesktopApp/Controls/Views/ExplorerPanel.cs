@@ -45,7 +45,7 @@ namespace Playnite.DesktopApp.Controls.Views
             }
             else if (mainModel != null)
             {
-                DataContext = mainModel;
+                DataContext = mainModel.DatabaseExplorer;
             }
         }
     }

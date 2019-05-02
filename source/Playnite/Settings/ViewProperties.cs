@@ -101,8 +101,24 @@ namespace Playnite
         Region,
         [Description("LOCSourceLabel")]
         Source,
+        [Description("LOCTimePlayed")]
+        PlayTime,
         [Description("LOCGameReleaseYearTitle")]
-        ReleaseYear
+        ReleaseYear,
+        [Description("LOCCompletionStatus")]
+        CompletionStatus,
+        [Description("LOCUserScore")]
+        UserScore,
+        [Description("LOCCriticScore")]
+        CriticScore,
+        [Description("LOCCommunityScore")]
+        CommunityScore,
+        [Description("LOCGameLastActivityTitle")]
+        LastActivity,
+        [Description("LOCAddedLabel")]
+        Added,
+        [Description("LOCModifiedLabel")]
+        Modified
     }
 
     public enum ViewType : int
@@ -182,6 +198,19 @@ namespace Playnite
             }
         }
 
+        private GroupableField selectedExplorerField = GroupableField.Library;
+        public GroupableField SelectedExplorerField
+        {
+            get
+            {
+                return selectedExplorerField;
+            }
 
+            set
+            {
+                selectedExplorerField = value;
+                OnPropertyChanged();
+            }
+        }
     }        
 }

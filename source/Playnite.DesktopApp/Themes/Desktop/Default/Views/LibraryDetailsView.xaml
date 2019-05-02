@@ -113,19 +113,32 @@
                                                 <Setter.Value>
                                                     <ControlTemplate>
                                                         <Expander BorderThickness="0" IsExpanded="True"
-                                                      pbeh:ExpanderBehaviors.SaveState="True"
-                                                      pbeh:ExpanderBehaviors.SaveStateId="{Binding Name, Mode=OneWay}">
+                                                                  pbeh:ExpanderBehaviors.SaveState="True"
+                                                                  pbeh:ExpanderBehaviors.SaveStateId="{Binding Name, Mode=OneWay}">
                                                             <Expander.Header>
                                                                 <DockPanel Background="Transparent">
-                                                                    <TextBlock Text="{Binding Name}" DockPanel.Dock="Left"
-                                                                   VerticalAlignment="Center" HorizontalAlignment="Left"
-                                                                   Style="{DynamicResource BaseTextBlockStyle}"
-                                                                   TextAlignment="Center" Margin="0,0,5,0"/>
+                                                                    <TextBlock DockPanel.Dock="Left"
+                                                                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                                               TextAlignment="Center" Margin="0,0,5,0">
+                                                                        <TextBlock.Style>                                                                            
+                                                                            <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                                                                <Setter Property="Text" Value="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" />
+                                                                                <Style.Triggers>
+                                                                                    <DataTrigger Binding="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" Value="{x:Null}">
+                                                                                        <Setter Property="Text" Value="{DynamicResource LOCNone}" />
+                                                                                    </DataTrigger>
+                                                                                    <DataTrigger Binding="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" Value="">
+                                                                                        <Setter Property="Text" Value="{DynamicResource LOCNone}" />
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers> 
+                                                                            </Style>
+                                                                        </TextBlock.Style>
+                                                                    </TextBlock>
                                                                     <TextBlock Text="{Binding Items.Count, Mode=OneWay, StringFormat=({0})}"
-                                                                   VerticalAlignment="Center" HorizontalAlignment="Left"
-                                                                   Style="{DynamicResource BaseTextBlockStyle}"
-                                                                   DockPanel.Dock="Left" TextAlignment="Center"
-                                                                   Visibility="{pmrk:Settings ShowIconsOnList}"/>
+                                                                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                                               Style="{DynamicResource BaseTextBlockStyle}"
+                                                                               DockPanel.Dock="Left" TextAlignment="Center"
+                                                                               Visibility="{pmrk:Settings ShowIconsOnList}"/>
                                                                 </DockPanel>
                                                             </Expander.Header>
                                                             <ItemsPresenter />

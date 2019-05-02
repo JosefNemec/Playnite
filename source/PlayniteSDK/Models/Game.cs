@@ -44,8 +44,8 @@ namespace Playnite.SDK.Models
         IsInstalled,
         IsCustomGame,
         Playtime,
-        Added,
-        Modified,
+        Added,          
+        Modified,       
         PlayCount,
         SeriesId,
         Version,
@@ -261,6 +261,7 @@ namespace Playnite.SDK.Models
             {
                 lastActivity = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(LastActivitySegment));
             }
         }
 
@@ -579,6 +580,7 @@ namespace Playnite.SDK.Models
             {
                 playtime = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(PlaytimeCategory));
             }
         }
 
@@ -597,6 +599,7 @@ namespace Playnite.SDK.Models
             {
                 added = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(AddedSegment));
             }
         }
 
@@ -615,6 +618,7 @@ namespace Playnite.SDK.Models
             {
                 modified = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(ModifiedSegment));
             }
         }
 
@@ -763,6 +767,7 @@ namespace Playnite.SDK.Models
             {
                 userScore = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(UserScoreGroup));
             }
         }
 
@@ -781,6 +786,7 @@ namespace Playnite.SDK.Models
             {
                 criticScore = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CriticScoreGroup));
             }
         }
 
@@ -799,6 +805,7 @@ namespace Playnite.SDK.Models
             {
                 communityScore = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CommunityScoreGroup));
             }
         }
 
@@ -910,8 +917,175 @@ namespace Playnite.SDK.Models
             get => ReleaseDate?.Year;
         }
 
+        [JsonIgnore]
+        public ScoreGroup UserScoreGroup
+        {
+            get => GetScoreGroup(UserScore);
+        }
+
+        [JsonIgnore]
+        public ScoreGroup CommunityScoreGroup
+        {
+            get => GetScoreGroup(CommunityScore);
+        }
+
+        [JsonIgnore]
+        public ScoreGroup CriticScoreGroup
+        {
+            get => GetScoreGroup(CriticScore);
+        }
+
+        [JsonIgnore]
+        public PastTimeSegment LastActivitySegment
+        {
+            get => GetPastTimeSegment(LastActivity);
+        }
+
+        [JsonIgnore]
+        public PastTimeSegment AddedSegment
+        {
+            get => GetPastTimeSegment(Added);
+        }
+
+        [JsonIgnore]
+        public PastTimeSegment ModifiedSegment
+        {
+            get => GetPastTimeSegment(Modified);
+        }
+
+        [JsonIgnore]
+        public PlaytimeCategory PlaytimeCategory
+        {
+            get => GetPlayTimeCategory(Playtime);
+        }
+
         #endregion Expanded
-                
+
+        private PlaytimeCategory GetPlayTimeCategory(long seconds)
+        {
+            if (seconds == 0)
+            {
+                return PlaytimeCategory.NotPlayed;
+            }
+
+            var hours = seconds / 3600;
+            if (hours < 1)
+            {
+                return PlaytimeCategory.LessThenHour;
+            }
+            else if (hours >= 1 && hours <= 10)
+            {
+                return PlaytimeCategory.O1_10;
+            }
+            else if (hours >= 10 && hours <= 100)
+            {
+                return PlaytimeCategory.O10_100;
+            }
+            else if (hours >= 100 && hours <= 500)
+            {
+                return PlaytimeCategory.O100_500;
+            }
+            else if (hours >= 500 && hours <= 1000)
+            {
+                return PlaytimeCategory.O500_1000;
+            }
+            else
+            {
+                return PlaytimeCategory.O1000plus;
+            }
+        }
+
+        private PastTimeSegment GetPastTimeSegment(DateTime? dateTime)
+        {
+            if (dateTime == null)
+            {
+                return PastTimeSegment.Never;
+            }
+            
+            if (dateTime.Value.Date == DateTime.Today)
+            {
+                return PastTimeSegment.Today;
+            }
+
+            if (dateTime.Value.Date.AddDays(1) == DateTime.Today)
+            {
+                return PastTimeSegment.Yesterday;
+            }
+
+            var diff = DateTime.Now - dateTime.Value;
+            if (diff.TotalDays < 7)
+            {
+                return PastTimeSegment.PastWeek;
+            }
+
+            if (diff.TotalDays < 31)
+            {
+                return PastTimeSegment.PastMonth;
+            }
+
+            if (diff.TotalDays < 365)
+            {
+                return PastTimeSegment.PastYear;
+            }
+
+            return PastTimeSegment.Never;
+        }
+
+        private ScoreGroup GetScoreGroup(int? score)
+        {
+            if (score >= 0 && score < 10)
+            {
+                return ScoreGroup.O0x;
+            }
+
+            if (score >= 10 && score < 20)
+            {
+                return ScoreGroup.O1x;
+            }
+
+            if (score >= 20 && score < 30)
+            {
+                return ScoreGroup.O2x;
+            }
+
+            if (score >= 30 && score < 40)
+            {
+                return ScoreGroup.O3x;
+            }
+
+            if (score >= 40 && score < 50)
+            {
+                return ScoreGroup.O4x;
+            }
+
+            if (score >= 50 && score < 60)
+            {
+                return ScoreGroup.O5x;
+            }
+
+            if (score >= 60 && score < 70)
+            {
+                return ScoreGroup.O6x;
+            }
+
+            if (score >= 70 && score < 80)
+            {
+                return ScoreGroup.O7x;
+            }
+
+            if (score >= 80 && score < 90)
+            {
+                return ScoreGroup.O8x;
+            }
+
+            if (score >= 90)
+            {
+                return ScoreGroup.O9x;
+            }
+
+            return ScoreGroup.None;
+        }
+
         internal static IGameDatabase DatabaseReference
         {
             get; set;

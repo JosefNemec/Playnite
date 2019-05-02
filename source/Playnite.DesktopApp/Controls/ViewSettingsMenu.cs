@@ -54,7 +54,7 @@ namespace Playnite.DesktopApp.Controls
             {
                 var item = new MenuItem
                 {
-                    Header = ResourceProvider.GetString(type.GetDescription()),
+                    Header = type.GetDescription(),
                     IsCheckable = true
                 };
 
@@ -96,6 +96,26 @@ namespace Playnite.DesktopApp.Controls
 
             // View Type
             PopulateEnumOptions(Items, typeof(ViewType), nameof(settings.ViewSettings.GamesViewType), settings.ViewSettings);
+            Items.Add(new Separator());
+
+            // View
+            var filterItem = MainMenu.AddMenuChild(Items, "LOCMenuViewFilterPanel", null);
+            filterItem.IsCheckable = true;
+            BindingOperations.SetBinding(filterItem, MenuItem.IsCheckedProperty,
+                new Binding
+                {
+                    Source = settings,
+                    Path = new PropertyPath(nameof(PlayniteSettings.FilterPanelVisible))
+                });
+
+            var explorerItem = MainMenu.AddMenuChild(Items, "LOCMenuViewExplorerPanel", null);
+            explorerItem.IsCheckable = true;
+            BindingOperations.SetBinding(explorerItem, MenuItem.IsCheckedProperty,
+                new Binding
+                {
+                    Source = settings,
+                    Path = new PropertyPath(nameof(PlayniteSettings.ExplorerPanelVisible))
+                });
         }
     }
 }

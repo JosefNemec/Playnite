@@ -299,6 +299,8 @@ namespace Playnite.DesktopApp.ViewModels
         }
 
         #region General Commands
+        public RelayCommand<object> ToggleExplorerPanelCommand { get; private set; }
+        public RelayCommand<object> ToggleFilterPanelCommand { get; private set; }
         public RelayCommand<object> OpenFilterPanelCommand { get; private set; }
         public RelayCommand<object> CloseFilterPanelCommand { get; private set; }
         public RelayCommand<object> CloseNotificationPanelCommand { get; private set; }
@@ -329,7 +331,6 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<GamesCollectionViewEntry> ShowGameSideBarCommand { get; private set; }
         public RelayCommand<object> CloseGameSideBarCommand { get; private set; }
         public RelayCommand<object> OpenSearchCommand { get; private set; }
-        public RelayCommand<object> ToggleFilterPanelCommand { get; private set; }
         public RelayCommand<object> CheckForUpdateCommand { get; private set; }
         public RelayCommand<object> OpenDbFieldsManagerCommand { get; private set; }
         public RelayCommand<ILibraryPlugin> UpdateLibraryCommand { get; private set; }
@@ -380,7 +381,7 @@ namespace Playnite.DesktopApp.ViewModels
             PlayniteApi = playniteApi;
             Extensions = extensions;
             DatabaseFilters = new DatabaseFilter(database, extensions, AppSettings.FilterSettings);
-            DatabaseExplorer = new DatabaseExplorer(database, extensions);
+            DatabaseExplorer = new DatabaseExplorer(database, extensions, AppSettings);
 
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
@@ -396,10 +397,15 @@ namespace Playnite.DesktopApp.ViewModels
                 SearchOpened = true;
             }, new KeyGesture(Key.F, ModifierKeys.Control));
 
+            ToggleExplorerPanelCommand = new RelayCommand<object>((game) =>
+            {
+                AppSettings.ExplorerPanelVisible = !AppSettings.ExplorerPanelVisible;
+            });
+
             ToggleFilterPanelCommand = new RelayCommand<object>((game) =>
             {
                 AppSettings.FilterPanelVisible = !AppSettings.FilterPanelVisible;
-            }, new KeyGesture(Key.G, ModifierKeys.Control));
+            });
 
             OpenFilterPanelCommand = new RelayCommand<object>((game) =>
             {
@@ -792,12 +798,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             if (e.PropertyName != nameof(AppSettings.FilterSettings.IsActive))
             {
-                AppSettings.SaveSettings();
-
-                if (e.PropertyName != nameof(AppSettings.FilterSettings.Name) && e.PropertyName != nameof(AppSettings.FilterSettings.SearchActive))
-                {
-                    AppSettings.FilterPanelVisible = true;
-                }
+                AppSettings.SaveSettings();   
             }
         }
 
@@ -881,7 +882,7 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
                      
-            GamesView = new GamesCollectionView(Database, AppSettings, IsFullscreenView, Extensions);         
+            GamesView = new GamesCollectionView(Database, AppSettings, Extensions);         
             BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
             if (GamesView.CollectionView.Count > 0)
             {

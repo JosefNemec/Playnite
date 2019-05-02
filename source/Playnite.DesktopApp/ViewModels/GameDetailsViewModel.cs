@@ -315,13 +315,17 @@ namespace Playnite.DesktopApp.ViewModels
                 default:
                     break;
             }
+
+            settings.FilterPanelVisible = true;
+
         }
 
         public void SetReleaseDateFilter(DateTime? date)
         {
             if (date != null)
             {
-                settings.FilterSettings.ReleaseDate = date.Value.ToString(Common.Constants.DateUiFormat);
+                settings.FilterSettings.ReleaseYear = new StringFilterItemProperites(date.Value.Year.ToString());
+                settings.FilterPanelVisible = true;
             }
         }
 

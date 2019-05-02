@@ -141,6 +141,9 @@ Automatically imported games may reappear in Playnite after next import procedur
     <sys:String x:Key="LOCFriday">Friday</sys:String>
     <sys:String x:Key="LOCSaturday">Saturday</sys:String>
     <sys:String x:Key="LOCSunday">Sunday</sys:String>
+    <sys:String x:Key="LOCPastWeek">Past Week</sys:String>
+    <sys:String x:Key="LOCPastMonth">Past Month</sys:String>
+    <sys:String x:Key="LOCPastYear">Past Year</sys:String>
     <sys:String x:Key="LOCImportCompleted">Import completed successfully.</sys:String>
     <sys:String x:Key="LOCAllGames">All Games</sys:String>
     <sys:String x:Key="LOCGameId">Game Id</sys:String>
@@ -203,7 +206,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Settings...</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Platforms and Emulators</sys:String>
     <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Configure Emulators...</sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle">Library fields manager...</sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">Library Manager...</sys:String>
     <sys:String x:Key="LOCMenuTools">Tools</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Download Metadata...</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Open 3rd Party Client</sys:String>
@@ -416,6 +419,9 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">Group by Category</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Group by Platform</sys:String>
     <sys:String x:Key="LOCViewType">View Type</sys:String>
+    <sys:String x:Key="LOCMenuView">View</sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">Explorer Panel</sys:String>
+    <sys:String x:Key="LOCMenuViewFilterPanel">Filter Panel</sys:String>
 
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">Icon</sys:String>
@@ -551,6 +557,8 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCExtensionVersion">Version:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Module:</sys:String>
     <sys:String x:Key="LOCLibrary">Library</sys:String>
+    <sys:String x:Key="LOCAll">All</sys:String>
+    <sys:String x:Key="LOCNone">None</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
@@ -631,6 +639,13 @@ You can try these to fix the issue:
     <sys:String x:Key="LOCAddNewItem">Add new item</sys:String>
     <sys:String x:Key="LOCEnterName">Enter name</sys:String>
     <sys:String x:Key="LOCEnterNewName">Enter new name</sys:String>
+
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Less then an hour</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">1 to 10 hours</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">10 to 100 hours</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">100 to 500 hours</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">500 to 1000 hours</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io client will now open. Please sign in and then close this message.</sys:String>

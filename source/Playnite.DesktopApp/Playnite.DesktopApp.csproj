@@ -98,6 +98,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\FilterStringSelectionBox.xaml.cs">
+      <DependentUpon>FilterStringSelectionBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FilterEnumSelectionBox.xaml.cs">
+      <DependentUpon>FilterEnumSelectionBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DdItemListSelectionBox.xaml.cs">
       <DependentUpon>DdItemListSelectionBox.xaml</DependentUpon>
     </Compile>
@@ -424,6 +430,14 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="Controls\FilterStringSelectionBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FilterEnumSelectionBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\DdItemListSelectionBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
