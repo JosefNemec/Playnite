@@ -39,8 +39,8 @@ namespace DiscordLibrary.Services
             var token = string.Empty;
             // Usually, Discord deletes the localStorage object, but we can use a URL like robots.txt that doesn't run scripts
             webView.NavigateAndWait("https://discordapp.com/robots.txt");
-            token = webView.EvaluateScript("(() => localStorage.getItem('token')") as string;
-            if (!string.IsNullOrEmpty(token) && !string.Equals(token, "undefined"))
+            token = webView.EvaluateScript("(() => localStorage.getItem('token'))") as string;
+            if (!string.IsNullOrEmpty(token) && !string.Equals(token, "undefined") && !string.Equals(token, "null"))
             {
                 return token.Trim('"');
             }

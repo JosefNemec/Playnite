@@ -102,7 +102,7 @@ namespace DiscordLibrary
         {
             try
             {
-                using (var view = api.WebViews.CreateView(675, 600, Colors.Black))
+                using (var view = api.WebViews.CreateView(400, 600, Colors.Black))
                 {
                     var client = new DiscordAccountClient(view);
                     client.Login();
