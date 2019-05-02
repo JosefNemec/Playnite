@@ -55,9 +55,7 @@ namespace DiscordLibrary
                 ReleaseDate = storeListing.sku.release_date,
                 CoverImage = $"https://cdn.discordapp.com/app-assets/{applicationId}/store/{storeListing.thumbnail.id}.png?size=2048",
                 Links = new ObservableCollection<Link>() { new Link("Discord", $"https://discordapp.com/store/skus/{skuId}/{storeListing.sku.slug}") },
-
-                // TODO: Format Markdown
-                //Description = storeListing.description,
+                Description = storeListing.htmlDescription(),
             };
 
             var iconUrl = $"https://cdn.discordapp.com/app-icons/{applicationId}/{application.icon}.png";
