@@ -2,9 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:pcmds="clr-namespace:Playnite.Commands;assembly=Playnite"
-                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=PlayniteUI"
-                    xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls;assembly=PlayniteUI"
-                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=PlayniteUI">
+                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
+                    xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
+                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp">
 
     <Style x:Key="PropertyItemButton" TargetType="Button">
         <Setter Property="Margin" Value="0,2,5,2" />

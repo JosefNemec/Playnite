@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Playnite.DesktopApp")]
-[assembly: AssemblyDescription("Playnite Desktop User Interface")]
+[assembly: AssemblyTitle("Playnite Desktop Application")]
+[assembly: AssemblyDescription("Playnite Desktop Application")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Josef Nemec")]
-[assembly: AssemblyProduct("Playnite.DesktopApp")]
+[assembly: AssemblyProduct("Playnite")]
 [assembly: AssemblyCopyright("Copyright © Josef Nemec 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

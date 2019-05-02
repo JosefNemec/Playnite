@@ -3,9 +3,9 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
                     xmlns:pctrlsShared="clr-namespace:Playnite.Controls;assembly=Playnite"
-                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=PlayniteUI"
-                    xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls;assembly=PlayniteUI"
-                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=PlayniteUI">    
+                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
+                    xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
+                    xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp">    
 
     <Style TargetType="{x:Type views:DetailsGameOverview}">
         <Setter Property="Template">
