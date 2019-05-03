@@ -127,9 +127,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="BuildCopyExclude.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\steamicon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

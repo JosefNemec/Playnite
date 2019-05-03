@@ -21,7 +21,7 @@ $asmVersion = $Version + (".0" * (4 - $versionSize - 2)) + ".*"
 Write-Host "Publishing version $updateVersion" -ForegroundColor Cyan
 
 $updateInfoPath = "..\web\update\update.json"
-$asmInfoPath = "..\source\PlayniteUI\Properties\AssemblyInfo.cs"
+$asmInfoPath = "..\source\Playnite\Properties\AssemblyInfo.cs"
 $changelogPath = "..\web\update\" + $updateVersion + ".html"
 $changelogTemplatePath = "..\web\update\template.html"
 $asmInfoContent = Get-Content $asmInfoPath -Encoding UTF8

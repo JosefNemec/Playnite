@@ -108,9 +108,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="BuildCopyExclude.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="ItchioLibrarySettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

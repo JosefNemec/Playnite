@@ -93,7 +93,6 @@
     <Compile Include="Services\OriginApiClient.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BuildCopyExclude.txt" />
     <None Include="extension.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

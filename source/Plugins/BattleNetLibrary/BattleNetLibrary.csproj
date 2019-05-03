@@ -82,7 +82,6 @@
     <Compile Include="Services\BattleNetAccountClient.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BuildCopyExclude.txt" />
     <None Include="extension.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

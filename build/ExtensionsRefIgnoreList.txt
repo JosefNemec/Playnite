@@ -18,3 +18,5 @@ YamlDotNet.dll
 YamlDotNet.xml
 Nett.dll
 Nett.xml
+Microsoft.WindowsAPICodePack.dll
+Microsoft.WindowsAPICodePack.Shell.dll

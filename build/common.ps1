@@ -45,6 +45,47 @@ function global:Start-SigningWatcher()
     } -ArgumentList $Pass
 }
 
+function global:Invoke-Nuget()
+{
+    param(
+        [string]$NugetArgs
+    ) 
+
+    if (-not (Get-Command -Name "nuget" -Type Application -ErrorAction Ignore))
+    {
+        if (-not (Test-Path "nuget.exe"))
+        {
+            Invoke-WebRequest -Uri $NugetUrl -OutFile "nuget.exe"
+        }
+    }
+
+    StartAndWait "nuget" $NugetArgs
+}
+
+function global:Get-MsBuildPath()
+{
+    $VSWHERE_CMD = "vswhere"
+
+    if (-not (Get-Command -Name $VSWHERE_CMD -Type Application -ErrorAction Ignore))
+    {
+        $VSWHERE_CMD = "..\source\packages\vswhere.2.6.7\tools\vswhere.exe"
+        if (-not (Get-Command -Name $VSWHERE_CMD -Type Application -ErrorAction Ignore))
+        {
+            Invoke-Nuget "install vswhere -Version 2.6.7 -SolutionDirectory `"$solutionDir`""
+        }
+    }
+
+    $path = & $VSWHERE_CMD -version "[15.0,16.0)" -requires Microsoft.Component.MSBuild -find "MSBuild\**\Bin\MSBuild.exe"
+    if (Test-Path $path)
+    {
+        return $path
+    }
+    else
+    {
+        throw "MS Build not found."
+    }
+}
+
 function global:Stop-SigningWatcher()
 {
     Write-OperationLog "Stopping signing watcher..."

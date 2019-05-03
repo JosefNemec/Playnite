@@ -92,9 +92,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="BuildCopyExclude.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Playnite.Common\Playnite.Common.csproj">
       <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
       <Name>Playnite.Common</Name>

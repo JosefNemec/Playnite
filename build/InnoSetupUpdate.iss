@@ -2,7 +2,7 @@
 #define MyAppVersion "{version}"
 #define MyAppPublisher "Josef Nemec"
 #define MyAppURL "https://playnite.link"
-#define MyAppExeName "PlayniteUI.exe"
+#define MyAppExeName "Playnite.DesktopApp.exe"
 #define SourcePath "{source_path}"
 #define PlayniteAppMutex = "PlayniteInstaceMutex"
 
@@ -20,7 +20,7 @@ DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
 OutputDir="{out_dir}"
 OutputBaseFilename="{out_file_name}"
-SetupIconFile=..\source\PlayniteUI\Images\applogo.ico
+SetupIconFile=..\source\Playnite.DesktopApp\Themes\Desktop\Default\Images\applogo.ico
 Compression=lzma2/max
 CompressionThreads=4
 LZMANumBlockThreads=4
