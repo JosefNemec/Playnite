@@ -8,7 +8,6 @@ namespace Playnite.SDK.Models
 {
     public class GameInfo : DatabaseObject
     {
-        public string Name { get; set; }
         public string GameId { get; set; }
         public string Description { get; set; }
         public string InstallDirectory { get; set; }

@@ -73,13 +73,9 @@ namespace Playnite.SDK
 
         IEnumerable<TItem> Add(List<string> items);
 
-        void Add(TItem item);
-
         void Add(IEnumerable<TItem> items);
 
         bool Remove(Guid id);
-
-        bool Remove(TItem item);
 
         bool Remove(IEnumerable<TItem> items);
 
