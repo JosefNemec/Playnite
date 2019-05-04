@@ -2,8 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <sys:String x:Key="LocalizationLanguage">english</sys:String>
-    <sys:String x:Key="LocalizationString">English</sys:String>
+    <sys:String x:Key="LanguageName">English</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Language</sys:String>
 
