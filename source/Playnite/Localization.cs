@@ -1,10 +1,13 @@
-﻿using Playnite.Settings;
+﻿using Playnite.Common;
+using Playnite.SDK;
+using Playnite.Settings;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +30,9 @@ namespace Playnite
 
     public static class Localization
     {
+        private static ILogger logger = LogManager.GetLogger();
+        public const string SourceLanguageId = "english";
+
         public static List<PlayniteLanguage> AvailableLanguages
         {
             get
@@ -37,29 +43,19 @@ namespace Playnite
 
         public static string CurrentLanguage
         {
-            get
-            {
-                var dictionary = System.Windows.Application.Current.Resources.MergedDictionaries.
-                    FirstOrDefault(a => a.Contains("LocalizationLanguage") && a["LocalizationLanguage"].ToString() != "english");
-                if (dictionary == null)
-                {
-                    return string.Empty;
-                }
-                else
-                {
-                    return dictionary["LocalizationLanguage"].ToString();
-                }
-            }
-
-            set
-            {
-                SetLanguage(value);
-            }
-        }
+            get; private set;
+        } = SourceLanguageId;
 
         public static List<PlayniteLanguage> GetLanguagesFromFolder(string path)
         {
-            var langs = new List<PlayniteLanguage>();
+            var langs = new List<PlayniteLanguage>() {
+                new PlayniteLanguage()
+                {
+                    Id = SourceLanguageId,
+                    LocaleString = "English"
+                }
+            };
+
             if (!Directory.Exists(path))
             {
                 return langs;
@@ -67,17 +63,23 @@ namespace Playnite
 
             foreach (var file in Directory.GetFiles(path, "*.xaml"))
             {
-                var langsPath = Path.Combine(path, file);
-
-                using (var stream = new StreamReader(langsPath))
+                var langPath = Path.Combine(path, file);
+                ResourceDictionary res = null;
+                try
                 {
-                    var res = XamlReader.Load(stream.BaseStream) as ResourceDictionary;
-                    langs.Add(new PlayniteLanguage()
-                    {
-                        Id = Path.GetFileNameWithoutExtension(langsPath),
-                        LocaleString = res["LocalizationString"].ToString()
-                    });
+                    res = Xaml.GetObjectFromFile<ResourceDictionary>(langPath);
                 }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to parse localization file {file}");
+                    continue;
+                }
+
+                langs.Add(new PlayniteLanguage()
+                {
+                    Id = Path.GetFileNameWithoutExtension(langPath),
+                    LocaleString = res["LanguageName"].ToString()
+                });
             }
 
             return langs.OrderBy(a => a.LocaleString).ToList();
@@ -85,19 +87,34 @@ namespace Playnite
 
         public static void SetLanguage(string language)
         {
-            var dictionaries = System.Windows.Application.Current.Resources.MergedDictionaries;
-            var currentLang = dictionaries.FirstOrDefault(a => a.Contains("LocalizationLanguage") && a["LocalizationLanguage"].ToString() != "english");
-            if (currentLang != null)
+            var dictionaries = Application.Current.Resources.MergedDictionaries;
+            if (CurrentLanguage != SourceLanguageId)
             {
-                dictionaries.Remove(currentLang);
+                var currentLang = dictionaries.FirstOrDefault(a => a["LanguageName"] != null && a.Source == null);
+                if (currentLang != null)
+                {
+                    dictionaries.Remove(currentLang);
+                }
             }
 
             var langFile = Path.Combine(PlaynitePaths.LocalizationsPath, language + ".xaml");
-            if (File.Exists(langFile) && language != "english")
+            if (File.Exists(langFile) && language != SourceLanguageId)
             {
-                var newLang = new ResourceDictionary() { Source = new Uri(langFile) };
-                dictionaries.Add(newLang);
+                ResourceDictionary res = null;
+                try
+                {
+                    res = Xaml.GetObjectFromFile<ResourceDictionary>(langFile);
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to parse localization file {langFile}");
+                    return;
+                }
+
+                dictionaries.Add(res);
             }
+
+            CurrentLanguage = language;
         }
     }
 }

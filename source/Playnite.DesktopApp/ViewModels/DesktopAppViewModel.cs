@@ -383,7 +383,6 @@ namespace Playnite.DesktopApp.ViewModels
             DatabaseFilters = new DatabaseFilter(database, extensions, AppSettings.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(database, extensions, AppSettings);
 
-            AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
             GamesStats = new DatabaseStats(database);
@@ -800,16 +799,6 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 AppSettings.SaveSettings();   
             }
-        }
-
-        private void AppSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(AppSettings.Language))
-            {
-                Localization.SetLanguage(AppSettings.Language);
-            }
-
-            AppSettings.SaveSettings();
         }
 
         public void StartThirdPartyTool(ThirdPartyTool tool)
@@ -1395,7 +1384,6 @@ namespace Playnite.DesktopApp.ViewModels
         {
             GamesView?.Dispose();
             GamesStats?.Dispose();
-            AppSettings.PropertyChanged -= AppSettings_PropertyChanged;
             AppSettings.FilterSettings.PropertyChanged -= FilterSettings_PropertyChanged;
         }
     }

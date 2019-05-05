@@ -374,6 +374,11 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
+            if (editedFields?.Contains(nameof(Settings.Language)) == true)
+            {
+                Localization.SetLanguage(Settings.Language);
+            }
+
             WindowClosing(true);
             window.Close(true);
         }

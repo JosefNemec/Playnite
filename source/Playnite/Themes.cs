@@ -36,15 +36,7 @@ namespace Playnite
         private static ILogger logger = LogManager.GetLogger();
         private const string themeManifestFileName = "theme.yaml";
         public static ThemeDescription CurrentTheme { get; private set; }
-        public static ThemeDescription DefaultTheme { get; private set; }
-
-        private static object LoadXaml(string path)
-        {
-            using (var stream = new StreamReader(path))
-            {
-                return XamlReader.Load(stream.BaseStream);
-            }
-        }
+        public static ThemeDescription DefaultTheme { get; private set; } 
 
         public static string GetThemeRootDir(ApplicationMode mode)
         {
@@ -70,7 +62,7 @@ namespace Playnite
             {
                 try
                 {
-                    var xaml = LoadXaml(xamlFile);
+                    var xaml = Xaml.GetObjectFromFile(xamlFile);
                     if (xaml is ResourceDictionary)
                     {
                         loadedXamls.Add(xaml as ResourceDictionary);

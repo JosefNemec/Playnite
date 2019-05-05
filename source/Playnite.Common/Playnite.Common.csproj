@@ -70,6 +70,7 @@
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -123,6 +124,7 @@
     <Compile Include="Web\Downloader.cs" />
     <Compile Include="Web\HttpDownloader.cs" />
     <Compile Include="WrappingStream.cs" />
+    <Compile Include="Xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
