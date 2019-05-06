@@ -58,6 +58,7 @@
     <sys:String x:Key="LOCGameInstallError">Не удалось установить игру: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Не удалось удалить игру: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
 
 
     <!--General-->
