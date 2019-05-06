@@ -35,7 +35,7 @@ Wenn du uns bei der Verbesserung von Playnite helfen möchtest, erstelle bitte D
     <sys:String x:Key="LOCCrashRestartPlaynite">Neu starten</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Beenden</sys:String>
 
-    <sys:String x:Key="LOCGameRemoveAskTitle">Spiel entfernen?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskTitle">Spiel(e) entfernen?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Fehler beim Entfernen des Spiels: Das Spiel oder eine Installation läuft gerade.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Fehler beim Deinstallieren des Spiels: Das Spiel oder eine Installation läuft gerade.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Bist du sicher, dass du dieses Spiel entfernen möchtest?
@@ -45,10 +45,10 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
         
 Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, beim nächsten Import wieder automatisch in deiner Spieleliste erscheinen.</sys:String>
 
-    <sys:String x:Key="LOCSteamFriendsTooltip">Steam Freundesliste</sys:String>
+    <sys:String x:Key="LOCSteamFriendsTooltip">Steam-Freundesliste</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Abschnitt enthält zu speichernde Änderungen</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Aktualisiere Bibliothek...</sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail">Fehler beim Aktualisieren der Bibliothek: Bibliothek ist nicht geöffnet.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">Datenbankaktualisierung gescheitert.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Fehler beim Aktualisieren der Bibliothek: Es werden {0} MB freier Speicherplatz benötigt.</sys:String>
 
     <sys:String x:Key="LOCGameError">Spielfehler</sys:String>
@@ -60,6 +60,7 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCGameInstallError">Fehler beim Installieren des Spiels: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Spiel kann nicht deinstalliert werden: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Die Bibliothekserweiterung für dieses Spiel ist nicht installiert oder deaktiviert.</sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader">Offizielle Metadaten sind nicht zum Herunterladen verfügbar.</sys:String>
 
 
     <!--General-->
@@ -87,8 +88,8 @@ Automatisch importierte Spiele könnten, abhängig von deinen Einstellungen, bei
     <sys:String x:Key="LOCLastPlayedLabel">Zuletzt gespielt</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Spielzeit</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Spielhäufigkeit</sys:String>
-    <sys:String x:Key="LOCAddedLabel">Hinzugefügt</sys:String>
-    <sys:String x:Key="LOCModifiedLabel">Geändert</sys:String>
+    <sys:String x:Key="LOCAddedLabel">Hinzufügedatum</sys:String>
+    <sys:String x:Key="LOCModifiedLabel">Änderungsdatum</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Website</sys:String>
     <sys:String x:Key="LOCPathLabel">Pfad</sys:String>
     <sys:String x:Key="LOCOKLabel">Okay</sys:String>
@@ -218,7 +219,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCMenuIssues">Feedback senden</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Vollbildmodus starten</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
-    <sys:String x:Key="LOCSDKDocumentation">SDK Dokumentation</sys:String>
+    <sys:String x:Key="LOCSDKDocumentation">SDK-Dokumentation</sys:String>
 
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
@@ -238,25 +239,25 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsAdvancedLabel">Erweitert</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Vollbildmodus</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Anbieter</sys:String>
-    <sys:String x:Key="LOCSettingsImportLabel">Importiere Bibliothek automatisch</sys:String>
-    <sys:String x:Key="LOCSettingsImportInstalledLabel">Importiere installierte Spiele</sys:String>
-    <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importiere nicht installierte Spiele</sys:String>
-    <sys:String x:Key="LOCSettingsImportLibraryLabel">Importiere alle Spiele</sys:String>
-    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importiere alle Spiele (Privatsphäre des Profils muss auf Öffentlich gestellt oder ein API-Key verwendet werden)</sys:String>
+    <sys:String x:Key="LOCSettingsImportLabel">Bibliotheksänderungen automatisch importieren</sys:String>
+    <sys:String x:Key="LOCSettingsImportInstalledLabel">Installierte Spiele importieren</sys:String>
+    <sys:String x:Key="LOCSettingsImportUninstalledLabel">Nicht installierte Spiele importieren</sys:String>
+    <sys:String x:Key="LOCSettingsImportLibraryLabel">Alle Spiele importieren</sys:String>
+    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Importieren aller Spiele (Privatsphäre des Profils muss auf »Öffentlich« gestellt oder ein API-Schlüssel verwendet werden)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Ungültiger Pfad zur Datenbank.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Account darf nicht leer sein.</sys:String>
-    <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Kein Steam-Account für Bibliothek-Import ausgewählt.</sys:String>
-    <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Kein Steam-Account für Kategorie-Import ausgewählt.</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup">Aktualisiere Bibliothek beim Starten</sys:String>
-    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Lade Metadaten nach dem Import</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport">Kein Steam-Account für Bibliotheksimport ausgewählt.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Kein Steam-Account für Kategorieimport ausgewählt.</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Bibliothek beim Starten aktualisieren</sys:String>
+    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Metadaten nach Spieleimport herunterladen</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Playnite minimiert starten</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Playnite mit Windows starten</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Fehler beim Registrieren des Autostart-Eintrags für Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Im Vollbildmodus starten</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Aktualisiert automatisch die Bibliothek von Steam, Origin und anderen.</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoading">Lade Bilder asynchron (erfordert Neustart)</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading">Bilder asynchron laden (erfordert Neustart)</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Ermöglicht weicheres Scrolling zum Preis einer längeren Ladezeit.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Zeige den Namen des Spiels wenn kein Cover gefunden wurde</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Name des Spiels anzeigen, falls kein Cover gefunden wurde</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Zeige den Namen des Spiels unter dem Cover</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Zeige Icons in der Spieleliste</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Zeige Anzahl der Spiele in Gruppenbeschreibung</sys:String>
