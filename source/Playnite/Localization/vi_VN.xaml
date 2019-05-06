@@ -52,6 +52,7 @@
     <sys:String x:Key="LOCGameInstallError"></sys:String>
     <sys:String x:Key="LOCGameUninstallError"></sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
 
 
     <!--General-->
