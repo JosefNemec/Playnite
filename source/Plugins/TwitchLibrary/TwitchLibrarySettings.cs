@@ -67,7 +67,7 @@ namespace TwitchLibrary
             this.library = library;
             this.api = api;
 
-            var settings = api.LoadPluginSettings<TwitchLibrarySettings>(library);
+            var settings = library.LoadPluginSettings<TwitchLibrarySettings>();
             if (settings != null)
             {
                 LoadValues(settings);
@@ -86,7 +86,7 @@ namespace TwitchLibrary
 
         public void EndEdit()
         {
-            api.SavePluginSettings(library, this);
+            library.SavePluginSettings(this);
         }
 
         public bool VerifySettings(out List<string> errors)

@@ -46,25 +46,5 @@ namespace Playnite.API.DesignData
         {
             throw new NotImplementedException();
         }
-
-        public TConfig GetPluginConfiguration<TConfig>(IPlugin plugin) where TConfig : class
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetPluginUserDataPath(IPlugin plugin)
-        {
-            throw new NotImplementedException();
-        }
-
-        public TSettings LoadPluginSettings<TSettings>(IPlugin plugin) where TSettings : class
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SavePluginSettings<TSettings>(IPlugin plugin, TSettings settings) where TSettings : class
-        {
-            throw new NotImplementedException();
-        }
     }
 }

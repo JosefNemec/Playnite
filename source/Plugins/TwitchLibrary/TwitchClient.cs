@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace TwitchLibrary
 {
-    public class TwitchClient : ILibraryClient
+    public class TwitchClient : LibraryClient
     {
-        public bool IsInstalled { get => Twitch.IsInstalled; }
+        public override string Icon => Twitch.Icon;
 
-        public void Open()
+        public override bool IsInstalled => Twitch.IsInstalled;
+
+        public override void Open()
         {
             ProcessStarter.StartProcess(Twitch.ClientExecPath, string.Empty);
         }

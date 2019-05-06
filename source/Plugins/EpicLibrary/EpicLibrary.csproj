@@ -73,7 +73,6 @@
     <Compile Include="EpicLibrarySettingsView.xaml.cs">
       <DependentUpon>EpicLibrarySettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EpicMetadataProvider.cs" />
     <Compile Include="Models\AccountResponse.cs" />
     <Compile Include="Models\AssetsResponse.cs" />
     <Compile Include="Models\CatalogResponse.cs" />

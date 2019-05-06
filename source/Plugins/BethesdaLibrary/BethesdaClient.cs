@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace BethesdaLibrary
 {
-    public class BethesdaClient : ILibraryClient
+    public class BethesdaClient : LibraryClient
     {
-        public bool IsInstalled { get => Bethesda.IsInstalled; }
+        public override string Icon => Bethesda.Icon;
 
-        public void Open()
+        public override bool IsInstalled => Bethesda.IsInstalled;
+
+        public override void Open()
         {
             ProcessStarter.StartProcess(Bethesda.ClientExecPath, string.Empty);
         }

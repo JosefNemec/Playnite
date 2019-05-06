@@ -19,7 +19,7 @@ namespace Playnite.Tests.Database
         public void PlaytimeImportTest()
         {
             var gameId = "tesId";
-            var libPlugin = new Mock<ILibraryPlugin>();
+            var libPlugin = new Mock<LibraryPlugin>();
             var timeToImport = 500;
             libPlugin.Setup(a => a.Id).Returns(Guid.NewGuid());
             libPlugin.Setup(a => a.GetGames()).Returns(() => new List<GameInfo>

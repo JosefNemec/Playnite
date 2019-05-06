@@ -65,7 +65,7 @@ namespace GogLibrary
             this.api = api;
             this.library = library;
 
-            var settings = api.LoadPluginSettings<GogLibrarySettings>(library);
+            var settings = library.LoadPluginSettings<GogLibrarySettings>();
             if (settings != null)
             {
                 LoadValues(settings);
@@ -84,7 +84,7 @@ namespace GogLibrary
 
         public void EndEdit()
         {
-            api.SavePluginSettings(library, this);
+            library.SavePluginSettings(this);
         }
 
         public bool VerifySettings(out List<string> errors)

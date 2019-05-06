@@ -106,7 +106,7 @@ namespace Playnite
                 if (game.PlayAction.IsHandledByPlugin)
                 {
                     logger.Info("Using library plugin to start the game.");
-                    controller = controllers.GetGameBasedController(game, Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
+                    controller = controllers.GetGameBasedController(game, Extensions);
                 }
                 else
                 {
@@ -336,7 +336,7 @@ namespace Playnite
             IGameController controller = null;
             try
             {
-                controller = controllers.GetGameBasedController(game, Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
+                controller = controllers.GetGameBasedController(game, Extensions);
                 if (controller == null)
                 {
                     logger.Error("Game installation failed, library plugin not found.");
@@ -390,7 +390,7 @@ namespace Playnite
 
             try
             {
-                controller = controllers.GetGameBasedController(game, Extensions.LibraryPlugins.Select(a => a.Value.Plugin));
+                controller = controllers.GetGameBasedController(game, Extensions);
                 if (controller == null)
                 {
                     logger.Error("Game uninstallation failed, library plugin not found.");

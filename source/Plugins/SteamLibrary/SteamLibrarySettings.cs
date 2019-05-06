@@ -76,7 +76,7 @@ namespace SteamLibrary
             this.library = library;
             this.api = api;
 
-            var settings = api.LoadPluginSettings<SteamLibrarySettings>(library);
+            var settings = library.LoadPluginSettings<SteamLibrarySettings>();
             if (settings != null)
             {
                 LoadValues(settings);
@@ -95,7 +95,7 @@ namespace SteamLibrary
 
         public void EndEdit()
         {
-            api.SavePluginSettings(library, this);
+            library.SavePluginSettings(this);
         }
 
         public bool VerifySettings(out List<string> errors)

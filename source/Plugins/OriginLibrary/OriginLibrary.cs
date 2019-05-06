@@ -22,19 +22,16 @@ using System.Xml.Linq;
 
 namespace OriginLibrary
 {
-    public class OriginLibrary : ILibraryPlugin
+    public class OriginLibrary : LibraryPlugin
     {
         private ILogger logger = LogManager.GetLogger();
-        private readonly IPlayniteAPI playniteApi;
         private const string dbImportMessageId = "originlibImportError";
 
         internal OriginLibrarySettings LibrarySettings { get; private set; }
 
-        public OriginLibrary(IPlayniteAPI api)
+        public OriginLibrary(IPlayniteAPI api) : base(api)
         {
-            playniteApi = api;
-            LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\originicon.png");
-            LibrarySettings = new OriginLibrarySettings(this, playniteApi);
+            LibrarySettings = new OriginLibrarySettings(this, PlayniteApi);
         }
 
         internal string GetPathFromPlatformPath(string path, RegistryView platformView)
@@ -108,7 +105,7 @@ namespace OriginLibrary
         internal GameLocalDataResponse GetLocalManifest(string id, string packageName = null, bool useDataCache = false)
         {
             var package = packageName;
-            var cachePath = Origin.GetCachePath(playniteApi.GetPluginUserDataPath(this));
+            var cachePath = Origin.GetCachePath(GetPluginUserDataPath());
 
             if (string.IsNullOrEmpty(package))
             {
@@ -311,7 +308,7 @@ namespace OriginLibrary
 
         public List<GameInfo> GetLibraryGames()
         {
-            using (var view = playniteApi.WebViews.CreateOffscreenView())
+            using (var view = PlayniteApi.WebViews.CreateOffscreenView())
             {
                 var api = new OriginAccountClient(view);
 
@@ -355,37 +352,30 @@ namespace OriginLibrary
 
         #region ILibraryPlugin
 
-        public ILibraryClient Client { get; } = new OriginClient();
+        public override LibraryClient Client => new OriginClient();
 
-        public string LibraryIcon { get; }
+        public override string LibraryIcon => Origin.Icon;
 
-        public string Name { get; } = "Origin";
+        public override string Name => "Origin";
 
-        public Guid Id { get; } = Guid.Parse("85DD7072-2F20-4E76-A007-41035E390724");
+        public override Guid Id => Guid.Parse("85DD7072-2F20-4E76-A007-41035E390724");
 
-        public bool IsClientInstalled => Origin.IsInstalled;
-
-        public void Dispose()
-        {
-
-        }
-
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             return LibrarySettings;
         }
 
-        public UserControl GetSettingsView(bool firstRunView)
+        public override UserControl GetSettingsView(bool firstRunView)
         {
             return new OriginLibrarySettingsView();
         }
 
-        public IGameController GetGameController(Game game)
+        public override IGameController GetGameController(Game game)
         {
-            return new OriginGameController(this, game, playniteApi);
+            return new OriginGameController(this, game, PlayniteApi);
         }
 
-        public IEnumerable<GameInfo> GetGames()
+        public override IEnumerable<GameInfo> GetGames()
         {
             var allGames = new List<GameInfo>();
             var installedGames = new Dictionary<string, GameInfo>();
@@ -435,23 +425,23 @@ namespace OriginLibrary
 
             if (importError != null)
             {
-                playniteApi.Notifications.Add(
+                PlayniteApi.Notifications.Add(
                     dbImportMessageId,
-                    string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
+                    string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
                     NotificationType.Error);
             }
             else
             {
-                playniteApi.Notifications.Remove(dbImportMessageId);
+                PlayniteApi.Notifications.Remove(dbImportMessageId);
             }
 
             return allGames;
         }
 
-        public ILibraryMetadataProvider GetMetadataDownloader()
+        public override LibraryMetadataProvider GetMetadataDownloader()
         {
-            return new OriginMetadataProvider(playniteApi);
+            return new OriginMetadataProvider(PlayniteApi);
         }
 
         #endregion ILibraryPlugin

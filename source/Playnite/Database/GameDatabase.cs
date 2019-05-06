@@ -705,7 +705,7 @@ namespace Playnite.Database
             return toAdd;
         }
 
-        public List<Game> ImportGames(ILibraryPlugin library, bool forcePlayTimeSync)
+        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync)
         {
             var addedGames = new List<Game>();
             foreach (var newGame in library.GetGames())

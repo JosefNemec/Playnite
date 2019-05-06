@@ -11,13 +11,9 @@ using System.Threading.Tasks;
 
 namespace BattleNetLibrary
 {
-    public class BattleNetMetadataProvider : ILibraryMetadataProvider
+    public class BattleNetMetadataProvider : LibraryMetadataProvider
     {
-        public void Dispose()
-        {
-        }
-
-        public GameMetadata GetMetadata(Game game)
+        public override GameMetadata GetMetadata(Game game)
         {
             var product = BattleNetGames.GetAppDefinition(game.GameId);
             if (product == null)

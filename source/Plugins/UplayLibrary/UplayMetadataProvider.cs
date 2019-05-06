@@ -11,13 +11,9 @@ using System.Threading.Tasks;
 
 namespace UplayLibrary
 {
-    public class UplayMetadataProvider : ILibraryMetadataProvider
+    public class UplayMetadataProvider : LibraryMetadataProvider
     {
-        public void Dispose()
-        {
-        }
-
-        public GameMetadata GetMetadata(Game game)
+        public override GameMetadata GetMetadata(Game game)
         {
             var program = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.RegistryKeyName == "Uplay Install " + game.GameId);
             if (program == null)

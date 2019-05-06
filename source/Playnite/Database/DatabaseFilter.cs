@@ -16,7 +16,7 @@ namespace Playnite.Database
         private GameDatabase database;        
         private FilterSettings filter;
 
-        public SelectableItemList<ILibraryPlugin> Libraries { get; set; }
+        public SelectableItemList<LibraryPlugin> Libraries { get; set; }
 
         private SelectableDbItemList genres;
         public SelectableDbItemList Genres
@@ -154,7 +154,7 @@ namespace Playnite.Database
                 database.DatabaseOpened += (s, e) => LoadFilterCollection();
             }
 
-            var libs = extensions.LibraryPlugins.Values.Select(a => a.Plugin).ToList();
+            var libs = extensions.LibraryPlugins.ToList();
             libs.Add(new FakePlayniteLibraryPlugin());
             Libraries = new SelectableLibraryPluginList(libs);
 

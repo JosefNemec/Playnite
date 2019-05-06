@@ -9,7 +9,7 @@ namespace Playnite.SDK.Models
     public interface IIdentifiable
     {
         /// <summary>
-        /// Gets unique object id.
+        /// Gets unique object identifier.
         /// </summary>
         Guid Id { get; }
     }

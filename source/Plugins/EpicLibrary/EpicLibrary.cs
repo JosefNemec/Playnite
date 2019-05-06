@@ -14,7 +14,7 @@ using System.Windows.Controls;
 
 namespace EpicLibrary
 {
-    public class EpicLibrary : ILibraryPlugin
+    public class EpicLibrary : LibraryPlugin
     {        
         private ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
@@ -22,12 +22,11 @@ namespace EpicLibrary
         internal readonly string TokensPath;
         internal readonly EpicLibrarySettings LibrarySettings;
 
-        public EpicLibrary(IPlayniteAPI api)
+        public EpicLibrary(IPlayniteAPI api) : base(api)
         {
             playniteApi = api;
             LibrarySettings = new EpicLibrarySettings(this, api);
-            LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\epicicon.png");
-            TokensPath = Path.Combine(api.GetPluginUserDataPath(this), "tokens.json");
+            TokensPath = Path.Combine(GetPluginUserDataPath(), "tokens.json");
         }
 
         internal Dictionary<string, GameInfo> GetInstalledGames()
@@ -92,37 +91,30 @@ namespace EpicLibrary
 
         #region ILibraryPlugin
 
-        public ILibraryClient Client { get; } = new EpicClient();
+        public override LibraryClient Client => new EpicClient();
 
-        public string Name { get; } = "Epic";
+        public override string Name => "Epic";
 
-        public string LibraryIcon { get; }
+        public override string LibraryIcon => EpicLauncher.Icon;
 
-        public bool IsClientInstalled => EpicLauncher.IsInstalled;
+        public override Guid Id => Guid.Parse("00000002-DBD1-46C6-B5D0-B1BA559D10E4");
 
-        public Guid Id { get; } = Guid.Parse("00000002-DBD1-46C6-B5D0-B1BA559D10E4");
-
-        public void Dispose()
-        {
-
-        }
-
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             return LibrarySettings;
         }
 
-        public UserControl GetSettingsView(bool firstRunView)
+        public override UserControl GetSettingsView(bool firstRunView)
         {
             return new EpicLibrarySettingsView();
         }
 
-        public IGameController GetGameController(Game game)
+        public override IGameController GetGameController(Game game)
         {
             return new EpicGameController(game, playniteApi);
         }
 
-        public IEnumerable<GameInfo> GetGames()
+        public override IEnumerable<GameInfo> GetGames()
         {
             var allGames = new List<GameInfo>();
             var installedGames = new Dictionary<string, GameInfo>();
@@ -185,11 +177,6 @@ namespace EpicLibrary
             }
 
             return allGames;
-        }
-
-        public ILibraryMetadataProvider GetMetadataDownloader()
-        {
-            return null;
         }
 
         #endregion ILibraryPlugin

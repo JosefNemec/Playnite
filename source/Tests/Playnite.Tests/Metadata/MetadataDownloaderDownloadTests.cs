@@ -34,12 +34,12 @@ namespace Playnite.Tests.Metadata
             }
         }
 
-        private IEnumerable<ILibraryPlugin> GetLibraryPlugins(ILibraryMetadataProvider provider, Guid libraryId)
+        private IEnumerable<LibraryPlugin> GetLibraryPlugins(LibraryMetadataProvider provider, Guid libraryId)
         {
-            var library = new Mock<ILibraryPlugin>();
+            var library = new Mock<LibraryPlugin>();
             library.Setup(a => a.Id).Returns(storePluginId);
             library.Setup(a => a.GetMetadataDownloader()).Returns(provider);
-            return new List<ILibraryPlugin>() { library.Object };
+            return new List<LibraryPlugin>() { library.Object };
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Playnite.Tests.Metadata
 
                 db.Games.Add(games);
 
-                var igdbProvider = new Mock<ILibraryMetadataProvider>();
+                var igdbProvider = new Mock<LibraryMetadataProvider>();
                 igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
@@ -89,7 +89,7 @@ namespace Playnite.Tests.Metadata
                     return new GameMetadata(game, icon, image, background);
                 });
 
-                var storeProvider = new Mock<ILibraryMetadataProvider>();
+                var storeProvider = new Mock<LibraryMetadataProvider>();
                 storeProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
@@ -145,7 +145,7 @@ namespace Playnite.Tests.Metadata
 
                 db.Games.Add(games);
 
-                var igdbProvider = new Mock<ILibraryMetadataProvider>();
+                var igdbProvider = new Mock<LibraryMetadataProvider>();
                 igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
@@ -153,7 +153,7 @@ namespace Playnite.Tests.Metadata
                     return GameMetadata.GetEmptyData();
                 });
 
-                var storeProvider = new Mock<ILibraryMetadataProvider>();
+                var storeProvider = new Mock<LibraryMetadataProvider>();
                 storeProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
@@ -220,7 +220,7 @@ namespace Playnite.Tests.Metadata
 
                 db.Games.Add(games);
 
-                var igdbProvider = new Mock<ILibraryMetadataProvider>();
+                var igdbProvider = new Mock<LibraryMetadataProvider>();
                 igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
@@ -238,7 +238,7 @@ namespace Playnite.Tests.Metadata
                     return new GameMetadata(game, icon, image, background);
                 });
 
-                var storeProvider = new Mock<ILibraryMetadataProvider>();
+                var storeProvider = new Mock<LibraryMetadataProvider>();
                 storeProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
@@ -355,14 +355,14 @@ namespace Playnite.Tests.Metadata
                 importedGame.PluginId = storePluginId;
                 db.Games.Update(importedGame);
 
-                var igdbProvider = new Mock<ILibraryMetadataProvider>();
+                var igdbProvider = new Mock<LibraryMetadataProvider>();
                 igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
                     return GameMetadata.GetEmptyData();
                 });
 
-                var storeProvider = new Mock<ILibraryMetadataProvider>();
+                var storeProvider = new Mock<LibraryMetadataProvider>();
                 storeProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;
@@ -424,7 +424,7 @@ namespace Playnite.Tests.Metadata
                 });
 
 
-                var igdbProvider = new Mock<ILibraryMetadataProvider>();
+                var igdbProvider = new Mock<LibraryMetadataProvider>();
                 igdbProvider.Setup(x => x.GetMetadata(It.IsAny<Game>())).Returns((Game g) =>
                 {
                     callCount++;

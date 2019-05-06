@@ -24,7 +24,7 @@ namespace Playnite.DesktopApp.ViewModels
 {
     public class SelectablePlugin : ObservableObject
     {
-        public IPlugin Plugin { get; set; }
+        public Plugin Plugin { get; set; }
         public ExtensionDescription Description { get; set; }
         public object PluginIcon { get; set; }
 
@@ -43,7 +43,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
         }
 
-        public SelectablePlugin(bool selected, IPlugin plugin, ExtensionDescription description)
+        public SelectablePlugin(bool selected, Plugin plugin, ExtensionDescription description)
         {
             Selected = selected;
             Plugin = plugin;
@@ -215,27 +215,27 @@ namespace Playnite.DesktopApp.ViewModels
                 .Select(a => new SelectablePlugin(Settings.DisabledPlugins?.Contains(a.FolderName) != true, null, a))
                 .ToList();
 
-            foreach (var provider in Extensions.LibraryPlugins.Values)
+            foreach (var provider in Extensions.LibraryPlugins)
             {
-                var provSetting = provider.Plugin.GetSettings(false);
-                var provView = provider.Plugin.GetSettingsView(false);
+                var provSetting = provider.GetSettings(false);
+                var provView = provider.GetSettingsView(false);
                 if (provSetting != null && provView != null)
                 {
                     provView.DataContext = provSetting;
                     provSetting.BeginEdit();
                     var plugSetting = new PluginSettings()
                     {
-                        Name = provider.Plugin.Name,
+                        Name = provider.Name,
                         Settings = provSetting,
                         View = provView,
-                        Icon = provider.Plugin.LibraryIcon
+                        Icon = provider.LibraryIcon
                     };
 
-                    LibraryPluginSettings.Add(provider.Plugin.Id, plugSetting);
+                    LibraryPluginSettings.Add(provider.Id, plugSetting);
                 }
             }
 
-            foreach (var plugin in Extensions.GenericPlugins.Values)
+            foreach (var plugin in Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin))
             {
                 var provSetting = plugin.Plugin.GetSettings(false);
                 var provView = plugin.Plugin.GetSettingsView(false);

@@ -19,10 +19,10 @@ using TwitchLibrary.Services;
 
 namespace TwitchLibrary
 {
-    public class TwitchLibrary : ILibraryPlugin
+    public class TwitchLibrary : LibraryPlugin
     {
         private ILogger logger = LogManager.GetLogger();
-        private readonly IPlayniteAPI playniteApi;
+        private readonly IPlayniteAPI PlayniteApi;
         internal readonly string TokensPath;
         private const string dbImportMessageId = "twitchlibImportError";
 
@@ -49,12 +49,10 @@ namespace TwitchLibrary
             }
         }
 
-        public TwitchLibrary(IPlayniteAPI api)
+        public TwitchLibrary(IPlayniteAPI api) : base(api)
         {
-            playniteApi = api;
-            LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\twitchicon.png");
-            LibrarySettings = new TwitchLibrarySettings(this, playniteApi);
-            TokensPath = Path.Combine(api.GetPluginUserDataPath(this), "tokens.json");
+            LibrarySettings = new TwitchLibrarySettings(this, PlayniteApi);
+            TokensPath = Path.Combine(GetPluginUserDataPath(), "tokens.json");
         }
 
         public static GameAction GetPlayAction(string gameId)
@@ -166,37 +164,30 @@ namespace TwitchLibrary
 
         #region ILibraryPlugin
 
-        public ILibraryClient Client { get; } = new TwitchClient();
+        public override LibraryClient Client => new TwitchClient();
         
-        public string Name { get; } = "Twitch";
+        public override string Name => "Twitch";
 
-        public string LibraryIcon { get; }
+        public override string LibraryIcon => Twitch.Icon;
 
-        public Guid Id { get; } = Guid.Parse("E2A7D494-C138-489D-BB3F-1D786BEEB675");
+        public override Guid Id => Guid.Parse("E2A7D494-C138-489D-BB3F-1D786BEEB675");
 
-        public bool IsClientInstalled => Twitch.IsInstalled;
-
-        public void Dispose()
-        {
-
-        }
-
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             return LibrarySettings;
         }
 
-        public UserControl GetSettingsView(bool firstRunView)
+        public override UserControl GetSettingsView(bool firstRunView)
         {
             return new TwitchLibrarySettingsView();
         }
 
-        public IGameController GetGameController(Game game)
+        public override IGameController GetGameController(Game game)
         {
-            return new TwitchGameController(game, this, playniteApi);
+            return new TwitchGameController(game, this, PlayniteApi);
         }
 
-        public IEnumerable<GameInfo> GetGames()
+        public override IEnumerable<GameInfo> GetGames()
         {
             var allGames = new List<GameInfo>();
             var installedGames = new Dictionary<string, GameInfo>();
@@ -246,21 +237,21 @@ namespace TwitchLibrary
 
             if (importError != null)
             {
-                playniteApi.Notifications.Add(
+                PlayniteApi.Notifications.Add(
                     dbImportMessageId,
-                    string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
+                    string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
                     NotificationType.Error);
             }
             else
             {
-                playniteApi.Notifications.Remove(dbImportMessageId);
+                PlayniteApi.Notifications.Remove(dbImportMessageId);
             }
 
             return allGames;
         }
 
-        public ILibraryMetadataProvider GetMetadataDownloader()
+        public override LibraryMetadataProvider GetMetadataDownloader()
         {
             return new TwitchMetadataProvider();
         }

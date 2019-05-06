@@ -15,7 +15,7 @@ namespace Playnite
 {
     public class GamesCollectionViewEntry : INotifyPropertyChanged
     {
-        private readonly ILibraryPlugin plugin;
+        private readonly LibraryPlugin plugin;
         private readonly Type colGroupType;
         private readonly Guid colGroupId;
 
@@ -150,7 +150,7 @@ namespace Playnite
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GamesCollectionViewEntry(Game game, ILibraryPlugin plugin)
+        public GamesCollectionViewEntry(Game game, LibraryPlugin plugin)
         {
             this.plugin = plugin;
             Game = game;
@@ -158,7 +158,7 @@ namespace Playnite
             Library = string.IsNullOrEmpty(plugin?.Name) ? "Playnite" : plugin.Name;
         }
 
-        public GamesCollectionViewEntry(Game game, ILibraryPlugin plugin, Type colGroupType, Guid colGroupId) : this(game, plugin)
+        public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, Type colGroupType, Guid colGroupId) : this(game, plugin)
         {
             this.colGroupType = colGroupType;
             this.colGroupId = colGroupId;

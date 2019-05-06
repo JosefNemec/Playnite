@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace BattleNetLibrary
 {
-    public class BattleNetClient : ILibraryClient
+    public class BattleNetClient : LibraryClient
     {
-        public bool IsInstalled { get => BattleNet.IsInstalled; }
+        public override string Icon => BattleNet.Icon;
 
-        public void Open()
+        public override bool IsInstalled => BattleNet.IsInstalled;
+
+        public override void Open()
         {
             BattleNet.StartClient();
         }

@@ -429,7 +429,7 @@ namespace Playnite.Database
             switch (field)
             {
                 case GroupableField.Library:
-                    var libs = extensions.LibraryPlugins.Values.Select(a => a.Plugin).ToList();
+                    var libs = extensions.LibraryPlugins.ToList();
                     libs.Add(new FakePlayniteLibraryPlugin());
                     values.AddRange(libs.Select(a => new SelectionObject(a, a.Name)));
                     break;

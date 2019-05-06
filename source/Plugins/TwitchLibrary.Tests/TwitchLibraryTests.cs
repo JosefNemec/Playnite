@@ -18,7 +18,6 @@ namespace TwitchLibrary.Tests
         public static TwitchLibrary CreateLibrary()
         {
             var api = new Mock<IPlayniteAPI>();
-            api.Setup(a => a.GetPluginUserDataPath(It.IsAny<ILibraryPlugin>())).Returns(() => TwitchTests.TempPath);
             return new TwitchLibrary(api.Object);
         }
 

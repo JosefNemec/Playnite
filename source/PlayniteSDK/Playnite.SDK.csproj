@@ -67,10 +67,10 @@
     <Compile Include="ExtensionFunction.cs" />
     <Compile Include="IGameController.cs" />
     <Compile Include="Database\IGameDatabaseAPI.cs" />
-    <Compile Include="ILibraryClient.cs" />
+    <Compile Include="LibraryClient.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="IMainViewAPI.cs" />
-    <Compile Include="ILibraryMetadataProvider.cs" />
+    <Compile Include="MetadataProvider.cs" />
     <Compile Include="INotificationsAPI.cs" />
     <Compile Include="IPlayniteAPI.cs" />
     <Compile Include="IPlayniteInfoAPI.cs" />
@@ -98,9 +98,8 @@
     <Compile Include="Models\AgeRating.cs" />
     <Compile Include="Models\Series.cs" />
     <Compile Include="Models\Tag.cs" />
-    <Compile Include="Plugins\ILibraryPlugin.cs" />
-    <Compile Include="Plugins\IGenericPlugin.cs" />
-    <Compile Include="Plugins\IPlugin.cs" />
+    <Compile Include="Plugins\LibraryPlugin.cs" />
+    <Compile Include="Plugins\Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Version.cs" />
   </ItemGroup>

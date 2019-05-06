@@ -9,16 +9,21 @@ namespace Playnite.SDK
     /// <summary>
     /// Describes library client application.
     /// </summary>
-    public interface ILibraryClient
+    public abstract class LibraryClient
     {
         /// <summary>
         /// Gets value indicating wheter the client is installed.
         /// </summary>
-        bool IsInstalled { get; }
+        public abstract bool IsInstalled { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual string Icon { get; }
 
         /// <summary>
         /// Open client application.
         /// </summary>
-        void Open();
+        public abstract void Open();
     }
 }

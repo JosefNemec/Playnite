@@ -7,6 +7,7 @@ using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -102,13 +103,13 @@ namespace Playnite.DesktopApp.Controls
             var updateItem = AddMenuChild(Items, "LOCMenuReloadLibrary", null, null, ResourceProvider.GetResource("UpdateDbIcon"));
             AddMenuChild(updateItem.Items, "LOCUpdateAll", mainModel.UpdateGamesCommand);
             updateItem.Items.Add(new Separator());
-            foreach (var plugin in mainModel.Extensions.LibraryPlugins.Values)
+            foreach (var plugin in mainModel.Extensions.LibraryPlugins)
             {
                 var item = new MenuItem
                 {
-                    Header = plugin.Plugin.Name,
+                    Header = plugin.Name,
                     Command = mainModel.UpdateLibraryCommand,
-                    CommandParameter = plugin.Plugin
+                    CommandParameter = plugin
                 };
 
                 updateItem.Items.Add(item);
@@ -140,6 +141,11 @@ namespace Playnite.DesktopApp.Controls
                     Command = mainModel.ThirdPartyToolOpenCommand,
                     CommandParameter = tool
                 };
+
+                if (tool.Client?.Icon != null && File.Exists(tool.Client.Icon))
+                {
+                    item.Icon = Images.GetImageFromFile(tool.Client.Icon);
+                }
 
                 openClientItem.Items.Add(item);
             }

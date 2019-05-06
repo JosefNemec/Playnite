@@ -37,11 +37,6 @@ namespace System
             return (T)Activator.CreateInstance(type, parameters);
         }
 
-        public static bool Implements<TType>(this object source)
-        {
-            return typeof(TType).IsAssignableFrom(source.GetType());
-        }
-
         public static object CreateGenericInstance(Type genericTypeDefinition, Type genericType)
         {
             Type resultType = genericTypeDefinition.MakeGenericType(genericType);

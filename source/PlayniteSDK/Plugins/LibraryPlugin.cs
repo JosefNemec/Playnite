@@ -10,48 +10,57 @@ using System.Windows.Controls;
 namespace Playnite.SDK.Plugins
 {
     /// <summary>
-    /// Describes game library plugin.
+    /// Represents base game library plugin.
     /// </summary>
-    public interface ILibraryPlugin : IPlugin
+    public abstract class LibraryPlugin : Plugin
     {
         /// <summary>
-        /// Gets library client application or null of no client is associated with this library.
+        /// Creates new instance of <see cref="LibraryPlugin"/>.
         /// </summary>
-        ILibraryClient Client { get; }
+        /// <param name="playniteAPI"></param>
+        public LibraryPlugin(IPlayniteAPI playniteAPI) : base(playniteAPI)
+        {
+        }
+
+        /// <summary>
+        /// Gets library name;
+        /// </summary>
+        public abstract string Name { get; }
 
         /// <summary>
         /// Gets library icon or null if no icon is available.
         /// </summary>
-        string LibraryIcon { get; }
-
-        /// <summary>
-        /// Gets library name.
-        /// </summary>
-        string Name { get; }
-
-        /// <summary>
-        /// Gets if this game library provider is installed on PC
-        /// </summary>
         /// <returns></returns>
-        bool IsClientInstalled { get; }
+        public virtual string LibraryIcon { get; }
+
+        /// <summary>
+        /// Gets library client application or null of no client is associated with this library.
+        /// </summary>
+        public virtual LibraryClient Client { get; }
 
         /// <summary>
         /// Gets library games.
         /// </summary>
         /// <returns>List of games.</returns>
-        IEnumerable<GameInfo> GetGames();
-
+        public abstract IEnumerable<GameInfo> GetGames();
+ 
         /// <summary>
         /// Gets controller responsible for handling of library game or null if no specific controller is available.
         /// </summary>
         /// <param name="game">Game to be handled.</param>
         /// <returns>Game controller.</returns>
-        IGameController GetGameController(Game game);
+        public virtual IGameController GetGameController(Game game)
+        {
+            return null;
+        }
 
         /// <summary>
         /// Gets library metadata downloader or null if no metadata provider is available.
         /// </summary>
         /// <returns>Metadata downloader.</returns>
-        ILibraryMetadataProvider GetMetadataDownloader();       
+        public virtual LibraryMetadataProvider GetMetadataDownloader()
+        {
+            return null;
+        }
     }
 }

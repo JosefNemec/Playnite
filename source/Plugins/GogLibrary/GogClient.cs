@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace GogLibrary
 {
-    public class GogClient : ILibraryClient
+    public class GogClient : LibraryClient
     {
-        public bool IsInstalled { get => Gog.IsInstalled; }
+        public override string Icon => Gog.Icon;
 
-        public void Open()
+        public override bool IsInstalled => Gog.IsInstalled;
+
+        public override void Open()
         {
             ProcessStarter.StartProcess(Gog.ClientExecPath, string.Empty);
         }

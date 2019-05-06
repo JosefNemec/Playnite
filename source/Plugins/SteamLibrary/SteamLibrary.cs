@@ -24,10 +24,9 @@ using Playnite.Common.Web;
 
 namespace SteamLibrary
 {
-    public class SteamLibrary : ILibraryPlugin
+    public class SteamLibrary : LibraryPlugin
     {
         private ILogger logger = LogManager.GetLogger();
-        private IPlayniteAPI playniteApi;
         private SteamServicesClient servicesClient;
         private readonly Configuration config;
         private readonly SteamApiClient apiClient = new SteamApiClient();
@@ -35,14 +34,14 @@ namespace SteamLibrary
 
         internal SteamLibrarySettings LibrarySettings { get; private set; }
 
-        public SteamLibrary(IPlayniteAPI api)
+        public SteamLibrary(IPlayniteAPI api) : base(api)
         {
             Initialize(api);
-            config = api.GetPluginConfiguration<Configuration>(this);
+            config = GetPluginConfiguration<Configuration>();
             servicesClient = new SteamServicesClient(config.ServicesEndpoint);
         }
 
-        public SteamLibrary(IPlayniteAPI api, SteamServicesClient client)
+        public SteamLibrary(IPlayniteAPI api, SteamServicesClient client) : base(api)
         {
             Initialize(api);
             servicesClient = client;
@@ -50,9 +49,7 @@ namespace SteamLibrary
 
         private void Initialize(IPlayniteAPI api)
         {
-            playniteApi = api;
-            LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\steamicon.png");
-            LibrarySettings = new SteamLibrarySettings(this, playniteApi)
+            LibrarySettings = new SteamLibrarySettings(this, PlayniteApi)
             {
                 SteamUsers = GetSteamUsers()
             };
@@ -480,9 +477,9 @@ namespace SteamLibrary
 
         public void ImportSteamCategories(ulong accountId)
         {
-            var dialogs = playniteApi.Dialogs;
-            var resources = playniteApi.Resources;
-            var db = playniteApi.Database;
+            var dialogs = PlayniteApi.Dialogs;
+            var resources = PlayniteApi.Resources;
+            var db = PlayniteApi.Database;
 
             if (dialogs.ShowMessage(
                 resources.GetString("LOCSettingsSteamCatImportWarn"),
@@ -547,33 +544,31 @@ namespace SteamLibrary
 
         #region ILibraryPlugin
 
-        public ILibraryClient Client { get; } = new SteamClient();
+        public override LibraryClient Client => new SteamClient();
 
-        public Guid Id { get; } = Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB");
+        public override Guid Id => Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB");
 
-        public string Name { get; } = "Steam";
+        public override string Name => "Steam";
 
-        public string LibraryIcon { get; private set; }
+        public override string LibraryIcon => Steam.Icon;
 
-        public bool IsClientInstalled => Steam.IsInstalled;
-
-        public void Dispose()
+        public override void Dispose()
         {
             apiClient.Logout();
         }
 
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             LibrarySettings.ShowCategoryImport = !firstRunSettings;
             return LibrarySettings;
         }
 
-        public UserControl GetSettingsView(bool firstRunView)
+        public override UserControl GetSettingsView(bool firstRunView)
         {
             return new SteamLibrarySettingsView();
         }
 
-        public IEnumerable<GameInfo> GetGames()
+        public override IEnumerable<GameInfo> GetGames()
         {
             var allGames = new List<GameInfo>();
             var installedGames = new Dictionary<string, GameInfo>();
@@ -623,26 +618,26 @@ namespace SteamLibrary
 
             if (importError != null)
             {
-                playniteApi.Notifications.Add(
+                PlayniteApi.Notifications.Add(
                     dbImportMessageId,
-                    string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
+                    string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
                     NotificationType.Error);
             }
             else
             {
-                playniteApi.Notifications.Remove(dbImportMessageId);
+                PlayniteApi.Notifications.Remove(dbImportMessageId);
             }
 
             return allGames;
         }
 
-        public IGameController GetGameController(Game game)
+        public override IGameController GetGameController(Game game)
         {
             return new SteamGameController(game, this);
         }
 
-        public ILibraryMetadataProvider GetMetadataDownloader()
+        public override LibraryMetadataProvider GetMetadataDownloader()
         {
             return new SteamMetadataProvider(servicesClient, this, apiClient);
         }

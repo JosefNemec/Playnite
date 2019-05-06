@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Plugins;
+using Playnite.Plugins;
 
 namespace Playnite.Controllers
 {
@@ -110,7 +111,7 @@ namespace Playnite.Controllers
             Installed?.Invoke(this, e);
         }
 
-        public IGameController GetGameBasedController(Game game, IEnumerable<ILibraryPlugin> libraryPlugins)
+        public IGameController GetGameBasedController(Game game, ExtensionFactory extensions)
         {
             if (game.IsCustomGame)
             {
@@ -118,12 +119,9 @@ namespace Playnite.Controllers
             }
             else
             {
-                foreach (var plugin in libraryPlugins)
+                if (extensions.Plugins.TryGetValue(game.PluginId, out var plugin))
                 {
-                    if (plugin.Id == game.PluginId)
-                    {
-                        return plugin.GetGameController(game.GetClone()) ?? new GenericGameController(database, game);
-                    }
+                    return ((LibraryPlugin)plugin.Plugin).GetGameController(game.GetClone()) ?? new GenericGameController(database, game);
                 }
             }
 

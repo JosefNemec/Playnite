@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace ItchioLibrary
 {
-    public class ItchioMetadataProvider : ILibraryMetadataProvider
+    public class ItchioMetadataProvider : LibraryMetadataProvider
     {
         private Butler butler;
 
@@ -24,14 +24,14 @@ namespace ItchioLibrary
             butler = new Butler();
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             butler.Dispose();
         }
 
         #region IMetadataProvider
 
-        public GameMetadata GetMetadata(Game game)
+        public override GameMetadata GetMetadata(Game game)
         {
             var gameData = new GameInfo()
             {

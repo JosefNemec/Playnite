@@ -10,43 +10,17 @@ using System.Windows.Controls;
 
 namespace Playnite
 {
-    public class FakePlayniteLibraryPlugin : ILibraryPlugin
+    public class FakePlayniteLibraryPlugin : LibraryPlugin
     {
-        public ILibraryClient Client => null;
+        public override string Name => "Playnite";
 
-        public string LibraryIcon => string.Empty;
+        public override Guid Id => Guid.Empty;
 
-        public string Name => "Playnite";
-
-        public bool IsClientInstalled => false;
-
-        public Guid Id => Guid.Empty;
-
-        public void Dispose()
-        {            
-        }
-
-        public IGameController GetGameController(Game game)
+        public FakePlayniteLibraryPlugin() : base(null)
         {
-            throw new NotImplementedException();
         }
 
-        public IEnumerable<GameInfo> GetGames()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ILibraryMetadataProvider GetMetadataDownloader()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ISettings GetSettings(bool firstRunSettings)
-        {
-            throw new NotImplementedException();
-        }
-
-        public UserControl GetSettingsView(bool firstRunView)
+        public override IEnumerable<GameInfo> GetGames()
         {
             throw new NotImplementedException();
         }

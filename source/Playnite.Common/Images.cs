@@ -11,26 +11,26 @@ namespace Playnite.Common
 {
     public class Images
     {
-        public static Image GetImageFromResource(string path, string assemblyName, BitmapScalingMode scaling = BitmapScalingMode.HighQuality)
+        public static Image GetImageFromResource(string path, string assemblyName, BitmapScalingMode scaling = BitmapScalingMode.HighQuality, double height = 16, double width = 16)
         {
             var image = new Image()
             {
                 Source = new BitmapImage(new Uri($"pack://application:,,,/{assemblyName};component/" + path, UriKind.Absolute)),
-                Height = 16,
-                Width = 16
+                Height = height,
+                Width = width
             };
 
             RenderOptions.SetBitmapScalingMode(image, scaling);
             return image;
         }
 
-        public static Image GetImageFromFile(string path, BitmapScalingMode scaling = BitmapScalingMode.HighQuality)
+        public static Image GetImageFromFile(string path, BitmapScalingMode scaling = BitmapScalingMode.HighQuality, double height = 16, double width = 16)
         {
             var image = new Image()
             {
                 Source = System.Drawing.Imaging.BitmapExtensions.BitmapFromFile(path),
-                Height = 16,
-                Width = 16
+                Height = height,
+                Width = width
             };
 
             RenderOptions.SetBitmapScalingMode(image, scaling);

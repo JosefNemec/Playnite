@@ -57,7 +57,7 @@ namespace OriginLibrary
             this.library = library;
             this.api = api;
 
-            var settings = api.LoadPluginSettings<OriginLibrarySettings>(library);
+            var settings = library.LoadPluginSettings<OriginLibrarySettings>();
             if (settings != null)
             {
                 LoadValues(settings);
@@ -76,7 +76,7 @@ namespace OriginLibrary
 
         public void EndEdit()
         {
-            api.SavePluginSettings(library, this);
+            library.SavePluginSettings(this);
         }
 
         public bool VerifySettings(out List<string> errors)

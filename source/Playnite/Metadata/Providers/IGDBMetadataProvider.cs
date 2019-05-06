@@ -14,7 +14,7 @@ using Playnite.Common;
 
 namespace Playnite.Metadata.Providers
 {
-    public class IGDBMetadataProvider : ILibraryMetadataProvider
+    public class IGDBMetadataProvider : LibraryMetadataProvider
     {
         private ServicesClient client;
 
@@ -25,10 +25,6 @@ namespace Playnite.Metadata.Providers
         public IGDBMetadataProvider(ServicesClient client)
         {
             this.client = client;
-        }
-
-        public void Dispose()
-        {
         }
 
         private GameInfo GetParsedGame(ulong id)
@@ -122,7 +118,7 @@ namespace Playnite.Metadata.Providers
             return new GameMetadata(game, null, image, null);
         }
 
-        public GameMetadata GetMetadata(Game game)
+        public override GameMetadata GetMetadata(Game game)
         {
             if (game.PluginId == Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB"))
             {

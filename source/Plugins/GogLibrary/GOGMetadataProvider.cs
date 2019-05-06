@@ -15,16 +15,12 @@ using GogLibrary.Services;
 
 namespace GogLibrary
 {
-    public class GogMetadataProvider : ILibraryMetadataProvider
+    public class GogMetadataProvider : LibraryMetadataProvider
     {
         private GogApiClient apiClient = new GogApiClient();
         private ILogger logger = LogManager.GetLogger();
 
-        public void Dispose()
-        {
-        }
-
-        public GameMetadata GetMetadata(Game game)
+        public override GameMetadata GetMetadata(Game game)
         {
             var storeData = DownloadGameMetadata(game.GameId);
             if (storeData.GameDetails == null)

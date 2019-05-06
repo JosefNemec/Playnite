@@ -99,6 +99,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.FullscreenApp", "Playnite.FullscreenApp\Playnite.FullscreenApp.csproj", "{DF38BFD7-C6B8-4CF7-942F-378548ED76B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.Tests", "Tests\Playnite.Tests\Playnite.Tests.csproj", "{F15B7D48-7F9C-406A-825C-B47BB9A5BF4B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DB0E5B51-2960-4869-899D-5E0C65A697A6} = {DB0E5B51-2960-4869-899D-5E0C65A697A6}
+		{AFE32BF4-E669-4E3F-8363-1D32BEB158F6} = {AFE32BF4-E669-4E3F-8363-1D32BEB158F6}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.DesktopApp.Tests", "Tests\Playnite.DesktopApp.Tests\Playnite.DesktopApp.Tests.csproj", "{CAA480E1-7AB2-4DA9-980F-6F935AB7FA69}"
 EndProject

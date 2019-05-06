@@ -333,7 +333,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> OpenSearchCommand { get; private set; }
         public RelayCommand<object> CheckForUpdateCommand { get; private set; }
         public RelayCommand<object> OpenDbFieldsManagerCommand { get; private set; }
-        public RelayCommand<ILibraryPlugin> UpdateLibraryCommand { get; private set; }
+        public RelayCommand<LibraryPlugin> UpdateLibraryCommand { get; private set; }
         #endregion
 
         #region Game Commands
@@ -578,7 +578,7 @@ namespace Playnite.DesktopApp.ViewModels
             }, (a) => Database.IsOpen,
             new KeyGesture(Key.W, ModifierKeys.Control));
 
-            UpdateLibraryCommand = new RelayCommand<ILibraryPlugin>((a) =>
+            UpdateLibraryCommand = new RelayCommand<LibraryPlugin>((a) =>
             {
                 MainMenuOpened = false;
                 UpdateLibrary(a);
@@ -919,27 +919,26 @@ namespace Playnite.DesktopApp.ViewModels
                     ProgressValue = 0;
                     ProgressTotal = 1;
 
-                    foreach (var pluginId in Extensions.LibraryPlugins.Keys)
+                    foreach (var plugin in Extensions.LibraryPlugins)
                     {
-                        var plugin = Extensions.LibraryPlugins[pluginId];
-                        Logger.Info($"Importing games from {plugin.Plugin.Name} plugin.");
-                        ProgressStatus = string.Format(Resources.GetString("LOCProgressImportinGames"), plugin.Plugin.Name);
+                        Logger.Info($"Importing games from {plugin.Name} plugin.");
+                        ProgressStatus = string.Format(Resources.GetString("LOCProgressImportinGames"), plugin.Name);
 
                         try
                         {
                             using (Database.BufferedUpdate())
                             {
-                                addedGames.AddRange(Database.ImportGames(plugin.Plugin, AppSettings.ForcePlayTimeSync));
+                                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync));
                             }
 
-                            RemoveMessage($"{plugin.Plugin.Id} - download");
+                            RemoveMessage($"{plugin.Id} - download");
                         }
                         catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                         {
-                            Logger.Error(e, $"Failed to import games from plugin: {plugin.Plugin.Name}");
+                            Logger.Error(e, $"Failed to import games from plugin: {plugin.Name}");
                             AddMessage(new NotificationMessage(
-                                $"{plugin.Plugin.Id} - download",
-                                string.Format(Resources.GetString("LOCLibraryImportError"), plugin.Plugin.Name) + $"\n{e.Message}",
+                                $"{plugin.Id} - download",
+                                string.Format(Resources.GetString("LOCLibraryImportError"), plugin.Name) + $"\n{e.Message}",
                                 NotificationType.Error,
                                 null));
                         }
@@ -958,7 +957,7 @@ namespace Playnite.DesktopApp.ViewModels
                         metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                        using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin)))
+                        using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
                         {
                             downloader.DownloadMetadataGroupedAsync(addedGames, metaSettings,
                                 (g, i, t) =>
@@ -998,7 +997,7 @@ namespace Playnite.DesktopApp.ViewModels
                 ProgressTotal = games.Count;
                 ProgressStatus = Resources.GetString("LOCProgressMetadata");
 
-                using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin)))
+                using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
                 {
                     GlobalTaskHandler.ProgressTask =
                         downloader.DownloadMetadataGroupedAsync(games, settings,
@@ -1266,7 +1265,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public async void UpdateLibrary(ILibraryPlugin library)
+        public async void UpdateLibrary(LibraryPlugin library)
         {
             GameAdditionAllowed = false;
 
@@ -1313,7 +1312,7 @@ namespace Playnite.DesktopApp.ViewModels
                         metaSettings.ConfigureFields(MetadataSource.StoreOverIGDB, true);
                         metaSettings.CoverImage.Source = MetadataSource.IGDBOverStore;
                         metaSettings.Name = new MetadataFieldSettings(true, MetadataSource.Store);
-                        using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins.Select(a => a.Value.Plugin)))
+                        using (var downloader = new MetadataDownloader(Database, Extensions.LibraryPlugins))
                         {
                             downloader.DownloadMetadataGroupedAsync(addedGames, metaSettings,
                                 (g, i, t) =>

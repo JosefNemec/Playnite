@@ -15,19 +15,16 @@ using System.Windows.Controls;
 
 namespace BattleNetLibrary
 {
-    public class BattleNetLibrary : ILibraryPlugin
+    public class BattleNetLibrary : LibraryPlugin
     {
         private ILogger logger = LogManager.GetLogger();
-        private readonly IPlayniteAPI playniteApi;
         private const string dbImportMessageId = "bnetlibImportError";
         
         internal BattleNetLibrarySettings LibrarySettings { get; private set; }
 
-        public BattleNetLibrary(IPlayniteAPI api)
+        public BattleNetLibrary(IPlayniteAPI api) : base(api)
         {
-            playniteApi = api;
-            LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\battleneticon.png");
-            LibrarySettings = new BattleNetLibrarySettings(this, playniteApi);
+            LibrarySettings = new BattleNetLibrarySettings(this, PlayniteApi);
         }
 
         public static UninstallProgram GetUninstallEntry(BNetApp app)
@@ -159,7 +156,7 @@ namespace BattleNetLibrary
 
         public List<GameInfo> GetLibraryGames()
         {
-            using (var view = playniteApi.WebViews.CreateOffscreenView())
+            using (var view = PlayniteApi.WebViews.CreateOffscreenView())
             {
                 var api = new BattleNetAccountClient(view);
                 var games = new List<GameInfo>();
@@ -251,37 +248,30 @@ namespace BattleNetLibrary
 
         #region ILibraryPlugin
 
-        public ILibraryClient Client { get; } = new BattleNetClient();
+        public override LibraryClient Client => new BattleNetClient();
 
-        public string LibraryIcon { get; }
+        public override string LibraryIcon => BattleNet.Icon;
 
-        public string Name { get; } = "Battle.net";
+        public override string Name => "Battle.net";
         
-        public Guid Id { get; } = Guid.Parse("E3C26A3D-D695-4CB7-A769-5FF7612C7EDD");
+        public override Guid Id => Guid.Parse("E3C26A3D-D695-4CB7-A769-5FF7612C7EDD");        
 
-        public bool IsClientInstalled => BattleNet.IsInstalled;
-
-        public void Dispose()
-        {
-
-        }
-
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             return LibrarySettings;
         }
 
-        public UserControl GetSettingsView(bool firstRunView)
+        public override UserControl GetSettingsView(bool firstRunView)
         {
             return new BattleNetLibrarySettingsView();
         }
 
-        public IGameController GetGameController(Game game)
+        public override IGameController GetGameController(Game game)
         {
-            return new BattleNetGameController(game, playniteApi);
+            return new BattleNetGameController(game, PlayniteApi);
         }
 
-        public IEnumerable<GameInfo> GetGames()
+        public override IEnumerable<GameInfo> GetGames()
         {
             var allGames = new List<GameInfo>();
             var installedGames = new Dictionary<string, GameInfo>();
@@ -331,21 +321,21 @@ namespace BattleNetLibrary
 
             if (importError != null)
             {
-                playniteApi.Notifications.Add(
+                PlayniteApi.Notifications.Add(
                     dbImportMessageId,
-                    string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) + 
+                    string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) + 
                     System.Environment.NewLine + importError.Message,
                     NotificationType.Error);
             }
             else
             {
-                playniteApi.Notifications.Remove(dbImportMessageId);
+                PlayniteApi.Notifications.Remove(dbImportMessageId);
             }
             
             return allGames;
         }
 
-        public ILibraryMetadataProvider GetMetadataDownloader()
+        public override LibraryMetadataProvider GetMetadataDownloader()
         {
             return new BattleNetMetadataProvider();
         }

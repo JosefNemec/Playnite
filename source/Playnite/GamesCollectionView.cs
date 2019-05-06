@@ -664,11 +664,11 @@ namespace Playnite
             this.viewType = viewType;
         }
 
-        private ILibraryPlugin GetLibraryPlugin(Game game)
+        private LibraryPlugin GetLibraryPlugin(Game game)
         {
-            if (game.PluginId != Guid.Empty && extensions.LibraryPlugins.TryGetValue(game.PluginId, out var plugin))
+            if (game.PluginId != Guid.Empty && extensions.Plugins.TryGetValue(game.PluginId, out var plugin))
             {
-                return plugin.Plugin;
+                return (LibraryPlugin)plugin.Plugin;
             }
 
             return null;

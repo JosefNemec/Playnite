@@ -57,7 +57,7 @@ namespace BattleNetLibrary
             this.library = library;
             this.api = api;
 
-            var settings = api.LoadPluginSettings<BattleNetLibrarySettings>(library);
+            var settings = library.LoadPluginSettings<BattleNetLibrarySettings>();
             if (settings != null)
             {
                 LoadValues(settings);
@@ -76,7 +76,7 @@ namespace BattleNetLibrary
 
         public void EndEdit()
         {
-            api.SavePluginSettings(library, this);
+            library.SavePluginSettings(this);
         }
 
         public bool VerifySettings(out List<string> errors)

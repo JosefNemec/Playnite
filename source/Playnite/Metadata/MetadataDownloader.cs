@@ -20,15 +20,15 @@ namespace Playnite.Metadata
         private static ILogger logger = LogManager.GetLogger();
 
         private GameDatabase database;
-        private ILibraryMetadataProvider igdbProvider;
-        private readonly IEnumerable<ILibraryPlugin> plugins;
-        private ConcurrentDictionary<Guid, ILibraryMetadataProvider> downloaders = new ConcurrentDictionary<Guid, ILibraryMetadataProvider>();
+        private LibraryMetadataProvider igdbProvider;
+        private readonly IEnumerable<LibraryPlugin> plugins;
+        private ConcurrentDictionary<Guid, LibraryMetadataProvider> downloaders = new ConcurrentDictionary<Guid, LibraryMetadataProvider>();
 
-        public MetadataDownloader(GameDatabase database, IEnumerable<ILibraryPlugin> plugins) : this(database, new IGDBMetadataProvider(), plugins)
+        public MetadataDownloader(GameDatabase database, IEnumerable<LibraryPlugin> plugins) : this(database, new IGDBMetadataProvider(), plugins)
         {
         }
 
-        public MetadataDownloader(GameDatabase database, ILibraryMetadataProvider igdbProvider, IEnumerable<ILibraryPlugin> plugins)
+        public MetadataDownloader(GameDatabase database, LibraryMetadataProvider igdbProvider, IEnumerable<LibraryPlugin> plugins)
         {
             this.igdbProvider = igdbProvider;
             this.plugins = plugins;
@@ -43,7 +43,7 @@ namespace Playnite.Metadata
             }
         }
 
-        internal ILibraryMetadataProvider GetMetadataDownloader(Guid pluginId)
+        internal LibraryMetadataProvider GetMetadataDownloader(Guid pluginId)
         {
             if (downloaders.ContainsKey(pluginId))
             {

@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace ItchioLibrary
 {
-    public class ItchioClient : ILibraryClient
+    public class ItchioClient : LibraryClient
     {
-        public bool IsInstalled { get => Itch.IsInstalled; }
+        public override string Icon => Itch.Icon;
 
-        public void Open()
+        public override bool IsInstalled => Itch.IsInstalled;
+
+        public override void Open()
         {
             Itch.StartClient();
         }

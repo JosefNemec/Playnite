@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace OriginLibrary
 {
-    public class OriginMetadataProvider : ILibraryMetadataProvider
+    public class OriginMetadataProvider : LibraryMetadataProvider
     {
         private readonly IPlayniteAPI api;
 
@@ -26,7 +26,7 @@ namespace OriginLibrary
 
         #region IMetadataProvider
 
-        public GameMetadata GetMetadata(Game game)
+        public override GameMetadata GetMetadata(Game game)
         {
             var storeMetadata = DownloadGameMetadata(game.GameId);
             var gameInfo = new GameInfo
@@ -102,10 +102,6 @@ namespace OriginLibrary
         }
 
         #endregion IMetadataProvider
-
-        public void Dispose()
-        {
-        }
 
         public OriginGameMetadata DownloadGameMetadata(string id)
         {

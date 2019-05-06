@@ -16,18 +16,15 @@ using System.Windows.Controls;
 
 namespace ItchioLibrary
 {
-    public class ItchioLibrary : ILibraryPlugin
+    public class ItchioLibrary : LibraryPlugin
     {
         private ILogger logger = LogManager.GetLogger();
-        private readonly IPlayniteAPI playniteApi;
         private const string dbImportMessageId = "itchiolibImportError";
         internal readonly ItchioLibrarySettings LibrarySettings;
 
-        public ItchioLibrary(IPlayniteAPI api)
+        public ItchioLibrary(IPlayniteAPI api) : base(api)
         {
-            playniteApi = api;
             LibrarySettings = new ItchioLibrarySettings(this, api);
-            LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\itchioicon.png");
         }
 
         public static bool TryGetGameActions(string installDir, out GameAction playAction, out List<GameAction> otherActions)
@@ -187,26 +184,20 @@ namespace ItchioLibrary
 
         #region ILibraryPlugin
 
-        public ILibraryClient Client { get; } = new ItchioClient();
+        public override LibraryClient Client => new ItchioClient();
 
-        public string LibraryIcon { get; }
+        public override string LibraryIcon => Itch.Icon;
 
-        public string Name { get; } = "itch.io";
-
-        public bool IsClientInstalled => Itch.IsInstalled;
-
-        public Guid Id { get; } = Guid.Parse("00000001-EBB2-4EEC-ABCB-7C89937A42BB");
-
-        public void Dispose()
-        {
-        }
+        public override string Name => "itch.io";
+        
+        public override Guid Id => Guid.Parse("00000001-EBB2-4EEC-ABCB-7C89937A42BB");
                
-        public IGameController GetGameController(Game game)
+        public override IGameController GetGameController(Game game)
         {
-            return new ItchioGameController(game, playniteApi);
+            return new ItchioGameController(game, PlayniteApi);
         }
 
-        public IEnumerable<GameInfo> GetGames()
+        public override IEnumerable<GameInfo> GetGames()
         {
             var allGames = new List<GameInfo>();
             var installedGames = new Dictionary<string, GameInfo>();
@@ -264,36 +255,36 @@ namespace ItchioLibrary
             else
             {
                 importError = new Exception(
-                    playniteApi.Resources.GetString("LOCItchioClientNotInstalledError"));
+                    PlayniteApi.Resources.GetString("LOCItchioClientNotInstalledError"));
             }
 
             if (importError != null)
             {
-                playniteApi.Notifications.Add(
+                PlayniteApi.Notifications.Add(
                     dbImportMessageId,
-                    string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
+                    string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
                     NotificationType.Error);
             }
             else
             {
-                playniteApi.Notifications.Remove(dbImportMessageId);
+                PlayniteApi.Notifications.Remove(dbImportMessageId);
             }
 
             return allGames;
         }
 
-        public ILibraryMetadataProvider GetMetadataDownloader()
+        public override LibraryMetadataProvider GetMetadataDownloader()
         {
             return new ItchioMetadataProvider();
         }
 
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             return LibrarySettings;
         }
 
-        public UserControl GetSettingsView(bool firstRunView)
+        public override UserControl GetSettingsView(bool firstRunView)
         {
             return new ItchioLibrarySettingsView();
         }

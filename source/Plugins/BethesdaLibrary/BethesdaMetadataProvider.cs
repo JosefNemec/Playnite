@@ -10,13 +10,9 @@ using System.Threading.Tasks;
 
 namespace BethesdaLibrary
 {
-    public class BethesdaMetadataProvider : ILibraryMetadataProvider
+    public class BethesdaMetadataProvider : LibraryMetadataProvider
     {
-        public void Dispose()
-        {
-        }
-
-        public GameMetadata GetMetadata(Game game)
+        public override GameMetadata GetMetadata(Game game)
         {
             var program = Bethesda.GetBethesdaInstallEntried().FirstOrDefault(a => a.UninstallString?.Contains($"uninstall/{game.GameId}") == true);
             if (program == null)

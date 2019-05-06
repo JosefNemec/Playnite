@@ -19,7 +19,7 @@ using Playnite.Common.Web;
 
 namespace SteamLibrary
 {
-    public class SteamMetadataProvider : ILibraryMetadataProvider
+    public class SteamMetadataProvider : LibraryMetadataProvider
     {
         private ILogger logger = LogManager.GetLogger();
         private SteamServicesClient playniteServices;
@@ -41,7 +41,7 @@ namespace SteamLibrary
 
         #region IMetadataProvider
 
-        public GameMetadata GetMetadata(Game game)
+        public override GameMetadata GetMetadata(Game game)
         {
             var gameData = new Game("SteamGame")
             {
@@ -61,10 +61,6 @@ namespace SteamLibrary
         }
 
         #endregion IMetadataProvider
-
-        public void Dispose()
-        {
-        }
 
         internal KeyValue GetAppInfo(uint appId)
         {

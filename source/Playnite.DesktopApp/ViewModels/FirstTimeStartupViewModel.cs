@@ -176,8 +176,10 @@ namespace Playnite.DesktopApp.ViewModels
             var plugins = extensions.GetExtensionDescriptors().Where(a => a.Type == ExtensionType.GameLibrary);
             foreach (var description in plugins)
             {
-                var provider = extensions.LoadPlugin<ILibraryPlugin>(description, playniteApi);
-                LibraryPlugins.Add(new SelectablePlugin(provider.IsClientInstalled, provider, description));
+                foreach (LibraryPlugin provider in extensions.LoadPlugins(description, playniteApi).Where(a => a is LibraryPlugin))
+                {
+                    LibraryPlugins.Add(new SelectablePlugin(provider?.Client.IsInstalled == true, provider, description));
+                }
             }
         }
 
@@ -213,7 +215,7 @@ namespace Playnite.DesktopApp.ViewModels
                 selectedPluginIndex = 0;
                 selectedPlugins = LibraryPlugins.Where(a => a.Selected)?.Select(a =>
                 {
-                    var lib = a.Plugin as ILibraryPlugin;
+                    var lib = a.Plugin as LibraryPlugin;
                     return new PluginSettings()
                     {
                         Name = lib.Name,

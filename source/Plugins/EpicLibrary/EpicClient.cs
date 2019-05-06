@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace EpicLibrary
 {
-    public class EpicClient : ILibraryClient
+    public class EpicClient : LibraryClient
     {
-        public bool IsInstalled { get => EpicLauncher.IsInstalled; }
+        public override string Icon => EpicLauncher.Icon;
 
-        public void Open()
+        public override bool IsInstalled => EpicLauncher.IsInstalled;
+
+        public override void Open()
         {
             EpicLauncher.StartClient();
         }

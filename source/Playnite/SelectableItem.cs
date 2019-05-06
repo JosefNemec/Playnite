@@ -410,9 +410,9 @@ namespace System
         }
     }
 
-    public class SelectableLibraryPluginList : SelectableItemList<ILibraryPlugin>
+    public class SelectableLibraryPluginList : SelectableItemList<LibraryPlugin>
     {
-        public SelectableLibraryPluginList(IEnumerable<ILibraryPlugin> collection, IEnumerable<Guid> selected = null)
+        public SelectableLibraryPluginList(IEnumerable<LibraryPlugin> collection, IEnumerable<Guid> selected = null)
             : base(collection, (a) => a.Id, selected)
         {
         }

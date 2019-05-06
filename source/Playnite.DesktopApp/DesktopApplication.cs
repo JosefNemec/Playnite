@@ -109,8 +109,7 @@ namespace Playnite.DesktopApp
                 new ResourceProvider(),
                 new NotificationsAPI());
             Extensions = new ExtensionFactory(Database, Controllers);
-            Extensions.LoadLibraryPlugins(Api, AppSettings.DisabledPlugins);
-            Extensions.LoadGenericPlugins(Api, AppSettings.DisabledPlugins);
+            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins);
             Extensions.LoadScripts(Api, AppSettings.DisabledPlugins);
             GamesEditor = new DesktopGamesEditor(
                 Database,
@@ -160,7 +159,7 @@ namespace Playnite.DesktopApp
         {
             try
             {
-                MainModel.ThirdPartyTools = ThirdPartyToolsList.GetTools(Extensions.LibraryPlugins?.Select(a => a.Value.Plugin));
+                MainModel.ThirdPartyTools = ThirdPartyToolsList.GetTools(Extensions.LibraryPlugins);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {

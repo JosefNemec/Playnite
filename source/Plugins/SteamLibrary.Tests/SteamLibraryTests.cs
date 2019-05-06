@@ -19,7 +19,6 @@ namespace SteamLibrary.Tests
         public static SteamLibrary CreateLibrary()
         {
             var api = new Mock<IPlayniteAPI>();
-            api.Setup(a => a.GetPluginUserDataPath(It.IsAny<ILibraryPlugin>())).Returns(() => SteamTests.TempPath);
             return new SteamLibrary(api.Object, null);
         }
 

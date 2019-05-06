@@ -108,6 +108,11 @@ namespace Playnite.DesktopApp.Controls
                     CommandParameter = tool
                 };
 
+                if (tool.Client?.Icon != null && File.Exists(tool.Client.Icon))
+                {
+                    item.Icon = Images.GetImageFromFile(tool.Client.Icon);
+                }
+
                 openClientItem.Items.Add(item);
             }
 

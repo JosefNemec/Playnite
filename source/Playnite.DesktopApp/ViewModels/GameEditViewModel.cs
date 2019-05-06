@@ -22,6 +22,7 @@ using System.Net;
 using Playnite.Windows;
 using System.Drawing.Imaging;
 using Playnite.DesktopApp.Windows;
+using Playnite.SDK.Plugins;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -2485,9 +2486,17 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 try
                 {
-                    if (extensions.LibraryPlugins.TryGetValue(game.PluginId, out var plugin))
+                    if (extensions.Plugins.TryGetValue(game.PluginId, out var plugin))
                     {                        
-                        var downloader = plugin.Plugin.GetMetadataDownloader();
+                        var downloader = ((LibraryPlugin)plugin.Plugin).GetMetadataDownloader();
+                        if (downloader == null)
+                        {
+                            dialogs.ShowErrorMessage(
+                                resources.GetString("LOCErrorNoMetadataDownloader"),
+                                resources.GetString("LOCGameError"));
+                            return;
+                        }
+
                         try
                         {
                             var metadata = downloader.GetMetadata(EditingGame);

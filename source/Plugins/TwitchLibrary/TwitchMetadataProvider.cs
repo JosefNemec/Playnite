@@ -11,13 +11,9 @@ using System.Threading.Tasks;
 
 namespace TwitchLibrary
 {
-    public class TwitchMetadataProvider : ILibraryMetadataProvider
+    public class TwitchMetadataProvider : LibraryMetadataProvider
     {
-        public void Dispose()
-        {
-        }
-
-        public GameMetadata GetMetadata(Game game)
+        public override GameMetadata GetMetadata(Game game)
         {
             var program = Twitch.GetUninstallRecord(game.GameId);
             if (program == null)

@@ -19,19 +19,16 @@ using System.Windows.Controls;
 
 namespace GogLibrary
 {
-    public class GogLibrary : ILibraryPlugin
+    public class GogLibrary : LibraryPlugin
     {
         private ILogger logger = LogManager.GetLogger();
-        private readonly IPlayniteAPI playniteApi;
         private const string dbImportMessageId = "goglibImportError";
 
         internal GogLibrarySettings LibrarySettings { get; private set; }
 
-        public GogLibrary(IPlayniteAPI api)
+        public GogLibrary(IPlayniteAPI api) : base(api)
         {
-            playniteApi = api;
             LibrarySettings = new GogLibrarySettings(this, api);
-            LibraryIcon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\gogicon.png");
         }
 
         internal Tuple<GameAction, List<GameAction>> GetGameTasks(string gameId, string installDir)
@@ -116,7 +113,7 @@ namespace GogLibrary
                 return GetLibraryGames(LibrarySettings.AccountName);
             }
 
-            using (var view = playniteApi.WebViews.CreateOffscreenView())
+            using (var view = PlayniteApi.WebViews.CreateOffscreenView())
             {
                 var api = new GogAccountClient(view);
                 if (!api.GetIsUserLoggedIn())
@@ -176,37 +173,30 @@ namespace GogLibrary
 
         #region ILibraryPlugin
 
-        public ILibraryClient Client { get; } = new GogClient();
+        public override LibraryClient Client => new GogClient();
 
-        public string Name { get; } = "GOG";
+        public override string Name => "GOG";
 
-        public string LibraryIcon { get; }
+        public override string LibraryIcon => Gog.Icon;
 
-        public Guid Id { get; } = Guid.Parse("AEBE8B7C-6DC3-4A66-AF31-E7375C6B5E9E");
+        public override Guid Id => Guid.Parse("AEBE8B7C-6DC3-4A66-AF31-E7375C6B5E9E");
 
-        public bool IsClientInstalled => Gog.IsInstalled;
-
-        public void Dispose()
-        {
-            
-        }
-
-        public ISettings GetSettings(bool firstRunSettings)
+        public override ISettings GetSettings(bool firstRunSettings)
         {
             return LibrarySettings;
         }
 
-        public UserControl GetSettingsView(bool firstRunView)
+        public override UserControl GetSettingsView(bool firstRunView)
         {
             return new GogLibrarySettingsView();
         }
 
-        public IGameController GetGameController(Game game)
+        public override IGameController GetGameController(Game game)
         {
-            return new GogGameController(game, this, LibrarySettings, playniteApi);
+            return new GogGameController(game, this, LibrarySettings, PlayniteApi);
         }
 
-        public IEnumerable<GameInfo> GetGames()
+        public override IEnumerable<GameInfo> GetGames()
         {
             var allGames = new List<GameInfo>();
             var installedGames = new Dictionary<string, GameInfo>();
@@ -256,21 +246,21 @@ namespace GogLibrary
 
             if (importError != null)
             {
-                playniteApi.Notifications.Add(
+                PlayniteApi.Notifications.Add(
                     dbImportMessageId,
-                    string.Format(playniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
+                    string.Format(PlayniteApi.Resources.GetString("LOCLibraryImportError"), Name) +
                     System.Environment.NewLine + importError.Message,
                     NotificationType.Error);
             }
             else
             {
-                playniteApi.Notifications.Remove(dbImportMessageId);
+                PlayniteApi.Notifications.Remove(dbImportMessageId);
             }
 
             return allGames;
         }
 
-        public ILibraryMetadataProvider GetMetadataDownloader()
+        public override LibraryMetadataProvider GetMetadataDownloader()
         {
             return new GogMetadataProvider();
         }

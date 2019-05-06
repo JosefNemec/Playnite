@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SteamKit2;
+using System.Reflection;
 
 namespace SteamLibrary
 {
@@ -88,6 +89,8 @@ namespace SteamLibrary
                 }
             }
         }
+
+        public static string Icon => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\steamicon.png");
 
         public static string GetWorkshopUrl(uint appId)
         {

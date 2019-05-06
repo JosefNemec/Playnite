@@ -19,7 +19,6 @@ namespace OriginLibrary.Tests
         public static OriginLibrary CreateLibrary()
         {
             var api = new Mock<IPlayniteAPI>();
-            api.Setup(a => a.GetPluginUserDataPath(It.IsAny<ILibraryPlugin>())).Returns(() => OriginTests.TempPath);
             return new OriginLibrary(api.Object);
         }
 

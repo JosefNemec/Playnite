@@ -51,38 +51,7 @@ namespace Playnite.SDK
         /// <summary>
         /// Gets resources API.
         /// </summary>
-        IResourceProvider Resources { get; }
-
-        /// <summary>
-        /// Gets path dedicated for plugins to store data.
-        /// </summary>
-        /// <param name="plugin">Source plugin.</param>
-        /// <returns>Full directory path.</returns>
-        string GetPluginUserDataPath(IPlugin plugin);
-
-        /// <summary>
-        /// Gets plugin configuration stored in plugin.cfg file.
-        /// </summary>
-        /// <typeparam name="TConfig">Plugin configuration type.</typeparam>
-        /// <param name="plugin">Source plugin.</param>
-        /// <returns>Plugin configuration.</returns>
-        TConfig GetPluginConfiguration<TConfig>(IPlugin plugin) where TConfig : class;
-
-        /// <summary>
-        /// Gets plugin settings.
-        /// </summary>
-        /// <typeparam name="TSettings">Plugin settings type.</typeparam>
-        /// <param name="plugin">Source plugin.</param>
-        /// <returns>Plugin settings.</returns>
-        TSettings LoadPluginSettings<TSettings>(IPlugin plugin) where TSettings : class;
-
-        /// <summary>
-        /// Saves plugin settings.
-        /// </summary>
-        /// <typeparam name="TSettings">Plugin settings type.</typeparam>
-        /// <param name="plugin"></param>
-        /// <param name="settings">Source plugin.</param>
-        void SavePluginSettings<TSettings>(IPlugin plugin, TSettings settings) where TSettings : class;
+        IResourceProvider Resources { get; }        
 
         /// <summary>
         /// Expands dynamic game variables in specified string.
