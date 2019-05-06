@@ -293,7 +293,7 @@ namespace Playnite.Plugins
         {
             DisposePlugins();
             var funcs = new List<ExtensionFunction>();
-            foreach (var desc in GetExtensionDescriptors().Where(a => ignoreList?.Contains(a.FolderName) != true))
+            foreach (var desc in GetExtensionDescriptors().Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.FolderName) != true))
             {
                 try
                 {

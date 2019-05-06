@@ -131,11 +131,6 @@ namespace Playnite.DesktopApp
                 Extensions,
                 this);
             Api.MainView = new MainViewAPI(MainModel);
-
-            // TODO
-            Api.Notifications.Add(new NotificationMessage("design1", "Design notification message 1", NotificationType.Error));
-            Api.Notifications.Add(new NotificationMessage("design2", "Design message 2", NotificationType.Info));
-            Api.Notifications.Add(new NotificationMessage("design3", "Design notification message 3, long message that does to multiple lies. Long message that does to multiple lies.", NotificationType.Error));
         }
 
         private void LoadTrayIcon()
