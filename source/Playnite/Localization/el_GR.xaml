@@ -58,6 +58,7 @@
     <sys:String x:Key="LOCGameInstallError">Δεν είναι δυνατή η εγκατάσταση του παιχνιδιού: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Δεν είναι δυνατή η απεγκατάσταση του παιχνιδιού: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
 
 
     <!--General-->
