@@ -58,6 +58,7 @@ Hry, ktoré sa automatický importovaly sa môžu znova objaviť v aplikácií P
     <sys:String x:Key="LOCGameInstallError">Hra sa nedá nainštalovať: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Hra sa nedá odinštalovať: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
 
 
     <!--General-->
