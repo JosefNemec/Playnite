@@ -60,6 +60,7 @@ Otomatik olarak içe aktarılan oyunlar, bir sonraki içe aktarma işleminden so
     <sys:String x:Key="LOCGameInstallError">Oyun yüklenemiyor: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Oyun kaldırılamıyor: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bu oyundan sorumlu kütüphane eklentisi kurulu değil veya etkin değil.</sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
 
 
     <!--General-->
