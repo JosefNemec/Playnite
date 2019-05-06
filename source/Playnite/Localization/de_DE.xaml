@@ -233,7 +233,7 @@ Bevorzuge Daten aus dem offiziellen Shop des Anbieters, andernfalls verwende die
     <sys:String x:Key="LOCSettingsLabel">Einstellungen</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Allgemein</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Erscheinungsbild</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">Spieldetails</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">Layout</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Erweitert</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Vollbildmodus</sys:String>
@@ -317,7 +317,7 @@ bereits in deiner Bibliothek befindliche Spiele.</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Keine</sys:String>
     <sys:String x:Key="LOCStrechFill">Ausfüllen</sys:String>
-    <sys:String x:Key="LOCStrechUniform"></sys:String>
+    <sys:String x:Key="LOCStrechUniform">Einheitlich</sys:String>
     <sys:String x:Key="LOCStrechUniformToFill"></sys:String>
 
     <sys:String x:Key="LOCDockLeft">Links</sys:String>
@@ -385,7 +385,7 @@ Weitere Spiele kannst du zudem auch später noch über den "Spiel hinzufügen"-D
     <sys:String x:Key="LOCPlatformsTitle">Plattformen</sys:String>
     <sys:String x:Key="LOCPlatformTitle">Plattform</sys:String>
     <sys:String x:Key="LOCEmulatorsTitle">Emulatoren</sys:String>
-    <sys:String x:Key="LOCEmulatorTitle"></sys:String>
+    <sys:String x:Key="LOCEmulatorTitle">Emulator</sys:String>
     <sys:String x:Key="LOCAddPlatformTitle">Plattform hinzufügen</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Datei</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Datei</sys:String>
@@ -411,31 +411,31 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCEmulatorSettingsHelp">Hilfe</sys:String>
     
     <sys:String x:Key="LOCMenuSortByTitle">Sortieren nach</sys:String>
-    <sys:String x:Key="LOCMenuGroupByTitle"></sys:String>
+    <sys:String x:Key="LOCMenuGroupByTitle">Gruppieren nach</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Aufsteigend</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Absteigend</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">Nicht gruppieren</sys:String>
     <sys:String x:Key="LOCMenuGroupProvider">Gruppiere nach Anbieter</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">Gruppiere nach Kategorie</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Gruppiere nach Plattform</sys:String>
-    <sys:String x:Key="LOCViewType"></sys:String>
-    <sys:String x:Key="LOCMenuView"></sys:String>
+    <sys:String x:Key="LOCViewType">Ansichtstyp</sys:String>
+    <sys:String x:Key="LOCMenuView">Anzeige</sys:String>
     <sys:String x:Key="LOCMenuViewExplorerPanel"></sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel"></sys:String>
 
     <!--Game fields-->
-    <sys:String x:Key="LOCGameIconTitle"></sys:String>
+    <sys:String x:Key="LOCGameIconTitle">Symbol</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">Cover</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Hintergrundbild</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Sortiername</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Anbieter</sys:String>
-    <sys:String x:Key="LOCGameNameTitle"></sys:String>
+    <sys:String x:Key="LOCGameNameTitle">Name</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Account</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Plattform</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Kategorien</sys:String>
-    <sys:String x:Key="LOCGameGenresTitle"></sys:String>
+    <sys:String x:Key="LOCGameGenresTitle">Genre</sys:String>
     <sys:String x:Key="LOCGameReleaseDateTitle">Datum</sys:String>
-    <sys:String x:Key="LOCGameReleaseYearTitle"></sys:String>
+    <sys:String x:Key="LOCGameReleaseYearTitle">Veröffentlichungsjahr</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">Entwickler</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tags</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Herausgeber</sys:String>
@@ -449,7 +449,7 @@ Die Plattform wird momentan von {1} Spielen und {2} Emulatoren verwendet.</sys:S
     <sys:String x:Key="LOCGameDescriptionTitle">Beschreibung</sys:String>
     <sys:String x:Key="LOCGameInstallDirTitle">Installationspfad</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">Cover</sys:String>
-    <sys:String x:Key="LOCGameLinksTitle"></sys:String>
+    <sys:String x:Key="LOCGameLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Image-, ROM- oder ISO-Pfad</sys:String>
 
     <!--Errors-->
@@ -520,7 +520,7 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCClearFilters">Filter zurücksetzen</sys:String>
     <sys:String x:Key="LOCPrivateAccount">Privater Account</sys:String>
     <sys:String x:Key="LOCPublicAccount">Öffentlicher Account</sys:String>
-    <sys:String x:Key="LOCAPIKey"></sys:String>
+    <sys:String x:Key="LOCAPIKey">API-Schlüssel</sys:String>
     <sys:String x:Key="LOCStartupError">Fehler beim Starten von Playnite</sys:String>
     <sys:String x:Key="LOCSkinError">Ungültiges Theme</sys:String>
     <sys:String x:Key="LOCClearAll">Zurücksetzen</sys:String>
@@ -555,11 +555,11 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <sys:String x:Key="LOCLibraries">Bibliotheken</sys:String>
     <sys:String x:Key="LOCUpdateAll">Alle aktualisieren</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Erstellt von:</sys:String>
-    <sys:String x:Key="LOCExtensionVersion"></sys:String>
+    <sys:String x:Key="LOCExtensionVersion">Version:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Modul:</sys:String>
-    <sys:String x:Key="LOCLibrary"></sys:String>
-    <sys:String x:Key="LOCAll"></sys:String>
-    <sys:String x:Key="LOCNone"></sys:String>
+    <sys:String x:Key="LOCLibrary">Bibliothek</sys:String>
+    <sys:String x:Key="LOCAll">Alle</sys:String>
+    <sys:String x:Key="LOCNone">Keine</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">Emulator-Argumente</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Zusätzliche Emulator-Argumente</sys:String>
@@ -636,17 +636,17 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">Hilfe bei der Account-Synchronisation</sys:String>
 
-    <sys:String x:Key="LOCRenameItem"></sys:String>
-    <sys:String x:Key="LOCAddNewItem"></sys:String>
-    <sys:String x:Key="LOCEnterName"></sys:String>
-    <sys:String x:Key="LOCEnterNewName"></sys:String>
+    <sys:String x:Key="LOCRenameItem">Eintrag umbenennen</sys:String>
+    <sys:String x:Key="LOCAddNewItem">Neuen Eintrag hinzufügen</sys:String>
+    <sys:String x:Key="LOCEnterName">Name eingeben</sys:String>
+    <sys:String x:Key="LOCEnterNewName">Neuen Namen eingeben</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
-    <sys:String x:Key="LOCPLaytime1to10"></sys:String>
-    <sys:String x:Key="LOCPLaytime10to100"></sys:String>
-    <sys:String x:Key="LOCPLaytime100to500"></sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Weniger als eine Stunde</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">1 bis 10 Stunden</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">10 bis 100 Stunden</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">100 bis 500 Stunden</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">500 bis 1.000 Stunden</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">Mehr als 1.000</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">Der itch.io Client wird gestartet... Bitte melde dich dort an und schließe anschließend diese Meldung.</sys:String>
