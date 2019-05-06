@@ -58,6 +58,7 @@ Automatiskt importerade spel kan visas igen i Playnite efter nästa import (bero
     <sys:String x:Key="LOCGameInstallError">Kan inte installera spel: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Kan inte avinstallera spel: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
 
 
     <!--General-->
