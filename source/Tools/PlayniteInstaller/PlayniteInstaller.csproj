@@ -65,7 +65,7 @@
     <Compile Include="..\..\PlayniteSDK\Collections\ObservableObject.cs">
       <Link>ObservableObject.cs</Link>
     </Compile>
-    <Compile Include="..\..\PlayniteUI\Commands\RelayCommand.cs">
+    <Compile Include="..\..\Playnite\Commands\RelayCommand.cs">
       <Link>RelayCommand.cs</Link>
     </Compile>
     <Compile Include="..\..\Playnite\App\UpdateManifest.cs">

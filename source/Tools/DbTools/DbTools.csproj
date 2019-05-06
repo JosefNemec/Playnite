@@ -94,6 +94,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PlayniteSDK\Playnite.SDK.csproj">
+      <Project>{19BC9097-5705-4352-90E2-99F0C63230D0}</Project>
+      <Name>Playnite.SDK</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Playnite\Playnite.csproj">
       <Project>{ad271e73-8a13-4c4e-bfdc-3076646b59e3}</Project>
       <Name>Playnite</Name>

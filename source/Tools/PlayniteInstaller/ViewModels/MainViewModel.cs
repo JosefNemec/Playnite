@@ -1,4 +1,4 @@
-﻿using PlayniteUI.Commands;
+﻿using Playnite.Commands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
