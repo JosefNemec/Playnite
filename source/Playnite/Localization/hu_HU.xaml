@@ -58,6 +58,7 @@ Automatikusan importált játékok lehet újra megjelennek következő importál
     <sys:String x:Key="LOCGameInstallError">Játék nem telepíthető: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Játék nem eltávolítható: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
 
 
     <!--General-->
