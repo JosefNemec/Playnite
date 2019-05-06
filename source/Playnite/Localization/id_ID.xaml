@@ -58,6 +58,7 @@ Game yang diimport otomatis bisa muncul kembali setelah prosedur import berjalan
     <sys:String x:Key="LOCGameInstallError">Gagal menginstal game: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Gagal menguninstall game: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
 
 
     <!--General-->
