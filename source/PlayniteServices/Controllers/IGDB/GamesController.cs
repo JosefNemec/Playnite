@@ -24,7 +24,7 @@ namespace PlayniteServices.Controllers.IGDB
         {
             List<Game> searchResult = null;
             gameName = gameName.ToLower();
-            var cachePath = Path.Combine(IGDB.CacheDirectory, cacheDir, Playnite.Common.System.Paths.GetSafeFilename(gameName) + ".json");
+            var cachePath = Path.Combine(IGDB.CacheDirectory, cacheDir, Playnite.Common.Paths.GetSafeFilename(gameName) + ".json");
             lock (CacheLock)
             {
                 if (System.IO.File.Exists(cachePath))
@@ -44,7 +44,7 @@ namespace PlayniteServices.Controllers.IGDB
                 searchResult = JsonConvert.DeserializeObject<List<Game>>(libraryStringResult);
                 lock (CacheLock)
                 {
-                    FileSystem.PrepareSaveFile(cachePath);
+                    Playnite.Common.FileSystem.PrepareSaveFile(cachePath);
                     System.IO.File.WriteAllText(cachePath, libraryStringResult);
                 }
             }
