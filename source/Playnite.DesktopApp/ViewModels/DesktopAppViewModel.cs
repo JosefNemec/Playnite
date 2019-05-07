@@ -205,17 +205,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private bool mainMenuOpened = false;
-        public bool MainMenuOpened
-        {
-            get => mainMenuOpened;
-            set
-            {
-                mainMenuOpened = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool searchOpened = false;
         public bool SearchOpened
         {
@@ -304,8 +293,6 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> OpenFilterPanelCommand { get; private set; }
         public RelayCommand<object> CloseFilterPanelCommand { get; private set; }
         public RelayCommand<object> CloseNotificationPanelCommand { get; private set; }
-        public RelayCommand<object> OpenMainMenuCommand { get; private set; }
-        public RelayCommand<object> CloseMainMenuCommand { get; private set; }
         public RelayCommand<ThirdPartyTool> ThirdPartyToolOpenCommand { get; private set; }
         public RelayCommand<object> UpdateGamesCommand { get; private set; }
         public RelayCommand<object> OpenSteamFriendsCommand { get; private set; }
@@ -322,6 +309,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> AddEmulatedGamesCommand { get; private set; }
         public RelayCommand<object> AddWindowsStoreGamesCommand { get; private set; }
         public RelayCommand<object> OpenFullScreenCommand { get; private set; }
+        public RelayCommand<object> OpenFullScreenFromControllerCommand { get; private set; }
         public RelayCommand<object> CancelProgressCommand { get; private set; }
         public RelayCommand<object> ClearMessagesCommand { get; private set; }
         public RelayCommand<object> DownloadMetadataCommand { get; private set; }
@@ -422,25 +410,13 @@ namespace Playnite.DesktopApp.ViewModels
                 AppSettings.NotificationPanelVisible = false;
             });
 
-            OpenMainMenuCommand = new RelayCommand<object>((game) =>
-            {
-                MainMenuOpened = true;
-            });
-
-            CloseMainMenuCommand = new RelayCommand<object>((game) =>
-            {
-                MainMenuOpened = false;
-            });
-
             ThirdPartyToolOpenCommand = new RelayCommand<ThirdPartyTool>((tool) =>
             {
-                MainMenuOpened = false;
                 StartThirdPartyTool(tool);
             });
 
             UpdateGamesCommand = new RelayCommand<object>((a) =>
             {
-                MainMenuOpened = false;
                 UpdateDatabase(AppSettings.DownloadMetadataOnImport);
             }, (a) => GameAdditionAllowed || !Database.IsOpen,
             new KeyGesture(Key.F5));
@@ -452,13 +428,11 @@ namespace Playnite.DesktopApp.ViewModels
 
             ReportIssueCommand = new RelayCommand<object>((a) =>
             {
-                MainMenuOpened = false;
                 ReportIssue();
             });
 
             ShutdownCommand = new RelayCommand<object>((a) =>
             {
-                MainMenuOpened = false;
                 if (GlobalTaskHandler.IsActive)
                 {
                     if (Dialogs.ShowMessage(
@@ -491,13 +465,11 @@ namespace Playnite.DesktopApp.ViewModels
 
             OpenAboutCommand = new RelayCommand<object>((a) =>
             {
-                MainMenuOpened = false;
                 OpenAboutWindow(new AboutViewModel(new AboutWindowFactory(), Dialogs, Resources));
             }, new KeyGesture(Key.F1));
 
             OpenEmulatorsCommand = new RelayCommand<object>((a) =>
             {
-                MainMenuOpened = false;
                 ConfigureEmulators(
                     new EmulatorsViewModel(Database,
                     new EmulatorsWindowFactory(),
@@ -508,14 +480,12 @@ namespace Playnite.DesktopApp.ViewModels
 
             AddCustomGameCommand = new RelayCommand<object>((a) =>
             {
-                MainMenuOpened = false;
                 AddCustomGame(new GameEditWindowFactory());
             }, (a) => Database.IsOpen,
             new KeyGesture(Key.Insert));
 
             AddInstalledGamesCommand = new RelayCommand<object>((a) =>
             {
-                MainMenuOpened = false;
                 ImportInstalledGames(
                     new InstalledGamesViewModel(
                     new InstalledGamesWindowFactory(),
@@ -524,7 +494,6 @@ namespace Playnite.DesktopApp.ViewModels
 
             AddEmulatedGamesCommand = new RelayCommand<object>((a) =>
             {
-                MainMenuOpened = false;
                 ImportEmulatedGames(
                     new EmulatorImportViewModel(Database,
                     EmulatorImportViewModel.DialogType.GameImport,
@@ -536,7 +505,6 @@ namespace Playnite.DesktopApp.ViewModels
 
             AddWindowsStoreGamesCommand = new RelayCommand<object>((a) =>
             {
-                MainMenuOpened = false;
                 ImportWindowsStoreGames(
                     new InstalledGamesViewModel(
                     new InstalledGamesWindowFactory(),
@@ -546,6 +514,14 @@ namespace Playnite.DesktopApp.ViewModels
             OpenFullScreenCommand = new RelayCommand<object>((a) =>
             {
                 OpenFullScreen();
+            }, new KeyGesture(Key.F11));
+
+            OpenFullScreenFromControllerCommand = new RelayCommand<object>((a) =>
+            {
+                if (AppSettings.GuideButtonOpensFullscreen)
+                {
+                    OpenFullScreen();
+                }
             }, new KeyGesture(Key.F11));
 
             CancelProgressCommand = new RelayCommand<object>((a) =>
@@ -560,7 +536,6 @@ namespace Playnite.DesktopApp.ViewModels
 
             DownloadMetadataCommand = new RelayCommand<object>((a) =>
             {
-                MainMenuOpened = false;
                 DownloadMetadata(new MetadataDownloadViewModel(new MetadataDownloadWindowFactory()));
             }, (a) => GameAdditionAllowed,
             new KeyGesture(Key.D, ModifierKeys.Control));
@@ -572,13 +547,11 @@ namespace Playnite.DesktopApp.ViewModels
 
             CheckForUpdateCommand = new RelayCommand<object>((a) =>
             {
-                MainMenuOpened = false;
                 CheckForUpdate();
             });
 
             OpenDbFieldsManagerCommand = new RelayCommand<object>((a) =>
             {
-                MainMenuOpened = false;
                 ConfigureDatabaseFields(
                         new DatabaseFieldsManagerViewModel(
                             Database,
@@ -590,7 +563,6 @@ namespace Playnite.DesktopApp.ViewModels
 
             UpdateLibraryCommand = new RelayCommand<LibraryPlugin>((a) =>
             {
-                MainMenuOpened = false;
                 UpdateLibrary(a);
             }, (a) => GameAdditionAllowed);
 
@@ -601,7 +573,6 @@ namespace Playnite.DesktopApp.ViewModels
 
             InvokeExtensionFunctionCommand = new RelayCommand<ExtensionFunction>((f) =>
             {
-                MainMenuOpened = false;
                 if (!Extensions.InvokeExtension(f, out var error))
                 {
                     Dialogs.ShowMessage(
@@ -613,7 +584,6 @@ namespace Playnite.DesktopApp.ViewModels
 
             ReloadScriptsCommand = new RelayCommand<object>((f) =>
             {
-                MainMenuOpened = false;
                 Extensions.LoadScripts(PlayniteApi, AppSettings.DisabledPlugins);
             }, new KeyGesture(Key.F12));
 
@@ -630,7 +600,6 @@ namespace Playnite.DesktopApp.ViewModels
 
             OpenSettingsCommand = new RelayCommand<object>((a) =>
             {
-                MainMenuOpened = false;
                 OpenSettings(
                     new SettingsViewModel(Database,
                     AppSettings,

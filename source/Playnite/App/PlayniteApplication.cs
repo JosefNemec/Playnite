@@ -357,11 +357,14 @@ namespace Playnite
 
         public void SetupInputs()
         {
-            xdevice = new XInputDevice(InputManager.Current, this)
+            if (AppSettings.EnableControllerInDesktop)
             {
-                SimulateAllKeys = true,
-                SimulateNavigationKeys = true
-            };
+                xdevice = new XInputDevice(InputManager.Current, this)
+                {
+                    SimulateAllKeys = true,
+                    SimulateNavigationKeys = true
+                };
+            }
         }
 
         public void Quit()

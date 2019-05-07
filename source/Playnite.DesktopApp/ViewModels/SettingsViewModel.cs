@@ -361,7 +361,8 @@ namespace Playnite.DesktopApp.ViewModels
                         nameof(Settings.DisableDpiAwareness),
                         nameof(Settings.DatabasePath),
                         nameof(Settings.DisabledPlugins),
-                        nameof(Settings.EnableTray)
+                        nameof(Settings.EnableTray),
+                        nameof(Settings.EnableControllerInDesktop)
                     }))
                 {
                     if (dialogs.ShowMessage(

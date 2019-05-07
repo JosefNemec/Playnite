@@ -81,9 +81,14 @@
                                 <sys:Int32>4</sys:Int32>
                             </ListBoxItem.Tag>
                         </ListBoxItem>
-                        <ListBoxItem Content="{DynamicResource LOCExtensions}">
+                        <ListBoxItem Content="{DynamicResource LOCSettingsInputLabel}">
                             <ListBoxItem.Tag>
                                 <sys:Int32>5</sys:Int32>
+                            </ListBoxItem.Tag>
+                        </ListBoxItem>
+                        <ListBoxItem Content="{DynamicResource LOCExtensions}">
+                            <ListBoxItem.Tag>
+                                <sys:Int32>6</sys:Int32>
                             </ListBoxItem.Tag>
                         </ListBoxItem>
                     </ListBox>
@@ -426,6 +431,20 @@
                                         ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"
                                         Command="{Binding ClearWebCacheCommand}"/>
                             </StackPanel>
+                        </TabItem>
+
+                        <!-- Input -->
+                        <TabItem>
+                            <StackPanel>
+                                <CheckBox Content="{DynamicResource LOCSettingsXInputInDesktopMode}"
+                                          Name="CheckXInputEnabled"
+                                          IsChecked="{Binding Settings.EnableControllerInDesktop}"/>
+                                <CheckBox Content="{DynamicResource LOCSettingsXInputGuideOpensFullscreen}"
+                                          Margin="15,15,0,0" 
+                                          IsChecked="{Binding Settings.GuideButtonOpensFullscreen}"
+                                          IsEnabled="{Binding IsChecked, ElementName=CheckXInputEnabled}"/>
+                            </StackPanel>
+                            
                         </TabItem>
 
                         <!-- Extensions -->

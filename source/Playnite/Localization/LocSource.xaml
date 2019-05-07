@@ -240,6 +240,7 @@ Prefer data from official Store and where not available use IGBD.com database.</
     <sys:String x:Key="LOCSettingsAdvancedLabel">Advanced</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Providers</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">Input</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Import installed games</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Import uninstalled games</sys:String>
@@ -315,6 +316,8 @@ Any currently active tasks (metadata downloads) will be canceled.</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Doesn't apply retrospectively to existing games without re-downloading metadata.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Force sync play time</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Always download recorded play time from remote library during library sync, ignoring time recorded by Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Enable controller support in Desktop mode *</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide button opens Fullscreen mode</sys:String>
 
     <sys:String x:Key="LOCStrechNone">None</sys:String>
     <sys:String x:Key="LOCStrechFill">Fill</sys:String>

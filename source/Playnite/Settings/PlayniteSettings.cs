@@ -1020,6 +1020,36 @@ namespace Playnite
             }
         }
 
+        private bool enableControolerInDesktop = false;
+        public bool EnableControllerInDesktop
+        {
+            get
+            {
+                return enableControolerInDesktop;
+            }
+
+            set
+            {
+                enableControolerInDesktop = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool guideButtonOpensFullscreen = false;
+        public bool GuideButtonOpensFullscreen
+        {
+            get
+            {
+                return guideButtonOpensFullscreen;
+            }
+
+            set
+            {
+                guideButtonOpensFullscreen = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -1027,20 +1057,6 @@ namespace Playnite
             {
                 return !File.Exists(PlaynitePaths.UninstallerNsisPath) && !File.Exists(PlaynitePaths.UninstallerInnoPath);
             }
-        }        
-
-        private static PlayniteSettings instance;
-        public static PlayniteSettings Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new PlayniteSettings();
-                }
-
-                return instance;
-            }   
         }
 
         public PlayniteSettings()
@@ -1064,17 +1080,15 @@ namespace Playnite
             {
                 if (File.Exists(PlaynitePaths.ConfigFilePath))
                 {
-                    var settings = JsonConvert.DeserializeObject<PlayniteSettings>(File.ReadAllText(PlaynitePaths.ConfigFilePath));
-                    instance = settings;
+                    return JsonConvert.DeserializeObject<PlayniteSettings>(File.ReadAllText(PlaynitePaths.ConfigFilePath));
                 }
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, "Failed to load application settings.");
-                instance = new PlayniteSettings();
             }
 
-            return Instance;
+            return new PlayniteSettings();
         }
 
         public void SaveSettings()
