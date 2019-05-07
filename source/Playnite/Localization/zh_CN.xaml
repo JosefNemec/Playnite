@@ -24,8 +24,8 @@
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">选中 - 分配类别
 未选中 - 删除类别
 不确定 - 不变（编辑多个游戏时）</sys:String>
-    <sys:String x:Key="LOCNoCategory"></sys:String>
-    <sys:String x:Key="LOCNoPlatform"></sys:String>
+    <sys:String x:Key="LOCNoCategory">无类别</sys:String>
+    <sys:String x:Key="LOCNoPlatform">无平台</sys:String>
 
     <sys:String x:Key="LOCCrashWindowTitle">哦不，发生了一些坏事...</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">发生了不可恢复的错误，并且Playnite崩溃了。
@@ -60,7 +60,7 @@
     <sys:String x:Key="LOCGameInstallError">无法安装游戏: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">无法卸载游戏: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">未安装或启用负责此游戏的库插件</sys:String>
-    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader">官方元数据下载不可用。</sys:String>
 
 
     <!--General-->
@@ -114,7 +114,7 @@
     <sys:String x:Key="LOCDownloadLabel">下载</sys:String>
     <sys:String x:Key="LOCSearchLabel">搜索</sys:String>
     <sys:String x:Key="LOCGenreLabel">类型</sys:String>
-    <sys:String x:Key="LOCCompanyLabel"></sys:String>
+    <sys:String x:Key="LOCCompanyLabel">公司</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">开发商</sys:String>
     <sys:String x:Key="LOCPublisherLabel">发行商</sys:String>
     <sys:String x:Key="LOCCategoryLabel">类别</sys:String>
@@ -123,7 +123,7 @@
     <sys:String x:Key="LOCZoomLabel">放大</sys:String>
     <sys:String x:Key="LOCListLabel">列表</sys:String>
     <sys:String x:Key="LOCCoversLabel">封面</sys:String>
-    <sys:String x:Key="LOCGridLabel"></sys:String>
+    <sys:String x:Key="LOCGridLabel">网格</sys:String>
     <sys:String x:Key="LOCDetailsLabel">详细信息</sys:String>
     <sys:String x:Key="LOCCustomLabel">自定义</sys:String>
     <sys:String x:Key="LOCURLLabel">网址</sys:String>
@@ -140,14 +140,14 @@
     <sys:String x:Key="LOCFriday">星期五</sys:String>
     <sys:String x:Key="LOCSaturday">星期六</sys:String>
     <sys:String x:Key="LOCSunday">星期日</sys:String>
-    <sys:String x:Key="LOCPastWeek"></sys:String>
-    <sys:String x:Key="LOCPastMonth"></sys:String>
-    <sys:String x:Key="LOCPastYear"></sys:String>
+    <sys:String x:Key="LOCPastWeek">上周</sys:String>
+    <sys:String x:Key="LOCPastMonth">上个月</sys:String>
+    <sys:String x:Key="LOCPastYear">去年</sys:String>
     <sys:String x:Key="LOCImportCompleted">导入已成功完成</sys:String>
     <sys:String x:Key="LOCAllGames">所有游戏</sys:String>
     <sys:String x:Key="LOCGameId">游戏ID</sys:String>
     <sys:String x:Key="LOCDatabaseId">数据库ID</sys:String>
-    <sys:String x:Key="LOCPresets"></sys:String>
+    <sys:String x:Key="LOCPresets">预设</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">特殊变量可以用来添加动态字符串：
 {InstallDir} - 游戏安装目录
@@ -171,7 +171,7 @@
     <sys:String x:Key="LOCMetaGameSourceFiltered">目前所有已过滤的游戏</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">只有所选游戏</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">官方商店</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > 官方商店</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">官方商店 > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">请选择哪些字段应该由Playnite自动填充，以及应使用哪些源来获取数据</sys:String>
@@ -204,8 +204,8 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCMenuConfigurationTitle">配置</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">设置</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">平台和模拟器</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">配置模拟器...</sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">库管理器...</sys:String>
     <sys:String x:Key="LOCMenuTools">工具</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">下载数据</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">打开第三方客户端</sys:String>
@@ -214,28 +214,28 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCMenuAddGameManual">手动</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">自动扫描...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">模拟器游戏...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Windows 商店游戏</sys:String>
     <sys:String x:Key="LOCMenuAbout">关于Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">发送反馈</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">启动全屏模式</sys:String>
-    <sys:String x:Key="LOCMenuLinksTitle"></sys:String>
+    <sys:String x:Key="LOCMenuLinksTitle">链接</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK文档</sys:String>
 
     <!--Settings Window-->
-    <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
-    <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
-    <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
-    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsStrechModeLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">网格视图详细位置</sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">过滤面板位置</sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">浏览器面板位置</sys:String>
+    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">封面艺术渲染</sys:String>
+    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">目标长宽比</sys:String>
+    <sys:String x:Key="LOCSettingsStrechModeLabel">拉伸模式</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectDVD"></sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
-    <sys:String x:Key="LOCSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD 框</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">标记为 * 的设置需要重启应用程序才能生效</sys:String>
+    <sys:String x:Key="LOCSettingsLabel">设置</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">通用</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">外观</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsLayoutLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">游戏详情</sys:String>
+    <sys:String x:Key="LOCSettingsLayoutLabel">布局</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">高级设置</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">全屏</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">提供商</sys:String>
@@ -260,7 +260,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">封面缺失时显示游戏名</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">在封面视图中显示游戏名称</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">在列表视图上显示游戏图标</sys:String>
-    <sys:String x:Key="LOCSettingsShowGroupCount"></sys:String>
+    <sys:String x:Key="LOCSettingsShowGroupCount">在组描述中显示项目数量</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">禁用硬件加速（需要重新启动）</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">遇到卡顿或类似的用户界面问题时使用</sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness">禁用DPI缩放（需要重启）</sys:String>
@@ -315,15 +315,15 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">强制同步游戏时间</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">始终在库同步期间从远程库下载记录的游戏时间，忽略Playnite记录的时间</sys:String>
 
-    <sys:String x:Key="LOCStrechNone"></sys:String>
-    <sys:String x:Key="LOCStrechFill"></sys:String>
-    <sys:String x:Key="LOCStrechUniform"></sys:String>
-    <sys:String x:Key="LOCStrechUniformToFill"></sys:String>
+    <sys:String x:Key="LOCStrechNone">无</sys:String>
+    <sys:String x:Key="LOCStrechFill">填充</sys:String>
+    <sys:String x:Key="LOCStrechUniform">均匀</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">均匀填充</sys:String>
 
-    <sys:String x:Key="LOCDockLeft"></sys:String>
-    <sys:String x:Key="LOCDockRight"></sys:String>
-    <sys:String x:Key="LOCDockTop"></sys:String>
-    <sys:String x:Key="LOCDockBottom"></sys:String>
+    <sys:String x:Key="LOCDockLeft">左</sys:String>
+    <sys:String x:Key="LOCDockRight">右</sys:String>
+    <sys:String x:Key="LOCDockTop">上</sys:String>
+    <sys:String x:Key="LOCDockBottom">下</sys:String>
 
     <sys:String x:Key="LOCImportError">导入错误</sys:String>
     <sys:String x:Key="LOCLoginChecking">正在检查身份验证状态...</sys:String>
@@ -378,11 +378,11 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">初始设置已完成。 请记住，稍后可以通过“设置”菜单更改所有设置。
 
 您也可以通过单击Playnite图标从主菜单中添加任何其他游戏</sys:String>
-    <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
+    <sys:String x:Key="LOCFirstConfigOpenEmuImport">打开模拟导入指南</sys:String>
 
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">配置平台和模拟器</sys:String>
-    <sys:String x:Key="LOCEmulatorsWindowTitle"></sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">配置模拟器</sys:String>
     <sys:String x:Key="LOCPlatformsTitle">平台</sys:String>
     <sys:String x:Key="LOCPlatformTitle">平台</sys:String>
     <sys:String x:Key="LOCEmulatorsTitle">模拟器</sys:String>
@@ -410,17 +410,17 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCEmulatorSettingsHelp">设置帮助</sys:String>
     
     <sys:String x:Key="LOCMenuSortByTitle">排序方式</sys:String>
-    <sys:String x:Key="LOCMenuGroupByTitle"></sys:String>
+    <sys:String x:Key="LOCMenuGroupByTitle">分组方式</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">升序</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">降序</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">不分组</sys:String>
     <sys:String x:Key="LOCMenuGroupProvider">按提供商分组</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">按类别分组</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">按平台分组</sys:String>
-    <sys:String x:Key="LOCViewType"></sys:String>
-    <sys:String x:Key="LOCMenuView"></sys:String>
-    <sys:String x:Key="LOCMenuViewExplorerPanel"></sys:String>
-    <sys:String x:Key="LOCMenuViewFilterPanel"></sys:String>
+    <sys:String x:Key="LOCViewType">查看类型</sys:String>
+    <sys:String x:Key="LOCMenuView">查看</sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">Explorer 面板</sys:String>
+    <sys:String x:Key="LOCMenuViewFilterPanel">过滤面板</sys:String>
 
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">图标</sys:String>
@@ -434,7 +434,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCGameCategoriesTitle">类别</sys:String>
     <sys:String x:Key="LOCGameGenresTitle">类型</sys:String>
     <sys:String x:Key="LOCGameReleaseDateTitle">发布日期</sys:String>
-    <sys:String x:Key="LOCGameReleaseYearTitle"></sys:String>
+    <sys:String x:Key="LOCGameReleaseYearTitle">发行年份</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">开发商</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">标签</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">发行商</sys:String>
@@ -555,9 +555,9 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCExtensionCreatedBy">制作者：</sys:String>
     <sys:String x:Key="LOCExtensionVersion">版本：</sys:String>
     <sys:String x:Key="LOCExtensionModule">模块：</sys:String>
-    <sys:String x:Key="LOCLibrary"></sys:String>
-    <sys:String x:Key="LOCAll"></sys:String>
-    <sys:String x:Key="LOCNone"></sys:String>
+    <sys:String x:Key="LOCLibrary">游戏库</sys:String>
+    <sys:String x:Key="LOCAll">全部</sys:String>
+    <sys:String x:Key="LOCNone">无</sys:String>
 
     <sys:String x:Key="LOCEmulatorArguments">模拟器参数</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">模拟器其他参数</sys:String>
@@ -634,17 +634,17 @@ IGDB > 官方商店：
 
     <sys:String x:Key="LOCTroubleShootingAccountLink">解决帐户同步问题</sys:String>
 
-    <sys:String x:Key="LOCRenameItem"></sys:String>
-    <sys:String x:Key="LOCAddNewItem"></sys:String>
-    <sys:String x:Key="LOCEnterName"></sys:String>
-    <sys:String x:Key="LOCEnterNewName"></sys:String>
+    <sys:String x:Key="LOCRenameItem">重命名项目</sys:String>
+    <sys:String x:Key="LOCAddNewItem">添加新项目</sys:String>
+    <sys:String x:Key="LOCEnterName">输入名称</sys:String>
+    <sys:String x:Key="LOCEnterNewName">输入新名称</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
-    <sys:String x:Key="LOCPLaytime1to10"></sys:String>
-    <sys:String x:Key="LOCPLaytime10to100"></sys:String>
-    <sys:String x:Key="LOCPLaytime100to500"></sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">小于 1 小时</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">1 到 10 小时</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">10 至 100 小时</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">100 至 500 小时</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">500 至 1000 小时</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io客户端现在将打开，请登录然后关闭此消息</sys:String>
