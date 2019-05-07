@@ -228,7 +228,7 @@ IGDB > 官方商店：
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">封面艺术渲染</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">目标长宽比</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">拉伸模式</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam 标题</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD 框</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">标记为 * 的设置需要重启应用程序才能生效</sys:String>
     <sys:String x:Key="LOCSettingsLabel">设置</sys:String>
@@ -649,7 +649,7 @@ IGDB > 官方商店：
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">itch.io客户端现在将打开，请登录然后关闭此消息</sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage">正在等待用户登录，请在完成后关闭...</sys:String>
-    <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
+    <sys:String x:Key="LOCItchioClientNotInstalledError">Itch 客户端版本 25 或更新版本没有安装</sys:String>
 
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">帐号登录</sys:String>
