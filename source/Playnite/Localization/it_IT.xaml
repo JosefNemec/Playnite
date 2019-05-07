@@ -60,7 +60,7 @@ I giochi automaticamente importati potrebbero ricomparire in Playnite dopo la pr
     <sys:String x:Key="LOCGameInstallError">Impossibile installare il gioco: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Impossibile disinstallare il gioco: {0}</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Il plugin della libreria responsabile per questo gioco non è installato o abilitato.</sys:String>
-    <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader">Scaricamento del metadata ufficiale non disponibile.</sys:String>
 
 
     <!--General-->
@@ -92,17 +92,17 @@ I giochi automaticamente importati potrebbero ricomparire in Playnite dopo la pr
     <sys:String x:Key="LOCModifiedLabel">Modificato</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Sito</sys:String>
     <sys:String x:Key="LOCPathLabel">Percorso</sys:String>
-    <sys:String x:Key="LOCOKLabel"></sys:String>
+    <sys:String x:Key="LOCOKLabel">Ok</sys:String>
     <sys:String x:Key="LOCSaveLabel">Salva</sys:String>
     <sys:String x:Key="LOCCloseLabel">Chiudi</sys:String>
     <sys:String x:Key="LOCCancelLabel">Cancella</sys:String>
     <sys:String x:Key="LOCYesLabel">Si</sys:String>
-    <sys:String x:Key="LOCNoLabel"></sys:String>
+    <sys:String x:Key="LOCNoLabel">No</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Benvenuto</sys:String>
     <sys:String x:Key="LOCLocalUserLabel">Utente locale</sys:String>
     <sys:String x:Key="LOCAuthenticateLabel">Autentifica</sys:String>
     <sys:String x:Key="LOCGeneralLabel">Generale</sys:String>
-    <sys:String x:Key="LOCMediaLabel"></sys:String>
+    <sys:String x:Key="LOCMediaLabel">Media</sys:String>
     <sys:String x:Key="LOCLinksLabel">Collegamenti</sys:String>
     <sys:String x:Key="LOCInstallationLabel">Installazione</sys:String>
     <sys:String x:Key="LOCActionsLabel">Azioni</sys:String>
@@ -111,23 +111,23 @@ I giochi automaticamente importati potrebbero ricomparire in Playnite dopo la pr
     <sys:String x:Key="LOCProfileLabel">Profilo</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Profili</sys:String>
     <sys:String x:Key="LOCRemoveLabel">Rimuovi</sys:String>
-    <sys:String x:Key="LOCDownloadLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadLabel">Scaricamento</sys:String>
     <sys:String x:Key="LOCSearchLabel">Cerca</sys:String>
     <sys:String x:Key="LOCGenreLabel">Genere</sys:String>
-    <sys:String x:Key="LOCCompanyLabel"></sys:String>
+    <sys:String x:Key="LOCCompanyLabel">Azienda</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">Sviluppatore</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Editore</sys:String>
     <sys:String x:Key="LOCCategoryLabel">Categoria</sys:String>
     <sys:String x:Key="LOCTagLabel">Etichetta</sys:String>
     <sys:String x:Key="LOCTagsLabel">Etichette</sys:String>
-    <sys:String x:Key="LOCZoomLabel"></sys:String>
+    <sys:String x:Key="LOCZoomLabel">Ingrandisci</sys:String>
     <sys:String x:Key="LOCListLabel">Lista</sys:String>
     <sys:String x:Key="LOCCoversLabel">Cover</sys:String>
-    <sys:String x:Key="LOCGridLabel"></sys:String>
+    <sys:String x:Key="LOCGridLabel">Griglia</sys:String>
     <sys:String x:Key="LOCDetailsLabel">Dettagli</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizza</sys:String>
-    <sys:String x:Key="LOCURLLabel"></sys:String>
-    <sys:String x:Key="LOCPatronsLabel"></sys:String>
+    <sys:String x:Key="LOCURLLabel">URL</sys:String>
+    <sys:String x:Key="LOCPatronsLabel">Patron</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licenza</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Contributori</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Chiusura Playnite...</sys:String>
@@ -140,14 +140,14 @@ I giochi automaticamente importati potrebbero ricomparire in Playnite dopo la pr
     <sys:String x:Key="LOCFriday">Venerdi</sys:String>
     <sys:String x:Key="LOCSaturday">Sabato</sys:String>
     <sys:String x:Key="LOCSunday">Domenica</sys:String>
-    <sys:String x:Key="LOCPastWeek"></sys:String>
-    <sys:String x:Key="LOCPastMonth"></sys:String>
-    <sys:String x:Key="LOCPastYear"></sys:String>
+    <sys:String x:Key="LOCPastWeek">Settimana Scorsa</sys:String>
+    <sys:String x:Key="LOCPastMonth">Mese Scorso</sys:String>
+    <sys:String x:Key="LOCPastYear">Anno scorso</sys:String>
     <sys:String x:Key="LOCImportCompleted">Importazione completata correttamente</sys:String>
     <sys:String x:Key="LOCAllGames">Tutti i giochi</sys:String>
     <sys:String x:Key="LOCGameId">Id del gioco</sys:String>
     <sys:String x:Key="LOCDatabaseId">Id del database</sys:String>
-    <sys:String x:Key="LOCPresets"></sys:String>
+    <sys:String x:Key="LOCPresets">Impostazioni iniziali</sys:String>
     
     <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Delle variabili speciali possono essere usate per aggiungere stringhe dinamiche:
 {InstallDir} - Cartella d'installazione del gioco
@@ -171,7 +171,7 @@ Risultati in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Tutti i giochi al momento filtrati</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Solo i giochi selezionati</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Negozio ufficiale</sys:String>
-    <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
+    <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDBOverStore">IGDB > Negozio ufficiale</sys:String>
     <sys:String x:Key="LOCMetaSourceStoreOverIGDB">Negozio ufficiale > IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Selezionare quali campi dovrebbero essere automaticamente popolati da Playnite e da quali fonti dovrebbero essere usati per ricavare i dati.</sys:String>
@@ -204,8 +204,8 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCMenuConfigurationTitle">Configurazione</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Impostazioni</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Piattaforme ed emulatori</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Configura gli emulatori...</sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">Gestione libreria...</sys:String>
     <sys:String x:Key="LOCMenuTools">Strumenti</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Scaricamento metadata</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Aprire Client di terze parti</sys:String>
@@ -214,11 +214,11 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCMenuAddGameManual">Manualmente</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Scansione automaticamente...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Gioco emulato...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Gioco Windows Store...</sys:String>
     <sys:String x:Key="LOCMenuAbout">Informazioni su Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Invia commento</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Avvia a Schermo Intero</sys:String>
-    <sys:String x:Key="LOCMenuLinksTitle"></sys:String>
+    <sys:String x:Key="LOCMenuLinksTitle">Collegamenti</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentazione SDK</sys:String>
 
     <!--Settings Window-->
@@ -229,12 +229,12 @@ Preferire i dati del negozio ufficiale e se non sono disponibili usare la banca 
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel"></sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectDVD"></sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
-    <sys:String x:Key="LOCSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectDVD">Ceonfezione DVD</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">Impostazioni contrassegnate con * richiedono il riavvio dell'applicazione per avere effetto</sys:String>
+    <sys:String x:Key="LOCSettingsLabel">Impostazioni</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Generale</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Aspetto</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">Dettagli del gioco</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel"></sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avanzate</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Schermo intero</sys:String>
@@ -635,15 +635,15 @@ Puoi provare i seguenti :
 
     <sys:String x:Key="LOCRenameItem"></sys:String>
     <sys:String x:Key="LOCAddNewItem"></sys:String>
-    <sys:String x:Key="LOCEnterName"></sys:String>
-    <sys:String x:Key="LOCEnterNewName"></sys:String>
+    <sys:String x:Key="LOCEnterName">Inserisci nome</sys:String>
+    <sys:String x:Key="LOCEnterNewName">Inserisci nuovo nome</sys:String>
 
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
-    <sys:String x:Key="LOCPLaytime1to10"></sys:String>
-    <sys:String x:Key="LOCPLaytime10to100"></sys:String>
-    <sys:String x:Key="LOCPLaytime100to500"></sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Meno di un'ora</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">da 1 a 10 ore</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">da 10 a 100 ore</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">da 100 a 500 ore</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">da 500 a 1000 ore</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">Più di 1000</sys:String>
 
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif">Il client di itch.io sarà aperto. Accedi e chiudi questo messaggio.</sys:String>
