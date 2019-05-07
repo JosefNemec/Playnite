@@ -60,7 +60,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                     if (Type == ProgramType.UWP)
                     {
-                        iconSource = BitmapExtensions.CreateSourceFromURI(new Uri(Item.Icon));
+                        iconSource = BitmapExtensions.CreateSourceFromURI(Item.Icon);
                     }
                     else
                     {
@@ -231,6 +231,12 @@ namespace Playnite.DesktopApp.ViewModels
             return window.CreateAndOpenDialog(this);
         }
 
+        public bool? OpenViewOnWindowsApps()
+        {
+            DetectWindowsStoreApps();
+            return window.CreateAndOpenDialog(this);
+        }
+
         public void CloseView(bool? result)
         {
             window.Close(result);
@@ -324,7 +330,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     allApps.AddRange(installed.Select(a => new ImportableProgram(a, ProgramType.Win32)));
 
-                    if (Environment.OSVersion.Version.Major == 10)
+                    if (Computer.WindowsVersion == WindowsVersion.Win10)
                     {
                         allApps.AddRange(Playnite.Common.Programs.GetUWPApps().Select(a => new ImportableProgram(a, ProgramType.UWP)));
                     }
@@ -339,6 +345,19 @@ namespace Playnite.DesktopApp.ViewModels
             finally
             {
                 IsLoading = false;
+            }
+        }
+
+        public void DetectWindowsStoreApps()
+        {
+            try
+            {
+                var winApps = Playnite.Common.Programs.GetUWPApps().Select(a => new ImportableProgram(a, ProgramType.UWP));
+                Programs = new ObservableCollection<ImportableProgram>(winApps.OrderBy(a => a.Item.Name));
+            }
+                catch (Exception e) when(!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to detect Windows Store apps.");
             }
         }
 

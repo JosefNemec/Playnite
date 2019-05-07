@@ -320,6 +320,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> AddCustomGameCommand { get; private set; }
         public RelayCommand<object> AddInstalledGamesCommand { get; private set; }
         public RelayCommand<object> AddEmulatedGamesCommand { get; private set; }
+        public RelayCommand<object> AddWindowsStoreGamesCommand { get; private set; }
         public RelayCommand<object> OpenFullScreenCommand { get; private set; }
         public RelayCommand<object> CancelProgressCommand { get; private set; }
         public RelayCommand<object> ClearMessagesCommand { get; private set; }
@@ -532,6 +533,15 @@ namespace Playnite.DesktopApp.ViewModels
                     Resources));
             }, (a) => Database.IsOpen,
             new KeyGesture(Key.E, ModifierKeys.Control));
+
+            AddWindowsStoreGamesCommand = new RelayCommand<object>((a) =>
+            {
+                MainMenuOpened = false;
+                ImportWindowsStoreGames(
+                    new InstalledGamesViewModel(
+                    new InstalledGamesWindowFactory(),
+                    Dialogs));
+            }, (a) => Database.IsOpen);
 
             OpenFullScreenCommand = new RelayCommand<object>((a) =>
             {
@@ -1076,6 +1086,27 @@ namespace Playnite.DesktopApp.ViewModels
             else
             {
                 Database.Games.Remove(newGame);
+            }
+        }
+
+        public async void ImportWindowsStoreGames(InstalledGamesViewModel model)
+        {
+            if (model.OpenViewOnWindowsApps() == true && model.SelectedGames?.Any() == true)
+            {
+                var addedGames = InstalledGamesViewModel.AddImportableGamesToDb(model.SelectedGames, Database);
+                if (AppSettings.DownloadMetadataOnImport)
+                {
+                    if (!GlobalTaskHandler.IsActive)
+                    {
+                        var settings = new MetadataDownloaderSettings();
+                        settings.ConfigureFields(MetadataSource.IGDB, true);
+                        await DownloadMetadata(settings, addedGames);
+                    }
+                    else
+                    {
+                        Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
+                    }
+                }
             }
         }
 

@@ -91,6 +91,11 @@ namespace Playnite.DesktopApp.Controls
             AddMenuChild(addGameItem.Items, "LOCMenuAddGameManual", mainModel.AddCustomGameCommand);
             AddMenuChild(addGameItem.Items, "LOCMenuAddGameInstalled", mainModel.AddInstalledGamesCommand);
             AddMenuChild(addGameItem.Items, "LOCMenuAddGameEmulated", mainModel.AddEmulatedGamesCommand);
+            if (Computer.WindowsVersion == WindowsVersion.Win10)
+            {
+                AddMenuChild(addGameItem.Items, "LOCMenuAddWindowsStore", mainModel.AddWindowsStoreGamesCommand);
+            }
+
             Items.Add(new Separator());
 
             // Library

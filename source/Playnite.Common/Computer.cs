@@ -46,8 +46,40 @@ namespace Playnite.Common
         public List<Monitor> Monitors { get; set; }
     }
 
+    public enum WindowsVersion
+    {
+        Unknown,
+        Win7,
+        Win8,
+        Win10
+    }
+
     public static class Computer
     {
+        public static WindowsVersion WindowsVersion
+        {
+            get
+            {
+                var version = Environment.OSVersion.Version;
+                if (version.Major == 6 && version.Major == 1)
+                {
+                    return WindowsVersion.Win7;
+                }
+                else if (version.Major == 6 && (version.Major == 2 || version.Major == 3))
+                {
+                    return WindowsVersion.Win8;
+                }
+                else if (version.Major == 10)
+                {
+                    return WindowsVersion.Win10;
+                }
+                else
+                {
+                    return WindowsVersion.Unknown;
+                }
+            }
+        }            
+
         public static SystemInfo GetSystemInfo()
         {
             var info = new SystemInfo

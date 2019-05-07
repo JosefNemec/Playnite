@@ -21,7 +21,7 @@ namespace System.Drawing.Imaging
 
         public static BitmapSource CreateSourceFromURI(Uri imageUri)
         {
-            return CreateSourceFromURI(imageUri.AbsolutePath);
+            return CreateSourceFromURI(imageUri.LocalPath);
         }
 
         public static BitmapSource CreateSourceFromURI(string imageUri)
