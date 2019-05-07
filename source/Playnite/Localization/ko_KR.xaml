@@ -1,45 +1,53 @@
 ﻿<?xml version="1.0"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <sys:String x:Key="LanguageName"></sys:String>
+    <sys:String x:Key="LanguageName">한국어</sys:String>
 
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">언어</sys:String>
 
-    <sys:String x:Key="LOCExitAppLabel"></sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCExitAppLabel">종료</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">필터가 활성화됨 (이곳을 클릭해 필터 패널을 여세요)</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">필터가 비활성화됨 (이곳을 클릭해 필터 패널을 여세요)</sys:String>
 
-    <sys:String x:Key="LOCInvalidDataTitle"></sys:String>
-    <sys:String x:Key="LOCSaveChangesAskTitle"></sys:String>
+    <sys:String x:Key="LOCInvalidDataTitle">잘못된 데이터</sys:String>
+    <sys:String x:Key="LOCSaveChangesAskTitle">변경 사항을 저장하시겠습니까?</sys:String>
     
-    <sys:String x:Key="LOCAboutHomePageLink"></sys:String>
-    <sys:String x:Key="LOCAboutSourceLink"></sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton"></sys:String>
-    <sys:String x:Key="LOCAboutWindowTitle"></sys:String>
-    <sys:String x:Key="LOCAboutAuthor"></sys:String>
+    <sys:String x:Key="LOCAboutHomePageLink">홈페이지: www.playnite.link</sys:String>
+    <sys:String x:Key="LOCAboutSourceLink">GitHub에서 소스 코드 보기</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">진단 패키지 생성</sys:String>
+    <sys:String x:Key="LOCAboutWindowTitle">Playnite에 대하여</sys:String>
+    <sys:String x:Key="LOCAboutAuthor">Josef Němec이 개발함</sys:String>
 
-    <sys:String x:Key="LOCCategoryWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCategorySetButton"></sys:String>
-    <sys:String x:Key="LOCCategoryAddCatButton"></sys:String>
-    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCNoCategory"></sys:String>
-    <sys:String x:Key="LOCNoPlatform"></sys:String>
+    <sys:String x:Key="LOCCategoryWindowTitle">카테고리 지정</sys:String>
+    <sys:String x:Key="LOCCategorySetButton">카테고리 설정</sys:String>
+    <sys:String x:Key="LOCCategoryAddCatButton">카테고리 추가</sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">체크됨 - 카테고리 지정
+체크되지 않음 - 카테고리 삭제
+다중 값 - 변경 사항 없음 (여러 게임 편집 시)</sys:String>
+    <sys:String x:Key="LOCNoCategory">카테고리 없음</sys:String>
+    <sys:String x:Key="LOCNoPlatform">플랫폼 없음</sys:String>
 
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashReportIssue"></sys:String>
-    <sys:String x:Key="LOCCrashRestartPlaynite"></sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">아... 뭔가 이상한 일이 벌어지고있어요...</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">복구 불가능한 에러가 발생함에 따라 Playnite가 작동을 중지했습니다.
+        
+이 문제를 수정하는 것을 돕고 싶으시다면, 진단 패키지를 생성하고 ‘오류 보고’ 버튼을 통해 무슨 일이 일어났는지 알려주세요. 감사합니다.</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">오류 보고</sys:String>
+    <sys:String x:Key="LOCCrashRestartPlaynite">Playnite 재시작</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Playnite 종료</sys:String>
 
-    <sys:String x:Key="LOCGameRemoveAskTitle"></sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskTitle">게임을 삭제하시겠습니까?</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">게임이 실행 중이거나 설치, 삭제되는 중에는 게임을 삭제할 수 없습니다.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">게임이 실행 중일 때 삭제할 수 없습니다.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">이 게임을 삭제하시겠습니까?
+        
+다음 가져오기 작업 후, 자동으로 가져온 게임이 새로고침될 것입니다 (설정에 따라 달라집니다).</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">{0}개의 게임을 삭제하시겠습니까?
+        
+다음 가져오기 작업 후, 자동으로 가져온 게임이 새로고침될 것입니다 (설정에 따라 달라집니다).</sys:String>
 
-    <sys:String x:Key="LOCSteamFriendsTooltip"></sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress"></sys:String>
+    <sys:String x:Key="LOCSteamFriendsTooltip">Steam 친구</sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">저장해야 할 변경 사항이 있습니다</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">게임 라이브러리 형식 업데이트 중...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail"></sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail"></sys:String>
 
