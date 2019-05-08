@@ -657,8 +657,7 @@ IGDB > 官方商店：
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">帐号登录</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">账户名称</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">登录您的帐户或公共用户帐户以同步您的完整库。
-请注意，“帐户名称”选项仅适用于具有公开可见性的帐户</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">选择通过身份验证的用户或指定帐户的可信URL名称以同步您的完整库。库为私密的帐户必须指定链接到该Steam帐户的API密钥</sys:String>
