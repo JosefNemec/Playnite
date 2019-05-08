@@ -237,6 +237,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCSettingsAdvancedLabel">Дополнительные</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Полноэкранный режим</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Сторонние клиенты</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Автоматически импортировать изменения</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Импортировать установленные игры</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Импорт неустановленных игр</sys:String>
@@ -313,6 +314,8 @@ IGDB > Официальный магазин:
 Не применяется ретроспективно к существующим играм.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Принудительно синхронизировать время воспроизведения</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Всегда загружайте записанное время воспроизведения из удаленной библиотеки во время синхронизации библиотеки, игнорируя время, записанное Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Нету</sys:String>
     <sys:String x:Key="LOCStrechFill">Заполнить</sys:String>
@@ -373,7 +376,7 @@ IGDB > Официальный магазин:
     <sys:String x:Key="LOCFirstUplayIntegration">Интеграция с Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Импортировать категории из аккаунта:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Остальные игры</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Нажмите кнопку ниже, чтобы импортировать другие установленные игры или просмотреть их вручную (включая игры в Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Импортировать игры</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Конфигурация завершена</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Начальная настройка завершена. Помните, что вы можете изменить все настройки позже через меню "Настройки".
