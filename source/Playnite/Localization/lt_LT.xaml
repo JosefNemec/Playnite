@@ -655,7 +655,7 @@ Bandykite pašalinti problemą:
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Vartotojo prisijungimas</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Vartotojo vardas</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Prisijunkite prie savo paskyros ar nurodykite viešos paskyros vardą siekdami susinchronizuoti visą Jūsų biblioteką. Atkriepiame dėmesį kad vartotojo vardo pasirinkimas veiks tik kai vartotojas yra viešas.</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Nurodyti vartotojo biblioteką:</sys:String>
