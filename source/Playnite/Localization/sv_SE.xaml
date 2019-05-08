@@ -235,6 +235,7 @@ Föredrar data från officiella butiken och om inte tillgänglig, använd IGDB.c
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avancerat</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel"></sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Distribuerare</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importera ändringar i bibliotek automatiskt</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importera installerade spel</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
@@ -308,6 +309,8 @@ Föredrar data från officiella butiken och om inte tillgänglig, använd IGDB.c
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -368,7 +371,7 @@ Tips! Om du vill synkronisera ditt bibliotek mellan flera datorer ställer du in
     <sys:String x:Key="LOCFirstUplayIntegration"></sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importera kategorier från konto:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Andra spel</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Klicka på knappen nedtill för att importera andra installerade spel eller bläddra dem manuellt (inklusive Windows Store-spel).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importera spel</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguration Avslutad</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Konfiguration har slutförts. Kom ihåg att du kan ändra alla inställningar senare via menyn Inställningar.
