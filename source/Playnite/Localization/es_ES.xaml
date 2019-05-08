@@ -46,7 +46,7 @@ Los juegos importados automáticamente pueden volver a aparecer en Playnite desp
 Los juegos importados automáticamente pueden volver a aparecer en Playnite después del próximo procedimiento de importación (según su configuración).</sys:String>
 
     <sys:String x:Key="LOCSteamFriendsTooltip">Amigos de Steam</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif">Seccion contiene cambios sin guardar</sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Sección contiene cambios sin guardar</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Actualizando formato de la librería de juegos...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Fallo al actualizar la base de datos.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">No se puede actualizar la biblioteca. Se necesitan {0} MBs de espacio libre en el disco.</sys:String>
@@ -239,6 +239,7 @@ Preferir los datos de la tienda oficial, cuando no estén disponibles utilizar l
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avanzado</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Pantalla Completa</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Proovedores</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">Input</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importar cambios en la biblioteca automáticamente</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importar juegos instalados</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importar juegos desintalados</sys:String>
@@ -314,6 +315,8 @@ Todas las tareas activas (descarga de metadatos) serán canceladas.</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">No se aplica a juegos existentes sin volver a descargar los metadatos.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Forzar sincronización del tiempo de juego</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Descargar siempre el tiempo de juego guardado por la librería remota durante la sincronización de librería, ignorando el tiempo guardado por Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Activar soporte de mando en el modo Escritorio *</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Botón guía abre el modo pantalla completa</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Ninguno</sys:String>
     <sys:String x:Key="LOCStrechFill">Rellenar</sys:String>
@@ -374,7 +377,7 @@ Sugerencia: si desea sincronizar su biblioteca entre varias computadoras, config
     <sys:String x:Key="LOCFirstUplayIntegration">Integración Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importar categorías de la cuenta:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Otros juegos</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Haga clic en el botón a debajo para importar otros juegos instalados o búscarlos manualmente (incluyendo los juegos de Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">Haz click en el botón para importar otros juegos instalados, o buscalos manualmente (incluyendo juegos de Windows Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importar Juegos</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuración Finalizada</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">La configuración inicial se ha completado. Recuerde que puede cambiar todas las configuraciones más tarde a través del menú 'Configuración'.
