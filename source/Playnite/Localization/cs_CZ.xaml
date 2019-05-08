@@ -657,8 +657,8 @@ Můžete zkusit následující možnosti opravy:
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Přihlášení k účtu</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Název účtu</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Přihlaste se na svůj účet, nebo zadejte jméno veřejného účtu, abyste synchronizovali knihovnu.
-Pozor že zadání jména účtu funguje pouze u účtů, co jsou veřejně viditelné.</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Pro synchronizaci celé knihovny se přihlaste se do svého účtu, případně zadejte veřejné jméno účtu.
+Pozor že možnost zadání jména účtu funguje pouze pro ty účty, které mají v nastavení GOG v záložce Soukromí nastavenou veřejnou viditelnost knihovny.</sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Vyberte ověřeného uživatele nebo specifikujte jméno vašeho účtu z URL pro synchronizaci celé knihovny. Účty se soukromou viditelností knihovny musejí specifikovat API klíč k danému Steam účtu.
