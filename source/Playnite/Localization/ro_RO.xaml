@@ -219,6 +219,7 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avansat</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Ecran complet</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Furnizori</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importați schimbările în librărie în mod automat</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importați jocurile instalate</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importați jocurile dezinstalate</sys:String>
@@ -292,6 +293,8 @@ Jocurile care sunt importate automat ar putea să reapară în Playnite după ur
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
