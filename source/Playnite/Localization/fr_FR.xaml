@@ -236,6 +236,7 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCSettingsAdvancedLabel">Autres</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Plein écran</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Fournisseurs</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importer les modifications dans la bibliothèque automatiquement</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importer les jeux installés</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importer les jeux non installés</sys:String>
@@ -309,6 +310,8 @@ Préférer les données des boutiques officielles et, lorsqu'elles ne sont pas d
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Ne peut s'appliquer rétroactivement (à moins de retélécharger les métadonnées).</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Forcer la synchronisation du temps de jeu</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Télécharger systématiquement le temps de jeu des librairies distantes lors de la synchronisation, ignorant le temps de jeu enregistré par Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Aucun</sys:String>
     <sys:String x:Key="LOCStrechFill">Remplir</sys:String>
@@ -370,7 +373,7 @@ Conseil : Si vous souhaitez synchroniser votre bibliothèque entre plusieurs ord
     <sys:String x:Key="LOCFirstUplayIntegration">Intégration de Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importer des catégories à partir du profil :</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Autres jeux</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Cliquez sur le bouton ci-dessous pour importer d'autres jeux installés ou les rechercher manuellement (y compris les jeux Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importer des jeux</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuration terminée</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Vous avez terminé la configuration initiale. N'oubliez pas que vous pouvez modifier la configuration des clients à tout moment via le menu "Paramètres".</sys:String>
