@@ -235,6 +235,7 @@ Teikti pirmenybę duomenims iš oficialios parduotuvės, neradus ieškoti IGDB.c
     <sys:String x:Key="LOCSettingsAdvancedLabel">Išplėstiniai</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Viso ekrano rėžimas</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Šaltiniai</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Įtraukti bibliotekos pakeitimus automatiškai</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Įtraukti įrašytus žaidimus</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importuoti neįrašytus žaidimus</sys:String>
@@ -311,6 +312,8 @@ Visos dabar vykstančios užduotys (metadata atsisiuntimai) bus nutrauktos.</sys
 Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Priverstinai sinchronizuoti žaidimo laiką</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Visada ignoruoti Playnite išsaugotą žaidimo laiką ir bibliotekos sinchronizacijos metu atsiųsti įšsaugotą žaidimo laiką iš nuotolinės bibliotekos.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nieko</sys:String>
     <sys:String x:Key="LOCStrechFill">Užpildyti</sys:String>
@@ -371,7 +374,7 @@ Patarimas: Jeigu norite sinchronizuoti bibliotekas tarp kelių kompiuterių,reko
     <sys:String x:Key="LOCFirstUplayIntegration">Uplay integracija</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Įtraukti kategorijas iš vartotojo:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Kiti žaidimai</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Paspaukite žemiau esantį mygtuką norėdami įtraukti kitus įrašytus žaidimus rankiniu būdu(pavyzdžiui Windows Store žaidimai).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Įtraukti žaidimus</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfigūravimas baigtas</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Pirminė konfigūracija baigta. Bet kada pasirinktus nustatymus galite pakeisti 'Nustatymai' meniu.
