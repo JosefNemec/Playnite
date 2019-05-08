@@ -498,15 +498,15 @@ namespace SteamLibrary
 
         public void ImportSteamLastActivity(ulong accountId)
         {
-            var dialogs = playniteApi.Dialogs;
-            var resources = playniteApi.Resources;
-            var db = playniteApi.Database;
+            var dialogs = PlayniteApi.Dialogs;
+            var resources = PlayniteApi.Resources;
+            var db = PlayniteApi.Database;
 
             if (accountId == 0)
             {
                 dialogs.ShowMessage(
-                    resources.FindString("LOCSettingsSteamLastActivityImportErrorAccount"),
-                    resources.FindString("LOCImportError"),
+                    resources.GetString("LOCSettingsSteamLastActivityImportErrorAccount"),
+                    resources.GetString("LOCImportError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -514,8 +514,8 @@ namespace SteamLibrary
             if (!db.IsOpen)
             {
                 dialogs.ShowMessage(
-                    resources.FindString("LOCSettingsSteamLastActivityImportErrorDb"),
-                    resources.FindString("LOCImportError"),
+                    resources.GetString("LOCSettingsSteamLastActivityImportErrorDb"),
+                    resources.GetString("LOCImportError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -526,7 +526,7 @@ namespace SteamLibrary
                 {
                     foreach (var kvp in GetGamesLastActivity(accountId))
                     {
-                        var dbGame = db.GetGames().FirstOrDefault(a => a.PluginId == Id && a.GameId == kvp.Key);
+                        var dbGame = db.Games.FirstOrDefault(a => a.PluginId == Id && a.GameId == kvp.Key);
                         if (dbGame == null)
                         {
                             continue;
@@ -537,18 +537,17 @@ namespace SteamLibrary
                             continue;
                         }
                         dbGame.LastActivity = kvp.Value;
-                        db.UpdateGame(dbGame);
                     }
                 }
 
-                dialogs.ShowMessage(resources.FindString("LOCImportCompleted"));
+                dialogs.ShowMessage(resources.GetString("LOCImportCompleted"));
             }
             catch (Exception exc) when (!Environment.IsDebugBuild)
             {
                 logger.Error(exc, "Failed to import Steam last activity.");
                 dialogs.ShowMessage(
-                    resources.FindString("LOCSettingsSteamLastActivityImportError"),
-                    resources.FindString("LOCImportError"),
+                    resources.GetString("LOCSettingsSteamLastActivityImportError"),
+                    resources.GetString("LOCImportError"),
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
