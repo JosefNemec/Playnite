@@ -234,6 +234,7 @@ Preferovať údaje z officiálneho Obchodu, pokiaľ niesú dostupné, použiť �
     <sys:String x:Key="LOCSettingsAdvancedLabel"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel"></sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Automaticky importovať zmeny v knižnici</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importovať nainštalované hry</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
@@ -307,6 +308,8 @@ Preferovať údaje z officiálneho Obchodu, pokiaľ niesú dostupné, použiť �
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -367,7 +370,7 @@ Tip: Pokiaľ chcete synchronizovať knižnicu medzi viacerími počítačmi, umi
     <sys:String x:Key="LOCFirstUplayIntegration">Integrácia Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importovať kategórie z účtu:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Ostatné hry</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Pre importovanie ostatných nainštalovaných hier alebo pre manuálne prehľadávanie (vrátane hier Windows Store) kliknite na tlačidlo nižšie.</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importovať Hry</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfigurácia dokončená</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Úvodné nastavenie bolo dokončené. Všetky nastavenia môžte neskôr zmeniť v menu Nastavení.
