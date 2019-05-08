@@ -47,7 +47,7 @@ namespace ItchioLibrary
                                 IsHandledByPlugin = true,
                                 Name = "Play",
                                 Path = action.path,
-                                WorkingDir = action.path.IsHttpUrl() ? null : "{InstallDir}",
+                                WorkingDir = action.path.IsHttpUrl() ? null : ExpandableVariables.InstallationDirectory,
                                 Type = action.path.IsHttpUrl() ? GameActionType.URL : GameActionType.File,
                                 Arguments = action.args?.Any() == true ? string.Join(" ", action.args) : null
                             };
@@ -58,7 +58,7 @@ namespace ItchioLibrary
                             {
                                 Name = action.name,
                                 Path = action.path,
-                                WorkingDir = action.path.IsHttpUrl() ? null : "{InstallDir}",
+                                WorkingDir = action.path.IsHttpUrl() ? null : ExpandableVariables.InstallationDirectory,
                                 Type = action.path.IsHttpUrl() ? GameActionType.URL : GameActionType.File,
                                 Arguments = action.args?.Any() == true ? string.Join(" ", action.args) : null
                             });

@@ -337,7 +337,7 @@ namespace SteamLibrary
                             Arguments = task["arguments"].Value ?? string.Empty,
                             Path = task["executable"].Value,
                             IsHandledByPlugin = false,
-                            WorkingDir = "{InstallDir}"
+                            WorkingDir = ExpandableVariables.InstallationDirectory
                         };
 
                         tasks.Add(newTask);

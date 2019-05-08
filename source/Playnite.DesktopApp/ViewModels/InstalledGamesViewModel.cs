@@ -277,7 +277,7 @@ namespace Playnite.DesktopApp.ViewModels
                     Path = path,
                     Arguments = program.Item.Arguments,
                     Type = GameActionType.File,
-                    WorkingDir = program.Type == ProgramType.Win32 ? "{InstallDir}" : string.Empty,
+                    WorkingDir = program.Type == ProgramType.Win32 ? ExpandableVariables.InstallationDirectory : string.Empty,
                     Name = "Play"                    
                 };
 

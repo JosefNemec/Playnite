@@ -1,6 +1,7 @@
 ﻿using LiteDB;
 using Newtonsoft.Json.Linq;
 using Playnite.Common;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -739,7 +740,7 @@ namespace Playnite.Database
             }
             else
             {
-                return Path.Combine("{PlayniteDir}", Path.GetFileNameWithoutExtension(originalPath));
+                return Path.Combine(ExpandableVariables.PlayniteDirectory, Path.GetFileNameWithoutExtension(originalPath));
             }
         }
 

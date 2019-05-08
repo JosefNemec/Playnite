@@ -94,7 +94,7 @@ namespace BattleNetLibrary
                             PlayAction = new GameAction()
                             {
                                 Type = GameActionType.File,
-                                WorkingDir = @"{InstallDir}",
+                                WorkingDir = ExpandableVariables.InstallationDirectory,
                                 Path = product.ClassicExecutable
                             },
                             InstallDirectory = prog.InstallLocation,

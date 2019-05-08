@@ -1,4 +1,5 @@
 ﻿using Playnite.Common;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.Settings;
 using System;
@@ -33,7 +34,7 @@ namespace Playnite
                 game.PlayAction = new GameAction()
                 {
                     Type = GameActionType.File,
-                    WorkingDir = "{InstallDir}",
+                    WorkingDir = ExpandableVariables.InstallationDirectory,
                     Path = prog.Path.Substring(game.InstallDirectory.Length).Trim(Path.DirectorySeparatorChar),
                     Arguments = prog.Arguments
                 };
@@ -48,7 +49,7 @@ namespace Playnite
                 game.PlayAction = new GameAction()
                 {
                     Type = GameActionType.File,
-                    WorkingDir = "{InstallDir}",
+                    WorkingDir = ExpandableVariables.InstallationDirectory,
                     Path = file.Name
                 };
             };
@@ -65,13 +66,13 @@ namespace Playnite
             }
 
             var result = inputString;
-            result = result.Replace("{InstallDir}", game.InstallDirectory);
-            result = result.Replace("{InstallDirName}", Path.GetFileName(Path.GetDirectoryName(game.InstallDirectory)));
-            result = result.Replace("{ImagePath}", game.GameImagePath);
-            result = result.Replace("{ImageNameNoExt}", Path.GetFileNameWithoutExtension(game.GameImagePath));
-            result = result.Replace("{ImageName}", Path.GetFileName(game.GameImagePath));
-            result = result.Replace("{PlayniteDir}", PlaynitePaths.ProgramPath);
-            result = result.Replace("{Name}", game.Name);
+            result = result.Replace(ExpandableVariables.InstallationDirectory, game.InstallDirectory);
+            result = result.Replace(ExpandableVariables.InstallationDirName, Path.GetFileName(Path.GetDirectoryName(game.InstallDirectory)));
+            result = result.Replace(ExpandableVariables.ImagePath, game.GameImagePath);
+            result = result.Replace(ExpandableVariables.ImageNameNoExtension, Path.GetFileNameWithoutExtension(game.GameImagePath));
+            result = result.Replace(ExpandableVariables.ImageName, Path.GetFileName(game.GameImagePath));
+            result = result.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath);
+            result = result.Replace(ExpandableVariables.Name, game.Name);
             return fixSeparators ? Paths.FixSeparators(result) : result;
         }
 

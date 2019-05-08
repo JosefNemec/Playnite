@@ -179,7 +179,7 @@ namespace Playnite.Database
         {
             if (portable)
             {
-                return @"{PlayniteDir}\library";
+                return ExpandableVariables.PlayniteDirectory + @"\library";
             }
             else
             {
@@ -225,9 +225,9 @@ namespace Playnite.Database
                 return path;
             }
 
-            if (path.Contains("{PlayniteDir}", StringComparison.OrdinalIgnoreCase))
+            if (path.Contains(ExpandableVariables.PlayniteDirectory, StringComparison.OrdinalIgnoreCase))
             {
-                return path?.Replace("{PlayniteDir}", PlaynitePaths.ProgramPath);
+                return path?.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath);
             }
             else if (path.Contains("%AppData%", StringComparison.OrdinalIgnoreCase))
             {                
