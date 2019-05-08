@@ -16,7 +16,6 @@ namespace EpicLibrary.Tests
         public static EpicLibrary CreateLibrary()
         {
             var api = new Mock<IPlayniteAPI>();
-            api.Setup(a => a.GetPluginUserDataPath(It.IsAny<ILibraryPlugin>())).Returns(() => EpicTests.TempPath);
             return new EpicLibrary(api.Object);
         }
 
