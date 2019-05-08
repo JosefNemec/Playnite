@@ -660,7 +660,8 @@ Playnite konnte nicht gestartet werden. Bitte versuche folgende Schritte um den 
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Kontoanmeldung</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Kontoname</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Melde dich in deinem Benutzerkonto an oder verwende deinen öffentlichen Kontonamen, um deine vollständige Bibliothek zu synchronisieren. Beachte, dass die Option des öffentlichen Kontonamens nur bei Konten funktioniert, deren Spielebibliothek in den Privatsphäreeinstellungen auch öffentlich sichtbar gemacht wurde.</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Melde dich in deinem Benutzerkonto an oder verwende deinen öffentlichen Kontonamen, um deine Bibliothek vollständig zu synchronisieren.
+Beachte, dass die Option des öffentlichen Kontonamens nur bei Konten funktioniert, deren Spielebibliotheken in GOGs Privatsphäreeinstellungen als öffentlich sichtbar festgelegt wurden.</sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Wähle einen authentifizierten Benutzer aus oder gib deine Konto-URL ein, um deine vollständige Bibliothek zu synchronisieren. Bei Konten mit lediglich privater Bibliothekssichtbarkeit muss der mit dem Steam-Konto verknüpfte API-Schlüssel angegeben werden.
