@@ -24,11 +24,11 @@ namespace Playnite
             get; private set;
         }
 
-        public event GameControllerEventHandler Starting;
-        public event GameControllerEventHandler Started;
-        public event GameControllerEventHandler Stopped;
-        public event GameControllerEventHandler Uninstalled;
-        public event GameInstalledEventEventHandler Installed;
+        public event EventHandler<GameControllerEventArgs> Starting;
+        public event EventHandler<GameControllerEventArgs> Started;
+        public event EventHandler<GameControllerEventArgs> Stopped;
+        public event EventHandler<GameControllerEventArgs> Uninstalled;
+        public event EventHandler<GameInstalledEventArgs> Installed;
 
         public BaseGameController(Game game)
         {

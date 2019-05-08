@@ -132,7 +132,7 @@ namespace Playnite.Database
 
         public event EventHandler DatabaseOpened;
 
-        public event DatabaseFileEventHandler DatabaseFileChanged;
+        public event EventHandler<DatabaseFileEventArgs> DatabaseFileChanged;
 
         #endregion Events
 

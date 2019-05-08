@@ -13,9 +13,8 @@ namespace Playnite.Common
 {
     public class ProcessMonitor : IDisposable
     {
-        public delegate void ProcessMonitorEventHandler(object sender, EventArgs args);
-        public event ProcessMonitorEventHandler TreeStarted;
-        public event ProcessMonitorEventHandler TreeDestroyed;
+        public event EventHandler TreeStarted;
+        public event EventHandler TreeDestroyed;
 
         private SynchronizationContext execContext;
         private CancellationTokenSource watcherToken;

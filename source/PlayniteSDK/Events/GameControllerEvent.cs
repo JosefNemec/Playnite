@@ -56,11 +56,4 @@ namespace Playnite.SDK.Events
         {
         }
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="controller"></param>
-    public delegate void GameControllerEventHandler(object sender, GameControllerEventArgs controller);
 }
