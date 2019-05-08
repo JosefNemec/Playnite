@@ -420,10 +420,10 @@ E' al momento utilizzata da {1} gioco/chi e {2} emulatore/i.</sys:String>
     <sys:String x:Key="LOCMenuGroupProvider">Raggruppa per distributore</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">Raggruppa per categoria</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Raggruppa per piattaforma</sys:String>
-    <sys:String x:Key="LOCViewType"></sys:String>
+    <sys:String x:Key="LOCViewType">Tipo di visualizzazione</sys:String>
     <sys:String x:Key="LOCMenuView">Visualizza</sys:String>
-    <sys:String x:Key="LOCMenuViewExplorerPanel"></sys:String>
-    <sys:String x:Key="LOCMenuViewFilterPanel"></sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">Pannello Esplora</sys:String>
+    <sys:String x:Key="LOCMenuViewFilterPanel">Pannello dei filtri</sys:String>
 
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">Icona</sys:String>
@@ -656,8 +656,8 @@ Puoi provare i seguenti :
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Login dell'account</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Nome dell'account</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Accedi al tuo account o usa il nome di un'account pubblico per sincronizzare l'intera libreria. 
-Nota che l'opzione del nome dell'account funzione solamente con account che sono visibili pubblicamente.</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Accedi al tuo account o utilizza il nome del tuo account pubblico per sincronizzare la tua libreria completa.
+Nota che l'opzione Nome Account funziona solo per gli account le cui librerie di gioco sono state impostate nelle impostazioni di privacy di GOG per essere visibili pubblicamente.</sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Selezione l'utente autentificato o specifica il nome URL dell'account per sincronizzare l'intera libreria.  Gli account con la visibilità della libreria impostata su privato devono specificare la chiave API specifica collegata a quell'account di Steam.
