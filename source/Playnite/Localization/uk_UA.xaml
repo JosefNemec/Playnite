@@ -239,6 +239,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCSettingsAdvancedLabel">Додатково</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Повноекранний режим</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Сторонні постачальники</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Автоматично імпортувати зміни в бібліотеці</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Імпортувати встановлені ігри</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Імпортувати видалені ігри</sys:String>
@@ -314,6 +315,8 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Не застосовується ретроспективно до існуючих ігор без повторного завантаження метаданих.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Нічого</sys:String>
     <sys:String x:Key="LOCStrechFill">Заповнення</sys:String>
@@ -372,7 +375,7 @@ IGDB > Офіційний магазин:
     <sys:String x:Key="LOCFirstUplayIntegration">Інтерграція з Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Імпортувати категорії з акаунта:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Інші ігри</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Натисніть кнопку нижче, щоб імпортувати інші встановлені ігри або додати їх вручну (включаючи ігри з Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Імпортувати ігри</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Конфігурацію завершено</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Початкове налаштування завершено. Пам'ятайте, що ви можете змінити всі налаштування пізніше через меню "Налаштування".
