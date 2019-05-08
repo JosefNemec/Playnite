@@ -63,6 +63,11 @@ namespace Playnite
 
             foreach (var file in Directory.GetFiles(path, "*.xaml"))
             {
+                if (!Regex.IsMatch(file, "[a-zA-Z]+_[a-zA-Z]+"))
+                {
+                    continue;
+                }
+
                 var langPath = Path.Combine(path, file);
                 ResourceDictionary res = null;
                 try
@@ -104,6 +109,15 @@ namespace Playnite
                 try
                 {
                     res = Xaml.GetObjectFromFile<ResourceDictionary>(langFile);
+                    // Unstranslated strings are imported as empty entries by Crowdin.
+                    // We need to remove them to make sure that origina English text will be displayed instead.
+                    foreach (var key in res.Keys)
+                    {
+                        if (res[key] is string locString && locString.IsNullOrEmpty())
+                        {
+                            res.Remove(key);
+                        }
+                    }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
