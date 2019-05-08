@@ -237,6 +237,7 @@ IGDB> Επίσημο κατάστημα:
     <sys:String x:Key="LOCSettingsAdvancedLabel">Για προχωρημένους</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Πλήρης οθόνη</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Πάροχοι</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Αυτόματη εισαγωγή στη βιβλιοθήκη</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Εισαγωγή εγκατεστημένων παιχνιδιών</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
@@ -313,6 +314,8 @@ IGDB> Επίσημο κατάστημα:
 Δεν ισχύει αναδρομικά σε υπάρχοντα παιχνίδια.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -368,7 +371,7 @@ Tip: If you want to sync your library between multiple computers, then set DB lo
     <sys:String x:Key="LOCFirstUplayIntegration">Uplay ενσωμάτωση</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Εισαγωγή κατηγοριών από λογαριασμό:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Άλλα παιχνίδια</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Κάντε κλικ στο παρακάτω κουμπί για να εισάγετε άλλα εγκατεστημένα παιχνίδια ή για να τα αναζητήσετε με μη αυτόματο τρόπο (συμπεριλαμβανομένων των παιχνιδιών των Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Εισαγωγή Παιχνιδιών</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Η διαμόρφωση ολοκληρώθηκε</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Η αρχική ρύθμιση έχει ολοκληρωθεί. Θυμηθείτε ότι μπορείτε να αλλάξετε όλες τις ρυθμίσεις αργότερα μέσω του μενού "Ρυθμίσεις".
