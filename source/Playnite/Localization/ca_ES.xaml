@@ -657,8 +657,7 @@ Pots provar aixó per solucionar el problema:
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Inicia sessió al compte</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Nom del compte</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Inicia la sessió al teu compte o al teu compte públic per sincronitzar la teva biblioteca completa.
-Tingues en compte que l’opció Nom del compte només funciona amb comptes que tinguin visibilitat pública.</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Selecciona l’usuari autenticat o especifica el nom d’URL del vostre compte per sincronitzar la biblioteca completa. Els comptes amb visibilitat de biblioteca privada han d’especificar la clau d’API vinculada a aquest compte de Steam.
