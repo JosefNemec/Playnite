@@ -202,7 +202,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
 
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">Configuração</sys:String>
-    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Configurações</sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Configurações...</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Plataformas e emuladores</sys:String>
     <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Configurar emuladores...</sys:String>
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Gerenciador da biblioteca...</sys:String>
@@ -224,7 +224,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posição dos detalhes no esquema de grade</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posição do painel de filtros</sys:String>
-    <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posição do painel de navegação</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Renderização da arte da capa</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Proporção correta</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Modo de ampliação</sys:String>
@@ -239,6 +239,7 @@ Prefirir os dados da loja oficial e, quando não estiver disponível, usar o ban
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avançado</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Tela cheia</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Provedores</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">Entrada</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importar alterações na biblioteca automaticamente</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importar jogos instalados</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importar jogos desinstalados</sys:String>
@@ -314,6 +315,8 @@ Qualquer tarefa sendo executada (como a importação de metadados) será cancela
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Não se aplica retroativamente a jogos existentes sem baixar novamente os metadados.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Forçar sincronização do tempo em jogo</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Sempre importar o tempo em jogo registrado na biblioteca remota durante a sincronização de bibliotecas, ignorando o tempo registrado pelo Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Habilitar suporte para controles no modo janela *</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Botão Painel abre o modo Tela Cheia</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Nenhum</sys:String>
     <sys:String x:Key="LOCStrechFill">Preenchimento</sys:String>
@@ -372,7 +375,7 @@ Tenha em mente que você sempre pode adicionar jogos personalizados de qualquer 
     <sys:String x:Key="LOCFirstUplayIntegration">Integração com o Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importar categorias da conta:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Outros jogos</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Clique no botão abaixo para importar outros jogos instalados ou procurá-los manualmente (incluindo jogos da Loja do Windows).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText">Clique no botão abaixo para importar outros jogos instalados ou procurá-los manualmente (incluindo jogos da Microsoft Store).</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importar jogos</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuração concluída</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">A configuração inicial foi concluída. Lembre-se de que você pode alterar todas as configurações mais tarde através do menu "Configurações".
@@ -419,7 +422,7 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Agrupar por plataforma</sys:String>
     <sys:String x:Key="LOCViewType">Esquema</sys:String>
     <sys:String x:Key="LOCMenuView">Exibir</sys:String>
-    <sys:String x:Key="LOCMenuViewExplorerPanel"></sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">Painel de navegação</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Painel de filtros</sys:String>
 
     <!--Game fields-->
@@ -636,8 +639,8 @@ Você pode tentar corrigir o problema:
 
     <sys:String x:Key="LOCRenameItem">Renomear item</sys:String>
     <sys:String x:Key="LOCAddNewItem">Adicionar novo item</sys:String>
-    <sys:String x:Key="LOCEnterName"></sys:String>
-    <sys:String x:Key="LOCEnterNewName"></sys:String>
+    <sys:String x:Key="LOCEnterName">Insira um nome</sys:String>
+    <sys:String x:Key="LOCEnterNewName">Insira um novo nome</sys:String>
 
     <sys:String x:Key="LOCPLaytimeLessThenAnHour">Menos de 1 hora</sys:String>
     <sys:String x:Key="LOCPLaytime1to10">1 a 10 horas</sys:String>
