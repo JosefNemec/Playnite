@@ -652,8 +652,7 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Login</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Nazwa konta</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Zaloguj się na konto lub podaj nazwę konta, aby zsynchronizować bibliotekę.
-Pamiętaj, że opcja Nazwa konta działa tylko na kontach, które są publiczne.</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Wybierz uwierzytelnionego użytkownika lub podaj adres URL konta Steam, aby zsynchronizować bibliotekę. Konta z statusem prywatny muszą określać klucz API powiązany z kontem Steam.
