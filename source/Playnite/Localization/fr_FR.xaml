@@ -652,7 +652,7 @@ Veuillez essayer les solutions suivantes :
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Connexion au compte</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Nom d'utilisateur</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Connectez-vous directement à votre compte ou indiquez votre nom d'utilisateur pour synchroniser la bibliothèque. Notez que le nom d'utilisateur ne peut être utilisé que si les paramètres de visibilité du compte sont réglés sur "public".</sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Sélectionnez le nom d'utilisateur de votre compte ou indiquez l'URL personnalisée de votre profil pour synchroniser la bibliothèque. Les comptes dont la visibilité des jeux est réglée sur "personne" nécessitent également d'indiquer leur clé API.
