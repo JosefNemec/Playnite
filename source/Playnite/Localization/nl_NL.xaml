@@ -237,6 +237,7 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCSettingsAdvancedLabel">Geavanceerd</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Volledig scherm</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importeer veranderingen in de bibliotheek automatisch</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importeer geïnstalleerde spellen</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
@@ -310,6 +311,8 @@ Gebruik eerst data van de officiële winkel en vul missende data aan met data va
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -370,7 +373,7 @@ Tip: Als je je bibliotheek over meerdere computers wilt synchroniseren, stel de 
     <sys:String x:Key="LOCFirstUplayIntegration">Uplay Integratie</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importeer categorieën van account:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Andere spellen</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Klik op de knop hieronder om andere geïnstalleerde spellen te importeren of zoek ze handmatig op (Inclusief Windows Store spellen).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importeer Spellen</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuratie Klaar</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Eerste setup is klaar. Je kan alle instellingen later aanpassen via het 'Instellingen' menu.
