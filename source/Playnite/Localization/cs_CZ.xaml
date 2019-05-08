@@ -239,6 +239,7 @@ Použije přednostně data z oficiálního obchodu, v případě chybějících 
     <sys:String x:Key="LOCSettingsAdvancedLabel">Pokročilé</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Celá obrazovka</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Poskytovatelé</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">Vstup</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importovat změny v knihovně automaticky</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importovat nainstalované hry</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importovat nenainstalované hry</sys:String>
@@ -314,6 +315,8 @@ Všechny nyní prováděné úkony (jako stahování metadat) budou zrušeny.</s
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Neaplikuje se na hry, co už existují -- pro ty je třeba znovu stáhnout metadata.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Vynutit synchronizaci odehraného času</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Vždy stáhnout odehraný čas ze vzdálené knihovny, ignorovat čas zaznamenaný Playnitem.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Povolit podporu ovladače v režimu plochy</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Tlačítko Průvodce otevírá režim celé obrazovky</sys:String>
 
     <sys:String x:Key="LOCStrechNone">Žádný</sys:String>
     <sys:String x:Key="LOCStrechFill">Vyplnit</sys:String>
