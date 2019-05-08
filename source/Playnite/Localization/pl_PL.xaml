@@ -239,6 +239,7 @@ Preferuj dane z oficjalnego sklepu i jeżeli nie ma, użyj dane z IGDB.com.</sys
     <sys:String x:Key="LOCSettingsAdvancedLabel">Zaawansowane</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Pełny ekran</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Dostawcy</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importuj automatycznie zmiany w bibliotece</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Importuj zainstalowane gry</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel">Importuj odinstalowane gry</sys:String>
@@ -314,6 +315,8 @@ Wszystkie aktualnie aktywne zadania (pobieranie metadanych) zostaną anulowane.<
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Nie dotyczy obrazów tła w istniejących grach bez ponownego pobierania metadanych.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Wymuś synchronizację czasu gry</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Zawsze pobieraj czas gry z klienta, podczas synchronizacji, ignorując czas z Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
 
     <sys:String x:Key="LOCStrechNone"></sys:String>
     <sys:String x:Key="LOCStrechFill"></sys:String>
@@ -372,7 +375,7 @@ Pamiętaj, że zawsze możesz dodać dowolną niestandardową grę dla dowolnej 
     <sys:String x:Key="LOCFirstUplayIntegration">Integracja Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Importuj kategorie z konta:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Pozostałe gry</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Kliknij przycisk poniżej, aby importować inne zainstalowane gry lub przeglądać je ręcznie (w tym gry Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Importuj gry</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguracja zakończona</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Wstępna konfiguracja została zakończona. Pamiętaj, że możesz zmienić wszystkie ustawienia później za pomocą przycisku w menu "Ustawienia".
