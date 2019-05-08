@@ -234,6 +234,7 @@ Prioritaskan data dari official Store sebelum data dari IGDB.com.</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Opsi Lanjut</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel"></sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Provider</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Import perubahan library secara otomatis</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Import game yang sudah terinstal</sys:String>
     <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
@@ -309,6 +310,8 @@ Tugas yang sekarang berjalan (unduhan metadata) akan dibatalkan.</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Paksa sinkronisasi waktu bermain</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Selalu mengunduh waktu main yang tercatat di pustaka luar selama sinkronisasi pustaka, mengabaikan waktu yang tercatat oleh Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
 
     <sys:String x:Key="LOCStrechNone">Tidak ada</sys:String>
     <sys:String x:Key="LOCStrechFill">Isi</sys:String>
@@ -369,7 +372,7 @@ Tip: Jika kamu ingin mensingkronisasikan library untuk beberapa komputer sekalig
     <sys:String x:Key="LOCFirstUplayIntegration">Integrasi Uplay</sys:String>
     <sys:String x:Key="LOCFirstSteamImportCategories">Import kategori dari akun:</sys:String>
     <sys:String x:Key="LOCFirstOtherGamesTitle">Game lainnya</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Klik tombol dibawah ini untuk mengimport game lainnya yang telah terinstal di komputer secara manual (termasuk game di Windows Store).</sys:String>
+    <sys:String x:Key="LOCFirstOtherGamesText"></sys:String>
     <sys:String x:Key="LOCFirstOtherGamesImportButton">Import Game</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfigurasi telah Selesai</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Konfigurasi awal telah selesai. Ingatlah bahwa kamu bisa menggati lagi semua setting tadi secara manual di menu 'Settings'.
