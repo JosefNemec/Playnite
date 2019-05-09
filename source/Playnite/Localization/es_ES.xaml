@@ -658,7 +658,8 @@ Puedes intentar esto para resolverlo:
     <!--GOG-->
     <sys:String x:Key="LOCGOGUseLogin">Iniciar sesión</sys:String>
     <sys:String x:Key="LOCGOGUseAccountName">Nombre de la cuenta</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve">Inicia sesión en tu cuenta o usa un nombre de cuenta público para sincronizar tu librería completa.
+La opción de Nombre de Cuenta solo aparece para cuentas cuyas librerías de juegos se hayan marcado como públicamentte visibles desde las configuración de privacidad de GOG.</sys:String>
 
     <!--Steam-->
     <sys:String x:Key="LOCSettingsSteamLibrarySource" xml:space="preserve">Especificar la biblioteca del usuario por:</sys:String>
