@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <sys:String x:Key="LanguageName">La angla</sys:String>
+    <sys:String x:Key="LanguageName">Esperanto</sys:String>
 
     <sys:String x:Key="LOCLanguageSettingsLabel">Lingvo</sys:String>
 
@@ -56,10 +56,10 @@
 
 
     <!--General-->
-    <sys:String x:Key="LOCEnabledTitle"></sys:String>
-    <sys:String x:Key="LOCRemoveTitle"></sys:String>
-    <sys:String x:Key="LOCCopyTitle"></sys:String>
-    <sys:String x:Key="LOCAddTitle"></sys:String>
+    <sys:String x:Key="LOCEnabledTitle">Ebligita</sys:String>
+    <sys:String x:Key="LOCRemoveTitle">Forigu</sys:String>
+    <sys:String x:Key="LOCCopyTitle">Kopii</sys:String>
+    <sys:String x:Key="LOCAddTitle">Aldonu</sys:String>
     <sys:String x:Key="LOCDefaultIconTitle"></sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle"></sys:String>
     <sys:String x:Key="LOCFinishLabel">Finas</sys:String>
