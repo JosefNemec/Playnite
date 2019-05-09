@@ -30,14 +30,6 @@ using CommandLine;
 
 namespace Playnite
 {
-    public enum ApplicationMode
-    {
-        [Description("Desktop")]
-        Desktop,
-        [Description("Fullscreen")]
-        Fullscreen
-    }
-
     public abstract class PlayniteApplication : ObservableObject, IPlayniteApplication
     {
         private ILogger logger = LogManager.GetLogger();

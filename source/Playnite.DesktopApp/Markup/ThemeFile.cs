@@ -1,4 +1,6 @@
-﻿namespace Playnite.DesktopApp.Markup
+﻿using Playnite.SDK;
+
+namespace Playnite.DesktopApp.Markup
 {
     public class ThemeFile : Extensions.Markup.ThemeFile
     {

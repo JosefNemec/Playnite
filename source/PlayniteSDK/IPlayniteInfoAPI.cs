@@ -15,5 +15,15 @@ namespace Playnite.SDK
         /// Gets Playnite version.
         /// </summary>
         System.Version ApplicationVersion { get; }
+
+        ApplicationMode Mode { get; }
+
+        bool IsPortable { get; }
+
+        bool InOfflineMode { get; }
+
+        bool IsDebugBuild { get; }
+
+        bool ThrowAllErrors { get; }
     }
 }

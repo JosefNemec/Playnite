@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using Playnite;
+using Playnite.SDK;
 using PlayniteServices.Models.IGDB;
 
 namespace Playnite.DesktopApp.Tests
