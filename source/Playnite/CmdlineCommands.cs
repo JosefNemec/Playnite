@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Playnite
 {
-    public class CmdlineCommands
+    public enum CmdlineCommand : int
     {
-        public const string Launch = "launch";
-        public const string Focus = "focus";
+        Start = 0,
+        Focus = 1
     }
 }

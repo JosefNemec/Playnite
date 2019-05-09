@@ -15,7 +15,7 @@ namespace Playnite
 
     public class CommandExecutedEventArgs : EventArgs
     {
-        public string Command
+        public CmdlineCommand Command
         {
             get; set;
         }
@@ -29,7 +29,7 @@ namespace Playnite
         {
         }
 
-        public CommandExecutedEventArgs(string command, string args)
+        public CommandExecutedEventArgs(CmdlineCommand command, string args)
         {
             Command = command;
             Args = args;
@@ -40,7 +40,7 @@ namespace Playnite
     public interface IPipeService
     {
         [OperationContract]
-        void InvokeCommand(string command, string args);
+        void InvokeCommand(CmdlineCommand command, string args);
     }
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
@@ -48,7 +48,7 @@ namespace Playnite
     {
         public event CommandExecutedEventHandler CommandExecuted;
 
-        public void InvokeCommand(string command, string args)
+        public void InvokeCommand(CmdlineCommand command, string args)
         {
             CommandExecuted?.Invoke(this, new CommandExecutedEventArgs(command, args));
         }
@@ -78,7 +78,7 @@ namespace Playnite
         {
         }
 
-        public void InvokeCommand(string command, string args)
+        public void InvokeCommand(CmdlineCommand command, string args)
         {
             Channel.InvokeCommand(command, args);
         }

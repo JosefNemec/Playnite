@@ -66,6 +66,9 @@
       <HintPath>..\packages\AngleSharp.0.9.9\lib\net45\AngleSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CommandLine, Version=2.5.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommandLineParser.2.5.0\lib\net461\CommandLine.dll</HintPath>
+    </Reference>
     <Reference Include="Flurl, Version=2.7.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Flurl.2.7.1\lib\net40\Flurl.dll</HintPath>
     </Reference>
@@ -193,6 +196,7 @@
     <Compile Include="API\PlayniteInfoAPI.cs" />
     <Compile Include="API\PlaynitePathsAPI.cs" />
     <Compile Include="API\ExtensionDescription.cs" />
+    <Compile Include="App\CmdLineOptions.cs" />
     <Compile Include="Behaviors\AnimatedVisibility.cs" />
     <Compile Include="CefTools.cs" />
     <Compile Include="App\PlayniteApplication.cs" />

@@ -175,7 +175,7 @@ namespace Playnite.DesktopApp
             }
             else
             {
-                if (AppSettings.UpdateLibStartup)
+                if (AppSettings.UpdateLibStartup && !CmdLine.SkipLibUpdate)
                 {
                     await MainModel.UpdateDatabase(AppSettings.DownloadMetadataOnImport);
                 }

@@ -26,6 +26,7 @@ using Playnite.Common;
 using System.ComponentModel;
 using Playnite.Windows;
 using Polly;
+using CommandLine;
 
 namespace Playnite
 {
@@ -71,6 +72,7 @@ namespace Playnite
         public GameDatabase Database { get; set; }
         public PlayniteAPI Api { get; set; }
         public GameControllerFactory Controllers { get; set; }
+        public CmdLineOptions CmdLine { get; set; } = new CmdLineOptions();
 
         public static Application CurrentNative { get; private set; }
         public static PlayniteApplication Current { get; private set; }
@@ -80,6 +82,20 @@ namespace Playnite
             if (Current != null)
             {
                 throw new Exception("Only one application instance is allowed.");
+            }
+
+            var parsed = Parser.Default.ParseArguments<CmdLineOptions>(Environment.GetCommandLineArgs());
+            if (parsed is Parsed<CmdLineOptions> options)
+            {
+                CmdLine = options.Value;
+            }
+            else if (parsed is NotParsed<CmdLineOptions> notParsed)
+            {
+                logger.Error("Failed to parse cmdline arguments:");
+                foreach (var error in notParsed.Errors)
+                {
+                    logger.Error(error.ToString());
+                }                    
             }
 
             Mode = mode;
@@ -179,11 +195,11 @@ namespace Playnite
 
             switch (args.Command)
             {
-                case CmdlineCommands.Focus:
+                case CmdlineCommand.Focus:
                     Restore();
                     break;
 
-                case CmdlineCommands.Launch:
+                case CmdlineCommand.Start:
                     if (Guid.TryParse(args.Args, out var gameId))
                     {
                         var game = Database.Games[gameId];
@@ -236,17 +252,14 @@ namespace Playnite
                         .WaitAndRetry(3, a => TimeSpan.FromSeconds(3))
                         .Execute(() =>
                         {
-                            var args = Environment.GetCommandLineArgs();
                             var client = new PipeClient(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
-                            if (args.Count() > 0 && args.Contains("-command"))
+                            if (!CmdLine.Start.IsNullOrEmpty())
                             {
-                                var commandArgs = args[1].Split(new char[] { ':' });
-                                var command = commandArgs[0];
-                                client.InvokeCommand(command, commandArgs.Count() > 1 ? commandArgs[1] : string.Empty);
+                                client.InvokeCommand(CmdlineCommand.Start, CmdLine.Start);
                             }
                             else
                             {
-                                client.InvokeCommand(CmdlineCommands.Focus, string.Empty);
+                                client.InvokeCommand(CmdlineCommand.Focus, string.Empty);
                             }
                         });
                 }
@@ -345,13 +358,9 @@ namespace Playnite
 
         public void ProcessArguments()
         {
-            var args = Environment.GetCommandLineArgs();
-            if (args.Count() > 0 && args.Contains("-command"))
+            if (!CmdLine.Start.IsNullOrEmpty())
             {
-                var commandArgs = args[2].Split(new char[] { ':' });
-                var command = commandArgs[0];
-                var cmdArgs = commandArgs.Count() > 1 ? commandArgs[1] : string.Empty;
-                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(command, cmdArgs));
+                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.Start, CmdLine.Start));
             }
         }
 
@@ -379,8 +388,15 @@ namespace Playnite
             ReleaseResources();
             Process.Start(PlaynitePaths.ExecutablePath);
             CurrentNative.Shutdown(0);
-        }        
-        
+        }
+
+        public void Restart(CmdLineOptions options)
+        {            
+            ReleaseResources();
+            Process.Start(PlaynitePaths.ExecutablePath, options.ToString());
+            CurrentNative.Shutdown(0);
+        }
+
         public virtual void ReleaseResources()
         {
             logger.Debug("Releasing Playnite resources...");

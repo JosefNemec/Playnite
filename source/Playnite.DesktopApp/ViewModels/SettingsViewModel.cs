@@ -369,7 +369,7 @@ namespace Playnite.DesktopApp.ViewModels
                         resources.GetString("LOCSettingsRestartTitle"),
                         MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        application.Restart();
+                        application.Restart(new CmdLineOptions() { SkipLibUpdate = true });
                     }
                 }
             }

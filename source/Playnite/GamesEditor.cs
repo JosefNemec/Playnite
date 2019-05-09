@@ -310,7 +310,8 @@ namespace Playnite
                     icon = game.GetRawExecutablePath();
                 }
 
-                Programs.CreateShortcut(PlaynitePaths.ExecutablePath, "-command launch:" + game.Id, icon, path);
+                var args = new CmdLineOptions() { Start = game.Id.ToString() }.ToString();
+                Programs.CreateShortcut(PlaynitePaths.ExecutablePath, args, icon, path);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
