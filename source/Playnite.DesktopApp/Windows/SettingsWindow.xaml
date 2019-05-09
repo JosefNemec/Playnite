@@ -91,6 +91,11 @@
                                 <sys:Int32>6</sys:Int32>
                             </ListBoxItem.Tag>
                         </ListBoxItem>
+                        <ListBoxItem Content="{DynamicResource LOCSettingsMetadataLabel}">
+                            <ListBoxItem.Tag>
+                                <sys:Int32>7</sys:Int32>
+                            </ListBoxItem.Tag>
+                        </ListBoxItem>
                     </ListBox>
                     
                     <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Top" OverridesDefaultStyle="True"
@@ -504,6 +509,15 @@
 
                             </Grid>                            
                         </TabItem>  
+                        
+                        <!-- Metadata -->
+                        <TabItem>
+                            <DockPanel>
+                                <TextBlock Text="{DynamicResource LOCSettingsDefaultMetadataDescription}"
+                                    DockPanel.Dock="Top" TextWrapping="Wrap" />
+                                <pctrls:MetadataDownloadSettings Settings="{Binding Settings.DefaultMetadataSettings}" />
+                            </DockPanel>
+                        </TabItem>
                     </TabControl>
                 </DockPanel>
             </TabItem>

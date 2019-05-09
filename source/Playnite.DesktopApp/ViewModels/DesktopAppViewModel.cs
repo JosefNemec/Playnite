@@ -1025,7 +1025,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public async void DownloadMetadata(MetadataDownloadViewModel model)
         {
-            if (model.OpenView(MetadataDownloadViewModel.ViewMode.Manual) != true)
+            if (model.OpenView(MetadataDownloadViewModel.ViewMode.Manual, AppSettings.DefaultMetadataSettings) != true)
             {
                 return;
             }

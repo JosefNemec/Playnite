@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +17,13 @@ namespace Playnite.Metadata
 
     public enum MetadataSource
     {
+        [Description("LOCMetaSourceStore")]
         Store,
+        [Description("LOCMetaSourceIGDB")]
         IGDB,
+        [Description("LOCMetaSourceStoreOverIGDB")]
         IGDBOverStore,
+        [Description("LOCMetaSourceStoreOverIGDB")]
         StoreOverIGDB
     }
 
@@ -59,6 +65,7 @@ namespace Playnite.Metadata
     public class MetadataDownloaderSettings : ObservableObject
     {
         private MetadataGamesSource gamesSource = MetadataGamesSource.AllFromDB;
+        [JsonIgnore]
         public MetadataGamesSource GamesSource
         {
             get
@@ -74,6 +81,7 @@ namespace Playnite.Metadata
         }
 
         private bool skipExistingValues = true;
+        [JsonIgnore]
         public bool SkipExistingValues
         {
             get

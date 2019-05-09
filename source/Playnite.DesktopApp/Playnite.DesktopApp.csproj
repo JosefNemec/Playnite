@@ -117,6 +117,9 @@
     <Compile Include="Controls\GameTaskView.xaml.cs">
       <DependentUpon>GameTaskView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MetadataDownloadSettings.xaml.cs">
+      <DependentUpon>MetadataDownloadSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\NullableIntBox.cs" />
     <Compile Include="Controls\NumericBox.cs" />
     <Compile Include="Controls\SearchBox.xaml.cs">
@@ -455,6 +458,10 @@
     <Page Include="Controls\GameTaskView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\MetadataDownloadSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SearchBox.xaml">
       <Generator>MSBuild:Compile</Generator>

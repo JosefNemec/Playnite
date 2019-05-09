@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows;
 using Newtonsoft.Json.Serialization;
 using System.Runtime.Serialization;
+using Playnite.Metadata;
 
 namespace Playnite
 {
@@ -897,6 +898,21 @@ namespace Playnite
             }
         }
 
+        private MetadataDownloaderSettings defaultMetadataSettings = new MetadataDownloaderSettings();
+        public MetadataDownloaderSettings DefaultMetadataSettings
+        {
+            get
+            {
+                return defaultMetadataSettings;
+            }
+
+            set
+            {
+                defaultMetadataSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -1141,6 +1157,11 @@ namespace Playnite
         {
             return DisabledPlugins.HasItems();
         }
+
+        public bool ShouldSerializeDefaultMetadataSettings()
+        {
+            return DefaultMetadataSettings != null;
+        }        
 
         #endregion Serialization Conditions
     }

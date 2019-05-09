@@ -21,6 +21,7 @@ namespace Playnite.DesktopApp.ViewModels
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
 
+        public bool SaveAsDefault { get; set; }
 
         private int viewTabIndex = 0;
         public int ViewTabIndex
@@ -129,14 +130,21 @@ namespace Playnite.DesktopApp.ViewModels
             this.window = window;            
         }
 
-        public bool? OpenView(ViewMode mode)
+        public bool? OpenView(ViewMode mode, MetadataDownloaderSettings settings)
         {
             Mode = mode;
+            Settings = settings;
             return window.CreateAndOpenDialog(this);
         }
 
         public void CloseView(bool success)
         {
+            if (success && SaveAsDefault)
+            {
+                PlayniteApplication.Current.AppSettings.DefaultMetadataSettings = Settings;
+                PlayniteApplication.Current.AppSettings.SaveSettings();
+            }
+
             window.Close(success);
         }
 
